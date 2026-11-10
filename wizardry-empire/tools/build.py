@@ -86,6 +86,7 @@ def build(rom_in=ROM_IN, out=ROM_OUT, ips_out=IPS_OUT, verbose=True):
     a = asm.assemble(os.path.join(ROOT, "asm", "main.asm"))
     for off, b, where in a.patches:
         rom[off:off + len(b)] = b
+    stats["fixmap entries"] = insert.post_asm(rom, a.sym)
     fix_checksums(rom)
     open(out, "wb").write(rom)
     open(ips_out, "wb").write(ips.make(orig + b"\xff" * (NEW_SIZE - len(orig)), bytes(rom), orig_len=len(orig)))

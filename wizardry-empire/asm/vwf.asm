@@ -78,6 +78,8 @@ wInE        equ $cfe5
 wInD        equ $cfe6
 wFL_code    equ $cfe7
 wFL_n       equ $cfe8
+wFixN       equ $cfe9
+wFixTB      equ $cfea
 
 STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = shadow of the VRAM tile
 MAP_BANK    equ 6              ; WRAM bank 6: cellmap $d000-$d7ff, owners $d800 + code*2
@@ -117,6 +119,35 @@ MAP_BANK    equ 6              ; WRAM bank 6: cellmap $d000-$d7ff, owners $d800 
     ld a, h
     ld [$c1c0], a
     jp $1bc7
+
+Stub_Fix:                   ; call Stub_Fix / db n: copy n chars from HL (current bank) to DE, via the VWF
+    ld a, l
+    ld [wInL], a
+    ld a, h
+    ld [wInH], a
+    pop hl
+    ld a, [hli]
+    ld [wFixN], a
+    push hl
+    push bc
+    ldh a, [hROMB]
+    ld [wInBank], a
+    ld a, VWF_BANK
+    ld hl, VWF_Fix
+    call FarCall
+    pop bc
+    ld a, [wInL]
+    ld l, a
+    ld a, [wInH]
+    ld h, a
+    ret
+
+Stub_TWInit:
+    ld a, $ff
+    ld [TW_row], a
+    xor a
+    ld [twCol], a
+    ret
     assert @ <= $1c79, "typewriter stub overflow"
 
 ; --- typewriter init: forget the previous message's VWF context
@@ -364,12 +395,6 @@ Stub_Inline:
     ld h, a
     ret
 
-Stub_TWInit:
-    ld a, $ff
-    ld [TW_row], a
-    xor a
-    ld [twCol], a
-    ret
     assert @ <= $3fda, "bank0 stub area 2 overflow"
 
 ; =====================================================================
@@ -1381,6 +1406,95 @@ VWF_Rect:
     pop af
     jp SetSVBK
 
+; Fixed-length copy (Stub_Fix). Looks the source address up in FixMap (entries: src bank, src lo, src hi,
+; text bank, text lo, text hi; $FF ends); prints the English if found, else the raw bytes.
+; Returns DE and wInL/H advanced by n-1 like the original unrolled copy.
+VWF_Fix:
+    ld a, e
+    ld [wInE], a
+    ld a, d
+    ld [wInD], a
+    ld hl, FixMap
+.f: ld a, [hli]
+    cp $ff
+    jr z, .raw
+    ld b, a
+    ld a, [wInBank]
+    cp b
+    jr nz, .n2
+    ld a, [wInL]
+    cp [hl]
+    jr nz, .n2
+    inc hl
+    ld a, [wInH]
+    cp [hl]
+    jr nz, .n1
+    inc hl
+    ld a, [hli]
+    ld [wFixTB], a
+    ld a, [hli]
+    ld [wInLo], a
+    ld a, [hl]
+    ld [wInHi], a
+    ld a, [wInBank]
+    push af
+    ld a, [wFixTB]
+    ld [wInBank], a         ; DE destination (bit 7 clear)
+    call VWF_Inline
+    pop af
+    ld [wInBank], a
+    jr .done
+.n2: inc hl
+.n1: inc hl
+    inc hl
+    inc hl
+    inc hl
+    jr .f
+.raw:
+    ld a, [wInBank]
+    ld b, a
+    ld a, [wInL]
+    ld l, a
+    ld a, [wInH]
+    ld h, a
+    ld de, wNameBuf
+    ld a, [wFixN]
+    ld c, a
+.r: call VWF_Fetch
+    ld [de], a
+    inc de
+    dec c
+    jr nz, .r
+    xor a
+    ld [de], a
+    ld a, [wInE]
+    ld e, a
+    ld a, [wInD]
+    ld d, a
+    call VWF_PrintBuf
+.done:
+    ld a, [wFixN]
+    dec a
+    ld c, a
+    ld b, 0
+    ld a, [wInE]
+    ld l, a
+    ld a, [wInD]
+    ld h, a
+    add hl, bc
+    ld d, h
+    ld e, l
+    ld a, [wInL]
+    ld l, a
+    ld a, [wInH]
+    ld h, a
+    add hl, bc
+    ld a, l
+    ld [wInL], a
+    ld a, h
+    ld [wInH], a
+    ret
+
 ; Inline text (rst $38): copy [wInBank&$7f]:[wInHi/Lo] ($FF or $00 terminated) to wNameBuf, print at DE.
 ; For HL-destination sites the caller's DE is kept in wInE/wInD.
 VWF_Inline:
@@ -1490,3 +1604,7 @@ NextCellBlank:
     and $f7
     ld [hl], a
     jp NextCell
+
+; Address-keyed English for fixed-length copies; filled in by tools/build.py after assembly.
+FixMap:
+    ds 6 * 400, $ff

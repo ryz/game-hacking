@@ -204,6 +204,44 @@ def insert_inline(rom, space, entries):
     return len(entries)
 
 
+FIX_RE = None
+
+
+def fix_sites(rom):
+    """Unrolled copies (ld a,[hli] / ld [de],a / inc de)* + ld a,[hl] / ld [de],a in the original banks."""
+    import re
+    out = []
+    for m in re.finditer(rb"(?:\x2a\x12\x13)+\x7e\x12", bytes(rom[:0x100000])):
+        n = (m.end() - m.start() - 2) // 3 + 1
+        out.append((m.start(), m.end() - m.start(), n))
+    return out
+
+
+def insert_fix_sites(rom):
+    for o, ln, n in fix_sites(rom):
+        rom[o:o + ln] = (bytes([0xCD, 0, 0, n]) + b"\x00" * ln)[:ln]  # call target patched after asm
+    return len(fix_sites_cache)
+
+
+def fixmap_entries(space, rom):
+    """(src bank, src addr) -> English, from translated rect rows (rects double as lookup tables)."""
+    import re
+    ents = []
+    for e in load("rects.json"):
+        if not e.get("en") or e.get("fixed") or e["w"] * e["h"] < 3:
+            continue
+        rows = e["en"] if isinstance(e["en"], list) else e["en"].split("\n")
+        base = int(e["addr"], 16) + 2
+        for r, row in enumerate(rows):
+            row = re.sub(r"^[\^>]|^@\d+:", "", row)
+            row = re.sub(r"\{x:\d+\}", " ", row)
+            if not row.strip():
+                continue
+            b, a = space.put(text.encode(row) + b"\x00")
+            ents.append((e["bank"], base + r * e["w"], b, a))
+    return ents
+
+
 def load(name):
     p = os.path.join(ROOT, "script", name)
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else []
@@ -218,5 +256,22 @@ def insert_all(rom):
     stats["monsters"] = insert_monsters(rom, load("monsters.json"))
     stats["templates"] = insert_templates(rom, load("templates.json"))
     stats["inline"] = insert_inline(rom, space, load("inline.json"))
+    global fix_sites_cache, fixmap_cache
+    fix_sites_cache = fix_sites(rom)
+    fixmap_cache = fixmap_entries(space, rom)
+    stats["fixed copies"] = len(fix_sites_cache)
     stats["text space used"] = "bank $%02X + $%04X" % (space.bank, space.pos - 0x4000)
     return stats
+
+
+def post_asm(rom, sym):
+    """Patch what needs assembled addresses: Stub_Fix calls and the FixMap contents."""
+    tgt = sym["Stub_Fix"][1]
+    for o, ln, n in fix_sites_cache:
+        rom[o:o + ln] = (bytes([0xCD, tgt & 0xFF, tgt >> 8, n]) + b"\x00" * ln)[:ln]
+    b, a = sym["FixMap"]
+    o = b * 0x4000 + a - 0x4000
+    assert len(fixmap_cache) <= 400
+    data = b"".join(bytes([sb, sa & 0xFF, sa >> 8, tb, ta & 0xFF, ta >> 8]) for sb, sa, tb, ta in fixmap_cache)
+    rom[o:o + len(data)] = data
+    return len(fixmap_cache)
