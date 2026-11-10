@@ -42,6 +42,23 @@ def gen_bins():
     open(os.path.join(BUILD, "pool.bin"), "wb").write(bytes(POOL))
 
 
+FONT_OFF = 0x4400  # bank 1 $4400: original 8x8 font, code*16
+ASCII_FIX = [0x22, 0x27, 0x28, 0x29, 0x2C, 0x3B]  # kana tiles at ASCII punctuation codes
+
+
+def patch_fixed_font(rom):
+    """Fixed-width fallback: draw ASCII punctuation over kana tiles that share the code."""
+    f = font.load()
+    for c in ASCII_FIX:
+        adv, rows = f[c]
+        w = adv - 1
+        shift = (8 - w) // 2
+        tile = bytearray()
+        for r in rows:
+            tile += bytes([(r >> shift) & 0xFF, 0xFF])
+        rom[FONT_OFF + c * 16:FONT_OFF + c * 16 + 16] = tile
+
+
 def fix_checksums(rom):
     c = 0
     for i in range(0x134, 0x14D):
@@ -58,6 +75,7 @@ def build(rom_in=ROM_IN, out=ROM_OUT, ips_out=IPS_OUT, verbose=True):
     rom = bytearray(orig) + b"\xff" * (NEW_SIZE - len(orig))
     rom[0x148] = 0x06  # 2 MB
     gen_bins()
+    patch_fixed_font(rom)
     stats = insert.insert_all(rom)
     a = asm.assemble(os.path.join(ROOT, "asm", "main.asm"))
     for off, b, where in a.patches:

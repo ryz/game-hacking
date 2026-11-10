@@ -146,6 +146,19 @@ def insert_msgs(rom, space, entries):
     return n
 
 
+ITEM_BANK, ITEM_SIZE, ITEM_NAME = 40, 40, 18
+
+
+def insert_items(rom, entries):
+    """Item names live in the 40-byte item records (bank 40), 18-byte $00-padded field: in place."""
+    for e in entries:
+        o = ITEM_BANK * 0x4000 + e["id"] * ITEM_SIZE
+        data = text.encode(e["en"])
+        assert len(data) < ITEM_NAME, e
+        rom[o:o + ITEM_NAME] = data.ljust(ITEM_NAME, b"\x00")
+    return len(entries)
+
+
 def load(name):
     p = os.path.join(ROOT, "script", name)
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else []
@@ -156,5 +169,6 @@ def insert_all(rom):
     stats = {}
     stats["rects"] = insert_rects(rom, space, load("rects.json"))
     stats["messages"] = insert_msgs(rom, space, load("messages.json"))
+    stats["items"] = insert_items(rom, load("items.json"))
     stats["text space used"] = "bank $%02X + $%04X" % (space.bank, space.pos - 0x4000)
     return stats
