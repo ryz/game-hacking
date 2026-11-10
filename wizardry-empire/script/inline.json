@@ -1,0 +1,21 @@
+[
+{"bank": 38, "addr": "0x5732", "kind": "de", "len": 7, "jp": "さい", "en": "yrs"},
+{"bank": 38, "addr": "0x576e", "kind": "de", "len": 24, "jp": "じょうたい:", "en": "Status:"},
+{"bank": 38, "addr": "0x589d", "kind": "de", "len": 48, "jp": "キャラクタのいるばしょ:", "en": "Location:"},
+{"bank": 38, "addr": "0x5907", "kind": "de", "len": 20, "jp": "しょうごう", "en": "Title"},
+{"bank": 38, "addr": "0x5944", "kind": "de", "len": 20, "jp": "けいけんち", "en": "EXP"},
+{"bank": 38, "addr": "0x5974", "kind": "de", "len": 16, "jp": "ゴールド", "en": "Gold"},
+{"bank": 39, "addr": "0x52a4", "kind": "de", "len": 27, "jp": "は ねています", "en": " is asleep."},
+{"bank": 39, "addr": "0x6a86", "kind": "de", "len": 20, "jp": "ゴールド:", "en": "Gold:"},
+{"bank": 39, "addr": "0x48cb", "kind": "hli", "len": 12, "jp": "ローズの", "en": "Rose's"},
+{"bank": 39, "addr": "0x48da", "kind": "hli", "len": 9, "jp": "さかば", "en": "Tavern", "hl": "0xd043"},
+{"bank": 39, "addr": "0x48e6", "kind": "hli", "len": 21, "jp": "なかまにいれる", "en": "Add member"},
+{"bank": 39, "addr": "0x48fe", "kind": "hli", "len": 9, "jp": "はずす", "en": "Remove"},
+{"bank": 39, "addr": "0x490a", "kind": "hli", "len": 12, "jp": "しらベる", "en": "Inspect"},
+{"bank": 39, "addr": "0x4919", "kind": "hli", "len": 18, "jp": "やまわけする", "en": "Divide gold"},
+{"bank": 41, "addr": "0x4288", "kind": "de", "len": 20, "jp": "ゴールド ", "en": "Gold"},
+{"bank": 44, "addr": "0x4acb", "kind": "de", "len": 7, "jp": "さい", "en": "yrs"},
+{"bank": 44, "addr": "0x4aeb", "kind": "de", "len": 7, "jp": "にち", "en": "days"},
+{"bank": 44, "addr": "0x4af6", "kind": "de", "len": 16, "jp": "ゴールド", "en": "Gold"},
+{"bank": 44, "addr": "0x4b17", "kind": "de", "len": 20, "jp": "けいけんち", "en": "EXP"}
+]

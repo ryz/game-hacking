@@ -10,7 +10,8 @@ import tbl
 from census_rects import KANA
 
 ROM = open(os.path.join(HERE, "..", "rom", "wizardry_empire_j.gbc"), "rb").read()
-PATS = {"de": (rb"(?:\x3e.\x12\x13)", 4), "hli": (rb"(?:\x3e.\x22)", 3), "hl": (rb"(?:\x36.\x23)", 3)}
+# (unit regex, unit size, optional terminal store regex)
+PATS = {"de": (rb"(?:\x3e.\x12\x13)", 4, rb"(?:\x3e.\x12)?"), "hli": (rb"(?:\x3e.\x22)", 3, rb"(?:\x3e.\x77)?")}
 
 
 def scan():
@@ -18,12 +19,14 @@ def scan():
     for b in range(64):
         s = ROM[b * 0x4000:(b + 1) * 0x4000]
         base = 0x4000 if b else 0
-        for kind, (p, step) in PATS.items():
-            for m in re.finditer(p + b"{2,}", s, re.S):
+        for kind, (p, step, term) in PATS.items():
+            for m in re.finditer(p + b"{1,}" + term, s, re.S):
+                if m.end() - m.start() < 6:
+                    continue
                 chars = bytes(s[m.start() + 1 + i] for i in range(0, m.end() - m.start(), step))
                 if sum(c in KANA for c in chars) < 1:
                     continue
-                out.append({"bank": b, "addr": "0x%04x" % (base + m.start()), "kind": kind, "n": len(chars),
+                out.append({"bank": b, "addr": "0x%04x" % (base + m.start()), "kind": kind, "len": m.end() - m.start(),
                             "jp": tbl.dec(chars)})
     return out
 

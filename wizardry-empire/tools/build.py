@@ -19,7 +19,9 @@ IPS_OUT = os.path.join(BUILD, "wizardry_empire_en.ips")
 NEW_SIZE = 2 * 1024 * 1024
 
 # Codes $80-$EF: the font's kana half, which the patch no longer loads (see VWF_FontLoad).
-POOL = list(range(0x80, 0xF0))
+POOL = list(range(0x80, 0xF0)) + (  # + the kana in the lower half (also not loaded any more)
+    list(range(0x01, 0x20)) + [0x23, 0x24, 0x26, 0x3C, 0x3D, 0x3E, 0x40]
+    + list(range(0x5B, 0x61)) + list(range(0x7B, 0x80)))
 
 
 def check_rom(data):
@@ -40,6 +42,10 @@ def gen_bins():
     open(os.path.join(BUILD, "font_adv.bin"), "wb").write(adv)
     open(os.path.join(BUILD, "font_rows.bin"), "wb").write(rows)
     open(os.path.join(BUILD, "pool.bin"), "wb").write(bytes(POOL))
+    flags = bytearray(256)
+    for c in POOL:
+        flags[c] = 1
+    open(os.path.join(BUILD, "poolflags.bin"), "wb").write(flags)
 
 
 FONT_OFF = 0x4400  # bank 1 $4400: original 8x8 font, code*16

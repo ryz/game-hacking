@@ -69,8 +69,18 @@ wValid      equ $cfa0          ; 32 bytes: shadow copy in WRAM7 matches VRAM
 wUp         equ $cf80          ; 16 bytes (16-aligned): HDMA source
 wSkip       equ $cf08
 wNameBuf    equ $cfc0          ; 32 bytes
+wInL        equ $cfe0
+wInH        equ $cfe1
+wInBank     equ $cfe2
+wInLo       equ $cfe3
+wInHi       equ $cfe4
+wInE        equ $cfe5
+wInD        equ $cfe6
+wFL_code    equ $cfe7
+wFL_n       equ $cfe8
 
-STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = staged 2bpp tile
+STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = shadow of the VRAM tile
+MAP_BANK    equ 6              ; WRAM bank 6: cellmap $d000-$d7ff, owners $d800 + code*2
 
 ; =====================================================================
 ; Bank 0 patches and stubs
@@ -227,6 +237,10 @@ STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = staged 2bpp tile
     nop
     nop
 
+; --- rst $38: inline text. Followed by db bank (bit 7: destination in HL, else DE), dw text.
+    org 0, $0038
+    jp Stub_Inline
+
 ; --- free space at $00b1-$00f0
     org 0, $00b1
 Stub_Enqueue:              ; font upper half (bank 1 $4c00/$5000)? let the VWF decide
@@ -326,6 +340,30 @@ Stub_PrintZ:                ; copy the string at HL to wNameBuf, print it at DE 
     xor a
     ret
 
+Stub_Inline:
+    ld a, l
+    ld [wInL], a
+    ld a, h
+    ld [wInH], a
+    pop hl                  ; -> arguments
+    ld a, [hli]
+    ld [wInBank], a
+    ld a, [hli]
+    ld [wInLo], a
+    ld a, [hli]
+    ld [wInHi], a
+    push hl                 ; return after the arguments
+    push bc
+    ld a, VWF_BANK
+    ld hl, VWF_Inline
+    call FarCall
+    pop bc
+    ld a, [wInL]
+    ld l, a
+    ld a, [wInH]
+    ld h, a
+    ret
+
 Stub_TWInit:
     ld a, $ff
     ld [TW_row], a
@@ -345,6 +383,8 @@ FontRows:
 Pool:
     incbin "../build/pool.bin"          ; POOL_SIZE codes
 PoolEnd:
+PoolFlags:
+    incbin "../build/poolflags.bin"     ; 256 bytes: nonzero = code is a VWF slot
 POOL_SIZE   equ PoolEnd - Pool
 
 ; ---------------------------------------------------------------------
@@ -360,6 +400,10 @@ VWF_FontLoad:
     ldh a, [hSrcHi]
     cp $4c
     jr z, .hi
+    cp $44
+    jr z, .lo
+    cp $48
+    jr z, .lo
     ; $5000: codes $c0-$ff
     ldh a, [hDstVBank]
     or a
@@ -381,6 +425,56 @@ VWF_FontLoad:
     ld a, 1
     ld [wSkip], a
     ret
+.lo:                        ; 64 tiles from ROM1:hSrcHi00: copy the ones that are not pool slots
+    ld a, 1
+    ld [wReset], a
+    ldh a, [hSrcHi]
+    sub $44
+    add a
+    add a
+    add a
+    add a                   ; first code: 0 or $40
+    ld [wFL_code], a
+    ld a, 64
+    ld [wFL_n], a
+.fl:
+    ld a, [wFL_code]
+    ld e, a
+    ld d, 0
+    ld hl, PoolFlags
+    add hl, de
+    ld a, [hl]
+    or a
+    jr nz, .next
+    ; source = ROM1:$4400 + code*16
+    ld l, e
+    ld h, 0
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    ld de, $4400
+    add hl, de
+    ld de, wUp
+    ld b, 16
+.cp:
+    push bc
+    ld b, 1
+    call VWF_Fetch
+    pop bc
+    ld [de], a
+    inc de
+    dec b
+    jr nz, .cp
+    ld a, [wFL_code]
+    call Upload
+.next:
+    ld hl, wFL_code
+    inc [hl]
+    ld hl, wFL_n
+    dec [hl]
+    jr nz, .fl
+    jr .drop
 
 ; ---------------------------------------------------------------------
 ; SVBK helpers (keep the game's hSVBK mirror in sync)
@@ -648,6 +742,8 @@ ValidAddr:
 ; A = slot code -> A = tile number, C = attribute bank bit ($08 or 0)
 SlotTile:
     ld c, 0
+    bit 7, a
+    ret z                   ; codes < $80: VRAM0:$9000 in both layouts
     ld b, a
     ld a, [wLayout]
     or a
@@ -662,22 +758,25 @@ CellSlot:
     call CellMapAddr
     ldh a, [hSVBK]
     push af
-    ld a, STAGING_BANK
+    ld a, MAP_BANK
     call SetSVBK
     ld a, [hl]
     ld [wTmp2], a
     pop af
     call SetSVBK
     ld a, [wTmp2]
-    cp $80
-    jr c, .no
-    cp $f0
-    jr c, CheckOwner
-.no:
+    ld e, a
+    ld d, 0
+    ld hl, PoolFlags
+    add hl, de
+    ld a, [hl]
+    or a
+    ld a, e
+    jr nz, CheckOwner
     xor a
     ret
 
-; HL = cellmap entry for the current cell: buffer $d000-$d3ff -> $d000-$d3ff, $d800-$dbff -> $d400-$d7ff
+; HL = cellmap entry (WRAM bank 6) for the current cell: buffer $d000-$d3ff -> $d000-$d3ff, $d800-$dbff -> $d400-$d7ff
 CellMapAddr:
     ld a, [S_cellLo]
     ld l, a
@@ -697,7 +796,7 @@ CheckOwner:
     call OwnerAddr
     ldh a, [hSVBK]
     push af
-    ld a, STAGING_BANK
+    ld a, MAP_BANK
     call SetSVBK
     ld a, [S_cellLo]
     cp [hl]
@@ -721,7 +820,7 @@ SetOwner:
     call OwnerAddr
     ldh a, [hSVBK]
     push af
-    ld a, STAGING_BANK
+    ld a, MAP_BANK
     call SetSVBK
     ld a, [S_cellLo]
     ld [hli], a
@@ -733,12 +832,13 @@ SetOwner:
     pop af
     jp SetSVBK
 
-; A = code ($80-$ef) -> HL = owner entry in WRAM bank 7 ($df00 + (code-$80)*2)
+; A = code -> HL = owner entry in WRAM bank 6 ($d800 + code*2)
 OwnerAddr:
-    sub $80
-    add a
     ld l, a
-    ld h, $df
+    ld h, 0
+    add hl, hl
+    ld de, $d800
+    add hl, de
     ret
 
 ; ---------------------------------------------------------------------
@@ -751,8 +851,10 @@ Upload:
     add hl, hl
     add hl, hl
     add hl, hl
-    add hl, hl              ; code*16 ($800-$eff)
+    add hl, hl              ; code*16
     ld c, 0
+    bit 7, a
+    jr z, .lo
     ld a, [wLayout]
     or a
     jr z, .flat
@@ -765,6 +867,10 @@ Upload:
     jr .go
 .flat:
     ld de, $8000            ; VRAM0:$8800 + (code-$80)*16
+    add hl, de
+    jr .go
+.lo:
+    ld de, $9000            ; VRAM0:$9000 + code*16
     add hl, de
 .go:
     ldh a, [$4f]
@@ -1274,6 +1380,59 @@ VWF_Rect:
     jp c, .rowloop
     pop af
     jp SetSVBK
+
+; Inline text (rst $38): copy [wInBank&$7f]:[wInHi/Lo] ($FF or $00 terminated) to wNameBuf, print at DE.
+; For HL-destination sites the caller's DE is kept in wInE/wInD.
+VWF_Inline:
+    ld a, e
+    ld [wInE], a
+    ld a, d
+    ld [wInD], a
+    ld a, [wInBank]
+    and $7f
+    ld b, a
+    ld a, [wInLo]
+    ld l, a
+    ld a, [wInHi]
+    ld h, a
+    ld c, low(wNameBuf)
+.c: call VWF_Fetch
+    cp $ff
+    jr nz, .s
+    xor a
+.s: push af
+    push hl
+    ld h, high(wNameBuf)
+    ld l, c
+    ld [hl], a
+    pop hl
+    inc c
+    pop af
+    or a
+    jr nz, .c
+    ld a, [wInBank]
+    bit 7, a
+    jr z, .de
+    ld a, [wInL]            ; destination in HL
+    ld e, a
+    ld a, [wInH]
+    ld d, a
+    call VWF_PrintBuf
+    ld a, e
+    ld [wInL], a
+    ld a, d
+    ld [wInH], a
+    ld a, [wInE]
+    ld e, a
+    ld a, [wInD]
+    ld d, a
+    ret
+.de:
+    ld a, [wInE]
+    ld e, a
+    ld a, [wInD]
+    ld d, a
+    jp VWF_PrintBuf
 
 ; Print the $00-terminated string in wNameBuf at cell DE (bank-3 buffer); returns DE after it.
 VWF_PrintBuf:

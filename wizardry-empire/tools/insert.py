@@ -172,6 +172,38 @@ def insert_monsters(rom, entries):
     return len(entries)
 
 
+def insert_templates(rom, entries):
+    """Default characters (bank 46, $80-byte records): 8-byte name field, in place."""
+    for e in entries:
+        o = 46 * 0x4000 + e["id"] * 0x80
+        data = text.encode(e["en"])
+        assert len(data) <= 7, e
+        rom[o:o + 8] = data.ljust(8, b"\x00")
+    return len(entries)
+
+
+def insert_inline(rom, space, entries):
+    """Text stored by straight-line code (ld a,X / ld [de],a / inc de or ld [hli],a runs):
+    the whole run becomes rst $38 + db bank(|$80 for HL) + dw text, then a jr over the rest."""
+    for e in entries:
+        o = rom_off(e["bank"], int(e["addr"], 16))
+        n = e["len"]
+        assert n >= 4 and rom[o] == 0x3E, e
+        b, a = space.put(text.encode(e["en"]) + b"\x00")
+        code = bytes([0xFF, b | (0x80 if e["kind"] == "hli" else 0), a & 0xFF, a >> 8])
+        rest = n - 4
+        if rest >= 2:
+            code += bytes([0x18, rest - 2]) + b"\x00" * (rest - 2)
+        else:
+            code += b"\x00" * rest
+        rom[o:o + n] = code
+        if e.get("hl"):
+            assert rom[o - 3] == 0x21, e
+            v = int(e["hl"], 16)
+            rom[o - 2:o] = bytes([v & 0xFF, v >> 8])
+    return len(entries)
+
+
 def load(name):
     p = os.path.join(ROOT, "script", name)
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else []
@@ -184,5 +216,7 @@ def insert_all(rom):
     stats["messages"] = insert_msgs(rom, space, load("messages.json"))
     stats["items"] = insert_items(rom, load("items.json"))
     stats["monsters"] = insert_monsters(rom, load("monsters.json"))
+    stats["templates"] = insert_templates(rom, load("templates.json"))
+    stats["inline"] = insert_inline(rom, space, load("inline.json"))
     stats["text space used"] = "bank $%02X + $%04X" % (space.bank, space.pos - 0x4000)
     return stats
