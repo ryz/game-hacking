@@ -159,6 +159,19 @@ def insert_items(rom, entries):
     return len(entries)
 
 
+MON_BANK, MON_BASE, MON_SIZE, MON_NAME, MON_FIELD = 57, 0x4840, 64, 0x20, 13
+
+
+def insert_monsters(rom, entries):
+    """Monster names: 64-byte records in bank 57, name at +$20, 12 chars + $00, in place."""
+    for e in entries:
+        o = MON_BANK * 0x4000 + MON_BASE - 0x4000 + e["id"] * MON_SIZE + MON_NAME
+        data = text.encode(e["en"])
+        assert len(data) <= MON_FIELD - 1, e
+        rom[o:o + MON_FIELD] = data.ljust(MON_FIELD, b"\x00")
+    return len(entries)
+
+
 def load(name):
     p = os.path.join(ROOT, "script", name)
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else []
@@ -170,5 +183,6 @@ def insert_all(rom):
     stats["rects"] = insert_rects(rom, space, load("rects.json"))
     stats["messages"] = insert_msgs(rom, space, load("messages.json"))
     stats["items"] = insert_items(rom, load("items.json"))
+    stats["monsters"] = insert_monsters(rom, load("monsters.json"))
     stats["text space used"] = "bank $%02X + $%04X" % (space.bank, space.pos - 0x4000)
     return stats
