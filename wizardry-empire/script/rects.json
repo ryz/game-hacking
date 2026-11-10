@@ -1,0 +1,6 @@
+[
+  {"id": "town_info_edge", "bank": 43, "addr": "0x63bf", "w": 17, "h": 5,
+   "jp": ["    『まちはずれ』", "", "まどうへの でいりぐちです", "", "ぼうけんを やめることもできます"],
+   "en": ["\"Edge of Town\"", "", "The entrance to the maze.", "", "You can also stop adventuring."],
+   "align": ["center", "left", "left", "left", "left"]}
+]
