@@ -133,8 +133,13 @@ def insert_msgs(rom, space, entries):
         o = rom_off(e["bank"], int(e["addr"], 16))
         check_msg_width(e, e.get("maxpx", 144))
         olen = rom.index(b"\xff", o) - o + 1
-        if olen < 4:
-            raise ValueError("%s:%s original too short for a redirect" % (e["bank"], e["addr"]))
+        if olen < 4 or e.get("inplace"):
+            data = encode_msg(e["en"])
+            if len(data) > olen:
+                raise ValueError("%s:%s in-place text longer than the original (%d > %d)" % (e["bank"], e["addr"], len(data), olen))
+            rom[o:o + len(data)] = data
+            n += 1
+            continue
         b, a = space.put(encode_msg(e["en"]))
         rom[o:o + 4] = bytes([0xF2, b, a & 0xFF, a >> 8])
         n += 1
