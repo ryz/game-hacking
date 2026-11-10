@@ -48,6 +48,8 @@ S_SIZE      equ $18
 TW_ctx      equ $cf30          ; S_SIZE bytes
 TW_row      equ $cf48
 TW_rep      equ $cf49
+TW_baseLo   equ $cf4a
+TW_baseHi   equ $cf4b
 ; rect parameters
 R_w         equ $cf50
 R_h         equ $cf51
@@ -78,7 +80,11 @@ STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = staged 2bpp tile
     jp Stub_Enqueue
 
 ; --- typewriter character output (replaces 1c11-1c76)
+; New control code $F2 bank lo hi: continue the message at bank:lo/hi (used to redirect
+; every original message to its English text).
     org 0, $1c11
+    cp $f2
+    jr z, .jump
     push hl
     ld b, a
     ld a, VWF_BANK
@@ -86,6 +92,26 @@ STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = staged 2bpp tile
     call FarCall
     pop hl
     jp $1bc7
+.jump:
+    ld a, [hli]
+    ld b, a
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    ld a, b
+    ld [$c1c1], a
+    rst $28
+    ld a, l
+    ld [$c1bf], a
+    ld a, h
+    ld [$c1c0], a
+    jp $1bc7
+    assert @ <= $1c79, "typewriter stub overflow"
+
+; --- typewriter init: forget the previous message's VWF context
+    org 0, $1b3f
+    call Stub_TWInit
+    nop
 
 ; --- rect blitters: tiles only (1770) / tiles + attributes (1723)
     org 0, $1770
@@ -177,6 +203,13 @@ Stub_RectCommon:
     ld a, VWF_BANK
     ld hl, VWF_Rect
     jp FarCall              ; tail call: returns to the blitter's caller
+
+Stub_TWInit:
+    ld a, $ff
+    ld [TW_row], a
+    xor a
+    ld [twCol], a
+    ret
     assert @ <= $3fda, "bank0 stub area 2 overflow"
 
 ; =====================================================================
@@ -836,8 +869,20 @@ TW_Char:
     ld a, [twCol]
     ld hl, TW_rep
     cp [hl]
+    jr nz, .resync
+    ld a, [twBufLo]
+    ld hl, TW_baseLo
+    cp [hl]
+    jr nz, .resync
+    ld a, [twBufHi]
+    ld hl, TW_baseHi
+    cp [hl]
     jr z, .cont
 .resync:
+    ld a, [twBufLo]
+    ld [TW_baseLo], a
+    ld a, [twBufHi]
+    ld [TW_baseHi], a
     ld a, [twRow]
     ld [TW_row], a
     ; cell = buf + row*32 + col

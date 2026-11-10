@@ -75,6 +75,57 @@ def insert_rects(rom, space, entries):
     return n
 
 
+def encode_msg(en):
+    """Typewriter text: '\n' = $FD newline, {F8 ...}/{F3 ...}/{hh} raw bytes, ends with $FF."""
+    import re
+    out = bytearray()
+    for part in re.split(r"(\{[^}]*\})", en):
+        if part.startswith("{") and part.endswith("}"):
+            tok = part[1:-1].split()
+            if tok[0].startswith("col:"):  # move the typewriter to cell column N of this row
+                out += bytes([0xF4, int(tok[0][4:]), 0xFF])
+                continue
+            if tok[0] in ("F3", "F4", "F8"):
+                vals = []
+                for t in tok[1:]:
+                    v = int(t, 16)
+                    if len(t) == 4:  # pointers are written big-endian in the script
+                        vals += [v & 0xFF, v >> 8]
+                    else:
+                        vals.append(v)
+                out += bytes([int(tok[0], 16)] + vals)
+                continue
+        if part:
+            out += text.encode(part)
+    return bytes(out) + b"\xff"
+
+
+def check_msg_width(e, maxpx):
+    import re
+    plain = re.sub(r"\{F[38][^}]*\}", "WWWWWWWW", e["en"])  # names/numbers: assume 8 wide chars
+    for line in plain.split("\n"):
+        col = re.match(r"\{col:(\d+)\}", line)
+        line = re.sub(r"\{[^}]*\}", "", line)
+        if text.width(line) + (int(col.group(1)) * 8 if col else 0) > maxpx:
+            raise ValueError("%s:%s line %r is %d px > %d" % (e["bank"], e["addr"], line, text.width(line), maxpx))
+
+
+def insert_msgs(rom, space, entries):
+    n = 0
+    for e in entries:
+        if not e.get("en"):
+            continue
+        o = rom_off(e["bank"], int(e["addr"], 16))
+        check_msg_width(e, e.get("maxpx", 144))
+        olen = rom.index(b"\xff", o) - o + 1
+        if olen < 4:
+            raise ValueError("%s:%s original too short for a redirect" % (e["bank"], e["addr"]))
+        b, a = space.put(encode_msg(e["en"]))
+        rom[o:o + 4] = bytes([0xF2, b, a & 0xFF, a >> 8])
+        n += 1
+    return n
+
+
 def load(name):
     p = os.path.join(ROOT, "script", name)
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else []
@@ -84,5 +135,6 @@ def insert_all(rom):
     space = Space(rom)
     stats = {}
     stats["rects"] = insert_rects(rom, space, load("rects.json"))
+    stats["messages"] = insert_msgs(rom, space, load("messages.json"))
     stats["text space used"] = "bank $%02X + $%04X" % (space.bank, space.pos - 0x4000)
     return stats

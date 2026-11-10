@@ -1,0 +1,5 @@
+[
+  {"bank": 49, "addr": "0x41ed",
+   "jp": "うえに のぼる かいだんが ある\n    のぼりますか?\n      はい\n      いいえ\n",
+   "en": "There are stairs leading up.\n{col:4}Climb them?\n{col:6}Yes\n{col:6}No\n"}
+]
