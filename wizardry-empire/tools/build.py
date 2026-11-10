@@ -81,6 +81,12 @@ def build(rom_in=ROM_IN, out=ROM_OUT, ips_out=IPS_OUT, verbose=True):
     rom = bytearray(orig) + b"\xff" * (NEW_SIZE - len(orig))
     rom[0x148] = 0x06  # 2 MB
     gen_bins()
+    import lint
+    if os.environ.get("NO_LINT") != "1":
+        items = [(lint.key_of(f, e), lint.text_of(e.get("jp")), lint.text_of(e.get("en"))) for f, e in lint.entries()]
+        lerrs, _ = lint.check(items, lint.glossary())
+        if lerrs:
+            sys.exit("lint errors (python3 tools/lint.py; NO_LINT=1 to skip):\n" + "\n".join(lerrs))
     patch_fixed_font(rom)
     stats = insert.insert_all(rom)
     a = asm.assemble(os.path.join(ROOT, "asm", "main.asm"))

@@ -1,0 +1,9 @@
+# name | tokens for tools/emu.py (each route starts from power-on). PARTY = form a party of all 6 at the tavern.
+town_info | boot,right,right,right,right,right,right,right,right
+tavern    | boot,PARTY
+training  | boot,right,a,w60,a,w60,b,w40,b,w40
+shop      | boot,PARTY,right*2,a,w60,a,w60,a,w40,b,w40,down,a,w40,b,w40,b,w40,b,w40
+temple    | boot,PARTY,right*3,a,w60,a,w60,b,w40,b,w40
+inn       | boot,PARTY,right*4,a,w60,a,w60,b,w40,b,w40
+camp      | boot,PARTY,left*3,a,w60,a,w150,a,w40,a,w60,b,w40,down,a,w40,b,w40
+dungeon   | boot,PARTY,left*3,a,w60,a,w150,b,w60,a,w40,b,w40,up,w40,up,w40

@@ -25,7 +25,11 @@ Run from `wizardry-empire/`:
 - Tests: `python3 -m pytest -q tests`.
 - Play/screenshot: `python3 tools/emu.py --out work/qa/x --seq "boot,right*3,a" [--state S] [--save S]`
   (exit 2 = hang, with PC/backtrace in `log.txt`).
-- Batches: `python3 tools/batches.py split msg|rect NAME ... / check / pairs / merge`.
+- Batches: `python3 tools/batches.py split msg|rect NAME ... / check / pairs / merge` (`check` includes the lint).
+- Lint: `python3 tools/lint.py` (glossary names, Yes/No kept, quotes, duplicates, spacing); the build refuses lint
+  errors (`NO_LINT=1` to skip while debugging).
+- Screen tour: `python3 tools/tour.py [--jp] [route ...]` (routes in `tools/routes/tour.txt`) ->
+  `work/qa/tour_en|tour_jp/<route>/sheet.png`; run it after every build and give the sheets to `visual-qa`.
 - Disassemble: `python3 tools/gbdis.py BANK ADDR [N]`. Assembler: `tools/asm.py` (rgbds-like syntax, see its docstring).
 - Census tools (find text in the original ROM): `tools/census_rects.py`, `tools/chain_rects.py`,
   `tools/census_msgs.py`, `tools/census_inline.py`.
@@ -39,7 +43,10 @@ not general-purpose agents, and give each one exact paths.
 | `translator` | `wizardry-empire/docs/translator-brief.md` | `work/tl/<batch>.json` only | after `tools/batches.py split ...`; then `merge` |
 | `reviewer` | `wizardry-empire/docs/reviewer-brief.md` | nothing (report) | after `tools/batches.py pairs <batch>` |
 | `playtester` | `wizardry-empire/docs/playtester-brief.md` | `work/play/<session>/` | a goal ("form a party, win a battle"), after a build |
-| `visual-qa` | `wizardry-empire/docs/visual-qa-brief.md` | its verdict file | a list of `tools/emu.py` sheets |
+| `visual-qa` | `wizardry-empire/docs/visual-qa-brief.md` | its verdict file | a list of `tools/emu.py` sheets (e.g. the tour) |
+| `tracer` | `wizardry-empire/docs/tracer-brief.md` | `work/re/<topic>.md` | one RE question ("which routine prints the status values?") |
+| `triage` | `wizardry-empire/docs/triage-brief.md` | `work/triage/<case>/` | one hang/crash report with state + inputs |
+| `editor` | `wizardry-empire/docs/editor-brief.md` | nothing (report) | whole-script English pass, late in the project |
 Binding terms: `wizardry-empire/glossary.md`.
 
 ## Text formats (Wizardry Empire)

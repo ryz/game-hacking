@@ -17,7 +17,7 @@ Binding names and terms. Use them exactly; add new rows when a new name is decid
 | JP | EN |
 |---|---|
 | まちはずれ | Edge of Town / Outskirts (short header) |
-| くんれんじょう | Training Grounds (header: Training) |
+| くんれんじょう | Training Grounds / Training (short) |
 | はくぶつかん | Museum |
 | ローズの さかば | Rose's Tavern |
 | たてふだ | Notice Board |
@@ -27,7 +27,7 @@ Binding names and terms. Use them exactly; add new rows when a new name is decid
 | まどう | the maze |
 | まどうエレベータ | Maze Elevator |
 | まかい | the abyss / netherworld |
-| ちじょう | the surface (world) |
+| ちじょう | the surface / mortals (ちじょうのもの) |
 
 ## People
 | JP | EN |

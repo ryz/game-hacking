@@ -100,7 +100,7 @@
 {"bank": 45, "addr": "0x5b6b", "jp": "\n とびらには フダがはりつけてあり\n\n なにか もじがかかれている\n\n 『これよりさき ちていこ\n\n  キケンにつき たちいりきんし』", "en": "\n A charm is stuck to the\n\n door, with writing on it:\n\n \"Beyond: underground lake.\n\n  Danger - keep out.\""},
 {"bank": 45, "addr": "0x5bb0", "jp": "\n   ゆるやかな くだりざかだ", "en": "\n   A gentle downward slope."},
 {"bank": 45, "addr": "0x5bc1", "jp": "\n このみちは まかいのちゅうしんヘ\n\n    つづくように おもえた", "en": "\n This path seems to lead to\n\n    the heart of the abyss."},
-{"bank": 45, "addr": "0x5be5", "jp": "\n      このさきには\n\n まかいのこうていの ヘやがある", "en": "\n      Beyond lies the\n\n chamber of the Emperor."},
+{"bank": 45, "addr": "0x5be5", "jp": "\n      このさきには\n\n まかいのこうていの ヘやがある", "en": "\n      Beyond lies the\n\n Abyss Emperor's chamber."},
 {"bank": 45, "addr": "0x5c05", "jp": "\n    『このさきキケン!』\n\n なんびとも たちいることをきんず", "en": "\n    \"Danger ahead!\"\n\n No one may enter."},
 {"bank": 45, "addr": "0x5c28", "jp": "\nどこからか クスクスッという\n\nわらいごえが きこえてくる\n\n『おとこかしら おとこだわ\n\n    おとこよ おとこね』\n\nやがて こえはきこえなくなった", "en": "\nFrom somewhere comes\n\ngiggling laughter.\n\n\"A man? It's a man!\n\n    A man! A man!\"\n\nSoon the voices faded."},
 {"bank": 45, "addr": "0x5c77", "jp": "\nようせいがいる\n\nしかし こちらに きづいたとたん\n\nにげるように さっていった", "en": "\nA fairy is here. But the\n\nmoment it noticed you,\n\nit fled."},

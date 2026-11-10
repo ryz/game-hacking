@@ -118,6 +118,12 @@ def main():
     ents = json.load(open(path(name), encoding="utf-8"))
     if o.cmd == "check":
         errs = [x for e in ents for x in check_entry(e)]
+        import lint
+        items = [("batch " + e["key"], lint.text_of(e.get("jp")), lint.text_of(e.get("en"))) for e in ents]
+        lerrs, lwarns = lint.check(items, lint.glossary())
+        errs += ["lint: " + x for x in lerrs]
+        for w in lwarns:
+            print("WARN  " + w)
         print("\n".join("ERROR " + x for x in errs) if errs else "OK (%d entries)" % len(ents))
         sys.exit(1 if errs else 0)
     if o.cmd == "pairs":
