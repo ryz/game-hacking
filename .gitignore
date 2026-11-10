@@ -1,0 +1,10 @@
+# Never commit game data
+*.gbc
+*.gb
+*.sav
+*.state
+rom/
+build/
+work/
+**/tools/gbemu-cli/
+__pycache__/

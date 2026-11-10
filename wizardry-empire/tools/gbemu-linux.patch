@@ -1,0 +1,19 @@
+diff --git a/cli/src/main.c b/cli/src/main.c
+index d9c547e..827a95d 100644
+--- a/cli/src/main.c
++++ b/cli/src/main.c
+@@ -465,12 +465,14 @@ static void default_bootrom_dir(void)
+     /* relative to executable */
+     char exe[1024];
+     ssize_t n = readlink("/proc/self/exe", exe, sizeof(exe) - 1); /* Linux */
++#ifdef __APPLE__
+     if (n <= 0) {
+         unsigned sz = sizeof(exe);
+         extern int _NSGetExecutablePath(char *, unsigned *); /* macOS */
+         if (_NSGetExecutablePath(exe, &sz) != 0) exe[0] = 0;
+         n = strlen(exe);
+     }
++#endif
+     if (n > 0) {
+         exe[n] = 0;
+         char *d = dirname(exe);
