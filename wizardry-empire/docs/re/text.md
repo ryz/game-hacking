@@ -52,3 +52,20 @@ Strings of this kind live in banks 45 (`$2D`), 49 (`$31`) and others, FF-termina
 
 ## Free space
 Most banks end in $00 padding (see `tools/` census). The patch expands the ROM to 2 MB (MBC5) and keeps new code/text in banks 64+.
+
+## Text banks and data records
+- Typewriter text banks (`$C1C1`): only 45 (`$2D`, events/NPCs), 46 (`$2E`) and 49 (`$31`, system/dungeon).
+  Message starts are set inline: `ld a,lo / ld [$C1BF],a / ld a,hi / ld [$C1C0],a` (~500 sites).
+- Inserted strings (`$F3`) end with `$00` and their control codes act on the main pointer, so the patch adds
+  its own `$F2 bank lo hi` jump instead.
+- Items: bank 40 `$4000`, 224 records of 40 bytes, name = bytes 0-17 (`$00`-padded).
+- Monsters: bank 57 `$4840`, 166 records of 64 bytes, name at `+$20`, 12 chars + `$00`; `$FD` = line break.
+- Default characters: bank 46 `$4000`, `$80`-byte records, 8-byte name.
+- Party records in WRAM `$C880 + $80*n`, name `$00`-terminated; copied by `ld a,[hli] / or a / jr z / ld [de],a / inc de / jr` loops.
+- Bank 49 `$4000-$418F`: `$00`-separated name lists (gender, race, alignment, class, status, battle commands).
+- Some rect blocks are also lookup tables: fixed-length unrolled copies (`(ld a,[hli] / ld [de],a / inc de)* / ld a,[hl] / ld [de],a`)
+  read their rows directly (e.g. `38:71AC` alignments).
+- Menus also write text from code: `ld a,X / ld [de],a / inc de` or `ld hl,dst / (ld a,X / ld [hli],a)* / ld a,X / ld [hl],a`.
+- Font: bank 1 `$4400` (256 tiles), loaded by queue entries `$4400->VRAM0:$9000`, `$4800->$9400`, then
+  `$4C00/$5000` -> VRAM1 `$9000` (split) or VRAM0 `$8800` (flat); `$4300` (16 tiles) -> `$8F00` for frames in flat screens.
+- A second glyph builder at `0:19C9` composes tiles from the font into WRAM `$D200` (used by the museum/spell screens?).
