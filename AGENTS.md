@@ -23,10 +23,24 @@ Run from `wizardry-empire/`:
 - Build: `python3 tools/build.py` -> `build/wizardry_empire_en.gbc` + `.ips`. The build fails loudly when a
   translated line is wider than its box.
 - Tests: `python3 -m pytest -q tests`.
+- Play/screenshot: `python3 tools/emu.py --out work/qa/x --seq "boot,right*3,a" [--state S] [--save S]`
+  (exit 2 = hang, with PC/backtrace in `log.txt`).
+- Batches: `python3 tools/batches.py split msg|rect NAME ... / check / pairs / merge`.
 - Disassemble: `python3 tools/gbdis.py BANK ADDR [N]`. Assembler: `tools/asm.py` (rgbds-like syntax, see its docstring).
 - Census tools (find text in the original ROM): `tools/census_rects.py`, `tools/chain_rects.py`,
   `tools/census_msgs.py`, `tools/census_inline.py`.
 - Read `docs/re/text.md` (text engines, control codes) and `docs/re/vwf.md` (VWF design) before touching `asm/`.
+
+## Subagents
+Defined in `.claude/agents/`; each is a thin wrapper around a brief in the project's `docs/`. Dispatch these types,
+not general-purpose agents, and give each one exact paths.
+| Agent | Brief | Writes | Typical dispatch |
+|---|---|---|---|
+| `translator` | `wizardry-empire/docs/translator-brief.md` | `work/tl/<batch>.json` only | after `tools/batches.py split ...`; then `merge` |
+| `reviewer` | `wizardry-empire/docs/reviewer-brief.md` | nothing (report) | after `tools/batches.py pairs <batch>` |
+| `playtester` | `wizardry-empire/docs/playtester-brief.md` | `work/play/<session>/` | a goal ("form a party, win a battle"), after a build |
+| `visual-qa` | `wizardry-empire/docs/visual-qa-brief.md` | its verdict file | a list of `tools/emu.py` sheets |
+Binding terms: `wizardry-empire/glossary.md`.
 
 ## Text formats (Wizardry Empire)
 | File | What | Notes |
