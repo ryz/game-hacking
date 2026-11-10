@@ -50,7 +50,13 @@ def width(s):
     if _FONT is None:
         _FONT = font.load()
     w = 0
-    for b in encode(s):
+    bs = encode(s)
+    i = 0
+    while i < len(bs):
+        b = bs[i]
+        if b == 0xFC:
+            w = max(w, bs[i + 1]); i += 2; continue
         if b in _FONT:
             w += _FONT[b][0]
+        i += 1
     return w

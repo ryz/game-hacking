@@ -44,10 +44,18 @@ def layout_rows(entry):
     align = entry.get("align", "left")
     out = []
     for r in rows:
+        a = align[len(out)] if isinstance(align, list) else align
+        if r.startswith("^"):
+            r, a = r[1:], "center"
+        elif r.startswith(">"):
+            r, a = r[1:], "right"
+        import re as _re
+        m = _re.match(r"@(\d+):", r)
+        if m:  # place at the original cell column
+            r = "{x:%d}" % (int(m.group(1)) * 8) + r[m.end():]
         pw = text.width(r)
         if pw > w_px:
             raise ValueError("%s: row %r is %d px, box is %d px" % (entry["id"], r, pw, w_px))
-        a = align[len(out)] if isinstance(align, list) else align
         pre = b""
         if a == "center" and pw < w_px:
             x = (w_px - pw) // 2
@@ -68,7 +76,14 @@ def insert_rects(rom, space, entries):
             continue
         o = rom_off(e["bank"], int(e["addr"], 16))
         assert rom[o] == e["w"] and rom[o + 1] == e["h"], (e["id"], rom[o], rom[o + 1])
-        assert e["w"] * e["h"] >= 3, e["id"]
+        if e["w"] * e["h"] < 3 or e.get("fixed"):
+            # too small for the redirect header: ASCII in place, original fixed 8 px glyphs
+            rows = e["en"]
+            assert len(rows) <= e["h"] and all(len(r) <= e["w"] for r in rows), e["id"]
+            data = b"".join(r.ljust(e["w"]).encode("ascii") for r in rows).ljust(e["w"] * e["h"], b" ")
+            rom[o + 2:o + 2 + len(data)] = data
+            n += 1
+            continue
         b, a = space.put(layout_rows(e))
         rom[o:o + 5] = bytes([e["w"] | 0x80, e["h"], b, a & 0xFF, a >> 8])
         n += 1
