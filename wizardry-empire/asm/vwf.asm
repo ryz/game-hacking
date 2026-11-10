@@ -68,6 +68,7 @@ wBits       equ $cf60          ; 32 bytes: allocation bitmap, bit per slot code
 wValid      equ $cfa0          ; 32 bytes: shadow copy in WRAM7 matches VRAM
 wUp         equ $cf80          ; 16 bytes (16-aligned): HDMA source
 wSkip       equ $cf08
+wNameBuf    equ $cfc0          ; 32 bytes
 
 STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = staged 2bpp tile
 
@@ -121,6 +122,110 @@ STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = staged 2bpp tile
 ; --- attributes-only blitter (17a7): mask the VWF marker bit when reading w
     org 0, $17bd
     call Stub_ReadW
+
+; --- $00-terminated name copy loops (ld a,[hli] / or a / jr z / ld [de],a / inc de / jr) -> VWF
+    org $26, $4ca3
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $26, $5648
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $27, $4529
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $27, $49a3
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $27, $529c
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $27, $558e
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $27, $67a3
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $27, $6a66
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $27, $6b50
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $27, $7084
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $2a, $57cd
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $2a, $624e
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $2a, $6f0e
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $2a, $6f6f
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $2b, $56fc
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $2e, $57cd
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
+    org $2e, $58c6
+    call Stub_PrintZ
+    jr @+5
+    nop
+    nop
+    nop
 
 ; --- free space at $00b1-$00f0
     org 0, $00b1
@@ -203,6 +308,23 @@ Stub_RectCommon:
     ld a, VWF_BANK
     ld hl, VWF_Rect
     jp FarCall              ; tail call: returns to the blitter's caller
+
+Stub_PrintZ:                ; copy the string at HL to wNameBuf, print it at DE with the VWF
+    push bc
+    ld bc, wNameBuf
+.c: ld a, [hli]
+    ld [bc], a
+    inc c
+    or a
+    jr nz, .c
+    push hl
+    ld a, VWF_BANK
+    ld hl, VWF_PrintBuf
+    call FarCall
+    pop hl
+    pop bc
+    xor a
+    ret
 
 Stub_TWInit:
     ld a, $ff
@@ -1150,6 +1272,47 @@ VWF_Rect:
     ld hl, R_h
     cp [hl]
     jp c, .rowloop
+    pop af
+    jp SetSVBK
+
+; Print the $00-terminated string in wNameBuf at cell DE (bank-3 buffer); returns DE after it.
+VWF_PrintBuf:
+    ldh a, [hSVBK]
+    push af
+    ld a, 3
+    call SetSVBK
+    ld h, d
+    ld l, e
+    push hl
+    ld bc, $0400
+    add hl, bc
+    ld a, [hl]
+    pop hl
+    call Begin
+    xor a
+    ld [S_imm], a
+    ld hl, wNameBuf
+.l: ld a, [hli]
+    or a
+    jr z, .e
+    push hl
+    call Glyph
+    pop hl
+    jr .l
+.e: call CommitIfInk
+    ld a, [S_slot]
+    or a
+    jr nz, .adv
+    ld a, [S_px]
+    or a
+    jr z, .done
+.adv:
+    call NextCell
+.done:
+    ld a, [S_cellLo]
+    ld e, a
+    ld a, [S_cellHi]
+    ld d, a
     pop af
     jp SetSVBK
 
