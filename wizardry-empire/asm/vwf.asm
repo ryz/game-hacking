@@ -97,6 +97,13 @@ wDmaEndLo   equ $dff7
 wDmaEndHi   equ $dff8
 wDmaV       equ $dff9
 wDmaI       equ $dffa
+wSkipCopy   equ $dffb          ; nonzero: the next VBlank skips the game's map copy (menus appear at once)
+wHoldStart  equ $dffc          ; frame ($C00A) the current print burst started
+wLastPrint  equ $dffd          ; frame of the last non-typewriter print
+HOLD_MAX    equ 6              ; frames a burst may hold the screen
+wKeepOff    equ $df09          ; nonzero: the pool ran dry in this burst, old-screen protection dropped
+wKeep       equ $d2a0          ; 32 bytes (shadow area of codes $2A/$2B): slots in use when the burst began;
+                               ; the old screen still shows them until the map copy, so GC keeps them
 PRIV_SP     equ $cd80          ; private stack top (WRAM0 $CCE0-$CDD5 is never used by the game)
 wGame       equ $d200          ; 32 bytes: slots holding game graphics (shadow area of codes $20/$21, not pool)
 wSpell      equ $d280          ; 32 bytes: full English name of the last spell read by 0:24CF (shadow area of
@@ -417,6 +424,22 @@ Stub_Dma:                   ; any other VBlank DMA: tell the VWF which tiles the
     push af
     ld a, $02
     jp $142f
+
+Stub_Hold:                  ; 0:167D in the VBlank map copy (SVBK = 3 here): skip the copies (and keep the
+    ld a, HOME_BANK         ; request flags) while the VWF is printing a menu, see HoldMark
+    ldh [$70], a
+    ld a, [wSkipCopy]
+    push af
+    xor a
+    ld [wSkipCopy], a
+    ld a, 3
+    ldh [$70], a
+    pop af
+    or a
+    ld a, [$c48b]
+    ret z
+    add sp, 2
+    jp $16e0
 
 Stub_SpellPre:              ; 0:24CF entry (A = spell id): fetch the full English name, then the original start
     ld c, a
@@ -822,7 +845,15 @@ Commit:
     jr .have
 .reuse:
     ld [S_slot], a
+    call KeptNow            ; the old screen still shows this slot (print burst): take a new one
+    jr nz, .fresh
+    ld a, [S_slot]
     call MarkCode
+    jr .have
+.fresh:
+    xor a
+    ld [S_slot], a
+    jr .new
 .have:
     ; build the 2bpp tile in wUp (ink -> colour 3, paper -> colour 2, like the original font)
     ld hl, wUp
@@ -1094,6 +1125,15 @@ Alloc:
     call GC
     call TryAlloc
     ret c
+    ld a, [wKeepOff]        ; still dry: drop the old-screen protection for this burst and try again
+    or a
+    jr nz, .ring
+    inc a
+    ld [wKeepOff], a
+    call GC
+    call TryAlloc
+    ret c
+.ring:
     ; everything referenced: overwrite the next ring entry
     ld a, [wNext]
     ld e, a
@@ -1235,6 +1275,7 @@ VWF_Panel:
     push af
     ld [wCallerSVBK], a
     call CheckInit
+    call HoldMark
     ld hl, PanelBody
     call PrivCall
     pop af
@@ -1558,6 +1599,73 @@ VWF_DmaCheck:
     pop af
     jp SetSVBK
 
+; NZ if slot [S_slot] was in use when the current print burst began and the burst's map copy is pending.
+KeptNow:
+    ld a, [wKeepOff]
+    or a
+    jr nz, .no
+    ld a, [wHoldStart]
+    ld b, a
+    ld a, [$c00a]
+    sub b
+    cp HOLD_MAX + 2
+    jr nc, .no
+    ld a, [S_slot]
+    call BitAddr            ; hl = wBits + code/8, b = mask
+    ld a, l
+    add low(wKeep) - low(wBits)
+    ld l, a
+    ld h, high(wKeep)
+    ld a, [hl]
+    and b
+    ret
+.no:
+    xor a
+    ret
+
+; Menus print over several frames; ask the VBlank handler to hold the game's map copy while a burst of
+; prints lasts (at most HOLD_MAX frames; a frame without prints starts a new burst). Not for the typewriter.
+HoldMark:
+    push hl
+    ld a, [$c00a]           ; VBlank frame counter (WRAM0)
+    ld h, a
+    ld a, [wLastPrint]
+    ld l, a
+    ld a, h
+    ld [wLastPrint], a
+    sub l
+    cp 2
+    jr c, .same             ; printed in this or the previous frame: same burst
+    ld a, h
+    ld [wHoldStart], a
+    xor a
+    ld [wKeepOff], a
+    push de
+    push bc
+    ld hl, wBits            ; new burst: remember what the screen shows now
+    ld de, wKeep
+    ld b, 32
+.k: ld a, [hli]
+    ld [de], a
+    inc de
+    dec b
+    jr nz, .k
+    pop bc
+    pop de
+    ld a, [$c00a]
+    ld h, a
+.same:
+    ld a, [wHoldStart]
+    ld l, a
+    ld a, h
+    sub l
+    cp HOLD_MAX
+    jr nc, .x
+    ld a, 1
+    ld [wSkipCopy], a
+.x: pop hl
+    ret
+
 ; =====================================================================
 ; Spells. VWF_SpellName (C = spell id): wSpell = full English name from SpellNames (bank, ptr per id; filled
 ; by tools/insert.py from script/spells.json), else the 11-byte record name (36:6C38 + 16*id).
@@ -1624,6 +1732,7 @@ VWF_SpellList:
     push af
     ld [wCallerSVBK], a
     call CheckInit
+    call HoldMark
     ld hl, wSpell
     ld de, wNameBuf
 .c: ld a, [hli]
@@ -1655,6 +1764,27 @@ GC:
     inc de
     dec b
     jr nz, .gb
+    ; during a print burst (map copy pending) the old screen's slots stay reserved
+    ld a, [wHoldStart]
+    ld b, a
+    ld a, [$c00a]
+    sub b
+    cp HOLD_MAX + 2
+    jr nc, .nk
+    ld a, [wKeepOff]
+    or a
+    jr nz, .nk
+    ld hl, wKeep
+    ld de, wBits
+    ld b, 32
+.kb: ld a, [de]
+    or [hl]
+    ld [de], a
+    inc hl
+    inc de
+    dec b
+    jr nz, .kb
+.nk:
     ld a, [S_slot]
     or a
     call nz, MarkCode
@@ -1810,6 +1940,7 @@ VWF_Rect:
     push af
     ld [wCallerSVBK], a
     call CheckInit
+    call HoldMark
     ld a, c
     ld [R_mode], a
     ldh a, [hSrcBank]
@@ -2044,6 +2175,7 @@ VWF_Fix:
     push af
     ld [wCallerSVBK], a
     call CheckInit
+    call HoldMark
     ld a, e
     ld [wInE], a
     ld a, d
@@ -2215,6 +2347,7 @@ VWF_Inline:
     push af
     ld [wCallerSVBK], a
     call CheckInit
+    call HoldMark
     ld a, e
     ld [wInE], a
     ld a, d
@@ -2312,6 +2445,7 @@ VWF_PrintZ:
     push af
     ld [wCallerSVBK], a
     call CheckInit
+    call HoldMark
     ld hl, sp, 4
     ld b, [hl]              ; caller ROM bank
     ld hl, sp, 7

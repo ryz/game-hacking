@@ -53,3 +53,7 @@ org 42, $4a29
     db 3
     jr $4a36
     ds 7, $00
+
+; VBlank map copy (0:1674): ld a,[$c48b] -> Stub_Hold (skips the copy while a menu is being printed)
+org 0, $167d
+    call Stub_Hold
