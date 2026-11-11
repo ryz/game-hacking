@@ -171,6 +171,10 @@ wN_cells    equ $d58f
 wN_x        equ $d590
 wN_st       equ $d591          ; 2: field start
 wN_end      equ $d593          ; 2: field end (returned in DE)
+wN_deHi     equ $d596
+wN_done     equ $d5b0
+wN_cb       equ $d5b1          ; bank of 0:0FD0's caller
+wN_cr       equ $d5b2          ; 2: its return address          ; VWF_Num drew the number (0: the game's 8 px loop runs)
 wLowOnly    equ $d595          ; nonzero: prefer low pool codes (VRAM0 in both layouts): numbers in the
                                ; split layout, so cells the game later overwrites with 8 px text keep attribute bit 3 clear
 wNC_px      equ $d58b          ; start pixel of the print in its first cell (numbers right-aligned in a field)
@@ -254,8 +258,11 @@ Stub_Num:                   ; 0:108B (number printer 0:0FD0, digit store): base 
     ld c, l                 ; first digit to print at $FF00+C (the digits end at $FFC1)
     ld a, VWF_BANK
     ld hl, VWF_Num
-    call FarCall            ; returns DE past the field
-    scf
+    call FarCall            ; L = 1: done, DE past the field; L = 0: not drawn (DE, C kept) -> 8 px loop
+    ld a, l
+    ld h, $ff
+    ld l, c
+    rra
     ret
 .no:
     and a
@@ -634,9 +641,9 @@ Stub_SpellPre:              ; 0:24CF entry (A = spell id): fetch the full Englis
 ; =====================================================================
     org VWF_BANK, $4000
 FontAdv:
-    incbin "../build/font_adv.bin"      ; 256 bytes
+    incbin "../build/font_adv.bin"      ; 128 bytes (codes $00-$7F; callers mask with $7F)
 FontRows:
-    incbin "../build/font_rows.bin"     ; 256 * 8 bytes
+    incbin "../build/font_rows.bin"     ; 128 * 8 bytes
 Pool:
     incbin "../build/pool.bin"          ; POOL_SIZE codes
 PoolEnd:
@@ -903,6 +910,7 @@ Begin:
 ; ---------------------------------------------------------------------
 ; Draw glyph A into the context.
 Glyph:
+    and $7f                 ; font tables hold codes $00-$7F
     ld e, a
     ld d, 0
     ld hl, FontAdv
@@ -917,41 +925,180 @@ Glyph:
     add hl, hl
     ld de, FontRows
     add hl, de
-    ld d, h
-    ld e, l                 ; de = glyph rows
-    ld hl, S_cur
-    ld a, 8
-    ld [wTmp1], a
-.row:
-    ld a, [de]
-    inc de
-    ld b, a
-    ld c, 0
+    ; d = shift table page for S_px (right part; +1 = spill into the next tile), bc = S_cur
     ld a, [S_px]
+    add a
+    add high(ShiftTab)
+    ld d, a
+    ld bc, S_cur
+    ld a, [hli]
     or a
-    jr z, .ns
-.sh:
-    srl b
-    rr c
-    dec a
-    jr nz, .sh
-.ns:
-    ld a, [hl]
-    or b
-    ld [hl], a
+    jr z, .s0
     push hl
-    ld a, l
+    ld l, a
+    ld h, d
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    inc h
+    ld a, c
     add 8
-    ld l, a                 ; S_nxt row (same page)
-    ld a, [hl]
-    or c
-    ld [hl], a
+    ld c, a
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    ld a, c
+    sub 8
+    ld c, a
     pop hl
-    inc hl
-    ld a, [wTmp1]
-    dec a
-    ld [wTmp1], a
-    jr nz, .row
+.s0: inc c
+    ld a, [hli]
+    or a
+    jr z, .s1
+    push hl
+    ld l, a
+    ld h, d
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    inc h
+    ld a, c
+    add 8
+    ld c, a
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    ld a, c
+    sub 8
+    ld c, a
+    pop hl
+.s1: inc c
+    ld a, [hli]
+    or a
+    jr z, .s2
+    push hl
+    ld l, a
+    ld h, d
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    inc h
+    ld a, c
+    add 8
+    ld c, a
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    ld a, c
+    sub 8
+    ld c, a
+    pop hl
+.s2: inc c
+    ld a, [hli]
+    or a
+    jr z, .s3
+    push hl
+    ld l, a
+    ld h, d
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    inc h
+    ld a, c
+    add 8
+    ld c, a
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    ld a, c
+    sub 8
+    ld c, a
+    pop hl
+.s3: inc c
+    ld a, [hli]
+    or a
+    jr z, .s4
+    push hl
+    ld l, a
+    ld h, d
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    inc h
+    ld a, c
+    add 8
+    ld c, a
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    ld a, c
+    sub 8
+    ld c, a
+    pop hl
+.s4: inc c
+    ld a, [hli]
+    or a
+    jr z, .s5
+    push hl
+    ld l, a
+    ld h, d
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    inc h
+    ld a, c
+    add 8
+    ld c, a
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    ld a, c
+    sub 8
+    ld c, a
+    pop hl
+.s5: inc c
+    ld a, [hli]
+    or a
+    jr z, .s6
+    push hl
+    ld l, a
+    ld h, d
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    inc h
+    ld a, c
+    add 8
+    ld c, a
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    ld a, c
+    sub 8
+    ld c, a
+    pop hl
+.s6: inc c
+    ld a, [hli]
+    or a
+    jr z, .s7
+    push hl
+    ld l, a
+    ld h, d
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    inc h
+    ld a, c
+    add 8
+    ld c, a
+    ld a, [bc]
+    or [hl]
+    ld [bc], a
+    ld a, c
+    sub 8
+    ld c, a
+    pop hl
+.s7: inc c
     ; advance
     ld a, [wTmp0]
     ld b, a
@@ -1014,21 +1161,31 @@ NextCell:
     inc [hl]
     xor a
     ld [S_slot], a
-    ld hl, S_nxt
-    ld de, S_cur
-    ld b, 8
-.c: ld a, [hl]
-    ld [hli], a
-    ld [de], a
-    inc de
-    dec b
-    jr nz, .c
-    ld hl, S_nxt
-    ld b, 8
+    ld a, [S_nxt + 0]
+    ld [S_cur + 0], a
+    ld a, [S_nxt + 1]
+    ld [S_cur + 1], a
+    ld a, [S_nxt + 2]
+    ld [S_cur + 2], a
+    ld a, [S_nxt + 3]
+    ld [S_cur + 3], a
+    ld a, [S_nxt + 4]
+    ld [S_cur + 4], a
+    ld a, [S_nxt + 5]
+    ld [S_cur + 5], a
+    ld a, [S_nxt + 6]
+    ld [S_cur + 6], a
+    ld a, [S_nxt + 7]
+    ld [S_cur + 7], a
     xor a
-.z: ld [hli], a
-    dec b
-    jr nz, .z
+    ld [S_nxt + 0], a
+    ld [S_nxt + 1], a
+    ld [S_nxt + 2], a
+    ld [S_nxt + 3], a
+    ld [S_nxt + 4], a
+    ld [S_nxt + 5], a
+    ld [S_nxt + 6], a
+    ld [S_nxt + 7], a
     ret
 
 ; ---------------------------------------------------------------------
@@ -1104,16 +1261,31 @@ Commit:
     call MarkCode
 .have:
     ; build the 2bpp tile in wUp (ink -> colour 3, paper -> colour 2, like the original font)
-    ld hl, wUp
-    ld de, S_cur
-    ld b, 8
-.s: ld a, [de]
-    inc de
-    ld [hli], a
+    ld a, [S_cur + 0]
+    ld [wUp + 0], a
+    ld a, [S_cur + 1]
+    ld [wUp + 2], a
+    ld a, [S_cur + 2]
+    ld [wUp + 4], a
+    ld a, [S_cur + 3]
+    ld [wUp + 6], a
+    ld a, [S_cur + 4]
+    ld [wUp + 8], a
+    ld a, [S_cur + 5]
+    ld [wUp + 10], a
+    ld a, [S_cur + 6]
+    ld [wUp + 12], a
+    ld a, [S_cur + 7]
+    ld [wUp + 14], a
     ld a, $ff
-    ld [hli], a
-    dec b
-    jr nz, .s
+    ld [wUp + 1], a
+    ld [wUp + 3], a
+    ld [wUp + 5], a
+    ld [wUp + 7], a
+    ld [wUp + 9], a
+    ld [wUp + 11], a
+    ld [wUp + 13], a
+    ld [wUp + 15], a
     ; compare with / update the shadow copy (home bank 7); skip the upload if VRAM already has it
     ld a, [S_slot]
     call StagingAddr        ; hl = shadow
@@ -1151,18 +1323,24 @@ Commit:
     ld a, [S_slot]
     call SlotTile           ; a = tile, c = bank bit
     ld b, a
+    ld a, [S_attr]
+    and $f7
+    or c
+    ld c, a                 ; c = attribute
     ld a, [S_cellLo]
     ld l, a
     ld a, [S_cellHi]
     ld h, a
-    ld a, b
-    call Write3
-    ld de, $0400
-    add hl, de
-    ld a, [S_attr]
-    and $f7
-    or c
-    jp Write3
+    ld a, 3                 ; bank 3 for both writes
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld [hl], b
+    set 2, h                ; +$400: attributes
+    ld [hl], c
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
 
 ; A = slot code -> HL = shadow address in WRAM bank 7 ($d000 + code*16)
 StagingAddr:
@@ -1425,8 +1603,8 @@ AllocScan:
     ld a, [hl]
     ret
 
-; carry set + A = code on success. wLowOnly: low codes preferred; any free slot if none is free (the inn picture
-; fills the low codes; the last-resort ring would overwrite visible tiles)
+; carry set + A = code on success. wLowOnly: low codes preferred, any free slot if none is (the inn and shop
+; pictures fill the low codes; the last-resort ring would overwrite visible tiles)
 TryAlloc:
     call TryAlloc1
     ret c
@@ -1492,20 +1670,19 @@ TryAlloc1:
 ; A = code -> HL = wBits + code/8, B = 1 << (code&7)
 BitAddr:
     ld c, a
+    and 7
+    add low(BitMask)
+    ld l, a
+    ld h, high(BitMask)
+    ld b, [hl]
+    ld a, c
     srl a
     srl a
     srl a
     add low(wBits)
     ld l, a
     ld h, high(wBits)
-    ld a, c
-    and 7
-    ld b, 1
-    jr z, .d
-.s: sla b
-    dec a
-    jr nz, .s
-.d: ret
+    ret
 
 ClearBits:
     ld hl, wBits
@@ -1728,6 +1905,7 @@ PanelSplit:
 .w0:
     ld a, $20
 .w: push hl
+    and $7f                 ; font tables hold codes $00-$7F
     ld e, a
     ld d, 0
     ld hl, FontAdv
@@ -3641,15 +3819,41 @@ VWF_Num:
     call CheckInit
     ld a, e
     ld [wN_de], a
+    ld a, d
+    ld [wN_deHi], a
     ld a, c
     ld [wN_dig], a
+    ld a, 1
+    ld [wN_done], a
+    ; 0:0FD0's caller (after our push af): [sp+4] bank (FarCall), [sp+5] Stub_Num's FarCall return,
+    ; [sp+7] return into 0:108E, [sp+9] 0:0FD0's caller
+    ld hl, sp, 4
+    ld a, [hl]
+    ld [wN_cb], a
+    ld hl, sp, 9
+    ld a, [hli]
+    ld [wN_cr], a
+    ld a, [hl]
+    ld [wN_cr + 1], a
     ld hl, NumBody
     call PrivCall
+    ld a, [wN_dig]
+    ld c, a
+    ld a, [wN_done]
+    ld l, a
+    or a
+    jr z, .keep
     ld a, [wN_end]
     ld e, a
     ld a, [wN_end + 1]
     ld d, a
-    pop af
+    jr .r
+.keep:
+    ld a, [wN_de]
+    ld e, a
+    ld a, [wN_deHi]
+    ld d, a
+.r: pop af
     jp SetSVBK
 
 NumBody:
@@ -3705,6 +3909,26 @@ NumBody:
     jr nc, .x
     xor a
 .x: ld [wN_x], a
+    ; fields the game overwrites with 8 px text afterwards keep the 8 px digits (NumExcl)
+    call NumExcluded
+    jr nc, .ok
+    xor a
+    ld [wN_done], a
+    ld a, [wN_st]           ; clear the VRAM1 bit left by an earlier VWF print in these cells
+    ld l, a
+    ld a, [wN_st + 1]
+    add 4
+    ld h, a
+    ld a, [wN_cells]
+    ld b, a
+.cb: call Read3
+    and $f7
+    call Write3
+    inc hl
+    dec b
+    jr nz, .cb
+    ret
+.ok:
     ; end = start + cells
     ld a, [wN_st]
     ld l, a
@@ -3761,6 +3985,34 @@ NumBody:
     pop de
     jp NameCacheSave
 
+; carry = the caller (wN_cb:wN_cr) is in NumExcl
+NumExcluded:
+    ld hl, NumExcl
+.l: ld a, [hli]
+    or a
+    ret z                   ; (carry clear)
+    ld b, a
+    ld a, [wN_cb]
+    cp b
+    jr nz, .n2
+    ld a, [wN_cr]
+    cp [hl]
+    jr nz, .n2
+    inc hl
+    ld a, [wN_cr + 1]
+    cp [hl]
+    jr nz, .n1
+    scf
+    ret
+.n2: inc hl
+.n1: inc hl
+    jr .l
+
+NumExcl:                    ; bank, return address of 0:0FD0 calls that stay 8 px; 0 ends
+    db $26
+    dw $572a                ; age on the character card: the shop header writes 'AC' over it
+    db 0
+
 ; A = pixel width of wNameBuf
 NumWidth:
     ld hl, wNameBuf
@@ -3769,6 +4021,7 @@ NumWidth:
     or a
     jr z, .e
     push hl
+    and $7f                 ; font tables hold codes $00-$7F
     ld e, a
     ld d, 0
     ld hl, FontAdv
@@ -4250,6 +4503,7 @@ NameCacheSave:
     or a
     jr z, .we
     push hl
+    and $7f                 ; font tables hold codes $00-$7F
     ld e, a
     ld d, 0
     ld hl, FontAdv
@@ -4534,4 +4788,11 @@ NoticeText:                 ; NOTICE_LINES x 28 bytes, $00-terminated lines
 SpellNames:                 ; 125 x [bank][lo][hi], filled by tools/insert.py (bank 0 = use the record)
     ds 125*3, $00
 FixMap:
-    ds 6 * 600, $ff
+    ds 6 * 440, $ff
+    assert @ <= $6ff8, "VWF bank: code and data run into BitMask/ShiftTab"
+    org VWF_BANK, $6ff8
+BitMask:                    ; 1 << n (page-safe: $6FF8-$6FFF)
+    db $01, $02, $04, $08, $10, $20, $40, $80
+    org VWF_BANK, $7000
+ShiftTab:                   ; 16 pages, built by tools/build.py: page 2p = b >> p, 2p+1 = (b << (8-p)) & $FF
+    incbin "../build/shift.bin"

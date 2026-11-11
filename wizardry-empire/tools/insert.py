@@ -424,7 +424,7 @@ def post_asm(rom, sym):
         rom[o:o + ln] = (bytes([0xCD, tgt & 0xFF, tgt >> 8, n]) + tail + b"\x00" * ln)[:ln]
     b, a = sym["FixMap"]
     o = b * 0x4000 + a - 0x4000
-    assert len(fixmap_cache) <= 600
+    assert len(fixmap_cache) < 440      # FixMap capacity (asm/vwf.asm), $FF after the last entry
     data = b"".join(bytes([sb, sa & 0xFF, sa >> 8, tb, ta & 0xFF, ta >> 8]) for sb, sa, tb, ta in fixmap_cache)
     rom[o:o + len(data)] = data
     for n in load("notice.json"):

@@ -42,9 +42,15 @@ def gen_bins():
         adv[code] = a
         rows[code * 8:code * 8 + 8] = bytes(r)
     os.makedirs(BUILD, exist_ok=True)
-    open(os.path.join(BUILD, "font_adv.bin"), "wb").write(adv)
-    open(os.path.join(BUILD, "font_rows.bin"), "wb").write(rows)
+    assert not any(adv[0x80:]) and not any(rows[0x400:]), "VWF font codes must be < $80"
+    open(os.path.join(BUILD, "font_adv.bin"), "wb").write(adv[:0x80])
+    open(os.path.join(BUILD, "font_rows.bin"), "wb").write(rows[:0x400])
     open(os.path.join(BUILD, "pool.bin"), "wb").write(bytes(POOL))
+    shift = bytearray()                      # VWF Glyph: page 2p = b >> p, page 2p+1 = (b << (8-p)) & $FF
+    for p in range(8):
+        shift += bytes(b >> p for b in range(256))
+        shift += bytes(((b << (8 - p)) & 0xFF) if p else 0 for b in range(256))
+    open(os.path.join(BUILD, "shift.bin"), "wb").write(shift)
     flags = bytearray(256)
     for c in POOL:
         flags[c] = 1
