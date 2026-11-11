@@ -69,3 +69,11 @@ Most banks end in $00 padding (see `tools/` census). The patch expands the ROM t
 - Font: bank 1 `$4400` (256 tiles), loaded by queue entries `$4400->VRAM0:$9000`, `$4800->$9400`, then
   `$4C00/$5000` -> VRAM1 `$9000` (split) or VRAM0 `$8800` (flat); `$4300` (16 tiles) -> `$8F00` for frames in flat screens.
 - A second glyph builder at `0:19C9` composes tiles from the font into WRAM `$D200` (used by the museum/spell screens?).
+
+## Party list status word (39:4991)
+The shared party-list printer (`39:4931` -> `39:4991`, far-called from Camp `2A:4E12` and 14 other places) prints
+max HP, '/', then current HP or, when the status byte (record +$0C, records $80 bytes from `$C880`) is non-zero,
+a 4-cell word from `39:4004` (a byte copy of `38:754D`). Status encoding: low 6 bits = severity (1 Afraid,
+2 Asleep, 3 Paralyzed, 4 Stoned, 5 Dead, 6 Ashes, 7+ Lost); 0 with bit 6 = Silenced, bit 7 = Poisoned (also a
+'-' instead of '/'). Table order is not the encoding. The copy at `39:49FE` ends in `2a 12`, which the
+fix_sites() pattern misses: it is an EXTRA_FIX_SITES entry.

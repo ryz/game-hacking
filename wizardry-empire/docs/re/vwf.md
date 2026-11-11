@@ -109,3 +109,19 @@ sets the attributes to palette 5 without flips (palette 6 colour 3 = 18,15,11 is
 the picture flips some tiles in row 10) and prints `NoticeText` lines at `NoticeRows`, column 2. Lines: 8 x 28
 bytes, filled by `insert.py` from `script/notice.json`, max 128 px. `VWF_PrintBuf` clobbers `wDed*`; loop
 counters belong on the stack.
+
+## Rect redraw cache (2026-11-12)
+The town clears the selected building's info box to `$20` and redraws it on every main-loop pass. `VWF_Rect`
+keeps the last box (source, destination, mode, size, cell codes and attributes, max 128 cells, `wRC_*` in the
+shadow area of non-pool codes `$22` and `$44-$53`) and the tile epoch `wEpoch` (+1 per Upload, font load and
+game DMA over a slot). When the same box is asked for again, the epoch is unchanged and every cell holds its
+saved code or `$20` with unchanged attributes, the saved codes are written back instead of rendering.
+
+## Graphics reservations and the dry GC pass (2026-11-12)
+- `wGameNew`: slots a game DMA overwrote since the last GC. The full first GC pass sets
+  `wGame = (wGame & referenced) | wGameNew`, so a reservation lasts while a buffer still shows the slot (it used
+  to last until the next font load and filled the pool in the maze: slowdowns and text in the walls).
+  Both passes count `wGame | wGameNew`.
+- The dry second pass scans BG rows under a full-width window and a hidden window in "ownerless" mode: it keeps
+  slots no text cell owns (game graphics such as the maze walls in `$BC-$D1`) and frees only text slots.
+  Owners (bank 6, `$D800 + code*2`) are cleared at init; DMAs disown slots.

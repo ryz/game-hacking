@@ -10,6 +10,18 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - camp party list: status word garbage
+- Task: find the printer of the status word in the Camp party list HP column, explain the garbage, propose a hook.
+- Worked: dump the buffer row first (raw kana = unhooked copy), write watch from a state one input before the
+  screen, scratch ROM with the hook bytes and re-keyed FixMap entries before any real change.
+- Friction: the dispatch's repro value was wrong (status 3 = Paralyzed, not Dead; the coordinator took the table
+  order as the encoding); skill says notes in `work/re/`, the dispatch said `work/trace/`.
+- Proposed rule change: (1) read how the printer turns a RAM byte into a table index before trusting a repro
+  value; (2) fix_sites() should also match copies ending in `2a 12` and look for duplicate tables in other banks.
+- Corrected: coordinator verified the bytes (39:49FE copy, 39:4004 = 38:754D) and applied the hook as proposed
+  with 32 px short forms (a98cef8); encoding noted in docs/re/text.md. Dispatch paths: use `work/re/` next time.
+- Status: open ((2) tool change not done; (1) added to text.md)
+
 ### 2026-11-11 - spells: where spell text lives and how it is printed
 - Task: locate every spell text piece (headers, list, battle name, detail labels, element, descriptions) with hooks.
 - Worked: dumping the window buffer ($D800/$DC00) first, then write watches; a scratch ROM with one record

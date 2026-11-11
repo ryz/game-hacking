@@ -12,6 +12,13 @@
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
+## Done 2026-11-12 (sixth session, owner's report: town slowdown, maze walls, Camp)
+- Town speed: idle town runs its main loop as often as the Japanese (360 per 120 frames, was 72); the info box
+  redraw is served from a cache (`docs/re/vwf.md`). Cursor moves: ~310 (one render).
+- Text no longer drawn into maze wall tiles (dry GC pass keeps game graphics; reservations pruned instead of
+  piling up until a font load).
+- Party list status words (Camp and the other party lists): English, 32 px forms Paral./Silent/Poison.
+
 ## Done 2026-11-11 (fifth session)
 - Notice Board scroll in English (`script/notice.json`, `VWF_Notice`): the picture's Japanese text area is
   blanked to paper and the VWF prints over it before the fade-in (palette 5: the scroll's palette 6 has an
@@ -52,8 +59,10 @@
 2. Shop item lists and the name-entry field still in the 8 px font (owner's rule: words in the VWF).
 3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
 4. Item effect descriptions (bank 46), prologue, title screen.
-5. VWF: Dedupe search makes the town accept input ~60 frames after arrival (JP 20); a faster lookup
-   (hash buckets) would bring it back. Short transients while screens are typed (1-4 frames).
+5. VWF: short transients while screens are typed (1-4 frames). Town input delay after arrival not re-measured
+   since the redraw cache.
+6. Owner's report "gets slower the longer I play" not reproduced in the emulator (random walks, door messages,
+   battle); the two causes found are fixed. Needs a long playtest on the new ROM.
 
 ## Known issues
 - Untranslated text shows as blank/garbage (kana tiles are no longer loaded; their slots belong to the VWF).
