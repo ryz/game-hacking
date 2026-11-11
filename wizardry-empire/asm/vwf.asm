@@ -134,7 +134,7 @@ wEpoch      equ $d22c          ; +1 whenever slot tiles change (upload, font loa
 wGame       equ $d200          ; 32 bytes: slots holding game graphics (shadow area of codes $20/$21, not pool)
 wSpell      equ $d280          ; 32 bytes: full English name of the last spell read by 0:24CF (shadow area of
                                ; codes $28/$29, not pool); messages print it with {F8 00 07 D280}
-wMagic      equ $dffe          ; 'V','X' once initialised (bump when the variable layout changes)
+wMagic      equ $dffe          ; 'V','Y' once initialised (bump when the variable layout changes)
 HOME_BANK   equ 7
 
 STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = shadow of the VRAM tile
@@ -480,7 +480,7 @@ Stub_Dma:                   ; any other VBlank DMA: tell the VWF which tiles the
     ld a, $02
     jp $142f
 
-Stub_Hold:                  ; 0:167D in the VBlank map copy (SVBK = 3 here): skip the copies (and keep the
+Stub_Hold:                  ; (dead while HoldMark is disabled: wSkipCopy stays 0) 0:167D in the VBlank map copy (SVBK = 3 here): skip the copies (and keep the
     ld a, HOME_BANK         ; request flags) while the VWF is printing a menu, see HoldMark
     ldh [$70], a
     ld a, [wSkipCopy]
@@ -690,7 +690,7 @@ CheckInit:
     cp $56
     jr nz, .init
     ld a, [wMagic + 1]
-    cp $58
+    cp $59
     ret z
 .init:
     push hl
@@ -707,10 +707,12 @@ CheckInit:
     ld [wCallerSVBK], a
     ld a, $56
     ld [wMagic], a
-    ld a, $58
+    ld a, $59
     ld [wMagic + 1], a
     ld a, 1
     ld [wReset], a          ; shadows are not valid yet
+    xor a
+    ld [wRC_valid], a       ; redraw cache (shadow area, random at power-on)
     ld a, MAP_BANK          ; slot owners (bank 6, $d800 + code*2): 0 = no text cell (random at power-on)
     ldh [hSVBK], a
     ldh [$70], a
@@ -2237,7 +2239,7 @@ Dedupe:
 ; Reservations (wGame) live only while a buffer still shows the slot: the full first pass keeps the reserved
 ; slots it found referenced (it counts BG rows under the window, so the maze keeps its wall tiles while the
 ; dungeon menu hides the view) and drops the rest; DMAs since the last GC (wGameNew) survive one GC unchecked
-; (the cells are written after the tiles). Before 2026-11-12 reservations stayed until the next font load and
+; (the cells are written after the tiles). Before 2026-11-11 reservations stayed until the next font load and
 ; filled the pool in the maze/town: every glyph ran both GC passes (slowdown) and the dry pass overwrote
 ; wall tiles (text in the walls, garbled Camp numbers).
 GC:
@@ -2639,6 +2641,9 @@ VWF_Rect:
 ; overwritten since (wEpoch) and every cell of the box still holds the saved code or was cleared to $20 (the
 ; town clears the info box before each redraw) with its attributes unchanged. Cleared cells are restored.
 RectCacheHit:
+    ld a, [wReset]          ; font loaded since: the saved slots are gone (AllocReset clears the cache later)
+    or a
+    jr nz, .miss
     ld a, [wRC_valid]
     or a
     ret z
