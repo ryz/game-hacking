@@ -12,6 +12,13 @@
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
+## Done 2026-11-11 (eighth session: speed, numbers)
+- Town speed: with a party 360 loops/120 frames and reaction at frame 2, like the Japanese (was 174 and a
+  half-speed cursor); without a party (info box) reaction at frame 7-13 (was 14-18, JP 2). Caches: names,
+  numbers, party list, rect sums; Dedupe hash index (`docs/re/vwf.md` "Speed").
+- Numbers in the small font everywhere 0:0FD0 prints them (84 sites: party lists, character sheet, shop
+  prices, inn, gold, EXP ...); tabular digits; typewriter number padding 5 px.
+
 ## Done 2026-11-11 (seventh session)
 - Shop Buy/Sell lists, "Sold out" rows and the character item lists (Camp, tavern sheet) in the small VWF font
   (41:4A52, 41:49EB, 41:5674 through Stub_PrintZ).
@@ -71,6 +78,15 @@
    since the redraw cache.
 6. Owner's report "gets slower the longer I play" not reproduced in the emulator (random walks, door messages,
    battle); the two causes found are fixed. Needs a long playtest on the new ROM.
+7. Flicker (owner's request): the new screen reuses tiles the old one still shows until the game copies its
+   buffer (in-place redraws and freed slots), e.g. inn list -> character sheet (~35 frames of wrong letters),
+   message -> chest menu (3 frames). A quarantine by frame count did not help (in-place case) and slowed screens
+   (repeated GC); next try: tie reuse to the game's buffer copy (hook 0:167D) - see docs/re/vwf.md.
+8. Still 8 px (docs/re/numbers.md): '/', '-', '~', ':' separators and the labels L/HP/AC/HP-MAX/Lo/Hi/ON/OFF,
+   spell-slot grid separators, monster panel and automap digits (symbol sheet), Camp reorder digits.
+   Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.
+9. Seen once, not reproduced: wrong digits in the chest "Who will inspect?" list after inputs during the trap
+   message.
 7. Tool backlog (from agent feedback): `tools/emu.py` hang check should report a hang only when the PC stays in
    a tight range, plus a soft-lock check (screen and task table unchanged); emu.open_emu turbo; shoot.py
    state-based shots; curated maze_dmenu/stairs_up_prompt shots; census segment mode (`$FC`) and attributes;

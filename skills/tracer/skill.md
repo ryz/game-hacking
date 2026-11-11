@@ -33,6 +33,9 @@ Do not re-derive what they already state.
   count-only breakpoints + `break.log` to list every PC that writes a range; `trace.start(with_mem=True)` around one frame.
 - Reaching screens: from power-on `boot` puts you in the town. Party/maze routes: `tools/routes/tour.txt`.
   Savestates from the original ROM and the English build are not interchangeable.
+- "Which routine prints X on which screen": count-only PC breakpoints on the callers' return addresses (max 64),
+  hit deltas read per input token; never a stopping breakpoint on a routine that runs every frame; save
+  emulator snapshots to files (in-memory slots max 32).
 - Every state you save goes into the notes with its exact input list (start state + tokens); a state from a
   random walk without its inputs cannot be reproduced.
 - `gbdis.py BANK 0xADDR`: bank decimal, address with `0x` (a bare number is read as decimal).

@@ -11,6 +11,16 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-11 - town speed, numbers in the small font
+- ROM: `2edfeec` sent.
+- Changed: numbers through the VWF (0:0FD0, 84 sites), tabular digits, typewriter figure space; party-list
+  skip/restore, name/number cache, rect sums, Dedupe hash index; font rule widened (numbers too).
+- Measured: town with a party = Japanese (360 loops/120f, reaction frame 2; was 174); without a party
+  reaction 7-13 frames (JP 2).
+- Checked: tests, tour 8/8, shop header/prices, inn, Camp, a full battle with chest menu.
+- Open: flicker on screen switches (analysis in status Next 7), 8 px separators/labels, a box render still
+  costs 1.5 frames, one unreproduced wrong-digit frame (chest list).
+
 ## 2026-11-11 - shop lists, coverage tests, maintenance, museum trace
 - ROM: `615e150` sent.
 - Changed: shop Buy/Sell, "Sold out" rows and character item lists in the VWF; init signature VY; redraw

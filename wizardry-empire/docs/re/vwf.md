@@ -130,3 +130,35 @@ saved code or `$20` with unchanged attributes, the saved codes are written back 
 - The dry second pass scans BG rows under a full-width window and a hidden window in "ownerless" mode: it keeps
   slots no text cell owns (game graphics such as the maze walls in `$BC-$D1`) and frees only text slots.
   Owners (bank 6, `$D800 + code*2`) are cleared at init; DMAs disown slots.
+
+## Speed: caches and indexes (2026-11-11, later the same day)
+Measured with a count-only breakpoint on the frame wait `0:07C5` (main-loop passes per 120 idle frames; JP 360)
+and the frames from a key press to the first screen change (JP 2).
+- Name print cache (`VWF_PrintZ`) and number cache (`VWF_Num`) share `wNC` (24 entries, bank 7 `$D610`):
+  destination cell, cell count, hash of the string (+ start pixel), the first cell's attribute, an epoch and
+  per cell the slot code and its tile version. Slot codes are derived from the tile number and the VRAM bank bit
+  (`CellCode`: split layout + bank bit = code | $80). Tile versions `wVer` (bank 6 `$DA00`, +1 per upload or
+  game DMA over a slot); a hit needs every version unchanged (or the entry's epoch = `wEpoch`: nothing was
+  uploaded at all) and every cell holding its code or $20. Restored cells get their codes, bank bits and wBits.
+- Party list (`39:4931`, every pass on town-type screens): skipped entirely when the party data (names, status,
+  HP), the tiles (`wEpoch`) and the rows `$D160-$D21F` (Fletcher sums of codes and attributes) are as after the
+  last real draw or exactly as the game left them before it; the snapshot (bank 6 `$DD00`/`$DD80`) is restored.
+  Hooks: `39:4931` -> `Party_Entry` (39:7F00; keeps the caller's B), `39:498A` -> `Party_End` (snapshot).
+- Rect cache (`VWF_Rect`): check by Fletcher sums of the box's codes/attributes (bank 3 switched in once);
+  a box cleared to $20 is restored through the WRAM0 scratch `RC_SCR` ($CCE0, the idle private stack).
+- `Dedupe`: hash index `wHIdx`/`wHIdx2` (bank 6 `$DB00`/`$DC00`, last two slots per tile hash) instead of a
+  scan of the pool.
+- Results: town with a party 360 passes/120 frames, reaction at frame 2 (= JP; was 174 and a half-speed
+  cursor). Town without a party (info box): reaction at frame 7-13 (was 14-18; JP 2): a box render costs
+  ~22k instructions (1.5 frames).
+- Savestates from older builds are unsafe after code changes (the saved call stack returns into moved code;
+  the town froze). Signature now `'V','\\'` .. bumped on every layout change.
+
+## Numbers (0:0FD0 -> Stub_Num -> VWF_Num)
+`0:108B` (digit store of the number printer, 84 call sites) calls `Stub_Num`: base `$30` into the bank-3
+buffers goes to the VWF, everything else (symbol-sheet digits `$F4`, the typewriter buffer `$C1DE`) keeps the
+original loop. The field is right-aligned when the game padded it or gave a fixed width ($FFAC bit 7), else
+left-aligned; the field's cells are blanked and the digits drawn from the computed pixel. In the split layout
+numbers prefer low pool codes (VRAM0 in both layouts), because the game sometimes writes 8 px text over a
+number field afterwards (shop header: age, then 'AC') and would inherit the VRAM1 bit. Digits are 4 px wide
+(tabular, advance 5); `$7F` is a blank 5 px figure space used by the typewriter's number padding (`0:1D66`).

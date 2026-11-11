@@ -10,6 +10,19 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-11 - numbers and 8 px glyphs inventory
+- Task: list every 8 px number/word printer in the EN build, group by routine, propose VWF routes.
+- Worked: count-only PC breakpoints on caller return addresses read per input token, plus a VRAM-glyph scanner
+  on every tour screen; JP states were enough for unpatched sites.
+- Friction: emulator limits (64 breakpoints, 32 in-memory snapshots), no EN battle states, census misses
+  digit-only rects.
+- Proposed rule change: count-only breakpoints on return addresses for "which routine prints X"; never a
+  stopping breakpoint on a per-frame routine; file snapshots. Tools: EN battle states in party.py, census mode
+  for digit/ASCII-only rects.
+- Corrected: 0:108B hook implemented as proposed (Stub_Num); the 16-entry cache became the shared name/number
+  cache; tabular '1' and the $7F figure space applied. Separators/labels/spell slots/symbol sheet not yet.
+- Status: promoted 2026-11-11 (count-only breakpoint rule in skill.md); tools in the backlog
+
 ### 2026-11-11 - museum: text sources, printers, hooks
 - Task: museum text (menu, item/monster lists, entry pages): sources, printers, hook proposals.
 - Worked: comparing VRAM tiles against the `01:4400` font per bank and tile-data base found a third font layout
