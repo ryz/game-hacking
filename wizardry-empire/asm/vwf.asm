@@ -474,6 +474,20 @@ VWF_FontLoad:
 .hi:
     ldh a, [hDstVBank]
     ld [wLayout], a         ; VRAM1:$9000 -> split (1), VRAM0:$8800 -> flat (0)
+    or a
+    jr z, .nb
+    ; split: VRAM1 tile $20 (code $A0) = blank paper, see build.py POOL
+    ld hl, wUp
+    ld b, 8
+.bt: xor a
+    ld [hli], a
+    dec a
+    ld [hli], a
+    dec b
+    jr nz, .bt
+    ld a, $a0
+    call Upload
+.nb:
     ld a, 1
     ld [wReset], a          ; new font = new screen: VRAM no longer matches the shadows
 .drop:
