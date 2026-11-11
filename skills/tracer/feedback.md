@@ -10,6 +10,17 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-11 - spells: where spell text lives and how it is printed
+- Task: locate every spell text piece (headers, list, battle name, detail labels, element, descriptions) with hooks.
+- Worked: dumping the window buffer ($D800/$DC00) first, then write watches; a scratch ROM with one record
+  changed proved the data-only fix for list + battle; EN/JP bank diff found a stray Stub_Fix at 2A:4A31.
+- Corrected: none yet (being implemented).
+- Friction: window-buffer codes depend on attribute bit 3, so tbl.dec/census decode some rects wrongly; no JP
+  battle state with a living caster.
+- Proposed rule change: (1) window buffer decode rule; (2) diff EN vs JP at a site before proposing a hook.
+  Tools: census_rects should apply attributes; a reproducible JP battle route in tools/routes.
+- Status: open (second-entry check pending; rules 1 and 2 promote on the next confirming run)
+
 ### 2026-11-11 - char-card: printers of the garbled character-card fields
 - Task: find the routines that print the garbled card fields (gender, status, location, title, shop alignment,
   gold) and propose VWF hooks.
