@@ -1,0 +1,1938 @@
+[
+ {
+  "id": "logo_publisher",
+  "category": "boot",
+  "description": "Publisher logo after power-on",
+  "tokens": "pow,w300",
+  "commit": "1737042",
+  "files": {
+   "jp": "logo_publisher.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "copyright",
+  "category": "boot",
+  "description": "Copyright/licence screen",
+  "tokens": "pow,w600",
+  "commit": "1737042",
+  "files": {
+   "jp": "copyright.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "title",
+  "category": "boot",
+  "description": "Title screen",
+  "tokens": "pow,w760",
+  "commit": "1737042",
+  "files": {
+   "jp": "title.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "mode_select",
+  "category": "options",
+  "description": "Mode settings (BGM, sound, map, ...)",
+  "tokens": "pow,w750,start,w60,start,w60,start,w60,start,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "mode_select.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "town_edge",
+  "category": "town",
+  "description": "Town map, Edge of Town info",
+  "tokens": "boot",
+  "commit": "1737042",
+  "files": {
+   "jp": "town_edge.jp.png"
+  },
+  "settled": {
+   "jp": false
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "town_training",
+  "category": "town",
+  "description": "Town map, Training Grounds info",
+  "tokens": "boot,right",
+  "commit": "1737042",
+  "files": {
+   "jp": "town_training.jp.png"
+  },
+  "settled": {
+   "jp": false
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "town_museum",
+  "category": "town",
+  "description": "Town map, Museum info",
+  "tokens": "boot,right*2",
+  "commit": "1737042",
+  "files": {
+   "jp": "town_museum.jp.png"
+  },
+  "settled": {
+   "jp": false
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "town_tavern",
+  "category": "town",
+  "description": "Town map, Rose's Tavern info",
+  "tokens": "boot,right*3",
+  "commit": "1737042",
+  "files": {
+   "jp": "town_tavern.jp.png"
+  },
+  "settled": {
+   "jp": false
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "town_notice",
+  "category": "town",
+  "description": "Town map, Notice Board info",
+  "tokens": "boot,right*4",
+  "commit": "1737042",
+  "files": {
+   "jp": "town_notice.jp.png"
+  },
+  "settled": {
+   "jp": false
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "town_shop",
+  "category": "town",
+  "description": "Town map, Lorelei's Shop info",
+  "tokens": "boot,right*5",
+  "commit": "1737042",
+  "files": {
+   "jp": "town_shop.jp.png"
+  },
+  "settled": {
+   "jp": false
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "town_temple",
+  "category": "town",
+  "description": "Town map, Samsara Temple info",
+  "tokens": "boot,right*6",
+  "commit": "1737042",
+  "files": {
+   "jp": "town_temple.jp.png"
+  },
+  "settled": {
+   "jp": false
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "town_inn",
+  "category": "town",
+  "description": "Town map, Aries Inn info",
+  "tokens": "boot,right*7",
+  "commit": "1737042",
+  "files": {
+   "jp": "town_inn.jp.png"
+  },
+  "settled": {
+   "jp": false
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_menu",
+  "category": "tavern",
+  "description": "Tavern menu",
+  "tokens": "boot,right*3,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_menu.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_add",
+  "category": "tavern",
+  "description": "Add member: roster with character card",
+  "tokens": "boot,right*3,a,w60,a,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_add.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "party_town",
+  "category": "town",
+  "description": "Town with the full party panel",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "party_town.jp.png"
+  },
+  "settled": {
+   "jp": false
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_menu",
+  "category": "training",
+  "description": "Training Grounds menu",
+  "tokens": "boot,right,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_menu.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_menu",
+  "category": "shop",
+  "description": "Shop: welcome and Buy/Sell menu",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_menu.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_buy",
+  "category": "shop",
+  "description": "Shop: Buy, item categories",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,a,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_buy.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "temple_menu",
+  "category": "temple",
+  "description": "Samsara Temple menu",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*3,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "temple_menu.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "inn_rooms",
+  "category": "inn",
+  "description": "Aries Inn room list",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*4,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "inn_rooms.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "outskirts_menu",
+  "category": "maze",
+  "description": "Edge of Town: explore / resume / end",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "outskirts_menu.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp",
+  "category": "maze",
+  "description": "Camp menu on entering the maze",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "character_sheet",
+  "category": "maze",
+  "description": "Character sheet from Camp",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,a,w40,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "character_sheet.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "maze_view",
+  "category": "maze",
+  "description": "First-person maze view, Camp closed",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "maze_view.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "maze_menu",
+  "category": "maze",
+  "description": "Maze menu (Search, Pick a lock, ...)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,a,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "maze_menu.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "stairs_prompt",
+  "category": "maze",
+  "description": "Stairs up prompt at the entrance",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,up,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "stairs_prompt.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_remove_prompt",
+  "category": "tavern",
+  "description": "Remove: who to remove?",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down,a,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_remove_prompt.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_removed",
+  "category": "tavern",
+  "description": "Remove: member removed",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down,a,w40,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_removed.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_inspect_prompt",
+  "category": "tavern",
+  "description": "Inspect: who?",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*2,a,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_inspect_prompt.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_sheet_fighter",
+  "category": "tavern",
+  "description": "Character sheet (fighter)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*2,a,w40,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_sheet_fighter.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_sheet_mage",
+  "category": "tavern",
+  "description": "Character sheet (mage)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*2,a,w40,down*4,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_sheet_mage.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_sheet_spells",
+  "category": "tavern",
+  "description": "Character sheet: spells page (mage)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*2,a,w40,down*4,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_sheet_spells.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_sheet_items",
+  "category": "tavern",
+  "description": "Character sheet: items + action menu",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*2,a,w40,a,w60,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_sheet_items.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_item_equip",
+  "category": "tavern",
+  "description": "Items: equip, choose main weapon",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*2,a,w40,a,w60,down,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_item_equip.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_item_give",
+  "category": "tavern",
+  "description": "Items: give to whom",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*2,a,w40,a,w60,down,a,w60,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_item_give.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_item_drop",
+  "category": "tavern",
+  "description": "Items: discard",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*2,a,w40,a,w60,down,a,w60,down*2,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_item_drop.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_item_use",
+  "category": "tavern",
+  "description": "Items: use",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*2,a,w40,a,w60,down,a,w60,down*3,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_item_use.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_sheet_pool",
+  "category": "tavern",
+  "description": "Character sheet: pool gold (gold 600)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*2,a,w40,down*4,a,w60,down*2,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_sheet_pool.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_divide",
+  "category": "tavern",
+  "description": "Divide gold message",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,down*3,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_divide.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_full",
+  "category": "tavern",
+  "description": "Add with full party: party is full",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_full.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "tavern_empty_remove",
+  "category": "tavern",
+  "description": "Remove with no party",
+  "tokens": "boot,right*3,a,w60,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "tavern_empty_remove.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_noparty",
+  "category": "shop",
+  "description": "Shop without a party",
+  "tokens": "boot,right*5,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_noparty.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_name_hira",
+  "category": "training",
+  "description": "Name entry, hiragana page",
+  "tokens": "boot,right,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_name_hira.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_name_kata",
+  "category": "training",
+  "description": "Name entry, katakana page",
+  "tokens": "boot,right,a,w60,a,w60,select,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_name_kata.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_name_abc",
+  "category": "training",
+  "description": "Name entry, alphanumeric page",
+  "tokens": "boot,right,a,w60,a,w60,select,w40,select,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_name_abc.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_name_typed",
+  "category": "training",
+  "description": "Name entry, a name typed",
+  "tokens": "boot,right,a,w60,a,w60,a,w40,a,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_name_typed.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_gender",
+  "category": "training",
+  "description": "Choose sex",
+  "tokens": "boot,right,a,w60,a,w60,a,w40,start,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_gender.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_race",
+  "category": "training",
+  "description": "Choose race",
+  "tokens": "boot,right,a,w60,a,w60,a,w40,start,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_race.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_align",
+  "category": "training",
+  "description": "Choose alignment",
+  "tokens": "boot,right,a,w60,a,w60,a,w40,start,w60,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_align.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_bonus",
+  "category": "training",
+  "description": "Distribute bonus points",
+  "tokens": "boot,right,a,w60,a,w60,a,w40,start,w60,a,w60,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_bonus.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_bonusleft",
+  "category": "training",
+  "description": "Bonus points remain message",
+  "tokens": "boot,right,a,w60,a,w60,a,w40,start,w60,a,w60,a,w60,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_bonusleft.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_class",
+  "category": "training",
+  "description": "Choose class (bonus spent)",
+  "tokens": "boot,right,a,w60,a,w60,a,w40,start,w60,a,w60,a,w60,a,w60,right*20,down,right*20,down,right*20,down,right*20,down,right*20,down,right*20,w20,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_class.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_create_confirm",
+  "category": "training",
+  "description": "Use this character?",
+  "tokens": "boot,right,a,w60,a,w60,a,w40,start,w60,a,w60,a,w60,a,w60,right*20,down,right*20,down,right*20,down,right*20,down,right*20,down,right*20,w20,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_create_confirm.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_view_list",
+  "category": "training",
+  "description": "View character: roster",
+  "tokens": "boot,right,a,w60,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_view_list.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_view_sheet",
+  "category": "training",
+  "description": "View character: sheet",
+  "tokens": "boot,right,a,w60,down,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_view_sheet.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_view_spells",
+  "category": "training",
+  "description": "View character: spells (mage)",
+  "tokens": "boot,right,a,w60,down,a,w60,down*4,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_view_spells.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_delete_list",
+  "category": "training",
+  "description": "Delete character: roster",
+  "tokens": "boot,right,a,w60,down*2,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_delete_list.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_delete_confirm",
+  "category": "training",
+  "description": "Delete character: confirm",
+  "tokens": "boot,right,a,w60,down*2,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_delete_confirm.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_rename",
+  "category": "training",
+  "description": "Rename: roster",
+  "tokens": "boot,right,a,w60,down*3,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_rename.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_rename_entry",
+  "category": "training",
+  "description": "Rename: name entry",
+  "tokens": "boot,right,a,w60,down*3,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_rename_entry.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_class_list",
+  "category": "training",
+  "description": "Change class: roster",
+  "tokens": "boot,right,a,w60,down*4,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_class_list.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_class_pick",
+  "category": "training",
+  "description": "Change class: classes",
+  "tokens": "boot,right,a,w60,down*4,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_class_pick.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_order",
+  "category": "training",
+  "description": "Reorder roster",
+  "tokens": "boot,right,a,w60,down*5,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_order.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_order_pick",
+  "category": "training",
+  "description": "Reorder roster: one picked",
+  "tokens": "boot,right,a,w60,down*5,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_order_pick.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_transfer",
+  "category": "training",
+  "description": "Character transfer",
+  "tokens": "boot,right,a,w60,down*6,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_transfer.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "training_transfer_start",
+  "category": "training",
+  "description": "Character transfer after START (no link partner)",
+  "tokens": "boot,right,a,w60,down*6,a,w60,start,w180",
+  "commit": "1737042",
+  "files": {
+   "jp": "training_transfer_start.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_who",
+  "category": "shop",
+  "description": "Shop entry: who enters?",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_who.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_buy_weapons",
+  "category": "shop",
+  "description": "Buy: weapon list",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,a,w40,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_buy_weapons.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_buy_confirm",
+  "category": "shop",
+  "description": "Buy: confirm purchase",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,a,w40,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_buy_confirm.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_buy_armor",
+  "category": "shop",
+  "description": "Buy: armour list",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,a,w40,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_buy_armor.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_buy_other",
+  "category": "shop",
+  "description": "Buy: other items list",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,a,w40,down*5,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_buy_other.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_sell",
+  "category": "shop",
+  "description": "Sell: item list",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_sell.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_sell_confirm",
+  "category": "shop",
+  "description": "Sell: confirm",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,down,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_sell_confirm.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_uncurse",
+  "category": "shop",
+  "description": "Uncurse",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,down*2,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_uncurse.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_identify",
+  "category": "shop",
+  "description": "Identify",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,down*3,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_identify.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_pool",
+  "category": "shop",
+  "description": "Pool gold",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,down*4,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_pool.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "temple_help",
+  "category": "temple",
+  "description": "Help (cure)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*3,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "temple_help.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "temple_pickup",
+  "category": "temple",
+  "description": "Pick up",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*3,a,w60,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "temple_pickup.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "temple_deposit",
+  "category": "temple",
+  "description": "Deposit",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*3,a,w60,down*2,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "temple_deposit.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "inn_who",
+  "category": "inn",
+  "description": "Inn entry",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*4,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "inn_who.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "inn_stable",
+  "category": "inn",
+  "description": "Stables (free)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*4,a,w60,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "inn_stable.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "inn_stable_3",
+  "category": "inn",
+  "description": "Stables, after 2",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*4,a,w60,a,w60,a,w60,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "inn_stable_3.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "inn_cot",
+  "category": "inn",
+  "description": "Cot room",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*4,a,w60,a,w60,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "inn_cot.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "inn_royal",
+  "category": "inn",
+  "description": "Royal suite",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*4,a,w60,a,w60,down*4,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "inn_royal.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "inn_pool",
+  "category": "inn",
+  "description": "Pool gold",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*4,a,w60,a,w60,down*5,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "inn_pool.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "notice_board",
+  "category": "notice",
+  "description": "Notice board text (one page; A returns to town)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "notice_board.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "museum_menu",
+  "category": "museum",
+  "description": "Museum: item room / monster room",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "museum_menu.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "outskirts_resume",
+  "category": "maze",
+  "description": "Edge of Town: resume adventure",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "outskirts_resume.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "outskirts_quit",
+  "category": "maze",
+  "description": "Edge of Town: quit adventure",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,down*2,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "outskirts_quit.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "outskirts_noparty",
+  "category": "maze",
+  "description": "Edge of Town without a party",
+  "tokens": "boot,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "outskirts_noparty.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_inspect_prompt",
+  "category": "camp",
+  "description": "Camp: inspect, who?",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,a,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_inspect_prompt.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_sheet_mage",
+  "category": "camp",
+  "description": "Camp: character sheet (mage)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,a,w40,down*4,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_sheet_mage.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_spells_mage",
+  "category": "camp",
+  "description": "Camp: mage spells page",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,a,w40,down*4,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_spells_mage.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_spell_cast",
+  "category": "camp",
+  "description": "Camp: mage spells, A on spell",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,a,w40,down*4,a,w60,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_spell_cast.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_spells_priest",
+  "category": "camp",
+  "description": "Camp: priest spells page",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,a,w40,down*3,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_spells_priest.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_items",
+  "category": "camp",
+  "description": "Camp: items + action menu",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,a,w40,a,w60,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_items.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_item_use",
+  "category": "camp",
+  "description": "Camp: use item",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,a,w40,a,w60,down,a,w60,down*3,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_item_use.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_pool",
+  "category": "camp",
+  "description": "Camp: pool gold",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,a,w40,a,w60,down*2,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_pool.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_reorder",
+  "category": "camp",
+  "description": "Camp: reorder, empty slots",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_reorder.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_reorder_pick",
+  "category": "camp",
+  "description": "Camp: reorder, first placed",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,down,a,w60,a,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_reorder_pick.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_equip",
+  "category": "camp",
+  "description": "Camp: equip",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,down*2,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_equip.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_equip_2",
+  "category": "camp",
+  "description": "Camp: equip, next",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,down*2,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_equip_2.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "camp_equip_3",
+  "category": "camp",
+  "description": "Camp: equip, next 2",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,down*2,a,w60,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "camp_equip_3.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "maze_reopen_camp",
+  "category": "maze",
+  "description": "B in the maze reopens Camp",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,b,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "maze_reopen_camp.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "maze_turn_left",
+  "category": "maze",
+  "description": "Maze view after turning left",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,left,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "maze_turn_left.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "maze_turn_right",
+  "category": "maze",
+  "description": "Maze view after turning right",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,right,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "maze_turn_right.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "maze_dmenu",
+  "category": "maze",
+  "description": "Dungeon menu (SELECT)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,select,w40",
+  "commit": "1737042",
+  "files": {
+   "jp": "maze_dmenu.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "maze_search",
+  "category": "maze",
+  "description": "Dungeon menu: search, nothing found",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,select,w40,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "maze_search.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "maze_picklock",
+  "category": "maze",
+  "description": "Dungeon menu: pick lock, no door",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,select,w40,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "maze_picklock.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "maze_findparty_none",
+  "category": "maze",
+  "description": "Dungeon menu: search for party, nobody",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,select,w40,down*2,a,w150",
+  "commit": "1737042",
+  "files": {
+   "jp": "maze_findparty_none.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "maze_settings",
+  "category": "maze",
+  "description": "Dungeon menu: settings",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,select,w40,down*3,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "maze_settings.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_buy_yes",
+  "category": "shop",
+  "description": "Buy: Yes - item bought",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,a,w40,a,w60,a,w60,up,w30,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_buy_yes.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "shop_buy_tooexpensive",
+  "category": "shop",
+  "description": "Buy: item the character cannot afford",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,a,w40,a,w60,down,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "shop_buy_tooexpensive.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "inn_sleep",
+  "category": "inn",
+  "description": "Inn: character sleeping (cot)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*4,a,w60,a,w60,down,a",
+  "commit": "1737042",
+  "files": {
+   "jp": "inn_sleep.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "museum_item_room",
+  "category": "museum",
+  "description": "Museum: item room, categories and found/unfound counts",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "museum_item_room.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "museum_item_list",
+  "category": "museum",
+  "description": "Museum: weapon list",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left,a,w60,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "museum_item_list.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "museum_item_info",
+  "category": "museum",
+  "description": "Museum: item data page",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left,a,w60,a,w60,a,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "museum_item_info.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "museum_item_other",
+  "category": "museum",
+  "description": "Museum: other items list",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left,a,w60,a,w60,down*5,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "museum_item_other.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "museum_monster_none",
+  "category": "museum",
+  "description": "Museum: monster room selected, no monsters met yet (A does nothing)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left,a,w60,down,w20,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "museum_monster_none.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "stairs_up_prompt",
+  "category": "maze",
+  "description": "Stairs up prompt (step back onto the entrance stairs)",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,up,w60,down,w60,a,w60",
+  "commit": "1737042",
+  "files": {
+   "jp": "stairs_up_prompt.jp.png"
+  },
+  "settled": {
+   "jp": true
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ },
+ {
+  "id": "stairs_up_climb",
+  "category": "maze",
+  "description": "Stairs climbed: back in town",
+  "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,up,w60,down,w60,a,w60,a,w120",
+  "commit": "1737042",
+  "files": {
+   "jp": "stairs_up_climb.jp.png"
+  },
+  "settled": {
+   "jp": false
+  },
+  "rom_sha1": {
+   "jp": "041c125115c8"
+  }
+ }
+]

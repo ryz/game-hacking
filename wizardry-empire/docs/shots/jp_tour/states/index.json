@@ -1,0 +1,266 @@
+[
+ {
+  "id": "maze_findparty_busy",
+  "category": "maze",
+  "description": "Dungeon menu: search for party, searching... (animated)",
+  "state": "work/shots/jp_tour/explore/mzbase.state",
+  "tokens": "select,w40,down*2,a!",
+  "settled": null
+ },
+ {
+  "id": "battle_encounter_unid",
+  "category": "battle",
+  "description": "Encounter with an unidentified monster (やつれたすがた), party panel",
+  "state": "work/shots/jp_tour/explore/b1.state",
+  "tokens": "w1",
+  "settled": true
+ },
+ {
+  "id": "battle_cmd_fighter",
+  "category": "battle",
+  "description": "Command menu, fighter (front row)",
+  "state": "work/shots/jp_tour/explore/b1.state",
+  "tokens": "a,w30",
+  "settled": true
+ },
+ {
+  "id": "battle_run_escaped",
+  "category": "battle",
+  "description": "Run chosen: party escaped, back in the maze",
+  "state": "work/shots/jp_tour/explore/b1.state",
+  "tokens": "a,w30,down*3,a,w60",
+  "settled": true
+ },
+ {
+  "id": "battle_encounter",
+  "category": "battle",
+  "description": "Encounter: 3 Crawling Claws (identified), monster panel",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "w1",
+  "settled": true
+ },
+ {
+  "id": "battle_fight_modes",
+  "category": "battle",
+  "description": "Fight sub-menu: Normal / Aim to hit / Aim for damage",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "a,w30,a,w30",
+  "settled": true
+ },
+ {
+  "id": "battle_cmd_thief",
+  "category": "battle",
+  "description": "Command menu, thief (Hide)",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "a,w30,a,w30,a,w30",
+  "settled": true
+ },
+ {
+  "id": "battle_cmd_archer",
+  "category": "battle",
+  "description": "Command menu, archer",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "a,w30,a,w30,a,w30,a,w30,a,w30",
+  "settled": true
+ },
+ {
+  "id": "battle_fight_modes_hit",
+  "category": "battle",
+  "description": "Fight sub-menu, cursor on Aim to hit",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,w30,down,w30",
+  "settled": true
+ },
+ {
+  "id": "battle_cmd_priest",
+  "category": "battle",
+  "description": "Command menu, priest (back row: Defend/Spell/Dispel/Item/Run)",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,w30,down,w30,a,w30",
+  "settled": true
+ },
+ {
+  "id": "battle_cmd_mage",
+  "category": "battle",
+  "description": "Command menu, mage",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,w30,down,w30,a,w30,a,w30",
+  "settled": true
+ },
+ {
+  "id": "battle_spell_list",
+  "category": "battle",
+  "description": "Spell sub-menu: mage spell list",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,w30,down,w30,a,w30,a,w30,down,w30,a,w40",
+  "settled": true
+ },
+ {
+  "id": "battle_spell_info",
+  "category": "battle",
+  "description": "Spell sub-menu: spell details (Call Fear)",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,w30,down,w30,a,w30,a,w30,down,w30,a,w40,a,w40",
+  "settled": true
+ },
+ {
+  "id": "battle_cmd_bishop",
+  "category": "battle",
+  "description": "Command menu, bishop",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,w30,down,w30,a,w30,a,w30,down,w30,a,w40,a,w40,a,w40",
+  "settled": true
+ },
+ {
+  "id": "battle_item_menu",
+  "category": "battle",
+  "description": "Item sub-menu (bishop)",
+  "state": "work/shots/jp_tour/explore/bt.state",
+  "tokens": "a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,w30,down,w30,a,w30,a,w30,down,w30,a,w40,a,w40,a,w40,w30,down*2,w30,a,w40",
+  "settled": true
+ },
+ {
+  "id": "battle_confirm",
+  "category": "battle",
+  "description": "Round confirm: Fight / Back, with everyone's orders",
+  "state": "work/shots/jp_tour/explore/bconfirm.state",
+  "tokens": "w1",
+  "settled": true
+ },
+ {
+  "id": "battle_msg_cast",
+  "category": "battle",
+  "description": "Message: mage casts Call Fear",
+  "state": "work/shots/jp_tour/explore/bconfirm.state",
+  "tokens": "a,w60",
+  "settled": true
+ },
+ {
+  "id": "battle_msg_noeffect",
+  "category": "battle",
+  "description": "Message: spell had no effect",
+  "state": "work/shots/jp_tour/explore/b6.state",
+  "tokens": "a,w30",
+  "settled": true
+ },
+ {
+  "id": "battle_msg_attacks",
+  "category": "battle",
+  "description": "Message: attacks without damage",
+  "state": "work/shots/jp_tour/explore/b6.state",
+  "tokens": "a,w30,a,w30,a,w30,a,w30",
+  "settled": true
+ },
+ {
+  "id": "battle_msg_damage",
+  "category": "battle",
+  "description": "Message: monster deals damage",
+  "state": "work/shots/jp_tour/explore/b6.state",
+  "tokens": "a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,w1",
+  "settled": true
+ },
+ {
+  "id": "battle_msg_kill",
+  "category": "battle",
+  "description": "Message: damage and monster killed",
+  "state": "work/shots/jp_tour/explore/bpre.state",
+  "tokens": "a,w30",
+  "settled": true
+ },
+ {
+  "id": "battle_victory_exp",
+  "category": "battle",
+  "description": "Victory: experience message, chest appears",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "w1",
+  "settled": true
+ },
+ {
+  "id": "chest_menu",
+  "category": "chest",
+  "description": "Chest menu (inspect/cast/disarm/open/leave)",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60",
+  "settled": true
+ },
+ {
+  "id": "chest_inspect_who",
+  "category": "chest",
+  "description": "Chest: who inspects?",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60,a,w40",
+  "settled": true
+ },
+ {
+  "id": "chest_inspect_result",
+  "category": "chest",
+  "description": "Chest: inspect result (trap guess)",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60,a,w40,a,w60",
+  "settled": true
+ },
+ {
+  "id": "chest_cast_who",
+  "category": "chest",
+  "description": "Chest: who casts?",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60,down,w30,a,w40",
+  "settled": true
+ },
+ {
+  "id": "chest_cast_list",
+  "category": "chest",
+  "description": "Chest: spell list of the caster",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60,down,w30,a,w40,a,w60",
+  "settled": true
+ },
+ {
+  "id": "chest_disarm_who",
+  "category": "chest",
+  "description": "Chest: who disarms?",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60,down*2,w30,a,w40",
+  "settled": true
+ },
+ {
+  "id": "chest_disarm_traps",
+  "category": "chest",
+  "description": "Chest: trap name list",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60,down*2,w30,a,w40,a,w60",
+  "settled": true
+ },
+ {
+  "id": "chest_disarm_result",
+  "category": "chest",
+  "description": "Chest: disarm result (no trap, item found)",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60,down*2,w30,a,w40,a,w60,a,w60",
+  "settled": true
+ },
+ {
+  "id": "chest_open_who",
+  "category": "chest",
+  "description": "Chest: who opens?",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60,down*3,w30,a,w40",
+  "settled": true
+ },
+ {
+  "id": "chest_open_result",
+  "category": "chest",
+  "description": "Chest: opened, gold shared",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60,down*3,w30,a,w40,a,w60",
+  "settled": true
+ },
+ {
+  "id": "chest_leave",
+  "category": "chest",
+  "description": "Chest: leave without opening",
+  "state": "work/shots/jp_tour/explore/bchest.state",
+  "tokens": "a,w60,down*4,w30,a,w60",
+  "settled": true
+ }
+]
