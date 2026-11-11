@@ -11,11 +11,17 @@
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
+## Fixed 2026-11-11
+- Battle hang on the first attack: VWF variables sat in the game's task stacks (`docs/re/tasks.md`); moved to
+  WRAM bank 7. Verified: a full battle (attacks, kill, gold, chest prompt) plays through.
+- Redirected messages left the text bank on the English bank; English now jumps back to the original terminator.
+
 ## Next (in rough priority)
 1. Character sheet values still in kana: gender, status (`せいじょう`), location, title (`みならい`).
    Find their copy routines (watch reads of the source tables) and route them through the VWF.
-2. Battle text: the battle code (banks 36/50) sets message pointers without the text bank; needs a battle
-   at runtime to see `$C1C1` (random walks so far did not reach one).
+2. Battle text: located (`docs/re/battle-text.md`): `$FC`-chained segments in bank 49 (`49:4585-4EC8`,
+   `51B7-51FB`, `541A-54EB`), command words via pointer tables at `49:55BF-5725`, monster-group panel drawn as
+   bitmap tiles by `0:199B` (needs its own VWF hook). Needs a segment mode in the census/batches.
 3. Bank 49 composite strings: `$00`-separated name lists (gender/race/class/status/commands, `49:4000-418F`),
    `$FC`-chained trap messages (`49:541A`), trap list (`49:52F8`). Need the indexing routine before relocating.
 4. Spell names and spell/item effect descriptions (bank 46), museum screens (they load a different glyph set:
