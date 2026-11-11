@@ -329,6 +329,35 @@ Stub_Measure:
     nop
     nop
 
+; --- shop/item lists (41:4A4F): counted copy of the name at $C54F (max 16, stops at $00) -> VWF
+    org $29, $4a52
+    call Stub_PrintZ
+    jr @+8
+    ds 6, $00
+
+; --- shop "sold out" row (41:49EB): DE-source copy of 41:70E1 to HL -> VWF
+    org $29, $49eb
+    ld d, h
+    ld e, l
+    ld hl, $70e1
+    call Stub_PrintZ
+    jr @+3
+    nop
+
+; --- character item list (shop Sell etc., 41:5674): 16 cells from $C54F, $00 padded with spaces -> blank the
+;     16 cells, then VWF
+    org $29, $5674
+    push hl
+    ld c, $10
+    ld a, $20
+.sellfill:
+    ld [hli], a
+    dec c
+    jr nz, .sellfill
+    pop de
+    ld hl, $c54f
+    call Stub_PrintZ
+
 ; --- rst $38: inline text. Followed by db bank (bit 7: destination in HL, else DE), dw text.
     org 0, $0038
     jp Stub_Inline

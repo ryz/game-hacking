@@ -15,8 +15,8 @@ org 41, $421a
     nop
     nop
 
-; Shop "sold out" row (41:70E1, $00-terminated, printed raw by a DE-source loop at 41:49EB): in-place
-; ASCII, 17 bytes max (JP: ----- うりきれ -----).
+; Shop "sold out" row (41:70E1, $00-terminated; the copy at 41:49EB goes through Stub_PrintZ, asm/vwf.asm):
+; in-place ASCII, 17 bytes max (JP: ----- うりきれ -----).
 org 41, $70e1
     db "--- Sold out ---", 0
 
