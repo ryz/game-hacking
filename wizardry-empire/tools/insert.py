@@ -76,7 +76,10 @@ def insert_rects(rom, space, entries):
             continue
         o = rom_off(e["bank"], int(e["addr"], 16))
         assert rom[o] == e["w"] and rom[o + 1] == e["h"], (e["id"], rom[o], rom[o + 1])
-        if e["w"] * e["h"] < 3 or e.get("fixed"):
+        # 5-byte header must fit in the tile block, or (blocks with an attribute block, "attrs": true)
+        # in tiles + attributes with the last attribute byte untouched
+        room = e["w"] * e["h"] * (2 if e.get("attrs") else 1)
+        if room < 3 + (1 if e.get("attrs") else 0) or e.get("fixed"):
             # too small for the redirect header: ASCII in place, original fixed 8 px glyphs
             rows = e["en"]
             assert len(rows) <= e["h"] and all(len(r) <= e["w"] for r in rows), e["id"]

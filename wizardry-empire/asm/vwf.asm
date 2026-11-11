@@ -1275,6 +1275,13 @@ VWF_Rect:
     add hl, de
     dec c
     jr nz, .mul
+    ; use the attribute of each row's LAST cell: for blocks of only 2 cells the first attribute byte
+    ; is overwritten by the 5-byte VWF header, the last one never is
+    ld a, [R_w]
+    dec a
+    ld e, a
+    ld d, 0
+    add hl, de
     ld a, l
     ld [R_srcLo], a
     ld a, h

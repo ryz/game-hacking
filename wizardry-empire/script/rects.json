@@ -205,5 +205,14 @@
 {"id": "2b:770b", "bank": 43, "addr": "0x770b", "w": 16, "h": 7, "jp": ["   てんそうするがわの", "", "スタートボタンを おしてください", "", "    じゅしんがわは", "", "  そのまま おまちください"], "en": ["^Sending side:", "", "^press START.", "", "^Receiving side:", "", "^please wait."]},
 {"id": "2b:777d", "bank": 43, "addr": "0x777d", "w": 14, "h": 1, "jp": ["キャラクタが だれもいません"], "en": ["No characters at all."]},
 {"id": "2b:778d", "bank": 43, "addr": "0x778d", "w": 13, "h": 1, "jp": ["キャラクタが いっぱいです"], "en": ["The roster is full."]},
-{"id": "2b:7840", "bank": 43, "addr": "0x7840", "w": 6, "h": 1, "jp": ["まちにいます"], "en": ["In town"]}
+{"id": "2b:779c", "bank": 43, "addr": "0x779c", "w": 8, "h": 1, "attrs": true, "jp": ["モード せってい"], "en": ["^Mode Settings"]},
+{"id": "2b:77ae", "bank": 43, "addr": "0x77ae", "w": 5, "h": 9, "attrs": true, "jp": ["BGM", "こうかおん", "えんしゅつ", "めんが", "マップ", "たたかう", "アイテム", "やどや", "セーブ"], "en": ["BGM", "Sound", "Effects", "Pictures", "Map", "Combat", "Items", "Inn", "Save"]},
+{"id": "2b:780a", "bank": 43, "addr": "0x780a", "w": 4, "h": 1, "attrs": true, "jp": ["ノーマル"], "en": ["Normal"]},
+{"id": "2b:7814", "bank": 43, "addr": "0x7814", "w": 4, "h": 1, "attrs": true, "jp": ["マニア"], "en": ["Mania"]},
+{"id": "2b:781e", "bank": 43, "addr": "0x781e", "w": 2, "h": 1, "attrs": true, "jp": ["オン"], "en": ["On"]},
+{"id": "2b:7824", "bank": 43, "addr": "0x7824", "w": 2, "h": 1, "attrs": true, "jp": ["オフ"], "en": ["Off"]},
+{"id": "2b:782a", "bank": 43, "addr": "0x782a", "w": 10, "h": 1, "attrs": true, "jp": ["だれをさがしますか?"], "en": ["Look for whom?"]},
+{"id": "2b:7840", "bank": 43, "addr": "0x7840", "w": 6, "h": 1, "attrs": true, "jp": ["まちにいます"], "en": ["In town"]},
+{"id": "2b:784e", "bank": 43, "addr": "0x784e", "w": 7, "h": 1, "attrs": true, "jp": ["じいんにいます"], "en": ["At temple"]},
+{"id": "2b:785e", "bank": 43, "addr": "0x785e", "w": 6, "h": 1, "attrs": true, "jp": ["ここにいます"], "en": ["Here"]}
 ]
