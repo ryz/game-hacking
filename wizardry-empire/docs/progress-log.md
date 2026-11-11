@@ -11,6 +11,14 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-11 - playtest pt2 fixes
+- ROM: `635baf0` sent (game code; docs commit on top).
+- Changed: see docs/status.md "Done (fourth session)"; screen-hold experiment switched off (made switches
+  worse); photographer jp_tour set committed; emulator survey (Gearboy, PyBoy recommended as additions).
+- Found / fixed: pt2 issues #1, #2, #4, #5 (untested on screen), #9, #11, #12 (data path), #15, #16; owner's
+  findings: disarm menu, empty selection menus, temple wording, spell menu artifacts.
+- Open: Notice Board, museum (separate glyph set), shop lists in 8 px, Dedupe speed.
+
 ## 2026-11-11 - titles, monster panel, temple, name entry, spells
 - ROM: `3f26beb` sent.
 - Changed: titles (2B:5F4F records as VWF headers); VWF_Panel replaces 0:199B; Stub_Enqueue reports non-font

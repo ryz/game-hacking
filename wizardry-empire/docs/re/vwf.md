@@ -66,6 +66,18 @@ proportionally into WRAM1 `$D200+$100*g` (tiles 0-9 row 1, 10-15 row 2; word bre
 2nd F8 byte is written to SVBK). The spell list blanks the rect's name cells (`2A:4D42` reads zeros) and
 `2A:4D8E` -> `2A:7F00` -> `VWF_SpellList` prints `wSpell` one cell after the blit destination.
 
+## Tile sharing and reuse rules (2026-11-11)
+- Dedupe: when a cell with a newly allocated slot is finished, a slot in use with the same content (1-byte
+  hash per slot in `wHash`, then a 16-byte shadow compare, VRAM-valid) is shared and the own slot freed if
+  still owned. Never the typewriter's current slot; not while a font load is pending.
+- In-place reuse (CellSlot) takes a fresh slot when the content changes and the tile may be shown elsewhere:
+  shared (`wShared`) or the same tile 1-2 rows above/below (rows copied by scrolling). Screens restored from a
+  saved copy need stable slot numbers, so reuse otherwise stays.
+- GC first pass counts both buffers fully plus graphics reservations (`wGame`, until the next font load).
+  Only when the pool is still dry, a second pass ignores a hidden window, BG rows under a full-width window
+  and the reservations (disarm trap list, battle party list).
+- The typewriter blanks every cell it leaves without ink (the original wrote a space tile per cell).
+
 ## Stack
 Task stacks are 64 bytes (`$CE00+$40n`). Called from a task (shop card, battle typewriter), the VWF chain
 (stub, far call, Fix/Inline/Rect, Commit, GC) overflowed into the next task's frames and crashed (shop hang).

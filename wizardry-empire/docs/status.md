@@ -12,6 +12,16 @@
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
+## Done 2026-11-11 (fourth session, playtest pt2 fixes)
+- Disarm trap list, Training class lists (create, bonus panel, change class), battle Fight/Go back box and
+  party action column ("10/Normal"), party status words, friendly-encounter prompt, battle Equip "None"
+  and slot titles, inn level-up lines (no duplicates while scrolling, "20 more max HP."), camp spell
+  screens, kanji block on spell screens trimmed to the cursor arrow, maze view wall tiles, temple
+  "No one in need.", name-entry hint, town input lag, named standard playtest party (`tools/party.py`).
+- VWF: identical tiles are shared (Dedupe); in-place reuse takes a fresh slot when the content changes and
+  the tile may be shown elsewhere; GC counts everything first and only a dry second pass ignores a hidden
+  window, BG rows under the window and graphics reservations; typewriter blanks cells it passes without ink.
+
 ## Done 2026-11-11 (third session)
 - Character titles (140), battle monster panel (proportional, "(n) m"), temple prompts, name entry in Latin
   letters, chest picture no longer overwritten by text, shop header garbage, spells (names, list, headers,
@@ -32,12 +42,13 @@
 - Redirected messages left the text bank on the English bank; English now jumps back to the original terminator.
 
 ## Next (in rough priority)
-1. Shop item lists and other word lists still in the 8 px font (owner's rule: words in the VWF) - hook them.
-2. Remaining playtester items: maze Search message disturbs the party panel; trap messages; Notice Board
-   scroll; tavern preview leftovers ("Thief :r"); target lists miss the max-HP column; card label offsets
-   (tracer proposal F, `work/re/char-card.md`); bank 44 maze panel.
-3. Item effect descriptions (bank 46), museum, prologue, title screen.
-4. Compare EN against the JP reference set (`docs/shots/jp_tour/`, photographer) screen by screen.
+1. Notice Board scroll and museum item pages: they use a separate glyph set (not `tbl/jp.tbl`); needs a
+   tracer run for the glyph mapping and the printer.
+2. Shop item lists and the name-entry field still in the 8 px font (owner's rule: words in the VWF).
+3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
+4. Item effect descriptions (bank 46), prologue, title screen.
+5. VWF: Dedupe search makes the town accept input ~60 frames after arrival (JP 20); a faster lookup
+   (hash buckets) would bring it back. Short transients while screens are typed (1-4 frames).
 
 ## Known issues
 - Untranslated text shows as blank/garbage (kana tiles are no longer loaded; their slots belong to the VWF).
