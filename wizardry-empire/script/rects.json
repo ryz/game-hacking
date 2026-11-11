@@ -54,7 +54,7 @@
 {"id": "26:74e1", "bank": 38, "addr": "0x74e1", "w": 15, "h": 5, "jp": ["パーティーはぜんめつしています", "", "ベつの パーティーをくんで", "", "たすけに いってください"], "en": ["The party was wiped out.", "", "Form another party and", "", "go to rescue them."]},
 {"id": "26:752e", "bank": 38, "addr": "0x752e", "w": 11, "h": 1, "jp": ["キャラクタが いません"], "en": ["No characters."]},
 {"id": "26:753b", "bank": 38, "addr": "0x753b", "w": 16, "h": 1, "jp": ["サンサーラじいんへ はこばれます"], "en": ["Carried to Samsara Temple."]},
-{"id": "26:757f", "bank": 38, "addr": "0x757f", "w": 8, "h": 1, "jp": ["だれも いません"], "en": ["No one is here."]},
+{"id": "26:757f", "bank": 38, "addr": "0x757f", "w": 8, "h": 1, "jp": ["だれも いません"], "en": ["No one needs it."]},
 {"id": "26:7589", "bank": 38, "addr": "0x7589", "w": 12, "h": 1, "jp": ["ぜんいん せいじょうです"], "en": ["Everyone is fine."]},
 {"id": "26:7597", "bank": 38, "addr": "0x7597", "w": 11, "h": 1, "jp": ["だれを あずけますか?"], "en": ["Deposit whom?"]},
 {"id": "26:75a4", "bank": 38, "addr": "0x75a4", "w": 13, "h": 1, "jp": ["そのかたは せいじょうです"], "en": ["That one is fine."]},
