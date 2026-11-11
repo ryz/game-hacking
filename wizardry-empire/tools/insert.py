@@ -234,10 +234,16 @@ FIX_RE = None
 
 
 def fix_sites(rom):
-    """Unrolled copies (ld a,[hli] / ld [de],a / inc de)* + ld a,[hl] / ld [de],a in the original banks."""
+    """Unrolled copies (ld a,[hli] / ld [de],a / inc de)* + ld a,[hl] / ld [de],a in the original banks
+    whose source is a ROM table (text). Copies whose source is set by `ld hl,$8000+` just before are data
+    (gold, EXP, HP between RAM buffers) and must stay untouched."""
     import re
     out = []
-    for m in re.finditer(rb"(?:\x2a\x12\x13)+\x7e\x12", bytes(rom[:0x100000])):
+    data = bytes(rom[:0x100000])
+    for m in re.finditer(rb"(?:\x2a\x12\x13)+\x7e\x12", data):
+        pre = data[m.start() - 8:m.start()]
+        if any(pre[i] == 0x21 and pre[i + 2] >= 0x80 for i in range(len(pre) - 2)):
+            continue
         n = (m.end() - m.start() - 2) // 3 + 1
         out.append((m.start(), m.end() - m.start(), n))
     return out
