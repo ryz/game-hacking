@@ -99,7 +99,9 @@ wDmaV       equ $dff9
 wDmaI       equ $dffa
 PRIV_SP     equ $cd80          ; private stack top (WRAM0 $CCE0-$CDD5 is never used by the game)
 wGame       equ $d200          ; 32 bytes: slots holding game graphics (shadow area of codes $20/$21, not pool)
-wMagic      equ $dffe          ; 'V','W' once initialised
+wSpell      equ $d280          ; 32 bytes: full English name of the last spell read by 0:24CF (shadow area of
+                               ; codes $28/$29, not pool); messages print it with {F8 00 07 D280}
+wMagic      equ $dffe          ; 'V','X' once initialised (bump when the variable layout changes)
 HOME_BANK   equ 7
 
 STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = shadow of the VRAM tile
@@ -415,6 +417,17 @@ Stub_Dma:                   ; any other VBlank DMA: tell the VWF which tiles the
     push af
     ld a, $02
     jp $142f
+
+Stub_SpellPre:              ; 0:24CF entry (A = spell id): fetch the full English name, then the original start
+    ld c, a
+    push af
+    ld a, VWF_BANK
+    ld hl, VWF_SpellName
+    call FarCall
+    pop af
+    ld l, a
+    ld h, 0
+    ret
     assert @ <= $3fda, "bank0 stub area 2 overflow"
 
 ; =====================================================================
@@ -599,7 +612,7 @@ CheckInit:
     cp $56
     jr nz, .init
     ld a, [wMagic + 1]
-    cp $57
+    cp $58
     ret z
 .init:
     push hl
@@ -616,7 +629,7 @@ CheckInit:
     ld [wCallerSVBK], a
     ld a, $56
     ld [wMagic], a
-    ld a, $57
+    ld a, $58
     ld [wMagic + 1], a
     ld a, 1
     ld [wReset], a          ; shadows are not valid yet
@@ -1545,6 +1558,89 @@ VWF_DmaCheck:
     pop af
     jp SetSVBK
 
+; =====================================================================
+; Spells. VWF_SpellName (C = spell id): wSpell = full English name from SpellNames (bank, ptr per id; filled
+; by tools/insert.py from script/spells.json), else the 11-byte record name (36:6C38 + 16*id).
+; VWF_SpellList: print wSpell in the spell list row just blitted (hDst + 1 cell, after the castable marker).
+; =====================================================================
+VWF_SpellName:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld l, c
+    ld h, 0
+    ld d, h
+    ld e, l
+    add hl, hl
+    add hl, de              ; id*3
+    ld de, SpellNames
+    add hl, de
+    ld a, [hli]
+    or a
+    jr z, .rec
+    ld b, a
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    ld c, 31
+    jr .copy
+.rec:
+    ld l, c
+    ld h, 0
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    ld de, $6c38
+    add hl, de
+    ld b, 36
+    ld c, 11
+.copy:
+    ld de, wSpell
+.cl: call VWF_Fetch
+    ld [de], a
+    inc de
+    or a
+    jr z, .done
+    dec c
+    jr nz, .cl
+    xor a
+    ld [de], a
+.done:
+    pop af
+    jp SetSVBK
+
+VWF_SpellList:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld hl, wSpell
+    ld de, wNameBuf
+.c: ld a, [hli]
+    ld [de], a
+    inc de
+    or a
+    jr nz, .c
+    ldh a, [hDstLo]
+    ld e, a
+    ldh a, [hDstHi]
+    ld d, a
+    inc de
+    ld hl, VWF_PrintBuf
+    call PrivCall
+    pop af
+    jp SetSVBK
+
 ; Rebuild the bitmap from what the bank-3 buffers reference.
 GC:
     ; start from the slots the game just loaded graphics into (DMA seen, cells maybe not written yet);
@@ -1589,18 +1685,14 @@ GC:
     add hl, bc
     call Read3
     ld d, a                 ; attr
-    ld a, [wLayout]
-    or a
-    jr z, .flat
+    ; both layouts: a font load can switch the layout while cells drawn under the other one are still on
+    ; screen (battle spell list in the window). VRAM1 tiles < $70 = split codes $80-$EF; VRAM0 = code as is.
     bit 3, d
     ld a, e
     jr z, .mk
+    cp $70
+    jr nc, .skip
     or $80
-    jr .mk
-.flat:
-    bit 3, d
-    jr nz, .skip
-    ld a, e
 .mk:
     call MarkCode
 .skip:
@@ -2309,5 +2401,7 @@ NextCellBlank:
     jp NextCell
 
 ; Address-keyed English for fixed-length copies; filled in by tools/build.py after assembly.
+SpellNames:                 ; 125 x [bank][lo][hi], filled by tools/insert.py (bank 0 = use the record)
+    ds 125*3, $00
 FixMap:
-    ds 6 * 400, $ff
+    ds 6 * 600, $ff

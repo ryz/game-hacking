@@ -32,3 +32,24 @@ org 34, $7f00
     ld a, VWF_BANK
     ld hl, VWF_Panel
     jp FarCall
+
+; Spells (docs/re/spells.md): 0:24CF also fetches the full English name into wSpell (bank 7 $D280).
+org 0, $24cf
+    call Stub_SpellPre
+; Spell list (2A:4CBB): the 11 name cells of the RAM rect are blanked (copy from zeros) and, after the blit,
+; the VWF prints wSpell in the row (88 px).
+org 42, $4d42
+    ld hl, $7fe0
+org 42, $4d8e
+    call $7f00
+org 42, $7f00
+    call $1723
+    ld a, VWF_BANK
+    ld hl, VWF_SpellList
+    jp FarCall
+; Spell detail, element (2A:4A29-4A35 copied 2 kanji tiles + 2 attributes): English via Stub_Fix, key 2A:49A9+4i
+org 42, $4a29
+    call Stub_Fix
+    db 3
+    jr $4a36
+    ds 7, $00

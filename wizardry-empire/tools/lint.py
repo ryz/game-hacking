@@ -53,7 +53,7 @@ def key_of(fname, e):
 
 
 # Glossary terms that are also part of unrelated words: skip the match inside these (まどうし = wizard).
-FALSE_MATCH = {"まどう": ["まどうし", "だいまどうし"]}
+FALSE_MATCH = {"まどう": ["まどうし", "だいまどうし", "まどうゲート"]}
 
 
 def check(items, gl):

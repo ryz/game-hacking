@@ -11,5 +11,13 @@
 {"bank": 38, "addr": "0x757a", "jp": "どく", "en": "Poisoned"},
 {"bank": 38, "addr": "0x7437", "jp": "ダンジョン", "en": "Maze"},
 {"bank": 38, "addr": "0x743c", "jp": "まち", "en": "Town"},
-{"bank": 38, "addr": "0x7441", "jp": "じいん", "en": "Temple"}
+{"bank": 38, "addr": "0x7441", "jp": "じいん", "en": "Temple"},
+{"bank": 42, "addr": "0x49a9", "jp": "地", "en": "Earth"},
+{"bank": 42, "addr": "0x49ad", "jp": "水", "en": "Water"},
+{"bank": 42, "addr": "0x49b1", "jp": "火", "en": "Fire"},
+{"bank": 42, "addr": "0x49b5", "jp": "風", "en": "Air"},
+{"bank": 42, "addr": "0x49b9", "jp": "精神", "en": "Mind"},
+{"bank": 42, "addr": "0x49bd", "jp": "気", "en": "Aura"},
+{"bank": 42, "addr": "0x49c1", "jp": "神聖", "en": "Holy"},
+{"bank": 42, "addr": "0x49c5", "jp": "無", "en": "None"}
 ]

@@ -241,6 +241,8 @@ def fix_sites(rom):
     out = []
     data = bytes(rom[:0x100000])
     for m in re.finditer(rb"(?:\x2a\x12\x13)+\x7e\x12", data):
+        if m.start() in SKIP_FIX_SITES:
+            continue
         pre = data[m.start() - 8:m.start()]
         if any(pre[i] == 0x21 and pre[i + 2] >= 0x80 for i in range(len(pre) - 2)):
             continue
@@ -254,6 +256,8 @@ def fix_sites(rom):
 # Text copies the pattern above misses: (bank, addr, bytes replaced, n chars).
 # 38:5667 gender (2a 12 13 2a 12 13 2a 12: ends in ld a,[hli]; the next instruction reloads HL).
 EXTRA_FIX_SITES = [(38, 0x5667, 8, 3)]
+# Matched by the pattern but not text: 2A:4A31 copies the element's attributes (handled in asm/main.asm).
+SKIP_FIX_SITES = {42 * 0x4000 + 0x4A31 - 0x4000}
 
 
 def insert_fix_sites(rom):
@@ -350,6 +354,24 @@ def insert_name_charts(rom):
     return len(NAME_PAGES) + 1
 
 
+SPELL_BANK, SPELL_BASE, SPELL_SIZE, SPELL_NAME = 36, 0x6C38, 16, 11
+spell_names_cache = []
+
+
+def insert_spells(rom, space, entries):
+    """Spells: 16-byte records at 36:6C38, name = bytes 0-10 ($00-padded). The record gets a fallback name
+    (<= 11 chars); the full English goes to text space and into SpellNames (VWF bank, filled in post_asm),
+    which 0:24CF copies to wSpell for messages and the spell list."""
+    global spell_names_cache
+    spell_names_cache = [None] * 125
+    for e in entries:
+        o = rom_off(SPELL_BANK, SPELL_BASE) + e["id"] * SPELL_SIZE
+        short = e.get("short", e["en"])[:SPELL_NAME]
+        rom[o:o + SPELL_NAME] = text.encode(short).ljust(SPELL_NAME, b"\x00")[:SPELL_NAME]
+        spell_names_cache[e["id"]] = space.put(text.encode(e["en"]) + b"\x00")
+    return len(entries)
+
+
 def load(name):
     p = os.path.join(ROOT, "script", name)
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else []
@@ -368,6 +390,7 @@ def insert_all(rom):
     stats["chests"] = insert_chests(rom, b49, load("chests.json"))
     stats["titles"] = insert_titles(rom, space, load("titles.json"))
     stats["name charts"] = insert_name_charts(rom)
+    stats["spells"] = insert_spells(rom, space, load("spells.json"))
     stats["bank 49 free used"] = "$%04X of $%04X" % (b49.pos - LIST_FREE, 0x8000 - LIST_FREE)
     stats["inline"] = insert_inline(rom, space, load("inline.json"))
     global fix_sites_cache, fixmap_cache
@@ -385,7 +408,12 @@ def post_asm(rom, sym):
         rom[o:o + ln] = (bytes([0xCD, tgt & 0xFF, tgt >> 8, n]) + b"\x00" * ln)[:ln]
     b, a = sym["FixMap"]
     o = b * 0x4000 + a - 0x4000
-    assert len(fixmap_cache) <= 400
+    assert len(fixmap_cache) <= 600
     data = b"".join(bytes([sb, sa & 0xFF, sa >> 8, tb, ta & 0xFF, ta >> 8]) for sb, sa, tb, ta in fixmap_cache)
     rom[o:o + len(data)] = data
+    b, a = sym["SpellNames"]
+    o = b * 0x4000 + a - 0x4000
+    for i, v in enumerate(spell_names_cache):
+        if v:
+            rom[o + 3 * i:o + 3 * i + 3] = bytes([v[0], v[1] & 0xFF, v[1] >> 8])
     return len(fixmap_cache)
