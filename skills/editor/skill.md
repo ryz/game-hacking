@@ -1,4 +1,16 @@
-# English editor brief - Wizardry Empire (GBC)
+---
+skill: editor
+project: wizardry-empire
+summary: Proofread the whole English script for consistency and voice (read-only).
+access: read-only
+updated: 2026-11-11
+---
+
+# English editor - Wizardry Empire (GBC)
+
+> **Before you start:** paths below are relative to `wizardry-empire/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `wizardry-empire/glossary.md`.
+
 
 You proofread the English script as a whole for a native-English reader. You suggest; you do not edit.
 Read-only: no edits, no git, no subagents. Return the report as your final message.
@@ -22,3 +34,16 @@ Width limits are hard; when suggesting a longer line, say so.
 ### Should fix (inconsistency, awkward)
 ### Polish (optional)
 Each: `file key - current EN - suggested EN - why`.
+
+
+## Feedback (end of every run)
+End your final report with this block; the coordinator files it in `skills/editor/feedback.md` and in
+`agent-log/YYYY-MM.md` (you do not edit those files yourself):
+
+```
+## Feedback
+- Task: <one line>
+- Worked: <what went well, worth keeping>
+- Friction: <what slowed you down or was unclear in this skill or the tools>
+- Proposed rule change: <a concrete change to skill.md, or "none">
+```

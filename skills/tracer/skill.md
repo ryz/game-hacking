@@ -1,4 +1,16 @@
-# Tracer brief - Wizardry Empire (GBC): reverse-engineering questions
+---
+skill: tracer
+project: wizardry-empire
+summary: Answer one reverse-engineering question about where/how text is printed.
+access: write (notes file)
+updated: 2026-11-11
+---
+
+# Tracer - Wizardry Empire (GBC): reverse-engineering questions
+
+> **Before you start:** paths below are relative to `wizardry-empire/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `wizardry-empire/glossary.md`.
+
 
 You answer one reverse-engineering question from your dispatch, e.g. "where do the status values on the character
 sheet come from and how are they printed?". You find and explain; you do not patch. Do not edit `asm/`, `script/`
@@ -29,3 +41,16 @@ Do not re-derive what they already state.
 3. Hook proposal: the smallest patch that would route this text through the VWF (which instructions to replace,
    how many bytes are available, registers that must be preserved), and what script format the text would need.
 4. Open questions / what you could not confirm.
+
+
+## Feedback (end of every run)
+End your final report with this block; the coordinator files it in `skills/tracer/feedback.md` and in
+`agent-log/YYYY-MM.md` (you do not edit those files yourself):
+
+```
+## Feedback
+- Task: <one line>
+- Worked: <what went well, worth keeping>
+- Friction: <what slowed you down or was unclear in this skill or the tools>
+- Proposed rule change: <a concrete change to skill.md, or "none">
+```

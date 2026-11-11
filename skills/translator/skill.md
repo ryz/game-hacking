@@ -1,4 +1,16 @@
-# Translator brief - Wizardry Empire (GBC, 1999)
+---
+skill: translator
+project: wizardry-empire
+summary: Translate one batch (work/tl/<batch>.json) JP->EN.
+access: write
+updated: 2026-11-11
+---
+
+# Translator - Wizardry Empire (GBC, 1999)
+
+> **Before you start:** paths below are relative to `wizardry-empire/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `wizardry-empire/glossary.md`.
+
 
 You translate one batch of the Japanese script into English for a fan patch. Wizardry Empire is a first-person
 dungeon crawler in the classic Wizardry mould: a town of shops and guilds, a party of six, a deep maze, demons
@@ -35,3 +47,16 @@ Measure a line: `python3 -c "import sys;sys.path.insert(0,'tools');import text;p
 
 ## Report (your final message)
 `OK <batch> <n> entries` plus a list of `key - note` for anything uncertain (unclear Japanese, missing context).
+
+
+## Feedback (end of every run)
+End your final report with this block; the coordinator files it in `skills/translator/feedback.md` and in
+`agent-log/YYYY-MM.md` (you do not edit those files yourself):
+
+```
+## Feedback
+- Task: <one line>
+- Worked: <what went well, worth keeping>
+- Friction: <what slowed you down or was unclear in this skill or the tools>
+- Proposed rule change: <a concrete change to skill.md, or "none">
+```

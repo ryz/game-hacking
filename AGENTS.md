@@ -12,6 +12,7 @@ This repository holds fan-translation projects, one directory per game. Each pro
   `*.state`, `rom/`, `build/`, `work/`). The original dump is verified by SHA-1 (`rom.sha1`).
 - Document as you go: reverse-engineering findings in `docs/re/`, progress and open issues in `docs/status.md`.
   Update `docs/status.md` at the end of every session.
+- Agent work follows the skills in `skills/` (index: `skills/skill-index.md`) and its feedback loop (below).
 - Translations live in `script/*.json` (Japanese kept next to the English for review). Edit those, not the ROM.
 - Commit messages: what changed and why; one topic per commit.
 
@@ -35,19 +36,27 @@ Run from `wizardry-empire/`:
   `tools/census_msgs.py`, `tools/census_inline.py`.
 - Read `docs/re/text.md` (text engines, control codes) and `docs/re/vwf.md` (VWF design) before touching `asm/`.
 
-## Subagents
-Defined in `.claude/agents/`; each is a thin wrapper around a brief in the project's `docs/`. Dispatch these types,
-not general-purpose agents, and give each one exact paths.
-| Agent | Brief | Writes | Typical dispatch |
-|---|---|---|---|
-| `translator` | `wizardry-empire/docs/translator-brief.md` | `work/tl/<batch>.json` only | after `tools/batches.py split ...`; then `merge` |
-| `reviewer` | `wizardry-empire/docs/reviewer-brief.md` | nothing (report) | after `tools/batches.py pairs <batch>` |
-| `playtester` | `wizardry-empire/docs/playtester-brief.md` | `work/play/<session>/` | a goal ("form a party, win a battle"), after a build |
-| `visual-qa` | `wizardry-empire/docs/visual-qa-brief.md` | its verdict file | a list of `tools/emu.py` sheets (e.g. the tour) |
-| `tracer` | `wizardry-empire/docs/tracer-brief.md` | `work/re/<topic>.md` | one RE question ("which routine prints the status values?") |
-| `triage` | `wizardry-empire/docs/triage-brief.md` | `work/triage/<case>/` | one hang/crash report with state + inputs |
-| `editor` | `wizardry-empire/docs/editor-brief.md` | nothing (report) | whole-script English pass, late in the project |
-Binding terms: `wizardry-empire/glossary.md`.
+## Skills and subagents
+- `skills/skill-index.md` routes every job to a skill; each `skills/<name>/` has `skill.md` (source of truth) and
+  `feedback.md` (running log). Templates: `skills/_templates/`.
+- Subagents are thin wrappers in `.claude/agents/<name>.md` that load `skills/<name>/skill.md`. Dispatch these
+  types (translator, reviewer, editor, playtester, visual-qa, tracer, triage), not general-purpose agents, with
+  exact paths. The main session follows `skills/coordinator/skill.md`.
+- Binding terms: `wizardry-empire/glossary.md`.
+
+### Feedback loop
+- Every agent ends its report with a `## Feedback` block (Task, Worked, Friction, Proposed rule change).
+- The coordinator files it at the top of `skills/<name>/feedback.md` (plus `Corrected` and `Status`) and adds a
+  line to `agent-log/YYYY-MM.md`: `- YYYY-MM-DD · <agent> · <task> · <paths touched> · <outcome>`.
+- Status: `open` (proposed change waiting), `logged`, `promoted YYYY-MM-DD`, `superseded`. Promote a lesson into
+  `skill.md` when it shows up in two entries or the user states it as a rule; bump `updated:`. Never delete entries.
+
+### End-of-run checklist (coordinator)
+1. Agent output checked (key claims verified) and saved where the skill says, findings in `docs/re/` if RE.
+2. Feedback filed for every skill used; repeated lessons promoted.
+3. Agent-log line written.
+4. Build + tests + tour pass for code changes; commits pushed.
+5. `docs/status.md` updated; the user told plainly what changed and what remains open.
 
 ## Text formats (Wizardry Empire)
 | File | What | Notes |

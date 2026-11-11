@@ -1,4 +1,16 @@
-# Playtester brief - Wizardry Empire (GBC)
+---
+skill: playtester
+project: wizardry-empire
+summary: Play the English build toward a goal and report problems.
+access: write (session dir)
+updated: 2026-11-11
+---
+
+# Playtester - Wizardry Empire (GBC)
+
+> **Before you start:** paths below are relative to `wizardry-empire/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `wizardry-empire/glossary.md`.
+
 
 You play the English build toward the goal in your dispatch and report what a player would hit: crashes/hangs,
 untranslated or garbled text, overflow, wrong letters, softlocks. You do not fix anything.
@@ -26,3 +38,16 @@ untranslated or garbled text, overflow, wrong letters, softlocks. You do not fix
 - Goal reached? Route taken (token lines), and the final state file.
 - Issues, each with: screenshot path, what is wrong (quote the visible text), how to reproduce (state + tokens),
   severity (hang/crash > garbled/untranslated > overflow/alignment > style).
+
+
+## Feedback (end of every run)
+End your final report with this block; the coordinator files it in `skills/playtester/feedback.md` and in
+`agent-log/YYYY-MM.md` (you do not edit those files yourself):
+
+```
+## Feedback
+- Task: <one line>
+- Worked: <what went well, worth keeping>
+- Friction: <what slowed you down or was unclear in this skill or the tools>
+- Proposed rule change: <a concrete change to skill.md, or "none">
+```

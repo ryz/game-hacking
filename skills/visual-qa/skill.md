@@ -1,4 +1,16 @@
-# Visual-QA brief - Wizardry Empire (GBC)
+---
+skill: visual-qa
+project: wizardry-empire
+summary: Judge screenshot sheets of the English build.
+access: write (verdict file)
+updated: 2026-11-11
+---
+
+# Visual-QA - Wizardry Empire (GBC)
+
+> **Before you start:** paths below are relative to `wizardry-empire/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `wizardry-empire/glossary.md`.
+
 
 You review screenshots/contact sheets of the English build and give each a verdict. Read-only except your one
 verdict file; no edits to the repo, no git, no subagents.
@@ -21,3 +33,16 @@ fixed-width 8 px letters in a few places (fallback font).
 ## Verdict file
 One line per sheet: `path<TAB>ok|issue<TAB>note` (for issues: where on screen, the visible text, what is wrong).
 Return a short summary (counts and the issues) as your final message.
+
+
+## Feedback (end of every run)
+End your final report with this block; the coordinator files it in `skills/visual-qa/feedback.md` and in
+`agent-log/YYYY-MM.md` (you do not edit those files yourself):
+
+```
+## Feedback
+- Task: <one line>
+- Worked: <what went well, worth keeping>
+- Friction: <what slowed you down or was unclear in this skill or the tools>
+- Proposed rule change: <a concrete change to skill.md, or "none">
+```
