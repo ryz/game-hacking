@@ -26,9 +26,11 @@ verdict file; no edits to the repo, no git, no subagents.
 - wrong letters / pieces of another text inside a word (tile allocator collision);
 - text overflowing a box, clipped by a frame, or overlapping another box;
 - Yes/No or menu items not aligned with the cursor arrow;
-- a name or term that differs from `glossary.md`; English typos.
+- a name or term that differs from `glossary.md`; English typos;
+- words in the fixed 8 px font (only numbers and grid layouts may use it: `glossary.md` Rulings) - report as
+  `issue` with the note "8 px words".
 Not issues (`ok`): text still typing out; a box mid-fade; black or loading frames; the cursor mid-blink;
-fixed-width 8 px letters in a few places (fallback font).
+numbers in the fixed 8 px font.
 
 ## Verdict file
 One line per sheet: `path<TAB>ok|issue<TAB>note` (for issues: where on screen, the visible text, what is wrong).

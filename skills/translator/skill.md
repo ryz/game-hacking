@@ -44,6 +44,8 @@ Measure a line: `python3 -c "import sys;sys.path.insert(0,'tools');import text;p
   Monster-speak in katakana (ワレラ, タスケテ) -> ALL CAPS broken English.
 - Glossary names exactly. If a line cannot fit, rephrase; never abbreviate glossary names.
 - Prompts end with "?"; messages are sentences with full stops.
+- Words are printed in the small proportional font (`glossary.md` Rulings: Fonts). Do not shorten English to
+  fit an 8 px fixed-width field: report the field in your Feedback so the coordinator can hook it.
 
 ## Report (your final message)
 `OK <batch> <n> entries` plus a list of `key - note` for anything uncertain (unclear Japanese, missing context).

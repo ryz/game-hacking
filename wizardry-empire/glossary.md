@@ -10,6 +10,10 @@ Binding names and terms. Use them exactly; add new rows when a new name is decid
 - Currency: gold / "G" after numbers (`500G`).
 - Japanese quotes 『』 -> "...". ・・・ -> `...` (or `…`, code $7E, where space is tight).
 - No honorifics in this game's register (archaic speech is rendered as archaic English: "I am Lloyd", "Farewell").
+- Fonts (owner's rule, 2026-11-11): all words use the small proportional font (VWF); it leaves room for long
+  names. The 8 px fixed font stays only for numbers and grid layouts (name-entry chart, stat columns). When a
+  screen still shows words in the 8 px font, hook its printer (route the text through the VWF) rather than
+  fitting the English to the fixed-width field.
 - Field limits are hard: items 17 chars, monsters 12 (abbreviate with "Gr." / "Mstr." / "Elem." only when needed),
   default character names 7.
 

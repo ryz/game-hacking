@@ -25,6 +25,9 @@ self-contained. Read `skills/skill-index.md` to pick the skill; read its `feedba
 - After every run: copy the agent's `## Feedback` block into `skills/<name>/feedback.md` (newest first) and add a
   line to `agent-log/YYYY-MM.md`; promote repeated lessons into `skill.md`.
 
+- Fonts: words go through the VWF (small font); the 8 px font only for numbers and grid layouts
+  (`glossary.md` Rulings, owner's rule 2026-11-11). Prefer hooking a printer over abbreviating to a fixed field.
+
 ## Upkeep
 - Append to `<project>/docs/progress-log.md` at the end of every session and whenever a test ROM is sent
   (commit hash, changed, found/fixed, open); keep `docs/status.md` as the current snapshot.
