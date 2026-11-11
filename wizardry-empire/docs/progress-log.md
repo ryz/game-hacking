@@ -11,6 +11,13 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-11 - render speed, shop 'AC' fix
+- ROM: `00a8b90` sent.
+- Changed: shift-table Glyph, unrolled hot loops, one bank switch per cell write; card age stays 8 px.
+- Measured: cursor move without a party 55k instructions (was 74k), reaction frame 6-12 (JP 2).
+- Fixed: garbled 'AC' in the shop header (shipped in 2edfeec).
+- Open: per-tile bookkeeping is now the cost; flicker; 8 px separators/labels.
+
 ## 2026-11-11 - town speed, numbers in the small font
 - ROM: `2edfeec` sent.
 - Changed: numbers through the VWF (0:0FD0, 84 sites), tabular digits, typewriter figure space; party-list

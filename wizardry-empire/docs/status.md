@@ -12,6 +12,11 @@
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
+## Done 2026-11-11 (ninth session: render speed)
+- Letter drawing ~2.5x faster (shift tables), smaller bookkeeping costs; cursor move without a party: reaction
+  at frame 6-12 (was 7-13; JP 2). The rest is per-tile bookkeeping (docs/re/vwf.md "Render speed").
+- Fixed: shop header 'AC' garbled on some frames (in ROM 2edfeec): the card's age stays in 8 px (NumExcl).
+
 ## Done 2026-11-11 (eighth session: speed, numbers)
 - Town speed: with a party 360 loops/120 frames and reaction at frame 2, like the Japanese (was 174 and a
   half-speed cursor); without a party (info box) reaction at frame 7-13 (was 14-18, JP 2). Caches: names,

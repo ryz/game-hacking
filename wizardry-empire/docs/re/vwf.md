@@ -162,3 +162,19 @@ left-aligned; the field's cells are blanked and the digits drawn from the comput
 numbers prefer low pool codes (VRAM0 in both layouts), because the game sometimes writes 8 px text over a
 number field afterwards (shop header: age, then 'AC') and would inherit the VRAM1 bit. Digits are 4 px wide
 (tabular, advance 5); `$7F` is a blank 5 px figure space used by the typewriter's number padding (`0:1D66`).
+
+## Render speed (2026-11-11, later)
+- `Glyph`: shift tables `ShiftTab` (bank $40 `$7000-$7FFF`, 16 pages from tools/build.py: page 2p = b >> p,
+  2p+1 = b << (8-p)), 8 rows unrolled, empty rows skipped (19.6k -> 7.9k instructions per cursor move).
+- `BitAddr` mask table `BitMask` ($6FF8); `NextCell` and the tile build in `Commit` unrolled; `Commit` writes
+  the cell and attribute with one WRAM bank switch.
+- Space: font tables cut to codes $00-$7F (FontAdv/FontRows; every lookup masks with $7F), FixMap capacity 440.
+  Code and data must end below $6FF8 (assert).
+- Not done: batching tile uploads into VBlank. Measured waits are ~0.2 frame per box; the rest is per-tile
+  bookkeeping (~1000 instructions per tile: slot search, ownership, hash, duplicate check, shadow compare).
+- Note: render frames execute ~13.5k instructions vs ~29k in idle busy-wait frames (heavier instructions), so
+  instruction counts underestimate render time ~2x. A cursor move with the info box: ~55k instructions =
+  ~4 frames; reaction at frame 6-12 (JP 2).
+- Numbers that the game overwrites with 8 px text keep 8 px digits: `NumExcl` (bank, return address of the
+  0:0FD0 call) - currently the card's age (26:572A), which the shop header overwrites with 'AC'. The excluded
+  field's cells get attribute bit 3 cleared. `VWF_Num` reads the caller from the stack ([sp+9] after its push).
