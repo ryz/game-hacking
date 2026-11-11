@@ -16,7 +16,12 @@ You play the English build toward the goal in your dispatch and report what a pl
 untranslated or garbled text, overflow, wrong letters, softlocks. You do not fix anything.
 
 ## Setup
-- Build exists at `build/wizardry_empire_en.gbc` (the dispatcher builds it; do not edit the repo).
+- Never play `build/` directly: other sessions rebuild it while you play. Build the dispatched commit into your
+  session: `mkdir -p SESSION/src && git archive <commit> wizardry-empire | tar -x -C SESSION/src`, then
+  `ln -s $PWD/rom SESSION/src/wizardry-empire/rom` and `python3 tools/build.py` inside `SESSION/src/wizardry-empire`;
+  pass `--rom SESSION/src/wizardry-empire/build/wizardry_empire_en.gbc` on every run (and to `tools/party.py`).
+- RAM for shortcuts: first roster record (ryz) at `$C8D1`: gold `$C8D9`, EXP `$C8DD` (3 bytes), HP `$C8E4`.
+  Say in the report whenever you poked RAM.
 - Your session dir `SESSION` is given in the dispatch (under `work/play/`). Write only there.
 
 ## The standard party (owner's rule, 2026-11-11)
