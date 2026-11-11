@@ -17,8 +17,8 @@ LAST_TEXT_BANK = 0x7F
 class Space:
     """Bump allocator over the new banks (never crosses a bank boundary)."""
 
-    def __init__(self, rom, first=FIRST_TEXT_BANK, last=LAST_TEXT_BANK):
-        self.rom, self.bank, self.pos, self.last = rom, first, 0x4000, last
+    def __init__(self, rom, first=FIRST_TEXT_BANK, last=LAST_TEXT_BANK, start=0x4000):
+        self.rom, self.bank, self.pos, self.last = rom, first, start, last
 
     def put(self, data):
         if self.pos + len(data) > 0x8000:
@@ -120,6 +120,8 @@ def encode_msg(en):
 
 def check_msg_width(e, maxpx):
     import re
+    if e.get("autowrap"):  # wrapped at run time by {FA}: char-count look-ahead, never overflows with the VWF
+        return
     plain = re.sub(r"\{F[38][^}]*\}", "WWWWWWWW", e["en"])  # names/numbers: assume 8 wide chars
     for line in plain.split("\n"):
         col = re.match(r"\{col:(\d+)\}", line)
@@ -141,10 +143,13 @@ def msg_terminator(rom, o):
         i += 1 + OPERANDS.get(c, 0)
 
 
-def insert_msgs(rom, space, entries):
+def insert_msgs(rom, space, entries, home=None):
     """Each original message start becomes $F2 bank lo hi -> English. The English ends with
     $F2 back to the original terminator ($FF or $FC), so the game itself ends/pauses the message
-    in the original text bank ($C1C1) - required for $FC-chained segments (battle text, bank 49)."""
+    in the original text bank ($C1C1) - required for $FC-chained segments (battle text, bank 49).
+    `home` maps a bank to a Space inside that bank: its English stays in the same text bank, because
+    {F3 ..} inserts read their string pointer from the current text bank (bank-49 battle verbs)."""
+    home = home or {}
     n = 0
     for e in entries:
         if not e.get("en"):
@@ -161,7 +166,7 @@ def insert_msgs(rom, space, entries):
             n += 1
             continue
         ta = (t - bank * 0x4000 + 0x4000) if bank else t
-        b, a = space.put(body + bytes([0xF2, bank, ta & 0xFF, ta >> 8]))
+        b, a = home.get(bank, space).put(body + bytes([0xF2, bank, ta & 0xFF, ta >> 8]))
         rom[o:o + 4] = bytes([0xF2, b, a & 0xFF, a >> 8])
         n += 1
     return n
@@ -263,6 +268,20 @@ def fixmap_entries(space, rom):
     return ents
 
 
+LIST_BANK, LIST_FREE = 49, 0x5726   # bank 49 $5726-$7FFF is unused (zeros) in the original
+
+
+def insert_lists(rom, space, entries):
+    """Bank-49 string table (49:55C3-5723, read with the text bank = 49, e.g. via {F3 31 C6E3}):
+    English $00-terminated strings go into bank 49's free space and the table entries are repointed."""
+    for e in entries:
+        b, a = space.put(text.encode(e["en"]) + b"\x00")
+        t = rom_off(LIST_BANK, int(e["table"], 16))
+        assert rom[t] | rom[t + 1] << 8 == int(e["ptr"], 16), e
+        rom[t:t + 2] = bytes([a & 0xFF, a >> 8])
+    return len(entries)
+
+
 def load(name):
     p = os.path.join(ROOT, "script", name)
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else []
@@ -272,10 +291,13 @@ def insert_all(rom):
     space = Space(rom)
     stats = {}
     stats["rects"] = insert_rects(rom, space, load("rects.json"))
-    stats["messages"] = insert_msgs(rom, space, load("messages.json"))
+    b49 = Space(rom, LIST_BANK, LIST_BANK, LIST_FREE)
+    stats["messages"] = insert_msgs(rom, space, load("messages.json"), {LIST_BANK: b49})
     stats["items"] = insert_items(rom, load("items.json"))
     stats["monsters"] = insert_monsters(rom, load("monsters.json"))
     stats["templates"] = insert_templates(rom, load("templates.json"))
+    stats["lists"] = insert_lists(rom, b49, load("lists.json"))
+    stats["bank 49 free used"] = "$%04X of $%04X" % (b49.pos - LIST_FREE, 0x8000 - LIST_FREE)
     stats["inline"] = insert_inline(rom, space, load("inline.json"))
     global fix_sites_cache, fixmap_cache
     fix_sites_cache = fix_sites(rom)

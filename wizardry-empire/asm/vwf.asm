@@ -144,6 +144,23 @@ Stub_TWInit:
     ret
     assert @ <= $1c79, "typewriter stub overflow"
 
+; --- {FA} word look-ahead (1c9a: ld a,[hli] / cp $fa / jr nc,$1d05): also stop at our $F2 jump, so the
+;     jump bytes at the end of English text are not counted as part of the last word
+    org 0, $1c9a
+    call Stub_Measure
+    jr nc, $1d05
+    org 0, $3ff0
+Stub_Measure:
+    ld a, [hli]
+    cp $f2
+    jr z, .stop
+    cp $fa                  ; carry = ordinary character
+    ret
+.stop:
+    or a                    ; no carry = end of word
+    ret
+    assert @ <= $4000, "stub area 3 overflow"
+
 ; --- typewriter init: forget the previous message's VWF context
     org 0, $1b3f
     call Stub_TWInit
@@ -728,9 +745,13 @@ Commit:
     ld a, [S_slot]
     or a
     jr nz, .have
+    ld a, [S_imm]           ; typewriter: never reuse - the game scrolls by copying rows, so the
+    or a                    ; slot this cell owned may now be shown by the row above
+    jr nz, .new
     call CellSlot           ; reuse the slot this cell already shows (if it owns it)
     or a
     jr nz, .reuse
+.new:
     call Alloc
     ld [S_slot], a
     call SetOwner
@@ -1103,9 +1124,20 @@ GC:
     call nz, MarkCode
     ld hl, $d000
     call .scan
+    ; the window buffer only counts while the window is on screen (battle hides the party list
+    ; with WX=167 and re-sends/redraws it before showing it again)
+    ldh a, [$ff40]
+    bit 5, a
+    ret z
+    ldh a, [$ff4b]
+    cp 167
+    ret nc
+    ldh a, [$ff4a]
+    cp 144
+    ret nc
     ld hl, $d800
-.scan:                      ; 1024 cells at HL (bank 3), attributes at HL+$400
-    ld bc, $0400
+.scan:                      ; 18 rows x 32 cells at HL (bank 3; what the game's GDMA copies), attributes at HL+$400
+    ld bc, 18*32
 .l: push bc
     push hl
     call Read3

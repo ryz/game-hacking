@@ -93,6 +93,10 @@ def build(rom_in=ROM_IN, out=ROM_OUT, ips_out=IPS_OUT, verbose=True):
     for off, b, where in a.patches:
         rom[off:off + len(b)] = b
     stats["fixmap entries"] = insert.post_asm(rom, a.sym)
+    with open(os.path.splitext(out)[0] + ".sym", "w") as f:  # rgbds-style symbols for the debugger
+        for k, (b, v) in sorted(a.sym.items(), key=lambda kv: ((kv[1][0] or 0), kv[1][1])):
+            if b is not None:
+                f.write("%02x:%04x %s\n" % (b, v, k))
     fix_checksums(rom)
     open(out, "wb").write(rom)
     open(ips_out, "wb").write(ips.make(orig + b"\xff" * (NEW_SIZE - len(orig)), bytes(rom), orig_len=len(orig)))

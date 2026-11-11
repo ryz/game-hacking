@@ -1,0 +1,1064 @@
+[
+{
+"table": "0x55c3",
+"ptr": "0x4000",
+"jp": "おとこ",
+"en": "Male"
+},
+{
+"table": "0x55c5",
+"ptr": "0x4004",
+"jp": "おんな",
+"en": "Female"
+},
+{
+"table": "0x55c7",
+"ptr": "0x4008",
+"jp": "にんげん",
+"en": "Human"
+},
+{
+"table": "0x55c9",
+"ptr": "0x400d",
+"jp": "エルフ",
+"en": "Elf"
+},
+{
+"table": "0x55cb",
+"ptr": "0x4011",
+"jp": "ドワーフ",
+"en": "Dwarf"
+},
+{
+"table": "0x55cd",
+"ptr": "0x4016",
+"jp": "ノーム",
+"en": "Gnome"
+},
+{
+"table": "0x55cf",
+"ptr": "0x401a",
+"jp": "ホビット",
+"en": "Hobbit"
+},
+{
+"table": "0x55d1",
+"ptr": "0x401f",
+"jp": "ぜん",
+"en": "Good"
+},
+{
+"table": "0x55d3",
+"ptr": "0x4022",
+"jp": "ちゅうりつ",
+"en": "Neutral"
+},
+{
+"table": "0x55d5",
+"ptr": "0x4028",
+"jp": "あく",
+"en": "Evil"
+},
+{
+"table": "0x55d7",
+"ptr": "0x402b",
+"jp": "せんし",
+"en": "Fighter"
+},
+{
+"table": "0x55d9",
+"ptr": "0x402f",
+"jp": "まほうつかい",
+"en": "Mage"
+},
+{
+"table": "0x55db",
+"ptr": "0x4036",
+"jp": "そうりょ",
+"en": "Priest"
+},
+{
+"table": "0x55dd",
+"ptr": "0x403b",
+"jp": "とうぞく",
+"en": "Thief"
+},
+{
+"table": "0x55df",
+"ptr": "0x4040",
+"jp": "ビショップ",
+"en": "Bishop"
+},
+{
+"table": "0x55e1",
+"ptr": "0x4046",
+"jp": "サムライ",
+"en": "Samurai"
+},
+{
+"table": "0x55e3",
+"ptr": "0x404b",
+"jp": "ロード",
+"en": "Lord"
+},
+{
+"table": "0x55e5",
+"ptr": "0x404f",
+"jp": "ニンジャ",
+"en": "Ninja"
+},
+{
+"table": "0x55e7",
+"ptr": "0x4054",
+"jp": "ゆみつかい",
+"en": "Archer"
+},
+{
+"table": "0x55e9",
+"ptr": "0x405a",
+"jp": "ヴァリアント",
+"en": "Valiant"
+},
+{
+"table": "0x55eb",
+"ptr": "0x4061",
+"jp": "アベンジャー",
+"en": "Avenger"
+},
+{
+"table": "0x55ed",
+"ptr": "0x4068",
+"jp": "ムサシ",
+"en": "Musashi"
+},
+{
+"table": "0x55ef",
+"ptr": "0x406c",
+"jp": "くのいち",
+"en": "Kunoichi"
+},
+{
+"table": "0x55f1",
+"ptr": "0x4071",
+"jp": "しょうかんし",
+"en": "Summoner"
+},
+{
+"table": "0x55f3",
+"ptr": "0x4078",
+"jp": "せいじょう",
+"en": "OK"
+},
+{
+"table": "0x55f5",
+"ptr": "0x407e",
+"jp": "きょうふ",
+"en": "Afraid"
+},
+{
+"table": "0x55f7",
+"ptr": "0x4083",
+"jp": "すいみん",
+"en": "Asleep"
+},
+{
+"table": "0x55f9",
+"ptr": "0x4088",
+"jp": "まひ",
+"en": "Paralyzed"
+},
+{
+"table": "0x55fb",
+"ptr": "0x408b",
+"jp": "いし",
+"en": "Stoned"
+},
+{
+"table": "0x55fd",
+"ptr": "0x408e",
+"jp": "しぼう",
+"en": "Dead"
+},
+{
+"table": "0x55ff",
+"ptr": "0x4092",
+"jp": "はい",
+"en": "Ashes"
+},
+{
+"table": "0x5601",
+"ptr": "0x4095",
+"jp": "ロスト",
+"en": "Lost"
+},
+{
+"table": "0x5603",
+"ptr": "0x4099",
+"jp": "どく",
+"en": "Poisoned"
+},
+{
+"table": "0x5605",
+"ptr": "0x409c",
+"jp": "まふうじ",
+"en": "Silenced"
+},
+{
+"table": "0x5607",
+"ptr": "0x40a1",
+"jp": "たたかう",
+"en": "Fight"
+},
+{
+"table": "0x5609",
+"ptr": "0x40a6",
+"jp": "かくれる",
+"en": "Hide"
+},
+{
+"table": "0x560b",
+"ptr": "0x40ab",
+"jp": "きしゅう",
+"en": "Ambush"
+},
+{
+"table": "0x560d",
+"ptr": "0x40b0",
+"jp": "みをまもる",
+"en": "Parry"
+},
+{
+"table": "0x560f",
+"ptr": "0x40b6",
+"jp": "まほう",
+"en": "Spell"
+},
+{
+"table": "0x5611",
+"ptr": "0x40ba",
+"jp": "けんじゅつ",
+"en": "Swordplay"
+},
+{
+"table": "0x5613",
+"ptr": "0x40c0",
+"jp": "にんじゅつ",
+"en": "Ninjutsu"
+},
+{
+"table": "0x5615",
+"ptr": "0x40c6",
+"jp": "しょうかん",
+"en": "Summon"
+},
+{
+"table": "0x5617",
+"ptr": "0x40cc",
+"jp": "たいきょ",
+"en": "Dispel"
+},
+{
+"table": "0x5619",
+"ptr": "0x40d1",
+"jp": "のろいをとく",
+"en": "Uncurse"
+},
+{
+"table": "0x561b",
+"ptr": "0x40d8",
+"jp": "アイテム",
+"en": "Item"
+},
+{
+"table": "0x561d",
+"ptr": "0x40dd",
+"jp": "にげる",
+"en": "Run"
+},
+{
+"table": "0x561f",
+"ptr": "0x40e1",
+"jp": "ノーマル",
+"en": "Normal"
+},
+{
+"table": "0x5621",
+"ptr": "0x40e6",
+"jp": "ヒットねらい",
+"en": "Aim to hit"
+},
+{
+"table": "0x5623",
+"ptr": "0x40ed",
+"jp": "ダメージねらい",
+"en": "Aim for damage"
+},
+{
+"table": "0x5625",
+"ptr": "0x40f5",
+"jp": "つかう",
+"en": "Use"
+},
+{
+"table": "0x5627",
+"ptr": "0x40f9",
+"jp": "そうび",
+"en": "Equip"
+},
+{
+"table": "0x5629",
+"ptr": "0x40fd",
+"jp": "なげる",
+"en": "Throw"
+},
+{
+"table": "0x562b",
+"ptr": "0x4f9b",
+"jp": "たたかう",
+"en": "Fight"
+},
+{
+"table": "0x562d",
+"ptr": "0x4fa0",
+"jp": "かくれる",
+"en": "Hide"
+},
+{
+"table": "0x562f",
+"ptr": "0x4fa5",
+"jp": "きしゅう",
+"en": "Ambush"
+},
+{
+"table": "0x5631",
+"ptr": "0x4faa",
+"jp": "まもる ",
+"en": "Parry"
+},
+{
+"table": "0x5633",
+"ptr": "0x4faf",
+"jp": "まほう ",
+"en": "Spell"
+},
+{
+"table": "0x5635",
+"ptr": "0x4fb4",
+"jp": "けんじゅ",
+"en": "Sword"
+},
+{
+"table": "0x5637",
+"ptr": "0x4fb9",
+"jp": "にんじゅ",
+"en": "Ninja"
+},
+{
+"table": "0x5639",
+"ptr": "0x4fbe",
+"jp": "しょうか",
+"en": "Summon"
+},
+{
+"table": "0x563b",
+"ptr": "0x4fc3",
+"jp": "たいきょ",
+"en": "Dispel"
+},
+{
+"table": "0x563d",
+"ptr": "0x4fc8",
+"jp": "のろいを",
+"en": "Uncurse"
+},
+{
+"table": "0x563f",
+"ptr": "0x4fcd",
+"jp": "つかう ",
+"en": "Use"
+},
+{
+"table": "0x5641",
+"ptr": "0x4fd2",
+"jp": "にげる ",
+"en": "Run"
+},
+{
+"table": "0x5643",
+"ptr": "0x4fd7",
+"jp": "ノーマル",
+"en": "Normal"
+},
+{
+"table": "0x5645",
+"ptr": "0x4fdc",
+"jp": "ヒット ",
+"en": "Hit"
+},
+{
+"table": "0x5647",
+"ptr": "0x4fe1",
+"jp": "ダメージ",
+"en": "Dmg."
+},
+{
+"table": "0x5649",
+"ptr": "0x4fe6",
+"jp": "つかう ",
+"en": "Use"
+},
+{
+"table": "0x564b",
+"ptr": "0x4feb",
+"jp": "そうび ",
+"en": "Equip"
+},
+{
+"table": "0x564d",
+"ptr": "0x4ff0",
+"jp": "なげる ",
+"en": "Throw"
+},
+{
+"table": "0x564f",
+"ptr": "0x52f8",
+"jp": "わなは ない",
+"en": "No trap"
+},
+{
+"table": "0x5651",
+"ptr": "0x52ff",
+"jp": "ファイアーボルト",
+"en": "Fire Bolt"
+},
+{
+"table": "0x5653",
+"ptr": "0x5308",
+"jp": "ばくだん",
+"en": "Bomb"
+},
+{
+"table": "0x5655",
+"ptr": "0x530d",
+"jp": "マジックドレイン",
+"en": "Magic Drain"
+},
+{
+"table": "0x5657",
+"ptr": "0x5316",
+"jp": "エナジードレイン",
+"en": "Energy Drain"
+},
+{
+"table": "0x5659",
+"ptr": "0x531f",
+"jp": "ポイズンニードル",
+"en": "Poison Needle"
+},
+{
+"table": "0x565b",
+"ptr": "0x5328",
+"jp": "アラーム",
+"en": "Alarm"
+},
+{
+"table": "0x565d",
+"ptr": "0x532d",
+"jp": "もうじゃのて",
+"en": "Hand of the Dead"
+},
+{
+"table": "0x565f",
+"ptr": "0x5334",
+"jp": "パラライズニードル",
+"en": "Paralysis Needle"
+},
+{
+"table": "0x5661",
+"ptr": "0x533e",
+"jp": "パラライズガス",
+"en": "Paralysis Gas"
+},
+{
+"table": "0x5663",
+"ptr": "0x5346",
+"jp": "メデューサののろい",
+"en": "Medusa's Curse"
+},
+{
+"table": "0x5665",
+"ptr": "0x5350",
+"jp": "さいごのキス",
+"en": "Last Kiss"
+},
+{
+"table": "0x5667",
+"ptr": "0x5357",
+"jp": "テレポーター",
+"en": "Teleporter"
+},
+{
+"table": "0x5669",
+"ptr": "0x535e",
+"jp": "レベルテレポーター",
+"en": "Level Teleporter"
+},
+{
+"table": "0x566b",
+"ptr": "0x43b8",
+"jp": "おの",
+"en": "Axe"
+},
+{
+"table": "0x566d",
+"ptr": "0x43bb",
+"jp": "や",
+"en": "Arrow"
+},
+{
+"table": "0x566f",
+"ptr": "0x43bd",
+"jp": "いし",
+"en": "Stone"
+},
+{
+"table": "0x5671",
+"ptr": "0x43c0",
+"jp": "かま",
+"en": "Scythe"
+},
+{
+"table": "0x5673",
+"ptr": "0x43c3",
+"jp": "きみょうなもの",
+"en": "Odd object"
+},
+{
+"table": "0x5675",
+"ptr": "0x43cb",
+"jp": "ぼう",
+"en": "Staff"
+},
+{
+"table": "0x5677",
+"ptr": "0x43ce",
+"jp": "けん",
+"en": "Sword"
+},
+{
+"table": "0x5679",
+"ptr": "0x43d1",
+"jp": "たんけん",
+"en": "Dagger"
+},
+{
+"table": "0x567b",
+"ptr": "0x43d6",
+"jp": "かなづち",
+"en": "Hammer"
+},
+{
+"table": "0x567d",
+"ptr": "0x43db",
+"jp": "ひも",
+"en": "Cord"
+},
+{
+"table": "0x567f",
+"ptr": "0x43de",
+"jp": "ながいぼう",
+"en": "Long staff"
+},
+{
+"table": "0x5681",
+"ptr": "0x43e4",
+"jp": "ながいぼう",
+"en": "Long staff"
+},
+{
+"table": "0x5683",
+"ptr": "0x43ea",
+"jp": "ぼう",
+"en": "Staff"
+},
+{
+"table": "0x5685",
+"ptr": "0x43ed",
+"jp": "やり",
+"en": "Spear"
+},
+{
+"table": "0x5687",
+"ptr": "0x43f0",
+"jp": "ゆみ",
+"en": "Bow"
+},
+{
+"table": "0x5689",
+"ptr": "0x43f3",
+"jp": "よろい",
+"en": "Armor"
+},
+{
+"table": "0x568b",
+"ptr": "0x43f7",
+"jp": "ローブ",
+"en": "Robe"
+},
+{
+"table": "0x568d",
+"ptr": "0x43fb",
+"jp": "たて",
+"en": "Shield"
+},
+{
+"table": "0x568f",
+"ptr": "0x43fe",
+"jp": "かぶと",
+"en": "Helm"
+},
+{
+"table": "0x5691",
+"ptr": "0x4402",
+"jp": "こて",
+"en": "Gauntlets"
+},
+{
+"table": "0x5693",
+"ptr": "0x4405",
+"jp": "きみょうなもの",
+"en": "Odd object"
+},
+{
+"table": "0x5695",
+"ptr": "0x440d",
+"jp": "まきもの",
+"en": "Scroll"
+},
+{
+"table": "0x5697",
+"ptr": "0x4412",
+"jp": "ポーション",
+"en": "Potion"
+},
+{
+"table": "0x5699",
+"ptr": "0x4418",
+"jp": "ぬの",
+"en": "Cloth"
+},
+{
+"table": "0x569b",
+"ptr": "0x441b",
+"jp": "ゆびわ",
+"en": "Ring"
+},
+{
+"table": "0x569d",
+"ptr": "0x502b",
+"jp": "なぐりかかった",
+"en": "swung at"
+},
+{
+"table": "0x569f",
+"ptr": "0x5033",
+"jp": "たたきつけようとした",
+"en": "tried to bash"
+},
+{
+"table": "0x56a1",
+"ptr": "0x503e",
+"jp": "ふみつけようとした",
+"en": "tried to trample"
+},
+{
+"table": "0x56a3",
+"ptr": "0x5048",
+"jp": "しめあげようとした",
+"en": "tried to crush"
+},
+{
+"table": "0x56a5",
+"ptr": "0x5052",
+"jp": "なげつけようとした",
+"en": "tried to throw"
+},
+{
+"table": "0x56a7",
+"ptr": "0x505c",
+"jp": "わしづかみにしようとした",
+"en": "tried to grab"
+},
+{
+"table": "0x56a9",
+"ptr": "0x5069",
+"jp": "あばれかかった",
+"en": "lashed out at"
+},
+{
+"table": "0x56ab",
+"ptr": "0x5071",
+"jp": "たいあたりしようとした",
+"en": "tried to ram"
+},
+{
+"table": "0x56ad",
+"ptr": "0x507d",
+"jp": "まきつこうとした",
+"en": "tried to coil around"
+},
+{
+"table": "0x56af",
+"ptr": "0x5086",
+"jp": "かみつこうとした",
+"en": "tried to bite"
+},
+{
+"table": "0x56b1",
+"ptr": "0x508f",
+"jp": "とびかかった",
+"en": "leapt at"
+},
+{
+"table": "0x56b3",
+"ptr": "0x5096",
+"jp": "ちをすおうとした",
+"en": "tried to drink the blood of"
+},
+{
+"table": "0x56b5",
+"ptr": "0x509f",
+"jp": "からみつこうとした",
+"en": "tried to entangle"
+},
+{
+"table": "0x56b7",
+"ptr": "0x50a9",
+"jp": "おそろしいこえでさけんだ",
+"en": "let out a terrible cry at"
+},
+{
+"table": "0x56b9",
+"ptr": "0x50b6",
+"jp": "うつくしいこえをかなでた",
+"en": "sang beautifully to"
+},
+{
+"table": "0x56bb",
+"ptr": "0x50c3",
+"jp": "ほのおのブレスをはいた",
+"en": "breathed fire at"
+},
+{
+"table": "0x56bd",
+"ptr": "0x50cf",
+"jp": "れいきのブレスをはいた",
+"en": "breathed frost at"
+},
+{
+"table": "0x56bf",
+"ptr": "0x50db",
+"jp": "どくのブレスをはいた",
+"en": "breathed poison at"
+},
+{
+"table": "0x56c1",
+"ptr": "0x50e6",
+"jp": "でんげきのブレスをはいた",
+"en": "breathed lightning at"
+},
+{
+"table": "0x56c3",
+"ptr": "0x50f3",
+"jp": "さんのブレスをはいた",
+"en": "breathed acid at"
+},
+{
+"table": "0x56c5",
+"ptr": "0x50fe",
+"jp": "せきかブレスをはいた",
+"en": "breathed stone breath at"
+},
+{
+"table": "0x56c7",
+"ptr": "0x5109",
+"jp": "ふりおろした",
+"en": "struck down at"
+},
+{
+"table": "0x56c9",
+"ptr": "0x5110",
+"jp": "きりさこうとした",
+"en": "tried to slash"
+},
+{
+"table": "0x56cb",
+"ptr": "0x5119",
+"jp": "つきさそうとした",
+"en": "tried to stab"
+},
+{
+"table": "0x56cd",
+"ptr": "0x5122",
+"jp": "なぎはらおうとした",
+"en": "tried to mow down"
+},
+{
+"table": "0x56cf",
+"ptr": "0x512c",
+"jp": "きりきざもうとした",
+"en": "tried to cut up"
+},
+{
+"table": "0x56d1",
+"ptr": "0x5136",
+"jp": "やつざきにしようとした",
+"en": "tried to tear apart"
+},
+{
+"table": "0x56d3",
+"ptr": "0x5142",
+"jp": "やをはなった",
+"en": "shot an arrow at"
+},
+{
+"table": "0x56d5",
+"ptr": "0x5149",
+"jp": "とりつこうとした",
+"en": "tried to possess"
+},
+{
+"table": "0x56d7",
+"ptr": "0x5152",
+"jp": "ムチをふるった",
+"en": "lashed a whip at"
+},
+{
+"table": "0x56d9",
+"ptr": "0x515a",
+"jp": "ハリをとばした",
+"en": "shot needles at"
+},
+{
+"table": "0x56db",
+"ptr": "0x5162",
+"jp": "トゲをとばした",
+"en": "shot spines at"
+},
+{
+"table": "0x56dd",
+"ptr": "0x516a",
+"jp": "しょくしゅをふるった",
+"en": "lashed tentacles at"
+},
+{
+"table": "0x56df",
+"ptr": "0x5175",
+"jp": "なかまをよんだ",
+"en": "called for help against"
+},
+{
+"table": "0x56e1",
+"ptr": "0x517d",
+"jp": "たいえきをとばした",
+"en": "spat fluid at"
+},
+{
+"table": "0x56e3",
+"ptr": "0x5187",
+"jp": "ゆうわくした",
+"en": "tried to seduce"
+},
+{
+"table": "0x56e5",
+"ptr": "0x518e",
+"jp": "にげた",
+"en": "fled from"
+},
+{
+"table": "0x56e7",
+"ptr": "0x5192",
+"jp": "あわてた",
+"en": "panicked before"
+},
+{
+"table": "0x56e9",
+"ptr": "0x5197",
+"jp": "いしをなげつけた",
+"en": "threw a stone at"
+},
+{
+"table": "0x56eb",
+"ptr": "0x51a0",
+"jp": "うちぬこうとした",
+"en": "tried to shoot"
+},
+{
+"table": "0x56ed",
+"ptr": "0x51a9",
+"jp": "きりかかった",
+"en": "slashed at"
+},
+{
+"table": "0x56ef",
+"ptr": "0x51b0",
+"jp": "つきかかった",
+"en": "thrust at"
+},
+{
+"table": "0x56f1",
+"ptr": "0x4434",
+"jp": "メインのぶき",
+"en": "Main weapon"
+},
+{
+"table": "0x56f3",
+"ptr": "0x443b",
+"jp": "ほじょのぶき",
+"en": "Off-hand"
+},
+{
+"table": "0x56f5",
+"ptr": "0x4442",
+"jp": "   よろい",
+"en": "Armor"
+},
+{
+"table": "0x56f7",
+"ptr": "0x4449",
+"jp": "   かぶと",
+"en": "Helm"
+},
+{
+"table": "0x56f9",
+"ptr": "0x4450",
+"jp": "    こて",
+"en": "Gloves"
+},
+{
+"table": "0x56fb",
+"ptr": "0x4457",
+"jp": "   そのた",
+"en": "Other"
+},
+{
+"table": "0x56fd",
+"ptr": "0x54ec",
+"jp": "あくま",
+"en": "Demon"
+},
+{
+"table": "0x56ff",
+"ptr": "0x54f0",
+"jp": "ガイコツ",
+"en": "Skeleton"
+},
+{
+"table": "0x5701",
+"ptr": "0x54f5",
+"jp": "ガスじょうのもの",
+"en": "Gaseous thing"
+},
+{
+"table": "0x5703",
+"ptr": "0x54fe",
+"jp": "きみょうなもの",
+"en": "Odd thing"
+},
+{
+"table": "0x5705",
+"ptr": "0x5506",
+"jp": "きょだいなもの",
+"en": "Huge thing"
+},
+{
+"table": "0x5707",
+"ptr": "0x550e",
+"jp": "ケモノ",
+"en": "Beast"
+},
+{
+"table": "0x5709",
+"ptr": "0x5512",
+"jp": "ちいさなすがた",
+"en": "Small figure"
+},
+{
+"table": "0x570b",
+"ptr": "0x551a",
+"jp": "ちをはうもの",
+"en": "Crawler"
+},
+{
+"table": "0x570d",
+"ptr": "0x5521",
+"jp": "つち",
+"en": "Earth thing"
+},
+{
+"table": "0x570f",
+"ptr": "0x5524",
+"jp": "つばさをもつもの",
+"en": "Winged thing"
+},
+{
+"table": "0x5711",
+"ptr": "0x552d",
+"jp": "ドラゴン",
+"en": "Dragon"
+},
+{
+"table": "0x5713",
+"ptr": "0x5532",
+"jp": "ほのお",
+"en": "Flame"
+},
+{
+"table": "0x5715",
+"ptr": "0x5536",
+"jp": "みず",
+"en": "Water"
+},
+{
+"table": "0x5717",
+"ptr": "0x5539",
+"jp": "やつれたすがた",
+"en": "Haggard figure"
+},
+{
+"table": "0x5719",
+"ptr": "0x5541",
+"jp": "よろいをまとった\nすがた",
+"en": "Armored\nfigure"
+},
+{
+"table": "0x571b",
+"ptr": "0x554e",
+"jp": "ローブをまとった\nすがた",
+"en": "Robed\nfigure"
+},
+{
+"table": "0x571d",
+"ptr": "0x4568",
+"jp": "きた",
+"en": "North"
+},
+{
+"table": "0x571f",
+"ptr": "0x456b",
+"jp": "ひがし",
+"en": "East"
+},
+{
+"table": "0x5721",
+"ptr": "0x456f",
+"jp": "みなみ",
+"en": "South"
+},
+{
+"table": "0x5723",
+"ptr": "0x4573",
+"jp": "にし",
+"en": "West"
+}
+]
