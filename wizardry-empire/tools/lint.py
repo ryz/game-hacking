@@ -52,6 +52,10 @@ def key_of(fname, e):
     return "%s #%s" % (fname, e.get("id"))
 
 
+# Glossary terms that are also part of unrelated words: skip the match inside these (まどうし = wizard).
+FALSE_MATCH = {"まどう": ["まどうし", "だいまどうし"]}
+
+
 def check(items, gl):
     errs, warns = [], []
     seen = {}
@@ -60,7 +64,7 @@ def check(items, gl):
             continue
         jpn = jp.replace(" ", "")
         for j, eng in gl.items():
-            if j in jpn:
+            if j in jpn and not any(f in jpn for f in FALSE_MATCH.get(j, [])):
                 opts = eng if isinstance(eng, list) else [eng]
                 stem = [o.split()[-1] if len(o.split()) > 1 else o for o in opts]
                 if not any(s.lower() in en.lower() for s in stem):

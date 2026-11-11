@@ -19,3 +19,8 @@ org 41, $421a
 ; ASCII, 17 bytes max (JP: ----- うりきれ -----).
 org 41, $70e1
     db "--- Sold out ---", 0
+
+; Character title (2B:5FB8): keep ld de,$C632, drop the [w=12][h=1] writes so the record (now a VWF rect
+; header, script/titles.json) is copied as the header of the RAM rect.
+org 43, $5fbb
+    ds 8, $00

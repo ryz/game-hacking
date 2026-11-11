@@ -312,6 +312,20 @@ def insert_chests(rom, space, entries):
     return len(entries)
 
 
+def insert_titles(rom, space, entries):
+    """Character titles: 12-byte records in bank 43 (14 classes x 10 tiers, table 2B:5F4F), copied by 2B:5FB8
+    to a RAM rect at $C632 that is blitted with $1770. asm/main.asm NOPs out the [w=12][h=1] writes, so the
+    record itself is the rect header: [$8C][$01][bank][ptr] -> English, right-aligned in 96 px."""
+    seen = {}
+    for e in entries:
+        o = rom_off(e["bank"], int(e["addr"], 16))
+        if e["en"] not in seen:
+            seen[e["en"]] = space.put(layout_rows({"w": 12, "h": 1, "en": [">" + e["en"]]}))
+        b, a = seen[e["en"]]
+        rom[o:o + 5] = bytes([0x8C, 0x01, b, a & 0xFF, a >> 8])
+    return len(entries)
+
+
 def load(name):
     p = os.path.join(ROOT, "script", name)
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else []
@@ -328,6 +342,7 @@ def insert_all(rom):
     stats["templates"] = insert_templates(rom, load("templates.json"))
     stats["lists"] = insert_lists(rom, b49, load("lists.json"))
     stats["chests"] = insert_chests(rom, b49, load("chests.json"))
+    stats["titles"] = insert_titles(rom, space, load("titles.json"))
     stats["bank 49 free used"] = "$%04X of $%04X" % (b49.pos - LIST_FREE, 0x8000 - LIST_FREE)
     stats["inline"] = insert_inline(rom, space, load("inline.json"))
     global fix_sites_cache, fixmap_cache
