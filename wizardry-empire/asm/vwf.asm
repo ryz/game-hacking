@@ -2113,6 +2113,9 @@ GC:
     call nz, MarkCode
     ; BG: only the rows above a full-width window are visible (rows under it are old screens)
     ld bc, 18*32
+    ld a, [wGCSkipWin]      ; BG rows under a full-width window count, except in the dry second pass: they come
+    or a                    ; back when the window closes ('Cast the spell on whom?' under the spell detail box)
+    jr z, .bg
     ldh a, [$ff40]
     bit 5, a
     jr z, .bg
