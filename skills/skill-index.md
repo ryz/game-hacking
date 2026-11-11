@@ -18,10 +18,12 @@ to it. Every skill folder has a `feedback.md` - read its open entries before wor
 - **Investigation:** tracer (where/how text is printed), triage (hangs/crashes).
 - **Language:** translator -> reviewer -> (late) editor.
 - **Verification:** playtester (plays toward a goal), visual-qa (judges screenshot sheets).
+- **Documentation:** photographer (pixel-exact reference screenshots, English and original side by side).
 - **Upkeep:** maintenance (repo health check: docs vs code, skills, feedback, status drift).
 
 Typical chains: tracer -> (coordinator hooks it) -> translator -> reviewer -> build -> tour -> visual-qa;
-user bug report -> triage -> coordinator fix -> playtester repro.
+user bug report -> triage -> coordinator fix -> playtester repro;
+photographer set -> visual-qa (or reviewer with the compare images) for a screen-by-screen JP/EN check.
 
 ## Skills
 
@@ -88,6 +90,16 @@ user bug report -> triage -> coordinator fix -> playtester repro.
 - Also load: `wizardry-empire/docs/re/vwf.md`, `docs/re/tasks.md`.
 - Do not use for: fixing; general RE questions (tracer).
 - Guardrails: diagnose only; writes only its case dir.
+
+### photographer
+- File: `skills/photographer/skill.md`
+- Use when: we need exact reference images of screens/features/options/gameplay, JP vs EN (docs, review,
+  regression comparison, the README).
+- Main output: `wizardry-empire/work/shots/<set>/` (native + 3x + compare PNGs, `index.md`/`index.json`) and
+  proposed `tools/routes/shots.txt` lines.
+- Also load: `wizardry-empire/tools/routes/shots.txt`, `tools/routes/tour.txt`.
+- Do not use for: judging the translation (visual-qa) or finding bugs on purpose (playtester).
+- Guardrails: writes only `work/shots/<set>/`; screenshots never committed unless the user asks.
 
 ### maintenance
 - File: `skills/maintenance/skill.md`

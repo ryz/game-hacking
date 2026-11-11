@@ -1,0 +1,30 @@
+# id | category | description | tokens (tools/emu.py syntax; pow = power on only, boot = power on to the town,
+#                                       PARTY = form the 6-member party at the tavern, starting in the town)
+# Town cursor from boot: right x1 Training, x2 Museum, x3 Tavern, x4 Notice Board, x5 Shop, x6 Temple, x7 Inn,
+# x8 back to the Edge of Town (start). Keep ids stable: they name the files.
+logo_publisher   | boot     | Publisher logo after power-on            | pow,w300
+copyright        | boot     | Copyright/licence screen                 | pow,w600
+title            | boot     | Title screen                             | pow,w760
+mode_select      | options  | Mode settings (BGM, sound, map, ...)     | pow,w750,start,w60,start,w60,start,w60,start,w60
+town_edge        | town     | Town map, Edge of Town info              | boot
+town_training    | town     | Town map, Training Grounds info          | boot,right
+town_museum      | town     | Town map, Museum info                    | boot,right*2
+town_tavern      | town     | Town map, Rose's Tavern info             | boot,right*3
+town_notice      | town     | Town map, Notice Board info              | boot,right*4
+town_shop        | town     | Town map, Lorelei's Shop info            | boot,right*5
+town_temple      | town     | Town map, Samsara Temple info            | boot,right*6
+town_inn         | town     | Town map, Aries Inn info                 | boot,right*7
+tavern_menu      | tavern   | Tavern menu                              | boot,right*3,a,w60
+tavern_add       | tavern   | Add member: roster with character card   | boot,right*3,a,w60,a,w40
+party_town       | town     | Town with the full party panel           | boot,PARTY
+training_menu    | training | Training Grounds menu                    | boot,right,a,w60
+shop_menu        | shop     | Shop: welcome and Buy/Sell menu          | boot,PARTY,right*2,a,w60,a,w60
+shop_buy         | shop     | Shop: Buy, item categories               | boot,PARTY,right*2,a,w60,a,w60,a,w40
+temple_menu      | temple   | Samsara Temple menu                      | boot,PARTY,right*3,a,w60
+inn_rooms        | inn      | Aries Inn room list                      | boot,PARTY,right*4,a,w60,a,w60
+outskirts_menu   | maze     | Edge of Town: explore / resume / end     | boot,PARTY,left*3,a,w60
+camp             | maze     | Camp menu on entering the maze           | boot,PARTY,left*3,a,w60,a,w150
+character_sheet  | maze     | Character sheet from Camp                | boot,PARTY,left*3,a,w60,a,w150,a,w40,a,w60
+maze_view        | maze     | First-person maze view, Camp closed      | boot,PARTY,left*3,a,w60,a,w150,b,w60
+maze_menu        | maze     | Maze menu (Search, Pick a lock, ...)     | boot,PARTY,left*3,a,w60,a,w150,b,w60,a,w40
+stairs_prompt    | maze     | Stairs up prompt at the entrance         | boot,PARTY,left*3,a,w60,a,w150,b,w60,up,w60

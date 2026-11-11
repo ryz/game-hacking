@@ -32,6 +32,8 @@ Run from `wizardry-empire/`:
   errors (`NO_LINT=1` to skip while debugging).
 - Screen tour: `python3 tools/tour.py [--jp] [route ...]` (routes in `tools/routes/tour.txt`) ->
   `work/qa/tour_en|tour_jp/<route>/sheet.png`; run it after every build and give the sheets to `visual-qa`.
+- Reference screenshots: `python3 tools/shoot.py SET [--only ids]` (curated list `tools/routes/shots.txt`) ->
+  `work/shots/SET/` native 160x144 + 3x + JP|EN compare PNGs and a catalogue.
 - Disassemble: `python3 tools/gbdis.py BANK ADDR [N]`. Assembler: `tools/asm.py` (rgbds-like syntax, see its docstring).
 - Census tools (find text in the original ROM): `tools/census_rects.py`, `tools/chain_rects.py`,
   `tools/census_msgs.py`, `tools/census_inline.py`.
@@ -41,7 +43,7 @@ Run from `wizardry-empire/`:
 - `skills/skill-index.md` routes every job to a skill; each `skills/<name>/` has `skill.md` (source of truth) and
   `feedback.md` (running log). Templates: `skills/_templates/`.
 - Subagents are thin wrappers in `.claude/agents/<name>.md` that load `skills/<name>/skill.md`. Dispatch these
-  types (translator, reviewer, editor, playtester, visual-qa, tracer, triage, maintenance), not general-purpose
+  types (translator, reviewer, editor, playtester, visual-qa, photographer, tracer, triage, maintenance), not general-purpose
   agents, with exact paths filled in from `skills/_templates/dispatch.md`. Bug reports: `skills/_templates/bug-report.md`. The main session follows `skills/coordinator/skill.md`.
 - Binding terms: `wizardry-empire/glossary.md`.
 
