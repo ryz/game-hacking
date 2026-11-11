@@ -1,6 +1,6 @@
 """Text-copy coverage checks against the original ROM (skipped without rom/).
 
-Lessons from the Camp status word (2026-11-12): a copy the fix_sites() pattern misses, reading a second copy of a
+Lessons from the Camp status word (2026-11-11): a copy the fix_sites() pattern misses, reading a second copy of a
 translated table, shows raw kana in the English build. These tests fail when such a case appears unhandled.
 """
 import json, os, re, sys
