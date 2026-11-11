@@ -315,6 +315,7 @@
 {"bank": 49, "addr": "0x54a8", "jp": "\n{F8 00 31 C48F}は{FA}じゅもんのちからを{FA}すいとられた", "en": "\n{F8 00 31 C48F}{FA}lost{FA}spell power.", "autowrap": true},
 {"bank": 49, "addr": "0x54c1", "jp": "\n{F8 00 31 C48F}は{FA}けいけんちを{FA}すいとられた", "en": "\n{F8 00 31 C48F}{FA}lost{FA}experience.", "autowrap": true},
 {"bank": 49, "addr": "0x54d7", "jp": "\n{F8 00 31 C48F}は{FA}{F8 00 31 C54F}を{FA}うしなった", "en": "\n{F8 00 31 C48F}{FA}lost{FA}{F8 00 31 C54F}.", "autowrap": true},
+{"bank": 49, "addr": "0x555b", "jp": "   ゆうこうてきな\n\n{F8 00 04 DD36}\n\n     たたかう\n     たちさる", "en": "{col:3}A friendly\n\n{F8 00 04 DD36}\n\n{col:5}Fight\n{col:5}Leave"},
 {"bank": 49, "addr": "0x55aa", "jp": "モンスターは\n  まだ こちらに きづいていない", "en": "The monsters haven't\n  noticed you yet."},
 {"bank": 46, "addr": "0x44da", "jp": "『いにしえからのもの』を\n\nしょうかんする", "en": "Summons \"The Ancient One\"."},
 {"bank": 46, "addr": "0x44f0", "jp": "『イフリート』をしょうかんする", "en": "Summons \"Ifrit\"."},
