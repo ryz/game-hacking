@@ -101,6 +101,12 @@ wSkipCopy   equ $dffb          ; nonzero: the next VBlank skips the game's map c
 wHoldStart  equ $dffc          ; frame ($C00A) the current print burst started
 wLastPrint  equ $dffd          ; frame of the last non-typewriter print
 HOLD_MAX    equ 6              ; frames a burst may hold the screen
+wDedI       equ $df0b          ; Dedupe: pool index
+wDedH       equ $df0c          ; Dedupe: hash
+wDedS       equ $df0d          ; Dedupe: own slot
+wShared     equ $d410          ; 32 bytes: slot is shown by more than one cell (shadow area of 'A'-'B', not pool)
+wDedNew     equ $df0e          ; the current cell got a newly allocated slot (only those are deduped)
+wHash       equ $d2c0          ; 256 bytes: content hash per slot (shadow area of codes $2C-$3B, not pool)
 wGCSkipWin  equ $df0a          ; nonzero: GC ignores the window buffer while the window is hidden (2nd pass)
 wKeepOff    equ $df09          ; nonzero: the pool ran dry in this burst, old-screen protection dropped
 wKeep       equ $d2a0          ; 32 bytes (shadow area of codes $2A/$2B): slots in use when the burst began;
@@ -784,6 +790,18 @@ Glyph:
 ; ---------------------------------------------------------------------
 ; Move to the next cell: cur <- nxt, nxt <- 0, slot <- 0
 NextCell:
+    ld a, [wDedNew]
+    or a
+    jr z, .nd
+    xor a
+    ld [wDedNew], a
+    ld a, [S_slot]
+    or a
+    jr z, .nd
+    ld a, [wPanel]
+    or a
+    call z, Dedupe          ; finished cell with a new slot: share an identical tile if one is on screen
+.nd:
     ld hl, S_cellLo
     inc [hl]
     jr nz, .n
@@ -843,9 +861,19 @@ Commit:
     call Alloc
     ld [S_slot], a
     call SetOwner
+    ld a, [S_slot]
+    call SharedClear
+    ld a, 1
+    ld [wDedNew], a
     jr .have
 .reuse:
     ld [S_slot], a
+    call SharedDiff         ; shared with another cell and the content changes: take a new slot
+    jr z, .rk
+    xor a
+    ld [S_slot], a
+    jr .new
+.rk:
     call KeptNow            ; the old screen still shows this slot (print burst): take a new one if one is
     jr z, .keep             ; free, else reuse it anyway (a short flicker beats overwriting other text)
     call AllocSoft
@@ -889,6 +917,7 @@ Commit:
     inc hl
     dec b
     jr nz, .cmp
+    call HashCur            ; wHash[slot] = hash of the tile (for Dedupe)
     ld a, [S_slot]
     call ValidAddr          ; hl = byte, b = mask
     ld a, [hl]
@@ -1805,6 +1834,187 @@ VWF_SpellList:
     call PrivCall
     pop af
     jp SetSVBK
+
+; A = code -> HL = wShared byte, B = mask
+SharedAddr:
+    call BitAddr
+    ld a, l
+    sub low(wBits)
+    add low(wShared)
+    ld l, a
+    ld h, high(wShared)
+    ret
+
+SharedClear:
+    call SharedAddr
+    ld a, b
+    cpl
+    and [hl]
+    ld [hl], a
+    ret
+
+; NZ if [S_slot] is shared and S_cur differs from its shadow (ink bytes = even shadow bytes)
+SharedDiff:
+    ld a, [S_slot]
+    call SharedAddr
+    ld a, [hl]
+    and b
+    ret z
+    ld a, [S_slot]
+    call StagingAddr
+    ld de, S_cur
+    ld b, 8
+.c: ld a, [de]
+    cp [hl]
+    ret nz
+    inc de
+    inc hl
+    inc hl
+    dec b
+    jr nz, .c
+    xor a
+    ret
+
+; wHash[S_slot] = hash of S_cur (the ink rows; paper is constant)
+HashCur:
+    push bc
+    push de
+    push hl
+    ld hl, S_cur
+    ld b, 8
+    xor a
+.h: rlca
+    xor [hl]
+    inc hl
+    dec b
+    jr nz, .h
+    ld b, a
+    ld a, [S_slot]
+    ld e, a
+    ld d, 0
+    ld hl, wHash
+    add hl, de
+    ld [hl], b
+    pop hl
+    pop de
+    pop bc
+    ret
+
+; The cell at S_cell (slot S_slot) is finished. If another slot in use holds an identical tile (same hash, same
+; shadow, VRAM valid), point the cell at that slot and free ours. Shared slots get no owner (owner $FFFF), so
+; nobody rewrites them in place. Keeps busy screens (lists with repeated digits/words) inside the pool.
+Dedupe:
+    ld a, [wReset]          ; font load pending: the VRAM-valid flags are stale (cleared at the next Alloc)
+    or a
+    ret nz
+    ld a, [S_slot]
+    ld [wDedS], a
+    ld e, a
+    ld d, 0
+    ld hl, wHash
+    add hl, de
+    ld a, [hl]
+    ld [wDedH], a
+    xor a
+    ld [wDedI], a
+.l: ld a, [wDedI]
+    cp POOL_SIZE
+    ret nc
+    inc a
+    ld [wDedI], a
+    dec a
+    ld e, a
+    ld d, 0
+    ld hl, Pool
+    add hl, de
+    ld a, [hl]              ; candidate code
+    ld c, a
+    ld a, [wDedS]
+    cp c
+    jr z, .l
+    ld a, [TW_ctx + 1]      ; the typewriter's current cell is still being drawn
+    cp c
+    jr z, .l
+    ld e, c
+    ld hl, wHash
+    add hl, de
+    ld a, [wDedH]
+    cp [hl]
+    jr nz, .l
+    ld a, c
+    call BitAddr            ; in use?
+    ld a, [hl]
+    and b
+    jr z, .l
+    ld a, c
+    call ValidAddr          ; VRAM holds its shadow?
+    ld a, [hl]
+    and b
+    jr z, .l
+    ; compare the two shadows
+    ld a, c
+    call StagingAddr
+    ld d, h
+    ld e, l
+    ld a, [wDedS]
+    push de
+    call StagingAddr
+    pop de
+    ld b, 16
+.cmp: ld a, [de]
+    cp [hl]
+    jr nz, .l
+    inc de
+    inc hl
+    dec b
+    jr nz, .cmp
+    ; found: cell -> candidate
+    ld a, c
+    ld [wTmp2], a
+    call SlotTile           ; a = tile, c = bank bit
+    ld b, a
+    ld a, [S_cellLo]
+    ld l, a
+    ld a, [S_cellHi]
+    ld h, a
+    ld a, b
+    call Write3
+    ld de, $0400
+    add hl, de
+    call Read3
+    and $f7
+    or c
+    call Write3
+    ld a, [wTmp2]           ; candidate: shared (its owner may still redraw it, but only unchanged)
+    call SharedAddr
+    ld a, [hl]
+    or b
+    ld [hl], a
+    ld a, [wDedS]           ; our slot: free it if it is still ours alone (owner = this cell)
+    call OwnerAddr
+    call Read6
+    ld b, a
+    ld a, [S_cellLo]
+    cp b
+    ret nz
+    inc hl
+    call Read6
+    ld b, a
+    ld a, [S_cellHi]
+    cp b
+    ret nz
+    dec hl
+    xor a
+    call Write6
+    inc hl
+    call Write6
+    ld a, [wDedS]
+    call BitAddr
+    ld a, b
+    cpl
+    and [hl]
+    ld [hl], a
+    ret
 
 ; Rebuild the bitmap from what the bank-3 buffers reference.
 GC:

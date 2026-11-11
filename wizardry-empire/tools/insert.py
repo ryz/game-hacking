@@ -297,11 +297,20 @@ LIST_BANK, LIST_FREE = 49, 0x5726   # bank 49 $5726-$7FFF is unused (zeros) in t
 def insert_lists(rom, space, entries):
     """Bank-49 string table (49:55C3-5723, read with the text bank = 49, e.g. via {F3 31 C6E3}):
     English $00-terminated strings go into bank 49's free space and the table entries are repointed."""
+    new = {}
     for e in entries:
         b, a = space.put(text.encode(e["en"]) + b"\x00")
         t = rom_off(LIST_BANK, int(e["table"], 16))
         assert rom[t] | rom[t + 1] << 8 == int(e["ptr"], 16), e
         rom[t:t + 2] = bytes([a & 0xFF, a >> 8])
+        new[int(e["ptr"], 16)] = a
+    # bank 50 keeps its own copy of the command/status word pointers (32:57DB, 28 entries; the battle party
+    # panel's action column reads it): repoint the entries that point at the same bank-49 strings
+    o = rom_off(50, 0x57DB)
+    for k in range(28):
+        v = rom[o + 2 * k] | rom[o + 2 * k + 1] << 8
+        if v in new:
+            rom[o + 2 * k:o + 2 * k + 2] = bytes([new[v] & 0xFF, new[v] >> 8])
     return len(entries)
 
 

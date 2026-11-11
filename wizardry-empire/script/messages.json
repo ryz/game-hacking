@@ -285,6 +285,7 @@
 {"bank": 49, "addr": "0x4e95", "jp": "\n{F8 00 31 C48F}は{FA}{F8 00 31 C54F}を{FA}なげた!", "en": "\n{F8 00 31 C48F}{FA}threw{FA}{F8 00 31 C54F}!", "autowrap": true},
 {"bank": 49, "addr": "0x4ea9", "jp": "\n{F8 00 31 C48F}は{FA}そうびをかえた!", "en": "\n{F8 00 31 C48F}{FA}changed{FA}equipment!", "autowrap": true},
 {"bank": 49, "addr": "0x4eba", "jp": "\n{F8 00 31 C48F}は{FA}のろわれた!", "en": "\n{F8 00 31 C48F}{FA}is cursed!", "autowrap": true},
+{"bank": 49, "addr": "0x4ec9", "jp": "たたかう\nまえにもどる", "en": "Fight\nGo back"},
 {"bank": 49, "addr": "0x4ed5", "jp": "どのモンスターと たたかいますか?", "en": "Fight which monster?"},
 {"bank": 49, "addr": "0x4ee7", "jp": "どのモンスターに となえますか?", "en": "Cast at which monster?"},
 {"bank": 49, "addr": "0x4ef8", "jp": "だれに じゅもんをとなえますか?", "en": "Cast the spell on whom?"},
