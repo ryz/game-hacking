@@ -19,6 +19,34 @@ untranslated or garbled text, overflow, wrong letters, softlocks. You do not fix
 - Build exists at `build/wizardry_empire_en.gbc` (the dispatcher builds it; do not edit the repo).
 - Your session dir `SESSION` is given in the dispatch (under `work/play/`). Write only there.
 
+## The standard party (owner's rule, 2026-11-11)
+Always play with the named party: **ryz** (Fighter), **condi** (Thief), **ebo** (Archer), **cubi** (Priest),
+**deddo** (Mage), **mnz** (Bishop) - the six default characters renamed in the Training Grounds, so the classes
+stay balanced and every name shows up in menus, battle text and the character sheets.
+- Build the checkpoints for the current build first (about 2 minutes; never reuse states from older builds:
+  the text engine keeps state in RAM):
+  `python3 tools/party.py --out SESSION/start` -> `renamed.state`, `party.state` (town, party formed),
+  `camp.state` (maze floor 1, Camp open), `maze.state` (maze, Camp closed), plus `sheet_*.png` to check.
+- The renaming itself is part of the test: look at `SESSION/start/sheet_rename_*.png` (name entry, list).
+- Save your own checkpoints at every stage of the round trip below (`SESSION/cp_<stage>.state`) and list them in
+  the report, so the owner can reload any point.
+
+## The standard round trip (default goal unless the dispatch says otherwise)
+1. **Town, before leaving:** tavern (Inspect each member: sheet, Spells, Items, Pool), shop (buy and equip one
+   item, sell one; check gold before/after), inn (one night: HP/MP, "Next level in"), temple (all three
+   menus), notice board, museum, Training Grounds menu.
+2. **Maze:** from `maze.state`; walk, open doors (A), turn, SELECT menu (Search, Pick a lock, Find allies,
+   Settings), Camp (B): Inspect, Reorder, Equip, Spells (cast a healing spell in camp).
+3. **Battles:** at least 3 (`work/triage/battle1/explore.py ROM STATE OUTDIR MAXSTEPS SEED` walks until an
+   encounter). Use every command at least once: Fight (Normal / Aim to hit / Aim for damage), Parry, Hide,
+   Spell (attack and heal), Item, Run. Read every message line; watch the monster panel.
+4. **After battles:** chests (Inspect, Disarm, Open, Leave), trap messages, experience and gold messages.
+5. **Back to town:** stairs up (Yes/No) or Edge of Town; then inn until a level-up (or as far as EXP allows:
+   to reach a level-up quickly you may raise one member's EXP in RAM - say so in the report), temple
+   (heal / revive anyone Dead or Ashes; if nobody is, report the "No one in need." message), shop (buy, equip
+   through Camp or the tavern sheet), divide/pool gold.
+6. Optional if time remains: a second trip deeper, a party wipe screen, museum entries after battles.
+
 ## How to play
 `python3 tools/emu.py --out SESSION/stepNN --seq "<tokens>" [--state SESSION/last.state] --save SESSION/last.state`
 - Tokens: `boot` (power-on to the town), `a b start select up down left right` (press), `KEY*n`, `KEY+KEY`, `wN` (wait).
@@ -29,7 +57,8 @@ untranslated or garbled text, overflow, wrong letters, softlocks. You do not fix
 
 ## Controls and layout (what is known)
 - Town: left/right moves the cursor between buildings, A enters, B leaves. From power-on the cursor is on the
-  Edge of Town; right x3 = Rose's Tavern (Add member to build a party from the 6 default characters).
+  Edge of Town; right x1 = Training Grounds, x3 = Rose's Tavern. After arriving in town wait ~60 frames before
+  the first input (the info box is still being drawn; `boot` already does this).
 - Edge of Town: "Explore the maze" enters the dungeon in Camp. B closes/opens Camp. In the maze: up = forward,
   left/right = turn, A = forward/open a door, SELECT = dungeon menu (Search, Pick a lock, ...). The stairs
   prompt (Yes/No) appears only on the stairs tile (e.g. `tools/routes` maze entry, explore seed 7, 6 steps).
