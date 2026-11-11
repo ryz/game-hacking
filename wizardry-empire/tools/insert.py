@@ -247,15 +247,17 @@ def fix_sites(rom):
         if any(pre[i] == 0x21 and pre[i + 2] >= 0x80 for i in range(len(pre) - 2)):
             continue
         n = (m.end() - m.start() - 2) // 3 + 1
-        out.append((m.start(), m.end() - m.start(), n))
-    for bank, addr, ln, n in EXTRA_FIX_SITES:
-        out.append((rom_off(bank, addr), ln, n))
+        out.append((m.start(), m.end() - m.start(), n, b""))
+    for bank, addr, ln, n, tail in EXTRA_FIX_SITES:
+        out.append((rom_off(bank, addr), ln, n, tail))
     return out
 
 
 # Text copies the pattern above misses: (bank, addr, bytes replaced, n chars).
 # 38:5667 gender (2a 12 13 2a 12 13 2a 12: ends in ld a,[hli]; the next instruction reloads HL).
-EXTRA_FIX_SITES = [(38, 0x5667, 8, 3)]
+# Tail bytes follow the 4-byte call: Stub_Fix leaves HL at src+n-1, copies ending in ld a,[hli] leave src+n.
+# 38:6111 class names in the create/class lists (6 x ld a,[hli]/ld [de],a; the loop needs HL = src+6).
+EXTRA_FIX_SITES = [(38, 0x5667, 8, 3, b""), (38, 0x6111, 17, 6, b"\x23")]
 # Matched by the pattern but not text: 2A:4A31 copies the element's attributes (handled in asm/main.asm).
 SKIP_FIX_SITES = {42 * 0x4000 + 0x4A31 - 0x4000}
 
@@ -404,8 +406,8 @@ def insert_all(rom):
 def post_asm(rom, sym):
     """Patch what needs assembled addresses: Stub_Fix calls and the FixMap contents."""
     tgt = sym["Stub_Fix"][1]
-    for o, ln, n in fix_sites_cache:
-        rom[o:o + ln] = (bytes([0xCD, tgt & 0xFF, tgt >> 8, n]) + b"\x00" * ln)[:ln]
+    for o, ln, n, tail in fix_sites_cache:
+        rom[o:o + ln] = (bytes([0xCD, tgt & 0xFF, tgt >> 8, n]) + tail + b"\x00" * ln)[:ln]
     b, a = sym["FixMap"]
     o = b * 0x4000 + a - 0x4000
     assert len(fixmap_cache) <= 600

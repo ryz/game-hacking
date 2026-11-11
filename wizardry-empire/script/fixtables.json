@@ -19,5 +19,10 @@
 {"bank": 42, "addr": "0x49b9", "jp": "精神", "en": "Mind"},
 {"bank": 42, "addr": "0x49bd", "jp": "気", "en": "Aura"},
 {"bank": 42, "addr": "0x49c1", "jp": "神聖", "en": "Holy"},
-{"bank": 42, "addr": "0x49c5", "jp": "無", "en": "None"}
+{"bank": 42, "addr": "0x49c5", "jp": "無", "en": "None"},
+{"bank": 38, "addr": "0x7220", "jp": "ヴァリアント", "en": "Valiant"},
+{"bank": 38, "addr": "0x7226", "jp": "アベンジャー", "en": "Avenger"},
+{"bank": 38, "addr": "0x722c", "jp": "ムサシ", "en": "Musashi"},
+{"bank": 38, "addr": "0x7232", "jp": "くのいち", "en": "Kunoichi"},
+{"bank": 38, "addr": "0x7238", "jp": "しょうかんし", "en": "Summoner"}
 ]
