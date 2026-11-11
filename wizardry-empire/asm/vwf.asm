@@ -132,12 +132,48 @@ wRC_epoch   equ $d22a
 wRC_valid   equ $d22b
 wEpoch      equ $d22c          ; +1 whenever slot tiles change (upload, font load, game DMA over a slot)
 ; Name print cache (VWF_PrintZ): the town redraws the party names on every main-loop pass.
-wVer        equ $d610          ; 256 bytes: per-code tile version, +1 on every upload or game DMA over the slot
-                               ; (shadow area of 'a'-'p', not pool)
-wNC         equ $d710          ; NC_N entries: dstLo, dstHi, n cells, hashLo, hashHi, n x (code, version, attr)
-NC_N        equ 6
-NC_MAXC     equ 7
-NC_SIZE     equ 5 + 3 * NC_MAXC
+wVer        equ $da00          ; WRAM bank 6, 256 bytes: per-code tile version, +1 on every upload or game DMA
+                               ; over the slot (bank 6 $DA00-$DFFF: no game writes on the tour routes or in battle)
+wRC_sumC    equ $d59a          ; 2: Fletcher sum of the cached box's codes (as rendered)
+wRC_sumA    equ $d59c          ; 2: ... of its attributes
+wRC_sumB    equ $d59e          ; 2: ... of the same box with every code $20 (cleared by the game)
+wGCCount    equ $d5a0          ; +1 per GC
+wRC_gc      equ $d5a1          ; wGCCount when the box was saved
+RC_SCR      equ $cce0          ; WRAM0 scratch for the box restore (private stack area, idle outside PrivCall)
+RC_SCRW     equ $cd70          ; box width while switched to bank 3
+; Party list cache (39:4931 draws the party rows $D160-$D21F every main-loop pass after the game cleared them)
+PL_ROW0     equ $d160          ; 6 rows x 20 cells
+wPL_codes   equ $dd00          ; WRAM bank 6, 120 bytes: the rows' codes after the last real draw
+wPL_attrs   equ $dd80          ; WRAM bank 6, 120 bytes: their attributes
+wPL_valid   equ $d5a2
+wPL_pend    equ $d5a3          ; a real draw is running: snapshot at its end
+wPL_data    equ $d5a4          ; 2: Fletcher sum of the shown party data
+wPL_sumC    equ $d5a6          ; 2: rows' codes after the draw
+wPL_sumA    equ $d5a8          ; 2: rows' attributes after the draw
+wPL_sumB    equ $d5aa          ; 2: rows' codes before the draw (as the game left them)
+wPL_sumBA   equ $d5ac          ; 2: rows' attributes before the draw
+wPL_epoch   equ $d5ae
+wPL_gc      equ $d5af
+wHIdx       equ $db00          ; WRAM bank 6, 256 bytes: tile hash -> last slot given that hash (HashCur)
+wHIdx2      equ $dc00          ; WRAM bank 6, 256 bytes: the slot before it (Dedupe checks both)
+wNC         equ $d610          ; NC_N entries (shadow area of 'a'-'z', not pool, up to $D7AF): dstLo, dstHi,
+                               ; n cells, hashLo, hashHi, attr, epoch, n x (code, version)
+wNC_clr     equ $d597          ; check pass: a cell was cleared (restore needed)
+wNC_fast    equ $d598          ; check pass: epoch unchanged, skip the version reads
+wNC_ep      equ $d599          ; 2: address of the entry's epoch byte
+NC_N        equ 24
+NC_MAXC     equ 5
+NC_SIZE     equ 7 + 2 * NC_MAXC         ; + epoch (wEpoch when the entry was last verified)
+wN_de       equ $d58c          ; numbers: low byte of the cell after the padding
+wN_dig      equ $d58d          ; low byte of the first digit in HRAM
+wN_cnt      equ $d58e
+wN_cells    equ $d58f
+wN_x        equ $d590
+wN_st       equ $d591          ; 2: field start
+wN_end      equ $d593          ; 2: field end (returned in DE)
+wLowOnly    equ $d595          ; nonzero: prefer low pool codes (VRAM0 in both layouts): numbers in the
+                               ; split layout, so cells the game later overwrites with 8 px text keep attribute bit 3 clear
+wNC_px      equ $d58b          ; start pixel of the print in its first cell (numbers right-aligned in a field)
 wNCNext     equ $d582          ; round-robin replacement index
 wNC_hash    equ $d583          ; 2
 wNC_ent     equ $d585          ; 2: entry's cell triples
@@ -147,7 +183,7 @@ wNC_pass    equ $d58a          ; NCWalk: 0 check, 1 restore, 2 save
 wGame       equ $d200          ; 32 bytes: slots holding game graphics (shadow area of codes $20/$21, not pool)
 wSpell      equ $d280          ; 32 bytes: full English name of the last spell read by 0:24CF (shadow area of
                                ; codes $28/$29, not pool); messages print it with {F8 00 07 D280}
-wMagic      equ $dffe          ; 'V','[' once initialised (bump when the variable layout changes)
+wMagic      equ $dffe          ; 'V','\\' once initialised (bump when the variable layout changes)
 HOME_BANK   equ 7
 
 STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = shadow of the VRAM tile
@@ -204,6 +240,25 @@ Stub_TWInit:
     pop hl
     xor a
     ld [twCol], a
+    ret
+
+Stub_Num:                   ; 0:108B (number printer 0:0FD0, digit store): base '0' into a screen buffer -> VWF
+    ldh a, [$ad]            ; digit base ($30 = 8 px font digits; $F4 = symbol sheet stays)
+    cp $30
+    jr nz, .no
+    ld a, d
+    cp $d0
+    jr c, .no
+    cp $dc
+    jr nc, .no
+    ld c, l                 ; first digit to print at $FF00+C (the digits end at $FFC1)
+    ld a, VWF_BANK
+    ld hl, VWF_Num
+    call FarCall            ; returns DE past the field
+    scf
+    ret
+.no:
+    and a
     ret
     assert @ <= $1c79, "typewriter stub overflow"
 
@@ -370,6 +425,59 @@ Stub_Measure:
     pop de
     ld hl, $c54f
     call Stub_PrintZ
+
+; --- number printer 0:0FD0, digit store loop (0:108B): VWF first; the loop always ends at the end of the
+;     digit buffer ($FFC1), so the count in B and the 'skip $00' check are not needed
+    org 0, $108b
+    call Stub_Num
+    ret c
+.numl:
+    ld a, [hli]
+    ld [de], a
+    inc de
+    ld a, l
+    cp $c2
+    ret z
+    jr .numl
+    ret
+    ds 5, $00
+    assert @ == $109e, "number loop size"
+
+; --- party list (39:4931): skip the redraw when nothing changed (VWF_PartyHit), snapshot after a real draw
+    org $27, $4931
+    call Party_Entry
+    ret c
+    push bc
+    nop
+    org $27, $498a
+    jp Party_End
+    nop
+    nop
+    org $27, $7f00
+Party_Entry:                ; returns carry = skip; C = 0, B kept, HL = $CB85 like the original (its caller
+    push bc                 ; uses B after the call)
+    ld a, VWF_BANK
+    ld hl, VWF_PartyHit
+    call FarCall            ; L = 1: skip
+    ld a, l
+    pop bc
+    ld c, 0
+    ld hl, $cb85
+    rra
+    ret
+Party_End:                  ; the original end (restore SVBK), snapshot, then pop bc / ret at $498F
+    pop af
+    ldh [$9d], a
+    ldh [$70], a
+    ld a, VWF_BANK
+    ld hl, VWF_PartySnap
+    call FarCall
+    jp $498f
+
+; --- $F8 number insert (0:1D66): pad the right-aligned digits with $7F (blank glyph 5 px wide, like a digit)
+;     instead of $20 (3 px), so typewriter number columns line up (battle/maze party lists)
+    org 0, $1d66
+    ld a, $7f
 
 ; --- rst $38: inline text. Followed by db bank (bit 7: destination in HL, else DE), dw text.
     org 0, $0038
@@ -703,7 +811,7 @@ CheckInit:
     cp $56
     jr nz, .init
     ld a, [wMagic + 1]
-    cp $5b
+    cp $5d
     ret z
 .init:
     push hl
@@ -720,18 +828,22 @@ CheckInit:
     ld [wCallerSVBK], a
     ld a, $56
     ld [wMagic], a
-    ld a, $5b
+    ld a, $5d
     ld [wMagic + 1], a
     ld a, 1
     ld [wReset], a          ; shadows are not valid yet
     xor a
     ld [wRC_valid], a       ; redraw cache (shadow area, random at power-on)
     call NCClear
+    xor a
+    ld [wLowOnly], a
+    ld [wPL_valid], a
+    ld [wPL_pend], a
     ld a, MAP_BANK          ; slot owners (bank 6, $d800 + code*2): 0 = no text cell (random at power-on)
     ldh [hSVBK], a
     ldh [$70], a
-    ld hl, $d800
-    ld bc, $0200
+    ld hl, $d800            ; + wVer, wHIdx, wHIdx2 ($DA00-$DCFF)
+    ld bc, $0500
 .zo: xor a
     ld [hli], a
     dec bc
@@ -886,6 +998,9 @@ NextCell:
     ld a, [S_slot]
     or a
     jr z, .nd
+    ld a, [wLowOnly]
+    or a
+    jr nz, .nd
     ld a, [wPanel]
     or a
     call z, Dedupe          ; finished cell with a new slot: share an identical tile if one is on screen
@@ -956,6 +1071,16 @@ Commit:
     jr .have
 .reuse:
     ld [S_slot], a
+    ld a, [wLowOnly]
+    or a
+    jr z, .ro
+    ld a, [S_slot]
+    bit 7, a
+    jr z, .ro
+    xor a                   ; low-only print: the cell's high slot is not usable
+    ld [S_slot], a
+    jr .new
+.ro:
     call SharedDiff         ; content changes: take a new slot (rows copied by scrolling or a shared tile may
                             ; still show the old one; GC frees it once nothing does)
     jr z, .rk
@@ -1267,6 +1392,7 @@ AllocReset:
     dec b
     jr nz, .cn
     ld [wRC_valid], a
+    ld [wPL_valid], a
     ld hl, wEpoch
     inc [hl]
     jp NCClear
@@ -1299,8 +1425,24 @@ AllocScan:
     ld a, [hl]
     ret
 
-; carry set + A = code on success
+; carry set + A = code on success. wLowOnly: low codes preferred; any free slot if none is free (the inn picture
+; fills the low codes; the last-resort ring would overwrite visible tiles)
 TryAlloc:
+    call TryAlloc1
+    ret c
+    ld a, [wLowOnly]
+    or a
+    ret z
+    xor a
+    ld [wLowOnly], a
+    call TryAlloc1
+    push af
+    ld a, 1
+    ld [wLowOnly], a
+    pop af
+    ret
+
+TryAlloc1:
     ld a, [wNext]
     cp POOL_SIZE
     jr c, .ok
@@ -1321,6 +1463,14 @@ TryAlloc:
 .w: ld [wNext], a
     ld a, [hl]
     ld [wTmp2], a
+    ld a, [wLowOnly]
+    or a
+    jr z, .any
+    ld a, [wTmp2]
+    bit 7, a
+    jr nz, .used
+.any:
+    ld a, [wTmp2]
     call BitAddr            ; hl = byte, b = mask
     ld a, [hl]
     and b
@@ -2131,6 +2281,19 @@ HashCur:
     ld hl, wHash
     add hl, de
     ld [hl], b
+    ; hash index: wHIdx[hash] = slot, the previous holder moves to wHIdx2[hash]
+    ld l, b
+    ld h, high(wHIdx)
+    call Read6
+    ld c, a
+    ld a, [S_slot]
+    cp c
+    jr z, .hx
+    call Write6
+    inc h                   ; wHIdx2
+    ld a, c
+    call Write6
+.hx:
     pop hl
     pop de
     pop bc
@@ -2153,18 +2316,23 @@ Dedupe:
     ld [wDedH], a
     xor a
     ld [wDedI], a
-.l: ld a, [wDedI]
-    cp POOL_SIZE
+.l: ld a, [wDedI]           ; candidates: wHIdx[hash], then wHIdx2[hash] (was: a scan of the whole pool)
+    cp 2
     ret nc
     inc a
     ld [wDedI], a
-    dec a
-    ld e, a
-    ld d, 0
-    ld hl, Pool
-    add hl, de
-    ld a, [hl]              ; candidate code
+    ld b, a
+    ld a, [wDedH]
+    ld l, a
+    ld h, high(wHIdx)
+    dec b
+    jr z, .i1
+    inc h
+.i1: call Read6
     ld c, a
+    or a
+    jr z, .l
+    ld d, 0
     ld a, [wDedS]
     cp c
     jr z, .l
@@ -2260,6 +2428,8 @@ Dedupe:
 ; filled the pool in the maze/town: every glyph ran both GC passes (slowdown) and the dry pass overwrote
 ; wall tiles (text in the walls, garbled Camp numbers).
 GC:
+    ld hl, wGCCount
+    inc [hl]
     call GCScan
     ld hl, wGame
     ld de, wBits
@@ -2692,18 +2862,134 @@ RectCacheHit:
     ld hl, wRC_epoch
     cp [hl]
     jr nz, .miss
-    xor a
-    ld [wTmp3], a           ; pass 0: check
-    call RectWalk
-    jr nc, .miss
-    ld a, 1
-    ld [wTmp3], a           ; pass 1: restore
-    call RectWalk
+    ld b, 4                 ; attributes unchanged?
+    call RectSum
+    ld hl, wRC_sumA
+    call Cmp16
+    jr nz, .miss
+    ld b, 0
+    call RectSum            ; codes: as rendered -> nothing to do
+    ld hl, wRC_sumC
+    call Cmp16
+    jr z, .hit
+    ld hl, wRC_sumB         ; every code $20 (the town clears the box before each redraw) -> restore
+    call Cmp16
+    jr nz, .miss
+    call RectRestore
+.hit:
     scf
     ret
 .miss:
     and a
     ret
+
+; Z if DE == [HL] (16 bit, little endian)
+Cmp16:
+    ld a, [hli]
+    cp e
+    ret nz
+    ld a, [hl]
+    cp d
+    ret
+
+; DE = Fletcher sum (d += byte, e += d) over the cached box in bank 3; B = 0: codes, 4: attributes
+RectSum:
+    ld a, [wRC_w]
+    ld [RC_SCRW], a
+    ld a, [wRC_dstLo]
+    ld l, a
+    ld a, [wRC_dstHi]
+    add b
+    ld h, a
+    ld a, [wRC_h]
+    ld b, a
+; HL = first cell (bank 3), B = rows, [RC_SCRW] = width -> DE = Fletcher sum
+SumRegion:
+    ld de, 0
+    ld a, 3
+    ldh [hSVBK], a
+    ldh [$70], a
+.r: ld a, [RC_SCRW]
+    ld c, a
+.c: ld a, [hli]
+    add d
+    ld d, a
+    add e
+    ld e, a
+    dec c
+    jr nz, .c
+    ld a, [RC_SCRW]
+    cpl
+    inc a
+    add 32
+    add l
+    ld l, a
+    jr nc, .n
+    inc h
+.n: dec b
+    jr nz, .r
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
+
+; write the saved codes back into the cached box (bank 3) through the WRAM0 scratch
+RectRestore:
+    ld a, [wRC_w]
+    ld [RC_SCRW], a
+    ld c, a
+    ld a, [wRC_h]
+    ld b, a
+    xor a
+.m: add c
+    dec b
+    jr nz, .m
+    ld c, a                 ; w*h <= RC_MAX
+    ld hl, wRC_cells
+    ld de, RC_SCR
+.cp: ld a, [hli]
+    ld [de], a
+    inc de
+    dec c
+    jr nz, .cp
+    ld a, [wRC_dstLo]
+    ld l, a
+    ld a, [wRC_dstHi]
+    ld h, a
+    ld a, [wRC_h]
+    ld b, a
+    ld de, RC_SCR
+    ld a, 3
+    ldh [hSVBK], a
+    ldh [$70], a
+.r: ld a, [RC_SCRW]
+    ld c, a
+.c: ld a, [de]
+    inc de
+    ld [hli], a
+    dec c
+    jr nz, .c
+    ld a, [RC_SCRW]
+    cpl
+    inc a
+    add 32
+    add l
+    ld l, a
+    jr nc, .n
+    inc h
+.n: dec b
+    jr nz, .r
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ; a GC since the save may have freed the box's slots while it was cleared: mark them in use again
+    ld a, [wGCCount]
+    ld hl, wRC_gc
+    cp [hl]
+    ret z
+    ld a, 1
+    ld [wTmp3], a           ; RectWalk pass 1 also marks
+    jp RectWalk
 
 RectCacheSave:
     ld a, [wRC_dstHi]
@@ -2730,6 +3016,41 @@ RectCacheSave:
     ld a, 2
     ld [wTmp3], a           ; pass 2: save
     call RectWalk
+    ld b, 0
+    call RectSum
+    ld a, e
+    ld [wRC_sumC], a
+    ld a, d
+    ld [wRC_sumC + 1], a
+    ld b, 4
+    call RectSum
+    ld a, e
+    ld [wRC_sumA], a
+    ld a, d
+    ld [wRC_sumA + 1], a
+    ld a, [wRC_w]           ; sum of the same box with every code $20
+    ld c, a
+    ld a, [wRC_h]
+    ld b, a
+    xor a
+.m2: add c
+    dec b
+    jr nz, .m2
+    ld b, a
+    ld de, 0
+.bs: ld a, $20
+    add d
+    ld d, a
+    add e
+    ld e, a
+    dec b
+    jr nz, .bs
+    ld a, e
+    ld [wRC_sumB], a
+    ld a, d
+    ld [wRC_sumB + 1], a
+    ld a, [wGCCount]
+    ld [wRC_gc], a
     ld a, [wEpoch]
     ld [wRC_epoch], a
     ld a, 1
@@ -2784,9 +3105,18 @@ RectWalk:
     pop hl
     and a
     ret
-.rest:
-    ld a, [de]
-    call Write3
+.rest:                      ; (only after a GC since the save: the codes are already in the cells) mark in use
+    push bc
+    push de
+    push hl
+    call CellCode
+    call BitAddr
+    ld a, [hl]
+    or b
+    ld [hl], a
+    pop hl
+    pop de
+    pop bc
     jr .next
 .save:
     call Read3
@@ -3282,6 +3612,8 @@ VWF_PrintZ:
     or a
     jr nz, .c
     push hl
+    xor a
+    ld [wNC_px], a
     push de
     call NameCacheHit       ; same name at the same cells, tiles unchanged: restore, no render
     pop de                  ; (NameCacheHit uses DE; PrintBuf needs the destination)
@@ -3294,25 +3626,510 @@ VWF_PrintZ:
     pop af
     jp SetSVBK
 
+; ---------------------------------------------------------------------
+; Numbers (0:0FD0 via Stub_Num): DE = next cell after the padding the game skipped, C = low byte of the first
+; digit ($FF00+C .. $FFC1), [$FFAC] = digit count or (bit 7) the field width, [$FFAE/F] = field start.
+; Right-aligned in the field when the game padded it or gave it a fixed width; else left-aligned.
+VWF_Num:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld a, e
+    ld [wN_de], a
+    ld a, c
+    ld [wN_dig], a
+    ld hl, NumBody
+    call PrivCall
+    ld a, [wN_end]
+    ld e, a
+    ld a, [wN_end + 1]
+    ld d, a
+    pop af
+    jp SetSVBK
+
+NumBody:
+    ld a, [wN_dig]
+    ld c, a
+    ld a, $c2
+    sub c
+    ld [wN_cnt], a
+    ld b, a
+    ld de, wNameBuf
+    ld l, c
+    ld h, $ff
+.cp: ld a, [hli]
+    ld [de], a
+    inc de
+    dec b
+    jr nz, .cp
+    xor a
+    ld [de], a
+    ldh a, [$ae]
+    ld [wN_st], a
+    ldh a, [$af]
+    ld [wN_st + 1], a
+    ldh a, [$ac]
+    bit 7, a
+    jr z, .nb
+    and $7f
+    ld [wN_cells], a
+    jr .right
+.nb: ld a, [wN_st]
+    ld b, a
+    ld a, [wN_de]
+    sub b                   ; padding cells the game skipped
+    jr z, .left
+    ld b, a
+    ld a, [wN_cnt]
+    add b
+    ld [wN_cells], a
+    jr .right
+.left:
+    ld a, [wN_cnt]
+    ld [wN_cells], a
+    xor a
+    jr .x
+.right:
+    call NumWidth
+    ld b, a
+    ld a, [wN_cells]
+    add a
+    add a
+    add a
+    sub b
+    jr nc, .x
+    xor a
+.x: ld [wN_x], a
+    ; end = start + cells
+    ld a, [wN_st]
+    ld l, a
+    ld a, [wN_st + 1]
+    ld h, a
+    ld a, [wN_cells]
+    ld e, a
+    ld d, 0
+    add hl, de
+    ld a, l
+    ld [wN_end], a
+    ld a, h
+    ld [wN_end + 1], a
+    ; first cell = start + x/8, start pixel x&7
+    ld a, [wN_st]
+    ld l, a
+    ld a, [wN_st + 1]
+    ld h, a
+    ld a, [wN_x]
+    ld c, a
+    srl a
+    srl a
+    srl a
+    ld e, a
+    ld d, 0
+    add hl, de
+    ld a, c
+    and 7
+    ld [wNC_px], a
+    ld d, h
+    ld e, l
+    push de
+    call NameCacheHit       ; unchanged since the last print: nothing to do (the padding cells stay blank)
+    pop de
+    ret c
+    ; blank the field's cells (codes only), then render
+    ld a, [wN_st]
+    ld l, a
+    ld a, [wN_st + 1]
+    ld h, a
+    ld a, [wN_cells]
+    ld b, a
+.bl: ld a, $20
+    call Write3
+    inc hl
+    dec b
+    jr nz, .bl
+    push de
+    ld a, [wLayout]
+    ld [wLowOnly], a
+    call NumPrint
+    xor a
+    ld [wLowOnly], a
+    pop de
+    jp NameCacheSave
+
+; A = pixel width of wNameBuf
+NumWidth:
+    ld hl, wNameBuf
+    ld c, 0
+.w: ld a, [hli]
+    or a
+    jr z, .e
+    push hl
+    ld e, a
+    ld d, 0
+    ld hl, FontAdv
+    add hl, de
+    ld a, c
+    add [hl]
+    ld c, a
+    pop hl
+    jr .w
+.e: ld a, c
+    ret
+
+; print wNameBuf at cell DE starting at pixel wNC_px
+NumPrint:
+    ld h, d
+    ld l, e
+    push hl
+    ld bc, $0400
+    add hl, bc
+    call Read3
+    pop hl
+    call Begin
+    xor a
+    ld [S_imm], a
+    ld a, [wNC_px]
+    ld [S_px], a
+    ld hl, wNameBuf
+.l: ld a, [hli]
+    or a
+    jr z, .e
+    push hl
+    call Glyph
+    pop hl
+    jr .l
+.e: call CommitIfInk
+    ld a, [S_slot]
+    or a
+    jr nz, .adv
+    ld a, [S_px]
+    or a
+    ret z
+.adv:
+    jp NextCell
+
+; ---------------------------------------------------------------------
+; Party list (39:4931 via 39:7F00). The game clears the party rows and redraws all of them on every main-loop
+; pass (6 names + 12 numbers through the VWF). If the shown party data is unchanged, no tile changed since
+; (wEpoch), no font load is pending and the rows are either still as drawn or exactly as the game left them
+; before the last real draw, the drawn rows are restored and the routine is skipped (B = 1).
+VWF_PartyHit:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    call PLHit
+    ld l, 0
+    jr nc, .r
+    inc l
+.r: pop af
+    jp SetSVBK
+
+VWF_PartySnap:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call PLSnap
+    pop af
+    jp SetSVBK
+
+; DE = Fletcher sum over the party members' name, status, HP and marker bytes (+ count)
+PLData:
+    ld a, [$cb85]
+    ld b, a
+    ld d, a
+    ld e, a
+    or a
+    ret z
+    ld hl, $c880
+.m: push hl
+    ld c, 8
+    call .add               ; name
+    pop hl
+    push hl
+    ld a, l
+    add $0c
+    ld l, a
+    ld c, 1
+    call .add               ; status
+    pop hl
+    push hl
+    ld a, l
+    add $62
+    ld l, a
+    ld c, 4
+    call .add               ; HP, max HP
+    pop hl
+    push hl
+    ld a, l
+    add $6a
+    ld l, a
+    ld c, 1
+    call .add
+    pop hl
+    ld a, l
+    add $80
+    ld l, a
+    jr nc, .nc
+    inc h
+.nc: dec b
+    jr nz, .m
+    ret
+.add:
+    ld a, [hli]
+    add d
+    ld d, a
+    add e
+    ld e, a
+    dec c
+    jr nz, .add
+    ret
+
+; DE = sum of the party rows' codes (B = 0) or attributes (B = 4)
+PLSum:
+    ld a, 20
+    ld [RC_SCRW], a
+    ld hl, PL_ROW0
+    ld a, h
+    add b
+    ld h, a
+    ld b, 6
+    jp SumRegion
+
+; carry = skip the draw (rows restored if needed); else note the rows as the game left them for the snapshot
+PLHit:
+    ld a, [wReset]
+    or a
+    jr nz, .miss
+    ld a, [wPL_valid]
+    or a
+    jr z, .miss
+    ld a, [wEpoch]
+    ld hl, wPL_epoch
+    cp [hl]
+    jr nz, .miss
+    call PLData
+    ld hl, wPL_data
+    call Cmp16
+    jr nz, .miss
+    ld b, 4
+    call PLSum
+    ld hl, wPL_sumA
+    call Cmp16
+    jr z, .attrsDrawn
+    ld hl, wPL_sumBA
+    call Cmp16
+    jr nz, .miss
+.attrsDrawn:
+    ld b, 0
+    call PLSum
+    ld hl, wPL_sumC
+    call Cmp16
+    jr z, .hit              ; still as drawn
+    ld hl, wPL_sumB
+    call Cmp16
+    jr nz, .miss
+    call PLRestore
+.hit:
+    scf
+    ret
+.miss:
+    xor a
+    ld [wPL_valid], a
+    ld b, 0
+    call PLSum
+    ld a, e
+    ld [wPL_sumB], a
+    ld a, d
+    ld [wPL_sumB + 1], a
+    ld b, 4
+    call PLSum
+    ld a, e
+    ld [wPL_sumBA], a
+    ld a, d
+    ld [wPL_sumBA + 1], a
+    ld a, 1
+    ld [wPL_pend], a
+    and a
+    ret
+
+; after a real draw: snapshot the rows (codes, attributes) into bank 6 and remember the sums
+PLSnap:
+    ld a, [wPL_pend]
+    or a
+    ret z
+    xor a
+    ld [wPL_pend], a
+    ld hl, PL_ROW0
+    ld de, wPL_codes
+    call .copy
+    ld hl, PL_ROW0 + $400
+    ld de, wPL_attrs
+    call .copy
+    ld b, 0
+    call PLSum
+    ld a, e
+    ld [wPL_sumC], a
+    ld a, d
+    ld [wPL_sumC + 1], a
+    ld b, 4
+    call PLSum
+    ld a, e
+    ld [wPL_sumA], a
+    ld a, d
+    ld [wPL_sumA + 1], a
+    call PLData
+    ld a, e
+    ld [wPL_data], a
+    ld a, d
+    ld [wPL_data + 1], a
+    ld a, [wGCCount]
+    ld [wPL_gc], a
+    ld a, [wEpoch]
+    ld [wPL_epoch], a
+    ld a, 1
+    ld [wPL_valid], a
+    ret
+.copy:                      ; 6 rows x 20 cells from HL (bank 3) to DE (bank 6), through the WRAM0 scratch
+    push de
+    ld de, RC_SCR
+    ld b, 6
+    ld a, 3
+    ldh [hSVBK], a
+    ldh [$70], a
+.r: ld c, 20
+.c: ld a, [hli]
+    ld [de], a
+    inc de
+    dec c
+    jr nz, .c
+    ld a, l
+    add 12
+    ld l, a
+    jr nc, .n
+    inc h
+.n: dec b
+    jr nz, .r
+    pop de
+    ld a, MAP_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld hl, RC_SCR
+    ld c, 120
+.w: ld a, [hli]
+    ld [de], a
+    inc de
+    dec c
+    jr nz, .w
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
+
+; write the snapshot back (codes and attributes) and, after a GC since the snapshot, mark the slots in use
+PLRestore:
+    ld hl, wPL_codes
+    ld de, PL_ROW0
+    call .put
+    ld hl, wPL_attrs
+    ld de, PL_ROW0 + $400
+    call .put
+    ld a, [wGCCount]
+    ld hl, wPL_gc
+    cp [hl]
+    ret z
+    ld [hl], a
+    ld hl, PL_ROW0
+    ld b, 6
+.mr: ld c, 20
+.mc: push bc
+    push hl
+    call CellCode
+    call BitAddr
+    ld a, [hl]
+    or b
+    ld [hl], a
+    pop hl
+    pop bc
+    inc hl
+    dec c
+    jr nz, .mc
+    ld a, l
+    add 12
+    ld l, a
+    jr nc, .mn
+    inc h
+.mn: dec b
+    jr nz, .mr
+    ret
+.put:                       ; 120 bytes from HL (bank 6) to the rows at DE (bank 3)
+    push de
+    ld de, RC_SCR
+    ld c, 120
+    ld a, MAP_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+.g: ld a, [hli]
+    ld [de], a
+    inc de
+    dec c
+    jr nz, .g
+    pop hl
+    ld de, RC_SCR
+    ld b, 6
+    ld a, 3
+    ldh [hSVBK], a
+    ldh [$70], a
+.r: ld c, 20
+.c: ld a, [de]
+    inc de
+    ld [hli], a
+    dec c
+    jr nz, .c
+    ld a, l
+    add 12
+    ld l, a
+    jr nc, .n
+    inc h
+.n: dec b
+    jr nz, .r
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
+
 ; A = code: its tile changed (wVer[code] += 1). Keeps all registers.
 VerBump:
     push af
     push hl
-    add low(wVer)
     ld l, a
-    ld a, high(wVer)
-    adc 0
-    ld h, a
-    inc [hl]
+    ld h, high(wVer)
+    call Read6
+    inc a
+    call Write6
     pop hl
     pop af
     ret
 
-NCClear:
-    ld hl, wNC
-    ld b, NC_N * NC_SIZE
-    xor a
-.z: ld [hli], a
+NCClear:                    ; n = 0 marks an entry unused
+    ld hl, wNC + 2
+    ld b, NC_N
+    ld de, NC_SIZE
+.z: ld [hl], 0
+    add hl, de
     dec b
     jr nz, .z
     ret
@@ -3333,7 +4150,8 @@ NameHash:
     jr nc, .l
     inc d
     jr .l
-.e: ld a, e
+.e: ld a, [wNC_px]
+    add e
     ld [wNC_hash], a
     ld a, d
     ld [wNC_hash + 1], a
@@ -3373,6 +4191,20 @@ NameCacheHit:
     cp [hl]
     jr nz, .nx
     inc hl
+    ld a, [hli]
+    ld [wTmp1], a           ; the entry's attribute
+    ld a, l
+    ld [wNC_ep], a
+    ld a, h
+    ld [wNC_ep + 1], a
+    ld a, [wEpoch]
+    cp [hl]
+    ld a, 0
+    jr nz, .slow
+    inc a                   ; no upload anywhere since the last check: versions cannot have changed
+.slow:
+    ld [wNC_fast], a
+    inc hl
     pop de
     ld a, l
     ld [wNC_ent], a
@@ -3380,11 +4212,22 @@ NameCacheHit:
     ld [wNC_ent + 1], a
     xor a
     ld [wNC_pass], a
+    ld [wNC_clr], a
     call NCWalk
     jr nc, .miss
+    ld a, [wNC_ep]          ; verified: remember the epoch
+    ld l, a
+    ld a, [wNC_ep + 1]
+    ld h, a
+    ld a, [wEpoch]
+    ld [hl], a
+    ld a, [wNC_clr]
+    or a
+    jr z, .done             ; nothing cleared: the cells already show it
     ld a, 1
     ld [wNC_pass], a
     call NCWalk
+.done:
     scf
     ret
 .nx: pop hl
@@ -3399,8 +4242,10 @@ NameCacheHit:
 ; after a render: store the cells from wNC_cell to the end cell (S_cellLo) in the entry for this cell (or the
 ; next round-robin entry)
 NameCacheSave:
-    ld hl, wNameBuf         ; cells = ceil(width / 8): the print starts at pixel 0 of the destination cell
-    ld bc, 0
+    ld hl, wNameBuf         ; cells = ceil((start px + width) / 8)
+    ld a, [wNC_px]
+    ld c, a
+    ld b, 0
 .w: ld a, [hli]
     or a
     jr z, .we
@@ -3471,6 +4316,17 @@ NameCacheSave:
     ld [hli], a
     ld a, [wNC_hash + 1]
     ld [hli], a
+    push hl
+    ld a, [wNC_cell]
+    ld l, a
+    ld a, [wNC_cell + 1]
+    add 4
+    ld h, a
+    call Read3
+    pop hl
+    ld [hli], a             ; attribute of the first cell
+    ld a, [wEpoch]
+    ld [hli], a
     ld a, l
     ld [wNC_ent], a
     ld a, h
@@ -3479,7 +4335,30 @@ NameCacheSave:
     ld [wNC_pass], a
     jp NCWalk
 
-; walk the wNC_n cells from wNC_cell with the entry triples at wNC_ent (mode wNC_pass)
+; HL = cell (bank 3) -> A = slot code (split layout: VRAM1 cells are codes $80+), B = attribute. Keeps HL, C, DE.
+CellCode:
+    push hl
+    ld a, h
+    add 4
+    ld h, a
+    call Read3
+    pop hl
+    ld b, a
+    call Read3
+    push af
+    ld a, [wLayout]
+    or a
+    jr z, .f
+    bit 3, b
+    jr z, .f
+    pop af
+    or $80
+    ret
+.f: pop af
+    ret
+
+; walk the wNC_n cells from wNC_cell with the entry pairs (slot code, version) at wNC_ent (mode wNC_pass);
+; wTmp1 = entry attribute (bank bit ignored)
 NCWalk:
     ld a, [wNC_ent]
     ld e, a
@@ -3495,48 +4374,58 @@ NCWalk:
     cp 1
     jr z, .rest
     jr nc, .save
-    ; check: attribute
+    ; check: attribute (without the VRAM bank bit)
+    call CellCode
+    push af
+    ld a, b
+    and $f7
+    ld b, a
+    ld a, [wTmp1]
+    and $f7
+    cp b
+    jr nz, .bad1
+    pop af
+    ; code: saved, or a cleared cell (tile $20)
+    ld b, a
+    ld a, [de]
+    cp b
+    jr z, .cv
+    call Read3
+    cp $20
+    jr nz, .bad
+    ld a, 1
+    ld [wNC_clr], a
+.cv: ld a, [wNC_fast]
+    or a
+    jr nz, .next
+    ld a, [de]              ; version unchanged
+    push hl
+    ld l, a
+    ld h, high(wVer)
+    call Read6
+    pop hl
+    ld b, a
+    inc de
+    ld a, [de]
+    dec de
+    cp b
+    jr nz, .bad
+    jr .next
+.rest:
+    push bc
+    ld a, [de]
+    call SlotTile           ; a = tile, c = bank bit
+    call Write3
     push hl
     ld a, h
     add 4
     ld h, a
     call Read3
-    pop hl
-    ld b, a
-    inc de
-    inc de
-    ld a, [de]
-    dec de
-    dec de
-    cp b
-    jr nz, .bad
-    ; code: saved or $20
-    call Read3
-    ld b, a
-    ld a, [de]
-    cp b
-    jr z, .cv
-    ld a, b
-    cp $20
-    jr nz, .bad
-.cv: ld a, [de]             ; version unchanged
-    push hl
-    add low(wVer)
-    ld l, a
-    ld a, high(wVer)
-    adc 0
-    ld h, a
-    inc de
-    ld a, [de]
-    dec de
-    cp [hl]
-    pop hl
-    jr nz, .bad
-    jr .next
-.rest:
-    ld a, [de]
+    and $f7
+    or c
     call Write3
-    push bc
+    pop hl
+    ld a, [de]
     push hl
     call BitAddr            ; in use again before the next GC sees the cell
     ld a, [hl]
@@ -3546,30 +4435,17 @@ NCWalk:
     pop bc
     jr .next
 .save:
-    call Read3
+    call CellCode
     ld [de], a
     push hl
-    add low(wVer)
     ld l, a
-    ld a, high(wVer)
-    adc 0
-    ld h, a
-    ld a, [hl]
-    inc de
-    ld [de], a
-    pop hl
-    push hl
-    ld a, h
-    add 4
-    ld h, a
-    call Read3
+    ld h, high(wVer)
+    call Read6
     pop hl
     inc de
     ld [de], a
-    dec de
     dec de
 .next:
-    inc de
     inc de
     inc de
     inc hl
@@ -3577,6 +4453,8 @@ NCWalk:
     jr nz, .k
     scf
     ret
+.bad1:
+    pop af
 .bad:
     and a
     ret
