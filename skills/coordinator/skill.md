@@ -32,8 +32,9 @@ self-contained. Read `skills/skill-index.md` to pick the skill; read its `feedba
 - Speed: compare the main-loop rate with the Japanese ROM (count-only breakpoint on the frame wait `0:07C5`,
   loops per 120 idle frames; the instruction counter is saturated because the game busy-waits) on town, maze,
   Camp and battle after VWF changes. A screen the game redraws every pass must not re-render.
-- Fonts: words go through the VWF (small font); the 8 px font only for numbers and grid layouts
-  (`glossary.md` Rulings, owner's rule 2026-11-11). Prefer hooking a printer over abbreviating to a fixed field.
+- Fonts: as much as possible in the VWF (small font), numbers included; the 8 px font only where it is a
+  stylistic choice, listed in docs/status.md (`glossary.md` Rulings, owner's rule 2026-11-11). Prefer hooking a
+  printer over abbreviating to a fixed field.
 
 ## Upkeep
 - Append to `<project>/docs/progress-log.md` at the end of every session and whenever a test ROM is sent
