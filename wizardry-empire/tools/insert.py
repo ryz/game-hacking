@@ -125,22 +125,40 @@ def check_msg_width(e, maxpx):
             raise ValueError("%s:%s line %r is %d px > %d" % (e["bank"], e["addr"], line, text.width(line), maxpx))
 
 
+OPERANDS = {0xF3: 3, 0xF4: 2, 0xF8: 4, 0xF7: 1, 0xF9: 1, 0xF2: 3}
+
+
+def msg_terminator(rom, o):
+    """Offset of the $FF/$FC that ends the message starting at o (control-code operands skipped)."""
+    i = o
+    while True:
+        c = rom[i]
+        if c in (0xFF, 0xFC):
+            return i
+        i += 1 + OPERANDS.get(c, 0)
+
+
 def insert_msgs(rom, space, entries):
+    """Each original message start becomes $F2 bank lo hi -> English. The English ends with
+    $F2 back to the original terminator ($FF or $FC), so the game itself ends/pauses the message
+    in the original text bank ($C1C1) - required for $FC-chained segments (battle text, bank 49)."""
     n = 0
     for e in entries:
         if not e.get("en"):
             continue
-        o = rom_off(e["bank"], int(e["addr"], 16))
+        bank, o = e["bank"], rom_off(e["bank"], int(e["addr"], 16))
         check_msg_width(e, e.get("maxpx", 144))
-        olen = rom.index(b"\xff", o) - o + 1
-        if olen < 4 or e.get("inplace"):
-            data = encode_msg(e["en"])
-            if len(data) > olen:
-                raise ValueError("%s:%s in-place text longer than the original (%d > %d)" % (e["bank"], e["addr"], len(data), olen))
+        t = msg_terminator(rom, o)
+        body = encode_msg(e["en"])[:-1]          # without the $FF
+        if t - o < 4 or e.get("inplace"):
+            data = body + bytes([rom[t]])
+            if len(data) > t - o + 1:
+                raise ValueError("%s:%s in-place text longer than the original (%d > %d)" % (bank, e["addr"], len(data), t - o + 1))
             rom[o:o + len(data)] = data
             n += 1
             continue
-        b, a = space.put(encode_msg(e["en"]))
+        ta = (t - bank * 0x4000 + 0x4000) if bank else t
+        b, a = space.put(body + bytes([0xF2, bank, ta & 0xFF, ta >> 8]))
         rom[o:o + 4] = bytes([0xF2, b, a & 0xFF, a >> 8])
         n += 1
     return n
