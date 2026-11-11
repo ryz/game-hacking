@@ -33,4 +33,16 @@ The typewriter reports to the game the number of cells used (`$C1C5`), so the ga
 keeps working; it resyncs whenever the game moves the cursor or the buffer base changes.
 
 ## RAM used
-`$CF00-$CFFF` (WRAM0, above the stack, unused by the game); WRAM bank 7 (never touched by the game in any tested state).
+- WRAM bank 7: shadows `$D000 + code*16` (`$D000-$DEFF`), variables `$DF00-$DFFF` (cleared once on first use,
+  signature `VW` at `$DFFE`). Bank 7 is the engine's home bank: every entry point saves the caller's SVBK,
+  switches to 7 and restores it. Buffers (bank 3) and the cell map (bank 6) are reached only through
+  `Read3/Write3/Read6/Write6`; source strings through `FetchSrc` (caller's WRAM bank).
+- WRAM bank 6: cell map `$D000-$D7FF`, slot owners `$D800 + code*2`.
+- No WRAM0: the first version used `$CF00-$CFFF`, which are the game's task stacks (`docs/re/tasks.md`); that
+  caused the battle hang. Bank-0 stubs pass everything in registers or on the stack: the VWF reads caller
+  HL/BC/argument pointer from fixed stack offsets (see the comment above `Stub_Inline`).
+
+## Message redirect
+Original message start -> `$F2 bank lo hi` (English). The English ends with `$F2 <original bank> <terminator>`
+pointing back at the original `$FF`/`$FC`, so the game ends or pauses the message in the original text bank.
+Without this, `$C1C1` stayed on the English bank and `$FC`-chained battle segments read the wrong bank.
