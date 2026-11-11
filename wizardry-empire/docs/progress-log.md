@@ -11,6 +11,14 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - town speed, maze walls, party-list status
+- ROM: `a98cef8` sent.
+- Changed: rect redraw cache (town idle 360 loops/120f, JP 360, was 72); graphics reservations pruned by GC;
+  dry GC pass keeps game graphics; party-list status words (39:49FE).
+- Checked: tests, tour (8/8), town cursor moves, 20x "It is locked." at a door (walls clean), one full battle
+  round, Camp with every status value.
+- Open: the progressive slowdown the owner saw was not reproduced; needs a long playtest.
+
 ## 2026-11-11 - Notice Board
 - ROM: `9a5f3a8` sent.
 - Changed: Notice Board scroll in English (VWF_Notice, script/notice.json); see docs/re/vwf.md.
