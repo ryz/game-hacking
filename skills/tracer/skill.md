@@ -3,7 +3,7 @@ skill: tracer
 project: wizardry-empire
 summary: Answer one reverse-engineering question about where/how text is printed.
 access: write (notes file)
-updated: 2026-11-12
+updated: 2026-11-11
 ---
 
 # Tracer - Wizardry Empire (GBC): reverse-engineering questions
@@ -38,8 +38,9 @@ Do not re-derive what they already state.
 - `gbdis.py BANK 0xADDR`: bank decimal, address with `0x` (a bare number is read as decimal).
 - A value you write to RAM to reach a state (status, class, flags): read how the printer turns it into a table
   index first; table order is not the encoding.
-- Window buffer (`$D800`, attributes `$DC00`): the tile bank depends on attribute bit 3, so decode cells with
-  their attributes (tbl.dec/census without attributes read some rects wrongly).
+- Decoding a buffer: read LCDC first (`$FF40` bit 4 = tile-data base; the museum monster room uses unsigned
+  addressing with the font in VRAM1 `$8000`) and the attributes (bit 3 = VRAM bank; tbl.dec/census without
+  attributes read some rects wrongly). `$D800` is the window buffer on most screens but some use it as scratch.
 - Before proposing a hook, diff the English build against the original at the site (bytes and the buffer it
   writes): an existing stub or a stray patch there changes the answer.
 - Garbled field in the English build: dump the EN `$D000` buffer for it first. Header bytes (`[bank][lo][hi]`)

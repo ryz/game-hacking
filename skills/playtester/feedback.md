@@ -34,4 +34,3 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 - Proposed rule change: correct maze controls, compare with JP before reporting, check RAM for wrong values.
 - Status: promoted 2026-11-11 (factual control fix + both rules; explore.py change open)
 
-_No runs yet._

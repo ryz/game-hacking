@@ -17,11 +17,13 @@ Run it after a big change (asm refactor, new tool, new skill) or every few sessi
 ## Checks (per project, currently `wizardry-empire/`)
 1. **References:** every path, tool, script, symbol and command named in `AGENTS.md`, `skills/**/skill.md`,
    `skills/skill-index.md`, `wizardry-empire/README.md` and `wizardry-empire/docs/**` exists
-   (`ls`, `grep`, `python3 tools/<x>.py --help`). Asm symbols: assemble once with
+   (`ls`, `grep`, the tool's module docstring; do not run `build.py`/`tour.py` or other tools with
+   `--help`: some ignore it and run). Paths under `work/` named in skills are untracked: flag them. Asm symbols: assemble once with
    `python3 -c "import sys;sys.path.insert(0,'wizardry-empire/tools');import asm;print(sorted(asm.assemble('wizardry-empire/asm/main.asm').sym))"`.
 2. **Docs vs code:** claims in `docs/re/vwf.md`, `docs/re/text.md`, `docs/re/tasks.md` and the skills about
    RAM, banks, hook addresses and data layouts still match `asm/vwf.asm` and `tools/insert.py`
-   (e.g. RAM ranges, stub areas, control codes). Flag any contradiction with both quotes.
+   (e.g. RAM ranges, stub areas, control codes). Flag any contradiction with both quotes. When the `vwf.asm`
+   variables or `CheckInit` changed since the last run, confirm the `wMagic` signature was bumped.
 3. **Skills:** every `skills/<name>/` has `skill.md` + `feedback.md` with frontmatter, an index block with all six
    fields, and (if it runs as a subagent) a `.claude/agents/<name>.md` wrapper pointing at it. Feedback
    entries `open` for more than two sessions, and lessons repeated in two or more entries but not promoted.

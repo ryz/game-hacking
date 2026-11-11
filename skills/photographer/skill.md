@@ -34,7 +34,8 @@ screenshot sets (owner's rule, 2026-11-11); you edit nothing else in the repo.
   party), keys (`a b start select up down left right`, `KEY*n`, `KEY+KEY`), `wN` (wait N frames).
 - Exploring a screen first: `python3 tools/emu.py --out work/shots/SET/explore/<name> --seq "..." [--state S] --save S`
   gives a screenshot per input; use it to find the inputs, then write the shot line.
-- Random encounters: `work/triage/battle1/explore.py` (rom state outdir maxsteps seed) walks until a battle
+- Random encounters: `tools/explore.py` (rom state outdir maxsteps seed) walks until a battle or another non-maze screen
+  (stairs prompt, door message: look at `hit_NNN.png`)
   and saves `hit.state`. Shots that start from a state cannot go in `shots.txt` (it plays from power-on):
   capture them with `emu.py --state` (native PNG = its per-token screenshots) and list them in your report
   with the state path and inputs.

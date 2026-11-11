@@ -10,8 +10,8 @@
 - The same hook records the layout (`wLayout`) and invalidates the WRAM shadow copies (`wValid`).
 
 ## Allocation
-- `cellmap` (WRAM7 `$D000-$D7FF`): last slot used by each cell of the bank-3 buffers (`$D000`/`$D800`).
-  `owner` (WRAM7 `$DF00`): the cell each slot belongs to. A cell reuses its slot when it still owns it:
+- `cellmap` (WRAM6 `$D000-$D7FF`): last slot used by each cell of the bank-3 buffers (`$D000`/`$D800`).
+  `owner` (WRAM6 `$D800 + code*2`, cleared at init; 0 = no text cell): the cell each slot belongs to. A cell reuses its slot when it still owns it:
   the game clears and re-blits boxes every few frames, so reuse keeps slot use stable.
 - The typewriter never reuses a cell's previous slot: the game scrolls message boxes by copying rows, so
   the slot a cell owned may now be shown by the row above.
@@ -24,7 +24,7 @@
   line is still visible, so it flickers for a few frames.
 
 ## Upload
-- Each tile is built in `wUp` (`$CF80`, ink = colour 3, paper = colour 2 like the original font), compared
+- Each tile is built in `wUp` (bank 7 `$DF80`, ink = colour 3, paper = colour 2 like the original font), compared
   with the shadow in WRAM7 (`$D000 + code*16`), and uploaded only when changed: a one-block HBlank DMA started
   on a visible line < 140 (interrupts masked while the registers are set), or a CPU copy when the LCD is off.
   (An earlier version used the VBlank queue; together with the game's full-map GDMA it overran VBlank and
@@ -41,7 +41,11 @@ keeps working; it resyncs whenever the game moves the cursor or the buffer base 
 
 ## RAM used
 - WRAM bank 7: shadows `$D000 + code*16` (`$D000-$DEFF`), variables `$DF00-$DFFF` (cleared once on first use,
-  signature `VW` at `$DFFE`). Bank 7 is the engine's home bank: every entry point saves the caller's SVBK,
+  signature `VY` at `$DFFE`; bump it when the variable layout or the init changes, so old savestates re-init),
+  plus tables in the shadows of non-pool codes: `wGame` `$D200` ($20/21), `wRC_*`/`wEpoch` `$D220-$D22C` ($22),
+  `wSpell` `$D280` ($28/29), `wGameNew` `$D2A0` ($2A/2B), `wHash` `$D2C0` ($2C-$3B), `wShared` `$D410`
+  ($41/42), `wRC_cells`/`wRC_attrs` `$D440-$D53F` ($44-$53). CheckInit clears only `$DF00-$DFFD` and
+  `wRC_valid`; wGame and wGameNew are cleared at the first Alloc (AllocReset). Bank 7 is the engine's home bank: every entry point saves the caller's SVBK,
   switches to 7 and restores it. Buffers (bank 3) and the cell map (bank 6) are reached only through
   `Read3/Write3/Read6/Write6`; source strings through `FetchSrc` (caller's WRAM bank).
 - WRAM bank 6: cell map `$D000-$D7FF`, slot owners `$D800 + code*2`.
@@ -51,8 +55,8 @@ keeps working; it resyncs whenever the game moves the cursor or the buffer base 
 
 ## Game graphics in pool tiles
 `Stub_Enqueue` passes every non-font VBlank DMA to `VWF_DmaCheck`: pool slots inside the destination lose their
-owner and shadow and are reserved (`wGame`, bank 7 `$D200`) until the next GC, which keeps them only if cells
-still reference them. Codes `$A0` (VRAM1 tile `$20` in the split layout, kept blank), `$CF`/`$D0` (the monster
+owner and shadow and are reserved in `wGameNew` (bank 7 `$D2A0`); the next full GC moves them to `wGame`
+(`$D200`), which keeps a slot only while a buffer still references it. A font load clears both. Codes `$A0` (VRAM1 tile `$20` in the split layout, kept blank), `$CF`/`$D0` (the monster
 panel's parentheses) are not in the pool. GC marks cells under both layouts (VWF-range tiles only).
 
 ## Battle monster panel
@@ -73,9 +77,10 @@ proportionally into WRAM1 `$D200+$100*g` (tiles 0-9 row 1, 10-15 row 2; word bre
 - In-place reuse (CellSlot) takes a fresh slot when the content changes and the tile may be shown elsewhere:
   shared (`wShared`) or the same tile 1-2 rows above/below (rows copied by scrolling). Screens restored from a
   saved copy need stable slot numbers, so reuse otherwise stays.
-- GC first pass counts both buffers fully plus graphics reservations (`wGame`, until the next font load).
-  Only when the pool is still dry, a second pass ignores a hidden window, BG rows under a full-width window
-  and the reservations (disarm trap list, battle party list).
+- GC first pass counts both buffers fully plus `wGame | wGameNew` (see "Graphics reservations" below). Only
+  when the pool is still dry, a second pass scans a hidden window and BG rows under a full-width window in
+  ownerless mode (frees their text slots, keeps game graphics; disarm trap list, battle party list);
+  reservations still count.
 - The typewriter blanks every cell it leaves without ink (the original wrote a space tile per cell).
 
 ## Stack
@@ -110,14 +115,14 @@ the picture flips some tiles in row 10) and prints `NoticeText` lines at `Notice
 bytes, filled by `insert.py` from `script/notice.json`, max 128 px. `VWF_PrintBuf` clobbers `wDed*`; loop
 counters belong on the stack.
 
-## Rect redraw cache (2026-11-12)
+## Rect redraw cache (2026-11-11)
 The town clears the selected building's info box to `$20` and redraws it on every main-loop pass. `VWF_Rect`
 keeps the last box (source, destination, mode, size, cell codes and attributes, max 128 cells, `wRC_*` in the
 shadow area of non-pool codes `$22` and `$44-$53`) and the tile epoch `wEpoch` (+1 per Upload, font load and
-game DMA over a slot). When the same box is asked for again, the epoch is unchanged and every cell holds its
+game DMA over a slot); it is not used while a font load is pending (`wReset`). When the same box is asked for again, the epoch is unchanged and every cell holds its
 saved code or `$20` with unchanged attributes, the saved codes are written back instead of rendering.
 
-## Graphics reservations and the dry GC pass (2026-11-12)
+## Graphics reservations and the dry GC pass (2026-11-11)
 - `wGameNew`: slots a game DMA overwrote since the last GC. The full first GC pass sets
   `wGame = (wGame & referenced) | wGameNew`, so a reservation lasts while a buffer still shows the slot (it used
   to last until the next font load and filled the pool in the maze: slowdowns and text in the walls).

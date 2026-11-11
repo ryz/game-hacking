@@ -18,6 +18,6 @@ Never delete entries.
 - Proposed rule change: (1) emu.open_emu enables turbo; (2) maze controls in skill.md (A/up forward, B camp,
   SELECT dungeon menu; battle messages wait for A); (3) shoot.py --state lists; (4) replace curated
   maze_menu/stairs_prompt with maze_dmenu/stairs_up_prompt.
-- Status: open (tool changes pending; maze controls already promoted in the playtester skill)
+- Status: logged 2026-11-11 (tool changes (1) (3) (4) moved to the tool backlog in docs/status.md Next; maze
+  controls promoted in the playtester skill)
 
-_No runs yet._

@@ -21,4 +21,5 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 - Proposed rule change: (1) the final message is the report of record (the coordinator saves it); (2) extend
   `emu.py` with a soft-lock check (screen and task table unchanged for N frames) - tool change, open;
   (3) always save the encounter state and keep it with the case.
-- Status: open
+- Status: promoted 2026-11-11 ((1) report rule, second entry with playtester pt1; (2) soft-lock check: tool
+  change, in docs/status.md Next; (3) tools/explore.py saves hit.state/prev.state)

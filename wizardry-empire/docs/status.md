@@ -3,16 +3,22 @@
 ## Done
 - Toolchain: disassembler, assembler (round-trip tested), build (2 MB MBC5, checksums, IPS), census tools,
   emulator setup (gbemu-cli). Width checks fail the build when English overflows a box.
-- VWF engine (mixed case, `fonts/vwf.txt`), 161-tile slot pool, hooks for:
+- VWF engine (mixed case, `fonts/vwf.txt`), 157-tile slot pool, hooks for:
   rect boxes, typewriter messages (`$F2` redirect), `$00`-terminated name copies (17 sites),
-  inline code text (`rst $38`, 19 strings), fixed-length table copies (8 sites, address-keyed map),
+  inline code text (`rst $38`, 19 strings), fixed-length table copies (9 sites, address-keyed map),
   bank-49 string tables (177 entries, repointed), chest names (bank-37 immediates).
-- Translated: 207 menu/info boxes, 185 messages (bank 45 events/NPCs, bank 49 dungeon/system),
+- Translated: 251 menu/info boxes, 429 messages (bank 45 events/NPCs, bank 49 dungeon/system),
   224 item names, 166 monster names, 6 default characters, character-sheet labels, tavern menu.
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
-## Done 2026-11-12 (sixth session, owner's report: town slowdown, maze walls, Camp)
+## Done 2026-11-11 (seventh session)
+- Shop Buy/Sell lists, "Sold out" rows and the character item lists (Camp, tavern sheet) in the small VWF font
+  (41:4A52, 41:49EB, 41:5674 through Stub_PrintZ).
+- Coverage tests (`tests/test_coverage.py`); signature `VY` (old savestates re-init); redraw cache blocked while
+  a font load is pending; `tools/explore.py` (moved from work/).
+
+## Done 2026-11-11 (sixth session, owner's report: town slowdown, maze walls, Camp)
 - Town speed: idle town runs its main loop as often as the Japanese (360 per 120 frames, was 72); the info box
   redraw is served from a cache (`docs/re/vwf.md`). Cursor moves: ~310 (one render).
 - Text no longer drawn into maze wall tiles (dry GC pass keeps game graphics; reservations pruned instead of
@@ -54,22 +60,28 @@
 - Redirected messages left the text bank on the English bank; English now jumps back to the original terminator.
 
 ## Next (in rough priority)
-1. Museum item pages: they use a separate glyph set (not `tbl/jp.tbl`); needs a tracer run for the glyph
-   mapping and the printer.
-2. Shop item lists and the name-entry field still in the 8 px font (owner's rule: words in the VWF).
+1. Museum (`docs/re/museum.md`): item side = hooks 41:66C2 / 41:62C7 (tested on a scratch ROM), repointed
+   unidentified-name table 41:5706, ~70 attribute rects to add, class letters, '~'. Monster room needs a third
+   VWF font layout (LCDC bit 4 = 1, font in VRAM1 $8000) before its hooks; element/EXP labels are graphics
+   (01:4100). "True name:" label is a mistranslation (= unidentified name).
+2. Name-entry field still in the 8 px font (owner's rule: words in the VWF).
 3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
 4. Item effect descriptions (bank 46), prologue, title screen.
 5. VWF: short transients while screens are typed (1-4 frames). Town input delay after arrival not re-measured
    since the redraw cache.
 6. Owner's report "gets slower the longer I play" not reproduced in the emulator (random walks, door messages,
    battle); the two causes found are fixed. Needs a long playtest on the new ROM.
+7. Tool backlog (from agent feedback): `tools/emu.py` hang check should report a hang only when the PC stays in
+   a tight range, plus a soft-lock check (screen and task table unchanged); emu.open_emu turbo; shoot.py
+   state-based shots; curated maze_dmenu/stairs_up_prompt shots; census segment mode (`$FC`) and attributes;
+   lint: ignore `{..}` inserts before punctuation, label lists.json entries.
 
 ## Known issues
 - Untranslated text shows as blank/garbage (kana tiles are no longer loaded; their slots belong to the VWF).
 - Unhooked printers fall back to the original 8 px font (ASCII letters/digits/punctuation are kept).
 - Monster names are limited to 12 characters (record field); some are abbreviated (e.g. "Gr. Demon").
-- When more than 161 distinct text tiles are needed on one screen, the allocator reuses tiles (visible
-  as wrong letters). Battle with a full 6-line log was the tightest case; fixed by the GC rules in `re/vwf.md`.
+- When more than 157 distinct text tiles are needed on one screen, the allocator reuses tiles (visible as
+  wrong letters); no current case known (battle with a full 6-line log was the tightest, `docs/re/vwf.md`).
 - After a kill, the last battle line flickers for a few frames while the chest picture loads.
 - When the battle party list slides back in, it shows menu letters for a few frames (window hidden at the
   last GC, its slots reused).

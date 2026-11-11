@@ -10,7 +10,23 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
-### 2026-11-12 - camp party list: status word garbage
+### 2026-11-11 - museum: text sources, printers, hooks
+- Task: museum text (menu, item/monster lists, entry pages): sources, printers, hook proposals.
+- Worked: comparing VRAM tiles against the `01:4400` font per bank and tile-data base found a third font layout
+  and the extra glyph sheet; a `0:142A` breakpoint lists every graphics load with its caller; poking the seen
+  bitfields reached the monster pages; hooks proven on a scratch ROM copy.
+- Friction: `$D800` is also used as a scratch list (not only the window); one saved EN state had left the page;
+  the skill assumes two font layouts; `emu.py press` cannot be interleaved with breakpoints; census misses
+  attribute rects (~70 museum rects).
+- Proposed rule change: (1) read LCDC bit 4 before decoding a buffer and map VRAM tiles to the font; (2) tools:
+  a `0:142A` DMA logger and a pokes+sequence runner; (3) dispatch: "do not patch" allows scratch ROM copies
+  under `work/re/<topic>/`.
+- Corrected: notes copied to docs/re/museum.md. Item hooks A/B/C and the rects not applied yet (planned);
+  monster room needs a third VWF layout.
+- Status: promoted 2026-11-11 ((1) extends the window-decode rule from the spells entry; (3) in the dispatch
+  template); (2) in the tool backlog
+
+### 2026-11-11 - camp party list: status word garbage
 - Task: find the printer of the status word in the Camp party list HP column, explain the garbage, propose a hook.
 - Worked: dump the buffer row first (raw kana = unhooked copy), write watch from a state one input before the
   screen, scratch ROM with the hook bytes and re-keyed FixMap entries before any real change.
@@ -20,7 +36,7 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
   value; (2) fix_sites() should also match copies ending in `2a 12` and look for duplicate tables in other banks.
 - Corrected: coordinator verified the bytes (39:49FE copy, 39:4004 = 38:754D) and applied the hook as proposed
   with 32 px short forms (a98cef8); encoding noted in docs/re/text.md. Dispatch paths: use `work/re/` next time.
-- Status: promoted 2026-11-12 ((1) skill.md + text.md; (2) tests/test_coverage.py checks both cases)
+- Status: promoted 2026-11-11 ((1) skill.md + text.md; (2) tests/test_coverage.py checks both cases)
 
 ### 2026-11-11 - spells: where spell text lives and how it is printed
 - Task: locate every spell text piece (headers, list, battle name, detail labels, element, descriptions) with hooks.
@@ -31,7 +47,7 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
   battle state with a living caster.
 - Proposed rule change: (1) window buffer decode rule; (2) diff EN vs JP at a site before proposing a hook.
   Tools: census_rects should apply attributes; a reproducible JP battle route in tools/routes.
-- Status: promoted 2026-11-12 (owner approved; tools: census attributes and JP battle route still open)
+- Status: promoted 2026-11-11 (owner approved; tools: census attributes and JP battle route still open)
 
 ### 2026-11-11 - char-card: printers of the garbled character-card fields
 - Task: find the routines that print the garbled card fields (gender, status, location, title, shop alignment,

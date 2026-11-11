@@ -42,8 +42,8 @@ stay balanced and every name shows up in menus, battle text and the character sh
    menus), notice board, museum, Training Grounds menu.
 2. **Maze:** from `maze.state`; walk, open doors (A), turn, SELECT menu (Search, Pick a lock, Find allies,
    Settings), Camp (B): Inspect, Reorder, Equip, Spells (cast a healing spell in camp).
-3. **Battles:** at least 3 (`work/triage/battle1/explore.py ROM STATE OUTDIR MAXSTEPS SEED` walks until an
-   encounter). Use every command at least once: Fight (Normal / Aim to hit / Aim for damage), Parry, Hide,
+3. **Battles:** at least 3 (`tools/explore.py ROM STATE OUTDIR MAXSTEPS SEED` walks until an
+   encounter, a stairs prompt or a door message: look at `hit_NNN.png`). Use every command at least once: Fight (Normal / Aim to hit / Aim for damage), Parry, Hide,
    Spell (attack and heal), Item, Run. Read every message line; watch the monster panel.
 4. **After battles:** chests (Inspect, Disarm, Open, Leave), trap messages, experience and gold messages.
 5. **Back to town:** stairs up (Yes/No) or Edge of Town; then inn until a level-up (or as far as EXP allows:

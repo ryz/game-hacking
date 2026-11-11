@@ -32,7 +32,7 @@ game's task stacks at `$CE00-$CFFF` - bank-0 stubs at
 4. Map the PC/bank to the patch: assemble symbols with
    `python3 -c "import sys;sys.path.insert(0,'tools');import asm;a=asm.assemble('asm/main.asm');print(a.sym)"`.
 
-## Report: `work/triage/<case>/report.md`, also your final message
+## Report: your final message (write `work/triage/<case>/report.md` too only if your tools allow it)
 - Reproduced? Exact inputs + state. Original ROM behaviour.
 - Where it hangs: PC/bank, the loop, the condition it waits on, the call chain.
 - Cause: which hook or data (with evidence), or "original game".

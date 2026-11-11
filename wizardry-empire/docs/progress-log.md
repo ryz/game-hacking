@@ -11,13 +11,23 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
-## 2026-11-12 - town speed, maze walls, party-list status
+## 2026-11-11 - shop lists, coverage tests, maintenance, museum trace
+- ROM: `615e150` sent.
+- Changed: shop Buy/Sell, "Sold out" rows and character item lists in the VWF; init signature VY; redraw
+  cache blocked during a pending font load; tests/test_coverage.py; tools/explore.py; skills: tracer,
+  coordinator, triage, maintenance rules promoted; doc drift fixed (maintenance report).
+- Found: museum text map (docs/re/museum.md); monster room needs a third font layout.
+- Checked: tests (3), tour 8/8, town speed 360/120f, shop buy/sell/pool gold, Camp items.
+- Open: museum hooks, name-entry field in 8 px, long playtest for the slowdown report.
+
+## 2026-11-11 - town speed, maze walls, party-list status
 - ROM: `a98cef8` sent.
 - Changed: rect redraw cache (town idle 360 loops/120f, JP 360, was 72); graphics reservations pruned by GC;
   dry GC pass keeps game graphics; party-list status words (39:49FE).
 - Checked: tests, tour (8/8), town cursor moves, 20x "It is locked." at a door (walls clean), one full battle
   round, Camp with every status value.
 - Open: the progressive slowdown the owner saw was not reproduced; needs a long playtest.
+- Closed: Dedupe speed (town input lag) - superseded by the redraw cache.
 
 ## 2026-11-11 - Notice Board
 - ROM: `9a5f3a8` sent.

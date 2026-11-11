@@ -3,7 +3,7 @@ skill: coordinator
 project: all
 summary: The main session: plan, dispatch subagents, verify and integrate their results, build and ship.
 access: write (repo)
-updated: 2026-11-12
+updated: 2026-11-11
 ---
 
 # Coordinator

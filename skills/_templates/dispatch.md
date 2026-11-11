@@ -12,3 +12,6 @@ Known issues: <things it must not re-report, with "mention only if worse">
 Stop when: <condition, e.g. "after 3 battles" or "once the hang is reproduced and explained">
 Report: per skills/<name>/skill.md, ending with the ## Feedback block.
 ```
+
+Tracer notes go in `wizardry-empire/work/re/<topic>.md` (scratch under `work/re/<topic>/`; "do not patch" still
+allows scratch ROM copies there).
