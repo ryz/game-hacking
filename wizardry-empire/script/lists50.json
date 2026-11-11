@@ -1,0 +1,12 @@
+[
+{"ptr": "0x4ffa", "jp": "せいじょ", "en": "OK"},
+{"ptr": "0x4fff", "jp": "きょうふ", "en": "Afraid"},
+{"ptr": "0x5004", "jp": "すいみん", "en": "Asleep"},
+{"ptr": "0x5009", "jp": "まひ", "en": "Paral."},
+{"ptr": "0x500e", "jp": "いし", "en": "Stoned"},
+{"ptr": "0x5012", "jp": "しぼう", "en": "Dead"},
+{"ptr": "0x5017", "jp": "はい", "en": "Ashes"},
+{"ptr": "0x501c", "jp": "ロスト", "en": "Lost"},
+{"ptr": "0x5021", "jp": "どく", "en": "Poison"},
+{"ptr": "0x5026", "jp": "まふうじ", "en": "Silent"}
+]

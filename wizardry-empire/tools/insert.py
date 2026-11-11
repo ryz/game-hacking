@@ -304,6 +304,9 @@ def insert_lists(rom, space, entries):
         assert rom[t] | rom[t + 1] << 8 == int(e["ptr"], 16), e
         rom[t:t + 2] = bytes([a & 0xFF, a >> 8])
         new[int(e["ptr"], 16)] = a
+    for e in load("lists50.json"):          # strings only the bank-50 table points at (party-list statuses)
+        b, a = space.put(text.encode(e["en"]) + b"\x00")
+        new[int(e["ptr"], 16)] = a
     # bank 50 keeps its own copy of the command/status word pointers (32:57DB, 28 entries; the battle party
     # panel's action column reads it): repoint the entries that point at the same bank-49 strings
     o = rom_off(50, 0x57DB)

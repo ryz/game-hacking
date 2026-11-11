@@ -780,7 +780,17 @@ Glyph:
     ld a, [S_imm]
     or a
     call z, CommitIfInk     ; tile complete (immediate mode already committed)
+    ld a, [S_imm]           ; typewriter leaving a cell without ink (a space): blank it like the original,
+    or a                    ; which wrote a space tile into every cell it passed
+    jr z, .nc
+    ld a, [S_slot]
+    or a
+    jr nz, .nc
+    call NextCellBlank
+    jr .ncd
+.nc:
     call NextCell
+.ncd:
     ld a, [S_imm]
     or a
     jr z, .adv
