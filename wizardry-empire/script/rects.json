@@ -4,7 +4,7 @@
 {"id": "26:6f7d", "bank": 38, "addr": "0x6f7d", "w": 6, "h": 2, "jp": ["アリエスの", "    やど"], "en": ["Aries", ">Inn"]},
 {"id": "26:6f8b", "bank": 38, "addr": "0x6f8b", "w": 11, "h": 1, "jp": ["だれが とまりますか?"], "en": ["Who will stay?"]},
 {"id": "26:6fae", "bank": 38, "addr": "0x6fae", "w": 7, "h": 1, "jp": ["なまえは? →"], "en": ["Name?"]},
-{"id": "26:6fb7", "bank": 38, "addr": "0x6fb7", "w": 18, "h": 1, "jp": ["セレクトを おすと もじがかわります"], "en": ["SELECT switches letters."]},
+{"id": "26:6fb7", "bank": 38, "addr": "0x6fb7", "w": 18, "h": 1, "jp": ["セレクトを おすと もじがかわります"], "en": ["Press START when done."]},
 {"id": "26:6fcb", "bank": 38, "addr": "0x6fcb", "w": 18, "h": 1, "jp": ["そのなまえは すでにつかわれています"], "en": ["That name is already in use."]},
 {"id": "26:7135", "bank": 38, "addr": "0x7135", "w": 3, "h": 1, "jp": ["おとこ"], "en": ["Male"]},
 {"id": "26:713a", "bank": 38, "addr": "0x713a", "w": 3, "h": 1, "jp": ["おんな"], "en": ["Fem."]},

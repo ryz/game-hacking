@@ -2054,15 +2054,22 @@ Dedupe:
 
 ; Rebuild the bitmap from what the bank-3 buffers reference.
 GC:
-    ; start from the slots the game just loaded graphics into (DMA seen, cells maybe not written yet);
-    ; reservations last one GC: after that the picture's own cells keep them marked
+    ; start from the slots the game loaded graphics into (reserved until the next font load: the maze keeps
+    ; its wall tiles while the dungeon menu hides the view). Second pass (pool dry): reservations ignored.
     ld hl, wGame
     ld de, wBits
     ld b, 32
-.gb: ld a, [hl]
-    ld [de], a
+    ld a, [wGCSkipWin]
+    or a
+    jr z, .gb
     xor a
-    ld [hli], a
+.gz: ld [de], a
+    inc de
+    dec b
+    jr nz, .gz
+    jr .nk
+.gb: ld a, [hli]
+    ld [de], a
     inc de
     dec b
     jr nz, .gb
