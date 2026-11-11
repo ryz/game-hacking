@@ -39,7 +39,7 @@ Control codes:
 | FD | newline |
 | FC | `1E35` |
 | FB | `1ED8` |
-| FA | word-wrap lookahead: measures the next word (incl. inserted strings) and emits FD if it does not fit |
+| FA | word-wrap point: measures the next word (incl. inserted strings) and emits FD if it does not fit, else a space ($20). In English `{FA}` replaces the space between words: never write a space next to it |
 | F9 | `1E5F` |
 | F8 b, bank, ptr16 | insert number (b = digits/format) |
 | F7 | `1DE9` |
