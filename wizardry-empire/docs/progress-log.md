@@ -11,6 +11,16 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-11 - titles, monster panel, temple, name entry, spells
+- ROM: `3f26beb` sent.
+- Changed: titles (2B:5F4F records as VWF headers); VWF_Panel replaces 0:199B; Stub_Enqueue reports non-font
+  DMAs (VWF_DmaCheck reserves overwritten slots); $A0/$CF/$D0 out of the pool; spells (records, SpellNames
+  + wSpell via 0:24CF, list trampoline 2A:7F00, rects, element FixMap, bank-46 descriptions); GC marks both
+  layouts; FixMap 600; {FA} spacing; font rule; photographer may commit shot sets (docs/shots/).
+- Found / fixed: chest/bag picture painted with text; "(1)" garbage in the monster panel; temple
+  "No one is here." raw kana; name entry typed kana; shop header dots; spell names missing in battle.
+- Open: see docs/status.md Next.
+
 ## 2026-11-11 - battle text, gold bug, character card, chest
 - ROM: `c5c6b84` sent (see below).
 - Changed: battle command lists and 129 battle segments translated; bank-49 English kept in bank 49; VWF GC

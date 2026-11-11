@@ -49,6 +49,23 @@ keeps working; it resyncs whenever the game moves the cursor or the buffer base 
   caused the battle hang. Bank-0 stubs pass everything in registers or on the stack: the VWF reads caller
   HL/BC/argument pointer from fixed stack offsets (see the comment above `Stub_Inline`).
 
+## Game graphics in pool tiles
+`Stub_Enqueue` passes every non-font VBlank DMA to `VWF_DmaCheck`: pool slots inside the destination lose their
+owner and shadow and are reserved (`wGame`, bank 7 `$D200`) until the next GC, which keeps them only if cells
+still reference them. Codes `$A0` (VRAM1 tile `$20` in the split layout, kept blank), `$CF`/`$D0` (the monster
+panel's parentheses) are not in the pool. GC marks cells under both layouts (VWF-range tiles only).
+
+## Battle monster panel
+`22:5682` -> trampoline `22:7F00` -> `VWF_Panel`: the 4 group names ($C50F, 13 bytes each) are drawn
+proportionally into WRAM1 `$D200+$100*g` (tiles 0-9 row 1, 10-15 row 2; word break past 80 px) with
+`wPanel` set, which makes `CommitIfInk` write tiles there; then the original DMA to VRAM1 `$8C00`.
+
+## Spells
+`0:24CF` (record copy to `$C577`) first calls `Stub_SpellPre` -> `VWF_SpellName`: full English name from
+`SpellNames` (bank, ptr per id) into `wSpell` (bank 7 `$D280`). Messages print it with `{F8 00 07 D280}` (the
+2nd F8 byte is written to SVBK). The spell list blanks the rect's name cells (`2A:4D42` reads zeros) and
+`2A:4D8E` -> `2A:7F00` -> `VWF_SpellList` prints `wSpell` one cell after the blit destination.
+
 ## Stack
 Task stacks are 64 bytes (`$CE00+$40n`). Called from a task (shop card, battle typewriter), the VWF chain
 (stub, far call, Fix/Inline/Rect, Commit, GC) overflowed into the next task's frames and crashed (shop hang).
