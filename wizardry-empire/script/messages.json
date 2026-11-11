@@ -302,6 +302,7 @@
 {"bank": 49, "addr": "0x52cb", "jp": "だれが じゅもんを となえますか?", "en": "Who will cast a spell?"},
 {"bank": 49, "addr": "0x52dd", "jp": "だれが わなを はずしますか?", "en": "Who will disarm the trap?"},
 {"bank": 49, "addr": "0x52ed", "jp": "だれが あけますか?", "en": "Who will open it?"},
+{"bank": 49, "addr": "0x5368", "jp": "  わなは?\n\n     ファイアーボルト\n     ばくだん\n     マジックドレイン\n     エナジードレイン\n     ポイズンニードル\n     アラーム\n     もうじゃのて\n     パラライズニードル\n     パラライズガス\n     メデューサののろい\n     さいごのキス\n     テレポーター\n     レベルテレポーター", "en": "{col:2}Which trap?\n\n{col:5}Fire Bolt\n{col:5}Bomb\n{col:5}Magic Drain\n{col:5}Energy Drain\n{col:5}Poison Needle\n{col:5}Alarm\n{col:5}Hand of the Dead\n{col:5}Paralysis Needle\n{col:5}Paralysis Gas\n{col:5}Medusa's Curse\n{col:5}Last Kiss\n{col:5}Teleporter\n{col:5}Level Teleporter"},
 {"bank": 49, "addr": "0x541a", "jp": "\nわなを はずした", "en": "\nDisarmed the trap.", "autowrap": true},
 {"bank": 49, "addr": "0x5424", "jp": "\nわなを はずせなかった", "en": "\nCould not disarm the trap.", "autowrap": true},
 {"bank": 49, "addr": "0x5431", "jp": "\nおおっと! {F3 31 C6E3}", "en": "\nOops! {F3 31 C6E3}", "autowrap": true},

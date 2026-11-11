@@ -101,6 +101,7 @@ wSkipCopy   equ $dffb          ; nonzero: the next VBlank skips the game's map c
 wHoldStart  equ $dffc          ; frame ($C00A) the current print burst started
 wLastPrint  equ $dffd          ; frame of the last non-typewriter print
 HOLD_MAX    equ 6              ; frames a burst may hold the screen
+wGCSkipWin  equ $df0a          ; nonzero: GC ignores the window buffer while the window is hidden (2nd pass)
 wKeepOff    equ $df09          ; nonzero: the pool ran dry in this burst, old-screen protection dropped
 wKeep       equ $d2a0          ; 32 bytes (shadow area of codes $2A/$2B): slots in use when the burst began;
                                ; the old screen still shows them until the map copy, so GC keeps them
@@ -1144,12 +1145,11 @@ AllocScan:
     call GC
     call TryAlloc
     ret c
-    ld a, [wKeepOff]        ; still dry: drop the old-screen protection for this burst and try again
-    or a
-    jr nz, .ring
-    inc a
-    ld [wKeepOff], a
+    ld a, 1                 ; still dry: try again without a hidden window's text
+    ld [wGCSkipWin], a
     call GC
+    xor a
+    ld [wGCSkipWin], a
     call TryAlloc
     ret c
 .ring:
@@ -1848,10 +1848,38 @@ GC:
     ld a, [TW_ctx + 1]
     or a
     call nz, MarkCode
+    ; BG: only the rows above a full-width window are visible (rows under it are old screens)
+    ld bc, 18*32
+    ldh a, [$ff40]
+    bit 5, a
+    jr z, .bg
+    ldh a, [$ff4b]
+    cp 8
+    jr nc, .bg              ; window not covering the full width
+    ldh a, [$ff4a]
+    cp 144
+    jr nc, .bg
+    add 7
+    and $f8                 ; rows above the window = ceil(WY/8); *32 = *4 of the pixel value
+    ld l, a
+    ld h, 0
+    add hl, hl
+    add hl, hl
+    ld b, h
+    ld c, l
+    ld a, b
+    or c
+    jr z, .bgskip
+.bg:
     ld hl, $d000
-    call .scan
-    ; the window buffer only counts while the window is on screen (battle hides the party list
-    ; with WX=167 and re-sends/redraws it before showing it again)
+    call .scan2
+.bgskip:
+    ; normally the window buffer always counts (the game types screens into it before showing them, e.g.
+    ; the disarm trap list). Second pass when the pool is dry: a hidden window does not count (battle hides
+    ; the party list with WX=167 and re-sends/redraws it before showing it again)
+    ld a, [wGCSkipWin]
+    or a
+    jr z, .win
     ldh a, [$ff40]
     bit 3, a                ; BG shows the $9C00 map (= this buffer, e.g. camp spell screens)
     jr nz, .win
@@ -1867,6 +1895,7 @@ GC:
     ld hl, $d800
 .scan:                      ; 18 rows x 32 cells at HL (bank 3; what the game's GDMA copies), attributes at HL+$400
     ld bc, 18*32
+.scan2:                     ; BC cells
 .l: push bc
     push hl
     call Read3
