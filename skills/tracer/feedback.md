@@ -20,7 +20,7 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
   value; (2) fix_sites() should also match copies ending in `2a 12` and look for duplicate tables in other banks.
 - Corrected: coordinator verified the bytes (39:49FE copy, 39:4004 = 38:754D) and applied the hook as proposed
   with 32 px short forms (a98cef8); encoding noted in docs/re/text.md. Dispatch paths: use `work/re/` next time.
-- Status: open ((2) tool change not done; (1) added to text.md)
+- Status: promoted 2026-11-12 ((1) skill.md + text.md; (2) tests/test_coverage.py checks both cases)
 
 ### 2026-11-11 - spells: where spell text lives and how it is printed
 - Task: locate every spell text piece (headers, list, battle name, detail labels, element, descriptions) with hooks.
@@ -31,7 +31,7 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
   battle state with a living caster.
 - Proposed rule change: (1) window buffer decode rule; (2) diff EN vs JP at a site before proposing a hook.
   Tools: census_rects should apply attributes; a reproducible JP battle route in tools/routes.
-- Status: open (second-entry check pending; rules 1 and 2 promote on the next confirming run)
+- Status: promoted 2026-11-12 (owner approved; tools: census attributes and JP battle route still open)
 
 ### 2026-11-11 - char-card: printers of the garbled character-card fields
 - Task: find the routines that print the garbled card fields (gender, status, location, title, shop alignment,
@@ -55,4 +55,4 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
   segments; triage's seeded walk did not reproduce the encounter.
 - Proposed rule change: when a state is reached by a random walk, save the state AND the exact input list;
   census tools need a segment mode (`$FC` boundaries) - tool change, open.
-- Status: open
+- Status: promoted 2026-11-11 (input-list rule); census segment mode still open
