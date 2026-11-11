@@ -88,7 +88,17 @@ wCallerBank equ $dfec
 wSPsave     equ $dfed          ; 2 bytes: caller SP while on the private stack
 wPT         equ $dfef          ; 2 bytes: PrivCall target / HL on return
 wPA         equ $dff1          ; PrivCall: A on return
+wPanel      equ $dff2          ; nonzero: finished tiles go to the monster-panel bitmap (WRAM1)
+wPanG       equ $dff3          ; monster panel: group 0-3
+wPanW       equ $dff4          ; monster panel: width of the name / split index
+wDmaLo      equ $dff5          ; VWF_DmaCheck: destination start, end (16-bit each), VRAM bank
+wDmaHi      equ $dff6
+wDmaEndLo   equ $dff7
+wDmaEndHi   equ $dff8
+wDmaV       equ $dff9
+wDmaI       equ $dffa
 PRIV_SP     equ $cd80          ; private stack top (WRAM0 $CCE0-$CDD5 is never used by the game)
+wGame       equ $d200          ; 32 bytes: slots holding game graphics (shadow area of codes $20/$21, not pool)
 wMagic      equ $dffe          ; 'V','W' once initialised
 HOME_BANK   equ 7
 
@@ -293,12 +303,12 @@ Stub_Measure:
 Stub_Enqueue:              ; font from bank 1 $4400-$50ff? let the VWF decide (verdict in L)
     ldh a, [hSrcBank]
     dec a
-    jr nz, .go
+    jr nz, Stub_EnqDma
     ldh a, [hSrcHi]
     cp $44
-    jr c, .go
+    jr c, Stub_EnqDma
     cp $51
-    jr nc, .go
+    jr nc, Stub_EnqDma
     push bc
     ld a, VWF_BANK
     ld hl, VWF_FontLoad
@@ -333,6 +343,8 @@ VWF_Fetch:
     rst $28
     pop af
     ret
+Stub_EnqDma:
+    jp Stub_Dma
     assert @ <= $00f1, "bank0 stub area 1 overflow"
 
 ; --- free space at $3f50-$3fd9
@@ -390,6 +402,19 @@ StubCommon:
     add sp, 2
     pop bc
     ret
+
+Stub_Dma:                   ; any other VBlank DMA: tell the VWF which tiles the game overwrites, then queue it
+    push hl
+    push bc
+    ld a, VWF_BANK
+    ld hl, VWF_DmaCheck
+    call FarCall
+    pop bc
+    pop hl
+    ldh a, [hSVBK]
+    push af
+    ld a, $02
+    jp $142f
     assert @ <= $3fda, "bank0 stub area 2 overflow"
 
 ; =====================================================================
@@ -536,6 +561,10 @@ ReadBank:
 Write3:                     ; [HL] = A in WRAM bank 3
     push af
     ld a, 3
+    jr WriteBank
+Write1:                     ; [HL] = A in WRAM bank 1
+    push af
+    ld a, 1
     jr WriteBank
 Write6:                     ; [HL] = A in WRAM bank 6
     push af
@@ -733,6 +762,9 @@ NextCell:
 ; ---------------------------------------------------------------------
 ; Commit the current tile if it has ink (or already owns a slot).
 CommitIfInk:
+    ld a, [wPanel]
+    or a
+    jp nz, PanelCommit
     ld a, [S_slot]
     or a
     jr nz, Commit
@@ -1024,6 +1056,11 @@ Alloc:
 .cv: ld [hli], a
     dec b
     jr nz, .cv
+    ld hl, wGame            ; new screen (font load): the game's graphics no longer block slots
+    ld b, 32
+.cg: ld [hli], a
+    dec b
+    jr nz, .cg
 .scan:
     call TryAlloc
     ret c
@@ -1155,9 +1192,359 @@ PrivCall:
     ld h, a
     jp hl
 
+; =====================================================================
+; Battle monster-group panel (replaces 0:199B, called from 22:5682 through a trampoline at 22:7F00).
+; Names: 4 x 13 bytes at $C50F ($00 = end/empty). Each group owns 16 tiles in WRAM1 $D200 + $100*g:
+; tiles 0-9 = row 1, tiles 10-15 = row 2 (the game's rects show them as $C0+16g.. with "(n) m" after).
+; Names are drawn proportionally; a name wider than 80 px breaks at its last space that fits.
+; Then the same DMA as the original: WRAM1 $D200 -> VRAM1 $8C00, $40 blocks, via 0:142A.
+; =====================================================================
+VWF_Panel:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld hl, PanelBody
+    call PrivCall
+    pop af
+    jp SetSVBK
+
+PanelBody:
+    ; blank glyph pattern (two bytes) from the font, like the original
+    ld b, 1
+    ld hl, $43f0
+    call VWF_Fetch
+    ld d, a
+    call VWF_Fetch
+    ld e, a
+    ld a, 1
+    call SetSVBK
+    ld hl, $d200
+    ld bc, $0200
+.fill:
+    ld a, d
+    ld [hli], a
+    ld a, e
+    ld [hli], a
+    dec c
+    jr nz, .fill
+    dec b
+    jr nz, .fill
+    ld a, HOME_BANK
+    call SetSVBK
+    xor a
+    ld [wPanG], a
+.group:
+    ; hl = $C50F + 13*g
+    ld a, [wPanG]
+    ld l, a
+    ld h, 0
+    ld d, h
+    ld e, l
+    add hl, hl
+    add hl, de
+    add hl, hl
+    add hl, hl
+    add hl, de
+    ld de, $c50f
+    add hl, de
+    ; copy to wNameBuf (max 13), measure, find the split
+    ld de, wNameBuf
+    ld b, 13
+.cp: ld a, [hli]
+    ld [de], a
+    inc de
+    or a
+    jr z, .cpe
+    dec b
+    jr nz, .cp
+    xor a
+    ld [de], a
+.cpe:
+    ld a, [wNameBuf]
+    or a
+    jr z, .next
+    call PanelSplit         ; wPanW = index of the space to break at (0 = none)
+    ld a, 1
+    ld [wPanel], a
+    ld hl, 0
+    xor a
+    call Begin
+    xor a
+    ld [S_imm], a
+    ld hl, wNameBuf
+    ld c, 0                 ; index
+.ch: ld a, [hli]
+    or a
+    jr z, .end
+    push hl
+    push bc
+    ld b, a
+    ld a, [wPanW]
+    or a
+    jr z, .draw
+    cp c
+    jr nz, .draw
+    ; break: flush row 1, continue at tile 10
+    call PanelFlush
+    ld hl, 0
+    xor a
+    call Begin
+    ld a, 10
+    ld [S_col], a
+    pop bc
+    pop hl
+    inc c
+    jr .ch
+.draw:
+    ld a, b
+    call Glyph
+    pop bc
+    pop hl
+    inc c
+    jr .ch
+.end:
+    call PanelFlush
+    xor a
+    ld [wPanel], a
+.next:
+    ld a, [wPanG]
+    inc a
+    ld [wPanG], a
+    cp 4
+    jr c, .group
+    ; DMA WRAM1 $D200 -> VRAM1 $8C00, $40 blocks (as 0:1A02-1A1D)
+    ld a, $00
+    ldh [$b8], a
+    ld a, $d2
+    ldh [$b9], a
+    ld a, $01
+    ldh [$ba], a
+    ld a, $00
+    ldh [$bb], a
+    ld a, $8c
+    ldh [$bc], a
+    ld a, $01
+    ldh [$bd], a
+    ld bc, $0040
+    jp $142a
+
+; commit the partial tile if it has pixels
+PanelFlush:
+    ld a, [S_px]
+    or a
+    ret z
+    jp PanelCommit
+
+; wPanW = index of the space where a name wider than 80 px breaks (last space with prefix <= 80 px), else 0
+PanelSplit:
+    xor a
+    ld [wPanW], a
+    ld hl, wNameBuf
+    ld bc, 0                ; b = width so far, c = index
+.l: ld a, [hli]
+    or a
+    ret z
+    cp $20
+    jr nz, .w
+    ld a, b
+    cp 81
+    jr nc, .w0
+    ld a, c
+    ld [wPanW], a
+.w0:
+    ld a, $20
+.w: push hl
+    ld e, a
+    ld d, 0
+    ld hl, FontAdv
+    add hl, de
+    ld a, [hl]
+    pop hl
+    add b
+    ld b, a
+    inc c
+    jr .l
+
+; Write the current tile (S_cur) to WRAM1 $D200 + $100*g + 16*col (col < 16): lo = ink, hi = $FF
+PanelCommit:
+    ld a, [S_col]
+    cp 16
+    ret nc
+    swap a
+    ld l, a
+    ld a, [wPanG]
+    add $d2
+    ld h, a
+    ld de, S_cur
+    ld b, 8
+.r: ld a, [de]
+    inc de
+    call Write1
+    inc hl
+    ld a, $ff
+    call Write1
+    inc hl
+    dec b
+    jr nz, .r
+    ret
+
+; =====================================================================
+; A non-font VBlank DMA (pictures, panels) is about to overwrite VRAM [hDst, hDst + BC*16) in VRAM bank
+; hDstVBank. Pool slots in that range lose their owner (no cell may reuse them) and their shadow copy
+; (the next use uploads again). Fixes text drawn into the chest/bag pictures.
+; =====================================================================
+VWF_DmaCheck:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ldh a, [hDstHi]
+    cp $80
+    jp c, .out
+    cp $98
+    jp nc, .out             ; not tile data
+    ld [wDmaHi], a
+    ld h, a
+    ldh a, [hDstLo]
+    ld [wDmaLo], a
+    ld l, a
+    ldh a, [hDstVBank]
+    and 1
+    ld [wDmaV], a
+    ; end = dst + BC*16
+    ld a, c
+    ld e, a
+    ld a, b
+    ld d, a
+    sla e
+    rl d
+    sla e
+    rl d
+    sla e
+    rl d
+    sla e
+    rl d
+    add hl, de
+    ld a, l
+    ld [wDmaEndLo], a
+    ld a, h
+    ld [wDmaEndHi], a
+    xor a
+    ld [wDmaI], a
+.l: ld a, [wDmaI]
+    ld e, a
+    ld d, 0
+    ld hl, Pool
+    add hl, de
+    ld a, [hl]
+    ld [wTmp2], a
+    ; c = VRAM bank, hl = tile address
+    ld c, 0
+    ld l, a
+    ld h, 0
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    add hl, hl              ; code*16
+    bit 7, a
+    jr z, .low
+    ld a, [wLayout]
+    or a
+    jr z, .flat
+    inc c                   ; split: VRAM1 $9000 + (code & $7f)*16
+    ld de, $9000 - $0800
+    jr .add
+.flat:
+    ld de, $8000            ; flat: VRAM0 $8000 + code*16 ($8800-$8FFF)
+    jr .add
+.low:
+    ld de, $9000
+.add:
+    add hl, de
+    ld a, [wDmaV]
+    cp c
+    jr nz, .next
+    ; hl >= start ?
+    ld a, [wDmaLo]
+    ld e, a
+    ld a, [wDmaHi]
+    ld d, a
+    ld a, l
+    sub e
+    ld a, h
+    sbc d
+    jr c, .next
+    ; hl < end ?
+    ld a, [wDmaEndLo]
+    ld e, a
+    ld a, [wDmaEndHi]
+    ld d, a
+    ld a, l
+    sub e
+    ld a, h
+    sbc d
+    jr nc, .next
+    ; disown + invalidate
+    ld a, [wTmp2]
+    call OwnerAddr
+    xor a
+    call Write6
+    inc hl
+    call Write6
+    ld a, [wTmp2]
+    call ValidAddr
+    ld a, b
+    cpl
+    and [hl]
+    ld [hl], a
+    ld a, [wTmp2]
+    call BitAddr
+    ld a, [hl]
+    or b
+    ld [hl], a              ; in use now (wBits)
+    ld a, l
+    sub low(wBits)
+    ld l, a
+    ld h, high(wGame)
+    ld a, l
+    add low(wGame)
+    ld l, a
+    ld a, [hl]
+    or b
+    ld [hl], a              ; and kept through GC (wGame)
+.next:
+    ld a, [wDmaI]
+    inc a
+    ld [wDmaI], a
+    cp POOL_SIZE
+    jp c, .l
+.out:
+    pop af
+    jp SetSVBK
+
 ; Rebuild the bitmap from what the bank-3 buffers reference.
 GC:
-    call ClearBits
+    ; start from the slots the game just loaded graphics into (DMA seen, cells maybe not written yet);
+    ; reservations last one GC: after that the picture's own cells keep them marked
+    ld hl, wGame
+    ld de, wBits
+    ld b, 32
+.gb: ld a, [hl]
+    ld [de], a
+    xor a
+    ld [hli], a
+    inc de
+    dec b
+    jr nz, .gb
     ld a, [S_slot]
     or a
     call nz, MarkCode

@@ -24,3 +24,11 @@ org 41, $70e1
 ; header, script/titles.json) is copied as the header of the RAM rect.
 org 43, $5fbb
     ds 8, $00
+
+; Battle monster-group panel: 22:5682 call $199B -> trampoline -> VWF_Panel (proportional names).
+org 34, $5682
+    call $7f00
+org 34, $7f00
+    ld a, VWF_BANK
+    ld hl, VWF_Panel
+    jp FarCall

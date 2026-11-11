@@ -19,7 +19,8 @@ IPS_OUT = os.path.join(BUILD, "wizardry_empire_en.ips")
 NEW_SIZE = 2 * 1024 * 1024
 
 # Codes $80-$EF: the font's kana half, which the patch no longer loads (see VWF_FontLoad).
-POOL = list(range(0x80, 0xF0)) + (  # + the kana in the lower half (also not loaded any more)
+# $CF/$D0 stay with the game: the battle monster panel shows "(n)" with them (symbol glyphs from 1:$40F0).
+POOL = [c for c in range(0x80, 0xF0) if c not in (0xCF, 0xD0)] + (  # + the kana in the lower half (also not loaded any more)
     list(range(0x01, 0x20)) + [0x23, 0x24, 0x26, 0x3C, 0x3D, 0x3E, 0x40]
     + list(range(0x5B, 0x61)) + list(range(0x7B, 0x80)))
 
