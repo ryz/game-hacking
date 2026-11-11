@@ -48,6 +48,7 @@ def boot(g):
         g.input_tap("start")
         g.run_frames(60)
     press(g, ["b"], hold=6, wait=60)
+    g.run_frames(60)        # the town's info box is drawn after the fade; inputs before that are lost
 
 
 def frame_counter(g):

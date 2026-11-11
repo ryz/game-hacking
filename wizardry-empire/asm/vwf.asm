@@ -413,13 +413,13 @@ StubCommon:
     ret
 
 Stub_Dma:                   ; any other VBlank DMA: tell the VWF which tiles the game overwrites, then queue it
-    push hl
-    push bc
+    push bc                 ; (0:142A clobbers HL itself; callers do not expect it kept)
     ld a, VWF_BANK
     ld hl, VWF_DmaCheck
     call FarCall
     pop bc
-    pop hl
+    dec l
+    ret z                   ; L = 1: drop this load
     ldh a, [hSVBK]
     push af
     ld a, $02
@@ -845,15 +845,20 @@ Commit:
     jr .have
 .reuse:
     ld [S_slot], a
-    call KeptNow            ; the old screen still shows this slot (print burst): take a new one
-    jr nz, .fresh
+    call KeptNow            ; the old screen still shows this slot (print burst): take a new one if one is
+    jr z, .keep             ; free, else reuse it anyway (a short flicker beats overwriting other text)
+    call AllocSoft
+    jr c, .got
+    ld a, 1                 ; pool full: stop protecting the old screen for the rest of this burst
+    ld [wKeepOff], a
+    jr .keep
+.got:
+    ld [S_slot], a
+    call SetOwner
+    jr .have
+.keep:
     ld a, [S_slot]
     call MarkCode
-    jr .have
-.fresh:
-    xor a
-    ld [S_slot], a
-    jr .new
 .have:
     ; build the 2bpp tile in wUp (ink -> colour 3, paper -> colour 2, like the original font)
     ld hl, wUp
@@ -1102,10 +1107,22 @@ Upload:
 
 ; ---------------------------------------------------------------------
 ; Allocation. Returns A = slot code.
+; Alloc without the last resorts (no protection drop, no ring overwrite): carry + A = code, or no carry.
+AllocSoft:
+    call AllocReset
+    call TryAlloc
+    ret c
+    call GC
+    jp TryAlloc
+
 Alloc:
+    call AllocReset
+    jr AllocScan
+
+AllocReset:
     ld a, [wReset]
     or a
-    jr z, .scan
+    ret z
     xor a
     ld [wReset], a
     ld hl, wValid
@@ -1119,7 +1136,9 @@ Alloc:
 .cg: ld [hli], a
     dec b
     jr nz, .cg
-.scan:
+    ret
+
+AllocScan:
     call TryAlloc
     ret c
     call GC
@@ -1475,6 +1494,36 @@ VWF_DmaCheck:
     push af
     ld [wCallerSVBK], a
     call CheckInit
+    ; the kanji block 1:$4160 (26 tiles -> codes $D6-$EF, spell screens) is not needed in English (its
+    ; labels are translated) and would overwrite VWF text: load only its last tile, the level cursor
+    ; arrow ($EF, not a pool slot). Stack: [sp+7] = BC pushed by Stub_Dma (the tile count).
+    ldh a, [hSrcBank]
+    cp 1
+    jr nz, .keep
+    ldh a, [hSrcHi]
+    cp $41
+    jr nz, .keep
+    ldh a, [hSrcLo]
+    cp $60
+    jr nz, .keep
+    ld a, $f0
+    ldh [hSrcLo], a
+    ld a, $42
+    ldh [hSrcHi], a
+    ld a, $f0
+    ldh [hDstLo], a
+    ld a, $8e
+    ldh [hDstHi], a
+    ld hl, sp, 7
+    ld a, 1
+    ld [hli], a
+    xor a
+    ld [hl], a
+    pop af
+    call SetSVBK
+    ld l, 0
+    ret
+.keep:
     ldh a, [hDstHi]
     cp $80
     jp c, .out
@@ -1597,10 +1646,16 @@ VWF_DmaCheck:
     jp c, .l
 .out:
     pop af
-    jp SetSVBK
+    call SetSVBK
+    ld l, 0
+    ret
 
 ; NZ if slot [S_slot] was in use when the current print burst began and the burst's map copy is pending.
 KeptNow:
+    ; disabled: fresh slots for redrawn cells raised churn so much that screens the game restores from a saved
+    ; copy (spell overview after the detail box) came back with reused tiles. Kept for reference.
+    xor a
+    ret
     ld a, [wKeepOff]
     or a
     jr nz, .no
@@ -1626,7 +1681,8 @@ KeptNow:
 ; Menus print over several frames; ask the VBlank handler to hold the game's map copy while a burst of
 ; prints lasts (at most HOLD_MAX frames; a frame without prints starts a new burst). Not for the typewriter.
 HoldMark:
-    push hl
+    ret                     ; disabled (2026-11-11): holding the map copy kept a half-overwritten old screen up
+    push hl                 ; longer; protecting the old screen's slots broke screens restored from a copy
     ld a, [$c00a]           ; VBlank frame counter (WRAM0)
     ld h, a
     ld a, [wLastPrint]
@@ -1764,7 +1820,8 @@ GC:
     inc de
     dec b
     jr nz, .gb
-    ; during a print burst (map copy pending) the old screen's slots stay reserved
+    ; during a print burst (map copy pending) the old screen's slots stay reserved - disabled with HoldMark
+    jr .nk
     ld a, [wHoldStart]
     ld b, a
     ld a, [$c00a]
@@ -1796,6 +1853,8 @@ GC:
     ; the window buffer only counts while the window is on screen (battle hides the party list
     ; with WX=167 and re-sends/redraws it before showing it again)
     ldh a, [$ff40]
+    bit 3, a                ; BG shows the $9C00 map (= this buffer, e.g. camp spell screens)
+    jr nz, .win
     bit 5, a
     ret z
     ldh a, [$ff4b]
@@ -1804,6 +1863,7 @@ GC:
     ldh a, [$ff4a]
     cp 144
     ret nc
+.win:
     ld hl, $d800
 .scan:                      ; 18 rows x 32 cells at HL (bank 3; what the game's GDMA copies), attributes at HL+$400
     ld bc, 18*32
@@ -1815,14 +1875,44 @@ GC:
     add hl, bc
     call Read3
     ld d, a                 ; attr
-    ; both layouts: a font load can switch the layout while cells drawn under the other one are still on
-    ; screen (battle spell list in the window). VRAM1 tiles < $70 = split codes $80-$EF; VRAM0 = code as is.
+    ; current layout as before; the other layout's reading counts only for cells that own the slot (a font
+    ; load can switch the layout while text drawn under the other one is still on screen: battle spell list)
+    ld a, [wLayout]
+    or a
+    jr z, .flat
+    bit 3, d                ; split
+    ld a, e
+    jr z, .s0
+    cp $70
+    jr nc, .skip
+    or $80
+    jr .mk
+.s0: bit 7, a
+    jr z, .mk               ; low codes: same in both layouts
+    jr .other               ; VRAM0 $8800 code: flat reading
+.flat:
     bit 3, d
     ld a, e
     jr z, .mk
     cp $70
     jr nc, .skip
-    or $80
+    or $80                  ; VRAM1 tile: split reading
+.other:
+    ld [wTmp2], a
+    ld a, h
+    sub 4
+    ld b, a                 ; bc = cell address (bc is free here: pushed above)
+    ld c, l
+    ld a, [wTmp2]
+    call OwnerAddr
+    call Read6
+    cp c
+    jr nz, .skip
+    inc hl
+    call Read6
+    cp b
+    jr nz, .skip
+    ld a, [wTmp2]
 .mk:
     call MarkCode
 .skip:

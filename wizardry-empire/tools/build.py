@@ -21,8 +21,8 @@ NEW_SIZE = 2 * 1024 * 1024
 # Codes $80-$EF: the font's kana half, which the patch no longer loads (see VWF_FontLoad).
 # $CF/$D0 stay with the game: the battle monster panel shows "(n)" with them (symbol glyphs from 1:$40F0).
 # $A0 is VRAM1 tile $20 in the split layout: the game writes $20 (space) into cells whose attribute still
-# selects VRAM bank 1, so the VWF keeps that tile blank (VWF_FontLoad).
-POOL = [c for c in range(0x80, 0xF0) if c not in (0xA0, 0xCF, 0xD0)] + (  # + the kana in the lower half (also not loaded any more)
+# selects VRAM bank 1, so the VWF keeps that tile blank (VWF_FontLoad). $EF = spell-screen cursor arrow.
+POOL = [c for c in range(0x80, 0xF0) if c not in (0xA0, 0xCF, 0xD0, 0xEF)] + (  # + the kana in the lower half (also not loaded any more)
     list(range(0x01, 0x20)) + [0x23, 0x24, 0x26, 0x3C, 0x3D, 0x3E, 0x40]
     + list(range(0x5B, 0x61)) + list(range(0x7B, 0x80)))
 
