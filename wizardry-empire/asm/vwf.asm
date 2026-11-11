@@ -24,62 +24,69 @@ twRow       equ $c1c6
 twBufLo     equ $c1d3
 twBufHi     equ $c1d4
 
-; ---- our WRAM (bank 0 region $cf00-$cfff is unused by the game; stack lives below $cf00)
-wLayout     equ $cf00          ; 1 = split (codes $80+ in VRAM1:$9000), 0 = flat (VRAM0:$8800)
-wReset      equ $cf01          ; nonzero = clear allocation before next allocation
-wNext       equ $cf02          ; ring index into Pool
-wTmp0       equ $cf03
-wTmp1       equ $cf04
-wTmp2       equ $cf05
-wTmp3       equ $cf06
-wSaveSVBK   equ $cf07
+; ---- our WRAM: bank 7 $df00-$dfff (the shadows use $d000-$deff). Bank 7 is the engine's home bank:
+; every entry point saves the caller's SVBK, switches to 7 and restores it on exit. Buffers (bank 3) and
+; the cell map (bank 6) are only touched through Read3/Write3/Read6/Write6. (WRAM0 $ce00-$cfff is NOT
+; free: it holds the stacks of the game's cooperative tasks, see docs/re/tasks.md.)
+wLayout     equ $df00          ; 1 = split (codes $80+ in VRAM1:$9000), 0 = flat (VRAM0:$8800)
+wReset      equ $df01          ; nonzero = clear allocation before next allocation
+wNext       equ $df02          ; ring index into Pool
+wTmp0       equ $df03
+wTmp1       equ $df04
+wTmp2       equ $df05
+wTmp3       equ $df06
+wSaveSVBK   equ $df07
 ; renderer state (active context)
-S_px        equ $cf10
-S_slot      equ $cf11
-S_cellLo    equ $cf12
-S_cellHi    equ $cf13
-S_attr      equ $cf14
-S_col       equ $cf15
-S_imm       equ $cf16          ; nonzero: commit after every glyph (typewriter)
-S_cur       equ $cf18          ; 8 bytes
-S_nxt       equ $cf20          ; 8 bytes
+S_px        equ $df10
+S_slot      equ $df11
+S_cellLo    equ $df12
+S_cellHi    equ $df13
+S_attr      equ $df14
+S_col       equ $df15
+S_imm       equ $df16          ; nonzero: commit after every glyph (typewriter)
+S_cur       equ $df18          ; 8 bytes
+S_nxt       equ $df20          ; 8 bytes
 S_SIZE      equ $18
 ; typewriter persistent context
-TW_ctx      equ $cf30          ; S_SIZE bytes
-TW_row      equ $cf48
-TW_rep      equ $cf49
-TW_baseLo   equ $cf4a
-TW_baseHi   equ $cf4b
+TW_ctx      equ $df30          ; S_SIZE bytes
+TW_row      equ $df48
+TW_rep      equ $df49
+TW_baseLo   equ $df4a
+TW_baseHi   equ $df4b
 ; rect parameters
-R_w         equ $cf50
-R_h         equ $cf51
-R_tbank     equ $cf52
-R_tLo       equ $cf53
-R_tHi       equ $cf54
-R_row       equ $cf55
-R_mode      equ $cf56          ; 0 = tiles only, 1 = tiles + attribute block
-R_baseLo    equ $cf57
-R_baseHi    equ $cf58
-R_srcBank   equ $cf59
-R_srcLo     equ $cf5a
-R_srcHi     equ $cf5b
-R_end       equ $cf5c
-wBits       equ $cf60          ; 32 bytes: allocation bitmap, bit per slot code
-wValid      equ $cfa0          ; 32 bytes: shadow copy in WRAM7 matches VRAM
-wUp         equ $cf80          ; 16 bytes (16-aligned): HDMA source
-wSkip       equ $cf08
-wNameBuf    equ $cfc0          ; 32 bytes
-wInL        equ $cfe0
-wInH        equ $cfe1
-wInBank     equ $cfe2
-wInLo       equ $cfe3
-wInHi       equ $cfe4
-wInE        equ $cfe5
-wInD        equ $cfe6
-wFL_code    equ $cfe7
-wFL_n       equ $cfe8
-wFixN       equ $cfe9
-wFixTB      equ $cfea
+R_w         equ $df50
+R_h         equ $df51
+R_tbank     equ $df52
+R_tLo       equ $df53
+R_tHi       equ $df54
+R_row       equ $df55
+R_mode      equ $df56          ; 0 = tiles only, 1 = tiles + attribute block
+R_baseLo    equ $df57
+R_baseHi    equ $df58
+R_srcBank   equ $df59
+R_srcLo     equ $df5a
+R_srcHi     equ $df5b
+R_end       equ $df5c
+wBits       equ $df60          ; 32 bytes: allocation bitmap, bit per slot code
+wValid      equ $dfa0          ; 32 bytes: shadow copy in WRAM7 matches VRAM
+wUp         equ $df80          ; 16 bytes (16-aligned): HDMA source
+wSkip       equ $df08          ; VWF_FontLoad result (returned in L)
+wNameBuf    equ $dfc0          ; 32 bytes
+wInL        equ $dfe0
+wInH        equ $dfe1
+wInBank     equ $dfe2
+wInLo       equ $dfe3
+wInHi       equ $dfe4
+wInE        equ $dfe5
+wInD        equ $dfe6
+wFL_code    equ $dfe7
+wFL_n       equ $dfe8
+wFixN       equ $dfe9
+wFixTB      equ $dfea
+wCallerSVBK equ $dfeb
+wCallerBank equ $dfec
+wMagic      equ $dffe          ; 'V','W' once initialised
+HOME_BANK   equ 7
 
 STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = shadow of the VRAM tile
 MAP_BANK    equ 6              ; WRAM bank 6: cellmap $d000-$d7ff, owners $d800 + code*2
@@ -121,30 +128,17 @@ MAP_BANK    equ 6              ; WRAM bank 6: cellmap $d000-$d7ff, owners $d800 
     jp $1bc7
 
 Stub_Fix:                   ; call Stub_Fix / db n: copy n chars from HL (current bank) to DE, via the VWF
-    ld a, l
-    ld [wInL], a
-    ld a, h
-    ld [wInH], a
-    pop hl
-    ld a, [hli]
-    ld [wFixN], a
-    push hl
     push bc
-    ldh a, [hROMB]
-    ld [wInBank], a
-    ld a, VWF_BANK
+    push hl
     ld hl, VWF_Fix
-    call FarCall
-    pop bc
-    ld a, [wInL]
-    ld l, a
-    ld a, [wInH]
-    ld h, a
-    ret
+    jp StubCommon
 
 Stub_TWInit:
-    ld a, $ff
-    ld [TW_row], a
+    push hl
+    ld a, VWF_BANK
+    ld hl, VWF_TWInit
+    call FarCall
+    pop hl
     xor a
     ld [twCol], a
     ret
@@ -274,22 +268,21 @@ Stub_TWInit:
 
 ; --- free space at $00b1-$00f0
     org 0, $00b1
-Stub_Enqueue:              ; font upper half (bank 1 $4c00/$5000)? let the VWF decide
+Stub_Enqueue:              ; font from bank 1 $4400-$50ff? let the VWF decide (verdict in L)
     ldh a, [hSrcBank]
     dec a
     jr nz, .go
     ldh a, [hSrcHi]
-    cp $4c
-    jr z, .font
-    cp $50
-    jr nz, .go
-.font:
+    cp $44
+    jr c, .go
+    cp $51
+    jr nc, .go
     push bc
     ld a, VWF_BANK
     ld hl, VWF_FontLoad
     call FarCall
     pop bc
-    ld a, [wSkip]
+    ld a, l
     dec a
     ret z                   ; 1 = drop this load
     dec a
@@ -323,12 +316,11 @@ VWF_Fetch:
 ; --- free space at $3f50-$3fd9
     org 0, $3f50
 Stub_Rect0:
-    xor a
+    ld c, 0
     jr Stub_RectCommon
 Stub_Rect1:
-    ld a, 1
-Stub_RectCommon:
-    ld [R_mode], a
+    ld c, 1
+Stub_RectCommon:            ; C = mode (0 tiles, 1 tiles + attributes), passed to VWF_Rect
     ldh a, [hROMB]
     push af
     ldh a, [hSrcBank]
@@ -343,8 +335,7 @@ Stub_RectCommon:
     rst $28
     ldh a, [hSVBK]          ; the three overwritten bytes (f0 9d 47)
     ld b, a
-    ld a, [R_mode]
-    or a
+    bit 0, c
     jp z, $1773
     jp $1726
 .vwf:
@@ -354,47 +345,29 @@ Stub_RectCommon:
     ld hl, VWF_Rect
     jp FarCall              ; tail call: returns to the blitter's caller
 
-Stub_PrintZ:                ; copy the string at HL to wNameBuf, print it at DE with the VWF
+Stub_PrintZ:                ; print the $00-terminated string at HL at cell DE; HL ends past the $00
     push bc
-    ld bc, wNameBuf
-.c: ld a, [hli]
-    ld [bc], a
-    inc c
-    or a
-    jr nz, .c
     push hl
     ld a, VWF_BANK
-    ld hl, VWF_PrintBuf
+    ld hl, VWF_PrintZ
     call FarCall
-    pop hl
+    add sp, 2               ; drop the pushed HL (the VWF returns HL in the register)
     pop bc
     xor a
     ret
 
-Stub_Inline:
-    ld a, l
-    ld [wInL], a
-    ld a, h
-    ld [wInH], a
-    pop hl                  ; -> arguments
-    ld a, [hli]
-    ld [wInBank], a
-    ld a, [hli]
-    ld [wInLo], a
-    ld a, [hli]
-    ld [wInHi], a
-    push hl                 ; return after the arguments
+; VWF entry from here sees: [sp+0] FarCall return, [+2] caller ROM bank, [+3] return into StubCommon,
+; [+5] caller HL, [+7] caller BC, [+9] the site's return address (= argument pointer, advanced by the VWF).
+Stub_Inline:                ; rst $38 + db bank, dw text
     push bc
-    ld a, VWF_BANK
+    push hl
     ld hl, VWF_Inline
+StubCommon:
+    ld a, VWF_BANK
     call FarCall
+    add sp, 2
     pop bc
-    ld a, [wInL]
-    ld l, a
-    ld a, [wInH]
-    ld h, a
     ret
-
     assert @ <= $3fda, "bank0 stub area 2 overflow"
 
 ; =====================================================================
@@ -417,11 +390,19 @@ POOL_SIZE   equ PoolEnd - Pool
 ; kana are not loaded; codes $F0-$FF (cursor arrow, window frame) still are.
 ; wSkip: 0 = enqueue unchanged, 1 = drop, 2 = enqueue 16 tiles from the adjusted params.
 VWF_FontLoad:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
     xor a
     ld [wSkip], a
     ldh a, [hSrcLo]
     or a
-    ret nz
+    jr nz, .exit
     ldh a, [hSrcHi]
     cp $4c
     jr z, .hi
@@ -429,6 +410,8 @@ VWF_FontLoad:
     jr z, .lo
     cp $48
     jr z, .lo
+    cp $50
+    jr nz, .exit
     ; $5000: codes $c0-$ff
     ldh a, [hDstVBank]
     or a
@@ -440,7 +423,7 @@ VWF_FontLoad:
     ldh [hDstHi], a
     ld a, 2
     ld [wSkip], a
-    ret
+    jr .exit
 .hi:
     ldh a, [hDstVBank]
     ld [wLayout], a         ; VRAM1:$9000 -> split (1), VRAM0:$8800 -> flat (0)
@@ -449,7 +432,11 @@ VWF_FontLoad:
 .drop:
     ld a, 1
     ld [wSkip], a
-    ret
+.exit:
+    ld a, [wSkip]
+    ld l, a
+    pop af
+    jp SetSVBK
 .lo:                        ; 64 tiles from ROM1:hSrcHi00: copy the ones that are not pool slots
     ld a, 1
     ld [wReset], a
@@ -502,10 +489,87 @@ VWF_FontLoad:
     jr .drop
 
 ; ---------------------------------------------------------------------
-; SVBK helpers (keep the game's hSVBK mirror in sync)
+; SVBK helpers (keep the game's hSVBK mirror in sync). The engine runs with SVBK = HOME_BANK.
 SetSVBK:                    ; A = bank
     ldh [hSVBK], a
     ldh [$70], a
+    ret
+
+Read3:                      ; A = [HL] in WRAM bank 3
+    ld a, 3
+    jr ReadBank
+Read6:                      ; A = [HL] in WRAM bank 6
+    ld a, MAP_BANK
+ReadBank:
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld a, [hl]
+    push af
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    pop af
+    ret
+
+Write3:                     ; [HL] = A in WRAM bank 3
+    push af
+    ld a, 3
+    jr WriteBank
+Write6:                     ; [HL] = A in WRAM bank 6
+    push af
+    ld a, MAP_BANK
+WriteBank:
+    ldh [hSVBK], a
+    ldh [$70], a
+    pop af
+    ld [hl], a
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
+
+; WRAM bank 7 is not cleared at power-on: zero the variables once (signature at wMagic).
+CheckInit:
+    ld a, [wMagic]
+    cp $56
+    jr nz, .init
+    ld a, [wMagic + 1]
+    cp $57
+    ret z
+.init:
+    push hl
+    push bc
+    ld a, [wCallerSVBK]
+    push af
+    ld hl, $df00
+    ld b, wMagic - $df00
+    xor a
+.z: ld [hli], a
+    dec b
+    jr nz, .z
+    pop af
+    ld [wCallerSVBK], a
+    ld a, $56
+    ld [wMagic], a
+    ld a, $57
+    ld [wMagic + 1], a
+    ld a, 1
+    ld [wReset], a          ; shadows are not valid yet
+    pop bc
+    pop hl
+    ret
+
+; Fetch [B:HL+] with the caller's WRAM bank mapped (strings may live in banked WRAM).
+FetchSrc:
+    ld a, [wCallerSVBK]
+    ldh [hSVBK], a
+    ldh [$70], a
+    call VWF_Fetch
+    push af
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    pop af
     ret
 
 ; ---------------------------------------------------------------------
@@ -686,11 +750,7 @@ Commit:
     ld [hli], a
     dec b
     jr nz, .s
-    ; compare with / update the shadow copy in WRAM bank 7; skip the upload if VRAM already has it
-    ldh a, [hSVBK]
-    ld [wSaveSVBK], a
-    ld a, STAGING_BANK
-    call SetSVBK
+    ; compare with / update the shadow copy (home bank 7); skip the upload if VRAM already has it
     ld a, [S_slot]
     call StagingAddr        ; hl = shadow
     ld de, wUp
@@ -707,8 +767,6 @@ Commit:
     inc hl
     dec b
     jr nz, .cmp
-    ld a, [wSaveSVBK]
-    call SetSVBK
     ld a, [S_slot]
     call ValidAddr          ; hl = byte, b = mask
     ld a, [hl]
@@ -725,8 +783,6 @@ Commit:
     call Upload
 .cell:
     ; write the cell (buffer in WRAM bank 3)
-    ld a, 3
-    call SetSVBK
     ld a, [S_slot]
     call SlotTile           ; a = tile, c = bank bit
     ld b, a
@@ -734,15 +790,14 @@ Commit:
     ld l, a
     ld a, [S_cellHi]
     ld h, a
-    ld [hl], b
+    ld a, b
+    call Write3
     ld de, $0400
     add hl, de
     ld a, [S_attr]
     and $f7
     or c
-    ld [hl], a
-    ld a, [wSaveSVBK]
-    jp SetSVBK
+    jp Write3
 
 ; A = slot code -> HL = shadow address in WRAM bank 7 ($d000 + code*16)
 StagingAddr:
@@ -781,15 +836,7 @@ SlotTile:
 ; The slot this cell used last time (cellmap in WRAM bank 7), if the cell still owns it; else 0.
 CellSlot:
     call CellMapAddr
-    ldh a, [hSVBK]
-    push af
-    ld a, MAP_BANK
-    call SetSVBK
-    ld a, [hl]
-    ld [wTmp2], a
-    pop af
-    call SetSVBK
-    ld a, [wTmp2]
+    call Read6
     ld e, a
     ld d, 0
     ld hl, PoolFlags
@@ -819,43 +866,34 @@ CellMapAddr:
 CheckOwner:
     ld [wTmp2], a
     call OwnerAddr
-    ldh a, [hSVBK]
-    push af
-    ld a, MAP_BANK
-    call SetSVBK
+    call Read6
+    ld b, a
     ld a, [S_cellLo]
-    cp [hl]
+    cp b
     jr nz, .x
     inc hl
+    call Read6
+    ld b, a
     ld a, [S_cellHi]
-    cp [hl]
+    cp b
     jr nz, .x
-    pop af
-    call SetSVBK
     ld a, [wTmp2]
     ret
-.x: pop af
-    call SetSVBK
-    xor a
+.x: xor a
     ret
 
 ; owner[code] = current cell, cellmap[cell] = code (code in A)
 SetOwner:
     ld [wTmp2], a
     call OwnerAddr
-    ldh a, [hSVBK]
-    push af
-    ld a, MAP_BANK
-    call SetSVBK
     ld a, [S_cellLo]
-    ld [hli], a
+    call Write6
+    inc hl
     ld a, [S_cellHi]
-    ld [hl], a
+    call Write6
     call CellMapAddr
     ld a, [wTmp2]
-    ld [hl], a
-    pop af
-    jp SetSVBK
+    jp Write6
 
 ; A = code -> HL = owner entry in WRAM bank 6 ($d800 + code*2)
 OwnerAddr:
@@ -1063,24 +1101,18 @@ GC:
     ld a, [TW_ctx + 1]
     or a
     call nz, MarkCode
-    ldh a, [hSVBK]
-    push af
-    ld a, 3
-    call SetSVBK
     ld hl, $d000
     call .scan
     ld hl, $d800
-    call .scan
-    pop af
-    jp SetSVBK
-.scan:                      ; 1024 cells at HL, attributes at HL+$400
+.scan:                      ; 1024 cells at HL (bank 3), attributes at HL+$400
     ld bc, $0400
 .l: push bc
     push hl
-    ld e, [hl]
+    call Read3
+    ld e, a
     ld bc, $0400
     add hl, bc
-    ld a, [hl]
+    call Read3
     ld d, a                 ; attr
     ld a, [wLayout]
     or a
@@ -1110,10 +1142,16 @@ GC:
 ; Typewriter entry (from 0:1c11). B = character. Caller saved HL.
 ; =====================================================================
 TW_Char:
-    ld a, b
-    ld [wTmp3], a
     ldh a, [hSVBK]
     push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld a, b
+    ld [wTmp3], a
     ; resync if the game moved the cursor
     ld a, [twRow]
     ld hl, TW_row
@@ -1195,7 +1233,14 @@ TW_Char:
 VWF_Rect:
     ldh a, [hSVBK]
     push af
-    ; save typewriter-independent context (S_*) is scratch here
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld a, c
+    ld [R_mode], a
     ldh a, [hSrcBank]
     ld [R_srcBank], a
     ld b, a
@@ -1243,8 +1288,6 @@ VWF_Rect:
     ld [R_end], a
     ld [S_imm], a
 .rowloop:
-    ld a, 3
-    call SetSVBK
     ; base attribute for the row
     ld a, [R_mode]
     or a
@@ -1279,7 +1322,7 @@ VWF_Rect:
     ld h, a
     ld de, $0400
     add hl, de
-    ld a, [hl]
+    call Read3
 .gotattr:
     ld [wTmp3], a
     ld a, [R_baseLo]
@@ -1410,10 +1453,54 @@ VWF_Rect:
 ; text bank, text lo, text hi; $FF ends); prints the English if found, else the raw bytes.
 ; Returns DE and wInL/H advanced by n-1 like the original unrolled copy.
 VWF_Fix:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
     ld a, e
     ld [wInE], a
     ld a, d
     ld [wInD], a
+    ld hl, sp, 4            ; caller ROM bank = source bank
+    ld a, [hl]
+    ld [wInBank], a
+    ld [wCallerBank], a
+    ld hl, sp, 7            ; caller HL = source
+    ld a, [hli]
+    ld [wInL], a
+    ld a, [hl]
+    ld [wInH], a
+    ld hl, sp, 11           ; argument pointer -> n
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    ld a, [wInBank]
+    ld b, a
+    call VWF_Fetch
+    ld [wFixN], a
+    ld d, h
+    ld e, l
+    ld hl, sp, 11
+    ld a, e
+    ld [hli], a
+    ld [hl], d
+    ld a, [wInE]
+    ld e, a
+    ld a, [wInD]
+    ld d, a
+    call FixBody
+    ld a, [wInL]
+    ld l, a
+    ld a, [wInH]
+    ld h, a
+    pop af
+    jp SetSVBK
+
+FixBody:
     ld hl, FixMap
 .f: ld a, [hli]
     cp $ff
@@ -1440,7 +1527,7 @@ VWF_Fix:
     push af
     ld a, [wFixTB]
     ld [wInBank], a         ; DE destination (bit 7 clear)
-    call VWF_Inline
+    call InlineBody
     pop af
     ld [wInBank], a
     jr .done
@@ -1460,7 +1547,7 @@ VWF_Fix:
     ld de, wNameBuf
     ld a, [wFixN]
     ld c, a
-.r: call VWF_Fetch
+.r: call FetchSrc
     ld [de], a
     inc de
     dec c
@@ -1498,10 +1585,54 @@ VWF_Fix:
 ; Inline text (rst $38): copy [wInBank&$7f]:[wInHi/Lo] ($FF or $00 terminated) to wNameBuf, print at DE.
 ; For HL-destination sites the caller's DE is kept in wInE/wInD.
 VWF_Inline:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
     ld a, e
     ld [wInE], a
     ld a, d
     ld [wInD], a
+    ld hl, sp, 4
+    ld a, [hl]
+    ld [wCallerBank], a
+    ld hl, sp, 7            ; caller HL
+    ld a, [hli]
+    ld [wInL], a
+    ld a, [hl]
+    ld [wInH], a
+    ld hl, sp, 11           ; argument pointer -> db bank, dw text
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    ld a, [wCallerBank]
+    ld b, a
+    call VWF_Fetch
+    ld [wInBank], a
+    call VWF_Fetch
+    ld [wInLo], a
+    call VWF_Fetch
+    ld [wInHi], a
+    ld d, h
+    ld e, l
+    ld hl, sp, 11
+    ld a, e
+    ld [hli], a
+    ld [hl], d
+    call InlineBody
+    ld a, [wInL]
+    ld l, a
+    ld a, [wInH]
+    ld h, a
+    pop af
+    jp SetSVBK
+
+; Copy [wInBank&$7f]:[wInHi/Lo] to wNameBuf and print it at wInE/D (bit 7 of wInBank: at wInL/H).
+InlineBody:
     ld a, [wInBank]
     and $7f
     ld b, a
@@ -1548,18 +1679,60 @@ VWF_Inline:
     ld d, a
     jp VWF_PrintBuf
 
-; Print the $00-terminated string in wNameBuf at cell DE (bank-3 buffer); returns DE after it.
-VWF_PrintBuf:
+; Stub_PrintZ entry: the string at caller HL (caller ROM/WRAM bank) printed at DE; returns HL past the $00.
+VWF_PrintZ:
     ldh a, [hSVBK]
     push af
-    ld a, 3
+    ld a, HOME_BANK
     call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld hl, sp, 4
+    ld b, [hl]              ; caller ROM bank
+    ld hl, sp, 7
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    ld c, low(wNameBuf)
+.c: call FetchSrc
+    push hl
+    ld h, high(wNameBuf)
+    ld l, c
+    ld [hl], a
+    pop hl
+    inc c
+    or a
+    jr nz, .c
+    push hl
+    call VWF_PrintBuf
+    pop hl
+    pop af
+    jp SetSVBK
+
+VWF_TWInit:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld a, $ff
+    ld [TW_row], a
+    pop af
+    jp SetSVBK
+
+; Print the $00-terminated string in wNameBuf at cell DE (bank-3 buffer); returns DE after it.
+VWF_PrintBuf:
     ld h, d
     ld l, e
     push hl
     ld bc, $0400
     add hl, bc
-    ld a, [hl]
+    call Read3
     pop hl
     call Begin
     xor a
@@ -1586,23 +1759,21 @@ VWF_PrintBuf:
     ld e, a
     ld a, [S_cellHi]
     ld d, a
-    pop af
-    jp SetSVBK
+    ret
 
 ; Write a space tile into the current cell (bank 0 tile $20), then NextCell.
 NextCellBlank:
-    ld a, 3
-    call SetSVBK
     ld a, [S_cellLo]
     ld l, a
     ld a, [S_cellHi]
     ld h, a
-    ld [hl], $20
+    ld a, $20
+    call Write3
     ld de, $0400
     add hl, de
     ld a, [S_attr]
     and $f7
-    ld [hl], a
+    call Write3
     jp NextCell
 
 ; Address-keyed English for fixed-length copies; filled in by tools/build.py after assembly.
