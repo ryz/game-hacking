@@ -67,6 +67,7 @@ R_srcBank   equ $df59
 R_srcLo     equ $df5a
 R_srcHi     equ $df5b
 R_end       equ $df5c
+wGCOwnerless equ $df5d         ; nonzero: GC marks only slots no text cell owns (game graphics), see GCScan
 wBits       equ $df60          ; 32 bytes: allocation bitmap, bit per slot code
 wValid      equ $dfa0          ; 32 bytes: shadow copy in WRAM7 matches VRAM
 wUp         equ $df80          ; 16 bytes (16-aligned): HDMA source
@@ -109,9 +110,27 @@ wDedNew     equ $df0e          ; the current cell got a newly allocated slot (on
 wHash       equ $d2c0          ; 256 bytes: content hash per slot (shadow area of codes $2C-$3B, not pool)
 wGCSkipWin  equ $df0a          ; nonzero: GC ignores the window buffer while the window is hidden (2nd pass)
 wKeepOff    equ $df09          ; nonzero: the pool ran dry in this burst, old-screen protection dropped
-wKeep       equ $d2a0          ; 32 bytes (shadow area of codes $2A/$2B): slots in use when the burst began;
+wKeep       equ $d2a0          ; RETIRED: same address as wGameNew; only the disabled HoldMark/KeptNow bodies name it. Was:
                                ; the old screen still shows them until the map copy, so GC keeps them
 PRIV_SP     equ $cd80          ; private stack top (WRAM0 $CCE0-$CDD5 is never used by the game)
+wGameNew    equ $d2a0          ; 32 bytes: slots the game DMA'd graphics into since the last GC (was wKeep,
+                               ; whose hold code is disabled); GC moves them to wGame
+; Rect redraw cache (shadow area of code $22, not pool): the town redraws the selected building's info box on
+; every main-loop pass; re-rendering it each time ran the town at a fifth of its speed.
+wRC_srcBank equ $d220
+wRC_srcLo   equ $d221
+wRC_srcHi   equ $d222
+wRC_dstLo   equ $d223
+wRC_dstHi   equ $d224
+wRC_mode    equ $d225
+wRC_w       equ $d226
+wRC_h       equ $d227
+wRC_cells   equ $d440          ; 128 bytes: the box's cell codes (shadow area of codes $44-$4B, not pool)
+wRC_attrs   equ $d4c0          ; 128 bytes: its attributes (codes $4C-$53)
+RC_MAX      equ 128
+wRC_epoch   equ $d22a
+wRC_valid   equ $d22b
+wEpoch      equ $d22c          ; +1 whenever slot tiles change (upload, font load, game DMA over a slot)
 wGame       equ $d200          ; 32 bytes: slots holding game graphics (shadow area of codes $20/$21, not pool)
 wSpell      equ $d280          ; 32 bytes: full English name of the last spell read by 0:24CF (shadow area of
                                ; codes $28/$29, not pool); messages print it with {F8 00 07 D280}
@@ -663,6 +682,20 @@ CheckInit:
     ld [wMagic + 1], a
     ld a, 1
     ld [wReset], a          ; shadows are not valid yet
+    ld a, MAP_BANK          ; slot owners (bank 6, $d800 + code*2): 0 = no text cell (random at power-on)
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld hl, $d800
+    ld bc, $0200
+.zo: xor a
+    ld [hli], a
+    dec bc
+    ld a, b
+    or c
+    jr nz, .zo
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
     pop bc
     pop hl
     ret
@@ -1071,6 +1104,11 @@ OwnerAddr:
 ; LCD on: one-block HBlank DMA started on a visible line (< 140) so it finishes long before
 ; VBlank; interrupts are masked while the DMA registers are set up. LCD off: CPU copy.
 Upload:
+    push af
+    ld a, [wEpoch]
+    inc a
+    ld [wEpoch], a
+    pop af
     ld l, a
     ld h, 0
     add hl, hl
@@ -1177,6 +1215,14 @@ AllocReset:
 .cg: ld [hli], a
     dec b
     jr nz, .cg
+    ld hl, wGameNew
+    ld b, 32
+.cn: ld [hli], a
+    dec b
+    jr nz, .cn
+    ld [wRC_valid], a
+    ld hl, wEpoch
+    inc [hl]
     ret
 
 AllocScan:
@@ -1651,6 +1697,8 @@ VWF_DmaCheck:
     sbc d
     jr nc, .next
     ; disown + invalidate
+    ld hl, wEpoch
+    inc [hl]
     ld a, [wTmp2]
     call OwnerAddr
     xor a
@@ -1671,13 +1719,13 @@ VWF_DmaCheck:
     ld a, l
     sub low(wBits)
     ld l, a
-    ld h, high(wGame)
+    ld h, high(wGameNew)
     ld a, l
-    add low(wGame)
+    add low(wGameNew)
     ld l, a
     ld a, [hl]
     or b
-    ld [hl], a              ; and kept through GC (wGame)
+    ld [hl], a              ; and kept through the next GC (wGameNew)
 .next:
     ld a, [wDmaI]
     inc a
@@ -2156,48 +2204,67 @@ Dedupe:
     ld [hl], a
     ret
 
-; Rebuild the bitmap from what the bank-3 buffers reference.
+; Rebuild the bitmap from what the bank-3 buffers reference, plus the game's graphics reservations.
+; Reservations (wGame) live only while a buffer still shows the slot: the full first pass keeps the reserved
+; slots it found referenced (it counts BG rows under the window, so the maze keeps its wall tiles while the
+; dungeon menu hides the view) and drops the rest; DMAs since the last GC (wGameNew) survive one GC unchecked
+; (the cells are written after the tiles). Before 2026-11-12 reservations stayed until the next font load and
+; filled the pool in the maze/town: every glyph ran both GC passes (slowdown) and the dry pass overwrote
+; wall tiles (text in the walls, garbled Camp numbers).
 GC:
-    ; start from the slots the game loaded graphics into (reserved until the next font load: the maze keeps
-    ; its wall tiles while the dungeon menu hides the view). Second pass (pool dry): reservations ignored.
+    call GCScan
     ld hl, wGame
     ld de, wBits
-    ld b, 32
+    ld bc, wGameNew
     ld a, [wGCSkipWin]
     or a
-    jr z, .gb
+    jr nz, .p2
+.p1: ld a, [de]             ; wGame = (wGame & referenced) | wGameNew; wGameNew = 0; wBits |= wGame
+    and [hl]
+    push hl
+    ld h, b
+    ld l, c
+    or [hl]
+    ld [hl], 0
+    pop hl
+    ld [hli], a
+    push hl
+    ld h, d
+    ld l, e
+    or [hl]
+    ld [hl], a
+    pop hl
+    inc de
+    inc bc
+    ld a, e
+    cp low(wBits) + 32
+    jr nz, .p1
+    ret
+.p2: ld a, [bc]             ; dry pass: reservations still count (wGame | wGameNew), nothing is dropped
+    or [hl]
+    push hl
+    ld h, d
+    ld l, e
+    or [hl]
+    ld [hl], a
+    pop hl
+    inc hl
+    inc de
+    inc bc
+    ld a, e
+    cp low(wBits) + 32
+    jr nz, .p2
+    ret
+
+GCScan:
+    ld de, wBits
+    ld b, 32
     xor a
 .gz: ld [de], a
     inc de
     dec b
     jr nz, .gz
-    jr .nk
-.gb: ld a, [hli]
-    ld [de], a
-    inc de
-    dec b
-    jr nz, .gb
-    ; during a print burst (map copy pending) the old screen's slots stay reserved - disabled with HoldMark
-    jr .nk
-    ld a, [wHoldStart]
-    ld b, a
-    ld a, [$c00a]
-    sub b
-    cp HOLD_MAX + 2
-    jr nc, .nk
-    ld a, [wKeepOff]
-    or a
-    jr nz, .nk
-    ld hl, wKeep
-    ld de, wBits
-    ld b, 32
-.kb: ld a, [de]
-    or [hl]
-    ld [de], a
-    inc hl
-    inc de
-    dec b
-    jr nz, .kb
+    ; (the print-burst hold that reserved the old screen's slots from wKeep is gone: HoldMark is disabled)
 .nk:
     ld a, [S_slot]
     or a
@@ -2227,9 +2294,24 @@ GC:
     add hl, hl
     ld b, h
     ld c, l
+    push bc
     ld a, b
     or c
-    jr z, .bgskip
+    jr z, .noabove
+    ld hl, $d000
+    call .scan2             ; rows above the window: everything
+.noabove:
+    pop bc
+    ld hl, $d000            ; rows under it: only game graphics (slots no text cell owns, e.g. the maze walls)
+    add hl, bc
+    ld a, low(18*32)
+    sub c
+    ld c, a
+    ld a, high(18*32)
+    sbc b
+    ld b, a
+    call .ownerless
+    jr .bgskip
 .bg:
     ld hl, $d000
     call .scan2
@@ -2244,13 +2326,23 @@ GC:
     bit 3, a                ; BG shows the $9C00 map (= this buffer, e.g. camp spell screens)
     jr nz, .win
     bit 5, a
-    ret z
+    jr z, .winown
     ldh a, [$ff4b]
     cp 167
-    ret nc
+    jr nc, .winown
     ldh a, [$ff4a]
     cp 144
-    ret nc
+    jr c, .win
+.winown:                    ; hidden window: only its game graphics count
+    ld hl, $d800
+    ld bc, 18*32
+.ownerless:                 ; scan BC cells at HL marking only slots without an owning text cell
+    ld a, 1
+    ld [wGCOwnerless], a
+    call .scan2
+    xor a
+    ld [wGCOwnerless], a
+    ret
 .win:
     ld hl, $d800
 .scan:                      ; 18 rows x 32 cells at HL (bank 3; what the game's GDMA copies), attributes at HL+$400
@@ -2303,6 +2395,20 @@ GC:
     jr nz, .skip
     ld a, [wTmp2]
 .mk:
+    ld [wTmp2], a
+    ld a, [wGCOwnerless]
+    or a
+    jr z, .mk2
+    ld a, [wTmp2]
+    call OwnerAddr
+    call Read6
+    ld b, a
+    inc hl
+    call Read6
+    or b
+    jr nz, .skip            ; a text cell owns it: reclaimable in the dry pass
+.mk2:
+    ld a, [wTmp2]
     call MarkCode
 .skip:
     pop hl
@@ -2422,6 +2528,25 @@ VWF_Rect:
     call HoldMark
     ld a, c
     ld [R_mode], a
+    call RectCacheHit
+    jr nc, .render
+    pop af                  ; same box, same place, cells and tiles unchanged: nothing to draw
+    jp SetSVBK
+.render:
+    xor a
+    ld [wRC_valid], a
+    ldh a, [hSrcBank]
+    ld [wRC_srcBank], a
+    ldh a, [hSrcLo]
+    ld [wRC_srcLo], a
+    ldh a, [hSrcHi]
+    ld [wRC_srcHi], a
+    ldh a, [hDstLo]
+    ld [wRC_dstLo], a
+    ldh a, [hDstHi]
+    ld [wRC_dstHi], a
+    ld a, [R_mode]
+    ld [wRC_mode], a
     ldh a, [hSrcBank]
     ld [R_srcBank], a
     ld b, a
@@ -2477,8 +2602,172 @@ VWF_Rect:
     ld [S_imm], a
     ld hl, RectRows
     call PrivCall
+    call RectCacheSave
     pop af
     jp SetSVBK
+
+; carry = the last rendered rect is asked for again (source, destination, mode), no tile was uploaded or
+; overwritten since (wEpoch) and every cell of the box still holds the saved code or was cleared to $20 (the
+; town clears the info box before each redraw) with its attributes unchanged. Cleared cells are restored.
+RectCacheHit:
+    ld a, [wRC_valid]
+    or a
+    ret z
+    ld hl, wRC_srcBank
+    ldh a, [hSrcBank]
+    cp [hl]
+    jr nz, .miss
+    inc hl
+    ldh a, [hSrcLo]
+    cp [hl]
+    jr nz, .miss
+    inc hl
+    ldh a, [hSrcHi]
+    cp [hl]
+    jr nz, .miss
+    inc hl
+    ldh a, [hDstLo]
+    cp [hl]
+    jr nz, .miss
+    inc hl
+    ldh a, [hDstHi]
+    cp [hl]
+    jr nz, .miss
+    inc hl
+    ld a, [R_mode]
+    cp [hl]
+    jr nz, .miss
+    ld a, [wEpoch]
+    ld hl, wRC_epoch
+    cp [hl]
+    jr nz, .miss
+    xor a
+    ld [wTmp3], a           ; pass 0: check
+    call RectWalk
+    jr nc, .miss
+    ld a, 1
+    ld [wTmp3], a           ; pass 1: restore
+    call RectWalk
+    scf
+    ret
+.miss:
+    and a
+    ret
+
+RectCacheSave:
+    ld a, [wRC_dstHi]
+    and $f0
+    cp $d0                  ; only boxes drawn into the bank-3 buffers
+    ret nz
+    ld a, [R_w]
+    or a
+    ret z
+    ld [wRC_w], a
+    ld c, a
+    ld a, [R_h]
+    or a
+    ret z
+    ld [wRC_h], a
+    ld b, a
+    xor a
+.m: add c                   ; w*h <= RC_MAX
+    jr c, .big
+    dec b
+    jr nz, .m
+    cp RC_MAX + 1
+    jr nc, .big
+    ld a, 2
+    ld [wTmp3], a           ; pass 2: save
+    call RectWalk
+    ld a, [wEpoch]
+    ld [wRC_epoch], a
+    ld a, 1
+    ld [wRC_valid], a
+.big:
+    ret
+
+; Walk the cached box. wTmp3: 0 = check (carry = every cell is the saved code or $20, attributes equal),
+; 1 = restore the saved codes, 2 = save codes and attributes.
+RectWalk:
+    ld a, [wRC_dstLo]
+    ld l, a
+    ld a, [wRC_dstHi]
+    ld h, a
+    ld de, wRC_cells
+    ld a, [wRC_h]
+    ld b, a
+.r: push hl
+    ld a, [wRC_w]
+    ld c, a
+.c: ld a, [wTmp3]
+    cp 1
+    jr z, .rest
+    jr nc, .save
+    ; check
+    call Read3
+    push hl
+    ld h, d
+    ld l, e
+    cp [hl]
+    jr z, .ok
+    cp $20
+    jr nz, .bad
+.ok: pop hl
+    push hl
+    ld a, h
+    add 4
+    ld h, a
+    call Read3
+    ld h, d
+    ld l, e
+    push de
+    ld de, wRC_attrs - wRC_cells
+    add hl, de
+    pop de
+    cp [hl]
+    jr nz, .bad
+    pop hl
+    jr .next
+.bad:
+    pop hl
+    pop hl
+    and a
+    ret
+.rest:
+    ld a, [de]
+    call Write3
+    jr .next
+.save:
+    call Read3
+    ld [de], a
+    push hl
+    ld a, h
+    add 4
+    ld h, a
+    call Read3
+    ld h, d
+    ld l, e
+    push de
+    ld de, wRC_attrs - wRC_cells
+    add hl, de
+    pop de
+    ld [hl], a
+    pop hl
+.next:
+    inc hl
+    inc de
+    dec c
+    jr nz, .c
+    pop hl
+    ld a, l
+    add 32
+    ld l, a
+    jr nc, .nc
+    inc h
+.nc: dec b
+    jr nz, .r
+    scf
+    ret
 
 RectRows:
 .rowloop:
