@@ -11,6 +11,13 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-11 - Notice Board
+- ROM: `9a5f3a8` sent.
+- Changed: Notice Board scroll in English (VWF_Notice, script/notice.json); see docs/re/vwf.md.
+- Checked: notice screen EN vs JP, back to town; tests; tour (all routes OK). Battle not re-run (change is
+  limited to the notice screen).
+- Open: museum (separate glyph set), shop lists in 8 px, Dedupe speed, friendly-encounter prompt unseen.
+
 ## 2026-11-11 - playtest pt2 fixes
 - ROM: `635baf0` sent (game code; docs commit on top).
 - Changed: see docs/status.md "Done (fourth session)"; screen-hold experiment switched off (made switches
