@@ -868,7 +868,8 @@ Commit:
     jr .have
 .reuse:
     ld [S_slot], a
-    call SharedDiff         ; shared with another cell and the content changes: take a new slot
+    call SharedDiff         ; content changes: take a new slot (rows copied by scrolling or a shared tile may
+                            ; still show the old one; GC frees it once nothing does)
     jr z, .rk
     xor a
     ld [S_slot], a
@@ -1853,13 +1854,48 @@ SharedClear:
     ld [hl], a
     ret
 
-; NZ if [S_slot] is shared and S_cur differs from its shadow (ink bytes = even shadow bytes)
+; NZ if the content changes AND the tile may be shown elsewhere: shared (Dedupe) or the same tile code in the
+; same column 1-2 rows above/below (a row copied by scrolling, e.g. the inn level-up lines). Otherwise in-place
+; reuse stays allowed: screens the game restores from a saved copy rely on stable slot numbers.
 SharedDiff:
+    call ContentDiff
+    ret z
     ld a, [S_slot]
     call SharedAddr
     ld a, [hl]
     and b
-    ret z
+    ret nz
+    ; same tile one or two rows away in the same column?
+    ld a, [S_cellLo]
+    ld l, a
+    ld a, [S_cellHi]
+    ld h, a
+    call Read3
+    ld c, a                 ; tile code this cell shows now
+    ld de, -64
+    call .near
+    ret nz
+    ld de, -32
+    call .near
+    ret nz
+    ld de, 32
+    call .near
+    ret nz
+    ld de, 64
+.near:
+    push hl
+    add hl, de
+    call Read3
+    pop hl
+    cp c
+    jr z, .y
+    xor a
+    ret
+.y: or 1
+    ret
+
+; NZ if S_cur differs from the shadow of [S_slot] (ink bytes = even shadow bytes)
+ContentDiff:
     ld a, [S_slot]
     call StagingAddr
     ld de, S_cur
