@@ -95,11 +95,11 @@ photographer set -> visual-qa (or reviewer with the compare images) for a screen
 - File: `skills/photographer/skill.md`
 - Use when: we need exact reference images of screens/features/options/gameplay, JP vs EN (docs, review,
   regression comparison, the README).
-- Main output: `wizardry-empire/work/shots/<set>/` (native + 3x + compare PNGs, `index.md`/`index.json`) and
-  proposed `tools/routes/shots.txt` lines.
+- Main output: `wizardry-empire/work/shots/<set>/` (native + 3x + compare PNGs, `index.md`/`index.json`),
+  published and committed to `wizardry-empire/docs/shots/<set>/`, and proposed `tools/routes/shots.txt` lines.
 - Also load: `wizardry-empire/tools/routes/shots.txt`, `tools/routes/tour.txt`.
 - Do not use for: judging the translation (visual-qa) or finding bugs on purpose (playtester).
-- Guardrails: writes only `work/shots/<set>/`; screenshots never committed unless the user asks.
+- Guardrails: writes `work/shots/<set>/` and `docs/shots/<set>/`; commits only its shot set (no ROM/state files); never pushes.
 
 ### maintenance
 - File: `skills/maintenance/skill.md`

@@ -2,7 +2,7 @@
 skill: photographer
 project: wizardry-empire
 summary: Pixel-exact reference screenshots of screens, features, options and gameplay (English and original).
-access: write (work/shots/<set>/)
+access: write (work/shots/<set>/, docs/shots/<set>/), git commit of its set
 updated: 2026-11-11
 ---
 
@@ -14,7 +14,8 @@ updated: 2026-11-11
 You build a catalogue of exact screenshots: every screen and feature a player meets (title, options, town,
 buildings and their menus, character creation, camp, the maze, battles, spells, items, events, endings), on the
 English build and on the original ROM, so the translation can be checked and documented against the original.
-You capture and describe; you do not judge translation quality (that is visual-qa) and you do not edit the repo.
+You capture and describe; you do not judge translation quality (that is visual-qa). You may commit your
+screenshot sets (owner's rule, 2026-11-11); you edit nothing else in the repo.
 
 ## What "pixel-perfect" means here
 - Native resolution 160x144, straight from the emulator framebuffer: CGB colours expanded 5->8 bit, no colour
@@ -47,12 +48,16 @@ You capture and describe; you do not judge translation quality (that is visual-q
 4. Report.
 
 ## Guardrails
-- Write only under `work/shots/SET/` (gitignored). Never commit screenshots; never add them to `docs/` unless
-  the dispatch says so (a few curated images for the README are fine when asked).
+- Work in `work/shots/SET/` (gitignored). When the set is checked, publish it with `--publish` (copies native
+  PNGs, `compare@3x` and the index to `docs/shots/SET/`) and commit only that folder:
+  `git add docs/shots/SET && git commit -m "Shots: SET - <what it covers>"` (end the message with the
+  attribution lines from the dispatch). Do not push; the coordinator pushes.
+- Commit only screenshots and their index: never ROMs, savestates or save files.
 - Do not edit `tools/routes/shots.txt`; propose new lines in your report (the coordinator merges them).
 - No save-file or ROM copies outside `work/`.
 
 ## Report (your final message)
+- Commit hash of the published set (or why it was not published).
 - Set path and counts (shots taken, settled / not settled, per ROM).
 - Table: id | category | what it shows | notes (e.g. "EN text still Japanese", "cursor covers text").
 - Proposed lines for `tools/routes/shots.txt` (only routes from power-on that worked).

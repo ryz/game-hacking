@@ -4,6 +4,7 @@
   python3 tools/shoot.py SET --list FILE           another shot list (same format)
   python3 tools/shoot.py SET --only title,town     only these ids
   python3 tools/shoot.py SET --rom en|jp|both      default both
+  python3 tools/shoot.py SET --publish             also copy the set to docs/shots/SET/ (committed)
 
 Shot list lines: `id | category | description | tokens` (tokens as in tools/emu.py; `pow` = power on only,
 `boot` = power on to the town, PARTY = form the 6-member party at the tavern from the town).
@@ -13,8 +14,10 @@ For every shot and ROM: `<id>.<rom>.png` (native 160x144, the emulator's framebu
 10 frames apart, up to 300 frames) so text has finished typing and fades are done; the catalogue records
 whether it settled. Catalogue: `index.md` + `index.json` (id, category, description, tokens, ROM, commit,
 ROM SHA-1, settled).
+--publish copies the native PNGs, the compare images and index.md/index.json to docs/shots/SET/ (the @3x
+single-ROM images are left out: they are the native ones enlarged).
 """
-import argparse, hashlib, json, os, subprocess, sys
+import argparse, hashlib, json, os, shutil, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, ".."))
@@ -77,6 +80,7 @@ def main():
     ap.add_argument("--list", default=os.path.join(HERE, "routes", "shots.txt"))
     ap.add_argument("--only")
     ap.add_argument("--rom", default="both", choices=["en", "jp", "both"])
+    ap.add_argument("--publish", action="store_true")
     a = ap.parse_args()
     from PIL import Image
     out = os.path.join(ROOT, "work", "shots", a.set)
@@ -122,6 +126,13 @@ def main():
             f.write("| %s | %s | %s | %s | `%s` |\n" % (r["id"], r["category"], r["description"],
                     ", ".join("%s:%s" % (k, "yes" if v else "no") for k, v in r["settled"].items()), r["tokens"][:120]))
     print("catalogue:", os.path.relpath(os.path.join(out, "index.md"), ROOT))
+    if a.publish:
+        pub = os.path.join(ROOT, "docs", "shots", a.set)
+        os.makedirs(pub, exist_ok=True)
+        for f in os.listdir(out):
+            if f.endswith((".md", ".json")) or (f.endswith(".png") and "@3x" not in f) or f.endswith(".compare@3x.png"):
+                shutil.copy2(os.path.join(out, f), os.path.join(pub, f))
+        print("published:", os.path.relpath(pub, ROOT))
 
 
 if __name__ == "__main__":

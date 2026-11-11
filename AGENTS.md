@@ -10,6 +10,8 @@ This repository holds fan-translation projects, one directory per game. Each pro
 ## Rules (all projects)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.sav`,
   `*.state`, `rom/`, `build/`, `work/`). The original dump is verified by SHA-1 (`rom.sha1`).
+- Screenshots may be committed: reference sets go to `<project>/docs/shots/<set>/` (photographer,
+  `tools/shoot.py SET --publish`).
 - Document as you go: reverse-engineering findings in `docs/re/`, the current snapshot in `docs/status.md`, the
   history in `docs/progress-log.md` (append-only, newest first). Update both at the end of every session and log
   every test ROM sent (commit hash).
