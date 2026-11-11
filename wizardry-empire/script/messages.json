@@ -297,6 +297,7 @@
 {"bank": 49, "addr": "0x4f7e", "jp": "にげられない!", "en": "Can't escape!"},
 {"bank": 49, "addr": "0x51b7", "jp": "\nいきのこったメンバーは それぞれ\n{F8 30 31 C65D}の けいけんちをえた", "en": "\nThe survivors each gained\n{F8 30 31 C65D} experience.", "autowrap": true},
 {"bank": 49, "addr": "0x51d9", "jp": "\nいきのこったメンバーは それぞれ\n{F8 30 31 C65D}ゴールドを てにいれた", "en": "\nThe survivors each got\n{F8 30 31 C65D} gold.", "autowrap": true},
+{"bank": 49, "addr": "0x5277", "jp": "  {F3 31 C6E5}\n  どうしますか?\n    しらべる\n    じゅもんをとなえる\n    わなをはずす\n    あける\n    あけずにたちさる", "en": "{col:2}{F3 31 C6E5}\n{col:2}What will you do?\n{col:4}Inspect\n{col:4}Cast a spell\n{col:4}Disarm the trap\n{col:4}Open it\n{col:4}Leave it closed"},
 {"bank": 49, "addr": "0x52bf", "jp": "だれが しらベますか?", "en": "Who will inspect?"},
 {"bank": 49, "addr": "0x52cb", "jp": "だれが じゅもんを となえますか?", "en": "Who will cast a spell?"},
 {"bank": 49, "addr": "0x52dd", "jp": "だれが わなを はずしますか?", "en": "Who will disarm the trap?"},

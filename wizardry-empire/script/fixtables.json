@@ -1,0 +1,15 @@
+[
+{"bank": 38, "addr": "0x754d", "jp": "せいじょう", "en": "OK"},
+{"bank": 38, "addr": "0x7552", "jp": "ロスト", "en": "Lost"},
+{"bank": 38, "addr": "0x7557", "jp": "はい", "en": "Ashes"},
+{"bank": 38, "addr": "0x755c", "jp": "しぼう", "en": "Dead"},
+{"bank": 38, "addr": "0x7561", "jp": "いし", "en": "Stoned"},
+{"bank": 38, "addr": "0x7566", "jp": "まひ", "en": "Paralyzed"},
+{"bank": 38, "addr": "0x756b", "jp": "すいみん", "en": "Asleep"},
+{"bank": 38, "addr": "0x7570", "jp": "きょうふ", "en": "Afraid"},
+{"bank": 38, "addr": "0x7575", "jp": "まふうじ", "en": "Silenced"},
+{"bank": 38, "addr": "0x757a", "jp": "どく", "en": "Poisoned"},
+{"bank": 38, "addr": "0x7437", "jp": "ダンジョン", "en": "Maze"},
+{"bank": 38, "addr": "0x743c", "jp": "まち", "en": "Town"},
+{"bank": 38, "addr": "0x7441", "jp": "じいん", "en": "Temple"}
+]

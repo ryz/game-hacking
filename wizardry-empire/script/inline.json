@@ -13,7 +13,7 @@
 {"bank": 39, "addr": "0x48fe", "kind": "hli", "len": 9, "jp": "はずす", "en": "Remove"},
 {"bank": 39, "addr": "0x490a", "kind": "hli", "len": 12, "jp": "しらベる", "en": "Inspect"},
 {"bank": 39, "addr": "0x4919", "kind": "hli", "len": 18, "jp": "やまわけする", "en": "Divide gold"},
-{"bank": 41, "addr": "0x4288", "kind": "de", "len": 20, "jp": "ゴールド ", "en": "Gold"},
+{"bank": 41, "addr": "0x4288", "kind": "de", "len": 16, "jp": "ゴールド ", "en": "Gold"},
 {"bank": 44, "addr": "0x4acb", "kind": "de", "len": 7, "jp": "さい", "en": "yrs"},
 {"bank": 44, "addr": "0x4aeb", "kind": "de", "len": 7, "jp": "にち", "en": "days"},
 {"bank": 44, "addr": "0x4af6", "kind": "de", "len": 16, "jp": "ゴールド", "en": "Gold"},

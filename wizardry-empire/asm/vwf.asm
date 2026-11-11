@@ -85,6 +85,10 @@ wFixN       equ $dfe9
 wFixTB      equ $dfea
 wCallerSVBK equ $dfeb
 wCallerBank equ $dfec
+wSPsave     equ $dfed          ; 2 bytes: caller SP while on the private stack
+wPT         equ $dfef          ; 2 bytes: PrivCall target / HL on return
+wPA         equ $dff1          ; PrivCall: A on return
+PRIV_SP     equ $cd80          ; private stack top (WRAM0 $CCE0-$CDD5 is never used by the game)
 wMagic      equ $dffe          ; 'V','W' once initialised
 HOME_BANK   equ 7
 
@@ -127,7 +131,8 @@ MAP_BANK    equ 6              ; WRAM bank 6: cellmap $d000-$d7ff, owners $d800 
     ld [$c1c0], a
     jp $1bc7
 
-Stub_Fix:                   ; call Stub_Fix / db n: copy n chars from HL (current bank) to DE, via the VWF
+Stub_Fix:                   ; call Stub_Fix / db n: copy n chars from HL (current bank) to DE, via the VWF;
+                            ; db n|$80, bank: the source is in that ROM bank
     push bc
     push hl
     ld hl, VWF_Fix
@@ -1113,6 +1118,43 @@ MarkCode:                   ; A = code
     ld [hl], a
     ret
 
+; Call HL with SP on a private stack when the caller runs on a task stack ($CE00-$CFFF: 64 bytes per
+; task, too small for the VWF; overflowing it corrupts the next task's frames). DE/BC go in, DE/HL/A
+; come back (flags are not preserved). SVBK must be HOME_BANK (variables) on entry and on return.
+PrivCall:
+    ld a, l
+    ld [wPT], a
+    ld a, h
+    ld [wPT + 1], a
+    ld [wSPsave], sp
+    ld a, [wSPsave + 1]
+    cp $ce
+    jr c, .go               ; main stack or already private: stay
+    ld sp, PRIV_SP
+    call .go
+    ld [wPA], a             ; keep A
+    ld a, l
+    ld [wPT], a
+    ld a, h
+    ld [wPT + 1], a
+    ld a, [wSPsave]
+    ld l, a
+    ld a, [wSPsave + 1]
+    ld h, a
+    ld sp, hl
+    ld a, [wPT]
+    ld l, a
+    ld a, [wPT + 1]
+    ld h, a
+    ld a, [wPA]
+    ret
+.go:
+    ld a, [wPT]
+    ld l, a
+    ld a, [wPT + 1]
+    ld h, a
+    jp hl
+
 ; Rebuild the bitmap from what the bank-3 buffers reference.
 GC:
     call ClearBits
@@ -1184,6 +1226,12 @@ TW_Char:
     call CheckInit
     ld a, b
     ld [wTmp3], a
+    ld hl, TWBody
+    call PrivCall
+    pop af
+    jp SetSVBK
+
+TWBody:
     ; resync if the game moved the cursor
     ld a, [twRow]
     ld hl, TW_row
@@ -1253,9 +1301,7 @@ TW_Char:
     ld [TW_rep], a
     ld hl, S_px
     ld de, TW_ctx
-    call CopyCtx
-    pop af
-    jp SetSVBK
+    jp CopyCtx
 
 ; =====================================================================
 ; Rect entry (from bank-0 stub, tail-called through FarCall).
@@ -1326,6 +1372,12 @@ VWF_Rect:
     ld [R_row], a
     ld [R_end], a
     ld [S_imm], a
+    ld hl, RectRows
+    call PrivCall
+    pop af
+    jp SetSVBK
+
+RectRows:
 .rowloop:
     ; base attribute for the row
     ld a, [R_mode]
@@ -1485,8 +1537,7 @@ VWF_Rect:
     ld hl, R_h
     cp [hl]
     jp c, .rowloop
-    pop af
-    jp SetSVBK
+    ret
 
 ; Fixed-length copy (Stub_Fix). Looks the source address up in FixMap (entries: src bank, src lo, src hi,
 ; text bank, text lo, text hi; $FF ends); prints the English if found, else the raw bytes.
@@ -1520,7 +1571,16 @@ VWF_Fix:
     ld a, [wInBank]
     ld b, a
     call VWF_Fetch
+    bit 7, a                ; n | $80: the next argument byte is the source ROM bank (far table)
+    jr z, .n
+    and $7f
     ld [wFixN], a
+    ld a, [wInBank]
+    ld b, a
+    call VWF_Fetch
+    ld [wInBank], a
+    ld a, [wFixN]
+.n: ld [wFixN], a
     ld d, h
     ld e, l
     ld hl, sp, 11
@@ -1531,7 +1591,8 @@ VWF_Fix:
     ld e, a
     ld a, [wInD]
     ld d, a
-    call FixBody
+    ld hl, FixBody
+    call PrivCall
     ld a, [wInL]
     ld l, a
     ld a, [wInH]
@@ -1540,6 +1601,35 @@ VWF_Fix:
     jp SetSVBK
 
 FixBody:
+    ; blank the n destination cells first (English is often shorter than the field); screen buffers only
+    ld a, [wInD]
+    cp $d0
+    jr c, .nb
+    cp $dc
+    jr nc, .nb
+    ld h, a
+    ld a, [wInE]
+    ld l, a
+    ld a, [wFixN]
+    ld c, a
+.bl:
+    ld a, $20
+    call Write3
+    push hl
+    ld de, $0400
+    add hl, de
+    call Read3
+    and $f7
+    call Write3
+    pop hl
+    inc hl
+    dec c
+    jr nz, .bl
+.nb:
+    ld a, [wInE]
+    ld e, a
+    ld a, [wInD]
+    ld d, a
     ld hl, FixMap
 .f: ld a, [hli]
     cp $ff
@@ -1662,7 +1752,8 @@ VWF_Inline:
     ld a, e
     ld [hli], a
     ld [hl], d
-    call InlineBody
+    ld hl, InlineBody
+    call PrivCall
     ld a, [wInL]
     ld l, a
     ld a, [wInH]
@@ -1745,7 +1836,8 @@ VWF_PrintZ:
     or a
     jr nz, .c
     push hl
-    call VWF_PrintBuf
+    ld hl, VWF_PrintBuf
+    call PrivCall
     pop hl
     pop af
     jp SetSVBK

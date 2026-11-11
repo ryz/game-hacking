@@ -246,7 +246,14 @@ def fix_sites(rom):
             continue
         n = (m.end() - m.start() - 2) // 3 + 1
         out.append((m.start(), m.end() - m.start(), n))
+    for bank, addr, ln, n in EXTRA_FIX_SITES:
+        out.append((rom_off(bank, addr), ln, n))
     return out
+
+
+# Text copies the pattern above misses: (bank, addr, bytes replaced, n chars).
+# 38:5667 gender (2a 12 13 2a 12 13 2a 12: ends in ld a,[hli]; the next instruction reloads HL).
+EXTRA_FIX_SITES = [(38, 0x5667, 8, 3)]
 
 
 def insert_fix_sites(rom):
@@ -271,6 +278,10 @@ def fixmap_entries(space, rom):
                 continue
             b, a = space.put(text.encode(row) + b"\x00")
             ents.append((e["bank"], base + r * e["w"], b, a))
+    for e in load("fixtables.json"):   # plain lookup tables (no rect header) read by Stub_Fix sites
+        if e.get("en"):
+            b, a = space.put(text.encode(e["en"]) + b"\x00")
+            ents.append((e["bank"], int(e["addr"], 16), b, a))
     return ents
 
 
@@ -285,6 +296,19 @@ def insert_lists(rom, space, entries):
         t = rom_off(LIST_BANK, int(e["table"], 16))
         assert rom[t] | rom[t + 1] << 8 == int(e["ptr"], 16), e
         rom[t:t + 2] = bytes([a & 0xFF, a >> 8])
+    return len(entries)
+
+
+def insert_chests(rom, space, entries):
+    """Chest names: bank-37 code loads a bank-49 string pointer as immediates
+    (ld a,lo / ld [$C6E5],a / ld a,hi / ld [$C6E6],a) for {F3 31 C6E5} in 49:5277. English goes into
+    bank-49 free space and both immediates are patched."""
+    for e in entries:
+        o = rom_off(e["bank"], int(e["site"], 16))
+        p = int(e["ptr"], 16)
+        assert rom[o] == 0x3E and rom[o + 1] == p & 0xFF and rom[o + 6] == p >> 8, e
+        b, a = space.put(text.encode(e["en"]) + b"\x00")
+        rom[o + 1], rom[o + 6] = a & 0xFF, a >> 8
     return len(entries)
 
 
@@ -303,6 +327,7 @@ def insert_all(rom):
     stats["monsters"] = insert_monsters(rom, load("monsters.json"))
     stats["templates"] = insert_templates(rom, load("templates.json"))
     stats["lists"] = insert_lists(rom, b49, load("lists.json"))
+    stats["chests"] = insert_chests(rom, b49, load("chests.json"))
     stats["bank 49 free used"] = "$%04X of $%04X" % (b49.pos - LIST_FREE, 0x8000 - LIST_FREE)
     stats["inline"] = insert_inline(rom, space, load("inline.json"))
     global fix_sites_cache, fixmap_cache

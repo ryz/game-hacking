@@ -48,7 +48,7 @@ def text_of(v):
 
 def key_of(fname, e):
     if "bank" in e:
-        return "%s %d:%s" % (fname, e["bank"], str(e["addr"])[2:])
+        return "%s %d:%s" % (fname, e["bank"], str(e.get("addr") or e.get("site"))[2:])
     return "%s #%s" % (fname, e.get("id"))
 
 
