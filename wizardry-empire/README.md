@@ -17,7 +17,8 @@ This repository holds no game data. You need your own dump of the Japanese ROM
 | `tools/` | Python build chain (no external deps besides Pillow for font/QA images). |
 | `tests/` | pytest suite (ROM-dependent tests skip when the ROM is absent). |
 | `docs/re/` | Reverse-engineering notes. |
-| `docs/status.md` | Progress and open issues. |
+| `docs/status.md` | Current snapshot: done, next, known issues. |
+| `docs/progress-log.md` | History: what changed per session and per test ROM. |
 
 ## Build
 

@@ -12,6 +12,7 @@ The main Claude session. Subagents start cold and see none of the conversation, 
 self-contained. Read `skills/skill-index.md` to pick the skill; read its `feedback.md` before dispatching.
 
 ## Dispatch
+- Fill `skills/_templates/dispatch.md` for every dispatch (goal, inputs, output, context, known issues, stop).
 - One question or one batch per agent; give exact paths (input, output, states) and the goal.
 - Use the agent types in `.claude/agents/` (they load the matching `skills/<name>/skill.md`), not general-purpose.
 - Independent jobs run in parallel in the background; never predict a running agent's result.
@@ -23,6 +24,12 @@ self-contained. Read `skills/skill-index.md` to pick the skill; read its `feedba
   report. Commit one topic per commit; push.
 - After every run: copy the agent's `## Feedback` block into `skills/<name>/feedback.md` (newest first) and add a
   line to `agent-log/YYYY-MM.md`; promote repeated lessons into `skill.md`.
+
+## Upkeep
+- Append to `<project>/docs/progress-log.md` at the end of every session and whenever a test ROM is sent
+  (commit hash, changed, found/fixed, open); keep `docs/status.md` as the current snapshot.
+- Run the maintenance skill after big changes or every few sessions; apply approved fixes.
+- User bug reports: ask for the fields in `skills/_templates/bug-report.md` that are missing.
 
 ## Ship a test ROM
 `python3 tools/build.py`, copy the ROM + IPS (named with the commit hash) to the scratchpad and send them;

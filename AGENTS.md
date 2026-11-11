@@ -10,8 +10,9 @@ This repository holds fan-translation projects, one directory per game. Each pro
 ## Rules (all projects)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.sav`,
   `*.state`, `rom/`, `build/`, `work/`). The original dump is verified by SHA-1 (`rom.sha1`).
-- Document as you go: reverse-engineering findings in `docs/re/`, progress and open issues in `docs/status.md`.
-  Update `docs/status.md` at the end of every session.
+- Document as you go: reverse-engineering findings in `docs/re/`, the current snapshot in `docs/status.md`, the
+  history in `docs/progress-log.md` (append-only, newest first). Update both at the end of every session and log
+  every test ROM sent (commit hash).
 - Agent work follows the skills in `skills/` (index: `skills/skill-index.md`) and its feedback loop (below).
 - Translations live in `script/*.json` (Japanese kept next to the English for review). Edit those, not the ROM.
 - Commit messages: what changed and why; one topic per commit.
@@ -40,8 +41,8 @@ Run from `wizardry-empire/`:
 - `skills/skill-index.md` routes every job to a skill; each `skills/<name>/` has `skill.md` (source of truth) and
   `feedback.md` (running log). Templates: `skills/_templates/`.
 - Subagents are thin wrappers in `.claude/agents/<name>.md` that load `skills/<name>/skill.md`. Dispatch these
-  types (translator, reviewer, editor, playtester, visual-qa, tracer, triage), not general-purpose agents, with
-  exact paths. The main session follows `skills/coordinator/skill.md`.
+  types (translator, reviewer, editor, playtester, visual-qa, tracer, triage, maintenance), not general-purpose
+  agents, with exact paths filled in from `skills/_templates/dispatch.md`. Bug reports: `skills/_templates/bug-report.md`. The main session follows `skills/coordinator/skill.md`.
 - Binding terms: `wizardry-empire/glossary.md`.
 
 ### Feedback loop
@@ -54,9 +55,10 @@ Run from `wizardry-empire/`:
 ### End-of-run checklist (coordinator)
 1. Agent output checked (key claims verified) and saved where the skill says, findings in `docs/re/` if RE.
 2. Feedback filed for every skill used; repeated lessons promoted.
+   (Maintenance skill after big changes.)
 3. Agent-log line written.
 4. Build + tests + tour pass for code changes; commits pushed.
-5. `docs/status.md` updated; the user told plainly what changed and what remains open.
+5. `docs/status.md` and `docs/progress-log.md` updated; the user told plainly what changed and what remains open.
 
 ## Text formats (Wizardry Empire)
 | File | What | Notes |

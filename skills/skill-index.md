@@ -18,6 +18,7 @@ to it. Every skill folder has a `feedback.md` - read its open entries before wor
 - **Investigation:** tracer (where/how text is printed), triage (hangs/crashes).
 - **Language:** translator -> reviewer -> (late) editor.
 - **Verification:** playtester (plays toward a goal), visual-qa (judges screenshot sheets).
+- **Upkeep:** maintenance (repo health check: docs vs code, skills, feedback, status drift).
 
 Typical chains: tracer -> (coordinator hooks it) -> translator -> reviewer -> build -> tour -> visual-qa;
 user bug report -> triage -> coordinator fix -> playtester repro.
@@ -87,6 +88,18 @@ user bug report -> triage -> coordinator fix -> playtester repro.
 - Also load: `wizardry-empire/docs/re/vwf.md`, `docs/re/tasks.md`.
 - Do not use for: fixing; general RE questions (tracer).
 - Guardrails: diagnose only; writes only its case dir.
+
+### maintenance
+- File: `skills/maintenance/skill.md`
+- Use when: after a big change (asm refactor, new tool/skill) or every few sessions.
+- Main output: Broken / Drift / Suggestions report with exact proposed fixes.
+- Also load: `AGENTS.md`, `skills/skill-index.md`, the project's `docs/status.md` and `docs/progress-log.md`.
+- Do not use for: fixing things itself; translation quality (reviewer/editor).
+- Guardrails: read-only; every finding cites file:line and proposes exact text.
+
+## Templates
+`skills/_templates/`: `skill.md`, `feedback.md` (new skills), `dispatch.md` (every subagent dispatch),
+`bug-report.md` (user and playtester bug reports).
 
 ## Adding a skill
 Copy `skills/_templates/` to `skills/<name>/`, fill `skill.md`, add a block here with the six fields (File,
