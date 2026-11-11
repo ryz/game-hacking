@@ -326,6 +326,30 @@ def insert_titles(rom, space, entries):
     return len(entries)
 
 
+NAME_LATIN, NAME_PAGES = 0x70C3, (0x6FDF, 0x7051)   # bank 38: Latin page, hiragana and katakana pages
+
+
+def insert_name_charts(rom):
+    """Name entry: 3 pages of 6 rects (17x1) in bank 38; the typed code is read from the chart and END works
+    by position. The kana pages become copies of the Latin page ('・', a VWF slot now, -> apostrophe)."""
+    o = rom_off(38, NAME_LATIN)
+    latin = bytes(rom[o:o + 6 * 19]).replace(b"\xa5", b"'")
+    for p in NAME_PAGES:
+        q = rom_off(38, p)
+        assert rom[q] == 17 and rom[q + 1] == 1
+        rom[q:q + len(latin)] = latin
+    rom[o:o + len(latin)] = latin
+    # typed codes come from per-page tables (row*15 + col, $FF end): kana 85 entries, Latin 70
+    lt = rom_off(38, 0x655D)
+    codes = bytes(rom[lt:lt + 70]).replace(b"\xa5", b"'")
+    rom[lt:lt + 70] = codes
+    for t in (0x64B1, 0x6507):
+        q = rom_off(38, t)
+        assert rom[q + 85] == 0xFF
+        rom[q:q + 86] = codes + b" " * 15 + b"\xff"
+    return len(NAME_PAGES) + 1
+
+
 def load(name):
     p = os.path.join(ROOT, "script", name)
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else []
@@ -343,6 +367,7 @@ def insert_all(rom):
     stats["lists"] = insert_lists(rom, b49, load("lists.json"))
     stats["chests"] = insert_chests(rom, b49, load("chests.json"))
     stats["titles"] = insert_titles(rom, space, load("titles.json"))
+    stats["name charts"] = insert_name_charts(rom)
     stats["bank 49 free used"] = "$%04X of $%04X" % (b49.pos - LIST_FREE, 0x8000 - LIST_FREE)
     stats["inline"] = insert_inline(rom, space, load("inline.json"))
     global fix_sites_cache, fixmap_cache
