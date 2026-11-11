@@ -31,10 +31,14 @@ untranslated or garbled text, overflow, wrong letters, softlocks. You do not fix
 - Town: left/right moves the cursor between buildings, A enters, B leaves. From power-on the cursor is on the
   Edge of Town; right x3 = Rose's Tavern (Add member to build a party from the 6 default characters).
 - Edge of Town: "Explore the maze" enters the dungeon in Camp. B closes/opens Camp. In the maze: up = forward,
-  left/right = turn, A = dungeon menu (Search, Pick a lock, ...). Stairs ask Yes/No (up/down + A, or B).
+  left/right = turn, A = forward/open a door, SELECT = dungeon menu (Search, Pick a lock, ...). The stairs
+  prompt (Yes/No) appears only on the stairs tile (e.g. `tools/routes` maze entry, explore seed 7, 6 steps).
+- Battle menus swallow inputs pressed too fast: follow every press with `w30`.
 - Battles start at random while walking.
 
-## Report: `SESSION/report.md`, also returned as your final message
+## Report: your final message (write `SESSION/report.md` too only if your tools allow it)
+- Compare a suspicious screen with the Japanese ROM on the same route (`--rom rom/wizardry_empire_j.gbc`)
+  before reporting it; when a displayed value looks wrong (gold, EXP, HP), check the value in RAM.
 - Goal reached? Route taken (token lines), and the final state file.
 - Issues, each with: screenshot path, what is wrong (quote the visible text), how to reproduce (state + tokens),
   severity (hang/crash > garbled/untranslated > overflow/alignment > style).

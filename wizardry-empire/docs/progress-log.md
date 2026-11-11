@@ -11,6 +11,17 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-11 - battle text, gold bug, character card, chest
+- ROM: `c5c6b84` sent (see below).
+- Changed: battle command lists and 129 battle segments translated; bank-49 English kept in bank 49; VWF GC
+  limited to visible rows/window; typewriter no slot reuse; private VWF stack; Stub_Fix far-bank variant and
+  destination blanking; fixtables/chests scripts; build writes a `.sym` file.
+- Found / fixed: user findings (mode select, character card, combat menu); battle menu "Item" overwritten (GC
+  over garbage rows); scroll corruption in the battle log; attack verbs printed shop text (`{F3}` bank);
+  playtester: buying added gold / inn free / EXP garbage (RAM copies stubbed as text); shop crash (task
+  stack overflow); chest menu blank; sold-out rows.
+- Open: card title, monster panel, spells, the rest of the playtester list (`docs/status.md` Next).
+
 ## 2026-11-11 - battle hang fixed, agents and skills
 - ROM: `9395438` and `84c5fb5` sent (same game code; `84c5fb5` adds only docs).
 - Changed: VWF state moved from WRAM0 to WRAM bank 7; redirected messages jump back to their original terminator;

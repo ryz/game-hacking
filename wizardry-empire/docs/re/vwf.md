@@ -13,8 +13,15 @@
 - `cellmap` (WRAM7 `$D000-$D7FF`): last slot used by each cell of the bank-3 buffers (`$D000`/`$D800`).
   `owner` (WRAM7 `$DF00`): the cell each slot belongs to. A cell reuses its slot when it still owns it:
   the game clears and re-blits boxes every few frames, so reuse keeps slot use stable.
+- The typewriter never reuses a cell's previous slot: the game scrolls message boxes by copying rows, so
+  the slot a cell owned may now be shown by the row above.
 - New slots come from a ring with an allocation bitmap (`wBits`). When it runs dry, `GC` rebuilds the bitmap
-  from what the bank-3 buffers reference.
+  from what the bank-3 buffers reference: only the 18 rows the game's GDMA copies (`0:1674`, `$23` blocks), and
+  the window buffer `$D800` only while the window is on screen (LCDC bit 5, WX < 167, WY < 144). Battle hides
+  the party list with WX=167 and re-sends it before showing it. Scanning all 32 rows marked garbage as used,
+  the pool ran dry and the fallback overwrote live tiles (battle menu "Item" -> "r em").
+- Known conflict: after a battle the game loads the chest picture into VRAM0 `$8800+` while the last battle
+  line is still visible, so it flickers for a few frames.
 
 ## Upload
 - Each tile is built in `wUp` (`$CF80`, ink = colour 3, paper = colour 2 like the original font), compared
@@ -42,7 +49,24 @@ keeps working; it resyncs whenever the game moves the cursor or the buffer base 
   caused the battle hang. Bank-0 stubs pass everything in registers or on the stack: the VWF reads caller
   HL/BC/argument pointer from fixed stack offsets (see the comment above `Stub_Inline`).
 
+## Stack
+Task stacks are 64 bytes (`$CE00+$40n`). Called from a task (shop card, battle typewriter), the VWF chain
+(stub, far call, Fix/Inline/Rect, Commit, GC) overflowed into the next task's frames and crashed (shop hang).
+Every entry runs its body through `PrivCall`: when SP >= `$CE00` it switches to a private stack at `$CD80`
+(WRAM0 `$CCE0-$CDD5` is zero in every savestate checked; the main stack's lowest residue is about `$CDD6`),
+otherwise it stays on the caller's stack.
+
+## Fixed-length copies (`Stub_Fix`)
+`call Stub_Fix / db n` replaces unrolled `ld a,[hli] / ld [de],a / inc de` copies whose source is a ROM table.
+The FixMap key is the source (bank, address); rect rows and `script/fixtables.json` provide the English. On a
+miss the raw bytes are printed. `db n|$80, bank` reads the source from another ROM bank (shop alignment,
+29:421A, replaced a `call $0C97` banked copy). The destination cells are blanked first. Copies whose source is
+set by `ld hl,$8000+` are data (gold, EXP, HP) and must not be stubbed: doing so made buying add gold.
+
 ## Message redirect
 Original message start -> `$F2 bank lo hi` (English). The English ends with `$F2 <original bank> <terminator>`
 pointing back at the original `$FF`/`$FC`, so the game ends or pauses the message in the original text bank.
 Without this, `$C1C1` stayed on the English bank and `$FC`-chained battle segments read the wrong bank.
+Bank-49 messages keep their English inside bank 49 (free `$5726-$7FFF`, shared with `lists.json` and
+`chests.json`): `{F3 ..}` inserts read their string pointer from the current text bank, so English in bank
+`$42` printed shop text instead of attack verbs.

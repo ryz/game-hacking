@@ -33,6 +33,11 @@ Do not re-derive what they already state.
   count-only breakpoints + `break.log` to list every PC that writes a range; `trace.start(with_mem=True)` around one frame.
 - Reaching screens: from power-on `boot` puts you in the town. Party/maze routes: `tools/routes/tour.txt`.
   Savestates from the original ROM and the English build are not interchangeable.
+- Every state you save goes into the notes with its exact input list (start state + tokens); a state from a
+  random walk without its inputs cannot be reproduced.
+- `gbdis.py BANK 0xADDR`: bank decimal, address with `0x` (a bare number is read as decimal).
+- Garbled field in the English build: dump the EN `$D000` buffer for it first. Header bytes (`[bank][lo][hi]`)
+  mean a raw copy of a redirected rect; a repeated value like `$29` means A was clobbered by a stub.
 
 ## Answer (your notes file, also your final message)
 1. Answer in one paragraph.
