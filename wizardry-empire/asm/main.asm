@@ -57,3 +57,15 @@ org 42, $4a29
 ; VBlank map copy (0:1674): ld a,[$c48b] -> Stub_Hold (skips the copy while a menu is being printed)
 org 0, $167d
     call Stub_Hold
+
+; Notice Board (2B:57E0): far call to the fade-in -> trampoline: VWF_Notice, then the fade-in (English text)
+org 43, $57e0
+    call $7f00
+    ds 5, $00
+org 43, $7f00
+    ld a, VWF_BANK
+    ld hl, VWF_Notice
+    call FarCall
+    ld a, $26
+    ld hl, $4054
+    jp FarCall

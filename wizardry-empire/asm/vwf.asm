@@ -1763,6 +1763,100 @@ HoldMark:
     ret
 
 ; =====================================================================
+; Notice Board (2B:57C0): the scroll is one picture with the Japanese text drawn into it. After the fade-in
+; (trampoline 2B:7F00) the text area (rows 2-15, cols 2-17 of the BG buffer) is blanked to paper (tile $20,
+; palette 5: palette 6's colour 3 is nearly the paper colour) and the English lines (script/notice.json -> NoticeRows/NoticeText) are printed.
+; =====================================================================
+VWF_Notice:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld hl, NoticeBody
+    call PrivCall
+    pop af
+    jp SetSVBK
+
+NoticeBody:
+    ld hl, $d000 + 2*32 + 2
+    ld c, 14
+.row:
+    push hl
+    ld b, 16
+.cell:
+    ld a, $20
+    call Write3
+    push hl
+    ld de, $0400
+    add hl, de
+    call Read3
+    and $80                 ; no flip, VRAM0, palette 5: same paper (colour 2) as palette 6, dark ink (colour 3)
+    or $05
+    call Write3
+    pop hl
+    inc hl
+    dec b
+    jr nz, .cell
+    pop hl
+    ld de, 32
+    add hl, de
+    dec c
+    jr nz, .row
+    ; lines (index in B on the stack: VWF_PrintBuf uses every register and the wDed* variables)
+    ld b, 0
+.line:
+    ld a, b
+    cp NOTICE_LINES
+    ret nc
+    ld e, a
+    ld d, 0
+    ld hl, NoticeRows
+    add hl, de
+    ld a, [hl]
+    cp $ff
+    ret z
+    push bc
+    ; de = $D000 + row*32 + NOTICE_COL
+    ld l, a
+    ld h, 0
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    ld de, $d000 + NOTICE_COL
+    add hl, de
+    push hl
+    ; copy NoticeText + 28*i to wNameBuf
+    ld l, b
+    ld h, 0
+    add hl, hl
+    add hl, hl              ; *4
+    ld d, h
+    ld e, l
+    add hl, hl              ; *8
+    add hl, de              ; *12
+    add hl, hl              ; *24
+    add hl, de              ; *28
+    ld de, NoticeText
+    add hl, de
+    ld de, wNameBuf
+.cp: ld a, [hli]
+    ld [de], a
+    inc de
+    or a
+    jr nz, .cp
+    pop de
+    call VWF_PrintBuf
+    pop bc
+    inc b
+    jr .line
+
+; =====================================================================
 ; Spells. VWF_SpellName (C = spell id): wSpell = full English name from SpellNames (bank, ptr per id; filled
 ; by tools/insert.py from script/spells.json), else the 11-byte record name (36:6C38 + 16*id).
 ; VWF_SpellList: print wSpell in the spell list row just blitted (hDst + 1 cell, after the castable marker).
@@ -2920,6 +3014,12 @@ NextCellBlank:
     jp NextCell
 
 ; Address-keyed English for fixed-length copies; filled in by tools/build.py after assembly.
+NOTICE_LINES equ 8
+NOTICE_COL  equ 2
+NoticeRows:                 ; row of each line ($FF = end), filled by tools/insert.py
+    ds NOTICE_LINES, $ff
+NoticeText:                 ; NOTICE_LINES x 28 bytes, $00-terminated lines
+    ds NOTICE_LINES * 28, $00
 SpellNames:                 ; 125 x [bank][lo][hi], filled by tools/insert.py (bank 0 = use the record)
     ds 125*3, $00
 FixMap:

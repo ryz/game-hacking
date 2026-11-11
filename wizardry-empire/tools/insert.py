@@ -425,6 +425,18 @@ def post_asm(rom, sym):
     assert len(fixmap_cache) <= 600
     data = b"".join(bytes([sb, sa & 0xFF, sa >> 8, tb, ta & 0xFF, ta >> 8]) for sb, sa, tb, ta in fixmap_cache)
     rom[o:o + len(data)] = data
+    for n in load("notice.json"):
+        b, a = sym["NoticeRows"]
+        o = b * 0x4000 + a - 0x4000
+        assert len(n["en"]) <= 8 and len(n["rows"]) == len(n["en"]) and n["col"] == 2
+        for i, r in enumerate(n["rows"]):
+            rom[o + i] = r
+        b, a = sym["NoticeText"]
+        o = b * 0x4000 + a - 0x4000
+        for i, line in enumerate(n["en"]):
+            d = text.encode(line) + b"\x00"
+            assert len(d) <= 28 and text.width(line) <= 128, line
+            rom[o + 28 * i:o + 28 * i + len(d)] = d
     b, a = sym["SpellNames"]
     o = b * 0x4000 + a - 0x4000
     for i, v in enumerate(spell_names_cache):

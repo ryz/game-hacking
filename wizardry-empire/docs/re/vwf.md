@@ -99,3 +99,13 @@ Without this, `$C1C1` stayed on the English bank and `$FC`-chained battle segmen
 Bank-49 messages keep their English inside bank 49 (free `$5726-$7FFF`, shared with `lists.json` and
 `chests.json`): `{F3 ..}` inserts read their string pointer from the current text bank, so English in bank
 `$42` printed shop text instead of attack verbs.
+
+## Notice Board (2B:57C0)
+The scroll is one picture (rect `2C:5978` blitted to `$D000` by `$1723`); the Japanese text is part of the
+bitmap (rows 2-15, cols 2-17, palette 6, VRAM1). `2B:57E0` (far call to the fade-in `38:4054`) now calls the
+trampoline `2B:7F00`: far call `VWF_Notice`, then the fade-in. It has to run before the fade-in: the buffer is
+not copied to VRAM again afterwards. `VWF_Notice` fills the area with tile `$20` (VRAM0, paper colour 2),
+sets the attributes to palette 5 without flips (palette 6 colour 3 = 18,15,11 is nearly the paper 19,17,12;
+the picture flips some tiles in row 10) and prints `NoticeText` lines at `NoticeRows`, column 2. Lines: 8 x 28
+bytes, filled by `insert.py` from `script/notice.json`, max 128 px. `VWF_PrintBuf` clobbers `wDed*`; loop
+counters belong on the stack.

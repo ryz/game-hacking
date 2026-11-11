@@ -12,6 +12,11 @@
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
+## Done 2026-11-11 (fifth session)
+- Notice Board scroll in English (`script/notice.json`, `VWF_Notice`): the picture's Japanese text area is
+  blanked to paper and the VWF prints over it before the fade-in (palette 5: the scroll's palette 6 has an
+  ink colour that matches the paper). Ink is the scroll's dark brown, lighter than the Japanese black.
+
 ## Done 2026-11-11 (fourth session, playtest pt2 fixes)
 - Disarm trap list, Training class lists (create, bonus panel, change class), battle Fight/Go back box and
   party action column ("10/Normal"), party status words, friendly-encounter prompt, battle Equip "None"
@@ -42,8 +47,8 @@
 - Redirected messages left the text bank on the English bank; English now jumps back to the original terminator.
 
 ## Next (in rough priority)
-1. Notice Board scroll and museum item pages: they use a separate glyph set (not `tbl/jp.tbl`); needs a
-   tracer run for the glyph mapping and the printer.
+1. Museum item pages: they use a separate glyph set (not `tbl/jp.tbl`); needs a tracer run for the glyph
+   mapping and the printer.
 2. Shop item lists and the name-entry field still in the 8 px font (owner's rule: words in the VWF).
 3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
 4. Item effect descriptions (bank 46), prologue, title screen.

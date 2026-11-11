@@ -1,0 +1,33 @@
+[
+ {
+  "bank": 43,
+  "site": "0x57e0",
+  "jp": [
+   "せかいになだたる ぼうけんしゃ",
+   "たちよ まかいのこうていをたおし",
+   "まどうをふうじるのだ",
+   "ふうじしものには のぞみどおりの",
+   "ざいほうと わがこうけいしゃたる",
+   "しかくをさずけよう"
+  ],
+  "en": [
+   "Renowned adventurers,",
+   "slay the Emperor of the",
+   "netherworld and seal",
+   "the maze. Whoever does",
+   "shall receive the riches",
+   "they desire and the right",
+   "to be my successor."
+  ],
+  "rows": [
+   2,
+   4,
+   6,
+   8,
+   10,
+   12,
+   14
+  ],
+  "col": 2
+ }
+]
