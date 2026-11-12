@@ -10,6 +10,22 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - 15 contradictions between the tech docs
+- Task: resolve pacts, inn aging/refill, EXP rows, old-age roll, Revival Charm, Bishop learning, class masks,
+  potion, raise odds, swings, guarded squares, areas, hidden spots, Battle Axe to-hit; correct docs/tech.
+- Worked: JP Rev 1 states from power-on (emu.start, maze_goto on the JP ROM); poking the working copy $C48F at
+  the inn menu; stopping breakpoints read frame by frame; the item effect jump table settled effect-vs-museum
+  questions; one floor-map scan answered two items.
+- Friction: a stop inside emu.press is silently resumed (first old-age run logged no rolls); party-record pokes are
+  overwritten by the working copy at the inn (the cause of the wrong items §7 control, made by the coordinator);
+  no ready-made JP Rev 1 maze/battle states; the dispatch's reach.md recipe pointed at EN states.
+- Proposed rule change: frame-by-frame input at stops; poke $C48F after picking; RNG seed $FF96/97. Tool: JP
+  variant of party.py / cached JP states.
+- Corrected: all 15 verdicts filed in docs/tech (checked: pacts match the EN magic-circle screen 'Zombie
+  appeared!'); the coordinator's own control test was the flawed one. Rules promoted (second report of the
+  run_frames/press stop trap). Tool backlog: party.py --rom jp.
+- Status: promoted 2026-11-12 (stop/press rule, working-copy pokes); party.py JP: open (tool backlog)
+
 ### 2026-11-12 - design docs: monsters, combat, dungeon
 - Task: designer reference for monsters, encounters, combat and the dungeon (records, bestiary, formulas, floors,
   events) from the Rev 1 ROM.

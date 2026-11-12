@@ -92,7 +92,10 @@ breakpoint on the dispatcher. To run one routine: stop at 0:07C5 first (HALT/IME
   with `tools/party.py`): a state from an older build keeps the old screen buffer until the screen is redrawn.
 - Camp spell / effect screens: stop at 24:40DF and set A = effect id to reach any camp spell result from one state.
 - With a stopping breakpoint armed, check `r.get('stopped')` after every `run_frames`: the next call silently
-  resumes past it. Count-only breakpoints log to `break.log` (drain it after the run).
+  resumes past it. `emu.press` (8-frame hold) also resumes past a stop: to read registers at a compare, drive input
+  frame by frame (`g.input_set([...])` + `g.run_frames(1)`, check `stopped` each frame).
+- Character checks at a menu (inn, temple): poke the working copy `$C48F` after the character is picked; pokes to
+  the party record `$C880+` are overwritten by it. RNG seed: poke `$FF96/97`. Count-only breakpoints log to `break.log` (drain it after the run).
 - 'No direct call' is not 'dead code': routines are also reached through jump tables (0:37FC, the heal box).
 
 ## Design / rules questions (2026-11-12, owner asked for docs/design/)
