@@ -10,6 +10,20 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - 'Choose a classsir' on the creation class screen
+- Task: explain the VWF corruption at the end of rect 26:729B and propose a fix.
+- Worked: checking the attribute bank bit and the bank-6 cell map disproved the brief's two-owner theory in
+  minutes; a write watch on the whole box row showed the one cell nobody wrote; breakpoints on RectRows/Commit
+  with S_px/S_slot gave the decision; scratch tree from git archive with symlinked rom/ and gbemu-cli.
+- Friction: the coordinator's brief ignored attribute bit 3 ($40 in VRAM1 = $C0); run_until needs addr/expr;
+  VWF variables are EQUs (not in .sym); no character-creation route in the tour.
+- Proposed rule change: attribute-bit / cell-map check first; watch the whole row for stale cells; scratch-build
+  recipe. Tool: a creation route in tour.txt.
+- Corrected: fix applied as proposed (RectRows .eol/.setx blank a cell that got no ink), class prompt clean, tour
+  unchanged; 'create' route added to tour.txt (baseline accepted). Three PrintZ-style paths with the same ending
+  (vwf.asm ~5551/6010/6675) left for a later check.
+- Status: promoted 2026-11-12 (Display corruption: bank bit, whole-row watch, scratch recipe)
+
 ### 2026-11-12 - maze strip: mirrored 'Pick a lock' in the view strip under the dungeon SELECT menu
 - Task: explain the mirrored menu glyphs in the maze strip and propose a vwf.asm fix.
 - Worked: per-frame VRAM poll-diff found the writer when VRAM write watches did not fire; watching the HDMA

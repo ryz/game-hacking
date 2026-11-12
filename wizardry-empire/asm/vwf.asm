@@ -4929,10 +4929,7 @@ RectRows:
     call CommitIfInk
     ld a, [S_slot]
     or a
-    jr nz, .sxn
-    ld a, [S_px]
-    or a
-    jr z, .sx1
+    jr z, .sx1              ; no ink in the current cell: the loop below blanks it (see .eol)
 .sxn:
     call NextCell
 .sx1:
@@ -4965,11 +4962,8 @@ RectRows:
     call CommitIfInk
     ld a, [S_slot]
     or a
-    jr nz, .adv1
-    ld a, [S_px]
-    or a
-    jr z, .fill
-.adv1:
+    jr z, .fill             ; no ink in the current cell (at most the 1-px advance): .fill blanks it - skipping it
+.adv1:                      ; left an older text's tile there (26:729B 'Choose a class.' showed 'classsir')
     call NextCell
 .fill:                      ; blank the rest of the row
     ld a, [S_col]

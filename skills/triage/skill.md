@@ -60,3 +60,9 @@ End your final report with this block; the coordinator files it in `skills/triag
    that slot's allocation bit (wBits $DF60 + code/8, bank 7), owner (bank 6 $D800 + code*2) and wVer.
 3. Symbolise backtraces with build/wizardry_empire_en.sym.
 4. Prove the cause by poking the suspected guard variable in a state just before the bad frame.
+
+- Before chasing "two owners of one code": read the attribute's VRAM-bank bit (+$400) and the bank-6 cell map; in
+  the split layout a cell with bit 3 set is code | $80, a different slot.
+- A stale cell shows as NO write to the bad cell: write-watch the whole row/box and look for the gap.
+- Scratch builds: `git archive HEAD wizardry-empire | tar -x -C <case>/scratch`, symlink `rom/` and
+  `tools/gbemu-cli`, then build.py / tour.py / pytest run in place.
