@@ -11,6 +11,14 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - small-font numbers: AC sign, HP slash, party list, spell grid, monster panel
+- ROM: `d0727be` sent.
+- Card/shop: negative AC as one right-aligned '-N'; 'Lo'/'Hi' in the VWF; card HP '/' + max as one string.
+- Town party list: '/', '+', poison '-' in the VWF. Spell slot grid: '1 / 0 / 0 ...' as one VWF string on
+  the level cursor's grid. Monster panel '(1) 1' and automap digits: symbol tiles from the VWF glyphs.
+- Rect blits return DE past the box like the original (tracer finding; tour A/B 230 shots identical).
+- Bank-2C 'second sheet' is the hidden debug mode (docs/re/debug-mode.md), left as is.
+
 ## 2026-11-12 - card 'Status: OK' as one right-aligned unit; maze strip fix
 - ROM: `b9f4a72` sent.
 - 'Status:' label now sits one space before the status word; both end at col 18 (all 10 status words checked).
