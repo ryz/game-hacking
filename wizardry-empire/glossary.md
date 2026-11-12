@@ -18,6 +18,10 @@ Binding names and terms. Use them exactly; add new rows when a new name is decid
   their alignment (right-aligned in their field, digits of equal width).
 - Field limits are hard: items 16 chars, monsters 12 (abbreviate with "Gr." / "Mstr." / "Elem." only when needed),
   default character names 7.
+- Battle narration: events in past tense ("attacked", "dealt", "took N damage", "cast"); states keep "is"
+  ("is afraid!", "is paralyzed!"). (2026-11-12, editor review)
+- One name per monster, never two monsters with the same name (しかく = Cutthroat, アサシン = Assassin).
+  イフリート = Ifrit (spell and monster). ダンジョン in system messages = "maze".
 
 ## Places
 | JP | EN |

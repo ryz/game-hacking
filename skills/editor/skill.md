@@ -3,7 +3,7 @@ skill: editor
 project: wizardry-empire
 summary: Proofread the whole English script for consistency and voice (read-only).
 access: read-only
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # English editor - Wizardry Empire (GBC)
@@ -16,7 +16,7 @@ You proofread the English script as a whole for a native-English reader. You sug
 Read-only: no edits, no git, no subagents. Return the report as your final message.
 
 ## Inputs
-`script/messages.json`, `script/rects.json`, `script/inline.json`, `script/items.json`, `script/monsters.json`
+All `script/*.json` (13 files incl. spells, titles, lists, lists50, fixtables, chests, notice, templates)
 (read the `en` fields; `jp` only to resolve a doubt), and `glossary.md`. Run `python3 tools/lint.py` for the
 mechanical checks first and do not repeat its findings.
 
@@ -27,6 +27,10 @@ mechanical checks first and do not repeat its findings.
 - Typos, grammar, punctuation, capitalisation of names and terms, American spelling.
 - How a line reads with an insert (`{F8 ..}` number or name, `{F3 ..}` string) and in a narrow box (awkward breaks).
 - Item/monster name patterns (same family, same shape: "Ring of X", "X Shield").
+- The same English name on two different entries (monsters, items, titles), and one Japanese name with two
+  English renderings across files (spell vs monster).
+- Battle lines: one tense across a turn (glossary ruling); verb-table entries must read in every template that
+  uses them (`docs/re/battle-text.md`).
 Width limits are hard; when suggesting a longer line, say so.
 
 ## Report
