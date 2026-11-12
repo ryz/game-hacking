@@ -1072,6 +1072,63 @@ MazeHdma:
     ld hl, VWF_DmaCheck
     jp FarCall
 
+; --- spell slot grid (2A:4B7B, from 2A:45B2/45BB/4BF2 after the 8 px ' / / / / / /' rect 2A:7227 at DE+1): 7 digits
+;     one per cell between the rect's 8 px slashes -> blank the 13 cells, one VWF string on the same 16 px grid
+;     (the level cursor moves 2 cells per level): digit ink at px 2-5 of its 16 px, the slash between
+    org $2a, $4b84
+    jp SpellSlots
+    org $2a, $7900
+SpellSlots:                 ; HL = 7 slot counts, DE = first cell (SVBK 3 set, its old value pushed)
+    push de
+    push hl
+    ld h, d
+    ld l, e
+    ld a, $20
+    ld b, 13
+.b: ld [hli], a
+    dec b
+    jr nz, .b
+    pop hl
+    ld de, MUS_STR
+    ld c, 7
+.l: ld a, [hli]
+.m: cp 10                   ; the original kept the low digit (0:0FE9 with C = 1)
+    jr c, .d
+    sub 10
+    jr .m
+.d: ld b, a
+    ld a, $7c               ; 2 px lead
+    ld [de], a
+    inc de
+    ld a, b
+    add $30
+    ld [de], a
+    inc de
+    dec c
+    jr z, .e
+    ld a, b                 ; then '[3 px] / [2 px]' (after a '1', 4 px: '[2+2 px] / [2 px]'): 16 px per level,
+    cp 1                    ; 4 px ink gap before the slash, 5 after
+    ld a, $20
+    jr nz, .s
+    ld a, $7c
+    ld [de], a
+    inc de
+.s: ld [de], a
+    inc de
+    ld a, $2f
+    ld [de], a
+    inc de
+    ld a, $7c
+    ld [de], a
+    inc de
+    jr .l
+.e: xor a
+    ld [de], a
+    pop de
+    ld hl, MUS_STR
+    call Stub_PrintZ
+    jp $4b99                ; restore SVBK, ret
+
 ; --- Find allies list (20:62C6: name copy DE (SRAM roster) -> HL, codes $80+ with the VRAM1 bit; BC/HL are
 ;     popped from the stack at 20:62E2) -> VWF
     org $20, $62c6
