@@ -4202,13 +4202,23 @@ GCScan:
     ld [wGCn], a
     ld a, h
     and $08
-    jr nz, .l               ; window buffer ($D800-$DBFF): columns 0-20
+    jr nz, .chk             ; window buffer ($D800-$DBFF): columns 0-20
     ld a, [wGCcol0]         ; BG with SCX = 0: columns 0-20. Otherwise columns 0-20 and SCX/8.. +20: a
     or a                    ; raster split (battle: the monster area scrolls, the party panel below does
-    jr z, .l                ; not) makes SCX read mid-frame wrong for some rows
+    jr z, .chk              ; not) makes SCX read mid-frame wrong for some rows
     ld a, 32
     ld [wGCn], a
     ld [wGCchk], a
+.chk:
+    ld a, [wGCchk]          ; columns 0-20 in a normal pass: the fast row loop
+    ld b, a
+    ld a, [wGCOwnerless]
+    or b
+    jr nz, .l
+    pop hl
+    push hl
+    call GCRowFast
+    jp .rowdone
 .l: pop hl
     push hl
     ld a, [wGCchk]
@@ -4245,8 +4255,68 @@ GCScan:
     ld a, [bc]
     or a
     jp z, .skip
-    ; current layout as before; the other layout's reading counts only for cells that own the slot (a font
-    ; load can switch the layout while text drawn under the other one is still on screen: battle spell list)
+    call GCSlot
+.skip:
+    ld a, [wGCc]
+    inc a
+    and $1f
+    ld [wGCc], a
+    ld hl, wGCn
+    dec [hl]
+    jp nz, .l
+.rowdone:
+    pop hl
+    ld de, 32
+    add hl, de
+    ld a, [wGCrows]
+    dec a
+    ld [wGCrows], a
+    jp nz, .row
+    ret
+
+; GC fast row (columns 0-20, SCX = 0 or the window buffer, normal pass): HL = row start. WRAM bank 3 stays
+; mapped while cells that can never be a slot are skipped (most of them: frames, spaces, game tiles); only the
+; others switch to the home bank for GCSlot.
+GCRowFast:
+    ld a, 3
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld b, 21
+.f: ld a, [hli]
+    ld e, a
+    ld d, high(MaybeSlot)
+    ld a, [de]
+    or a
+    jr nz, .slot
+.n: dec b
+    jr nz, .f
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
+.slot:
+    push bc
+    push hl
+    dec hl
+    ld a, h
+    add 4
+    ld h, a
+    ld d, [hl]              ; attribute (bank 3)
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    call GCSlot
+    ld a, 3
+    ldh [hSVBK], a
+    ldh [$70], a
+    pop hl
+    pop bc
+    jr .n
+
+; GC: mark the slot a cell shows. E = code, D = attribute, HL = the cell's attribute address (bank 3 + $400);
+; home bank mapped. Current layout as before; the other layout's reading counts only for cells that own the slot
+; (a font load can switch the layout while text drawn under the other one is still on screen: battle spell list).
+GCSlot:
     ld a, [wLayout]
     or a
     jr z, .flat
@@ -4254,14 +4324,14 @@ GCScan:
     jr nz, .sp
     bit 3, d                ; layout 2: VRAM1 cells hold the code itself; VRAM0 cells are graphics
     ld a, e
-    jp nz, .mk
-    jp .skip
+    jr nz, .mk
+    ret
 .sp:
     bit 3, d                ; split
     ld a, e
     jr z, .s0
     cp $70
-    jr nc, .skip
+    ret nc
     or $80
     jr .mk
 .s0: bit 7, a
@@ -4272,23 +4342,23 @@ GCScan:
     ld a, e
     jr z, .mk
     cp $70
-    jr nc, .skip
+    ret nc
     or $80                  ; VRAM1 tile: split reading
 .other:
     ld [wTmp2], a
     ld a, h
     sub 4
-    ld b, a                 ; bc = cell address (bc is free here: pushed above)
+    ld b, a                 ; bc = cell address
     ld c, l
     ld a, [wTmp2]
     call OwnerAddr
     call Read6
     cp c
-    jr nz, .skip
+    ret nz
     inc hl
     call Read6
     cp b
-    jr nz, .skip
+    ret nz
     ld a, [wTmp2]
 .mk:
     ld [wTmp2], a
@@ -4314,26 +4384,10 @@ GCScan:
     ld a, [$c00a]
     sub b
     cp STAMP_KEEP
-    jr nc, .skip
+    ret nc
 .mk2:
     ld a, [wTmp2]
-    call MarkCode
-.skip:
-    ld a, [wGCc]
-    inc a
-    and $1f
-    ld [wGCc], a
-    ld hl, wGCn
-    dec [hl]
-    jp nz, .l
-    pop hl
-    ld de, 32
-    add hl, de
-    ld a, [wGCrows]
-    dec a
-    ld [wGCrows], a
-    jp nz, .row
-    ret
+    jp MarkCode
 
 ; =====================================================================
 ; Typewriter entry (from 0:1c2a). B = character. Caller saved HL.
