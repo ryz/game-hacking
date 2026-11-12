@@ -18,7 +18,8 @@ encounter rules in [monsters.md](../monsters.md). Notation: [README.md](../READM
 
 ## 2. Reading a map
 
-The legend is printed under every map. In short:
+The legend is printed under every map; the full rules for how maps look are in the
+[style guide](style-guide.md). In short:
 
 | On the map | Meaning |
 |---|---|
@@ -32,7 +33,8 @@ The legend is printed under every map. In short:
 | **E** / **E1** | event / one-shot event |
 | **T** + letter | floor trap: TP pit, TC chute, TF falling ceiling, TR rockfall, TV viper, TS spinner |
 | **B** | button panel; **C** corpse |
-| small grey number | the square's encounter area: which monster set random fights come from |
+| red hatch / blue dots / purple both | damage zone / anti-magic zone (inferred) / both marks (no known effect) |
+| small grey number | the square's encounter area (only where it differs from the area named under the title) |
 | light grey square | no random fights on that square |
 
 Encounter areas are set **per square**, not per room: on floor 1 the three areas alternate square by square, so
