@@ -728,6 +728,12 @@ CardLvlText:
     org $26, $57be
     call CardHP
     ds 9, $00
+    org $26, $57d5          ; HP separator '/' (8 px) -> VWF
+    call CardSlash
+    nop
+    org $26, $57ea          ; max HP: '/' + the number as one VWF string from the slash cell ("10/10", no gap)
+    call CardMaxHP
+    ds 8, $00
     org $26, $5804
     call CardAC
     ds 8, $00
@@ -762,6 +768,26 @@ CardAC:                     ; DE ends at $D090 (the AC value) like the original
     call Stub_PrintZ
     ld de, $d090
     ret
+CardSlash:                  ; DE -> DE + 1; HL is reloaded by the caller
+    ld hl, CardSlashText
+    jp Stub_PrintZ
+CardSlashText:
+    db "/", 0
+CardMaxHP:                  ; DE = cell after the slash (its 4 cells blanked by the caller)
+    push de
+    ld a, $2f
+    ld [MUS_STR], a
+    ld de, MUS_STR + 1      ; outside $D000-$DBFF: 0:0FE9 stores the digit codes here (Stub_Num passes)
+    ld a, 2
+    ld bc, $3000
+    ld hl, $c4f1
+    call $0fe9
+    xor a
+    ld [de], a
+    pop de
+    dec de
+    ld hl, MUS_STR
+    jp Stub_PrintZ
 CardAgeText:
     db "Age", 0
 CardHPText:
@@ -1212,6 +1238,48 @@ Mus2Line:                   ; HL = string ($00-terminated, $FD = line break), DE
     jp Party_End
     nop
     nop
+; --- party list separators (27:49C3 '/', 27:4A1C '+'/'-' and 27:4A28 '-' (poisoned) over the '/' cell) -> VWF
+    org $27, $49c3
+    call PLSlash
+    nop
+    org $27, $4a1c
+    call PLSign             ; Z: '+' (record +$6A bit 7 clear), else '-'
+    ds 6, $00
+    org $27, $4a28
+    call PLMinus
+    nop
+    org $27, $7f40
+PLSlash:                    ; DE = cell -> DE + 1; HL kept
+    push hl
+    ld hl, PLSlashText
+    call Stub_PrintZ
+    pop hl
+    ret
+PLSign:                     ; the cell before DE; DE kept
+    push hl
+    ld hl, PLPlusText
+    jr z, .p
+    ld hl, PLMinusText
+.p: dec de
+    call Stub_PrintZ
+    pop hl
+    ret
+PLMinus:                    ; the cell before DE; DE ends on it (as the original)
+    push hl
+    dec de
+    ld hl, PLMinusText
+    call Stub_PrintZ
+    dec de
+    pop hl
+    ret
+PLSlashText:
+    db "/", 0
+PLPlusText:
+    db "+", 0
+PLMinusText:
+    db "-", 0
+    assert @ <= $8000, "bank 27 overflow"
+
     org $27, $7f00
 Party_Entry:                ; returns carry = skip; C = 0, B kept, HL = $CB85 like the original (its caller
     push bc                 ; uses B after the call)

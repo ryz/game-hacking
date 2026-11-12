@@ -133,7 +133,9 @@
 8. Still 8 px (docs/re/numbers.md): '/', '-', '~', ':' separators and the labels L/HP/AC/HP-MAX/Lo/Hi/ON/OFF,
    spell-slot grid separators, monster panel and automap digits (symbol sheet). Character card done
    (2026-11-12): Age/Lvl/AC/HP labels, numbers, 'Status: <word>', negative AC ('-N' as one string) and
-   'Lo'/'Hi' in the VWF, right-aligned at col 18; shop header AC the same.
+   'Lo'/'Hi' in the VWF, right-aligned at col 18; shop header AC the same; card HP '/' + max as one VWF string
+   ('10/10'); town party list '/', '+', '-' in the VWF. Left: the bank-2D party-list twin (attribute write
+   after the '/', 2D:7B4E), the bank-0 HP refresh at 0:37FC (row 7, screen unknown).
    Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.
 9. Seen once, not reproduced: wrong digits in the chest "Who will inspect?" list after inputs during the trap
    message.
