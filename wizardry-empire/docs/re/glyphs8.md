@@ -28,7 +28,8 @@ effect id, or a negative stat.
 3. The Search Person spell result: five animated '.' cells and "B X , Y" around VWF digits (bank 2E).
 4. The heal result box "HP 10/10": 'H', 'P', '/' at 0:380E/3812/3822.
 5. The item info AC sign '-' (29:6535). It only shows when the item's AC byte is negative.
-6. The automap axis labels 0-15 and the floor digit under 地下 (Compass/Teleport map). These are graphic tiles
+6. (Decided 2026-11-12: digits stay 8 px; the labels 地下 -> 'B', the warp panel ワープ先/東/北 -> Warp/E/N and the 16
+   cursor labels are translated, see asm/main.asm 'Automap' and build.py patch_automap_labels.) The automap axis labels 0-15 and the floor digit under 地下 (Compass/Teleport map). These are graphic tiles
    from 18:4000, not font text. This is probably the "automap graphics" the dispatch put out of scope; listed so
    the owner can decide.
 7. Out of scope as dispatched: the name-entry chart (all 71 glyphs, `training_create_name_*`,
