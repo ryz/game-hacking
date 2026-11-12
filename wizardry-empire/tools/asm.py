@@ -250,7 +250,20 @@ def assemble(path, extra_syms=None):
     a.run(path, False)
     a.patches = []
     a.run(path, True)
+    check_overlap(a.patches)
     return a
+
+
+def check_overlap(patches):
+    """Two org blocks writing the same ROM byte is always a bug (shared free space filling up): refuse."""
+    owner = {}
+    for off, b, where in patches:
+        for i in range(len(b)):
+            if off + i in owner:
+                raise AsmError("overlap at ROM $%06x (%02X:%04X): %s and %s" % (
+                    off + i, (off + i) // 0x4000, 0x4000 + (off + i) % 0x4000 if off + i >= 0x4000 else off + i,
+                    owner[off + i].strip()[:60], where.strip()[:60]))
+            owner[off + i] = where
 
 
 if __name__ == "__main__":

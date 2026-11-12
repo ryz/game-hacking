@@ -958,6 +958,60 @@ CardHiText:
 CardStatusTab:
     incbin "../build/card_status.bin"   ; 10 x 32 bytes: start cell low byte, blank-glyph lead, text, $00
 
+; --- character creation: unset fields filled with 8 px '?' (26:56C6 6 cells, 56F5 4, 571D 2 = age, 5751 5)
+;     -> the same '?' strings in the VWF (the code after each site reloads DE and HL)
+    org $26, $56c6
+    ld hl, CardQ6
+    call Stub_PrintZ
+    jr $56d3
+    org $26, $56f5
+    ld hl, CardQ4
+    call Stub_PrintZ
+    jr $56fe
+    org $26, $571d
+    ld hl, CardQ2
+    call Stub_PrintZ
+    org $26, $5751
+    ld hl, CardQ5
+    call Stub_PrintZ
+    jr $575c
+    org $26, $7d40
+CardQ6:
+    db "??????", 0
+CardQ4:
+    db "????", 0
+CardQ5:
+    db "?????", 0
+CardQ2:
+    db "??", 0
+
+; --- camp heal result box (0:37FC, A = 0 branch of the camp result dispatcher 0:37B9): 8 px 'H','P' at $D0E4,
+;     current HP (4 cells, right-aligned) at $D0E7, 8 px '/' at $D0EB, max HP at $D0EC -> HealBox (bank 26):
+;     'HP' and '/max' in the VWF like the character card
+    org 0, $380b
+    ld a, $26
+    ld hl, HealBox
+    call FarCall
+    jr $3831
+    org $26, $7d00
+HealBox:
+    ld de, $d0e4
+    ld hl, CardHPText
+    call Stub_PrintZ
+    ld hl, $d0eb            ; blank the slash + max cells (the box is redrawn as HP rises)
+    ld a, $20
+    ld b, 6
+.b: ld [hli], a
+    dec b
+    jr nz, .b
+    ld de, $d0e7
+    ld a, 2
+    ld bc, $3084
+    ld hl, $c4f3
+    call $0fe9              ; current HP, DE -> $D0EB
+    inc de
+    jp CardMaxHP            ; '/' + max from the slash cell
+
 ; --- name entry: typed name field (26:6C62-6C9B built a [7][1] rect at $FFA8 from the name at $D060 and blitted
 ;     it to $D02A) -> blank the 7 cells, copy up to 7 characters + $00 to $FFA8, print it in the VWF
     org $26, $6c62
@@ -1128,6 +1182,19 @@ SpellSlots:                 ; HL = 7 slot counts, DE = first cell (SVBK 3 set, i
     ld hl, MUS_STR
     call Stub_PrintZ
     jp $4b99                ; restore SVBK, ret
+
+; --- item info AC (29:651A: 2-cell right-aligned value at $D8E6, 8 px '-' before it when the AC byte is negative)
+;     -> negative values as one right-aligned '-N' (ShopNegPrint, 3-cell field $D8E5-$D8E7)
+    org $29, $652c
+    jp ItemNeg
+    org $29, $7f80
+ItemNeg:                    ; A = AC byte (negative), HL = $FFB0
+    cpl
+    inc a
+    ld [hl], a
+    ld de, $d8e5
+    call ShopNegPrint
+    jp $653e
 
 ; --- item info 'Range:' value (29:6553: 8 px letter from 'SML-' at 29:6374 into $D8F2) -> the word in the VWF,
 ;     right-aligned at col 18 (field cols 14-18, blank-glyph lead computed for this font)
