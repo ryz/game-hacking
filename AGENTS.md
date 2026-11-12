@@ -1,11 +1,13 @@
 # Agent instructions
 
-This repository holds fan-translation projects, one directory per game. Each project is self-contained
-(its own `tools/`, `docs/`, `script/`, `tests/`). Current projects:
+This repository (`game-hacking`, formerly `game-translations`) holds game-hacking projects, one directory per game:
+fan translations, reverse engineering, ROM patches and tools, and game-design documentation drawn from the code.
+Each project is self-contained (its own `tools/`, `docs/`, `tests/`, and `script/` for translations). Overview for
+people: `README.md`. Current projects:
 
-| Directory | Game | Platform |
-|---|---|---|
-| `wizardry-empire/` | Wizardry Empire (J) -> English | Game Boy Color |
+| Directory | Game | Platform | Work |
+|---|---|---|---|
+| `wizardry-empire/` | Wizardry Empire (J) | Game Boy Color | English translation, VWF engine, RE notes, design docs, floor maps |
 
 ## Rules (all projects)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.sav`,

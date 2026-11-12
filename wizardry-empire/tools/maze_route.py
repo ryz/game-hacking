@@ -2,9 +2,9 @@
 (env ROUTE_ALLOW=4,6,8 lets it cross special squares)
 Map: bank $3E, $4000 + $400*(FLOOR-1), cell = 4 bytes at ((y^15)<<4|x)*4; byte0 = walls, 2 bits per dir
 (dir 0 y+1, 1 x+1, 2 y-1, 3 x-1; 0 open, 2 door); byte2&$3F = square type. 'right' = dir+1."""
-import sys
+import os, sys
 from collections import deque
-r = open('/home/user/game-translations/wizardry-empire/rom/wizardry_empire_j.gbc', 'rb').read()
+r = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'rom', 'wizardry_empire_j.gbc'), 'rb').read()
 f, x0, y0, d0, x1, y1 = map(int, sys.argv[1:7])
 import os
 WALLS = {0, 2} | ({3} if os.environ.get("ROUTE_W3") else set())
