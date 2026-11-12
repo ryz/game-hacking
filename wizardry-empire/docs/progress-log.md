@@ -11,6 +11,14 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - playtest fixes, maintenance, owner-delegated rulings
+- ROM: `b70ce52` sent.
+- Changed: teleport prompt columns, Add-whom row, Find allies list and battle Equip prompt; temple result line
+  and Camp Equip alignment; docs/skills maintenance (signature V^); rulings: one name per creature (Lion of Hell,
+  Ancient One, From Beyond, Unspeakable), Dragonslayer, Magic Robe, ADISH in caps, level(s)/curse(s), 'quest',
+  editor Polish list; Sigfrid kept (owner).
+- Open: status.md Next (museum page speed, flicker, 8 px leftovers, tool backlog).
+
 ## 2026-11-12 - chests/events playtest, temple fee, missing messages, NPC names
 - ROM: `5ab9d44` sent (includes the message census: five more bank-49 messages, tests/test_msg_coverage.py).
 - Changed: NPC recruit names in English (Sigfrid in the 7-letter field); down-stairs prompt and three more
