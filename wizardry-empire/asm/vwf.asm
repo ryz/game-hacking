@@ -68,6 +68,7 @@ R_srcLo     equ $df5a
 R_srcHi     equ $df5b
 R_end       equ $df5c
 wGCOwnerless equ $df5d         ; nonzero: GC marks only slots no text cell owns (game graphics), see GCScan
+wGCcol0     equ $df5e          ; first visible BG column (SCX/8) for GC
 wBits       equ $df60          ; 32 bytes: allocation bitmap, bit per slot code
 wValid      equ $dfa0          ; 32 bytes: shadow copy in WRAM7 matches VRAM
 wUp         equ $df80          ; 16 bytes (16-aligned): HDMA source
@@ -154,6 +155,8 @@ wPL_sumB    equ $d5aa          ; 2: rows' codes before the draw (as the game lef
 wPL_sumBA   equ $d5ac          ; 2: rows' attributes before the draw
 wPL_epoch   equ $d5ae
 wPL_gc      equ $d5af
+wStamp      equ $de00          ; WRAM bank 6, 256 bytes: frame ($C00A) a slot's tile was last drawn
+STAMP_KEEP  equ 8              ; the dry GC pass keeps text slots drawn this recently (a screen being built)
 wHIdx       equ $db00          ; WRAM bank 6, 256 bytes: tile hash -> last slot given that hash (HashCur)
 wHIdx2      equ $dc00          ; WRAM bank 6, 256 bytes: the slot before it (Dedupe checks both)
 wNC         equ $d610          ; NC_N entries (shadow area of 'a'-'z', not pool, up to $D7AF): dstLo, dstHi,
@@ -409,6 +412,133 @@ Stub_Measure:
     call Stub_PrintZ
     jr @+8
     ds 6, $00
+
+; --- unidentified item name in a list (41:574C, record [len][$01][text][$00] at DE, cell at HL): blank the
+;     16 cells, then the VWF (tools/insert.py insert_unid writes ASCII records)
+    org $29, $574c
+    push bc
+    push hl
+    ld c, $10
+    ld a, $20
+.unidfill:
+    ld [hli], a
+    dec c
+    jr nz, .unidfill
+    pop hl
+    inc de
+    inc de
+    push de
+    ld d, h
+    ld e, l
+    pop hl
+    call Stub_PrintZ
+    pop bc
+    ret
+    assert @ <= $5764, "unid name copy"
+
+; --- museum item list name (41:62C7): name at $C54F -> VWF (docs/re/museum.md hook B)
+    org $29, $62c7
+    ld hl, $c54f
+    call Stub_PrintZ
+    jr @+8
+    ds 6, $00
+; --- museum page header / unidentified name (41:66C2): $00-terminated at HL -> VWF (hook A; both callers reload
+;     HL and DE afterwards)
+    org $29, $66c2
+    jp Stub_PrintZ
+
+; --- museum item page 'Equip:' (41:65A2-662B: tile and attribute loops of the class letters) -> the allowed
+;     classes as two-letter abbreviations in the VWF, packed: row 1 the 8 basic classes, row 2 the 6 extras
+    org $29, $65a2
+    call MusClasses
+    jp $662c
+    org $29, $7b00
+MusClasses:                 ; SVBK = 3 here (the original loops wrote the window buffer directly)
+    ld hl, MusAbbr
+    ld de, MUS_STR
+    ld a, [$c565]
+    ld b, a
+    ld c, 8
+.l1: srl b
+    call c, .add
+    inc hl
+    inc hl
+    dec c
+    jr nz, .l1
+    ld hl, $d9e6
+    call .print
+    ld hl, MusAbbr + 16
+    ld de, MUS_STR
+    ld a, [$c566]
+    ld b, a
+    ld c, 6
+.l2: srl b
+    jr nc, .s2
+    push hl
+    ld a, 6
+    sub c
+    ld hl, $ffb0
+    add l
+    ld l, a
+    ld a, [hl]
+    pop hl
+    or a
+    call nz, .add
+.s2: inc hl
+    inc hl
+    dec c
+    jr nz, .l2
+    ld hl, $da06
+.print:                     ; blank 13 cells at HL, print MUS_STR there
+    xor a
+    ld [de], a
+    push hl
+    ld c, 13
+    ld a, $20
+.b: ld [hli], a
+    dec c
+    jr nz, .b
+    pop de
+    ld hl, MUS_STR
+    jp Stub_PrintZ
+.add:                       ; append the two letters at HL and a space to DE
+    ld a, [hli]
+    ld [de], a
+    inc de
+    ld a, [hld]
+    ld [de], a
+    inc de
+    ld a, $20
+    ld [de], a
+    inc de
+    ret
+MUS_STR     equ $cce0       ; WRAM0 scratch (private VWF stack area; VWF_PrintZ copies it before using that stack)
+MusAbbr:                    ; class order: Fighter Mage Priest Thief Bishop Samurai Lord Ninja / Archer Valiant
+    db "FiMaPrThBiSaLoNi"   ; Avenger Musashi Kunoichi Summoner
+    db "ArVaAvMuKuSu"
+; --- museum damage / monster HP range: '~' -> '-'
+    org $29, $650c
+    db $2d
+    org $29, $6918
+    db $2d
+
+; --- character card 'L' (26:567A: ld a,'L' / ld [de],a / inc de at $D02E) -> 'Lvl' in the VWF at the cell before
+;     (cols 13-14), DE ends at the level field like the original
+    org $26, $567a
+    call CardLvl
+    nop
+    org $26, $7f00
+CardLvl:
+    dec de
+    push de
+    ld hl, CardLvlText
+    call Stub_PrintZ
+    pop de
+    inc de
+    inc de
+    ret
+CardLvlText:
+    db "Lvl", 0
 
 ; --- shop "sold out" row (41:49EB): DE-source copy of 41:70E1 to HL -> VWF
     org $29, $49eb
@@ -1260,6 +1390,11 @@ Commit:
     ld a, [S_slot]
     call MarkCode
 .have:
+    ld a, [S_slot]          ; stamp: drawn now
+    ld l, a
+    ld h, high(wStamp)
+    ld a, [$c00a]
+    call Write6
     ; build the 2bpp tile in wUp (ink -> colour 3, paper -> colour 2, like the original font)
     ld a, [S_cur + 0]
     ld [wUp + 0], a
@@ -2653,6 +2788,11 @@ GC:
     ret
 
 GCScan:
+    ldh a, [$ff43]          ; SCX: first visible BG column
+    srl a
+    srl a
+    srl a
+    ld [wGCcol0], a
     ld de, wBits
     ld b, 32
     xor a
@@ -2746,6 +2886,23 @@ GCScan:
 .scan2:                     ; BC cells
 .l: push bc
     push hl
+    ld a, h                 ; only the 21 visible columns count: columns 20-31 are off screen and hold
+    and $08                 ; uninitialised RAM on many screens (it held ~80 slots as 'in use')
+    ld a, l
+    jr nz, .wcol            ; window buffer ($D800-$DBFF): columns 0-20
+    and $1f
+    ld b, a
+    ld a, [wGCcol0]         ; BG: from SCX/8
+    cpl
+    inc a
+    add b
+    jr .cc
+.wcol:
+    nop
+.cc:
+    and $1f
+    cp 21
+    jp nc, .skip
     call Read3
     ld e, a
     ld bc, $0400
@@ -2802,7 +2959,16 @@ GCScan:
     inc hl
     call Read6
     or b
-    jr nz, .skip            ; a text cell owns it: reclaimable in the dry pass
+    jr z, .mk2              ; no text cell owns it: game graphics, keep
+    ld a, [wTmp2]           ; text: reclaimable in the dry pass unless drawn in the last STAMP_KEEP frames (the
+    ld l, a                 ; museum builds its page in the hidden window and would lose its own labels)
+    ld h, high(wStamp)
+    call Read6
+    ld b, a
+    ld a, [$c00a]
+    sub b
+    cp STAMP_KEEP
+    jr nc, .skip
 .mk2:
     ld a, [wTmp2]
     call MarkCode
@@ -2813,7 +2979,7 @@ GCScan:
     dec bc
     ld a, b
     or c
-    jr nz, .l
+    jp nz, .l
     ret
 
 ; =====================================================================
