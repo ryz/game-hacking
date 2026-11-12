@@ -26,5 +26,15 @@ outskirts_menu   | maze     | Edge of Town: explore / resume / end     | boot,PA
 camp             | maze     | Camp menu on entering the maze           | boot,PARTY,left*3,a,w60,a,w150
 character_sheet  | maze     | Character sheet from Camp                | boot,PARTY,left*3,a,w60,a,w150,a,w40,a,w60
 maze_view        | maze     | First-person maze view, Camp closed      | boot,PARTY,left*3,a,w60,a,w150,b,w60
-maze_menu        | maze     | Maze menu (Search, Pick a lock, ...)     | boot,PARTY,left*3,a,w60,a,w150,b,w60,a,w40
-stairs_prompt    | maze     | Stairs up prompt at the entrance         | boot,PARTY,left*3,a,w60,a,w150,b,w60,up,w60
+maze_dmenu       | maze     | Dungeon menu (SELECT)                    | boot,PARTY,left*3,a,w60,a,w150,b,w60,select,w40
+stairs_up_prompt | maze     | Stairs up prompt (back onto the stairs)  | boot,PARTY,left*3,a,w60,a,w150,b,w60,up,w60,down,w60,a,w60
+
+museum_menu          | museum   | Museum: item room / monster room         | boot,right*2,a,w60
+museum_item_room     | museum   | Item room: categories, found/not found   | boot,right*2,a,w60,a,w60
+museum_item_list     | museum   | Item room: weapon list                   | boot,right*2,a,w60,a,w60,a,w60
+museum_item_info     | museum   | Item page                                | boot,right*2,a,w60,a,w60,a,w60,a,w60
+museum_item_info_dn  | museum   | Item page, DOWN = next item              | boot,right*2,a,w60,a,w60,a,w60,a,w60,down,w60
+museum_item_info_rt  | museum   | Item page, RIGHT = next list page        | boot,right*2,a,w60,a,w60,a,w60,a,w60,right,w60
+museum_monster_none  | museum   | Monster room, none seen (A does nothing) | boot,right*2,a,w60,down,w20,a,w60
+museum_monster_list  | museum   | Monster room list (all seen, poked)      | boot,right*2,a,w60,poke,down,a,w120
+museum_monster_page  | museum   | Monster page (Ancient One)               | boot,right*2,a,w60,poke,down,a,w120,a,w60

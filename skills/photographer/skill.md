@@ -3,7 +3,7 @@ skill: photographer
 project: wizardry-empire
 summary: Pixel-exact reference screenshots of screens, features, options and gameplay (English and original).
 access: write (work/shots/<set>/, docs/shots/<set>/), git commit of its set
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # Photographer - reference screenshots
@@ -47,6 +47,9 @@ screenshot sets (owner's rule, 2026-11-11); you edit nothing else in the repo.
 3. Look at every `compare@3x` you made: is it the screen you meant, is text complete, nothing mid-fade?
    Retake with different waits if not.
 4. Report.
+
+Notes: tools run gbemu in turbo by default (same frames, ~7x faster). Battle messages advance by themselves:
+take them from a savestate with no settle wait. Museum monster room: the `poke` token marks all monsters seen.
 
 ## Guardrails
 - Work in `work/shots/SET/` (gitignored). When the set is checked, publish it with `--publish` (copies native

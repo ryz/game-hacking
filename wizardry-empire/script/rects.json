@@ -124,7 +124,7 @@
 {"id": "29:6e23", "bank": 41, "addr": "0x6e23", "w": 18, "h": 4, "jp": ["    しきベつ しますか?", "", "        はい", "        いいえ"], "en": ["^Identify it?", "", "@9:Yes", "@9:No"]},
 {"id": "29:6e6d", "bank": 41, "addr": "0x6e6d", "w": 18, "h": 1, "jp": ["  すでに しきベつされています"], "en": ["^Already identified."]},
 {"id": "29:6e81", "bank": 41, "addr": "0x6e81", "w": 18, "h": 1, "jp": ["どのアイテムを しきベつしますか?"], "en": ["^Identify which item?"]},
-{"id": "29:6e95", "bank": 41, "addr": "0x6e95", "w": 13, "h": 1, "jp": ["おかねを やまわけしました"], "en": ["Gold has been pooled."]},
+{"id": "29:6e95", "bank": 41, "addr": "0x6e95", "w": 13, "h": 1, "jp": ["おかねを やまわけしました"], "en": ["Gold has been divided."]},
 {"id": "29:6f3d", "bank": 41, "addr": "0x6f3d", "w": 6, "h": 1, "jp": ["はくぶつかん"], "en": ["Museum"]},
 {"id": "29:6f45", "bank": 41, "addr": "0x6f45", "w": 6, "h": 1, "jp": ["アイテムの間"], "en": ["Items"]},
 {"id": "29:6f4d", "bank": 41, "addr": "0x6f4d", "w": 7, "h": 1, "jp": ["モンスターの間"], "en": ["Monsters"]},

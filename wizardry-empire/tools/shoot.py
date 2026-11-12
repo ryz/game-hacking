@@ -7,7 +7,7 @@
   python3 tools/shoot.py SET --publish             also copy the set to docs/shots/SET/ (committed)
 
 Shot list lines: `id | category | description | tokens` (tokens as in tools/emu.py; `pow` = power on only,
-`boot` = power on to the town, PARTY = form the 6-member party at the tavern from the town).
+`boot` = power on to the town, `poke` = mark all monsters seen (museum), PARTY = form the 6-member party at the tavern from the town).
 For every shot and ROM: `<id>.<rom>.png` (native 160x144, the emulator's framebuffer: CGB colours expanded
 5->8 bit, no colour correction, no filtering), `<id>.<rom>@3x.png` (nearest neighbour), and for both ROMs
 `<id>.compare@3x.png` (JP left, EN right). Each shot waits until the screen is stable (two identical frames
@@ -53,6 +53,8 @@ def play(g, seq):
                 emu.boot(g)
             elif base.startswith("w") and base[1:].isdigit():
                 g.run_frames(int(base[1:]))
+            elif base == "poke":   # museum: mark every monster as seen ($C5AE, 21 bytes of flags)
+                g.mem_write(0xC5AE, [0xFF] * 21)
             elif all(k in emu.KEYS for k in base.split("+")):
                 emu.press(g, base.split("+"))
             else:

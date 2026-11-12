@@ -26,9 +26,12 @@ EN_ROM = os.path.join(ROOT, "build", "wizardry_empire_en.gbc")
 KEYS = {"a", "b", "start", "select", "up", "down", "left", "right"}
 
 
-def open_emu(rom=EN_ROM, state=None, seed=1):
+def open_emu(rom=EN_ROM, state=None, seed=1, turbo=True):
+    """Turbo = no real-time pacing (same frames, ~7x faster; checked 2026-11-12). turbo=False for timing work."""
     g = GBEmu(BIN)
     g.load_rom(rom, model="cgb", seed=seed)
+    if turbo:
+        g.cmd("turbo", on=True)
     if state:
         g.snapshot_load(path=state)
     return g
