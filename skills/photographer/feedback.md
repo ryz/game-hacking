@@ -9,6 +9,18 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-12 - rev1_tour: the jp_tour routes on Rev 1 + EN
+- Task: reshoot the 121 v1.0 reference routes on Rev 1 and the EN build, compare each with v1.0.
+- Worked: list generated from index.json (full tokens); pixel diff old vs new found the 5 changed routes at once;
+  a wait sweep found `w24` restoring the old bonus roll; boot/PARTY cache: full 2-ROM run ~9 min.
+- Friction: `shoot.py --only` rewrites the index with only those ids (a fix needs a full rerun); `build/` was
+  rebuilt by other sessions during the run (caught by the index SHA-1s); no step for comparing with an older set.
+- Proposed rule change: --only merges into the index; replacing-a-set steps (diff vs old, RNG wN fix, single
+  rom_sha1 check).
+- Corrected: set committed as docs/shots/rev1_tour/; its 'classsir' observation reproduced (two owners of slot
+  $40) and sent to triage. shoot.py --only now merges (coordinator).
+- Status: promoted 2026-11-12 (Replacing a set section)
+
 ### 2026-11-12 - ref_tour: the reference English patch (8 px) on Rev 1
 - Task: 164 shots of the reference fan translation (all jp_tour routes + museum monster room + battle/chest
   from states), catalogue and contact sheets in work/shots/ref_tour/; not published.

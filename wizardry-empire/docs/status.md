@@ -157,7 +157,9 @@
    'quest' for the adventure, editor Polish list applied. Open: picture-map label 地下 (graphics, automap).
 12. Teleport prompt: the floor digit sits a few px right of 'Floor B' (fixed cells for the cursor arrow).
 
-13. Reference screenshots `docs/shots/jp_tour/` are from v1.0 (rom_sha1 041c125...), not Rev 1: reshoot.
+13. Reference screenshots: `docs/shots/rev1_tour/` (Rev 1 + EN, 2026-11-12) replaces `jp_tour/` (v1.0, kept for history).
+   Not covered by any route: wall bump 'Ouch!', friendly-encounter panel, strange-pattern event. Open: 'Choose a
+   classsir' tile clash on the creation class screen (triage running).
 
 ## Known issues
 - Untranslated text shows as blank/garbage (kana tiles are no longer loaded; their slots belong to the VWF).

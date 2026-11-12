@@ -81,3 +81,9 @@ End your final report with this block; the coordinator files it in `skills/photo
 - Friction: <what slowed you down or was unclear in this skill or the tools>
 - Proposed rule change: <a concrete change to skill.md, or "none">
 ```
+
+## Replacing a set (2026-11-12)
+- When a set replaces an older one, pixel-diff every `<id>.jp.png` against the old set and explain each
+  difference. RNG-dependent screens (bonus roll, encounters) shift between ROM revisions: fix them with a `wN`
+  before the roll.
+- Check that every `rom_sha1` in the final index is the same: another session may rebuild `build/` during a long run.

@@ -108,7 +108,12 @@ def main():
             c.save(os.path.join(out, "%s.compare@3x.png" % s["id"]))
         cat.append(rec)
         print("%-18s %s" % (s["id"], " ".join("%s:%s" % (r, "ok" if rec["settled"][r] else "NOT SETTLED") for r in which)), flush=True)
-    json.dump(cat, open(os.path.join(out, "index.json"), "w"), indent=1, ensure_ascii=False)
+    idx = os.path.join(out, "index.json")
+    if want and os.path.exists(idx):      # --only: replace those ids in the existing catalogue, keep the rest
+        new = {r["id"]: r for r in cat}
+        old = json.load(open(idx))
+        cat = [new.pop(r["id"], r) for r in old] + list(new.values())
+    json.dump(cat, open(idx, "w"), indent=1, ensure_ascii=False)
     with open(os.path.join(out, "index.md"), "w", encoding="utf-8") as f:
         f.write("# Reference screenshots - set `%s` (commit `%s`)\n\n" % (a.set, commit))
         f.write("Native 160x144 PNGs (`<id>.<rom>.png`), 3x nearest (`@3x`), JP|EN (`compare@3x`).\n\n")

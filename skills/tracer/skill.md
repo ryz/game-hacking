@@ -108,4 +108,5 @@ breakpoint on the dispatcher. To run one routine: stop at 0:07C5 first (HALT/IME
   copy of the character (`$C48F`+) at the screen that runs the routine.
 - Read the sibling `docs/design/*.md` first so the documents agree (class masks, inn, temple ...).
 - `script/*.json` and `text.md` give banks in decimal ("bank 45"); convert to hex (`2D:`) when citing.
-- `docs/shots/jp_tour/` was shot on v1.0 (`rom_sha1` 041c125...): never cite it as Rev 1 behaviour.
+- `docs/shots/jp_tour/` was shot on v1.0 (`rom_sha1` 041c125...): never cite it as Rev 1 behaviour; use
+  `docs/shots/rev1_tour/` (Rev 1 + EN, same 121 routes).
