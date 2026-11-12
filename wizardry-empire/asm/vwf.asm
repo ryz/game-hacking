@@ -534,10 +534,11 @@ MusAbbr:                    ; class order: Fighter Mage Priest Thief Bishop Samu
     org $29, $422d
     call ShopAC
     ds 8, $00
-    org $29, $4253
-    call ShopMinus
-    nop
-    nop
+    org $29, $4270          ; AC out of range: 8 px 'Lo'/'Hi' -> VWF, right-aligned in the field
+    call ShopLoHi
+    jr $4285
+    org $29, $424a          ; negative AC: as the card (ShopNeg)
+    jp ShopNeg
     org $29, $4298          ; gold field: the Japanese label + 4 spaces put it at $D069 (ends col 18); the VWF
     ld de, $d065            ; label is narrower and left DE a cell early: the field starts at $D065 and is 14
     ds 7, $00               ; cells (the game's own clear loop blanks them, incl. the card's 'Status' row)
@@ -552,20 +553,126 @@ ShopAC:
     call Stub_PrintZ
     ld de, $d050
     ret
-ShopMinus:
-    ld a, $2d
-    ldh [$b2], a
-    push de
-    push hl
-    ld hl, ShopMinusText
-    call Stub_PrintZ
-    pop hl
-    pop de
-    ret
 ShopACText:
     db "AC", 0
-ShopMinusText:
-    db $7c, $7c, "-", 0
+    org $29, $7a02
+ShopNeg:                    ; A = AC (negative), HL = $FFB0
+    cpl
+    inc a
+    ld [hl], a
+    ld b, a
+    ld a, $2d
+    ldh [$b2], a            ; sign flag (read by the Lo/Hi path)
+    ld a, b
+    cp 100
+    jp nc, $4258           ; 'Lo': original path
+    ld de, $d050
+    call ShopNegPrint
+    jp $4285
+; A = 1..99, DE = 3-cell field: '-<digits>' right-aligned at the field's right edge (the minus right before the
+; digits); the string is built at $FFB8 (0:0FE9's digit scratch, unused here). Advances: '-' 4, digits 5, '1' 4.
+ShopNegPrint:
+    push de
+    ld h, d
+    ld l, e
+    ld b, 3
+    ld c, a
+    ld a, $20
+.bl: ld [hli], a
+    dec b
+    jr nz, .bl
+    ld a, c
+.t: cp 10
+    jr c, .o
+    sub 10
+    inc b
+    jr .t
+.o: ld d, a                 ; d = ones, b = tens
+    ld e, 9                 ; width: '-' + ones
+    cp 1
+    jr nz, .a
+    dec e
+.a: ld a, b
+    or a
+    jr z, .b
+    ld a, e
+    add 5
+    ld e, a
+    ld a, b
+    cp 1
+    jr nz, .b
+    dec e
+.b: ld a, 24
+    sub e                   ; x in the field (10..16)
+    ld e, a
+    and 7
+    ld h, a                 ; h = lead px
+    ld a, e
+    srl a
+    srl a
+    srl a
+    ld l, a                 ; l = start cell in the field
+    ld a, h
+    cp 1
+    jr nz, .c
+    dec l
+    ld h, 9
+.c: ld c, $b8
+    bit 0, h
+    jr z, .ev
+    ld a, $20               ; 3 px blank
+    ldh [c], a
+    inc c
+    dec h
+    dec h
+    dec h
+.ev: srl h                  ; 2 px blanks
+    jr z, .m
+.p: ld a, $7c
+    ldh [c], a
+    inc c
+    dec h
+    jr nz, .p
+.m: ld a, $2d
+    ldh [c], a
+    inc c
+    ld a, b
+    or a
+    jr z, .u
+    add $30
+    ldh [c], a
+    inc c
+.u: ld a, d
+    add $30
+    ldh [c], a
+    inc c
+    xor a
+    ldh [c], a
+    pop de
+    push de
+    ld a, e
+    add l
+    ld e, a
+    ld hl, $ffb8
+    call Stub_PrintZ
+    pop de
+    inc de
+    inc de
+    inc de
+    ret
+ShopLoHi:
+    ld de, $d051
+    ldh a, [$b2]            ; sign flag: negative = 'Lo'
+    or a
+    ld hl, ShopLoText
+    jr nz, .p
+    ld hl, ShopHiText
+.p: jp Stub_PrintZ
+ShopLoText:
+    db $7c, $7c, $7c, "Lo", 0   ; 10 px, ends at the field's right edge
+ShopHiText:
+    db " ", " ", " ", "Hi", 0   ; 7 px: 9 px lead from the field's 2nd cell
+    assert @ <= $7b00, "ShopNeg overflow"
 
 ; --- museum damage / monster HP range: '~' (8 px) -> a VWF '-' centred in its cell; AC minus (41:689D) -> a VWF
 ;     '-' at the right of its cell, next to the digits. One cell each, so DE advances as before.
@@ -628,28 +735,17 @@ CardLvlText:
     ld bc, $3082
     org $26, $5857          ; (positive values under 10 skipped one more cell for the left-aligned 8 px digit)
     nop
-    org $26, $584c          ; AC sign: 8 px '-' -> the small '-' at the right of its cell (keeps $B2, DE, HL)
-    call CardMinus
-    nop
-    nop
+    org $26, $5870          ; AC out of range: 8 px 'Lo'/'Hi' -> VWF, right-aligned in the field
+    call CardLoHi
+    jr $5885
+    org $26, $5843          ; negative AC: '-<digits>' as one right-aligned VWF string (CardNeg)
+    jp CardNeg
     org $26, $5949          ; sheet EXP / Gold fields at the Japanese columns (cols 9-18): the English labels are
     ld de, $d109            ; narrower and left DE early
     org $26, $5975
     ld de, $d129
     nop
     org $26, $7f80
-CardMinus:
-    ld a, $2d
-    ldh [$b2], a
-    push de
-    push hl
-    ld hl, CardMinusText
-    call Stub_PrintZ
-    pop hl
-    pop de
-    ret
-CardMinusText:
-    db $7c, $7c, "-", 0
 CardAge:
     ld de, $d04d
     ld hl, CardAgeText
@@ -714,6 +810,124 @@ CardStatus:
     ld de, $d072
     ret
     assert @ <= $7840, "CardStatus overflow"
+    org $26, $7a00
+CardNeg:                    ; A = AC (negative), HL = $FFB0
+    cpl
+    inc a
+    ld [hl], a
+    ld b, a
+    ld a, $2d
+    ldh [$b2], a            ; sign flag (read by the Lo/Hi path)
+    ld a, b
+    cp 100
+    jp nc, $5858           ; 'Lo': original path
+    ld de, $d090
+    call CardNegPrint
+    jp $5885
+; A = 1..99, DE = 3-cell field: '-<digits>' right-aligned at the field's right edge (the minus right before the
+; digits); the string is built at $FFB8 (0:0FE9's digit scratch, unused here). Advances: '-' 4, digits 5, '1' 4.
+CardNegPrint:
+    push de
+    ld h, d
+    ld l, e
+    ld b, 3
+    ld c, a
+    ld a, $20
+.bl: ld [hli], a
+    dec b
+    jr nz, .bl
+    ld a, c
+.t: cp 10
+    jr c, .o
+    sub 10
+    inc b
+    jr .t
+.o: ld d, a                 ; d = ones, b = tens
+    ld e, 9                 ; width: '-' + ones
+    cp 1
+    jr nz, .a
+    dec e
+.a: ld a, b
+    or a
+    jr z, .b
+    ld a, e
+    add 5
+    ld e, a
+    ld a, b
+    cp 1
+    jr nz, .b
+    dec e
+.b: ld a, 24
+    sub e                   ; x in the field (10..16)
+    ld e, a
+    and 7
+    ld h, a                 ; h = lead px
+    ld a, e
+    srl a
+    srl a
+    srl a
+    ld l, a                 ; l = start cell in the field
+    ld a, h
+    cp 1
+    jr nz, .c
+    dec l
+    ld h, 9
+.c: ld c, $b8
+    bit 0, h
+    jr z, .ev
+    ld a, $20               ; 3 px blank
+    ldh [c], a
+    inc c
+    dec h
+    dec h
+    dec h
+.ev: srl h                  ; 2 px blanks
+    jr z, .m
+.p: ld a, $7c
+    ldh [c], a
+    inc c
+    dec h
+    jr nz, .p
+.m: ld a, $2d
+    ldh [c], a
+    inc c
+    ld a, b
+    or a
+    jr z, .u
+    add $30
+    ldh [c], a
+    inc c
+.u: ld a, d
+    add $30
+    ldh [c], a
+    inc c
+    xor a
+    ldh [c], a
+    pop de
+    push de
+    ld a, e
+    add l
+    ld e, a
+    ld hl, $ffb8
+    call Stub_PrintZ
+    pop de
+    inc de
+    inc de
+    inc de
+    ret
+CardLoHi:
+    ld de, $d091
+    ldh a, [$b2]            ; sign flag: negative = 'Lo'
+    or a
+    ld hl, CardLoText
+    jr nz, .p
+    ld hl, CardHiText
+.p: jp Stub_PrintZ
+CardLoText:
+    db $7c, $7c, $7c, "Lo", 0   ; 10 px, ends at the field's right edge
+CardHiText:
+    db " ", " ", " ", "Hi", 0   ; 7 px: 9 px lead from the field's 2nd cell
+    assert @ <= $7f00, "CardNeg overflow"
     org $26, $7840
 CardStatusTab:
     incbin "../build/card_status.bin"   ; 10 x 32 bytes: start cell low byte, blank-glyph lead, text, $00
