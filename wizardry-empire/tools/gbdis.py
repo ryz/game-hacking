@@ -1,8 +1,10 @@
 """Static SM83 disassembler for the ROM (bank-aware, no external deps).
 
 usage: python tools/gbdis.py [--en | --rom PATH] BANK ADDR [COUNT]      e.g. gbdis.py 0 0x1700 40
+       python tools/gbdis.py [--en | --rom PATH] BB:AAAA [COUNT]        the docs' form, both hex: gbdis.py 2D:63EB 20
+  BANK: decimal (45), or hex with $ / 0x ($2D, 0x2D). The output always prints banks in hex, like the docs.
   default ROM: the Japanese dump (or $WIZ_ROM); --en = the patched build/wizardry_empire_en.gbc (check patched bytes).
-       python tools/gbdis.py [--en | --rom PATH] --xref BANK ADDR
+       python tools/gbdis.py [--en | --rom PATH] --xref BANK ADDR   (or --xref BB:AAAA)
   cross-references: every 3-byte instruction whose operand is ADDR (call/jp/ld rr,nn/ld a,[nn]/ld [nn],a ...)
   and every jr to it, found by a byte scan (data can give false hits; each hit is decoded so you can judge).
   An address >= $4000 is only searched in bank 0 and BANK; one < $4000 (or >= $8000, RAM) in every bank.
@@ -67,6 +69,21 @@ def xref(rom, bank, addr):
     return "\n".join(out)
 
 
+def num(x, hexdefault=False):
+    x = x.strip()
+    if x.startswith("$"):
+        return int(x[1:], 16)
+    return int(x, 16) if hexdefault else int(x, 0)
+
+
+def bank_addr(args):
+    """['2D:63EB', ...] or ['45', '0x63eb', ...] -> (bank, addr, rest)."""
+    if ":" in args[0]:
+        b, a = args[0].split(":")
+        return num(b, True), num(a, True), args[1:]
+    return num(args[0]), num(args[1]), args[2:]
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
     path = os.environ.get("WIZ_ROM", ROM_DEFAULT)
@@ -76,7 +93,8 @@ if __name__ == "__main__":
         path, args = args[1], args[2:]
     rom = open(path, "rb").read()
     if args and args[0] == "--xref":
-        print(xref(rom, int(args[1], 0), int(args[2], 0)))
+        b, a, _ = bank_addr(args[1:])
+        print(xref(rom, b, a))
         sys.exit()
-    b, a = int(args[0], 0), int(args[1], 0)
-    print(dis(rom, b, a, int(args[2], 0) if len(args) > 2 else 32))
+    b, a, rest = bank_addr(args)
+    print(dis(rom, b, a, int(rest[0], 0) if rest else 32))

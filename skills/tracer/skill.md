@@ -86,3 +86,12 @@ Find the flag the game itself checks (breakpoint at the screen bank's entry, the
 reader/writer of that flag); prefer a no-poke route, else a position poke next to the square
 (tools/maze_goto.py: $CB80 x, $CB81 y, $CB82 floor-1, $CB83 facing); verify each state with a count-only
 breakpoint on the dispatcher. To run one routine: stop at 0:07C5 first (HALT/IME), then set bank/PC.
+
+## Design / rules questions (2026-11-12, owner asked for docs/design/)
+- Output is a designer-facing document in `wizardry-empire/docs/design/<topic>.md`: a two-minute Overview, then
+  tables. Tag every number with its source and kind: `(code BB:AAAA)`, `(data BB:AAAA)`, `(display)` (museum or
+  menu text only), `(emulator)` or `(inferred)`.
+- Record fields: byte-search the readers of the record copy (`ld a,[$C5xx]`, `ld hl,$C5xx`; `gbdis.py --xref`).
+- Banks: write them in hex like the rest of the docs (`25:551C`, or `$25 (37)`); `gbdis.py 25:551C` takes that form.
+- Surprising code-read conclusions (an unused roll, odd data values) go in an "Emulator checks" list with the exact
+  poke + route to test them (`tools/play.py`), unless you can run the check yourself.
