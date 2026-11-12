@@ -10,6 +10,17 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - Mode Settings
+- Task: every Mode Settings option (storage, defaults, readers, effect in play), with a draft tech doc.
+- Worked: xref census of $CB99/$CB9A plus the screen's row-to-bit table; count-only breakpoints with conditions on
+  the sound driver; simulated power cycle via cart RAM dump/restore; shared shape of readers first.
+- Friction: play.py writes outside work/re/<topic>/; poked maze positions bump walls; banked WRAM page at a stop;
+  NR52 bits useless as audio evidence.
+- Proposed rule change: Tools lines for power-cycle simulation and sound evidence; play.py --dir.
+- Corrected: coordinator re-read 32:441E (Ambush lowers the threshold, confirmed) and checked the defaults against
+  the reference screenshot; docs written from the draft; three tech corrections applied.
+- Status: promoted 2026-11-12 (Tools lines); open (play.py --dir)
+
 ### 2026-11-12 - the in-game auto-map
 - Task: how the automap opens and works (Compass, Map Record Sheet, Teleport/Ring), what it shows, cursor/warp panel,
   $DD28, what it hides; proposed tech text.

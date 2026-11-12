@@ -24,6 +24,9 @@ Do not re-derive what they already state.
 ## Tools
 - Emulator API details: banked WRAM writes `g.mem_write(None, data, region='wram', offset=bank*0x1000 + addr-0xD000)`;
   `g.regs()['pc']` is a hex string. Read-only use of the map tool: `floormap.py N --list --no-png`.
+- Save/SRAM questions: simulate a power cycle: `data = g.mem_read(None, 0x2000, region='cart_ram', offset=0)`, then a
+  fresh `emu.open_emu(rom)` and `mem_write(None, data, region='cart_ram', offset=0)` before any frame.
+- Sound questions: count-only breakpoints on the driver entries with `cond='a != 0'`; APU NR52 bits are not evidence.
 - A doc's "(inferred)" meaning for a square type, flag or zone is a hypothesis: step on one in the emulator before
   building on it (marker squares were warps, "both zone marks" the dark zone, special walls doors).
 - Static: `python3 tools/gbdis.py BANK ADDR [N]` (bank-aware disassembly of the original ROM `rom/wizardry_empire_j.gbc`),
