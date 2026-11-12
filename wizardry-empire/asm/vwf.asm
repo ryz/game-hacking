@@ -270,7 +270,8 @@ Stub_Num:                   ; 0:108B (number printer 0:0FD0, digit store): base 
     ld a, VWF_BANK
     ld hl, VWF_Num
     call FarCall            ; L = 1: done, DE past the field; L = 0: not drawn (DE, C kept) -> 8 px loop
-    ld a, l
+    ld b, 0                 ; as the digit loop leaves it: callers test B after 0:0FE9 (2D:7BB3: bit 7 =
+    ld a, l                 ; poisoned -> '-' instead of '/'; the VWF's B made every row look poisoned)
     ld h, $ff
     ld l, c
     rra
@@ -635,6 +636,13 @@ NameCursorX:                ; A = x of the cursor box
     ld a, l
     add $50
     ret
+
+; --- bank-45 event party list (magic circle 'Who will step inside?', 2D:7BE7: name copy with 'and $7f';
+;     DE/HL are pushed around it at 2D:7BE5) -> VWF
+    org $2d, $7be7
+    call Stub_PrintZ
+    jr @+7
+    ds 5, $00
 
 ; --- Camp reorder list (2A:7082: $00-terminated name copy ending in 'ret z', called from 2A:7075) -> VWF
     org $2a, $7082
