@@ -104,7 +104,9 @@
    shows ~5 frames of garbage in the list first (tried 2026-11-12, reverted: flicker).
 2. (done 2026-11-12) Name entry: typed name in the VWF (26:6C62 NameField), cursor box placed by the VWF
    width (26:6C37 NameCursorX).
-3. Chests/events now reachable (docs/re/reach.md, tools/maze_*.py; work/re/reach/states/): a playtest of the
+3. New messages not yet seen on screen: 49:4314 'Add whom to the party? Room for N' (Find allies with a
+   found character), 49:44CE party location (Compass-type spell/item?), 49:5594 alignment change + 'The
+   monster suddenly attacked!' (fighting a friendly group). Chests/events now reachable (docs/re/reach.md, tools/maze_*.py; work/re/reach/states/): a playtest of the
    chest screens and the bank-45 events is next. NPC names (8 recruit records, bank 45 $4000, 7-char field)
    translated (script/npcs.json); owner's choice: Siegfried's 7-letter form is "Sigfrid" (messages keep
    "Siegfried").
