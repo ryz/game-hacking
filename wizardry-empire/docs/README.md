@@ -35,21 +35,10 @@ describe the documents and apply to everyone, people included.
 
 ## Design documents (`design/`)
 
-- **No addresses, no hex.** No `BB:AAAA`, no RAM, no record offsets, no routine names. Numbers in decimal.
-- **Plain formulas.** Dice as `NdS+B` (sum of N rolls of 1..S, plus B). A range roll as "a random number from 0 to
-  19". Short formulas in plain math, e.g. `hit if roll ≥ 11 + target AC − weapon bonus`. Use C#-style pseudocode
-  only where a rule branches (several cases, caps, special rules):
-
-  ```csharp
-  int slots = Math.Min(9, Math.Max(spellsKnown, level - openingLevel + 1));
-  ```
-- **Confidence tag per number or rule:** **(verified)** seen in the running game, **(data)** read from the game's
-  own tables, **(inferred)** reasoned from code or data but not observed. Untagged means data.
-- **Structure:** an Overview a designer can read in two minutes, then one section per system with tables. Explain
-  what a value means for play ("a Fighter needs 1200 EXP for level 2") before how it is computed.
-- **Quirks:** behaviour that looks unintended (an ignored roll, an inverted bonus) is stated as the game does it,
-  with a link to `design/findings.md`, where each quirk gets what the game does, what was probably intended and how
-  sure we are.
+Notation, confidence tags, terms and structure for design documents are defined once in
+[design/README.md](design/README.md) ("Notation and style"). In short: no addresses or hex, decimal numbers,
+`NdS+B` dice, `Rnd(a, b)` in pseudocode, plain formulas, tags (verified) / (inferred) / (computed) / (game text)
+with untagged meaning data, quirks in `design/findings.md`, each section ending with a `Tech:` link.
 
 ## Tech documents (`tech/`, `re/`)
 

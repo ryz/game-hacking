@@ -4,15 +4,49 @@ How the game works, for game designers: the rules, formulas and data behind char
 and the dungeon. No ROM addresses here; the same systems with addresses and evidence are in `../tech/`, which is
 the source of truth for every number. Rules for these documents: `../README.md`.
 
-## How to read these documents
-- **Dice:** `NdS+B` = the sum of N rolls of 1..S, plus B (`3d6+2` = 5 to 20). "A random number from 0 to 19" is
-  written out where the game rolls from 0.
-- **Stats:** STR Strength, IQ I.Q., PIE Piety, VIT Vitality, AGI Agility, LUK Luck; AC armour class (lower is
-  better); HP hit points; EXP experience.
-- **Confidence:** **(verified)** seen in the running game, **(data)** read from the game's own tables (the default
-  when untagged), **(inferred)** reasoned from code or data but not observed.
-- **Names** follow the English translation (`../../glossary.md`); data tables also give the Japanese name.
-- Each section ends with a **Tech:** link to its implementation notes.
+## Notation and style (binding for every design document)
+
+This section is the single definition; the other documents do not repeat it.
+
+**Numbers and rolls**
+- **Random numbers:** in prose "a random number from 0 to 19" (both ends included); in pseudocode `Rnd(0, 19)`.
+  No other helper names, no "d20" for a 0-19 roll.
+- **Dice:** `NdS+B` = the sum of N rolls of 1 to S, plus B (`3d6+2` = 5 to 20; `5d8` = 5 to 40). Every damage, HP
+  and healing roll is written this way.
+- **Rounding:** divisions round down unless a rule says otherwise. Percentages are rounded; the game's rolls are very
+  slightly uneven (a 0-19 roll comes up 0 a little more often than 1 in 20), which these documents ignore.
+- **Percent:** `5%` (no space).
+- **To-hit**, the same shape for everyone: `need = clamp(attacker's to-hit − target AC − weapon Hit+, 1, 19)`; the
+  attack hits if `Rnd(0, 19) ≥ need`. So the hit chance is always between 5% and 95%.
+- **Pseudocode** (C#-style) only where a rule branches (caps, several cases); a single comparison is prose.
+
+**Confidence tags** (plain text, after the number or sentence they cover)
+- **(verified)** seen in the running game.
+- untagged = **data**: read from the game's own tables or code, not observed in play. Do not write "(data)".
+- **(inferred)** reasoned from code or data with a gap in the evidence.
+- **(computed)** worked out in these documents from a stated rule or table (an average, a percentage).
+- **(game text)** only known from an in-game description (e.g. the museum).
+- **(v1.0)** true of the original release, not of Rev 1.
+
+**Words**
+- **Stats:** STR, IQ, PIE, VIT, AGI, LUK (Strength, I.Q., Piety, Vitality, Agility, Luck); AC armor class (lower is
+  better); HP hit points; EXP experience. Use the abbreviations in rules.
+- **Classes in tables:** Fig Mag Pri Thi Bis Sam Lor Nin Arc Val Ave Mus Kun Sum.
+- **Gold:** `100 G`. **Coordinates:** (x, y), x east, y north. **Spelling:** American (armor, behavior, favor).
+- **Names** follow the English translation (`../../glossary.md`). Tables quote the in-game names, which may be
+  shortened (ShadowDragon, Gr. Demon); prose uses the full name (Shadow Dragon, Greater Demon). Data tables also
+  give the Japanese name.
+- **Elements:** Earth, Water, Fire, Wind, Spirit, the 6th element (name not read), Holy, None.
+- **Monster terms:** swings (per round), special hits, chest rating (monster) -> chest value (rolled) -> tier.
+- **No engineering words** in prose: not record, field, flag, bit, byte, routine, caller, handler, path, "code N",
+  "school N". Say what it means in play; if unknown, "not traced".
+- **No comments about the documentation** ("the tech notes say"): write "not traced" or "unconfirmed".
+
+**Structure**
+- Title "Topic: contents"; numbered sections (`## 1. ...`); an Overview a designer can read in two minutes first.
+- One home per rule; other documents link to it. Quirks: stated as the game does it, with a link to
+  [findings.md](findings.md).
+- Each section ends with a **Tech:** link to its implementation notes; each document ends with Open questions.
 
 ## Documents
 
