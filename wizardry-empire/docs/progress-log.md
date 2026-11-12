@@ -11,6 +11,17 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - ending and credits, playtest fixes (battle panel, tavern list, level-up)
+- ROM: `6500974` sent.
+- Changed: last untranslated screens (ending 7 pages + credits, power-off screen, Ring of Healing/Death lines,
+  "Become a <class>?"), reviewer fixes (reigning Emperor vs Emperor of the Abyss, Mad Overlord foreshadowing),
+  museum minus/range in the small font, spaced unidentified group names in battle ('Robed figure').
+- Found / fixed: battle panel garble ('cono', HP as 'Run'; GC read SCX mid-frame under the battle's raster
+  split), tavern list after the sheet submenus (one-byte cache epoch wrapped), inn level-up line printed off
+  screen (Stub_PrintZ DE), credits charset overwritten by VWF slots; explore.py works on Rev 1; the
+  assembler now refuses code past the end of a bank.
+- Open: ending only seen via a forced route; museum page speed; status.md Next.
+
 ## 2026-11-12 - Rev 1 port, museum monster page, editor pass, faster GC
 - ROM: `7bbf900` sent (first build on the Japanese Rev 1; v1.0 saves may be wiped, old savestates do not load).
 - Changed: base ROM = Japanese Rev 1 (revmap/revport/revaudit tools; script, asm, insert constants, docs

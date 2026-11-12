@@ -24,6 +24,8 @@
 - Editor pass applied (names, battle past tense, maze wording); breath verbs no longer read "breathed fire at!"
   (docs/re/verbs.md).
 - Tools: emulator turbo by default (~7x faster, same frames); shoot.py `poke` token; museum and maze shot lines.
+- Playtest fixes: battle panel garble (GC and the battle raster split), tavern list after the sheet submenus
+  (cache epoch wrap), inn level-up line (Stub_PrintZ DE), museum minus/range dashes.
 - Last untranslated screens (docs/re/missing-text.md): the ending (7 pages) and credits (10 rects, now VWF),
   the "End the quest" power-off screen, two museum ring descriptions, Training "Become a <class>?" prompt.
 
@@ -98,7 +100,7 @@
 
 ## Next (in rough priority)
 1. Museum monster page: opening takes 37 frames (JP 9; each VWF GC ~5-6 frames), closing shows a few frames of
-   garbage in the page; AC/HP minus signs still 8 px. A faster GC would help every screen.
+   garbage in the page; a faster GC would help every screen.
 2. Name-entry field still in the 8 px font (owner's rule: words in the VWF).
 3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
 4. Ending/credits checked only with the forced route ($D000=8 from the town); a real final-boss ending (maze
