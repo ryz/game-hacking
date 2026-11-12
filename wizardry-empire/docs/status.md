@@ -148,7 +148,8 @@
    ('10/10'); town party list '/', '+', '-' in the VWF. Event party list (bank-45 twin, magic circle) the same,
    incl. its status words (were blank). 0:37FC (8 px 'HP' row 7) is the Camp heal-spell result box (reached via a table; my 'dead code' note was
    wrong). 8 px census (docs/re/glyphs8.md): groups 1-5 converted 2026-11-12;
-   left: automap axis labels/floor digit (graphics, owner's call), name-entry chart (owner's call). Bank 2C 'sheet' = debug mode.
+   decided 2026-11-12 (owner): automap axis digits and the name-entry chart stay 8 px; automap labels
+   translated in the small font (地下 -> 'B' over the floor number; warp panel Warp/E/N). Bank 2C 'sheet' = debug mode.
    Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.
 9. Seen once, not reproduced: wrong digits in the chest "Who will inspect?" list after inputs during the trap
    message.
@@ -164,7 +165,7 @@
 11. Decided 2026-11-12 (owner: Sigfrid OK, the rest delegated): one name per creature for spells and monsters
    (Lion of Hell, Ancient One, From Beyond, Unspeakable; Gr. Demon / ShadowDragon stay by the 12-char limit),
    Dragonslayer, Magic Robe (まどう = 魔導 here), ADISH monster-speak in caps, 'level(s)' / 'curse(s)',
-   'quest' for the adventure, editor Polish list applied. Open: picture-map label 地下 (graphics, automap).
+   'quest' for the adventure, editor Polish list applied. Picture-map label 地下: done ('B', 2026-11-12).
 12. Teleport prompt: the floor digit sits a few px right of 'Floor B' (fixed cells for the cursor arrow).
 
 13. Reference screenshots: `docs/shots/rev1_tour/` (Rev 1 + EN, 2026-11-12) replaces `jp_tour/` (v1.0, kept for history).
