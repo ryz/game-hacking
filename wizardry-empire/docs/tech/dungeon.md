@@ -39,7 +39,7 @@ Code: `20:58EA`, `20:5909`.
 |---|---|
 | 0 Walls, 2 bits per facing (bits 2d, 2d+1; d = 0 north/y+1, 1 east/x+1, 2 south, 3 west). 0 open, 1 wall ("Ouch!"), 2 door (`20:46F4`, also raises the fight chance), 3 **secret or locked door** (`20:45EF`, section 2.1). **Each edge is stored on both squares and movement checks only the square being left**: an edge that is open/door on one side and wall/special on the other is a one-way door (emulator 2026-11-12, floor 1: (12,15) east -> (13,15) passes, (13,15) west bumps 'Ouch!' (`$C1BF` = 31:4596); (14,12) south passes, (14,11) north bumps). 53 door/wall edges on 16 floors; 222 open/wall edges on floor 20 alone (`tools/designtables/floormap.py`) |
 | 1 | Encounter area id (0 = no random fights). On guarded squares it is the guard's area id |
-| 2 | bits 0-5 square type (section 2); bits 6-7 zone: `01` damage zone (`20:4463`), `10` cancel zone (`20:5A8F`, below), `11` no effect found; bit 6 also changes the wall graphics set (`20:4393`) |
+| 2 | bits 0-5 square type (section 2); bits 6-7 zone (auto-map names in brackets, `23:5E25`/`5DDD`/`5E2D`): `01` damage zone [みずうみ lake] (`20:4463`), `10` cancel zone [まほう ふうじ magic seal] (`20:5A8F`, below), `11` **dark zone** [ダークゾーン] (below); bit 6 also changes the wall graphics set (`20:4393`) |
 | 3 | Parameter (event number, trap kind, one-shot bit index) |
 
 Position RAM: `$CB80` x, `$CB81` y, `$CB82` floor − 1, `$CB83` facing (reach.md).
@@ -49,10 +49,14 @@ Position RAM: `$CB80` x, `$CB81` y, `$CB82` floor − 1, `$CB83` facing (reach.m
   dies at 0 ("... has died", `49:4AA6`). This does not happen when `$CB84` bit 5 is set (a party protection,
   inferred levitation or a ward).
 - **Cancel zone** (`10`): entering sets `$CB84` bit 2 and clears `$CB84` bits 4-7 (the party-wide spell effects).
-  This is inferred to be the "Anti-magic space" named on a sign (`45:61F9`).
+  This is inferred to be the "Anti-magic space" named on a sign (`45:61F9`); the auto-map calls it "magic seal".
+- **Dark zone** (`11`): entering sets `$CBF2` bit 6 and clears the light (`$CB84` bit 7); the 3D view is replaced
+  by "Pitch darkness!" (`49:43AC`) (`20:52A6-532C`; emulator 2026-11-12, B5 (1,9), JP and EN). The auto-map does not
+  draw it (label only). Corrected 2026-11-12: was "no effect found".
 
-Zones with these flags: floor 5 (60 squares `11`), 6 (58 `10`), 8 (16 `01`), 11 (121 `01`), 12 (19 `11`), 15, 18,
-22-26, 27 (15 `01`), 28 (126 `11`, 41 `10`), 30 (16 `01`). The `01` zones are also the squares with area ids 101-105,
+Zones with these flags: floor 5 (60 squares `11`), 6 (58 `10`), 8 (16 `01`), 11 (121 `01`), 12 (19 `11`), 15 (13
+`10`, 46 `11`), 18 (10 `10`, 27 `11`), 22 (88 `10`), 23 (49 `11`), 24 (32 `10`, 15 `11`), 25 (3 `01`, 11 `10`, 42 `11`),
+26 (73 `11`), 27 (15 `01`), 28 (126 `11`, 41 `10`), 30 (16 `01`). The `01` zones are also the squares with area ids 101-105,
 so they have their own monster mix.
 
 **Teleport curse.** If any member has record `+$6E` bit 7, each step has a 50 % chance to put the party on a random
@@ -72,9 +76,9 @@ Code: handler table `20:6405` per floor; types 0-14 are the same on every floor.
 | 2 / 3 | **stairs up / down** | prompt Yes/No (`49:41FA` / `422B`). Floor ±1, same x,y (`20:5B74`, `5BB9`). Resets one-shot flags (`20:58DD`) |
 | 4 | **hidden spot** | `20:5BFE`, one-shot by `$CB9B` bit p. Each member with status < 3 rolls to notice ("X noticed something", `49:44BC`). Skill (`20:5C20-5C93`, level L capped at 255): Thief LUK/2 + 5L; Ninja LUK/2 + max(0, 5L − 25); Kunoichi LUK/4 + max(0, 5L − 50); others max(0, L/4 − 10). From L 51 the level part is fixed (Thief 255, Ninja 230, Kunoichi 205); the total is capped at 255. Difficulty D = 5 × `20:7100[p]`. Margin m = skill − D (`20:5CA4-5CB4`): **m < 0: never; m = 0: only a roll of 0 (about 1 %); m = 1-4: 4m % (4, 8, 12, 16 %); m ≥ 5: 80 %** (roll `Random(99)`, success if the roll is 0 or below the chance, `20:5CB6-5CBF`). The jump from 16 % to 80 % at m = 5 is in the code (`cp $05` / `ld a,$50`). Corrected 2026-11-12: was "4 × (skill − difficulty) % if < 5 points over, else 80 % (+1 % on a roll of 0)". Noticing only shows the message: it does **not** set the flag (`20:5CC1-5CE1` loops on to the next member). The spot belongs to a secret door (section 2.1) |
 | 6 | **guarded square** | `20:5CF0`: fixed fight with area byte 1, once per floor visit (`$C6DB` bit p). The victory gives a chest (`$C00B` bit 2, items.md 10) |
-| 7 | button panel | event `$07` → `2D:640F` "A row of buttons. Which one will you press? A B C D E". p = 64-68. Next to a key-hole on most floors; the sign "Maze Elevator Control Room" exists, so these are inferred to be the elevator |
+| 7 | button panel | event `$07` → `2D:640F` "A row of buttons. Which one will you press? A B C D E". p = 64-68. Next to a key-hole on most floors; the sign "Maze Elevator Control Room" exists and the auto-map labels the square エレベーター "Elevator" (and draws an 'E', `23:43F0`), so these are the elevator; destinations not traced |
 | 8 | **floor trap**, kind = p & `$E0` | `$00` Chute ("Chute"), `$20` Pit ("Pit"): both are skipped with "But you are floating" when levitating (`$CB84` check). `$40` Ceiling trap, `$60` Rockfall: damage, amounts not traced. `$80` Viper: each member saves with `rand(0..99)` < level/2 + LUK − (p & `$1F`) (rolls 0-4 always poison, 99 always saves), else poisoned (`20:5D4C`). `$A0` Spinner: random facing (`20:47FB`) |
-| 9 | marker | `20:4795`: sets a bit per square in `$D967` (32 bytes per floor) and records the deepest floor in `$DD28` **(inferred: auto-map memory)** |
+| 9 | **warp** | `20:4795-47F8`: moves the party at once to `20:6F94 + 4p` = [y][x][floor−1][0] (no prompt, no cost), also across floors; sets the square's visited bit and `$DD28` like any square (emulator 2026-11-12: B7 (9,12) -> (6,3)). 87 warps on floors 7, 15, 16, 21-30 (section 6). Corrected 2026-11-12: was "marker (inferred: auto-map memory)" |
 | A, B, C | event | `$FFB0` = type, `$FFB1` = p → bank 45 dispatcher `2D:63EB` |
 | D | corpse | event `$0D` p |
 | E | one-shot event | sub-handler p (0-16), once per floor visit (`$C6DD` bit p) |
@@ -192,7 +196,7 @@ right; the floor table below gives the main area. (Clarified 2026-11-12.)
 | 4 | up ×3; down (3,4) | 6 | 21 (6) | 3 spinners, 3 pits | weird robed monster (4,8); monster's drop (3,8); sign (7,9); buttons + key-hole |
 | 5 | up (3,4); down (7,8) | 7 | 11 (7) | 2 chutes, 4 pits, spinner | NPC 1 Lloyd (1,11); circle 2 (15,9); ceiling monster (5,5); buttons + key-hole |
 | 6 | up (7,8); no down | 8 | 5 (8) | chute (0,15) → floor 7 (inferred); 4 hidden | NPC 2 Louie (12,3); 3 alarm squares; buttons + key-hole |
-| 7 | none up; down (15,0) | 9 | 6 (9) | 10 hidden; 4 markers | maid (1,14); 2 button panels + key-holes |
+| 7 | none up; down (15,0) | 9 | 6 (9) | 10 hidden; 4 warps (into the four closed rooms) | maid (1,14); 2 button panels + key-holes |
 | 8 | up (15,0); down (4,14) (13,13) | 10, 101 (damage zone) | 14 (10, 101) | 4 hidden | hermit (2,14); pond (3,10); circle 3 (3,8); NPC 3 Siegfried (8,8); well (14,3); 3 signs |
 | 9 | up ×2; down (0,15) | 11 | 8 (11, 12) | 4 pits; 4 hidden | circle 4 (11,5); NPCs 4 Laila (1,0) and 5 Kojiro (3,3); 2 signs |
 | 10 | up (0,15); down (0,0) | 12 | 2 (12) | 2 hidden | 26 corpses (the "cemetery"); priest of the netherworld (1,1); 4 signs |
@@ -227,5 +231,96 @@ fairy teleports (1 ↔ 11), the button panels, and events that return a floor ch
   (the second-clear flag `$C5C6` bit 7, docs/re/missing-text.md). Not traced.
 - How many floors a chute drops, and the damage of pits, ceiling traps and rockfall (`20:5DD2-5F4B`).
 - The button-panel destinations (`2D:640F`, p 64-68) and the key items for the holes (`2D:666E`, p).
-- Zone value `11`. (Wall value 3: solved, section 2.1.)
+- (Wall value 3: solved, section 2.1. Zone value `11`: dark zone, section 1.)
 - Encounter area ids 54-100 (not on any map).
+
+---
+
+## 6. Auto-map
+
+Traced 2026-11-12 (tracer; notes and scripts `work/re/automap.md`, `work/re/automap/`).
+
+Code: `23:4000` (task started by `0:06EF` with B = `$23`), drawing `23:4318`, cursor panel `23:44B0`, sprites
+`23:4A33`; visited marks `20:5269`, warps `20:4795`.
+
+**Overview.** The auto-map is a full-screen 16 × 16 plan of one floor. It shows only the squares the party has stood
+on, with their walls, doors and a few kinds of special squares. There is no map button. Compass opens it, and so
+does the Map Record Sheet (camp item, or Select in the maze while anyone carries it). Teleport and the Ring of
+Warping open it as a destination picker. Up/Down page through every floor down to the deepest one reached, and A
+gives a cursor that names the square under it. The Mode Settings option "Map: Mania" replaces it with the classic
+text location and the coordinate Teleport.
+
+**Opening it** (6 launch sites, byte search `06 23 11 00 40 cd ef 06`):
+
+| How | Code | Mode |
+|---|---|---|
+| Compass (camp, effect 3) | `24:4323` | view |
+| Map Record Sheet, camp item use (effect 1; breaks 30 %, `2E:4D01`) | `2E:4E12` | view |
+| Map Record Sheet, **Select in the maze**: "Use the map record sheet?" (event `$28`, `2D:7C2C`, cursor on No). Yes: 30 % (`20:63A0`, fixed) that the sheet crumbles silently, and the map opens anyway. With no sheet, Select = Start (maze menu) | `20:4833`, `20:635F` | view |
+| Teleport (camp, effect 25) | `24:4F0F` | teleport (`$CB83` bit 7) |
+| Ring of Warping (camp item, effect 9; breaks 25 %) | `2E:4FB4` | teleport |
+| Teleport in battle: no map, a random square of the current floor (`Random(15)` for x and y) | `24:4F16-4F44` | (code) |
+
+**Visited squares.** `$D967 + 32 × floor` in WRAM bank 4 (30 floors × 32 bytes = `$D967-$DD26`). Bit n =
+((y XOR 15) << 4) + (x XOR 7). Every maze view redraw sets the current square's bit (`20:5269`, called on each step
+or turn, `20:425E`), and so does a warp square (`20:47C2`). Nothing else sets bits; the Map Record Sheet does not.
+The bits are saved with the game (SRAM `$AA00`, `0:2CF8` / `0:2D48`). Emulator: walking B1 (0,15) -> (2,13) set
+exactly the 5 squares walked.
+
+**Deepest floor** `$DD28` (floor − 1) = the maximum of every floor the view was drawn on (`20:5269`, `20:479F`),
+saved at SRAM `$AFD6`. Its only use is the auto-map: floor paging and the Mania Teleport floor limit
+(`23:4217`, `422E`, `47F4`, `480B`).
+
+**What is drawn** (for visited squares only; `23:4318-4458`):
+
+| Item | Drawing |
+|---|---|
+| Wall / door (wall values 1 / 2) | grey line / white gap |
+| Wall value 3 | door; on a hidden-spot square (type 4) with flag `$CB9B` bit p clear: **wall**. So secret doors appear only once found, and locked doors always look like doors (emulator B7) |
+| Up / down stairs | yellow up / down icon |
+| Chute; pit, ceiling trap, rockfall, viper; spinner | red arrow; red X; red circle |
+| Warp (type 9) | red square with a dot |
+| Events (types A, B, D, E, F-13) | yellow square |
+| Button panel (type 7) | "E" sprite |
+| Rock, hidden spot, lock square, guarded square, NPC (type C) | nothing |
+| Zone `01` (lake) / `10` (magic seal) | blue fill / red dotted fill; zone `11` not drawn |
+| Party | arrow sprite by facing, only on the party's own floor; its column and row numbers turn red |
+
+The floor number under 地下 ("B") reads 1-20, then **30, 31, 270, 271, 272, 358, 424, 485, 570, 666** for floors
+21-30 (`23:4AE5`, tiles `$BE-$CD`; emulator). Mania mode's location text uses the same numbers (`23:4AFB`). This is
+intentional, not a table error.
+
+**Controls** (`23:41C7-42CC`):
+
+| Key | Map view | Cursor mode |
+|---|---|---|
+| Up / Down | previous / next floor, B1 ↔ deepest wrap (the floor is reloaded) | cursor y + 1 / y − 1 (wraps) |
+| Left / Right | – | cursor x − 1 / x + 1 (wraps) |
+| A | cursor mode (cursor on the party square) | teleport mode: **teleport to the cursor** (below); view mode: nothing |
+| B | close (back to camp / maze); **ignored in teleport mode** | back to map view |
+
+**Cursor label and warp panel** (`23:44B0`). On a visited square the top line names it: かべ (rock), のぼり/くだり
+かいだん (stairs), エレベーター (button panel), シュート, ピット, つりてんじょう, らくばん, どくへび, かいてん ゆか (trap kinds 0, `$20`, `$40`,
+`$60`, `$80`, `$A0+`), ワープ, イベント, and for plain squares the zone: みずうみ, まほう ふうじ, ダークゾーン (strings
+`23:5DB5-5E35`). On a warp, the side panel (`23:4FF5`) shows ワープ先 (destination) floor, 東 x and 北 y from
+`23:4B37 + 4p` (a copy of `20:6F94`). When the destination is on the floor being viewed, a sprite marks it.
+
+**Teleport** (`23:42AD`, `484E-48F7`). The destination is the cursor square on the floor being viewed, so any floor
+from B1 to the deepest. The square must be **visited**: otherwise the party stays where it was and the maze says
+"You were sent back." (`49:4583`, `20:43E7`). The spell or Ring is still used up. Landing does not trigger the
+square (a warp landed on does not fire) (emulator: B1 -> B7 (10,12); B7 (11,12) unvisited -> sent back). There is
+no cancel: B does nothing in teleport mode.
+
+**Mania mode** (`$CB99` bit 3, Mode Settings "Map: Normal / Mania", `23:4644`). Compass and the sheet show "The party
+is now at B nF, North y, East x, Facing ..." (`49:44CE`). Teleport asks "Teleport where?" with the floor (1..deepest,
+wrapping) and offsets north and east of here (−15..+15) (`49:451F`); left/right change a value, A confirms, B does
+nothing. A destination off the 16 × 16 grid kills the party "In rock" (`23:4945`, `49:4483`). Otherwise the visited
+rule above applies (emulator).
+
+**Warps that change floor** (`20:6F94`, `work/re/automap/warps.txt`): B22 (12,9) -> B23, B25 (7,8) -> B26,
+B26 (3,12) -> B27 (7,10), B27 (15,15) -> B28, B28 (6,7) -> B29 (0,0). B7's four warps lead into its four closed
+rooms (onto hidden-spot squares); B30 (4,10) lands on another warp and B30 (11,15) on an event. How B21 is first
+reached is still open (section 5).
+
+**Open:** battle Teleport (random square; does rock kill?), the camp item routes (code only), what clears `$D967` on a
+new game. Debug-only map controls: `work/re/automap.md` 2.7.

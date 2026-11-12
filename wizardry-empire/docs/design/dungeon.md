@@ -18,9 +18,10 @@ Related documents: monsters and encounter tables in [monsters.md](monsters.md) a
   Abyss and the final battle with Demon Adish; it has no stairs. **Floors 21-30** are a second, harder area (the
   strongest monsters, up to level 29, mixed with weaker ones). No stairs lead there from floor 20; how the party gets there was not traced
   ([findings](findings.md#28-floors-21-30-are-not-reached-by-stairs)).
+- **Warps** move the party at once to a fixed square, also to other floors (87, on floors 7, 15, 16 and 21-30).
 - **Stairs keep your position:** a down stair at (x, y) on floor n puts you on the up stair at (x, y) on floor n+1.
 - **Squares can hurt you:** pits, chutes, ceiling traps, rockfall, vipers (poison) and spinners; **damage zones**
-  take a quarter of every member's max HP per action; **anti-magic zones** cancel the party's spell effects;
+  take a quarter of every member's max HP per action; **anti-magic zones** cancel the party's spell effects; **dark zones** blind the view;
   **rock** kills the whole party if a teleport puts it there.
 - **Fights:** random fights are rare except right after a door (rates in [monsters.md](monsters.md#3-when-a-fight-starts)). **Guarded
   squares** (0-21 per floor, 244 in all) hold a fixed fight; they are the **only fights that give a chest**, and they
@@ -56,9 +57,8 @@ such as which event or trap.
   fights there. Areas 1-33 are the normal areas of the floors, 101-105 cover the damage zones, and 34-53 are fixed
   fights started by events. Areas 54-100 are on no map ([findings](findings.md#21-encounter-areas-54-100-are-unused)).
 
-**Notes:** the game remembers the visited squares of each floor and the deepest floor reached (marker squares,
-section 3.1); this is inferred to feed the auto-map. Drawn floor maps and how to read them:
-[maps/README.md](maps/README.md).
+**Notes:** the game remembers every square the party has stood on, per floor, and the deepest floor reached; the
+in-game auto-map shows them (section 9). Drawn floor maps and how to read them: [maps/README.md](maps/README.md).
 
 Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format)
 
@@ -66,7 +66,8 @@ Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format)
 
 ## 2. How floors connect
 
-The party moves between floors by stairs, chutes, teleporting events and (inferred) an elevator.
+The party moves between floors by stairs, chutes, warps, teleporting events, the Teleport spell (section 9) and
+the elevator.
 
 - **Stairs.** Stepping on a stair asks Yes/No. Yes moves you one floor up or down and keeps x and y, so every down
   stair sits directly above an up stair. Every floor change re-arms the guarded squares and one-shot events of the
@@ -75,6 +76,8 @@ The party moves between floors by stairs, chutes, teleporting events and (inferr
   traced. The chute at (0, 15) on floor 6 was inferred to lead to floor 7, but it has a wall on all four sides and cannot
   be walked onto (computed from the map), so the way from 6 to 7 is open; and the one at (0, 5) on floor 19 to
   floor 20, because those floors have no stairs between them (inferred).
+- **Warps** (section 3.1): five warp squares change floor: floor 22 (12, 9) to 23, 25 (7, 8) to 26, 26 (3, 12) to
+  27 (7, 10), 27 (15, 15) to 28, and 28 (6, 7) to 29 (0, 0) (verified for warps in general, B7).
 - **Fairy twins** (Rei and Shia): with the Fairy's Heart in the party, one twin teleports the party to the other
   for 1 G, between floor 1 (2, 12) and floor 11 (11, 12).
 - **Button panels and key-holes.** Floors 3 to 19 have panels with buttons A-E, most of them next to a door with a key-hole.
@@ -122,7 +125,7 @@ The same types exist on every floor; a few extra types are tied to one floor's e
 | **Guarded square** | A fixed fight, once per floor visit; winning gives a chest (section 4). |
 | **Button panel** | "A row of buttons. Which one will you press? A B C D E" (the elevator, inferred). |
 | **Floor trap** | Chute, pit, ceiling trap, rockfall, viper or spinner (section 3.2). |
-| **Marker** | Nothing visible; marks the square as visited and notes the deepest floor reached (inferred: auto-map memory). |
+| **Warp** | Moves the party at once to a fixed square, on the same or another floor; no prompt, no cost (verified). 87 warps, on floors 7, 15, 16 and 21-30. A party that lands on a warp by Teleport is not moved on. |
 | **Event** | Runs one of the events in section 7. |
 | **Corpse** | "A monster's corpse lies here": nothing, or "The corpse began to move!" and a fight. |
 | **One-shot event** | A story or special event that runs once per floor visit. |
@@ -190,40 +193,43 @@ written ([findings](findings.md#30-noticing-a-hidden-spot-jumps-from-16-to-80)).
 
 Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types)
 
-### 3.4 Damage zones and anti-magic zones
+### 3.4 Zones: lake, magic seal, dark zone
 
-Two zone markings sit on top of a square's type.
+Three zone kinds sit on top of a square's type. The auto-map names them "lake", "magic seal" and "dark zone"
+(game text); the maps in this folder call the first two the damage zone and the anti-magic zone.
 
-**Damage zone.** After every action (step or turn) in the zone, each member who is not Dead, Ashes or Lost loses
+**Damage zone (lake).** After every action (step or turn) in the zone, each member who is not Dead, Ashes or Lost loses
 `maxHP/4 + 1` HP and dies at 0 ("... has died"). A party-wide protection (not traced; inferred levitation or a
 ward) prevents it. Without protection a full-HP character dies after at most 4 actions (computed: four hits of
 `maxHP/4 + 1` always add up to more than max HP). Damage-zone squares have their own encounter areas (101-105).
 
-**Anti-magic zone.** Entering it cancels all party-wide spell effects. It is inferred to be the "Anti-magic space"
-named on a sign (inferred).
+**Anti-magic zone (magic seal).** Entering it cancels all party-wide spell effects. A sign names it "Anti-magic
+space".
+
+**Dark zone.** Entering it puts out the party's light and replaces the 3D view with "Pitch darkness!" (verified);
+the party walks blind. The auto-map does not draw dark zones (it names them under the cursor).
 
 | Floor | Zone squares |
 |---|---|
-| 5 | 60 marked as both zone kinds (no known effect) |
+| 5 | 60 dark |
 | 6 | 58 anti-magic |
 | 8 | 16 damage (area 101) |
 | 11 | 121 damage (area 102, about half the floor) |
-| 12 | 19 marked as both zone kinds |
-| 15 | 13 anti-magic, 46 both |
-| 18 | 10 anti-magic, 27 both |
+| 12 | 19 dark |
+| 15 | 13 anti-magic, 46 dark |
+| 18 | 10 anti-magic, 27 dark |
 | 22 | 88 anti-magic |
-| 23 | 49 both |
-| 24 | 32 anti-magic, 15 both |
-| 25 | 3 damage (area 103), 11 anti-magic, 42 both |
-| 26 | 73 both |
+| 23 | 49 dark |
+| 24 | 32 anti-magic, 15 dark |
+| 25 | 3 damage (area 103), 11 anti-magic, 42 dark |
+| 26 | 73 dark |
 | 27 | 15 damage (area 104) |
-| 28 | 126 marked as both zone kinds, 41 anti-magic |
+| 28 | 126 dark, 41 anti-magic |
 | 30 | 16 damage (area 105) |
 
 **Notes:** "not Dead, Ashes or Lost" includes Stoned members
-([findings](findings.md#32-stoned-members-still-take-damage-zone-damage)). Squares marked as both zone kinds have no
-known effect, but they use a different set of wall pictures
-([findings](findings.md#33-map-values-with-no-known-effect)).
+([findings](findings.md#32-stoned-members-still-take-damage-zone-damage)). Dark-zone squares also use a different set of wall
+pictures.
 
 Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format)
 
@@ -509,7 +515,7 @@ circle is named by its summon ([spells.md](spells.md#6-summoner-pacts)). Floor m
 | 4 | up ×3; down (3,4) | 6 | 21 (area 6) | 3 spinners, 3 pits | weird robed monster (4,8); its drop (3,8); sign (7,9); buttons + key-hole |
 | 5 | up (3,4); down (7,8) | 7 | 11 (area 7) | 2 chutes, 4 pits, spinner | Lloyd (1,11); Lion of Hell circle (15,9); ceiling monster (5,5); buttons + key-hole |
 | 6 | up (7,8); no down | 8 | 5 (area 8) | chute (0,15) → floor 7 (inferred); 4 hidden | Louie (12,3); 3 alarm squares; buttons + key-hole |
-| 7 | no up; down (15,0) | 9 | 6 (area 9) | 10 hidden; 4 markers | maid (1,14); 2 button panels + key-holes |
+| 7 | no up; down (15,0) | 9 | 6 (area 9) | 10 hidden; 4 warps into the closed rooms | maid (1,14); 2 button panels + key-holes |
 | 8 | up (15,0); down (4,14) (13,13) | 10, 101 (damage zone) | 14 (areas 10, 101) | 4 hidden | hermit (2,14); pond (3,10); Minotaur circle (3,8); Siegfried (8,8); well (14,3); 3 signs |
 | 9 | up ×2; down (0,15) | 11 | 8 (areas 11, 12) | 4 pits; 4 hidden | Djinni circle (11,5); Laila (1,0); Kojiro (3,3); 2 signs |
 | 10 | up (0,15); down (0,0) | 12 | 2 (area 12) | 2 hidden | 26 corpses (the cemetery); priest of the netherworld (1,1); 4 signs |
@@ -536,7 +542,7 @@ circle is named by its summon ([spells.md](spells.md#6-summoner-pacts)). Floor m
 
 **Single squares with another area.** A few squares carry another floor's encounter area: floor 22 area 25 at
 (14,2) and 26 at (15,2); floor 23 area 27 at (7,7) and on the down stairs (7,8) and (8,7); floor 24 area 29 at (7,9)
-and on the stairs (6,9); floor 27 area 31 on the marker (13,10); floor 28 area 32 on the trap (8,8). A random fight
+and on the stairs (6,9); floor 27 area 31 on the warp (13,10); floor 28 area 32 on the trap (8,8). A random fight
 on such a square would use that area (inferred; not seen). This is why the encounter tables list these areas on
 more floors than the table above ([findings](findings.md#31-single-squares-carry-another-floors-encounter-area)).
 
@@ -544,9 +550,63 @@ Tech: [dungeon.md §4](../tech/dungeon.md#4-floors)
 
 ---
 
+## 9. Auto-map
+
+The in-game auto-map is a full-screen plan of one floor. It shows only the squares the party has **stood on**, with
+their walls and doors and icons for a few kinds of squares. It is the only map the game gives the player (all
+verified unless tagged).
+
+**Opening it.** There is no map button. Three things open it:
+
+| How | Notes |
+|---|---|
+| **Compass** (camp spell) | view only |
+| **Map Record Sheet** (item): use it in camp, or press **Select** in the maze while anyone carries it ("Use the map record sheet?", cursor on No) | view only. Each use has a 30% chance to crumble the sheet silently; the map still opens that time. It does **not** complete the map ([findings](findings.md#37-the-map-record-sheet-does-not-complete-the-map)) |
+| **Teleport** (spell) or the **Ring of Warping** (item, breaks 25%) | the map becomes a destination picker (below) |
+
+Teleport cast in battle opens no map: it puts the party on a random square of the current floor (code only).
+
+**What it shows.**
+- Only visited squares: every square the party stands on is remembered, for good (saved with the game). The Map
+  Record Sheet adds nothing.
+- Walls and doors. Locked doors look like doors; a secret door looks like a wall until it is found.
+- Icons: stairs up and down, chutes, the other floor traps (one icon for pit, ceiling trap, rockfall and viper),
+  spinners, warps, events (one icon for every kind), and an "E" on elevator panels.
+- No icon: hidden spots, lock squares, guarded squares, the adventurers' squares and rock.
+- Lake squares are blue, magic-seal squares dotted red; dark zones are not drawn.
+- The party arrow, on the party's own floor only.
+
+**Controls.**
+
+| Key | Map | Cursor |
+|---|---|---|
+| Up / Down | previous / next floor, from floor 1 to the deepest floor reached (wraps) | move the cursor |
+| Left / Right | - | move the cursor |
+| A | cursor mode (starts on the party) | Teleport: jump to the cursor square; otherwise nothing |
+| B | close (not while teleporting) | back to the map |
+
+In cursor mode the top line names the visited square under the cursor (wall, stairs, elevator, the trap kind, warp,
+event, or the zone: lake, magic seal, dark zone). On a visited warp a side panel shows where it leads (floor, east,
+north) and marks the destination when it is on the floor shown.
+
+**Teleport through the map.** The destination is the cursor square on the floor being viewed, so any floor from 1 to
+the deepest reached. It must be a **visited** square; otherwise "You were sent back." and the party stays, but the
+spell or Ring is used up. The cast cannot be cancelled ([findings](findings.md#39-a-teleport-to-an-unvisited-square-is-wasted-and-teleport-cannot-be-cancelled)). Landing on a warp does not set it off.
+
+**Floor numbers.** The map shows floors 1-20 as B1-B20, but floors 21-30 as B30, B31, B270, B271, B272, B358, B424,
+B485, B570 and B666 (game data, deliberate: the text mode uses the same numbers) ([findings](findings.md#38-floors-21-30-are-numbered-b30-to-b666-on-the-map)).
+
+**Mode Settings "Map: Mania".** This option replaces the map with the classic text screens: Compass and the sheet
+print the party's floor, north, east and facing; Teleport asks for a floor and offsets north and east of here
+(−15 to +15). In this mode a destination off the 16 × 16 grid puts the party in rock: everyone dies ("In rock").
+
+Tech: [dungeon.md §6](../tech/dungeon.md#6-auto-map)
+
+---
+
 ## Open questions
 
-1. **How floors 21-30 are entered**, and how floors 22 → 23 and 25 → 30 connect (no stairs). Candidates: the
+1. **How floor 21 is first entered** (floors 22-29 connect by warps, section 2). Candidates: the
    button panels (elevator) or an event after the ending (the game notes a second clear). Not traced.
 2. **Elevator:** the destinations of buttons A-E and which item each key-hole needs.
 3. **Chutes:** how many floors they drop. **Pits, ceiling traps, rockfall:** damage amounts.
@@ -556,7 +616,7 @@ Tech: [dungeon.md §4](../tech/dungeon.md#4-floors)
 7. **Random teleport curse:** whether the random square can be rock (instant party death), and which items cause it.
 8. **Damage zone protection:** what gives it (inferred levitation or a ward), and whether the Levitate spell gives the
    same floating as the sorcerer's levitation.
-9. **The fourth kind of wall side and squares marked as both zone kinds** (floors 5, 12, 28): no effect found.
+9. **Dark zone:** whether any light spell or item works inside it.
 10. **Event outcomes:** the odds of the well, the junk pile and the corpses; the gold-coins amount; what the maid
     offers; which sign text stands where; whether story events stay done for good.
 11. **Single squares with another area** (floors 22-28): whether a random fight really starts there with that area

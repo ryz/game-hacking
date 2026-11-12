@@ -36,8 +36,8 @@ The legend is printed under every map; the full rules for how maps look are in t
 | **E** / **E1** | event / one-shot event |
 | **T** + letter | floor trap: TP pit, TC chute, TF falling ceiling, TR rockfall, TV viper, TS spinner |
 | **B** | button panel; **C** corpse |
-| small grey dot | marker square: remembers visited squares, probably for the auto-map (inferred); no effect on play |
-| red hatch / blue dots / purple both | damage zone / anti-magic zone (inferred) / both marks (no known effect) |
+| **W** | warp: moves the party at once to a fixed square, on this or another floor (the floor page gives where) |
+| red hatch / blue dots / purple hatch and dots | damage zone ("lake") / anti-magic zone ("magic seal") / dark zone (no 3D view) ([dungeon.md](../dungeon.md#34-zones-lake-magic-seal-dark-zone)) |
 | small grey number | the square's encounter area (only where it differs from the area named under the title) |
 | light grey square | no random fights on that square |
 

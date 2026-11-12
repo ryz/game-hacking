@@ -20,7 +20,7 @@ read the map, coordinates and what each kind of square does: [maps/README.md](RE
 - **5 guarded squares**, **5 events** (Louie, a recruitable adventurer; three alarms; a key-hole door), **a button
   panel**, **4 hidden spots** around Louie, one trap (the chute).
 - **Anti-magic zone:** 58 squares in the south-west (x 0-7, y 0-8), with the three alarms and the key-hole inside.
-  Entering it cancels the party's spell effects ([dungeon.md](../dungeon.md#34-damage-zones-and-anti-magic-zones)).
+  Entering it cancels the party's spell effects ([dungeon.md](../dungeon.md#34-zones-lake-magic-seal-dark-zone)).
 - **Random fights** come from encounter area 8 on every square. **Monsters:** levels 1-8, 2 to 4 groups of up to 4.
 
 ## 2. Squares

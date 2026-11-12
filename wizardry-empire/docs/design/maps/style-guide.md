@@ -11,7 +11,7 @@ generator disagree, fix one of them in the same commit.
 - **Readable without colour.** Every symbol is a letter or a line style as well as a colour, so a map works in
   print and for colour-blind readers.
 - **Same legend everywhere.** The legend is printed in full under every map, even for symbols the floor does not use.
-  It has three titled groups (Squares, Walls and doors, Floor and zones; the marker square is in the last); every
+  It has three titled groups (Squares, Walls and doors, Floor and zones); every
   legend sample is drawn by the same code as the map, so legend and map cannot drift apart.
 - **Quiet background, strong structure.** Walls and symbols are dark and bold; floor, grid and area numbers are light.
 
@@ -20,7 +20,7 @@ generator disagree, fix one of them in the same commit.
 | Element | Value |
 |---|---|
 | Orientation | north up; x east from 0 (left) to 15, y north from 0 (bottom) to 15 |
-| Cell | 48 × 48 px, 16 × 16 cells, framed by a 2 px black border; 28 px outer margin; image 846 × 1154 px |
+| Cell | 48 × 48 px, 16 × 16 cells, framed by a 2 px black border; 28 px outer margin; image 846 × 1186 px |
 | Title | "Wizardry Empire - Floor N (BNF)", bold 19 px, top left; the game name is also the file name prefix |
 | Subtitle | one grey sentence under the title about random fights (see 4) |
 | Axes | 0-15 centred under and right-aligned left of the grid; under them one grey note on coordinates and wrapping |
@@ -39,9 +39,9 @@ generator disagree, fix one of them in the same commit.
 | One-way door | door bar plus a black arrow pointing the only way through | 170,100,30 / 0,0,0 |
 | Secret door | red dashed line, 3 px (a value-3 side on a hidden spot) | 220,0,0 |
 | Locked door | wall line with a red bar across its middle (a value-3 side on any other square) | 220,0,0 |
-| Damage zone | diagonal hatch | 232,128,128 |
-| Anti-magic zone | dot grid (inferred meaning) | 90,110,220 |
-| Both zone marks | hatch and dots, purple (no known effect) | 160,90,190 |
+| Damage zone (game: lake) | diagonal hatch | 232,128,128 |
+| Anti-magic zone (game: magic seal) | dot grid | 90,110,220 |
+| Dark zone (both zone bits) | hatch and dots, purple | 160,90,190 |
 | Stairs up / down | **UP** / **DN** | green 0,110,0 |
 | Guarded square | **G** | red 190,0,0 |
 | Hidden spot | **H** | purple 120,60,160 |
@@ -49,7 +49,7 @@ generator disagree, fix one of them in the same commit.
 | Button panel | **B** | blue 0,90,160 |
 | Corpse | **C** | brown 90,60,30 |
 | Floor trap | **T** + kind: TP pit, TC chute, TF falling ceiling, TR rockfall, TV viper, TS spinner | orange 200,90,0 |
-| Marker square | small grey dot (automap memory, inferred; no effect on play; kept on the maps, owner's decision 2026-11-12) | 90,90,90 |
+| Warp | **W** (moves the party at once; the destination is in the floor page; until 2026-11-12 drawn as a grey "marker" dot) | teal 0,125,125 |
 
 Symbols are centred in their cell with a 2 px white outline, so they stay readable on hatching. Area numbers sit
 small in the bottom-left corner, in light grey (160,160,160) so they recede behind the structure. Each edge is stored on both of its squares. Where one side lets the party through

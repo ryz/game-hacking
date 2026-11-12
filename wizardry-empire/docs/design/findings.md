@@ -43,9 +43,12 @@ Grouped by system, in the order of the [document list](README.md#documents).
 | Dungeon | [30. Noticing a hidden spot jumps from 16% to 80%](#30-noticing-a-hidden-spot-jumps-from-16-to-80) | data | low |
 | Dungeon | [31. Single squares carry another floor's encounter area](#31-single-squares-carry-another-floors-encounter-area) | data (squares), inferred (fights) | low |
 | Dungeon | [32. Stoned members still take damage-zone damage](#32-stoned-members-still-take-damage-zone-damage) | inferred | low |
-| Dungeon | [33. Map values with no known effect](#33-map-values-with-no-known-effect) | data | unknown |
+| Dungeon | [33. Dark zones are not drawn on the auto-map](#33-dark-zones-are-not-drawn-on-the-auto-map) | verified | low |
 | Dungeon | [34. Chest ratings above 47 are never used](#34-chest-ratings-above-47-are-never-used) | data | none |
 | Dungeon | [36. Door flags shared between unrelated squares](#36-door-flags-shared-between-unrelated-squares) | data | low |
+| Dungeon | [37. The Map Record Sheet does not complete the map](#37-the-map-record-sheet-does-not-complete-the-map) | verified | low |
+| Dungeon | [38. Floors 21-30 are numbered B30 to B666 on the map](#38-floors-21-30-are-numbered-b30-to-b666-on-the-map) | verified | none |
+| Dungeon | [39. A Teleport to an unvisited square is wasted, and Teleport cannot be cancelled](#39-a-teleport-to-an-unvisited-square-is-wasted-and-teleport-cannot-be-cancelled) | verified | medium |
 | Curiosities | [35. The hidden debug mode](#35-the-hidden-debug-mode) | verified | none |
 
 ---
@@ -453,7 +456,7 @@ picks an empty formation was not traced.
 
 **Impact:** Unknown: possibly fewer or no random fights in those zones.
 
-Design: [monsters.md](monsters.md#5-encounter-areas-and-group-formation), [dungeon.md](dungeon.md#34-damage-zones-and-anti-magic-zones) ·
+Design: [monsters.md](monsters.md#5-encounter-areas-and-group-formation), [dungeon.md](dungeon.md#34-zones-lake-magic-seal-dark-zone) ·
 Tech: [monsters_table.md](monsters_table.md) (encounter tables)
 
 ---
@@ -542,12 +545,14 @@ Design: [monsters.md](monsters.md#1-what-a-monster-is) · Tech: [monsters.md §1
 
 **Behavior:** Floor 20 has no stairs, and floor 21 has no up stairs. The second area is itself split: floors 21-22
 are linked by stairs, floor 22 has no down stairs, floor 23 has no up stairs, floors 23-25 are linked by stairs,
-floor 25 has no down stairs, and floors 26-30 have no stairs at all. Chutes exist on floors 24 and 29.
+floor 25 has no down stairs, and floors 26-30 have no stairs at all. Chutes exist on floors 24 and 29. Warp squares
+link 22 → 23, 25 → 26, 26 → 27, 27 → 28 and 28 → 29 (verified for warps in general), so only the way into floor 21
+(and from 29 to 30) is missing.
 
 **Intended:** Another way in: the elevator button panels, or an event after the ending (the game notes a second
 clear) (inferred). The gaps of the main dungeon (6 → 7, 19 → 20) are inferred to be chutes.
 
-**Confidence:** Read from the maps; how the area is entered was not traced.
+**Confidence:** Read from the maps and the warp table; how floor 21 is entered was not traced.
 
 **Impact:** The late-game route (floors 21-30, the strongest monsters, the true final battle) cannot be described
 yet.
@@ -624,25 +629,26 @@ walked a Stoned member through a zone.
 
 **Impact:** Carrying a Stoned member through a damage zone turns a cheap cure into a resurrection.
 
-Design: [dungeon.md](dungeon.md#34-damage-zones-and-anti-magic-zones) ·
+Design: [dungeon.md](dungeon.md#34-zones-lake-magic-seal-dark-zone) ·
 Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format), [characters.md §9](../tech/characters.md#9-status-ailments-and-recovery)
 
 ---
 
-## 33. Map values with no known effect
+## 33. Dark zones are not drawn on the auto-map
 
-**Behavior:** Squares marked as both zone kinds do nothing that has been found. They are on floors 5 (60 squares),
-12 (19), 15 (46), 18 (27), 23 (49), 24 (15), 25 (42), 26 (73) and 28 (126). One of the two marks also switches the
-wall pictures, so these squares at least look different. (The fourth wall value, listed here before, is the secret
-or locked door: [dungeon.md](dungeon.md#36-secret-and-locked-doors).)
+**Behavior:** The zone value once listed here as "no known effect" is the **dark zone**: entering it puts out the
+light and shows "Pitch darkness!" instead of the 3D view. Dark zones cover floors 5 (60 squares), 12 (19), 15 (46),
+18 (27), 23 (49), 24 (15), 25 (42), 26 (73) and 28 (126). The auto-map colours lake and magic-seal squares but not
+dark zones; only the cursor label names them. (The fourth wall value, also listed here before, is the secret or
+locked door: [dungeon.md](dungeon.md#36-secret-and-locked-doors).)
 
-**Intended:** A decorative marker (different wall pictures) (inferred).
+**Intended:** Probably deliberate: a dark zone is meant to be found by walking into it (inferred).
 
-**Confidence:** The values are read from the maps; their effect is open.
+**Confidence:** Verified (floor 5 (1, 9), Japanese and English builds); the map drawing read from the code.
 
-**Impact:** Unknown.
+**Impact:** Low. A player cannot plan around dark zones from the map.
 
-Design: [dungeon.md](dungeon.md#34-damage-zones-and-anti-magic-zones) ·
+Design: [dungeon.md](dungeon.md#34-zones-lake-magic-seal-dark-zone) ·
 Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format), [§5](../tech/dungeon.md#5-not-found--open)
 
 ---
@@ -708,3 +714,54 @@ away:
 
 Design: [maps/floor-15.md](maps/floor-15.md), [maps/floor-18.md](maps/floor-18.md) ·
 Tech: [dungeon.md §2.1](../tech/dungeon.md#21-secret-and-locked-doors-wall-value-3)
+
+---
+
+## 37. The Map Record Sheet does not complete the map
+
+**Behavior:** The item text says the sheet "completes the automap", but it only opens the same map as the Compass
+spell: visited squares only. Its real value is that it needs no spell slot and works with Select in the maze;
+each use has a 30% chance to crumble it silently (the map still opens that time).
+
+**Intended:** Either the text oversells it, or a "complete map" effect was cut (inferred).
+
+**Confidence:** Verified (the map after using the sheet equals the Compass map; 2 breaks in 12 tries); no code that
+fills the map was found.
+
+**Impact:** Low. Players who buy or keep it for a full map are misled.
+
+Design: [dungeon.md](dungeon.md#9-auto-map) · Tech: [dungeon.md §6](../tech/dungeon.md#6-auto-map)
+
+---
+
+## 38. Floors 21-30 are numbered B30 to B666 on the map
+
+**Behavior:** The auto-map and the Mania-mode location text show floors 1-20 as B1-B20, then floors 21-30 as B30,
+B31, B270, B271, B272, B358, B424, B485, B570 and B666.
+
+**Intended:** Deliberate: both screens use the same number table, so the second area is presented as unknown deep
+levels ending at 666 (inferred).
+
+**Confidence:** Verified in both builds (map and text).
+
+**Impact:** None; flavour. A translation keeps the numbers.
+
+Design: [dungeon.md](dungeon.md#9-auto-map) · Tech: [dungeon.md §6](../tech/dungeon.md#6-auto-map)
+
+---
+
+## 39. A Teleport to an unvisited square is wasted, and Teleport cannot be cancelled
+
+**Behavior:** Teleport (spell or Ring of Warping) opens the map; B does nothing there, so the cast always ends with
+a jump. If the chosen square was never visited, the game says "You were sent back.", the party stays, and the spell
+slot or the Ring use is gone. In "Map: Mania" mode the coordinate prompt cannot be cancelled either, and an
+off-grid destination kills the party in rock.
+
+**Intended:** The visited-square rule is deliberate (Teleport only to known places); the missing cancel looks like an
+oversight (inferred).
+
+**Confidence:** Verified (Japanese build: an unvisited target, a visited target, B in the picker; Mania "In rock").
+
+**Impact:** Medium. A mis-click wastes a high-level spell; in Mania mode a wrong offset loses the party.
+
+Design: [dungeon.md](dungeon.md#9-auto-map) · Tech: [dungeon.md §6](../tech/dungeon.md#6-auto-map)

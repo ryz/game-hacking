@@ -21,7 +21,7 @@ pond, and two stairs down; how to read the map, coordinates and what each kind o
 - **14 guarded squares** (3 in the damage zone), **10 events** (the hermit, the pond, the Minotaur magic circle,
   Siegfried, a well, three signs; two key-hole doors), **a button panel**, **4 hidden spots**; no traps.
 - **Damage zone:** 16 squares at x 2-3, y 4-11. Each action there costs every member a quarter of max HP plus 1
-  ([dungeon.md](../dungeon.md#34-damage-zones-and-anti-magic-zones)). Random fights there come from area 101,
+  ([dungeon.md](../dungeon.md#34-zones-lake-magic-seal-dark-zone)). Random fights there come from area 101,
   undead only.
 - **Random fights** elsewhere come from area 10. **Monsters:** levels 1-10, 2 to 4 groups of up to 4; the damage
   zone adds undead of levels 6-13.
@@ -91,7 +91,7 @@ rule). Found and picked doors stay open for good (inferred).
 Full stats: [monsters_table.md](../monsters_table.md).
 
 **Notes for play:** the damage zone is the danger and the prize. Without protection a full-HP character dies after
-at most 4 actions there ([dungeon.md](../dungeon.md#34-damage-zones-and-anti-magic-zones)), yet the Minotaur circle
+at most 4 actions there ([dungeon.md](../dungeon.md#34-zones-lake-magic-seal-dark-zone)), yet the Minotaur circle
 and the pond lie inside, and the guards at the doors fight with the zone's undead: the Damned (level 13, AC −3,
 paralysis, 5300 EXP) and level-draining Specters and Wights. Those guards can give chests up to Gold, against
 Bronze for the rest of the floor ([dungeon.md](../dungeon.md#54-chest-quality-by-floor)). Outside the zone the

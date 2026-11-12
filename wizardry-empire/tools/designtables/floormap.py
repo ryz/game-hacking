@@ -31,11 +31,18 @@ WALL, DOOR, SPECIAL = INK, (170, 100, 30), (220, 0, 0)
 DAMAGE, ANTIMAGIC, BOTHZONE = (232, 128, 128), (90, 110, 220), (160, 90, 190)
 AREA_TXT, NOTE_TXT, RULE = (160, 160, 160), (95, 95, 95), (200, 200, 200)
 GREEN, RED, PURPLE, BLUE, BROWN, ORANGE = (0, 110, 0), (190, 0, 0), (120, 60, 160), (0, 90, 160), (90, 60, 30), (200, 90, 0)
+TEAL = (0, 125, 125)
 # square type -> (label, colour)
-TYPES = {2: ("UP", GREEN), 3: ("DN", GREEN), 4: ("H", PURPLE), 6: ("G", RED), 7: ("B", BLUE), 8: ("T", ORANGE),
+TYPES = {2: ("UP", GREEN), 3: ("DN", GREEN), 4: ("H", PURPLE), 6: ("G", RED), 7: ("B", BLUE), 8: ("T", ORANGE), 9: ("W", TEAL),
          10: ("E", BLUE), 11: ("E", BLUE), 12: ("E", BLUE), 13: ("C", BROWN), 14: ("E1", BLUE)}
 TRAPS = {0x00: "C", 0x20: "P", 0x40: "F", 0x60: "R", 0x80: "V", 0xA0: "S"}
 STEP = {0: (0, 1), 1: (1, 0), 2: (0, -1), 3: (-1, 0)}     # side -> (dx, dy) in map coordinates (y north)
+
+
+def warp_dest(rom, p):
+    """Warp square param p -> (floor 1-30, x, y): table 20:6F94, 4 bytes [y][x][floor-1][0] (tech dungeon.md 2)."""
+    o = 0x20 * 0x4000 + 0x2F94 + 4 * p
+    return rom[o + 2] + 1, rom[o + 1], rom[o]
 
 
 def floor_cells(rom, f):
@@ -165,7 +172,7 @@ def draw(cells, out, floor):
         sub = "Random fights: the encounter area of each square is numbered in grey."
 
     gx, gy = MARGIN + AXIS, MARGIN + HEAD               # grid origin (top left)
-    LEG_H = 238
+    LEG_H = 270
     W = gx + GRIDW + MARGIN
     H = gy + GRIDW + AXIS + 12 + LEG_H + MARGIN
     im = Image.new("RGB", (W, H), (255, 255, 255))
@@ -193,8 +200,6 @@ def draw(cells, out, floor):
         text, col = label(t, p)
         if text:
             P.symbol(x0 + CELL // 2, y0 + CELL // 2, text, col)
-        elif t == 9:     # marker square: small grey dot
-            marker(d, x0, y0, CELL)
 
     # ---- edges: walls first, then secret doors, then doors and locked doors (arrow = the way that is always open)
     walls, specials, doors = [], [], []
@@ -248,11 +253,12 @@ def draw(cells, out, floor):
     groups = [
         ("Squares", [("UP", GREEN, "stairs up / DN down"), ("G", RED, "guarded square (fixed fight)"),
                      ("H", PURPLE, "hidden spot"), ("E", BLUE, "event (E1: one-shot)"),
-                     ("B", BLUE, "button panel / C corpse"), ("T", ORANGE, "floor trap (see below)")]),
+                     ("B", BLUE, "button panel / C corpse"), ("W", TEAL, "warp (moves the party at once)"),
+                     ("T", ORANGE, "floor trap (see below)")]),
         ("Walls and doors", ["wall", "door", "one-way door (arrow: way through)", "secret door (found by Search)",
                              "locked door (Pick a lock)"]),
-        ("Floor and zones", ["rock", "no random fights", "marker square (no effect on play)", (1, "damage zone"),
-                             (2, "anti-magic zone (inferred)"), (3, "both marks (no known effect)")]),
+        ("Floor and zones", ["rock", "no random fights", (1, "damage zone (lake)"), (2, "anti-magic zone (magic seal)"),
+                             (3, "dark zone (no view)")]),
     ]
     for gi, (head, items) in enumerate(groups):
         x = gx + gi * colw
@@ -278,17 +284,13 @@ def draw(cells, out, floor):
                     P.special(seg)
             elif isinstance(item, str):
                 text = item
-                if text.startswith("marker"):
-                    sample_cell(x, y)
-                    marker(d, x, y, S)
-                else:
-                    sample_cell(x, y, fill=ROCK if text == "rock" else NOFIGHT)
+                sample_cell(x, y, fill=ROCK if text == "rock" else NOFIGHT)
             else:
                 z, text = item
                 sample_cell(x, y, zone=z)
             entry(x, y, text)
             y += S + 6
-    ty = ly + 20 + 6 * (S + 6) - 2
+    ty = ly + 20 + max(len(items) for _, items in groups) * (S + 6) - 2
     d.text((gx, ty), "Floor traps: TP pit, TC chute, TF falling ceiling, TR rockfall, TV viper, TS spinner.   "
                      "Grey number: encounter area of the square.", fill=NOTE_TXT, font=F["small"])
     os.makedirs(os.path.dirname(out), exist_ok=True)
@@ -306,10 +308,10 @@ def main(argv):
     print("wrote", os.path.relpath(out, ROOT) if out.startswith(ROOT) else out)
     if "--list" in argv:
         names = {1: "rock", 2: "stairs up", 3: "stairs down", 4: "hidden spot", 6: "guarded square", 7: "button panel",
-                 8: "floor trap", 9: "marker", 10: "event A", 11: "event B", 12: "event C", 13: "corpse",
+                 8: "floor trap", 9: "warp", 10: "event A", 11: "event B", 12: "event C", 13: "corpse",
                  14: "one-shot event"}
         trap = {0x00: "chute", 0x20: "pit", 0x40: "falling ceiling", 0x60: "rockfall", 0x80: "viper", 0xA0: "spinner"}
-        zones = {1: "damage zone", 2: "anti-magic zone", 3: "both zone marks"}
+        zones = {1: "damage zone (lake)", 2: "anti-magic zone (magic seal)", 3: "dark zone"}
         count = Counter(a for (w, a, t, z, p) in cells.values() if a and t != 1)
         print("rock squares: %d" % sum(1 for v in cells.values() if v[2] == 1))
         print("encounter areas (squares): " + ", ".join("%d (%d)" % kv for kv in sorted(count.items())))
@@ -320,6 +322,9 @@ def main(argv):
                 kind = names.get(t, "floor-specific event %d" % t if t >= 15 else "type %d" % t)
                 if t == 8:
                     kind += " (%s, strength %d)" % (trap.get(p & 0xE0, "?"), p & 0x1F)
+                if t == 9:
+                    wf, wx, wy = warp_dest(rom, p)
+                    kind += " to %s(%d,%d)" % ("" if wf == f else "floor %d " % wf, wx, wy)
                 print("  (%d,%d): %s, param %d, area %d%s" % (x, y, kind, p, a, ", " + zones[z] if z else ""))
         diff = rom[0x20 * 0x4000 + 0x3100:][:128]       # 20:7100: difficulty per flag (x5), hidden spots and locks
         print("one-way doors (from -> to, direction; the other way is what the far side says):")
@@ -348,10 +353,16 @@ def main(argv):
         shared = [v for v in guards.values() if len(v) > 1]
         print("guarded squares sharing one once-per-visit mark: " +
               ("; ".join(" + ".join("(%d,%d)" % xy for xy in v) for v in shared) if shared else "none"))
-        print("on foot from each stairs (one-way doors in their direction; secret and locked doors shut / open):")
+        warps = {}
+        for xy, (w, a_, t, z, p) in cells.items():
+            if t == 9:
+                wf, wx, wy = warp_dest(rom, p)
+                if wf == f:
+                    warps[xy] = (wx, wy)
+        print("on foot from each stairs (one-way doors in their direction, warps followed; secret and locked doors shut / open):")
         for xy, (w, a, t, z, p) in sorted(cells.items()):
             if t in (2, 3):
-                shut, opened = reach(cells, xy, False), reach(cells, xy, True)
+                shut, opened = reach(cells, xy, False, warps), reach(cells, xy, True, warps)
                 stairs = ["%s (%d,%d)" % ("up" if cells[s][2] == 2 else "down", s[0], s[1])
                           for s in sorted(shut) if s != xy and cells[s][2] in (2, 3)]
                 print("  %s (%d,%d): %d / %d squares; other stairs reached: %s" % (
@@ -364,8 +375,11 @@ def passable(cells, xy, dd, special):
     return side in (0, 2) or (special and side == 3)
 
 
-def reach(cells, start, special=False):
-    """Squares reachable on foot from start (rock excluded); special=True treats special walls as open."""
+def reach(cells, start, special=False, warps=None):
+    """Squares reachable on foot from start (rock excluded); special=True treats secret and locked doors as open.
+    warps = {(x, y): (x2, y2)} for warp squares leading elsewhere on the same floor: stepping on one moves the
+    party there at once (the warp square counts as reached; the party cannot walk on from it)."""
+    warps = warps or {}
     seen, todo = {start}, [start]
     while todo:
         x, y = todo.pop()
@@ -373,6 +387,12 @@ def reach(cells, start, special=False):
             n = ((x + dx) & 15, (y + dy) & 15)
             if n not in seen and cells[n][2] != 1 and passable(cells, (x, y), dd, special):
                 seen.add(n)
+                if cells[n][2] == 9:                 # warp: no walking on from it
+                    d = warps.get(n)
+                    if d is not None and d not in seen:
+                        seen.add(d)
+                        todo.append(d)
+                    continue
                 todo.append(n)
     return seen
 

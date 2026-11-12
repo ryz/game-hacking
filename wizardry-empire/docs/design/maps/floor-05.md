@@ -15,7 +15,7 @@ known effect; how to read the map, coordinates and what each kind of square does
   the ceiling; a key-hole door), **a button panel**, **7 traps** (2 chutes, 4 pits, a spinner); no hidden spots.
 - **The north-west block:** 60 squares (x 0-7, y 8-15, except (3, 8), (4, 8), (7, 10) and (7, 11)) carry both zone
   marks, which have no known effect beyond a different set of wall pictures
-  ([findings](../findings.md#33-map-values-with-no-known-effect)). Inside are six of the traps, Lloyd and the stairs
+  ([findings](../findings.md#33-dark-zones-are-not-drawn-on-the-auto-map)). Inside are six of the traps, Lloyd and the stairs
   down. By the map's walls the block is **closed**: no square of it connects to the rest of the floor, and it has no
   secret or locked door, so it has no way in on foot (computed from the map, not tested). It is entered from floor
   6, by its up stairs at (7, 8). From the up stairs at (3, 4) the party reaches 192 of the 196 squares outside the
