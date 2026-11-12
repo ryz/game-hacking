@@ -41,26 +41,12 @@ def shots(path):
 
 
 def play(g, seq):
-    for tok in (t.strip() for t in seq.split(",") if t.strip()):
-        n, base = 1, tok
-        if "*" in tok:
-            base, n = tok.split("*")
-            n = int(n)
-        for _ in range(n):
-            if base == "pow":
-                pass
-            elif base == "boot":
-                emu.boot(g)
-            elif base.startswith("w") and base[1:].isdigit():
-                g.run_frames(int(base[1:]))
-            elif base == "poke":   # museum: mark every monster as seen ($C5AE, 21 bytes of flags)
-                g.mem_write(0xC5AE, [0xFF] * 21)
-            elif all(k in emu.KEYS for k in base.split("+")):
-                emu.press(g, base.split("+"))
-            elif emu.chord_token(base):
-                emu.chord(g, *emu.chord_token(base))
-            else:
-                raise ValueError("unknown token %r" % tok)
+    """Tokens as tools/emu.py (incl. poke:ADDR=HEX), plus `poke` = mark all monsters seen (museum, $C5AE x21)."""
+    for tok in emu.tokens(seq) if isinstance(seq, str) else seq:
+        if tok == "poke":
+            g.mem_write(0xC5AE, [0xFF] * 21)
+        elif tok != "pow" and not emu.step(g, tok):
+            raise ValueError("unknown token %r" % tok)
 
 
 def settle(g, step=10, limit=300):
@@ -99,9 +85,9 @@ def main():
             continue
         rec = dict(s, commit=commit, files={}, settled={}, rom_sha1={})
         for r in which:
-            g = emu.open_emu(ROMS[r])
+            g, toks, skip = emu.start(ROMS[r], s["tokens"])     # boot / boot+PARTY from the route cache
             try:
-                play(g, s["tokens"])
+                play(g, toks[skip:])
                 rec["settled"][r] = settle(g)
                 p = os.path.join(out, "%s.%s.png" % (s["id"], r))
                 g.screenshot_png(p, scale=1)

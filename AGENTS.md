@@ -28,8 +28,12 @@ Run from `wizardry-empire/`:
 - Build: `python3 tools/build.py` -> `build/wizardry_empire_en.gbc` + `.ips`. The build fails loudly when a
   translated line is wider than its box.
 - Tests: `python3 -m pytest -q tests`.
+- **One-command check**: `python3 tools/check.py` (build + tests + parallel tour + pixel diff vs the accepted
+  baseline; exit 3 = frames changed, see `work/qa/check/diff.png`; `--accept` after review). ~20 s.
 - Play/screenshot: `python3 tools/emu.py --out work/qa/x --seq "boot,right*3,a" [--state S] [--save S]`
-  (exit 2 = hang, with PC/backtrace in `log.txt`).
+  (exit 2 = hang, with PC/backtrace in `log.txt`). Tokens also: `PARTY`, `poke:ADDR=HEX`, `KEY>KEY` (held
+  modifier). Routes starting with `boot`/`boot,PARTY` load a cached state per ROM (`work/cache/`, `--no-cache`);
+  in scripts: `g, toks, skip = emu.start(rom, seq); emu.play(g, toks[skip:])`.
 - Batches: `python3 tools/batches.py split msg|rect NAME ... / check / pairs / merge` (`check` includes the lint).
 - Lint: `python3 tools/lint.py` (glossary names, Yes/No kept, quotes, duplicates, spacing); the build refuses lint
   errors (`NO_LINT=1` to skip while debugging).
