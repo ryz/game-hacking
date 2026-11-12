@@ -2547,7 +2547,14 @@ Commit:
     ld l, a
     ld h, high(wStamp)
     ld a, [$c00a]
-    call Write6
+    ld c, a
+    ld a, MAP_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld [hl], c
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
     ; build the 2bpp tile in wUp (ink -> colour 3, paper -> colour 2, like the original font)
     ld a, [S_cur + 0]
     ld [wUp + 0], a
@@ -2701,38 +2708,69 @@ CellMapAddr:
     ld h, a
     ret
 
-; A = code. Returns A = code if owner[code] == current cell, else 0.
+; A = code. Returns A = code if owner[code] == current cell, else 0. One bank-6 visit.
 CheckOwner:
     ld [wTmp2], a
-    call OwnerAddr
-    call Read6
-    ld b, a
+    ld l, a
+    ld h, 0
+    add hl, hl
+    ld a, h
+    add high($d800)
+    ld h, a                 ; owner entry $d800 + code*2
     ld a, [S_cellLo]
-    cp b
-    jr nz, .x
-    inc hl
-    call Read6
-    ld b, a
+    ld c, a
     ld a, [S_cellHi]
+    ld b, a
+    ld a, MAP_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld a, [hli]
+    cp c
+    jr nz, .x
+    ld a, [hl]
     cp b
     jr nz, .x
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
     ld a, [wTmp2]
     ret
-.x: xor a
+.x: ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    xor a
     ret
 
-; owner[code] = current cell, cellmap[cell] = code (code in A)
+; owner[code] = current cell, cellmap[cell] = code (code in A). One bank-6 visit.
 SetOwner:
     ld [wTmp2], a
-    call OwnerAddr
-    ld a, [S_cellLo]
-    call Write6
-    inc hl
-    ld a, [S_cellHi]
-    call Write6
-    call CellMapAddr
+    call CellMapAddr        ; hl = cellmap entry
+    push hl
     ld a, [wTmp2]
-    jp Write6
+    ld l, a
+    ld h, 0
+    add hl, hl
+    ld a, h
+    add high($d800)
+    ld h, a                 ; owner entry
+    ld a, [S_cellLo]
+    ld c, a
+    ld a, [S_cellHi]
+    ld b, a
+    ld a, [wTmp2]
+    ld e, a
+    ld a, MAP_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld [hl], c
+    inc hl
+    ld [hl], b
+    pop hl
+    ld [hl], e
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
 
 ; A = code -> HL = owner entry in WRAM bank 6 ($d800 + code*2)
 OwnerAddr:
@@ -6444,9 +6482,13 @@ VerBump:
     push hl
     ld l, a
     ld h, high(wVer)
-    call Read6
-    inc a
-    call Write6
+    ld a, MAP_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    inc [hl]
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
     pop hl
     pop af
     ret
