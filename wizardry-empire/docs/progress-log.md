@@ -11,6 +11,18 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - Rev 1 port, museum monster page, editor pass, faster GC
+- ROM: `7bbf900` sent (first build on the Japanese Rev 1; v1.0 saves may be wiped, old savestates do not load).
+- Changed: base ROM = Japanese Rev 1 (revmap/revport/revaudit tools; script, asm, insert constants, docs
+  converted); Rev 1 additions translated ("Ouch!" wall bump, magic-circle messages, 31 status words); museum
+  monster page labels/headers/elements in the VWF; GC: pass order for the museum page/list buffers, faster scan
+  (~45% less per GC); editor fixes (names, battle past tense, maze wording) and breath verbs; emulator turbo
+  default; shot lists (museum, maze_dmenu, stairs_up_prompt).
+- Checked: build, lint, tests, tour 8/8, town speed = JP (360 loops/120f), regression shots vs the previous
+  build (only intended diffs), a full battle from a maze walk, museum page open/close/paging.
+- Open: museum page opens in ~31 frames (JP 9) and shows a few frames of garbage while closing; AC/HP minus
+  signs 8 px; status.md Next.
+
 ## 2026-11-12 - museum items, unidentified names, Lvl, GC visible columns
 - ROM: `3869893` sent.
 - Changed/fixed: see docs/status.md "tenth session".
