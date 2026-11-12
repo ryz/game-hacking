@@ -122,10 +122,10 @@ Example (computed; the class above at level 1, second modifier taken as 0): atta
 
 **Notes:** 20 weapons have a hit bonus of 47 to 50 instead of 0-8 (Battle Axe, Great Axe, Chain Sickle, Quarterstaff,
 the staves and rods, Shamshir, the whips, Nunchaku, Cursed Flail, Unholy Mace, Lance, Halberd, Sickle Spear,
-Windmill Glaive, Spiked Shield). As the game does
-it, these always hit at the 95 % cap against any monster. This is a code reading, not checked in the emulator; it
-may be intended ("easy to hit") or a data slip. See [findings.md](findings.md). Rows from
-[items_table.md](items_table.md):
+Windmill Glaive, Spiked Shield). As the game does it, these always hit at the 95 % cap against any monster. This is a
+code reading, not checked in the emulator; it may be intended ("easy to hit") or a data slip. See
+[findings.md](findings.md). The Spiked Shield is an off-hand item, and the swing rule reads only the main-hand
+weapon, so whether its bonus is ever used is an open question. Rows from [items_table.md](items_table.md):
 
 | # | English | Japanese | Slot | Unid. name | Damage | Swings+ | Hit+ | AC | Range | Throw (keep %) | Classes | Align | Curse | Price | Sell | Use (break %) | Special | HP/step | Lv | Shop |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -444,7 +444,8 @@ Tech: [monsters.md §7](../tech/monsters.md#7-rewards-code-02eee-2f22-split-item
 - **Escape**: the two party bonuses and the count in the party-size term.
 - **Statuses in battle**: how they wear off; Poisoned and Silenced effects.
 - **Unarmed damage**: whether the Strength bonus is added to the unarmed roll.
-- **Hit bonus 47-50**: confirm in the emulator that these weapons really always hit at 95 %.
+- **Hit bonus 47-50**: confirm in the emulator that these weapons really always hit at 95 %, and whether the Spiked
+  Shield's bonus (off hand) is read at all.
 - **Identification** of monster groups at battle start.
 
 Tech: [monsters.md §9](../tech/monsters.md#9-not-found--open), [items.md §11](../tech/items.md#11-open-questions--not-found-what-was-tried)
