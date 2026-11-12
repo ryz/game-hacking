@@ -53,6 +53,7 @@ Run from `wizardry-empire/`:
 - Disassemble: `python3 tools/gbdis.py BANK ADDR [N]`. Assembler: `tools/asm.py` (rgbds-like syntax, see its docstring).
 - Census tools (find text in the original ROM): `tools/census_rects.py`, `tools/chain_rects.py`,
   `tools/census_msgs.py`, `tools/census_inline.py`.
+- Game design reference (rules, formulas, data tables for designers): `docs/design/` (index README.md).
 - Read `docs/re/text.md` (text engines, control codes) and `docs/re/vwf.md` (VWF design) before touching `asm/`.
 
 ## Skills and subagents
