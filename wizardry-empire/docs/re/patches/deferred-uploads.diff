@@ -1,0 +1,644 @@
+diff --git a/wizardry-empire/asm/vwf.asm b/wizardry-empire/asm/vwf.asm
+index bfdbb2f..6c4090c 100644
+--- a/wizardry-empire/asm/vwf.asm
++++ b/wizardry-empire/asm/vwf.asm
+@@ -198,6 +198,17 @@ wNC_pass    equ $d58a          ; NCWalk: 0 check, 1 restore, 2 save
+ wGame       equ $d200          ; 32 bytes: slots holding game graphics (shadow area of codes $20/$21, not pool)
+ wSpell      equ $d280          ; 32 bytes: full English name of the last spell read by 0:24CF (shadow area of
+                                ; codes $28/$29, not pool); messages print it with {F8 00 07 D280}
++wShown      equ $d540          ; 32 bytes: wBits at the last map copy = slots the screen may show (shadow area of $54/$55)
++wPend       equ $d560          ; 32 bytes: slots whose upload waits for the next map copy (shadow area of $56/$57)
++wPendN      equ $d270          ; number of bits set in wPend (shadow area of $27)
++wHeld       equ $d271          ; $C48B copy requests held back while uploads wait
++wSnap       equ $d272          ; nonzero: a map copy went out since the last SnapShown
++wGhi        equ $d273          ; FlushRuns group: source high, destination high, group index
++wGdh        equ $d274
++wGidx       equ $d275
++wPendAge    equ $d276          ; VBlanks with uploads waiting but no copy asked for
++BIG_FLUSH   equ 24             ; more waiting tiles than fit one VBlank: the LCD-off swap
++SIGNATURE   equ $5f            ; second byte of wMagic ('V_' since 2026-11-12: deferred uploads)
+ wMagic      equ $dffe          ; 'V','^' once initialised (bump when the variable layout changes)
+ HOME_BANK   equ 7
+ 
+@@ -290,6 +301,8 @@ Stub_Num:                   ; 0:10A4 (number printer 0:0FE9, digit store): base
+     call Stub_WrapCmp
+     jr c, $1d2d
+     ds 6, $00
++    org 0, $0205
++    call VBStub             ; VBlank handler: VWF deferred uploads before the map copy (0:168D)
+     org 0, $3ff0
+ Stub_Measure:
+     ld a, [hli]
+@@ -300,6 +313,10 @@ Stub_Measure:
+ .stop:
+     or a                    ; no carry = end of word
+     ret
++VBStub:
++    ld a, VWF_BANK
++    rst $28
++    jp VBHook
+     assert @ <= $4000, "stub area 3 overflow"
+ 
+ ; --- typewriter init: forget the previous message's VWF context
+@@ -1799,6 +1816,9 @@ VWF_Fetch:
+     ret
+ Stub_EnqDma:
+     jp Stub_Dma
++VBRet:                      ; end of VBHook: A = the interrupted ROM bank, then the game's map copy
++    rst $28
++    jp $168d
+     assert @ <= $00f1, "bank0 stub area 1 overflow"
+ 
+ ; --- bank-0 stub area 2: Rev 1 has no free block here any more; the original monster-panel routine 0:19B4-1A3A
+@@ -1911,6 +1931,8 @@ Pool:
+ PoolEnd:
+ PoolFlags:
+     incbin "../build/poolflags.bin"     ; 256 bytes: nonzero = code is a VWF slot
++PoolMask:
++    incbin "../build/poolmask.bin"      ; 32 bytes: bit (code & 7) of byte code/8 = code is a VWF slot
+ POOL_SIZE   equ PoolEnd - Pool
+ 
+ ; ---------------------------------------------------------------------
+@@ -1953,6 +1975,7 @@ VWF_FontLoad:
+     ld [wSkip], a
+     jr .exit
+ .hi:
++    call PendDrop           ; waiting uploads were addressed for the old layout
+     ldh a, [hDstVBank]
+     ld [wLayout], a         ; VRAM1:$9000 -> split (1), VRAM0:$8800 -> flat (0)
+     or a
+@@ -1987,6 +2010,7 @@ VWF_FontLoad:
+     pop af
+     jp SetSVBK
+ .lo:                        ; 64 tiles from ROM1:hSrcHi00: copy the ones that are not pool slots
++    call PendDrop
+     ld a, 1
+     ld [wReset], a
+     ldh a, [hDstVBank]      ; VRAM1 destination ($8000/$8400): layout 2 (museum monster room); a VRAM0 load
+@@ -2098,7 +2122,7 @@ CheckInit:
+     cp $56
+     jr nz, .init
+     ld a, [wMagic + 1]
+-    cp $5e
++    cp SIGNATURE
+     ret z
+ .init:
+     push hl
+@@ -2115,8 +2139,18 @@ CheckInit:
+     ld [wCallerSVBK], a
+     ld a, $56
+     ld [wMagic], a
+-    ld a, $5e
++    ld a, SIGNATURE
+     ld [wMagic + 1], a
++    ld hl, wShown           ; deferred uploads (wShown, wPend: 64 bytes; wPendN, wHeld)
++    ld b, 64
++    xor a
++.zp: ld [hli], a
++    dec b
++    jr nz, .zp
++    ld [wHeld], a
++    ld [wPendN], a
++    ld [wSnap], a
++    ld [wPendAge], a
+     ld a, 1
+     ld [wReset], a          ; shadows are not valid yet
+     xor a
+@@ -2602,7 +2636,7 @@ Commit:
+     or b
+     ld [hl], a
+     ld a, [S_slot]
+-    call Upload
++    call UploadOrDefer
+ .cell:
+     ; write the cell (buffer in WRAM bank 3)
+     ld a, [S_slot]
+@@ -2744,9 +2778,8 @@ OwnerAddr:
+ ; Upload wUp (16 bytes) to the VRAM tile of slot A.
+ ; LCD on: one-block HBlank DMA started on a visible line (< 140) so it finishes long before
+ ; VBlank; interrupts are masked while the DMA registers are set up. LCD off: CPU copy.
+-Upload:
+-    call EpochBump
+-    call VerBump
++; A = slot code -> HL = VRAM address of its tile, C = VRAM bank (layout dependent). Uses DE.
++SlotDest:
+     ld l, a
+     ld h, 0
+     add hl, hl
+@@ -2762,7 +2795,7 @@ Upload:
+     ld de, $8000            ; layout 2: VRAM1:$8000 + code*16
+     add hl, de
+     ld c, 1
+-    jr .go
++    ret
+ .nl2:
+     pop af
+     bit 7, a
+@@ -2776,14 +2809,457 @@ Upload:
+     ld de, $9000            ; VRAM1:$9000 + (code&$7f)*16
+     add hl, de
+     ld c, 1
+-    jr .go
++    ret
+ .flat:
+     ld de, $8000            ; VRAM0:$8800 + (code-$80)*16
+     add hl, de
+-    jr .go
++    ret
+ .lo:
+     ld de, $9000            ; VRAM0:$9000 + code*16
+     add hl, de
++    ret
++
++; Upload a finished tile (A = code, shadow already updated). A slot the screen may still show (in wShown, the
++; slots in use at the last map copy) is not uploaded now: it is marked in wPend, and VBHook uploads it right
++; before the game's next map copy (holding the copy back until all are done), so the old screen never shows the
++; new screen's letters (flicker). LCD off: at once. Bits and wPendN change with IE off (VBHook clears them).
++UploadOrDefer:
++    call SnapShown
++    push af
++    ldh a, [$40]
++    bit 7, a
++    jr z, .now
++    pop af
++    push af
++    call ShownAddr
++    ld a, [hl]
++    and b
++    jr z, .now
++    pop af
++    call EpochBump
++    call VerBump
++    push af
++    call PendAddr
++    ldh a, [$ff]
++    push af
++    xor a
++    ldh [$ff], a
++    ld a, [hl]
++    and b
++    jr nz, .had
++    ld a, [hl]
++    or b
++    ld [hl], a
++    ld hl, wPendN
++    inc [hl]
++.had:
++    pop af
++    ldh [$ff], a
++    pop af
++    ret
++.now:
++    pop af
++    jp Upload
++
++; A = code -> HL = wShown / wPend + code/8, B = mask (C = code)
++ShownAddr:
++    ld c, a
++    and 7
++    add low(BitMask)
++    ld l, a
++    ld h, high(BitMask)
++    ld b, [hl]
++    ld a, c
++    srl a
++    srl a
++    srl a
++    add low(wShown)
++    ld l, a
++    ld h, high(wShown)
++    ret
++PendAddr:
++    call ShownAddr
++    ld a, l
++    add low(wPend) - low(wShown)
++    ld l, a
++    ret
++
++; A = code: drop its waiting upload (the game overwrote the slot with graphics)
++PendClear:
++    push af
++    call PendAddr
++    ldh a, [$ff]
++    push af
++    xor a
++    ldh [$ff], a
++    ld a, [hl]
++    and b
++    jr z, .r
++    ld a, b
++    cpl
++    and [hl]
++    ld [hl], a
++    ld hl, wPendN
++    dec [hl]
++.r: pop af
++    ldh [$ff], a
++    pop af
++    ret
++
++PendDrop:                   ; forget all waiting uploads (new font / layout)
++    ldh a, [$ff]
++    push af
++    xor a
++    ldh [$ff], a
++    ld hl, wPend
++    ld b, 32
++.c: ld [hli], a
++    dec b
++    jr nz, .c
++    ld [wPendN], a
++    ld a, [wHeld]           ; a held copy goes out at the next VBlank
++    ld hl, $c48b
++    or [hl]
++    ld [hl], a
++    xor a
++    ld [wHeld], a
++    pop af
++    ldh [$ff], a
++    ret
++
++; VBlank (interrupt, from 0:0205 via 0:3FFA, VWF bank mapped). Uploads waiting tiles while the VBlank lasts,
++; holds the game's map copy ($C48B) until none wait, and records the slots in use when a copy goes out. Never
++; starts a transfer after line 150 (the handler and the copy must end inside the VBlank). Leaves through
++; 0:VBRet (ROM bank of the interrupted code, then 0:168D, the copy).
++VBHook:
++    ld a, HOME_BANK
++    ldh [$70], a
++    ld a, [wMagic + 1]
++    cp SIGNATURE
++    jp nz, .out
++    ld a, [wPendN]
++    ld hl, wHeld
++    or [hl]
++    jr nz, .work
++    ld a, [$c48b]           ; nothing waits: the copy goes out as in the original; note it for SnapShown
++    or a
++    jp z, .out
++    ld [wSnap], a
++    jp .out
++.work:
++    ld a, [$c48b]           ; take over a copy request
++    or [hl]
++    ld [hl], a
++    xor a
++    ld [$c48b], a
++    ld a, [wPendN]
++    or a
++    jr z, .send
++    ld a, [hl]
++    or a
++    jr nz, .due
++    ld hl, wPendAge         ; no copy asked for yet (the game is still drawing): wait, but not forever
++    inc [hl]
++    ld a, [hl]
++    cp 8
++    jp c, .out
++    ld c, 150
++    jr .flush
++.due:
++    ld a, [wPendN]
++    cp BIG_FLUSH
++    jr nc, .dark
++    ld c, 146               ; small: upload in this VBlank, copy now or in the next
++.flush:
++    ldh a, [$4f]
++    push af
++    call FlushRuns
++    pop af
++    ldh [$4f], a
++    ld a, [wPendN]
++    or a
++    jp nz, .out
++.send:
++    xor a
++    ld [wPendAge], a
++    ld hl, wHeld
++    ld a, [hl]
++    or a
++    jp z, .out
++    ld b, a
++    ldh a, [$44]            ; too late in this VBlank for the copy: next VBlank
++    cp 147
++    jp nc, .out
++    xor a
++    ld [hl], a
++    ld a, b
++    ld [$c48b], a
++    ld a, 1
++    ld [wSnap], a
++    jp .out
++.dark:                      ; many tiles: LCD off (in VBlank), all of them and the copy at full speed, LCD on
++    ldh a, [$40]
++    push af
++    res 7, a
++    ldh [$40], a
++    ldh a, [$4f]
++    push af
++    ld c, 0                 ; no line limit with the LCD off
++    call FlushRuns
++    pop af
++    ldh [$4f], a
++    ld hl, wHeld
++    ld a, [hl]
++    ld [$c48b], a
++    xor a
++    ld [hl], a
++    ld [wPendAge], a
++    inc a
++    ld [wSnap], a
++    ldh a, [hSVBK]
++    push af
++    call $168d              ; the game's copy now (it clears $C48B)
++    pop af
++    ldh [hSVBK], a
++    ld a, HOME_BANK
++    ldh [$70], a
++    pop af
++    ldh [$40], a
++.out:
++    ldh a, [hSVBK]          ; the interrupted code's WRAM bank (0:168D and the handler restore it later)
++    ldh [$70], a
++    ld hl, sp, 3
++    ld a, [hl]              ; ROM bank pushed by the handler (0:01F5)
++    jp VBRet
++
++; After a map copy (wSnap set by VBHook): wShown = wBits, the slots in use when the copy went out. Called before
++; anything changes wBits (AllocReset, UploadOrDefer); allocations since the copy are none.
++SnapShown:                  ; keeps every register
++    push af
++    ld a, [wSnap]
++    or a
++    jr z, .r
++    push hl
++    push de
++    push bc
++    xor a
++    ld [wSnap], a
++    ld hl, wBits
++    ld de, wShown
++    ld b, 32
++.sn: ld a, [hli]
++    ld [de], a
++    inc de
++    dec b
++    jr nz, .sn
++    pop bc
++    pop de
++    pop hl
++.r: pop af
++    ret
++
++; C = LY limit (checked before each group). Each wPend byte is a group of 8 codes with consecutive tiles. Codes
++; that are VWF slots with valid shadows and no game graphics may be re-sent as they are, so every run of such or
++; waiting codes that holds a waiting one goes in one general DMA (a full group: one 8-block transfer).
++FlushRuns:
++    ld hl, wPend
++.byte:
++    ld a, [hl]
++    or a
++    jr nz, .work
++.nextb:
++    inc l
++    ld a, l
++    cp low(wPend) + 32
++    jr nz, .byte
++    ret
++.work:
++    ld a, c
++    or a
++    jr z, .go               ; LCD off: no limit
++    ldh a, [$44]
++    cp 144
++    ret c
++    cp c
++    ret nc
++.go:
++    push bc
++    push hl
++    ld a, l
++    sub low(wPend)
++    ld d, a                 ; group index
++    add a
++    add a
++    add a
++    ld e, a                 ; first code of the group
++    ld hl, PoolMask
++    ld a, l
++    add d
++    ld l, a
++    jr nc, .pm
++    inc h
++.pm:
++    ld b, [hl]
++    ld h, high(wValid)
++    ld a, low(wValid)
++    add d
++    ld l, a
++    ld a, [hl]
++    and b
++    ld b, a
++    ld h, high(wGame)
++    ld a, low(wGame)
++    add d
++    ld l, a
++    ld a, [hl]
++    cpl
++    and b
++    ld b, a
++    ld h, high(wGameNew)
++    ld a, low(wGameNew)
++    add d
++    ld l, a
++    ld a, [hl]
++    cpl
++    and b
++    pop hl
++    ld d, [hl]              ; waiting
++    or d
++    ld b, a                 ; sendable = safe | waiting
++    ld c, d                 ; C = waiting bits (for the count; GroupSetup uses D and E)
++    ld a, e
++    call GroupSetup         ; source/destination high and bank; A = low byte of the first code
++    ld e, a                 ; E = low byte of the current code
++    ld d, c
++.run:
++    ld a, b
++    or a
++    jr z, .gdone
++    srl b                   ; skip codes that are not sendable
++    jr c, .start
++    srl d
++    ld a, e
++    add 16
++    ld e, a
++    jr .run
++.start:                     ; a run starts at E: extend while sendable; send it if it holds a waiting code
++    ld h, 1                 ; blocks
++    ld l, d                 ; waiting bits from here (bit 0 = this code)
++    srl d
++.ext:
++    srl b
++    jr nc, .end
++    srl d
++    inc h
++    jr .ext
++.end:
++    srl d                   ; the code that ended the run (not sendable, so not waiting)
++    ld a, h                 ; L: waiting bits of the run are its low H bits
++    push hl
++    ld h, a
++    ld a, $ff
++.mk: sla a
++    dec h
++    jr nz, .mk
++    cpl
++    pop hl
++    and l
++    jr z, .skip             ; nothing waiting in it
++    ld a, e
++    ldh [$52], a
++    ldh [$54], a
++    ld a, [wGhi]
++    ldh [$51], a
++    ld a, [wGdh]
++    ldh [$53], a
++    ld a, h
++    dec a
++    ldh [$55], a            ; H blocks, general DMA
++.skip:
++    ld a, h
++    inc a                   ; the run plus the code that ended it
++    swap a                  ; *16
++    add e
++    ld e, a
++    jr .run
++.gdone:
++    ld a, c                 ; wPendN -= waiting bits of the group
++    ld b, 0
++.pc: srl a
++    jr nc, .pz
++    inc b
++.pz: or a
++    jr nz, .pc
++    ld a, [wPendN]
++    sub b
++    ld [wPendN], a
++    pop bc
++    ld a, [wGidx]           ; HL was reused: the group's wPend byte
++    add low(wPend)
++    ld l, a
++    ld h, high(wPend)
++    xor a
++    ld [hl], a
++    jp .nextb
++
++; A = first code of a group: wGhi = source high ($D0 + code/16), wGdh = destination high, VBK = bank, wGidx =
++; group index; returns A = low byte (code & 15) * 16 of the source and destination
++GroupSetup:
++    ld d, a
++    srl a
++    srl a
++    srl a
++    ld [wGidx], a
++    ld a, d
++    swap a
++    ld e, a
++    and $0f
++    or $d0
++    ld [wGhi], a
++    ld a, [wLayout]
++    cp 2
++    jr z, .l2
++    bit 7, d
++    jr z, .low
++    or a
++    jr z, .flat
++    ld a, e                 ; split, code >= $80: VRAM1 $9000 + (code & $7f)*16
++    and $07
++    or $90
++    ld [wGdh], a
++    ld a, 1
++    jr .go
++.flat:
++    ld a, e                 ; flat, code >= $80: VRAM0 $8000 + code*16
++    and $0f
++    or $80
++    ld [wGdh], a
++    xor a
++    jr .go
++.low:
++    ld a, e                 ; code < $80: VRAM0 $9000 + code*16
++    and $07
++    or $90
++    ld [wGdh], a
++    xor a
++    jr .go
++.l2:
++    ld a, e                 ; layout 2: VRAM1 $8000 + code*16
++    and $0f
++    or $80
++    ld [wGdh], a
++    ld a, 1
++.go:
++    ldh [$4f], a
++    ld a, e
++    and $f0
++    ret
++
++
++Upload:
++    call EpochBump
++    call VerBump
++    call SlotDest
+ .go:
+     ldh a, [$4f]
+     push af
+@@ -2848,6 +3324,7 @@ Alloc:
+     jr AllocScan
+ 
+ AllocReset:
++    call SnapShown
+     ld a, [wReset]
+     or a
+     ret z
+@@ -2871,6 +3348,7 @@ AllocReset:
+     jr nz, .cn
+     ld [wRC_valid], a
+     ld [wPL_valid], a
++    call PendDrop           ; new font/screen: the waiting tiles' layout and shadows are gone
+     ld hl, wEpoch
+     inc [hl]
+     jp NCClear
+@@ -3321,6 +3799,7 @@ VWF_MazeSplit:
+     ld a, [wLayout]
+     cp 1
+     jr z, .out
++    call PendDrop
+     ld a, 1
+     ld [wLayout], a
+     ld [wReset], a          ; like a font load: shadows/caches/reservations restart at the next Alloc
+@@ -3480,6 +3959,8 @@ VWF_DmaCheck:
+     ; disown + invalidate
+     call EpochBump
+     ld a, [wTmp2]
++    call PendClear          ; a waiting upload would overwrite the game's graphics
++    ld a, [wTmp2]
+     call VerBump
+     ld a, [wTmp2]
+     call OwnerAddr
+diff --git a/wizardry-empire/tools/build.py b/wizardry-empire/tools/build.py
+index 4d67db0..83ff883 100644
+--- a/wizardry-empire/tools/build.py
++++ b/wizardry-empire/tools/build.py
+@@ -55,6 +55,10 @@ def gen_bins():
+     for c in POOL:
+         flags[c] = 1
+     open(os.path.join(BUILD, "poolflags.bin"), "wb").write(flags)
++    mask = bytearray(32)                     # VBHook: bit (code & 7) of byte code/8 = code is a VWF slot
++    for c in POOL:
++        mask[c >> 3] |= 1 << (c & 7)
++    open(os.path.join(BUILD, "poolmask.bin"), "wb").write(mask)
+     # GC prefilter: a cell code that can be a slot in some layout (code itself, or code|$80 for VRAM1 low codes)
+     maybe = bytes(1 if flags[e] or (e < 0x70 and flags[e | 0x80]) else 0 for e in range(256))
+     open(os.path.join(BUILD, "maybeslot.bin"), "wb").write(maybe)

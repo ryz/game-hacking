@@ -233,3 +233,21 @@ number field afterwards (shop header: age, then 'AC') and would inherit the VRAM
   museum pass order (`wGCSkipWin` modes); EpochBump drops the epoch caches on the wrap.
 - Signature `V^` since 2026-11-12 (wGCchk etc.); adding a variable means a bump.
 
+## Flicker: deferred uploads, tried 2026-11-12 (not adopted)
+Measurement: `tools/perf.py` (every key press of the tour routes, EN vs JP: frames to react / settle, frames with
+cells equal to neither the old nor the new screen) and `tools/profile.py` (sampling profiler).
+- Cause, measured (Camp > Inspect > sheet): 105 tile uploads before the game's single map copy, 85 of them into
+  slots the old screen still shows; the pool (157) cannot hold both screens. The old screen shows the new letters
+  until the copy (~20 frames, the render time). VRAM1 has no room for a second pool on these screens (town/inn
+  pictures fill $8800-$97FF).
+- Tried: uploads into slots that were in use at the last copy wait in a bitmap; a VBlank hook (0:0205 -> 0:3FFA ->
+  `VBHook`) sends them right before the game's copy (0:168D) and holds the copy until all are sent; runs of
+  safe/waiting codes per 8-code group go in one general DMA. Patch: `docs/re/patches/deferred-uploads.diff`.
+- Result: no garbage while the new screen is drawn, but VBlank (the copy uses lines 145-151) fits only a few
+  groups per frame, so a 85-tile swap took ~15 frames of partial garbage and the tour routes got 7% slower
+  overall. An LCD-off swap for big flushes desynced screens. Lessons: the VBlank hook must never run past ~line
+  150; any held copy request must be handed back on a font load; snapshots of the slots in use belong in the main
+  thread (one line of VBlank is precious).
+- Conclusion: the flicker lasts as long as the render. Render speed (GC ~1/3 of the active time in that
+  transition, then allocation, Commit, Glyph) is the lever that shortens it; the deferred swap only pays off once
+  a screen renders in a few frames.
