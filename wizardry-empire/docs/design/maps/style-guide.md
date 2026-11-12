@@ -11,6 +11,8 @@ generator disagree, fix one of them in the same commit.
 - **Readable without colour.** Every symbol is a letter or a line style as well as a colour, so a map works in
   print and for colour-blind readers.
 - **Same legend everywhere.** The legend is printed in full under every map, even for symbols the floor does not use.
+  It has three titled groups (Squares, Walls and doors, Zones); every legend sample is drawn by the same code as the
+  map, so legend and map cannot drift apart.
 - **Quiet background, strong structure.** Walls and symbols are dark and bold; floor, grid and area numbers are light.
 
 ## 2. Canvas
@@ -18,18 +20,18 @@ generator disagree, fix one of them in the same commit.
 | Element | Value |
 |---|---|
 | Orientation | north up; x east from 0 (left) to 15, y north from 0 (bottom) to 15 |
-| Cell | 48 × 48 px, 16 × 16 cells; image about 810 × 1000 px including legend |
-| Title | "Floor N (BNF)", bold 17 px, top left |
-| Subtitle | one grey line under the title about random fights (see 4) |
-| Axes | 0-15 under and left of the grid; under the axes: "x east -> y north ^ (the map wraps at its edges)" |
-| Fonts | DejaVu Sans Bold 15 px (symbols), DejaVu Sans 11 px (numbers, notes, legend text) |
-| File | `floor-NN.png` (two digits), next to `floor-NN.md` |
+| Cell | 48 × 48 px, 16 × 16 cells, framed by a 2 px black border; 28 px outer margin; image 846 × 1154 px |
+| Title | "Wizardry Empire - Floor N (BNF)", bold 19 px, top left; the game name is also the file name prefix |
+| Subtitle | one grey sentence under the title about random fights (see 4) |
+| Axes | 0-15 centred under and right-aligned left of the grid; under them one grey note on coordinates and wrapping |
+| Fonts | DejaVu Sans Bold 19 (title), 15 (symbols), 12 (legend headings); DejaVu Sans 12 (subtitle, legend text), 11 (axes, area numbers, notes) |
+| File | `wizardry-empire-floor-NN.png` (game name first, two-digit floor), next to `floor-NN.md` |
 
 ## 3. Palette and symbols
 
 | What | How it is drawn | Colour (RGB) |
 |---|---|---|
-| Open floor | white cell, faint grid line | floor 255,255,255; grid 226,226,226 |
+| Open floor | white cell, faint grid line (not on rock) | floor 255,255,255; grid 226,226,226 |
 | No random fights (area 0) | light grey cell | 228,228,228 |
 | Rock | dark grey cell | 70,70,70 |
 | Wall | black line, 3 px | 0,0,0 |
@@ -49,7 +51,7 @@ generator disagree, fix one of them in the same commit.
 | Marker square | small grey dot (automap memory, inferred; no effect on play) | 90,90,90 |
 
 Symbols are centred in their cell with a 2 px white outline, so they stay readable on hatching. Area numbers sit
-small in the bottom-left corner. Each edge is stored on both of its squares. Where one side lets the party through
+small in the bottom-left corner, in light grey (160,160,160) so they recede behind the structure. Each edge is stored on both of its squares. Where one side lets the party through
 (open or door) and the other does not (wall or special wall), the edge is a **one-way door**: the game only looks at
 the side of the square being left (verified on floor 1). Walls are drawn first, then special walls, then doors.
 
@@ -65,7 +67,7 @@ the side of the square being left (verified on floor 1). Walls are drawn first, 
 - Event details, trap strength, hidden-spot difficulty, monsters: these belong in the floor page's tables, keyed by
   (x, y).
 - Routes, the party's position or arrows: a map is a reference, not a walkthrough. A floor page may add its own
-  annotated copy if a route needs explaining, named `floor-NN-<topic>.png`.
+  annotated copy if a route needs explaining, named `wizardry-empire-floor-NN-<topic>.png`.
 
 ## 6. Changing the style
 

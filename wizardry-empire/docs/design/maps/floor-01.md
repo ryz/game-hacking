@@ -4,7 +4,7 @@ The first floor of the maze (B1F), the one every new party starts on. How to rea
 each kind of square does: [maps/README.md](README.md). The walls of this map were checked against the game at the
 entrance (verified).
 
-![Floor 1 map](floor-01.png)
+![Floor 1 map](wizardry-empire-floor-01.png)
 
 ## 1. Overview
 

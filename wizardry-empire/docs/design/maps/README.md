@@ -50,7 +50,7 @@ group sizes are rolled for each fight ([monsters.md](../monsters.md)).
 3. **Monsters:** the floor's encounter areas with their formations, and the stats of every monster in them.
 4. **Open questions** particular to the floor.
 
-The maps are generated: `python3 tools/designtables/floormap.py N` writes `floor-NN.png` (add `--list` for every
+The maps are generated: `python3 tools/designtables/floormap.py N` writes `wizardry-empire-floor-NN.png` (add `--list` for every
 special square). The walls of floor 1 were checked against the game at the entrance (verified).
 
 ## 4. Floor index
