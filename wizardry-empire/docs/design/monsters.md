@@ -37,7 +37,7 @@ Every monster has the stats below. The column names are those of [monsters_table
 | Stat (table column) | What it means in play |
 |---|---|
 | **Level** (Lv) | 1 to 30. Used against the party's weapon status effects, against Hide, and in some spell checks ([combat.md](combat.md#6-weapon-status-effects-on-monsters)). It does **not** enter the save against the monster's own special hits: that save uses the struck character's level ([combat.md](combat.md#9-special-hits-and-saves)). |
-| **HP** | Dice rolled for each monster when the battle starts, written `NdS+B` (Goblin 1d7, 1 to 7). Every monster has at least 1 HP; see [findings.md](findings.md#a-monster-with-minimum-hp-0-would-hang-the-game). |
+| **HP** | Dice rolled for each monster when the battle starts, written `NdS+B` (Goblin 1d7, 1 to 7). Every monster's lowest roll is at least 1 (a monster whose dice could give 0 would hang the game; none can, [findings.md](findings.md)). |
 | **AC** | Armor class, lower is better: from 10 (Mudman) down to −30 (Abyss Lurker) (computed from monsters_table.md). The party's to-hit roll is made against it ([combat.md](combat.md#3-party-attacks-to-hit)). |
 | **To-hit** (Hit) | How hard it is for this monster to hit; **lower is more accurate**. From 1 (Ancient One and the other top monsters) to 19 (Goblin, Orc). Same rule as the party's: [combat.md](combat.md#7-monster-attacks-to-hit-and-damage). |
 | **Swings** | How many swings the monster makes when it attacks: 1 to 14, with no cap. 77 monsters swing once; the most are Musashi 14, Kamui 10, Kali, Scylla and Carrion Worm 8. |
@@ -52,7 +52,7 @@ Every monster has the stats below. The column names are those of [monsters_table
 | **Flee value** F | 0 = never flees. Otherwise the monster flees with F × 5% per turn (10% for F = 2, the value of 19 of the 26 monsters that flee; computed from monsters_table.md). |
 | **Escape block** (Esc) | Subtracted from the party's chance to run away; the highest value among the groups counts. 2 to 18 (computed from monsters_table.md). See [combat.md](combat.md#14-escape). |
 | **EXP, Gold** | Paid per monster killed: EXP 30 (Crawling Claw) to 150,000 (Abyss Lurker), gold 20 G to 250 G. |
-| **Chest rating** (Chest) | The highest chest rating among the groups decides how good a guarded square's chest can be: the chest value is rolled from it, and the value gives the chest's tier ([dungeon.md](dungeon.md)). 1 to 47 in the bestiary. |
+| **Chest rating** (Chest) | The highest chest rating among the groups decides how good a guarded square's chest can be: the chest value is rolled from it, and the value gives the chest's tier ([dungeon.md](dungeon.md#51-chest-rating-chest-value-tier)). 1 to 47 in the bestiary (computed). |
 | **Unidentified name** | While a group is unidentified the battle shows one of 16 generic names instead of the real one. |
 | **Attack words** | Which set of attack words the battle text uses. |
 
@@ -66,7 +66,7 @@ Read: a level-2 melee monster with 1d7 HP and AC 6 and the least accurate to-hit
 calls for help 25% of its turns and flees 10%, worth 290 EXP and 30 G, found on floors 1-2 and 5.
 
 **Notes:** something in battle (not traced) can switch off a monster's special hits. Several stats are 0 in every
-monster or never used; see [findings.md](findings.md#unused-fields-in-the-monster-records).
+monster or never used; see [findings.md](findings.md).
 
 Tech: [monsters.md §1](../tech/monsters.md#1-the-monster-record)
 
@@ -154,8 +154,8 @@ The 1-in-512 rate was checked in play: a walk of 357 actions gave one fight, whi
 rate was not measured.
 
 **Notes:** the corridor rate is very low and doors raise it 26-fold (computed: 13/256 against 1/512); whether that
-is intended is discussed in [findings.md](findings.md#random-encounters-almost-only-happen-after-doors). Doors,
-squares and damage zones are described in [dungeon.md](dungeon.md).
+is intended is discussed in [findings.md](findings.md). Doors,
+squares and damage zones are described in [dungeon.md](dungeon.md#3-squares).
 
 Tech: [monsters.md §2.1](../tech/monsters.md#21-when-a-fight-starts)
 
@@ -165,11 +165,11 @@ Tech: [monsters.md §2.1](../tech/monsters.md#21-when-a-fight-starts)
 
 Besides random fights there are two kinds of fixed fight.
 
-- **Guarded squares**: 244 fixed spots, from none (floor 20) and 2 (floor 10) up to 21 (floor 4) per floor.
-  Stepping on one always starts a fight from that square's encounter area. Each guard fights **once per floor
-  visit**: all guards come back whenever the party changes floors
-  ([findings.md](findings.md#guards-and-one-shot-events-re-arm-on-every-floor-change)). A guarded-square victory is
-  **the only way to get a chest**; random fights give gold only.
+- **Guarded squares**: 244 fixed spots, from none (floor 20) to 21 (floor 4) per floor. Stepping on one always
+  starts a fight from that square's encounter area. Each guard fights **once per floor visit**: all guards come
+  back whenever the party changes floors ([findings.md](findings.md)). A guarded-square victory is **the only way
+  to get a chest**; random fights give gold only. Where the guards are, floor by floor:
+  [dungeon.md](dungeon.md#4-fights-in-the-maze).
 - **Event fights**: story events (bosses, named monsters) start a fight from areas 34-53, each with one fixed
   formation. Areas 48 and 49 play the boss music.
 
@@ -181,7 +181,7 @@ Example from [monsters_table.md](monsters_table.md): event area 49, the Abyss Lu
 
 **Notes:** on most floors guards use the same areas as random fights, so a guarded square is a guaranteed,
 re-arming fight with the floor's normal monsters plus a chest. The chest itself (value, tier, items, traps) is in
-[dungeon.md](dungeon.md).
+[dungeon.md](dungeon.md#5-chests).
 
 Tech: [monsters.md §2.2](../tech/monsters.md#22-fixed-fights), [dungeon.md §4](../tech/dungeon.md#4-floors)
 
@@ -197,7 +197,7 @@ the 4, each with chance 1 in 4; an area that lists the same formation twice make
 | 1-33 | random fights and guarded squares of floors 1-30 (floor 1 has three zones, areas 1, 2 and 3; floor 2 is area 4; floor 3 is area 5, with area 6 on two guarded squares; ... floor 30 uses 32 and 33) |
 | 34-53 | event fights, one fixed formation each; the guarded squares of floor 13 use area 50, and some of floor 18 use area 51 |
 | 101-105 | the damage-zone squares of floors 8, 11, 25, 27 and 30, which have their own monster mix |
-| 54-100 | on no map and used by no event ([findings.md](findings.md#encounter-areas-54-100-are-unused)) |
+| 54-100 | on no map and used by no event ([findings.md](findings.md)) |
 
 **Formation.** A formation has up to 4 **groups**, each a monster and a size rule: base size + a random number from
 0 to (extra − 1), exactly the base size when extra is 0, at most 9. Group 1 always has at least one monster; groups
@@ -217,7 +217,7 @@ formations of the last floors put a level 27-29 "ancient" monster behind three l
 
 **Notes:** areas 54-100 are overlapping slices of the formation list that no map or event uses; they may be a cut
 "random depth" table (inferred). Areas 104 and 105 list formations 150 and 151, past the end of the list, shown as
-"(none)" in the table ([findings.md](findings.md#two-damage-zone-areas-have-empty-formations)).
+"(none)" in the table ([findings.md](findings.md)).
 
 Tech: [monsters.md §2.3](../tech/monsters.md#23-group-formation)
 
@@ -244,7 +244,7 @@ decides. The checks use only the monster's own stats and status. F is the monste
 **Spell choice.** The monster picks one of its schools at random, then one spell at random from **all** spells of
 that school up to its top level, each equally likely, so a top-level-7 Mage monster casts a level-1 spell as often
 as any other single spell. If the picked spell cannot be cast in battle, the monster does nothing that turn
-([findings.md](findings.md#monsters-that-pick-a-non-battle-spell-lose-their-turn)).
+([findings.md](findings.md)).
 
 **Fleeing** removes the monster from the fight; fled monsters give no EXP or gold ([combat.md](combat.md#15-rewards)).
 An Afraid monster is more likely to flee than a calm one ((F + 5) × 5% against F × 5%), and an Afraid monster with

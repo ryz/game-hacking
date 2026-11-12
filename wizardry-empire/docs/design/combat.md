@@ -107,7 +107,7 @@ Glaive and the Spiked Shield. The bonus is subtracted in full, so `need` is pinn
 the time: a Fighter with a Battle Axe needed 1 on every swing, and 9 with his sword against the same monster
 (verified). With a to-hit of 18 or less, the need stays at 1 even against the lowest AC in the bestiary, −30
 (computed). The values look like a data slip rather than a design choice; see
-[findings.md](findings.md#twenty-weapons-always-hit-at-the-95-percent-cap). The Spiked Shield is an off-hand item
+[findings.md](findings.md). The Spiked Shield is an off-hand item
 and only the main-hand weapon is read, so whether its bonus is ever used is an open question.
 
 | Weapon | Damage | Hit+ |
@@ -173,7 +173,7 @@ water damage halved. The party's base critical-hit rule was not traced.
 
 **Notes:** the two "vs Undead" texts are swapped against what the game does: the property whose text says "damage
 up 2" gives ×1.5, and the one that says plain "damage up" gives ×2. No item uses the first one. See
-[findings.md](findings.md#slaying-texts-for-undead-are-swapped).
+[findings.md](findings.md).
 
 Tech: [items.md §4.4](../tech/items.md#44-slaying)
 
@@ -394,10 +394,10 @@ What a won fight pays:
   give nothing. EXP per monster runs from 30 (Crawling Claw) to 150,000 (Abyss Lurker); gold from 20 G to 250 G.
 - **Split**: each pool is divided evenly (rounded down) among the members who are **OK, Afraid or Asleep**. Dead,
   Paralyzed and Stoned members get nothing.
-- **Chest**: only a guarded-square victory gives a chest; its gold goes into the same pool. The chest rules are in
-  [dungeon.md](dungeon.md).
+- **Chest**: only a guarded-square victory gives a chest; its gold goes into the same pool
+  ([dungeon.md](dungeon.md#52-gold)).
 - **Museum**: killing a monster whose group was **identified** marks it as seen in the museum. Killing an
-  unidentified one does not ([findings.md](findings.md#kills-of-unidentified-monsters-are-not-entered-in-the-museum)).
+  unidentified one does not ([findings.md](findings.md)).
 
 Example (computed): six Goblins killed give 6 × 290 = 1740 EXP and 6 × 30 = 180 G. With six members able to share,
 each gets 290 EXP and 30 G; with one member dead, each of the other five gets 348 EXP and 36 G.
