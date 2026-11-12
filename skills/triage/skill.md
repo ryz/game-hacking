@@ -3,7 +3,7 @@ skill: triage
 project: wizardry-empire
 summary: Reproduce and diagnose one hang/crash report.
 access: write (case dir)
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # Crash triage - Wizardry Empire (GBC)
@@ -50,3 +50,11 @@ End your final report with this block; the coordinator files it in `skills/triag
 - Friction: <what slowed you down or was unclear in this skill or the tools>
 - Proposed rule change: <a concrete change to skill.md, or "none">
 ```
+
+## Display corruption (no hang) (2026-11-12)
+1. Reproduce from a state of the SAME build; build scratch copies from `git show <commit>:path`, never the
+   working tree, and compare the ROM sha1 with the reported build.
+2. Write-watch one bad cell (WRAM bank 3 buffer) and follow the code that writes the wrong code; then watch
+   that slot's allocation bit (wBits $DF60 + code/8, bank 7), owner (bank 6 $D800 + code*2) and wVer.
+3. Symbolise backtraces with build/wizardry_empire_en.sym.
+4. Prove the cause by poking the suspected guard variable in a state just before the bad frame.

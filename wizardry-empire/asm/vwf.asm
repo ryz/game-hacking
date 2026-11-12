@@ -524,11 +524,31 @@ MUS_STR     equ $cce0       ; WRAM0 scratch (private VWF stack area; VWF_PrintZ 
 MusAbbr:                    ; class order: Fighter Mage Priest Thief Bishop Samurai Lord Ninja / Archer Valiant
     db "FiMaPrThBiSaLoNi"   ; Avenger Musashi Kunoichi Summoner
     db "ArVaAvMuKuSu"
-; --- museum damage / monster HP range: '~' -> '-'
-    org $29, $650c
-    db $2d
-    org $29, $6918
-    db $2d
+; --- museum damage / monster HP range: '~' (8 px) -> a VWF '-' centred in its cell; AC minus (41:689D) -> a VWF
+;     '-' at the right of its cell, next to the digits. One cell each, so DE advances as before.
+    org $29, $650b
+    call MusRange
+    nop
+    org $29, $6917
+    call MusRange
+    nop
+    org $29, $689d
+    call MusMinus
+    nop
+    org $29, $7e00
+MusRange:
+    ld hl, MusRangeStr
+    jp Stub_PrintZ
+MusMinus:                   ; keeps HL ($FFB0, the value for 0:0FE9)
+    push hl
+    ld hl, MusMinusStr
+    call Stub_PrintZ
+    pop hl
+    ret
+MusRangeStr:
+    db $7c, "-", 0
+MusMinusStr:
+    db $7c, $7c, "-", 0
 
 ; --- character card 'L' (26:567A: ld a,'L' / ld [de],a / inc de at $D02E) -> 'Lvl' in the VWF at the cell before
 ;     (cols 13-14), DE ends at the level field like the original
@@ -1707,11 +1727,7 @@ OwnerAddr:
 ; LCD on: one-block HBlank DMA started on a visible line (< 140) so it finishes long before
 ; VBlank; interrupts are masked while the DMA registers are set up. LCD off: CPU copy.
 Upload:
-    push af
-    ld a, [wEpoch]
-    inc a
-    ld [wEpoch], a
-    pop af
+    call EpochBump
     call VerBump
     ld l, a
     ld h, 0
@@ -2400,8 +2416,7 @@ VWF_DmaCheck:
     sbc d
     jr nc, .next
     ; disown + invalidate
-    ld hl, wEpoch
-    inc [hl]
+    call EpochBump
     ld a, [wTmp2]
     call VerBump
     ld a, [wTmp2]
@@ -5648,6 +5663,27 @@ NextCellBlank:
     call Write3
     jp NextCell
 
+; wEpoch += 1. Keeps all registers. The caches compare one byte (wRC_epoch, wPL_epoch, wNC entry epochs), so
+; after 256 bumps an old epoch matched again and a cache restored codes of slots reused since (tavern 'Inspect
+; whom?' list after the sheet's Spells/Items/Pool: exactly 512 bumps). On the wrap to 0 every cache is dropped.
+EpochBump:
+    push af
+    push hl
+    ld hl, wEpoch
+    inc [hl]
+    jr nz, .r
+    xor a
+    ld [wRC_valid], a
+    ld [wPL_valid], a
+    push bc
+    push de
+    call NCClear
+    pop de
+    pop bc
+.r: pop hl
+    pop af
+    ret
+
 ; Address-keyed English for fixed-length copies; filled in by tools/build.py after assembly.
 NOTICE_LINES equ 8
 NOTICE_COL  equ 2
@@ -5667,3 +5703,4 @@ BitMask:                    ; 1 << n (page-safe: $6FF8-$6FFF)
     org VWF_BANK, $7000
 ShiftTab:                   ; 16 pages, built by tools/build.py: page 2p = b >> p, 2p+1 = (b << (8-p)) & $FF
     incbin "../build/shift.bin"
+

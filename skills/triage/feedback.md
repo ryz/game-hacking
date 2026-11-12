@@ -10,6 +10,21 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - tavern 'Inspect whom?' list garbled after the sheet submenus
+- Task: diagnose display corruption (not a hang) on the tavern list after Spells/Items/Pool.
+- Worked: write watch on one bad cell (bank 3) -> PLRestore; per-step wEpoch readout showed a 512-bump wrap;
+  a one-value poke of wEpoch proved the cause; fixed ROM tested from the same state.
+- Friction: skill written for hangs; working tree had uncommitted asm (scratch copy did not match the
+  build); old-build savestates only safe when the PC is in the frame wait; brief asked for report.md but the
+  agent may not write report files.
+- Proposed rule change: a "display corruption" branch (watch the cell, then its slot's wBits/owner/wVer,
+  symbolise with .sym, poke the guard variable); build scratch copies from `git show <commit>:`.
+- Corrected: fix applied as proposed (EpochBump drops all epoch caches on the wrap; Upload and DmaCheck
+  bump through it), list clean, build/tests/tour/town speed OK. Coordinator slip: appended EpochBump past
+  ShiftTab (40:8000); tools/asm.py now refuses code that runs past its bank.
+- Status: promoted 2026-11-12 (display-corruption branch; scratch from git show) - skill.md; dispatch template
+  no longer asks for report.md from triage
+
 ### 2026-11-11 - battle1: lock-up on the first attack
 - Task: reproduce and diagnose the user's battle freeze in the English build.
 - Worked: original-vs-English comparison, sanitizer diff between ROMs, write watches on the stack area, decoding

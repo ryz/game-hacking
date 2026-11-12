@@ -139,6 +139,9 @@ class Assembler:
         self._file(path, final)
 
     def _emit(self, b, final, line):
+        end = self.pc + len(b)
+        if b and (self.pc < 0x4000 < end or 0x4000 <= self.pc < 0x8000 < end):
+            raise AsmError("code runs past the end of its bank ($%04X-$%04X)" % (self.pc, end - 1))
         if final:
             if self.pc < 0x4000:
                 off = self.pc

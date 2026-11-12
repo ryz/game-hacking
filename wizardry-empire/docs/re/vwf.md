@@ -189,3 +189,12 @@ number field afterwards (shop header: age, then 'AC') and would inherit the VRAM
 - Numbers that the game overwrites with 8 px text keep 8 px digits: `NumExcl` (bank, return address of the
   0:0FE9 call) - currently the card's age (26:571B), which the shop header overwrites with 'AC'. The excluded
   field's cells get attribute bit 3 cleared. `VWF_Num` reads the caller from the stack ([sp+9] after its push).
+
+## Cache epochs and the GC's visible columns (2026-11-12)
+- The rect, party-list and name caches validate with the one-byte `wEpoch`; after 256 bumps an old epoch matched
+  again (tavern list garbled after exactly 512). `EpochBump` drops every epoch cache when the counter wraps to 0.
+  Per-slot `wVer` is also one byte (a slot with exactly 256 uploads could still false-hit the name cache's slow
+  path; not seen).
+- Battle raster split: the monster area scrolls (SCX=$50) above the unscrolled party panel. With SCX != 0 the GC
+  counts columns 0-20 as well as SCX/8..+20 (it read SCX mid-frame and freed the panel's slots).
+- `Stub_PrintZ` returns DE past the text (game copy loops leave DE there; the inn prints next to the name).
