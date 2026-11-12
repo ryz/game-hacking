@@ -107,6 +107,26 @@ def patch_fixed_font(rom):
         rom[FONT_OFF + c * 16:FONT_OFF + c * 16 + 16] = tile
 
 
+SYM_OFF = 0x4000  # bank 1 $4000: symbol sheet (64 tiles, codes $C0-$FF) - monster panel "(n) m", automap digits
+
+
+def patch_symbol_digits(rom):
+    """Symbol-sheet digits ($F4-$FD) and the panel's parentheses ($CF/$D0) in the small VWF glyphs (owner's rule:
+    the small font for numbers too): digits centred, '(' at the right edge of its tile, ')' at the left, so
+    '(1)' reads tight across the three tiles."""
+    f = font.load()
+    def put(code, ch, align):
+        adv, rows = f[ord(ch)]
+        w = adv - 1
+        x0 = {"c": (8 - w) // 2, "r": 8 - w, "l": 0}[align]
+        o = SYM_OFF + (code - 0xC0) * 16
+        rom[o:o + 16] = b"".join(bytes([(r >> x0) & 0xFF, 0xFF]) for r in rows)
+    for i in range(10):
+        put(0xF4 + i, str(i), "c")
+    put(0xCF, "(", "r")
+    put(0xD0, ")", "l")
+
+
 def fix_checksums(rom):
     c = 0
     for i in range(0x134, 0x14D):
@@ -130,6 +150,7 @@ def build(rom_in=ROM_IN, out=ROM_OUT, ips_out=IPS_OUT, verbose=True):
         if lerrs:
             sys.exit("lint errors (python3 tools/lint.py; NO_LINT=1 to skip):\n" + "\n".join(lerrs))
     patch_fixed_font(rom)
+    patch_symbol_digits(rom)
     stats = insert.insert_all(rom)
     a = asm.assemble(os.path.join(ROOT, "asm", "main.asm"))
     for off, b, where in a.patches:
