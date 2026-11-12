@@ -100,7 +100,7 @@ One table area runs from about `49:55BF` to `5725`:
 | `55D1` / `55D7` | Alignment / class | `22:5A65` / `22:5A52` via 2469 |
 | `564F` | Trap names | `25:4951` |
 | `566B` | Unidentified item types | `0:3757` |
-| `569D` | 64 monster attack verbs at `49:502B-51B6` | `32:43F0`, `32:487C`, `32:4D93`, `32:526F`, `22:7121` (`call 0EC6`, store to `$C6E3` → `{F3 31 C6E3}`) |
+| `56AF` | 42 attack verbs at `49:503D-51C2` (Rev 1; v1.0 `569D`/`502B`) | `32:43C4`, `32:4850` (party, templates `32:58D6`), `32:4D64`, `32:5240` (monster, `32:59CE`), `22:7119` (breath, fixed `45D3`); store to `$C6E3` → `{F3 31 C6E3}`. Target/no-target per verb and dead entries: `docs/re/verbs.md` |
 | `56F1` | Equip slots | — |
 | `56FD` | Unidentified monster names (`54EC あくま`...) | — |
 

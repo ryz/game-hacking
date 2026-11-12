@@ -10,6 +10,17 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - attack-verb templates
+- Task: classify each bank-49 attack verb as target / no-target template.
+- Worked: byte search for every reader of the table (`21 AF 56`) + the parallel template table; short
+  breakpoint run to confirm.
+- Friction: dispatch listed 5 of 8 templates; battle-text.md had unmarked v1.0 addresses; no xref in gbdis.
+- Proposed rule change: "which X uses which Y": find every reader of the table, check reachability, list dead
+  entries separately; gbdis xref mode.
+- Corrected: claims checked against lists.json; 6 breath verbs + 4 no-target verbs fixed ("breathed fire at!"
+  was live); battle-text.md row corrected; notes in docs/re/verbs.md.
+- Status: open (skill rule: second "find every reader" lesson would promote; xref -> tool backlog)
+
 ### 2026-11-12 - Rev 1 vs v1.0 differences
 - Task: list Rev 1 changes relevant to the translation (text coverage, RAM layout, code summary).
 - Worked: classifying changed regions by pointer shift, forward-mapping message sites, RAM operand counts.

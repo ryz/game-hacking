@@ -735,55 +735,55 @@
 "table": "0x56c9",
 "ptr": "0x50bb",
 "jp": "おそろしいこえでさけんだ",
-"en": "let out a terrible cry at"
+"en": "let out a terrible cry"
 },
 {
 "table": "0x56cb",
 "ptr": "0x50c8",
 "jp": "うつくしいこえをかなでた",
-"en": "sang beautifully to"
+"en": "sang beautifully"
 },
 {
 "table": "0x56cd",
 "ptr": "0x50d5",
 "jp": "ほのおのブレスをはいた",
-"en": "breathed fire at"
+"en": "breathed fire"
 },
 {
 "table": "0x56cf",
 "ptr": "0x50e1",
 "jp": "れいきのブレスをはいた",
-"en": "breathed frost at"
+"en": "breathed frost"
 },
 {
 "table": "0x56d1",
 "ptr": "0x50ed",
 "jp": "どくのブレスをはいた",
-"en": "breathed poison at"
+"en": "breathed poison"
 },
 {
 "table": "0x56d3",
 "ptr": "0x50f8",
 "jp": "でんげきのブレスをはいた",
-"en": "breathed lightning at"
+"en": "breathed lightning"
 },
 {
 "table": "0x56d5",
 "ptr": "0x5105",
 "jp": "さんのブレスをはいた",
-"en": "breathed acid at"
+"en": "breathed acid"
 },
 {
 "table": "0x56d7",
 "ptr": "0x5110",
 "jp": "せきかブレスをはいた",
-"en": "breathed stone breath at"
+"en": "breathed petrifying gas"
 },
 {
 "table": "0x56d9",
 "ptr": "0x511b",
 "jp": "ふりおろした",
-"en": "struck down at"
+"en": "swung down at"
 },
 {
 "table": "0x56db",
@@ -855,7 +855,7 @@
 "table": "0x56f1",
 "ptr": "0x5187",
 "jp": "なかまをよんだ",
-"en": "called for help against"
+"en": "called for help"
 },
 {
 "table": "0x56f3",
@@ -873,13 +873,13 @@
 "table": "0x56f7",
 "ptr": "0x51a0",
 "jp": "にげた",
-"en": "fled from"
+"en": "fled"
 },
 {
 "table": "0x56f9",
 "ptr": "0x51a4",
 "jp": "あわてた",
-"en": "panicked before"
+"en": "panicked"
 },
 {
 "table": "0x56fb",
