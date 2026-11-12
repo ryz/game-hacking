@@ -27,7 +27,7 @@ in [dungeon.md](dungeon.md). Party-side weapon damage, slaying and chests are in
 - **Encounter rate.** It is checked after every action in the maze (step, turn, turn-around). The normal chance is
   only **1/512 (0.2 %) per action**. Right after you walk through a door the chance becomes **13/256 (5.1 %) per
   action**, and it stays there until your next plain step or turn-around. So doors are where fights happen. **Guarded
-  squares** (fixed spots, 3-21 per floor) always fight once. They are the only fights that give a chest, and they
+  squares** (fixed spots, 0-21 per floor, 244 in all; dungeon.md 4) always fight once. They are the only fights that give a chest, and they
   re-arm whenever you change floors.
 - **To-hit (monster on party).** Roll d20 (0-19). The monster hits if the roll is ≥ `T`, where
   `T = clamp(HitBase + mod − targetAC, 1, 19)`. That gives 5-95 %. The monster swings `Att` times per round. Each hit
@@ -43,8 +43,8 @@ in [dungeon.md](dungeon.md). Party-side weapon damage, slaying and chests are in
 - **Rewards.** Each kill adds the monster's EXP and gold to the pools. The pools are split evenly among the members
   who can still act (items.md 9). Identified kills are entered in the museum.
 - **Summoner pacts.** 16 magic circles in the maze, at most one per floor (floors 1-30). A Summoner standing
-  in a circle makes a pact with that circle's monster if the Summoner's level is at least the circle's minimum (3 to
-  38). The pact monsters are ids 109-124 (Undead Beholder ... Damned).
+  in a circle makes a pact with that circle's summon if the Summoner's level is at least the circle's minimum (3 to
+  38). The ids 109-124 are **spell ids** (the 16 Summons, Zombie ... Unspeakable), not monster ids (section 8).
 
 ---
 
@@ -64,7 +64,7 @@ and by logging every read of the copies during a JP battle (`work/design/monster
 | `$0E` | `$C51D` | Type bits | bit 0 undead, 1 demon, 2 dragon, 3 spirit (slaying, items.md 4.4). Bits 4 (golems, Wraith-likes) and 5 (ghosts) are not identified | `32:454A` (slaying), `24:4BAD` and 3 more in the spell bank, `22:6ECB` |
 | `$0F` | `$C51E` | Picture id (inferred) | rises by family (Bowman/Shooter 8, Gunner 9...) | no direct reader |
 | `$10` | `$C51F` | To-hit base H | lower = more accurate (Ancient One 1, Goblin 19) | `32:4DB7`, `32:5298` |
-| `$11` | `$C520` | Swings per round | 1-7 | `32:4DBF`, `32:52A0` |
+| `$11` | `$C520` | Swings per round | 1-14 (77 monsters 1, max: Musashi 14, Kamui 10, Kali, Scylla, Carrion Worm 8); used as the loop count, no cap (section 4.1). Corrected 2026-11-12: was "1-7" | `32:4DBF`, `32:52A0` |
 | `$12-$14` | `$C521-23` | Damage per swing: N, S, min | damage = `min + Σ(N) rand(0..S−1)` = min .. min + N(S−1) | `32:4DE8-4DFB` |
 | `$15-$17` | `$C524-26` | HP: N, S, min | HP = `min + Σ(N) rand(0..S−1)`, rolled per monster at battle start. min = 0 hangs the game (`22:558E` `jr z,$558E`), and no record has it | `22:558A-55A5`; museum shows "min~max" `41:68EB` |
 | `$18-$1F` | `$C527-2E` | Resistance bytes, 8 elements | % that gets through: 100 = no resistance, 0 = immune. The museum shows `100 − byte` (`41:6AE8`). Order (museum labels): Earth, Water, Fire, Wind, Spirit, (6th glyph unread), Holy, None | spells `24:6C5E` (index = spell element `$C584`). Party weapon effects: stone uses `$18`, fear/sleep/paralysis use `$1C` (`32:472C-475F`) |
@@ -180,7 +180,8 @@ nothing this turn.
 Code: (code `32:4D55-4E29`.
 
 ### 4.1 Hit and damage
-For each of the `Att` swings (`+$11`):
+For each of the `Att` swings (`+$11`; the count is loaded into B and run down by `dec b / jp nz` at `32:4E25`, and
+`32:52F3` in the second copy, with no cap, so Musashi really swings 14 times; hits are counted in the byte `$D962`):
 1. `T = H + mod − AC`. H = `+$10`, mod = instance `+$12` (0 in all my logs). AC = target base AC (`$C4E7` = record
    `+$58`) + two modifiers (`$C505`, `$C506`), minus 2 if `$CB84` bit 4 (party-wide AC bonus, inferred: a protective
    spell) (`32:5662`). T is clamped to 1..19 (`32:569E`).
@@ -188,6 +189,8 @@ For each of the `Att` swings (`+$11`):
    - Ranged monsters (`+$2C`&3 = 2) when `$CB84` bit 1 is set: hit only on a roll of 0 (5 %) (`32:4DC4`) **(inferred:
      a missile-shield effect)**.
 3. Damage per hit = `min + Σ(N) rand(0..S−1)` from `+$12..+$14`. ×2 if the target is Asleep (status 2) (`32:4E02`).
+   The per-hit sum is kept in the 8-bit register C (`32:4DF6-4DFF`); only From Beyond (32 × 0..9 + 32, max 320) can
+   exceed 255 and would wrap, which needs a roll about 5 standard deviations above its mean (inferred, not seen).
 4. The hits are summed (`$D962` count, `$D963` damage) and subtracted from HP. HP ≤ 0 → dead (`32:51E3`).
 
 Emulator check (`hitx.py`, `bt.state`, Crawling Claw H 19 vs AC 8): T = 11 logged for every swing, so a 45 % hit
@@ -288,29 +291,38 @@ Code: (code `2D:64CF-6664`, data `2D:63BB`.
   Message "A strange pattern is drawn on the ground" (`45:4490`).
 - **Who.** If at least one party member is class `$0D` (Summoner) with status < 3, the text becomes "A magic circle
   is drawn... Who will step inside?" (`45:44A8`). Only a Summoner can be picked.
-- **Check.** The table `2D:63BB + 3p` gives [monster id][minimum level][tier]. If the Summoner's level is below the
+- **Check.** The table `2D:63BB + 3p` gives [**spell id**][minimum level][tier]. The event copies that id's **spell
+  record** (`2D:657F` -> `0:24E8`, bank 24 `$6C95 + 16 × id` -> `$C577`) and shows its name: "From the pattern's
+  center <summon> appeared! Will you form a pact?" (`2D:44CF`). If the Summoner's level is below the
   minimum: "Your level is too low. The summoning failed." Otherwise bit (id − 109) is tested in the Summoner's pact
   bitfield (record `+$39`, `$C4C8`). If the bit is already set: "A pact already exists." Otherwise the bit is set,
-  the tier counter (record `+$4A + tier`) is raised from 0 to 1 if it was 0, and "The pact is sealed."
+  the tier counter (record `+$4A + tier` = Summons slots of spell level tier + 1) is raised from 0 to 1 if it was 0,
+  and "The pact is sealed."
+- **Emulator** (JP, F1 (15,15), member 0 poked to class `$0D` level 40, `work/re/contradictions/circle.py`): the circle said
+  "もようの ちゅうしんから ゾンビ があらわれた" (Zombie, spell 109), `$C577` held the Zombie spell record, and after
+  "Yes" `+$39` bit 0 and the level-1 Summons slot were set to 1.
 
-| Circle p | Monster (id) | Min. level | Tier |
+Corrected 2026-11-12: this table listed the ids as bestiary monsters (Undead Beholder ... Damned); they are the
+Summons spells (characters.md §10.5 agrees).
+
+| Circle p | Summon (spell id) | Min. level | Tier (slot level − 1) |
 |---|---|---|---|
-| 0 | Undead Beholder (109) | 3 | 0 |
-| 1 | Berserker (110) | 4 | 0 |
-| 2 | Highwayman (111) | 6 | 1 |
-| 3 | Gladiator (112) | 10 | 1 |
-| 4 | Swordmaster (113) | 14 | 2 |
-| 5 | Sword Dancer (114) | 15 | 2 |
-| 6 | Creeping Coin (115) | 16 | 3 |
-| 7 | Death Knight (116) | 17 | 3 |
-| 8 | Lich (117) | 20 | 4 |
-| 9 | Mummy (118) | 23 | 4 |
-| 10 | Nightmare (119) | 27 | 5 |
-| 11 | Dragon Zombie (120) | 31 | 5 |
-| 12 | Dullahan (121) | 34 | 6 |
-| 13 | Nightcrawler (122) | 36 | 6 |
-| 14 | Night Rider (123) | 37 | 6 |
-| 15 | Damned (124) | 38 | 6 |
+| 0 | Zombie (109) | 3 | 0 |
+| 1 | Ghoul (110) | 4 | 0 |
+| 2 | Lion of Hell (111) | 6 | 1 |
+| 3 | Minotaur (112) | 10 | 1 |
+| 4 | Djinni (113) | 14 | 2 |
+| 5 | Ifrit (114) | 15 | 2 |
+| 6 | Dao (115) | 16 | 3 |
+| 7 | Marid (116) | 17 | 3 |
+| 8 | Titan (117) | 20 | 4 |
+| 9 | Greater Demon (118) | 23 | 4 |
+| 10 | Vampire Lord (119) | 27 | 5 |
+| 11 | Shadow Dragon (120) | 31 | 5 |
+| 12 | Magic Gate (121) | 34 | 6 |
+| 13 | Ancient One (122) | 36 | 6 |
+| 14 | From Beyond (123) | 37 | 6 |
+| 15 | Unspeakable (124) | 38 | 6 |
 
 How a pact monster is summoned in battle (the Summoner's spell or command) belongs to the spell system and was not
 traced here.

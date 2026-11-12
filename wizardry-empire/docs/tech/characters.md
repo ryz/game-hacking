@@ -37,7 +37,8 @@ Scratch, scripts and states: `work/design/characters/` (`rom.py` table dumper, `
 - **Spell slots** per spell level = `min(9, max(spells known at that level, char level − unlock level + 1))`;
   other casters' spells kept after a class change give slots equal to the number known. Rest at the inn refills.
 - **Death and recovery**: temple fee = level × 10/30/50/100/300 (minor/paralysis/stone/dead/ashes). Raising
-  succeeds 10-97% by age and VIT; failure turns Dead into Ashes and Ashes into Lost.
+  succeeds about 1-96% by age and VIT (§9); failure turns Dead into Ashes and Ashes into Lost. The Revival Charm
+  restores Dead, Ashes and Lost members (§9).
 
 ---
 
@@ -232,24 +233,27 @@ Not stored in the record (recomputed): to-hit, swings per round, spell-slot maxi
 
 ### 5.1 Summary
 
-| # | Class | Created? | Spell schools (start level of school) | HP die D per level (`27:57EF`) | EXP to L2 / L10 |
+| # | Class | Created? | Spell schools (start level of school) | HP die D per level (`27:57EF`) | Total EXP to reach L2 / L10 (§6.1) |
 |---|---|---|---|---|---|
-| 0 | Fighter | yes | - | 9 | 1,200 / 35,800 |
-| 1 | Mage | yes | Mage (1) | 4 | 1,520 / 48,720 |
-| 2 | Priest | yes | Priest (1) | 8 | 1,400 / 46,100 |
-| 3 | Thief | yes | - | 5 | 1,080 / 29,820 |
-| 4 | Bishop | yes | Mage (1), Priest (4) | 6 | 1,650 / 63,450 |
-| 5 | Samurai | yes | Mage (4) | 8 | 1,800 / 67,870 |
-| 6 | Lord | yes | Priest (4) | 8 | 1,920 / 71,320 |
-| 7 | Ninja | yes (male) | - | 7 | 2,150 / 75,450 |
-| 8 | Archer | yes | - | 6 | 1,520 / 47,370 |
-| 9 | Valiant | item only | Valiant Prayers (5) | 8 | 2,100 / 78,800 |
-| 10 | Avenger | item only | Avenger Arts (5) | 8 | 1,360 / 40,910 |
-| 11 | Musashi | item only | Musashi Arts (5) | 8 | 1,980 / 75,350 |
-| 12 | Kunoichi | item only (female) | Kunoichi Arts (5) | 6 | 2,150 / 75,450 |
-| 13 | Summoner | item only | Summons (pacts, from level 3) | 5 | 1,420 / 49,620 |
+| 0 | Fighter | yes | - | 9 | 1,200 / 56,800 |
+| 1 | Mage | yes | Mage (1) | 4 | 1,520 / 73,720 |
+| 2 | Priest | yes | Priest (1) | 8 | 1,400 / 69,100 |
+| 3 | Thief | yes | - | 5 | 1,080 / 45,320 |
+| 4 | Bishop | yes | Mage (1), Priest (4) | 6 | 1,650 / 97,550 |
+| 5 | Samurai | yes | Mage (4) | 8 | 1,800 / 106,070 |
+| 6 | Lord | yes | Priest (4) | 8 | 1,920 / 111,320 |
+| 7 | Ninja | yes (male) | - | 7 | 2,150 / 116,550 |
+| 8 | Archer | yes | - | 6 | 1,520 / 71,370 |
+| 9 | Valiant | item only | Valiant Prayers (5) | 8 | 2,100 / 121,400 |
+| 10 | Avenger | item only | Avenger Arts (5) | 8 | 1,360 / 62,910 |
+| 11 | Musashi | item only | Musashi Arts (5) | 8 | 1,980 / 116,150 |
+| 12 | Kunoichi | item only (female) | Kunoichi Arts (5) | 6 | 2,150 / 116,550 |
+| 13 | Summoner | item only | Summons (pacts, from level 3) | 5 | 1,420 / 77,170 |
 
 D is used as `Random(D)` = 0..D, see §6.3.
+
+Corrected 2026-11-12: the L10 column showed the level-9 totals of §6.1 (Fighter 35,800); it now shows the level-10
+row (Fighter 56,800). The §6.1 rows were right (checked in the code and the emulator, §6.1).
 
 Ninja and Kunoichi share one EXP table (identical values). Swings per round, to-hit and the class rules for
 weapons (Musashi dual wield, Avenger immune to cursed items) are in `items.md` §2/§4.
@@ -282,7 +286,19 @@ Reading: Fighter/Lord/Valiant/Ninja/Kunoichi take nearly all weapons; Samurai an
 swords) but no shields; Priests wear heavy armor and shields but no edged weapons; Mage, Archer and Summoner are
 limited to robes and light armor; the Avenger has a short, special list.
 
-Rings and "odd objects" are open to every class. Exact per-item lists: [../design/items_table.md](../design/items_table.md).
+Accessories (slot type 12, data `28:4000` bytes 22-23; `work/re/contradictions/notes.md` item 7):
+- **Rings**: 9 of 10 can be equipped by every class; the Priest Ring only by Priest, Bishop, Lord and Valiant.
+- **Other accessories** are mixed: Cloak, Shell Amulets, Rabbit's Foot, Synthesis and Youth Stone: every class;
+  Hider Cloak: Thief; Clockwork Doll: Ninja, Kunoichi; Laila's Beads: Priest, Bishop, Valiant; Jewel of Magic: Mage,
+  Priest, Bishop, Summoner; Fairy's Heart: all but Ninja, Avenger, Kunoichi.
+- **Consumables** (all potions and scrolls, the Dreaming, Healing and Exorcist Stones, the Exorcism and Revival
+  Charms, the Map Record Sheet) and the Key Card have **no class bit** ("none" in the items table): nobody can
+  equip them, but **anyone can use them**. Item use does not test the class mask: camp use `2A:6C91-6CC0` checks only
+  byte 33 bit 6; battle start sets "usable" from byte 33 bit 7 alone (`22:4356`). (emulator: a Fighter used a
+  Healing Potion and a Revival Charm in camp, `work/re/contradictions/camp_potion.py`, `camp_charm.py`.)
+
+Corrected 2026-11-12: was "Rings and odd objects are open to every class".
+Exact per-item lists: [../design/items_table.md](../design/items_table.md).
 
 ### 5.3 Spell schedule per class (learning, §10.3)
 
@@ -350,6 +366,11 @@ level costs the 16th step again (Rev 1 multiplies it out with `0:0DFA`, see `doc
 needs the first **two** steps. Confirmed in the emulator: a level-1 Fighter with 0 EXP is told "1200 more EXP"
 at the Inn (`work/design/characters/inn1.png`). The v1.0 ROM said 500 at the same point
 (`docs/shots/jp_tour/inn_stable.jp.png` was taken on v1.0), so the curve changed between revisions.
+
+How to read the table: row N = the **total EXP a character needs to reach level N**; a character of level N−1
+levels up at the Inn once his EXP is at least row N (`27:5B70` passes level+1 to `27:5BEA`, which adds the first
+N steps). Emulator check (`work/re/contradictions/inn_spells_exp.py`, JP): a level-9 Thief with 29,820 EXP (row 9) is told
+"15500 more" = row 10 (45,320) − 29,820. "EXP to L2" in §5.1 = row 2, "L10" = row 10.
 
 Cumulative EXP to reach each level (raw steps in `work/design/characters/exp.json`):
 
@@ -432,15 +453,18 @@ Raw thresholds (gain, keep) as stored, e.g. STR <20 = (75, 90), are in `27:7451`
 
 - **Clock**: a 9-bit day counter (`+0F` and `+10` bit 0) and the age in years (`+10` bits 1-7). Each counted day
   adds 1; at 360 the counter wraps and the age goes up (`27:5208`), cap 99.
-- **What advances it**: each inn night outside the Stables (§8; a full stay = 7 nights, observed: day counter +7
-  after Cots, `inn_stay.py`). Class change and item class change: +1-3 years. Temple raise: +1-3 years at 89%;
+- **What advances it**: each inn night outside the Stables, **at any HP** (§8; a full stay = 7 nights: day counter
+  +7 after Cots both from HP 1/200 and at full HP, none after the Stables; `work/re/contradictions/inn_days.py`, emulator; the
+  loop `27:50F8-5131` calls `27:5208` every night unless the room is the Stables). Class change and item class change: +1-3 years. Temple raise: +1-3 years at 89%;
   spell raise: +1 year (§9). Youth Stone: −1 year. No time-in-maze aging was found.
 - **Effects**: the age bracket drives the level-up stat rolls (§6.4) and resurrection odds (§9).
 - **Death of old age** (`27:532B`, at a birthday during an inn stay): if the new age is **57 or more**, the
   character dies (status Dead, HP 0, "died of old age.", `27:7866`). The code rolls
   `Random(99 + VIT/2 + LUK/2)` and compares it with `age − 56`, but no branch uses the result (`cp b` followed by
   an unconditional store, identical in v1.0), so **every** such birthday is fatal. Intended rule (guess): death if
-  the roll < age − 56. **Confirmed in the emulator**: age 56, day 359, Cots -> Dead at 57 (three seeds); age 55 ->
+  the roll < age − 56. **Confirmed in the emulator**: age 56, day 359, Cots -> Dead at 57 (six RNG seeds, VIT = LUK = 18;
+  a breakpoint at `27:537C` read rolls 89, 89, 59, 50, 8, 11 against B = age − 56 = 1: under the intended rule all
+  six would have survived, all six died; `work/re/contradictions/inn_oldage.py`); age 55 ->
   56 survives ("Happy birthday!", `27:7857`). Script `inn_age.py`, start state `jp_inn_rooms.state`
   (tokens from power-on, JP ROM: `boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*4,a,w60,a,w60`; the
   state is the room menu for the party's Fighter).
@@ -462,7 +486,11 @@ Code: (Aries Inn, `27:5046-5B53`.
 
 The menu says "/week", but the price is charged for **each night the character is still hurt** (observed: HP
 1/200 at Cots cost 70 G for 7 nights and healed 104; HP 1/10 cost 10 G). All 7 nights age the character
-regardless. Every stay, including the Stables, refills spell slots (`27:5B4D` -> `2A:45F3`) and is where
+regardless of HP (emulator: Cots at full HP, age 50 day 300 -> day 307, 0 G paid; `work/re/contradictions/inn_days.py`).
+Every night, including the Stables, ends in the heal routine `27:5AAA`, which always finishes with the slot refill
+`27:5B4B` -> `2A:45F3` (recount + class slots `2A:4737`, §10.4); the only night without it is a hurt night the
+character cannot pay for (`27:598F` skips `5AAA`). Emulator: Stables at full HP and Cots from HP 1 both raised
+Mage slots 0 -> 4 for four known level-1 spells (`work/re/contradictions/inn_spells_exp.py`). The Inn is also where
 level-ups happen (§6.2).
 
 ---
@@ -476,9 +504,18 @@ level-ups happen (§6.2).
 | Stoned (4) | 50 | |
 | Dead (5) | 100 | raise roll |
 | Ashes (6) | 300 | raise roll |
-| Lost (7) | - | character removed; no cure found |
+| Lost (7) | - | temple: not offered; Revival Charm cures it (below) |
 
-**Temple raise** (`27:683A`): success if `Random(100) < base(age) + VITbonus + 1`.
+**Revival Charm** (item 172, use effect 20 = `2E:5209`): on a member with status Dead, Ashes **or Lost**
+(`& $3F >= 5`) it sets status OK and HP = max; on anyone else "nothing happens". Emulator (JP, camp): a member
+poked to Lost (`$C90C` = 7) was restored to OK at full HP (`work/re/contradictions/camp_charm.py`). A Lost character only
+stays in the party when the spell raise fails on Ashes (below); a failed temple raise deletes him at once.
+Corrected 2026-11-12: was "Lost: character removed; no cure found".
+
+**Temple raise** (`27:683A`): success if `Random(100) < base(age) + VITbonus + 1`, i.e. about
+(base + bonus + 1)/101 (exactly `ceil(256c/101)/256` for c = base + bonus + 1, because `Random` scales one random
+byte). Range: 1.2% (age 70+, VIT < 7) to 95.3% (age < 20, VIT 20-21); the VIT 22+ bonus 6 (96.1%) needs a VIT no
+race can reach (race base + 10 is at most 21, §2).
 
 | Age | base | | VIT | bonus |
 |---|---|---|---|---|
@@ -710,7 +747,11 @@ Code: (`2A:416D` at creation and level-up; `2A:417F` after a class change.
    Values above 22 run past each 12-entry table into the next one (e.g. IQ 23 reads the Valiant table: 5%). Only an
    Elf can reach IQ 20, so the Mage table's top entries are rarely used; a Hobbit Kunoichi with LUK 23-24 reads
    past the end (guess: low values).
-3. Bishops use IQ for the guaranteed roll of both schools; extra spells use IQ (Mage) and PIE (Priest).
+3. **No stat drives the guaranteed spell** (for any class): the routine looks up a chance from a stat
+   (`2A:428B-429F`, table `2A:412E`) but never uses it. For a Bishop that unused lookup reads IQ in both passes
+   (Mage `2A:41F9`, Priest `2A:4214`), which is where the old wording came from. **Extra spells**: Mage spells with
+   IQ (`2A:432C`), Priest spells with PIE (`2A:437B`), for Bishops as for everyone. Corrected 2026-11-12: was "Bishops
+   use IQ for the guaranteed roll of both schools".
 4. Spells of other schools learned in a previous class stay known and castable (§10.4).
 
 ### 10.4 Spell slots
@@ -732,6 +773,10 @@ Code: (maze events, `2D:6560`, table `2D:63BB`.
 Summons are never learned at level-up (`2A:41D5` returns for class 13). A maze event shows a monster in a magic
 circle: "From the pattern's center X appeared! Will you form a pact?" (`2D:44CF`). A Summoner of at least the
 listed level learns the summon (bit in `+39`); if that slot level had 0 slots it gets 1 ("The pact is sealed.").
+X is the **summon spell's name**: the event copies the spell record (`2D:657F` -> `0:24E8`, bank 24 `$6C95`, id
+109-124), not a monster record. Emulator (JP, F1 (15,15), member 0 poked to Summoner level 40): "もようの ちゅうしんから
+ゾンビが あらわれた" (Zombie), then the pact bit 0 of `+$39` and Summons slot level 1 = 1 (`work/re/contradictions/circle.py`).
+monsters.md §8 had read the same ids as bestiary monsters (corrected there).
 
 | Summon (JP) | Min. level | Slot level | | Summon (JP) | Min. level | Slot level |
 |---|---|---|---|---|---|---|

@@ -69,7 +69,7 @@ Code: (handler table `20:6405` per floor; types 0-14 are the same on every floor
 | 0, 5 | floor | nothing |
 | 1 | **rock** | `20:5AC7`: everyone's HP 0, status Dead, "In rock" (`49:4483`), party lost to town. Only reachable by teleport |
 | 2 / 3 | **stairs up / down** | prompt Yes/No (`49:41FA` / `422B`). Floor ±1, same x,y (`20:5B74`, `5BB9`). Resets one-shot flags (`20:58DD`) |
-| 4 | **hidden spot** | `20:5BFE`, one-shot by `$CB9B` bit p. Each member with status < 3 rolls to notice ("X noticed something", `49:44BC`). Skill: Thief LUK/2 + 5×level; Ninja LUK/2 + 5×level − 25; Kunoichi LUK/4 + 5×level − 50; others level/4 − 10. Difficulty = 5 × `20:7100[p]`. Chance = 4 × (skill − difficulty) % if that is < 5 points over, else 80 % (+1 % on a roll of 0). They come in pairs on both sides of a wall, so they are inferred to be hidden doors |
+| 4 | **hidden spot** | `20:5BFE`, one-shot by `$CB9B` bit p. Each member with status < 3 rolls to notice ("X noticed something", `49:44BC`). Skill (`20:5C20-5C93`, level L capped at 255): Thief LUK/2 + 5L; Ninja LUK/2 + max(0, 5L − 25); Kunoichi LUK/4 + max(0, 5L − 50); others max(0, L/4 − 10). From L 51 the level part is fixed (Thief 255, Ninja 230, Kunoichi 205); the total is capped at 255. Difficulty D = 5 × `20:7100[p]`. Margin m = skill − D (`20:5CA4-5CB4`): **m < 0: never; m = 0: only a roll of 0 (about 1 %); m = 1-4: 4m % (4, 8, 12, 16 %); m ≥ 5: 80 %** (roll `Random(99)`, success if the roll is 0 or below the chance, `20:5CB6-5CBF`). The jump from 16 % to 80 % at m = 5 is in the code (`cp $05` / `ld a,$50`). Corrected 2026-11-12: was "4 × (skill − difficulty) % if < 5 points over, else 80 % (+1 % on a roll of 0)". They come in pairs on both sides of a wall, so they are inferred to be hidden doors |
 | 6 | **guarded square** | `20:5CF0`: fixed fight with area byte 1, once per floor visit (`$C6DB` bit p). The victory gives a chest (`$C00B` bit 2, items.md 10) |
 | 7 | button panel | event `$07` → `2D:640F` "A row of buttons. Which one will you press? A B C D E". p = 64-68. Next to a key-hole on most floors; the sign "Maze Elevator Control Room" exists, so these are inferred to be the elevator |
 | 8 | **floor trap**, kind = p & `$E0` | `$00` Chute ("Chute"), `$20` Pit ("Pit"): both are skipped with "But you are floating" when levitating (`$CB84` check). `$40` Ceiling trap, `$60` Rockfall: damage, amounts not traced. `$80` Viper: each member saves with `rand(0..99)` < level/2 + LUK − (p & `$1F`) (rolls 0-4 always poison, 99 always saves), else poisoned (`20:5D4C`). `$A0` Spinner: random facing (`20:47FB`) |
@@ -136,6 +136,15 @@ I did not trace the exact outcome rolls of the well, the junk pile and the corps
 
 The columns give counts. The coordinates are in `floor_events.txt`. "Areas" lists the random-encounter area ids
 ([../design/monsters_table.md](../design/monsters_table.md) has the monsters). The guarded column shows the count and the area ids.
+Guarded squares: 0 (floor 20) to 21 (floor 4) per floor, 244 in all (data, `work/re/contradictions/floors.py`).
+
+A few single squares carry another floor's area id (data, `work/re/contradictions/floors.txt`; given in brackets with
+their (x,y)): floor 22 area 25 at (14,2) and 26 at (15,2); floor 23 area 27 at (7,7) and on the down stairs (7,8),
+(8,7); floor 24 area 29 at (7,9) and the stairs (6,9); floor 27 area 31 on the marker (13,10); floor 28 area 32 on
+the trap (8,8). The encounter check `20:443F-444F` reads byte 1 of the current square with no type test, so a
+random fight on such a square uses that area (inferred; not seen). This is why
+../design/monsters_table.md lists area 26 on floors 22 and 24, 27 on 23 and 25, 29 on 24 and 26-27: both tables are
+right; the floor table below gives the main area. (Clarified 2026-11-12.)
 
 | Floor | Stairs (x,y) | Areas | Guarded | Traps / hidden | Events |
 |---|---|---|---|---|---|
@@ -160,13 +169,13 @@ The columns give counts. The coordinates are in `floor_events.txt`. "Areas" list
 | 19 | up (6,1); no down | 21 | 7 (21, 22) | 2 pits, spinner, chute (0,5) → floor 20 (inferred) | demons' court (7,8); junk pile (8,8) |
 | 20 | none | 22 | 0 | – | **Emperor of the Abyss / Demon Adish** (8,7); maid (0,2); demonic seal (0,0); 3 signs |
 | 21 | none up; down (12,2) | 23 | 6 (23, 24) | 27 floor traps; 3 hidden | circle 10 (0,3) |
-| 22 | up (12,2); no down | 24 | 8 (24) | 12 traps | – |
-| 23 | none up; down ×5 | 25 | 8 (25, 26) | 12 traps; 4 hidden | circle 11 (13,3) |
-| 24 | up ×5; down ×3 | 26 | 6 (26) | chute, 2 pits | circle 12 (7,15) |
+| 22 | up (12,2); no down | 24 (+25, 26: one square each) | 8 (24) | 12 traps | – |
+| 23 | none up; down ×5 | 25 (+27: three squares) | 8 (25, 26) | 12 traps; 4 hidden | circle 11 (13,3) |
+| 24 | up ×5; down ×3 | 26 (+29: two squares) | 6 (26) | chute, 2 pits | circle 12 (7,15) |
 | 25 | up ×4; no down | 27, 103 | 11 (27, 103) | 20 traps (many spinners) | well (0,0) |
 | 26 | none | 28, 29 | 5 (28, 30) | 11 traps (6 vipers) | circle 13 (12,3) |
-| 27 | none | 29, 104 (damage zone) | 4 (31) | 8 traps | – |
-| 28 | none | 30 | 5 (32) | **122 trap squares** (spinner field) | – |
+| 27 | none | 29, 104 (damage zone) (+31: one square) | 4 (31) | 8 traps | – |
+| 28 | none | 30 (+32: one square) | 5 (32) | **122 trap squares** (spinner field) | – |
 | 29 | none | 31, 33 | 17 (31, 33) | 13 traps, chute | circle 14 (11,1) |
 | 30 | none | 32, 33, 105 | 4 (32, 33) | 18 traps | circle 15 (7,15); rift (1,8); giant bow (6,5); Ancient One rift (12,7); man in jet black (1,11); maid (15,11); well (12,10); **final battle** (15,14) |
 

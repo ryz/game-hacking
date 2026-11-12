@@ -3,9 +3,10 @@
 Tracer, 2026-11-12. Every number comes from the original Japanese Rev 1 ROM (`rom/wizardry_empire_j.gbc`). Addresses
 are written `BB:AAAA` with the bank in hex (bank `$28` = 40 decimal). A formula marked **(code)** was read from the
 routine named next to it. **(data)** means it was read from a ROM table. **(display)** means it comes from the museum's
-own description text. **(inferred)** is my reading and has not been confirmed in code. Nothing here was checked in the
-emulator, except that the party record layout was read from a JP battle savestate. Scratch scripts and disassembly
-dumps are in `work/design/items/`.
+own description text. **(inferred)** is my reading and has not been confirmed in code. **(emulator)** facts were seen
+in the running JP Rev 1 game (scripts in `work/re/contradictions/`, 2026-11-12: Battle Axe to-hit, Healing Potion and Revival
+Charm in camp, inn aging and spell refill); the party record layout was read from a JP battle savestate. Scratch
+scripts and disassembly dumps are in `work/design/items/`.
 
 The full 224-item table is generated into **[../design/items_table.md](../design/items_table.md)** (`python3 tools/designtables`).
 
@@ -32,10 +33,10 @@ The full 224-item table is generated into **[../design/items_table.md](../design
   Items you sell are added to the stock, so the shop is the long-term store for rare finds.
 - **Inn.** A stay is 7 days. Each day the room heals a dice amount: Cots 3d6+2, Economy 10d6, Suite 8d10+20, Royal
   10d20+20. The room price is charged for each day on which the character was still hurt. Spells are restored in every
-  room. Every day except in the Stables adds one day of age (a year is 360 days). As written, the code kills a
+  room. Every day except in the Stables adds one day of age, whether the character is hurt or not (a year is 360 days). As written, the code kills a
   character at the birthday that reaches age 57.
 - **Temple.** Fee = rate × level. The rate is 10 for Afraid/Asleep, 30 Paralyzed, 50 Stoned, 100 Dead, 300 Ashes. Dead
-  and Ashes need a roll: about 10-97% success depending on age and vitality. On failure Dead becomes Ashes and Ashes
+  and Ashes need a roll: about 1-96% success depending on age and vitality (section 8). On failure Dead becomes Ashes and Ashes
   becomes Lost. A success costs vitality (61%) and ages the character 1-3 years (89%).
 - **Gold.** Each monster carries a fixed gold value; the sum is split evenly among the conscious survivors. Only
   guarded squares (fixed fights) give a chest. A chest adds `10 × (rand(0..V) + 4)` gold, where V is the chest value,
@@ -136,11 +137,18 @@ Gloves, Other. Filter `2A:629A`:
 - The spell effect is `v & $3F`. Bit 7 means usable in battle, bit 6 usable in camp.
 - After each use, the item breaks with probability byte 34 % (`2E:4D01`).
 - Examples:
-  - Healing Potion: Healing, battle, 100% consumed.
+  - Healing Potion: Healing, battle+camp (byte 33 = `$CA`), 100% consumed. (emulator: used in camp, HP 1 -> 10/10,
+    `work/re/contradictions/camp_potion.py`.) Corrected 2026-11-12: was "battle".
   - Staff of Healing: Healing, battle+camp, breaks 25%.
   - Ring of Warping: Teleport, camp, breaks 25%.
   - Map Record Sheet: shows the map, camp, breaks 30%.
-  - Revival Charm: cures death, ashes and lost, battle+camp, 100% consumed, price 1,000,000.
+  - Revival Charm: cures death, ashes and lost, battle+camp, 100% consumed, price 1,000,000. Effect 20 (`2E:5209`):
+    target status `& $3F >= 5` (Dead, Ashes, Lost) -> status OK, HP = max (code; emulator: a Lost member restored in
+    camp, `work/re/contradictions/camp_charm.py`).
+- Use is not limited by the class mask (bytes 22-23): camp use (`2A:6C91-6CC0`) checks only byte 33 bit 6, and the
+  battle "usable" flag comes from byte 33 bit 7 alone (`22:4356`). Consumables have no class bit at all.
+- Effect dispatch: `2E:4D65`, jump table `2E:4DEA` (effects 1-20). The break roll (byte 34) runs before the effect
+  (`2E:4D01`).
 - The high nibble of byte 39 is the use mode (inferred, see section 1). Spell names are the museum texts; the spell
   power behind each effect was not traced.
 
@@ -197,6 +205,11 @@ Code: (bank 50, `32:42F1-4628`; the second copy `32:48xx` is the same formula.
    - target_AC = target record `+5 + +6`.
    - Some attacker states (`$C4FF` = `$0D`) lower the threshold by 4; others (`$0E`, or `&$7F` = 2) raise it by 4.
 2. Roll `rand(0..19)` (a d20). **Hit if the roll >= miss**, so the hit chance is between 5% and 95%.
+   - Hit bonus 47-50 (byte 29): `$C502` is at most about 20 (level 1, `22:4B53-4CB5`) and falls with level, so
+     `attacker_hit − 47` stays far below the lowest monster AC (−16) and the clamp gives miss = 1: the 95% cap against
+     every monster (unless `$C503` or attacker states, not traced, added some 30 points). **Emulator** (JP, F1 guarded square, Fighter poked
+     to a Battle Axe, breakpoint at `32:4444`): miss threshold 1 on every swing (bonus 50); with his Sword 9
+     (`work/re/contradictions/tohit.py`).
 3. Long-range weapons (main range L) against targets with `$C54D` bit 1 hit only on a natural 0 (5%, `32:4450`).
    The meaning of the target flag was not traced.
 
@@ -299,22 +312,27 @@ Menu `27:7890`: Stables free, Cots 10, Economy 50, Suite 200, Royal Suite 500 pe
   - At full HP the remaining days are free.
   - So the menu's "/week" is really a per-day price for each day of healing.
   - A Royal Suite stay from 1 HP can cost up to 3,500 G.
-- **Spells.** The far call `2A:45F3` restores spell points every day in every room (inferred from its position; not
-  traced).
+- **Spells.** Every night ends in the heal routine `27:5AAA`, which always finishes with the far call `2A:45F3`
+  (`27:5B4B`; slot recount + class slots, characters.md §10.4), in every room including the Stables; only a hurt night
+  the character cannot pay for skips it (`27:598F`). (code; emulator: Stables at full HP and Cots from HP 1 both
+  refilled the slots, `work/re/contradictions/inn_spells_exp.py`.) Corrected 2026-11-12: was "inferred".
 - **Room index 0** (no menu entry) sets HP to max outright (`27:5B35`). It may be used by another caller; not traced.
 - **Ageing** (`27:5208`).
-  - Every day outside the Stables adds 1 to a 9-bit day counter (`+$0F`, plus bit 0 of `+$10`).
+  - Every day outside the Stables adds 1 to a 9-bit day counter (`+$0F`, plus bit 0 of `+$10`), whatever the HP: the
+    night loop `27:50F8-5131` calls `27:5208` before the heal, skipping it only for the Stables (`$D012` = 1).
+    (emulator, `work/re/contradictions/inn_days.py`: Cots day 300 -> 307 at HP 1/200 and at full HP; Stables: no change.)
   - At 360 days the counter wraps and age goes up by 1 (cap 99): a "birthday". Age is kept as age × 2 in `+$10`.
 - **Birthday** (`27:532B`): under 57: "Happy birthday!". At **57 or older: "died of old age"**.
   - The character gets status Dead, HP 0, record `+$57` = `$15`, and leaves the party (`27:513D`).
   - The code does roll `rand(0..99 + VIT/2 + LUK/2)` and compares it with `age - 56`. The comparison's result is never
     used (`27:5379-537D`: `call 2B7E / cp b / ld a,$FF`, no branch).
   - So as written every inn birthday at 57+ is fatal. The intended rule was probably "dies if roll < age - 56".
-  - **Emulator check (2026-11-12, coordinator):** Fighter (VIT 14, LUK 8) poked to age 56, day 359 (`+$0F`=$67,
-    `+$10`=$71), one stay at Cots: "Fighter is asleep." / "...died of old age." and the Fighter left the party; same on
-    the Japanese ROM. One sample, so it confirms the death happens, not that the roll is ignored (a single roll at
-    VIT/LUK this low could also fail). Control at age 50 / day 359: no birthday at all, and `+$0F`/`+$10` were
-    unchanged after the stay (the character was at full HP) - the per-day aging rule above needs a second look.
+  - **Emulator check (2026-11-12):** age 56, day 359, Cots, six RNG seeds (`$FF96/97` poked), VIT = LUK = 18: a
+    breakpoint at `27:537C` read the rolls 89, 89, 59, 50, 8, 11 against B = age − 56 = 1; all six characters died
+    (under the intended rule all six would have lived). Age 55 -> 56: "Happy birthday!". Control at age 50 / day 359,
+    full HP: birthday, age 51, day 6 (`work/re/contradictions/inn_oldage.py`). Corrected 2026-11-12: the earlier note said the
+    age-50 control showed no change of `+$0F`/`+$10`; that was not reproducible (the pokes have to go to the working
+    copy `$C48F` after the character is picked).
 - **Level-up** checks also run at the inn (`27:53B3`, `27:5958` "more max HP"). Out of scope here.
 
 ---
@@ -332,7 +350,11 @@ Menu `27:7890`: Stables free, Cots 10, Economy 50, Suite 200, Royal Suite 500 pe
 | 5 Dead | 100 | roll (below) |
 | 6 Ashes, 7 Lost | 300 | roll; Lost is not offered (the temple text lists fear, stone, paralysis, death and ashes) |
 
-**Resurrection roll** (`27:683A-6929`): success if `rand(0..100) < base(age) + bonus(VIT) + 1`, i.e. (base+bonus+1)/101.
+**Resurrection roll** (`27:683A-6929`): success if `rand(0..100) < base(age) + bonus(VIT) + 1`, i.e. about
+(base+bonus+1)/101 (exactly `ceil(256c/101)/256` with c = base+bonus+1, since `rand` scales one random byte). The
+tables allow c = 1 to 97 (1/101 to 97/101), but VIT never exceeds 21 (race base + 10), so the reachable range is
+**1.2% to 95.3%** (age 70+ with VIT < 7, to age < 20 with VIT 20-21). Corrected 2026-11-12: the overview said
+"about 10-97%".
 
 | Age | base | | VIT | bonus |
 |---|---|---|---|---|
@@ -449,12 +471,10 @@ Level Teleporter). Disarm/inspect chances were not traced.
 1. **To-hit values 47-50** (byte 29) on 20 items: Battle Axe, Great Axe, Chain Sickle, Quarterstaff, the staves and
    rods, Shamshir, the whips, Nunchaku, Cursed Flail, Unholy Mace, Lance, Halberd, Sickle Spear, Windmill Glaive and
    Spiked Shield.
-   - The code subtracts the whole byte, so these weapons always get the 95% maximum hit chance. That may be intended
-     ("easy to hit") or a data quirk. The values are ASCII `/ 0 1 2`.
-   - To check: an emulator breakpoint at `32:4444` (D = miss threshold) with a Battle Axe.
-2. **Inn old-age death** at 57+ regardless of the roll (section 7). Death confirmed in the emulator (one sample, see
-   section 7); "roll ignored" still needs several samples or a breakpoint at `27:5379`. Aging per day: a full-HP
-   stay at age 50 did not change the day counter.
+   - The code subtracts the whole byte, so these weapons always get the 95% maximum hit chance (confirmed in the
+     emulator, section 4.2). Still open: intended ("easy to hit") or a data quirk; the values are ASCII `/ 0 1 2`.
+2. **Inn old-age death** at 57+ regardless of the roll (section 7): resolved 2026-11-12 (six seeds, rolls read at
+   `27:537C`, all died). Aging per day at full HP: resolved (it ages, section 7).
 3. **Range S/M/L.** Stored in `$C4FA` bits 0-3 (`2A:5FD9`). Which enemy groups each range can reach was not traced.
    Byte 31 bits 0-1 have unknown meaning (1 on most two-handed and heavy weapons, 2 on daggers and claws, 3 on the
    Spiked Shield).
