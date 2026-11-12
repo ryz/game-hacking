@@ -114,7 +114,10 @@
 7. Flicker (owner's request): the new screen reuses tiles the old one still shows until the game copies its
    buffer (in-place redraws and freed slots), e.g. inn list -> character sheet (~35 frames of wrong letters),
    message -> chest menu (3 frames). A quarantine by frame count did not help (in-place case) and slowed screens
-   (repeated GC); next try: tie reuse to the game's buffer copy (hook 0:1696) - see docs/re/vwf.md.
+   (repeated GC). Tried 2026-11-12: keep slots freed since the game's last buffer copy (0:16F5 hook) out of
+   allocation - it stalls (a GC per glyph) because the flicker only happens when old + new screen exceed the
+   157 slots, so the freed slots are the only ones left. Inn list -> sheet is now ~10 frames (was ~35). A real
+   fix needs more slots (e.g. layout-specific pools) or building the new screen after the old one is gone.
 8. Still 8 px (docs/re/numbers.md): '/', '-', '~', ':' separators and the labels L/HP/AC/HP-MAX/Lo/Hi/ON/OFF,
    spell-slot grid separators, monster panel and automap digits (symbol sheet), Camp reorder digits.
    Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.
