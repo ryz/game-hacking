@@ -1,0 +1,72 @@
+# Floor 7: map, squares, monsters
+
+The seventh floor of the maze (B7F), four quarters of rooms around a central cross, with no stairs up; how to read
+the map, coordinates and what each kind of square does: [maps/README.md](README.md).
+
+![Floor 7 map](wizardry-empire-floor-07.png)
+
+## 1. Overview
+
+- No solid rock: four quarters of rooms around central corridors, joined by 18 doors (computed from the map).
+- **Stairs:** **no stairs up**; down at (15, 0), to floor 8. How the party arrives (inferred: the chute from floor
+  6) and how it climbs back up (inferred: the elevator) were not traced
+  ([dungeon.md](../dungeon.md#2-how-floors-connect)).
+- **6 guarded squares**, **3 events** (the maid, two key-hole doors), **two button panels**, **10 hidden spots** in
+  5 pairs, **4 markers**; no traps.
+- **Route** (computed from the map, not tested): from the stairs down only 9 squares can be reached without passing a
+  special wall. Each pair of hidden spots faces such a wall, and the rest of the floor lies behind them.
+- **Random fights** come from encounter area 9 on every square. **Monsters:** levels 3-9, 2 to 4 groups of up to 5.
+
+## 2. Squares
+
+| Square (x, y) | What | On this floor |
+|---|---|---|
+| (15, 0) | Stairs down | To floor 8. |
+| (1, 14) | Maid (event) | "A pretty girl in a maid's outfit is here. 'If you...'": she offers a service, not traced. |
+| (1, 1), (13, 15) | Button panels | Buttons A-E: the Maze Elevator (inferred); where they lead was not traced. |
+| (0, 1), (14, 15) | Key-holes (events) | Each in front of the door to a panel's room; the doors are inferred to need an item (not traced which). |
+| (9, 12), (3, 6), (12, 6), (9, 3) | Marker | Nothing visible; inferred to remember the square as visited (auto-map). |
+| (6, 12) + (7, 12), (3, 9) + (3, 8), (12, 9) + (12, 8), (6, 3) + (7, 3), (12, 1) + (13, 1) | Hidden spots, in pairs | Each pair faces the other across a special wall: probably hidden doors (inferred). |
+| (6, 14), (11, 14), (1, 9), (14, 9), (6, 5), (11, 5) | Guarded square | Fight from area 9, then a chest. |
+
+## 3. Monsters
+
+| Area | Formations (one is picked per fight) |
+|---|---|
+| 9 | Ogre ×4 + Orc Lord ×0-3 + Dark Elf ×1-2 + Ogre Lord ×2-3, or Medusa ×3 + Greater Medusa ×2 + Gorgon ×0-2, or Mystic ×2 + Tsujigiri ×2 + Freya ×2-3 + Bowman ×0-2, or Centaur ×4-5 + Treant ×1-2 + Couatl ×1 |
+
+| Monster | Lv | HP | AC | Swings | Damage | Special | EXP | Gold |
+|---|---|---|---|---|---|---|---|---|
+| Ogre | 3 | 4d8+2 | 5 | 2 | 1d10 | calls 25%, flees 10% | 300 | 30 |
+| Orc Lord | 3 | 3d4+14 | 4 | 3 | 2d8+2 | flees 10% | 320 | 30 |
+| Dark Elf | 4 | 5d8 | 4 | 1 | 1d9 | Mage spells up to level 3; calls 25%, flees 10%; ranged | 410 | 40 |
+| Ogre Lord | 7 | 10d8 | 4 | 3 | 2d10+8 | - | 670 | 70 |
+| Medusa | 6 | 8d8 | 5 | 1 | 1d5 | poison, stone; calls 25% | 570 | 60 |
+| Greater Medusa | 7 | 9d8 | 3 | 1 | 3d6 | poison, stone; ranged | 700 | 70 |
+| Gorgon | 7 | 8d8 | 2 | 1 | 3d7 | stone; stone breath | 800 | 70 |
+| Mystic | 5 | 8d6 | 6 | 1 | 1d7 | Mage and Priest spells up to level 1; flees 10%; reach | 530 | 50 |
+| Tsujigiri | 5 | 8d8 | 4 | 1 | 2d9 | Mage spells up to level 1; calls 25%, flees 10% | 470 | 50 |
+| Freya | 5 | 5d6 | 4 | 1 | 1d7 | Priest spells up to level 3; flees 10%; reach | 520 | 50 |
+| Bowman | 5 | 5d6 | 7 | 2 | 3d9 | calls 25%, flees 10%; ranged | 550 | 60 |
+| Centaur | 4 | 6d8 | 5 | 3 | 3d6 | flees 10%; ranged | 440 | 50 |
+| Treant | 8 | 10d8 | 2 | 2 | 3d7 | reach | 710 | 80 |
+| Couatl | 9 | 11d8 | 5 | 2 | 2d5 | Mage spells up to level 3, Priest spells up to level 5; poison | 990 | 90 |
+
+"Reach" and "ranged": who the monster can attack from the back groups
+([combat.md](../combat.md#8-monster-reach-and-targets)). Full stats: [monsters_table.md](../monsters_table.md).
+
+**Notes for play:** stone is the threat here: the Medusa formation brings up to seven stoning monsters (computed:
+3 + 2 + 2), and the Gorgon also breathes stone. Four monsters are ranged and reach the back row from any group: Dark Elf,
+Greater Medusa, Bowman and Centaur. The Couatl (level 9, up to 88 HP) is the strongest monster of the floor. The guards can
+give a Bronze chest ([dungeon.md](../dungeon.md#54-chest-quality-by-floor)). A party that arrives here has no
+known way back up.
+
+## 4. Open questions
+
+- Where the party arrives on this floor and how it gets back up (no stairs up).
+- What the special walls do when walked into (the whole floor lies behind them), and how hard each hidden pair is
+  to notice.
+- What the maid offers; which items the two key-holes take; where the buttons lead.
+
+Tech: [dungeon.md §4 Floors](../../tech/dungeon.md#4-floors), [§3 Event catalogue](../../tech/dungeon.md#3-event-catalogue),
+[§2 Square types](../../tech/dungeon.md#2-square-types); `python3 tools/designtables/floormap.py 7 --list`.
