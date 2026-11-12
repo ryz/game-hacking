@@ -257,8 +257,8 @@ All values in this table: (data).
 - **Thieves' Dagger in other hands.** By the order of the code, a non-Thief who uses the power loses the dagger with
   no effect (inferred); see [findings.md](findings.md).
 
-Tech: [items.md §3.1](../tech/items.md#31-spell-items-byte-33), [§3.2](../tech/items.md#32-throwing-command-throw),
-[§3.3](../tech/items.md#33-special-powers-byte-35-prompt-use-its-special-power),
+Tech: [items.md §3.1](../tech/items.md#31-spell-items), [§3.2](../tech/items.md#32-throwing-command-throw),
+[§3.3](../tech/items.md#33-special-powers),
 [characters.md §5.5](../tech/characters.md#55-special-classes-legendary-items)
 
 ---

@@ -453,7 +453,7 @@ damage-zone guards on floor 25 give worse ones.
 
 Tech: [items.md §10.1](../tech/items.md#101-chest-value-and-type),
 [§10.2](../tech/items.md#102-chest-contents), [§9](../tech/items.md#9-gold-sources),
-[§6](../tech/items.md#6-shop-bank-41-lorelei)
+[§6](../tech/items.md#6-shop-lorelei)
 
 ---
 

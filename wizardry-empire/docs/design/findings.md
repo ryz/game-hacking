@@ -67,7 +67,7 @@ nights. Anything that adds years (class change, resurrection) brings death close
 should decide which rule to keep.
 
 Design: [characters.md](characters.md), [town.md](town.md) ·
-Tech: [characters.md §7](../tech/characters.md#7-aging), [items.md §7](../tech/items.md#7-inn-bank-39-aries-inn)
+Tech: [characters.md §7](../tech/characters.md#7-aging), [items.md §7](../tech/items.md#7-inn-aries-inn)
 
 ---
 
@@ -88,7 +88,7 @@ hurt (the same condition under which the inn charges for the night). This is **u
 the inn, which would make the [old-age death](#old-age-death-at-57-ignores-its-survival-roll) avoidable.
 
 Design: [characters.md](characters.md), [town.md](town.md) ·
-Tech: [items.md §7](../tech/items.md#7-inn-bank-39-aries-inn), [characters.md §8](../tech/characters.md#8-inn-rest)
+Tech: [items.md §7](../tech/items.md#7-inn-aries-inn), [characters.md §8](../tech/characters.md#8-inn-rest)
 
 ---
 
@@ -107,7 +107,7 @@ healing"). Unclear.
 **Impact:** Badly hurt characters pay up to 7 times the listed price; healthy characters rest almost free.
 
 Design: [town.md](town.md) ·
-Tech: [characters.md §8](../tech/characters.md#8-inn-rest), [items.md §7](../tech/items.md#7-inn-bank-39-aries-inn)
+Tech: [characters.md §8](../tech/characters.md#8-inn-rest), [items.md §7](../tech/items.md#7-inn-aries-inn)
 
 ---
 
@@ -285,7 +285,7 @@ order of the code, it is also used up when a character who is not a Thief uses t
 
 **Impact:** A player who tries it on the wrong character loses the dagger.
 
-Design: [items.md](items.md) · Tech: [items.md §3.3](../tech/items.md#33-special-powers-byte-35-prompt-use-its-special-power)
+Design: [items.md](items.md) · Tech: [items.md §3.3](../tech/items.md#33-special-powers)
 
 ---
 
@@ -513,7 +513,7 @@ Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format), [§5](
 
 **Impact:** Negligible (about one percentage point).
 
-Design: [town.md](town.md) · Tech: [items.md §8](../tech/items.md#8-temple-bank-39-samsara-temple)
+Design: [town.md](town.md) · Tech: [items.md §8](../tech/items.md#8-temple-samsara-temple)
 
 ---
 
@@ -596,7 +596,7 @@ What turns on the flag, and who calls the hidden room, was not traced.
 **Impact:** None known.
 
 Design: [town.md](town.md) ·
-Tech: [characters.md §11](../tech/characters.md#11-open-questions--not-found), [items.md §7](../tech/items.md#7-inn-bank-39-aries-inn)
+Tech: [characters.md §11](../tech/characters.md#11-open-questions--not-found), [items.md §7](../tech/items.md#7-inn-aries-inn)
 
 ---
 

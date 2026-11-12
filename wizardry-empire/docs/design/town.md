@@ -77,7 +77,7 @@ marked; items usable from the camp menu are never marked (data).
 item already exists in the shop, the party or the roster, probably to stop chests handing out a second copy of
 some items (inferred); who calls it is an open question.
 
-Tech: [items.md §6](../tech/items.md#6-shop-bank-41-lorelei), [items.md §5](../tech/items.md#5-identification-and-curses)
+Tech: [items.md §6](../tech/items.md#6-shop-lorelei), [items.md §5](../tech/items.md#5-identification-and-curses)
 
 ---
 
@@ -172,7 +172,7 @@ else
 - The Stables cost nothing, heal nothing and do not age (data), so a healthy party can refill spells (inferred,
   see above) and collect a level-up there without spending days (follows from the rules above).
 
-Tech: [items.md §7](../tech/items.md#7-inn-bank-39-aries-inn),
+Tech: [items.md §7](../tech/items.md#7-inn-aries-inn),
 [characters.md §8](../tech/characters.md#8-inn-rest),
 [characters.md §7](../tech/characters.md#7-aging),
 [characters.md §6.2](../tech/characters.md#62-when-the-level-up-happens)
@@ -239,7 +239,7 @@ Cures of the other statuses have no side effects (data).
   (follows from the rules above).
 - There is also a raise spell, with its own odds and +1 year on success; see [spells.md](spells.md).
 
-Tech: [items.md §8](../tech/items.md#8-temple-bank-39-samsara-temple),
+Tech: [items.md §8](../tech/items.md#8-temple-samsara-temple),
 [characters.md §9](../tech/characters.md#9-status-ailments-and-recovery)
 
 ---

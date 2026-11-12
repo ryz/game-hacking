@@ -69,7 +69,9 @@ Race table `26:5B13` (8 bytes per race; a byte-identical copy at `27:56D9` is us
 
 ---
 
-## 3. Character creation (Training Grounds, bank 26)
+## 3. Character creation (Training Grounds)
+
+Code: bank 26.
 
 Order of steps (bank 26 menus): name -> race -> gender -> alignment -> bonus points -> class -> confirm.
 

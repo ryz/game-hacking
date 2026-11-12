@@ -133,7 +133,9 @@ Gloves, Other. Filter `2A:629A`:
 
 ## 3. Using items (battle and camp)
 
-### 3.1 Spell items (byte 33)
+### 3.1 Spell items
+
+Code: item byte 33.
 - The spell effect is `v & $3F`. Bit 7 means usable in battle, bit 6 usable in camp.
 - After each use, the item breaks with probability byte 34 % (`2E:4D01`).
 - Examples:
@@ -160,7 +162,9 @@ Gloves, Other. Filter `2A:629A`:
 - Holy items have thrown-at-undead texts (museum specials 22-25: 32-48, 16-24, 4-8 damage, "can destroy undead"). Those
   damage numbers are display text; the throw damage code was not traced.
 
-### 3.3 Special powers (byte 35; prompt "Use its special power?")
+### 3.3 Special powers
+
+Code: item byte 35; prompt "Use its special power?".
 Code `2A:5E53-5F5C`:
 1. The item is unequipped.
 2. The effect runs:
@@ -270,7 +274,9 @@ texts; I did not trace the code that applies them:
 
 ---
 
-## 6. Shop (bank 41, "Lorelei")
+## 6. Shop ("Lorelei")
+
+Code: bank 41.
 
 | Action | Price | Source |
 |---|---|---|
@@ -294,7 +300,9 @@ texts; I did not trace the code that applies them:
 
 ---
 
-## 7. Inn (bank 39, "Aries Inn")
+## 7. Inn ("Aries Inn")
+
+Code: bank 39.
 
 Menu `27:7890`: Stables free, Cots 10, Economy 50, Suite 200, Royal Suite 500 per week. Code `27:5046-5B53`:
 
@@ -337,7 +345,9 @@ Menu `27:7890`: Stables free, Cots 10, Economy 50, Suite 200, Royal Suite 500 pe
 
 ---
 
-## 8. Temple (bank 39, "Samsara Temple")
+## 8. Temple ("Samsara Temple")
+
+Code: bank 39.
 
 **Fee** (`27:6A20`) = rate × the patient's level (16-bit, from the SRAM roster record), paid by a chosen party member
 (`27:660A-6645`). "Not enough gold." if short.

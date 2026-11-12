@@ -73,7 +73,7 @@ Tech: [characters.md §2](../tech/characters.md#2-races)
 The player creates characters at the Training Grounds in this order: name, race, gender, alignment, bonus points,
 class, confirm. Six ready-made characters also exist (section 2.6).
 
-Tech: [characters.md §3](../tech/characters.md#3-character-creation-training-grounds-bank-26)
+Tech: [characters.md §3](../tech/characters.md#3-character-creation-training-grounds)
 
 ### 2.1 Starting age
 
@@ -308,7 +308,7 @@ restriction there.
 - What else the item use does (unequipping it, the item side of the change): [items.md](items.md).
 
 Tech: [characters.md §5.5](../tech/characters.md#55-special-classes-legendary-items),
-[items.md §3.3](../tech/items.md#33-special-powers-byte-35-prompt-use-its-special-power)
+[items.md §3.3](../tech/items.md#33-special-powers)
 
 ### 3.4 Change Class (Training Grounds)
 
@@ -488,7 +488,7 @@ raise from the dead (section 6 and [town.md](town.md)), and death by old age.
   below age − 56" (inferred). See [findings.md](findings.md).
 - Inn rooms, prices and the Stables: [town.md](town.md).
 
-Tech: [characters.md §7](../tech/characters.md#7-aging), [items.md §7](../tech/items.md#7-inn-bank-39-aries-inn)
+Tech: [characters.md §7](../tech/characters.md#7-aging), [items.md §7](../tech/items.md#7-inn-aries-inn)
 
 ---
 
@@ -544,7 +544,7 @@ A character has one main state and two flags that can be added on top of any sta
 - Death by old age: section 5.
 
 Tech: [characters.md §9](../tech/characters.md#9-status-ailments-and-recovery),
-[items.md §8](../tech/items.md#8-temple-bank-39-samsara-temple)
+[items.md §8](../tech/items.md#8-temple-samsara-temple)
 
 ---
 
