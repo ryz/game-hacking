@@ -12,6 +12,17 @@
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
+## Done 2026-11-12 (tenth session: museum items, owner's list)
+- GC counted the off-screen columns 20-31 (uninitialised RAM): ~80 slots wasted; now only visible columns.
+- Museum item side: category words written out, 'Not found', item list and page in the VWF, labels and all
+  use/special values translated, 'Equip:' as allowed-class abbreviations, '2-7' ranges.
+- Unidentified names: '?AX' fixed (ASCII records at 41:5706); every item 'looked like' an Axe because the
+  item name insert overwrote the class byte (item names now max 16 chars).
+- Character card: 'Lvl' in the VWF instead of the 8 px 'L'.
+- Reference translation: tools/bps.py applies an existing fan patch (kept out of git, rom/reference_en.bps);
+  the patch was made for another Japanese dump (source CRC32 FA82620F, ours 7ADC90E1 v1.0) and does not
+  apply cleanly: the output hangs. Needs the matching ROM or a patch for v1.0.
+
 ## Done 2026-11-11 (ninth session: render speed)
 - Letter drawing ~2.5x faster (shift tables), smaller bookkeeping costs; cursor move without a party: reaction
   at frame 6-12 (was 7-13; JP 2). The rest is per-tile bookkeeping (docs/re/vwf.md "Render speed").
@@ -72,10 +83,8 @@
 - Redirected messages left the text bank on the English bank; English now jumps back to the original terminator.
 
 ## Next (in rough priority)
-1. Museum (`docs/re/museum.md`): item side = hooks 41:66C2 / 41:62C7 (tested on a scratch ROM), repointed
-   unidentified-name table 41:5706, ~70 attribute rects to add, class letters, '~'. Monster room needs a third
-   VWF font layout (LCDC bit 4 = 1, font in VRAM1 $8000) before its hooks; element/EXP labels are graphics
-   (01:4100). "True name:" label is a mistranslation (= unidentified name).
+1. Museum monster room (`docs/re/museum.md` F): needs a third VWF font layout (LCDC bit 4 = 1, font in VRAM1
+   $8000) before its hooks; element/EXP labels are graphics (01:4100).
 2. Name-entry field still in the 8 px font (owner's rule: words in the VWF).
 3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
 4. Item effect descriptions (bank 46), prologue, title screen.

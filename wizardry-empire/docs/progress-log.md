@@ -11,6 +11,12 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - museum items, unidentified names, Lvl, GC visible columns
+- ROM: `3869893` sent.
+- Changed/fixed: see docs/status.md "tenth session".
+- Open: museum monster room (layout 3), reference translation patch needs the matching Japanese dump,
+  photographer round trip on the reference (blocked by that).
+
 ## 2026-11-11 - render speed, shop 'AC' fix
 - ROM: `00a8b90` sent.
 - Changed: shift-table Glyph, unrolled hot loops, one bank switch per cell write; card age stays 8 px.

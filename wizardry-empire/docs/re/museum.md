@@ -208,3 +208,9 @@ not overlap them.
   traced. It prints raw ASCII even after fix C.
 - Width of the longest items.json and monsters.json names in VWF pixels was not measured: 104 px for the lists,
   128 px / 2×64 px for the headers.
+
+## Implemented 2026-11-12 (item side)
+A (41:66C2 jp Stub_PrintZ), B (41:62C7), C (insert_unid, records in bank 41 $7928+), D (labels + 60 value rects
+read from the Japanese tiles with attribute-aware rendering, `nofix`), E ('~' bytes; classes as packed VWF
+abbreviations by MusClasses at 41:7B00 instead of single letters). The value rects' Japanese is in
+rects.json. Item names: field is 16 chars + $00, byte 17 = unidentified class (the old 17-char limit zeroed it).
