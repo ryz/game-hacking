@@ -1,5 +1,5 @@
 ---
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # Skill index
@@ -77,9 +77,10 @@ photographer set -> visual-qa (or reviewer with the compare images) for a screen
 
 ### tracer
 - File: `skills/tracer/skill.md`
-- Use when: we do not know where some text lives or which routine prints it.
+- Use when: where text lives / which routine prints it, how to reach a screen or state, coverage or buffer
+  audits.
 - Main output: notes file with routines, data layout, evidence and a hook proposal.
-- Also load: `wizardry-empire/docs/re/text.md`, `docs/re/vwf.md`, `docs/re/tasks.md`.
+- Also load: `wizardry-empire/docs/re/text.md`, `docs/re/vwf.md`, `docs/re/tasks.md`, `docs/re/rev1.md`.
 - Do not use for: patching; translation.
 - Guardrails: traces the original ROM; writes only its notes/scratch dir.
 

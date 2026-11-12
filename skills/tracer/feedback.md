@@ -69,7 +69,7 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
   entries separately; gbdis xref mode.
 - Corrected: claims checked against lists.json; 6 breath verbs + 4 no-target verbs fixed ("breathed fire at!"
   was live); battle-text.md row corrected; notes in docs/re/verbs.md.
-- Status: open (skill rule: second "find every reader" lesson would promote; xref -> tool backlog)
+- Status: promoted 2026-11-12 (readers/writers rule in skill.md Tools; xref -> tool backlog)
 
 ### 2026-11-12 - Rev 1 vs v1.0 differences
 - Task: list Rev 1 changes relevant to the translation (text coverage, RAM layout, code summary).

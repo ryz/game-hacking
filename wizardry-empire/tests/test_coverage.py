@@ -65,3 +65,24 @@ def test_translated_tables_have_no_unhandled_copies():
                 if not all((cb, a + shift) in keys or (cb, a + shift) in NEVER_READ for a in r):
                     problems.append("%02X:%04X copies %02X:%04X" % (cb, ca, b, r[0]))
     assert not problems, "; ".join(problems)
+
+
+def test_fix_sites_read_rom():
+    """Every unrolled copy the build turns into a text copy (Stub_Fix) must read a ROM table: the nearest
+    `ld hl,nn` before the site has nn < $8000 (27:662C copied gold from $D028 and was stubbed - temple fee bug)."""
+    import insert
+    rom = bytearray(open(ROM, "rb").read()) if os.path.exists(ROM) else None
+    if rom is None:
+        import pytest
+        pytest.skip("original ROM not present")
+    extra = {insert.rom_off(b, a) for b, a, *_ in insert.EXTRA_FIX_SITES}
+    bad = []
+    for o, *_ in insert.fix_sites(rom):
+        if o in extra:
+            continue
+        pre = rom[o - 16:o]
+        lds = [i for i in range(len(pre) - 2) if pre[i] == 0x21]
+        if not lds or pre[lds[-1] + 2] >= 0x80:
+            bad.append(hex(o))
+    assert not bad, bad
+

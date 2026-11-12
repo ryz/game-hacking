@@ -1,5 +1,7 @@
 # Typewriter message coverage ($C1BF/$C1C0, bank $C1C1) - JP Rev 1 census
 
+> Status: the five missing messages were added in 5ab9d44; the appendix shows the state at 13636d2.
+
 Base: original `rom/wizardry_empire_j.gbc` (SHA-1 f5f4e8be..., Rev 1). EN build 13636d2 copied to
 `work/re/msgcov/wizardry_empire_en.gbc` (+ .sym) and used only to check that the missing texts are still raw
 Japanese there. Scripts in `work/re/msgcov/` (sites.py, cover.py, full.py, fcchain.py, orphans.py, table.py,

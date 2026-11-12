@@ -65,7 +65,7 @@ bank 65. This was seen with `4F5A` (equip screen, below).
   is `22:4434-446E`:
   - It sets typewriter parameters and `$C1C1=$31`.
   - Then `ld a,2 / ld b,$22 / ld de,$20DA / call $06EF` creates **task 2**. Task 2 runs the typewriter at
-    `0:20F3`, which loops on `1B92`.
+    `0:20F3`, which loops on `1BAB`.
 - Breakpoints on `22:4434`/`22:4D9E` never fired during a full round (`pcs.py`). So nothing re-sets the bank
   between messages.
 - Full segment decode: `work/re/battle-text/bank49_4400.txt` (made by `dec49.py`).
@@ -76,7 +76,7 @@ bank 65. This was seen with `4F5A` (equip screen, below).
 | `0:2494 (v1.0)` | `$C1BF/C0` = segment | Calls `0:36BA`: removes `$FD` from the target name at `$C50F`. If `$C54D` bit 7 is set (unidentified), it substitutes the name from `49:56FD[$C51C]`. Then `0:24B0`: `ld a,2 / call 072B` wakes task 2. It waits until task 2 sleeps (`$C01A` bit 6, set by `$FC` → `1E35` → `0721`), then waits for a key (`$FF8B`). |
 | `0:24A2` | `$FFD6` | Chooses `36A1` (actor `$C48F`, same normalisation) or `365A` |
 | `0:2484 (v1.0)` | — | `36E8`: if unidentified, item name from `49:566B[$C560]` → `$C54F` |
-| `0:2482` | A = index, HL = table (bank 49) | `0:0EDF` (b=$31) reads the pointer and stores it in `$C6E3/4`. Sets `$C1BF/C0=$41E2` (`{F3 31 C6E3}{FF}`). Calls `1B92` once, which prints the whole string at the current `$C1C5/$C1C6`. |
+| `0:2482` | A = index, HL = table (bank 49) | `0:0EDF` (b=$31) reads the pointer and stores it in `$C6E3/4`. Sets `$C1BF/C0=$41E2` (`{F3 31 C6E3}{FF}`). Calls `1BAB` once, which prints the whole string at the current `$C1C5/$C1C6`. |
 | `0:236A`/`0:237E` | — | Combatant `$80`-byte records at WRAM `$D080+$80n` ↔ `$C48F` |
 | `0:2394` | A = monster ID | Copies 64 bytes from 57:`$4820+$40*id` to `$C50F` (name first, 12 chars + `$00`) |
 
@@ -156,7 +156,7 @@ Also: tables in bank 50 (`32:57DB (v1.0)`, `32:57FF (v1.0)`) point at bank-49 st
   to the 10.4 KB, so measure it.
 - Fallback if bank 49 fills up: patch `0:24B0` (`3E 02 CD 2B 07`, 5 bytes) to a stub that does
   `ld a,$31 / ld [$C1C1],a` first, then runs the original two instructions. This alone is not enough: these
-  sites set a pointer and then call `1B92` directly, and all of them would need the same fix:
+  sites set a pointer and then call `1BAB` directly, and all of them would need the same fix:
   - `0:2482`
   - `32:4223`
   - `22:5EF2`

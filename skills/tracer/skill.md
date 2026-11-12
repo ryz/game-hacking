@@ -24,6 +24,9 @@ Do not re-derive what they already state.
 ## Tools
 - Static: `python3 tools/gbdis.py BANK ADDR [N]` (bank-aware disassembly of the original ROM `rom/wizardry_empire_j.gbc`),
   `tools/tbl.py` (`tbl.dec(bytes)` decodes text), the census tools (`tools/census_*.py`, `tools/chain_rects.py`).
+- 'Which X uses Y' / 'who sets flag F': byte-search every reader and writer (the `ld hl,TABLE` / `ld a,[F]` /
+  `ld [F],a` opcodes over all banks), classify each site, check reachability, list dead entries separately;
+  do not trust the dispatch's list of sites.
 - Dynamic: the emulator client (`tools/gbemu-cli/cli/py/gbemu.py`, docs `tools/gbemu-cli/cli/PROTOCOL.md` and
   `cli/SKILL.md`) via `tools/emu.py` (`emu.open_emu(rom, state)`, `emu.boot(g)`, `emu.press(g, keys)`).
   Use the ORIGINAL ROM for tracing the game's own code (`--rom rom/wizardry_empire_j.gbc`), the English build only

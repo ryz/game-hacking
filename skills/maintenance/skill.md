@@ -3,7 +3,7 @@ skill: maintenance
 project: all
 summary: Read-only repo health check; drafts fixes for doc/skill drift, stale feedback and broken references.
 access: read-only
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # Maintenance - repo health check
@@ -50,3 +50,9 @@ End your final report with this block; the coordinator files it in `skills/maint
 - Friction: <what slowed you down or was unclear in this skill or the tools>
 - Proposed rule change: <a concrete change to skill.md, or "none">
 ```
+
+## Added checks (2026-11-12)
+- Every `tools/*.py` docstring usage line names the real path and current options.
+- RE notes in docs/re/ whose findings were applied carry a `> Status:` line; `$`-prefixed bank-0 addresses
+  without '(v1.0)' match the asm orgs (Rev 1).
+- `git log --since='YYYY-MM-DD 00:00 +0000'` (a plain date returns nothing in this time zone).

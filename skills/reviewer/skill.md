@@ -3,7 +3,7 @@ skill: reviewer
 project: wizardry-empire
 summary: Review one translated batch against the Japanese (read-only).
 access: read-only
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # Translation reviewer - Wizardry Empire (GBC)
@@ -21,6 +21,9 @@ insert codes, Yes/No) is enforced by `tools/batches.py check`; judge translation
 - `glossary.md`.
 
 ## Judge
+- Width-check every line you propose (`python3 -c "import sys;sys.path.insert(0,'tools');import text;print(text.width('...'))"`,
+  or by hand from fonts/vwf.txt: advance = art + 1, space 3) and flag lines within 2 px of the box. Terms with
+  several referents (こうてい) stay distinct in English wherever the Japanese distinguishes them.
 - Accuracy: mistranslation, omission, addition, wrong speaker, reversed meaning. Quote the JP and say what it means.
   Kana-only Japanese is easy to misread: check homophones against context.
 - Consistency with `glossary.md` (names, classes, statuses, places) and with neighbouring entries.

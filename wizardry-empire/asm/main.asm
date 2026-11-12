@@ -38,7 +38,7 @@ org 34, $7f00
     ld hl, VWF_Panel
     jp FarCall
 
-; Spells (docs/re/vwf.md, 'Spells'): 0:24CF also fetches the full English name into wSpell (bank 7 $D280).
+; Spells (docs/re/vwf.md, 'Spells'): 0:24E8 also fetches the full English name into wSpell (bank 7 $D280).
 org 0, $24e8
     call Stub_SpellPre
 ; Spell list (2A:4CBB): the 11 name cells of the RAM rect are blanked (copy from zeros) and, after the blit,

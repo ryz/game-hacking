@@ -43,7 +43,7 @@ stay balanced and every name shows up in menus, battle text and the character sh
 2. **Maze:** from `maze.state`; walk, open doors (A), turn, SELECT menu (Search, Pick a lock, Find allies,
    Settings), Camp (B): Inspect, Reorder, Equip, Spells (cast a healing spell in camp).
 3. **Battles:** at least 3 (`tools/explore.py ROM STATE OUTDIR MAXSTEPS SEED` walks until an
-   encounter, a stairs prompt or a door message: look at `hit_NNN.png`). Use every command at least once: Fight (Normal / Aim to hit / Aim for damage), Parry, Hide,
+   encounter, a stairs prompt or a door message: look at `hit_NNN.png`). Use every command at least once: Fight (Normal / Aim to hit / Power hit), Parry, Hide,
    Spell (attack and heal), Item, Run. Read every message line; watch the monster panel.
 4. **After battles:** chests (Inspect, Disarm, Open, Leave), trap messages, experience and gold messages.
 5. **Back to town:** stairs up (Yes/No) or Edge of Town; then inn until a level-up (or as far as EXP allows:
@@ -66,7 +66,7 @@ stay balanced and every name shows up in menus, battle text and the character sh
   the first input (the info box is still being drawn; `boot` already does this).
 - Edge of Town: "Explore the maze" enters the dungeon in Camp. B closes/opens Camp. In the maze: up = forward,
   left/right = turn, A = forward/open a door, SELECT = dungeon menu (Search, Pick a lock, ...). The stairs
-  prompt (Yes/No) appears only on the stairs tile (e.g. `tools/routes` maze entry, explore seed 7, 6 steps).
+  prompt (Yes/No) appears only on the stairs tile (F1 down stairs: `tools/maze_goto.py ROM maze.state 15 0 OUT 60`).
 - Battle menus swallow inputs pressed too fast: follow every press with `w30`.
 - Battles start at random while walking.
 
@@ -102,4 +102,6 @@ End your final report with this block; the coordinator files it in `skills/playt
   the roster (temple) need the SRAM roster too: cart_ram 0x001 + $80*n, same offsets, mirror at +$1000.
 - Temple: Deposit the dead member first, then Rescue; poke the payer's gold before opening Rescue.
 - Chest trap: $C635 = trap type + 1. Position: $CB80 x, $CB81 y, $CB82 floor-1, $CB83 facing (tools/maze_goto.py).
-- Ready states: work/re/reach/states/ (chest menus, event squares, floor 2) - docs/re/reach.md.
+- Chest/event/floor-2 states: rebuild them for your build with `tools/maze_goto.py` / `tools/maze_make_chest.py`
+  from your maze.state (recipes in docs/re/reach.md section 3); work/re/reach/states/ (untracked) matches
+  e45012c only.

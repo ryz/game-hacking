@@ -1,5 +1,6 @@
 """Audit of the v1.0 -> Rev 1 port: does every address in script/*.json and every byte range the build patches in the
-original banks map to Rev 1 (tools/revmap.py)? Run after a build (needs build/wizardry_empire_en.gbc).
+original banks map to Rev 1 (tools/revmap.py)? Run after a build (needs build/wizardry_empire_en.gbc):
+  python3 tools/revaudit.py
 """
 import sys, json, re, os, glob
 sys.path.insert(0,'tools'); import revmap

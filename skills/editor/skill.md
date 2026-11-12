@@ -16,11 +16,15 @@ You proofread the English script as a whole for a native-English reader. You sug
 Read-only: no edits, no git, no subagents. Return the report as your final message.
 
 ## Inputs
-All `script/*.json` (13 files incl. spells, titles, lists, lists50, fixtables, chests, notice, templates)
+All `script/*.json` (15 files incl. spells, titles, lists, lists50, fixtables, chests, notice, templates, npcs,
+classprompts)
 (read the `en` fields; `jp` only to resolve a doubt), and `glossary.md`. Run `python3 tools/lint.py` for the
 mechanical checks first and do not repeat its findings.
 
 ## Look for
+- Width-check every line you propose (`python3 -c "import sys;sys.path.insert(0,'tools');import text;print(text.width('...'))"`,
+  or by hand from fonts/vwf.txt: advance = art + 1, space 3) and flag lines within 2 px of the box. Terms with
+  several referents (こうてい) stay distinct in English wherever the Japanese distinguishes them.
 - Consistency of recurring phrasing: prompts ("Who will ...?", "... which item?"), refusals ("Can't ... in that
   state."), shop lines, Yes/No questions, gold/EXP wording.
 - Voice per character (archaic speakers stay archaic; monster-speak in caps), across all their messages.

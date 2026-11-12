@@ -11,7 +11,8 @@ Sequence tokens (comma separated, KEY*n repeats):
   boot                                  power on and go through logo/title/mode select to the town (~1100 frames)
   shot                                  extra screenshot (one is taken after every token anyway)
 Outputs in --out: NN_token.png per token, sheet.png (all shots), log.txt (token, frame, PC, ROM bank), and
-end.state if --save is given. Exit status 2 if the CPU looks hung (same PC/frame counter for 120 frames).
+end.state if --save is given. Exit status 2 if the CPU looks hung (VBlank counter $C00A unchanged for 120 frames).
+Turbo (no real-time pacing) is the default in open_emu(); turbo=False for timing work.
 Mapper/RAM facts for scripts: docs/re/text.md. Python client: tools/gbemu-cli/cli/py/gbemu.py.
 """
 import argparse, os, sys

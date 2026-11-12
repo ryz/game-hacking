@@ -27,15 +27,17 @@ screenshot sets (owner's rule, 2026-11-11); you edit nothing else in the repo.
 - Same inputs for both ROMs, so `compare@3x` shows the same moment JP | EN.
 
 ## Tools
-- `python3 tools/shoot.py SET [--list FILE] [--only id,id] [--rom en|jp|both]` -> `work/shots/SET/`:
+- `python3 tools/shoot.py SET [--list FILE] [--only id,id] [--rom en|jp|both|ref]` (`ref` = the reference fan patch on
+  Rev 1: `tools/bps.py rom/reference_en.bps rom/wizardry_empire_j.gbc rom/wizardry_empire_ref.gbc`) -> `work/shots/SET/`:
   `<id>.<rom>.png` (native), `<id>.<rom>@3x.png`, `<id>.compare@3x.png`, `index.md` + `index.json`.
 - Shot list format (`tools/routes/shots.txt` is the curated list): `id | category | description | tokens`.
   Tokens are `tools/emu.py` tokens: `pow` (power on only), `boot` (to the town), `PARTY` (form the 6-member
-  party), keys (`a b start select up down left right`, `KEY*n`, `KEY+KEY`), `wN` (wait N frames).
+  party), keys (`a b start select up down left right`, `KEY*n`, `KEY+KEY`), `wN` (wait N frames), `poke` (all
+  monsters seen, museum).
 - Exploring a screen first: `python3 tools/emu.py --out work/shots/SET/explore/<name> --seq "..." [--state S] --save S`
   gives a screenshot per input; use it to find the inputs, then write the shot line.
 - Random encounters: `tools/explore.py` (rom state outdir maxsteps seed) walks until a battle or another non-maze screen
-  (stairs prompt, door message: look at `hit_NNN.png`)
+  (answers No at stairs, turns twice after 'Ouch!'; door message: look at `hit_NNN.png`)
   and saves `hit.state`. Shots that start from a state cannot go in `shots.txt` (it plays from power-on):
   capture them with `emu.py --state` (native PNG = its per-token screenshots) and list them in your report
   with the state path and inputs.

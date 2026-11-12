@@ -1,5 +1,8 @@
 # Missing Japanese text: prologue, title/options, item effect descriptions (tracer, 2026-11-12)
 
+> Status: all applied in de456d3. Credits are not ASCII: a credits charset at codes $80+, 2C:5C51-6223, 10
+> rects, now VWF rects in rects.json.
+
 Rev 1 addresses. Original ROM `rom/wizardry_empire_j.gbc`. English build copied from `build/wizardry_empire_en.gbc`
 (built 2026-11-12 01:49, HEAD b57597a) to `work/re/missing-text/en_build.gbc`. Scratch scripts, shots and states
 are in `work/re/missing-text/`. Nothing was patched.

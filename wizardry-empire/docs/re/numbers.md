@@ -11,7 +11,7 @@ Scratch: `work/re/numbers/` (harness, census JSON, screenshots, states).
 ## 1. Answer
 
 Almost every 8 px number in the English build comes from one routine, **0:0FE9** (binary to decimal, 84 call
-sites in banks 0/21/26/27/29/2A/2C/2D/2E; no call site is patched yet). One hook inside it (0:10A4, the digit
+sites in banks 0/21/26/27/29/2A/2C/2D/2E; (2026-11-12: all routed by the 0:10A4 hook, Stub_Num; Camp reorder rect 2A:7302 done in cedb749)). One hook inside it (0:10A4, the digit
 store loop) can route all of them through the VWF. The only exceptions are the typewriter `$F8` path (0:1DAC, already VWF), the
 two symbol-sheet digit sets (monster panel "(n) m" 22:5713 (v1.0)/5835, automap coordinates 21:40C4, tiles
 `$F4+n` from 1:$4000) and one raw digit rect (Camp reorder 2A:7302). The other 8 px glyphs are short labels
@@ -20,7 +20,7 @@ and separators written by code (`ld a,'X' / ld [de],a`): "L", "HP", "AC", "HP-MA
 name-entry chart, and the 2-cell in-place rects "Ax" (29:6EA4) and "--" (29:71EC). No rect has `fixed: true`.
 The VWF digits are 5 px except '1' (4 px), so columns need a tabular '1' (or per-digit 5 px cells). The
 typewriter `$F8` padding (`$20`, 3 px) needs a 5 px figure space: the battle and maze party lists are VWF
-already but misaligned by 2 px ("7/" vs "10/"). Performance: the party list (27:4990) calls 0FD0 4 times per
+already but misaligned by 2 px ("7/" vs "10/"). Performance: the party list (27:4990) calls 0FE9 4 times per
 frame on every town/tavern/temple/inn/shop/camp/outskirts screen with a party (120 calls in 30 frames), so
 the hook needs a redraw cache like the rect/name caches.
 
@@ -40,7 +40,7 @@ or pops). Checked with `work/re/numbers/ctx.py` -> `callers.txt`.
 Two other digit writers exist but are not used: 0:11A3 (byte -> decimal, no callers) and 0:3252 (hex).
 No ad-hoc `add $30` digit writers in game banks.
 
-How confirmed: count-only PC breakpoints on 0FD0 and on one return address per routine group (48 groups,
+How confirmed: count-only PC breakpoints on 0FE9 and on one return address per routine group (48 groups,
 `groups.txt`), run over all 118 non-boot routes of `docs/shots/jp_tour/index.json` on the EN build
 (`census.py` -> `census_tour.json`, screenshots `work/re/numbers/shots/<id>.png`), and over the 32 JP
 battle/chest states (`census_jpbattle.json`). On every screen a scanner compared each visible BG/window cell's
@@ -81,9 +81,9 @@ Site = call address. "Tour" = seen on the tour; otherwise found statically.
 | M | rect 2A:7302 (1x6 "123456", 0:1789 from 2A:4FA0) | Camp reorder order numbers | camp_reorder(_pick) | VWF rect (2026-11-12); names 2A:7082 -> Stub_PrintZ |
 | N | name-entry chart rects + "END", typed name (8 px, known) | name entry | training_create_name_*, training_rename_entry | |
 
-Party list A: confirmed with a stopping breakpoint on 0FD0 from `work/states/p2/party.state` (A=2, B=$30,
+Party list A: confirmed with a stopping breakpoint on 0FE9 from `work/states/p2/party.state` (A=2, B=$30,
 C=$84, DE=$D16A..$D20A and $D16F..; 13 calls per row per 30 frames). Battle party list = typewriter: break on
-0FD0 in the EN battle, return 0:1DAF, caller 32:429F (DE=$C1DE).
+0FE9 in the EN battle, return 0:1DAF, caller 32:429F (DE=$C1DE).
 Monster panel: tile `$F6` at BG row 2 col 17/19 (attr $80, VRAM0) is a copy of the 8 px '2'; the only DMA into
 `$8C00-$8FFF` is 1:$4000 (64 tiles) from 22:441F -> 0:19B0 (`panel3.py`). The reorder digits are written by
 `rst $08` from 0:17AA (blit 0:1789), source `$FFB8-$FFBA` = 2A:7302 (`reorder2.py`).
@@ -99,16 +99,16 @@ States (EN, reproducible):
 ### 3.1 Global number hook (covers groups A-I, about 80 sites)
 Patch 0:10A4-0:10B6 (19 bytes) to (15 bytes, 4 spare):
 ```
-108B  call Stub_Num      ; carry = printed by the VWF, DE = field end
-108E  ret c
-108F  ld a,[hli]         ; original loop without "or a / jr z,+1": B is never 0 ($30/$F4)
+10A4  call Stub_Num      ; carry = printed by the VWF, DE = field end
+10A7  ret c
+10A8  ld a,[hli]         ; original loop without "or a / jr z,+1": B is never 0 ($30/$F4)
       ld [de],a
       inc de
       ld a,l
       cp $c2
       ret z
       dec b
-      jr nz,$108F
+      jr nz,$10A8
       ret
 ```
 Stub_Num (bank 0, about 30 bytes; free: `$1C4F-$1C78` after Stub_TWInit, 42 bytes; check with the assembler):
@@ -188,7 +188,7 @@ the automap). Full VWF: have VWF_Panel draw the counts with the names (22:5713 (
 
 ## 5. Open questions
 - Screens not reached: groups A2, F (27:594C/6A56/6ABC), G (bank 2C window sheet), H (2D:63EB), I (2E
-  location), K (automap), 0:381F. They go through the same 0FD0 hook, but their layouts are unverified.
+  location), K (automap), 0:381F. They go through the same 0FE9 hook, but their layouts are unverified.
 - WRAM bank 6 `$DA00-$DFFF` is unused only on the town/camp/maze routes checked; battle not checked.
 - Per-call VWF cost is not measured; the town at 4 calls/frame is the case to test with the cache.
 - Seen by the way (not numbers): `outskirts_quit` (end-session message) is garbled in EN while JP is settled:

@@ -5,12 +5,22 @@
   emulator setup (gbemu-cli). Width checks fail the build when English overflows a box.
 - VWF engine (mixed case, `fonts/vwf.txt`), 157-tile slot pool, hooks for:
   rect boxes, typewriter messages (`$F2` redirect), `$00`-terminated name copies (17 sites),
-  inline code text (`rst $38`, 19 strings), fixed-length table copies (9 sites, address-keyed map),
+  inline code text (`rst $38`, 19 strings), fixed-length table copies (8 sites, address-keyed map),
   bank-49 string tables (177 entries, repointed), chest names (bank-37 immediates).
-- Translated: 251 menu/info boxes, 429 messages (bank 45 events/NPCs, bank 49 dungeon/system),
-  224 item names, 166 monster names, 6 default characters, character-sheet labels, tavern menu.
+- Translated: 332 rects (menus/info boxes), 439 messages (bank 45 events/NPCs, bank 49 dungeon/system),
+  224 item names, 167 monster names, 6 default characters, 8 NPC names, 9 class prompts.
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
+
+## Done 2026-11-12 (twelfth session: crash fix, chests/events, message census)
+- Crash: unidentified group names of 13+ characters overflowed $C50F (renamed; tests/test_limits.py).
+- VWF: name-entry field and cursor, Camp reorder digits/names, magic-circle party list; {FA} wrap measures 3/4
+  cell per character; number stub leaves B = 0; battle panel GC (raster split); tavern list (epoch wrap).
+- Temple fee copy 27:662C no longer stubbed as text (fix_sites() takes the nearest ld hl; tested).
+- Chests, traps, events, recruit and temple checked (docs/re/reach.md, tools/maze_*.py); NPC names
+  (script/npcs.json, 'Sigfrid').
+- Message census (docs/re/msgcov.md): down-stairs prompt + 8 bank-49 messages added; tests/test_msg_coverage.py.
+- Temple result line follows the name; Camp Equip slot names right-aligned.
 
 ## Done 2026-11-12 (eleventh session: Rev 1 port, museum monster room, editor pass)
 - Base ROM is now the Japanese **Rev 1** (SHA-1 f5f4e8be..., CRC32 FA82620F). `tools/revmap.py` maps v1.0
@@ -102,14 +112,11 @@
 1. Museum monster page: opening takes ~31 frames (JP 9; each VWF GC ~2.5 frames), closing shows a few frames of
    garbage in the page. Owner's choice: going straight to the BG pass for page prints opens it in ~21 frames but
    shows ~5 frames of garbage in the list first (tried 2026-11-12, reverted: flicker).
-2. (done 2026-11-12) Name entry: typed name in the VWF (26:6C62 NameField), cursor box placed by the VWF
-   width (26:6C37 NameCursorX).
-3. New messages not yet seen on screen: 49:4314 'Add whom to the party? Room for N' (Find allies with a
-   found character), 49:44CE party location (Compass-type spell/item?), 49:5594 alignment change + 'The
-   monster suddenly attacked!' (fighting a friendly group). Chests/events now reachable (docs/re/reach.md, tools/maze_*.py; work/re/reach/states/): a playtest of the
-   chest screens and the bank-45 events is next. NPC names (8 recruit records, bank 45 $4000, 7-char field)
-   translated (script/npcs.json); owner's choice: Siegfried's 7-letter form is "Sigfrid" (messages keep
-   "Siegfried").
+2. Messages added from the census but not yet seen on screen: 49:4314 (Find allies with a found character),
+   49:44CE party location, 49:451F teleport prompt, 49:5594/55A4 alignment change (friendly group attacked),
+   49:43B9/4432/4583 (docs/re/msgcov.md) - playtest running. Owner's choice: Siegfried's 7-letter name-field
+   form is "Sigfrid" (messages keep "Siegfried").
+3. (merged into 2)
 4. Ending/credits checked only with the forced route ($D000=8 from the town); a real final-boss ending (maze
    layout) not seen. The game has no prologue; item effect texts are the museum rects (all translated).
 5. VWF: short transients while screens are typed (1-4 frames). Town input delay after arrival not re-measured
@@ -124,18 +131,22 @@
    157 slots, so the freed slots are the only ones left. Inn list -> sheet is now ~10 frames (was ~35). A real
    fix needs more slots (e.g. layout-specific pools) or building the new screen after the old one is gone.
 8. Still 8 px (docs/re/numbers.md): '/', '-', '~', ':' separators and the labels L/HP/AC/HP-MAX/Lo/Hi/ON/OFF,
-   spell-slot grid separators, monster panel and automap digits (symbol sheet), Camp reorder digits.
+   spell-slot grid separators, monster panel and automap digits (symbol sheet).
    Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.
 9. Seen once, not reproduced: wrong digits in the chest "Who will inspect?" list after inputs during the trap
    message.
-10. Tool backlog (from agent feedback): `tools/emu.py` hang check should report a hang only when the PC stays
+10. Tool backlog (from agent feedback): gbdis xref mode (callers/readers/writers; asked three times);
+   `tools/emu.py` hang check should report a hang only when the PC stays
    in a tight range, plus a soft-lock check (screen and task table unchanged); shoot.py state-based shots
-   (`@STATE` lines, `!` no-settle); explore.py answers No at the entrance stairs; contact-sheet tool; census
+   (`@STATE` lines, `!` no-settle); contact-sheet tool; rect-site coverage test; `tools/loops.py` copy-loop
+   scanner; decode_msg with all control codes / `--stop-fc`; a pokes+tokens->state helper; tour.py should flag
+   a screen that does not reach its route's target (a boot stuck on Mode Settings passed as OK); census
    segment mode (`$FC`) and attributes; lint: ignore `{..}` inserts before punctuation, label lists.json
-   entries, Ifrit-style spell/monster pairs; a width helper for suggested rect lines; gbdis xref mode;
-   revmap inv_addr()/gaps().
+   entries, Ifrit-style spell/monster pairs, credits rects 'same Japanese'; revmap inv_addr()/gaps().
 11. Editor items not applied: Maze Robe vs Magic Gate (まどう ruling), ADISH monster-speak in caps, plural
    counts with N = 1 ("1 levels"), remaining Polish list (skills/editor/feedback.md 2026-11-12).
+12. Glossary rulings for spells vs monsters with the same Japanese: Lion of Hell / Hell Lion, One from Beyond /
+   Far Comer, The Unspeakable / Nameless One, Shadow Dragon / ShadowDragon.
 
 ## Known issues
 - Untranslated text shows as blank/garbage (kana tiles are no longer loaded; their slots belong to the VWF).

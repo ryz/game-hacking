@@ -39,6 +39,11 @@ Run from `wizardry-empire/`:
   `work/qa/tour_en|tour_jp/<route>/sheet.png`; run it after every build and give the sheets to `visual-qa`.
 - Reference screenshots: `python3 tools/shoot.py SET [--only ids]` (curated list `tools/routes/shots.txt`) ->
   `work/shots/SET/` native 160x144 + 3x + JP|EN compare PNGs and a catalogue.
+- Maze reach: `tools/maze_goto.py` (poke next to a square + check the event), `tools/maze_route.py` (walking
+  tokens), `tools/maze_make_chest.py` (chest after a battle); random walk to a battle: `tools/explore.py ROM STATE
+  OUTDIR [MAXSTEPS] [SEED]`. Recipes: `docs/re/reach.md`.
+- Reference fan patch (never committed): `python3 tools/bps.py rom/reference_en.bps rom/wizardry_empire_j.gbc
+  rom/wizardry_empire_ref.gbc`; `shoot.py --rom ref`. Port audit: `tools/revaudit.py` (after a build).
 - Disassemble: `python3 tools/gbdis.py BANK ADDR [N]`. Assembler: `tools/asm.py` (rgbds-like syntax, see its docstring).
 - Census tools (find text in the original ROM): `tools/census_rects.py`, `tools/chain_rects.py`,
   `tools/census_msgs.py`, `tools/census_inline.py`.

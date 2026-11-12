@@ -228,8 +228,8 @@ rects.json. Item names: field is 16 chars + $00, byte 17 = unidentified class (t
   spell-element table 2A:49BF). Must keep BC (41:685E uses B).
 - Resistance 100 (41:6B10: '10' then glyph `$EE` over the second cell): VWF "100" over both cells.
 - Pool pressure: the page (~96 slots) is built in the hidden window while the list (~84) is on the BG; the pool has
-  157. `AllocScan` in layout 2 orders the dry GC passes by destination (see vwf.md). Opening a page: 37 frames
+  157. `AllocScan` in layout 2 orders the dry GC passes by destination (see vwf.md). Opening a page: ~31 frames after the faster GC scan
   (previous build 22, Japanese 9); each GC costs ~5-6 frames. Closing a page shows a few frames of garbage in
   the page before the list appears (the list redraw under the shown page takes the page's slots; the old build
   showed garbage in the list instead).
-- Open: the minus signs ('-' before AC, HP range) are still the 8 px glyph.
+- Minus signs and ranges in the small font (6500974).

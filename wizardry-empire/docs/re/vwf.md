@@ -8,7 +8,8 @@
   Codes `$80-$FF` are loaded either to VRAM1 `$9000` ("split" layout: typewriter screens, dungeon) or
   VRAM0 `$8800` ("flat" layout: town/menu screens), always through the VBlank DMA queue (`0:1443`).
 - English needs no kana, so the patch drops the loads of codes `$80-$EF` (`VWF_FontLoad`, called from the
-  enqueue stub) and keeps `$F0-$FF` (cursor arrow, window frame). Those 112 VRAM slots are the VWF pool;
+  enqueue stub) and keeps `$F0-$FF` (cursor arrow, window frame). Those slots ($80-$EF without $A0/$CF/$D0/$EF) plus unused kana codes in the lower half form the VWF pool
+  (157 slots, `tools/build.py` POOL);
   nothing else writes them, so the VWF can upload at any time.
 - The same hook records the layout (`wLayout`) and invalidates the WRAM shadow copies (`wValid`).
 
@@ -36,15 +37,15 @@
 ## Text paths
 | Path | Hook | English data |
 |---|---|---|
-| Rect blocks (`[w][h][tiles]`) | `$1723`/`$1770` -> `Stub_Rect*`; `$17BD` masks the marker | first 5 bytes become `[w|$80][h][bank][ptr]`; rows split by `$FD`, `$FC n` = pixel x, `$FF` end |
-| Typewriter messages | `$1C11` char output -> `TW_Char`; `$1B3F` init | original message start becomes `$F2 bank lo hi` (jump); `$F4 col $FF` places the cursor |
+| Rect blocks (`[w][h][tiles]`) | `$173C`/`$1789` -> `Stub_Rect*`; `$17D6` masks the marker | first 5 bytes become `[w|$80][h][bank][ptr]`; rows split by `$FD`, `$FC n` = pixel x, `$FF` end |
+| Typewriter messages | `$1C2A` char output -> `TW_Char`; `$1B58` init | original message start becomes `$F2 bank lo hi` (jump); `$F4 col $FF` places the cursor |
 
 The typewriter reports to the game the number of cells used (`$C1C5`), so the game's own newline/cursor logic
 keeps working; it resyncs whenever the game moves the cursor or the buffer base changes.
 
 ## RAM used
 - WRAM bank 7: shadows `$D000 + code*16` (`$D000-$DEFF`), variables `$DF00-$DFFF` (cleared once on first use,
-  signature `VY` at `$DFFE`; bump it when the variable layout or the init changes, so old savestates re-init),
+  signature `V^` ($56 $5E) at `$DFFE`; bump it when the variable layout or the init changes, so old savestates re-init),
   plus tables in the shadows of non-pool codes: `wGame` `$D200` ($20/21), `wRC_*`/`wEpoch` `$D220-$D22C` ($22),
   `wSpell` `$D280` ($28/29), `wGameNew` `$D2A0` ($2A/2B), `wHash` `$D2C0` ($2C-$3B), `wShared` `$D410`
   ($41/42), `wRC_cells`/`wRC_attrs` `$D440-$D53F` ($44-$53). CheckInit clears only `$DF00-$DFFD` and
@@ -109,7 +110,7 @@ Bank-49 messages keep their English inside bank 49 (free `$5726-$7FFF`, shared w
 `$42` printed shop text instead of attack verbs.
 
 ## Notice Board (2B:57DF)
-The scroll is one picture (rect `2C:597F` blitted to `$D000` by `$1723`); the Japanese text is part of the
+The scroll is one picture (rect `2C:597F` blitted to `$D000` by `$173C`); the Japanese text is part of the
 bitmap (rows 2-15, cols 2-17, palette 6, VRAM1). `2B:57FF` (far call to the fade-in `38:4054`) now calls the
 trampoline `2B:7F00`: far call `VWF_Notice`, then the fade-in. It has to run before the fade-in: the buffer is
 not copied to VRAM again afterwards. `VWF_Notice` fills the area with tile `$20` (VRAM0, paper colour 2),
@@ -163,7 +164,7 @@ and the frames from a key press to the first screen change (JP 2).
   cursor). Town without a party (info box): reaction at frame 7-13 (was 14-18; JP 2): a box render costs
   ~22k instructions (1.5 frames).
 - Savestates from older builds are unsafe after code changes (the saved call stack returns into moved code;
-  the town froze). Signature now `'V','\\'` .. bumped on every layout change.
+  the town froze). The signature (`wMagic`, currently `V^`) is bumped on every layout change.
 
 ## Numbers (0:0FE9 -> Stub_Num -> VWF_Num)
 `0:10A4` (digit store of the number printer, 84 call sites) calls `Stub_Num`: base `$30` into the bank-3
@@ -179,8 +180,9 @@ number field afterwards (shop header: age, then 'AC') and would inherit the VRAM
   2p+1 = b << (8-p)), 8 rows unrolled, empty rows skipped (19.6k -> 7.9k instructions per cursor move).
 - `BitAddr` mask table `BitMask` ($6FF8); `NextCell` and the tile build in `Commit` unrolled; `Commit` writes
   the cell and attribute with one WRAM bank switch.
-- Space: font tables cut to codes $00-$7F (FontAdv/FontRows; every lookup masks with $7F), FixMap capacity 440.
-  Code and data must end below $6FF8 (assert).
+- Space: font tables cut to codes $00-$7F (FontAdv/FontRows; every lookup masks with $7F). FixMap in bank $7F
+  (insert.py, bucketed by source page). VWF-bank code and data must end below $6E00 (assert; MaybeSlot $6E00,
+  BitMask $6FF8, ShiftTab $7000).
 - Not done: batching tile uploads into VBlank. Measured waits are ~0.2 frame per box; the rest is per-tile
   bookkeeping (~1000 instructions per tile: slot search, ownership, hash, duplicate check, shadow compare).
 - Note: render frames execute ~13.5k instructions vs ~29k in idle busy-wait frames (heavier instructions), so
@@ -198,3 +200,15 @@ number field afterwards (shop header: age, then 'AC') and would inherit the VRAM
 - Battle raster split: the monster area scrolls (SCX=$50) above the unscrolled party panel. With SCX != 0 the GC
   counts columns 0-20 as well as SCX/8..+20 (it read SCX mid-frame and freed the panel's slots).
 - `Stub_PrintZ` returns DE past the text (game copy loops leave DE there; the inn prints next to the name).
+
+## Later hooks (2026-11-12)
+- `{FA}` look-ahead: `0:1CB3` -> `Stub_Measure` (stops at `$F2`), `0:1D1E` -> `Stub_WrapCmp` (3/4 cell per
+  character).
+- Name entry: 26:6C62 NameField (typed name in the VWF), 26:6C37 NameCursorX (cursor box by VWF width).
+- Camp reorder: rect 2A:7302; name copy 2A:7082 -> Stub_PrintZ. Event party list 2D:7BE7 -> Stub_PrintZ.
+- `Stub_Num` leaves B = 0 (callers test B after 0:0FE9, e.g. 2D:7BB3 poison marker).
+- Temple result line 27:67D0/681D: name at $D0A1, the rect after it (Stub_PrintZ returns DE past the text).
+- GC: MaybeSlot prefilter, rows of 21 visible cells (BG with SCX != 0: columns 0-20 too, battle raster split);
+  museum pass order (`wGCSkipWin` modes); EpochBump drops the epoch caches on the wrap.
+- Signature `V^` since 2026-11-12 (wGCchk etc.); adding a variable means a bump.
+

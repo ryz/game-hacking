@@ -1,5 +1,8 @@
 # RAM buffer overflow audit: script text copied into fixed-size RAM (tracer, 2026-11-12)
 
+> Status: fixes applied in d7d7e93 (temple fee) and 85d10bc (NPC names, script/npcs.json); limit tests in
+> tests/test_limits.py, the fix-site test in tests/test_coverage.py.
+
 Base: Japanese Rev 1 `rom/wizardry_empire_j.gbc`; English build e45012c (copied to `work/re/overflow/`).
 Scratch: `work/re/overflow/` (`scan.py`/`scan26.py` loop finder + `loops*.txt`, `diff.py` JP/EN byte diff,
 `pay.py` dynamic check, `tw_1bab.txt` typewriter disassembly).

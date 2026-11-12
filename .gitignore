@@ -8,3 +8,5 @@ build/
 work/
 **/tools/gbemu-cli/
 __pycache__/
+*.bps
+*.ips

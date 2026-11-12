@@ -8,7 +8,8 @@ Writes checkpoint states into <out>/ (plus sheet_*.png for checking):
   renamed.state  town, the six renamed (no party)
   party.state    town, party of six formed at Rose's Tavern, cursor on the tavern
   camp.state     first floor of the maze, Camp open (from Edge of Town > Explore the maze)
-  maze.state     first floor of the maze, Camp closed, facing the corridor All inputs come from power-on, so the states can be rebuilt for any build.
+  maze.state     first floor of the maze, Camp closed, facing the corridor.
+All inputs come from power-on, so the states can be rebuilt for any build.
 """
 import argparse, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))

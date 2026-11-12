@@ -1,4 +1,5 @@
-"""Shortest walking route (tokens) on a floor map from the ROM: python3 route.py FLOOR X0 Y0 DIR0 X1 Y1
+"""Shortest walking route (tokens) on a floor map from the ROM: python3 tools/maze_route.py FLOOR X0 Y0 DIR0 X1 Y1
+(env ROUTE_ALLOW=4,6,8 lets it cross special squares)
 Map: bank $3E, $4000 + $400*(FLOOR-1), cell = 4 bytes at ((y^15)<<4|x)*4; byte0 = walls, 2 bits per dir
 (dir 0 y+1, 1 x+1, 2 y-1, 3 x-1; 0 open, 2 door); byte2&$3F = square type. 'right' = dir+1."""
 import sys

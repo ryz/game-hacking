@@ -23,4 +23,3 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 - Status: promoted 2026-11-12 (inputs, duplicate names, battle tense - fixes to the skill's own scope); width
   helper -> tool backlog
 
-_No runs yet._

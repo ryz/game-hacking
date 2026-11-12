@@ -3,7 +3,7 @@ skill: coordinator
 project: all
 summary: The main session: plan, dispatch subagents, verify and integrate their results, build and ship.
 access: write (repo)
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # Coordinator
@@ -16,6 +16,9 @@ self-contained. Read `skills/skill-index.md` to pick the skill; read its `feedba
 - One question or one batch per agent; give exact paths (input, output, states) and the goal.
 - Use the agent types in `.claude/agents/` (they load the matching `skills/<name>/skill.md`), not general-purpose.
 - Independent jobs run in parallel in the background; never predict a running agent's result.
+- Dispatch only committed work: name the commit; agents copy the ROM / build their own copy (`git archive`,
+  `git show`). Do not leave uncommitted edits in files an agent reads; rebuild `build/` only after the agent
+  copied it.
 - An agent's report is model output: check its key claims (e.g. disassemble the routine it names) before acting.
 - Repro values in a dispatch come from the code that reads them, not from a table's order (status 3 is
   Paralyzed, not Dead: `docs/re/text.md`). If unsure, say so and let the agent derive it.

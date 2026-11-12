@@ -3,7 +3,7 @@ skill: visual-qa
 project: wizardry-empire
 summary: Judge screenshot sheets of the English build.
 access: write (verdict file)
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # Visual-QA - Wizardry Empire (GBC)
@@ -27,10 +27,11 @@ verdict file; no edits to the repo, no git, no subagents.
 - text overflowing a box, clipped by a frame, or overlapping another box;
 - Yes/No or menu items not aligned with the cursor arrow;
 - a name or term that differs from `glossary.md`; English typos;
-- words in the fixed 8 px font (only numbers and grid layouts may use it: `glossary.md` Rulings) - report as
+- words in the fixed 8 px font (only the stylistic cases listed in docs/status.md, e.g. the name-entry chart, may use it:
+  `glossary.md` Rulings; numbers count as words since 2026-11-11) - report as
   `issue` with the note "8 px words".
-Not issues (`ok`): text still typing out; a box mid-fade; black or loading frames; the cursor mid-blink;
-numbers in the fixed 8 px font.
+Not issues (`ok`): text still typing out; a box mid-fade; black or loading frames; the cursor mid-blink.
+8 px numbers are an `issue` (note "8 px numbers") unless docs/status.md lists the case.
 
 ## Verdict file
 One line per sheet: `path<TAB>ok|issue<TAB>note` (for issues: where on screen, the visible text, what is wrong).

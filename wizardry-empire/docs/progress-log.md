@@ -19,7 +19,7 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Found / fixed: temple fee copy treated as text (payer's gold corrupted) - fix_sites() takes the nearest
   ld hl; limit tests for copied strings. Chests come only from guarded squares (docs/re/reach.md); chest,
   trap, event, recruit and temple screens checked by the playtester.
-- Open: full message census running (tracer); status.md Next.
+- Open: status.md Next.
 
 ## 2026-11-12 - crash fix (unidentified group names), name entry, Camp reorder
 - ROM: `e45012c` sent.

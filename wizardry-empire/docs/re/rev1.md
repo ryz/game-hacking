@@ -1,5 +1,8 @@
 # Rev 1 vs v1.0: what changed that matters for the translation (tracer, 2026-11-12)
 
+> Status: all findings applied in 8052a1f ('Ouch!' 31:4592 in messages.json, `insert_lists` repoints 31
+> entries, rect 2b:788b in rects.json).
+
 ROMs: `rom/wizardry_empire_j.gbc` = Rev 1 (SHA-1 f5f4e8be...), `rom/wizardry_empire_j_v10.gbc` = v1.0 (041c1251...).
 Scratch scripts and outputs: `work/re/rev1/` (gaps.py, census_cmp.py, sites.py, sitefwd.py, refsets.py, ramcount.py,
 both.sh; outputs gaps_all.txt, census_cmp.txt, sites.txt, ramdiff.json).

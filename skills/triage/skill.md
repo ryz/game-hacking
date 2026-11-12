@@ -19,7 +19,9 @@ Do not edit `asm/`, `script/` or `tools/`; no git; no subagents. Write only `wor
 ## Read first
 `docs/re/vwf.md` (every hook the patch installs, its RAM: WRAM banks 6/7 only - see `docs/re/tasks.md` for the
 game's task stacks at `$CE00-$CFFF` - bank-0 stubs at
-`$0038`, `$00B1-$00F0`, `$1C11-$1C78`, `$3F50-$3FD9`, code in ROM bank `$40`) and `docs/re/text.md`.
+`$0038`, `$00B1-$00F0` (stub area 1), `$19B4-$1A3A` (stub area 2, the dead monster-panel routine),
+`$3FF0-$3FFF` (Stub_Measure); hooks at `$1443`, `$10A4`, `$173C`, `$1789`, `$17D6`, `$1B58`, `$1C2A`, `$1CB3`,
+`$1D1E`, `$24E8` (see `asm/vwf.asm`), code in ROM bank `$40`) and `docs/re/text.md`.
 
 ## Steps
 1. Reproduce with `python3 tools/emu.py --state STATE --seq "..." --out work/triage/<case>/repro` (exit 2 = hung;

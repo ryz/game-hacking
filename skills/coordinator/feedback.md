@@ -10,6 +10,18 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - Rev 1 port and a long autonomous day
+- Task: port to Rev 1, keep agents busy while the owner was away, integrate ~15 agent reports.
+- Worked: background shoots/tours as regression nets; worktree builds of the previous commit for A/B; every
+  agent fix verified in the emulator before committing.
+- Friction: rebuilt build/ while an agent or a shoot used it (mixed results); uncommitted asm while triage
+  copied the tree; a tour 'OK' hid a boot stuck on Mode Settings (tour only checks hangs); appended code past
+  the VWF bank (now an asm error).
+- Proposed rule change: dispatch only committed work (promoted: Dispatch); look at at least one tour sheet
+  after GC/boot-path changes, not only the OK count.
+- Corrected: -
+- Status: promoted 2026-11-12 (dispatch rule; maintenance found it in three entries)
+
 ### 2026-11-11 - town slowdown, maze walls, Camp status
 - Task: owner's report (town slowdown, text in maze walls, Camp garbage); ship a ROM.
 - Worked: measuring the main-loop rate against the Japanese ROM pinned the slowdown in minutes; count-only

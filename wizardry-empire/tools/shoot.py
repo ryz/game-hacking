@@ -3,7 +3,7 @@
   python3 tools/shoot.py SET                       all shots in tools/routes/shots.txt -> work/shots/SET/
   python3 tools/shoot.py SET --list FILE           another shot list (same format)
   python3 tools/shoot.py SET --only title,town     only these ids
-  python3 tools/shoot.py SET --rom en|jp|both      default both
+  python3 tools/shoot.py SET --rom en|jp|both|ref  default both; ref = rom/wizardry_empire_ref.gbc (tools/bps.py)
   python3 tools/shoot.py SET --publish             also copy the set to docs/shots/SET/ (committed)
 
 Shot list lines: `id | category | description | tokens` (tokens as in tools/emu.py; `pow` = power on only,

@@ -65,8 +65,8 @@ E = 5F85 (event, one-shot via `$C6DD`). F/10/11 are per floor: floor 1 F = 609C 
 
 ### Events (bank 45)
 - 2D:63EB: b = `[$FFB0]`; handler = word at `2D:4400 + 2*(b-7)`. Type $0E indexes a sub-table by `[$FFB1]`.
-  The full table and the map from each bank-45 message to its handler are in `tools/maze_evtab.txt`,
-  made by `scr/evtab.py`, which scans `ld a,lo/ld [$C1BF]/ld a,hi/ld [$C1C0]`. NPC texts (45B7-4F28) have no
+  The full table and the map from each bank-45 message to its handler are in `work/re/reach/scr/evtab.txt` (untracked),
+  made by `work/re/reach/scr/evtab.py`, which scans `ld a,lo/ld [$C1BF]/ld a,hi/ld [$C1C0]`. NPC texts (45B7-4F28) have no
   inline site: they come from the table `2D:66C5 + param*8` (2D:6775).
 - Floor 1 squares (ROM 3E:4000): guarded (6) at (6,15) (11,12) (9,9) (0,5) (9,4) (13,2) (7,1) (5,0);
   traps (4) at (11,15) (12,15) (4,10) (0,9) (1,9) (4,9); type 8 at (9,13) (0,2); down stairs (15,0);
@@ -82,31 +82,31 @@ E = 5F85 (event, one-shot via `$C6DD`). F/10/11 are per floor: floor 1 F = 609C 
 | F2 (9,10) | $0C p0 | 2D:6705 | 45B7 Murphy, 4626, 46A1 "Add Murphy?", 46E0; 45A6 party full | roster < 20 (2B:4037), join flag (2D:6722) |
 
 ## 3. States (`work/re/reach/states/`), and how to rebuild them
-Scripts are in `tools/maze_`. Every one takes the ROM and absolute state paths, so they work with a new
+Scripts: `tools/maze_goto.py`, `tools/maze_route.py`, `tools/maze_make_chest.py`. Every one takes the ROM and absolute state paths, so they work with a new
 build. Inputs use `tools/emu.py` press timing (8 frames held, 40 released).
 
 | state | what | how |
 |---|---|---|
-| `guardian_before.state` | F1 (6,14) facing (6,15) | maze.state + `route.py 1 0 15 2 6 15` tokens without the last `up`: `left,up,right,up,up,left,up,up,right,up,left,up,up,right,up,left,up,up,up,up,left,up,left,up,right,up,up,left,up,up,right` (`scr/walk.py`). No pokes; no random battle on this route |
+| `guardian_before.state` | F1 (6,14) facing (6,15) | maze.state + `tools/maze_route.py 1 0 15 2 6 15` tokens without the last `up`: `left,up,right,up,up,left,up,up,right,up,left,up,up,right,up,left,up,up,up,up,left,up,left,up,right,up,up,left,up,up,right` (`work/re/reach/scr/walk.py`, untracked). No pokes; no random battle on this route |
 | `guardian_battle.state` | guarded-square battle start (`$C00B`=04) | guardian_before + `up,w120` |
-| `chest_victory.state`, **`chest_menu.state`** | victory at 25:40CB, then the chest menu (leather bag), **no pokes** | `scr/make_chest.py ROM states/guardian_battle.state OUT` (A held 4 frames + 20 frames free, x89 until 25:40CB; then `w60,a,w60`). Its `$C00B\|=4` poke changes nothing here (bit 2 is already set) |
-| `chest_menu_poke.state` (+`chest_victory_poke`) | chest after a **random** battle (Skeleton) | `tools/explore.py ROM start/maze.state walk7 1500 7` (hit at step 64) -> `make_chest.py ROM walk7/hit.state OUT`: pokes `$C00B\|=$04` at battle start, x34 A |
-| `chest_menu_bronze.state` | bronze chest | same as poke + type 9: `make_chest.py ROM walk7/hit.state OUT 9` (sets B=9 at 25:4134) |
-| `event_5009.state` | F1 (5,3) facing (5,4), gold coins | `scr/goto.py ROM start/maze.state 5 4 OUT` |
-| `event_5C6D.state` | F1 (1,12) facing (2,12), fairy (flees) | `goto.py ROM start/maze.state 2 12 OUT` |
-| `event_5C97.state` | fairy, teleport offer | event_5C6D + poke `$C896,$C897 = 00 AD` (Fairy's Heart in ryz slot 3) (`scr/variant.py IN OUT C896=00ad`) |
-| `event_4490.state` | F1 (14,15) facing (15,15), strange pattern | `goto.py ROM start/maze.state 15 15 OUT` |
+| `chest_victory.state`, **`chest_menu.state`** | victory at 25:40CB, then the chest menu (leather bag), **no pokes** | `tools/maze_make_chest.py ROM states/guardian_battle.state OUT` (A held 4 frames + 20 frames free, x89 until 25:40CB; then `w60,a,w60`). Its `$C00B\|=4` poke changes nothing here (bit 2 is already set) |
+| `chest_menu_poke.state` (+`chest_victory_poke`) | chest after a **random** battle (Skeleton) | `tools/explore.py ROM start/maze.state walk7 1500 7` (hit at step 64) -> `tools/maze_make_chest.py ROM walk7/hit.state OUT`: pokes `$C00B\|=$04` at battle start, x34 A |
+| `chest_menu_bronze.state` | bronze chest | same as poke + type 9: `tools/maze_make_chest.py ROM walk7/hit.state OUT 9` (sets B=9 at 25:4134) |
+| `event_5009.state` | F1 (5,3) facing (5,4), gold coins | `tools/maze_goto.py ROM start/maze.state 5 4 OUT` |
+| `event_5C6D.state` | F1 (1,12) facing (2,12), fairy (flees) | `tools/maze_goto.py ROM start/maze.state 2 12 OUT` |
+| `event_5C97.state` | fairy, teleport offer | event_5C6D + poke `$C896,$C897 = 00 AD` (Fairy's Heart in ryz slot 3) (`work/re/reach/scr/variant.py IN OUT C896=00ad`, untracked) |
+| `event_4490.state` | F1 (14,15) facing (15,15), strange pattern | `tools/maze_goto.py ROM start/maze.state 15 15 OUT` |
 | `event_44A8.state` | magic circle (who steps inside) | event_4490 + poke `$C889 = $0D` (ryz class) |
-| `stairs_f1_down.state` | F1 (14,0) facing the down stairs | `goto.py ROM start/maze.state 15 0 OUT 60` |
+| `stairs_f1_down.state` | F1 (14,0) facing the down stairs | `tools/maze_goto.py ROM start/maze.state 15 0 OUT 60` |
 | `floor2.state` | floor 2 arrival (15,0) | stairs_f1_down + `up,w60,a,w200,down,a,w60` (Yes to go down; No to "climb up?") |
-| `event_45B7.state` | F2 (9,11) facing (9,10), Murphy | `goto.py ROM states/floor2.state 9 10 OUT` |
+| `event_45B7.state` | F2 (9,11) facing (9,10), Murphy | `tools/maze_goto.py ROM states/floor2.state 9 10 OUT` |
 
-In every `event_*` state, a single `up` starts the event. `goto.py` checks this with a count-only breakpoint on
-2D:63EB (`$FFB0` matched in all six) and writes `*_before.png` / `*_after.png`. How `goto.py` works: it picks
+In every `event_*` state, a single `up` starts the event. `tools/maze_goto.py` checks this with a count-only breakpoint on
+2D:63EB (`$FFB0` matched in all six) and writes `*_before.png` / `*_after.png`. How `tools/maze_goto.py` works: it picks
 the first neighbour whose wall bits towards the target are 0, pokes `$CB80/$CB81` (and `$CB96/97`) plus
 `$CB83` = facing, then presses `left,right` so the view redraws. The event squares on floors 1-2 cannot be
-walked to without crossing trap, guarded or type-8 squares (`route.py` BFS), so they use the poke.
-`route.py FLOOR X0 Y0 DIR0 X1 Y1` prints walking tokens. `ROUTE_ALLOW=4,6,8` lets it cross special squares.
+walked to without crossing trap, guarded or type-8 squares (`tools/maze_route.py` BFS), so they use the poke.
+`tools/maze_route.py FLOOR X0 Y0 DIR0 X1 Y1` prints walking tokens. `ROUTE_ALLOW=4,6,8` lets it cross special squares.
 
 ## 4. Hook proposal
 None needed (reachability task, no text routed).

@@ -1,4 +1,5 @@
 """Minimal two-pass SM83 assembler (rgbds-flavoured syntax, no external deps).
+Code running past the end of its bank ($3FFF / $7FFF) is an error.
 
 Directives:
   org BANK, ADDR        set output position (ADDR is the CPU address; bank 0 for $0000-$3FFF)

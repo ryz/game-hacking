@@ -1,5 +1,7 @@
 # Attack verbs (49:56AF, `{F3 31 C6E3}`): which battle template prints each one
 
+> Status: breath and no-target verbs fixed in lists.json (b57597a).
+
 Original ROM, Japanese Rev 1. The tracer wrote this on 2026-11-12 and did not patch anything.
 Scratch files are in `work/re/verbs/`: `classify.py` (static classification), `classify.txt`, `monsters.txt`, and `dyn.py` (dynamic check).
 

@@ -182,7 +182,7 @@ wN_st       equ $d591          ; 2: field start
 wN_end      equ $d593          ; 2: field end (returned in DE)
 wN_deHi     equ $d596
 wN_done     equ $d250
-wN_cb       equ $d251          ; bank of 0:0FD0's caller (wN_*: shadow area of non-pool code $25)
+wN_cb       equ $d251          ; bank of 0:0FE9's caller (wN_*: shadow area of non-pool code $25)
 wFS_end     equ $d256          ; 2: FixFind bucket end
 wMA_f       equ $d254          ; 2: museum monster abilities as flag bits (MusAbilBody)
 wN_cr       equ $d252          ; 2: its return address          ; VWF_Num drew the number (0: the game's 8 px loop runs)
@@ -198,7 +198,7 @@ wNC_pass    equ $d58a          ; NCWalk: 0 check, 1 restore, 2 save
 wGame       equ $d200          ; 32 bytes: slots holding game graphics (shadow area of codes $20/$21, not pool)
 wSpell      equ $d280          ; 32 bytes: full English name of the last spell read by 0:24CF (shadow area of
                                ; codes $28/$29, not pool); messages print it with {F8 00 07 D280}
-wMagic      equ $dffe          ; 'V','\\' once initialised (bump when the variable layout changes)
+wMagic      equ $dffe          ; 'V','^' once initialised (bump when the variable layout changes)
 HOME_BANK   equ 7
 
 STAGING_BANK equ 7             ; WRAM bank 7 $d000 + code*16 = shadow of the VRAM tile
@@ -212,7 +212,7 @@ MAP_BANK    equ 6              ; WRAM bank 6: cellmap $d000-$d7ff, owners $d800 
     org 0, $1443
     jp Stub_Enqueue
 
-; --- typewriter character output (replaces 1c11-1c76)
+; --- typewriter character output (replaces 1c2a-1c8f)
 ; New control code $F2 bank lo hi: continue the message at bank:lo/hi (used to redirect
 ; every original message to its English text).
     org 0, $1c2a
@@ -257,7 +257,7 @@ Stub_TWInit:
     ld [twCol], a
     ret
 
-Stub_Num:                   ; 0:108B (number printer 0:0FD0, digit store): base '0' into a screen buffer -> VWF
+Stub_Num:                   ; 0:10A4 (number printer 0:0FE9, digit store): base '0' into a screen buffer -> VWF
     ldh a, [$ad]            ; digit base ($30 = 8 px font digits; $F4 = symbol sheet stays)
     cp $30
     jr nz, .no
@@ -281,7 +281,7 @@ Stub_Num:                   ; 0:108B (number printer 0:0FD0, digit store): base 
     ret
     assert @ <= $1c92, "typewriter stub overflow"
 
-; --- {FA} word look-ahead (1c9a: ld a,[hli] / cp $fa / jr nc,$1d05): also stop at our $F2 jump, so the
+; --- {FA} word look-ahead (1cb3: ld a,[hli] / cp $fa / jr nc,$1d1e): also stop at our $F2 jump, so the
 ;     jump bytes at the end of English text are not counted as part of the last word
     org 0, $1cb3
     call Stub_Measure
@@ -307,12 +307,12 @@ Stub_Measure:
     call Stub_TWInit
     nop
 
-; --- rect blitters: tiles only (1770) / tiles + attributes (1723)
+; --- rect blitters: tiles only (1789) / tiles + attributes (173C)
     org 0, $1789
     jp Stub_Rect0
     org 0, $173c
     jp Stub_Rect1
-; --- attributes-only blitter (17a7): mask the VWF marker bit when reading w
+; --- attributes-only blitter (17c0): mask the VWF marker bit when reading w
     org 0, $17d6
     call Stub_ReadW
 
@@ -787,7 +787,7 @@ Mus2Line:                   ; HL = string ($00-terminated, $FD = line break), DE
     ld hl, $c54f
     call Stub_PrintZ
 
-; --- number printer 0:0FD0, digit store loop (0:108B): VWF first; the loop always ends at the end of the
+; --- number printer 0:0FE9, digit store loop (0:10A4): VWF first; the loop always ends at the end of the
 ;     digit buffer ($FFC1), so the count in B and the 'skip $00' check are not needed
     org 0, $10a4
     call Stub_Num
@@ -1190,7 +1190,7 @@ CheckInit:
     cp $56
     jr nz, .init
     ld a, [wMagic + 1]
-    cp $5d
+    cp $5e
     ret z
 .init:
     push hl
@@ -1207,7 +1207,7 @@ CheckInit:
     ld [wCallerSVBK], a
     ld a, $56
     ld [wMagic], a
-    ld a, $5d
+    ld a, $5e
     ld [wMagic + 1], a
     ld a, 1
     ld [wReset], a          ; shadows are not valid yet
@@ -3391,7 +3391,7 @@ GCScan:
     ret
 
 ; =====================================================================
-; Typewriter entry (from 0:1c11). B = character. Caller saved HL.
+; Typewriter entry (from 0:1c2a). B = character. Caller saved HL.
 ; =====================================================================
 TW_Char:
     ldh a, [hSVBK]
@@ -4369,7 +4369,7 @@ VWF_PrintZ:
     jp SetSVBK
 
 ; ---------------------------------------------------------------------
-; Numbers (0:0FD0 via Stub_Num): DE = next cell after the padding the game skipped, C = low byte of the first
+; Numbers (0:0FE9 via Stub_Num): DE = next cell after the padding the game skipped, C = low byte of the first
 ; digit ($FF00+C .. $FFC1), [$FFAC] = digit count or (bit 7) the field width, [$FFAE/F] = field start.
 ; Right-aligned in the field when the game padded it or gave it a fixed width; else left-aligned.
 VWF_Num:
@@ -4389,8 +4389,8 @@ VWF_Num:
     ld [wN_dig], a
     ld a, 1
     ld [wN_done], a
-    ; 0:0FD0's caller (after our push af): [sp+4] bank (FarCall), [sp+5] Stub_Num's FarCall return,
-    ; [sp+7] return into 0:108E, [sp+9] 0:0FD0's caller
+    ; 0:0FE9's caller (after our push af): [sp+4] bank (FarCall), [sp+5] Stub_Num's FarCall return,
+    ; [sp+7] return into 0:10A7, [sp+9] 0:0FE9's caller
     ld hl, sp, 4
     ld a, [hl]
     ld [wN_cb], a
@@ -4571,7 +4571,7 @@ NumExcluded:
 .n1: inc hl
     jr .l
 
-NumExcl:                    ; bank, return address of 0:0FD0 calls that stay 8 px; 0 ends
+NumExcl:                    ; bank, return address of 0:0FE9 calls that stay 8 px; 0 ends
     db $26
     dw $571b                ; age on the character card: the shop header writes 'AC' over it
     db 0

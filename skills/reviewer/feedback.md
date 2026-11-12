@@ -21,6 +21,6 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 - Corrected: all fixes applied (page 1 'reigning Emperor', pages 3/4/7 wording, power-off 'the quest',
   45:4F28 'Mad Overlord', Emperor of the Abyss unified incl. the Notice Board; glossary rows added). Build
   widths OK; Notice Board checked on screen.
-- Status: logged (rules proposed once; promote on a second occurrence)
+- Status: promoted 2026-11-12 (width check + distinct referents in reviewer and editor skill.md; editor
+  entry reported the same friction)
 
-_No runs yet._
