@@ -60,7 +60,7 @@ E = 5F85 (event, one-shot via `$C6DD`). F/10/11 are per floor: floor 1 F = 609C 
   36-40 paulownia, 41-45 lacquered, 46 jet-black, 47+ bewitching. Rows 0-6 always give a bag, so floor 1 gives
   bags (the JP reference chest_menu is also a bag).
 - Setters of `$C00B` bit 2, from a byte search of every `$C00B` access: 20:5D0B `or $06` (guarded squares only);
-  2C:4C96 `or $04` is a temporary push/pop around the found-character sheet. Random encounters (20:5F6C,
+  2C:4C96 `or $04` is a temporary push/pop in the debug event tester (docs/re/debug-mode.md). Random encounters (20:5F6C,
   5FF4, 6035, 610E) `or $02` only. **This is why the playtester saw no chest in 25 random battles.**
 
 ### Events (bank 45)

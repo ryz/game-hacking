@@ -10,6 +10,22 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - bank-2C 'second character sheet' (numbers.md group G)
+- Task: identify the screen behind 2C:4036 / 2C:4C24, routes, JP/EN shots, field map.
+- Worked: byte-search of the guard byte readers (`ld a,[$C003] / cp $A5`) found the debug flag and its logo
+  key code at once; stopping-breakpoint tracer on 0FE9/1789/173C + buffer writes gave the field map per page;
+  VRAM-vs-font comparison told 8 px from VWF per cell.
+- Friction: time-based random encounters after leaving camp; Select+A on one frame registers only A; the
+  dispatch's framing ('character sheet', 'found character?') and reach.md's note pointed the wrong way; emu.py
+  has no hold token.
+- Proposed rule change: Reachability: first byte-search the entry for a guard (`ld a,[X] / cp N / ret nz`) and
+  find X's writer; press a held modifier first, then modifier+key. Tool: emu.py `hold:keys:N`, a no-encounter
+  poke recipe in reach.md.
+- Corrected: debug-mode claims checked (key table 01:688F, guards at both entries). Side finding applied: VWF_Rect
+  now returns DE = dest + h*32 (tour A/B: 230 shots pixel-identical). Docs: debug-mode.md, numbers.md G,
+  reach.md. Restyling the debug UI not done (low priority). Coordinator slip: the dispatch assumed a player screen.
+- Status: open (guard-first rule; hold token in the tool backlog)
+
 ### 2026-11-12 - typewriter message coverage census
 - Task: every message pointer the game can set; list messages missing from the script; why the test missed them.
 - Worked: counting every `ea bf c1` and classifying each store (immediate / table / HRAM / internal); checking

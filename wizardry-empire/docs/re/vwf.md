@@ -57,6 +57,10 @@ keeps working; it resyncs whenever the game moves the cursor or the buffer base 
   caused the battle hang. Bank-0 stubs pass everything in registers or on the stack: the VWF reads caller
   HL/BC/argument pointer from fixed stack offsets (see the comment above `Stub_Inline`).
 
+## Rect blits
+`VWF_Rect` returns DE = destination + h*32 like the original blitter 0:1789 (fixed 2026-11-12: 2C:498C
+returns right after a blit and its caller prints at that DE).
+
 ## Game graphics in pool tiles
 `Stub_Enqueue` passes every non-font VBlank DMA to `VWF_DmaCheck`: pool slots inside the destination lose their
 owner and shadow and are reserved in `wGameNew` (bank 7 `$D2A0`); the next full GC moves them to `wGame`

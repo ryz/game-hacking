@@ -4009,7 +4009,33 @@ TWBody:
 ; Source header at [hSrcBank]:[hSrcHi/Lo]: [w|$80] [h] [text bank] [ptr lo] [ptr hi]
 ; Text: rows separated by $FD, end $FF, $FC n = move to pixel n of the row.
 ; =====================================================================
+; Rect blit (0:1789/0:173C via Stub_RectCommon). Returns DE = destination + h*32 like the original blitter
+; (2C:498C returns right after a blit and its caller prints at that DE).
 VWF_Rect:
+    call VWF_RectBody
+    ldh a, [hSrcBank]
+    ld b, a
+    ldh a, [hSrcLo]
+    ld l, a
+    ldh a, [hSrcHi]
+    ld h, a
+    inc hl
+    call VWF_Fetch          ; A = h
+    ld l, a
+    ld h, 0
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    ldh a, [hDstLo]
+    add l
+    ld e, a
+    ldh a, [hDstHi]
+    adc h
+    ld d, a
+    ret
+VWF_RectBody:
     ldh a, [hSVBK]
     push af
     ld a, HOME_BANK
