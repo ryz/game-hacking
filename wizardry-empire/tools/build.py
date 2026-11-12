@@ -67,23 +67,26 @@ CARD_ROW = 0x60                          # low byte of the status row ($D060)
 
 
 def card_status(adv):
-    """26:7800 table for CardStatus: per status word 16 bytes = start cell (low byte, row $D06x) + the English
-    word right-aligned at CARD_EDGE: led by blank glyphs ($7C 2 px, ' ' 3 px) for the pixel offset, $00."""
+    """26:7840 table for CardStatus: per status word 32 bytes = start cell (low byte, row $D06x) + 'Status: <word>'
+    right-aligned at CARD_EDGE: led by blank glyphs ($7C 2 px, ' ' 3 px) for the pixel offset, $00.
+    The label is the 26:575F inline entry (its own print is skipped in asm/vwf.asm)."""
     import json, text
     en = {int(e["addr"], 16): e["en"] for e in json.load(open(os.path.join(ROOT, "script", "fixtables.json")))
           if e["bank"] == 38}
+    label = next(e["en"] for e in json.load(open(os.path.join(ROOT, "script", "inline.json")))
+                 if e["bank"] == 38 and e["addr"] == "0x575f")
     out = bytearray()
     for a in CARD_STATUS:
-        b = text.encode(en[a])
+        b = text.encode(label + " " + en[a])
         x = CARD_EDGE - sum(adv[c & 0x7F] for c in b)
         cell, p = divmod(x, 8)
         if p == 1:                       # no 1 px blank: start a cell earlier
             cell, p = cell - 1, 9
         pad = b"\x20" * (p % 2) + b"\x7c" * ((p - 3 * (p % 2)) // 2)
-        assert sum(adv[c] for c in pad) == p and 12 <= cell <= 18, (en[a], x)
+        assert sum(adv[c] for c in pad) == p and 8 <= cell <= 18, (en[a], x)
         rec = bytes([CARD_ROW + cell]) + pad + b + b"\x00"
-        assert len(rec) <= 16, en[a]
-        out += rec.ljust(16, b"\x00")
+        assert len(rec) <= 32, en[a]
+        out += rec.ljust(32, b"\x00")
     return bytes(out)
 
 

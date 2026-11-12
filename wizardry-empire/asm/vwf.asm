@@ -673,9 +673,12 @@ CardHPText:
 CardACText:
     db "AC", 0
 
-; --- character card status word (26:579D: pop de / 5-byte copy of the word at HL = 26:7574 + 5k to $D06E) ->
-;     the English word right-aligned at col 18 like Lvl/Age/AC (table built by tools/build.py card_status());
-;     DE ends at $D072 like the original (the bit-1 variant at 26:57DA prints a number there)
+; --- character card status (26:575C: ld de,$D068 / 'Status:' (inline, 26:575F) / 26:579D: pop de / 5-byte copy of
+;     the word at HL = 26:7574 + 5k) -> 'Status: <word>' right-aligned at col 18 like Lvl/Age/AC, the label one
+;     space before the word (table built by tools/build.py card_status()); DE ends at $D072 like the original
+;     (the bit-1 variant at 26:57DA prints a number there)
+    org $26, $575f
+    jr @+$18                ; skip the fixed label (-> 26:5777)
     org $26, $579e
     call CardStatus
     ds 11, $00
@@ -687,15 +690,19 @@ CardStatus:
 .d: inc b
     sub 5
     jr nc, .d
-    ld a, b
-    swap a
-    add $40                 ; CardStatusTab = $7840
-    ld l, a
-    ld h, $78
+    ld l, b                 ; HL = CardStatusTab + 32k
+    ld h, 0
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    ld de, $7840            ; CardStatusTab
+    add hl, de
     push hl
-    ld hl, $d06c            ; blank cols 12-18 (a longer word shown before)
+    ld hl, $d068            ; blank cols 8-18 (a longer word shown before)
     ld a, $20
-    ld b, 7
+    ld b, 11
 .b: ld [hli], a
     dec b
     jr nz, .b
@@ -706,9 +713,10 @@ CardStatus:
     call Stub_PrintZ
     ld de, $d072
     ret
+    assert @ <= $7840, "CardStatus overflow"
     org $26, $7840
 CardStatusTab:
-    incbin "../build/card_status.bin"   ; 10 x 16 bytes: start cell low byte, blank-glyph lead, word, $00
+    incbin "../build/card_status.bin"   ; 10 x 32 bytes: start cell low byte, blank-glyph lead, text, $00
 
 ; --- name entry: typed name field (26:6C62-6C9B built a [7][1] rect at $FFA8 from the name at $D060 and blitted
 ;     it to $D02A) -> blank the 7 cells, copy up to 7 characters + $00 to $FFA8, print it in the VWF
