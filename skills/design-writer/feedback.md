@@ -10,6 +10,53 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - floor pages 23-30
+- Task: floor pages 23-30 from the floormap data, monsters_table and the dungeon/spells/findings docs.
+- Worked: scripts over floormap.floor_cells for doors, connected parts and zone/trap counts; monster tables
+  generated from monsters_table rows; scripted coordinate and number checks.
+- Friction: shared session scratchpad overwritten by other writers; generated table hid repeated formations;
+  dungeon.md section 8 and findings disagreed with the data; "plain E markers" ambiguous next to E1.
+- Proposed rule change: private scratch subfolders; "parts that connect on foot" only with the stated method and a
+  tag; generator shows formation weights.
+- Corrected: weights now "(2 of 4)" in monsters_table; dungeon/findings fixed (zones, floor 26 traps, floor 24
+  hidden spot, levels 21-30, findings 22). Its "closed pockets" assumed special walls are walls: they are secret or
+  locked doors (traced and verified afterwards), so a revision round redoes them.
+- Status: promoted 2026-11-12 (scratch folders, floormap --list data, fixed tables, walking-fact rule)
+
+### 2026-11-12 - floor pages 16-22
+- Task: floor pages 16-22.
+- Worked: walking-graph script with the verified one-way rule (floor 20 spiral, floor 21 pocket); monster tables by
+  script; check that every special square and one-way door appears on the page.
+- Friction: scratchpad overwritten by another writer; four different table layouts across the round; docs said
+  "level 20-30" and "panels on floors 3-7"; shared guard marks untraced.
+- Proposed rule change: private scratch folders; coordinator fixes table layout before dispatch; walking facts
+  tagged with how special walls were counted; guard-only areas linked to the floor that owns them.
+- Corrected: dungeon.md fixed (panels 3-19, levels, zones); layout fixed in the revision dispatch.
+- Status: promoted 2026-11-12
+
+### 2026-11-12 - floor pages 9-15
+- Task: floor pages 9-15.
+- Worked: floor txt plus floor_events.txt; tables by script; reachability calculation found closed areas.
+- Friction: reachability not in the dispatch; encounter table hid repeated formations; floor-01's door count method
+  unstated; shared scratchpad overwritten.
+- Proposed rule change: `floormap.py --reach`; define door counting in maps/README; generator shows "F146 ×2";
+  private scratch folders.
+- Corrected: floormap --list prints doors, shared guard marks and on-foot reach; floor-01 door count fixed (18 +
+  3 one-way, verified by script); key-hole "item id" doubt kept as an open question.
+- Status: promoted 2026-11-12
+
+### 2026-11-12 - floor pages 2-8
+- Task: floor pages 2-8.
+- Worked: monster rows by script (0 mismatches); reachability script found walled-in chute (floor 6, verified by
+  the coordinator from the data) and the floor 3/4 zig-zag.
+- Friction: floor txt lacked door counts and wall data; derived facts not in tech; generator Enc/Floors columns
+  disagreed with the formation display (Ghast); parallel round not announced.
+- Proposed rule change: standard "Route (computed)" bullet with a shared script; richer --list; announce parallel
+  rounds.
+- Corrected: generator fixed (same group-size rule for both columns; Ghast, Iron Golem, High Ninja, Death Knight
+  floors corrected); --list extended.
+- Status: promoted 2026-11-12
+
 ### 2026-11-12 - revision round 1: dungeon.md + findings.md
 - Task: apply review-1 and the tracer's verdicts to dungeon and findings.
 - Worked: read review, tracer notes and tech before writing; scripted number and coordinate checks; doclinks run on

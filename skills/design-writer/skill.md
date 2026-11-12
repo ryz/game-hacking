@@ -3,7 +3,7 @@ skill: design-writer
 project: wizardry-empire
 summary: Write one game-design document for designers from the technical reference (rules, formulas, data; no addresses).
 access: write (wizardry-empire/docs/design/<file>.md named in the dispatch, scratch under work/design/<topic>/)
-updated: 2026-11-12
+updated: 2026-11-12 (floor pages)
 ---
 
 # Design writer - Wizardry Empire: game-design documents
@@ -53,6 +53,20 @@ or `tools/`.
    - Before linking findings.md for a quirk, check that findings has an entry for it; otherwise report the quirk.
    - In a parallel round (several writers at once), link other design files **without anchors** until the
      coordinator's final link pass; anchors into your own sections are fine.
+   - In a parallel round, keep every scratch file in your own folder (`work/design/<topic>/<your-range>/`), never
+     in the shared session scratchpad: parallel writers overwrite each other's files there.
+
+## Floor pages (docs/design/maps/floor-NN.md)
+- Data: `python3 tools/designtables/floormap.py N --list` (squares, one-way doors with the way back, secret and
+  locked doors with flag and difficulty, door count, guarded squares sharing one mark, squares reached on foot from
+  each stairs with doors shut / open). Use these numbers; do not write private map scripts for them.
+- Walking facts ("only reachable through ...", closed pockets) come from the "on foot" lines and are tagged
+  (computed from the map). Secret and locked doors are passable once found or picked; only areas closed even with
+  them open are "no way in on foot".
+- Tables are fixed for all 30 pages: Area `| Area | Where | Formations (one of 4 slots picked per fight) |` with the
+  "(2 of 4)" weights from monsters_table; Monster `| Monster | Lv | HP | AC | Swings | Damage | Special | Spells |
+  EXP | Gold |` with the game's short names. Generate the rows by script from `monsters_table.md` and check them.
+- Floor pages hold floor-specific facts only; what is the same everywhere lives in `maps/README.md`.
 
 ## Section template
 ```

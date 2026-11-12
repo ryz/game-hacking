@@ -56,4 +56,8 @@ never commit them. Say what is new and what is known to be broken.
 - Mark review items that newer tracer verdicts have overtaken before dispatch, so writers do not apply stale items.
 - `findings.md` cannot be written by subagents (the harness refuses the name): save it from the writer's report.
 - Commit each writer's files when it reports; other writers' drafts as clearly labelled work in progress.
+- Tell every writer that the round is parallel, who else is writing what, and give each a private scratch folder
+  (`work/<area>/<range>/`); fix shared table layouts in the dispatch before a round, not after.
+- Before trusting a derived claim that changes the picture (an area "closed", a route "impossible"), test the
+  mechanic it rests on in the emulator: floor writers called locked/secret doors walls until one was walked into.
 
