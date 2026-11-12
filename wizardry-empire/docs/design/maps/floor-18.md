@@ -19,9 +19,9 @@ leading to the peerless beauty; how to read the map, coordinates and what each k
   between the hidden spots (4, 2) and (5, 2), found by Search on (4, 2) facing east, and it is left by the one-way
   door north of (5, 6). Without that door 250 of the 256 squares can be reached from either stairs; with it, all of
   them (computed from the map).
-- **Zones:** 27 squares marked as both zone kinds (no known effect,
-  [findings](../findings.md)) in the north-east corridors, and 10 anti-magic squares along the west edge (details
-  below).
+- **Zones:** a dark zone of 27 squares in the north-east corridors, where the 3D view gives way to "Pitch darkness!"
+  (not drawn on the auto-map, [findings](../findings.md)), and 10 anti-magic squares (the game's 'magic seal') along
+  the west edge (details below; rules: [dungeon.md](../dungeon.md) §3.4).
 - **Random fights** come from encounter area 20 on every square except five guarded squares, which use area 51 (the
   Succubi).
 - **Monsters:** levels 6-21, up to 4 groups of 1 to 4 (computed from the formations): undead, frost creatures,
@@ -41,11 +41,11 @@ leading to the peerless beauty; how to read the map, coordinates and what each k
 | (14, 10) | Key-hole (event) | "Beside the door is a hole for slipping something in": a door that is inferred to need an item (not traced which). |
 | (5, 6) → (5, 7) | One-way door | Passable only northward: the way out of the beauty's corridor. |
 | (4, 2) + (5, 2) | Hidden spots, a pair | Each faces a secret door: the two faces of one door, the only way into the beauty's corridor. Search on (4, 2) facing east finds it from outside; once found it is open from both sides (computed from the map). Noticing difficulty 95, the hardest of the secret doors on floors 11-20 ([dungeon.md](../dungeon.md), hidden spots). |
-| (15, 15) + (15, 14) | Hidden spots, a pair | On both faces of an ordinary two-way door; no secret door stands at either of them (computed from the map), so noticing them only shows the message ([dungeon.md](../dungeon.md), hidden spots). (15, 15) is in the both-marks zone. |
+| (15, 15) + (15, 14) | Hidden spots, a pair | On both faces of an ordinary two-way door; no secret door stands at either of them (computed from the map), so noticing them only shows the message ([dungeon.md](../dungeon.md), hidden spots). (15, 15) is in the dark zone. |
 | (11, 13), (4, 10), (1, 9), (12, 1) | Guarded square | Fight from area 20, then a chest. |
 | (2, 6) + (2, 1) | Guarded squares, a pair | Fight from area 20, then a chest. Both in the anti-magic zone. The two share one once-per-visit mark: after one has fought, the other probably stays quiet until the next floor change (inferred). |
 | (7, 15), (2, 12), (13, 5), (2, 2), (8, 1) | Guarded square | Fight from area 51 (Succubi), then a chest. |
-| (9, 15)-(15, 15), (7, 13)-(9, 13), (9, 14), (13, 13), (13, 14), and the ring (12, 8)-(15, 12) around the key-hole room | Both zone marks | 27 squares; no known effect beyond a different set of wall pictures. |
+| (9, 15)-(15, 15), (7, 13)-(9, 13), (9, 14), (13, 13), (13, 14), and the ring (12, 8)-(15, 12) around the key-hole room | Dark zone | 27 squares. No 3D view ("Pitch darkness!"); the walls look different there. |
 | (0, 1)-(0, 6), (1, 1), (2, 1), (1, 6), (2, 6) | Anti-magic zone | 10 squares, a C-shaped band along the west edge; entering it cancels the party's spell effects. Holds the guards (2, 1) and (2, 6). |
 
 ## 3. Monsters
@@ -89,7 +89,6 @@ four groups, every one casting Mage spells up to level 5 and draining a level (a
 - Which item the key-hole asks for and where the buttons lead.
 - The guarded squares (2, 6) and (2, 1) share one "already fought" mark; whether beating one also clears the other
   for that visit was not traced.
-- What the both-marks zone does, if anything.
 - The walls of this map were not checked in the game.
 
 Tech: [dungeon.md §4 Floors](../../tech/dungeon.md#4-floors), [§3 Event catalogue](../../tech/dungeon.md#3-event-catalogue),

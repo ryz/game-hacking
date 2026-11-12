@@ -11,11 +11,12 @@ of square does: [maps/README.md](README.md).
   (computed from the map). Every square can be reached on foot from either stairs (computed from the map).
 - **Entrance and exits:** the stairs up to floor 10 at (0, 0); the stairs down to floor 12 at (15, 15), inside the
   damage zone.
-- **Damage zone:** 121 squares, about half the floor, in one winding band that runs through the middle of the map and
+- **Damage zone** (the game's 'lake'): 121 squares, about half the floor, in one winding band that runs through the middle of the map and
   ends in the north-east corner at the stairs down. Every action in it costs each member a quarter of max HP plus 1
   ([dungeon.md](../dungeon.md)). The shortest walk from the stairs up to the stairs down crosses at least 26 zone
   squares (computed from the map), far more than the 4 actions after which an unprotected full-HP character is dead.
-  What protects the party was not traced (inferred: the levitation sold on this floor, at (8, 3)).
+  What protects the party was not traced (inferred: the levitation sold on this floor, at (8, 3)). Zone squares the
+  party has stood on show blue on the auto-map ([dungeon.md](../dungeon.md) §9).
 - **10 guarded squares** (5 of them in the zone), **6 events** (the fairy twin, a recruitable adventurer, the
   levitation sorcerer, a sign, two key-holes), **2 button panels** and **8 floor traps** (3 vipers, 3 rockfalls,
   2 pits); no hidden spots.

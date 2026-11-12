@@ -515,7 +515,7 @@ circle is named by its summon ([spells.md](spells.md#6-summoner-pacts)). Floor m
 | 4 | up ×3; down (3,4) | 6 | 21 (area 6) | 3 spinners, 3 pits | weird robed monster (4,8); its drop (3,8); sign (7,9); buttons + key-hole |
 | 5 | up (3,4); down (7,8) | 7 | 11 (area 7) | 2 chutes, 4 pits, spinner | Lloyd (1,11); Lion of Hell circle (15,9); ceiling monster (5,5); buttons + key-hole |
 | 6 | up (7,8); no down | 8 | 5 (area 8) | chute (0,15) → floor 7 (inferred); 4 hidden | Louie (12,3); 3 alarm squares; buttons + key-hole |
-| 7 | no up; down (15,0) | 9 | 6 (area 9) | 10 hidden; 4 warps into the closed rooms | maid (1,14); 2 button panels + key-holes |
+| 7 | no up; down (15,0) | 9 | 6 (area 9) | 10 hidden; 4 warps, each onto a hidden spot before a secret door | maid (1,14); 2 button panels + key-holes |
 | 8 | up (15,0); down (4,14) (13,13) | 10, 101 (damage zone) | 14 (areas 10, 101) | 4 hidden | hermit (2,14); pond (3,10); Minotaur circle (3,8); Siegfried (8,8); well (14,3); 3 signs |
 | 9 | up ×2; down (0,15) | 11 | 8 (areas 11, 12) | 4 pits; 4 hidden | Djinni circle (11,5); Laila (1,0); Kojiro (3,3); 2 signs |
 | 10 | up (0,15); down (0,0) | 12 | 2 (area 12) | 2 hidden | 26 corpses (the cemetery); priest of the netherworld (1,1); 4 signs |

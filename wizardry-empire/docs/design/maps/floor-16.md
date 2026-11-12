@@ -16,12 +16,15 @@ how to read the map, coordinates and what each kind of square does: [maps/README
   locks.
 - **Locks:** a Thief needs level 18 (a Ninja 23, a Kunoichi 28) for any real chance at a difficulty-85 lock: 10% + AGI
   at that level, 10% more per further Thief level (computed from [dungeon.md](../dungeon.md), secret and locked doors).
-  From the stairs up, 214 squares can be reached with the locks shut and 250 with all of them open; from the stairs
-  down, 4 with them shut (computed from the map).
-- **7 guarded squares**, **2 events** (the Queen of Darkness, a key-hole door), **a button panel** and 2 markers; no
-  traps.
-- **The key-hole room** (13, 9)-(14, 11), with the button panel, the key-hole and a marker, has no way in on foot,
-  even with every lock open (computed from the map).
+  From the stairs up, 214 squares can be reached with the locks shut and all 256 with them open (the key-hole room
+  through a warp, below); from the stairs down, 4 with them shut (computed from the map).
+- **7 guarded squares**, **2 events** (the Queen of Darkness, a key-hole door), **a button panel** and 2 warps (both to
+  squares on this floor); no traps.
+- **The key-hole room** (13, 9)-(14, 11), with the button panel, the key-hole and a warp, cannot be walked into, even
+  with every lock open. The way in is the **warp at (14, 7)**, which lands on (13, 9); that warp stands in the room
+  (13, 6)-(14, 7), behind the locked doors (7, 6) ↔ (7, 7) and (12, 7) ↔ (13, 7). The warp at (14, 11) in the
+  key-hole room leads back to (14, 6), in the same room as (14, 7) (computed from the map). Once stepped on, the
+  auto-map shows where each warp leads ([dungeon.md](../dungeon.md) §9).
 - **Random fights** come from encounter area 18 on every square.
 - **Monsters:** levels 3-18, up to 4 groups of 1 to 6 (computed from the formations): nagas and scorpions, undead
   with level drain, spellcasting beasts, the Juggernaut. Guard chests here are Silver at best
@@ -34,15 +37,16 @@ how to read the map, coordinates and what each kind of square does: [maps/README
 | (15, 15) | Stairs up | To floor 15. |
 | (14, 1) | Stairs down | To floor 17. In the room (13, 1)-(14, 2), behind two locked doors (see the overview). |
 | (14, 4) | Queen of Darkness (event) | An encounter with the Queen of Darkness; what follows was not traced ([dungeon.md](../dungeon.md)). |
-| (14, 9) | Button panel | Buttons A-E: the Maze Elevator (inferred); where they lead was not traced. Inside the closed key-hole room. |
-| (14, 10) | Key-hole (event) | "Beside the door is a hole for slipping something in": a door that is inferred to need an item (not traced which). Inside the closed key-hole room. |
-| (14, 11), (14, 7) | Marker | Nothing visible (auto-map memory, inferred). (14, 11) is in the closed key-hole room; (14, 7) in the room (13, 6)-(14, 7), behind two locked doors. |
+| (14, 9) | Button panel | Buttons A-E: the Maze Elevator (inferred); where they lead was not traced. Inside the key-hole room, reached by the warp at (14, 7). |
+| (14, 10) | Key-hole (event) | "Beside the door is a hole for slipping something in": a door that is inferred to need an item (not traced which). Inside the key-hole room. |
+| (14, 7) | Warp | To (13, 9) on this floor: into the key-hole room, its only way in. In the room (13, 6)-(14, 7), behind two locked doors. |
+| (14, 11) | Warp | To (14, 6) on this floor: the way out of the key-hole room, back into the room (13, 6)-(14, 7). |
 | (7, 2) ↔ (7, 1) | Locked door | Difficulty 85. From the corridor of the guard (7, 4) into the south corridor (7, 1)-(12, 1): the first lock on the way down. |
 | (12, 1) ↔ (13, 1) | Locked door | Difficulty 85. From the south corridor into the stairs-down room (13, 1)-(14, 2): the second lock on the way down. |
 | (9, 1) ↔ (9, 2) | Locked door | Difficulty 85. From the south corridor into the room (9, 2)-(10, 3), which holds nothing marked on the map. |
 | (11, 1) ↔ (11, 2) | Locked door | Difficulty 85. From the south corridor into the room (11, 2)-(12, 3), which holds nothing marked on the map. |
 | (7, 6) ↔ (7, 7) | Locked door | Difficulty 85. From the corridor of the guard (7, 4) into the north corridor (7, 7)-(12, 7). |
-| (12, 7) ↔ (13, 7) | Locked door | Difficulty 85. From the north corridor into the room (13, 6)-(14, 7), with only the marker (14, 7). |
+| (12, 7) ↔ (13, 7) | Locked door | Difficulty 85. From the north corridor into the room (13, 6)-(14, 7), whose warp (14, 7) leads into the key-hole room. |
 | (9, 7) ↔ (9, 6) | Locked door | Difficulty 85. From the north corridor into the room (9, 5)-(10, 6), which holds nothing marked on the map. |
 | (11, 7) ↔ (11, 6) | Locked door | Difficulty 85. From the north corridor into the room (11, 5)-(12, 6), which holds nothing marked on the map. |
 | (3, 14), (11, 11), (2, 8), (7, 4), (1, 3) | Guarded square | Fight from area 18, then a chest. Every way from the stairs up to the stairs down passes (7, 4) (computed from the map). |
@@ -82,8 +86,7 @@ Specter); the beast formation casts high spells (Sleipnir Priest 7, Kirin Mage 7
 
 ## 4. Open questions
 
-- How the party gets into the key-hole room (13, 9)-(14, 11), which item the key-hole asks for, and where the
-  buttons lead.
+- Which item the key-hole at (14, 10) asks for, and where the buttons lead.
 - What the Queen of Darkness event does (a fight, a talk, an item).
 - The guarded squares (12, 14) and (13, 13) share one "already fought" mark; whether beating one also clears the
   other for that visit was not traced.

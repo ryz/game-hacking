@@ -15,8 +15,9 @@ The twelfth floor of the maze (B12F); how to read the map, coordinates and what 
 - **Entrance and exits:** the stairs up to floor 11 at (15, 15); the stairs down to floor 13 at (0, 0).
 - **7 guarded squares**, **4 events** (a magic circle, a huge creature, a recruitable adventurer, a key-hole), **a
   button panel** and **1 hidden spot**; no traps.
-- **A cross of 19 squares** in the north-west, between x 0 and 6 and y 9 and 15, is marked as both zone kinds, which
-  has no known effect ([findings.md](../findings.md)); a one-way door leads into it from (3, 10).
+- **Dark zone:** a cross of 19 squares in the north-west, between x 0 and 6 and y 9 and 15. Entering it puts out the
+  party's light and replaces the 3D view with "Pitch darkness!" ([dungeon.md](../dungeon.md) §3.4); the auto-map does
+  not draw it ([findings.md](../findings.md)). A one-way door leads into it from (3, 10).
 - **Random fights** all come from area 14 (256 squares).
 - **Monsters:** levels 3-13, 1 to 7 per group: Assassins and archers, Marids and Daos with their elementals, and
   undead (Specters, Death Knights, a Giant Zombie).
@@ -37,7 +38,7 @@ The twelfth floor of the maze (B12F); how to read the map, coordinates and what 
 | (2, 2) | Key-hole (event) | "Beside the door is a hole for slipping something in": the door to the button panel. Which item it takes: not traced. |
 | (3, 10) → (3, 11) | One-way door | Northward only, into the cross. |
 | (8, 15) → (9, 15) | One-way door | Out of the circle square only; seen from (9, 15) it is the secret door. |
-| 19 squares (see map) | Both zone marks | The cross between x 0 and 6 and y 9 and 15. No known effect; the walls look different there. |
+| 19 squares (see map) | Dark zone | The cross between x 0 and 6 and y 9 and 15. No 3D view ("Pitch darkness!"); the walls look different there. |
 | (10, 10), (8, 7), (15, 5), (13, 4), (5, 2), (14, 2), (13, 1) | Guarded square | Fight from area 14, then a chest. Two pairs, (10, 10) + (13, 1) and (15, 5) + (13, 4), each share one once-per-visit mark: after one of a pair has fought, the other probably stays quiet until the next floor change (inferred). |
 
 ## 3. Monsters

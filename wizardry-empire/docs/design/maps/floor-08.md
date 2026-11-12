@@ -20,7 +20,7 @@ pond, and two stairs down; how to read the map, coordinates and what each kind o
   them alone.
 - **14 guarded squares** (3 in the damage zone), **10 events** (the hermit, the pond, the Minotaur magic circle,
   Siegfried, a well, three signs; two key-hole doors), **a button panel**, **4 hidden spots**; no traps.
-- **Damage zone:** 16 squares at x 2-3, y 4-11. Each action there costs every member a quarter of max HP plus 1
+- **Damage zone** (the game's 'lake'): 16 squares at x 2-3, y 4-11. Each action there costs every member a quarter of max HP plus 1
   ([dungeon.md](../dungeon.md#34-zones-lake-magic-seal-dark-zone)). Random fights there come from area 101,
   undead only.
 - **Random fights** elsewhere come from area 10. **Monsters:** levels 1-10, 2 to 4 groups of up to 4; the damage

@@ -1,7 +1,7 @@
 # Floor 5: map, squares, monsters
 
-The fifth floor of the maze (B5F), whose north-west quarter is a closed block of traps under a zone mark with no
-known effect; how to read the map, coordinates and what each kind of square does: [maps/README.md](README.md).
+The fifth floor of the maze (B5F), whose north-west quarter is a closed block of traps in a dark zone; how to read
+the map, coordinates and what each kind of square does: [maps/README.md](README.md).
 
 ![Floor 5 map](wizardry-empire-floor-05.png)
 
@@ -13,12 +13,13 @@ known effect; how to read the map, coordinates and what each kind of square does
   Two **chutes** also drop the party to a lower floor (how far: not traced).
 - **11 guarded squares**, **4 events** (Lloyd, a recruitable adventurer; the Lion of Hell magic circle; a monster on
   the ceiling; a key-hole door), **a button panel**, **7 traps** (2 chutes, 4 pits, a spinner); no hidden spots.
-- **The north-west block:** 60 squares (x 0-7, y 8-15, except (3, 8), (4, 8), (7, 10) and (7, 11)) carry both zone
-  marks, which have no known effect beyond a different set of wall pictures
-  ([findings](../findings.md#33-dark-zones-are-not-drawn-on-the-auto-map)). Inside are six of the traps, Lloyd and the stairs
-  down. By the map's walls the block is **closed**: no square of it connects to the rest of the floor, and it has no
-  secret or locked door, so it has no way in on foot (computed from the map, not tested). It is entered from floor
-  6, by its up stairs at (7, 8). From the up stairs at (3, 4) the party reaches 192 of the 196 squares outside the
+- **The north-west block:** 60 squares (x 0-7, y 8-15, except (3, 8), (4, 8), (7, 10) and (7, 11)) are a **dark
+  zone**: entering it puts out the party's light and the 3D view gives way to "Pitch darkness!", so the party walks
+  blind (verified here, at (1, 9)); the walls there use a different set of pictures, and the auto-map does not draw
+  the zone ([dungeon.md](../dungeon.md) §3.4, [findings](../findings.md#33-dark-zones-are-not-drawn-on-the-auto-map)).
+  Inside are six of the traps, Lloyd and the stairs down. By the map's walls the block is **closed**: no square of it
+  connects to the rest of the floor, and it has no secret or locked door, so it has no way in on foot (computed from
+  the map, not tested). It is entered from floor 6, by its up stairs at (7, 8). From the up stairs at (3, 4) the party reaches 192 of the 196 squares outside the
   block; the only way down on foot is the chute at (8, 15), behind the locked door (12, 15) ↔ (11, 15).
 - **Random fights** come from encounter area 7 on every square. **Monsters:** levels 1-8, 2 to 4 groups of up to 7.
 
@@ -37,6 +38,7 @@ known effect; how to read the map, coordinates and what each kind of square does
 | (12, 15) ↔ (11, 15) | Locked door | Difficulty 25: a Thief has a real chance from level 6 (computed). Pick it from (12, 15) facing west. Behind it: the 4-square corridor (8, 15) to (11, 15) that ends at the chute (computed from the map). |
 | (7, 14), (0, 13), (6, 11), (0, 9) | Pit | All inside the block. |
 | (2, 12) | Spinner | Inside the block. |
+| 60 squares: x 0-7, y 8-15 except (3, 8), (4, 8), (7, 10), (7, 11) | Dark zone | No 3D view ("Pitch darkness!"). The whole north-west block. |
 | (1, 3) + (3, 1) | Guarded squares, a pair | Fight from area 7, then a chest. The two share one once-per-visit mark: after one has fought, the other probably stays quiet until the next floor change (inferred, not tested). |
 | (14, 15), (10, 13), (13, 11), (11, 9), (1, 6), (15, 6), (7, 3), (12, 3), (9, 0) | Guarded square | Fight from area 7, then a chest. |
 
@@ -70,7 +72,7 @@ Full stats: [monsters_table.md](../monsters_table.md).
 ([monsters.md](../monsters.md#2-the-bestiary)), and the Ghoul's paralysis. The Ogre Lord swings three times for
 2d10+8 each, up to 84 a round (computed), in groups of 2 to 4. The guards give Leather bags at best
 ([dungeon.md](../dungeon.md#54-chest-quality-by-floor)). A party coming down from floor 4 meets none of the block's
-traps; a party climbing up from floor 6 arrives inside the block, among six traps, with Lloyd. Dryads cast Mage
+traps; a party climbing up from floor 6 arrives inside the block, in the dark, among six traps, with Lloyd. Dryads cast Mage
 spells up to level 4 and Dark Elves up to level 3; Treants have reach and Dark Elves are ranged, so both can attack
 the back row ([combat.md](../combat.md#8-monster-reach-and-targets)).
 
@@ -81,8 +83,8 @@ the back row ([combat.md](../combat.md#8-monster-reach-and-targets)).
 - What the small monster on the ceiling does; which item the key-hole at (1, 2) takes; where the buttons at (1, 1)
   lead; Lloyd's own join condition.
 - The damage of the pits (each carries a trap strength of 5; what strength does for a pit was not traced).
-- What the double zone mark does, if anything, and whether the block's walls (drawn with the other wall pictures) are as solid as they
-  look. If they are, the block is reached only from floor 6.
+- Whether the block's walls (drawn with the dark-zone wall pictures) are as solid as they look. If they are, the
+  block is reached only from floor 6.
 
 Tech: [dungeon.md §4 Floors](../../tech/dungeon.md#4-floors), [§3 Event catalogue](../../tech/dungeon.md#3-event-catalogue),
 [§1 Cell format and zones](../../tech/dungeon.md#1-map-storage-and-cell-format), [§2.1 Secret and locked doors](../../tech/dungeon.md#21-secret-and-locked-doors-wall-value-3);

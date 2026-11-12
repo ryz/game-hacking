@@ -13,11 +13,16 @@ the map, coordinates and what each kind of square does: [maps/README.md](README.
   6) and how it climbs back up (inferred: the elevator) were not traced
   ([dungeon.md](../dungeon.md#2-how-floors-connect)).
 - **6 guarded squares**, **3 events** (the maid, two key-hole doors), **two button panels**, **10 hidden spots** in
-  5 pairs, **4 markers**; no traps.
+  5 pairs, **4 warps**; no traps.
 - **Route** (computed from the map): the floor is three parts joined only by secret doors. From the stairs down the
   party reaches 9 squares with them shut. The secret door (13, 1) ↔ (12, 1) opens part A (124 squares: the maid,
   both button panels, the guards at (11, 14) and (11, 5)); any one of four more secret doors leads on from part A to
   part B (123 squares: the guards at (6, 14), (1, 9), (14, 9) and (6, 5)). With them open, every square is reached.
+- **Warps** (computed from the map): the four warps are shortcuts inside part A. Each stands at the dead end of a
+  part-A corridor beside the central cross and moves the party at once to the diagonally opposite quarter of the
+  floor, onto the hidden spot in front of one of the four secret doors into part B. They do not open part B or the
+  stairs' corner: the walk numbers above already follow them. Once a warp has been stepped on, the auto-map shows
+  where it leads ([dungeon.md](../dungeon.md) §9).
 - **Random fights** come from encounter area 9 on every square. **Monsters:** levels 3-9, 2 to 4 groups of up to 5.
 
 ## 2. Squares
@@ -28,7 +33,10 @@ the map, coordinates and what each kind of square does: [maps/README.md](README.
 | (1, 14) | Maid (event) | "A pretty girl in a maid's outfit is here. 'If you...'": she offers a service, not traced. |
 | (1, 1), (13, 15) | Button panels | Buttons A-E: the Maze Elevator (inferred); where they lead was not traced. |
 | (0, 1), (14, 15) | Key-holes (events) | Each in front of the door to a panel's room; the doors are inferred to need an item (not traced which). |
-| (9, 12), (3, 6), (12, 6), (9, 3) | Marker | Nothing visible; inferred to remember the square as visited (auto-map). |
+| (9, 12) | Warp | To (6, 3) on this floor: the hidden spot in front of the secret door (6, 3) ↔ (7, 3). |
+| (3, 6) | Warp | To (12, 9) on this floor: the hidden spot in front of the secret door (12, 9) ↔ (12, 8). |
+| (12, 6) | Warp | To (3, 9) on this floor: the hidden spot in front of the secret door (3, 9) ↔ (3, 8). |
+| (9, 3) | Warp | To (6, 12) on this floor: the hidden spot in front of the secret door (6, 12) ↔ (7, 12). |
 | (13, 1) + (12, 1) | Hidden spots, a pair | Each faces the secret door between them; Search here, facing the other spot, finds it (from (13, 1) facing west). Noticing difficulty 35. The only way from the stairs' 9-square corner, (13, 0) to (15, 2), into part A (computed from the map). |
 | (6, 12) + (7, 12), (3, 9) + (3, 8), (12, 9) + (12, 8), (6, 3) + (7, 3) | Hidden spots, in pairs | Each pair faces the secret door between them; Search on the first spot, facing the second (east, south, south, east), finds it from part A. Noticing difficulty 35 each. Each of the four doors links part A to part B; one is enough (computed from the map). |
 | (6, 14), (11, 14), (1, 9), (14, 9), (6, 5), (11, 5) | Guarded square | Fight from area 9, then a chest. (11, 14) and (11, 5) are in part A, the other four in part B. |

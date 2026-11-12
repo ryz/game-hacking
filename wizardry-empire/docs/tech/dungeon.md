@@ -196,7 +196,7 @@ right; the floor table below gives the main area. (Clarified 2026-11-12.)
 | 4 | up ×3; down (3,4) | 6 | 21 (6) | 3 spinners, 3 pits | weird robed monster (4,8); monster's drop (3,8); sign (7,9); buttons + key-hole |
 | 5 | up (3,4); down (7,8) | 7 | 11 (7) | 2 chutes, 4 pits, spinner | NPC 1 Lloyd (1,11); circle 2 (15,9); ceiling monster (5,5); buttons + key-hole |
 | 6 | up (7,8); no down | 8 | 5 (8) | chute (0,15) → floor 7 (inferred); 4 hidden | NPC 2 Louie (12,3); 3 alarm squares; buttons + key-hole |
-| 7 | none up; down (15,0) | 9 | 6 (9) | 10 hidden; 4 warps (into the four closed rooms) | maid (1,14); 2 button panels + key-holes |
+| 7 | none up; down (15,0) | 9 | 6 (9) | 10 hidden; 4 warps (each lands on a hidden spot in front of a secret door) | maid (1,14); 2 button panels + key-holes |
 | 8 | up (15,0); down (4,14) (13,13) | 10, 101 (damage zone) | 14 (10, 101) | 4 hidden | hermit (2,14); pond (3,10); circle 3 (3,8); NPC 3 Siegfried (8,8); well (14,3); 3 signs |
 | 9 | up ×2; down (0,15) | 11 | 8 (11, 12) | 4 pits; 4 hidden | circle 4 (11,5); NPCs 4 Laila (1,0) and 5 Kojiro (3,3); 2 signs |
 | 10 | up (0,15); down (0,0) | 12 | 2 (12) | 2 hidden | 26 corpses (the "cemetery"); priest of the netherworld (1,1); 4 signs |
@@ -318,8 +318,8 @@ nothing. A destination off the 16 × 16 grid kills the party "In rock" (`23:4945
 rule above applies (emulator).
 
 **Warps that change floor** (`20:6F94`, `work/re/automap/warps.txt`): B22 (12,9) -> B23, B25 (7,8) -> B26,
-B26 (3,12) -> B27 (7,10), B27 (15,15) -> B28, B28 (6,7) -> B29 (0,0). B7's four warps lead into its four closed
-rooms (onto hidden-spot squares); B30 (4,10) lands on another warp and B30 (11,15) on an event. How B21 is first
+B26 (3,12) -> B27 (7,10), B27 (15,15) -> B28, B28 (6,7) -> B29 (0,0). B7's four warps each land on a hidden spot in front
+of a secret door (computed from the map: shortcuts, no closed rooms); B30 (4,10) lands on another warp and B30 (11,15) on an event. How B21 is first
 reached is still open (section 5).
 
 **Open:** battle Teleport (random square; does rock kill?), the camp item routes (code only), what clears `$D967` on a
