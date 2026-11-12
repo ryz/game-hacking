@@ -142,7 +142,7 @@ spinners).
 **Viper:** each member has a save of `level/2 + LUK − trap strength`, where the trap strength is set per square.
 The member avoids the poison if a random number from 0 to 99 is below the save. Two rolls are fixed: 0-4 always
 poisons and 99 always avoids it, so the chance to be poisoned is never below 5% or above 99%. (This differs from the
-saves against monster special hits, which have no fixed rolls; see [combat.md](combat.md).)
+saves against monster special hits, which have no fixed rolls; see [combat.md](combat.md#9-special-hits-and-saves).)
 
 **Floating:** the levitation that the sorcerer on floor 11 sells for 500 G lets the party float over pits and
 chutes.
@@ -230,7 +230,7 @@ Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format)
 
 Random fights can start after any action, from the square's encounter area: 1 in 512 normally, 5.1% right after
 walking through a door; squares with area 0 never have them. Rates, formations and the encounter tables:
-[monsters.md](monsters.md) and [monsters_table.md](monsters_table.md).
+[monsters.md](monsters.md#3-when-a-fight-starts) and [monsters_table.md](monsters_table.md).
 
 **Guarded squares** are fixed spots where monsters wait; **one-shot events** are story and special encounters.
 
@@ -298,7 +298,7 @@ Tech: [items.md §10.1](../tech/items.md#101-chest-value-and-type)
 ### 5.2 Gold
 
 The chest adds `10 × (4 + a random number from 0 to V)` G to the fight's gold, which is split among the members who
-are OK, Afraid or Asleep ([combat.md](combat.md)). A bag of value 3 gives 40-70 G; any Leather bag (V 0 to 6) gives
+are OK, Afraid or Asleep ([town.md](town.md#42-the-split)). A bag of value 3 gives 40-70 G; any Leather bag (V 0 to 6) gives
 40-100 G (computed from the formula).
 
 Tech: [items.md §9](../tech/items.md#9-gold-sources)
@@ -442,11 +442,12 @@ Tech: [dungeon.md §3](../tech/dungeon.md#3-event-catalogue),
 
 Counts per floor; coordinates are (x, y). "Areas" are the random-encounter areas (monsters in the
 [encounter tables](monsters_table.md)); "Guarded" gives the number of guarded squares and their areas. A magic
-circle is named by its summon ([spells.md](spells.md#6-summoner-pacts)).
+circle is named by its summon ([spells.md](spells.md#6-summoner-pacts)). Floor 1 has its own map and square list:
+[floor-1.md](floor-1.md).
 
 | Floor | Stairs (x, y) | Areas | Guarded | Traps / hidden spots | Events |
 |---|---|---|---|---|---|
-| 1 | up (0,15) = exit to town; down (15,0) | 1, 2, 3 | 8 (areas 1-3) | 2 pits; 6 hidden | Zombie circle (15,15); fairy twin (2,12); gold coins (5,4) |
+| [1](floor-1.md) | up (0,15) = exit to town; down (15,0) | 1, 2, 3 | 8 (areas 1-3) | 2 pits; 6 hidden | Zombie circle (15,15); fairy twin (2,12); gold coins (5,4) |
 | 2 | up (15,0); down (0,15) | 4 | 3 (area 4) | 4 rockfall, 3 pits; 2 hidden | Murphy (9,10) |
 | 3 | up (0,15); down ×3 (14,15) (8,8) (14,1) | 5 | 14 (areas 5, 6) | 2 hidden | Ghoul circle (4,0); button panel + key-hole (1,1)/(1,2) |
 | 4 | up ×3; down (3,4) | 6 | 21 (area 6) | 3 spinners, 3 pits | weird robed monster (4,8); its drop (3,8); sign (7,9); buttons + key-hole |
