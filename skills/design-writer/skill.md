@@ -43,6 +43,11 @@ or `tools/`.
    - **No invented numbers:** every number in your file is in your sources list with a tech section. A number you
      computed yourself (an average, a percentage) says how ("average 10.4, from the roll table").
    - Every section ends with a `Tech:` link; open questions from the tech doc are carried over, not dropped.
+   - **Links:** `python3 tools/doclinks.py` (every relative link and #anchor in docs/) reports 0 broken links. Link
+     another design file's section only when that file exists; otherwise link the file without an anchor.
+   - **Other design files:** list `docs/design/` again before the final check. If another file was written during
+     your run, cut overlaps to a link (one home per fact) and align shared facts and their tags.
+   - Run the number cross-check (numbers in your file vs `sources.md`) as a script, not by eye.
 
 ## Section template
 ```
@@ -57,6 +62,11 @@ Tech: [<file> §<n>](../tech/<file>.md#<anchor>)
 ```
 
 ## Guardrails
+- When a tech statement contradicts a data table (a generated table, or another tech doc's table that reads the data
+  directly), use the table and report the contradiction. Keep a "Contradictions between tech docs" list in
+  `sources.md`.
+- If the harness refuses to save a design file (e.g. by its file name), do not work around it: return the full
+  file content in your report for the coordinator to save.
 - Never add a fact the tech docs do not have. If a designer would need something that is missing, put it under
   "Open questions" in your file and in your report (the coordinator sends a tracer).
 - Keep the tech doc's uncertainty: "(inferred)" stays inferred; "not traced" stays an open question.
@@ -64,8 +74,8 @@ Tech: [<file> §<n>](../tech/<file>.md#<anchor>)
 
 ## Output / report
 Your file(s) in `docs/design/`, the sources list in `work/design/<topic>/sources.md`. Final message: what you wrote
-(files, sections), facts you could not place or found contradictory between tech docs, open questions, and the
-self-check results (address search hits: 0; numbers without a source: 0).
+(files, sections), a **Contradictions between tech docs** section, quirks you linked to findings.md, open questions,
+and the self-check results (address search hits: 0; numbers without a source: 0; doclinks: 0 broken).
 
 ## Feedback (end of every run)
 End your final report with a `## Feedback` block (Task, Worked, Friction, Proposed rule change); the coordinator

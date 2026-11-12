@@ -28,7 +28,8 @@ describe the documents and apply to everyone, people included.
 - **Open questions.** Each system document ends with an "Open questions" section: what is not known yet and what
   was tried. Never fill a gap with a guess presented as fact.
 - **Cross-links.** Each design section ends with a `Tech:` link to the matching tech section; each tech section
-  starts with a `Design:` link where one exists. Relative Markdown links (`../tech/combat.md#...`).
+  starts with a `Design:` link where one exists. Relative Markdown links (`../tech/combat.md#...`). Check them with
+  `python3 tools/doclinks.py` (0 broken).
 - **Dates.** A dated note says `(YYYY-MM-DD)`; status and history live in `status.md` / `progress-log.md`, not in
   the system documents.
 
@@ -57,5 +58,7 @@ describe the documents and apply to everyone, people included.
   `script/*.json` files store banks in decimal: convert when citing.
 - **Source tag for each fact:** `(code BB:AAAA)`, `(data BB:AAAA)`, `(emulator)` with the state/route used,
   `(display)` (only seen in on-screen text such as the museum), `(inferred)`.
+- **No addresses in headings.** Put a section's addresses on a `Code:` line under the heading, so links from the
+  design docs get readable anchors.
 - **Reproducible:** name the script, state or route that shows a fact when it took more than reading code.
 - Translation-patch notes (`re/`) also say which patch code (`asm/`, `tools/`) depends on the fact.

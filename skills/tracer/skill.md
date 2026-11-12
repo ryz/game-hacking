@@ -103,6 +103,7 @@ breakpoint on the dispatcher. To run one routine: stop at 0:07C5 first (HALT/IME
 - Record fields: byte-search the readers of the record copy (`ld a,[$C5xx]`, `ld hl,$C5xx`; `gbdis.py --xref`).
 - Record fields: then confirm with a count-only memory breakpoint on the record copy during one real use.
 - RNG-based probabilities: confirm once in the emulator by forcing the seed (RNG 0:0DA6, x = 5x + $4123, A = high byte).
+- Headings without addresses: put them on a `Code:` line under the heading (docs/README.md).
 - Banks: write them in hex like the rest of the docs (`25:551C`, or `$25 (37)`); `gbdis.py 25:551C` takes that form.
 - Surprising code-read conclusions (an unused roll, odd data values) go in an "Emulator checks" list with the exact
   poke + route to test them (`tools/play.py`), unless you can run the check yourself. Fast check: poke the working
