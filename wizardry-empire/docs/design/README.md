@@ -62,6 +62,7 @@ This section is the single definition; the other documents do not repeat it.
 | [monsters.md](monsters.md) | The bestiary, encounters and group formation, how monsters choose actions |
 | [monsters_table.md](monsters_table.md) | Every monster with its stats, plus the encounter tables (generated) |
 | [dungeon.md](dungeon.md) | Floors, special squares, damage zones, traps, chests, events per floor |
+| [floor-1.md](floor-1.md) | Floor 1 mapped: map image, every special square, the monsters of its encounter areas |
 | [findings.md](findings.md) | Designer's notes: quirks and likely original bugs, with what the game does and what was probably intended |
 
 Start with the Overview of each document; [findings.md](findings.md) collects everything that looks unintended.
