@@ -14,7 +14,7 @@ encounter rules in [monsters.md](../monsters.md). Notation: [README.md](../READM
 - **Floors connect** by stairs at the same (x, y) on the floor above or below, and by chutes and other means
   ([dungeon.md](../dungeon.md)).
 - **Guarded squares and one-shot events come back** every time the party changes floor
-  ([findings.md](../findings.md#guards-and-one-shot-events-re-arm-on-every-floor-change)).
+  ([findings.md](../findings.md#29-guards-and-one-shot-events-re-arm-on-every-floor-change)).
 
 ## 2. Reading a map
 

@@ -22,7 +22,7 @@ Related documents: monsters and encounter tables in [monsters.md](monsters.md) a
 - **Squares can hurt you:** pits, chutes, ceiling traps, rockfall, vipers (poison) and spinners; **damage zones**
   take a quarter of every member's max HP per action; **anti-magic zones** cancel the party's spell effects;
   **rock** kills the whole party if a teleport puts it there.
-- **Fights:** random fights are rare except right after a door (rates in [monsters.md](monsters.md)). **Guarded
+- **Fights:** random fights are rare except right after a door (rates in [monsters.md](monsters.md#3-when-a-fight-starts)). **Guarded
   squares** (0-21 per floor, 244 in all) hold a fixed fight; they are the **only fights that give a chest**, and they
   **re-arm every time you change floors**, together with the floor's one-shot events.
 - **Chests:** the strongest monster in the guard fight sets the chest's odds. The rolled chest value sets the tier
@@ -218,8 +218,8 @@ Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format)
 ### 3.5 Random teleport curse
 
 If any party member carries a hidden condition (not traced), **each step has a 50% chance to put the party on a
-random square of the current floor**. The condition is inferred to come from items with the special power
-"teleport" (see [items.md](items.md)) (inferred).
+random square of the current floor**. The condition is inferred to come from items with the "teleport" effect (the
+Helm of Warping, [items.md](items.md#43-equipped-effects)) (inferred).
 
 **Notes:** whether the random square can be rock (which kills the party) was not traced.
 
