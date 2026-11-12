@@ -10,6 +10,21 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - Rev 1 round trip (8052a1f)
+- Task: standard round trip on the first Rev 1 build; regressions from the port.
+- Worked: building the pre-port commit with the v1.0 dump in SESSION/old and replaying suspicious screens
+  separated port regressions from old bugs; poke.py and a run.sh wrapper.
+- Friction: explore.py looped on 'Ouch!' (closing key does not turn); seeds did not vary the walk; relative
+  --state paths fail in emu.py; archived tools/ lack gbemu-cli; party.state cursor not at Edge of Town.
+- Proposed rule change: symlink gbemu-cli and use absolute --state paths; build the previous commit with its
+  base ROM for regression checks after a port; explore.py turns twice after 'Ouch!'.
+- Corrected: #1/#2 battle panel and Fight submenu garble: GC read SCX mid-frame under the battle's raster
+  split and freed the panel's slots - fixed (columns 0-20 always count when SCX != 0). #3 quit screen and #6
+  'divided' already fixed. explore.py rewritten (stairs No, double turn after 'Ouch!', VWF bank not a hit);
+  battle reached in 73 steps. Battle group names with a line break ('Robed/figure') now spaced. Open: #4
+  tavern list after the sheet submenus, #5 level-up ' gained a level!' line, #7 range dashes.
+- Status: promoted 2026-11-12 (regression via previous commit + base ROM; absolute --state paths) - skill.md
+
 ### 2026-11-11 - pt2: full session on 3f26beb (report only, owner compares with own playtest)
 - Task: full first-session playtest of the owner's ROM, report only.
 - Worked: building the target commit from git archive into the session dir; frame-by-frame capture to tell

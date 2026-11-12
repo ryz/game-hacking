@@ -1,25 +1,22 @@
-"""Walk the maze at random until the screen leaves the maze code (encounter, stairs prompt, door message...).
+"""Walk the maze at random until a battle or another non-maze screen (chest, door message...).
 
-Usage: python3 tools/explore.py ROM STATE OUTDIR [MAXSTEPS=300] [SEED=7]
-Writes OUTDIR/prev.state (before the last step), hit.state + hit_NNN.png when something other than the maze
-banks ($1F/$20) ran, and last.png. Print the inputs with the seed: same ROM + state + seed = same walk.
-Rev 1: walking into a wall shows 'Ouch!' (31:4592) until a direction key; the walk then turns.
-Note: a HIT is any non-maze code (battle, stairs, door message); look at hit_NNN.png. Moved from
-work/triage/battle1/explore.py (2026-11-11).
+Usage: python3 tools/explore.py ROM STATE OUTDIR [MAXSTEPS=1500] [SEED=7]
+Writes OUTDIR/prev.state (before the last step), hit.state + hit_NNN.png when code outside the maze banks
+($1F/$20) and the VWF bank ($40) ran, and last.png. Same ROM + state + seed = same walk.
+Rev 1: walking into a wall shows 'Ouch!' (31:4592); the key that closes it does not turn, so a bump is
+followed by two turn keys. The stairs prompt (31:41FA) is answered No. Moves: up 70%, else a random turn.
+(Rewritten 2026-11-12 from the photographer's and playtester's walkers; the old one looped on 'Ouch!'.)
 """
-import sys, os, random, hashlib
+import sys, os, random
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import emu
 
 rom, st, out = sys.argv[1:4]
-maxsteps = int(sys.argv[4]) if len(sys.argv) > 4 else 300
+maxsteps = int(sys.argv[4]) if len(sys.argv) > 4 else 1500
 os.makedirs(out, exist_ok=True)
 random.seed(int(sys.argv[5]) if len(sys.argv) > 5 else 7)
-g = emu.open_emu(rom, st)
-
-
-def h():
-    return hashlib.md5(g.screenshot()).hexdigest()
+g = emu.open_emu(rom, os.path.abspath(st))
+MAZE = {31, 32, 64}
 
 
 def act(k):
@@ -30,26 +27,31 @@ def act(k):
     return bs
 
 
+def msg():
+    m = g.mem_read(0xC1BF, 3)
+    return m[2], m[0] | m[1] << 8
+
+
 def hit(i, bs):
     g.screenshot_png(out + "/hit_%03d.png" % i)
     g.snapshot_save(path=os.path.abspath(out + "/hit.state"))
-    print("HIT", bs)
+    print(i, "HIT", sorted(bs), flush=True)
 
 
 for i in range(maxsteps):
-    before = h()
     g.snapshot_save(path=os.path.abspath(out + "/prev.state"))
-    bs = act("up")
-    after = h()
-    bumped = 0x4592 <= int.from_bytes(g.mem_read(0xC1BF, 2), "little") <= 0x4597   # Rev 1 'Ouch!' (wall)
-    print(i, "up", sorted(bs), before != after, flush=True)
-    if bs - {31, 32}:
-        hit(i, bs); break
-    if bumped or before == after or random.random() < 0.25:   # a turn also closes the 'Ouch!' box
-        k = random.choice(["left", "right"])
-        bs = act(k)
-        print(i, k, sorted(bs), flush=True)
-        if bs - {31, 32}:
-            hit(i, bs); break
+    k = "up" if random.random() < 0.7 else random.choice(["left", "right"])
+    bs = act(k)
+    b, p = msg()
+    if b == 0x31 and 0x41FA <= p <= 0x4240:              # stairs prompt: No
+        act("down"); act("a"); g.run_frames(30)
+        print(i, "stairs -> No", flush=True)
+        continue
+    if b == 0x31 and 0x4592 <= p <= 0x4597:              # 'Ouch!': close it, then turn
+        t = random.choice(["left", "right"])
+        bs |= act(t) | act(t)
+    if bs - MAZE:
+        hit(i, bs)
+        break
 g.screenshot_png(out + "/last.png")
 g.close()

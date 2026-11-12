@@ -57,6 +57,7 @@ TW_baseHi   equ $df4b
 wGCrows     equ $df4c          ; GC scan: rows left
 wGCc        equ $df4d          ; GC scan: current column (0-31)
 wGCn        equ $df4e          ; GC scan: visible cells left in the row
+wGCchk      equ $df4f          ; GC scan: nonzero = BG with SCX != 0 (all 32 columns, each checked)
 ; rect parameters
 R_w         equ $df50
 R_h         equ $df51
@@ -2118,7 +2119,10 @@ PanelBody:
     ld de, wNameBuf
     ld b, 13
 .cp: ld a, [hli]
-    ld [de], a
+    cp $fd                  ; unidentified names hold a line break ('Robed/figure'): a space here, the
+    jr nz, .cp1             ; panel splits by width itself
+    ld a, $20
+.cp1: ld [de], a
     inc de
     or a
     jr z, .cpe
@@ -2178,7 +2182,7 @@ PanelBody:
     inc a
     ld [wPanG], a
     cp 4
-    jr c, .group
+    jp c, .group
     ; DMA WRAM1 $D200 -> VRAM1 $8C00, $40 blocks (as 0:1A02-1A1D)
     ld a, $00
     ldh [$b8], a
@@ -3114,16 +3118,37 @@ GCScan:
     ld [wGCrows], a
 .row:
     push hl                 ; row start
-    ld a, h                 ; only the 21 visible columns count: columns 20-31 are off screen and hold
-    and $08                 ; uninitialised RAM on many screens (it held ~80 slots as 'in use')
-    ld a, 0
-    jr nz, .c0              ; window buffer ($D800-$DBFF): columns 0-20
-    ld a, [wGCcol0]         ; BG: from SCX/8, wrapping at 32
-.c0: ld [wGCc], a
+    xor a                   ; only the 21 visible columns count: columns 20-31 are off screen and hold
+    ld [wGCc], a            ; uninitialised RAM on many screens (it held ~80 slots as 'in use')
+    ld [wGCchk], a
     ld a, 21
     ld [wGCn], a
+    ld a, h
+    and $08
+    jr nz, .l               ; window buffer ($D800-$DBFF): columns 0-20
+    ld a, [wGCcol0]         ; BG with SCX = 0: columns 0-20. Otherwise columns 0-20 and SCX/8.. +20: a
+    or a                    ; raster split (battle: the monster area scrolls, the party panel below does
+    jr z, .l                ; not) makes SCX read mid-frame wrong for some rows
+    ld a, 32
+    ld [wGCn], a
+    ld [wGCchk], a
 .l: pop hl
     push hl
+    ld a, [wGCchk]
+    or a
+    jr z, .cin
+    ld a, [wGCc]
+    cp 21
+    jr c, .cin
+    ld b, a
+    ld a, [wGCcol0]
+    cpl
+    inc a
+    add b
+    and $1f
+    cp 21
+    jp nc, .skip
+.cin:
     ld a, [wGCc]
     add l
     ld l, a

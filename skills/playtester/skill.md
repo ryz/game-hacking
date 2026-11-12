@@ -3,7 +3,7 @@ skill: playtester
 project: wizardry-empire
 summary: Play the English build toward a goal and report problems.
 access: write (session dir)
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # Playtester - Wizardry Empire (GBC)
@@ -89,3 +89,10 @@ End your final report with this block; the coordinator files it in `skills/playt
 - Friction: <what slowed you down or was unclear in this skill or the tools>
 - Proposed rule change: <a concrete change to skill.md, or "none">
 ```
+
+## Regression checks (2026-11-12)
+- Pass absolute paths to `--state` (gbemu resolves relative paths from its own directory); symlink
+  `tools/gbemu-cli` into a session's source copy.
+- A suspected regression after a port or a big change: build the previous commit with ITS base ROM in
+  SESSION/old and replay the same inputs there before reporting it as new.
+- Battles: `tools/explore.py ROM maze.state OUT 1500 SEED` (answers No at stairs, turns twice after 'Ouch!').
