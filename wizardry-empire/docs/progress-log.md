@@ -11,6 +11,17 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - crash fix (unidentified group names), name entry, Camp reorder
+- ROM: `e45012c` sent.
+- Changed: name-entry field and cursor in the VWF; Camp reorder digits/names in the VWF; 'Power hit' (was
+  'Aim for damage', ran over its box); monster panel keeps names that fit on line 1; museum minus/range.
+- Found / fixed: CRASH - unidentified group names of 13+ characters (Haggard figure, Armored figure, Gaseous
+  thing) overflowed $C50F into the type index; the kill message then ran code bytes (playtester). Renamed;
+  tests/test_limits.py. Tavern list after the sheet submenus (cache epoch wrap).
+- Tried and reverted: faster museum page (list garbage), copy-tied slot quarantine for flicker (stalls).
+- Open: chests and maze events not yet reached in the EN build (tracer making states); buffer-size audit of
+  all copied strings running.
+
 ## 2026-11-12 - ending and credits, playtest fixes (battle panel, tavern list, level-up)
 - ROM: `6500974` sent.
 - Changed: last untranslated screens (ending 7 pages + credits, power-off screen, Ring of Healing/Death lines,
