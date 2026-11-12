@@ -673,6 +673,43 @@ CardHPText:
 CardACText:
     db "AC", 0
 
+; --- character card status word (26:579D: pop de / 5-byte copy of the word at HL = 26:7574 + 5k to $D06E) ->
+;     the English word right-aligned at col 18 like Lvl/Age/AC (table built by tools/build.py card_status());
+;     DE ends at $D072 like the original (the bit-1 variant at 26:57DA prints a number there)
+    org $26, $579e
+    call CardStatus
+    ds 11, $00
+    org $26, $7800
+CardStatus:
+    ld a, l                 ; k = (L - $74) / 5
+    sub $74
+    ld b, -1
+.d: inc b
+    sub 5
+    jr nc, .d
+    ld a, b
+    swap a
+    add $40                 ; CardStatusTab = $7840
+    ld l, a
+    ld h, $78
+    push hl
+    ld hl, $d06c            ; blank cols 12-18 (a longer word shown before)
+    ld a, $20
+    ld b, 7
+.b: ld [hli], a
+    dec b
+    jr nz, .b
+    pop hl
+    ld a, [hli]             ; start cell
+    ld e, a
+    ld d, $d0
+    call Stub_PrintZ
+    ld de, $d072
+    ret
+    org $26, $7840
+CardStatusTab:
+    incbin "../build/card_status.bin"   ; 10 x 16 bytes: start cell low byte, blank-glyph lead, word, $00
+
 ; --- name entry: typed name field (26:6C62-6C9B built a [7][1] rect at $FFA8 from the name at $D060 and blitted
 ;     it to $D02A) -> blank the 7 cells, copy up to 7 characters + $00 to $FFA8, print it in the VWF
     org $26, $6c62

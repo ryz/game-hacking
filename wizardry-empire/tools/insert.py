@@ -278,7 +278,8 @@ def fix_sites(rom):
 # reloaded right after, so no tail byte.
 EXTRA_FIX_SITES = [(38, 0x5671, 8, 3, b""), (38, 0x6102, 17, 6, b"\x23"), (39, 0x49FD, 11, 4, b"")]
 # Matched by the pattern but not text: 2A:4A31 copies the element's attributes (handled in asm/main.asm).
-SKIP_FIX_SITES = {42 * 0x4000 + 0x4A47 - 0x4000}
+# 26:579E: the character card's status word, right-aligned by CardStatus (asm/vwf.asm).
+SKIP_FIX_SITES = {42 * 0x4000 + 0x4A47 - 0x4000, 38 * 0x4000 + 0x579E - 0x4000}
 
 
 def insert_fix_sites(rom):

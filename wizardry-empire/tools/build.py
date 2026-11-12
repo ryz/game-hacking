@@ -58,6 +58,33 @@ def gen_bins():
     # GC prefilter: a cell code that can be a slot in some layout (code itself, or code|$80 for VRAM1 low codes)
     maybe = bytes(1 if flags[e] or (e < 0x70 and flags[e | 0x80]) else 0 for e in range(256))
     open(os.path.join(BUILD, "maybeslot.bin"), "wb").write(maybe)
+    open(os.path.join(BUILD, "card_status.bin"), "wb").write(card_status(adv))
+
+
+CARD_STATUS = range(0x7574, 0x75A6, 5)   # 26:7574: the card's 10 status words, 5 bytes each (fixtables.json)
+CARD_EDGE = 19 * 8                       # right edge of the card's value column (col 18), as Lvl/Age/AC
+CARD_ROW = 0x60                          # low byte of the status row ($D060)
+
+
+def card_status(adv):
+    """26:7800 table for CardStatus: per status word 16 bytes = start cell (low byte, row $D06x) + the English
+    word right-aligned at CARD_EDGE: led by blank glyphs ($7C 2 px, ' ' 3 px) for the pixel offset, $00."""
+    import json, text
+    en = {int(e["addr"], 16): e["en"] for e in json.load(open(os.path.join(ROOT, "script", "fixtables.json")))
+          if e["bank"] == 38}
+    out = bytearray()
+    for a in CARD_STATUS:
+        b = text.encode(en[a])
+        x = CARD_EDGE - sum(adv[c & 0x7F] for c in b)
+        cell, p = divmod(x, 8)
+        if p == 1:                       # no 1 px blank: start a cell earlier
+            cell, p = cell - 1, 9
+        pad = b"\x20" * (p % 2) + b"\x7c" * ((p - 3 * (p % 2)) // 2)
+        assert sum(adv[c] for c in pad) == p and 12 <= cell <= 18, (en[a], x)
+        rec = bytes([CARD_ROW + cell]) + pad + b + b"\x00"
+        assert len(rec) <= 16, en[a]
+        out += rec.ljust(16, b"\x00")
+    return bytes(out)
 
 
 FONT_OFF = 0x4400  # bank 1 $4400: original 8x8 font, code*16
