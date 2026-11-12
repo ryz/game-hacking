@@ -10,6 +10,19 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - stairs-prompt text in the maze walls
+- Task: explain prompt text in the maze walls (suspected b9f4a72 regression), propose a tested fix.
+- Worked: per-frame VRAM poll with the reservation bitmaps showed DMA -> reserve -> AllocReset -> GC -> upload into
+  wall tiles; write watch on wGameNew/wBits symbolised with .sym; building a1ff2b7 and checking the whole tile set
+  against the ROM source showed the 'clean' baseline was luck; JP buffer bank bits revealed the real cause (layout).
+- Friction: one-screenshot 'clean' baselines mislead for allocator bugs; tour.py --help ran the whole tour; gbdis
+  syntax in skill.md; another session edited asm/vwf.asm during the run.
+- Proposed rule change: compare builds from both states + integrity check; check wLayout vs JP bank bits early.
+  Tools: tour.py --help; gbdis syntax in the skill.
+- Corrected: the coordinator's brief blamed b9f4a72 (it only moved the damage); fix applied (VWF_MazeSplit from
+  MazeHdma), wall clean in the repro and after steps, maze strip clean, tour unchanged. tour.py --help prints usage.
+- Status: promoted 2026-11-12 (integrity check, wLayout check, gbdis syntax)
+
 ### 2026-11-12 - town at 1/4 speed after the tavern/temple menus
 - Task: explain the party-list cache missing every pass after tavern a/b and test a fix in scratch.
 - Worked: count-only breakpoints after each PLHit test found the failing condition (wReset) in one run; write

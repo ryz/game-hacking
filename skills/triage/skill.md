@@ -74,4 +74,9 @@ End your final report with this block; the coordinator files it in `skills/triag
   0:07C5; 360 at town/camp idle); put count-only breakpoints after each cache-hit test (PLHit, RectCacheHit,
   NameCacheHit) to find the failing condition, then write-watch its guard variable.
 - WRAM bank writes: `g.mem_write(0, data, region='wram', offset=bank*0x1000 + (addr - 0xD000))`.
+- "Clean on build X" from one screenshot is unreliable for allocator bugs (ring position, input timing): run the
+  inputs on the good build from its own state AND from the bad build's state, and check graphics integrity (VRAM
+  against the DMA source), not only the screenshot.
+- Check `wLayout` against the JP buffer's attribute bank bits early: a stale layout puts text into game graphics.
+- gbdis: `gbdis.py 2D:63EB 20` (hex bank:addr) or `gbdis.py 45 0x63eb 20` (decimal bank).
 

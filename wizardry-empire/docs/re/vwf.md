@@ -57,6 +57,13 @@ keeps working; it resyncs whenever the game moves the cursor or the buffer base 
   caused the battle hang. Bank-0 stubs pass everything in registers or on the stack: the VWF reads caller
   HL/BC/argument pointer from fixed stack offsets (see the comment above `Stub_Inline`).
 
+## Layout outside font loads
+`wLayout` changes only on font loads. Leaving Camp for the maze has none (the split font in VRAM1 survives Camp),
+so the VWF stayed in the flat layout and drew text into the maze wall tiles (VRAM0 $8800-$8EFF = flat slots
+$80-$EF): stairs-prompt words in the walls, the SELECT menu over $81-$99. `MazeHdma` now far-calls
+`VWF_MazeSplit` when the maze graphics load: wLayout = 1, wReset = 1, blank tile $A0 to VRAM1 $9200, as the
+split font load does (2026-11-12). Any other screen that returns without a font load could keep a stale layout.
+
 ## Pending font-load reset
 `wReset` (set by a font load) used to be cleared only by `Alloc`. Redraws that reuse their own slots never
 allocate, so the party-list and rect caches missed on every pass (town at 1/4 speed after the tavern menu).

@@ -1334,6 +1334,9 @@ MazeHdma:
     ld b, $40
     call $1553
     ei
+    ld a, VWF_BANK          ; the view's tiles fill VRAM0/1 $8000-$8FFF: back to the split text layout
+    ld hl, VWF_MazeSplit
+    call FarCall
     ld bc, $0040            ; tiles, as Stub_Dma passes them (hSrc*/hDst* are unchanged by 0:1553)
     ld a, VWF_BANK
     ld hl, VWF_DmaCheck
@@ -3297,6 +3300,43 @@ PanelCommit:
     dec b
     jr nz, .r
     ret
+
+; =====================================================================
+; Maze view graphics loaded (MazeHdma, 20:4100-4240): VRAM0/VRAM1 $8000-$8FFF now hold the view, so Camp's
+; flat font (VRAM0 $8800) is gone and the game is back to its split text: the dungeon messages, prompts and
+; menus use codes < $80 with the attribute bank bit for the upper half (VRAM1 $9000), like the frame 7D'-7F'
+; the game redraws. No font load marks the return (the split font in VRAM1 $9000 survived Camp), so wLayout
+; stayed 0 and flat slots $80-$EF (VRAM0 $8800-$8EFF = the wall/floor tiles) took the text: stairs prompt
+; in the front wall after a step, 'Pick a lock' in the view strip.
+; =====================================================================
+VWF_MazeSplit:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld a, [wLayout]
+    cp 1
+    jr z, .out
+    ld a, 1
+    ld [wLayout], a
+    ld [wReset], a          ; like a font load: shadows/caches/reservations restart at the next Alloc
+    ld hl, wUp              ; VRAM1 tile $20 (code $A0) = blank paper, as the split font load does
+    ld b, 8
+.bt: xor a
+    ld [hli], a
+    dec a
+    ld [hli], a
+    dec b
+    jr nz, .bt
+    ld a, $a0
+    call Upload
+.out:
+    pop af
+    jp SetSVBK
 
 ; =====================================================================
 ; A non-font VBlank DMA (pictures, panels) is about to overwrite VRAM [hDst, hDst + BC*16) in VRAM bank

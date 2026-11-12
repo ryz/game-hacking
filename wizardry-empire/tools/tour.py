@@ -27,6 +27,9 @@ def routes():
 
 
 def main(argv):
+    if "-h" in argv or "--help" in argv:
+        print(__doc__)
+        return 0
     jp = "--jp" in argv
     cache = "--no-cache" not in argv
     jobs = os.cpu_count() or 1
