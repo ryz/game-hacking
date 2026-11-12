@@ -568,6 +568,42 @@ CardLvl:
 CardLvlText:
     db "Lvl", 0
 
+; --- name entry: typed name field (26:6C62-6C9B built a [7][1] rect at $FFA8 from the name at $D060 and blitted
+;     it to $D02A) -> blank the 7 cells, copy up to 7 characters + $00 to $FFA8, print it in the VWF
+    org $26, $6c62
+    jp NameField
+    org $26, $7f20
+NameField:
+    ldh a, [$9d]            ; the field is in the WRAM bank 3 buffer
+    push af
+    ld a, 3
+    ldh [$9d], a
+    ldh [$70], a
+    ld hl, $d02a
+    ld b, 7
+    ld a, $20
+.bl: ld [hli], a
+    dec b
+    jr nz, .bl
+    pop af
+    ldh [$9d], a
+    ldh [$70], a
+    ld hl, $d060
+    ld de, $ffa8
+    ld b, 7
+.cp: ld a, [hli]
+    or a
+    jr z, .e
+    ld [de], a
+    inc de
+    dec b
+    jr nz, .cp
+.e: xor a
+    ld [de], a
+    ld hl, $ffa8
+    ld de, $d02a
+    jp Stub_PrintZ
+
 ; --- museum monster list name (41:633E): name at $C50F -> VWF
     org $29, $633e
     ld hl, $c50f

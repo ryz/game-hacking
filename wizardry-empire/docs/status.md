@@ -99,9 +99,10 @@
 - Redirected messages left the text bank on the English bank; English now jumps back to the original terminator.
 
 ## Next (in rough priority)
-1. Museum monster page: opening takes 37 frames (JP 9; each VWF GC ~5-6 frames), closing shows a few frames of
+1. Museum monster page: opening takes ~31 frames (JP 9; each VWF GC ~5-6 frames), closing shows a few frames of
    garbage in the page; a faster GC would help every screen.
-2. Name-entry field still in the 8 px font (owner's rule: words in the VWF).
+2. Name entry: the typed name is in the VWF now (26:6C62 -> NameField); the red cursor box still steps 8 px per
+   letter, so it sits a little right of the text.
 3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
 4. Ending/credits checked only with the forced route ($D000=8 from the town); a real final-boss ending (maze
    layout) not seen. The game has no prologue; item effect texts are the museum rects (all translated).
