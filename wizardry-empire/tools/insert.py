@@ -39,7 +39,7 @@ def rom_off(bank, addr):
 
 def layout_rows(entry):
     """List of English rows -> encoded bytes with alignment."""
-    w_px = entry["w"] * 8
+    w_px = entry.get("draw_w", entry["w"]) * 8      # draw_w: the VWF may draw into blank cells right of the rect
     rows = entry["en"] if isinstance(entry["en"], list) else entry["en"].split("\n")
     align = entry.get("align", "left")
     out = []
@@ -88,7 +88,9 @@ def insert_rects(rom, space, entries):
             n += 1
             continue
         b, a = space.put(layout_rows(e))
-        rom[o:o + 5] = bytes([e["w"] | 0x80, e["h"], b, a & 0xFF, a >> 8])
+        dw = e.get("draw_w", e["w"])
+        assert dw == e["w"] or not e.get("attrs"), e["id"]   # the attribute block offset uses the header width
+        rom[o:o + 5] = bytes([dw | 0x80, e["h"], b, a & 0xFF, a >> 8])
         n += 1
     return n
 
@@ -172,11 +174,12 @@ def insert_msgs(rom, space, entries, home=None):
     return n
 
 
-ITEM_BANK, ITEM_SIZE, ITEM_NAME = 40, 40, 18
+ITEM_BANK, ITEM_SIZE, ITEM_NAME = 40, 40, 17   # name bytes 0-16 ($00-terminated); byte 17 = unidentified class
 
 
 def insert_items(rom, entries):
-    """Item names live in the 40-byte item records (bank 40), 18-byte $00-padded field: in place."""
+    """Item names live in the 40-byte item records (bank 40): 16 chars + $00 in bytes 0-16, in place. Byte 17 is
+    the unidentified-name class (index into 41:5706); writing over it made every item 'look like' an Axe."""
     for e in entries:
         o = ITEM_BANK * 0x4000 + e["id"] * ITEM_SIZE
         data = text.encode(e["en"])
@@ -275,8 +278,8 @@ def fixmap_entries(space, rom):
     import re
     ents = []
     for e in load("rects.json"):
-        if not e.get("en") or e.get("fixed") or e["w"] * e["h"] < 3:
-            continue
+        if not e.get("en") or e.get("fixed") or e.get("nofix") or e["w"] * e["h"] < 3:
+            continue      # nofix: only blitted as a rect, never read by a fixed-length copy
         rows = e["en"] if isinstance(e["en"], list) else e["en"].split("\n")
         base = int(e["addr"], 16) + 2
         for r, row in enumerate(rows):
@@ -393,10 +396,32 @@ def load(name):
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else []
 
 
+UNID_TABLE = (41, 0x5706, 25)          # 41:5706: unidentified item names, records [len][$01][text][$00]
+UNID_SPACE = (41, 0x7928, 0x7A80)      # bank-41 free space for the English records
+
+
+def insert_unid(rom):
+    """Unidentified item names read by the shop (41:5738, counted by len, <= 16), the item lists (41:56EA, skips
+    2 bytes) and the museum page: English = the bank-49 list (49:566B..569B, same order), ASCII records."""
+    lists = {int(e["table"], 16): e["en"] for e in load("lists.json") if e.get("table")}
+    b, tab, n = UNID_TABLE
+    sb, pos, end = UNID_SPACE
+    for i in range(n):
+        en = lists[0x566B + 2 * i]
+        assert len(en) <= 16 and text.width(en) <= 72, en
+        rec = bytes([len(en), 1]) + en.encode("ascii") + b"\x00"
+        assert pos + len(rec) <= end
+        rom[rom_off(sb, pos):rom_off(sb, pos) + len(rec)] = rec
+        rom[rom_off(b, tab + 2 * i):rom_off(b, tab + 2 * i) + 2] = bytes([pos & 0xFF, pos >> 8])
+        pos += len(rec)
+    return n
+
+
 def insert_all(rom):
     space = Space(rom)
     stats = {}
     stats["rects"] = insert_rects(rom, space, load("rects.json"))
+    stats["unid names"] = insert_unid(rom)
     b49 = Space(rom, LIST_BANK, LIST_BANK, LIST_FREE)
     stats["messages"] = insert_msgs(rom, space, load("messages.json"), {LIST_BANK: b49})
     stats["items"] = insert_items(rom, load("items.json"))
