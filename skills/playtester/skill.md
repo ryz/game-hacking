@@ -53,8 +53,16 @@ stay balanced and every name shows up in menus, battle text and the character sh
 6. Optional if time remains: a second trip deeper, a party wipe screen, museum entries after battles.
 
 ## How to play
+Preferred (2026-11-12): a persistent session, no reload between steps (~1-2 s per command):
+`python3 tools/play.py start --seq "boot,PARTY"` (or `--state S`), then `python3 tools/play.py do "<tokens>"`
+(prints the screenshot path + party HP/status + maze position), `status`, `save NAME` / `load NAME`,
+`peek ADDR N`, `poke ADDR HEX`, `log` (replayable tokens), `stop`. `--name X` runs a second session. Every `do`
+is logged in `work/play/NAME/log.txt` with its screenshot; copy what you need into your SESSION folder.
+
+One-shot runs (per-token screenshots, hang check):
 `python3 tools/emu.py --out SESSION/stepNN --seq "<tokens>" [--state SESSION/last.state] --save SESSION/last.state`
-- Tokens: `boot` (power-on to the town), `a b start select up down left right` (press), `KEY*n`, `KEY+KEY`, `wN` (wait).
+- Tokens: `boot` (power-on to the town), `PARTY`, `a b start select up down left right` (press), `KEY*n`, `KEY+KEY`,
+  `KEY>KEY` (hold the first, then both), `wN` (wait), `poke:ADDR=HEX`.
 - Each run writes a screenshot per token, `sheet.png` and `log.txt`; exit status 2 = the game hung (the log has the
   PC, bank and backtrace). Look at the screenshots after every run before choosing the next inputs.
 - Play in small steps (5-15 tokens) so you can react. Keep `last.state` as your save point; copy it to a named file

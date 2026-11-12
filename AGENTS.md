@@ -37,6 +37,8 @@ Run from `wizardry-empire/`:
 - Batches: `python3 tools/batches.py split msg|rect NAME ... / check / pairs / merge` (`check` includes the lint).
 - Lint: `python3 tools/lint.py` (glossary names, Yes/No kept, quotes, duplicates, spacing); the build refuses lint
   errors (`NO_LINT=1` to skip while debugging).
+- **Interactive play**: `python3 tools/play.py start --seq "boot,PARTY"`, then `play.py do "up,a,w30"` / `status` /
+  `save NAME` / `load NAME` / `peek` / `poke` / `stop` (one emulator kept running; ~1-2 s per command).
 - Standard playtest party (ryz, condi, ebo, cubi, deddo, mnz) + checkpoint states for the current build:
   `python3 tools/party.py --out work/states/party` (renamed/party/camp/maze.state).
 - Screen tour: `python3 tools/tour.py [--jp] [route ...]` (routes in `tools/routes/tour.txt`) ->
