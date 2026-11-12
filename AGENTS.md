@@ -72,4 +72,4 @@ Run from `wizardry-empire/`:
 | `script/rects.json` | fixed boxes `[w][h][tiles]` | `^` center, `>` right, `@N:` cell column N, `{x:N}` pixel x; `fixed: true` = 8 px ASCII in place |
 | `script/messages.json` | typewriter messages | `\n` = row; `{col:N}` cursor column; `{F8 ..}`/`{F3 ..}` inserts copied from the Japanese |
 | `script/inline.json` | text written by code | replaced by `rst $38` calls; `hl` moves the destination |
-| `script/items.json`, `monsters.json`, `templates.json` | name fields in data records | in place: 17 / 12 / 7 chars max |
+| `script/items.json`, `monsters.json`, `templates.json` | name fields in data records | in place: 16 / 12 / 7 chars max |

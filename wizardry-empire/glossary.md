@@ -16,7 +16,7 @@ Binding names and terms. Use them exactly; add new rows when a new name is decid
   docs/status.md so the owner can review it. When a screen still shows text or numbers in the 8 px font, hook
   its printer (route it through the VWF) rather than fitting the English to the fixed-width field. Numbers keep
   their alignment (right-aligned in their field, digits of equal width).
-- Field limits are hard: items 17 chars, monsters 12 (abbreviate with "Gr." / "Mstr." / "Elem." only when needed),
+- Field limits are hard: items 16 chars, monsters 12 (abbreviate with "Gr." / "Mstr." / "Elem." only when needed),
   default character names 7.
 
 ## Places
