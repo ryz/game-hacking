@@ -9,6 +9,17 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-12 - three-way set compare3 (JP | EN | REF)
+- Task: shoot.py three-way mode and the compare3 set (35 shots), published.
+- Worked: route cache + turbo (3 ROMs x 35 shots in ~3 min); testing the patched tool via __file__ without touching
+  tools/; old-vs-new byte comparison of the two-way mode; native contact sheets for the same-screen check.
+- Friction: the dispatch asked for a tools/ edit and a docs/ publish, outside the photographer's write scope; the
+  dispatch said 40 shots (35); no contact-sheet tool.
+- Proposed rule change: tool changes staged as `work/shots/<set>/_tool/` (diff + full file) for the coordinator;
+  a same-screen check with per-shot content differences in the set README when comparing patches.
+- Corrected: coordinator reviewed the diff, applied it and published docs/shots/compare3/.
+- Status: promoted 2026-11-12 (staged tool changes; same-screen check)
+
 ### 2026-11-12 - rev1_tour: the jp_tour routes on Rev 1 + EN
 - Task: reshoot the 121 v1.0 reference routes on Rev 1 and the EN build, compare each with v1.0.
 - Worked: list generated from index.json (full tokens); pixel diff old vs new found the 5 changed routes at once;

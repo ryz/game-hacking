@@ -3,7 +3,7 @@ skill: photographer
 project: wizardry-empire
 summary: Pixel-exact reference screenshots of screens, features, options and gameplay (English and original).
 access: write (work/shots/<set>/, docs/shots/<set>/), git commit of its set
-updated: 2026-11-12
+updated: 2026-11-12 (compare3)
 ---
 
 # Photographer - reference screenshots
@@ -87,3 +87,9 @@ End your final report with this block; the coordinator files it in `skills/photo
   difference. RNG-dependent screens (bonus roll, encounters) shift between ROM revisions: fix them with a `wN`
   before the roll.
 - Check that every `rom_sha1` in the final index is the same: another session may rebuild `build/` during a long run.
+
+## Tool changes and patch comparisons (2026-11-12)
+- The photographer writes only under `work/shots/<set>/`. A needed tool change is staged as
+  `work/shots/<set>/_tool/<file>` plus `<file>.diff`; the coordinator reviews and applies it.
+- Sets that compare different patches (`--rom all`: JP | EN | REF) get a README.md listing, per shot, whether the
+  three screens are the same screen and any content difference that is not the translation itself.
