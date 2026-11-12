@@ -265,7 +265,7 @@ Three numbers lead to the chest:
 1. **Chest rating** (per monster): every monster has one (the "Chest" column of
    [monsters_table.md](monsters_table.md)). The fight's rating R is the highest rating among the monster groups
    present.
-2. **Chest value** V (rolled): drawn from row R of a table. Row R holds values from 0 to R, so a stronger monster
+2. **Chest value** V (rolled): drawn from row R of a table. Row R holds values from 0 to R (from 1 to R for ratings 30-48), so a stronger monster
    allows a better chest but does not guarantee one.
 3. **Tier** (from the value): the kind of chest, below.
 

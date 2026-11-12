@@ -61,7 +61,7 @@ and by logging every read of the copies during a JP battle (`work/design/monster
 |---|---|---|---|---|
 | `$00-$0C` | `$C50F` | Name | 12 chars + `$00`, `$FD` = line break | battle text `{B}`, museum |
 | `$0D` | `$C51C` | Unidentified class | 0-15, index of the generic name shown while unidentified (`49:56FD`, museum `41:6730`) | `22:6B40`, `0:36D4`, museum `41:686F` |
-| `$0E` | `$C51D` | Type bits | bit 0 undead, 1 demon, 2 dragon, 3 spirit (slaying, items.md 4.4). Bits 4 (golems, Wraith-likes) and 5 (ghosts) are not identified | `32:454A` (slaying), `24:4BAD` and 3 more in the spell bank, `22:6ECB` |
+| `$0E` | `$C51D` | Type bits | bit 0 undead, 1 demon, 2 dragon, 3 spirit (slaying, items.md 4.4). Bits 4 (the four golems, Gargoyle, Juggernaut, Kugutsu; corrected 2026-11-12: was 'golems, Wraith-likes') and 5 (13 monsters, the ghosts among them) are not identified (counts from design/monsters_table.md) | `32:454A` (slaying), `24:4BAD` and 3 more in the spell bank, `22:6ECB` |
 | `$0F` | `$C51E` | Picture id (inferred) | rises by family (Bowman/Shooter 8, Gunner 9...) | no direct reader |
 | `$10` | `$C51F` | To-hit base H | lower = more accurate (Ancient One 1, Goblin 19) | `32:4DB7`, `32:5298` |
 | `$11` | `$C520` | Swings per round | 1-14 (77 monsters 1, max: Musashi 14, Kamui 10, Kali, Scylla, Carrion Worm 8); used as the loop count, no cap (section 4.1). Corrected 2026-11-12: was "1-7" | `32:4DBF`, `32:52A0` |

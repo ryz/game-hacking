@@ -18,7 +18,7 @@ The full 224-item table is generated into **[../design/items_table.md](../design
   no random enchantments or durability. An inventory slot holds only an item id and 4 state bits: equipped, cursed
   (stuck), unidentified, and off-hand. Each character carries 8 slots.
 - **Weapons.** Damage per swing is `NdS + B`. The number of swings per round is the class/level count plus the weapon's
-  bonus (daggers +2 to +6, Swift Sword +7). To-hit works on a d20: chance = (20 - miss)/20, with the miss value clamped
+  bonus (daggers +1 to +6, Swift Sword +7; Thieves' Dagger and Butterfly Knife +1, items_table). To-hit works on a d20: chance = (20 - miss)/20, with the miss value clamped
   so the hit chance always stays between 5% and 95%. Some weapons get ×1.5 or ×2 damage against a monster family.
   There are launchers (bow, crossbow, sling) with matching ammo, two-handed weapons, a parry dagger, and dual wielding
   for the Musashi class only.
@@ -37,7 +37,7 @@ The full 224-item table is generated into **[../design/items_table.md](../design
   character at the birthday that reaches age 57.
 - **Temple.** Fee = rate × level. The rate is 10 for Afraid/Asleep, 30 Paralyzed, 50 Stoned, 100 Dead, 300 Ashes. Dead
   and Ashes need a roll: about 1-96% success depending on age and vitality (section 8). On failure Dead becomes Ashes and Ashes
-  becomes Lost. A success costs vitality (61%) and ages the character 1-3 years (89%).
+  becomes Lost. A success costs vitality (61 of 101 outcomes, about 60%) and ages the character 1-3 years (89%).
 - **Gold.** Each monster carries a fixed gold value; the sum is split evenly among the conscious survivors. Only
   guarded squares (fixed fights) give a chest. A chest adds `10 × (rand(0..V) + 4)` gold, where V is the chest value,
   and tries to give 1-4 items from 47 item pools. The trap is picked by chest tier from 14 kinds, Fire Bolt being the
@@ -210,7 +210,7 @@ Code: (bank 50, `32:42F1-4628`; the second copy `32:48xx` is the same formula.
    - Some attacker states (`$C4FF` = `$0D`) lower the threshold by 4; others (`$0E`, or `&$7F` = 2) raise it by 4.
 2. Roll `rand(0..19)` (a d20). **Hit if the roll >= miss**, so the hit chance is between 5% and 95%.
    - Hit bonus 47-50 (byte 29): `$C502` is at most about 20 (level 1, `22:4B53-4CB5`) and falls with level, so
-     `attacker_hit − 47` stays far below the lowest monster AC (−16) and the clamp gives miss = 1: the 95% cap against
+     `attacker_hit − 47` stays below the lowest monster AC (−30, Abyss Lurker; corrected 2026-11-12: was −16) for an attacker to-hit of 18 or less, and the clamp gives miss = 1: the 95% cap against
      every monster (unless `$C503` or attacker states, not traced, added some 30 points). **Emulator** (JP, F1 guarded square, Fighter poked
      to a Battle Axe, breakpoint at `32:4444`): miss threshold 1 on every swing (bonus 50); with his Sword 9
      (`work/re/contradictions/tohit.py`).
@@ -380,7 +380,7 @@ Example: a 25-year-old with VIT 12 has 84/101 = 83%.
 
 - **Failure.** Dead becomes Ashes, Ashes becomes **Lost**. A Lost character is removed from the party list (`27:6903`).
 - **Success.** Status cleared, `+$57` = 0, HP set to 1 if it was 0. Then:
-  - 61% chance (`rand(0..100) < 61`): VIT -1. The floor is the race minimum (Human 8, Elf 6, Dwarf 10, Gnome 8,
+  - 61 of 101 outcomes, about 60% (`rand(0..100) < 61`): VIT -1. The floor is the race minimum (Human 8, Elf 6, Dwarf 10, Gnome 8,
     Hobbit 6, table `27:69AF`), +1 when record `+$0B` is non-zero.
   - 89% chance (`rand(0..99) < 89`): age +1 to +3 years (cap 99).
   - Non-death cures have no side effects (`27:696A`).
@@ -412,7 +412,7 @@ Random encounters give gold only.
 
 Code: (`25:40D8-416B`.
 - **Row.** R = the highest monster byte `+$2D` among the groups present.
-- **Value.** V = a random byte of row R in the table at bank 55 (`$37`) `$4000 + R×256`. Row R holds values 0..R.
+- **Value.** V = a random byte of row R in the table at bank 55 (`$37`) `$4000 + R×256`. Row R holds values 0..R, except rows 30-48, which hold 1..R (no value 0; data, checked 2026-11-12).
 - **Tier.** V gives the chest tier:
 
 | V | Tier | Contents level cap (`$C636`) |
