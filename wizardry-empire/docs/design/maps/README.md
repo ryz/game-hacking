@@ -55,10 +55,41 @@ special square). The walls of floor 1 were checked against the game at the entra
 
 ## 4. Floor index
 
-| Floor | Page | Notes |
+All 30 maps are generated; floor pages are written one by one. Until a floor has its page, its overview is in
+[dungeon.md](../dungeon.md) (floor by floor).
+
+| Floor | Map | Page |
 |---|---|---|
-| 1 | [floor-01.md](floor-01.md) | entrance floor, levels 1-2 |
-| 2-30 | not mapped yet | overview of every floor: [dungeon.md](../dungeon.md) (floor by floor) |
+| 1 | [map](wizardry-empire-floor-01.png) | [floor-01.md](floor-01.md) |
+| 2 | [map](wizardry-empire-floor-02.png) | not written yet |
+| 3 | [map](wizardry-empire-floor-03.png) | not written yet |
+| 4 | [map](wizardry-empire-floor-04.png) | not written yet |
+| 5 | [map](wizardry-empire-floor-05.png) | not written yet |
+| 6 | [map](wizardry-empire-floor-06.png) | not written yet |
+| 7 | [map](wizardry-empire-floor-07.png) | not written yet |
+| 8 | [map](wizardry-empire-floor-08.png) | not written yet |
+| 9 | [map](wizardry-empire-floor-09.png) | not written yet |
+| 10 | [map](wizardry-empire-floor-10.png) | not written yet |
+| 11 | [map](wizardry-empire-floor-11.png) | not written yet |
+| 12 | [map](wizardry-empire-floor-12.png) | not written yet |
+| 13 | [map](wizardry-empire-floor-13.png) | not written yet |
+| 14 | [map](wizardry-empire-floor-14.png) | not written yet |
+| 15 | [map](wizardry-empire-floor-15.png) | not written yet |
+| 16 | [map](wizardry-empire-floor-16.png) | not written yet |
+| 17 | [map](wizardry-empire-floor-17.png) | not written yet |
+| 18 | [map](wizardry-empire-floor-18.png) | not written yet |
+| 19 | [map](wizardry-empire-floor-19.png) | not written yet |
+| 20 | [map](wizardry-empire-floor-20.png) | not written yet |
+| 21 | [map](wizardry-empire-floor-21.png) | not written yet |
+| 22 | [map](wizardry-empire-floor-22.png) | not written yet |
+| 23 | [map](wizardry-empire-floor-23.png) | not written yet |
+| 24 | [map](wizardry-empire-floor-24.png) | not written yet |
+| 25 | [map](wizardry-empire-floor-25.png) | not written yet |
+| 26 | [map](wizardry-empire-floor-26.png) | not written yet |
+| 27 | [map](wizardry-empire-floor-27.png) | not written yet |
+| 28 | [map](wizardry-empire-floor-28.png) | not written yet |
+| 29 | [map](wizardry-empire-floor-29.png) | not written yet |
+| 30 | [map](wizardry-empire-floor-30.png) | not written yet |
 
 Tech: [dungeon.md §1 Map storage](../../tech/dungeon.md#1-map-storage-and-cell-format), [§4 Floors](../../tech/dungeon.md#4-floors);
 generator `tools/designtables/floormap.py`.
