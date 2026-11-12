@@ -909,37 +909,37 @@
 "table": "0x5703",
 "ptr": "0x4441",
 "jp": "メインのぶき",
-"en": "Main weapon    "
+"en": "     Weapon"
 },
 {
 "table": "0x5705",
 "ptr": "0x4448",
 "jp": "ほじょのぶき",
-"en": "Off-hand         "
+"en": "   Off-hand"
 },
 {
 "table": "0x5707",
 "ptr": "0x444f",
 "jp": "   よろい",
-"en": "Armor             "
+"en": "        Armor"
 },
 {
 "table": "0x5709",
 "ptr": "0x4456",
 "jp": "   かぶと",
-"en": "Helm               "
+"en": "         Helm"
 },
 {
 "table": "0x570b",
 "ptr": "0x445d",
 "jp": "    こて",
-"en": "Gloves           "
+"en": "      Gloves"
 },
 {
 "table": "0x570d",
 "ptr": "0x4464",
 "jp": "   そのた",
-"en": "Other             "
+"en": "        Other"
 },
 {
 "table": "0x570f",

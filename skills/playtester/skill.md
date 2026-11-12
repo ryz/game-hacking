@@ -105,3 +105,6 @@ End your final report with this block; the coordinator files it in `skills/playt
 - Chest/event/floor-2 states: rebuild them for your build with `tools/maze_goto.py` / `tools/maze_make_chest.py`
   from your maze.state (recipes in docs/re/reach.md section 3); work/re/reach/states/ (untracked) matches
   e45012c only.
+- Spell bits record +$31, mage spell points +$3C (7), priest +$43; $CB99 bit 3 = text location/teleport
+  screens; Find allies: roster +$58 group + SRAM table $AEE2 (12-byte entries, mirror +$1000); $C001 bits 2/3 =
+  surprise messages at 22:4610.

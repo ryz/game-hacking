@@ -659,6 +659,17 @@ NameCursorX:                ; A = x of the cursor box
     nop
     nop
 
+; --- Find allies list (20:62C6: name copy DE (SRAM roster) -> HL, codes $80+ with the VRAM1 bit; BC/HL are
+;     popped from the stack at 20:62E2) -> VWF
+    org $20, $62c6
+    push hl
+    push de
+    pop hl
+    pop de
+    call Stub_PrintZ
+    jr @+21
+    ds 19, $00
+
 ; --- Camp reorder list (2A:7082: $00-terminated name copy ending in 'ret z', called from 2A:7075) -> VWF
     org $2a, $7082
     jp Stub_PrintZ

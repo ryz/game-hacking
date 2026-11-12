@@ -431,11 +431,11 @@
 {"bank": 49, "addr": "0x556d", "jp": "   ゆうこうてきな\n\n{F8 00 04 DD36}\n\n     たたかう\n     たちさる", "en": "{col:3}A friendly\n\n{F8 00 04 DD36}\n\n{col:5}Fight\n{col:5}Leave"},
 {"bank": 49, "addr": "0x55bc", "jp": "モンスターは\n  まだ こちらに きづいていない", "en": "The monsters haven't\n  noticed you yet."},
 {"bank": 49, "addr": "0x4592", "jp": "\nいてっ", "en": "\nOuch!"},
-{"bank": 49, "addr": "0x4314", "jp": "だれを パーティーに くわえますか?\n                 {F4 06 03}あと {F8 10 31 C1DA}めい", "en": "Add whom to the party?\n                 {F4 06 03}Room for {F8 10 31 C1DA}"},
+{"bank": 49, "addr": "0x4314", "jp": "だれを パーティーに くわえますか?\n                 {F4 06 03}あと {F8 10 31 C1DA}めい", "en": "Add whom to the party?\n                                              {F4 06 03}Room for {F8 10 31 C1DA}", "maxpx": 240},
 {"bank": 49, "addr": "0x44ce", "jp": "  パーティーの げんざいいちは\n\n      ちか {F8 20 31 C6E3}かい\n\n      きた {F8 10 31 C6E5}\n     ひがし {F8 10 31 C6E7}\n\n      むき {F3 31 C6E9}", "en": "  The party is now at\n\n      B{F8 20 31 C6E3}F\n\n      North {F8 10 31 C6E5}\n      East {F8 10 31 C6E7}\n\n      Facing {F3 31 C6E9}"},
-{"bank": 49, "addr": "0x5594", "jp": "{F8 00 31 C48F}のせいかくがかわった", "en": "{F8 00 31 C48F}'s alignment\nhas changed."},
-{"bank": 49, "addr": "0x4432", "jp": "{F3 31 C6E3}を えらんでください", "en": "{F3 31 C6E3}: choose one."},
-{"bank": 49, "addr": "0x451f", "jp": "  どこへ テレポートしますか?\n\n       ちか {F8 20 31 C6E3}かいの\n ここから きたへ  {F8 10 31 C6E5}\n     ひがしへ  {F8 10 31 C6E7}\n\n    いどうした ちてん", "en": "  Teleport where?\n\n       Floor B{F8 20 31 C6E3},\n North of here {F8 10 31 C6E5}\n     East {F8 10 31 C6E7}\n\n    is the destination."},
+{"bank": 49, "addr": "0x5594", "jp": "{F8 00 31 C48F}のせいかくがかわった", "en": "{F8 00 31 C48F} changed alignment."},
+{"bank": 49, "addr": "0x4432", "jp": "{F3 31 C6E3}を えらんでください", "en": "{F3 31 C6E3}: choose one.        "},
+{"bank": 49, "addr": "0x451f", "jp": "  どこへ テレポートしますか?\n\n       ちか {F8 20 31 C6E3}かいの\n ここから きたへ  {F8 10 31 C6E5}\n     ひがしへ  {F8 10 31 C6E7}\n\n    いどうした ちてん", "en": "  Teleport where?\n\n{col:4}Floor B{col:11}{F8 20 31 C6E3}\n{col:1}North of here{col:12}{F8 10 31 C6E5}\n{col:5}East{col:12}{F8 10 31 C6E7}\n\n    is the destination."},
 {"bank": 49, "addr": "0x4583", "jp": "\nもとのちてんに もどされた", "en": "\nYou were sent back."},
 {"bank": 49, "addr": "0x55a4", "jp": "モンスターは\n  とつぜん おそいかかってきた", "en": "The monsters\n  suddenly attacked!"}
 ]

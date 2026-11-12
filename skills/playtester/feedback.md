@@ -10,6 +10,20 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - rev1d (5ab9d44): new bank-49 messages on screen
+- Task: bring the census messages on screen (422B, 4314, 44CE, 451F, 4583, 43B9, 4432, 5594/55A4).
+- Worked: JP party states via party.py --rom for a JP twin of every screen; explore copy with stop
+  breakpoints that poke flags at the exact code point; gbdis on each message's caller to find its trigger.
+- Friction: shared build/ had uncommitted edits (built own copy - correct); no SRAM poke / breakpoint-hook
+  helper; stop=True halts inside run_frames; party.py prints relative paths; hidden-BG text can't be judged.
+- Proposed rule change: RAM shortcuts (spell bits +$31, mage points +$3C, priest +$43; $CB99 bit 3 text map;
+  Find allies roster +$58 and SRAM $AEE2 table; $C001 bits 2/3 surprise); check git status of build/.
+  Tools: tools/poke.py (WRAM+SRAM), breakpoint hooks in explore.py.
+- Corrected: Add-whom leftover row (46 spaces), teleport prompt values at the JP columns, find-allies list in
+  the VWF (20:62C6), battle Equip slot names right-aligned + prompt tail cleared; 5594 one line. The garbled
+  top box on old states = signature bump re-init (native state clean). Not fixed: 地下 map label (graphics).
+- Status: promoted 2026-11-12 (RAM shortcut lines added to skill.md); poke/hook tools -> backlog
+
 ### 2026-11-12 - rev1c (85d10bc): chests, events, recruit, temple fee
 - Task: chest screens/traps/loot, bank-45 events, NPC recruit with a free slot, temple resurrection payment.
 - Worked: the ready chest/event states; a WRAM diff across chest states found the trap byte ($C635) so
