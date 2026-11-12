@@ -58,7 +58,7 @@ Race table `26:5B13` (8 bytes per race; a byte-identical copy at `27:56D9` is us
   adjustment is applied to the race base when level-up checks stat limits, `27:577E`, and when class change
   resets stats, `26:5281`).
 - **Stat limits for life** (`27:5763`): a stat can rise to **race base + 10** (female-adjusted), and cannot fall
-  below race base. Examples: Human max 18 in everything except LUK 19; Elf IQ/PIE/AGI 20; Dwarf STR 22; Hobbit
+  below race base. Examples: Human max 18 in STR, IQ, VIT, AGI, 16 in PIE, 19 in LUK (base + 10); Elf IQ/PIE/AGI 20; Dwarf STR 22; Hobbit
   LUK 24. A stat also cannot fall below the current class's minimum for it (`27:57C2`).
 - Byte 6 (6/6/7/6/5) is loaded at `26:5B73` into a register that is then discarded: **unused** in Rev 1
   (guess: a leftover base-AC or size value).
