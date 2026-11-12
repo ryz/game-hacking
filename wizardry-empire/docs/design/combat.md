@@ -290,8 +290,7 @@ and level drain 80 %.
 
 **Notes:** the save grows with level, so the same monster's specials matter less to a high-level party. Level drain
 has a high base save (at least 60 %) but its cap is 95 %, so without drain protection it lands at least 1 time in
-20. Statuses and their
-cures are in [characters.md](characters.md#6-status-ailments-and-cures).
+20. Statuses and their cures are in [characters.md](characters.md#6-status-ailments-and-cures).
 
 Tech: [monsters.md §4.3](../tech/monsters.md#43-special-hit-effects-code-324fbf-51cd-one-roll-per-special-after-a-hit)
 
@@ -333,8 +332,8 @@ bool SpellAffects(int spellPower, int resistancePercent)
 - Which element each spell uses is a pattern reading **(inferred)**; how spell elements line up with the 8
   resistances is in [spells.md](spells.md#2-casting).
 
-Example (computed, with a hypothetical power of 80): a spell against a Vampire (Fire 20 %) has chance 60 %; against an Abyss Lurker
-(100 % everywhere) it never works.
+Example (computed, with a hypothetical power of 80): a spell against a Vampire (Fire 20 %) has chance 60 %; against
+an Abyss Lurker (100 % everywhere) it never works.
 
 **Notes:** resistance values are shown in the museum and in [monsters_table.md](monsters_table.md) (Resist %).
 
@@ -349,9 +348,9 @@ Only the battle effects are listed here; the statuses themselves, cures and the 
 
 | Status | In battle |
 |---|---|
-| Afraid | a monster can only try to flee; still shares the rewards |
-| Asleep | takes ×2 damage (party and monsters); a monster does nothing; still shares the rewards |
-| Paralyzed, Stoned | a monster does nothing; gets no share of the rewards |
+| Afraid | a monster can only try to flee; a character still gets a share of the rewards |
+| Asleep | takes ×2 damage (party and monsters); a monster does nothing; a character still gets a share of the rewards |
+| Paralyzed, Stoned | a monster does nothing; a character gets no share of the rewards |
 | Dead | gets no share of the rewards |
 
 **Not known:** how Afraid, Asleep and Paralyzed wear off during a battle; the effect of Poisoned and Silenced in
@@ -383,13 +382,13 @@ Tech: [monsters.md §5](../tech/monsters.md#5-party-attacks-and-spells-on-monste
 The party can try to run away. On success it returns to the maze with **no EXP, gold or chest**.
 
 ```
-chance % = 75 + partyBonusA + partyBonusB + 4 × (party size − a count, not traced) − highest escape block among the groups
+chance % = 75 + partyBonusA + partyBonusB + 4 × (party size − a count, not traced)
+           − highest escape block among the groups
 success if a roll 0..99 is below both 95 and chance
 ```
 
 The two party bonuses are averages of two character values over the members who are OK or Afraid (meaning not
-traced); both are 0 for a standard party.
-The escape block is the **Esc** column of [monsters_table.md](monsters_table.md) (2 to 18).
+traced); both are 0 for a standard party. The escape block is the **Esc** column of [monsters_table.md](monsters_table.md) (2 to 18).
 
 | Against | Escape block | Chance (party bonuses 0) |
 |---|---|---|
@@ -412,13 +411,13 @@ What a won fight pays:
   give nothing. EXP per monster runs from 30 (Crawling Claw) to 150,000 (Abyss Lurker); gold from 20 to 250.
 - **Split**: each pool is divided evenly (integer division, fractions dropped) among the members who are **OK,
   Afraid or Asleep**. Dead, Paralyzed and Stoned members get nothing.
-- **Chest**: only a guarded-square victory gives a chest; its gold goes into the same pool ([dungeon.md](dungeon.md#chests),
-  [town.md](town.md#gold-where-it-comes-from)).
+- **Chest**: only a guarded-square victory gives a chest; its gold goes into the same pool
+  ([dungeon.md](dungeon.md#chests), [town.md](town.md#gold-where-it-comes-from)).
 - **Museum**: killing a monster whose group was **identified** marks it as seen in the museum. Killing an
   unidentified one does not.
 
-Example (computed): six Goblins killed give 6 × 290 = 1740 EXP and 6 × 30 = 180 gold. With six members able to share,
-each gets 290 EXP and 30 gold; with one member dead, each of the other five gets 348 EXP and 36 gold.
+Example (computed): six Goblins killed give 6 × 290 = 1740 EXP and 6 × 30 = 180 gold. With six members able to
+share, each gets 290 EXP and 30 gold; with one member dead, each of the other five gets 348 EXP and 36 gold.
 
 **Notes:** because the split ignores who did the killing, keeping a weak character alive in the back row gives it a
 full share. How the game decides at battle start whether a group is identified was not traced.
