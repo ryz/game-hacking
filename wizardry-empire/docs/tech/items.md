@@ -1,4 +1,4 @@
-# Wizardry Empire (GBC, Rev 1): items and economy, design reference
+# Wizardry Empire (GBC, Rev 1): items and economy, technical reference
 
 Tracer, 2026-11-12. Every number comes from the original Japanese Rev 1 ROM (`rom/wizardry_empire_j.gbc`). Addresses
 are written `BB:AAAA` with the bank in hex (bank `$28` = 40 decimal). A formula marked **(code)** was read from the
@@ -7,7 +7,7 @@ own description text. **(inferred)** is my reading and has not been confirmed in
 emulator, except that the party record layout was read from a JP battle savestate. Scratch scripts and disassembly
 dumps are in `work/design/items/`.
 
-The full 224-item table is generated into **`docs/design/items_table.md`** (`work/design/items/gen_table.py`).
+The full 224-item table is generated into **[../design/items_table.md](../design/items_table.md)** (`python3 tools/designtables`).
 
 ---
 
@@ -264,7 +264,7 @@ texts; I did not trace the code that applies them:
   limited ones: Great Axe 1, Claws 2, Staff of Healing 1, Gladius 1, Falchion 1, Katana 1, Silver Dagger 3, Kris 3,
   Main Gauche 1, Morning Star 5, Nunchaku 5, Vermilion Spear 1, Lance 1, Long Bow 2, Scale Mail 5, Chain Mail 5, Kite
   Shield 5, Spiked Shield 1, Plate Helm 4, Chain Gloves 3, Shell Amulet 1, Dreaming Stone 1, Scroll of Sleep 5, High
-  Heal Potion 15, Elixir 3, Cloak 5. The "Shop" column of items_table.md has every value.
+  Heal Potion 15, Elixir 3, Cloak 5. The "Shop" column of ../design/items_table.md has every value.
 - **Unique items.** `25:5487` checks whether an item already exists in the shop stock, in the party or in the 20-slot
   roster (SRAM `$A000`). The caller and the item list were not traced (inferred: chests do not hand out a second
   copy of some items).

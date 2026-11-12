@@ -1,4 +1,4 @@
-# Wizardry Empire (GBC, Rev 1): the dungeon, design reference
+# Wizardry Empire (GBC, Rev 1): the dungeon, technical reference
 
 Tracer, 2026-11-12. The source tags (code)/(data)/(emu)/(inferred) and the address style (`BB:AAAA`, bank in hex)
 are the same as in [monsters.md](monsters.md). Every map number comes from the ROM maps (banks `$3E`-`$3F`).
@@ -129,7 +129,7 @@ I did not trace the exact outcome rolls of the well, the junk pile and the corps
 ## 4. Floors
 
 The columns give counts. The coordinates are in `floor_events.txt`. "Areas" lists the random-encounter area ids
-(monsters_table.md has the monsters). The guarded column shows the count and the area ids.
+([../design/monsters_table.md](../design/monsters_table.md) has the monsters). The guarded column shows the count and the area ids.
 
 | Floor | Stairs (x,y) | Areas | Guarded | Traps / hidden | Events |
 |---|---|---|---|---|---|

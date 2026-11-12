@@ -1,0 +1,82 @@
+"""Generate docs/design/items_table.md from the original ROM (bank 40 item records)."""
+import json, struct
+import os
+ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
+rom = open(ROOT + '/rom/wizardry_empire_j.gbc', 'rb').read()
+items = json.load(open(ROOT + '/script/items.json'))
+lists = {int(e['table'], 16): e for e in json.load(open(ROOT + '/script/lists.json')) if 'table' in e}
+rects = {r['id']: r for r in json.load(open(ROOT + '/script/rects.json'))}
+
+def bank(b, a): return (b * 0x4000 + a - 0x4000) if b else a
+unid = [lists[0x567D + 2 * i]['en'] for i in range(25)]
+SLOT = {0: '1H weapon', 1: 'Arrows', 2: 'Quarrels', 3: 'Stones', 4: 'Parry dagger', 5: 'Bow', 6: 'Crossbow', 7: 'Sling',
+        8: 'Body armor', 9: 'Shield', 10: 'Helm', 11: 'Gloves', 12: 'Other', 13: '2H weapon'}
+CL1 = ['Fig', 'Mag', 'Pri', 'Thi', 'Bis', 'Sam', 'Lor', 'Nin']
+CL2 = ['Arc', 'Val', 'Ave', 'Mus', 'Kun', 'Sum']
+RANGE = 'SML-'
+def rtab(addr, n):
+    out = []
+    for i in range(n):
+        p = struct.unpack('<H', rom[bank(41, addr) + 2 * i:bank(41, addr) + 2 * i + 2])[0]
+        r = rects.get(f'29:{p:04x}')
+        out.append(' '.join(x.strip() for x in r['en']).replace('^', '').replace('>', '') if r else '?')
+    return out
+USE = rtab(0x6378, 31)
+SPEC = rtab(0x63B6, 32)
+stock = rom[bank(46, 0x4300):bank(46, 0x4300) + 224]
+
+def classes(c1, c2):
+    if c1 == 0xFF and c2 & 0x3F == 0x3F: return 'all'
+    if c1 == 0 and c2 & 0x3F == 0: return 'none'
+    s = [CL1[i] for i in range(8) if c1 >> i & 1] + [CL2[i] for i in range(6) if c2 >> i & 1]
+    return ' '.join(s)
+
+rows = []
+hdr = ('| # | English | Japanese | Slot | Unid. name | Damage | Swings+ | Hit+ | AC | Range | Throw (keep %) | Classes | Align | Curse '
+       '| Price | Sell | Use (break %) | Special | HP/step | Lv | Shop |')
+rows.append(hdr)
+rows.append('|' + '---|' * 21)
+for i in range(224):
+    r = rom[bank(40, 0x4000) + 40 * i: bank(40, 0x4000) + 40 * i + 40]
+    jp = items[i]['jp']; en = items[i]['en']
+    slot = r[18]; price = r[19] | r[20] << 8 | (r[21] & 0x7F) << 16
+    nosell = ' (unsellable)' if r[21] & 0x80 else ''
+    al = r[24]
+    align = 'any' if al & 7 == 7 else '/'.join(n for b, n in ((1, 'G'), (2, 'N'), (4, 'E')) if al & b)
+    curse = 'cursed' if al & 0x80 else ''
+    n, s, z = r[25], r[26], r[27]
+    dmg = '' if n == 0 else f'{z}-{z + n * (s - 1)} ({n}d{s}{z - n:+d})'.replace('+0)', ')')
+    ac = struct.unpack('b', bytes([r[28]]))[0]
+    hit = r[29]; sw = r[30]; f31 = r[31]
+    rng = RANGE[(f31 >> 2) & 3]
+    throw = f'{r[32]}' if f31 & 0x80 else ''
+    u = r[33]; ubreak = r[34]; su = r[35]; schance = r[36]
+    regen = struct.unpack('b', bytes([r[37]]))[0]
+    sp = r[38]; lv = r[39]
+    use = ''
+    if su:
+        use = f'{USE[su]} (gone {schance}%)'
+    elif u & 0x3F:
+        where = {0x80: 'battle', 0x40: 'camp', 0xC0: 'battle+camp', 0: 'none'}[u & 0xC0]
+        use = f'{USE[(u & 0x3F) + 10]} [{where}, Lv{lv >> 4}] (breaks {ubreak}%)'
+    spec = SPEC[sp] if sp else ''
+    st = stock[i]; st = '' if st == 0 else ('unlimited' if st == 255 else str(st))
+    rows.append(f'| {i} | {en} | {jp} | {SLOT.get(slot, hex(slot))} | {unid[r[17]]} | {dmg} | {sw or ""} | {hit or ""} | '
+                f'{ac if ac else ""} | {rng} | {throw} | {classes(r[22], r[23])} | {align} | {curse} | {price} | '
+                f'{(price + 1) // 2}{nosell} | {use} | {spec} | {regen if regen else ""} | {lv & 15} | {st} |')
+open(ROOT + '/docs/design/items_table.md', 'w').write(
+    '# Wizardry Empire: all 224 items (generated)\n\n'
+    'Generated from the original Rev 1 ROM (`rom/wizardry_empire_j.gbc`), bank 40 `$4000` (40-byte records), by\n'
+    '`tools/designtables/items.py`. Field meanings, formulas and how each was established: `docs/tech/items.md`.\n'
+    'English names from `script/items.json`; use/special texts are the museum descriptions (`41:6378` / `41:63B6`, English\n'
+    'from `script/rects.json`).\n\n'
+    'Columns: **Damage** = min-max per hit (dice form `NdS+B`, rolled per swing); **Swings+** = extra swings per round;\n'
+    '**Hit+** = subtracted from the miss threshold (see items.md, values 47-50 = always max hit chance); **AC** = added to\n'
+    'the wearer\'s AC (negative = better); **Range** S/M/L/- (bits 2-3 of byte 31); **Throw** = item can be thrown, number =\n'
+    '% chance to keep it after the throw; **Classes** Fig Mag Pri Thi Bis Sam Lor Nin Arc Val Ave Mus Kun Sum; **Align**\n'
+    'G/N/E who may equip it without it sticking; **Sell** = ceil(price/2) (also the Identify and Uncurse fee);\n'
+    '**Use** = effect when used, [where, spell level] and % chance the item is used up; class-change items show the % chance\n'
+    'the item vanishes instead of changing; **HP/step** = HP regained (or lost) per step while equipped; **Lv** = item\n'
+    'level (identification difficulty); **Shop** = stock at the start of a new game (unlimited = never runs out).\n\n'
+    + '\n'.join(rows) + '\n')
+print('ok', len(rows) - 2)

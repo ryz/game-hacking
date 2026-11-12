@@ -1,4 +1,4 @@
-# Wizardry Empire (GBC, Rev 1): monsters, encounters and combat, design reference
+# Wizardry Empire (GBC, Rev 1): monsters, encounters and combat, technical reference
 
 Tracer, 2026-11-12. All numbers come from the original Japanese Rev 1 ROM (`rom/wizardry_empire_j.gbc`). Addresses
 are written `BB:AAAA` with the bank in hex (bank `$39` = 57 decimal). Source tags used below:
@@ -8,7 +8,7 @@ are written `BB:AAAA` with the bank in hex (bank `$39` = 57 decimal). Source tag
 - **(inferred)**: my reading, not confirmed in code.
 
 Scratch scripts are in `work/design/monsters/`. The full bestiary (167 monsters, every field) and the encounter tables are
-generated into **[monsters_table.md](monsters_table.md)** by `work/design/monsters/gen.py`. The maze and its events are
+generated into **[../design/monsters_table.md](../design/monsters_table.md)** by `python3 tools/designtables`. The maze and its events are
 in [dungeon.md](dungeon.md). Party-side weapon damage, slaying and chests are in [items.md](items.md) (sections 4, 9, 10).
 
 ---
@@ -133,7 +133,7 @@ There is no step counter and no floor-depth modifier. The rate is the same on ev
 
 Area ids per floor (data, from the map bytes): floor 1 → 1/2/3 (3 zones), floor 2 → 4, floor 3 → 5 (6 on two guarded
 squares), floor 4 → 6, ... floor 30 → 32/33. The full list, with every formation spelled out, is in
-monsters_table.md "Encounter tables". Ids 54-100 are not on any map and no event uses them (I did not find a
+../design/monsters_table.md "Encounter tables". Ids 54-100 are not on any map and no event uses them (I did not find a
 reader other than the formation code). They are sliding windows over the formation list, so they may be a cut
 "random depth" table **(inferred)**.
 

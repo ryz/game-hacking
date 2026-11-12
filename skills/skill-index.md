@@ -18,12 +18,14 @@ to it. Every skill folder has a `feedback.md` - read its open entries before wor
 - **Investigation:** tracer (where/how text is printed), triage (hangs/crashes).
 - **Language:** translator -> reviewer -> (late) editor.
 - **Verification:** playtester (plays toward a goal), visual-qa (judges screenshot sheets).
-- **Documentation:** photographer (pixel-exact reference screenshots, English and original side by side).
+- **Documentation:** photographer (pixel-exact reference screenshots, English and original side by side),
+  design-writer (game-design documents for designers, from the tech reference).
 - **Upkeep:** maintenance (repo health check: docs vs code, skills, feedback, status drift).
 
 Typical chains: tracer -> (coordinator hooks it) -> translator -> reviewer -> build -> tour -> visual-qa;
 user bug report -> triage -> coordinator fix -> playtester repro;
-photographer set -> visual-qa (or reviewer with the compare images) for a screen-by-screen JP/EN check.
+photographer set -> visual-qa (or reviewer with the compare images) for a screen-by-screen JP/EN check;
+tracer (design/rules question -> docs/tech/) -> design-writer (docs/design/) -> editor (readability).
 
 ## Skills
 
@@ -91,6 +93,16 @@ photographer set -> visual-qa (or reviewer with the compare images) for a screen
 - Also load: `wizardry-empire/docs/re/vwf.md`, `docs/re/tasks.md`.
 - Do not use for: fixing; general RE questions (tracer).
 - Guardrails: diagnose only; writes only its case dir.
+
+### design-writer
+- File: `skills/design-writer/skill.md`
+- Use when: a game system documented in `wizardry-empire/docs/tech/` needs its designer-facing document in
+  `docs/design/` (rules, formulas, data tables, quirks; no addresses).
+- Main output: the design file(s) + a sources list (claim -> tech section) + self-check results.
+- Also load: `wizardry-empire/docs/README.md` (document rules), `docs/design/README.md`, the tech sections named
+  in the dispatch, `glossary.md`.
+- Do not use for: finding new facts (tracer writes `docs/tech/` first); translation.
+- Guardrails: writes only its design file(s) and `work/design/<topic>/`; never invents a number.
 
 ### photographer
 - File: `skills/photographer/skill.md`

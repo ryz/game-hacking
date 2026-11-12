@@ -268,7 +268,7 @@ Reading: Fighter/Lord/Valiant/Ninja/Kunoichi take nearly all weapons; Samurai an
 swords) but no shields; Priests wear heavy armor and shields but no edged weapons; Mage, Archer and Summoner are
 limited to robes and light armor; the Avenger has a short, special list.
 
-Rings and "odd objects" are open to every class. Exact per-item lists: `docs/design/items_table.md`.
+Rings and "odd objects" are open to every class. Exact per-item lists: [../design/items_table.md](../design/items_table.md).
 
 ### 5.3 Spell schedule per class (learning, §10.3)
 

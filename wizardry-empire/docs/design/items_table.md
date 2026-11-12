@@ -1,7 +1,7 @@
 # Wizardry Empire: all 224 items (generated)
 
 Generated from the original Rev 1 ROM (`rom/wizardry_empire_j.gbc`), bank 40 `$4000` (40-byte records), by
-`work/design/items/gen_table.py`. Field meanings, formulas and how each was established: `docs/design/items.md`.
+`tools/designtables/items.py`. Field meanings, formulas and how each was established: `docs/tech/items.md`.
 English names from `script/items.json`; use/special texts are the museum descriptions (`41:6378` / `41:63B6`, English
 from `script/rects.json`).
 
