@@ -11,6 +11,18 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - auto-map documented and translated; warps and dark zones
+- ROM: `94d832b` sent (yes).
+- Auto-map (tracer, verified): opened by Compass, the Map Record Sheet (camp, or Select in the maze) and Teleport /
+  Ring of Warping (destination picker: visited squares only, no cancel); shows only squares the party stood on.
+  tech/dungeon.md 6, design/dungeon.md 9, findings 37-39.
+- Found: 'marker' squares are warps (87; floors 22-29 linked by warps); zone 11 is the dark zone (findings 33).
+  Maps draw warps as W; floor pages updated (floor 15 stairs down reached by a warp; one-way warp traps on 23/29/30).
+- ROM: automap labels in the small font: 'B' over the floor number, warp panel Warp/E/N, and the 16 cursor labels
+  (Wall, Stairs up/down, Elevator, trap kinds, Warp, Event, Lake, Magic seal, Dark zone) via a tile-copy hook.
+- Decided (owner): axis digits and the name-entry chart stay 8 px; plain E on the maps.
+- Open: floor 21 entry, 29 -> 30, warp-onto-warp behaviour, battle Teleport onto rock.
+
 ## 2026-11-12 - all 30 floors mapped and documented; secret and locked doors traced
 - ROM: none sent (documentation and tools only).
 - docs/design/maps: 30 generated maps (style guide, game-name prefix, one-way doors, legend in three groups) and 30
