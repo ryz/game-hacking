@@ -12,7 +12,7 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 ```
 
 ## 2026-11-12 - chests/events playtest, temple fee, missing messages, NPC names
-- ROM: not sent yet (latest commit 2de4600).
+- ROM: `5ab9d44` sent (includes the message census: five more bank-49 messages, tests/test_msg_coverage.py).
 - Changed: NPC recruit names in English (Sigfrid in the 7-letter field); down-stairs prompt and three more
   bank-49 messages added; {FA} word wrap measures 3/4 cell per character; magic-circle party list in the
   small font; number stub leaves B = 0 (was making the event list show everyone as poisoned).
