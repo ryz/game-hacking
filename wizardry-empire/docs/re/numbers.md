@@ -78,7 +78,7 @@ Site = call address. "Tour" = seen on the tour; otherwise found statically.
 | J | 0:1DAC (typewriter `$F8`, digits into `$C1DE`, padded with `$20` from 0:1D7F) | all message numbers; battle party list (32:429F), maze menu list, chest/battle messages | battle_*, chest_*, maze_dmenu | already VWF |
 | K | 21:40CD/40E2/4100 (B=`$F4`, `$FF` blank, `$FE` sign) | automap floor/coordinates, symbol tiles | not on tour | graphic |
 | L | 22:5713 (v1.0), 22:583B (`add $F4`, rows `$C644+$2A*g`: `$CF`,n,`$D0`,m, then `rst $08` into row 2) | monster panel "(2) 2" | every battle (EN: `walk2_7/end.png`) | graphic |
-| M | rect 2A:7302 (1x6 "123456", 0:1789 from 2A:4FA0) | Camp reorder order numbers | camp_reorder(_pick) | |
+| M | rect 2A:7302 (1x6 "123456", 0:1789 from 2A:4FA0) | Camp reorder order numbers | camp_reorder(_pick) | VWF rect (2026-11-12); names 2A:7082 -> Stub_PrintZ |
 | N | name-entry chart rects + "END", typed name (8 px, known) | name entry | training_create_name_*, training_rename_entry | |
 
 Party list A: confirmed with a stopping breakpoint on 0FD0 from `work/states/p2/party.state` (A=2, B=$30,

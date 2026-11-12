@@ -632,6 +632,10 @@ NameCursorX:                ; A = x of the cursor box
     add $50
     ret
 
+; --- Camp reorder list (2A:7082: $00-terminated name copy ending in 'ret z', called from 2A:7075) -> VWF
+    org $2a, $7082
+    jp Stub_PrintZ
+
 ; --- museum monster list name (41:633E): name at $C50F -> VWF
     org $29, $633e
     ld hl, $c50f

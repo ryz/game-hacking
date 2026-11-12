@@ -329,5 +329,6 @@
 {"id": "2c:609f", "bank": 44, "addr": "0x609f", "w": 16, "h": 5, "attrs": true, "jp": ["(credits charset: same names)"], "en": ["MAP DESIGNER", "", "@5:H.Hayashida", "", "@5:Y.Kurosawa"], "nofix": true},
 {"id": "2c:6141", "bank": 44, "addr": "0x6141", "w": 16, "h": 7, "attrs": true, "jp": ["(credits charset: same names)"], "en": ["SPECIAL THANKS", "", "@5:T.Yamano", "", "@5:M.Ataka", "", "@5:I.Tomiyama"], "nofix": true},
 {"id": "2c:6223", "bank": 44, "addr": "0x6223", "w": 16, "h": 3, "attrs": true, "jp": ["(credits charset: same names)"], "en": ["@6:1999", "", "@4:STARFISH"], "nofix": true},
+{"id": "2a:7302", "bank": 42, "addr": "0x7302", "w": 1, "h": 6, "jp": ["1", "2", "3", "4", "5", "6"], "en": ["1", "2", "3", "4", "5", "6"]},
 {"id": "2b:788b", "bank": 43, "addr": "0x788b", "w": 4, "h": 1, "attrs": true, "jp": ["にいます"], "en": [" "], "nofix": true}
 ]
