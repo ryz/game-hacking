@@ -25,7 +25,8 @@ sys.path.insert(0, HERE)
 import emu
 from tour import PARTY
 
-ROMS = {"en": emu.EN_ROM, "jp": os.path.join(ROOT, "rom", "wizardry_empire_j.gbc")}
+ROMS = {"en": emu.EN_ROM, "jp": os.path.join(ROOT, "rom", "wizardry_empire_j.gbc"),
+        "ref": os.path.join(ROOT, "rom", "wizardry_empire_ref.gbc")}   # reference fan translation (tools/bps.py)
 
 
 def shots(path):
@@ -79,7 +80,7 @@ def main():
     ap.add_argument("set")
     ap.add_argument("--list", default=os.path.join(HERE, "routes", "shots.txt"))
     ap.add_argument("--only")
-    ap.add_argument("--rom", default="both", choices=["en", "jp", "both"])
+    ap.add_argument("--rom", default="both", choices=["en", "jp", "both", "ref"])
     ap.add_argument("--publish", action="store_true")
     a = ap.parse_args()
     from PIL import Image
