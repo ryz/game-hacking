@@ -57,6 +57,8 @@ def play(g, seq):
                 g.mem_write(0xC5AE, [0xFF] * 21)
             elif all(k in emu.KEYS for k in base.split("+")):
                 emu.press(g, base.split("+"))
+            elif emu.chord_token(base):
+                emu.chord(g, *emu.chord_token(base))
             else:
                 raise ValueError("unknown token %r" % tok)
 

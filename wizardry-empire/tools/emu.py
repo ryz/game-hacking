@@ -7,6 +7,7 @@
 Sequence tokens (comma separated, KEY*n repeats):
   a b start select up down left right   press (8 frames) then wait 40 frames
   KEY+KEY                               press together
+  KEY>KEY                               hold the first 4 frames, then both (held modifier, e.g. select>a)
   wN                                    wait N frames
   boot                                  power on and go through logo/title/mode select to the town (~1100 frames)
   shot                                  extra screenshot (one is taken after every token anyway)
@@ -43,6 +44,26 @@ def press(g, keys, hold=8, wait=40):
     g.run_frames(hold)
     g.input_set([])
     g.run_frames(wait)
+
+
+def chord(g, first, then, lead=4, hold=8, wait=40):
+    """Hold `first` alone for `lead` frames, then `first`+`then` (a held modifier: Select and A pressed on the same
+    frame register as A only). Token: `select>a`."""
+    g.input_set(first)
+    g.run_frames(lead)
+    g.input_set(first + then)
+    g.run_frames(hold)
+    g.input_set([])
+    g.run_frames(wait)
+
+
+def chord_token(base):
+    """'select>a' -> (['select'], ['a']); None if not a chord token."""
+    if ">" not in base:
+        return None
+    a, b = base.split(">", 1)
+    first, then = a.split("+"), b.split("+")
+    return (first, then) if all(k in KEYS for k in first + then) else None
 
 
 def boot(g):
@@ -99,9 +120,11 @@ def run(seq, out, rom=EN_ROM, state=None, save=None):
                 g.run_frames(int(base[1:]))
             elif all(k in KEYS for k in base.split("+")):
                 press(g, base.split("+"))
+            elif chord_token(base):
+                chord(g, *chord_token(base))
             else:
                 sys.exit("unknown token %r" % tok)
-        p = os.path.join(out, "%02d_%s.png" % (i, tok.replace("*", "x").replace("+", "_")))
+        p = os.path.join(out, "%02d_%s.png" % (i, tok.replace("*", "x").replace("+", "_").replace(">", "-")))
         g.screenshot_png(p, scale=1)
         shots.append(p)
         r = g.regs()
