@@ -644,6 +644,21 @@ NameCursorX:                ; A = x of the cursor box
     jr @+7
     ds 5, $00
 
+; --- temple result '<name> went to the tavern.' / ' turned to ashes.' / ' is lost.' (27:67D0 right-aligned the
+;     name in 7 cells by letter count, 27:681D put the rect at the fixed cell $D0A8: a gap after short VWF
+;     names) -> the name at $D0A1, the rect right after it (Stub_PrintZ leaves DE past the name)
+    org $27, $67d0
+    ld de, $d0a1
+    jr @+10
+    ds 8, $00
+    org $27, $681d
+    ld a, e
+    ldh [$bb], a
+    ld a, d
+    ldh [$bc], a
+    nop
+    nop
+
 ; --- Camp reorder list (2A:7082: $00-terminated name copy ending in 'ret z', called from 2A:7075) -> VWF
     org $2a, $7082
     jp Stub_PrintZ
