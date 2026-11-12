@@ -24,8 +24,8 @@ marked "computed" were worked out here from the stated rule or table.
   game rolls for a fight. The normal chance is **1/512 per action (verified)**. Right after the party walks through
   a door it is **13/256, about 5.1 %, per action**, until the next plain step or turn-around. The same rates apply on
   every floor. See [findings.md](findings.md).
-- **Guarded squares** are fixed fights (up to 21 per floor; none on floor 20). Each fights once per floor visit and comes back when you
-  change floors. They are the only fights that give a chest.
+- **Guarded squares** are fixed fights (up to 21 per floor; none on floor 20). Each fights once per floor visit and
+  comes back when you change floors. They are the only fights that give a chest.
 - **A fight** is one of 4 formations listed for the square's encounter area, picked at random. A formation has up
   to 4 groups of 1-9 monsters each.
 - **Monster AI** is a fixed priority list: a spellcaster casts 25 % of the time; otherwise the monster may call for
@@ -65,7 +65,7 @@ Example (data): the Goblin row of [monsters_table.md](monsters_table.md).
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 52 | Goblin | ゴブリン | 2 | 1-7 | 6 | 19 | 1 | 1-7 | 0 | 10 | - | - | call 25%, flee 10% | - | 290 | 30 | 1 | 1-2,5 | 1-2,5 | 3-4,7,54,56 |
 
-Read: a level-2 melee monster with 1-7 HP and AC 6 that rarely hits (to-hit base 19), one swing of 1-7 damage,
+Read: a level-2 melee monster with 1-7 HP and AC 6 and the least accurate to-hit base (19), one swing of 1-7 damage,
 calls for help 25 % of its turns and flees 10 %, worth 290 EXP and 30 gold, found on floors 1-2 and 5.
 
 **Notes:** a battle flag can switch off a monster's special hits; what sets it was not traced. The "Spells" column
@@ -122,8 +122,9 @@ stone 8, sleep 3. Reach: 102 melee, 45 reach, 20 ranged.
   that checks resistance affects it ([combat.md](combat.md#spells-against-monsters)).
 - **Event-only monsters** (no floor in the table, they appear only in event fights): Ancient One, Fair Fiend,
   Godslayer, Rift Walker, Abyss Lurker, Demon King, Demon Queen, Demon Adish, Kamui, Alien.
-- **The second area** (floors 21-30) is where most level 20-30 monsters live: the "ancient" ones (From Beyond, Unspeakable,
-  Star Seizer), the high demons and vampires, and the special-class fighters (Valiant, Avenger, Musashi, Kunoichi).
+- **The second area** (floors 21-30) is where most level 20-30 monsters live: the "ancient" ones (From Beyond,
+  Unspeakable, Star Seizer), the high demons and vampires, and the special-class fighters (Valiant, Avenger,
+  Musashi, Kunoichi).
 
 **Notes:** the type flags are what slaying weapons check ([combat.md](combat.md#slaying-weapons)). Some monster names
 repeat a spell name (Ifrit, Lion of Hell, Ancient One...): those are the same creatures the Summoner's pacts call
@@ -154,8 +155,8 @@ The 1/512 rate was checked in the emulator (a 357-action walk gave one fight, wh
 door rate comes from the game's code and was not measured separately.
 
 **Notes:** the corridor rate is very low and doors raise it 26-fold (computed: 13/256 against 1/512); whether
-that is intended is discussed in [findings.md](findings.md). Damage zones and the squares
-themselves are described in [dungeon.md](dungeon.md#damage-zones-and-anti-magic-zones).
+that is intended is discussed in [findings.md](findings.md). Doors, squares and damage zones are described in
+[dungeon.md](dungeon.md#damage-zones-and-anti-magic-zones).
 
 Tech: [monsters.md §2.1](../tech/monsters.md#21-when-a-fight-starts-code-204422-4460-emu)
 
@@ -165,8 +166,8 @@ Tech: [monsters.md §2.1](../tech/monsters.md#21-when-a-fight-starts-code-204422
 
 Besides random fights there are two kinds of fixed fight.
 
-- **Guarded squares**: fixed spots, from none (floor 20) to 21 (floor 4) per floor. Stepping on one always starts a fight from that square's
-  encounter area. Each guard fights **once per floor visit**: all guards come back whenever the party changes floors.
+- **Guarded squares**: fixed spots, from none (floor 20) to 21 (floor 4) per floor. Stepping on one always starts a
+  fight from that square's encounter area. Each guard fights **once per floor visit**: all guards come back whenever the party changes floors.
   A guarded-square victory is **the only way to get a chest**; random fights give gold only.
 - **Event fights**: story events (bosses, named monsters) start a fight from areas 34-53, each with one fixed
   formation. Areas 48 and 49 play the boss music.
@@ -177,8 +178,9 @@ Example (generated table): event area 49, the Abyss Lurker fight.
 |---|---|---|---|
 | 49 |  |  | F133: Mist Dragon ×2 + ShadowDragon ×1-2 + Deep Dragon ×0-2 + Abyss Lurker ×1 |
 
-**Notes:** guards using the same tables as random fights means a guarded square is a guaranteed, re-arming fight
-with the floor's normal monsters plus a chest. The chest itself (value, items, traps) is in [dungeon.md](dungeon.md#chests).
+**Notes:** on most floors guards use the same areas as random fights, so a guarded square is a guaranteed,
+re-arming fight with the floor's normal monsters plus a chest. The chest itself (value, items, traps) is in
+[dungeon.md](dungeon.md#chests).
 
 Tech: [monsters.md §2.2](../tech/monsters.md#22-fixed-fights), [dungeon.md §4](../tech/dungeon.md#4-floors)
 

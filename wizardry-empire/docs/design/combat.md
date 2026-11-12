@@ -388,7 +388,8 @@ success if a roll 0..99 is below both 95 and chance
 ```
 
 The two party bonuses are averages of two character values over the members who are OK or Afraid (meaning not
-traced); both are 0 for a standard party. The escape block is the **Esc** column of [monsters_table.md](monsters_table.md) (2 to 18).
+traced); both are 0 for a standard party. The escape block is the **Esc** column of
+[monsters_table.md](monsters_table.md) (2 to 18).
 
 | Against | Escape block | Chance (party bonuses 0) |
 |---|---|---|

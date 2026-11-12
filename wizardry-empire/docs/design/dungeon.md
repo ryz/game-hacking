@@ -70,9 +70,9 @@ The party moves between floors by stairs, chutes, teleporting events and (inferr
   (0, 5) on floor 19 to floor 20, because those floors have no stairs between them. **(inferred)**
 - **Fairy twins** (Rei and Shia): with the Fairy's Heart in the party, one twin teleports the party to the other
   for 1 G, between floor 1 (2, 12) and floor 11 (11, 12).
-- **Button panels and key-holes.** Floors 3 to 7 have a panel with buttons A-E next to a door with a key-hole. A sign reading "Maze Elevator Control Room" exists, and one item's special text is
-  "elevator key" (Key Card), so the panels are inferred to be the **Maze Elevator**. **(inferred)** Their
-  destinations were not traced.
+- **Button panels and key-holes.** Floors 3 to 7 have a panel with buttons A-E next to a door with a key-hole.
+  A sign reading "Maze Elevator Control Room" exists, and one item's special text is "elevator key" (Key Card),
+  so the panels are inferred to be the **Maze Elevator**. **(inferred)** Their destinations were not traced.
 - **Events that teleport** (any event can return a floor or position change).
 
 Stair links (from the floor table below):
@@ -287,7 +287,7 @@ odds of the well, the junk pile and the corpses were not traced.
 | **Priest of the netherworld** (one-shot) | An encounter in the cemetery. |
 | **Huge creature** (one-shot) | It asks for help ("HELP US"). |
 | **Town of Umber Hulks** (one-shot) | An Umber Hulk settlement. |
-| **Man in jet black** (one-shot) | A handsome man in jet black: "So Adish is dead". |
+| **Man in jet black** (one-shot) | A man in jet black: "So Adish is dead". |
 | **Ancient One from the rift** (one-shot) | Something gigantic comes through a rift. |
 | **Emperor of the Abyss** (one-shot) | The final battle with Demon Adish. |
 | **The last, strongest monster** (one-shot) | The true final battle. |
