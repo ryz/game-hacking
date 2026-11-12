@@ -3,6 +3,7 @@
 Usage: python3 tools/explore.py ROM STATE OUTDIR [MAXSTEPS=300] [SEED=7]
 Writes OUTDIR/prev.state (before the last step), hit.state + hit_NNN.png when something other than the maze
 banks ($1F/$20) ran, and last.png. Print the inputs with the seed: same ROM + state + seed = same walk.
+Rev 1: walking into a wall shows 'Ouch!' (31:4592) until a direction key; the walk then turns.
 Note: a HIT is any non-maze code (battle, stairs, door message); look at hit_NNN.png. Moved from
 work/triage/battle1/explore.py (2026-11-11).
 """
@@ -40,10 +41,11 @@ for i in range(maxsteps):
     g.snapshot_save(path=os.path.abspath(out + "/prev.state"))
     bs = act("up")
     after = h()
+    bumped = 0x4592 <= int.from_bytes(g.mem_read(0xC1BF, 2), "little") <= 0x4597   # Rev 1 'Ouch!' (wall)
     print(i, "up", sorted(bs), before != after, flush=True)
     if bs - {31, 32}:
         hit(i, bs); break
-    if before == after or random.random() < 0.25:
+    if bumped or before == after or random.random() < 0.25:   # a turn also closes the 'Ouch!' box
         k = random.choice(["left", "right"])
         bs = act(k)
         print(i, k, sorted(bs), flush=True)

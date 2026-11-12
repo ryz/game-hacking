@@ -7,7 +7,7 @@ VWF_BANK    equ $40
 
 ; ---- game addresses
 FarCall     equ $c1a0          ; A = bank, HL = address
-EnqueueDMA  equ $142a          ; (internal entry used by our stub)
+EnqueueDMA  equ $1443          ; (internal entry used by our stub)
 hSVBK       equ $9d            ; ldh mirror of SVBK
 hROMB       equ $9e            ; ldh mirror of ROM bank
 hSrcLo      equ $b8
@@ -204,13 +204,13 @@ MAP_BANK    equ 6              ; WRAM bank 6: cellmap $d000-$d7ff, owners $d800 
 ; =====================================================================
 
 ; --- DMA enqueue: watch for the font's upper half being loaded to learn the layout
-    org 0, $142a
+    org 0, $1443
     jp Stub_Enqueue
 
 ; --- typewriter character output (replaces 1c11-1c76)
 ; New control code $F2 bank lo hi: continue the message at bank:lo/hi (used to redirect
 ; every original message to its English text).
-    org 0, $1c11
+    org 0, $1c2a
     cp $f2
     jr z, .jump
     push hl
@@ -219,7 +219,7 @@ MAP_BANK    equ 6              ; WRAM bank 6: cellmap $d000-$d7ff, owners $d800 
     ld hl, TW_Char
     call FarCall
     pop hl
-    jp $1bc7
+    jp $1be0
 .jump:
     ld a, [hli]
     ld b, a
@@ -233,7 +233,7 @@ MAP_BANK    equ 6              ; WRAM bank 6: cellmap $d000-$d7ff, owners $d800 
     ld [$c1bf], a
     ld a, h
     ld [$c1c0], a
-    jp $1bc7
+    jp $1be0
 
 Stub_Fix:                   ; call Stub_Fix / db n: copy n chars from HL (current bank) to DE, via the VWF;
                             ; db n|$80, bank: the source is in that ROM bank
@@ -273,13 +273,13 @@ Stub_Num:                   ; 0:108B (number printer 0:0FD0, digit store): base 
 .no:
     and a
     ret
-    assert @ <= $1c79, "typewriter stub overflow"
+    assert @ <= $1c92, "typewriter stub overflow"
 
 ; --- {FA} word look-ahead (1c9a: ld a,[hli] / cp $fa / jr nc,$1d05): also stop at our $F2 jump, so the
 ;     jump bytes at the end of English text are not counted as part of the last word
-    org 0, $1c9a
+    org 0, $1cb3
     call Stub_Measure
-    jr nc, $1d05
+    jr nc, $1d1e
     org 0, $3ff0
 Stub_Measure:
     ld a, [hli]
@@ -293,117 +293,117 @@ Stub_Measure:
     assert @ <= $4000, "stub area 3 overflow"
 
 ; --- typewriter init: forget the previous message's VWF context
-    org 0, $1b3f
+    org 0, $1b58
     call Stub_TWInit
     nop
 
 ; --- rect blitters: tiles only (1770) / tiles + attributes (1723)
-    org 0, $1770
+    org 0, $1789
     jp Stub_Rect0
-    org 0, $1723
+    org 0, $173c
     jp Stub_Rect1
 ; --- attributes-only blitter (17a7): mask the VWF marker bit when reading w
-    org 0, $17bd
+    org 0, $17d6
     call Stub_ReadW
 
 ; --- $00-terminated name copy loops (ld a,[hli] / or a / jr z / ld [de],a / inc de / jr) -> VWF
-    org $26, $4ca3
+    org $26, $4caa
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $26, $5648
+    org $26, $5652
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $27, $4529
+    org $27, $452b
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $27, $49a3
+    org $27, $49a2
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $27, $529c
+    org $27, $52b3
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $27, $558e
+    org $27, $55a5
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $27, $67a3
+    org $27, $67e9
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $27, $6a66
+    org $27, $6ab0
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $27, $6b50
+    org $27, $6b9a
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $27, $7084
+    org $27, $70ce
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $2a, $57cd
+    org $2a, $57e3
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $2a, $624e
+    org $2a, $6267
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $2a, $6f0e
+    org $2a, $6f2c
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $2a, $6f6f
+    org $2a, $6f8d
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $2b, $56fc
+    org $2b, $571b
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $2e, $57cd
+    org $2e, $5811
     call Stub_PrintZ
     jr @+5
     nop
     nop
     nop
-    org $2e, $58c6
+    org $2e, $590a
     call Stub_PrintZ
     jr @+5
     nop
@@ -527,7 +527,7 @@ MusAbbr:                    ; class order: Fighter Mage Priest Thief Bishop Samu
 
 ; --- character card 'L' (26:567A: ld a,'L' / ld [de],a / inc de at $D02E) -> 'Lvl' in the VWF at the cell before
 ;     (cols 13-14), DE ends at the level field like the original
-    org $26, $567a
+    org $26, $5684
     call CardLvl
     nop
     org $26, $7f00
@@ -599,7 +599,7 @@ Mus2Line:                   ; HL = string ($00-terminated, $FD = line break), DE
 
 ; --- number printer 0:0FD0, digit store loop (0:108B): VWF first; the loop always ends at the end of the
 ;     digit buffer ($FFC1), so the count in B and the 'skip $00' check are not needed
-    org 0, $108b
+    org 0, $10a4
     call Stub_Num
     ret c
 .numl:
@@ -612,15 +612,15 @@ Mus2Line:                   ; HL = string ($00-terminated, $FD = line break), DE
     jr .numl
     ret
     ds 5, $00
-    assert @ == $109e, "number loop size"
+    assert @ == $10b7, "number loop size"
 
 ; --- party list (39:4931): skip the redraw when nothing changed (VWF_PartyHit), snapshot after a real draw
-    org $27, $4931
+    org $27, $4930
     call Party_Entry
     ret c
     push bc
     nop
-    org $27, $498a
+    org $27, $4989
     jp Party_End
     nop
     nop
@@ -643,11 +643,11 @@ Party_End:                  ; the original end (restore SVBK), snapshot, then po
     ld a, VWF_BANK
     ld hl, VWF_PartySnap
     call FarCall
-    jp $498f
+    jp $498e
 
 ; --- $F8 number insert (0:1D66): pad the right-aligned digits with $7F (blank glyph 5 px wide, like a digit)
 ;     instead of $20 (3 px), so typewriter number columns line up (battle/maze party lists)
-    org 0, $1d66
+    org 0, $1d7f
     ld a, $7f
 
 ; --- rst $38: inline text. Followed by db bank (bit 7: destination in HL, else DE), dw text.
@@ -680,7 +680,7 @@ Stub_Enqueue:              ; font from bank 1 $4400-$50ff? let the VWF decide (v
     ldh a, [hSVBK]
     push af
     ld a, $02
-    jp $142f
+    jp $1448
 
 Stub_ReadW:
     ld a, [hli]
@@ -703,8 +703,9 @@ Stub_EnqDma:
     jp Stub_Dma
     assert @ <= $00f1, "bank0 stub area 1 overflow"
 
-; --- free space at $3f50-$3fd9
-    org 0, $3f50
+; --- bank-0 stub area 2: Rev 1 has no free block here any more; the original monster-panel routine 0:19B4-1A3A
+;     is dead (VWF_Panel replaces its only call, 22:5688), its tail at 1A3B is shared and stays
+    org 0, $19b4
 Stub_Rect0:
     ld c, 0
     jr Stub_RectCommon
@@ -726,8 +727,8 @@ Stub_RectCommon:            ; C = mode (0 tiles, 1 tiles + attributes), passed t
     ldh a, [hSVBK]          ; the three overwritten bytes (f0 9d 47)
     ld b, a
     bit 0, c
-    jp z, $1773
-    jp $1726
+    jp z, $178c
+    jp $173f
 .vwf:
     pop af
     rst $28
@@ -770,23 +771,7 @@ Stub_Dma:                   ; any other VBlank DMA: tell the VWF which tiles the
     ldh a, [hSVBK]
     push af
     ld a, $02
-    jp $142f
-
-Stub_Hold:                  ; (dead while HoldMark is disabled: wSkipCopy stays 0) 0:167D in the VBlank map copy (SVBK = 3 here): skip the copies (and keep the
-    ld a, HOME_BANK         ; request flags) while the VWF is printing a menu, see HoldMark
-    ldh [$70], a
-    ld a, [wSkipCopy]
-    push af
-    xor a
-    ld [wSkipCopy], a
-    ld a, 3
-    ldh [$70], a
-    pop af
-    or a
-    ld a, [$c48b]
-    ret z
-    add sp, 2
-    jp $16e0
+    jp $1448
 
 Stub_SpellPre:              ; 0:24CF entry (A = spell id): fetch the full English name, then the original start
     ld c, a
@@ -798,7 +783,7 @@ Stub_SpellPre:              ; 0:24CF entry (A = spell id): fetch the full Englis
     ld l, a
     ld h, 0
     ret
-    assert @ <= $3fda, "bank0 stub area 2 overflow"
+    assert @ <= $1a3b, "bank0 stub area 2 overflow (Rev 1: the dead monster-panel routine 0:19B4-1A3A)"
 
 ; =====================================================================
 ; Bank $40: engine
@@ -2083,7 +2068,7 @@ PanelBody:
     ld a, $01
     ldh [$bd], a
     ld bc, $0040
-    jp $142a
+    jp $1443
 
 ; commit the partial tile if it has pixels
 PanelFlush:
@@ -2533,7 +2518,7 @@ VWF_SpellName:
     add hl, hl
     add hl, hl
     add hl, hl
-    ld de, $6c38
+    ld de, $6c95
     add hl, de
     ld b, 36
     ld c, 11
@@ -4243,7 +4228,7 @@ NumExcluded:
 
 NumExcl:                    ; bank, return address of 0:0FD0 calls that stay 8 px; 0 ends
     db $26
-    dw $572a                ; age on the character card: the shop header writes 'AC' over it
+    dw $571b                ; age on the character card: the shop header writes 'AC' over it
     db 0
 
 ; A = pixel width of wNameBuf

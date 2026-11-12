@@ -1,4 +1,4 @@
-"""Address map from the Japanese v1.0 dump (rom/wizardry_empire_j.gbc) to Rev 1 (rom/wizardry_empire_j_rev1.gbc).
+"""Address map from the Japanese v1.0 dump (rom/wizardry_empire_j_v10.gbc) to Rev 1 (rom/wizardry_empire_j.gbc).
 
 Each 16 KB bank is aligned with difflib (matching blocks >= MIN bytes). map_addr(bank, addr) returns the Rev 1
 address of the same byte, or None when the byte lies in a changed region. The map is cached in build/revmap.json.
@@ -8,8 +8,8 @@ address of the same byte, or None when the byte lies in a changed region. The ma
 import difflib, json, os, sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-V10 = os.path.join(ROOT, "rom", "wizardry_empire_j.gbc")
-REV1 = os.path.join(ROOT, "rom", "wizardry_empire_j_rev1.gbc")
+V10 = os.path.join(ROOT, "rom", "wizardry_empire_j_v10.gbc")     # the old base (v1.0, SHA-1 041c1251...)
+REV1 = os.path.join(ROOT, "rom", "wizardry_empire_j.gbc")         # the base since 2026-11-12: Rev 1
 CACHE = os.path.join(ROOT, "build", "revmap.json")
 MIN = 8
 _blocks = None

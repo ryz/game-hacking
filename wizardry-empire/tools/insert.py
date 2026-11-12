@@ -262,9 +262,9 @@ def fix_sites(rom):
 # 38:6111 class names in the create/class lists (6 x ld a,[hli]/ld [de],a; the loop needs HL = src+6).
 # 39:49FE: party-list status word (4 cells), copy ending in `2a 12` (not matched by the pattern); HL is
 # reloaded right after, so no tail byte.
-EXTRA_FIX_SITES = [(38, 0x5667, 8, 3, b""), (38, 0x6111, 17, 6, b"\x23"), (39, 0x49FE, 11, 4, b"")]
+EXTRA_FIX_SITES = [(38, 0x5671, 8, 3, b""), (38, 0x6102, 17, 6, b"\x23"), (39, 0x49FD, 11, 4, b"")]
 # Matched by the pattern but not text: 2A:4A31 copies the element's attributes (handled in asm/main.asm).
-SKIP_FIX_SITES = {42 * 0x4000 + 0x4A31 - 0x4000}
+SKIP_FIX_SITES = {42 * 0x4000 + 0x4A47 - 0x4000}
 
 
 def insert_fix_sites(rom):
@@ -296,7 +296,7 @@ def fixmap_entries(space, rom):
     return ents
 
 
-LIST_BANK, LIST_FREE = 49, 0x5726   # bank 49 $5726-$7FFF is unused (zeros) in the original
+LIST_BANK, LIST_FREE = 49, 0x5737   # bank 49 $5737-$7FFF is unused (zeros) in Rev 1 (v1.0: $5726)
 
 
 def insert_lists(rom, space, entries):
@@ -312,10 +312,10 @@ def insert_lists(rom, space, entries):
     for e in load("lists50.json"):          # strings only the bank-50 table points at (party-list statuses)
         b, a = space.put(text.encode(e["en"]) + b"\x00")
         new[int(e["ptr"], 16)] = a
-    # bank 50 keeps its own copy of the command/status word pointers (32:57DB, 28 entries; the battle party
+    # bank 50 keeps its own copy of the command/status word pointers (32:5807 in Rev 1, 31 entries; the battle party
     # panel's action column reads it): repoint the entries that point at the same bank-49 strings
-    o = rom_off(50, 0x57DB)
-    for k in range(28):
+    o = rom_off(50, 0x5807)
+    for k in range(31):                     # Rev 1: 31 entries (28-30 = alignment words for the friendly-encounter panel)
         v = rom[o + 2 * k] | rom[o + 2 * k + 1] << 8
         if v in new:
             rom[o + 2 * k:o + 2 * k + 2] = bytes([new[v] & 0xFF, new[v] >> 8])
@@ -349,7 +349,7 @@ def insert_titles(rom, space, entries):
     return len(entries)
 
 
-NAME_LATIN, NAME_PAGES = 0x70C3, (0x6FDF, 0x7051)   # bank 38: Latin page, hiragana and katakana pages
+NAME_LATIN, NAME_PAGES = 0x70EA, (0x7006, 0x7078)   # bank 38: Latin page, hiragana and katakana pages
 
 
 def insert_name_charts(rom):
@@ -363,17 +363,17 @@ def insert_name_charts(rom):
         rom[q:q + len(latin)] = latin
     rom[o:o + len(latin)] = latin
     # typed codes come from per-page tables (row*15 + col, $FF end): kana 85 entries, Latin 70
-    lt = rom_off(38, 0x655D)
+    lt = rom_off(38, 0x6582)
     codes = bytes(rom[lt:lt + 70]).replace(b"\xa5", b"'")
     rom[lt:lt + 70] = codes
-    for t in (0x64B1, 0x6507):
+    for t in (0x64D6, 0x652C):
         q = rom_off(38, t)
         assert rom[q + 85] == 0xFF
         rom[q:q + 86] = codes + b" " * 15 + b"\xff"
     return len(NAME_PAGES) + 1
 
 
-SPELL_BANK, SPELL_BASE, SPELL_SIZE, SPELL_NAME = 36, 0x6C38, 16, 11
+SPELL_BANK, SPELL_BASE, SPELL_SIZE, SPELL_NAME = 36, 0x6C95, 16, 11
 spell_names_cache = []
 
 
@@ -407,7 +407,7 @@ def insert_unid(rom):
     b, tab, n = UNID_TABLE
     sb, pos, end = UNID_SPACE
     for i in range(n):
-        en = lists[0x566B + 2 * i]
+        en = lists[0x567D + 2 * i]          # table 49:567D (v1.0: 566B)
         assert len(en) <= 16 and text.width(en) <= 72, en
         rec = bytes([len(en), 1]) + en.encode("ascii") + b"\x00"
         assert pos + len(rec) <= end
@@ -426,7 +426,7 @@ def insert_unid_mon(rom):
     lists = {int(e["table"], 16): e["en"] for e in load("lists.json") if e.get("table")}
     b, tab, n, pos, end = MON_UNID
     for i in range(n):
-        en = lists[0x56FD + 2 * i].replace("\n", " ")
+        en = lists[0x570F + 2 * i].replace("\n", " ")   # table 49:570F (v1.0: 56FD)
         assert text.width(en) <= 128, en
         rec = en.encode("ascii") + b"\x00"
         assert pos + len(rec) <= end

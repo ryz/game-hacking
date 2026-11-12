@@ -1,157 +1,157 @@
 [
  {
   "bank": 38,
-  "addr": "0x754d",
+  "addr": "0x7574",
   "jp": "せいじょう",
   "en": "OK"
  },
  {
   "bank": 38,
-  "addr": "0x7552",
+  "addr": "0x7579",
   "jp": "ロスト",
   "en": "Lost"
  },
  {
   "bank": 38,
-  "addr": "0x7557",
+  "addr": "0x757e",
   "jp": "はい",
   "en": "Ashes"
  },
  {
   "bank": 38,
-  "addr": "0x755c",
+  "addr": "0x7583",
   "jp": "しぼう",
   "en": "Dead"
  },
  {
   "bank": 38,
-  "addr": "0x7561",
+  "addr": "0x7588",
   "jp": "いし",
   "en": "Stoned"
  },
  {
   "bank": 38,
-  "addr": "0x7566",
+  "addr": "0x758d",
   "jp": "まひ",
   "en": "Paralyzed"
  },
  {
   "bank": 38,
-  "addr": "0x756b",
+  "addr": "0x7592",
   "jp": "すいみん",
   "en": "Asleep"
  },
  {
   "bank": 38,
-  "addr": "0x7570",
+  "addr": "0x7597",
   "jp": "きょうふ",
   "en": "Afraid"
  },
  {
   "bank": 38,
-  "addr": "0x7575",
+  "addr": "0x759c",
   "jp": "まふうじ",
   "en": "Silenced"
  },
  {
   "bank": 38,
-  "addr": "0x757a",
+  "addr": "0x75a1",
   "jp": "どく",
   "en": "Poisoned"
  },
  {
   "bank": 38,
-  "addr": "0x7437",
+  "addr": "0x745e",
   "jp": "ダンジョン",
   "en": "Maze"
  },
  {
   "bank": 38,
-  "addr": "0x743c",
+  "addr": "0x7463",
   "jp": "まち",
   "en": "Town"
  },
  {
   "bank": 38,
-  "addr": "0x7441",
+  "addr": "0x7468",
   "jp": "じいん",
   "en": "Temple"
  },
  {
   "bank": 42,
-  "addr": "0x49a9",
+  "addr": "0x49bf",
   "jp": "地",
   "en": "Earth"
  },
  {
   "bank": 42,
-  "addr": "0x49ad",
+  "addr": "0x49c3",
   "jp": "水",
   "en": "Water"
  },
  {
   "bank": 42,
-  "addr": "0x49b1",
+  "addr": "0x49c7",
   "jp": "火",
   "en": "Fire"
  },
  {
   "bank": 42,
-  "addr": "0x49b5",
+  "addr": "0x49cb",
   "jp": "風",
   "en": "Air"
  },
  {
   "bank": 42,
-  "addr": "0x49b9",
+  "addr": "0x49cf",
   "jp": "精神",
   "en": "Mind"
  },
  {
   "bank": 42,
-  "addr": "0x49bd",
+  "addr": "0x49d3",
   "jp": "気",
   "en": "Aura"
  },
  {
   "bank": 42,
-  "addr": "0x49c1",
+  "addr": "0x49d7",
   "jp": "神聖",
   "en": "Holy"
  },
  {
   "bank": 42,
-  "addr": "0x49c5",
+  "addr": "0x49db",
   "jp": "無",
   "en": "None"
  },
  {
   "bank": 38,
-  "addr": "0x7220",
+  "addr": "0x7247",
   "jp": "ヴァリアント",
   "en": "Valiant"
  },
  {
   "bank": 38,
-  "addr": "0x7226",
+  "addr": "0x724d",
   "jp": "アベンジャー",
   "en": "Avenger"
  },
  {
   "bank": 38,
-  "addr": "0x722c",
+  "addr": "0x7253",
   "jp": "ムサシ",
   "en": "Musashi"
  },
  {
   "bank": 38,
-  "addr": "0x7232",
+  "addr": "0x7259",
   "jp": "くのいち",
   "en": "Kunoichi"
  },
  {
   "bank": 38,
-  "addr": "0x7238",
+  "addr": "0x725f",
   "jp": "しょうかんし",
   "en": "Summoner"
  },

@@ -1,12 +1,12 @@
 [
-{"bank": 37, "site": "0x41a9", "ptr": "0x51fc", "jp": "かわの ふくろだ!", "en": "A leather bag!"},
-{"bank": 37, "site": "0x422d", "ptr": "0x5206", "jp": "せいどうの たからばこだ!", "en": "A bronze chest!"},
-{"bank": 37, "site": "0x42b1", "ptr": "0x5214", "jp": "どうの たからばこだ!", "en": "A copper chest!"},
-{"bank": 37, "site": "0x4335", "ptr": "0x5220", "jp": "ぎんの たからばこだ!", "en": "A silver chest!"},
-{"bank": 37, "site": "0x43b9", "ptr": "0x522c", "jp": "きんの たからばこだ!", "en": "A gold chest!"},
-{"bank": 37, "site": "0x443d", "ptr": "0x5238", "jp": "プラチナの たからばこだ!", "en": "A platinum chest!"},
-{"bank": 37, "site": "0x44c1", "ptr": "0x5246", "jp": "きりの はこだ!", "en": "A paulownia box!"},
-{"bank": 37, "site": "0x4545", "ptr": "0x524f", "jp": "うるしの たからばこだ!", "en": "A lacquered chest!"},
-{"bank": 37, "site": "0x45c9", "ptr": "0x525c", "jp": "しっこくの たからばこだ!", "en": "A jet-black chest!"},
-{"bank": 37, "site": "0x464d", "ptr": "0x526a", "jp": "みわくの たからばこだ!", "en": "A bewitching chest!"}
+{"bank": 37, "site": "0x41a9", "ptr": "0x520e", "jp": "かわの ふくろだ!", "en": "A leather bag!"},
+{"bank": 37, "site": "0x422d", "ptr": "0x5218", "jp": "せいどうの たからばこだ!", "en": "A bronze chest!"},
+{"bank": 37, "site": "0x42b1", "ptr": "0x5226", "jp": "どうの たからばこだ!", "en": "A copper chest!"},
+{"bank": 37, "site": "0x4335", "ptr": "0x5232", "jp": "ぎんの たからばこだ!", "en": "A silver chest!"},
+{"bank": 37, "site": "0x43b9", "ptr": "0x523e", "jp": "きんの たからばこだ!", "en": "A gold chest!"},
+{"bank": 37, "site": "0x443d", "ptr": "0x524a", "jp": "プラチナの たからばこだ!", "en": "A platinum chest!"},
+{"bank": 37, "site": "0x44c1", "ptr": "0x5258", "jp": "きりの はこだ!", "en": "A paulownia box!"},
+{"bank": 37, "site": "0x4545", "ptr": "0x5261", "jp": "うるしの たからばこだ!", "en": "A lacquered chest!"},
+{"bank": 37, "site": "0x45c9", "ptr": "0x526e", "jp": "しっこくの たからばこだ!", "en": "A jet-black chest!"},
+{"bank": 37, "site": "0x464d", "ptr": "0x527c", "jp": "みわくの たからばこだ!", "en": "A bewitching chest!"}
 ]

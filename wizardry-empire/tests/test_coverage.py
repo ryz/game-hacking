@@ -11,7 +11,7 @@ import insert
 
 ROM = os.path.join(ROOT, "rom", "wizardry_empire_j.gbc")
 pytestmark = pytest.mark.skipif(not os.path.exists(ROM), reason="original ROM not present")
-HANDLED_IN_ASM = {(42, 0x4A29)}   # element name copy, patched in asm/main.asm (Stub_Fix db 3)
+HANDLED_IN_ASM = {(42, 0x4A3F)}   # element name copy, patched in asm/main.asm (Stub_Fix db 3)
 NEVER_READ = {(39, 0x4004)}       # "OK" record of the party-list status table: the printer never selects it
 
 
