@@ -8,8 +8,9 @@ kind of square does: [maps/README.md](README.md).
 
 ## 1. Overview
 
-- 57 squares are solid rock, filling the four corners; the rest is a maze of short walls with only 3 doors and
-  1 one-way door (computed from the map). Every open square can be reached on foot from the stairs.
+- 57 squares are solid rock, filling the four corners; the rest is a maze of short walls with only 3 doors,
+  1 one-way door, no secret doors and no locked doors (computed from the map). Every open square can be reached on
+  foot from the stairs (computed from the map).
 - **Entrance:** the stairs up at (6, 1), from floor 18. **No stairs down.**
 - **The way on:** the one-way door (6, 0) → (5, 0) opens on an 11-square corridor along the south and west edges,
   (0, 0)-(5, 0) and (0, 1)-(0, 5), that ends at the **chute** at (0, 5); once through the door there is no way back
@@ -37,37 +38,36 @@ kind of square does: [maps/README.md](README.md).
 | (14, 10) | Key-hole (event) | "Beside the door is a hole for slipping something in": a door that is inferred to need an item (not traced which). |
 | (5, 10), (12, 4) | Pit, strength 20 | Skipped when floating. |
 | (4, 7) | Spinner | Turns the party to a random facing. |
-| (7, 15) + (8, 15), (4, 2) + (5, 1) | Guarded squares, two pairs | Fight from area 21, then a chest. One once-per-visit mark per pair (see Open questions). |
-| (2, 11) + (1, 10) | Guarded squares, a pair | Fight from area 22 (floor 20's monsters), then a chest. One once-per-visit mark for both. |
+| (7, 15) + (8, 15), (4, 2) + (5, 1) | Guarded squares, two pairs | Fight from area 21, then a chest. The two squares of each pair share one once-per-visit mark: after one has fought, the other probably stays quiet until the next floor change (inferred). |
+| (2, 11) + (1, 10) | Guarded squares, a pair | Fight from area 22 (floor 20's monsters), then a chest. The two share one once-per-visit mark: after one has fought, the other probably stays quiet until the next floor change (inferred). |
 | (15, 7) | Guarded square | Fight from area 22, then a chest. |
 
 How much damage the pits do, and what their strength changes, was not traced.
 
 ## 3. Monsters
 
-| Area | Where | Formations (one is picked per fight) |
+| Area | Where | Formations (one of 4 slots picked per fight) |
 |---|---|---|
-| 21 | everywhere, 4 guarded squares | Ettin ×3 + Hill Giant ×3 + Cyclops ×0-1 + Poison Giant ×3, or Mist Dragon ×2 + ShadowDragon ×2 + Deep Dragon ×1, or Doll Golem ×1-2 + Gargoyle ×1-2 + High Wizard ×3 + Mist Dragon ×2, or Cleric ×1-2 + Mystic ×1-2 + High Wizard ×3 + Mstr. Priest ×3 |
-| 22 | 3 guarded squares | Cyclops ×2 + Troll ×3 + Frost Giant ×3 + Titan ×2, or Ifrit ×2 + Fire Elem. ×1-2 + Fire Giant ×3 + Phoenix ×3, or Juggernaut ×2 + Djinni ×1 + Dao ×2-3 + Marid ×3, or Mummy ×1-3 + Ghast ×2 + Necromancer ×3 + DragonZombie ×3. Stats: [floor-20.md](floor-20.md). |
+| 21 | Everywhere except 3 guarded squares (196 squares), and the other 4 guarded squares | Ettin ×3 + Hill Giant ×3 + Cyclops ×0-1 + Poison Giant ×3, or Mist Dragon ×2 + ShadowDragon ×2 + Deep Dragon ×1, or Doll Golem ×1-2 + Gargoyle ×1-2 + High Wizard ×3 + Mist Dragon ×2, or Cleric ×1-2 + Mystic ×1-2 + High Wizard ×3 + Mstr. Priest ×3 |
+| 22 | Guarded squares only (3). Floor 20's random area: stats in [floor-20.md](floor-20.md) | Cyclops ×2 + Troll ×3 + Frost Giant ×3 + Titan ×2, or Ifrit ×2 + Fire Elem. ×1-2 + Fire Giant ×3 + Phoenix ×3, or Juggernaut ×2 + Djinni ×1 + Dao ×2-3 + Marid ×3, or Mummy ×1-3 + Ghast ×2 + Necromancer ×3 + DragonZombie ×3 |
 
-| Monster | Lv | HP | AC | Swings | Damage | Spells | Special | EXP | Gold |
+| Monster | Lv | HP | AC | Swings | Damage | Special | Spells | EXP | Gold |
 |---|---|---|---|---|---|---|---|---|---|
 | Ettin | 11 | 12d8 | 3 | 2 | 4d19 | - | - | 3020 | 110 |
 | Hill Giant | 11 | 14d8 | 3 | 1 | 3d7+7 | - | - | 3420 | 110 |
 | Cyclops | 12 | 15d8 | 5 | 1 | 4d11 | - | - | 3830 | 120 |
-| Poison Giant | 14 | 19d8 | 3 | 1 | 3d13+11 | - | poison, poison breath | 7600 | 140 |
-| Mist Dragon | 21 | 45d8+7 | -12 | 3 | 6d10+5 | Mage 6, Priest 5 | acid breath | 56430 | 190 |
-| ShadowDragon | 22 | 50d8+15 | -11 | 3 | 8d7+5 | Mage 7, Priest 6 | frost breath | 88880 | 210 |
-| Deep Dragon | 22 | 60d8+23 | -12 | 3 | 7d10+5 | Mage 7, Priest 7 | stone breath | 99990 | 210 |
-| Doll Golem | 10 | 12d8 | 4 | 1 | 4d7 | - | decapitation | 1100 | 100 |
+| Poison Giant | 14 | 19d8 | 3 | 1 | 3d13+11 | poison, poison breath | - | 7600 | 140 |
+| Mist Dragon | 21 | 45d8+7 | -12 | 3 | 6d10+5 | acid breath | Mage 6, Priest 5 | 56430 | 190 |
+| ShadowDragon | 22 | 50d8+15 | -11 | 3 | 8d7+5 | frost breath | Mage 7, Priest 6 | 88880 | 210 |
+| Deep Dragon | 22 | 60d8+23 | -12 | 3 | 7d10+5 | stone breath | Mage 7, Priest 7 | 99990 | 210 |
+| Doll Golem | 10 | 12d8 | 4 | 1 | 4d7 | decapitation | - | 1100 | 100 |
 | Gargoyle | 4 | 6d8 | 5 | 4 | 1d5 | - | - | 430 | 50 |
-| High Wizard | 14 | 16d4 | 1 | 2 | 2d4+8 | Mage 6 | - | 6380 | 140 |
-| Cleric | 11 | 11d6 | 0 | 2 | 1d6+6 | Priest 5 | calls 25% | 2340 | 110 |
-| Mystic | 5 | 8d6 | 6 | 1 | 1d7 | Mage 1, Priest 1 | flees 10% | 530 | 50 |
-| Mstr. Priest | 16 | 21d6 | -6 | 4 | 1d6+10 | Priest 7 | calls 25% | 8530 | 160 |
+| High Wizard | 14 | 16d4 | 1 | 2 | 2d4+8 | - | Mage 6 | 6380 | 140 |
+| Cleric | 11 | 11d6 | 0 | 2 | 1d6+6 | calls 25% | Priest 5 | 2340 | 110 |
+| Mystic | 5 | 8d6 | 6 | 1 | 1d7 | flees 10% | Mage 1, Priest 1 | 530 | 50 |
+| Mstr. Priest | 16 | 21d6 | -6 | 4 | 1d6+10 | calls 25% | Priest 7 | 8530 | 160 |
 
-Spells: the school and the highest spell level cast. Full stats and resistances:
-[monsters_table.md](../monsters_table.md).
+Full stats: [monsters_table.md](../monsters_table.md).
 
 **Notes for play:** one formation in four is five dragons: two Mist Dragons, two Shadow Dragons and a Deep Dragon
 (level 22, 60d8+23 = 83-503 HP, stone breath, Mage 7 and Priest 7 spells). Mist Dragons also appear in a second

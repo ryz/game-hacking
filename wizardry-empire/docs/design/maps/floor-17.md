@@ -8,7 +8,8 @@ down at the center; how to read the map, coordinates and what each kind of squar
 ## 1. Overview
 
 - 47 squares are solid rock (the dark blocks between the rings); the corridors are joined by 33 doors, with no
-  one-way doors or special walls (computed from the map). Every open square can be reached on foot from the stairs.
+  one-way doors, no secret doors and no locked doors (computed from the map). Every open square can be reached on
+  foot from either stairs (computed from the map).
 - **Stairs:** up at (14, 1), back to floor 16, in the south-east corner; down at (8, 8), to floor 18, at the very
   center.
 - **The way down:** the shortest walk from the stairs up to the stairs down is 85 moves, and every way to the center
@@ -36,30 +37,29 @@ down at the center; how to read the map, coordinates and what each kind of squar
 
 ## 3. Monsters
 
-| Area | Where | Formations (one is picked per fight) |
+| Area | Where | Formations (one of 4 slots picked per fight) |
 |---|---|---|
-| 19 | everywhere, 6 guarded squares | Juggernaut ×1 + Skel.Warrior ×2-3 + Dullahan ×2 + Night Rider ×2, or Glass Golem ×2 + Doll Golem ×4-5 + Stone Golem ×2, or Shooter ×2 + Priest ×3 + Labor Lord ×3 + Master Thief ×0-1, or Specter ×3 + Zombie Lord ×3 + Giant Zombie ×3 + Nightcrawler ×1 |
+| 19 | Everywhere (209 squares) and the 6 guarded squares | Juggernaut ×1 + Skel.Warrior ×2-3 + Dullahan ×2 + Night Rider ×2, or Glass Golem ×2 + Doll Golem ×4-5 + Stone Golem ×2, or Shooter ×2 + Priest ×3 + Labor Lord ×3 + Master Thief ×0-1, or Specter ×3 + Zombie Lord ×3 + Giant Zombie ×3 + Nightcrawler ×1 |
 
-| Monster | Lv | HP | AC | Swings | Damage | Spells | Special | EXP | Gold |
+| Monster | Lv | HP | AC | Swings | Damage | Special | Spells | EXP | Gold |
 |---|---|---|---|---|---|---|---|---|---|
 | Juggernaut | 17 | 40d8 | 0 | 1 | 11d11 | - | - | 9470 | 170 |
 | Skel.Warrior | 4 | 7d8 | 4 | 2 | 2d9 | - | - | 370 | 40 |
 | Dullahan | 11 | 14d8 | 0 | 2 | 4d9 | - | - | 3290 | 110 |
-| Night Rider | 15 | 22d8 | -5 | 3 | 4d9 | - | paralysis | 7180 | 150 |
+| Night Rider | 15 | 22d8 | -5 | 3 | 4d9 | paralysis | - | 7180 | 150 |
 | Glass Golem | 9 | 11d8 | 4 | 1 | 3d13 | - | - | 920 | 90 |
-| Doll Golem | 10 | 12d8 | 4 | 1 | 4d7 | - | decapitation | 1100 | 100 |
+| Doll Golem | 10 | 12d8 | 4 | 1 | 4d7 | decapitation | - | 1100 | 100 |
 | Stone Golem | 12 | 16d8+4 | 0 | 1 | 5d7+8 | - | - | 3960 | 120 |
-| Shooter | 11 | 13d6 | 3 | 3 | 3d9+5 | - | calls 25% | 2890 | 110 |
-| Priest | 11 | 12d6 | 2 | 2 | 1d7+6 | Mage 4, Priest 4 | - | 2750 | 110 |
-| Labor Lord | 11 | 13d8 | -1 | 3 | 2d8+7 | Priest 5 | - | 2480 | 110 |
+| Shooter | 11 | 13d6 | 3 | 3 | 3d9+5 | calls 25% | - | 2890 | 110 |
+| Priest | 11 | 12d6 | 2 | 2 | 1d7+6 | - | Mage 4, Priest 4 | 2750 | 110 |
+| Labor Lord | 11 | 13d8 | -1 | 3 | 2d8+7 | - | Priest 5 | 2480 | 110 |
 | Master Thief | 13 | 17d4 | -1 | 3 | 3d5+7 | - | - | 5710 | 130 |
-| Specter | 6 | 7d8+7 | 3 | 1 | 1d9 | - | level drain 1, calls 25% | 800 | 60 |
-| Zombie Lord | 6 | 8d8 | 6 | 2 | 3d5 | - | calls 25% | 610 | 60 |
-| Giant Zombie | 12 | 14d8 | 3 | 2 | 4d13 | - | poison, poison breath, calls 25% | 5000 | 120 |
-| Nightcrawler | 17 | 36d8 | -4 | 2 | 3d9 | - | poison, level drain 1 | 13000 | 160 |
+| Specter | 6 | 7d8+7 | 3 | 1 | 1d9 | level drain 1, calls 25% | - | 800 | 60 |
+| Zombie Lord | 6 | 8d8 | 6 | 2 | 3d5 | calls 25% | - | 610 | 60 |
+| Giant Zombie | 12 | 14d8 | 3 | 2 | 4d13 | poison, poison breath, calls 25% | - | 5000 | 120 |
+| Nightcrawler | 17 | 36d8 | -4 | 2 | 3d9 | poison, level drain 1 | - | 13000 | 160 |
 
-Spells: the school and the highest spell level cast. Full stats and resistances:
-[monsters_table.md](../monsters_table.md).
+Full stats: [monsters_table.md](../monsters_table.md).
 
 **Notes for play:** only two monsters cast spells (Priest, Labor Lord), both at level 5 or below. The Juggernaut has
 the most HP (40d8, up to 320) and the hardest hit (11d11, 11-121); the Nightcrawler (36d8, up to 288) poisons and

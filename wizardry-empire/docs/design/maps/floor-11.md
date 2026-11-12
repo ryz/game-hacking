@@ -7,7 +7,8 @@ of square does: [maps/README.md](README.md).
 
 ## 1. Overview
 
-- No solid rock: the whole floor is open, with 5 doors and no one-way doors (computed from the map).
+- No solid rock: the whole floor is open, with 5 doors, no one-way doors, no secret doors and no locked doors
+  (computed from the map). Every square can be reached on foot from either stairs (computed from the map).
 - **Entrance and exits:** the stairs up to floor 10 at (0, 0); the stairs down to floor 12 at (15, 15), inside the
   damage zone.
 - **Damage zone:** 121 squares, about half the floor, in one winding band that runs through the middle of the map and
@@ -22,7 +23,7 @@ of square does: [maps/README.md](README.md).
 - **Monsters:** levels 3-13, 1 to 7 per group: Kirin, Djinni and Ifrit formations outside the zone; Ghosts, Specters, Wights,
   the Damned and a Scylla formation inside it.
 - **Chests:** the guard fights outside the zone rate 12-13 (best chest Copper); those inside rate 15-25 (best chest
-  Gold) (computed from the Chest column below; tiers in [dungeon.md](../dungeon.md)).
+  Gold) ([dungeon.md](../dungeon.md), chest quality by floor).
 
 ## 2. Squares
 
@@ -46,38 +47,39 @@ of square does: [maps/README.md](README.md).
 
 ## 3. Monsters
 
-| Area | Formations (one is picked per fight) |
-|---|---|
-| 13 | Kirin ×2-3 + Kirin ×2-3, or Air Elem. ×4-6 + Djinni ×1-2, or Rogue ×2 + Kugutsu ×2 + Sorcerer ×2 + Highwayman ×0-2, or Fire Elem. ×3-4 + Ifrit ×2-3 |
-| 102 (damage zone) | Ghost ×2-3 + Specter ×1 + Wight ×1, or Damned ×2 + Ghost ×1-2 + Specter ×1-2 + Wight ×1, or Scylla ×4-7 + Couatl ×3-6 + Lizard King ×3-4 + Lizard Man ×2-5 |
+| Area | Where | Formations (one of 4 slots picked per fight) |
+|---|---|---|
+| 13 | Outside the damage zone (135 squares) and its 5 guarded squares | Kirin ×2-3 + Kirin ×2-3, or Air Elem. ×4-6 + Djinni ×1-2, or Rogue ×2 + Kugutsu ×2 + Sorcerer ×2 + Highwayman ×0-2, or Fire Elem. ×3-4 + Ifrit ×2-3 |
+| 102 | The damage zone (121 squares) and its 5 guarded squares | Ghost ×2-3 + Specter ×1 + Wight ×1, or Damned ×2 + Ghost ×1-2 + Specter ×1-2 + Wight ×1 (2 of 4), or Scylla ×4-7 + Couatl ×3-6 + Lizard King ×3-4 + Lizard Man ×2-5 |
 
-| Monster | Lv | HP | AC | Swings | Damage | Special | EXP | Gold | Chest |
+| Monster | Lv | HP | AC | Swings | Damage | Special | Spells | EXP | Gold |
 |---|---|---|---|---|---|---|---|---|---|
-| Kirin | 12 | 15d8 | -5 | 3 | 3d7 | Mage spells to level 7, decapitation | 4630 | 130 | 13 |
-| Air Elem. | 8 | 10d8 | 2 | 1 | 3d11 | - | 760 | 80 | 9 |
-| Djinni | 12 | 14d8 | -2 | 1 | 5d11 | lightning breath | 4800 | 120 | 12 |
-| Rogue | 5 | 5d4 | 7 | 1 | 3d5 | calls 25%, flees 20% | 490 | 50 | 12 |
-| Kugutsu | 6 | 7d8 | 4 | 1 | 1d9 | decapitation | 590 | 60 | 13 |
-| Sorcerer | 10 | 13d4 | 5 | 2 | 2d4+6 | Mage spells to level 5 | 2210 | 100 | 13 |
-| Highwayman | 10 | 13d8 | 0 | 3 | 2d9+5 | - | 1810 | 100 | 12 |
-| Fire Elem. | 8 | 10d8 | 2 | 1 | 4d9 | - | 800 | 80 | 8 |
-| Ifrit | 12 | 14d8 | -2 | 1 | 7d9 | fire breath | 4900 | 130 | 13 |
-| Ghost | 10 | 11d8 | 0 | 1 | 1d3 | fear, calls 25%, flees 20% | 1000 | 100 | 15 |
-| Specter | 6 | 7d8+7 | 3 | 1 | 1d9 | level drain 1, calls 25% | 800 | 60 | 14 |
-| Wight | 6 | 4d8+5 | 8 | 1 | 1d5 | level drain 1 | 220 | 20 | 4 |
-| Damned | 13 | 15d8 | -3 | 1 | 3d9 | paralysis | 5300 | 130 | 25 |
-| Scylla | 10 | 13d8 | 7 | 8 | 2d5 | fear, paralysis | 1300 | 100 | 24 |
-| Couatl | 9 | 11d8 | 5 | 2 | 2d5 | Mage spells to level 3, Priest spells to level 5, poison | 990 | 90 | 7 |
-| Lizard King | 8 | 8d8+7 | 3 | 1 | 3d6+5 | - | 790 | 80 | 5 |
-| Lizard Man | 3 | 3d8+5 | 5 | 3 | 1d5 | flees 5% | 350 | 40 | 7 |
+| Kirin | 12 | 15d8 | -5 | 3 | 3d7 | decapitation | Mage 7 | 4630 | 130 |
+| Air Elem. | 8 | 10d8 | 2 | 1 | 3d11 | - | - | 760 | 80 |
+| Djinni | 12 | 14d8 | -2 | 1 | 5d11 | lightning breath | - | 4800 | 120 |
+| Rogue | 5 | 5d4 | 7 | 1 | 3d5 | calls 25%, flees 20% | - | 490 | 50 |
+| Kugutsu | 6 | 7d8 | 4 | 1 | 1d9 | decapitation | - | 590 | 60 |
+| Sorcerer | 10 | 13d4 | 5 | 2 | 2d4+6 | - | Mage 5 | 2210 | 100 |
+| Highwayman | 10 | 13d8 | 0 | 3 | 2d9+5 | - | - | 1810 | 100 |
+| Fire Elem. | 8 | 10d8 | 2 | 1 | 4d9 | - | - | 800 | 80 |
+| Ifrit | 12 | 14d8 | -2 | 1 | 7d9 | fire breath | - | 4900 | 130 |
+| Ghost | 10 | 11d8 | 0 | 1 | 1d3 | fear, calls 25%, flees 20% | - | 1000 | 100 |
+| Specter | 6 | 7d8+7 | 3 | 1 | 1d9 | level drain 1, calls 25% | - | 800 | 60 |
+| Wight | 6 | 4d8+5 | 8 | 1 | 1d5 | level drain 1 | - | 220 | 20 |
+| Damned | 13 | 15d8 | -3 | 1 | 3d9 | paralysis | - | 5300 | 130 |
+| Scylla | 10 | 13d8 | 7 | 8 | 2d5 | fear, paralysis | - | 1300 | 100 |
+| Couatl | 9 | 11d8 | 5 | 2 | 2d5 | poison | Mage 3, Priest 5 | 990 | 90 |
+| Lizard King | 8 | 8d8+7 | 3 | 1 | 3d6+5 | - | - | 790 | 80 |
+| Lizard Man | 3 | 3d8+5 | 5 | 3 | 1d5 | flees 5% | - | 350 | 40 |
 
-Swings: per round. Chest: the monster's chest rating; a guard fight uses the highest one present ([dungeon.md](../dungeon.md)). Full stats: [monsters_table.md](../monsters_table.md).
+Full stats: [monsters_table.md](../monsters_table.md).
 
 **Notes for play:** outside the zone, the Kirin (AC -5, Mage spells up to level 7, decapitation) and the Djinni and
 Ifrit breaths are the main threats. Inside it, every fight is a race against the zone damage: the Damned (level 13)
 is the floor's strongest monster, Ghosts cause fear, Specters and Wights drain levels, and a Scylla swings eight
-times a round. Area 102 lists three different formations, so one of them fills two of the four places and comes up
-twice as often (inferred; the generated table does not show which).
+times a round. In area 102 the Damned formation fills two of the four slots, so it comes up in half the fights
+(computed from the table). The zone guards give the best chests of the floor ([dungeon.md](../dungeon.md), chest
+quality by floor).
 
 ## 4. Open questions
 

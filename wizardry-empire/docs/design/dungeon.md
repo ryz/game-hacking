@@ -161,8 +161,8 @@ Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types)
 
 ### 3.3 Hidden spots
 
-Squares where a sharp-eyed member may notice something ("X noticed something"). Every hidden spot faces a **secret
-door** (section 3.6). Noticing is only a hint: it does not open anything, and **Search** finds the door without
+Squares where a sharp-eyed member may notice something ("X noticed something"). All but three hidden spots sit at a
+**secret door** (section 3.6); the exceptions are a pair on floor 18 and a single spot on floor 24 (data). Noticing is only a hint: it does not open anything, and **Search** finds the door without
 it. Once the door is found, the spot stays silent.
 
 Each member who is OK, Afraid or Asleep rolls once. Skill by class (level = character level; a negative level

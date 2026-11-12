@@ -10,8 +10,9 @@ one long spiral corridor with no stairs; how to read the map, coordinates and wh
 
 - No solid rock, no rooms: the walls form a **spiral**. Counting only the sides that can be crossed both ways, the
   whole floor is **one corridor 256 squares long**, winding inward from (0, 0) in the south-west corner to the
-  Emperor's throne at (8, 7) in the middle; walking it end to end takes 255 moves (computed from the map). The only
-  ordinary door is the throne's, on the north side of (8, 7).
+  Emperor's throne at (8, 7) in the middle; walking it end to end takes 255 moves (computed from the map). The
+  floor has 1 door (the throne's, on the north side of (8, 7)), 222 one-way doors, no secret doors and no locked
+  doors (computed from the map).
 - **222 one-way doors** sit in the spiral's walls, and every one of them leads **outward**, from one turn of the
   spiral to the turn around it. They are short cuts out, never in: from the throne the party can reach (0, 0) in
   17 moves, while the way in is the full corridor (computed from the map).
@@ -38,31 +39,30 @@ one long spiral corridor with no stairs; how to read the map, coordinates and wh
 
 ## 3. Monsters
 
-| Area | Where | Formations (one is picked per fight) |
+| Area | Where | Formations (one of 4 slots picked per fight) |
 |---|---|---|
-| 22 | everywhere | Cyclops ×2 + Troll ×3 + Frost Giant ×3 + Titan ×2, or Ifrit ×2 + Fire Elem. ×1-2 + Fire Giant ×3 + Phoenix ×3, or Juggernaut ×2 + Djinni ×1 + Dao ×2-3 + Marid ×3, or Mummy ×1-3 + Ghast ×2 + Necromancer ×3 + DragonZombie ×3 |
+| 22 | Everywhere (256 squares); also the 3 area-22 guarded squares of floor 19 ([floor-19.md](floor-19.md)) | Cyclops ×2 + Troll ×3 + Frost Giant ×3 + Titan ×2, or Ifrit ×2 + Fire Elem. ×1-2 + Fire Giant ×3 + Phoenix ×3, or Juggernaut ×2 + Djinni ×1 + Dao ×2-3 + Marid ×3, or Mummy ×1-3 + Ghast ×2 + Necromancer ×3 + DragonZombie ×3 |
 
-| Monster | Lv | HP | AC | Swings | Damage | Spells | Special | EXP | Gold |
+| Monster | Lv | HP | AC | Swings | Damage | Special | Spells | EXP | Gold |
 |---|---|---|---|---|---|---|---|---|---|
 | Cyclops | 12 | 15d8 | 5 | 1 | 4d11 | - | - | 3830 | 120 |
 | Troll | 7 | 8d8+6 | 4 | 2 | 2d5+4 | - | - | 720 | 70 |
 | Frost Giant | 12 | 16d8+5 | 0 | 1 | 3d9+9 | - | - | 4090 | 120 |
 | Titan | 17 | 30d8 | 0 | 1 | 7d7+14 | - | - | 9330 | 160 |
-| Ifrit | 12 | 14d8 | -2 | 1 | 7d9 | - | fire breath | 4900 | 130 |
+| Ifrit | 12 | 14d8 | -2 | 1 | 7d9 | fire breath | - | 4900 | 130 |
 | Fire Elem. | 8 | 10d8 | 2 | 1 | 4d9 | - | - | 800 | 80 |
 | Fire Giant | 13 | 17d8+5 | -1 | 1 | 3d11+10 | - | - | 5440 | 130 |
-| Phoenix | 15 | 21d8 | -2 | 3 | 3d9 | Mage 7 | fire breath | 8000 | 150 |
+| Phoenix | 15 | 21d8 | -2 | 3 | 3d9 | fire breath | Mage 7 | 8000 | 150 |
 | Juggernaut | 17 | 40d8 | 0 | 1 | 11d11 | - | - | 9470 | 170 |
-| Djinni | 12 | 14d8 | -2 | 1 | 5d11 | - | lightning breath | 4800 | 120 |
-| Dao | 13 | 14d8 | -2 | 1 | 9d9 | - | stone breath | 5300 | 130 |
-| Marid | 13 | 14d8 | -2 | 1 | 11d7 | - | frost breath | 5200 | 130 |
-| Mummy | 7 | 6d8+5 | 3 | 1 | 1d13 | - | fear, paralysis | 650 | 70 |
-| Ghast | 4 | 4d8 | 4 | 3 | 1d5 | - | paralysis, flees 5% | 390 | 40 |
-| Necromancer | 16 | 26d4 | -1 | 3 | 2d5+10 | Mage 7 | - | 8120 | 160 |
-| DragonZombie | 18 | 25d8 | -2 | 3 | 4d9 | Mage 5 | poison, poison breath | 12000 | 170 |
+| Djinni | 12 | 14d8 | -2 | 1 | 5d11 | lightning breath | - | 4800 | 120 |
+| Dao | 13 | 14d8 | -2 | 1 | 9d9 | stone breath | - | 5300 | 130 |
+| Marid | 13 | 14d8 | -2 | 1 | 11d7 | frost breath | - | 5200 | 130 |
+| Mummy | 7 | 6d8+5 | 3 | 1 | 1d13 | fear, paralysis | - | 650 | 70 |
+| Ghast | 4 | 4d8 | 4 | 3 | 1d5 | paralysis, flees 5% | - | 390 | 40 |
+| Necromancer | 16 | 26d4 | -1 | 3 | 2d5+10 | - | Mage 7 | 8120 | 160 |
+| DragonZombie | 18 | 25d8 | -2 | 3 | 4d9 | poison, poison breath | Mage 5 | 12000 | 170 |
 
-Spells: the school and the highest spell level cast. Full stats and resistances:
-[monsters_table.md](../monsters_table.md). The same area holds the three area-22 guarded squares of floor 19.
+Full stats: [monsters_table.md](../monsters_table.md).
 
 **Notes for play:** six monsters breathe (Ifrit and Phoenix fire, Djinni lightning, Dao stone, Marid frost, Dragon
 Zombie poison). The Juggernaut has the most HP (40d8, up to 320) and the hardest hit (11d11, 11-121); the Phoenix

@@ -328,7 +328,8 @@ def main(argv):
                         found.append((side, sq, n if sq == (x, y) else (x, y), cells[sq][4]))
         print("secret and locked doors (seen from -> to, flag, difficulty = 5 x table value):")
         for side, sq, to, flag in found:
-            print("  %s door (%d,%d) -> (%d,%d), flag %d, difficulty %d" % ((side,) + sq + to + (flag, 5 * diff[flag & 127])))
+            what = "noticing difficulty (Search needs no roll)" if side == "secret" else "lock difficulty"
+            print("  %s door (%d,%d) -> (%d,%d), flag %d, %s %d" % ((side,) + sq + to + (flag, what, 5 * diff[flag & 127])))
         print("doors (two-way): %d" % doors(cells))
         guards = {}
         for xy, (w, a, t, z, p) in sorted(cells.items()):

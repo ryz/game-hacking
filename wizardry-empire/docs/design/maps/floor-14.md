@@ -7,15 +7,16 @@ of square does: [maps/README.md](README.md).
 
 ## 1. Overview
 
-- No solid rock: small rooms joined by 46 doors, no one-way doors (computed from the map), on both sides of a long
-  north-south hall at x 7-8.
+- No solid rock: small rooms joined by 46 doors, with no one-way doors, no secret doors and no locked doors (computed
+  from the map), on both sides of a long north-south hall at x 7-8. Every square can be reached on foot from either
+  stairs (computed from the map).
 - **Entrance and exits:** the stairs up to floor 13 at (0, 15); the stairs down to floor 15 at (9, 1).
 - **14 guarded squares**, **3 events** (a man in a cloak, a magic circle, a key-hole), **a button panel** and **2
   ceiling traps**; no hidden spots.
 - **Random fights** all come from area 16 (256 squares).
 - **Monsters:** levels 3-13, 1 to 5 per group: thieves and ninjas, ogres and giants, Gorgons with demons.
-- **Chests:** the guard fights rate 16-19, so the best chest is Silver (computed from the Chest column below; tiers in
-  [dungeon.md](../dungeon.md)).
+- **Chests:** the guard fights rate 16-19, so the best chest is Silver ([dungeon.md](../dungeon.md), chest quality by
+  floor).
 
 ## 2. Squares
 
@@ -33,27 +34,27 @@ of square does: [maps/README.md](README.md).
 
 ## 3. Monsters
 
-| Area | Formations (one is picked per fight) |
-|---|---|
-| 16 | High Thief ×1-4 + Master Thief ×3-4, or Ogre ×5 + Ogre Lord ×3-5 + Ettin ×2 + Hill Giant ×0-1, or Gorgon ×4 + Gorgimera ×2 + Lesser Demon ×1 + Succubus ×0-2, or High Thief ×2 + High Ninja ×1-2 + Cleric ×1-2 + Cutthroat ×1 |
+| Area | Where | Formations (one of 4 slots picked per fight) |
+|---|---|---|
+| 16 | Everywhere (256 squares) and the 14 guarded squares | High Thief ×1-4 + Master Thief ×3-4, or Ogre ×5 + Ogre Lord ×3-5 + Ettin ×2 + Hill Giant ×0-1, or Gorgon ×4 + Gorgimera ×2 + Lesser Demon ×1 + Succubus ×0-2, or High Thief ×2 + High Ninja ×1-2 + Cleric ×1-2 + Cutthroat ×1 |
 
-| Monster | Lv | HP | AC | Swings | Damage | Special | EXP | Gold | Chest |
+| Monster | Lv | HP | AC | Swings | Damage | Special | Spells | EXP | Gold |
 |---|---|---|---|---|---|---|---|---|---|
-| High Thief | 10 | 12d4 | 3 | 2 | 3d5+5 | calls 25% | 1400 | 100 | 17 |
-| Master Thief | 13 | 17d4 | -1 | 3 | 3d5+7 | - | 5710 | 130 | 17 |
-| Ogre | 3 | 4d8+2 | 5 | 2 | 1d10 | calls 25%, flees 10% | 300 | 30 | 6 |
-| Ogre Lord | 7 | 10d8 | 4 | 3 | 2d10+8 | - | 670 | 70 | 6 |
-| Ettin | 11 | 12d8 | 3 | 2 | 4d19 | - | 3020 | 110 | 18 |
-| Hill Giant | 11 | 14d8 | 3 | 1 | 3d7+7 | - | 3420 | 110 | 18 |
-| Gorgon | 7 | 8d8 | 2 | 1 | 3d7 | stone, stone breath | 800 | 70 | 6 |
-| Gorgimera | 10 | 13d8 | 2 | 5 | 3d4+2 | stone, stone breath | 2200 | 100 | 8 |
-| Lesser Demon | 10 | 15d8 | 0 | 4 | 2d11 | Mage spells to level 3, calls 25% | 1530 | 100 | 16 |
-| Succubus | 12 | 14d8 | -2 | 1 | 3d9 | Mage spells to level 5, level drain 1 | 4000 | 120 | 17 |
-| High Ninja | 10 | 12d6 | -2 | 3 | 2d7+5 | decapitation | 1950 | 100 | 18 |
-| Cleric | 11 | 11d6 | 0 | 2 | 1d6+6 | Priest spells to level 5, calls 25% | 2340 | 110 | 18 |
-| Cutthroat | 11 | 12d8 | 0 | 3 | 2d9+5 | Mage spells to level 4, calls 25% | 2620 | 110 | 19 |
+| High Thief | 10 | 12d4 | 3 | 2 | 3d5+5 | calls 25% | - | 1400 | 100 |
+| Master Thief | 13 | 17d4 | -1 | 3 | 3d5+7 | - | - | 5710 | 130 |
+| Ogre | 3 | 4d8+2 | 5 | 2 | 1d10 | calls 25%, flees 10% | - | 300 | 30 |
+| Ogre Lord | 7 | 10d8 | 4 | 3 | 2d10+8 | - | - | 670 | 70 |
+| Ettin | 11 | 12d8 | 3 | 2 | 4d19 | - | - | 3020 | 110 |
+| Hill Giant | 11 | 14d8 | 3 | 1 | 3d7+7 | - | - | 3420 | 110 |
+| Gorgon | 7 | 8d8 | 2 | 1 | 3d7 | stone, stone breath | - | 800 | 70 |
+| Gorgimera | 10 | 13d8 | 2 | 5 | 3d4+2 | stone, stone breath | - | 2200 | 100 |
+| Lesser Demon | 10 | 15d8 | 0 | 4 | 2d11 | calls 25% | Mage 3 | 1530 | 100 |
+| Succubus | 12 | 14d8 | -2 | 1 | 3d9 | level drain 1 | Mage 5 | 4000 | 120 |
+| High Ninja | 10 | 12d6 | -2 | 3 | 2d7+5 | decapitation | - | 1950 | 100 |
+| Cleric | 11 | 11d6 | 0 | 2 | 1d6+6 | calls 25% | Priest 5 | 2340 | 110 |
+| Cutthroat | 11 | 12d8 | 0 | 3 | 2d9+5 | calls 25% | Mage 4 | 2620 | 110 |
 
-Swings: per round. Chest: the monster's chest rating; a guard fight uses the highest one present ([dungeon.md](../dungeon.md)). Full stats: [monsters_table.md](../monsters_table.md).
+Full stats: [monsters_table.md](../monsters_table.md).
 
 **Notes for play:** the Ettin hits for 4d19 (4-76) per swing, twice a round, the hardest hits on the floor. Gorgons
 and Gorgimeras turn members to stone, the Succubus drains levels and the High Ninja decapitates; the Lesser Demon,
