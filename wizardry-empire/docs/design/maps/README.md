@@ -25,6 +25,7 @@ The legend is printed under every map; the full rules for how maps look are in t
 |---|---|
 | black line | wall ("Ouch!" when walked into) |
 | black line with a brown bar | door. Walking through a door raises the chance of a random fight until the next plain step ([monsters.md](../monsters.md)) |
+| door with a black arrow | one-way door: passable only in the arrow's direction; from the other side it is a wall ("Ouch!") |
 | dashed red line | special wall: its effect was not traced. Hidden spots tend to sit on both sides of one, so it is probably a hidden door (inferred) |
 | dark grey square | solid rock (deadly if a teleport lands the party there) |
 | **UP** / **DN** | stairs up / down |

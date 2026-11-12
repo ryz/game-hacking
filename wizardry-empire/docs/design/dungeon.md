@@ -46,6 +46,12 @@ such as which event or trap.
 - **Sides** (one per side of the square): open; wall (bumping says "Ouch!"); door (walking through it raises the
   random-fight chance, section 4); and a fourth, unexplained kind of side
   ([findings](findings.md#33-map-values-with-no-known-effect)).
+- **One-way doors:** each side is stored on both of its squares, and the game only looks at the side of the square
+  the party is leaving. Where one side is open or a door and the other side is a wall, the party can pass in one
+  direction only and bumps into a wall ("Ouch!") coming back (verified on floor 1, both a door/wall and a reverse
+  case). There are 53 such edges with a door on one side, on 16 floors, and more where one side is simply open
+  (computed from the maps); floor 20 is a spiral of rings joined only by one-way doors. The maps draw them as a
+  door with an arrow ([maps/README.md](maps/README.md)).
 - **Square types:** section 3.
 - **Encounter area:** a number from 0 to 105 that says which monsters can appear on the square. 0 means no random
   fights there. Areas 1-33 are the normal areas of the floors, 101-105 cover the damage zones, and 34-53 are fixed

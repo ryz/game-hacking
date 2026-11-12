@@ -104,25 +104,51 @@ def draw(cells, out, title):
         lab = label(t, p)
         if lab:
             col = TYPES.get(t, ("", (0, 90, 160)))[1]
-            d.text((x0 + 5, y0 + 6), lab, fill=col, font=font, stroke_width=2, stroke_fill=(255, 255, 255))
-    for (x, y), (w, a, t, z, p) in cells.items():     # walls on top of the fills
+            l, t0, r, b = d.textbbox((0, 0), lab, font=font, stroke_width=2)
+            d.text((x0 + (CELL - (r - l)) // 2 - l, y0 + (CELL - (b - t0)) // 2 - t0), lab, fill=col, font=font,
+                   stroke_width=2, stroke_fill=(255, 255, 255))
+    # walls on top of the fills. Each edge is stored on both of its squares, and the two can differ: a door on one
+    # side and a wall (or special wall) on the other is a ONE-WAY door, passable only from the door side (verified
+    # on floor 1). Per edge: wall line if either side blocks, special dashes if either side is special, then the
+    # door bar, with an arrow when it is one-way.
+    STEP = {0: (0, 1), 1: (1, 0), 2: (0, -1), 3: (-1, 0)}
+    walls, specials, doors = [], [], []
+    for (x, y), (w, a, t, z, p) in cells.items():
         x0, y0, x1, y1 = box(x, y)
         sides = {0: (x0, y0, x1, y0), 1: (x1, y0, x1, y1), 2: (x0, y1, x1, y1), 3: (x0, y0, x0, y1)}
-        for dd, (ax, ay, bx, by) in sides.items():
-            v = (w >> (2 * dd)) & 3
-            if v in (1, 2):
-                d.line([ax, ay, bx, by], fill=WALL, width=3)
-            if v == 2:      # door: a brown bar across the wall
-                mx, my = (ax + bx) // 2, (ay + by) // 2
-                if ay == by:
-                    d.rectangle([mx - 9, my - 3, mx + 9, my + 3], fill=DOOR)
-                else:
-                    d.rectangle([mx - 3, my - 9, mx + 3, my + 9], fill=DOOR)
-            elif v == 3:    # special wall: dashed red
-                n = 6
-                for k in range(0, n, 2):
-                    d.line([ax + (bx - ax) * k // n, ay + (by - ay) * k // n,
-                            ax + (bx - ax) * (k + 1) // n, ay + (by - ay) * (k + 1) // n], fill=SPECIAL, width=3)
+        for dd, seg in sides.items():
+            mine = (w >> (2 * dd)) & 3
+            nx, ny = (x + STEP[dd][0]) & 15, (y + STEP[dd][1]) & 15
+            theirs = (cells[nx, ny][0] >> (2 * ((dd + 2) % 4))) & 3
+            if mine or theirs:
+                walls.append(seg)
+            if 3 in (mine, theirs):
+                specials.append(seg)
+            # the game only checks the side of the square being left: passable from a side storing open (0) or
+            # door (2) when the other side blocks (1 wall, 3 special) -> one way
+            one_way = None
+            if (mine in (0, 2)) != (theirs in (0, 2)):
+                one_way = dd if mine in (0, 2) else (dd + 2) % 4
+            if 2 in (mine, theirs) or one_way is not None:
+                doors.append((seg, one_way, True))     # any one-way edge is drawn as a (one-way) door
+    for ax, ay, bx, by in walls:
+        d.line([ax, ay, bx, by], fill=WALL, width=3)
+    for ax, ay, bx, by in specials:      # special wall: dashed red
+        n = 6
+        for k in range(0, n, 2):
+            d.line([ax + (bx - ax) * k // n, ay + (by - ay) * k // n,
+                    ax + (bx - ax) * (k + 1) // n, ay + (by - ay) * (k + 1) // n], fill=SPECIAL, width=3)
+    for (ax, ay, bx, by), one_way, is_door in doors:   # door: brown bar; arrow = the only way through
+        mx, my = (ax + bx) // 2, (ay + by) // 2
+        if is_door and ay == by:
+            d.rectangle([mx - 9, my - 3, mx + 9, my + 3], fill=DOOR)
+        elif is_door:
+            d.rectangle([mx - 3, my - 9, mx + 3, my + 9], fill=DOOR)
+        if one_way is not None:
+            dx, dy = STEP[one_way][0], -STEP[one_way][1]     # screen y grows downwards
+            tip = (mx + dx * 11, my + dy * 11)
+            base = [(mx + dx * 2 - dy * 6, my + dy * 2 - dx * 6), (mx + dx * 2 + dy * 6, my + dy * 2 + dx * 6)]
+            d.polygon([tip] + base, fill=WALL)
     for i in range(16):
         d.text((PAD + i * CELL + CELL // 2 - 4, GRID_H + 4), str(i), fill=(0, 0, 0), font=small)
         d.text((8, TOP + (15 - i) * CELL + CELL // 2 - 6), str(i), fill=(0, 0, 0), font=small)
@@ -146,6 +172,7 @@ def draw(cells, out, title):
     d.line([PAD + 90, cy + 7, PAD + 118, cy + 7], fill=WALL, width=3)
     d.rectangle([PAD + 95, cy + 4, PAD + 113, cy + 10], fill=DOOR)
     d.text((PAD + 124, cy + 1), "door", fill=(0, 0, 0), font=small)
+    d.text((PAD + 124, cy + 15), "one-way door: arrow = the only way through", fill=NOTE_TXT, font=small)
     for k in range(0, 6, 2):
         d.line([PAD + 180 + 5 * k, cy + 7, PAD + 185 + 5 * k, cy + 7], fill=SPECIAL, width=3)
     d.text((PAD + 214, cy + 1), "special wall (probably a hidden door)", fill=(0, 0, 0), font=small)

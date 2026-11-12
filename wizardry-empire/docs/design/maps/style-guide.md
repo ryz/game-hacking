@@ -34,6 +34,7 @@ generator disagree, fix one of them in the same commit.
 | Rock | dark grey cell | 70,70,70 |
 | Wall | black line, 3 px | 0,0,0 |
 | Door | wall line with a brown bar across its middle (18 × 6 px) | 170,100,30 |
+| One-way door | door bar plus a black arrow pointing the only way through | 170,100,30 / 0,0,0 |
 | Special wall | red dashed line, 3 px (meaning: "probably a hidden door", inferred) | 220,0,0 |
 | Damage zone | diagonal hatch | 232,128,128 |
 | Anti-magic zone | dot grid (inferred meaning) | 90,110,220 |
@@ -47,7 +48,10 @@ generator disagree, fix one of them in the same commit.
 | Floor trap | **T** + kind: TP pit, TC chute, TF falling ceiling, TR rockfall, TV viper, TS spinner | orange 200,90,0 |
 | Marker square | small grey dot (automap memory, inferred; no effect on play) | 90,90,90 |
 
-Symbols sit in the top-left corner of their cell with a 2 px white outline, so they stay readable on hatching.
+Symbols are centred in their cell with a 2 px white outline, so they stay readable on hatching. Area numbers sit
+small in the bottom-left corner. Each edge is stored on both of its squares. Where one side lets the party through
+(open or door) and the other does not (wall or special wall), the edge is a **one-way door**: the game only looks at
+the side of the square being left (verified on floor 1). Walls are drawn first, then special walls, then doors.
 
 ## 4. Encounter areas
 

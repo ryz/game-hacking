@@ -29,7 +29,7 @@ that file. Earlier reachability notes: `docs/re/reach.md`.
 
 ## 1. Map storage and cell format
 
-Code: (code `20:58EA`, `20:5909`.
+Code: `20:58EA`, `20:5909`.
 
 - Floor f (0-29) is 1024 bytes at bank `$3E + f/16`, address `$4000 + $400 × (f mod 16)`. It is copied to WRAM4
   `$D000` when you arrive. Slots 31-32 (bank `$3F` `$7800-$7FFF`) are empty, so there are 30 floors (data).
@@ -37,7 +37,7 @@ Code: (code `20:58EA`, `20:5909`.
 
 | Byte | Meaning |
 |---|---|
-| 0 | Walls, 2 bits per facing (bits 2d, 2d+1; d = 0 north/y+1, 1 east/x+1, 2 south, 3 west). 0 open, 1 wall ("Ouch!"), 2 door (`20:46F4`, also raises the fight chance), 3 special (depends on `e` bit 0, `20:45EF`, not traced) |
+| 0 Walls, 2 bits per facing (bits 2d, 2d+1; d = 0 north/y+1, 1 east/x+1, 2 south, 3 west). 0 open, 1 wall ("Ouch!"), 2 door (`20:46F4`, also raises the fight chance), 3 special (depends on `e` bit 0, `20:45EF`, not traced). **Each edge is stored on both squares and movement checks only the square being left**: an edge that is open/door on one side and wall/special on the other is a one-way door (emulator 2026-11-12, floor 1: (12,15) east -> (13,15) passes, (13,15) west bumps 'Ouch!' (`$C1BF` = 31:4596); (14,12) south passes, (14,11) north bumps). 53 door/wall edges on 16 floors; 222 open/wall edges on floor 20 alone (`tools/designtables/floormap.py`) |
 | 1 | Encounter area id (0 = no random fights). On guarded squares it is the guard's area id |
 | 2 | bits 0-5 square type (section 2); bits 6-7 zone: `01` damage zone (`20:4463`), `10` cancel zone (`20:5A8F`, below), `11` no effect found; bit 6 also changes the wall graphics set (`20:4393`) |
 | 3 | Parameter (event number, trap kind, one-shot bit index) |
@@ -62,7 +62,7 @@ square of the floor (`20:4754-477D`). Items.md lists an item property "teleport"
 
 ## 2. Square types
 
-Code: (handler table `20:6405` per floor; types 0-14 are the same on every floor.
+Code: handler table `20:6405` per floor; types 0-14 are the same on every floor.
 
 | Type | Name | Effect (code) |
 |---|---|---|
@@ -86,7 +86,7 @@ Anything else means the floor or position changed (teleport), and the map is rel
 
 ## 3. Event catalogue
 
-Code: (bank 45, handler table `2D:4400`, index `$FFB0 − 7`.
+Code: bank 45, handler table `2D:4400`, index `$FFB0 − 7`.
 
 | Code / p | Handler | What it is (first messages) |
 |---|---|---|

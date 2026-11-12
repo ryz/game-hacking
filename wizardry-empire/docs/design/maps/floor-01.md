@@ -27,8 +27,9 @@ entrance (verified).
 | (2, 12) | Fairy (event) | Flees, unless the party carries the Fairy's Heart; then she offers a trip to her twin on floor 11 for 1 G. |
 | (15, 15) | Magic circle (event) | "A strange pattern..." With a Summoner in the party, a pact for the Zombie summon, from Summoner level 3 ([spells.md](../spells.md)). |
 | (0, 2), (9, 13) | Pit | |
+| (12, 15) → (13, 15), (14, 12) → (14, 11), (12, 15) → (11, 15) | One-way doors | Passable only in the direction given; the first two were tested in the game (verified). The third is a special wall seen from (11, 15). |
 | (0, 9) + (1, 9), (4, 9) + (4, 10) | Hidden spots, in pairs | Each pair faces the other across a special wall: probably hidden doors (inferred). |
-| (11, 15) + (12, 15) | Hidden spots, a pair | On both sides of a door. |
+| (11, 15) + (12, 15) | Hidden spots, a pair | On both sides of a one-way door (special wall seen from the west). |
 | (6, 15), (7, 1), (0, 5), (9, 9) | Guarded square | Fight from area 1, then a chest. |
 | (5, 0), (13, 2), (11, 12) | Guarded square | Fight from area 2, then a chest. |
 | (9, 4) | Guarded square | Fight from area 3, then a chest. |
