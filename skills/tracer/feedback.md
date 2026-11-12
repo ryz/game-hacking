@@ -10,6 +10,18 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - census of the remaining 8 px glyphs (e9125dd)
+- Task: every screen cell still drawn with an original 8 px glyph, grouped by writer, with hook suggestions.
+- Worked: scanner requiring screenshot pixels to match the tile's colours (robust across raster splits/window);
+  A at the effect dispatcher 24:40DF reached every camp spell result; value-filtered bank-3 write watch +
+  backtrace gave each writer; literal-store census caught unreachable sites.
+- Friction: the dispatch called sheet2c party states fresh but they predated two commits (stale buffers); trace
+  buffer limited to 100k entries; some screens needed register pokes.
+- Proposed rule change: state mtime vs last commit before screen checks; recipe 24:40DF + A = effect id.
+- Corrected: the coordinator's dispatch slip (stale states) and the coordinator's own wrong 'dead code' note on
+  0:37FC (it is the camp heal box) - status.md fixed. Groups 1-5 being converted; group 6 (automap) to the owner.
+- Status: promoted 2026-11-12 (Saved states and effect screens section)
+
 ### 2026-11-12 - design doc: characters, classes, spells
 - Task: designer reference for races, classes, creation, leveling, aging, statuses, spells (Rev 1 ROM).
 - Worked: data tables followed from their readers (`gbdis --xref`, byte search `ld hl,$C4xx`) and dumped with a

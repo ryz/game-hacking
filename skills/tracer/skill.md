@@ -87,6 +87,12 @@ reader/writer of that flag); prefer a no-poke route, else a position poke next t
 (tools/maze_goto.py: $CB80 x, $CB81 y, $CB82 floor-1, $CB83 facing); verify each state with a count-only
 breakpoint on the dispatcher. To run one routine: stop at 0:07C5 first (HALT/IME), then set bank/PC.
 
+## Saved states and effect screens (2026-11-12)
+- Before using a saved state for screen checks, compare its mtime with `git log -1 --format=%ci` (or rebuild it
+  with `tools/party.py`): a state from an older build keeps the old screen buffer until the screen is redrawn.
+- Camp spell / effect screens: stop at 24:40DF and set A = effect id to reach any camp spell result from one state.
+- 'No direct call' is not 'dead code': routines are also reached through jump tables (0:37FC, the heal box).
+
 ## Design / rules questions (2026-11-12, owner asked for docs/design/)
 - Output is a designer-facing document in `wizardry-empire/docs/design/<topic>.md`: a two-minute Overview, then
   tables. Tag every number with its source and kind: `(code BB:AAAA)`, `(data BB:AAAA)`, `(display)` (museum or
