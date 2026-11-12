@@ -11,6 +11,15 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - render speed round 3: party-list cache, GC row scan
+- ROM: `41217f0` sent (yes).
+- Changed: party-list cache restores only the cells the draw changed (party hook per town frame 4768 -> 2628
+  cycles); GC marks slots in WRAM0 without leaving bank 3 and filters ownerless scans once per code (Camp >
+  Inspect sheet 326k -> 290k cycles). Tour pixel-identical. Perf totals: settle 2466 -> 2422 frames, reaction
+  240 -> 214 (JP 2263 / 178). Details: docs/re/vwf.md "Render speed, round 3".
+- Open: full-screen sheets still take ~16 frames (JP 2), with the old screen garbled meanwhile (flicker). Next
+  gains are structural: fewer GC passes per screen, fewer tiles rendered.
+
 ## 2026-11-12 - test save with a powerful party; repo renamed to game-hacking
 - ROM: `a15df7a` build sent again with `saves/test-party-all-spells.sav` (as wizardry_empire_en.sav).
 - `saves/test-party-all-spells.sav` + `tools/testsave.py`: six level-60 characters (Valiant, Avenger, Musashi,

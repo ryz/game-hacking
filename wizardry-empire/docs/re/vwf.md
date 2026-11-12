@@ -265,3 +265,24 @@ cursor's blink phase and are noise) and `tools/profile.py` (cycle-weighted sampl
   frames (JP 2). Its remaining ~17 frames of VWF time: GC ~4 (3 GCs x 756 cells), Glyph + Commit ~3.3, and ~10 in
   many small parts (bank helpers Read6/Write6, uploads waiting for HBlank, hash/dedupe, name cache, cell map).
   Further big gains need structural changes (fewer GC passes, fewer bank switches per tile), not tuning.
+
+## Render speed, round 3 (2026-11-12)
+Whole-tour profile (`work/perf/tourprof.py`, all routes): VWF 747 of 11794 frames, the CPU idles 82% of the time.
+Biggest VWF item: the party-list cache (PLRestore 121, SumRegion 102, PLData 38 frames), because the town clears
+the party box every frame and the cache put it back every frame.
+- Party list: the snapshot keeps a change list (offset from `PL_ROW0`, code; bank 6 `$DF00`, up to 64 entries, else
+  all 120 codes are copied). The miss path saves the codes before the draw in `wPL_codes`; `PLSnap.list` diffs them
+  against the drawn codes. Attributes are restored only when the game changed them (they never do in the town).
+  `PLSum` is a 4x-unrolled copy of SumRegion. Party hook per town frame: 4768 -> 2628 cycles.
+- GC: `GCRowMark` (layouts 0/1, any pass) keeps bank 3 mapped for the whole row, resolves the slot code from the
+  code and attribute (GCSlot's rules) and marks `GCB` (32 bytes, WRAM0 `$CD80`, above the private stack; the game
+  never uses `$CCE0-$CDD5`) through `GCMaskTab`/`GCByteTab` (ROM `$6C00`/`$6D00`); `GCFlush` ORs it into `wBits`.
+  Ownerless and stamp-only scans collect candidate codes the same way and `GCFilter` applies the owner/stamp rule
+  once per code (one bank-6 visit). Only cells in the other layout's reading still go through `GCSlot`.
+  Camp > Inspect > sheet: 326k -> 290k cycles.
+- What the perf metric shows: settle 2466 -> 2422 frames, reaction 240 -> 214 (JP 2263 / 178).
+- The Inspect sheet is CPU-bound: 16.5 frames of continuous VWF work for 158 glyphs, 105 uploads and 3 GCs
+  (`work/perf` idle check: the scheduler's wait loop `0:095B` is not reached in between). The garbled old screen in
+  that window is the known flicker (new glyphs written into slots the old screen still shows); its length is the
+  render time. Remaining cost is spread thin (Commit, Glyph, Upload, alloc/hash/dedupe, name cache, GC ~17%);
+  the next real gain needs fewer GC passes per screen or fewer tiles rendered (reusing tiles across screens).

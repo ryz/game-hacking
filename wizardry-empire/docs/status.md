@@ -12,6 +12,11 @@
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
+## Done 2026-11-12 (fourteenth session: speed round 3, test save, repo README)
+- Render speed: party-list cache change list, GC row scan in WRAM0 (docs/re/vwf.md "Render speed, round 3").
+  Perf totals settle 2422 frames / reaction 214 (JP 2263 / 178); Camp > Inspect sheet ~17 frames (JP 2).
+- Test save with six level-60 characters knowing every spell: saves/test-party-all-spells.sav.
+
 ## Done 2026-11-12 (thirteenth session: design/tech docs, all floors mapped)
 - Docs split into docs/design (designers: rules, formulas, data, 36 findings) and docs/tech (addresses, evidence).
 - docs/design/maps: 30 generated maps + 30 floor pages; style guide; generator tools/designtables/floormap.py.
