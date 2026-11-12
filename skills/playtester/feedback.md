@@ -10,6 +10,20 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - rev1b (6500974): chests, friendly encounter, events
+- Task: reach chests, a friendly encounter, bank-45 events and floor 2 on the current build.
+- Worked: explore.py with several seeds in parallel; 999 HP poke; an auto-fight loop with a $C1BF check found
+  a crash on its own; RAM watch + trace_start found its cause in minutes.
+- Friction: chests/events not reachable by random walking on floor 1; no native EN chest/event states; JP
+  states are useless in the EN build; state + token replays are not always deterministic; key presses after
+  a battle open Camp and derail loops.
+- Proposed rule change: ask the coordinator for native EN checkpoints (or poke the position $CB80-$CB82)
+  for chests/events; a build check that unidentified group names are <= 12 characters.
+- Corrected: crash fixed (Gaseous form / Gaunt figure / Armored one; tests/test_limits.py), 'Aim for
+  damage' -> 'Power hit' (fits the box), panel names that fit 80 px stay on line 1. #2 (Fight submenu
+  garble) not reproduced on the new build in 6 timings; #3 unconfirmed (replay artifact suspected).
+- Status: promoted 2026-11-12 (name-length check is now a test); native chest/event states -> coordinator todo
+
 ### 2026-11-12 - Rev 1 round trip (8052a1f)
 - Task: standard round trip on the first Rev 1 build; regressions from the port.
 - Worked: building the pre-port commit with the v1.0 dump in SESSION/old and replaying suspicious screens

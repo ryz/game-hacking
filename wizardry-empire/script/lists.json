@@ -291,7 +291,7 @@
 "table": "0x5635",
 "ptr": "0x40ed",
 "jp": "ダメージねらい",
-"en": "Aim for damage"
+"en": "Power hit"
 },
 {
 "table": "0x5637",
@@ -957,7 +957,7 @@
 "table": "0x5713",
 "ptr": "0x5507",
 "jp": "ガスじょうのもの",
-"en": "Gaseous thing"
+"en": "Gaseous form"
 },
 {
 "table": "0x5715",
@@ -1023,13 +1023,13 @@
 "table": "0x5729",
 "ptr": "0x554b",
 "jp": "やつれたすがた",
-"en": "Haggard figure"
+"en": "Gaunt figure"
 },
 {
 "table": "0x572b",
 "ptr": "0x5553",
 "jp": "よろいをまとった\nすがた",
-"en": "Armored\nfigure"
+"en": "Armored one"
 },
 {
 "table": "0x572d",

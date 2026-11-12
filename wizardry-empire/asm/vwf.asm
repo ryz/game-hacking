@@ -2298,7 +2298,7 @@ PanelSplit:
     ld bc, 0                ; b = width so far, c = index
 .l: ld a, [hli]
     or a
-    ret z
+    jr z, .end
     cp $20
     jr nz, .w
     ld a, b
@@ -2320,6 +2320,13 @@ PanelSplit:
     ld b, a
     inc c
     jr .l
+.end:                       ; the whole name fits in row 1 (80 px): no break ('Eye Wing' on one line)
+    ld a, b
+    cp 81
+    ret nc
+    xor a
+    ld [wPanW], a
+    ret
 
 ; Write the current tile (S_cur) to WRAM1 $D200 + $100*g + 16*col (col < 16): lo = ink, hi = $FF
 PanelCommit:
