@@ -4511,9 +4511,12 @@ VWF_RectBody:
 ; overwritten since (wEpoch) and every cell of the box still holds the saved code or was cleared to $20 (the
 ; town clears the info box before each redraw) with its attributes unchanged. Cleared cells are restored.
 RectCacheHit:
-    ld a, [wReset]          ; font loaded since: the saved slots are gone (AllocReset clears the cache later)
-    or a
-    jr nz, .miss
+    ld a, [wReset]          ; font loaded since: the saved slots are gone. Reset now (see PLHit): a redraw that
+    or a                    ; reuses its own slots never allocates, and the flag would make every redraw miss
+    jr z, .nr
+    call AllocReset
+    jr .miss
+.nr:
     ld a, [wRC_valid]
     or a
     ret z
@@ -5650,9 +5653,12 @@ PLSum:
 
 ; carry = skip the draw (rows restored if needed); else note the rows as the game left them for the snapshot
 PLHit:
-    ld a, [wReset]
-    or a
-    jr nz, .miss
+    ld a, [wReset]          ; font load since the snapshot: do the pending allocator reset now (drops this cache,
+    or a                    ; bumps wEpoch). Leaving it to the next Alloc is not enough: a redraw that reuses every
+    jr z, .nr               ; cell's own slot never allocates, so the flag stayed set and every pass missed
+    call AllocReset         ; (town at 1/4 speed after the tavern/temple menus until the inn, triage 2026-11-12)
+    jr .miss
+.nr:
     ld a, [wPL_valid]
     or a
     jr z, .miss

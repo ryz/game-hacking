@@ -66,3 +66,12 @@ End your final report with this block; the coordinator files it in `skills/triag
 - A stale cell shows as NO write to the bad cell: write-watch the whole row/box and look for the gap.
 - Scratch builds: `git archive HEAD wizardry-empire | tar -x -C <case>/scratch`, symlink `rom/` and
   `tools/gbemu-cli`, then build.py / tour.py / pytest run in place.
+
+## Reproduce on HEAD first; slowdowns (2026-11-12)
+- Step 1: reproduce on HEAD and note the ROM sha1. If HEAD does not reproduce, bisect between the reported commit
+  and HEAD with git-archive scratch builds before diagnosing: a later commit may only hide the bug.
+- Slowdown / performance (no hang): `emu.loops(g)` = main-loop passes per 120 frames (count-only breakpoint on
+  0:07C5; 360 at town/camp idle); put count-only breakpoints after each cache-hit test (PLHit, RectCacheHit,
+  NameCacheHit) to find the failing condition, then write-watch its guard variable.
+- WRAM bank writes: `g.mem_write(0, data, region='wram', offset=bank*0x1000 + (addr - 0xD000))`.
+

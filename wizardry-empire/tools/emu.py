@@ -160,6 +160,16 @@ def boot(g):
     g.run_frames(60)        # the town's info box is drawn after the fade; inputs before that are lost
 
 
+def loops(g, frames=120):
+    """Main-loop passes in `frames` frames (count-only breakpoint on 0:07C5). Town/camp idle is 360 per 120 frames on
+    the original; a VWF cache that misses every pass shows as 72-90 (speed checks, docs/re/vwf.md)."""
+    bid = g.break_add(0x07C5, stop=False)
+    g.run_frames(frames)
+    n = next(b["hits"] for b in g.break_list() if b.get("id") == bid)
+    g.break_del(bid)
+    return n
+
+
 def frame_counter(g):
     return g.mem_read(0xC00A, 1)[0]
 

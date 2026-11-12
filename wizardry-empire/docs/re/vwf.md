@@ -57,6 +57,11 @@ keeps working; it resyncs whenever the game moves the cursor or the buffer base 
   caused the battle hang. Bank-0 stubs pass everything in registers or on the stack: the VWF reads caller
   HL/BC/argument pointer from fixed stack offsets (see the comment above `Stub_Inline`).
 
+## Pending font-load reset
+`wReset` (set by a font load) used to be cleared only by `Alloc`. Redraws that reuse their own slots never
+allocate, so the party-list and rect caches missed on every pass (town at 1/4 speed after the tavern menu).
+`PLHit` and `RectCacheHit` now call `AllocReset` themselves when `wReset` is set (2026-11-12).
+
 ## Rect blits
 `VWF_Rect` returns DE = destination + h*32 like the original blitter 0:1789 (fixed 2026-11-12: 2C:498C
 returns right after a blit and its caller prints at that DE).

@@ -123,8 +123,9 @@
 5. VWF: short transients while screens are typed (1-4 frames). Town input delay after arrival not re-measured
    since the redraw cache.
 6. Owner's report "gets slower the longer I play": long playtest (20 battles, 2026-11-12) shows no slowdown over
-   time, but the town drops to 1/4 speed after opening/leaving the tavern menu (party-list cache misses every
-   pass; old). Triage running. Also new: stairs-prompt text in the maze wall (since b9f4a72), triage running.
+   time, but the town dropped to 1/4 speed after the tavern/temple menus until an inn visit: a font-load flag
+   stayed set because the party-list redraw never allocates, so its cache missed every pass (in builds before
+   3949738, which hid it by accident). Fixed 2026-11-12 (PLHit/RectCacheHit reset at once). Also new: stairs-prompt text in the maze wall (since b9f4a72), triage running.
 7. Flicker (owner's request): the new screen reuses tiles the old one still shows until the game copies its
    buffer (in-place redraws and freed slots), e.g. inn list -> character sheet (~35 frames of wrong letters),
    message -> chest menu (3 frames). A quarantine by frame count did not help (in-place case) and slowed screens

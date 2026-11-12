@@ -10,6 +10,19 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - town at 1/4 speed after the tavern/temple menus
+- Task: explain the party-list cache missing every pass after tavern a/b and test a fix in scratch.
+- Worked: count-only breakpoints after each PLHit test found the failing condition (wReset) in one run; write
+  watch on the flag + backtraces showed setter/clearer; poking wReset=1 triggers it on any build; git-archive
+  bisect found the commit that hid it (3949738); tour pixel diff between scratch trees.
+- Friction: the coordinator's brief claimed HEAD reproduced it (only b9f4a72/a1ff2b7 were measured); gbemu
+  mem_write has no bank=; backtraces unsymbolised; PLHit funnel addresses move per build.
+- Proposed rule change: reproduce on HEAD first, bisect if not; slowdown branch (loops on 0:07C5, breakpoints
+  after cache tests, watch the guard). Tools: mem_write bank, backtrace symboliser.
+- Corrected: fix applied (PLHit and, same pattern, RectCacheHit run AllocReset at once on a pending font load);
+  tour unchanged; town 360 loops idle / after tavern / after a forced wReset / after temple. emu.loops() added.
+- Status: promoted 2026-11-12 (Reproduce on HEAD first; slowdowns)
+
 ### 2026-11-12 - 'Choose a classsir' on the creation class screen
 - Task: explain the VWF corruption at the end of rect 26:729B and propose a fix.
 - Worked: checking the attribute bank bit and the bank-6 cell map disproved the brief's two-owner theory in
