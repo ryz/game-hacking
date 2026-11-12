@@ -274,9 +274,31 @@ def main(argv):
     draw(cells, out, f)
     print("wrote", os.path.relpath(out, ROOT) if out.startswith(ROOT) else out)
     if "--list" in argv:
+        names = {1: "rock", 2: "stairs up", 3: "stairs down", 4: "hidden spot", 6: "guarded square", 7: "button panel",
+                 8: "floor trap", 9: "marker", 10: "event A", 11: "event B", 12: "event C", 13: "corpse",
+                 14: "one-shot event"}
+        trap = {0x00: "chute", 0x20: "pit", 0x40: "falling ceiling", 0x60: "rockfall", 0x80: "viper", 0xA0: "spinner"}
+        zones = {1: "damage zone", 2: "anti-magic zone", 3: "both zone marks"}
+        count = Counter(a for (w, a, t, z, p) in cells.values() if a and t != 1)
+        print("rock squares: %d" % sum(1 for v in cells.values() if v[2] == 1))
+        print("encounter areas (squares): " + ", ".join("%d (%d)" % kv for kv in sorted(count.items())))
+        print("no-fight open squares: %d" % sum(1 for v in cells.values() if not v[1] and v[2] != 1))
+        print("special squares (x,y): type, param, area, zone")
         for (x, y), (w, a, t, z, p) in sorted(cells.items(), key=lambda kv: (-kv[0][1], kv[0][0])):
             if t not in (0, 1, 5) or z:
-                print("(%d,%d) type %d zone %d area %d param %d" % (x, y, t, z, a, p))
+                kind = names.get(t, "floor-specific event %d" % t if t >= 15 else "type %d" % t)
+                if t == 8:
+                    kind += " (%s, strength %d)" % (trap.get(p & 0xE0, "?"), p & 0x1F)
+                print("  (%d,%d): %s, param %d, area %d%s" % (x, y, kind, p, a, ", " + zones[z] if z else ""))
+        print("one-way doors (from -> to, direction):")
+        dirs = "NESW"
+        for (x, y), (w, a, t, z, p) in sorted(cells.items()):
+            for dd in range(4):
+                mine = (w >> (2 * dd)) & 3
+                nx, ny = (x + STEP[dd][0]) & 15, (y + STEP[dd][1]) & 15
+                theirs = (cells[nx, ny][0] >> (2 * ((dd + 2) % 4))) & 3
+                if mine in (0, 2) and theirs not in (0, 2):
+                    print("  (%d,%d) -> (%d,%d) %s%s" % (x, y, nx, ny, dirs[dd], " (special wall on the far side)" if theirs == 3 else ""))
 
 
 if __name__ == "__main__":
