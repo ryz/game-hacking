@@ -135,8 +135,8 @@
    symbol-sheet tiles redrawn from the VWF glyphs (build.py patch_symbol_digits; automap not seen). Character card done
    (2026-11-12): Age/Lvl/AC/HP labels, numbers, 'Status: <word>', negative AC ('-N' as one string) and
    'Lo'/'Hi' in the VWF, right-aligned at col 18; shop header AC the same; card HP '/' + max as one VWF string
-   ('10/10'); town party list '/', '+', '-' in the VWF. Left: the bank-2D party-list twin (attribute write
-   after the '/', 2D:7B4E). 0:37FC (8 px 'HP' row 7) has no references: dead code. Bank 2C 'sheet' = debug mode.
+   ('10/10'); town party list '/', '+', '-' in the VWF. Event party list (bank-45 twin, magic circle) the same,
+   incl. its status words (were blank). 0:37FC (8 px 'HP' row 7) has no references: dead code. Bank 2C 'sheet' = debug mode.
    Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.
 9. Seen once, not reproduced: wrong digits in the chest "Who will inspect?" list after inputs during the trap
    message.

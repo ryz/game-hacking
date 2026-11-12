@@ -217,5 +217,68 @@
   "jp": "どく",
   "en": "Poison",
   "note": "Camp/party-list HP column (39:49FE copies 4 cells = 32 px); copy of 38:757a"
+ },
+ {
+  "bank": 45,
+  "addr": "0x7ae4",
+  "jp": "ロスト",
+  "en": "Lost",
+  "note": "event party list (magic circle) status column, 2D:7B93 copies 4 cells via Stub_Fix; same words as 39:4009"
+ },
+ {
+  "bank": 45,
+  "addr": "0x7ae9",
+  "jp": "はい",
+  "en": "Ashes",
+  "note": "event party list (magic circle) status column, 2D:7B93 copies 4 cells via Stub_Fix; same words as 39:400e"
+ },
+ {
+  "bank": 45,
+  "addr": "0x7aee",
+  "jp": "しぼう",
+  "en": "Dead",
+  "note": "event party list (magic circle) status column, 2D:7B93 copies 4 cells via Stub_Fix; same words as 39:4013"
+ },
+ {
+  "bank": 45,
+  "addr": "0x7af3",
+  "jp": "いし",
+  "en": "Stoned",
+  "note": "event party list (magic circle) status column, 2D:7B93 copies 4 cells via Stub_Fix; same words as 39:4018"
+ },
+ {
+  "bank": 45,
+  "addr": "0x7af8",
+  "jp": "まひ",
+  "en": "Paral.",
+  "note": "event party list (magic circle) status column, 2D:7B93 copies 4 cells via Stub_Fix; same words as 39:401d"
+ },
+ {
+  "bank": 45,
+  "addr": "0x7afd",
+  "jp": "すいみん",
+  "en": "Asleep",
+  "note": "event party list (magic circle) status column, 2D:7B93 copies 4 cells via Stub_Fix; same words as 39:4022"
+ },
+ {
+  "bank": 45,
+  "addr": "0x7b02",
+  "jp": "きょうふ",
+  "en": "Afraid",
+  "note": "event party list (magic circle) status column, 2D:7B93 copies 4 cells via Stub_Fix; same words as 39:4027"
+ },
+ {
+  "bank": 45,
+  "addr": "0x7b07",
+  "jp": "まふうじ",
+  "en": "Silent",
+  "note": "event party list (magic circle) status column, 2D:7B93 copies 4 cells via Stub_Fix; same words as 39:402c"
+ },
+ {
+  "bank": 45,
+  "addr": "0x7b0c",
+  "jp": "どく",
+  "en": "Poison",
+  "note": "event party list (magic circle) status column, 2D:7B93 copies 4 cells via Stub_Fix; same words as 39:4031"
  }
 ]

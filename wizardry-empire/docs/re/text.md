@@ -87,4 +87,7 @@ max HP, '/', then current HP or, when the status byte (record +$0C, records $80 
 a 4-cell word from `39:4004` (a byte copy of `38:754D`). Status encoding: low 6 bits = severity (1 Afraid,
 2 Asleep, 3 Paralyzed, 4 Stoned, 5 Dead, 6 Ashes, 7+ Lost); 0 with bit 6 = Silenced, bit 7 = Poisoned (also a
 '-' instead of '/'). Table order is not the encoding. The copy at `39:49FE` ends in `2a 12`, which the
-fix_sites() pattern misses: it is an EXTRA_FIX_SITES entry.
+fix_sites() pattern misses: it is an EXTRA_FIX_SITES entry. The bank-45 twin (event party list, magic circle
+2D:7B4B..7BCA) reads its own table 2D:7ADF and copies with the name loop 2D:7BE5: `EvStatus` routes it through
+`Stub_Fix` (4 cells; fixtables.json bank 45). Do not print fixed-width table words with Stub_PrintZ: it blanks
+one cell per character.

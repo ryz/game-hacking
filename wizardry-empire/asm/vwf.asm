@@ -1337,6 +1337,63 @@ PLMinusText:
     db "-", 0
     assert @ <= $8000, "bank 27 overflow"
 
+; --- event party list (bank-45 twin of 27:4931, magic circle 'Who will step inside?'): '/' 2D:7B4E (then an
+;     attribute $80 at the cell), '+'/'-' 2D:7BAA, poison '-' 2D:7BB6 -> VWF (attribute written first, the VWF
+;     keeps the cell's attribute bits)
+    org $2d, $7b4e
+    call EvSlash
+    ds 12, $00
+    org $2d, $7baa
+    call EvSign
+    ds 6, $00
+    org $2d, $7bb6
+    call EvMinus
+    nop
+    org $2d, $7b93          ; status word (Japanese table 2D:7ADF + 5k, copied by 2D:7BE5) -> English, 4 cells
+    call EvStatus
+    org $2d, $7f00
+EvSlash:                    ; DE = cell -> DE + 1; HL kept
+    push hl
+    push de
+    ld hl, $0400
+    add hl, de
+    ld [hl], $80
+    pop de
+    ld hl, EvSlashText
+    call Stub_PrintZ
+    pop hl
+    ret
+EvSign:
+    push hl
+    ld hl, EvPlusText
+    jr z, .p
+    ld hl, EvMinusText
+.p: dec de
+    call Stub_PrintZ
+    pop hl
+    ret
+EvMinus:
+    push hl
+    dec de
+    ld hl, EvMinusText
+    call Stub_PrintZ
+    dec de
+    pop hl
+    ret
+EvStatus:                   ; HL = Japanese word 2D:7ADF + 5k: 4 fixed cells via Stub_Fix (FixMap, fixtables.json
+    push de                 ; bank 45), not the name printer (which blanks one cell per character); DE, BC kept
+    call Stub_Fix
+    db 4
+    pop de
+    ret
+EvSlashText:
+    db "/", 0
+EvPlusText:
+    db "+", 0
+EvMinusText:
+    db "-", 0
+    assert @ <= $8000, "bank 45 overflow"
+
     org $27, $7f00
 Party_Entry:                ; returns carry = skip; C = 0, B kept, HL = $CB85 like the original (its caller
     push bc                 ; uses B after the call)
