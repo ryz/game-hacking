@@ -112,7 +112,8 @@
 1. Museum monster page: opening takes ~31 frames (JP 9; each VWF GC ~2.5 frames), closing shows a few frames of
    garbage in the page. Decided 2026-11-12 (owner delegated): keep it clean rather than faster (a ~21-frame
    variant showed ~5 frames of list garbage).
-2. Messages added from the census but not yet seen on screen: 49:4314 (Find allies with a found character),
+2. (2026-11-12 playtest: 4583, 43B9, 4432, 44CE, 451F, 55A4/55BC seen and fine; 5594 alignment change reached
+   but never visible - needs a JP check; 4314 not reached.) Messages added from the census but not yet seen: 49:4314 (Find allies with a found character),
    49:44CE party location, 49:451F teleport prompt, 49:5594/55A4 alignment change (friendly group attacked),
    49:43B9/4432/4583 (docs/re/msgcov.md) - playtest running. Owner's choice: Siegfried's 7-letter name-field
    form is "Sigfrid" (messages keep "Siegfried").
@@ -121,8 +122,9 @@
    layout) not seen. The game has no prologue; item effect texts are the museum rects (all translated).
 5. VWF: short transients while screens are typed (1-4 frames). Town input delay after arrival not re-measured
    since the redraw cache.
-6. Owner's report "gets slower the longer I play" not reproduced in the emulator (random walks, door messages,
-   battle); the two causes found are fixed. Needs a long playtest on the new ROM.
+6. Owner's report "gets slower the longer I play": long playtest (20 battles, 2026-11-12) shows no slowdown over
+   time, but the town drops to 1/4 speed after opening/leaving the tavern menu (party-list cache misses every
+   pass; old). Triage running. Also new: stairs-prompt text in the maze wall (since b9f4a72), triage running.
 7. Flicker (owner's request): the new screen reuses tiles the old one still shows until the game copies its
    buffer (in-place redraws and freed slots), e.g. inn list -> character sheet (~35 frames of wrong letters),
    message -> chest menu (3 frames). A quarantine by frame count did not help (in-place case) and slowed screens

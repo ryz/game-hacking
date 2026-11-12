@@ -22,6 +22,9 @@ while q:
         if n in prev: continue
         if n != (x1, y1) and cell(*n)[2] & 0x3f not in OK: continue
         prev[n] = ((x, y), d); q.append(n)
+if (x1, y1) not in prev:
+    sys.exit("no route from (%d,%d) to (%d,%d) over plain squares; ROUTE_ALLOW=4,6,8 lets it cross special ones"
+             % (x0, y0, x1, y1))
 path = []; n = (x1, y1)
 while prev[n]: p, d = prev[n]; path.append(d); n = p
 path.reverse()

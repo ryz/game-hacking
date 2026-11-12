@@ -10,6 +10,21 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - long1: slowdown over time + unseen census messages (b9f4a72)
+- Task: long session (20 battles, 12 chests, town circuit), latency start vs end; reach the unseen bank-49 messages.
+- Worked: each action twice from a snapshot (with/without the key) gives clean react/settle numbers; count-only
+  breakpoints on 0:07C5/GC/Upload/Glyph; an unattended bot (A in battle, chest rotation, maze_route home, town
+  circuit); forcing 22:4610/32:4012/32:4127 from snapshots.
+- Friction: explore.py bump check used the stale $C1BF pointer; Down at the stairs prompt can toggle to Yes;
+  maze_route.py KeyError without a route; no JP battle in 1500 steps; camp casting path undocumented.
+- Proposed rule change: speed-measurement method + 'check the town after each building'; camp spell path;
+  explore.py / maze_route.py fixes.
+- Corrected: no slowdown over time (confirmed by the numbers); two real bugs found: town at 1/4 speed after the
+  tavern menu (party-list cache miss, likely the owner's report) and stairs-prompt text in the maze wall (new in
+  b9f4a72) - both sent to triage. explore.py (pointer cleared before each step; stairs answered with B) and
+  maze_route.py ('no route' message) fixed. 49:5594 invisible (needs a JP check), 49:4314 not reached: open.
+- Status: promoted 2026-11-12 (speed method, camp spell path)
+
 ### 2026-11-12 - rev1d (5ab9d44): new bank-49 messages on screen
 - Task: bring the census messages on screen (422B, 4314, 44CE, 451F, 4583, 43B9, 4432, 5594/55A4).
 - Worked: JP party states via party.py --rom for a JP twin of every screen; explore copy with stop

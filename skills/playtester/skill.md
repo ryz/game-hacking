@@ -59,6 +59,11 @@ Preferred (2026-11-12): a persistent session, no reload between steps (~1-2 s pe
 `peek ADDR N`, `poke ADDR HEX`, `log` (replayable tokens), `stop`. `--name X` runs a second session. Every `do`
 is logged in `work/play/NAME/log.txt` with its screenshot; copy what you need into your SESSION folder.
 
+Speed questions: count main-loop passes per 120 frames (count-only breakpoint on 0:07C5) and measure reaction
+against a no-input run from the same snapshot; check the town after entering and leaving each building, not only
+from party.state. Camp spells: Inspect > member > Spells, right = next level, A on a spell = description, A again =
+cast.
+
 One-shot runs (per-token screenshots, hang check):
 `python3 tools/emu.py --out SESSION/stepNN --seq "<tokens>" [--state SESSION/last.state] --save SESSION/last.state`
 - Tokens: `boot` (power-on to the town), `PARTY`, `a b start select up down left right` (press), `KEY*n`, `KEY+KEY`,

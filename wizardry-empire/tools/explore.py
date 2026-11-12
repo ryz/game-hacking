@@ -41,10 +41,11 @@ def hit(i, bs):
 for i in range(maxsteps):
     g.snapshot_save(path=os.path.abspath(out + "/prev.state"))
     k = "up" if random.random() < 0.7 else random.choice(["left", "right"])
-    bs = act(k)
+    g.mem_write(0xC1BF, [0, 0])                            # the message pointer stays on 'Ouch!' after a bump:
+    bs = act(k)                                            # clear it so only a fresh message matches
     b, p = msg()
-    if b == 0x31 and 0x41FA <= p <= 0x4240:              # stairs prompt: No
-        act("down"); act("a"); g.run_frames(30)
+    if b == 0x31 and 0x41FA <= p <= 0x4240:              # stairs prompt: B = No (Down can toggle onto Yes)
+        act("b"); g.run_frames(30)
         print(i, "stairs -> No", flush=True)
         continue
     if b == 0x31 and 0x4592 <= p <= 0x4597:              # 'Ouch!': close it, then turn
