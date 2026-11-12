@@ -7,8 +7,8 @@ designers. Translation and patch internals are in `docs/re/`. Every number names
 | Document | Covers |
 |---|---|
 | [characters.md](characters.md) | races, classes and requirements, creation and bonus points, party record layout, leveling, aging, status ailments, spells and spell slots |
-| [items.md](items.md) | item record layout, equipment rules, shops, inn, temple, identification and curses, chests and traps (full item table: items_table.md if split out) |
-| [monsters.md](monsters.md) | monster record layout, bestiary, encounters, combat formulas, rewards, summoning / pacts |
+| [items.md](items.md) | item record layout, equipment rules, shops, inn, temple, identification and curses, chests and traps (full item table: [items_table.md](items_table.md)) |
+| [monsters.md](monsters.md) | monster record layout, encounters, combat formulas, rewards, summoning / pacts (full bestiary + encounter tables: [monsters_table.md](monsters_table.md)) |
 | [dungeon.md](dungeon.md) | floors, map format, special squares, events per floor |
 
 Related findings already in `docs/re/`: chest types by floor and the guarded-square rule (`reach.md`), the hidden

@@ -91,6 +91,8 @@ breakpoint on the dispatcher. To run one routine: stop at 0:07C5 first (HALT/IME
 - Before using a saved state for screen checks, compare its mtime with `git log -1 --format=%ci` (or rebuild it
   with `tools/party.py`): a state from an older build keeps the old screen buffer until the screen is redrawn.
 - Camp spell / effect screens: stop at 24:40DF and set A = effect id to reach any camp spell result from one state.
+- With a stopping breakpoint armed, check `r.get('stopped')` after every `run_frames`: the next call silently
+  resumes past it. Count-only breakpoints log to `break.log` (drain it after the run).
 - 'No direct call' is not 'dead code': routines are also reached through jump tables (0:37FC, the heal box).
 
 ## Design / rules questions (2026-11-12, owner asked for docs/design/)
@@ -98,6 +100,8 @@ breakpoint on the dispatcher. To run one routine: stop at 0:07C5 first (HALT/IME
   tables. Tag every number with its source and kind: `(code BB:AAAA)`, `(data BB:AAAA)`, `(display)` (museum or
   menu text only), `(emulator)` or `(inferred)`.
 - Record fields: byte-search the readers of the record copy (`ld a,[$C5xx]`, `ld hl,$C5xx`; `gbdis.py --xref`).
+- Record fields: then confirm with a count-only memory breakpoint on the record copy during one real use.
+- RNG-based probabilities: confirm once in the emulator by forcing the seed (RNG 0:0DA6, x = 5x + $4123, A = high byte).
 - Banks: write them in hex like the rest of the docs (`25:551C`, or `$25 (37)`); `gbdis.py 25:551C` takes that form.
 - Surprising code-read conclusions (an unused roll, odd data values) go in an "Emulator checks" list with the exact
   poke + route to test them (`tools/play.py`), unless you can run the check yourself. Fast check: poke the working

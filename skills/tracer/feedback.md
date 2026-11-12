@@ -10,6 +10,20 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - design docs: monsters, combat, dungeon
+- Task: designer reference for monsters, encounters, combat and the dungeon (records, bestiary, formulas, floors,
+  events) from the Rev 1 ROM.
+- Worked: byte search of `ld a,[$C50F+off]` readers = field map in one pass; count-only memory breakpoint +
+  break.log while mashing through one battle; forcing the RNG seed settled the RNG question; reach.md evtab.txt.
+- Friction: no design section in the skill (added during the run); misread 0:0DA6 statically (fixed in the
+  emulator); break.log and run_frames 'stopped' undocumented, a second run_frames resumes past a stop; JP states
+  open on menus without a note; text.md's monster record line was 32 bytes off.
+- Proposed rule change: field map by reader byte search + count-only breakpoint; RNG checks by forcing the seed;
+  check `stopped` after run_frames; fix text.md.
+- Corrected: record framing (39:4820, name +0, 64-byte stride) and RNG (x = 5x + $4123) checked in the ROM;
+  text.md fixed; design README links the tables.
+- Status: promoted 2026-11-12 (field-map confirmation, RNG seed, run_frames 'stopped' / break.log)
+
 ### 2026-11-12 - census of the remaining 8 px glyphs (e9125dd)
 - Task: every screen cell still drawn with an original 8 px glyph, grouped by writer, with hook suggestions.
 - Worked: scanner requiring screenshot pixels to match the tile's colours (robust across raster splits/window);

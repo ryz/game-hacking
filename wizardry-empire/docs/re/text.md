@@ -69,7 +69,9 @@ Most banks end in $00 padding (see `tools/` census). The patch expands the ROM t
   its own `$F2 bank lo hi` jump instead.
 - Items: bank 40 `$4000`, 224 records of 40 bytes, name = bytes 0-16 (16 chars + `$00`); byte 17 = unidentified class (`$C560` after the record copy;
   docs/re/overflow.md).
-- Monsters: bank 57 `$4840`, 166 records of 64 bytes, name at `+$20`, 12 chars + `$00`; `$FD` = line break.
+- Monsters: bank 57 (`$39`) `$4820 + 64 x id`, 167 records of 64 bytes, name at `+0`, 12 chars + `$00`; `$FD` = line
+  break (the old note '$4840, name at +$20' framed the same data 32 bytes off). `script/monsters.json` index = id - 1.
+  Field map: docs/design/monsters.md.
 - Default characters: bank 46 `$4000`, `$80`-byte records, 8-byte name.
 - Party records in WRAM `$C880 + $80*n`, name `$00`-terminated; copied by `ld a,[hli] / or a / jr z / ld [de],a / inc de / jr` loops.
 - Bank 49 `$4000-$418F`: `$00`-separated name lists (gender, race, alignment, class, status, battle commands).
