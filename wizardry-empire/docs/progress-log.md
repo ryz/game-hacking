@@ -11,6 +11,16 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - chests/events playtest, temple fee, missing messages, NPC names
+- ROM: not sent yet (latest commit 2de4600).
+- Changed: NPC recruit names in English (Sigfrid in the 7-letter field); down-stairs prompt and three more
+  bank-49 messages added; {FA} word wrap measures 3/4 cell per character; magic-circle party list in the
+  small font; number stub leaves B = 0 (was making the event list show everyone as poisoned).
+- Found / fixed: temple fee copy treated as text (payer's gold corrupted) - fix_sites() takes the nearest
+  ld hl; limit tests for copied strings. Chests come only from guarded squares (docs/re/reach.md); chest,
+  trap, event, recruit and temple screens checked by the playtester.
+- Open: full message census running (tracer); status.md Next.
+
 ## 2026-11-12 - crash fix (unidentified group names), name entry, Camp reorder
 - ROM: `e45012c` sent.
 - Changed: name-entry field and cursor in the VWF; Camp reorder digits/names in the VWF; 'Power hit' (was
