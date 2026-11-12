@@ -3,7 +3,7 @@ skill: tracer
 project: wizardry-empire
 summary: Answer one reverse-engineering question about where/how text is printed.
 access: write (notes file)
-updated: 2026-11-12
+updated: 2026-11-12 (automap)
 ---
 
 # Tracer - Wizardry Empire (GBC): reverse-engineering questions
@@ -22,6 +22,10 @@ or `tools/`; no git; no subagents. Write only your notes file (path in the dispa
 Do not re-derive what they already state.
 
 ## Tools
+- Emulator API details: banked WRAM writes `g.mem_write(None, data, region='wram', offset=bank*0x1000 + addr-0xD000)`;
+  `g.regs()['pc']` is a hex string. Read-only use of the map tool: `floormap.py N --list --no-png`.
+- A doc's "(inferred)" meaning for a square type, flag or zone is a hypothesis: step on one in the emulator before
+  building on it (marker squares were warps, "both zone marks" the dark zone, special walls doors).
 - Static: `python3 tools/gbdis.py BANK ADDR [N]` (bank-aware disassembly of the original ROM `rom/wizardry_empire_j.gbc`),
   `tools/tbl.py` (`tbl.dec(bytes)` decodes text), the census tools (`tools/census_*.py`, `tools/chain_rects.py`).
 - 'Which X uses Y' / 'who sets flag F': byte-search every reader and writer (the `ld hl,TABLE` / `ld a,[F]` /

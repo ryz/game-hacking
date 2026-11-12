@@ -3,6 +3,7 @@
   python3 tools/designtables/floormap.py 1                 -> docs/design/maps/wizardry-empire-floor-01.png
   python3 tools/designtables/floormap.py 1 --list          also print every non-plain square (for the floor docs)
   python3 tools/designtables/floormap.py 1 --out PATH      write somewhere else (previews)
+  python3 tools/designtables/floormap.py 1 --list --no-png  only the listing (read-only use)
 
 Cell format and square types: docs/tech/dungeon.md sections 1-2. Each floor is 16x16; (x, y) with x east, y north,
 (0, 0) bottom left; the map wraps at the edges. Each edge is stored on both of its squares and the game only checks
@@ -304,8 +305,9 @@ def main(argv):
     out = os.path.join(ROOT, "docs", "design", "maps", "%sfloor-%02d.png" % (PREFIX, f))
     if "--out" in argv:
         out = argv[argv.index("--out") + 1]
-    draw(cells, out, f)
-    print("wrote", os.path.relpath(out, ROOT) if out.startswith(ROOT) else out)
+    if "--no-png" not in argv:
+        draw(cells, out, f)
+        print("wrote", os.path.relpath(out, ROOT) if out.startswith(ROOT) else out)
     if "--list" in argv:
         names = {1: "rock", 2: "stairs up", 3: "stairs down", 4: "hidden spot", 6: "guarded square", 7: "button panel",
                  8: "floor trap", 9: "warp", 10: "event A", 11: "event B", 12: "event C", 13: "corpse",

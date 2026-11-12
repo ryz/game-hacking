@@ -10,6 +10,18 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - the in-game auto-map
+- Task: how the automap opens and works (Compass, Map Record Sheet, Teleport/Ring), what it shows, cursor/warp panel,
+  $DD28, what it hides; proposed tech text.
+- Worked: byte search for the task-launch pattern found all six entry points; poking $D967/$DD28/$CB83 reached every
+  mode from one state; poking the cell under the cursor rendered all labels; party.py --rom for JP states.
+- Friction: floormap --list rewrote the map PNGs; regs()['pc'] is a string; mem_write has no bank=; the dispatch's
+  "marker" framing and table start were wrong.
+- Proposed rule change: document banked WRAM writes; treat "(inferred)" labels as hypotheses and test one square;
+  floormap --no-png.
+- Corrected: coordinator re-verified the B7 warp; tech/design docs, findings 33/37-39, maps (W) updated; --no-png added.
+- Status: promoted 2026-11-12 (Tools lines; inferred-label rule, also in coordinator)
+
 ### 2026-11-12 - 15 contradictions between the tech docs
 - Task: resolve pacts, inn aging/refill, EXP rows, old-age roll, Revival Charm, Bishop learning, class masks,
   potion, raise odds, swings, guarded squares, areas, hidden spots, Battle Axe to-hit; correct docs/tech.
