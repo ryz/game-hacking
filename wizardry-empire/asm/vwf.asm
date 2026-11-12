@@ -804,6 +804,34 @@ NameCursorX:                ; A = x of the cursor box
     nop
     nop
 
+; --- Maze view graphics (20:4100-4240): each 2 KB block is loaded as a queued GDMA (0:1443, seen by
+;     VWF_DmaCheck) plus an immediate HBlank DMA of its second KB (0:1553, B = 16-byte blocks), which bypassed
+;     the check: VRAM0 $8C00-$8FFF (flat codes $C0-$FF, the walls) kept its owners/shadows and was never
+;     reserved, so the dungeon menu's text took the wall slots (mirrored 'Pick a lock' in the view strip).
+;     The four 'di / ld b,$40 / call $1553 / ei' sites call MazeHdma (check after the transfer, interrupts on).
+    org $20, $41b0
+    call MazeHdma
+    ds 4, $00
+    org $20, $41d8
+    call MazeHdma
+    ds 4, $00
+    org $20, $420b
+    call MazeHdma
+    ds 4, $00
+    org $20, $4233
+    call MazeHdma
+    ds 4, $00
+    org $20, $7f00
+MazeHdma:
+    di
+    ld b, $40
+    call $1553
+    ei
+    ld bc, $0040            ; tiles, as Stub_Dma passes them (hSrc*/hDst* are unchanged by 0:1553)
+    ld a, VWF_BANK
+    ld hl, VWF_DmaCheck
+    jp FarCall
+
 ; --- Find allies list (20:62C6: name copy DE (SRAM roster) -> HL, codes $80+ with the VRAM1 bit; BC/HL are
 ;     popped from the stack at 20:62E2) -> VWF
     org $20, $62c6

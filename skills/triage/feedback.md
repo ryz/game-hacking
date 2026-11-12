@@ -10,6 +10,20 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - maze strip: mirrored 'Pick a lock' in the view strip under the dungeon SELECT menu
+- Task: explain the mirrored menu glyphs in the maze strip and propose a vwf.asm fix.
+- Worked: per-frame VRAM poll-diff found the writer when VRAM write watches did not fire; watching the HDMA
+  registers $FF51-$FF55 exposed the unhooked immediate DMA 0:1553; clean base tree + full-tour pixel diff proved
+  no side effects.
+- Friction: VRAM watchpoints miss GDMA/HDMA writes; LCDC from a savestate hid the STAT raster split;
+  tools/gbdis.py reads the JP ROM only (cannot check patched bytes).
+- Proposed rule change: Display corruption: (a) watch $FF40-$FF4B writes over one frame (raster splits show
+  other maps on some lines); (b) VRAM watches do not see DMA: poll-diff VRAM or watch $FF51-$FF55; two DMA
+  paths (0:1443 queue, 0:1553 immediate).
+- Corrected: fix applied as proposed (MazeHdma, 20:7F00); claims checked (four identical sites, free space,
+  strip clean in maze_dmenu, 11 tests, tour 8/8). docs/re/vwf.md updated.
+- Status: open (rules (a)/(b) for skill.md; gbdis --rom option for the tool backlog)
+
 ### 2026-11-12 - tavern 'Inspect whom?' list garbled after the sheet submenus
 - Task: diagnose display corruption (not a hang) on the tavern list after Spells/Items/Pool.
 - Worked: write watch on one bad cell (bank 3) -> PLRestore; per-step wEpoch readout showed a 512-bump wrap;

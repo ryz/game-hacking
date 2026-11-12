@@ -62,6 +62,11 @@ keeps working; it resyncs whenever the game moves the cursor or the buffer base 
 owner and shadow and are reserved in `wGameNew` (bank 7 `$D2A0`); the next full GC moves them to `wGame`
 (`$D200`), which keeps a slot only while a buffer still references it. A font load clears both. Codes `$A0` (VRAM1 tile `$20` in the split layout, kept blank), `$CF`/`$D0` (the monster
 panel's parentheses) are not in the pool. GC marks cells under both layouts (VWF-range tiles only).
+The game's second DMA path, the immediate HBlank DMA `0:1553`, bypasses the queue: its only callers, the maze
+graphics loader (`20:41B0/41D8/420B/4233`, second KB of each block, e.g. the walls at VRAM0 `$8C00`), go
+through `MazeHdma` (20:7F00), which calls `VWF_DmaCheck` after the transfer. Before that fix the dungeon
+SELECT menu took the wall slots (mirrored 'Pick a lock' in the view strip; the strip is `$D000` rows 7-8
+shown by a STAT raster split, lines 56-71 with LCDC `$93`).
 
 ## Battle monster panel
 `22:5688` -> trampoline `22:7F00` -> `VWF_Panel`: the 4 group names ($C50F, 13 bytes each) are drawn
