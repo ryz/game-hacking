@@ -137,7 +137,8 @@
    'Lo'/'Hi' in the VWF, right-aligned at col 18; shop header AC the same; card HP '/' + max as one VWF string
    ('10/10'); town party list '/', '+', '-' in the VWF. Event party list (bank-45 twin, magic circle) the same,
    incl. its status words (were blank). 0:37FC (8 px 'HP' row 7) is the Camp heal-spell result box (reached via a table; my 'dead code' note was
-   wrong). Remaining 8 px groups: docs/re/glyphs8.md. Bank 2C 'sheet' = debug mode.
+   wrong). 8 px census (docs/re/glyphs8.md): groups 1-5 converted 2026-11-12;
+   left: automap axis labels/floor digit (graphics, owner's call), name-entry chart (owner's call). Bank 2C 'sheet' = debug mode.
    Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.
 9. Seen once, not reproduced: wrong digits in the chest "Who will inspect?" list after inputs during the trap
    message.

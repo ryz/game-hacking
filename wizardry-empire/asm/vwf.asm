@@ -985,6 +985,114 @@ CardQ5:
 CardQ2:
     db "??", 0
 
+; --- item list marks: '?' unidentified and '-' cursed were 8 px (the equipped bullet '●' = 8 px '*' stays: an
+;     icon). Sheet item list 2A:6EC3, Camp Equip lists 2A:620B, shop Sell list 29:560A, battle Item > Equip 22:5448.
+    org $2a, $6ec3
+    ld a, [hl]
+    call MarkSel
+    jr $6ee0
+    org $2a, $620b
+    ld a, [hl]
+    call MarkSel
+    jr $6228
+    org $2a, $7980
+MarkSel:                    ; A = item flag byte (bit 7 equipped, 6 unidentified, 5 cursed), DE = cell -> DE + 1;
+    bit 7, a                ; HL, BC kept
+    jr z, .ne
+    bit 5, a
+    jr nz, .m
+    ld a, $2a               ; equipped: the 8 px bullet icon stays
+    ld [de], a
+    inc de
+    ret
+.ne: bit 6, a
+    jr nz, .q
+    bit 5, a
+    jr nz, .m
+    inc de
+    ret
+.q: push hl
+    ld hl, MarkQ
+    jr .p
+.m: push hl
+    ld hl, MarkM
+.p: call Stub_PrintZ
+    pop hl
+    ret
+MarkQ:
+    db $7c, "?", 0
+MarkM:
+    db $7c, "-", 0
+
+    org $29, $560a
+    call ShopMarkSel
+    jr $5629
+    org $29, $7f90
+ShopMarkSel:                ; B = flag byte, HL = cell -> HL + 1 (ld [hli],a); a blank cell when no mark
+    ld a, b
+    and $e0
+    jr nz, .mk
+    ld a, $20
+    ld [hli], a
+    ret
+.mk: push de
+    ld d, h
+    ld e, l
+    ld a, b
+    call ShopMarkSel2
+    ld h, d
+    ld l, e
+    pop de
+    ret
+ShopMarkSel2:
+    bit 7, a
+    jr z, .ne
+    bit 5, a
+    jr nz, .m
+    ld a, $2a
+    ld [de], a
+    inc de
+    ret
+.ne: bit 6, a
+    jr nz, .q
+.m: ld hl, ShopMarkM
+    jp Stub_PrintZ
+.q: ld hl, ShopMarkQ
+    jp Stub_PrintZ
+ShopMarkQ:
+    db $7c, "?", 0
+ShopMarkM:
+    db $7c, "-", 0
+    assert @ <= $8000, "bank 41 overflow"
+    org $22, $5444
+    call BtlMark
+    nop
+    nop
+    org $22, $7900
+BtlMark:                    ; HL = row offset, B = mark code ('?', '-' or the bullet '*'); DE ends $D842 as before
+    ld de, $d842
+    add hl, de
+    ld a, b
+    cp $2a
+    jr nz, .v
+    ld [hl], b
+    ret
+.v: push hl
+    ld d, h
+    ld e, l
+    ld hl, BtlMarkQ
+    cp $3f
+    jr z, .p
+    ld hl, BtlMarkM
+.p: call Stub_PrintZ
+    pop hl
+    ld de, $d842
+    ret
+BtlMarkQ:
+    db $7c, "?", 0
+BtlMarkM:
+    db $7c, "-", 0
+
 ; --- Search Person ("Look for whom?", priest spell): five animated 8 px '.' (2E:5640 + 18k), the raw code $5E
 ;     (Japanese particle, now a VWF pool slot -> random glyph) after the name at 2E:5819, and the location line at
 ;     $D122 built from 8 px 'B', 'X', ',', 'Y' around VWF digits (2E:5774-57DC, 'B1    X0 ,Y0')

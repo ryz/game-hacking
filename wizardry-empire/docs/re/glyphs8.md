@@ -1,3 +1,6 @@
+> **Status 2026-11-12:** groups 1-5 converted (item marks '?'/'-' at all four sites, creation '?' fields, Search
+> Person dots/location/particle, heal box, item info negative AC); the bullet '●' stays an icon; group 6 (automap
+> graphics) waits for the owner.
 > Copied from work/re/glyphs8.md (tracer, 2026-11-12, build e9125dd); scratch, states and crops stay in the
 > untracked work/re/glyphs8/.
 
