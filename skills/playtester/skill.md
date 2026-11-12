@@ -96,3 +96,10 @@ End your final report with this block; the coordinator files it in `skills/playt
 - A suspected regression after a port or a big change: build the previous commit with ITS base ROM in
   SESSION/old and replay the same inputs there before reporting it as new.
 - Battles: `tools/explore.py ROM maze.state OUT 1500 SEED` (answers No at stairs, turns twice after 'Ouch!').
+
+## RAM for shortcuts (2026-11-12)
+- Party copy $C880 + $80*n: +$0C status (5 = dead), +$0D level, +$59 gold, +$62/+$64 HP. Town screens that read
+  the roster (temple) need the SRAM roster too: cart_ram 0x001 + $80*n, same offsets, mirror at +$1000.
+- Temple: Deposit the dead member first, then Rescue; poke the payer's gold before opening Rescue.
+- Chest trap: $C635 = trap type + 1. Position: $CB80 x, $CB81 y, $CB82 floor-1, $CB83 facing (tools/maze_goto.py).
+- Ready states: work/re/reach/states/ (chest menus, event squares, floor 2) - docs/re/reach.md.

@@ -248,6 +248,7 @@
 {"bank": 46, "addr": "0x4cc0", "jp": "ACをー6する", "en": "Lowers AC by 6."},
 {"bank": 46, "addr": "0x4cc8", "jp": "HPを20~32かいふく+いきて\n\nいれば じょうたいを『せいじょう』に", "en": "Restores 20-32 HP; if\n\nalive, sets status to \"OK\"."},
 {"bank": 49, "addr": "0x41fa", "jp": "うえに のぼる かいだんが ある\n    のぼりますか?\n      はい\n      いいえ\n", "en": "There are stairs leading up.\n{col:4}Climb them?\n{col:6}Yes\n{col:6}No\n"},
+{"bank": 49, "addr": "0x422b", "jp": "したに おりる かいだんが ある\n    おりますか?\n      はい\n      いいえ\n", "en": "There are stairs leading down.\n{col:4}Go down them?\n{col:6}Yes\n{col:6}No\n"},
 {"bank": 49, "addr": "0x425b", "jp": "パーティーは ぜんめつしました", "en": "The party has been wiped out."},
 {"bank": 49, "addr": "0x427a", "jp": "さがす\nかぎをこじあける\nなかまをさがす\nぼうけんをやめる\nせってい", "en": "Search\nPick a lock\nFind allies\nQuit adventure\nSettings"},
 {"bank": 49, "addr": "0x429d", "jp": "さがす\nかぎをこじあける\nなかまをさがす\nせってい", "en": "Search\nPick a lock\nFind allies\nSettings"},

@@ -10,6 +10,20 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - rev1c (85d10bc): chests, events, recruit, temple fee
+- Task: chest screens/traps/loot, bank-45 events, NPC recruit with a free slot, temple resurrection payment.
+- Worked: the ready chest/event states; a WRAM diff across chest states found the trap byte ($C635) so
+  every trap message could be forced; maze_goto.py also works on the JP ROM for comparisons.
+- Friction: Dead needs the SRAM roster too (cart_ram 0x001+$80n, mirror +$1000) and Rescue lists only
+  deposited members; emu.py names shots by token index; jp_tour explore states are not where their names say.
+- Proposed rule change: 'RAM for shortcuts' note (party copy + SRAM roster offsets, temple Deposit then
+  Rescue); a census check that every message in a bank-49 run of $FF-terminated messages is in the script.
+- Corrected: temple fee verified OK (5000 -> 4900). Fixed: down-stairs prompt 49:422B was missing from the
+  script (untranslated on the main path); {FA} look-ahead counted 8 px per character (early wraps) - now
+  3/4 cell per character (Stub_WrapCmp). Open: magic-circle party list in 8 px with '-' for '/', resurrection
+  'ebo    went to the tavern.' gap, spell grid ' /'.
+- Status: promoted 2026-11-12 (RAM shortcut note added to skill.md); bank-49 run census -> tool backlog
+
 ### 2026-11-12 - rev1b (6500974): chests, friendly encounter, events
 - Task: reach chests, a friendly encounter, bank-45 events and floor 2 on the current build.
 - Worked: explore.py with several seeds in parallel; 999 HP poke; an auto-fight loop with a $C1BF check found

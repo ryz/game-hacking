@@ -285,6 +285,10 @@ Stub_Num:                   ; 0:108B (number printer 0:0FD0, digit store): base 
     org 0, $1cb3
     call Stub_Measure
     jr nc, $1d1e
+    org 0, $1d1e
+    call Stub_WrapCmp
+    jr c, $1d2d
+    ds 6, $00
     org 0, $3ff0
 Stub_Measure:
     ld a, [hli]
@@ -945,6 +949,21 @@ Stub_SpellPre:              ; 0:24CF entry (A = spell id): fetch the full Englis
     pop af
     ld l, a
     ld h, 0
+    ret
+Stub_WrapCmp:               ; 0:1D1E ({FA} look-ahead result): C = characters up to the next break, counted as
+    ld a, c                 ; 8 px cells by the game; the VWF averages ~5 px, so count 3/4 cell per character
+    ld b, a                 ; (6 px, slightly generous). Carry = the word does not fit in the row.
+    srl a
+    srl a
+    cpl
+    inc a
+    add b
+    ld c, a
+    ld a, [$c1c5]
+    ld b, a
+    ld a, [$c1c3]
+    sub b
+    sub c
     ret
     assert @ <= $1a3b, "bank0 stub area 2 overflow (Rev 1: the dead monster-panel routine 0:19B4-1A3A)"
 
