@@ -11,7 +11,9 @@ people: `README.md`. Current projects:
 
 ## Rules (all projects)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.sav`,
-  `*.state`, `rom/`, `build/`, `work/`). The original dump is verified by SHA-1 (`rom.sha1`).
+  `*.state`, `rom/`, `build/`, `work/`). The original dump is verified by SHA-1 (`rom.sha1`). Exception (owner's
+  decision 2026-11-12): test saves made by a project's own tools in `<project>/saves/`, each documented in
+  `<project>/saves/README.md`.
 - Screenshots may be committed: reference sets go to `<project>/docs/shots/<set>/` (photographer,
   `tools/shoot.py SET --publish`).
 - Document as you go: reverse-engineering findings in `docs/re/`, the current snapshot in `docs/status.md`, the
@@ -43,6 +45,8 @@ Run from `wizardry-empire/`:
   `save NAME` / `load NAME` / `peek` / `poke` / `stop` (one emulator kept running; ~1-2 s per command).
 - Standard playtest party (ryz, condi, ebo, cubi, deddo, mnz) + checkpoint states for the current build:
   `python3 tools/party.py --out work/states/party` (renamed/party/camp/maze.state).
+- Test save with a powerful party knowing every spell (level 60, special classes): `saves/test-party-all-spells.sav`,
+  rebuilt by `python3 tools/testsave.py --out saves/test-party-all-spells.sav` (see `saves/README.md`).
 - Screen tour: `python3 tools/tour.py [--jp] [route ...]` (routes in `tools/routes/tour.txt`) ->
   `work/qa/tour_en|tour_jp/<route>/sheet.png`; run it after every build and give the sheets to `visual-qa`.
 - Reference screenshots: `python3 tools/shoot.py SET [--only ids]` (curated list `tools/routes/shots.txt`) ->

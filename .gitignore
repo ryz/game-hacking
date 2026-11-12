@@ -10,3 +10,5 @@ work/
 __pycache__/
 *.bps
 *.ips
+# Exception (owner's decision 2026-11-12): test save files made by a project's tools, documented in <project>/saves/README.md
+!*/saves/*.sav

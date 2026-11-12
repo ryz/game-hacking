@@ -21,6 +21,7 @@ as `rom/wizardry_empire_j_v10.gbc` only to map old addresses.)
 | `docs/re/` | Reverse-engineering notes. |
 | `docs/status.md` | Current snapshot: done, next, known issues. |
 | `docs/progress-log.md` | History: what changed per session and per test ROM. |
+| `saves/` | Test save files made by our tools (e.g. a powerful party knowing every spell); see `saves/README.md`. |
 
 ## Build
 
