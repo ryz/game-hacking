@@ -23,13 +23,14 @@ def name_of(bank, pc):
 g, toks, skip = emu.start(emu.EN_ROM, dict(routes())[name]); toks = toks[skip:]
 emu.play(g, toks[:at])
 g.input_set([toks[at]])
-cnt = collections.Counter(); fr0 = emu.frame_counter(g); total = 0
+cnt = collections.Counter(); fr0 = emu.frame_counter(g); total = 0; cyc0 = None; ctot = 0
 while True:
     r = g.run_until(addr="$fffe", max_instructions=step)
     total += 1
     if total == 40: g.input_set([])
     pc = int(r['pc'], 16); bank = g.mem_read(0xFF9E, 1)[0]
-    cnt[name_of(bank, pc) if bank == 0x40 or pc < 0x4000 else '%02X:game' % bank] += 1
+    c = r.get('cycles8_total', 0); w = (c - cyc0) if cyc0 is not None else 0; cyc0 = c; ctot += w
+    cnt[name_of(bank, pc) if bank == 0x40 or pc < 0x4000 else '%02X:game' % bank] += w      # weighted by cycles
     if (emu.frame_counter(g) - fr0) % 256 >= nfr: break
-print('samples', total)
-for n, c in cnt.most_common(25): print('%5.1f%%  %s' % (100.0 * c / total, n))
+print('samples', total, 'cycles', ctot, '(~%.1f frames)' % (ctot / 140448.0))
+for n, c in cnt.most_common(int(sys.argv[5]) if len(sys.argv) > 5 else 25): print('%5.1f%%  %6.2f fr  %s' % (100.0 * c / ctot, c / 140448.0, n))

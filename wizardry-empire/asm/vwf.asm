@@ -31,7 +31,8 @@ twBufHi     equ $c1d4
 wLayout     equ $df00          ; 1 = split (codes $80+ in VRAM1:$9000), 0 = flat (VRAM0:$8800), 2 = museum
                                ; monster room: unsigned tiles, every code in VRAM1:$8000 + code*16
 wReset      equ $df01          ; nonzero = clear allocation before next allocation
-wNext       equ $df02          ; ring index into Pool
+wNext       equ $df02          ; ring index into Pool (low-code search, last resort)
+wNextB      equ $df0f          ; TryAlloc1: wBits byte where the free-slot search starts
 wTmp0       equ $df03
 wTmp1       equ $df04
 wTmp2       equ $df05
@@ -1911,6 +1912,8 @@ Pool:
 PoolEnd:
 PoolFlags:
     incbin "../build/poolflags.bin"     ; 256 bytes: nonzero = code is a VWF slot
+PoolMask:
+    incbin "../build/poolmask.bin"      ; 32 bytes: bit (code & 7) of byte code/8 = code is a VWF slot
 POOL_SIZE   equ PoolEnd - Pool
 
 ; ---------------------------------------------------------------------
@@ -2971,7 +2974,62 @@ TryAlloc:
     pop af
     ret
 
-TryAlloc1:
+TryAlloc1:                  ; free = PoolMask & ~wBits, searched a byte (8 codes) at a time from wNextB
+    ld a, [wLowOnly]
+    or a
+    jr nz, TryAllocLow
+    ld a, [wNextB]
+    and $1f
+    ld e, a
+    ld d, 32
+.l: ld hl, PoolMask
+    ld a, l
+    add e
+    ld l, a
+    jr nc, .p
+    inc h
+.p: ld c, [hl]              ; slots in this byte
+    ld a, low(wBits)
+    add e
+    ld l, a
+    ld h, high(wBits)
+    ld a, [hl]
+    cpl
+    and c
+    jr nz, .found
+    ld a, e
+    inc a
+    and $1f
+    ld e, a
+    dec d
+    jr nz, .l
+    and a
+    ret
+.found:                     ; lowest free bit
+    ld b, 0
+    ld c, 1
+.lb: rrca
+    jr c, .got
+    inc b
+    sla c
+    jr .lb
+.got:
+    ld a, [hl]
+    or c
+    ld [hl], a
+    ld a, e
+    inc a                   ; next search starts at the next byte (spreads reuse like the old ring: cached
+    and $1f                 ; boxes keep their slots longer)
+    ld [wNextB], a
+    ld a, e
+    add a
+    add a
+    add a
+    add b                   ; code = byte*8 + bit
+    scf
+    ret
+
+TryAllocLow:                ; wLowOnly: only codes < $80 (VRAM0 in both layouts), ring order
     ld a, [wNext]
     cp POOL_SIZE
     jr c, .ok
@@ -3027,9 +3085,10 @@ BitAddr:
     ld h, high(BitMask)
     ld b, [hl]
     ld a, c
-    srl a
-    srl a
-    srl a
+    rrca
+    rrca
+    rrca
+    and $1f
     add low(wBits)
     ld l, a
     ld h, high(wBits)
@@ -4210,10 +4269,8 @@ GCScan:
     ld [wGCn], a
     ld [wGCchk], a
 .chk:
-    ld a, [wGCchk]          ; columns 0-20 in a normal pass: the fast row loop
-    ld b, a
-    ld a, [wGCOwnerless]
-    or b
+    ld a, [wGCchk]          ; columns 0-20 (any pass; GCSlot handles the ownerless modes): the fast row loop
+    or a
     jr nz, .l
     pop hl
     push hl
