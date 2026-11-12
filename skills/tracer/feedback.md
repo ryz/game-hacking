@@ -10,6 +10,18 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - typewriter message coverage census
+- Task: every message pointer the game can set; list messages missing from the script; why the test missed them.
+- Worked: counting every `ea bf c1` and classifying each store (immediate / table / HRAM / internal); checking
+  the byte before each pointer for $FF/$FC to confirm the bank; following $FC continuations from script entries.
+- Friction: the coverage test had no message check at all; decode_msg stops only at $FF; 0:278D setting bank
+  49 and $FC semantics were undocumented; no gbdis xref.
+- Proposed rule change: typewriter coverage = enumerate and classify every `ld [$c1bf],a`, default bank 49
+  after 0:278D, follow $FC continuations; text.md note; decode_msg --stop-fc; census bank rule.
+- Corrected: five messages added (43B9, 4432, 451F, 4583, 55A4; 5594 split at its $FC); the proposed test
+  installed as tests/test_msg_coverage.py (fails with the old script on all 9 misses); text.md note added.
+- Status: promoted 2026-11-12 (coverage-by-address is now the third lesson; skill.md Coverage section extended)
+
 ### 2026-11-12 - reaching chests and maze events
 - Task: reliable routes/states to a post-battle chest and bank-45 events in the EN build.
 - Worked: breakpoint at the screen bank's entry (25:4000) while mashing A; byte search of every $C00B access;

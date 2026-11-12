@@ -74,7 +74,9 @@ End your final report with this block; the coordinator files it in `skills/trace
 Check by ADDRESS (every rect/message source site against script/*.json), not only by text; walk pointer
 tables to their real end (stop at the first pointer outside the data range) instead of trusting a documented
 count; force late-game screens (ending: `$D000`=8 at 2B:5B70, second clear: `$C5C6` bit 7) rather than
-assume they are covered.
+assume they are covered. Typewriter messages: enumerate and classify every `ld [$c1bf],a` (immediate /
+table / HRAM / internal), default the text bank to 49 after 0:278D, follow `$FC` continuations
+(tests/test_msg_coverage.py does this).
 
 ## Reachability questions (2026-11-12)
 Find the flag the game itself checks (breakpoint at the screen bank's entry, then a byte search of every

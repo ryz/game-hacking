@@ -53,6 +53,11 @@ Control codes:
 | F3 bank, ptr16 | insert string via pointer |
 
 Strings of this kind live in banks 45 (`$2D`), 49 (`$31`) and others, FF-terminated.
+- 0:278D and 01:6400 (window open) set the text bank `$C1C1` = $31 (bank 49); a message set after them
+  without its own `$C1C1` store is in bank 49. `$FC` pauses and hands control back to the waiting task, which
+  may continue with the next bytes (a `$FC` continuation is its own segment: it needs its own script entry,
+  e.g. 49:5594 -> 49:55A4) or set a new pointer. Full census of message pointers: docs/re/msgcov.md;
+  tests/test_msg_coverage.py checks every reachable segment by address.
 
 ## Free space
 Most banks end in $00 padding (see `tools/` census). The patch expands the ROM to 2 MB (MBC5) and keeps new code/text in banks 64+.
