@@ -131,7 +131,8 @@
    157 slots, so the freed slots are the only ones left. Inn list -> sheet is now ~10 frames (was ~35). A real
    fix needs more slots (e.g. layout-specific pools) or building the new screen after the old one is gone.
 8. Still 8 px (docs/re/numbers.md): '/', '-', '~', ':' separators and the labels L/HP/AC/HP-MAX/Lo/Hi/ON/OFF,
-   spell-slot grid separators, monster panel and automap digits (symbol sheet).
+   spell-slot grid separators, monster panel and automap digits (symbol sheet). Character card done
+   (2026-11-12): Age/Lvl/AC/HP labels and numbers in the VWF, right-aligned.
    Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.
 9. Seen once, not reproduced: wrong digits in the chest "Who will inspect?" list after inputs during the trap
    message.

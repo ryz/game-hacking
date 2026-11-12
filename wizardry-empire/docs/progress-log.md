@@ -11,6 +11,13 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - character sheet: Age, small HP/AC, right-aligned numbers (owner's request)
+- ROM: `43afb2b` sent.
+- Changed: card 'Lvl'/'Age'/'AC' labels in one VWF column, values (and Title/EXP/Gold) end at col 18; age in
+  the VWF ('Age 16' instead of '16yrs'); HP/AC labels in the small font; AC right-aligned with a small '-';
+  shop header 'AC' and gold aligned the same way; titles are 14-cell rects.
+- Open: the bank-44 window sheet (2C:4ACB, 'yrs') not seen on screen; maze strip text glitch (triage running).
+
 ## 2026-11-12 - playtest fixes, maintenance, owner-delegated rulings
 - ROM: `b70ce52` sent.
 - Changed: teleport prompt columns, Add-whom row, Find allies list and battle Equip prompt; temple result line
