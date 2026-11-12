@@ -148,6 +148,8 @@ wRC_sumB    equ $d59e          ; 2: ... of the same box with every code $20 (cle
 wGCCount    equ $d5a0          ; +1 per GC
 wRC_gc      equ $d5a1          ; wGCCount when the box was saved
 RC_SCR      equ $cce0          ; WRAM0 scratch for the box restore (private stack area, idle outside PrivCall)
+GCF_MODE    equ $cda0          ; GCFilter: the wGCOwnerless mode (WRAM0 free area)
+GCB         equ $cd80          ; 32 bytes (WRAM0 above the private stack, never used by the game): GCRowMark's marks
 RC_SCRW     equ $cd70          ; box width while switched to bank 3
 ; Party list cache (39:4931 draws the party rows $D160-$D21F every main-loop pass after the game cleared them)
 PL_ROW0     equ $d160          ; 6 rows x 20 cells
@@ -4118,7 +4120,14 @@ Dedupe:
 GC:
     ld hl, wGCCount
     inc [hl]
+    ld hl, GCB
+    ld b, 32
+    xor a
+.z: ld [hli], a
+    dec b
+    jr nz, .z
     call GCScan
+    call GCFlush            ; wBits |= the marks GCRowMark made in WRAM0
     ld hl, wGame
     ld de, wBits
     ld bc, wGameNew
@@ -4237,10 +4246,7 @@ GCScan:
     ld hl, $d000
     ld bc, 18*32
     ld a, 2
-    ld [wGCOwnerless], a
-    call .scan2
-    xor a
-    ld [wGCOwnerless], a
+    call .filtered
     jr .bgskip
 .bgown:                     ; third pass: no BG cell counts (the game's own tiles stay reserved by wGame; the
                             ; list's restored cells have no owner entry, so an ownerless scan kept them all)
@@ -4273,8 +4279,16 @@ GCScan:
     ld bc, 18*32
 .ownerless:                 ; scan BC cells at HL marking only slots without an owning text cell
     ld a, 1
-    ld [wGCOwnerless], a
+.filtered:                  ; A = wGCOwnerless mode for this scan: GCRowMark collects the codes in GCB (emptied
+    ld [wGCOwnerless], a    ; first), GCFilter keeps those the mode marks (one owner/stamp check per code)
+    push bc
+    push hl
+    call GCFlush
+    pop hl
+    pop bc
     call .scan2
+    call GCFilter
+    call GCFlush
     xor a
     ld [wGCOwnerless], a
     ret
@@ -4319,6 +4333,13 @@ GCScan:
     jr nz, .l
     pop hl
     push hl
+    ld a, [wLayout]         ; layout 0/1: marks in WRAM0 without leaving bank 3 (GCFilter after ownerless scans)
+    cp 2
+    jr nc, .old
+    ld c, a
+    call GCRowMark
+    jp .rowdone
+.old:
     call GCRowFast
     jp .rowdone
 .l: pop hl
@@ -4414,6 +4435,162 @@ GCRowFast:
     pop hl
     pop bc
     jr .n
+
+; GC fast row, normal pass (wGCOwnerless = 0), layout C = 0 (flat) or 1 (split): HL = row start. Bank 3 stays
+; mapped: the slot code comes from the cell's code and attribute (GCSlot's rules) and is marked in GCB (WRAM0;
+; GC ORs it into wBits). Only a cell in the other layout's reading (owner check, bank 6) goes through GCSlot.
+GCRowMark:
+    ld a, 3
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld b, 21
+.f: ld a, [hli]
+    ld e, a
+    ld d, high(MaybeSlot)
+    ld a, [de]
+    or a
+    jr nz, .slot
+.n: dec b
+    jr nz, .f
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
+.slot:
+    dec hl
+    set 2, h                ; attribute (+$400)
+    ld d, [hl]
+    res 2, h
+    inc hl
+    ld a, c
+    or a
+    jr z, .flat
+    bit 3, d                ; split: VRAM1 code < $70 = slot code | $80; VRAM0 low code = itself; VRAM0 $80+ =
+    ld a, e                 ; the flat reading (owner check)
+    jr z, .s0
+    cp $70
+    jr nc, .n
+    or $80
+    jr .mk
+.s0: bit 7, a
+    jr z, .mk
+    jr .slow
+.flat:
+    bit 3, d                ; flat: VRAM0 = itself; VRAM1 code < $70 = the split reading (owner check)
+    ld a, e
+    jr z, .mk
+    cp $70
+    jr nc, .n
+.slow:
+    push bc
+    push hl
+    dec hl
+    set 2, h
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    call GCSlot
+    ld a, 3
+    ldh [hSVBK], a
+    ldh [$70], a
+    pop hl
+    pop bc
+    jr .n
+.mk: push hl                ; GCB[code >> 3] |= 1 << (code & 7)
+    ld l, a
+    ld h, high(GCMaskTab)
+    ld e, [hl]
+    inc h                   ; GCByteTab
+    ld l, [hl]
+    ld h, high(GCB)
+    ld a, [hl]
+    or e
+    ld [hl], a
+    pop hl
+    jr .n
+
+; wBits |= GCB, GCB = 0
+GCFlush:
+    ld hl, GCB
+    ld de, wBits
+    ld b, 32
+.m: ld a, [de]
+    or [hl]
+    ld [de], a
+    xor a
+    ld [hli], a
+    inc de
+    dec b
+    jr nz, .m
+    ret
+
+; after an ownerless scan (wGCOwnerless 1 or 2): keep in GCB only the codes GCSlot's rules mark in that mode
+; (1: no owning text cell, or text drawn in the last STAMP_KEEP frames; 2: that recent text only)
+GCFilter:
+    ld a, [wGCOwnerless]
+    ld [GCF_MODE], a
+    ld a, MAP_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld hl, GCB
+    ld e, 0                 ; code of the current bit
+.byte:
+    ld a, [hl]
+    or a
+    jr nz, .bits
+    ld a, e
+    add 8
+    ld e, a
+    jr .next
+.bits:
+    ld b, 1
+.bit:
+    ld a, [hl]
+    and b
+    jr z, .nb
+    call .keep
+    jr c, .nb
+    ld a, b
+    cpl
+    and [hl]
+    ld [hl], a
+.nb: inc e
+    sla b
+    jr nz, .bit
+.next:
+    inc hl
+    ld a, l
+    cp low(GCB) + 32
+    jr nz, .byte
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
+.keep:                      ; E = code, bank 6 mapped: carry = mark
+    push hl
+    ld a, [GCF_MODE]
+    cp 2
+    jr z, .st
+    ld l, e                 ; owner word ($D800 + code * 2)
+    ld h, 0
+    add hl, hl
+    ld a, h
+    add $d8
+    ld h, a
+    ld a, [hli]
+    or [hl]
+    jr nz, .st
+    pop hl
+    scf
+    ret
+.st:
+    ld l, e
+    ld h, high(wStamp)
+    ld a, [$c00a]
+    sub [hl]
+    pop hl
+    cp STAMP_KEEP           ; carry = drawn in the last STAMP_KEEP frames
+    ret
 
 ; GC: mark the slot a cell shows. E = code, D = attribute, HL = the cell's attribute address (bank 3 + $400);
 ; home bank mapped. Current layout as before; the other layout's reading counts only for cells that own the slot
@@ -7119,7 +7296,14 @@ NoticeText:                 ; NOTICE_LINES x 28 bytes, $00-terminated lines
     ds NOTICE_LINES * 28, $00
 SpellNames:                 ; 125 x [bank][lo][hi], filled by tools/insert.py (bank 0 = use the record)
     ds 125*3, $00
-    assert @ <= $6e00, "VWF bank: code and data run into MaybeSlot/BitMask/ShiftTab"
+    assert @ <= $6c00, "VWF bank: code and data run into GCMaskTab/MaybeSlot/BitMask/ShiftTab"
+    org VWF_BANK, $6c00
+GCMaskTab:                  ; 256 bytes: 1 << (code & 7)   (GCRowMark)
+    incbin "../build/gcmask.bin"
+GCByteTab:                  ; 256 bytes: low(GCB) + code >> 3 (must follow GCMaskTab)
+    incbin "../build/gcbyte.bin"
+    assert low(GCB) == $80, "gcbyte.bin assumes GCB at $xx80"
+    assert high(GCMaskTab) + 1 == high(GCByteTab), "GCByteTab must follow GCMaskTab"
     org VWF_BANK, $6e00
 MaybeSlot:                  ; 256 bytes (page-aligned), built by tools/build.py: nonzero = this cell code can
     incbin "../build/maybeslot.bin"     ; be a slot (code, or code|$80 for a VRAM1 code < $70)

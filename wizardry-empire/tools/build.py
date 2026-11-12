@@ -62,6 +62,8 @@ def gen_bins():
     # GC prefilter: a cell code that can be a slot in some layout (code itself, or code|$80 for VRAM1 low codes)
     maybe = bytes(1 if flags[e] or (e < 0x70 and flags[e | 0x80]) else 0 for e in range(256))
     open(os.path.join(BUILD, "maybeslot.bin"), "wb").write(maybe)
+    open(os.path.join(BUILD, "gcmask.bin"), "wb").write(bytes(1 << (c & 7) for c in range(256)))
+    open(os.path.join(BUILD, "gcbyte.bin"), "wb").write(bytes(0x80 + (c >> 3) for c in range(256)))  # low(GCB) = $80
     open(os.path.join(BUILD, "card_status.bin"), "wb").write(card_status(adv))
 
 
