@@ -97,19 +97,41 @@ class Painter:
             self.d.line([ax + (bx - ax) * k // n, ay + (by - ay) * k // n,
                          ax + (bx - ax) * (k + 1) // n, ay + (by - ay) * (k + 1) // n], fill=SPECIAL, width=3)
 
-    def door(self, seg, one_way=None):
-        """brown bar across the wall; one_way = side index the party may pass towards (arrow)"""
+    def door(self, seg, one_way=None, col=DOOR):
+        """bar across the wall (brown: door, red: locked door); one_way = side the party may pass towards (arrow)"""
         ax, ay, bx, by = seg
         mx, my = (ax + bx) // 2, (ay + by) // 2
-        if ay == by:
-            self.d.rectangle([mx - 9, my - 3, mx + 9, my + 3], fill=DOOR)
-        else:
-            self.d.rectangle([mx - 3, my - 9, mx + 3, my + 9], fill=DOOR)
+        if col is not None:
+            if ay == by:
+                self.d.rectangle([mx - 9, my - 3, mx + 9, my + 3], fill=col)
+            else:
+                self.d.rectangle([mx - 3, my - 9, mx + 3, my + 9], fill=col)
         if one_way is not None:
             dx, dy = STEP[one_way][0], -STEP[one_way][1]          # screen y grows downwards
             tip = (mx + dx * 12, my + dy * 12)
             base = [(mx + dx * 3 - dy * 6, my + dy * 3 - dx * 6), (mx + dx * 3 + dy * 6, my + dy * 3 + dx * 6)]
             self.d.polygon([tip] + base, fill=INK)
+
+
+def side_kind(cells, xy, dd):
+    """What the party meets leaving square xy through side dd: open, wall, door, secret (special wall on a hidden
+    spot: 'Ouch!' until the spot's flag is set) or locked (special wall elsewhere: 'It is locked.' until picked)."""
+    v = (cells[xy][0] >> (2 * dd)) & 3
+    if v == 3:
+        return "secret" if cells[xy][2] == 4 else "locked"
+    return ("open", "wall", "door")[v]
+
+
+def edge(cells, xy, dd):
+    """Classify the edge between xy and its neighbour in direction dd (both stored sides)."""
+    n = ((xy[0] + STEP[dd][0]) & 15, (xy[1] + STEP[dd][1]) & 15)
+    a, b = side_kind(cells, xy, dd), side_kind(cells, n, (dd + 2) % 4)
+    free = ("open", "door")
+    one_way = None
+    if (a in free) != (b in free):
+        one_way = dd if a in free else (dd + 2) % 4         # always passable this way
+    return {"wall": (a, b) != ("open", "open"), "door": "door" in (a, b), "secret": "secret" in (a, b),
+            "locked": "locked" in (a, b) and "secret" not in (a, b), "one_way": one_way, "sides": (a, b)}
 
 
 def fonts():
@@ -168,30 +190,28 @@ def draw(cells, out, floor):
         elif t == 9:     # marker square: small grey dot
             d.ellipse([x0 + CELL // 2 - 2, y0 + CELL // 2 - 2, x0 + CELL // 2 + 2, y0 + CELL // 2 + 2], fill=NOTE_TXT)
 
-    # ---- edges: walls first, then special walls, then doors (a door wins where the two sides disagree)
+    # ---- edges: walls first, then secret doors, then doors and locked doors (arrow = the way that is always open)
     walls, specials, doors = [], [], []
     for (x, y), (w, a, t, z, p) in cells.items():
         x0, y0, x1, y1 = box(x, y)
         sides = {0: (x0, y0, x1, y0), 1: (x1, y0, x1, y1), 2: (x0, y1, x1, y1), 3: (x0, y0, x0, y1)}
         for dd, seg in sides.items():
-            mine = (w >> (2 * dd)) & 3
-            nx, ny = (x + STEP[dd][0]) & 15, (y + STEP[dd][1]) & 15
-            theirs = (cells[nx, ny][0] >> (2 * ((dd + 2) % 4))) & 3
-            if mine or theirs:
+            if dd in (2, 3):
+                continue                                    # each edge once, from its south/west square
+            n = ((x + STEP[dd][0]) & 15, (y + STEP[dd][1]) & 15)
+            kind = edge(cells, (x, y), dd)
+            if kind["wall"]:
                 walls.append(seg)
-            if 3 in (mine, theirs):
+            if kind["secret"]:
                 specials.append(seg)
-            one_way = None
-            if (mine in (0, 2)) != (theirs in (0, 2)):       # passable from the open/door side only
-                one_way = dd if mine in (0, 2) else (dd + 2) % 4
-            if 2 in (mine, theirs) or one_way is not None:
-                doors.append((seg, one_way))
+            if kind["door"] or kind["locked"] or kind["one_way"] is not None:
+                doors.append((seg, kind["one_way"], SPECIAL if kind["locked"] else (DOOR if kind["door"] else None)))
     for seg in walls:
         P.wall(seg)
     for seg in specials:
         P.special(seg)
-    for seg, one_way in doors:
-        P.door(seg, one_way)
+    for seg, one_way, col in doors:
+        P.door(seg, one_way, col)
     d.rectangle([gx - 1, gy - 1, gx + GRIDW + 1, gy + GRIDW + 1], outline=INK, width=2)   # frame
 
     # ---- axes
@@ -223,9 +243,10 @@ def draw(cells, out, floor):
         ("Squares", [("UP", GREEN, "stairs up / DN down"), ("G", RED, "guarded square (fixed fight)"),
                      ("H", PURPLE, "hidden spot"), ("E", BLUE, "event (E1: one-shot)"),
                      ("B", BLUE, "button panel / C corpse"), ("T", ORANGE, "floor trap (see below)")]),
-        ("Walls and doors", ["wall", "door", "one-way door (arrow: way through)", "special wall (hidden door?)",
-                             "rock", "no random fights"]),
-        ("Zones", [(1, "damage zone"), (2, "anti-magic zone (inferred)"), (3, "both marks (no known effect)")]),
+        ("Walls and doors", ["wall", "door", "one-way door (arrow: way through)", "secret door (found by Search)",
+                             "locked door (Pick a lock)"]),
+        ("Floor and zones", ["rock", "no random fights", (1, "damage zone"), (2, "anti-magic zone (inferred)"),
+                             (3, "both marks (no known effect)")]),
     ]
     for gi, (head, items) in enumerate(groups):
         x = gx + gi * colw
@@ -237,21 +258,21 @@ def draw(cells, out, floor):
                 sample_cell(x, y, sym=sym, col=col)
             elif gi == 1:
                 text = item
-                if text == "rock":
-                    sample_cell(x, y, fill=ROCK)
-                elif text == "no random fights":
-                    sample_cell(x, y, fill=NOFIGHT)
-                else:
-                    sample_cell(x, y)
-                    seg = (x, y, x, y + S)               # the sample's left edge; arrows point into the cell
-                    P.wall(seg)
-                    if text.startswith("door"):
-                        P.door(seg)
-                    elif text.startswith("one-way"):
-                        P.door(seg, one_way=1)
-                    elif text.startswith("special"):
-                        d.line(seg, fill=(255, 255, 255), width=3)
-                        P.special(seg)
+                sample_cell(x, y)
+                seg = (x, y, x, y + S)                   # the sample's left edge; arrows point into the cell
+                P.wall(seg)
+                if text.startswith("door"):
+                    P.door(seg)
+                elif text.startswith("one-way"):
+                    P.door(seg, one_way=1)
+                elif text.startswith("locked"):
+                    P.door(seg, col=SPECIAL)
+                elif text.startswith("secret"):
+                    d.line(seg, fill=(255, 255, 255), width=3)
+                    P.special(seg)
+            elif isinstance(item, str):
+                text = item
+                sample_cell(x, y, fill=ROCK if text == "rock" else NOFIGHT)
             else:
                 z, text = item
                 sample_cell(x, y, zone=z)
@@ -290,15 +311,24 @@ def main(argv):
                 if t == 8:
                     kind += " (%s, strength %d)" % (trap.get(p & 0xE0, "?"), p & 0x1F)
                 print("  (%d,%d): %s, param %d, area %d%s" % (x, y, kind, p, a, ", " + zones[z] if z else ""))
-        print("one-way doors (from -> to, direction):")
+        diff = rom[0x20 * 0x4000 + 0x3100:][:128]       # 20:7100: difficulty per flag (x5), hidden spots and locks
+        print("one-way doors (from -> to, direction; the other way is what the far side says):")
         dirs = "NESW"
-        for (x, y), (w, a, t, z, p) in sorted(cells.items()):
-            for dd in range(4):
-                mine = (w >> (2 * dd)) & 3
-                nx, ny = (x + STEP[dd][0]) & 15, (y + STEP[dd][1]) & 15
-                theirs = (cells[nx, ny][0] >> (2 * ((dd + 2) % 4))) & 3
-                if mine in (0, 2) and theirs not in (0, 2):
-                    print("  (%d,%d) -> (%d,%d) %s%s" % (x, y, nx, ny, dirs[dd], " (special wall on the far side)" if theirs == 3 else ""))
+        found = []
+        for (x, y) in sorted(cells):
+            for dd in (0, 1):
+                k = edge(cells, (x, y), dd)
+                n = ((x + STEP[dd][0]) & 15, (y + STEP[dd][1]) & 15)
+                if k["one_way"] is not None:
+                    a, b = ((x, y), n) if k["one_way"] == dd else (n, (x, y))
+                    back = k["sides"][1] if k["one_way"] == dd else k["sides"][0]
+                    print("  (%d,%d) -> (%d,%d) %s; back: %s" % (a + b + (dirs[k["one_way"]], back)))
+                for side, sq in zip(k["sides"], ((x, y), n)):
+                    if side in ("secret", "locked"):
+                        found.append((side, sq, n if sq == (x, y) else (x, y), cells[sq][4]))
+        print("secret and locked doors (seen from -> to, flag, difficulty = 5 x table value):")
+        for side, sq, to, flag in found:
+            print("  %s door (%d,%d) -> (%d,%d), flag %d, difficulty %d" % ((side,) + sq + to + (flag, 5 * diff[flag & 127])))
         print("doors (two-way): %d" % doors(cells))
         guards = {}
         for xy, (w, a, t, z, p) in sorted(cells.items()):
@@ -307,7 +337,7 @@ def main(argv):
         shared = [v for v in guards.values() if len(v) > 1]
         print("guarded squares sharing one once-per-visit mark: " +
               ("; ".join(" + ".join("(%d,%d)" % xy for xy in v) for v in shared) if shared else "none"))
-        print("on foot from each stairs (one-way doors in their direction; special walls closed / open):")
+        print("on foot from each stairs (one-way doors in their direction; secret and locked doors shut / open):")
         for xy, (w, a, t, z, p) in sorted(cells.items()):
             if t in (2, 3):
                 shut, opened = reach(cells, xy, False), reach(cells, xy, True)

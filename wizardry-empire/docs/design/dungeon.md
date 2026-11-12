@@ -15,8 +15,8 @@ Related documents: monsters and encounter tables in [monsters.md](monsters.md) a
 - **30 floors**, each a **16 × 16 grid whose edges wrap around**: walking off the east edge brings you in on the
   west edge.
 - **Floors 1-20** are the main dungeon, linked by stairs plus two chutes. Floor 20 is the floor of the Emperor of the
-  Abyss and the final battle with Demon Adish; it has no stairs. **Floors 21-30** are a second, harder area (monsters
-  of level 20-30). No stairs lead there from floor 20; how the party gets there was not traced
+  Abyss and the final battle with Demon Adish; it has no stairs. **Floors 21-30** are a second, harder area (the
+  strongest monsters, up to level 29, mixed with weaker ones). No stairs lead there from floor 20; how the party gets there was not traced
   ([findings](findings.md#28-floors-21-30-are-not-reached-by-stairs)).
 - **Stairs keep your position:** a down stair at (x, y) on floor n puts you on the up stair at (x, y) on floor n+1.
 - **Squares can hurt you:** pits, chutes, ceiling traps, rockfall, vipers (poison) and spinners; **damage zones**
@@ -44,8 +44,7 @@ such as which event or trap.
   north-west corner. The maze entrance is the up stair at (0, 15) on floor 1.
 - **Wrapping:** both coordinates wrap, so the grid is a torus.
 - **Sides** (one per side of the square): open; wall (bumping says "Ouch!"); door (walking through it raises the
-  random-fight chance, section 4); and a fourth, unexplained kind of side
-  ([findings](findings.md#33-map-values-with-no-known-effect)).
+  random-fight chance, section 4); and a **secret or locked door** (section 3.6).
 - **One-way doors:** each side is stored on both of its squares, and the game only looks at the side of the square
   the party is leaving. Where one side is open or a door and the other side is a wall, the party can pass in one
   direction only and bumps into a wall ("Ouch!") coming back (verified on floor 1, both a door/wall and a reverse
@@ -73,11 +72,12 @@ The party moves between floors by stairs, chutes, teleporting events and (inferr
   stair sits directly above an up stair. Every floor change re-arms the guarded squares and one-shot events of the
   floor (section 4).
 - **Chutes** are floor traps (section 3.2) on floors 5, 6, 19, 24 and 29. How many floors a chute drops was not
-  traced. The chute at (0, 15) on floor 6 is inferred to lead to floor 7, and the one at (0, 5) on floor 19 to
+  traced. The chute at (0, 15) on floor 6 was inferred to lead to floor 7, but it has a wall on all four sides and cannot
+  be walked onto (computed from the map), so the way from 6 to 7 is open; and the one at (0, 5) on floor 19 to
   floor 20, because those floors have no stairs between them (inferred).
 - **Fairy twins** (Rei and Shia): with the Fairy's Heart in the party, one twin teleports the party to the other
   for 1 G, between floor 1 (2, 12) and floor 11 (11, 12).
-- **Button panels and key-holes.** Floors 3 to 7 have a panel with buttons A-E next to a door with a key-hole.
+- **Button panels and key-holes.** Floors 3 to 19 have panels with buttons A-E, most of them next to a door with a key-hole.
   A sign reading "Maze Elevator Control Room" exists, and the Key Card's special power is "elevator key" (game
   text), so the panels are inferred to be the **Maze Elevator** (inferred). Their destinations were not traced.
 - **Events that teleport** (any event can move the party).
@@ -117,7 +117,8 @@ The same types exist on every floor; a few extra types are tied to one floor's e
 | Floor | Nothing. |
 | **Rock** | Only reachable by teleport. Everyone's HP drops to 0 and everyone is Dead ("In rock"); the party is lost to town. |
 | **Stairs up / down** | Yes/No prompt; one floor up or down, same x, y. |
-| **Hidden spot** | Members may notice something (section 3.3). |
+| **Hidden spot** | Members may notice something (section 3.3); the square holds a secret door (section 3.6). |
+| **Lock square** | Nothing on stepping; the square holds a locked door (section 3.6). |
 | **Guarded square** | A fixed fight, once per floor visit; winning gives a chest (section 4). |
 | **Button panel** | "A row of buttons. Which one will you press? A B C D E" (the elevator, inferred). |
 | **Floor trap** | Chute, pit, ceiling trap, rockfall, viper or spinner (section 3.2). |
@@ -160,9 +161,9 @@ Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types)
 
 ### 3.3 Hidden spots
 
-Squares where a sharp-eyed member may notice something ("X noticed something"). They come in pairs on both sides of
-a wall, so they are inferred to be **hidden doors** (inferred). A spot works once; how long it stays used was not
-traced.
+Squares where a sharp-eyed member may notice something ("X noticed something"). Every hidden spot faces a **secret
+door** (section 3.6). Noticing is only a hint: it does not open anything, and **Search** finds the door without
+it. Once the door is found, the spot stays silent.
 
 Each member who is OK, Afraid or Asleep rolls once. Skill by class (level = character level; a negative level
 part counts as 0):
@@ -208,8 +209,13 @@ named on a sign (inferred).
 | 8 | 16 damage (area 101) |
 | 11 | 121 damage (area 102, about half the floor) |
 | 12 | 19 marked as both zone kinds |
-| 15, 18, 22-24, 26 | zone squares present (kind not traced) |
-| 25 | damage zone (area 103) |
+| 15 | 13 anti-magic, 46 both |
+| 18 | 10 anti-magic, 27 both |
+| 22 | 88 anti-magic |
+| 23 | 49 both |
+| 24 | 32 anti-magic, 15 both |
+| 25 | 3 damage (area 103), 11 anti-magic, 42 both |
+| 26 | 73 both |
 | 27 | 15 damage (area 104) |
 | 28 | 126 marked as both zone kinds, 41 anti-magic |
 | 30 | 16 damage (area 105) |
@@ -230,6 +236,49 @@ Helm of Warping, [items.md](items.md#43-equipped-effects)) (inferred).
 **Notes:** whether the random square can be rock (which kills the party) was not traced.
 
 Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format)
+
+### 3.6 Secret and locked doors
+
+The fourth kind of side is a door that starts closed. Which kind it is depends on the square the party stands on
+(verified in the game, floor 1):
+
+- **Secret door** (on a hidden spot): looks and acts like a wall ("Ouch!") until found. Choosing **Search** in the
+  maze menu while standing on the spot and facing the door always finds it: "Found a secret door!" (verified). There
+  is no roll and noticing the spot first is not needed.
+- **Locked door** (on a lock square): shows a locked double door, "It is locked." **Pick a lock** in the maze menu
+  asks "Who will pick the lock?"; the chosen member rolls once per try. A failed try says "Failed." and costs nothing
+  that was found, so it can be repeated (inferred).
+
+Lock-picking skill by class (level = character level; a negative skill counts as 0):
+
+| Class | Skill | From level 51 |
+|---|---|---|
+| Thief | 5 × level | 255 |
+| Ninja | 5 × level − 25 | 230 |
+| Kunoichi | 5 × level − 50 | 205 |
+| Everyone else | level/2 − 10 | |
+
+Each lock has a difficulty D = 5 × a value set for that lock (the same table as the hidden spots). With the margin
+m = skill − D:
+
+| Margin m | Chance to open |
+|---|---|
+| below 0 | never |
+| 0 | only on a roll of 0: about 1% |
+| 1 or more | 2 × m + AGI, at most 95% |
+
+So a Thief's level and the picker's AGI decide it; LUK plays no part, unlike noticing a hidden spot.
+
+**Both kinds stay open for good:** a found or picked door is remembered in the saved game, for every later visit
+(inferred: the flags are saved and nothing was found that clears them). Doors with an ordinary door or open side on
+the other face can always be passed from that side; the maps draw secret doors as a red dashed line and locked doors
+as a red bar ([maps/README.md](maps/README.md)).
+
+Example (computed): the floor 1 lock between (4, 7) and (4, 8) has difficulty 5. A level 1 Thief (skill 5) has
+m = 0, about 1%; at level 2 (skill 10, m = 5) with AGI 12 the chance is 2 × 5 + 12 = 22%. A level 1 Fighter
+(skill 0) cannot open it.
+
+Tech: [dungeon.md §2.1](../tech/dungeon.md#21-secret-and-locked-doors-wall-value-3)
 
 ---
 
@@ -477,9 +526,9 @@ circle is named by its summon ([spells.md](spells.md#6-summoner-pacts)). Floor m
 | 21 | no up; down (12,2) | 23 | 6 (areas 23, 24) | 27 floor traps; 3 hidden | Vampire Lord circle (0,3) |
 | 22 | up (12,2); no down | 24 (+25, 26: one square each) | 8 (area 24) | 12 traps | none |
 | 23 | no up; down ×5 | 25 (+27: three squares) | 8 (areas 25, 26) | 12 traps; 4 hidden | Shadow Dragon circle (13,3) |
-| 24 | up ×5; down ×3 | 26 (+29: two squares) | 6 (area 26) | chute, 2 pits | Magic Gate circle (7,15) |
+| 24 | up ×5; down ×3 | 26 (+29: two squares) | 6 (area 26) | chute, 2 pits; 1 hidden | Magic Gate circle (7,15) |
 | 25 | up ×4; no down | 27, 103 (damage zone) | 11 (areas 27, 103) | 20 traps (many spinners) | well (0,0) |
-| 26 | none | 28, 29 | 5 (areas 28, 30) | 11 traps (6 vipers) | Ancient One circle (12,3) |
+| 26 | none | 28, 29 | 5 (areas 28, 30) | 11 traps (5 vipers, 4 pits, 2 rockfalls) | Ancient One circle (12,3) |
 | 27 | none | 29, 104 (damage zone) (+31: one square) | 4 (area 31) | 8 traps | none |
 | 28 | none | 30 (+32: one square) | 5 (area 32) | **122 trap squares** (mostly spinners) | none |
 | 29 | none | 31, 33 | 17 (areas 31, 33) | 13 traps, chute | From Beyond circle (11,1) |

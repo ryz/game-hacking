@@ -442,8 +442,8 @@ Tech: [monsters.md §2.3](../tech/monsters.md#23-group-formation), [dungeon.md �
 
 ## 22. Two damage-zone areas have empty formations
 
-**Behavior:** Area 104 (the damage zone on floor 27) lists one real formation and two empty ones; area 105 (the
-damage zone on floor 30) lists only empty ones.
+**Behavior:** Area 104 (the damage zone on floor 27) has one real formation in one of its four slots and empty
+ones in the other three; area 105 (the damage zone on floor 30) is empty in all four slots.
 
 **Intended:** Unclear: either "no random monsters in these zones" or unfinished data. What the game does when it
 picks an empty formation was not traced.
@@ -548,7 +548,7 @@ clear) (inferred). The gaps of the main dungeon (6 → 7, 19 → 20) are inferre
 
 **Confidence:** Read from the maps; how the area is entered was not traced.
 
-**Impact:** The late-game route (floors 21-30, monsters of level 20-30, the true final battle) cannot be described
+**Impact:** The late-game route (floors 21-30, the strongest monsters, the true final battle) cannot be described
 yet.
 
 Design: [dungeon.md](dungeon.md#2-how-floors-connect) ·
@@ -630,13 +630,12 @@ Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format), [chara
 
 ## 33. Map values with no known effect
 
-**Behavior:** Two map values do nothing that has been found:
-- a fourth kind of wall side besides open, wall and door, whose behavior depends on something not traced;
-- squares marked as both zone kinds, on 60 squares of floor 5, 19 of floor 12 and 126 of floor 28. One of the two
-  marks also switches the wall pictures, so these squares at least look different.
+**Behavior:** Squares marked as both zone kinds do nothing that has been found. They are on floors 5 (60 squares),
+12 (19), 15 (46), 18 (27), 23 (49), 24 (15), 25 (42), 26 (73) and 28 (126). One of the two marks also switches the
+wall pictures, so these squares at least look different. (The fourth wall value, listed here before, is the secret
+or locked door: [dungeon.md](dungeon.md#36-secret-and-locked-doors).)
 
-**Intended:** A decorative marker (different wall pictures) and perhaps a special wall type such as a one-way or
-secret wall (inferred).
+**Intended:** A decorative marker (different wall pictures) (inferred).
 
 **Confidence:** The values are read from the maps; their effect is open.
 

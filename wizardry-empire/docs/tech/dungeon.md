@@ -13,7 +13,7 @@ that file. Earlier reachability notes: `docs/re/reach.md`.
 - **30 maze levels** (`$CB82` = 0-29), each a **16 × 16 grid** that **wraps around** at the edges (`20:4740`:
   coordinates are `& $0F`). Floors 1-20 form the main dungeon, linked by stairs and chutes. Floor 20 is the Abyss
   Emperor's floor (final boss Demon Adish) and has no stairs. Floors 21-30 form a second, harder area (Dark/Ancient
-  monsters, level 20-30). Its top floor (21) has no up stairs, so it is entered some other way **(not traced)**.
+  monsters, up to level 29; the encounter tables also hold weaker ones from level 3). Its top floor (21) has no up stairs, so it is entered some other way **(not traced)**.
 - **Stairs keep your x,y.** A down-stair at (x,y) on floor n lands on the up-stair at (x,y) on floor n+1. Every
   floor change re-arms all guarded squares and one-shot events of the floor.
 - **Square types** (byte 2 of a cell): rock (instant party death if you are teleported into it), stairs, guarded
@@ -37,7 +37,7 @@ Code: `20:58EA`, `20:5909`.
 
 | Byte | Meaning |
 |---|---|
-| 0 Walls, 2 bits per facing (bits 2d, 2d+1; d = 0 north/y+1, 1 east/x+1, 2 south, 3 west). 0 open, 1 wall ("Ouch!"), 2 door (`20:46F4`, also raises the fight chance), 3 special (depends on `e` bit 0, `20:45EF`, not traced). **Each edge is stored on both squares and movement checks only the square being left**: an edge that is open/door on one side and wall/special on the other is a one-way door (emulator 2026-11-12, floor 1: (12,15) east -> (13,15) passes, (13,15) west bumps 'Ouch!' (`$C1BF` = 31:4596); (14,12) south passes, (14,11) north bumps). 53 door/wall edges on 16 floors; 222 open/wall edges on floor 20 alone (`tools/designtables/floormap.py`) |
+| 0 Walls, 2 bits per facing (bits 2d, 2d+1; d = 0 north/y+1, 1 east/x+1, 2 south, 3 west). 0 open, 1 wall ("Ouch!"), 2 door (`20:46F4`, also raises the fight chance), 3 **secret or locked door** (`20:45EF`, section 2.1). **Each edge is stored on both squares and movement checks only the square being left**: an edge that is open/door on one side and wall/special on the other is a one-way door (emulator 2026-11-12, floor 1: (12,15) east -> (13,15) passes, (13,15) west bumps 'Ouch!' (`$C1BF` = 31:4596); (14,12) south passes, (14,11) north bumps). 53 door/wall edges on 16 floors; 222 open/wall edges on floor 20 alone (`tools/designtables/floormap.py`) |
 | 1 | Encounter area id (0 = no random fights). On guarded squares it is the guard's area id |
 | 2 | bits 0-5 square type (section 2); bits 6-7 zone: `01` damage zone (`20:4463`), `10` cancel zone (`20:5A8F`, below), `11` no effect found; bit 6 also changes the wall graphics set (`20:4393`) |
 | 3 | Parameter (event number, trap kind, one-shot bit index) |
@@ -66,10 +66,11 @@ Code: handler table `20:6405` per floor; types 0-14 are the same on every floor.
 
 | Type | Name | Effect (code) |
 |---|---|---|
-| 0, 5 | floor | nothing |
+| 0 | floor | nothing |
+| 5 | **lock square** | nothing when stepped on; p = the lock flag of its locked doors (section 2.1). 46 lock squares, each with at least one locked side; flags 30 and 33-58 |
 | 1 | **rock** | `20:5AC7`: everyone's HP 0, status Dead, "In rock" (`49:4483`), party lost to town. Only reachable by teleport |
 | 2 / 3 | **stairs up / down** | prompt Yes/No (`49:41FA` / `422B`). Floor ±1, same x,y (`20:5B74`, `5BB9`). Resets one-shot flags (`20:58DD`) |
-| 4 | **hidden spot** | `20:5BFE`, one-shot by `$CB9B` bit p. Each member with status < 3 rolls to notice ("X noticed something", `49:44BC`). Skill (`20:5C20-5C93`, level L capped at 255): Thief LUK/2 + 5L; Ninja LUK/2 + max(0, 5L − 25); Kunoichi LUK/4 + max(0, 5L − 50); others max(0, L/4 − 10). From L 51 the level part is fixed (Thief 255, Ninja 230, Kunoichi 205); the total is capped at 255. Difficulty D = 5 × `20:7100[p]`. Margin m = skill − D (`20:5CA4-5CB4`): **m < 0: never; m = 0: only a roll of 0 (about 1 %); m = 1-4: 4m % (4, 8, 12, 16 %); m ≥ 5: 80 %** (roll `Random(99)`, success if the roll is 0 or below the chance, `20:5CB6-5CBF`). The jump from 16 % to 80 % at m = 5 is in the code (`cp $05` / `ld a,$50`). Corrected 2026-11-12: was "4 × (skill − difficulty) % if < 5 points over, else 80 % (+1 % on a roll of 0)". They come in pairs on both sides of a wall, so they are inferred to be hidden doors |
+| 4 | **hidden spot** | `20:5BFE`, one-shot by `$CB9B` bit p. Each member with status < 3 rolls to notice ("X noticed something", `49:44BC`). Skill (`20:5C20-5C93`, level L capped at 255): Thief LUK/2 + 5L; Ninja LUK/2 + max(0, 5L − 25); Kunoichi LUK/4 + max(0, 5L − 50); others max(0, L/4 − 10). From L 51 the level part is fixed (Thief 255, Ninja 230, Kunoichi 205); the total is capped at 255. Difficulty D = 5 × `20:7100[p]`. Margin m = skill − D (`20:5CA4-5CB4`): **m < 0: never; m = 0: only a roll of 0 (about 1 %); m = 1-4: 4m % (4, 8, 12, 16 %); m ≥ 5: 80 %** (roll `Random(99)`, success if the roll is 0 or below the chance, `20:5CB6-5CBF`). The jump from 16 % to 80 % at m = 5 is in the code (`cp $05` / `ld a,$50`). Corrected 2026-11-12: was "4 × (skill − difficulty) % if < 5 points over, else 80 % (+1 % on a roll of 0)". Noticing only shows the message: it does **not** set the flag (`20:5CC1-5CE1` loops on to the next member). The spot belongs to a secret door (section 2.1) |
 | 6 | **guarded square** | `20:5CF0`: fixed fight with area byte 1, once per floor visit (`$C6DB` bit p). The victory gives a chest (`$C00B` bit 2, items.md 10) |
 | 7 | button panel | event `$07` → `2D:640F` "A row of buttons. Which one will you press? A B C D E". p = 64-68. Next to a key-hole on most floors; the sign "Maze Elevator Control Room" exists, so these are inferred to be the elevator |
 | 8 | **floor trap**, kind = p & `$E0` | `$00` Chute ("Chute"), `$20` Pit ("Pit"): both are skipped with "But you are floating" when levitating (`$CB84` check). `$40` Ceiling trap, `$60` Rockfall: damage, amounts not traced. `$80` Viper: each member saves with `rand(0..99)` < level/2 + LUK − (p & `$1F`) (rolls 0-4 always poison, 99 always saves), else poisoned (`20:5D4C`). `$A0` Spinner: random facing (`20:47FB`) |
@@ -83,6 +84,43 @@ Code: handler table `20:6405` per floor; types 0-14 are the same on every floor.
 Anything else means the floor or position changed (teleport), and the map is reloaded.
 
 ---
+
+### 2.1 Secret and locked doors (wall value 3)
+
+Verified in the emulator 2026-11-12 (floor 1) and read from `20:45EF-4611`, `20:4F40-50F7`, `20:5188-51DB`.
+
+- **Moving** through a side with value 3 (`20:45EF`, forward move, `e` bit 0 set) takes the cell's p (byte 3 of
+  the square being **left**) as a flag number and tests `$CB9B` bit p (`0:2B8C`). Set: the side works as a door
+  (`20:46F4`). Clear: on a hidden-spot square (type 4) it is a wall ("Ouch!", `20:46BC`); on any other square the
+  locked-door picture is shown with "It is locked." (`49:43A0`, `20:4611-46B9`).
+- **Secret door** = value-3 side on a hidden spot. The maze menu's **Search** (`20:512E`, menu item 0) facing such a
+  side with the flag clear sets the flag (`0:2BA6`) and says "Found a secret door!" (`49:42E3`); no roll. Otherwise
+  "Nothing was found." (`49:42F3`). Verified: (0,9) facing east on floor 1, Search -> flag 2 set; walking east then
+  works.
+- **Locked door** = value-3 side on any other square (in the data: lock squares, type 5). The maze menu's
+  **Pick a lock** (`20:4EF0`, menu item 1) facing it with the flag clear asks "Who will pick the lock?"
+  (`49:435D`), then "Picking the lock" (`49:436B`). Skill of the chosen member (`20:5011-5066`, level L from
+  `0:2C72`):
+
+  | Class | Skill |
+  |---|---|
+  | Thief (3) | 5L, 255 from L 51 |
+  | Ninja (7) | 5L − 25 (at least 0), 230 from L 51 |
+  | Kunoichi (12) | 5L − 50 (at least 0), 205 from L 51 |
+  | others | L/2 − 10, at least 0 |
+
+  Difficulty D = 5 × `20:7100[p]` (the hidden-spot table). m = skill − D (`20:5075-508B`): m < 0 fails;
+  m = 0: success only on a roll of 0; m > 0: chance = min(95, 2m + AGI) % (AGI = `$C4E4`, the member's working
+  copy `+55`). Roll `Random(99)` (`0:0DC0`), success if the roll is 0 or below the chance (`20:5099-50A3`). Success
+  sets the flag: "The lock opened." (`49:437F`); else "Failed." (`49:4376`). No cost or penalty for a failure was
+  seen in the code (retry at will, inferred).
+- **The flags are global and saved:** `$CB9B-$CBA9` (15 bytes, 120 flags) are copied to SRAM `$AED3` with the save
+  (`0:2D13`, `0:2D65`), so a found secret door or picked lock stays open for good (inferred from the save copy; no
+  clearing code was found). Other readers: `20:5A04` (inferred: the 3D view, type 4) and `23:4345`.
+- Data: 20 secret doors seen from both sides, 13 with a door on the far side and 1 with a wall; 18 locked doors
+  seen from both sides and 11 with a door on the far side (`tools/designtables/floormap.py N --list`). One
+  locked side is on a plain square with p = 0: floor 15 (1,2), which therefore shares flag 0 with floor 1's secret
+  door at (11,15) (data oddity; untested).
 
 ## 3. Event catalogue
 
@@ -171,9 +209,9 @@ right; the floor table below gives the main area. (Clarified 2026-11-12.)
 | 21 | none up; down (12,2) | 23 | 6 (23, 24) | 27 floor traps; 3 hidden | circle 10 (0,3) |
 | 22 | up (12,2); no down | 24 (+25, 26: one square each) | 8 (24) | 12 traps | – |
 | 23 | none up; down ×5 | 25 (+27: three squares) | 8 (25, 26) | 12 traps; 4 hidden | circle 11 (13,3) |
-| 24 | up ×5; down ×3 | 26 (+29: two squares) | 6 (26) | chute, 2 pits | circle 12 (7,15) |
+| 24 | up ×5; down ×3 | 26 (+29: two squares) | 6 (26) | chute, 2 pits; 1 hidden | circle 12 (7,15) |
 | 25 | up ×4; no down | 27, 103 | 11 (27, 103) | 20 traps (many spinners) | well (0,0) |
-| 26 | none | 28, 29 | 5 (28, 30) | 11 traps (6 vipers) | circle 13 (12,3) |
+| 26 | none | 28, 29 | 5 (28, 30) | 11 traps (5 vipers, 4 pits, 2 rockfalls) | circle 13 (12,3) |
 | 27 | none | 29, 104 (damage zone) (+31: one square) | 4 (31) | 8 traps | – |
 | 28 | none | 30 (+32: one square) | 5 (32) | **122 trap squares** (spinner field) | – |
 | 29 | none | 31, 33 | 17 (31, 33) | 13 traps, chute | circle 14 (11,1) |
@@ -189,5 +227,5 @@ fairy teleports (1 ↔ 11), the button panels, and events that return a floor ch
   (the second-clear flag `$C5C6` bit 7, docs/re/missing-text.md). Not traced.
 - How many floors a chute drops, and the damage of pits, ceiling traps and rockfall (`20:5DD2-5F4B`).
 - The button-panel destinations (`2D:640F`, p 64-68) and the key items for the holes (`2D:666E`, p).
-- Wall value 3 (`20:45EF`) and zone value `11`.
+- Zone value `11`. (Wall value 3: solved, section 2.1.)
 - Encounter area ids 54-100 (not on any map).

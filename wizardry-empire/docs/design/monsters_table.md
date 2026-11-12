@@ -59,7 +59,7 @@ Rules behind each column: [monsters.md](monsters.md) and [combat.md](combat.md);
 | 38 | Titan | タイタン | 17 | 30-240 (30d8) | 0 | 2 | 1 | 21-63 (7d7+14) | 3 | 6 | - | - | - | 50/50/50/50/50/50/50/50 | 9330 | 160 | 29 | 20,30 | 19,28,30 | 22,32,46,79,91,94-95,99 |
 | 39 | Ettin | エティン | 11 | 12-96 (12d8) | 3 | 10 | 2 | 4-76 (4d19) | 1 | 6 | - | - | - | - | 3020 | 110 | 18 | 14,19 | 14,19 | 16,21,70,76-77 |
 | 40 | Ghoul | グール | 3 | 2-16 (2d8) | 6 | 19 | 3 | 1-4 (1d4) | 0 | 9 | U | - | paralyze, flee 5% | 0/0/0/0/100/0/0/0 | 360 | 40 | 4 | 5,16 | 5,16 | 7,18,53,57,73 |
-| 41 | Ghast | ガスト | 4 | 4-32 (4d8) | 4 | 17 | 3 | 1-5 (1d5) | 0 | 6 | U | - | paralyze, flee 5% | 0/0/0/0/100/0/0/0 | 390 | 40 | 14 | 8,11,13,20 | 8,11,19 | 15,22,53,67,69,80,101-102 |
+| 41 | Ghast | ガスト | 4 | 4-32 (4d8) | 4 | 17 | 3 | 1-5 (1d5) | 0 | 6 | U | - | paralyze, flee 5% | 0/0/0/0/100/0/0/0 | 390 | 40 | 14 | 13,20 | 19 | 15,22,53,67,69,80 |
 | 42 | Wight | ワイト | 6 | 9-37 (4d8+5) | 8 | 15 | 1 | 1-5 (1d5) | 0 | 6 | U | - | drain 1 | 0/100/0/0/100/0/0/0 | 220 | 20 | 4 | 5,8-9,11,16,25 | 5,8-9,11,16,25 | 7,11,18,53,57,62,73,101-103 |
 | 43 | Kunoichi | くのいち | 20 | 31-186 (31d6) | -9 | 2 | 7 | 15-31 (2d9+13) | 0 | 15 | - | Kunoichi* 7 | decap | - | 40960 | 180 | 44 | 26,29-30 | 26,28-30 | 28,32-33,88-89,93-100 |
 | 44 | Centaur | ケンタウロス | 4 | 6-48 (6d8) | 5 | 16 | 3 | 3-18 (3d6) | 2 | 13 | - | - | flee 10% | - | 440 | 50 | 6 | 7 | 7 | 9,58-59,61,92 |
@@ -67,7 +67,7 @@ Rules behind each column: [monsters.md](monsters.md) and [combat.md](combat.md);
 | 46 | Man Scorpion | マンスコーピオン | 8 | 9-72 (9d8) | 1 | 11 | 2 | 6-22 (4d5+2) | 1 | 9 | - | - | poison | - | 870 | 90 | 19 | 15-16 | 15-16 | 17-18,72-74 |
 | 47 | Gr. Medusa | グレーターメデューサ | 7 | 9-72 (9d8) | 3 | 11 | 1 | 3-18 (3d6) | 3 | 10 | - | - | poison, stone | 10/10/10/10/10/10/10/10 | 700 | 70 | 9 | 7,9 | 7,9 | 9,11,58-59,61,63 |
 | 48 | Stone Golem | ストーンゴーレム | 12 | 20-132 (16d8+4) | 0 | 8 | 1 | 13-43 (5d7+8) | 1 | 6 | golem | - | - | 50/20/20/0/100/20/0/0 | 3960 | 120 | 16 | 13,17 | 17 | 15,19,69,75 |
-| 49 | Iron Golem | アイアンゴーレム | 15 | 20-160 (20d8) | 3 | 3 | 1 | 5-55 (5d11) | 0 | 6 | golem | - | - | 100/100/100/0/100/100/0/0 | 7320 | 150 | 23 | 17,22-23,30 | 17,23,28,30 | 19,25,32,75,83-84,91,94-95,99 |
+| 49 | Iron Golem | アイアンゴーレム | 15 | 20-160 (20d8) | 3 | 3 | 1 | 5-55 (5d11) | 0 | 6 | golem | - | - | 100/100/100/0/100/100/0/0 | 7320 | 150 | 23 | 22-23,30 | 23,28,30 | 25,32,83-84,91,94-95,99 |
 | 50 | Doll Golem | ドールゴーレム | 10 | 12-96 (12d8) | 4 | 10 | 1 | 4-28 (4d7) | 0 | 6 | golem | - | decap | 0/0/0/0/100/0/0/0 | 1100 | 100 | 17 | 13,17,19 | 17,19 | 15,19,21,69,75-77,79 |
 | 51 | Glass Golem | グラスゴーレム | 9 | 11-88 (11d8) | 4 | 10 | 1 | 3-39 (3d13) | 0 | 6 | golem | - | - | 0/0/0/0/100/0/0/0 | 920 | 90 | 16 | 13,17 | 17 | 15,19,69,75 |
 | 52 | Goblin | ゴブリン | 2 | 1-7 (1d7) | 6 | 19 | 1 | 1-7 (1d7) | 0 | 10 | - | - | call 25%, flee 10% | - | 290 | 30 | 1 | 1-2,5 | 1-2,5 | 3-4,7,54,56 |
@@ -108,7 +108,7 @@ Rules behind each column: [monsters.md](monsters.md) and [combat.md](combat.md);
 | 87 | Zombie Lord | ゾンビロード | 6 | 8-64 (8d8) | 6 | 14 | 2 | 3-15 (3d5) | 0 | 6 | U | - | call 25% | 0/0/0/0/100/0/0/0 | 610 | 60 | 4 | 4,13,17-18 | 3-4,17-18 | 6,15,19-20,53,55,67,69,75 |
 | 88 | Giant Zombie | ジャイアントゾンビ | 12 | 14-112 (14d8) | 3 | 9 | 2 | 4-52 (4d13) | 0 | 5 | U | - | poison, breath(poison), call 25% | 0/0/0/0/100/0/0/0 | 5000 | 120 | 23 | 12,17-18,21 | 12,17-18,21 | 14,19-20,23,43,53,68,75,80,82 |
 | 89 | Assassin | アサシン | 3 | 7-42 (7d6) | 6 | 14 | 1 | 2-14 (2d7) | 0 | 12 | - | - | decap, flee 10% | - | 280 | 30 | 5 | 6,12 | 6,12 | 8,14,36,57,67 |
-| 90 | High Ninja | ハイニンジャ | 10 | 12-72 (12d6) | -2 | 9 | 3 | 7-19 (2d7+5) | 0 | 12 | - | - | decap | 10/10/10/10/80/10/0/0 | 1950 | 100 | 18 | 14,22,26 | 14,21-22,26 | 16,24,28,36,70-71,81,88-89 |
+| 90 | High Ninja | ハイニンジャ | 10 | 12-72 (12d6) | -2 | 9 | 3 | 7-19 (2d7+5) | 0 | 12 | - | - | decap | 10/10/10/10/80/10/0/0 | 1950 | 100 | 18 | 14,22,26 | 14,21-22,26 | 16,24,28,70-71,81,88-89 |
 | 91 | Master Ninja | マスターニンジャ | 14 | 18-108 (18d6) | -6 | 7 | 4 | 9-25 (2d9+7) | 0 | 13 | - | - | decap | 20/20/20/20/85/20/10/0 | 6110 | 140 | 31 | 22-23,26 | 21-23,26 | 24-25,28,36,81,83-84,87-90 |
 | 92 | High Master | ザ・ハイマスター | 17 | 25-150 (25d6) | -8 | 5 | 5 | 12-28 (2d9+10) | 0 | 13 | - | - | decap | 50/30/30/30/90/30/20/10 | 9060 | 160 | 34 | 23,25 | 25 | 27,86-88 |
 | 93 | Kamui | カムイ | 22 | 55-440 (55d8) | -15 | 2 | 10 | 19-43 (3d9+16) | 0 | 17 | - | - | decap | 70/50/50/50/100/50/30/20 | 77780 | 200 | 43 |  |  | 36 |
@@ -134,7 +134,7 @@ Rules behind each column: [monsters.md](monsters.md) and [combat.md](combat.md);
 | 113 | Swordmaster | ソードマスター | 16 | 25-200 (25d8) | -6 | 5 | 5 | 12-28 (2d9+10) | 0 | 11 | - | - | - | - | 8260 | 160 | 33 | 22-25 | 23-25 | 26-27,85,87 |
 | 114 | Sword Dancer | ソードダンサー | 18 | 30-240 (30d8) | -9 | 3 | 6 | 14-30 (2d9+12) | 0 | 11 | - | - | - | - | 16200 | 170 | 35 | 23-27 | 25 | 27,29,86,88-90 |
 | 115 | CreepingCoin | クリーピングコイン | 1 | 1 | 7 | 19 | 1 | 1-2 (1d2) | 0 | 14 | U | - | breath(lightning), call 65% | 95/100/95/95/100/95/80/95 | 260 | 20 | 1 | 1 | 1 | 2,34 |
-| 116 | Death Knight | デスナイト | 9 | 10-80 (10d8) | 2 | 10 | 3 | 2-22 (2d11) | 0 | 10 | U | - | - | 30/100/30/30/100/80/50/30 | 880 | 90 | 11 | 10,12 | 9-10,12 | 12,14,43,53,63,66,68 |
+| 116 | Death Knight | デスナイト | 9 | 10-80 (10d8) | 2 | 10 | 3 | 2-22 (2d11) | 0 | 10 | U | - | - | 30/100/30/30/100/80/50/30 | 880 | 90 | 11 | 12 | 12 | 14,43,53,68 |
 | 117 | Lich | リッチ | 21 | 36-288 (36d8) | 0 | 2 | 1 | 1-11 (1d11) | 0 | 8 | U | Mage 7 | paralyze | 50/100/50/100/100/0/10/50 | 50240 | 180 | 43 | 29-30 | 27-30 | 31-32,40,53,92-94,97 |
 | 118 | Mummy | マミー | 7 | 11-53 (6d8+5) | 3 | 12 | 1 | 1-13 (1d13) | 0 | 10 | U | - | fear, paralyze | 0/100/0/0/100/0/0/0 | 650 | 70 | 10 | 9-10,18,20 | 9-10,18-19 | 11-12,20,22,43,53,62-63,66,74,76,80 |
 | 119 | Nightmare | ナイトメア | 6 | 10-80 (10d8) | -4 | 12 | 3 | 3-21 (3d7) | 0 | 12 | U | - | paralyze | 30/100/30/30/100/0/0/30 | 630 | 60 | 11 | 10,18 | 9-10,18 | 12,20,63,66,74,76 |
@@ -191,7 +191,7 @@ Rules behind each column: [monsters.md](monsters.md) and [combat.md](combat.md);
 Each encounter area lists 4 formations; a fight picks one of them at random. A formation is up to 4 monster groups,
 written monster ×size (a range when the size is rolled; at most 9 per group); F = formation number. Rules: [monsters.md](monsters.md).
 
-| area | random on floors | guarded squares on floors | formation (one of 4 picked at random; monster ×size) |
+| area | random on floors | guarded squares on floors | formation (one of 4 slots picked at random; "(2 of 4)" = in two slots; monster ×size) |
 |---|---|---|---|
 | 1 | 1 | 1 | F0: CrawlingClaw ×1-4 / F1: Eye Wing ×1-4 / F2: Gas Cloud ×1-4 / F3: Banshee ×1 |
 | 2 | 1 | 1 | F4: CreepingCoin ×1-2 / F5: Skeleton ×1-4 / F6: Orc ×1-2 / F7: Zombie ×1-2 |
@@ -223,28 +223,28 @@ written monster ×size (a range when the size is rolled; at most 9 per group); F
 | 28 | 26 | 26 | F108: Balrog ×2 + Gr. Demon ×3 + Poison Giant ×3-4 + Hell Fiend ×3 / F109: Musashi ×2 + Cutthroat ×7 + Master Ninja ×5 / F110: Kunoichi ×4 + Master Ninja ×4 + High Ninja ×4 + High Ninja ×1 / F111: Avenger ×3 + Dark Rider ×2 + Lucky Star ×3 + Sagittarius ×2 |
 | 29 | 24,26-27 |  | F112: Vampire Lord ×2 + DragonZombie ×3 + Nightcrawler ×3 + U. Beholder ×2 / F113: Valkyrie ×3 + Dark Rider ×3 + Sword Dancer ×1 + Shogun ×4 / F114: Leviathan ×6 + Umber Hulk ×5 + Carrion Worm ×6 / F115: Leviathan ×5 + Troll ×6 + Lion of Hell ×5 + Carrion Worm ×6 |
 | 30 | 28 | 26 | F115: Leviathan ×5 + Troll ×6 + Lion of Hell ×5 + Carrion Worm ×6 / F114: Leviathan ×6 + Umber Hulk ×5 + Carrion Worm ×6 / F118: Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1 / F117: Yasha ×3 + Musashi ×2 + Daimyo ×7 |
-| 31 | 29 | 27,29 | F118: Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1 / F123: Lich ×3 + Vampire Qn. ×3 + Vampire Lord ×2 + Vampire ×3 / F125: Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3 |
+| 31 | 29 | 27,29 | F118: Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1 / F123 (2 of 4): Lich ×3 + Vampire Qn. ×3 + Vampire Lord ×2 + Vampire ×3 / F125: Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3 |
 | 32 | 30 | 28,30 | F126: Fire Giant ×4 + Titan ×4 + Iron Golem ×4 + Star Seizer ×1 / F125: Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3 / F130: Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3 / F127: Yasha ×4 + Musashi ×2 + Kunoichi ×2 + Valiant ×3 |
 | 33 | 29-30 | 29-30 | F128: Avenger ×3 + Valiant ×4 + Kunoichi ×3 + Musashi ×1 / F129: Treant ×8 + Rakshasa ×6 + Phoenix ×4 + From Beyond ×1 / F130: Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3 / F131: Beholder ×4 + Nightcrawler ×4 + Night Rider ×4 + Unspeakable ×1 |
-| 34 |  |  | F136: CreepingCoin ×1-2 + CreepingCoin ×0-1 |
-| 35 |  |  | F135: Kobold King ×1-2 + Troll ×0-2 + Dark Elf ×3 + Mind Flayer ×1 |
-| 36 |  |  | F119: Assassin ×1-2 + Master Ninja ×1-2 + Kamui ×1 |
-| 37 |  |  | F124: Lesser Demon ×2 + Gr. Demon ×1 + Arch Demon ×1 + Demon King ×1 |
-| 38 |  |  | F118: Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1 |
-| 39 |  |  | F116: Lion of Hell ×6-7 + Cerberus ×3 + Gorgimera ×4-6 + Demon Queen ×1 |
-| 40 |  |  | F121: Night Rider ×3 + Lich ×3 + DragonZombie ×4 + Rift Walker ×1 |
-| 41 |  |  | F120: Live Ceiling ×4 + Arc Renard ×2 + Demon King ×4 + Godslayer ×1 |
-| 42 |  |  | F141: Water Elem. ×2 + Lizard Man ×0-2 + Lizard King ×0-1 + Scylla ×3 |
-| 43 |  |  | F72: Giant Zombie ×4 + Death Knight ×0-1 + High Bishop ×1 + Mummy ×3 |
-| 44 |  |  | F137: Alien ×3 + Alien ×2 + Alien ×1-2 + Alien ×0-2 |
-| 45 |  |  | F138: Carrion Worm ×1-4 + Umber Hulk ×2-4 + Umber Hulk ×0-2 + Umber Hulk ×3 |
-| 46 |  |  | F134: Gr. Hydra ×4-5 + Kali ×4 + Titan ×4 + Fair Fiend ×1 |
-| 47 |  |  | F122: ShadowDragon ×7-8 + Demon Lord ×1 + Vampire Lord ×1 + Ancient One ×1 |
-| 48 |  |  | F132: Arch Demon ×3-4 + Demon King ×1 + Demon Queen ×1 + Demon Adish ×1 |
-| 49 |  |  | F133: Mist Dragon ×2 + ShadowDragon ×1-2 + Deep Dragon ×0-2 + Abyss Lurker ×1 |
-| 50 |  | 13 | F139: Umber Hulk ×3 + Umber Hulk ×3 + Umber Hulk ×0-2 + Umber Hulk ×0-3 |
-| 51 |  | 18 | F140: Succubus ×2 + Succubus ×2 + Succubus ×2-3 + Succubus ×2 |
-| 52 |  |  | F141: Water Elem. ×2 + Lizard Man ×0-2 + Lizard King ×0-1 + Scylla ×3 |
+| 34 |  |  | F136 (4 of 4): CreepingCoin ×1-2 + CreepingCoin ×0-1 |
+| 35 |  |  | F135 (4 of 4): Kobold King ×1-2 + Troll ×0-2 + Dark Elf ×3 + Mind Flayer ×1 |
+| 36 |  |  | F119 (4 of 4): Assassin ×1-2 + Master Ninja ×1-2 + Kamui ×1 |
+| 37 |  |  | F124 (4 of 4): Lesser Demon ×2 + Gr. Demon ×1 + Arch Demon ×1 + Demon King ×1 |
+| 38 |  |  | F118 (4 of 4): Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1 |
+| 39 |  |  | F116 (4 of 4): Lion of Hell ×6-7 + Cerberus ×3 + Gorgimera ×4-6 + Demon Queen ×1 |
+| 40 |  |  | F121 (4 of 4): Night Rider ×3 + Lich ×3 + DragonZombie ×4 + Rift Walker ×1 |
+| 41 |  |  | F120 (4 of 4): Live Ceiling ×4 + Arc Renard ×2 + Demon King ×4 + Godslayer ×1 |
+| 42 |  |  | F141 (4 of 4): Water Elem. ×2 + Lizard Man ×0-2 + Lizard King ×0-1 + Scylla ×3 |
+| 43 |  |  | F72 (4 of 4): Giant Zombie ×4 + Death Knight ×0-1 + High Bishop ×1 + Mummy ×3 |
+| 44 |  |  | F137 (4 of 4): Alien ×3 + Alien ×2 + Alien ×1-2 + Alien ×0-2 |
+| 45 |  |  | F138 (4 of 4): Carrion Worm ×1-4 + Umber Hulk ×2-4 + Umber Hulk ×0-2 + Umber Hulk ×3 |
+| 46 |  |  | F134 (4 of 4): Gr. Hydra ×4-5 + Kali ×4 + Titan ×4 + Fair Fiend ×1 |
+| 47 |  |  | F122 (4 of 4): ShadowDragon ×7-8 + Demon Lord ×1 + Vampire Lord ×1 + Ancient One ×1 |
+| 48 |  |  | F132 (4 of 4): Arch Demon ×3-4 + Demon King ×1 + Demon Queen ×1 + Demon Adish ×1 |
+| 49 |  |  | F133 (4 of 4): Mist Dragon ×2 + ShadowDragon ×1-2 + Deep Dragon ×0-2 + Abyss Lurker ×1 |
+| 50 |  | 13 | F139 (4 of 4): Umber Hulk ×3 + Umber Hulk ×3 + Umber Hulk ×0-2 + Umber Hulk ×0-3 |
+| 51 |  | 18 | F140 (4 of 4): Succubus ×2 + Succubus ×2 + Succubus ×2-3 + Succubus ×2 |
+| 52 |  |  | F141 (4 of 4): Water Elem. ×2 + Lizard Man ×0-2 + Lizard King ×0-1 + Scylla ×3 |
 | 53 |  |  | F142: Ghoul ×3-6 + Ghast ×2-6 + Wight ×5-6 + Skeleton ×0-5 / F143: Skeleton ×1-8 + Skel.Warrior ×0-8 + Zombie ×7-8 + Zombie Lord ×5 / F144: Giant Zombie ×2 + Death Knight ×1 + Lich ×0-1 + Mummy ×2 / F145: Dullahan ×2-3 + Ghost ×1-2 + Gas Cloud ×4-8 + Specter ×2 |
 | 54 |  |  | F15: Goblin ×2-5 + Goblin King ×1-2 / F17: Mudman ×1-4 + Mudman ×0-3 / F19: Cerberus ×1-2 + Cerberus ×1 / F21: Kobold ×5-8 + Kobold King ×4-8 + Kobold ×5-8 |
 | 55 |  |  | F18: Treant ×2-3 / F20: Zombie ×2-6 + Zombie Lord ×2-3 / F22: Dark Elf ×2-5 + Dark Elf ×3 / F24: Dryad ×3-4 + Treant ×2-4 |
@@ -288,13 +288,13 @@ written monster ×size (a range when the size is rolled; at most 9 per group); F
 | 93 |  |  | F115: Leviathan ×5 + Troll ×6 + Lion of Hell ×5 + Carrion Worm ×6 / F123: Lich ×3 + Vampire Qn. ×3 + Vampire Lord ×2 + Vampire ×3 / F125: Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3 / F127: Yasha ×4 + Musashi ×2 + Kunoichi ×2 + Valiant ×3 |
 | 94 |  |  | F125: Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3 / F126: Fire Giant ×4 + Titan ×4 + Iron Golem ×4 + Star Seizer ×1 / F127: Yasha ×4 + Musashi ×2 + Kunoichi ×2 + Valiant ×3 / F128: Avenger ×3 + Valiant ×4 + Kunoichi ×3 + Musashi ×1 |
 | 95 |  |  | F120: Live Ceiling ×4 + Arc Renard ×2 + Demon King ×4 + Godslayer ×1 / F126: Fire Giant ×4 + Titan ×4 + Iron Golem ×4 + Star Seizer ×1 / F128: Avenger ×3 + Valiant ×4 + Kunoichi ×3 + Musashi ×1 / F130: Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3 |
-| 96 |  |  | F128: Avenger ×3 + Valiant ×4 + Kunoichi ×3 + Musashi ×1 / F129: Treant ×8 + Rakshasa ×6 + Phoenix ×4 + From Beyond ×1 / F130: Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3 |
+| 96 |  |  | F128: Avenger ×3 + Valiant ×4 + Kunoichi ×3 + Musashi ×1 / F129 (2 of 4): Treant ×8 + Rakshasa ×6 + Phoenix ×4 + From Beyond ×1 / F130: Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3 |
 | 97 |  |  | F123: Lich ×3 + Vampire Qn. ×3 + Vampire Lord ×2 + Vampire ×3 / F125: Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3 / F127: Yasha ×4 + Musashi ×2 + Kunoichi ×2 + Valiant ×3 / F129: Treant ×8 + Rakshasa ×6 + Phoenix ×4 + From Beyond ×1 |
-| 98 |  |  | F127: Yasha ×4 + Musashi ×2 + Kunoichi ×2 + Valiant ×3 / F130: Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3 / F131: Beholder ×4 + Nightcrawler ×4 + Night Rider ×4 + Unspeakable ×1 |
+| 98 |  |  | F127: Yasha ×4 + Musashi ×2 + Kunoichi ×2 + Valiant ×3 / F130 (2 of 4): Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3 / F131: Beholder ×4 + Nightcrawler ×4 + Night Rider ×4 + Unspeakable ×1 |
 | 99 |  |  | F126: Fire Giant ×4 + Titan ×4 + Iron Golem ×4 + Star Seizer ×1 / F128: Avenger ×3 + Valiant ×4 + Kunoichi ×3 + Musashi ×1 / F130: Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3 / F131: Beholder ×4 + Nightcrawler ×4 + Night Rider ×4 + Unspeakable ×1 |
-| 100 |  |  | F128: Avenger ×3 + Valiant ×4 + Kunoichi ×3 + Musashi ×1 / F130: Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3 / F131: Beholder ×4 + Nightcrawler ×4 + Night Rider ×4 + Unspeakable ×1 |
-| 101 | 8 | 8 | F146: Ghost ×2-3 + Specter ×1 + Wight ×1 / F147: Damned ×2 + Ghost ×1-2 + Specter ×1-2 + Wight ×1 |
-| 102 | 11 | 11 | F146: Ghost ×2-3 + Specter ×1 + Wight ×1 / F147: Damned ×2 + Ghost ×1-2 + Specter ×1-2 + Wight ×1 / F148: Scylla ×4-7 + Couatl ×3-6 + Lizard King ×3-4 + Lizard Man ×2-5 |
-| 103 | 25 | 25 | F147: Damned ×2 + Ghost ×1-2 + Specter ×1-2 + Wight ×1 / F148: Scylla ×4-7 + Couatl ×3-6 + Lizard King ×3-4 + Lizard Man ×2-5 / F149: Marid ×1-3 + Djinni ×2-4 + Water Elem. ×3-5 + Air Elem. ×6 |
-| 104 | 27 |  | F149: Marid ×1-3 + Djinni ×2-4 + Water Elem. ×3-5 + Air Elem. ×6 / F150: (none) / F151: (none) |
-| 105 | 30 |  | F150: (none) / F151: (none) |
+| 100 |  |  | F128: Avenger ×3 + Valiant ×4 + Kunoichi ×3 + Musashi ×1 / F130: Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3 / F131 (2 of 4): Beholder ×4 + Nightcrawler ×4 + Night Rider ×4 + Unspeakable ×1 |
+| 101 | 8 | 8 | F146 (3 of 4): Ghost ×2-3 + Specter ×1 + Wight ×1 / F147: Damned ×2 + Ghost ×1-2 + Specter ×1-2 + Wight ×1 |
+| 102 | 11 | 11 | F146: Ghost ×2-3 + Specter ×1 + Wight ×1 / F147 (2 of 4): Damned ×2 + Ghost ×1-2 + Specter ×1-2 + Wight ×1 / F148: Scylla ×4-7 + Couatl ×3-6 + Lizard King ×3-4 + Lizard Man ×2-5 |
+| 103 | 25 | 25 | F147: Damned ×2 + Ghost ×1-2 + Specter ×1-2 + Wight ×1 / F148 (2 of 4): Scylla ×4-7 + Couatl ×3-6 + Lizard King ×3-4 + Lizard Man ×2-5 / F149: Marid ×1-3 + Djinni ×2-4 + Water Elem. ×3-5 + Air Elem. ×6 |
+| 104 | 27 |  | F149: Marid ×1-3 + Djinni ×2-4 + Water Elem. ×3-5 + Air Elem. ×6 / F150 (2 of 4): (none) / F151: (none) |
+| 105 | 30 |  | F150: (none) / F151 (3 of 4): (none) |

@@ -122,7 +122,7 @@ drain 15, paralysis 14, poison 11, fear 11, decapitation 9, stone 8, sleep 3. Re
   every element, so no spell that checks resistance affects it ([combat.md](combat.md#11-spells-against-monsters)).
 - **Event-only monsters** (no floor in the table; they appear only in event fights): Ancient One, Fair Fiend,
   Godslayer, Rift Walker, Abyss Lurker, Demon King, Demon Queen, Demon Adish, Kamui, Alien.
-- **Floors 21-30** are where most level 20-30 monsters live: the "ancient" ones (From Beyond, Unspeakable, Star
+- **Floors 21-30** are where most of the strongest monsters live: the "ancient" ones (From Beyond, Unspeakable, Star
   Seizer), the high demons and vampires, and the special-class fighters (Valiant, Avenger, Musashi, Kunoichi).
 
 **Notes:** several monsters share their name with a Summoner spell (Ifrit, Lion of Hell, Ancient One...). A pact at

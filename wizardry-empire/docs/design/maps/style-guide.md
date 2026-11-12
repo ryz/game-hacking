@@ -7,11 +7,11 @@ generator disagree, fix one of them in the same commit.
 ## 1. Principles
 
 - **The game's data, nothing invented.** Every wall, door and square comes from the floor data. Interpretations
-  (a special wall being a hidden door) live in the legend wording and the floor page, marked (inferred).
+  live in the legend wording and the floor page, marked (inferred).
 - **Readable without colour.** Every symbol is a letter or a line style as well as a colour, so a map works in
   print and for colour-blind readers.
 - **Same legend everywhere.** The legend is printed in full under every map, even for symbols the floor does not use.
-  It has three titled groups (Squares, Walls and doors, Zones); every legend sample is drawn by the same code as the
+  It has three titled groups (Squares, Walls and doors, Floor and zones); every legend sample is drawn by the same code as the
   map, so legend and map cannot drift apart.
 - **Quiet background, strong structure.** Walls and symbols are dark and bold; floor, grid and area numbers are light.
 
@@ -37,7 +37,8 @@ generator disagree, fix one of them in the same commit.
 | Wall | black line, 3 px | 0,0,0 |
 | Door | wall line with a brown bar across its middle (18 × 6 px) | 170,100,30 |
 | One-way door | door bar plus a black arrow pointing the only way through | 170,100,30 / 0,0,0 |
-| Special wall | red dashed line, 3 px (meaning: "probably a hidden door", inferred) | 220,0,0 |
+| Secret door | red dashed line, 3 px (a value-3 side on a hidden spot) | 220,0,0 |
+| Locked door | wall line with a red bar across its middle (a value-3 side on any other square) | 220,0,0 |
 | Damage zone | diagonal hatch | 232,128,128 |
 | Anti-magic zone | dot grid (inferred meaning) | 90,110,220 |
 | Both zone marks | hatch and dots, purple (no known effect) | 160,90,190 |
@@ -52,8 +53,10 @@ generator disagree, fix one of them in the same commit.
 
 Symbols are centred in their cell with a 2 px white outline, so they stay readable on hatching. Area numbers sit
 small in the bottom-left corner, in light grey (160,160,160) so they recede behind the structure. Each edge is stored on both of its squares. Where one side lets the party through
-(open or door) and the other does not (wall or special wall), the edge is a **one-way door**: the game only looks at
-the side of the square being left (verified on floor 1). Walls are drawn first, then special walls, then doors.
+(open or door) and the other does not (wall, secret or locked door), the edge gets a **one-way arrow** pointing the
+way that is always open: the game only looks at the side of the square being left (verified on floor 1). The way
+back is shown by the rest of the symbol: a brown bar alone = a wall (a true one-way door), a red bar = a locked
+door, a dashed red line = a secret door. Walls are drawn first, then secret doors, then door and lock bars.
 
 ## 4. Encounter areas
 

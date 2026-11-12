@@ -39,7 +39,7 @@ for i,fs in enc.items():
     for fi in fs:
         if fi>=150: continue
         for k,(mid,c) in enumerate(form[fi]):
-            if mid==0xFF or (k>0 and c==0): continue
+            if mid==0xFF or cnt(c,k==0)[1]==0: continue      # same rule as the formation display
             mon_where[mid][2].add(i)
             mon_where[mid][0]|=id_floors.get(i,set()); mon_where[mid][1]|=id_gfloors.get(i,set())
 def rng(s):
@@ -109,7 +109,7 @@ for k,x in enumerate(recs):
 lines.append('\n## Encounter tables\n')
 lines.append('Each encounter area lists 4 formations; a fight picks one of them at random. A formation is up to 4 monster groups,')
 lines.append('written monster ×size (a range when the size is rolled; at most 9 per group); F = formation number. Rules: [monsters.md](monsters.md).\n')
-lines.append('| area | random on floors | guarded squares on floors | formation (one of 4 picked at random; monster ×size) |')
+lines.append('| area | random on floors | guarded squares on floors | formation (one of 4 slots picked at random; "(2 of 4)" = in two slots; monster ×size) |')
 lines.append('|---|---|---|---|')
 def fstr(fi):
     if fi>=150: return '(none)'
@@ -126,7 +126,7 @@ for i,fs in enc.items():
     uniq=[]
     for fi in fs:
         if fi not in uniq: uniq.append(fi)
-    lines.append('| %d | %s | %s | %s |'%(i,fl,gf,' / '.join('F%d: %s'%(fi,fstr(fi)) for fi in uniq)))
+    lines.append('| %d | %s | %s | %s |'%(i,fl,gf,' / '.join('F%d%s: %s'%(fi,' (%d of 4)'%fs.count(fi) if fs.count(fi)>1 else '',fstr(fi)) for fi in uniq)))
 open(ROOT+'docs/design/monsters_table.md','w').write('\n'.join(lines)+'\n')
 # floor summary
 os.makedirs(ROOT+'work/design/monsters', exist_ok=True)
