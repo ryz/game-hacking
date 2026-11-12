@@ -11,6 +11,12 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - card 'Status: OK' as one right-aligned unit; maze strip fix
+- ROM: `b9f4a72` sent.
+- 'Status:' label now sits one space before the status word; both end at col 18 (all 10 status words checked).
+- Maze view strip under the dungeon SELECT menu: no more mirrored menu glyphs (immediate HBlank DMA 0:1553
+  now reported to VWF_DmaCheck; triage report work/triage/maze_strip/). Tour 8/8, 11 tests.
+
 ## 2026-11-12 - character sheet: status right-aligned (owner's request)
 - ROM: `35003bf` sent.
 - The status word ('OK', 'Paralyzed', ...) ends at col 18 like Lvl/Age/AC; 'Status:' label stays at col 8.
