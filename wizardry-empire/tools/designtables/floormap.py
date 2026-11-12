@@ -299,6 +299,52 @@ def main(argv):
                 theirs = (cells[nx, ny][0] >> (2 * ((dd + 2) % 4))) & 3
                 if mine in (0, 2) and theirs not in (0, 2):
                     print("  (%d,%d) -> (%d,%d) %s%s" % (x, y, nx, ny, dirs[dd], " (special wall on the far side)" if theirs == 3 else ""))
+        print("doors (two-way): %d" % doors(cells))
+        guards = {}
+        for xy, (w, a, t, z, p) in sorted(cells.items()):
+            if t == 6:
+                guards.setdefault(p, []).append(xy)
+        shared = [v for v in guards.values() if len(v) > 1]
+        print("guarded squares sharing one once-per-visit mark: " +
+              ("; ".join(" + ".join("(%d,%d)" % xy for xy in v) for v in shared) if shared else "none"))
+        print("on foot from each stairs (one-way doors in their direction; special walls closed / open):")
+        for xy, (w, a, t, z, p) in sorted(cells.items()):
+            if t in (2, 3):
+                shut, opened = reach(cells, xy, False), reach(cells, xy, True)
+                stairs = ["%s (%d,%d)" % ("up" if cells[s][2] == 2 else "down", s[0], s[1])
+                          for s in sorted(shut) if s != xy and cells[s][2] in (2, 3)]
+                print("  %s (%d,%d): %d / %d squares; other stairs reached: %s" % (
+                    "up" if t == 2 else "down", xy[0], xy[1], len(shut), len(opened), ", ".join(stairs) or "none"))
+
+
+def passable(cells, xy, dd, special):
+    """Can the party leave square xy through side dd? Only the side being left counts (one-way doors)."""
+    side = (cells[xy][0] >> (2 * dd)) & 3
+    return side in (0, 2) or (special and side == 3)
+
+
+def reach(cells, start, special=False):
+    """Squares reachable on foot from start (rock excluded); special=True treats special walls as open."""
+    seen, todo = {start}, [start]
+    while todo:
+        x, y = todo.pop()
+        for dd, (dx, dy) in STEP.items():
+            n = ((x + dx) & 15, (y + dy) & 15)
+            if n not in seen and cells[n][2] != 1 and passable(cells, (x, y), dd, special):
+                seen.add(n)
+                todo.append(n)
+    return seen
+
+
+def doors(cells):
+    """Edges that are a door on both sides (one-way doors are listed separately)."""
+    n = 0
+    for (x, y), v in cells.items():
+        for dd in (0, 1):                  # north and east: each edge once
+            nx, ny = (x + STEP[dd][0]) & 15, (y + STEP[dd][1]) & 15
+            if (v[0] >> (2 * dd)) & 3 == 2 and (cells[nx, ny][0] >> (2 * (dd + 2))) & 3 == 2:
+                n += 1
+    return n
 
 
 if __name__ == "__main__":

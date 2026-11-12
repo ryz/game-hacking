@@ -8,7 +8,7 @@ entrance (verified).
 
 ## 1. Overview
 
-- 37 squares are solid rock; the rest is corridors and rooms, joined by about 19 doors (computed from the map).
+- 37 squares are solid rock; the rest is corridors and rooms, joined by 18 doors and 3 one-way doors (computed from the map).
 - **Entrance and exit:** the stairs up at (0, 15) lead back to town; the party arrives there facing south (verified).
   The stairs down to floor 2 are in the opposite corner at (15, 0).
 - **8 guarded squares**, **3 events** (gold coins, a fairy, a magic circle), **2 pits** and **3 pairs of hidden
@@ -32,6 +32,7 @@ entrance (verified).
 | (11, 15) + (12, 15) | Hidden spots, a pair | On both sides of a one-way door (special wall seen from the west). |
 | (6, 15), (7, 1), (0, 5), (9, 9) | Guarded square | Fight from area 1, then a chest. |
 | (5, 0), (13, 2), (11, 12) | Guarded square | Fight from area 2, then a chest. |
+| (7, 1) + (5, 0) | Guarded squares sharing one mark | Both use the same once-per-visit mark: after one is fought, the other probably stays quiet until the next floor change (inferred). |
 | (9, 4) | Guarded square | Fight from area 3, then a chest. |
 
 ## 3. Monsters
