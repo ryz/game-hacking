@@ -357,9 +357,10 @@ def insert_titles(rom, space, entries):
     for e in entries:
         o = rom_off(e["bank"], int(e["addr"], 16))
         if e["en"] not in seen:
-            seen[e["en"]] = space.put(layout_rows({"w": 12, "h": 1, "en": [">" + e["en"]]}))
+            seen[e["en"]] = space.put(layout_rows({"w": 14, "h": 1, "en": [">" + e["en"]]}))
         b, a = seen[e["en"]]
-        rom[o:o + 5] = bytes([0x8C, 0x01, b, a & 0xFF, a >> 8])
+        # 14 cells (the record says 12): right edge at col 18 on the character sheet, like Lvl/Age/AC/EXP/Gold
+        rom[o:o + 5] = bytes([0x8E, 0x01, b, a & 0xFF, a >> 8])
     return len(entries)
 
 

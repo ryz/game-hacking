@@ -529,6 +529,44 @@ MUS_STR     equ $cce0       ; WRAM0 scratch (private VWF stack area; VWF_PrintZ 
 MusAbbr:                    ; class order: Fighter Mage Priest Thief Bishop Samurai Lord Ninja / Archer Valiant
     db "FiMaPrThBiSaLoNi"   ; Avenger Musashi Kunoichi Summoner
     db "ArVaAvMuKuSu"
+; --- shop header (29:422D: 8 px 'A','C' at $D04E over the card's age row; 29:4253: 8 px '-') -> 'AC' in the VWF
+;     at $D04D (covers the card's 'Age' label, under 'Lvl'), small '-' at the right of its cell
+    org $29, $422d
+    call ShopAC
+    ds 8, $00
+    org $29, $4253
+    call ShopMinus
+    nop
+    nop
+    org $29, $4298          ; gold field: the Japanese label + 4 spaces put it at $D069 (ends col 18); the VWF
+    ld de, $d065            ; label is narrower and left DE a cell early: the field starts at $D065 and is 14
+    ds 7, $00               ; cells (the game's own clear loop blanks them, incl. the card's 'Status' row)
+    org $29, $42a6
+    db $0e
+    org $29, $42b0
+    db $8e
+    org $29, $7e40
+ShopAC:
+    ld de, $d04d
+    ld hl, ShopACText
+    call Stub_PrintZ
+    ld de, $d050
+    ret
+ShopMinus:
+    ld a, $2d
+    ldh [$b2], a
+    push de
+    push hl
+    ld hl, ShopMinusText
+    call Stub_PrintZ
+    pop hl
+    pop de
+    ret
+ShopACText:
+    db "AC", 0
+ShopMinusText:
+    db $7c, $7c, "-", 0
+
 ; --- museum damage / monster HP range: '~' (8 px) -> a VWF '-' centred in its cell; AC minus (41:689D) -> a VWF
 ;     '-' at the right of its cell, next to the digits. One cell each, so DE advances as before.
     org $29, $650b
@@ -567,11 +605,73 @@ CardLvl:
     ld hl, CardLvlText
     call Stub_PrintZ
     pop de
-    inc de
-    inc de
+    ld de, $d030            ; level field: 3 cells ending at col 18 (the right edge shared with Age and AC)
     ret
 CardLvlText:
     db "Lvl", 0
+
+; --- character card age (26:570B: 2-cell field at $D04E, then 'さい' at DE by 26:5723) -> 'Age' at col 13 and
+;     the number in the VWF ending at col 18; HP and AC labels (26:57BE, 26:5804: 8 px 'H','P' / 'A','C') in
+;     the VWF, AC under Lvl/Age (col 13)
+    org $26, $570b
+    ld de, $d051
+    org $26, $5723
+    call CardAge
+    ds 4, $00
+    org $26, $57be
+    call CardHP
+    ds 9, $00
+    org $26, $5804
+    call CardAC
+    ds 8, $00
+    org $26, $5812          ; AC value: right-aligned 2-cell field ending at col 18 ($D091-$D092) for every value
+    ld bc, $3082
+    org $26, $5857          ; (positive values under 10 skipped one more cell for the left-aligned 8 px digit)
+    nop
+    org $26, $584c          ; AC sign: 8 px '-' -> the small '-' at the right of its cell (keeps $B2, DE, HL)
+    call CardMinus
+    nop
+    nop
+    org $26, $5949          ; sheet EXP / Gold fields at the Japanese columns (cols 9-18): the English labels are
+    ld de, $d109            ; narrower and left DE early
+    org $26, $5975
+    ld de, $d129
+    nop
+    org $26, $7f80
+CardMinus:
+    ld a, $2d
+    ldh [$b2], a
+    push de
+    push hl
+    ld hl, CardMinusText
+    call Stub_PrintZ
+    pop hl
+    pop de
+    ret
+CardMinusText:
+    db $7c, $7c, "-", 0
+CardAge:
+    ld de, $d04d
+    ld hl, CardAgeText
+    jp Stub_PrintZ
+CardHP:                     ; DE ends at $D084 (the HP field) like the original
+    ld de, $d081
+    ld hl, CardHPText
+    call Stub_PrintZ
+    ld de, $d084
+    ret
+CardAC:                     ; DE ends at $D090 (the AC value) like the original
+    ld de, $d08d
+    ld hl, CardACText
+    call Stub_PrintZ
+    ld de, $d090
+    ret
+CardAgeText:
+    db "Age", 0
+CardHPText:
+    db "HP", 0
+CardACText:
+    db "AC", 0
 
 ; --- name entry: typed name field (26:6C62-6C9B built a [7][1] rect at $FFA8 from the name at $D060 and blitted
 ;     it to $D02A) -> blank the 7 cells, copy up to 7 characters + $00 to $FFA8, print it in the VWF
@@ -4583,9 +4683,7 @@ NumExcluded:
     jr .l
 
 NumExcl:                    ; bank, return address of 0:0FE9 calls that stay 8 px; 0 ends
-    db $26
-    dw $571b                ; age on the character card: the shop header writes 'AC' over it
-    db 0
+    db 0                    ; (empty since 2026-11-12: the card age moved to cols 17-18, clear of the shop header)
 
 ; A = pixel width of wNameBuf
 NumWidth:

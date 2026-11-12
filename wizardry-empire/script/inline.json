@@ -1,5 +1,4 @@
 [
-{"bank": 38, "addr": "0x5723", "kind": "de", "len": 7, "jp": "さい", "en": "yrs"},
 {"bank": 38, "addr": "0x575f", "kind": "de", "len": 24, "jp": "じょうたい:", "en": "Status:"},
 {"bank": 38, "addr": "0x588e", "kind": "de", "len": 48, "jp": "キャラクタのいるばしょ:", "en": "Location:"},
 {"bank": 38, "addr": "0x58f8", "kind": "de", "len": 20, "jp": "しょうごう", "en": "Title"},
