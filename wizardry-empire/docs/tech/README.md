@@ -10,7 +10,8 @@ Text and display internals of the translation patch are in `../re/`. Conventions
 | [characters.md](characters.md) | Races, creation, party record layout, classes, EXP and leveling, aging, statuses, spell records, learning, slots, pacts | `design/characters.md`, `design/spells.md` |
 | [items.md](items.md) | Item record layout, equipment rules, item use, weapon combat code, identification, shop, inn, temple, gold, chests and traps | `design/items.md`, `design/town.md`, `design/combat.md` |
 | [monsters.md](monsters.md) | Monster record layout, encounters, AI, monster attacks, escape, rewards, pacts, RNG | `design/monsters.md`, `design/combat.md` |
-| [dungeon.md](dungeon.md) | Map storage and cell format, square types, event catalogue, floors | `design/dungeon.md` |
+| [dungeon.md](dungeon.md) | Map storage and cell format, square types, secret and locked doors, event catalogue, floors, auto-map | `design/dungeon.md` |
+| [settings.md](settings.md) | Mode Settings: the nine switches, storage, defaults, what each changes | `design/settings.md` |
 
 Data tables generated from the ROM: `python3 tools/designtables` (writes `design/items_table.md`,
 `design/monsters_table.md`; generators in `tools/designtables/`).

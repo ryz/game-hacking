@@ -86,9 +86,9 @@ is at least `need`, so the hit chance is `(20 − need) × 5%`.
 - **Hit+** is the weapon's **Hit+** column in [items_table.md](items_table.md): 0 to 8 on most weapons.
 - **Target AC** is the monster's **AC** in [monsters_table.md](monsters_table.md) (10 down to −30), plus a second
   battle value whose source was not traced. Whether spells change a monster's AC during battle was not traced.
-- **Two attacker conditions** change the number: one lowers `need` by 4 (easier to hit) and halves the damage;
-  another raises `need` by 4 and multiplies the damage by 1.25. What puts a character in either condition (a
-  status, a spell, a battle command) was not traced.
+- **Fight choices** change the number: **Aim to hit** lowers `need` by 4 and halves the damage; **Power hit** raises
+  `need` by 4 and multiplies the damage by 1.25; **Ambush** lowers `need` by 4 and multiplies the damage by 1.25.
+  Aim to hit and Power hit are only offered with Mode Settings Combat: Normal ([settings.md](settings.md#3-combat)).
 - A **long-range (L)** weapon against a monster with a certain property hits only on a roll of 0 (5%). What that
   monster property means was not traced.
 

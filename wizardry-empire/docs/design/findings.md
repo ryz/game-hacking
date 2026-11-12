@@ -29,7 +29,7 @@ Grouped by system, in the order of the [document list](README.md#documents).
 | Town | [16. Inn rooms charge per night of healing, not per week](#16-inn-rooms-charge-per-night-of-healing-not-per-week) | verified | medium |
 | Town | [17. The temple raise roll has 101 outcomes](#17-the-temple-raise-roll-has-101-outcomes) | data | negligible |
 | Town | [18. Raising by spell ignores the temple's 70-plus penalty](#18-raising-by-spell-ignores-the-temples-70-plus-penalty) | data | low |
-| Town | [19. Two inn options the menu never offers](#19-two-inn-options-the-menu-never-offers) | data | unknown |
+| Town | [19. The default inn is the "Mania" one](#19-the-default-inn-is-the-mania-one) | verified | low |
 | Monsters | [20. Random encounters almost only happen after doors](#20-random-encounters-almost-only-happen-after-doors) | verified (base rate), data (door rate) | high |
 | Monsters | [21. Encounter areas 54-100 are unused](#21-encounter-areas-54-100-are-unused) | data | none |
 | Monsters | [22. Two damage-zone areas have empty formations](#22-two-damage-zone-areas-have-empty-formations) | data | unknown |
@@ -49,6 +49,7 @@ Grouped by system, in the order of the [document list](README.md#documents).
 | Dungeon | [37. The Map Record Sheet does not complete the map](#37-the-map-record-sheet-does-not-complete-the-map) | verified | low |
 | Dungeon | [38. Floors 21-30 are numbered B30 to B666 on the map](#38-floors-21-30-are-numbered-b30-to-b666-on-the-map) | verified | none |
 | Dungeon | [39. A Teleport to an unvisited square is wasted, and Teleport cannot be cancelled](#39-a-teleport-to-an-unvisited-square-is-wasted-and-teleport-cannot-be-cancelled) | verified | medium |
+| Settings | [40. Save: Mania lets a power-off undo a maze trip](#40-save-mania-lets-a-power-off-undo-a-maze-trip) | verified | medium |
 | Curiosities | [35. The hidden debug mode](#35-the-hidden-debug-mode) | verified | none |
 
 ---
@@ -385,21 +386,22 @@ Tech: [characters.md §9](../tech/characters.md#9-status-ailments-and-recovery)
 
 ---
 
-## 19. Two inn options the menu never offers
+## 19. The default inn is the "Mania" one
 
-**Behavior:** The inn has two options the menu never offers:
-- one that charges `10 × level` for one night that heals fully;
-- a room that sets HP to max at once.
+**Behavior:** The inn has two modes, chosen with the Mode Settings switch Inn. **Mania**, the default on a new save,
+is the room inn (Stables to Royal Suite, per-night healing, weekly prices). **Normal** has no rooms: one stay heals
+fully for 10 × level gold, free at full HP; both age the character 7 days. (Listed here before as "two inn options
+the menu never offers"; the second, a room that heals fully at once, is the Normal stay.)
 
-What enables them was not traced.
+**Intended:** Deliberate. The settings label the classic room inn "Mania" yet make it the default, together with
+Save: Mania (inferred: the default is the classic Wizardry experience, and Normal is an easier mode the player must
+choose).
 
-**Intended:** Unknown; perhaps an early inn design or a special case.
+**Confidence:** Verified (Normal stay: level 5, 1 → 10 HP for 50 G, 7 days).
 
-**Confidence:** Read from the game's code.
+**Impact:** Low. Players who never open the settings play with the room inn and the Mania save rule.
 
-**Impact:** None known.
-
-Design: [town.md](town.md#2-inn) ·
+Design: [town.md](town.md#2-inn), [settings.md](settings.md#5-inn) ·
 Tech: [characters.md §11](../tech/characters.md#11-open-questions--not-found), [items.md §7](../tech/items.md#7-inn-aries-inn)
 
 ---
@@ -765,3 +767,23 @@ oversight (inferred).
 **Impact:** Medium. A mis-click wastes a high-level spell; in Mania mode a wrong offset loses the party.
 
 Design: [dungeon.md](dungeon.md#9-auto-map) · Tech: [dungeon.md §6](../tech/dungeon.md#6-auto-map)
+
+---
+
+## 40. Save: Mania lets a power-off undo a maze trip
+
+**Behavior:** With the default Save: Mania, the game's backup save is not updated in the maze (only in town, at
+power-on and on a total party wipe), and every power-on restores the backup. Turning the game off in the maze puts
+the party back where it entered, with everything since undone: EXP, gold, items, and presumably deaths. With Save:
+Normal every battle is saved for good. The switch can only be moved from Mania to Normal.
+
+**Intended:** The "Mania" name suggests the harsh classic rule (no saving in the maze), but in effect it protects the
+player from a bad trip; only a full wipe sticks (inferred).
+
+**Confidence:** Verified for a battle's EXP and the party's position (Japanese build); a single death undone by a
+power-off was not tried.
+
+**Impact:** Medium. Under the default setting, deaths in the maze can be reset away, which changes the risk the
+dungeon is balanced around.
+
+Design: [settings.md](settings.md#6-save) · Tech: [settings.md §9](../tech/settings.md#9-save)

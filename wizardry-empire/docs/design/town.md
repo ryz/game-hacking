@@ -88,7 +88,8 @@ Tech: [items.md §6](../tech/items.md#6-shop-lorelei)
 ## 2. Inn
 
 The **Aries Inn** is where characters heal, get their spells back and **level up**. Each character checks in
-separately and picks a room.
+separately and picks a room. This is the inn of the default setting Inn: Mania; with Inn: Normal there are no rooms,
+only one full-heal stay for 10 × level ([settings.md](settings.md#5-inn)).
 
 ### 2.1 Rooms and healing
 
@@ -267,8 +268,8 @@ Tech: [items.md §9](../tech/items.md#9-gold-sources)
 
 1. **Running out of gold mid-stay:** a hurt night that cannot be paid gives no healing and no spell refill; what the
    player sees when that happens was not checked in play.
-2. **Unused inn options:** the inn has two options the menu never offers: a full-heal night for 10 × level, and a
-   room that heals fully at once. What would enable them was not traced ([findings.md](findings.md)).
+2. (Answered: the 10 × level full-heal stay is the Mode Settings option Inn: Normal; the room inn is Inn: Mania,
+   the default. [settings.md](settings.md#5-inn).)
 3. **Unique items:** the shop/party/roster check for an existing copy of an item; which items it covers and where it
    is used were not traced.
 4. **Maze event gold:** the amount of the floor-1 "gold coins" square was not traced.

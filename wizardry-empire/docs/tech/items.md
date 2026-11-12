@@ -207,7 +207,9 @@ Code: bank 50, `32:42F1-4628`; the second copy `32:48xx` is the same formula.
    - attacker_hit = `$C502 + $C503`. Per class, `$C502` = `max(0, K - level) - M`. For example the first class uses
      K 33, M 15, so 18 - level, down to -15 (`22:4B53`). Lower is better, like a THAC0.
    - target_AC = target record `+5 + +6`.
-   - Some attacker states (`$C4FF` = `$0D`) lower the threshold by 4; others (`$0E`, or `&$7F` = 2) raise it by 4.
+   - Action type `$C4FF` (`32:441E-4438`, applied before the clamp): `$0D` Aim to hit and `&$7F` = 2 Ambush lower the
+     threshold by 4; `$0E` Power hit raises it by 4; `$0C` Normal. Aim to hit / Power hit exist only with Mode Settings
+     Combat = Normal ([settings.md §6](settings.md#6-combat)). Corrected 2026-11-12: Ambush was listed as raising it.
 2. Roll `rand(0..19)` (a d20). **Hit if the roll >= miss**, so the hit chance is between 5% and 95%.
    - Hit bonus 47-50 (byte 29): `$C502` is at most about 20 (level 1, `22:4B53-4CB5`) and falls with level, so
      `attacker_hit − 47` stays below the lowest monster AC (−30, Abyss Lurker; corrected 2026-11-12: was −16) for an attacker to-hit of 18 or less, and the clamp gives miss = 1: the 95% cap against
@@ -225,7 +227,7 @@ Code: `32:4474-4537`.
    20: 6; 21: 8; 22: 10.
 3. Unarmed: `rand(0..T2[STR]) + 1`. T2 is at `32:5941` (0, 1 from STR 7 ... 12 at STR 22). Ninjas add level/4 to that
    range.
-4. Attacker state `$0D`: ÷2 (minimum 1). State `$0E` or `&$7F` = 2: ×1.25.
+4. Aim to hit (`$0D`): ÷2 (minimum 1). Power hit (`$0E`) or Ambush (`&$7F` = 2): ×1.25.
 5. Sleeping target (status 2): ×2. Clockwork Doll: ×2.
 6. Slaying (4.4).
 
@@ -324,7 +326,8 @@ Menu `27:7890`: Stables free, Cots 10, Economy 50, Suite 200, Royal Suite 500 pe
   (`27:5B4B`; slot recount + class slots, characters.md §10.4), in every room including the Stables; only a hurt night
   the character cannot pay for skips it (`27:598F`). (code; emulator: Stables at full HP and Cots from HP 1 both
   refilled the slots, `work/re/contradictions/inn_spells_exp.py`.) Corrected 2026-11-12: was "inferred".
-- **Room index 0** (no menu entry) sets HP to max outright (`27:5B35`). It may be used by another caller; not traced.
+- **Room index 0** (no menu entry) sets HP to max outright (`27:5B35`): the Inn = Normal path of Mode Settings (`27:4DCE`,
+  [settings.md §8](settings.md#8-inn)); the room table above is Inn = Mania, the default. Solved 2026-11-12.
 - **Ageing** (`27:5208`).
   - Every day outside the Stables adds 1 to a 9-bit day counter (`+$0F`, plus bit 0 of `+$10`), whatever the HP: the
     night loop `27:50F8-5131` calls `27:5208` before the heal, skipping it only for the Stables (`$D012` = 1).

@@ -805,8 +805,9 @@ Which floor holds which circle: see `dungeon.md` (not traced here).
 - **Record fields** `+30`, `+38`, `+57`, `+61`, `+66-67`, `+6A-6F`: meaning unknown.
 - **Race byte 6** (6/6/7/6/5): unused in the code read.
 - **Status wear-off in battle**, poison per-step damage, silence duration: not traced.
-- **Inn alternate mode** (`27:4D9B`: when `$CB9A` bit 7 is set the Inn uses another path that charges 10 × level
-  for one full-heal night, `27:4E05`): what sets the flag was not traced.
+- **Inn mode** (`27:4D9B`): solved 2026-11-12. `$CB9A` bit 7 is the Mode Settings row Inn: **set = Mania = the room
+  menu (default)**, clear = Normal = one stay for 10 × level that heals fully (`27:4DCE-4F2B`). See
+  [settings.md §8](settings.md#8-inn). Corrected: the polarity was given the other way round.
 - **Item class change requirements**: only gender checks were found in `2A:5EF6`; equip/alignment bits of the five
   items may be the real gate (items.md).
 - Swings per round and to-hit by class: items.md §4 (class mapping not finished there either).

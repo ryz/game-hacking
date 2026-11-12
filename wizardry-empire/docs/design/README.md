@@ -61,8 +61,9 @@ This section is the single definition; the other documents do not repeat it.
 | [town.md](town.md) | Shop, inn (healing, aging), temple (fees, resurrection), where gold comes from |
 | [monsters.md](monsters.md) | The bestiary, encounters and group formation, how monsters choose actions |
 | [monsters_table.md](monsters_table.md) | Every monster with its stats, plus the encounter tables (generated) |
-| [dungeon.md](dungeon.md) | Floors, special squares, damage zones, traps, chests, events per floor |
+| [dungeon.md](dungeon.md) | Floors, special squares, zones, secret and locked doors, traps, chests, events, warps, the auto-map |
 | [maps/](maps/README.md) | Floor maps: how to read them, and one page per floor |
+| [settings.md](settings.md) | The Mode Settings screen: sound, pictures, and the Normal / Mania rule switches |
 | [findings.md](findings.md) | Designer's notes: quirks and likely original bugs, with what the game does and what was probably intended |
 
 Start with the Overview of each document; [findings.md](findings.md) collects everything that looks unintended.
