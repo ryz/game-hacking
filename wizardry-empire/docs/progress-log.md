@@ -11,6 +11,12 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - character sheet: status right-aligned (owner's request)
+- ROM: `35003bf` sent.
+- The status word ('OK', 'Paralyzed', ...) ends at col 18 like Lvl/Age/AC; 'Status:' label stays at col 8.
+  CardStatus (26:7800) + build-generated table (tools/build.py card_status()); checked with all status kinds
+  poked (work/qa/status/sheet.png), Tavern/Camp cards and the tour.
+
 ## 2026-11-12 - character sheet: Age, small HP/AC, right-aligned numbers (owner's request)
 - ROM: `43afb2b` sent.
 - Changed: card 'Lvl'/'Age'/'AC' labels in one VWF column, values (and Title/EXP/Gold) end at col 18; age in
