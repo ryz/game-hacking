@@ -1,6 +1,7 @@
 """Static SM83 disassembler for the ROM (bank-aware, no external deps).
 
-usage: python tools/gbdis.py BANK ADDR [COUNT]      e.g. gbdis.py 0 0x1700 40
+usage: python tools/gbdis.py [--en | --rom PATH] BANK ADDR [COUNT]      e.g. gbdis.py 0 0x1700 40
+  default ROM: the Japanese dump (or $WIZ_ROM); --en = the patched build/wizardry_empire_en.gbc (check patched bytes).
 Opcode table (tools/sm83_optab.json) was generated from gbemu's SameBoy disassembler.
 """
 import json, os, sys
@@ -40,6 +41,12 @@ def dis(rom, bank, addr, n):
 
 
 if __name__ == "__main__":
-    rom = open(os.environ.get("WIZ_ROM", ROM_DEFAULT), "rb").read()
-    b, a = int(sys.argv[1], 0), int(sys.argv[2], 0)
-    print(dis(rom, b, a, int(sys.argv[3], 0) if len(sys.argv) > 3 else 32))
+    args = sys.argv[1:]
+    path = os.environ.get("WIZ_ROM", ROM_DEFAULT)
+    if args and args[0] == "--en":
+        path, args = os.path.join(HERE, "..", "build", "wizardry_empire_en.gbc"), args[1:]
+    elif args and args[0] == "--rom":
+        path, args = args[1], args[2:]
+    rom = open(path, "rb").read()
+    b, a = int(args[0], 0), int(args[1], 0)
+    print(dis(rom, b, a, int(args[2], 0) if len(args) > 2 else 32))
