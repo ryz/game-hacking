@@ -11,6 +11,14 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - town slowdown, maze wall text, 'Choose a classsir'
+- ROM: `4871b06` sent.
+- Town at 1/4 speed after the tavern/temple menus (stuck font-load flag, party-list cache missed every pass):
+  fixed in PLHit/RectCacheHit. Likely the owner's 'gets slower' report.
+- Maze: stale flat VWF layout after Camp put prompt text into the wall tiles: VWF_MazeSplit on maze graphics load.
+- Rect rows: a cell holding only the last glyph's 1-px advance was left unblanked ('Choose a classsir').
+- Reference set docs/shots/rev1_tour (Rev 1 + EN); tour route 'create'; emu.loops(); tour.py --help.
+
 ## 2026-11-12 - remaining 8 px text, tooling, design docs
 - ROM: `6389ee3` sent.
 - Small font: event party list (magic circle; status words were blank), item info range word and negative AC,
