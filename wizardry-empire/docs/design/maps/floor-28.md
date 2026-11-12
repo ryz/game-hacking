@@ -7,15 +7,19 @@ read the map, coordinates and what each kind of square does: [maps/README.md](RE
 
 ## 1. Overview
 
+- The auto-map calls this floor **B485** ([findings.md](../findings.md), "Floors 21-30 are numbered B30 to B666 on the
+  map").
 - No solid rock, **no doors** (no one-way, secret or locked doors either) **and no inner walls**: the only walls run
   along the map edge, so the floor is one open 16 × 16 hall that does not wrap (computed from the map).
-- **Entrance and exits:** **no stairs**, no chute. How the party reaches floor 28 or leaves it was not traced
-  ([findings.md](../findings.md), "Floors 21-30 are not reached by stairs").
-- **5 guarded squares**, **no events**, **122 floor traps**, 1 marker. Of the inner block (1, 1)-(14, 14), 196
-  squares, 120 are traps, 5 guarded squares, 1 the marker and only 70 plain floor; the outer frame (rows 0 and 15,
-  columns 0 and 15) is plain except for 2 traps (computed from the map).
-- **Zones:** 126 squares marked as both zone kinds (no known effect) and 41 anti-magic squares (inferred meaning),
-  together 167 of the inner block's 196 (see below).
+- **Entrance and exits:** **no stairs**, no chute. A party comes down from floor 27 by the warp there, which lands on
+  **(15, 15)**, the north-east corner ([floor-27.md](floor-27.md)). The way on is the **warp (6, 7)**, inside the
+  dark zone among the spinners, to (0, 0) on floor 29 ([floor-29.md](floor-29.md)).
+- **5 guarded squares**, **no events**, **122 floor traps**, **1 warp** (to floor 29). Of the inner block
+  (1, 1)-(14, 14), 196 squares, 120 are traps, 5 guarded squares, 1 the warp and only 70 plain floor; the outer
+  frame (rows 0 and 15, columns 0 and 15) is plain except for 2 traps (computed from the map).
+- **Zones:** 126 squares of **dark zone** (entering puts out the light: no 3D view, "Pitch darkness!") and 41
+  anti-magic squares ("magic seal" on the auto-map; inferred meaning), together 167 of the inner block's 196 (see
+  below).
 - **Random fights:** area 30 everywhere; area 32 (floor 30's monsters) on the spinner (8, 8) and the guarded squares.
   With no doors on the floor, the chance of a random fight stays at the base rate of 1 in 512 per action (computed
   from the door rule in [monsters.md](../monsters.md)).
@@ -28,8 +32,8 @@ Traps by kind (all of strength 29 except the ceiling trap at (8, 0), strength 28
 
 | Trap | Count | Where |
 |---|---|---|
-| Spinner | 85 | All over the inner block: 37 in rows 9-14 and 48 in rows 1-8; 60 of them on both-marks squares, 15 on anti-magic squares, 10 unmarked (computed from the map). |
-| Pit | 30 | Mixed in with the spinners: 23 on both-marks squares, 6 anti-magic, 1 unmarked. |
+| Spinner | 85 | All over the inner block: 37 in rows 9-14 and 48 in rows 1-8; 60 of them on dark-zone squares, 15 on anti-magic squares, 10 unmarked (computed from the map). |
+| Pit | 30 | Mixed in with the spinners: 23 on dark-zone squares, 6 anti-magic, 1 unmarked. |
 | Ceiling trap (TF) | 3 | (13, 12), (4, 2), and (8, 0) on the south edge. |
 | Viper | 2 | (6, 5), (13, 4). Each member's save is level/2 + LUK − 29 ([dungeon.md](../dungeon.md)). |
 | Rockfall | 2 | (4, 14), and (0, 7) on the west edge. |
@@ -40,10 +44,10 @@ the hall has no walls to steer by. Every square of the trap list:
 
 | Square (x, y) | What | On this floor |
 |---|---|---|
-| (10, 14), (7, 12), (2, 8), (12, 7), (8, 2) | Guarded square | Fight from area 32, then a chest. All on both-marks squares. |
-| (6, 7) | Marker | Nothing visible (auto-map memory, inferred). |
+| (10, 14), (7, 12), (2, 8), (12, 7), (8, 2) | Guarded square | Fight from area 32, then a chest. All in the dark zone. |
+| (6, 7) | Warp | To floor 29 (0, 0): the only way on from this floor. In the dark zone. |
 | (9, 9)-(13, 13) | Anti-magic zone | The whole 5 × 5 square, 25 squares; the other 16 anti-magic squares lie on diagonals in the north-west (x 2-6, y 9-13) and south-east (x 9-13, y 2-6) quarters. |
-| Inner block (1, 1)-(14, 14) | Both zone marks | 126 squares, including the whole outer ring of the block (x or y = 1 or 14). 29 squares of the block carry no mark. |
+| Inner block (1, 1)-(14, 14) | Dark zone | 126 squares, no 3D view inside, including the whole outer ring of the block (x or y = 1 or 14). 29 squares of the block carry no mark. |
 
 How much damage pits, rockfalls and ceiling traps do, and what their strength changes, was not traced. A viper of
 strength 29 poisons a member every time except on a roll of 99 (1%) unless level/2 + LUK is above 34 (computed from
@@ -92,9 +96,8 @@ tables and the map).
 
 ## 4. Open questions
 
-- How the party reaches floor 28 and leaves it (no stairs, no chute, no events).
-- What the 126 both-marks squares do, if anything.
 - Damage of pits, rockfalls and ceiling traps, and what trap strength does for them.
 
 Tech: [dungeon.md §4 Floors](../../tech/dungeon.md#4-floors), [§2 Square types](../../tech/dungeon.md#2-square-types),
-[§1 Map storage](../../tech/dungeon.md#1-map-storage-and-cell-format); `python3 tools/designtables/floormap.py 28 --list`.
+[§1 Map storage](../../tech/dungeon.md#1-map-storage-and-cell-format),
+[§6 Auto-map](../../tech/dungeon.md#6-auto-map) (warps, floor numbers); `python3 tools/designtables/floormap.py 28 --list`.

@@ -7,17 +7,23 @@ kind of square does: [maps/README.md](README.md).
 
 ## 1. Overview
 
+- The auto-map calls this floor **B424** ([findings.md](../findings.md), "Floors 21-30 are numbered B30 to B666 on the
+  map").
 - No solid rock; 30 doors, many of them closing small one- and two-square rooms, 6 one-way doors, no secret doors and
-  no locked doors (computed from the map). The whole floor is one connected maze: every square can be reached from
-  every other on foot (computed from the map).
-- **Entrance and exits:** **no stairs**, no chute. How the party reaches floor 27 or leaves it was not traced
-  ([findings.md](../findings.md), "Floors 21-30 are not reached by stairs").
-- **4 guarded squares**, **no events**, **8 floor traps** (2 each of ceiling traps, pits, rockfalls and vipers) and 4
-  markers.
-- **Zones:** a **damage zone** of 15 squares, the one-square corridor along the east edge from (15, 0) to (15, 14),
-  with its own encounter area (104).
+  no locked doors (computed from the map). The whole floor is one connected maze: with the warps followed, every
+  square can be reached from every other except the warp (15, 15), which leads off the floor (computed from the map).
+- **Entrance and exits:** **no stairs**, no chute. A party comes down from floor 26 by the warp there, which lands on
+  **(7, 10)** ([floor-26.md](floor-26.md)). The way on is the **warp (15, 15)** to (15, 15) on floor 28
+  ([floor-28.md](floor-28.md)). It sits in a closed room whose only door opens south onto the damage zone, so the
+  party must walk 14 squares of the zone, from (15, 1), entered by the door from (14, 1), north to (15, 14)
+  (computed from the map). Without protection a full-HP member dies after at most 4 actions in the zone (computed,
+  [dungeon.md](../dungeon.md), zones).
+- **4 guarded squares**, **no events**, **8 floor traps** (2 each of ceiling traps, pits, rockfalls and vipers) and **4
+  warps** (one to floor 28).
+- **Zones:** a **damage zone** ("lake" on the auto-map) of 15 squares, the one-square corridor along the east edge
+  from (15, 0) to (15, 14), with its own encounter area (104).
 - **Random fights:** area 29 everywhere outside the damage zone; area 104 in it; area 31 (floor 29's monsters) on the
-  4 guarded squares and on the marker (13, 10).
+  4 guarded squares and on the warp (13, 10).
 - **Monsters:** levels 4-23, groups of 1 to 6 (computed from the formations): vampires, a Lich, demons and
   succubi, Valkyries and swordsmen, Leviathan swarms. Guard chests are Lacquered at best ([dungeon.md](../dungeon.md),
   chest quality by floor).
@@ -32,8 +38,10 @@ kind of square does: [maps/README.md](README.md).
 | (2, 8) | Pit, strength 14 | Half the strength of every other trap on the floor. |
 | (14, 8), (7, 7) | Rockfall, strength 28 | |
 | (4, 4), (8, 4) | Viper, strength 28 | Each member's save is level/2 + LUK − 28 ([dungeon.md](../dungeon.md)). |
-| (4, 15), (10, 15), (13, 10) | Marker | Nothing visible (auto-map memory, inferred). Each in a small room. |
-| (15, 15) | Marker | In a closed room whose only door leads south into the damage zone (computed from the map). |
+| (15, 15) | Warp | To floor 28 (15, 15): the only way on from this floor. In a closed room whose only door leads south into the damage zone (computed from the map). |
+| (4, 15) | Warp | To (12, 1) on this floor. In a small room. |
+| (10, 15) | Warp | To (2, 1) on this floor. In a small room. |
+| (13, 10) | Warp | To (1, 11) on this floor. In a small room. |
 | (3, 3) → (3, 2), (4, 2) → (4, 1), (5, 1) → (5, 0), (9, 1) → (9, 0), (10, 2) → (10, 1), (11, 3) → (11, 2) | One-way doors | All passable southward only: two diagonal "stairways" of one-way doors down to the south edge, west and east of the centre. |
 | (15, 0)-(15, 14) | Damage zone | Each member loses maxHP/4 + 1 HP after every action ([dungeon.md](../dungeon.md)). Doors at its north end, into (15, 15), and on its west side at (15, 1), from (14, 1). |
 
@@ -47,7 +55,7 @@ the viper rule: rolls 0-4 always poison).
 |---|---|---|
 | 29 | the whole floor outside the damage zone | Vampire Lord ×2 + DragonZombie ×3 + Nightcrawler ×3 + U. Beholder ×2, or Valkyrie ×3 + Dark Rider ×3 + Sword Dancer ×1 + Shogun ×4, or Leviathan ×6 + Umber Hulk ×5 + Carrion Worm ×6, or Leviathan ×5 + Troll ×6 + Lion of Hell ×5 + Carrion Worm ×6 |
 | 104 | the damage zone (15, 0)-(15, 14) | Marid ×1-3 + Djinni ×2-4 + Water Elem. ×3-5 + Air Elem. ×6, or an empty formation (3 of 4) |
-| 31 | guarded squares (all 4) and the marker (13, 10) | Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1, or Lich ×3 + Vampire Qn. ×3 + Vampire Lord ×2 + Vampire ×3 (2 of 4), or Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3 |
+| 31 | guarded squares (all 4) and the warp (13, 10) | Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1, or Lich ×3 + Vampire Qn. ×3 + Vampire Lord ×2 + Vampire ×3 (2 of 4), or Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3 |
 
 The Lich ×3 formation fills two of area 31's four slots, so it comes up in half of the guard fights (computed). Area
 104 has its one real formation in a single slot and empty ones in the other three: what a fight does when it picks
@@ -89,10 +97,10 @@ less than the zone itself (all computed from the tables).
 
 ## 4. Open questions
 
-- How the party reaches floor 27 and leaves it (no stairs, no chute).
 - What happens when a fight in the damage zone picks an empty formation (3 of its 4 slots).
 - Why the pit at (2, 8) has strength 14 when every other trap here has 28, and what trap strength does for pits,
   rockfalls and ceiling traps.
 
 Tech: [dungeon.md §4 Floors](../../tech/dungeon.md#4-floors), [§2 Square types](../../tech/dungeon.md#2-square-types),
-[§1 Map storage](../../tech/dungeon.md#1-map-storage-and-cell-format); `python3 tools/designtables/floormap.py 27 --list`.
+[§1 Map storage](../../tech/dungeon.md#1-map-storage-and-cell-format),
+[§6 Auto-map](../../tech/dungeon.md#6-auto-map) (warps, floor numbers); `python3 tools/designtables/floormap.py 27 --list`.

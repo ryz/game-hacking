@@ -7,20 +7,26 @@ map, coordinates and what each kind of square does: [maps/README.md](README.md).
 
 ## 1. Overview
 
+- The auto-map calls this floor **B272** ([findings.md](../findings.md), "Floors 21-30 are numbered B30 to B666 on the
+  map").
 - 32 squares are solid rock (two masses in the south-west half); 91 doors, 3 one-way doors, no secret doors and no
   locked doors (computed from the map). 76 of the doors are inside the north-east block (8, 8)-(15, 15), a grid of
   one-square rooms each closed by doors.
-- **Entrance and exits:** four stairs up to floor 24: (14, 13), (6, 9), (8, 6), (15, 0); **no stairs down**. How
-  floors 26-30 are reached was not traced ([findings.md](../findings.md), "Floors 21-30 are not reached by
-  stairs"). The stair at (6, 9) lands in the closed pocket (6, 8)-(7, 9), whose only way out is back up.
-- **On foot** (computed from the map): from any of the stairs up (14, 13), (8, 6) and (15, 0) the party reaches
-  220 squares, every open square except the closed pocket of 4 squares around the stair up at (6, 9), and each of
-  these three stairs from the others.
+- **Entrance and exits:** four stairs up to floor 24: (14, 13), (6, 9), (8, 6), (15, 0); **no stairs down**. The
+  way on to floor 26 is the **warp (7, 8)** in the closed pocket (6, 8)-(7, 9), which moves the party at once to
+  (7, 8) on floor 26 ([floor-26.md](floor-26.md); [findings.md](../findings.md), "Floors 21-30 are not reached by
+  stairs"). The pocket is entered only by the stair up (6, 9), from floor 24's own closed pocket
+  ([floor-24.md](floor-24.md)), and left only by that stair or the warp.
+- **On foot** (computed from the map, warps followed): from any of the stairs up (14, 13), (8, 6) and (15, 0) the
+  party reaches 220 squares, every open square except the closed pocket of 4 squares around the stair up at (6, 9),
+  and each of these three stairs from the others. The two warps of the north-east block, (10, 13) and (12, 11), only
+  move the party around inside this part.
 - **11 guarded squares**, **1 event** (a well), **20 floor traps** (7 pits, 6 spinners, 4 ceiling traps, 2
-  rockfalls, 1 viper) and 3 markers.
-- **Zones:** a damage zone of 3 squares, (0, 1), (1, 1), (1, 0), with its own monsters (area 103); 11 anti-magic
-  squares (inferred meaning) around (5, 7)-(7, 7) and in the room (4, 0)-(5, 1); 42 squares marked as both zone
-  kinds (no known effect): the block (0, 10)-(7, 14), where 11 of the traps are, and the room (8, 0)-(9, 1).
+  rockfalls, 1 viper) and **3 warps** (one to floor 26).
+- **Zones:** a damage zone ("lake" on the auto-map) of 3 squares, (0, 1), (1, 1), (1, 0), with its own monsters
+  (area 103); 11 anti-magic squares ("magic seal"; inferred meaning) around (5, 7)-(7, 7) and in the room
+  (4, 0)-(5, 1); 42 squares of **dark zone** (entering puts out the light: no 3D view, "Pitch darkness!"): the block
+  (0, 10)-(7, 14), where 11 of the traps are, and the room (8, 0)-(9, 1).
 - **Random fights:** area 27 everywhere except the damage zone (area 103).
 - **Monsters:** levels 3-19, groups of 1 to 7 (computed from the formations). Guard chests are Paulownia at best;
   the damage-zone guard gives worse ones ([dungeon.md](../dungeon.md), chest quality by floor).
@@ -30,14 +36,16 @@ map, coordinates and what each kind of square does: [maps/README.md](README.md).
 | Square (x, y) | What | On this floor |
 |---|---|---|
 | (14, 13), (8, 6), (15, 0) | Stairs up | To floor 24, same square. No stairs down. |
-| (6, 9) | Stairs up | To floor 24. In a closed pocket of 4 squares with the marker (7, 8). |
+| (6, 9) | Stairs up | To floor 24. In a closed pocket of 4 squares with the warp (7, 8). |
 | (0, 0) | Well (event) | "Drink from it?": one random outcome (HP restored, poison, cure, heavy damage or paralysis). The only way in is through the damage zone: (1, 1), then (1, 0) and the door west (computed from the map). |
-| (1, 13), (5, 13), (8, 15), (12, 14), (10, 12), (10, 8), (9, 6) | Pit, strength 28 | (1, 13) and (5, 13) in the both-marks block; (9, 6) next to the stair up (8, 6); the others among the door cells. |
-| (7, 13), (2, 12), (4, 12), (1, 11), (6, 11), (2, 10) | Spinner | All in the both-marks block. |
+| (1, 13), (5, 13), (8, 15), (12, 14), (10, 12), (10, 8), (9, 6) | Pit, strength 28 | (1, 13) and (5, 13) in the dark-zone block; (9, 6) next to the stair up (8, 6); the others among the door cells. |
+| (7, 13), (2, 12), (4, 12), (1, 11), (6, 11), (2, 10) | Spinner | All in the dark-zone block. |
 | (0, 15), (12, 2), (13, 2), (3, 1) | Ceiling trap (TF), strength 28 | |
-| (0, 10), (7, 10) | Rockfall, strength 28 | In the both-marks block. |
-| (3, 13) | Viper, strength 28 | In the both-marks block. Each member's save is level/2 + LUK − 28 ([dungeon.md](../dungeon.md)). |
-| (10, 13), (12, 11), (7, 8) | Marker | Nothing visible (auto-map memory, inferred). |
+| (0, 10), (7, 10) | Rockfall, strength 28 | In the dark-zone block. |
+| (3, 13) | Viper, strength 28 | In the dark-zone block. Each member's save is level/2 + LUK − 28 ([dungeon.md](../dungeon.md)). |
+| (7, 8) | Warp | To floor 26 (7, 8). In the closed pocket of the stair up (6, 9): the only way on from this floor. |
+| (10, 13) | Warp | To (13, 8) on this floor. Among the door cells. |
+| (12, 11) | Warp | To (8, 8) on this floor. Among the door cells. |
 | (11, 15), (14, 14), (8, 13), (15, 12), (10, 11), (9, 9), (11, 9), (13, 9) | Guarded square | Fight from area 27, then a chest. Among the door cells. |
 | (5, 1) | Guarded square | Fight from area 27, then a chest. In the anti-magic room (4, 0)-(5, 1). |
 | (7, 1) | Guarded square | Fight from area 27, then a chest. |
@@ -45,7 +53,7 @@ map, coordinates and what each kind of square does: [maps/README.md](README.md).
 | (10, 5) → (9, 5), (15, 8) → (15, 7), (15, 15) → (15, 0) | One-way doors | Passable only in the direction given; the last crosses the map edge onto the stair up (15, 0). |
 | (0, 1), (1, 1), (1, 0) | Damage zone | Each member loses maxHP/4 + 1 HP after every action ([dungeon.md](../dungeon.md)). |
 | (5, 7)-(5, 9), (6, 6)-(7, 7), (4, 0)-(5, 1) | Anti-magic zone | 11 squares. |
-| (0, 10)-(7, 14), (8, 0)-(9, 1) | Both zone marks | 42 squares (rock at (3, 10) and (4, 10)). |
+| (0, 10)-(7, 14), (8, 0)-(9, 1) | Dark zone | 42 squares (rock at (3, 10) and (4, 10)). No 3D view inside. |
 
 How much damage pits, rockfalls and ceiling traps do, and what their strength changes, was not traced. A viper of
 strength 28 poisons a member every time except on a roll of 99 (1%) unless level/2 + LUK is above 33 (computed from
@@ -99,10 +107,10 @@ damage on every step (all computed from the tables and the map).
 
 ## 4. Open questions
 
-- How the party continues to floors 26-30: floor 25 has no stairs down and no chute.
 - Where floor 25's stair up at (15, 0) leads: floor 24's (15, 0) is a stair up as well.
 - Odds of the well's outcomes.
 - Damage of pits, rockfalls and ceiling traps.
 
 Tech: [dungeon.md §4 Floors](../../tech/dungeon.md#4-floors), [§3 Event catalogue](../../tech/dungeon.md#3-event-catalogue),
-[§1 Map storage](../../tech/dungeon.md#1-map-storage-and-cell-format); `python3 tools/designtables/floormap.py 25 --list`.
+[§1 Map storage](../../tech/dungeon.md#1-map-storage-and-cell-format), [§2 Square types](../../tech/dungeon.md#2-square-types),
+[§6 Auto-map](../../tech/dungeon.md#6-auto-map) (warps, floor numbers); `python3 tools/designtables/floormap.py 25 --list`.

@@ -8,6 +8,8 @@ does: [maps/README.md](README.md).
 
 ## 1. Overview
 
+- The auto-map calls this floor **B30** ([findings.md](../findings.md), "Floors 21-30 are numbered B30 to B666 on the
+  map").
 - 21 squares are solid rock, mostly single pillars in a grid in the west half; 7 doors, 12 one-way doors, 2 secret
   doors and no locked doors (computed from the map).
 - **Entrance and exit:** no stairs up; how a party first reaches floor 21 was not traced
@@ -16,16 +18,19 @@ does: [maps/README.md](README.md).
   - the stairs sit in a **pocket of 25 squares** in the south-east, (8, 0)-(15, 4), entered only by the one-way door
     (8, 3) → (9, 3); from the pocket there is no way back on foot, only the stairs. A party that comes up from
     floor 22 can walk only these 25 squares, with or without the secret doors found;
-  - with both secret doors found, the rest of the floor apart from the north strip is **one part of 202 squares**
-    where every square can be reached from every other. The way runs through the one-way door (1, 14) → (2, 14) into
+  - with both secret doors found and the warps followed, the rest of the floor is **one part of 209 squares** where
+    every square can be reached from every other. The way runs through the one-way door (1, 14) → (2, 14) into
     the **north part** (39 squares between (1, 15) and (11, 12)), then through the secret door between the hidden
     spots (7, 10) and (7, 9) (Search on either) into the **middle part** (7, 3)-(10, 9), and from there either through
     the door to the pocket or through the one-way doors (10, 4) → (10, 5) → (10, 6) back to the rest of the floor;
   - until that secret door is found, the north part is a dead end and the stairs down cannot be reached.
-- **The north strip** (8, 15)-(15, 15) has no way in on foot, even with the secret doors found; its one-way door
-  (8, 15) → (7, 15) leads into the north part.
+- **The north strip** (8, 15)-(15, 15), 8 squares with no door in, is entered only by the warp (0, 8), which lands on
+  (15, 15); its one-way door (8, 15) → (7, 15) leads on into the north part (computed from the map).
+- **(15, 8)** cannot be walked onto: its only open sides lead to the warps (14, 8) and, across the map edge, (0, 8),
+  and a party is moved away as soon as it steps on a warp (computed from the map).
 - **6 guarded squares**, **1 event** (the Vampire Lord magic circle), **27 floor traps** (13 pits, 8 vipers,
-  5 spinners, a ceiling trap), **3 hidden spots** (each facing a secret door) and 3 markers.
+  5 spinners, a ceiling trap), **3 hidden spots** (each facing a secret door) and **3 warps**, all to squares of
+  this floor.
 - **Random fights** come from encounter area 23 on every square except two guarded squares, which use area 24, the
   monsters of floor 22.
 - **Monsters:** levels 5-18, up to 4 groups of 1 to 4 (computed from the formations): priests and bishops,
@@ -45,7 +50,9 @@ does: [maps/README.md](README.md).
 | (8, 4) → (8, 5), (9, 4) → (8, 4), (8, 6) → (9, 6), (9, 6) → (9, 5), (10, 4) → (10, 5), (10, 5) → (10, 6) | One-way doors | Inside and out of the middle part. |
 | (7, 10) + (7, 9) | Hidden spots, a pair | Each faces a secret door to the other; Search here finds it. Both sides share one mark, so once found from either side it opens both ways. Noticing difficulty 115. The only link from the north part to the middle part and the stairs down. |
 | (0, 2) | Hidden spot | Faces a secret door north into the magic circle (0, 3); Search here finds it. Noticing difficulty 120. |
-| (0, 8), (8, 8), (14, 8) | Marker | Nothing visible (auto-map memory, inferred). |
+| (0, 8) | Warp | To (15, 15) on this floor: the only way into the north strip. |
+| (8, 8) | Warp | To (0, 0) on this floor. |
+| (14, 8) | Warp | To (2, 6) on this floor. |
 | (2, 15), (6, 15), (4, 14), (6, 13), (11, 13), (4, 12), (7, 11), (11, 4), (10, 2), (9, 0), (11, 0), (13, 0), (15, 0) | Pit, strength 23 | Skipped when floating. The last six are in the stairs pocket. |
 | (0, 15), (2, 13), (3, 12), (4, 11), (5, 10), (6, 9), (2, 8), (4, 8) | Viper, strength 23 | Each member's save is level/2 + LUK − 23 ([dungeon.md](../dungeon.md)). |
 | (0, 10), (2, 10), (0, 6), (4, 6), (6, 6) | Spinner | Turns the party to a random facing. |
@@ -98,11 +105,12 @@ Zombie poison); the Night Rider has the most HP (22d8, up to 176) (all computed 
 
 ## 4. Open questions
 
-- How a party first reaches floor 21 (no stairs up; candidates in [dungeon.md](../dungeon.md): the elevator, an event
-  after the ending), and whether the closed north strip (8, 15)-(15, 15) is where it arrives.
+- How a party first reaches floor 21 (no stairs up and no warp from another floor; candidates in
+  [dungeon.md](../dungeon.md): the elevator, an event after the ending).
 - Damage of the pits and the ceiling trap.
 - The walls of this map were not checked in the game.
 
 Tech: [dungeon.md §4 Floors](../../tech/dungeon.md#4-floors), [§2 Square types](../../tech/dungeon.md#2-square-types),
 [§2.1 Secret and locked doors](../../tech/dungeon.md#21-secret-and-locked-doors-wall-value-3),
-[§5 Not found](../../tech/dungeon.md#5-not-found--open); `python3 tools/designtables/floormap.py 21 --list`.
+[§5 Not found](../../tech/dungeon.md#5-not-found--open),
+[§6 Auto-map](../../tech/dungeon.md#6-auto-map) (warps, floor numbers); `python3 tools/designtables/floormap.py 21 --list`.

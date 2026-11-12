@@ -7,27 +7,34 @@ How to read the map, coordinates and what each kind of square does: [maps/README
 
 ## 1. Overview
 
+- The auto-map calls this floor **B570** ([findings.md](../findings.md), "Floors 21-30 are numbered B30 to B666 on the
+  map").
 - 10 squares are solid rock, in short pillars along the south: (6, 1), (7, 1)-(7, 3), (9, 1)-(9, 2), (13, 1)-(13, 2),
   (15, 1)-(15, 2). 21 doors, 8 one-way doors, 2 secret doors and no locked doors (computed from the map).
-- **Parts** (computed from the map, both secret doors found):
-  - a **core of 160 squares** where every square can be reached from every other, with 16 of the 17 guarded squares;
-    it includes the magic-circle pocket (11, 1)-(11, 2), reached through the secret door between the hidden spots
-    (11, 3) and (11, 2);
-  - the **west block** (2, 4)-(6, 11), 33 squares with the guarded square (5, 10), and 15 squares in the **north-west
-    corner** (x 0-4, y 12-15): the corner leads into the block through the one-way door (3, 12) → (3, 11), and the
-    block into the core through (2, 5) → (1, 5) and (6, 11) → (7, 11), but neither can be entered from the core;
-  - the pocket (9, 13)-(11, 15), 9 squares, entered from the hidden spot (9, 12) through a secret door whose far side
-    is a plain wall: once inside, the party cannot walk back out;
-  - five closed pockets with no way in on foot even with the secret doors found: three along the west edge,
-    (0, 1)-(0, 3), (0, 4)-(0, 8) (with the chute) and (0, 9)-(0, 12), and two in the north, (4, 13)-(5, 13) with
-    (5, 12), and (5, 14)-(8, 15) with (6, 12)-(8, 13).
-  Before the secret doors are found, the magic-circle pocket and the pocket (9, 13)-(11, 15) are closed too.
-- **Entrance and exits:** **no stairs**. The only floor change on the map is the chute at (0, 4), in a closed pocket
-  (computed from the map); how far it drops was not traced. How the party reaches floor 29 was not traced
-  ([findings.md](../findings.md), "Floors 21-30 are not reached by stairs").
+- **Parts** (computed from the map, warps followed):
+  - from the arrival square (0, 0) the party reaches 244 squares, and all 246 open squares once the secret door to
+    the magic circle is found. They form a **core of 240 squares** (238 before that secret door) where every square
+    can be reached from every other, with all 17 guarded squares; the other 6 are the warp (0, 13) and the chute
+    pocket it leads into;
+  - the magic-circle pocket (11, 1)-(11, 2) is reached only through the secret door between the hidden spots (11, 3)
+    and (11, 2);
+  - the **chute pocket** (0, 4)-(0, 8), 5 squares on the west edge: the warp (0, 13) leads into it, at (0, 8), and
+    nothing leads back; its only way out is the chute (0, 4).
+  The walls alone (secret doors found) cut the floor into many pieces: a core of 160 squares; the **west block**
+  (2, 4)-(6, 11), 33 squares, and the **north-west corner** (x 0-4, y 12-15), 15 squares, which lead into the core
+  through one-way doors (the corner into the block through (3, 12) → (3, 11), the block into the core through
+  (2, 5) → (1, 5) and (6, 11) → (7, 11)); the pocket (9, 13)-(11, 15), 9 squares, which the hidden spot (9, 12)
+  opens one way only (a secret door whose far side is a plain wall); and five closed pockets: three along the west edge,
+  (0, 1)-(0, 3), (0, 4)-(0, 8) (with the chute) and (0, 9)-(0, 12), and two in the north, (4, 13)-(5, 13) with
+  (5, 12), and (5, 14)-(8, 15) with (6, 12)-(8, 13). The other 12 warps join all of these pieces into the core,
+  except the chute pocket.
+- **Entrance and exits:** **no stairs**. A party comes down from floor 28 by the warp there, which lands on
+  **(0, 0)** ([floor-28.md](floor-28.md)). The only floor change on the map is the chute (0, 4), in the pocket that
+  only the warp (0, 13) leads into (computed from the map); how far it drops was not traced. How the party reaches
+  floor 30 was not traced ([findings.md](../findings.md), "Floors 21-30 are not reached by stairs").
 - **17 guarded squares**, **1 event** (the From Beyond magic circle), **13 floor traps** (8 pits, a chute, a viper,
-  a spinner, a ceiling trap, a rockfall), **3 hidden spots** (a pair and a single, each facing a secret door) and 13
-  markers.
+  a spinner, a ceiling trap, a rockfall), **3 hidden spots** (a pair and a single, each facing a secret door) and
+  **13 warps**, all to squares of this floor.
 - **Zones:** none.
 - **Random fights:** area 31 almost everywhere; area 33 (also used on floor 30) on 6 guarded squares and on (13, 7),
   (13, 9) and (13, 11).
@@ -42,8 +49,8 @@ How to read the map, coordinates and what each kind of square does: [maps/README
 |---|---|---|
 | (11, 1) | Magic circle (event) | From Beyond pact, from Summoner level 37 ([spells.md](../spells.md)). In the pocket (11, 1)-(11, 2), whose only link to the rest of the floor is the secret door between the hidden spots (11, 2) and (11, 3). |
 | (11, 3) + (11, 2) | Hidden spots, a pair | Each faces a secret door to the other; Search here finds it. Both sides share one mark, so once found from either side it opens both ways. Noticing difficulty 160. The way to the magic circle. |
-| (9, 12) | Hidden spot | Faces a secret door north into the pocket (9, 13)-(11, 15); Search here finds it. Noticing difficulty 155. Seen from the pocket the side is a plain wall, so this door works one way only (computed from the map). |
-| (0, 4) | Chute, strength 31 | Drops the party to a lower floor (how far: not traced); skipped when floating. In the closed pocket (0, 4)-(0, 8), which has no way in on foot. |
+| (9, 12) | Hidden spot | Faces a secret door north into the pocket (9, 13)-(11, 15); Search here finds it. Noticing difficulty 155. Seen from the pocket the side is a plain wall, so this door works one way only; the pocket's warps (10, 14) and (11, 13) lead out (computed from the map). |
+| (0, 4) | Chute, strength 31 | Drops the party to a lower floor (how far: not traced); skipped when floating. In the pocket (0, 4)-(0, 8), entered only by the warp (0, 13) and left only by this chute (computed from the map). |
 | (10, 11), (12, 11), (10, 9), (12, 9) | Pit, strength 30 | A square of pits around (11, 10), between the guards (9, 11), (9, 9) and the column of guards at x 14. |
 | (2, 9), (6, 8), (2, 6), (3, 3) | Pit, strength 30 | |
 | (7, 9) | Viper, strength 30 | Each member's save is level/2 + LUK − 30 ([dungeon.md](../dungeon.md)). |
@@ -54,9 +61,10 @@ How to read the map, coordinates and what each kind of square does: [maps/README
 | (14, 11) + (15, 11) | Guarded squares, a pair | Fight from area 31, then a chest. At the top of the east column. They share one once-per-visit mark: after one is fought, the other probably stays quiet until the next floor change (inferred). |
 | (14, 9), (14, 7), (14, 1) | Guarded square | Fight from area 31, then a chest. The rest of the east column. |
 | (9, 11) + (9, 9) + (12, 7) | Guarded squares, a set of three | Fight from area 33, then a chest. They share one once-per-visit mark: after one is fought, the other two probably stay quiet until the next floor change (inferred). |
-| (5, 10) | Guarded square | Fight from area 33, then a chest. In the west block, which cannot be entered from the core. |
+| (5, 10) | Guarded square | Fight from area 33, then a chest. In the west block (2, 4)-(6, 11). |
 | (10, 3), (14, 3) | Guarded square | Fight from area 33, then a chest. |
-| (8, 15), (1, 14), (10, 14), (13, 14), (0, 13), (7, 13), (11, 13), (5, 12), (0, 9), (6, 5), (5, 3), (6, 3), (0, 1) | Marker | Nothing visible (auto-map memory, inferred). |
+| (0, 13) | Warp | To (0, 8) on this floor: the only way into the chute pocket (0, 4)-(0, 8), with no way back. In the north-west corner. |
+| (8, 15) → (11, 14), (1, 14) → (4, 3), (10, 14) → (7, 15), (13, 14) → (10, 13), (7, 13) → (4, 13), (11, 13) → (14, 14), (5, 12) → (0, 3), (0, 9) → (3, 13), (6, 5) → (6, 2), (5, 3) → (1, 13), (6, 3) → (6, 6), (0, 1) → (0, 12) | Warps (12) | To the second square, on this floor. They join the pieces the walls make (overview): the closed pockets along the west edge and in the north are entered and left only by them. |
 | (2, 5) → (1, 5), (3, 12) → (3, 11), (6, 11) → (7, 11), (8, 1) → (8, 0), (8, 5) → (8, 4), (11, 5) → (12, 5), (13, 5) → (12, 5), (14, 12) → (13, 12) | One-way doors | Passable only in the direction given. (11, 5) and (13, 5) both lead into (12, 5) and not back. |
 
 Search finds a secret door with no roll; noticing the hidden spot first is only a hint. For any chance to notice a
@@ -111,13 +119,11 @@ level drainers, up to 4 levels per hit from the Vampire Lord (all computed from 
 
 ## 4. Open questions
 
-- How the party reaches floor 29, and where the chute at (0, 4) leads; the chute sits in a closed pocket.
-- How the closed pockets (the three on the west edge and the two in the north) are entered: no door, stairs or secret
-  door leads in. Likewise the west block (2, 4)-(6, 11) and the north-west corner cannot be entered from the core.
-- Whether the pocket (9, 13)-(11, 15) really keeps a party in: its secret door has a plain wall on the far side (not
-  checked in the game).
+- Where the chute at (0, 4) leads. It is the only way off this floor on the map, and no stairs or warp lead to
+  floor 30, so it may be the way there (inferred, not traced).
 - Damage of pits, rockfalls and ceiling traps.
 
 Tech: [dungeon.md §4 Floors](../../tech/dungeon.md#4-floors), [§2 Square types](../../tech/dungeon.md#2-square-types),
 [§2.1 Secret and locked doors](../../tech/dungeon.md#21-secret-and-locked-doors-wall-value-3),
-[§1 Map storage](../../tech/dungeon.md#1-map-storage-and-cell-format); `python3 tools/designtables/floormap.py 29 --list`.
+[§1 Map storage](../../tech/dungeon.md#1-map-storage-and-cell-format),
+[§6 Auto-map](../../tech/dungeon.md#6-auto-map) (warps, floor numbers); `python3 tools/designtables/floormap.py 29 --list`.
