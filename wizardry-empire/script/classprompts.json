@@ -1,0 +1,11 @@
+[
+{"bank": 38, "addr": "0x76c8", "class": 0, "jp": "せんし になりますか?", "en": "Become a Fighter?"},
+{"bank": 38, "addr": "0x76d8", "class": 1, "jp": "まほうつかい になりますか?", "en": "Become a Mage?"},
+{"bank": 38, "addr": "0x76e8", "class": 2, "jp": "そうりょ になりますか?", "en": "Become a Priest?"},
+{"bank": 38, "addr": "0x76f8", "class": 3, "jp": "とうぞく になりますか?", "en": "Become a Thief?"},
+{"bank": 38, "addr": "0x7708", "class": 4, "jp": "ビショップ になりますか?", "en": "Become a Bishop?"},
+{"bank": 38, "addr": "0x7718", "class": 5, "jp": "サムライ になりますか?", "en": "Become a Samurai?"},
+{"bank": 38, "addr": "0x7728", "class": 6, "jp": "ロード になりますか?", "en": "Become a Lord?"},
+{"bank": 38, "addr": "0x7738", "class": 7, "jp": "ニンジャ になりますか?", "en": "Become a Ninja?"},
+{"bank": 38, "addr": "0x7748", "class": 8, "jp": "ゆみつかい になりますか?", "en": "Become an Archer?"}
+]

@@ -3,7 +3,7 @@ skill: tracer
 project: wizardry-empire
 summary: Answer one reverse-engineering question about where/how text is printed.
 access: write (notes file)
-updated: 2026-11-11
+updated: 2026-11-12
 ---
 
 # Tracer - Wizardry Empire (GBC): reverse-engineering questions
@@ -69,3 +69,9 @@ End your final report with this block; the coordinator files it in `skills/trace
 - Friction: <what slowed you down or was unclear in this skill or the tools>
 - Proposed rule change: <a concrete change to skill.md, or "none">
 ```
+
+## Coverage questions (2026-11-12)
+Check by ADDRESS (every rect/message source site against script/*.json), not only by text; walk pointer
+tables to their real end (stop at the first pointer outside the data range) instead of trusting a documented
+count; force late-game screens (ending: `$D000`=8 at 2B:5B70, second clear: `$C5C6` bit 7) rather than
+assume they are covered.

@@ -10,6 +10,20 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - missing text (prologue, title, item descriptions)
+- Task: locate remaining untranslated Japanese (prologue, title/options, item effect descriptions).
+- Worked: address-based check of every `ldh [$b8]/[$b9]` rect source against rects.json (found the ending,
+  the quit screen); forcing the ending by poking the dispatcher index `$D000`=8.
+- Friction: status pointed at the wrong bank; museum.md's 30-entry count hid two rects; text-only coverage
+  misses rects whose text also exists as a message.
+- Proposed rule change: coverage questions are answered by ADDRESS, not only by text; walk pointer tables to
+  their real end instead of trusting a documented count. Tool: rect-site check in tests/test_coverage.py.
+- Corrected: all four findings applied (ending 7 pages, quit screen, 2 museum rings, class-change prompt via
+  RAM-rect header like the titles). Missed: the credits (2C:5C51-6223, 10 rects in a credits charset at
+  codes $80+) - found by forcing the second-clear ending; now English VWF rects.
+- Status: promoted 2026-11-12 (address-based coverage: second coverage lesson after the Rev 1 entry's
+  per-site comparison) - rule added to skill.md; rect-site test -> tool backlog
+
 ### 2026-11-12 - attack-verb templates
 - Task: classify each bank-49 attack verb as target / no-target template.
 - Worked: byte search for every reader of the table (`21 AF 56`) + the parallel template table; short

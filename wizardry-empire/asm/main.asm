@@ -25,6 +25,11 @@ org 41, $70e1
 org 43, $5fda
     ds 8, $00
 
+; Training 'change class' prompt (26:5072): keep ld a,$10 / ld c,a (copy count), drop the [w=16][h=1] writes
+; so the record (now a VWF rect header, script/classprompts.json) is copied as the header of the RAM rect.
+org 38, $5082
+    ds 6, $00
+
 ; Battle monster-group panel: 22:5682 call $199B -> trampoline -> VWF_Panel (proportional names).
 org 34, $5688
     call $7f00

@@ -24,6 +24,8 @@
 - Editor pass applied (names, battle past tense, maze wording); breath verbs no longer read "breathed fire at!"
   (docs/re/verbs.md).
 - Tools: emulator turbo by default (~7x faster, same frames); shoot.py `poke` token; museum and maze shot lines.
+- Last untranslated screens (docs/re/missing-text.md): the ending (7 pages) and credits (10 rects, now VWF),
+  the "End the quest" power-off screen, two museum ring descriptions, Training "Become a <class>?" prompt.
 
 ## Done 2026-11-12 (tenth session: museum items, owner's list)
 - GC counted the off-screen columns 20-31 (uninitialised RAM): ~80 slots wasted; now only visible columns.
@@ -99,7 +101,8 @@
    garbage in the page; AC/HP minus signs still 8 px. A faster GC would help every screen.
 2. Name-entry field still in the 8 px font (owner's rule: words in the VWF).
 3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
-4. Item effect descriptions (bank 46), prologue, title screen.
+4. Ending/credits checked only with the forced route ($D000=8 from the town); a real final-boss ending (maze
+   layout) not seen. The game has no prologue; item effect texts are the museum rects (all translated).
 5. VWF: short transients while screens are typed (1-4 frames). Town input delay after arrival not re-measured
    since the redraw cache.
 6. Owner's report "gets slower the longer I play" not reproduced in the emulator (random walks, door messages,

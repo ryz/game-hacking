@@ -349,6 +349,17 @@ def insert_titles(rom, space, entries):
     return len(entries)
 
 
+def insert_class_prompts(rom, space, entries):
+    """Training 'change class' prompt: 16-byte records at 26:76C8 (one per class), copied by 26:5072 to a RAM
+    rect at $C632 that is blitted with $1789. asm/main.asm NOPs out the [w=16][h=1] writes, so the record is
+    the rect header: [$90][$01][bank][ptr] -> English (128 px)."""
+    for e in entries:
+        o = rom_off(e["bank"], int(e["addr"], 16))
+        b, a = space.put(layout_rows({"id": e["addr"], "w": 16, "h": 1, "en": [e["en"]]}))
+        rom[o:o + 16] = bytes([0x90, 0x01, b, a & 0xFF, a >> 8]) + b"\x20" * 11
+    return len(entries)
+
+
 NAME_LATIN, NAME_PAGES = 0x70EA, (0x7006, 0x7078)   # bank 38: Latin page, hiragana and katakana pages
 
 
@@ -450,6 +461,7 @@ def insert_all(rom):
     stats["lists"] = insert_lists(rom, b49, load("lists.json"))
     stats["chests"] = insert_chests(rom, b49, load("chests.json"))
     stats["titles"] = insert_titles(rom, space, load("titles.json"))
+    stats["class prompts"] = insert_class_prompts(rom, space, load("classprompts.json"))
     stats["name charts"] = insert_name_charts(rom)
     stats["spells"] = insert_spells(rom, space, load("spells.json"))
     stats["bank 49 free used"] = "$%04X of $%04X" % (b49.pos - LIST_FREE, 0x8000 - LIST_FREE)
