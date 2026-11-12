@@ -75,3 +75,9 @@ Check by ADDRESS (every rect/message source site against script/*.json), not onl
 tables to their real end (stop at the first pointer outside the data range) instead of trusting a documented
 count; force late-game screens (ending: `$D000`=8 at 2B:5B70, second clear: `$C5C6` bit 7) rather than
 assume they are covered.
+
+## Reachability questions (2026-11-12)
+Find the flag the game itself checks (breakpoint at the screen bank's entry, then a byte search of every
+reader/writer of that flag); prefer a no-poke route, else a position poke next to the square
+(tools/maze_goto.py: $CB80 x, $CB81 y, $CB82 floor-1, $CB83 facing); verify each state with a count-only
+breakpoint on the dispatcher. To run one routine: stop at 0:07C5 first (HALT/IME), then set bank/PC.

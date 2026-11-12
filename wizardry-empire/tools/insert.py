@@ -246,8 +246,11 @@ def fix_sites(rom):
     for m in re.finditer(rb"(?:\x2a\x12\x13)+\x7e\x12", data):
         if m.start() in SKIP_FIX_SITES:
             continue
-        pre = data[m.start() - 8:m.start()]
-        if any(pre[i] == 0x21 and pre[i + 2] >= 0x80 for i in range(len(pre) - 2)):
+        # the source: the nearest `ld hl,nn` in the 16 bytes before (27:662C, temple fee: ld hl,$D028 13 bytes
+        # back - an 8-byte window called it text and turned the payer's gold into VWF codes)
+        pre = data[m.start() - 16:m.start()]
+        lds = [i for i in range(len(pre) - 2) if pre[i] == 0x21]
+        if lds and pre[lds[-1] + 2] >= 0x80:
             continue
         n = (m.end() - m.start() - 2) // 3 + 1
         out.append((m.start(), m.end() - m.start(), n, b""))

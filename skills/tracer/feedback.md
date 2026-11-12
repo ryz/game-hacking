@@ -10,6 +10,30 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - reaching chests and maze events
+- Task: reliable routes/states to a post-battle chest and bank-45 events in the EN build.
+- Worked: breakpoint at the screen bank's entry (25:4000) while mashing A; byte search of every $C00B access;
+  reading the map from WRAM4 and a path search; count-only breakpoint on the event dispatcher to verify.
+- Friction: no pokes+tokens->state helper; explore.py states depend on seed/step; skill framed around text
+  printers; no gbdis xref; the floor-2 stairs prompt ate inputs.
+- Proposed rule change: "Reachability questions" note in skill.md; move goto/route/make_chest into tools/.
+- Corrected: random battles never drop chests (only guarded squares, map type 6) - confirmed by the code
+  path; scripts moved to tools/maze_goto.py, maze_route.py, maze_make_chest.py; notes in docs/re/reach.md.
+- Status: promoted 2026-11-12 (reachability note added to skill.md)
+
+### 2026-11-12 - buffer-size audit of copied strings
+- Task: every translated string the game copies into a fixed-size RAM buffer: size, what follows, EN max.
+- Worked: immediates into the table area + a generic copy-loop scanner + a JP/EN diff per site; running one
+  routine from the main-loop frame wait to prove a bug without a matching save.
+- Friction: regs.set cannot clear HALT/IME (stop at 0:07C5 first); no gbdis xref (second time); fix_sites()
+  text/data decision used an 8-byte window nothing checked.
+- Proposed rule change: recipe "execute one routine from 0:07C5"; "does the game copy X": loop scanner +
+  per-site EN/JP diff + every Stub_Fix source must be ROM. Tools: gbdis xref, tools/loops.py.
+- Corrected: temple fee copy 27:662C (gold turned into VWF codes) fixed - fix_sites() takes the nearest
+  `ld hl` within 16 bytes (only that site changed); tests/test_limits.py gained item-type, monster, spell and
+  wNameBuf checks. NPC names (8 records, bank 45 $4000, 7-char field) noted for translation.
+- Status: promoted 2026-11-12 (gbdis xref is now a second request -> tool backlog item with priority)
+
 ### 2026-11-12 - missing text (prologue, title, item descriptions)
 - Task: locate remaining untranslated Japanese (prologue, title/options, item effect descriptions).
 - Worked: address-based check of every `ldh [$b8]/[$b9]` rect source against rects.json (found the ending,

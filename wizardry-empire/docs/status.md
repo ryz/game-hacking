@@ -104,7 +104,9 @@
    shows ~5 frames of garbage in the list first (tried 2026-11-12, reverted: flicker).
 2. (done 2026-11-12) Name entry: typed name in the VWF (26:6C62 NameField), cursor box placed by the VWF
    width (26:6C37 NameCursorX).
-3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
+3. Chests/events now reachable (docs/re/reach.md, tools/maze_*.py; work/re/reach/states/): a playtest of the
+   chest screens and the bank-45 events is next. NPC names (8 recruit records, bank 45 $4000, 7-char field;
+   Siegfried needs a short form) are still Japanese (docs/re/overflow.md).
 4. Ending/credits checked only with the forced route ($D000=8 from the town); a real final-boss ending (maze
    layout) not seen. The game has no prologue; item effect texts are the museum rects (all translated).
 5. VWF: short transients while screens are typed (1-4 frames). Town input delay after arrival not re-measured
