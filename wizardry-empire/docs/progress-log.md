@@ -11,6 +11,15 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - documentation split: design vs tech; floor 1 mapped
+- docs/README.md (map + rules for all docs), docs/re/README.md (what RE means), docs/tech/ (game systems with
+  addresses and evidence), docs/design/ (rules, formulas, data for designers; notation defined once in its README).
+- design: characters, spells, combat, items, town, monsters, dungeon, findings (35 quirks: Behavior / Intended /
+  Confidence / Impact), generated items/monsters tables, maps/ (README + floor 01 with a map drawn from the data).
+- 15 tech contradictions resolved in the emulator (pacts are spells, inn aging any HP, old-age roll ignored 6/6,
+  Revival Charm cures Lost, Battle Axe 95% verified, ...). Editor review applied in a revision round.
+- Tools: tools/designtables (tables + floormap.py), tools/doclinks.py; design-writer skill.
+
 ## 2026-11-12 - town slowdown, maze wall text, 'Choose a classsir'
 - ROM: `4871b06` sent.
 - Town at 1/4 speed after the tavern/temple menus (stuck font-load flag, party-list cache missed every pass):

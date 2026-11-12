@@ -165,6 +165,9 @@
    Not covered by any route: wall bump 'Ouch!', friendly-encounter panel, strange-pattern event. 'Choose a classsir' fixed
    (RectRows blank-cell bug).
 
+14. Docs: design/ and tech/ split done (2026-11-12). Next: map floors 2-30 (tools/designtables/floormap.py),
+   spell effects (untraced), the open questions listed at the end of each design document.
+
 ## Known issues
 - Untranslated text shows as blank/garbage (kana tiles are no longer loaded; their slots belong to the VWF).
 - Unhooked printers fall back to the original 8 px font (ASCII letters/digits/punctuation are kept).
