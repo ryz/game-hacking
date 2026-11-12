@@ -151,7 +151,8 @@ RC_SCR      equ $cce0          ; WRAM0 scratch for the box restore (private stac
 RC_SCRW     equ $cd70          ; box width while switched to bank 3
 ; Party list cache (39:4931 draws the party rows $D160-$D21F every main-loop pass after the game cleared them)
 PL_ROW0     equ $d160          ; 6 rows x 20 cells
-wPL_codes   equ $dd00          ; WRAM bank 6, 120 bytes: the rows' codes after the last real draw
+wPL_codes   equ $dd00          ; WRAM bank 6, 120 bytes: the rows' codes after the last real draw (before it
+                               ; while the draw runs)
 wPL_attrs   equ $dd80          ; WRAM bank 6, 120 bytes: their attributes
 wPL_valid   equ $d5a2
 wPL_pend    equ $d5a3          ; a real draw is running: snapshot at its end
@@ -162,6 +163,12 @@ wPL_sumB    equ $d5aa          ; 2: rows' codes before the draw (as the game lef
 wPL_sumBA   equ $d5ac          ; 2: rows' attributes before the draw
 wPL_epoch   equ $d5ae
 wPL_gc      equ $d5af
+wPL_n       equ $d22d          ; cells in wPL_list, $ff = too many (copy all 120 codes)
+wPL_list    equ $df00          ; WRAM bank 6, PL_MAX x (offset from PL_ROW0, code): the cells the draw changed
+PL_MAX      equ 64             ; 128 bytes: fits the WRAM0 scratch
+PL_OFF      equ $cd71          ; PLSnap.list temporaries (WRAM0, private stack area, idle outside PrivCall)
+PL_CNT      equ $cd72
+PL_COL      equ $cd73
 wStamp      equ $de00          ; WRAM bank 6, 256 bytes: frame ($C00A) a slot's tile was last drawn
 STAMP_KEEP  equ 8              ; the dry GC pass keeps text slots drawn this recently (a screen being built)
 wHIdx       equ $db00          ; WRAM bank 6, 256 bytes: tile hash -> last slot given that hash (HashCur)
@@ -5829,18 +5836,55 @@ PLData:
     jr nz, .add
     ret
 
-; DE = sum of the party rows' codes (B = 0) or attributes (B = 4)
+; DE = sum of the party rows' codes (B = 0) or attributes (B = 4): SumRegion's Fletcher sum, 4 cells per loop
 PLSum:
-    ld a, 20
-    ld [RC_SCRW], a
     ld hl, PL_ROW0
     ld a, h
     add b
     ld h, a
+    ld de, 0
+    ld a, 3
+    ldh [hSVBK], a
+    ldh [$70], a
     ld b, 6
-    jp SumRegion
+.r: ld c, 5
+.c: ld a, [hli]
+    add d
+    ld d, a
+    add e
+    ld e, a
+    ld a, [hli]
+    add d
+    ld d, a
+    add e
+    ld e, a
+    ld a, [hli]
+    add d
+    ld d, a
+    add e
+    ld e, a
+    ld a, [hli]
+    add d
+    ld d, a
+    add e
+    ld e, a
+    dec c
+    jr nz, .c
+    ld a, l
+    add 12
+    ld l, a
+    jr nc, .n
+    inc h
+.n: dec b
+    jr nz, .r
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
 
-; carry = skip the draw (rows restored if needed); else note the rows as the game left them for the snapshot
+; carry = skip the draw (rows restored if needed); else note the rows as the game left them for the snapshot.
+; The town clears the box every main-loop pass before this draw: the codes are put back from the change list
+; (PLRestore), the attributes only when the game changed them too.
 PLHit:
     ld a, [wReset]          ; font load since the snapshot: do the pending allocator reset now (drops this cache,
     or a                    ; bumps wEpoch). Leaving it to the next Alloc is not enough: a redraw that reuses every
@@ -5863,20 +5907,32 @@ PLHit:
     call PLSum
     ld hl, wPL_sumA
     call Cmp16
+    ld c, 0                 ; C = 0: attributes as drawn
     jr z, .attrsDrawn
     ld hl, wPL_sumBA
     call Cmp16
     jr nz, .miss
+    inc c                   ; C = 1: as the game left them, restore them
 .attrsDrawn:
+    push bc
     ld b, 0
     call PLSum
+    pop bc
     ld hl, wPL_sumC
     call Cmp16
-    jr z, .hit              ; still as drawn
+    jr z, .codesDrawn
     ld hl, wPL_sumB
     call Cmp16
     jr nz, .miss
     call PLRestore
+    jr .hit
+.codesDrawn:
+    ld a, c
+    or a
+    jr z, .hit
+    ld hl, wPL_attrs
+    ld de, PL_ROW0 + $400
+    call PLRestore.put
 .hit:
     scf
     ret
@@ -5895,24 +5951,26 @@ PLHit:
     ld [wPL_sumBA], a
     ld a, d
     ld [wPL_sumBA + 1], a
+    ld hl, PL_ROW0          ; the codes before the draw (PLSnap lists the cells the draw changes)
+    ld de, wPL_codes
+    call PLSnap.copy
     ld a, 1
     ld [wPL_pend], a
     and a
     ret
 
-; after a real draw: snapshot the rows (codes, attributes) into bank 6 and remember the sums
+; after a real draw: snapshot the rows into bank 6 (attributes; codes plus the list of cells the draw changed)
+; and remember the sums
 PLSnap:
     ld a, [wPL_pend]
     or a
     ret z
     xor a
     ld [wPL_pend], a
-    ld hl, PL_ROW0
-    ld de, wPL_codes
-    call .copy
     ld hl, PL_ROW0 + $400
     ld de, wPL_attrs
     call .copy
+    call .list
     ld b, 0
     call PLSum
     ld a, e
@@ -5937,8 +5995,78 @@ PLSnap:
     ld a, 1
     ld [wPL_valid], a
     ret
+.list:                      ; codes now -> RC_SCR; bank 6: list (offset, code) of the cells that differ from the
+    ld hl, PL_ROW0          ; codes before the draw (wPL_codes), then keep the codes now in wPL_codes
+    call .in
+    ld a, MAP_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    xor a
+    ld [PL_OFF], a
+    ld [PL_CNT], a
+    ld hl, RC_SCR
+    ld de, wPL_codes
+    ld bc, wPL_list
+.lr: ld a, 20
+    ld [PL_COL], a
+.lc: ld a, [de]
+    cp [hl]
+    jr z, .same
+    ld a, [PL_CNT]
+    cp PL_MAX
+    jr nc, .ovf
+    inc a
+    ld [PL_CNT], a
+    ld a, [PL_OFF]
+    ld [bc], a
+    inc bc
+    ld a, [hl]
+    ld [bc], a
+    inc bc
+    jr .same
+.ovf: ld a, $ff             ; too many: PLRestore copies all 120 codes
+    ld [PL_CNT], a
+.same:
+    ld a, [hli]
+    ld [de], a
+    inc de
+    ld a, [PL_OFF]
+    inc a
+    ld [PL_OFF], a
+    ld a, [PL_COL]
+    dec a
+    ld [PL_COL], a
+    jr nz, .lc
+    ld a, [PL_OFF]
+    add 12
+    ld [PL_OFF], a
+    cp 6 * 32
+    jr nz, .lr
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld a, [PL_CNT]
+    ld [wPL_n], a
+    ret
 .copy:                      ; 6 rows x 20 cells from HL (bank 3) to DE (bank 6), through the WRAM0 scratch
     push de
+    call .in
+    pop de
+    ld a, MAP_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld hl, RC_SCR
+    ld c, 120
+.w: ld a, [hli]
+    ld [de], a
+    inc de
+    dec c
+    jr nz, .w
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ret
+.in:                        ; 6 rows x 20 cells from HL (bank 3) to RC_SCR; leaves bank 3 mapped
     ld de, RC_SCR
     ld b, 6
     ld a, 3
@@ -5957,30 +6085,59 @@ PLSnap:
     inc h
 .n: dec b
     jr nz, .r
-    pop de
-    ld a, MAP_BANK
-    ldh [hSVBK], a
-    ldh [$70], a
-    ld hl, RC_SCR
-    ld c, 120
-.w: ld a, [hli]
-    ld [de], a
-    inc de
-    dec c
-    jr nz, .w
-    ld a, HOME_BANK
-    ldh [hSVBK], a
-    ldh [$70], a
     ret
 
-; write the snapshot back (codes and attributes) and, after a GC since the snapshot, mark the slots in use
+; put the drawn codes back (change list, or all 120 when it overflowed), the attributes too when C != 0; after a
+; GC since the snapshot, mark the slots in use
 PLRestore:
-    ld hl, wPL_codes
-    ld de, PL_ROW0
-    call .put
+    ld a, c
+    or a
+    jr z, .codes
     ld hl, wPL_attrs
     ld de, PL_ROW0 + $400
     call .put
+.codes:
+    ld a, [wPL_n]
+    cp $ff
+    jr nz, .list
+    ld hl, wPL_codes
+    ld de, PL_ROW0
+    call .put
+    jr .mark
+.list:
+    or a
+    jr z, .mark
+    ld b, a
+    add a
+    ld c, a
+    ld hl, wPL_list         ; gather the list (bank 6) into the WRAM0 scratch
+    ld de, RC_SCR
+    ld a, MAP_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+.g2: ld a, [hli]
+    ld [de], a
+    inc de
+    dec c
+    jr nz, .g2
+    ld a, 3                 ; scatter into the rows (bank 3)
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld hl, RC_SCR
+.s: ld a, [hli]
+    add low(PL_ROW0)
+    ld e, a
+    ld a, high(PL_ROW0)
+    adc 0
+    ld d, a
+    ld a, [hli]
+    ld [de], a
+    dec b
+    jr nz, .s
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+.mark:
     ld a, [wGCCount]
     ld hl, wPL_gc
     cp [hl]
