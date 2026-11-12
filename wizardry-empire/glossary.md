@@ -18,6 +18,9 @@ Binding names and terms. Use them exactly; add new rows when a new name is decid
   their alignment (right-aligned in their field, digits of equal width).
 - Field limits are hard: items 16 chars, monsters 12 (abbreviate with "Gr." / "Mstr." / "Elem." only when needed),
   default character names 7.
+- One name per creature for spells and monsters (summons): Lion of Hell, Ancient One, From Beyond (かなたより
+  のもの), Unspeakable (けいようしがたきもの); only the 12-character monster limit may shorten (Gr. Demon,
+  ShadowDragon). ドラゴンスレイヤー = Dragonslayer (item and title).
 - Battle narration: events in past tense ("attacked", "dealt", "took N damage", "cast"); states keep "is"
   ("is afraid!", "is paralyzed!"). (2026-11-12, editor review)
 - One name per monster, never two monsters with the same name (しかく = Cutthroat, アサシン = Assassin).
@@ -34,7 +37,7 @@ Binding names and terms. Use them exactly; add new rows when a new name is decid
 | サンサーラじいん | Samsara Temple |
 | しょうてん ローレライ | Lorelei's Shop |
 | アリエスの やど | Aries Inn |
-| まどう | the maze |
+| まどう | the maze (but まどうゲート / まどうのローブ = 魔導, sorcery: Magic Gate / Magic Robe) |
 | まどうエレベータ | Maze Elevator |
 | まかい | the abyss / netherworld |
 | ちじょう | the surface / mortals (ちじょうのもの) |

@@ -110,8 +110,8 @@
 
 ## Next (in rough priority)
 1. Museum monster page: opening takes ~31 frames (JP 9; each VWF GC ~2.5 frames), closing shows a few frames of
-   garbage in the page. Owner's choice: going straight to the BG pass for page prints opens it in ~21 frames but
-   shows ~5 frames of garbage in the list first (tried 2026-11-12, reverted: flicker).
+   garbage in the page. Decided 2026-11-12 (owner delegated): keep it clean rather than faster (a ~21-frame
+   variant showed ~5 frames of list garbage).
 2. Messages added from the census but not yet seen on screen: 49:4314 (Find allies with a found character),
    49:44CE party location, 49:451F teleport prompt, 49:5594/55A4 alignment change (friendly group attacked),
    49:43B9/4432/4583 (docs/re/msgcov.md) - playtest running. Owner's choice: Siegfried's 7-letter name-field
@@ -143,10 +143,11 @@
    a screen that does not reach its route's target (a boot stuck on Mode Settings passed as OK); census
    segment mode (`$FC`) and attributes; lint: ignore `{..}` inserts before punctuation, label lists.json
    entries, Ifrit-style spell/monster pairs, credits rects 'same Japanese'; revmap inv_addr()/gaps().
-11. Editor items not applied: Maze Robe vs Magic Gate (まどう ruling), ADISH monster-speak in caps, plural
-   counts with N = 1 ("1 levels"), remaining Polish list (skills/editor/feedback.md 2026-11-12).
-12. Glossary rulings for spells vs monsters with the same Japanese: Lion of Hell / Hell Lion, One from Beyond /
-   Far Comer, The Unspeakable / Nameless One, Shadow Dragon / ShadowDragon.
+11. Decided 2026-11-12 (owner: Sigfrid OK, the rest delegated): one name per creature for spells and monsters
+   (Lion of Hell, Ancient One, From Beyond, Unspeakable; Gr. Demon / ShadowDragon stay by the 12-char limit),
+   Dragonslayer, Magic Robe (まどう = 魔導 here), ADISH monster-speak in caps, 'level(s)' / 'curse(s)',
+   'quest' for the adventure, editor Polish list applied. Open: picture-map label 地下 (graphics, automap).
+12. Teleport prompt: the floor digit sits a few px right of 'Floor B' (fixed cells for the cursor arrow).
 
 ## Known issues
 - Untranslated text shows as blank/garbage (kana tiles are no longer loaded; their slots belong to the VWF).
