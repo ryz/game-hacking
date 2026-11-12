@@ -603,6 +603,34 @@ NameField:
     ld hl, $ffa8
     ld de, $d02a
     jp Stub_PrintZ
+; cursor box (26:6C37-6C51: x = $50 + 8 * letters, the 7th letter keeps x on it) -> $50 + the VWF width
+    org $26, $6c37
+    push hl
+    call NameCursorX
+    pop hl
+    ld [hl], a
+    jr @+21
+    ds 19, $00
+    org $26, $7f60
+NameCursorX:                ; A = x of the cursor box
+    ld hl, $d060
+    ld de, $ffa8
+    ld b, 7
+.cp: ld a, [hli]
+    or a
+    jr z, .e
+    ld [de], a
+    inc de
+    dec b
+    jr nz, .cp
+.e: xor a
+    ld [de], a
+    ld a, VWF_BANK
+    ld hl, VWF_NameW
+    call FarCall
+    ld a, l
+    add $50
+    ret
 
 ; --- museum monster list name (41:633E): name at $C50F -> VWF
     org $29, $633e
@@ -5698,6 +5726,36 @@ NextCellBlank:
 .l2: or $08                 ; layout 2: blank = VRAM1 font space
     call Write3
     jp NextCell
+
+; Name entry cursor: L = pixel width of the $00-terminated name at $FFA8; with 7 letters (field full) the width
+; up to the last letter, so the box sits on it as in the original. HRAM and ROM only (any SVBK).
+VWF_NameW:
+    ld hl, $ffa8
+    ld bc, 0                ; b = letters, c = width
+    ld e, 0                 ; advance of the last letter
+.l: ld a, [hli]
+    or a
+    jr z, .e
+    push hl
+    and $7f
+    ld l, a
+    ld h, 0
+    ld de, FontAdv
+    add hl, de
+    ld a, [hl]
+    pop hl
+    ld e, a
+    add c
+    ld c, a
+    inc b
+    jr .l
+.e: ld a, b
+    cp 7
+    ld a, c
+    jr nz, .r
+    sub e
+.r: ld l, a
+    ret
 
 ; wEpoch += 1. Keeps all registers. The caches compare one byte (wRC_epoch, wPL_epoch, wNC entry epochs), so
 ; after 256 bumps an old epoch matched again and a cache restored codes of slots reused since (tavern 'Inspect
