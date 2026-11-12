@@ -39,7 +39,7 @@ def label(t, p):
     if t in TYPES:
         lab = TYPES[t][0]
         if t == 8:
-            lab = "T" + TRAP.get(p & 0xE0, "?")[0].upper()
+            lab = "T" + {0x00: "C", 0x20: "P", 0x40: "F", 0x60: "R", 0x80: "V", 0xA0: "S"}.get(p & 0xE0, "?")
         return lab
     if t >= 15:
         return "E"
@@ -55,7 +55,7 @@ def draw(cells, out, title):
         font = small = ImageFont.load_default()
     W = PAD + 16 * CELL + 8
     H = PAD + 16 * CELL + PAD + 4
-    LEG = 92
+    LEG = 100
     im = Image.new("RGB", (W, H + 16 + LEG), (255, 255, 255))
     d = ImageDraw.Draw(im)
     def box(x, y):
@@ -107,14 +107,16 @@ def draw(cells, out, title):
     ly = 18 + 16 * CELL + 34
     items = [("UP / DN", (0, 110, 0), "stairs up / down"), ("G", (190, 0, 0), "guarded square (fixed fight)"),
              ("H", (120, 60, 160), "hidden spot"), ("E", (0, 90, 160), "event (E1 = one-shot)"),
-             ("TP", (200, 90, 0), "floor trap (P pit, C chute, ...)"), ("B", (0, 90, 160), "button panel"),
-             ("C", (90, 60, 30), "corpse")]
+             ("B", (0, 90, 160), "button panel"), ("C", (90, 60, 30), "corpse")]
     for k, (lab, col, txt) in enumerate(items):
-        cx = PAD + (k % 3) * 190
+        cx = PAD + (k % 3) * 200
         cy = ly + (k // 3) * 16
         d.text((cx, cy), lab, fill=col, font=font)
-        d.text((cx + 52, cy + 2), txt, fill=(0, 0, 0), font=small)
-    cy = ly + 52
+        d.text((cx + 64, cy + 2), txt, fill=(0, 0, 0), font=small)
+    d.text((PAD, ly + 32), "T..", fill=(200, 90, 0), font=font)
+    d.text((PAD + 64, ly + 34), "floor trap: TP pit, TC chute, TF falling ceiling, TR rockfall, TV viper, TS spinner",
+           fill=(0, 0, 0), font=small)
+    cy = ly + 54
     d.line([PAD, cy + 6, PAD + 24, cy + 6], fill=(0, 0, 0), width=3); d.text((PAD + 30, cy), "wall", fill=(0, 0, 0), font=small)
     d.line([PAD + 80, cy + 6, PAD + 104, cy + 6], fill=(0, 0, 0), width=3)
     d.rectangle([PAD + 85, cy + 3, PAD + 99, cy + 9], fill=(170, 100, 30)); d.text((PAD + 110, cy), "door", fill=(0, 0, 0), font=small)
