@@ -75,3 +75,12 @@ org 43, $7f00
 org 46, $57c1
     db $80
 
+
+; Automap (Compass / Teleport / map item) floor label: 地下 (tiles $BD $D5 $D4 of the 18:4000 block at cols 17-19 of
+; the layouts 23:4D4A and 23:4FFD) -> blank + 'B' (tile $CF of the same block, 8 px like the axis digits), so the
+; 'B' sits over the floor number at col 18 (owner's decision 2026-11-12: axis digits stay 8 px, only the label
+; is translated).
+org 35, $4d4a
+    db $ff, $cf, $ff
+org 35, $4ffd
+    db $ff, $cf, $ff

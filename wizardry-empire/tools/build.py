@@ -127,6 +127,47 @@ def patch_symbol_digits(rom):
     put(0xD0, ")", "l")
 
 
+AUTOMAP_OFF = 0x18 * 0x4000  # 18:4000: automap tile block (tile codes $80-$D7, BG data at $8800)
+
+
+def patch_automap_labels(rom):
+    """Automap labels in the small VWF glyphs (owner's decision 2026-11-12: the 0-15 axis digits stay 8 px).
+    Tiles of the 18:4000 block: $CF 'B' (over the floor number; layouts 23:4D4A / 23:4FFD in asm/main.asm),
+    warp panel (layout 23:4FF5): $CE $D1 $D3 = ワープ先 -> 'Warp', $D0 東 -> 'E', $D2 北 -> 'N' (right-aligned
+    against the coordinate digit in the next tile)."""
+    f = font.load()
+
+    def strip(text):
+        cols = []
+        for ch in text:
+            adv, rows = f[ord(ch)]
+            for x in range(adv):
+                cols.append([(r >> (7 - x)) & 1 if x < 8 else 0 for r in rows])
+        return cols                       # list of columns, each 8 pixel rows
+
+    def tiles(text, codes, align):
+        cols = strip(text)
+        while cols and not any(cols[-1]):
+            cols.pop()                    # drop the trailing spacing column
+        width = 8 * len(codes)
+        pad = {"l": 1, "c": (width - len(cols)) // 2, "r": width - len(cols)}[align]
+        cols = [[0] * 8] * pad + cols + [[0] * 8] * (width - pad - len(cols))
+        for i, code in enumerate(codes):
+            o = AUTOMAP_OFF + (code - 0x80) * 16
+            tile = bytearray()
+            for y in range(8):
+                m = 0
+                for x in range(8):
+                    m |= cols[i * 8 + x][y] << (7 - x)
+                tile += bytes([m, 0xFF])
+            rom[o:o + 16] = tile
+
+    tiles("B", [0xCF], "c")
+    tiles("Warp", [0xCE, 0xD1, 0xD3], "l")
+    tiles("E", [0xD0], "r")
+    tiles("N", [0xD2], "r")
+
+
 def fix_checksums(rom):
     c = 0
     for i in range(0x134, 0x14D):
@@ -151,6 +192,7 @@ def build(rom_in=ROM_IN, out=ROM_OUT, ips_out=IPS_OUT, verbose=True):
             sys.exit("lint errors (python3 tools/lint.py; NO_LINT=1 to skip):\n" + "\n".join(lerrs))
     patch_fixed_font(rom)
     patch_symbol_digits(rom)
+    patch_automap_labels(rom)
     stats = insert.insert_all(rom)
     a = asm.assemble(os.path.join(ROOT, "asm", "main.asm"))
     for off, b, where in a.patches:
