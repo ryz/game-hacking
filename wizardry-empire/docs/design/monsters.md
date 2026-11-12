@@ -233,7 +233,7 @@ decides. The checks use only the monster's own stats and status. F is the monste
 | Before anything else | the monster is Afraid | flees with chance (F + 5) × 5% if F is not 0; otherwise does nothing |
 | Before anything else | the monster is Asleep or worse (Paralyzed, Stoned) | does nothing |
 | 1 | it has spells: 25% | casts a spell |
-| 2 | it can call for help: 25% (strong callers 65%) | calls for help |
+| 2 | it can call for help: 25% (65% for a strong call, only the Creeping Coin) | calls for help |
 | 3 | F is not 0: F × 5% (only on the monsters' side of the battle) | flees |
 | 4 | it can breathe: 1 in 8 | breathes on the party |
 | 5 | otherwise | attacks (all its swings against a target its reach allows) |

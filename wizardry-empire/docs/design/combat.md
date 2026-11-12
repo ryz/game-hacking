@@ -318,8 +318,7 @@ bool SpellAffects(int spellPower, int resistancePercent)
 - Which element each spell uses is a pattern reading (inferred); see [spells.md](spells.md#2-casting).
 
 Example (computed, with a supposed power of 80): a spell of the Fire element against a Vampire (Fire 20%) has
-chance 60%; against
-an Abyss Lurker (100% in every element) no spell that checks resistance works.
+chance 60%; against an Abyss Lurker (100% in every element) no spell that checks resistance works.
 
 **Notes:** resistance values are shown in the museum and in the **Resistance %** column of
 [monsters_table.md](monsters_table.md).
