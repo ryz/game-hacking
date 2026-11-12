@@ -52,7 +52,8 @@ such as which event or trap.
   fights started by events. Areas 54-100 are on no map ([findings](findings.md#21-encounter-areas-54-100-are-unused)).
 
 **Notes:** the game remembers the visited squares of each floor and the deepest floor reached (marker squares,
-section 3.1); this is inferred to feed the auto-map.
+section 3.1); this is inferred to feed the auto-map. Drawn floor maps and how to read them:
+[maps/README.md](maps/README.md).
 
 Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format)
 
@@ -431,7 +432,7 @@ the well, the junk pile and the corpses were not traced.
 | **Queen of Darkness** | An encounter on floor 16. |
 | **Alarm** | "Suddenly an alarm blared": a fight with the square's encounter area. |
 | **Ending text** | "Thanks for playing! You can now safely turn the power off." |
-| **Map Record Sheet** | "Use the map record sheet?" |
+| **Map Record Sheet** | Offers to use the Map Record Sheet item. |
 
 Tech: [dungeon.md §3](../tech/dungeon.md#3-event-catalogue),
 [monsters.md §8](../tech/monsters.md#8-summoner-pacts)
@@ -442,12 +443,12 @@ Tech: [dungeon.md §3](../tech/dungeon.md#3-event-catalogue),
 
 Counts per floor; coordinates are (x, y). "Areas" are the random-encounter areas (monsters in the
 [encounter tables](monsters_table.md)); "Guarded" gives the number of guarded squares and their areas. A magic
-circle is named by its summon ([spells.md](spells.md#6-summoner-pacts)). Floor 1 has its own map and square list:
-[floor-1.md](floor-1.md).
+circle is named by its summon ([spells.md](spells.md#6-summoner-pacts)). Floor maps and their legend:
+[maps/README.md](maps/README.md); floor 1 has its own map page, [maps/floor-01.md](maps/floor-01.md).
 
 | Floor | Stairs (x, y) | Areas | Guarded | Traps / hidden spots | Events |
 |---|---|---|---|---|---|
-| [1](floor-1.md) | up (0,15) = exit to town; down (15,0) | 1, 2, 3 | 8 (areas 1-3) | 2 pits; 6 hidden | Zombie circle (15,15); fairy twin (2,12); gold coins (5,4) |
+| [1](maps/floor-01.md) | up (0,15) = exit to town; down (15,0) | 1, 2, 3 | 8 (areas 1-3) | 2 pits; 6 hidden | Zombie circle (15,15); fairy twin (2,12); gold coins (5,4) |
 | 2 | up (15,0); down (0,15) | 4 | 3 (area 4) | 4 rockfall, 3 pits; 2 hidden | Murphy (9,10) |
 | 3 | up (0,15); down ×3 (14,15) (8,8) (14,1) | 5 | 14 (areas 5, 6) | 2 hidden | Ghoul circle (4,0); button panel + key-hole (1,1)/(1,2) |
 | 4 | up ×3; down (3,4) | 6 | 21 (area 6) | 3 spinners, 3 pits | weird robed monster (4,8); its drop (3,8); sign (7,9); buttons + key-hole |
@@ -474,7 +475,7 @@ circle is named by its summon ([spells.md](spells.md#6-summoner-pacts)). Floor 1
 | 25 | up ×4; no down | 27, 103 (damage zone) | 11 (areas 27, 103) | 20 traps (many spinners) | well (0,0) |
 | 26 | none | 28, 29 | 5 (areas 28, 30) | 11 traps (6 vipers) | Ancient One circle (12,3) |
 | 27 | none | 29, 104 (damage zone) (+31: one square) | 4 (area 31) | 8 traps | none |
-| 28 | none | 30 (+32: one square) | 5 (area 32) | **122 trap squares** (spinner field) | none |
+| 28 | none | 30 (+32: one square) | 5 (area 32) | **122 trap squares** (mostly spinners) | none |
 | 29 | none | 31, 33 | 17 (areas 31, 33) | 13 traps, chute | From Beyond circle (11,1) |
 | 30 | none | 32, 33, 105 (damage zone) | 4 (areas 32, 33) | 18 traps | Unspeakable circle (7,15); space rift (1,8); giant bow (6,5); Ancient One rift (12,7); man in jet black (1,11); maid (15,11); well (12,10); **final battle** (15,14) |
 
