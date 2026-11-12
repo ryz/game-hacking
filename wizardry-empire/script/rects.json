@@ -305,5 +305,9 @@
 {"id": "29:7856", "bank": 41, "addr": "0x7856", "w": 12, "h": 2, "attrs": true, "jp": ["そうびしてもクリティカル", "りつなどにえいきょうなし"], "en": ["Equipping it has no", "effect on criticals"], "nofix": true},
 {"id": "29:7888", "bank": 41, "addr": "0x7888", "w": 8, "h": 2, "attrs": true, "jp": ["エレベーターに", "のることが できる"], "en": ["Lets you ride", "the elevator"], "nofix": true},
 {"id": "29:78aa", "bank": 41, "addr": "0x78aa", "w": 10, "h": 2, "attrs": true, "jp": ["ふたごのようせいに", "であうことが できる"], "en": ["Lets you meet", "the twin fairies"], "nofix": true},
+{"id": "29:7050", "bank": 41, "addr": "0x7050", "w": 6, "h": 1, "attrs": true, "jp": ["とくしゅ"], "en": ["^Special"], "nofix": true},
+{"id": "29:705e", "bank": 41, "addr": "0x705e", "w": 6, "h": 1, "attrs": true, "jp": ["呪文抵抗"], "en": ["^Resistance"], "nofix": true},
+{"id": "29:706c", "bank": 41, "addr": "0x706c", "w": 3, "h": 1, "attrs": true, "jp": ["AC:"], "en": ["AC:"], "nofix": true},
+{"id": "29:7048", "bank": 41, "addr": "0x7048", "w": 3, "h": 1, "attrs": true, "jp": ["HP:"], "en": ["HP:"], "nofix": true},
 {"id": "2b:788b", "bank": 43, "addr": "0x788b", "w": 4, "h": 1, "attrs": true, "jp": ["にいます"], "en": [" "], "nofix": true}
 ]

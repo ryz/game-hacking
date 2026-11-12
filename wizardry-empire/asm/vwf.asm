@@ -54,6 +54,9 @@ TW_row      equ $df48
 TW_rep      equ $df49
 TW_baseLo   equ $df4a
 TW_baseHi   equ $df4b
+wGCrows     equ $df4c          ; GC scan: rows left
+wGCc        equ $df4d          ; GC scan: current column (0-31)
+wGCn        equ $df4e          ; GC scan: visible cells left in the row
 ; rect parameters
 R_w         equ $df50
 R_h         equ $df51
@@ -68,8 +71,9 @@ R_srcBank   equ $df59
 R_srcLo     equ $df5a
 R_srcHi     equ $df5b
 R_end       equ $df5c
-wGCOwnerless equ $df5d         ; nonzero: GC marks only slots no text cell owns (game graphics), see GCScan
+wGCOwnerless equ $df5d         ; 1: GC marks only slots no text cell owns (game graphics) or recent text; 2: only recent text
 wGCcol0     equ $df5e          ; first visible BG column (SCX/8) for GC
+wMusClose   equ $df5f          ; $5A while the museum page closes (41:612E redraws the list under the shown page)
 wBits       equ $df60          ; 32 bytes: allocation bitmap, bit per slot code
 wValid      equ $dfa0          ; 32 bytes: shadow copy in WRAM7 matches VRAM
 wUp         equ $df80          ; 16 bytes (16-aligned): HDMA source
@@ -110,7 +114,7 @@ wDedS       equ $df0d          ; Dedupe: own slot
 wShared     equ $d410          ; 32 bytes: slot is shown by more than one cell (shadow area of 'A'-'B', not pool)
 wDedNew     equ $df0e          ; the current cell got a newly allocated slot (only those are deduped)
 wHash       equ $d2c0          ; 256 bytes: content hash per slot (shadow area of codes $2C-$3B, not pool)
-wGCSkipWin  equ $df0a          ; nonzero: GC ignores the window buffer while the window is hidden (2nd pass)
+wGCSkipWin  equ $df0a          ; 1: GC ignores the window buffer while the window is hidden (2nd pass); 2: GC ignores BG text (layout 2, window print); 3: window text reclaimable even if shown (layout 2, BG print); 4: only recent BG text and the window count
 wKeepOff    equ $df09          ; nonzero: the pool ran dry in this burst, old-screen protection dropped
 wKeep       equ $d2a0          ; RETIRED: same address as wGameNew; only the disabled HoldMark/KeptNow bodies name it. Was:
                                ; the old screen still shows them until the map copy, so GC keeps them
@@ -563,6 +567,76 @@ MusAbil:
     ld a, VWF_BANK
     ld hl, VWF_MusAbil
     jp FarCall
+; --- museum monster page 'EXP:' label (41:68A6-68B9: glyph tiles $D4 $D5 + ':' and their attributes) -> VWF
+    org $29, $68a6
+    ld hl, MusExpStr
+    ld de, $d90a
+    call Stub_PrintZ
+    jr @+11
+    ds 9, $00
+; --- museum monster page resistance labels (41:6844-685D: one glyph tile per element at $DA03+4i/$DA23+4i)
+;     -> 3-letter VWF words in the 2 cells left of each value ($DA02+4i, cols 2-3, 6-7, 10-11, 14-15)
+; --- museum resistance 100 (41:6B10-6B1D: '10' printed, then glyph $EE '00' over the second cell) -> VWF '100'
+;     in both cells (15 px); DE stays past the field like the original
+    org $29, $6b10
+    push de
+    dec de
+    dec de
+    push hl
+    ld hl, Mus100Str
+    call Stub_PrintZ
+    pop hl
+    pop de
+    ret
+    ds 1, $00
+    org $29, $6844
+    call MusElem
+    jr @+23
+    ds 21, $00
+; --- museum monster page closed (41:612E: list redraw under the still shown page) -> flag for AllocScan
+    org $29, $612e
+    call MusClose
+    ds 3, $00
+    org $29, $7d40
+MusClose:
+    ld a, VWF_BANK
+    ld hl, VWF_MusCloseOn
+    call FarCall
+    call $621d
+    call $61bd
+    ld a, VWF_BANK
+    ld hl, VWF_MusCloseOff
+    jp FarCall
+MusElem:                    ; keeps BC (41:685E uses B)
+    push bc
+    ld hl, MusElemStr
+    ld de, $da02
+    call .row
+    ld de, $da22
+    call .row
+    pop bc
+    ret
+.row:
+    ld b, 4
+.l: push bc
+    push de
+    call Stub_PrintZ        ; HL ends past the $00
+    pop de
+    inc de
+    inc de
+    inc de
+    inc de
+    pop bc
+    dec b
+    jr nz, .l
+    ret
+MusElemStr:                 ; 地 水 火 風 / 精(神) 気 (神)聖 無 (glossary: Earth Water Fire Air / Mind Aura Holy None)
+    db $7c, "Ear", 0, $7c, "Wat", 0, $7c, "Fir", 0, $7c, "Air", 0   ; $7C = 2 px space
+    db $7c, "Min", 0, $7c, "Aur", 0, $7c, "Hol", 0, $7c, "Non", 0
+MusExpStr:
+    db "EXP:", 0
+Mus100Str:
+    db "100", 0
     org $29, $7d00
 Mus2Line:                   ; HL = string ($00-terminated, $FD = line break), DE = first cell; like Stub_PrintZ
     push bc
@@ -1772,6 +1846,57 @@ AllocScan:
     call GC
     call TryAlloc
     ret c
+    ld a, [wLayout]         ; museum monster room: pages are built in one buffer while the other (list) is
+    cp 2                    ; still shown. Pass 3 drops the BG's text (the window counts); pass 2 drops a
+    jr nz, .p2              ; hidden window's text. A print into the window: 3 then 2; into the BG: 2 then 3.
+    ld a, [S_cellHi]
+    and $fc
+    cp $d8
+    jr nz, .bgfirst
+    call .pass3
+    ret c
+    jr .p2
+.bgfirst:                   ; a BG print (the list). Under the shown page first only recent BG text counts
+    ldh a, [$ff40]          ; (the list rows the game redraws while paging), then the window's older text
+    bit 5, a                ; goes (the page closing or hidden; text drawn in the last STAMP_KEEP frames
+    jr z, .bg3              ; stays), the BG counts
+    ldh a, [$ff4a]
+    cp 144
+    jr nc, .bg3
+    ld a, [wMusClose]       ; closing: the page goes, the list it uncovers stays
+    cp $5a
+    jr z, .bg3
+    ld a, 4
+    ld [wGCSkipWin], a
+    call GC
+    xor a
+    ld [wGCSkipWin], a
+    call TryAlloc
+    ret c
+.bg3:
+    ld a, 3
+    ld [wGCSkipWin], a
+    call GC
+    xor a
+    ld [wGCSkipWin], a
+    call TryAlloc
+    ret c
+    jr .ring
+.pass3:
+    ld a, 2
+    ld [wGCSkipWin], a
+    call GC
+    xor a
+    ld [wGCSkipWin], a
+    jp TryAlloc
+.pass2:
+    ld a, 1
+    ld [wGCSkipWin], a
+    call GC
+    xor a
+    ld [wGCSkipWin], a
+    jp TryAlloc
+.p2:
     ld a, 1                 ; still dry: try again without a hidden window's text
     ld [wGCSkipWin], a
     call GC
@@ -2878,6 +3003,12 @@ GCScan:
     ld a, [wGCSkipWin]      ; BG rows under a full-width window count, except in the dry second pass: they come
     or a                    ; back when the window closes ('Cast the spell on whom?' under the spell detail box)
     jr z, .bg
+    cp 2
+    jr z, .bgown            ; third pass (museum): BG text reclaimable
+    cp 3
+    jr z, .bg               ; museum BG print: the BG counts
+    cp 4
+    jr z, .bgstamp          ; museum BG print under the shown page: only recent BG text counts
     ldh a, [$ff40]
     bit 5, a
     jr z, .bg
@@ -2916,6 +3047,18 @@ GCScan:
 .bg:
     ld hl, $d000
     call .scan2
+    jr .bgskip
+.bgstamp:
+    ld hl, $d000
+    ld bc, 18*32
+    ld a, 2
+    ld [wGCOwnerless], a
+    call .scan2
+    xor a
+    ld [wGCOwnerless], a
+    jr .bgskip
+.bgown:                     ; third pass: no BG cell counts (the game's own tiles stay reserved by wGame; the
+                            ; list's restored cells have no owner entry, so an ownerless scan kept them all)
 .bgskip:
     ; normally the window buffer always counts (the game types screens into it before showing them, e.g.
     ; the disarm trap list). Second pass when the pool is dry: a hidden window does not count (battle hides
@@ -2923,6 +3066,12 @@ GCScan:
     ld a, [wGCSkipWin]
     or a
     jr z, .win
+    cp 2
+    jr z, .win              ; third pass: the window being built counts
+    cp 3
+    jr z, .winown           ; museum BG print: the window's older text goes, shown or not
+    cp 4
+    jr z, .win              ; museum BG print under the shown page: the page counts
     ldh a, [$ff40]
     bit 3, a                ; BG shows the $9C00 map (= this buffer, e.g. camp spell screens)
     jr nz, .win
@@ -2948,32 +3097,52 @@ GCScan:
     ld hl, $d800
 .scan:                      ; 18 rows x 32 cells at HL (bank 3; what the game's GDMA copies), attributes at HL+$400
     ld bc, 18*32
-.scan2:                     ; BC cells
-.l: push bc
-    push hl
+.scan2:                     ; HL = row start (32-aligned), BC = cells (a multiple of 32)
+    ld a, c                 ; rows = BC / 32
+    srl b
+    rra
+    srl b
+    rra
+    srl b
+    rra
+    srl b
+    rra
+    srl b
+    rra
+    or a
+    ret z
+    ld [wGCrows], a
+.row:
+    push hl                 ; row start
     ld a, h                 ; only the 21 visible columns count: columns 20-31 are off screen and hold
     and $08                 ; uninitialised RAM on many screens (it held ~80 slots as 'in use')
-    ld a, l
-    jr nz, .wcol            ; window buffer ($D800-$DBFF): columns 0-20
-    and $1f
-    ld b, a
-    ld a, [wGCcol0]         ; BG: from SCX/8
-    cpl
-    inc a
-    add b
-    jr .cc
-.wcol:
-    nop
-.cc:
-    and $1f
-    cp 21
-    jp nc, .skip
-    call Read3
-    ld e, a
-    ld bc, $0400
-    add hl, bc
-    call Read3
-    ld d, a                 ; attr
+    ld a, 0
+    jr nz, .c0              ; window buffer ($D800-$DBFF): columns 0-20
+    ld a, [wGCcol0]         ; BG: from SCX/8, wrapping at 32
+.c0: ld [wGCc], a
+    ld a, 21
+    ld [wGCn], a
+.l: pop hl
+    push hl
+    ld a, [wGCc]
+    add l
+    ld l, a
+    ld a, 3                 ; code and attribute in one bank-3 window (inlined Read3)
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld e, [hl]              ; code
+    ld a, h
+    add 4
+    ld h, a
+    ld d, [hl]              ; attr (HL stays at the attribute, as before)
+    ld a, HOME_BANK
+    ldh [hSVBK], a
+    ldh [$70], a
+    ld b, high(MaybeSlot)   ; codes that are never a slot (frames, spaces, most game tiles): nothing to mark
+    ld c, e
+    ld a, [bc]
+    or a
+    jp z, .skip
     ; current layout as before; the other layout's reading counts only for cells that own the slot (a font
     ; load can switch the layout while text drawn under the other one is still on screen: battle spell list)
     ld a, [wLayout]
@@ -3024,6 +3193,8 @@ GCScan:
     ld a, [wGCOwnerless]
     or a
     jr z, .mk2
+    cp 2
+    jr z, .stamp            ; stamp only (museum: restored list cells have no owner entry)
     ld a, [wTmp2]
     call OwnerAddr
     call Read6
@@ -3032,6 +3203,7 @@ GCScan:
     call Read6
     or b
     jr z, .mk2              ; no text cell owns it: game graphics, keep
+.stamp:
     ld a, [wTmp2]           ; text: reclaimable in the dry pass unless drawn in the last STAMP_KEEP frames (the
     ld l, a                 ; museum builds its page in the hidden window and would lose its own labels)
     ld h, high(wStamp)
@@ -3045,13 +3217,20 @@ GCScan:
     ld a, [wTmp2]
     call MarkCode
 .skip:
-    pop hl
-    inc hl
-    pop bc
-    dec bc
-    ld a, b
-    or c
+    ld a, [wGCc]
+    inc a
+    and $1f
+    ld [wGCc], a
+    ld hl, wGCn
+    dec [hl]
     jp nz, .l
+    pop hl
+    ld de, 32
+    add hl, de
+    ld a, [wGCrows]
+    dec a
+    ld [wGCrows], a
+    jp nz, .row
     ret
 
 ; =====================================================================
@@ -4763,6 +4942,20 @@ Blank3:
 ; ---------------------------------------------------------------------
 ; Museum monster abilities: rows 12-13 (cols 1-18) list the abilities set in $C536 (bits 0-6), $C537 (drain),
 ; $C538 (calls help / flees) and $C52F-31 (spells) as words, wrapped at 136 px.
+VWF_MusCloseOn:
+    ld b, $5a
+    jr MusCloseSet
+VWF_MusCloseOff:
+    ld b, 0
+MusCloseSet:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    ld a, b
+    ld [wMusClose], a
+    pop af
+    jp SetSVBK
 VWF_MusAbil:
     ldh a, [hSVBK]
     push af
@@ -5430,7 +5623,10 @@ NoticeText:                 ; NOTICE_LINES x 28 bytes, $00-terminated lines
     ds NOTICE_LINES * 28, $00
 SpellNames:                 ; 125 x [bank][lo][hi], filled by tools/insert.py (bank 0 = use the record)
     ds 125*3, $00
-    assert @ <= $6ff8, "VWF bank: code and data run into BitMask/ShiftTab"
+    assert @ <= $6e00, "VWF bank: code and data run into MaybeSlot/BitMask/ShiftTab"
+    org VWF_BANK, $6e00
+MaybeSlot:                  ; 256 bytes (page-aligned), built by tools/build.py: nonzero = this cell code can
+    incbin "../build/maybeslot.bin"     ; be a slot (code, or code|$80 for a VRAM1 code < $70)
     org VWF_BANK, $6ff8
 BitMask:                    ; 1 << n (page-safe: $6FF8-$6FFF)
     db $01, $02, $04, $08, $10, $20, $40, $80

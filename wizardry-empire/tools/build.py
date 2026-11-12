@@ -55,6 +55,9 @@ def gen_bins():
     for c in POOL:
         flags[c] = 1
     open(os.path.join(BUILD, "poolflags.bin"), "wb").write(flags)
+    # GC prefilter: a cell code that can be a slot in some layout (code itself, or code|$80 for VRAM1 low codes)
+    maybe = bytes(1 if flags[e] or (e < 0x70 and flags[e | 0x80]) else 0 for e in range(256))
+    open(os.path.join(BUILD, "maybeslot.bin"), "wb").write(maybe)
 
 
 FONT_OFF = 0x4400  # bank 1 $4400: original 8x8 font, code*16

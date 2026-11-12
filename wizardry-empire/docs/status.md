@@ -12,6 +12,19 @@
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
+## Done 2026-11-12 (eleventh session: Rev 1 port, museum monster room, editor pass)
+- Base ROM is now the Japanese **Rev 1** (SHA-1 f5f4e8be..., CRC32 FA82620F). `tools/revmap.py` maps v1.0
+  addresses; script, asm, insert constants and docs converted (docs/re/rev1.md: what Rev 1 changed - a wall bump
+  shows "Ouch!", two new magic-circle messages, 31 status words). v1.0 saves may be wiped (Rev 1 writes an
+  SRAM signature); old savestates do not load.
+- Reference English patch applies to Rev 1 (rom/wizardry_empire_ref.gbc, not committed); 164 reference shots in
+  work/shots/ref_tour/ (not published).
+- Museum monster page: "Special"/"Resistance" headers, AC:/EXP:/HP: labels and element labels (Ear Wat Fir Air
+  / Min Aur Hol Non) in the VWF, resistance 100 as VWF digits; GC pass order for the page/list double buffer.
+- Editor pass applied (names, battle past tense, maze wording); breath verbs no longer read "breathed fire at!"
+  (docs/re/verbs.md).
+- Tools: emulator turbo by default (~7x faster, same frames); shoot.py `poke` token; museum and maze shot lines.
+
 ## Done 2026-11-12 (tenth session: museum items, owner's list)
 - GC counted the off-screen columns 20-31 (uninitialised RAM): ~80 slots wasted; now only visible columns.
 - Museum item side: category words written out, 'Not found', item list and page in the VWF, labels and all
@@ -20,8 +33,7 @@
   item name insert overwrote the class byte (item names now max 16 chars).
 - Character card: 'Lvl' in the VWF instead of the 8 px 'L'.
 - Reference translation: tools/bps.py applies an existing fan patch (kept out of git, rom/reference_en.bps);
-  the patch was made for another Japanese dump (source CRC32 FA82620F, ours 7ADC90E1 v1.0) and does not
-  apply cleanly: the output hangs. Needs the matching ROM or a patch for v1.0.
+  it targets Rev 1 (CRC32 FA82620F), which is now our base.
 
 ## Done 2026-11-11 (ninth session: render speed)
 - Letter drawing ~2.5x faster (shift tables), smaller bookkeeping costs; cursor move without a party: reaction
@@ -83,8 +95,8 @@
 - Redirected messages left the text bank on the English bank; English now jumps back to the original terminator.
 
 ## Next (in rough priority)
-1. Museum monster room (`docs/re/museum.md` F): needs a third VWF font layout (LCDC bit 4 = 1, font in VRAM1
-   $8000) before its hooks; element/EXP labels are graphics (01:4100).
+1. Museum monster page: opening takes 37 frames (JP 9; each VWF GC ~5-6 frames), closing shows a few frames of
+   garbage in the page; AC/HP minus signs still 8 px. A faster GC would help every screen.
 2. Name-entry field still in the 8 px font (owner's rule: words in the VWF).
 3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
 4. Item effect descriptions (bank 46), prologue, title screen.
@@ -101,10 +113,14 @@
    Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.
 9. Seen once, not reproduced: wrong digits in the chest "Who will inspect?" list after inputs during the trap
    message.
-7. Tool backlog (from agent feedback): `tools/emu.py` hang check should report a hang only when the PC stays in
-   a tight range, plus a soft-lock check (screen and task table unchanged); emu.open_emu turbo; shoot.py
-   state-based shots; curated maze_dmenu/stairs_up_prompt shots; census segment mode (`$FC`) and attributes;
-   lint: ignore `{..}` inserts before punctuation, label lists.json entries.
+10. Tool backlog (from agent feedback): `tools/emu.py` hang check should report a hang only when the PC stays
+   in a tight range, plus a soft-lock check (screen and task table unchanged); shoot.py state-based shots
+   (`@STATE` lines, `!` no-settle); explore.py answers No at the entrance stairs; contact-sheet tool; census
+   segment mode (`$FC`) and attributes; lint: ignore `{..}` inserts before punctuation, label lists.json
+   entries, Ifrit-style spell/monster pairs; a width helper for suggested rect lines; gbdis xref mode;
+   revmap inv_addr()/gaps().
+11. Editor items not applied: Maze Robe vs Magic Gate (まどう ruling), ADISH monster-speak in caps, plural
+   counts with N = 1 ("1 levels"), remaining Polish list (skills/editor/feedback.md 2026-11-12).
 
 ## Known issues
 - Untranslated text shows as blank/garbage (kana tiles are no longer loaded; their slots belong to the VWF).

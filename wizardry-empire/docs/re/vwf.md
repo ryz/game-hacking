@@ -133,6 +133,14 @@ saved code or `$20` with unchanged attributes, the saved codes are written back 
 - The dry second pass scans BG rows under a full-width window and a hidden window in "ownerless" mode: it keeps
   slots no text cell owns (game graphics such as the maze walls in `$BC-$D1`) and frees only text slots.
   Owners (bank 6, `$D800 + code*2`) are cleared at init; DMAs disown slots.
+- Museum monster room (layout 2, 2026-11-12): pages are built in the hidden window while the list is on the BG,
+  and page + list need more than the 157 slots. `wGCSkipWin` modes after the normal pass: 1 = hidden window's
+  text reclaimable (stamp-protected); 2 = BG text reclaimable, window counts (a print into the window buffer,
+  `S_cellHi` $D8-$DB: 2 then 1); 4 = only BG text drawn in the last STAMP_KEEP frames counts, the page counts (a
+  BG print under the shown page: the list rows the game redraws while paging); 3 = the window's older text
+  reclaimable even when shown, the BG counts (a BG print while the page closes, flag `wMusClose` set by the
+  41:612E hook, or under a hidden window). Mode 4 judges by stamp only: the list's cache-restored cells have no
+  owner entry, so an ownerless scan kept them all.
 
 ## Speed: caches and indexes (2026-11-11, later the same day)
 Measured with a count-only breakpoint on the frame wait `0:07C5` (main-loop passes per 120 idle frames; JP 360)

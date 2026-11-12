@@ -824,3 +824,13 @@
 ....
 ....
 ....
+
+== 0x7C  advance=2  # thin space (museum resistance labels: gap after the previous value)
+..
+..
+..
+..
+..
+..
+..
+..

@@ -217,3 +217,19 @@ A (41:66C2 jp Stub_PrintZ), B (41:62C7), C (insert_unid, records in bank 41 $792
 read from the Japanese tiles with attribute-aware rendering, `nofix`), E ('~' bytes; classes as packed VWF
 abbreviations by MusClasses at 41:7B00 instead of single letters). The value rects' Japanese is in
 rects.json. Item names: field is 16 chars + $00, byte 17 = unidentified class (the old 17-char limit zeroed it).
+
+## Implemented 2026-11-12 (monster page, Rev 1)
+- Headers: rects `29:7050` (とくしゅ -> "Special") and `29:705E` (呪文抵抗, 4 special glyphs -> "Resistance"), w6
+  with attributes, centered. Labels `29:706C` "AC:" and `29:7048` "HP:" as VWF rects (were 8 px ASCII).
+- "EXP:" (41:68A6-68B9 wrote glyphs `$D4 $D5` + ':'): `Stub_PrintZ` at `$D90A`.
+- Element labels (41:6844-685D wrote one glyph `$E4-$EB` per element at `$DA03+4i` / `$DA23+4i`): `MusElem`
+  (41:7D40) prints 3-letter words with a 2 px lead ($7C, thin space) in the 2 cells left of each value
+  (`$DA02+4i`, cols 2-3, 6-7, 10-11, 14-15): Ear Wat Fir Air / Min Aur Hol Non (地水火風 / 精神 気 神聖 無, the
+  spell-element table 2A:49BF). Must keep BC (41:685E uses B).
+- Resistance 100 (41:6B10: '10' then glyph `$EE` over the second cell): VWF "100" over both cells.
+- Pool pressure: the page (~96 slots) is built in the hidden window while the list (~84) is on the BG; the pool has
+  157. `AllocScan` in layout 2 orders the dry GC passes by destination (see vwf.md). Opening a page: 37 frames
+  (previous build 22, Japanese 9); each GC costs ~5-6 frames. Closing a page shows a few frames of garbage in
+  the page before the list appears (the list redraw under the shown page takes the page's slots; the old build
+  showed garbage in the list instead).
+- Open: the minus signs ('-' before AC, HP range) are still the 8 px glyph.
