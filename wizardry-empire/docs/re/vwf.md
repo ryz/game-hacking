@@ -251,3 +251,17 @@ cells equal to neither the old nor the new screen) and `tools/profile.py` (sampl
 - Conclusion: the flicker lasts as long as the render. Render speed (GC ~1/3 of the active time in that
   transition, then allocation, Commit, Glyph) is the lever that shortens it; the deferred swap only pays off once
   a screen renders in a few frames.
+
+## Render speed, round 2 (2026-11-12)
+Measured with `tools/perf.py` (196 key presses of the tour routes; the town route's numbers depend on the building
+cursor's blink phase and are noise) and `tools/profile.py` (cycle-weighted sampling).
+- GC: `GCRowFast` scans columns 0-20 of a row with WRAM bank 3 mapped and calls `GCSlot` (the old per-cell logic)
+  only for cells MaybeSlot allows; scrolled BG rows keep the old loop. ~2x faster.
+- `TryAlloc1`: free = PoolMask & ~wBits a byte at a time; the start (`wNextB`) moves one byte per allocation. Starting
+  in the same byte again (lowest free slot first) slowed the town: cached info boxes lost their slots sooner.
+- `BitAddr`: rrca instead of srl.
+- Tried and dropped: pushing a row's codes on the stack to mark them after the row (no gain).
+- Totals: settle 2572 -> 2466 frames, reaction 359 -> 240 (JP 2263 / 178). Camp > Inspect > sheet: 24 -> 19
+  frames (JP 2). Its remaining ~17 frames of VWF time: GC ~4 (3 GCs x 756 cells), Glyph + Commit ~3.3, and ~10 in
+  many small parts (bank helpers Read6/Write6, uploads waiting for HBlank, hash/dedupe, name cache, cell map).
+  Further big gains need structural changes (fewer GC passes, fewer bank switches per tile), not tuning.

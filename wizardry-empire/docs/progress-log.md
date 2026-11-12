@@ -11,6 +11,16 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - frame-time tools and a first speed round; flicker experiment shelved
+- ROM: none sent.
+- Tools: `tools/perf.py` (every key press of the tour routes, EN vs JP: frames to react/settle, frames with wrong
+  cells), `tools/profile.py` (cycle-weighted sampling profiler); three-way screenshot set docs/shots/compare3.
+- Flicker: cause measured (the pool cannot hold old + new screen; garbage lasts as long as the render). Deferred
+  uploads tried and shelved (docs/re/vwf.md, patch in docs/re/patches/).
+- Speed: GC fast row loop, bitmap free-slot search: settle 2572 -> 2466 frames, reaction 359 -> 240 (JP 2263 /
+  178); camp sheet 24 -> 19 frames.
+- Open: more render speed (structural), then the deferred swap for the remaining flicker.
+
 ## 2026-11-12 - Mode Settings documented
 - ROM: none sent (documentation only).
 - docs/tech/settings.md + docs/design/settings.md: the nine switches (BGM, Sound, Effects, Pictures, Map, Combat,
