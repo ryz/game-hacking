@@ -60,4 +60,6 @@ never commit them. Say what is new and what is known to be broken.
   (`work/<area>/<range>/`); fix shared table layouts in the dispatch before a round, not after.
 - Before trusting a derived claim that changes the picture (an area "closed", a route "impossible"), test the
   mechanic it rests on in the emulator: floor writers called locked/secret doors walls until one was walked into.
+- Give writers one literal example row per table/row kind; state your own derived claims in a dispatch as
+  "to be checked" (the floor-7 warp claim was wrong).
 

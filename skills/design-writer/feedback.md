@@ -10,6 +10,18 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - revision round 3: warps and dark zones (floors 5-18 / 21-30, two writers)
+- Task: markers -> warps, "both marks" -> dark zone, reachability with warps, auto-map floor numbers.
+- Worked: literal example rows in the dispatch made edits mechanical and identical across writers; floormap's own
+  functions (reach with warps off/on) showed what each warp adds; numbers checked against HEAD.
+- Friction: the coordinator's floor-7 claim ("warps into closed rooms") was wrong; --list reaches only from stairs
+  (no parts, no arrival squares from other floors); --list wrote PNGs; old per-round checkers went stale; quote style
+  for game names unsettled.
+- Proposed rule change: --list prints whether each warp is a shortcut or the only way in, reach from warp landings
+  from other floors, and parts; claims in dispatches marked "to be checked"; one quote style.
+- Corrected: floor 7 wording fixed in tech/design dungeon.md; --no-png exists; literal-example-row rule promoted.
+- Status: promoted 2026-11-12 (example rows; dispatch claims "to be checked"); open (--list parts / warp landings)
+
 ### 2026-11-12 - revision round 2: floor pages 1-10 / 11-20 / 21-30 (three writers)
 - Task: rewrite special-wall claims as secret/locked doors, redo reachability, unify area and monster tables.
 - Worked: tables generated from monsters_table and swapped in by script (0 mismatches on all 30 pages); per-door

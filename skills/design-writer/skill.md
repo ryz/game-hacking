@@ -67,6 +67,7 @@ or `tools/`.
   "(2 of 4)" weights from monsters_table; Monster `| Monster | Lv | HP | AC | Swings | Damage | Special | Spells |
   EXP | Gold |` with the game's short names. Generate the rows by script from `monsters_table.md` and check them.
 - Floor pages hold floor-specific facts only; what is the same everywhere lives in `maps/README.md`.
+- Read-only listing: `floormap.py N --list --no-png`. Game names of zones in double quotes ("lake", "magic seal").
 
 ## Section template
 ```
