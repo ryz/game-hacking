@@ -45,7 +45,7 @@ Binding names and terms. Use them exactly; add new rows when a new name is decid
 | マーフィー | Murphy |
 | ロイド | Lloyd |
 | ルーイ | Louie |
-| ジークフリート | Siegfried |
+| ジークフリート | Siegfried / Sigfrid (Sigfrid only in the 7-letter name field: recruit record, party lists) |
 | ライラ | Laila |
 | こじろう | Kojiro |
 | バディック | Badick |

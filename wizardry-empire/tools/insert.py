@@ -211,6 +211,17 @@ def insert_templates(rom, entries):
     return len(entries)
 
 
+def insert_npcs(rom, entries):
+    """Recruitable NPCs (bank 45 $4000, $80-byte records like the default characters): 8-byte name field,
+    7 letters + $00 (2D:68C9 copies it to HRAM $FFC4; $FFCC follows)."""
+    for e in entries:
+        o = 45 * 0x4000 + e["id"] * 0x80
+        data = text.encode(e["en"])
+        assert len(data) <= 7, e
+        rom[o:o + 8] = data.ljust(8, b"\x00")
+    return len(entries)
+
+
 def insert_inline(rom, space, entries):
     """Text stored by straight-line code (ld a,X / ld [de],a / inc de or ld [hli],a runs):
     the whole run becomes rst $38 + db bank(|$80 for HL) + dw text, then a jr over the rest."""
@@ -461,6 +472,7 @@ def insert_all(rom):
     stats["items"] = insert_items(rom, load("items.json"))
     stats["monsters"] = insert_monsters(rom, load("monsters.json"))
     stats["templates"] = insert_templates(rom, load("templates.json"))
+    stats["npcs"] = insert_npcs(rom, load("npcs.json"))
     stats["lists"] = insert_lists(rom, b49, load("lists.json"))
     stats["chests"] = insert_chests(rom, b49, load("chests.json"))
     stats["titles"] = insert_titles(rom, space, load("titles.json"))
