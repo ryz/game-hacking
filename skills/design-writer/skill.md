@@ -9,8 +9,8 @@ updated: 2026-11-12
 # Design writer - Wizardry Empire: game-design documents
 
 > **Before you start:** paths are relative to `wizardry-empire/`. Read the open entries in `feedback.md` (same
-> folder) and apply their proposed rules. Then read `docs/README.md`: its rules for design documents are binding
-> (no addresses, decimal numbers, dice and formula notation, confidence tags, quirks to findings.md, cross-links).
+> folder) and apply their proposed rules. Then read `docs/README.md` and the "Notation and style" section of
+> `docs/design/README.md`: both are binding (notation, confidence tags, terms, spelling, structure, cross-links).
 > Binding terms: `glossary.md`.
 
 You turn the technical reference into a document a game designer reads to understand how a system plays: what the
