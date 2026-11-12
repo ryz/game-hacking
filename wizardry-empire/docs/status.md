@@ -99,8 +99,9 @@
 - Redirected messages left the text bank on the English bank; English now jumps back to the original terminator.
 
 ## Next (in rough priority)
-1. Museum monster page: opening takes ~31 frames (JP 9; each VWF GC ~5-6 frames), closing shows a few frames of
-   garbage in the page; a faster GC would help every screen.
+1. Museum monster page: opening takes ~31 frames (JP 9; each VWF GC ~2.5 frames), closing shows a few frames of
+   garbage in the page. Owner's choice: going straight to the BG pass for page prints opens it in ~21 frames but
+   shows ~5 frames of garbage in the list first (tried 2026-11-12, reverted: flicker).
 2. (done 2026-11-12) Name entry: typed name in the VWF (26:6C62 NameField), cursor box placed by the VWF
    width (26:6C37 NameCursorX).
 3. Friendly-encounter prompt (49:555B) translated but not yet seen on screen.
