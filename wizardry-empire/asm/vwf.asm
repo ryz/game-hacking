@@ -28,7 +28,8 @@ twBufHi     equ $c1d4
 ; every entry point saves the caller's SVBK, switches to 7 and restores it on exit. Buffers (bank 3) and
 ; the cell map (bank 6) are only touched through Read3/Write3/Read6/Write6. (WRAM0 $ce00-$cfff is NOT
 ; free: it holds the stacks of the game's cooperative tasks, see docs/re/tasks.md.)
-wLayout     equ $df00          ; 1 = split (codes $80+ in VRAM1:$9000), 0 = flat (VRAM0:$8800)
+wLayout     equ $df00          ; 1 = split (codes $80+ in VRAM1:$9000), 0 = flat (VRAM0:$8800), 2 = museum
+                               ; monster room: unsigned tiles, every code in VRAM1:$8000 + code*16
 wReset      equ $df01          ; nonzero = clear allocation before next allocation
 wNext       equ $df02          ; ring index into Pool
 wTmp0       equ $df03
@@ -175,9 +176,11 @@ wN_x        equ $d590
 wN_st       equ $d591          ; 2: field start
 wN_end      equ $d593          ; 2: field end (returned in DE)
 wN_deHi     equ $d596
-wN_done     equ $d5b0
-wN_cb       equ $d5b1          ; bank of 0:0FD0's caller
-wN_cr       equ $d5b2          ; 2: its return address          ; VWF_Num drew the number (0: the game's 8 px loop runs)
+wN_done     equ $d250
+wN_cb       equ $d251          ; bank of 0:0FD0's caller (wN_*: shadow area of non-pool code $25)
+wFS_end     equ $d256          ; 2: FixFind bucket end
+wMA_f       equ $d254          ; 2: museum monster abilities as flag bits (MusAbilBody)
+wN_cr       equ $d252          ; 2: its return address          ; VWF_Num drew the number (0: the game's 8 px loop runs)
 wLowOnly    equ $d595          ; nonzero: prefer low pool codes (VRAM0 in both layouts): numbers in the
                                ; split layout, so cells the game later overwrites with 8 px text keep attribute bit 3 clear
 wNC_px      equ $d58b          ; start pixel of the print in its first cell (numbers right-aligned in a field)
@@ -540,6 +543,37 @@ CardLvl:
 CardLvlText:
     db "Lvl", 0
 
+; --- museum monster list name (41:633E): name at $C50F -> VWF
+    org $29, $633e
+    ld hl, $c50f
+    call Stub_PrintZ
+    jr @+12
+    ds 8, $00
+; --- museum monster page name / unidentified name (41:66E5: 2 rows of 8 cells) -> VWF, word-wrapped at 64 px
+    org $29, $66e5
+    jp Mus2Line
+    org $29, $7d00
+; --- museum monster page abilities (41:6989-6AB1: glyph pairs at fixed cells) -> words in the VWF; the
+;     resistance values (41:6AB2..) stay
+    org $29, $6989
+    call MusAbil
+    jp $6ab2
+    org $29, $7d20
+MusAbil:
+    ld a, VWF_BANK
+    ld hl, VWF_MusAbil
+    jp FarCall
+    org $29, $7d00
+Mus2Line:                   ; HL = string ($00-terminated, $FD = line break), DE = first cell; like Stub_PrintZ
+    push bc
+    push hl
+    ld a, VWF_BANK
+    ld hl, VWF_Print2
+    call FarCall
+    add sp, 2
+    pop bc
+    ret
+
 ; --- shop "sold out" row (41:49EB): DE-source copy of 41:70E1 to HL -> VWF
     org $29, $49eb
     ld d, h
@@ -825,6 +859,13 @@ VWF_FontLoad:
     ld [wLayout], a         ; VRAM1:$9000 -> split (1), VRAM0:$8800 -> flat (0)
     or a
     jr z, .nb
+    ldh a, [hDstHi]
+    cp $90
+    jr nc, .split
+    ld a, 2                 ; VRAM1:$8800 (museum monster room, unsigned tiles) -> layout 2
+    ld [wLayout], a
+    jr .nb
+.split:
     ; split: VRAM1 tile $20 (code $A0) = blank paper, see build.py POOL
     ld hl, wUp
     ld b, 8
@@ -850,6 +891,17 @@ VWF_FontLoad:
 .lo:                        ; 64 tiles from ROM1:hSrcHi00: copy the ones that are not pool slots
     ld a, 1
     ld [wReset], a
+    ldh a, [hDstVBank]      ; VRAM1 destination ($8000/$8400): layout 2 (museum monster room); a VRAM0 load
+    or a                    ; after it returns to a $9000 layout (low codes are VRAM0 $9000 in flat and split)
+    ld a, 2
+    jr nz, .setl
+    ld a, [wLayout]
+    cp 2
+    jr nz, .keepl
+    xor a
+.setl:
+    ld [wLayout], a
+.keepl:
     ldh a, [hSrcHi]
     sub $44
     add a
@@ -1500,8 +1552,16 @@ ValidAddr:
 ; A = slot code -> A = tile number, C = attribute bank bit ($08 or 0)
 SlotTile:
     ld c, 0
+    ld b, a
+    ld a, [wLayout]
+    cp 2
+    ld a, b
+    jr nz, .n2
+    ld c, $08               ; layout 2: tile = code, VRAM bank 1 ($8000+)
+    ret
+.n2:
     bit 7, a
-    ret z                   ; codes < $80: VRAM0:$9000 in both layouts
+    ret z                   ; codes < $80: VRAM0:$9000 in flat and split
     ld b, a
     ld a, [wLayout]
     or a
@@ -1600,6 +1660,17 @@ Upload:
     add hl, hl
     add hl, hl              ; code*16
     ld c, 0
+    push af
+    ld a, [wLayout]
+    cp 2
+    jr nz, .nl2
+    pop af
+    ld de, $8000            ; layout 2: VRAM1:$8000 + code*16
+    add hl, de
+    ld c, 1
+    jr .go
+.nl2:
+    pop af
     bit 7, a
     jr z, .lo
     ld a, [wLayout]
@@ -2167,6 +2238,15 @@ VWF_DmaCheck:
     add hl, hl
     add hl, hl
     add hl, hl              ; code*16
+    ld b, a
+    ld a, [wLayout]
+    cp 2
+    ld a, b
+    jr nz, .nl2
+    inc c                   ; layout 2: VRAM1 $8000 + code*16
+    ld de, $8000
+    jr .add
+.nl2:
     bit 7, a
     jr z, .low
     ld a, [wLayout]
@@ -2914,6 +2994,13 @@ GCScan:
     ld a, [wLayout]
     or a
     jr z, .flat
+    cp 2
+    jr nz, .sp
+    bit 3, d                ; layout 2: VRAM1 cells hold the code itself; VRAM0 cells are graphics
+    ld a, e
+    jp nz, .mk
+    jp .skip
+.sp:
     bit 3, d                ; split
     ld a, e
     jr z, .s0
@@ -3738,6 +3825,13 @@ FixBody:
     add hl, de
     call Read3
     and $f7
+    ld e, a
+    ld a, [wLayout]
+    cp 2
+    ld a, e
+    jr nz, .bl0
+    or $08                  ; layout 2: blank = VRAM1 font space
+.bl0:
     call Write3
     pop hl
     inc hl
@@ -3748,28 +3842,8 @@ FixBody:
     ld e, a
     ld a, [wInD]
     ld d, a
-    ld hl, FixMap
-.f: ld a, [hli]
-    cp $ff
-    jr z, .raw
-    ld b, a
-    ld a, [wInBank]
-    cp b
-    jr nz, .n2
-    ld a, [wInL]
-    cp [hl]
-    jr nz, .n2
-    inc hl
-    ld a, [wInH]
-    cp [hl]
-    jr nz, .n1
-    inc hl
-    ld a, [hli]
-    ld [wFixTB], a
-    ld a, [hli]
-    ld [wInLo], a
-    ld a, [hl]
-    ld [wInHi], a
+    call FixFind
+    jr nc, .raw
     ld a, [wInBank]
     push af
     ld a, [wFixTB]
@@ -3778,12 +3852,6 @@ FixBody:
     pop af
     ld [wInBank], a
     jr .done
-.n2: inc hl
-.n1: inc hl
-    inc hl
-    inc hl
-    inc hl
-    jr .f
 .raw:
     ld a, [wInBank]
     ld b, a
@@ -4137,8 +4205,7 @@ NumBody:
     ld h, a
     ld a, [wN_cells]
     ld b, a
-.bl: ld a, $20
-    call Write3
+.bl: call Blank3
     inc hl
     dec b
     jr nz, .bl
@@ -4530,6 +4597,423 @@ PLRestore:
     ldh [$70], a
     ret
 
+; ---------------------------------------------------------------------
+; Two rows of 8 cells at DE / DE+$20 (museum monster page): string at the caller's HL (same frame as VWF_PrintZ),
+; $FD = space; wrapped at the last space that keeps row 1 within 64 px.
+VWF_Print2:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld hl, sp, 4
+    ld b, [hl]              ; caller ROM bank
+    ld hl, sp, 7
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    ld c, low(wNameBuf)
+.c: call FetchSrc
+    cp $fd
+    jr nz, .nf
+    ld a, $20
+.nf:
+    push hl
+    ld h, high(wNameBuf)
+    ld l, c
+    ld [hl], a
+    pop hl
+    inc c
+    or a
+    jr nz, .c
+    ld a, e
+    ld [wN_st], a
+    ld a, d
+    ld [wN_st + 1], a
+    ld hl, Print2Body
+    call PrivCall
+    pop af
+    jp SetSVBK
+
+Print2Body:
+    ; blank both rows (8 cells each)
+    ld a, [wN_st]
+    ld l, a
+    ld a, [wN_st + 1]
+    ld h, a
+    push hl
+    ld b, 8
+.b1: call Blank3
+    inc hl
+    dec b
+    jr nz, .b1
+    pop hl
+    ld de, $0020
+    add hl, de
+    ld b, 8
+.b2: call Blank3
+    inc hl
+    dec b
+    jr nz, .b2
+    ; split index: last space with the width before it <= 64 (c = index, b = width); 0 = no break
+    xor a
+    ld [wPanW], a
+    ld hl, wNameBuf
+    ld bc, 0
+.w: ld a, [hli]
+    or a
+    jr z, .wd
+    cp $20
+    jr nz, .wa
+    ld a, b
+    cp 65
+    jr nc, .wa0
+    ld a, c
+    ld [wPanW], a
+.wa0:
+    ld a, $20
+.wa:
+    push hl
+    and $7f
+    ld e, a
+    ld d, 0
+    ld hl, FontAdv
+    add hl, de
+    ld a, [hl]
+    pop hl
+    add b
+    ld b, a
+    inc c
+    jr .w
+.wd:
+    ld a, b                 ; fits in one row: no break
+    cp 65
+    jr nc, .two
+    xor a
+    ld [wPanW], a
+.two:
+    ; row 1
+    ld a, [wN_st]
+    ld e, a
+    ld a, [wN_st + 1]
+    ld d, a
+    ld hl, wNameBuf
+    ld a, [wPanW]
+    ld c, a
+    call .print
+    ld a, [wPanW]
+    or a
+    ret z
+    ; row 2 from the character after the space
+    ld e, a
+    ld d, 0
+    ld hl, wNameBuf + 1
+    add hl, de
+    ld a, [wN_st]
+    add $20
+    ld e, a
+    ld a, [wN_st + 1]
+    adc 0
+    ld d, a
+    ld c, 0
+.print:                     ; HL = text, DE = cell, C = stop index (0 = to the end)
+    push hl
+    ld h, d
+    ld l, e
+    push hl
+    ld de, $0400
+    add hl, de
+    call Read3
+    pop hl
+    call Begin
+    xor a
+    ld [S_imm], a
+    pop hl
+    ld b, 0
+.pl: ld a, c
+    or a
+    jr z, .pc
+    cp b
+    jr z, .pe
+.pc: ld a, [hli]
+    or a
+    jr z, .pe
+    push hl
+    push bc
+    call Glyph
+    pop bc
+    pop hl
+    inc b
+    jr .pl
+.pe: call CommitIfInk
+    ld a, [S_slot]
+    or a
+    jr nz, .pn
+    ld a, [S_px]
+    or a
+    ret z
+.pn: jp NextCell
+
+; [HL] (bank 3) = $20 (blank); layout 2 also sets the cell's VRAM1 bit (the VRAM0 tile $20 is picture there).
+; Keeps BC, DE, HL.
+Blank3:
+    ld a, $20
+    call Write3
+    ld a, [wLayout]
+    cp 2
+    ret nz
+    push hl
+    ld a, h
+    add 4
+    ld h, a
+    call Read3
+    or $08
+    call Write3
+    pop hl
+    ret
+
+; ---------------------------------------------------------------------
+; Museum monster abilities: rows 12-13 (cols 1-18) list the abilities set in $C536 (bits 0-6), $C537 (drain),
+; $C538 (calls help / flees) and $C52F-31 (spells) as words, wrapped at 136 px.
+VWF_MusAbil:
+    ldh a, [hSVBK]
+    push af
+    ld a, HOME_BANK
+    call SetSVBK
+    pop af
+    push af
+    ld [wCallerSVBK], a
+    call CheckInit
+    ld hl, MusAbilBody
+    call PrivCall
+    pop af
+    jp SetSVBK
+
+MusAbilBody:
+    ld hl, $d981            ; blank rows 12 and 13, cols 1-18
+    ld b, 18
+.b1: call Blank3
+    inc hl
+    dec b
+    jr nz, .b1
+    ld hl, $d9a1
+    ld b, 18
+.b2: call Blank3
+    inc hl
+    dec b
+    jr nz, .b2
+    ; flags: bits 0-6 = $C536, bit 7 = drain, bit 8 = calls help, bit 9 = flees, bit 10 = spells
+    ld a, [$c536]
+    and $7f
+    ld e, a
+    ld a, [$c537]
+    or a
+    jr z, .f1
+    set 7, e
+.f1: ld d, 0
+    ld a, [$c538]
+    and $f0
+    jr z, .f2
+    set 0, d
+.f2: ld a, [$c538]
+    and $0f
+    jr z, .f3
+    set 1, d
+.f3: ld a, [$c52f]
+    ld b, a
+    ld a, [$c530]
+    or b
+    ld b, a
+    ld a, [$c531]
+    or b
+    jr z, .f4
+    set 2, d
+.f4: ld a, e
+    ld [wMA_f], a
+    ld a, d
+    ld [wMA_f + 1], a
+    ld hl, $d981
+    ld a, l
+    ld [wN_st], a
+    ld a, h
+    ld [wN_st + 1], a
+    xor a
+    ld [wNC_px], a
+    ld [wNameBuf], a
+    ld [wTmp3], a           ; line width
+    ld hl, MusAbilWords
+    ld c, 11
+.w: ld a, [wMA_f]           ; next flag into carry
+    ld b, a
+    ld a, [wMA_f + 1]
+    srl a
+    ld [wMA_f + 1], a
+    rr b
+    ld a, b
+    ld [wMA_f], a
+    jr nc, .skip
+    push bc
+    push hl
+    call .add
+    pop hl
+    pop bc
+.skip:                      ; next word
+    ld a, [hli]
+    or a
+    jr nz, .skip
+    dec c
+    jr nz, .w
+    jp .flush
+.add:                       ; word at HL: append (a new row when it does not fit 136 px)
+    push hl
+    call .wordw             ; b = width
+    pop hl
+    ld a, [wNameBuf]
+    or a
+    jr z, .fits
+    ld a, [wTmp3]
+    add 4                   ; space
+    add b
+    jr c, .nl
+    cp 137
+    jr c, .sp
+.nl:
+    push hl
+    call .flush
+    ld a, [wN_st]           ; next row
+    add $20
+    ld [wN_st], a
+    jr nc, .nc
+    ld a, [wN_st + 1]
+    inc a
+    ld [wN_st + 1], a
+.nc:
+    xor a
+    ld [wNameBuf], a
+    ld [wTmp3], a
+    pop hl
+    jr .fits
+.sp:
+    push hl
+    ld hl, .space
+    call .app
+    pop hl
+.fits:
+.app:                       ; append the $00-terminated string at HL to wNameBuf, add its width
+    push hl
+    call .wordw
+    ld a, [wTmp3]
+    add b
+    ld [wTmp3], a
+    pop hl
+    ld de, wNameBuf
+.e: ld a, [de]
+    or a
+    jr z, .cp
+    inc de
+    jr .e
+.cp: ld a, [hli]
+    ld [de], a
+    inc de
+    or a
+    jr nz, .cp
+    ret
+.space:
+    db " ", 0
+.wordw:                     ; B = pixel width of the string at HL
+    ld b, 0
+.ww: ld a, [hli]
+    or a
+    ret z
+    push hl
+    and $7f
+    ld e, a
+    ld d, 0
+    ld hl, FontAdv
+    add hl, de
+    ld a, b
+    add [hl]
+    ld b, a
+    pop hl
+    jr .ww
+.flush:                     ; print wNameBuf at the current row
+    ld a, [wNameBuf]
+    or a
+    ret z
+    ld a, [wN_st]
+    ld e, a
+    ld a, [wN_st + 1]
+    ld d, a
+    jp NumPrint
+
+MusAbilWords:
+    db "Poison", 0, "Fear", 0, "Sleep", 0, "Paralyze", 0, "Petrify", 0, "Critical", 0, "Breath", 0
+    db "Drain", 0, "Calls help", 0, "Flees", 0, "Spells", 0
+
+; FixMap lookup (bank FIXMAP_BANK, tools/insert.py): $4000 = 65 bucket starts (one per source page $40-$7F +
+; end), each bucket = entries [src bank][src lo][text bank][text lo][text hi]. Key wInBank:wInH:wInL.
+; Carry + wFixTB/wInLo/wInHi on success. Keeps DE.
+FIXMAP_BANK equ $7f
+FixFind:
+    push de
+    ld a, [wInH]
+    sub $40
+    jr c, .no
+    cp $40
+    jr nc, .no
+    add a
+    ld l, a
+    ld h, $40
+    ld b, FIXMAP_BANK
+    call VWF_Fetch
+    ld e, a
+    call VWF_Fetch
+    ld d, a                 ; de = bucket start
+    call VWF_Fetch
+    ld [wFS_end], a
+    call VWF_Fetch
+    ld [wFS_end + 1], a
+    ld h, d
+    ld l, e
+.l: ld a, [wFS_end]
+    cp l
+    jr nz, .go
+    ld a, [wFS_end + 1]
+    cp h
+    jr z, .no
+.go:
+    ld b, FIXMAP_BANK
+    call VWF_Fetch
+    ld c, a
+    call VWF_Fetch
+    ld e, a
+    ld a, [wInBank]
+    cp c
+    jr nz, .n
+    ld a, [wInL]
+    cp e
+    jr nz, .n
+    call VWF_Fetch
+    ld [wFixTB], a
+    call VWF_Fetch
+    ld [wInLo], a
+    call VWF_Fetch
+    ld [wInHi], a
+    pop de
+    scf
+    ret
+.n: inc hl
+    inc hl
+    inc hl
+    jr .l
+.no:
+    pop de
+    and a
+    ret
+
 ; A = code: its tile changed (wVer[code] += 1). Keeps all registers.
 VerBump:
     push af
@@ -4769,6 +5253,8 @@ CellCode:
     ld a, [wLayout]
     or a
     jr z, .f
+    cp 2
+    jr z, .f                ; layout 2: the tile is the code
     bit 3, b
     jr z, .f
     pop af
@@ -4939,8 +5425,14 @@ NextCellBlank:
     call Write3
     ld de, $0400
     add hl, de
+    ld a, [wLayout]
+    cp 2
     ld a, [S_attr]
+    jr z, .l2
     and $f7
+    call Write3
+    jp NextCell
+.l2: or $08                 ; layout 2: blank = VRAM1 font space
     call Write3
     jp NextCell
 
@@ -4953,8 +5445,6 @@ NoticeText:                 ; NOTICE_LINES x 28 bytes, $00-terminated lines
     ds NOTICE_LINES * 28, $00
 SpellNames:                 ; 125 x [bank][lo][hi], filled by tools/insert.py (bank 0 = use the record)
     ds 125*3, $00
-FixMap:
-    ds 6 * 440, $ff
     assert @ <= $6ff8, "VWF bank: code and data run into BitMask/ShiftTab"
     org VWF_BANK, $6ff8
 BitMask:                    ; 1 << n (page-safe: $6FF8-$6FFF)

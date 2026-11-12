@@ -11,7 +11,7 @@ sys.path.insert(0, HERE)
 import text
 
 FIRST_TEXT_BANK = 0x41
-LAST_TEXT_BANK = 0x7F
+LAST_TEXT_BANK = 0x7E           # bank $7F: FixMap (post_asm)
 
 
 class Space:
@@ -417,11 +417,31 @@ def insert_unid(rom):
     return n
 
 
+MON_UNID = (41, 0x6730, 16, 0x7C00, 0x7D00)   # 41:6730: monster unidentified names ($00-terminated)
+
+
+def insert_unid_mon(rom):
+    """Unidentified monster names for the museum page (41:66E5 prints them word-wrapped, VWF_Print2): English =
+    the bank-49 list 49:56FD..571B (same order), ASCII, line breaks as spaces."""
+    lists = {int(e["table"], 16): e["en"] for e in load("lists.json") if e.get("table")}
+    b, tab, n, pos, end = MON_UNID
+    for i in range(n):
+        en = lists[0x56FD + 2 * i].replace("\n", " ")
+        assert text.width(en) <= 128, en
+        rec = en.encode("ascii") + b"\x00"
+        assert pos + len(rec) <= end
+        rom[rom_off(b, pos):rom_off(b, pos) + len(rec)] = rec
+        rom[rom_off(b, tab + 2 * i):rom_off(b, tab + 2 * i) + 2] = bytes([pos & 0xFF, pos >> 8])
+        pos += len(rec)
+    return n
+
+
 def insert_all(rom):
     space = Space(rom)
     stats = {}
     stats["rects"] = insert_rects(rom, space, load("rects.json"))
     stats["unid names"] = insert_unid(rom)
+    stats["unid monster names"] = insert_unid_mon(rom)
     b49 = Space(rom, LIST_BANK, LIST_BANK, LIST_FREE)
     stats["messages"] = insert_msgs(rom, space, load("messages.json"), {LIST_BANK: b49})
     stats["items"] = insert_items(rom, load("items.json"))
@@ -442,16 +462,33 @@ def insert_all(rom):
     return stats
 
 
+FIXMAP_BANK = 0x7F
+
+
+def write_fixmap(rom, ents):
+    """FixMap in bank $7F (asm FixFind): 65 bucket starts at $4000 (source page $40-$7F, last = end), then the
+    entries [src bank][src lo][text bank][text lo][text hi] sorted by source page."""
+    base = FIXMAP_BANK * 0x4000 - 0x4000
+    buckets = {p: [] for p in range(0x40, 0x80)}
+    for sb, sa, tb, ta in ents:
+        assert 0x4000 <= sa < 0x8000, hex(sa)
+        buckets[sa >> 8].append(bytes([sb, sa & 0xFF, tb, ta & 0xFF, ta >> 8]))
+    pos = 0x4000 + 65 * 2
+    for p in range(0x40, 0x81):
+        rom[base + 0x4000 + 2 * (p - 0x40):base + 0x4000 + 2 * (p - 0x40) + 2] = bytes([pos & 0xFF, pos >> 8])
+        if p < 0x80:
+            for e in buckets[p]:
+                rom[base + pos:base + pos + 5] = e
+                pos += 5
+    assert pos <= 0x8000
+
+
 def post_asm(rom, sym):
     """Patch what needs assembled addresses: Stub_Fix calls and the FixMap contents."""
     tgt = sym["Stub_Fix"][1]
     for o, ln, n, tail in fix_sites_cache:
         rom[o:o + ln] = (bytes([0xCD, tgt & 0xFF, tgt >> 8, n]) + tail + b"\x00" * ln)[:ln]
-    b, a = sym["FixMap"]
-    o = b * 0x4000 + a - 0x4000
-    assert len(fixmap_cache) < 440      # FixMap capacity (asm/vwf.asm), $FF after the last entry
-    data = b"".join(bytes([sb, sa & 0xFF, sa >> 8, tb, ta & 0xFF, ta >> 8]) for sb, sa, tb, ta in fixmap_cache)
-    rom[o:o + len(data)] = data
+    write_fixmap(rom, fixmap_cache)
     for n in load("notice.json"):
         b, a = sym["NoticeRows"]
         o = b * 0x4000 + a - 0x4000
