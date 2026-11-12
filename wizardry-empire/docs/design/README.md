@@ -45,7 +45,8 @@ This section is the single definition; the other documents do not repeat it.
 **Structure**
 - Title "Topic: contents"; numbered sections (`## 1. ...`); an Overview a designer can read in two minutes first.
 - One home per rule; other documents link to it. Quirks: stated as the game does it, with a link to
-  [findings.md](findings.md).
+  [findings.md](findings.md). A findings entry is a `##` heading plus four labelled parts, in this order:
+  `**Behavior:**`, `**Intended:**`, `**Confidence:**`, `**Impact:**`, then the Design/Tech links.
 - Each section ends with a **Tech:** link to its implementation notes; each document ends with Open questions.
 
 ## Documents
