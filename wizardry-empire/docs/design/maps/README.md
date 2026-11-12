@@ -36,6 +36,7 @@ The legend is printed under every map; the full rules for how maps look are in t
 | **E** / **E1** | event / one-shot event |
 | **T** + letter | floor trap: TP pit, TC chute, TF falling ceiling, TR rockfall, TV viper, TS spinner |
 | **B** | button panel; **C** corpse |
+| small grey dot | marker square: remembers visited squares, probably for the auto-map (inferred); no effect on play |
 | red hatch / blue dots / purple both | damage zone / anti-magic zone (inferred) / both marks (no known effect) |
 | small grey number | the square's encounter area (only where it differs from the area named under the title) |
 | light grey square | no random fights on that square |

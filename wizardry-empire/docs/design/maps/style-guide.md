@@ -11,8 +11,8 @@ generator disagree, fix one of them in the same commit.
 - **Readable without colour.** Every symbol is a letter or a line style as well as a colour, so a map works in
   print and for colour-blind readers.
 - **Same legend everywhere.** The legend is printed in full under every map, even for symbols the floor does not use.
-  It has three titled groups (Squares, Walls and doors, Floor and zones); every legend sample is drawn by the same code as the
-  map, so legend and map cannot drift apart.
+  It has three titled groups (Squares, Walls and doors, Floor and zones; the marker square is in the last); every
+  legend sample is drawn by the same code as the map, so legend and map cannot drift apart.
 - **Quiet background, strong structure.** Walls and symbols are dark and bold; floor, grid and area numbers are light.
 
 ## 2. Canvas
@@ -45,11 +45,11 @@ generator disagree, fix one of them in the same commit.
 | Stairs up / down | **UP** / **DN** | green 0,110,0 |
 | Guarded square | **G** | red 190,0,0 |
 | Hidden spot | **H** | purple 120,60,160 |
-| Event / one-shot event | **E** / **E1** (floor-specific events are E too) | blue 0,90,160 |
+| Event / one-shot event | **E** / **E1** (floor-specific events are E too; not numbered: the floor page keys each event by (x, y), owner's decision 2026-11-12) | blue 0,90,160 |
 | Button panel | **B** | blue 0,90,160 |
 | Corpse | **C** | brown 90,60,30 |
 | Floor trap | **T** + kind: TP pit, TC chute, TF falling ceiling, TR rockfall, TV viper, TS spinner | orange 200,90,0 |
-| Marker square | small grey dot (automap memory, inferred; no effect on play) | 90,90,90 |
+| Marker square | small grey dot (automap memory, inferred; no effect on play; kept on the maps, owner's decision 2026-11-12) | 90,90,90 |
 
 Symbols are centred in their cell with a 2 px white outline, so they stay readable on hatching. Area numbers sit
 small in the bottom-left corner, in light grey (160,160,160) so they recede behind the structure. Each edge is stored on both of its squares. Where one side lets the party through

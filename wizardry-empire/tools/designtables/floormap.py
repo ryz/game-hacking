@@ -134,6 +134,12 @@ def edge(cells, xy, dd):
             "locked": "locked" in (a, b) and "secret" not in (a, b), "one_way": one_way, "sides": (a, b)}
 
 
+def marker(d, x0, y0, size):
+    """marker square: small grey dot in the middle of the cell"""
+    c = size // 2
+    d.ellipse([x0 + c - 2, y0 + c - 2, x0 + c + 2, y0 + c + 2], fill=NOTE_TXT)
+
+
 def fonts():
     from PIL import ImageFont
     def f(name, size):
@@ -188,7 +194,7 @@ def draw(cells, out, floor):
         if text:
             P.symbol(x0 + CELL // 2, y0 + CELL // 2, text, col)
         elif t == 9:     # marker square: small grey dot
-            d.ellipse([x0 + CELL // 2 - 2, y0 + CELL // 2 - 2, x0 + CELL // 2 + 2, y0 + CELL // 2 + 2], fill=NOTE_TXT)
+            marker(d, x0, y0, CELL)
 
     # ---- edges: walls first, then secret doors, then doors and locked doors (arrow = the way that is always open)
     walls, specials, doors = [], [], []
@@ -245,8 +251,8 @@ def draw(cells, out, floor):
                      ("B", BLUE, "button panel / C corpse"), ("T", ORANGE, "floor trap (see below)")]),
         ("Walls and doors", ["wall", "door", "one-way door (arrow: way through)", "secret door (found by Search)",
                              "locked door (Pick a lock)"]),
-        ("Floor and zones", ["rock", "no random fights", (1, "damage zone"), (2, "anti-magic zone (inferred)"),
-                             (3, "both marks (no known effect)")]),
+        ("Floor and zones", ["rock", "no random fights", "marker square (no effect on play)", (1, "damage zone"),
+                             (2, "anti-magic zone (inferred)"), (3, "both marks (no known effect)")]),
     ]
     for gi, (head, items) in enumerate(groups):
         x = gx + gi * colw
@@ -272,7 +278,11 @@ def draw(cells, out, floor):
                     P.special(seg)
             elif isinstance(item, str):
                 text = item
-                sample_cell(x, y, fill=ROCK if text == "rock" else NOFIGHT)
+                if text.startswith("marker"):
+                    sample_cell(x, y)
+                    marker(d, x, y, S)
+                else:
+                    sample_cell(x, y, fill=ROCK if text == "rock" else NOFIGHT)
             else:
                 z, text = item
                 sample_cell(x, y, zone=z)
