@@ -11,6 +11,14 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - Mode Settings documented
+- ROM: none sent (documentation only).
+- docs/tech/settings.md + docs/design/settings.md: the nine switches (BGM, Sound, Effects, Pictures, Map, Combat,
+  Items, Inn, Save), defaults (Inn and Save start on Mania), one-way Save switch, what each changes (traced and
+  verified). Findings 19 rewritten, 40 new (Save: Mania lets a power-off undo a maze trip).
+- Corrected: inn flag polarity (tech characters), Ambush lowers the miss threshold (tech items), Fight choices named.
+- Open: song names, effect ids, battle item Equip/Throw flags, single death undone by power-off (not tried).
+
 ## 2026-11-12 - auto-map documented and translated; warps and dark zones
 - ROM: `94d832b` sent (yes).
 - Auto-map (tracer, verified): opened by Compass, the Map Record Sheet (camp, or Select in the maze) and Teleport /
