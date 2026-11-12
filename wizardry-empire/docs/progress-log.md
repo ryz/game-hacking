@@ -11,6 +11,12 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - test save with a powerful party; repo renamed to game-hacking
+- ROM: `a15df7a` build sent again with `saves/test-party-all-spells.sav` (as wizardry_empire_en.sav).
+- `saves/test-party-all-spells.sav` + `tools/testsave.py`: six level-60 characters (Valiant, Avenger, Musashi,
+  Kunoichi, Summoner, Bishop) knowing every spell; committed by the owner's decision (`saves/README.md`).
+- Repo: renamed to `game-hacking` by the owner; root README.md; AGENTS.md intro and save-file exception.
+
 ## 2026-11-12 - frame-time tools and a first speed round; flicker experiment shelved
 - ROM: `a15df7a` sent (yes).
 - Tools: `tools/perf.py` (every key press of the tour routes, EN vs JP: frames to react/settle, frames with wrong
