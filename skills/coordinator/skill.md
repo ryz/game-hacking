@@ -48,3 +48,12 @@ self-contained. Read `skills/skill-index.md` to pick the skill; read its `feedba
 ## Ship a test ROM
 `python3 tools/build.py`, copy the ROM + IPS (named with the commit hash) to the scratchpad and send them;
 never commit them. Say what is new and what is known to be broken.
+
+## Parallel documentation rounds (2026-11-12)
+- Before dispatching several design-writers at once: fix the heading list (numbered sections) of every file that
+  others will link, or tell writers to link other design files without anchors and do one link pass at the end
+  (`python3 tools/doclinks.py`).
+- Mark review items that newer tracer verdicts have overtaken before dispatch, so writers do not apply stale items.
+- `findings.md` cannot be written by subagents (the harness refuses the name): save it from the writer's report.
+- Commit each writer's files when it reports; other writers' drafts as clearly labelled work in progress.
+

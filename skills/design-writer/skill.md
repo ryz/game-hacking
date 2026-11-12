@@ -48,6 +48,11 @@ or `tools/`.
    - **Other design files:** list `docs/design/` again before the final check. If another file was written during
      your run, cut overlaps to a link (one home per fact) and align shared facts and their tags.
    - Run the number cross-check (numbers in your file vs `sources.md`) as a script, not by eye.
+   - Engineering-word greps (record, flag, routine...) skip link targets `](...)` and item names from the glossary
+     (e.g. "Map Record Sheet"): only prose counts.
+   - Before linking findings.md for a quirk, check that findings has an entry for it; otherwise report the quirk.
+   - In a parallel round (several writers at once), link other design files **without anchors** until the
+     coordinator's final link pass; anchors into your own sections are fine.
 
 ## Section template
 ```
@@ -65,8 +70,8 @@ Tech: [<file> §<n>](../tech/<file>.md#<anchor>)
 - When a tech statement contradicts a data table (a generated table, or another tech doc's table that reads the data
   directly), use the table and report the contradiction. Keep a "Contradictions between tech docs" list in
   `sources.md`.
-- If the harness refuses to save a design file (e.g. by its file name), do not work around it: return the full
-  file content in your report for the coordinator to save.
+- If the harness refuses to save a design file (it refuses `findings.md` by name), do not work around it: return
+  the full file content in your report (or a scratchpad copy) for the coordinator to save.
 - Never add a fact the tech docs do not have. If a designer would need something that is missing, put it under
   "Open questions" in your file and in your report (the coordinator sends a tracer).
 - Keep the tech doc's uncertainty: "(inferred)" stays inferred; "not traced" stays an open question.

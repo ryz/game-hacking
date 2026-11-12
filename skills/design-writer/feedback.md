@@ -10,6 +10,49 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - revision round 1: dungeon.md + findings.md
+- Task: apply review-1 and the tracer's verdicts to dungeon and findings.
+- Worked: read review, tracer notes and tech before writing; scripted number and coordinate checks; doclinks run on
+  a copy with the unsaved findings in place.
+- Friction: findings.md refused by name again; numbering findings renamed every anchor; floor-1 moved mid-run;
+  engineering grep hits link targets and item names.
+- Proposed rule change: pre-create/whitelist findings.md or rename; state numbering; grep skips link targets.
+- Corrected: coordinator saved findings.md (35 entries) and fixed maps/README's anchor; tech fixes applied
+  (golem mark, chest rows 30-48 start at 1, verified in the ROM).
+- Status: promoted 2026-11-12 (grep scope, parallel links, findings saved by coordinator - skill + coordinator)
+
+### 2026-11-12 - revision round 1: combat.md + monsters.md
+- Task: apply review-1 and the tracer's verdicts to combat and monsters.
+- Worked: bestiary numbers recounted by script (caught: first level drainer is the Wight); cell-by-cell checks of
+  trimmed table rows; tech answered most 'unclear' points.
+- Friction: findings/dungeon renumbered mid-run; 'record' grep hits tech anchors; a tech number (lowest AC −16)
+  contradicted the table.
+- Proposed rule change: freeze findings headings before parallel rounds; grep skips link targets; re-derive
+  'against every monster' claims from table extremes.
+- Corrected: tech items.md lowest AC fixed (−30) with the to-hit ≤ 18 condition; rules promoted.
+- Status: promoted 2026-11-12
+
+### 2026-11-12 - revision round 1: characters.md + spells.md
+- Task: apply review-1 and the tracer's verdicts to characters and spells.
+- Worked: spell rows converted and re-checked by script; circle table checked against two tech tables; kept the
+  headings others link to.
+- Friction: banned-word list hits an item name and a tech anchor; a review item asked for '(data)' that the README
+  now forbids and the tracer had overtaken; other files renumbered mid-run.
+- Proposed rule change: exempt item names and link targets from the grep; coordinator marks overtaken review items;
+  link without anchors during parallel rounds.
+- Corrected: all applied; coordinator skill gained 'Parallel documentation rounds'.
+- Status: promoted 2026-11-12
+
+### 2026-11-12 - revision round 1: items.md + town.md
+- Task: apply review-1 and the tracer's verdicts to items and town.
+- Worked: review items with line numbers applied mechanically; scripted number check (caught a missing source);
+  items_table parsed to answer Range '-' and find the Swings+ contradiction.
+- Friction: combat/dungeon renumbered mid-run; 'record' grep hits; README says to ignore roll unevenness while the
+  dispatch asked for exact odds; findings had no entry for a linked quirk.
+- Proposed rule change: check findings has the entry before linking; grep exceptions; coordinator fixes headings first.
+- Corrected: tech dagger swings (+1 to +6) and VIT loss (61 of 101) fixed; rules promoted.
+- Status: promoted 2026-11-12
+
 ### 2026-11-12 - dungeon.md + findings.md
 - Task: dungeon and findings from tech dungeon/items §10/monsters §2,§8, re/reach, re/debug-mode, all tech for quirks.
 - Worked: sources.md first with a contradictions section (5 found); chest quality per floor computed from the
