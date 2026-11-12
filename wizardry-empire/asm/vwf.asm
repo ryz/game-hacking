@@ -985,6 +985,111 @@ CardQ5:
 CardQ2:
     db "??", 0
 
+; --- Search Person ("Look for whom?", priest spell): five animated 8 px '.' (2E:5640 + 18k), the raw code $5E
+;     (Japanese particle, now a VWF pool slot -> random glyph) after the name at 2E:5819, and the location line at
+;     $D122 built from 8 px 'B', 'X', ',', 'Y' around VWF digits (2E:5774-57DC, 'B1    X0 ,Y0')
+;     -> VWF dots, no particle, and 'B1 X0, Y0' as one VWF string (digits by 0:0FE9 into MUS_STR)
+    org $2e, $5640
+    call SPDot
+    nop
+    org $2e, $5652
+    call SPDot
+    nop
+    org $2e, $5664
+    call SPDot
+    nop
+    org $2e, $5676
+    call SPDot
+    nop
+    org $2e, $5688
+    call SPDot
+    nop
+    org $2e, $5819
+    inc de                  ; (was ld a,$5E / ld [de],a / inc de)
+    nop
+    nop
+    nop
+    org $2e, $5774
+    jp SPLine
+    org $2e, $7800
+SPDot:                      ; DE = cell -> DE + 1; HL kept
+    push hl
+    ld hl, SPDotText
+    call Stub_PrintZ
+    pop hl
+    ret
+SPDotText:
+    db " ", ".", 0
+SPLine:                     ; B = location byte (floor index & $1F), C = y << 4 | x; ends at 2E:57DD with DE
+    push bc                 ; past the text and BC as the original leaves them
+    ld de, MUS_STR
+    ld a, $42 ; B
+    ld [de], a
+    inc de
+    ld a, b
+    and $1f
+    ld hl, $56eb            ; floor number table (2 bytes per entry), as 2E:577F
+    add a
+    add l
+    ld l, a
+    jr nc, .f
+    inc h
+.f: ld a, [hli]
+    ldh [$b0], a
+    ld a, [hl]
+    ldh [$b1], a
+    ld a, 2
+    ld bc, $3000
+    ld hl, $ffb0
+    call $0fe9              ; DE outside $D000-$DBFF: plain digit codes into MUS_STR
+    ld a, $20
+    ld [de], a
+    inc de
+    ld a, $58 ; X
+    ld [de], a
+    inc de
+    pop bc
+    push bc
+    ld a, c
+    and $0f
+    ldh [$b0], a
+    ld a, 1
+    ld bc, $3000
+    ld hl, $ffb0
+    call $0fe9
+    ld a, $2c ; ,
+    ld [de], a
+    inc de
+    ld a, $20
+    ld [de], a
+    inc de
+    ld a, $59 ; Y
+    ld [de], a
+    inc de
+    pop bc
+    push bc
+    ld a, c
+    swap a
+    and $0f
+    ldh [$b0], a
+    ld a, 1
+    ld bc, $3000
+    ld hl, $ffb0
+    call $0fe9
+    xor a
+    ld [de], a
+    ld hl, $d122            ; blank the line (14 cells) before printing
+    ld a, $20
+    ld b, 14
+.b: ld [hli], a
+    dec b
+    jr nz, .b
+    ld de, $d122
+    ld hl, MUS_STR
+    call Stub_PrintZ
+    pop bc
+    jp $57dd
+
 ; --- camp heal result box (0:37FC, A = 0 branch of the camp result dispatcher 0:37B9): 8 px 'H','P' at $D0E4,
 ;     current HP (4 cells, right-aligned) at $D0E7, 8 px '/' at $D0EB, max HP at $D0EC -> HealBox (bank 26):
 ;     'HP' and '/max' in the VWF like the character card

@@ -71,13 +71,7 @@ org 43, $7f00
     ld hl, $4054
     jp FarCall
 
-; "Look for whom?" maze location (2E:5774-57F2, Rev 1): B<floor> <sep> X<x> <sep> Y<y> + rect 2B:788B (にいます).
-; The separators were kana tiles ($5D, $75 in VRAM1), now VWF slots: space and ',' from the 8 px font (VRAM0);
-; the rect is blank in script/rects.json. Reads "B3 X4,Y5".
-org 46, $579b
-    db $20
-org 46, $57b9
-    db $2c
+; "Look for whom?" maze location (2E:5774-57F2): now one VWF string, see SPLine in vwf.asm.
 org 46, $57c1
     db $80
 
