@@ -4221,8 +4221,17 @@ VWF_PrintZ:
     jr c, .hit
     ld hl, VWF_PrintBuf
     call PrivCall
-    call NameCacheSave
+    push de                 ; DE = the cell after the text: the game's copy loops leave DE there and some
+    call NameCacheSave      ; callers print next to it (inn: name + ' gained a level!')
+    pop de
+    jr .done
 .hit:
+    ld a, [wNC_n]           ; restored: start + the entry's cells
+    add e
+    ld e, a
+    jr nc, .done
+    inc d
+.done:
     pop hl
     pop af
     jp SetSVBK
