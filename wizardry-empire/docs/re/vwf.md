@@ -1,9 +1,12 @@
 # VWF design (asm/vwf.asm)
 
+> Addresses refer to the Japanese **Rev 1** (the base since 2026-11-12). Written for v1.0 and converted with
+> `tools/revmap.py`; a few marked "(v1.0)" did not map. `docs/re/rev1.md` lists what Rev 1 changed.
+
 ## Tile pool
 - The original font is 256 8x8 tiles (ROM bank 1 `$4400`). Codes `$00-$7F` always live in VRAM0 `$9000`.
   Codes `$80-$FF` are loaded either to VRAM1 `$9000` ("split" layout: typewriter screens, dungeon) or
-  VRAM0 `$8800` ("flat" layout: town/menu screens), always through the VBlank DMA queue (`0:142A`).
+  VRAM0 `$8800` ("flat" layout: town/menu screens), always through the VBlank DMA queue (`0:1443`).
 - English needs no kana, so the patch drops the loads of codes `$80-$EF` (`VWF_FontLoad`, called from the
   enqueue stub) and keeps `$F0-$FF` (cursor arrow, window frame). Those 112 VRAM slots are the VWF pool;
   nothing else writes them, so the VWF can upload at any time.
@@ -16,7 +19,7 @@
 - The typewriter never reuses a cell's previous slot: the game scrolls message boxes by copying rows, so
   the slot a cell owned may now be shown by the row above.
 - New slots come from a ring with an allocation bitmap (`wBits`). When it runs dry, `GC` rebuilds the bitmap
-  from what the bank-3 buffers reference: only the 18 rows the game's GDMA copies (`0:1674`, `$23` blocks), and
+  from what the bank-3 buffers reference: only the 18 rows the game's GDMA copies (`0:168D`, `$23` blocks), and
   the window buffer `$D800` only while the window is on screen (LCDC bit 5, WX < 167, WY < 144). Battle hides
   the party list with WX=167 and re-sends it before showing it. Scanning all 32 rows marked garbage as used,
   the pool ran dry and the fallback overwrote live tiles (battle menu "Item" -> "r em").
@@ -60,15 +63,15 @@ owner and shadow and are reserved in `wGameNew` (bank 7 `$D2A0`); the next full 
 panel's parentheses) are not in the pool. GC marks cells under both layouts (VWF-range tiles only).
 
 ## Battle monster panel
-`22:5682` -> trampoline `22:7F00` -> `VWF_Panel`: the 4 group names ($C50F, 13 bytes each) are drawn
+`22:5688` -> trampoline `22:7F00` -> `VWF_Panel`: the 4 group names ($C50F, 13 bytes each) are drawn
 proportionally into WRAM1 `$D200+$100*g` (tiles 0-9 row 1, 10-15 row 2; word break past 80 px) with
 `wPanel` set, which makes `CommitIfInk` write tiles there; then the original DMA to VRAM1 `$8C00`.
 
 ## Spells
-`0:24CF` (record copy to `$C577`) first calls `Stub_SpellPre` -> `VWF_SpellName`: full English name from
+`0:24E8` (record copy to `$C577`) first calls `Stub_SpellPre` -> `VWF_SpellName`: full English name from
 `SpellNames` (bank, ptr per id) into `wSpell` (bank 7 `$D280`). Messages print it with `{F8 00 07 D280}` (the
-2nd F8 byte is written to SVBK). The spell list blanks the rect's name cells (`2A:4D42` reads zeros) and
-`2A:4D8E` -> `2A:7F00` -> `VWF_SpellList` prints `wSpell` one cell after the blit destination.
+2nd F8 byte is written to SVBK). The spell list blanks the rect's name cells (`2A:4D58` reads zeros) and
+`2A:4DA4` -> `2A:7F00` -> `VWF_SpellList` prints `wSpell` one cell after the blit destination.
 
 ## Tile sharing and reuse rules (2026-11-11)
 - Dedupe: when a cell with a newly allocated slot is finished, a slot in use with the same content (1-byte
@@ -105,9 +108,9 @@ Bank-49 messages keep their English inside bank 49 (free `$5726-$7FFF`, shared w
 `chests.json`): `{F3 ..}` inserts read their string pointer from the current text bank, so English in bank
 `$42` printed shop text instead of attack verbs.
 
-## Notice Board (2B:57C0)
-The scroll is one picture (rect `2C:5978` blitted to `$D000` by `$1723`); the Japanese text is part of the
-bitmap (rows 2-15, cols 2-17, palette 6, VRAM1). `2B:57E0` (far call to the fade-in `38:4054`) now calls the
+## Notice Board (2B:57DF)
+The scroll is one picture (rect `2C:597F` blitted to `$D000` by `$1723`); the Japanese text is part of the
+bitmap (rows 2-15, cols 2-17, palette 6, VRAM1). `2B:57FF` (far call to the fade-in `38:4054`) now calls the
 trampoline `2B:7F00`: far call `VWF_Notice`, then the fade-in. It has to run before the fade-in: the buffer is
 not copied to VRAM again afterwards. `VWF_Notice` fills the area with tile `$20` (VRAM0, paper colour 2),
 sets the attributes to palette 5 without flips (palette 6 colour 3 = 18,15,11 is nearly the paper 19,17,12;
@@ -154,14 +157,14 @@ and the frames from a key press to the first screen change (JP 2).
 - Savestates from older builds are unsafe after code changes (the saved call stack returns into moved code;
   the town froze). Signature now `'V','\\'` .. bumped on every layout change.
 
-## Numbers (0:0FD0 -> Stub_Num -> VWF_Num)
-`0:108B` (digit store of the number printer, 84 call sites) calls `Stub_Num`: base `$30` into the bank-3
+## Numbers (0:0FE9 -> Stub_Num -> VWF_Num)
+`0:10A4` (digit store of the number printer, 84 call sites) calls `Stub_Num`: base `$30` into the bank-3
 buffers goes to the VWF, everything else (symbol-sheet digits `$F4`, the typewriter buffer `$C1DE`) keeps the
 original loop. The field is right-aligned when the game padded it or gave a fixed width ($FFAC bit 7), else
 left-aligned; the field's cells are blanked and the digits drawn from the computed pixel. In the split layout
 numbers prefer low pool codes (VRAM0 in both layouts), because the game sometimes writes 8 px text over a
 number field afterwards (shop header: age, then 'AC') and would inherit the VRAM1 bit. Digits are 4 px wide
-(tabular, advance 5); `$7F` is a blank 5 px figure space used by the typewriter's number padding (`0:1D66`).
+(tabular, advance 5); `$7F` is a blank 5 px figure space used by the typewriter's number padding (`0:1D7F`).
 
 ## Render speed (2026-11-11, later)
 - `Glyph`: shift tables `ShiftTab` (bank $40 `$7000-$7FFF`, 16 pages from tools/build.py: page 2p = b >> p,
@@ -176,5 +179,5 @@ number field afterwards (shop header: age, then 'AC') and would inherit the VRAM
   instruction counts underestimate render time ~2x. A cursor move with the info box: ~55k instructions =
   ~4 frames; reaction at frame 6-12 (JP 2).
 - Numbers that the game overwrites with 8 px text keep 8 px digits: `NumExcl` (bank, return address of the
-  0:0FD0 call) - currently the card's age (26:572A), which the shop header overwrites with 'AC'. The excluded
+  0:0FE9 call) - currently the card's age (26:571B), which the shop header overwrites with 'AC'. The excluded
   field's cells get attribute bit 3 cleared. `VWF_Num` reads the caller from the stack ([sp+9] after its push).

@@ -1,7 +1,11 @@
 # Text engine notes
 
+> Addresses refer to the Japanese **Rev 1** (the base since 2026-11-12). Written for v1.0 and converted with
+> `tools/revmap.py`; a few marked "(v1.0)" did not map. `docs/re/rev1.md` lists what Rev 1 changed.
+
 ROM: Wizardry Empire (J), CGB-only (header $143=$C0), MBC5+RAM+battery ($147=$1B), 1 MB (64 banks), 8 KB SRAM.
-SHA-1 `041c125115c83c6fef1b888761ba0b2b1f9bd291`.
+SHA-1 `f5f4e8bead0fe45075141133a530a0eb116ea78c` (Rev 1; these notes were made on v1.0, SHA-1
+`041c125115c83c6fef1b888761ba0b2b1f9bd291`).
 
 ## Encoding / font
 - One byte per character; the byte is also the BG tile index of the 8x8 font (`tbl/jp.tbl`).
@@ -12,8 +16,8 @@ SHA-1 `041c125115c83c6fef1b888761ba0b2b1f9bd291`.
 ## Screen buffer
 - WRAM bank 3: `$D000` = 32x18 tile-number buffer (stride 32), `$D400` = matching CGB attribute buffer.
 - `26:40EF` packs $D000/$D400 into a transfer list at `$D800` (bank 3); the VBlank handler pushes it to VRAM.
-- VBlank (`JP $C004` -> `$01E5`) also services a GDMA queue at bank 2 `$D404/$D405` (entries in `$D4xx`) - `0:14EC`.
-- `0:153A` = synchronous HBlank-DMA copy (src `$FFB8/$FFB9`, bank `$FFBA`, dst `$FFBB/$FFBC`, VRAM bank `$FFBD`, B = blocks).
+- VBlank (`JP $C004` -> `$01E5`) also services a GDMA queue at bank 2 `$D404/$D405` (entries in `$D4xx`) - `0:1505`.
+- `0:1553` = synchronous HBlank-DMA copy (src `$FFB8/$FFB9`, bank `$FFBA`, dst `$FFBB/$FFBC`, VRAM bank `$FFBD`, B = blocks).
 
 ## Bank switching
 - `rst $28` = switch ROM bank (A -> `$FF9E` and `$2000`).
@@ -22,11 +26,11 @@ SHA-1 `041c125115c83c6fef1b888761ba0b2b1f9bd291`.
 
 ## Text path 1: rectangle blocks
 Data: `[w][h]` then `w*h` tile bytes (some screens follow with `w*h` attribute bytes).
-Padded with $20 to the box width. Blitted into $D000 by `0:1703`, `0:1723`, `0:1770`, `0:17A7`
+Padded with $20 to the box width. Blitted into $D000 by `0:171C`, `0:173C`, `0:1789`, `0:17C0`
 (source `$FFB8-$FFBA` = ptr/bank, destination `$FFBB/$FFBC`).
 Example: bank 43 (`$2B`) `5F14` is a pointer table for the town building info boxes; bank 38 (`$26`) holds many menu blocks.
 
-## Text path 2: typewriter messages (`0:1B92`)
+## Text path 2: typewriter messages (`0:1BAB`)
 Called each frame; delay `$C1C7/$C1C8`; source pointer `$C1BF/$C1C0`, bank `$C1C1`;
 cursor column `$C1C5`, row `$C1C6`, right margin `$C1C3`; destination buffer pointer `$C1D3/$C1D4` (WRAM bank 3).
 Writes tile = code ($80+ -> code&$7F with attribute bit 3 = VRAM bank 1) and attribute `$C1C2`.
@@ -68,10 +72,10 @@ Most banks end in $00 padding (see `tools/` census). The patch expands the ROM t
 - Menus also write text from code: `ld a,X / ld [de],a / inc de` or `ld hl,dst / (ld a,X / ld [hli],a)* / ld a,X / ld [hl],a`.
 - Font: bank 1 `$4400` (256 tiles), loaded by queue entries `$4400->VRAM0:$9000`, `$4800->$9400`, then
   `$4C00/$5000` -> VRAM1 `$9000` (split) or VRAM0 `$8800` (flat); `$4300` (16 tiles) -> `$8F00` for frames in flat screens.
-- A second glyph builder at `0:19C9` composes tiles from the font into WRAM `$D200` (used by the museum/spell screens?).
+- A second glyph builder at `0:19E2` composes tiles from the font into WRAM `$D200` (used by the museum/spell screens?).
 
 ## Party list status word (39:4991)
-The shared party-list printer (`39:4931` -> `39:4991`, far-called from Camp `2A:4E12` and 14 other places) prints
+The shared party-list printer (`39:4931` -> `39:4991`, far-called from Camp `2A:4E12 (v1.0)` and 14 other places) prints
 max HP, '/', then current HP or, when the status byte (record +$0C, records $80 bytes from `$C880`) is non-zero,
 a 4-cell word from `39:4004` (a byte copy of `38:754D`). Status encoding: low 6 bits = severity (1 Afraid,
 2 Asleep, 3 Paralyzed, 4 Stoned, 5 Dead, 6 Ashes, 7+ Lost); 0 with bit 6 = Silenced, bit 7 = Poisoned (also a

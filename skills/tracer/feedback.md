@@ -10,6 +10,17 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - Rev 1 vs v1.0 differences
+- Task: list Rev 1 changes relevant to the translation (text coverage, RAM layout, code summary).
+- Worked: classifying changed regions by pointer shift, forward-mapping message sites, RAM operand counts.
+- Friction: revmap has no inverse map or gap iterator; mapping a whole site fails when its own pointer bytes
+  changed; census_msgs guesses text banks (noisy diffs); decode_msg fails on control codes.
+- Proposed rule change: for revision diffs classify by pointer shift and compare per mapped site; tools:
+  revmap.inv_addr()/gaps(), decode_msg with all control codes.
+- Corrected: findings verified (31:4592 bytes, 32:5807 31 entries, 2B:788B) and applied in 8052a1f; notes in
+  docs/re/rev1.md.
+- Status: logged (tool requests in docs/status.md backlog)
+
 ### 2026-11-11 - numbers and 8 px glyphs inventory
 - Task: list every 8 px number/word printer in the EN build, group by routine, propose VWF routes.
 - Worked: count-only PC breakpoints on caller return addresses read per input token, plus a VRAM-glyph scanner

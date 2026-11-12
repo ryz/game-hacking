@@ -1,5 +1,8 @@
 # Museum (はくぶつかん): where its text lives and how it is printed
 
+> Addresses refer to the Japanese **Rev 1** (the base since 2026-11-12). Written for v1.0 and converted with
+> `tools/revmap.py`; a few marked "(v1.0)" did not map. `docs/re/rev1.md` lists what Rev 1 changed.
+
 Tracer notes, 2026-11-11 (copied from work/re/museum.md). Original ROM traced, English build a98cef8 used for comparison. Scratch files (states, scripts, scratch ROM) are in the untracked `work/re/museum/`.
 
 ## 1. Answer
@@ -8,10 +11,10 @@ The museum code is all in bank 41 (`$29`, `41:5B00-6B20`). It uses the ordinary 
 plus one small extra glyph sheet:
 
 - **Rects.** Headers, labels and the item "use" and "special" descriptions are `[w][h]` rects in bank 41
-  `$6F3D-$78D7`. They are blitted by `0:1770` (tiles only) or `0:1723` (tiles plus attributes). Most of the
+  `$6F3D-$78D7`. They are blitted by `0:1789` (tiles only) or `0:173C` (tiles plus attributes). Most of the
   attribute rects are missing from `script/rects.json`. The census decodes them without attributes and missed them.
 - **Names.** Item and monster names come from the same bank-40 and bank-57 records that `items.json` and
-  `monsters.json` already translate, copied to `$C54F` (`0:24E6`) and `$C50F` (`0:237B`). The museum keeps no copy
+  `monsters.json` already translate, copied to `$C54F` (`0:24FF`) and `$C50F` (`0:2394`). The museum keeps no copy
   of its own. Bank 41 does have its own copies of the unidentified-name lists: `41:5706` for items, `41:6730` for
   monsters.
 - **Code writes.** Numbers, class letters, monster abilities and element labels are written tile by tile by code.
@@ -62,16 +65,16 @@ monsters; with no monsters the monster room does not open.
 | piece | source | printer | destination |
 |---|---|---|---|
 | museum title / menu | rects `29:6F3D`, `6F45`, `6F4D` | `1770` | done in EN |
-| item categories, found/unfound | rects `29:6F56`, `6F6A`; numbers by `0:0FD0` | `1770` | done in EN |
-| item list row | number `0:0FD0` (`bc=$3083`), name `41:62C7-62D4`: up to 12 bytes from `$C54F` (`ld a,[hli]/or a/jr z/ld [de],a/inc de/dec c/jr nz`) | `41:6282` | `$D082 + $20*row` from col 6, flat layout, attributes untouched (0) |
-| page header (item name) | `$C54F` (bank-40 record via `0:24E6`) | `41:66C2` (copies a `$00`-terminated string, then writes attribute `$08` for bytes >= `$80` at +`$400`) | `$D822` (row 1, cols 2-17 = 128 px) |
+| item categories, found/unfound | rects `29:6F56`, `6F6A`; numbers by `0:0FE9` | `1770` | done in EN |
+| item list row | number `0:0FE9` (`bc=$3083`), name `41:62C7-62D4`: up to 12 bytes from `$C54F` (`ld a,[hli]/or a/jr z/ld [de],a/inc de/dec c/jr nz`) | `41:6282` | `$D082 + $20*row` from col 6, flat layout, attributes untouched (0) |
+| page header (item name) | `$C54F` (bank-40 record via `0:24FF`) | `41:66C2` (copies a `$00`-terminated string, then writes attribute `$08` for bytes >= `$80` at +`$400`) | `$D822` (row 1, cols 2-17 = 128 px) |
 | unidentified item name | `41:5706[$C560]` -> pointer, +2, `$00`-terminated | `41:66C2` (called at `41:64E3`) | `$D86A` (row 3, cols 10-18 = 72 px) |
 | labels | rects `29:6F7E` ●ふかくていめい: (w9), `6F92` ●こうげきりょく: (w9), `6FA6` ●AC:__ ●こうげきはんい: (w17), `6FCA` ●しよう: (w5), `6FD6` ●とくしゅ: (w6), `6FE4` ●ねだん: (w5), `6FF0` ●そうび: (w5) | `1723` (tiles plus attributes) from `41:6416-64B4` | `$D861`, `$D8A1`, `$D8E1`, `$D921`, `$D961`, `$D9A1`, `$D9E1` |
-| damage `a~b` | record `$C568-$C56A`, `0:0FD0`; tilde = `ld a,$3B` at `41:650B` | code | `$D8AA` |
+| damage `a~b` | record `$C568-$C56A`, `0:0FE9`; tilde = `ld a,$3B` at `41:650B` | code | `$D8AA` |
 | AC, range | `$C56B` (`$2D` minus at `41:6535`), range char from `41:6374` = `S M L ー` | code | `$D8E5`, `$D8F2` |
 | use (しよう) value | `41:6378[$C572 or ($C570&$3F)+10]`: 31 rects w2-12, h1-2, with attributes | `1723` at `41:665B` | `$D926` (row 9, col 6; h2 uses row 10) |
 | special (とくしゅ) value | `41:63B6[$C575]`: 30 rects w2-12, h1-2 | `1723` at `41:667D` | `$D967` (row 11, col 7; h2 uses row 12) |
-| price | `$C562-$C564`, `0:0FD0` | code | `$D9A6` |
+| price | `$C562-$C564`, `0:0FE9` | code | `$D9A6` |
 | equip class letters | `41:7020` (14 tiles: せまそとビサロニ + ゆヴアムくし) / `41:702E` (14 attributes); bits `$C565` (8 classes), `$C566` (6 extra classes, gated by `$C5C6` bits) | loops `41:659E-662A` | row 15 cols 6,8..18, row 16 col 6; extras row 16 cols 8..18 |
 | alignment `(ぜん)` etc. | rects `29:6FFC`, `7008` (uses glyphs `$D1-$D3` ちゅうりつ), `7014`; picked by `$C567&7` | `1723` at `41:66B6` | `$DA01` (5 cells) |
 
@@ -79,19 +82,19 @@ Monster room (font layout described in section 1):
 
 | piece | source | printer | destination |
 |---|---|---|---|
-| monster list row | number `0:0FD0`, name `41:633E-634F`: up to 12 bytes from `$C50F` (bank-57 record via `0:237B`), skips `$FD` | `41:62F9` | `$D082 + $20*row` col 6, attribute `$08` |
+| monster list row | number `0:0FE9`, name `41:633E-634F`: up to 12 bytes from `$C50F` (bank-57 record via `0:2394`), skips `$FD` | `41:62F9` | `$D082 + $20*row` col 6, attribute `$08` |
 | page name / unidentified name | `$C50F`; `41:6730[$C51C]` (16 pointers to `$00`/`$FD` strings, untranslated in EN) | `41:66E5`: 2 rows of 8 cells, break at `$FD` or 8 chars, attribute `$08` | `$D82B`, `$D8AB` (cols 11-18 = 64 px per row) |
 | labels | rects `29:6F7E` (shared with item page), `706C` AC:, `703C` ゴールド: (EN "Gold:"), `7048` HP:, `7050` とくしゅ (w6), `705E` 呪文抵抗 (4 special glyphs) | `1770` / `1723` from `41:67AA-6831` | `$D88A`, `$D8EA`, `$D92A`, `$D947`, `$D967`, `$D9E7` |
 | EXP label | glyphs `$D4 $D5` + `:` (`41:68A9`) | code | `$D90A` |
-| AC / EXP / Gold / HP | `0:0FD0`; HP tilde `ld a,$3B` at `41:6917` | code | `$D8ED`, `$D90D`, `$D92F`, `$D94A` |
+| AC / EXP / Gold / HP | `0:0FE9`; HP tilde `ld a,$3B` at `41:6917` | code | `$D8ED`, `$D90D`, `$D92F`, `$D94A` |
 | abilities | `41:6989-6AE7` (called once, at `41:6926`): `$C536` bits 0-6 = どく, 恐怖, 眠り, まひ, 石化, クリティカル, ブレス; `$C537` = ドレイン; `$C538` high nibble = 仲間を呼ぶ, low nibble = にげる; `$C52F-31` != 0 = 2 glyphs `$E9 $EC` (reading unsure). Hard-coded tile and attribute pairs; attribute `$80` = special glyph (VRAM0), `$88` = font (VRAM1) | code | rows 12-14 at fixed cells |
 | resistances | element labels: glyphs `$E4-$E7` / `$E8-$EB` (地水火風 / 精…聖無…) written at `41:6844-685C`; values `41:6AB2` -> `6AE8` (`$EE` glyph for 100) | code | rows 16-17 |
 
 How each was confirmed:
-- Write watches on WRAM3 `$D861-$D872` from `jp_list.state` + `a`: the hits were `0:1A55` (clear), the
-  `0:1746` blit called from `41:642A` with source `29:6F7E`, and `41:66CB` (unidentified-name copy, HL = `6EA7`).
+- Write watches on WRAM3 `$D861-$D872` from `jp_list.state` + `a`: the hits were `0:1A6E` (clear), the
+  `0:175F` blit called from `41:642A` with source `29:6F7E`, and `41:66CB` (unidentified-name copy, HL = `6EA7`).
 - Write watch on `$D086-$D08C` from `jp_monmenu.state` + `a`: `41:634C`.
-- Breakpoint on `0:142A` (DMA queue) while entering the monster room and its page: `41:6002/6023/6044/6065/6086`
+- Breakpoint on `0:1443` (DMA queue) while entering the monster room and its page: `41:6002/6023/6044/6065/6086`
   load `01:4400/4800/5000/4C00/4300` into VRAM1 `$8000/$8400/$8C00/$8800/$8F00`. `21:4241/4268` load the
   picture `05:4000` into VRAM0 `$8000`. `41:60FB` loads `01:4140` into VRAM0 `$8D40`.
 - The item-page DMA (`01:4100` -> VRAM0 `$8D00`, `$21` blocks) is at `41:5DA0`.
@@ -118,7 +121,7 @@ labels, and "Gold:".
 Scratch check: `work/re/museum/scratch_hooks.gbc` is a copy of a98cef8 with `41:66C2 = c3 7d 3f` and
 `41:62C7 = 21 4f c5 cd 7d 3f 18 06 00 00 00 00 00 00`. In `work/re/museum/scr/sheet.png` the list shows the full
 proportional names ("Staff of Healing", "Studded Leather") and the page header is proportional. `Stub_PrintZ` is
-`0:3F7D` in a98cef8; `build/wizardry_empire_en.sym` says the same.
+`0:19E1` in a98cef8; `build/wizardry_empire_en.sym` says the same.
 
 ## 3. Hook proposals (item side first; monster side after the layout work)
 

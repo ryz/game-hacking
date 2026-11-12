@@ -32,7 +32,7 @@
 - Town speed: with a party 360 loops/120 frames and reaction at frame 2, like the Japanese (was 174 and a
   half-speed cursor); without a party (info box) reaction at frame 7-13 (was 14-18, JP 2). Caches: names,
   numbers, party list, rect sums; Dedupe hash index (`docs/re/vwf.md` "Speed").
-- Numbers in the small font everywhere 0:0FD0 prints them (84 sites: party lists, character sheet, shop
+- Numbers in the small font everywhere 0:0FE9 prints them (84 sites: party lists, character sheet, shop
   prices, inn, gold, EXP ...); tabular digits; typewriter number padding 5 px.
 
 ## Done 2026-11-11 (seventh session)
@@ -95,7 +95,7 @@
 7. Flicker (owner's request): the new screen reuses tiles the old one still shows until the game copies its
    buffer (in-place redraws and freed slots), e.g. inn list -> character sheet (~35 frames of wrong letters),
    message -> chest menu (3 frames). A quarantine by frame count did not help (in-place case) and slowed screens
-   (repeated GC); next try: tie reuse to the game's buffer copy (hook 0:167D) - see docs/re/vwf.md.
+   (repeated GC); next try: tie reuse to the game's buffer copy (hook 0:1696) - see docs/re/vwf.md.
 8. Still 8 px (docs/re/numbers.md): '/', '-', '~', ':' separators and the labels L/HP/AC/HP-MAX/Lo/Hi/ON/OFF,
    spell-slot grid separators, monster panel and automap digits (symbol sheet), Camp reorder digits.
    Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.

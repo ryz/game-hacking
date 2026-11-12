@@ -23,7 +23,8 @@ This repository holds fan-translation projects, one directory per game. Each pro
 Run from `wizardry-empire/`:
 - Setup emulator: `sh tools/setup_emu.sh` (builds gbemu-cli, a headless SameBoy with a JSON-lines API, into
   `tools/gbemu-cli`; Python client in `tools/gbemu-cli/cli/py/gbemu.py`).
-- ROM: copy your dump to `rom/wizardry_empire_j.gbc`.
+- ROM: copy your dump of the Japanese **Rev 1** to `rom/wizardry_empire_j.gbc` (`rom.sha1`); v1.0 only as
+  `rom/wizardry_empire_j_v10.gbc` for `tools/revmap.py` (old addresses -> Rev 1).
 - Build: `python3 tools/build.py` -> `build/wizardry_empire_en.gbc` + `.ips`. The build fails loudly when a
   translated line is wider than its box.
 - Tests: `python3 -m pytest -q tests`.

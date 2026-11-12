@@ -3,8 +3,10 @@
 Unofficial English fan translation of **Wizardry Empire** (Game Boy Color, Starfish, 1999): source text and tools that
 build the patch. Work in progress - see `docs/status.md`.
 
-This repository holds no game data. You need your own dump of the Japanese ROM
-(1048576 bytes, SHA-1 `041c125115c83c6fef1b888761ba0b2b1f9bd291`, see `rom.sha1`).
+This repository holds no game data. You need your own dump of the Japanese ROM, **Rev 1**
+(1048576 bytes, SHA-1 `f5f4e8bead0fe45075141133a530a0eb116ea78c`, CRC32 `FA82620F`, see `rom.sha1`), as
+`rom/wizardry_empire_j.gbc`. (The project started on v1.0, SHA-1 `041c1251...`; `tools/revmap.py` needs that dump
+as `rom/wizardry_empire_j_v10.gbc` only to map old addresses.)
 
 ## What's here
 
