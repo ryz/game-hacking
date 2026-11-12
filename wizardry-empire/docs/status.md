@@ -140,7 +140,8 @@
    Stylistic candidates for the owner: big L/HP/AC on the character sheet, the name-entry chart.
 9. Seen once, not reproduced: wrong digits in the chest "Who will inspect?" list after inputs during the trap
    message.
-10. Tool backlog (from agent feedback): gbdis xref mode (callers/readers/writers; asked three times);
+10. Tool backlog (from agent feedback; done 2026-11-12: gbdis --en/--rom, emu/shoot `KEY>KEY` held modifier):
+   gbdis xref mode (callers/readers/writers; asked three times);
    `tools/emu.py` hang check should report a hang only when the PC stays
    in a tight range, plus a soft-lock check (screen and task table unchanged); shoot.py state-based shots
    (`@STATE` lines, `!` no-settle); contact-sheet tool; rect-site coverage test; `tools/loops.py` copy-loop
