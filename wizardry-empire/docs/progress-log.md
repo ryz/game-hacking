@@ -12,7 +12,7 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 ```
 
 ## 2026-11-12 - frame-time tools and a first speed round; flicker experiment shelved
-- ROM: none sent.
+- ROM: `a15df7a` sent (yes).
 - Tools: `tools/perf.py` (every key press of the tour routes, EN vs JP: frames to react/settle, frames with wrong
   cells), `tools/profile.py` (cycle-weighted sampling profiler); three-way screenshot set docs/shots/compare3.
 - Flicker: cause measured (the pool cannot hold old + new screen; garbage lasts as long as the render). Deferred
