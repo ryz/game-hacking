@@ -7,12 +7,13 @@ kind of square does: [maps/README.md](README.md).
 
 ## 1. Overview
 
-- No solid rock; 30 doors, many of them closing small one- and two-square rooms (computed from the map). The whole
-  floor is one connected maze: every square can be reached from every other on foot (computed from the map).
+- No solid rock; 30 doors, many of them closing small one- and two-square rooms, 6 one-way doors, no secret doors and
+  no locked doors (computed from the map). The whole floor is one connected maze: every square can be reached from
+  every other on foot (computed from the map).
 - **Entrance and exits:** **no stairs**, no chute. How the party reaches floor 27 or leaves it was not traced
   ([findings.md](../findings.md), "Floors 21-30 are not reached by stairs").
-- **4 guarded squares**, **no events**, **8 floor traps** (2 each of ceiling traps, pits, rockfalls and vipers), 4
-  markers and 6 one-way doors.
+- **4 guarded squares**, **no events**, **8 floor traps** (2 each of ceiling traps, pits, rockfalls and vipers) and 4
+  markers.
 - **Zones:** a **damage zone** of 15 squares, the one-square corridor along the east edge from (15, 0) to (15, 14),
   with its own encounter area (104).
 - **Random fights:** area 29 everywhere outside the damage zone; area 104 in it; area 31 (floor 29's monsters) on the
@@ -42,46 +43,44 @@ the viper rule: rolls 0-4 always poison).
 
 ## 3. Monsters
 
-| Area | Where | Formations (one is picked per fight) |
+| Area | Where | Formations (one of 4 slots picked per fight) |
 |---|---|---|
-| 29 | everywhere outside the damage zone | Vampire Lord ×2 + DragonZombie ×3 + Nightcrawler ×3 + U. Beholder ×2, or Valkyrie ×3 + Dark Rider ×3 + Sword Dancer ×1 + Shogun ×4, or Leviathan ×6 + Umber Hulk ×5 + Carrion Worm ×6, or Leviathan ×5 + Troll ×6 + Lion of Hell ×5 + Carrion Worm ×6 |
-| 104 | damage zone | Marid ×1-3 + Djinni ×2-4 + Water Elem. ×3-5 + Air Elem. ×6, or an empty formation (two listed) |
-| 31 | guarded squares, marker (13, 10) | Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1, or Lich ×3 + Vampire Qn. ×3 + Vampire Lord ×2 + Vampire ×3, or Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3 |
+| 29 | the whole floor outside the damage zone | Vampire Lord ×2 + DragonZombie ×3 + Nightcrawler ×3 + U. Beholder ×2, or Valkyrie ×3 + Dark Rider ×3 + Sword Dancer ×1 + Shogun ×4, or Leviathan ×6 + Umber Hulk ×5 + Carrion Worm ×6, or Leviathan ×5 + Troll ×6 + Lion of Hell ×5 + Carrion Worm ×6 |
+| 104 | the damage zone (15, 0)-(15, 14) | Marid ×1-3 + Djinni ×2-4 + Water Elem. ×3-5 + Air Elem. ×6, or an empty formation (3 of 4) |
+| 31 | guarded squares (all 4) and the marker (13, 10) | Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1, or Lich ×3 + Vampire Qn. ×3 + Vampire Lord ×2 + Vampire ×3 (2 of 4), or Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3 |
 
-Area 31 shows three formations: one of them fills two of the area's four slots, so it comes up in half the fights
-([monsters.md](../monsters.md)); which one was not traced. Area 104 lists one real formation and
-empty ones; what a fight does when it picks an empty formation was not traced ([findings.md](../findings.md), "Two
-damage-zone areas have empty formations").
+The Lich ×3 formation fills two of area 31's four slots, so it comes up in half of the guard fights (computed). Area
+104 has its one real formation in a single slot and empty ones in the other three: what a fight does when it picks
+an empty formation was not traced ([findings.md](../findings.md), "Two damage-zone areas have empty formations").
 
-| Monster | Lv | HP | AC | Swings | Damage | Spells | Special | EXP | Gold |
+| Monster | Lv | HP | AC | Swings | Damage | Special | Spells | EXP | Gold |
 |---|---|---|---|---|---|---|---|---|---|
-| Vampire Lord | 23 | 40d8 | -8 | 1 | 2d9 | Mage 6 | level drain 4, calls 25% | 40000 | 180 |
-| DragonZombie | 18 | 25d8 | -2 | 3 | 4d9 | Mage 5 | poison, poison breath | 12000 | 170 |
-| Nightcrawler | 17 | 36d8 | -4 | 2 | 3d9 | - | poison, level drain 1 | 13000 | 160 |
-| U. Beholder | 17 | 24d8 | -4 | 1 | 3d11 | Mage 6 | level drain 1 | 9200 | 160 |
-| Valkyrie | 19 | 25d8 | -5 | 3 | 4d9+17 | Priest 7 | - | 25480 | 170 |
-| Dark Rider | 18 | 24d8 | -7 | 5 | 2d9+9 | Priest 6 | - | 10000 | 170 |
+| Vampire Lord | 23 | 40d8 | -8 | 1 | 2d9 | level drain 4, calls 25% | Mage 6 | 40000 | 180 |
+| DragonZombie | 18 | 25d8 | -2 | 3 | 4d9 | poison, poison breath | Mage 5 | 12000 | 170 |
+| Nightcrawler | 17 | 36d8 | -4 | 2 | 3d9 | poison, level drain 1 | - | 13000 | 160 |
+| U. Beholder | 17 | 24d8 | -4 | 1 | 3d11 | level drain 1 | Mage 6 | 9200 | 160 |
+| Valkyrie | 19 | 25d8 | -5 | 3 | 4d9+17 | - | Priest 7 | 25480 | 170 |
+| Dark Rider | 18 | 24d8 | -7 | 5 | 2d9+9 | - | Priest 6 | 10000 | 170 |
 | Sword Dancer | 18 | 30d8 | -9 | 6 | 2d9+12 | - | - | 16200 | 170 |
-| Shogun | 18 | 25d8 | -6 | 5 | 3d9+9 | Mage 6 | - | 13100 | 170 |
+| Shogun | 18 | 25d8 | -6 | 5 | 3d9+9 | - | Mage 6 | 13100 | 170 |
 | Leviathan | 21 | 65d8 | 2 | 1 | 4d12+1 | - | - | 65720 | 190 |
-| Umber Hulk | 9 | 8d8+10 | 2 | 3 | 3d4+1 | - | fear | 890 | 90 |
-| Carrion Worm | 4 | 5d8+3 | 7 | 8 | 2d3 | - | paralysis, flees 10% | 450 | 50 |
+| Umber Hulk | 9 | 8d8+10 | 2 | 3 | 3d4+1 | fear | - | 890 | 90 |
+| Carrion Worm | 4 | 5d8+3 | 7 | 8 | 2d3 | paralysis, flees 10% | - | 450 | 50 |
 | Troll | 7 | 8d8+6 | 4 | 2 | 2d5+4 | - | - | 720 | 70 |
 | Lion of Hell | 5 | 7d8 | 4 | 1 | 1d12+3 | - | - | 500 | 50 |
-| Marid | 13 | 14d8 | -2 | 1 | 11d7 | - | frost breath | 5200 | 130 |
-| Djinni | 12 | 14d8 | -2 | 1 | 5d11 | - | lightning breath | 4800 | 120 |
+| Marid | 13 | 14d8 | -2 | 1 | 11d7 | frost breath | - | 5200 | 130 |
+| Djinni | 12 | 14d8 | -2 | 1 | 5d11 | lightning breath | - | 4800 | 120 |
 | Water Elem. | 8 | 10d8 | 2 | 1 | 6d7 | - | - | 840 | 80 |
 | Air Elem. | 8 | 10d8 | 2 | 1 | 3d11 | - | - | 760 | 80 |
-| Hell Master | 22 | 35d8 | -6 | 1 | 11d11 | Mage 6 | level drain 1 | 24000 | 170 |
-| Hell Fiend | 14 | 20d8 | -1 | 2 | 4d11 | Priest 3 | fire breath | 6700 | 140 |
-| Succubus | 12 | 14d8 | -2 | 1 | 3d9 | Mage 5 | level drain 1 | 4000 | 120 |
-| Succubus Qn. | 21 | 50d8 | -10 | 4 | 4d11 | Mage 7 | level drain 3 | 57000 | 190 |
-| Lich | 21 | 36d8 | 0 | 1 | 1d11 | Mage 7 | paralysis | 50240 | 180 |
-| Vampire Qn. | 22 | 45d8 | -12 | 1 | 2d11 | Mage 7 | level drain 3 | 50000 | 180 |
-| Vampire | 10 | 10d8+5 | 1 | 1 | 2d7+4 | - | paralysis, level drain 1 | 1000 | 80 |
+| Hell Master | 22 | 35d8 | -6 | 1 | 11d11 | level drain 1 | Mage 6 | 24000 | 170 |
+| Hell Fiend | 14 | 20d8 | -1 | 2 | 4d11 | fire breath | Priest 3 | 6700 | 140 |
+| Succubus | 12 | 14d8 | -2 | 1 | 3d9 | level drain 1 | Mage 5 | 4000 | 120 |
+| Succubus Qn. | 21 | 50d8 | -10 | 4 | 4d11 | level drain 3 | Mage 7 | 57000 | 190 |
+| Lich | 21 | 36d8 | 0 | 1 | 1d11 | paralysis | Mage 7 | 50240 | 180 |
+| Vampire Qn. | 22 | 45d8 | -12 | 1 | 2d11 | level drain 3 | Mage 7 | 50000 | 180 |
+| Vampire | 10 | 10d8+5 | 1 | 1 | 2d7+4 | paralysis, level drain 1 | - | 1000 | 80 |
 
-Spells: the school and the highest spell level cast. Full stats and resistances:
-[monsters_table.md](../monsters_table.md).
+Full stats: [monsters_table.md](../monsters_table.md).
 
 **Notes for play:** 8 of the 24 monsters drain levels; every formation of the guards (area 31) has at least one
 of them, led by the Vampire Lord (4 levels per hit) and the Vampire Queen and Succubus Queen (3). The Vampire
@@ -91,7 +90,7 @@ less than the zone itself (all computed from the tables).
 ## 4. Open questions
 
 - How the party reaches floor 27 and leaves it (no stairs, no chute).
-- What happens when a fight in the damage zone picks an empty formation.
+- What happens when a fight in the damage zone picks an empty formation (3 of its 4 slots).
 - Why the pit at (2, 8) has strength 14 when every other trap here has 28, and what trap strength does for pits,
   rockfalls and ceiling traps.
 

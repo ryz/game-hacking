@@ -11,6 +11,20 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - all 30 floors mapped and documented; secret and locked doors traced
+- ROM: none sent (documentation and tools only).
+- docs/design/maps: 30 generated maps (style guide, game-name prefix, one-way doors, legend in three groups) and 30
+  floor pages (squares, doors, reachability, monsters), written in two parallel design-writer rounds.
+- Found: the 'special wall' is a secret door (on a hidden spot: 'Ouch!' until the maze menu's Search finds it, no
+  roll) or a locked door (lock squares, type 5: Pick a lock, class skill vs 5 x difficulty, min(95, 2m + AGI)%).
+  Flags are global and saved. Verified on floor 1. tech/dungeon.md 2.1, design/dungeon.md 3.6, findings 36.
+- Tools: floormap --list (doors, secret/locked doors with difficulty, shared guard marks, on-foot reach);
+  monsters_table shows repeated formations '(2 of 4)' and no longer lists monsters on floors they never reach.
+- Docs fixed from the writers' reports: zone kinds of floors 15-26, panels on floors 3-19, floor 6 chute walled
+  in, floor 26 traps, monster levels of floors 21-30.
+- Open: chute destinations, how floors 7, 20 and 21-30 are entered, key-hole items, panel destinations, trap
+  damage, shared guard marks (one fight per pair?), floor 15 stairs-down pocket.
+
 ## 2026-11-12 - documentation split: design vs tech; floor 1 mapped
 - docs/README.md (map + rules for all docs), docs/re/README.md (what RE means), docs/tech/ (game systems with
   addresses and evidence), docs/design/ (rules, formulas, data for designers; notation defined once in its README).

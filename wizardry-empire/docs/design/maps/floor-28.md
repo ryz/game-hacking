@@ -7,8 +7,8 @@ read the map, coordinates and what each kind of square does: [maps/README.md](RE
 
 ## 1. Overview
 
-- No solid rock, **no doors and no inner walls**: the only walls run along the map edge, so the floor is one open
-  16 × 16 hall that does not wrap (computed from the map).
+- No solid rock, **no doors** (no one-way, secret or locked doors either) **and no inner walls**: the only walls run
+  along the map edge, so the floor is one open 16 × 16 hall that does not wrap (computed from the map).
 - **Entrance and exits:** **no stairs**, no chute. How the party reaches floor 28 or leaves it was not traced
   ([findings.md](../findings.md), "Floors 21-30 are not reached by stairs").
 - **5 guarded squares**, **no events**, **122 floor traps**, 1 marker. Of the inner block (1, 1)-(14, 14), 196
@@ -51,40 +51,39 @@ the viper rule: rolls 0-4 always poison).
 
 ## 3. Monsters
 
-| Area | Where | Formations (one is picked per fight) |
+| Area | Where | Formations (one of 4 slots picked per fight) |
 |---|---|---|
-| 30 | everywhere | Leviathan ×5 + Troll ×6 + Lion of Hell ×5 + Carrion Worm ×6, or Leviathan ×6 + Umber Hulk ×5 + Carrion Worm ×6, or Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1, or Yasha ×3 + Musashi ×2 + Daimyo ×7 |
-| 32 | guarded squares, spinner (8, 8) | Fire Giant ×4 + Titan ×4 + Iron Golem ×4 + Star Seizer ×1, or Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3, or Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3, or Yasha ×4 + Musashi ×2 + Kunoichi ×2 + Valiant ×3 |
+| 30 | the whole hall | Leviathan ×5 + Troll ×6 + Lion of Hell ×5 + Carrion Worm ×6, or Leviathan ×6 + Umber Hulk ×5 + Carrion Worm ×6, or Hell Master ×2-3 + Hell Fiend ×0-4 + Succubus ×3-4 + Succubus Qn. ×1, or Yasha ×3 + Musashi ×2 + Daimyo ×7 |
+| 32 | the 5 guarded squares and the spinner (8, 8) | Fire Giant ×4 + Titan ×4 + Iron Golem ×4 + Star Seizer ×1, or Lich ×2 + Vampire Qn. ×2 + Vampire Lord ×3 + DragonZombie ×3, or Demon Lord ×2 + Succubus Qn. ×3 + Arch Demon ×2 + Hell Master ×3, or Yasha ×4 + Musashi ×2 + Kunoichi ×2 + Valiant ×3 |
 
-| Monster | Lv | HP | AC | Swings | Damage | Spells | Special | EXP | Gold |
+| Monster | Lv | HP | AC | Swings | Damage | Special | Spells | EXP | Gold |
 |---|---|---|---|---|---|---|---|---|---|
 | Leviathan | 21 | 65d8 | 2 | 1 | 4d12+1 | - | - | 65720 | 190 |
 | Troll | 7 | 8d8+6 | 4 | 2 | 2d5+4 | - | - | 720 | 70 |
 | Lion of Hell | 5 | 7d8 | 4 | 1 | 1d12+3 | - | - | 500 | 50 |
-| Carrion Worm | 4 | 5d8+3 | 7 | 8 | 2d3 | - | paralysis, flees 10% | 450 | 50 |
-| Umber Hulk | 9 | 8d8+10 | 2 | 3 | 3d4+1 | - | fear | 890 | 90 |
-| Hell Master | 22 | 35d8 | -6 | 1 | 11d11 | Mage 6 | level drain 1 | 24000 | 170 |
-| Hell Fiend | 14 | 20d8 | -1 | 2 | 4d11 | Priest 3 | fire breath | 6700 | 140 |
-| Succubus | 12 | 14d8 | -2 | 1 | 3d9 | Mage 5 | level drain 1 | 4000 | 120 |
-| Succubus Qn. | 21 | 50d8 | -10 | 4 | 4d11 | Mage 7 | level drain 3 | 57000 | 190 |
-| Yasha | 20 | 30d8 | -9 | 6 | 2d9+11 | Mage 7 | - | 28580 | 180 |
-| Musashi | 20 | 36d8 | -10 | 14 | 2d8+14 | Musashi* 7 | - | 44050 | 180 |
-| Daimyo | 15 | 20d8 | -4 | 4 | 3d9+7 | Mage 5 | - | 6780 | 150 |
+| Carrion Worm | 4 | 5d8+3 | 7 | 8 | 2d3 | paralysis, flees 10% | - | 450 | 50 |
+| Umber Hulk | 9 | 8d8+10 | 2 | 3 | 3d4+1 | fear | - | 890 | 90 |
+| Hell Master | 22 | 35d8 | -6 | 1 | 11d11 | level drain 1 | Mage 6 | 24000 | 170 |
+| Hell Fiend | 14 | 20d8 | -1 | 2 | 4d11 | fire breath | Priest 3 | 6700 | 140 |
+| Succubus | 12 | 14d8 | -2 | 1 | 3d9 | level drain 1 | Mage 5 | 4000 | 120 |
+| Succubus Qn. | 21 | 50d8 | -10 | 4 | 4d11 | level drain 3 | Mage 7 | 57000 | 190 |
+| Yasha | 20 | 30d8 | -9 | 6 | 2d9+11 | - | Mage 7 | 28580 | 180 |
+| Musashi | 20 | 36d8 | -10 | 14 | 2d8+14 | - | Musashi* 7 | 44050 | 180 |
+| Daimyo | 15 | 20d8 | -4 | 4 | 3d9+7 | - | Mage 5 | 6780 | 150 |
 | Fire Giant | 13 | 17d8+5 | -1 | 1 | 3d11+10 | - | - | 5440 | 130 |
 | Titan | 17 | 30d8 | 0 | 1 | 7d7+14 | - | - | 9330 | 160 |
 | Iron Golem | 15 | 20d8 | 3 | 1 | 5d11 | - | - | 7320 | 150 |
-| Star Seizer | 28 | 220d8 | -20 | 1 | 26d8 | Mage 5, Priest 5 | - | 130000 | 240 |
-| Lich | 21 | 36d8 | 0 | 1 | 1d11 | Mage 7 | paralysis | 50240 | 180 |
-| Vampire Qn. | 22 | 45d8 | -12 | 1 | 2d11 | Mage 7 | level drain 3 | 50000 | 180 |
-| Vampire Lord | 23 | 40d8 | -8 | 1 | 2d9 | Mage 6 | level drain 4, calls 25% | 40000 | 180 |
-| DragonZombie | 18 | 25d8 | -2 | 3 | 4d9 | Mage 5 | poison, poison breath | 12000 | 170 |
-| Demon Lord | 23 | 45d8 | -10 | 1 | 11d11+10 | Mage 7, Priest 3 | level drain 3 | 65000 | 190 |
-| Arch Demon | 22 | 40d8 | -7 | 1 | 13d10 | Mage 4, Priest 6 | level drain 1, calls 25% | 62000 | 190 |
-| Kunoichi | 20 | 31d6 | -9 | 7 | 2d9+13 | Kunoichi* 7 | decapitation | 40960 | 180 |
-| Valiant | 20 | 35d8 | -10 | 7 | 2d9+13 | Valiant* 7 | - | 37860 | 180 |
+| Star Seizer | 28 | 220d8 | -20 | 1 | 26d8 | - | Mage 5, Priest 5 | 130000 | 240 |
+| Lich | 21 | 36d8 | 0 | 1 | 1d11 | paralysis | Mage 7 | 50240 | 180 |
+| Vampire Qn. | 22 | 45d8 | -12 | 1 | 2d11 | level drain 3 | Mage 7 | 50000 | 180 |
+| Vampire Lord | 23 | 40d8 | -8 | 1 | 2d9 | level drain 4, calls 25% | Mage 6 | 40000 | 180 |
+| DragonZombie | 18 | 25d8 | -2 | 3 | 4d9 | poison, poison breath | Mage 5 | 12000 | 170 |
+| Demon Lord | 23 | 45d8 | -10 | 1 | 11d11+10 | level drain 3 | Mage 7, Priest 3 | 65000 | 190 |
+| Arch Demon | 22 | 40d8 | -7 | 1 | 13d10 | level drain 1, calls 25% | Mage 4, Priest 6 | 62000 | 190 |
+| Kunoichi | 20 | 31d6 | -9 | 7 | 2d9+13 | decapitation | Kunoichi* 7 | 40960 | 180 |
+| Valiant | 20 | 35d8 | -10 | 7 | 2d9+13 | - | Valiant* 7 | 37860 | 180 |
 
-Spells: the school and the highest spell level cast; * = the school is inferred from the order of the spell schools
-([monsters_table.md](../monsters_table.md), which also has the full stats and resistances).
+Full stats: [monsters_table.md](../monsters_table.md); * = spell school inferred.
 
 **Notes for play:** the guards' area (32) is a step up from the random fights: one formation is led by the Star
 Seizer (220d8 HP, up to 1760; AC -20; 26d8 per hit, 26-208), and every other one has level drainers or the Musashi

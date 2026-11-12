@@ -45,6 +45,7 @@ Grouped by system, in the order of the [document list](README.md#documents).
 | Dungeon | [32. Stoned members still take damage-zone damage](#32-stoned-members-still-take-damage-zone-damage) | inferred | low |
 | Dungeon | [33. Map values with no known effect](#33-map-values-with-no-known-effect) | data | unknown |
 | Dungeon | [34. Chest ratings above 47 are never used](#34-chest-ratings-above-47-are-never-used) | data | none |
+| Dungeon | [36. Door flags shared between unrelated squares](#36-door-flags-shared-between-unrelated-squares) | data | low |
 | Curiosities | [35. The hidden debug mode](#35-the-hidden-debug-mode) | verified | none |
 
 ---
@@ -686,3 +687,24 @@ press **Select, Up, Down, A, Left, Start**. From then on, power-on shows a sound
 the English patch.
 
 Design: none · Tech: [../re/debug-mode.md](../re/debug-mode.md), [../re/reach.md](../re/reach.md)
+
+---
+
+## 36. Door flags shared between unrelated squares
+
+**Behavior:** Every secret and locked door is opened by a numbered flag that the game keeps for good once the door
+is found or picked ([dungeon.md](dungeon.md#36-secret-and-locked-doors)). Two flags are also used by squares far
+away:
+- Floor 15 has a locked side at (1, 2) on a plain square whose flag is the one of floor 1's secret door at (11, 15).
+  Finding that secret door on floor 1 should therefore also unlock the side on floor 15.
+- Floor 18's hidden-spot pair (15, 15) / (15, 14) sits on an ordinary door and uses the flag of floor 2's locked door
+  at (2, 10) / (2, 11). Picking that lock should silence the pair (a found spot no longer rolls).
+
+**Intended:** Probably copy-paste leftovers in the map data (inferred); every other door has its own flag.
+
+**Confidence:** Read from the maps and the door code; neither case was tested in the game.
+
+**Impact:** Low: at worst a door on floor 15 opens early, and a hint on floor 18 never shows.
+
+Design: [maps/floor-15.md](maps/floor-15.md), [maps/floor-18.md](maps/floor-18.md) ·
+Tech: [dungeon.md §2.1](../tech/dungeon.md#21-secret-and-locked-doors-wall-value-3)

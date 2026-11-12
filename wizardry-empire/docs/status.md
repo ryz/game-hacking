@@ -12,6 +12,12 @@
 - Verified in the emulator from boot: town (all 8 building infos), tavern (add/inspect), shop, Outskirts menu,
   camp, character sheet, dungeon menu and stairs prompt.
 
+## Done 2026-11-12 (thirteenth session: design/tech docs, all floors mapped)
+- Docs split into docs/design (designers: rules, formulas, data, 36 findings) and docs/tech (addresses, evidence).
+- docs/design/maps: 30 generated maps + 30 floor pages; style guide; generator tools/designtables/floormap.py.
+- Secret and locked doors traced and verified (tech/dungeon.md 2.1, design/dungeon.md 3.6).
+- Tools: tools/check.py, tools/play.py, route-state cache, parallel tour, gbdis --en/--xref, doclinks.py.
+
 ## Done 2026-11-12 (twelfth session: crash fix, chests/events, message census)
 - Crash: unidentified group names of 13+ characters overflowed $C50F (renamed; tests/test_limits.py).
 - VWF: name-entry field and cursor, Camp reorder digits/names, magic-circle party list; {FA} wrap measures 3/4

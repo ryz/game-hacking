@@ -10,6 +10,20 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - revision round 2: floor pages 1-10 / 11-20 / 21-30 (three writers)
+- Task: rewrite special-wall claims as secret/locked doors, redo reachability, unify area and monster tables.
+- Worked: tables generated from monsters_table and swapped in by script (0 mismatches on all 30 pages); per-door
+  gate analysis (floor 8 shortcut locks, floor 7 parts, floor 16 block description corrected); number checks that
+  compare against the page's previous version.
+- Friction: the dispatch fixed the columns but not the cell text (joiner, F numbers, where '(2 of 4)' goes, reach
+  in Special, the '*' marker), so the three writers differed; "on foot" lines exist only for stairs; secret-door
+  'difficulty' read as a Search difficulty; dungeon.md's "every hidden spot faces a secret door" was false (5 of 59).
+- Proposed rule change: dispatch gives literal example rows; floormap --list prints per-door gating and connected
+  parts; label noticing vs lock difficulty; check "every X" claims against all floors by script.
+- Corrected: coordinator normalised the weight position (after the formation) on 21-30; dungeon.md 3.3 names the
+  exceptions; floormap labels 'noticing difficulty' / 'lock difficulty'; findings 36 (shared door flags).
+- Status: open (example rows in floor dispatches; --list gating/parts)
+
 ### 2026-11-12 - floor pages 23-30
 - Task: floor pages 23-30 from the floormap data, monsters_table and the dungeon/spells/findings docs.
 - Worked: scripts over floormap.floor_cells for doors, connected parts and zone/trap counts; monster tables
