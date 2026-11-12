@@ -10,6 +10,20 @@ the owner states it as a rule; then bump `updated:` in skill.md and mark the ent
 
 ## Entries
 
+### 2026-11-12 - design doc: characters, classes, spells
+- Task: designer reference for races, classes, creation, leveling, aging, statuses, spells (Rev 1 ROM).
+- Worked: data tables followed from their readers (`gbdis --xref`, byte search `ld hl,$C4xx`) and dumped with a
+  helper; surprising readings checked in the emulator by poking the `$C48F` working copy at the inn (EXP 1200 not
+  500; death at 57, survival at 56); reading items.md first kept the docs consistent.
+- Friction: no design section in the skill (added meanwhile); decimal vs hex banks across script/ and docs; the
+  jp_tour reference shots are v1.0, nearly cited as Rev 1; run_frames breakpoint stops unclear.
+- Proposed rule change: design section with: read sibling docs, hex banks, emulator-check surprising formulas via
+  `$C48F`, check rom_sha1 of reference shots.
+- Corrected: claims spot-checked (race table 26:5B13 has 3 readers; 14 classes = the asm's abbreviation list;
+  'Next level in 1200' matches the coordinator's inn screenshots). jp_tour = v1.0 confirmed (rom_sha1 041c125...):
+  Rev 1 reshoot queued.
+- Status: promoted 2026-11-12 (second design entry: sibling docs, decimal banks, $C48F checks, jp_tour = v1.0)
+
 ### 2026-11-12 - design doc: items and economy
 - Task: designer reference for items/economy (record layout, 224-item table, equip, shop, inn, temple, gold,
   chests/traps) from the Rev 1 ROM.

@@ -155,6 +155,8 @@
    'quest' for the adventure, editor Polish list applied. Open: picture-map label 地下 (graphics, automap).
 12. Teleport prompt: the floor digit sits a few px right of 'Floor B' (fixed cells for the cursor arrow).
 
+13. Reference screenshots `docs/shots/jp_tour/` are from v1.0 (rom_sha1 041c125...), not Rev 1: reshoot.
+
 ## Known issues
 - Untranslated text shows as blank/garbage (kana tiles are no longer loaded; their slots belong to the VWF).
 - Unhooked printers fall back to the original 8 px font (ASCII letters/digits/punctuation are kept).
