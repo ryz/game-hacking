@@ -84,3 +84,71 @@ org 35, $4d4a
     db $ff, $cf, $ff
 org 35, $4ffd
     db $ff, $cf, $ff
+
+; Automap cursor labels (23:461D copied 8 tile codes from the table 23:5DB5 + 8i into the top line $D008; the
+; kana tiles $90-$BD hold them). English labels do not fit the 42 kana tiles, so: each label is pre-drawn in the
+; small VWF glyphs as 8 tiles (build.py patch_automap_labels -> 23:7100 + 128i) and queued into VRAM tiles
+; $90-$97 with the game's tile-copy queue 0:1443; the line then shows $90-$97. i = 16 (23:5E35) = no label.
+AUTOLABEL_GFX equ $7100
+org 35, $461d
+    jp AutoLabel
+
+org 35, $7000
+AutoLabel:
+    ld a, c
+    sub $b5
+    ld l, a
+    ld a, b
+    sbc $5d
+    ld h, a                 ; hl = bc - $5DB5 = 8 * i
+    ld a, l
+    cp $80
+    jr nz, .draw
+    ld a, $03
+    ldh [$9d], a
+    ldh [$70], a
+    ld hl, $d008
+    ld a, $ff
+    ld b, 8
+.blank:
+    ld [hli], a
+    dec b
+    jr nz, .blank
+    jr .done
+.draw:
+    add hl, hl
+    add hl, hl
+    add hl, hl
+    add hl, hl              ; hl = 128 * i
+    ld de, AUTOLABEL_GFX
+    add hl, de
+    ld a, l
+    ldh [$b8], a
+    ld a, h
+    ldh [$b9], a
+    ld a, $23
+    ldh [$ba], a
+    xor a
+    ldh [$bb], a
+    ld a, $89
+    ldh [$bc], a            ; VRAM $8900 = tile $90 (BG data at $8800)
+    xor a
+    ldh [$bd], a            ; VRAM bank 0
+    ld bc, 8                ; count in tiles (0:1443; the init loads $100 tiles = 4 KB)
+    call $1443
+    ld a, $03
+    ldh [$9d], a
+    ldh [$70], a
+    ld hl, $d008
+    ld a, $90
+    ld b, 8
+.codes:
+    ld [hli], a
+    inc a
+    dec b
+    jr nz, .codes
+.done:
+    ld a, $04
+    ldh [$9d], a
+    ldh [$70], a
+    ret

@@ -163,6 +163,26 @@ def patch_automap_labels(rom):
             rom[o:o + 16] = tile
 
     tiles("B", [0xCF], "c")
+
+    # cursor labels, table order of 23:5DB5 (JP: エレベーター かべ イベント のぼり/くだり かいだん まほう ふうじ
+    # かいてん ゆか ワープ シュート ピット つりてんじょう らくばん どくへび いずみ みずうみ ダークゾーン), drawn at 23:7100
+    # + 128 i as 8 tiles each (asm/main.asm AutoLabel copies one into tiles $90-$97)
+    labels = ["Elevator", "Wall", "Event", "Stairs up", "Stairs down", "Magic seal", "Spinner", "Warp", "Chute",
+              "Pit", "Ceiling trap", "Rockfall", "Viper", "Spring", "Lake", "Dark zone"]
+    for i, text in enumerate(labels):
+        cols = strip(text)
+        assert len(cols) <= 64, text
+        cols = cols + [[0] * 8] * (64 - len(cols))
+        o = 0x23 * 0x4000 + 0x3100 + 128 * i
+        data = bytearray()
+        for k in range(8):
+            for y in range(8):
+                m = 0
+                for x in range(8):
+                    m |= cols[k * 8 + x][y] << (7 - x)
+                data += bytes([m, 0xFF])
+        assert all(b == 0 for b in rom[o:o + 128]), "23:7100 not free"
+        rom[o:o + 128] = data
     tiles("Warp", [0xCE, 0xD1, 0xD3], "l")
     tiles("E", [0xD0], "r")
     tiles("N", [0xD2], "r")
