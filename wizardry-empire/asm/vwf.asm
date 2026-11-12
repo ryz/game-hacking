@@ -1129,6 +1129,51 @@ SpellSlots:                 ; HL = 7 slot counts, DE = first cell (SVBK 3 set, i
     call Stub_PrintZ
     jp $4b99                ; restore SVBK, ret
 
+; --- item info 'Range:' value (29:6553: 8 px letter from 'SML-' at 29:6374 into $D8F2) -> the word in the VWF,
+;     right-aligned at col 18 (field cols 14-18, blank-glyph lead computed for this font)
+    org $29, $6553
+    call RangeWord
+    nop
+    nop
+    org $29, $7f00
+RangeWord:                  ; HL = 29:6374 + index, DE = $D8F2; ends with HL = $C562 like the original
+    ld a, l
+    sub $74
+    add a
+    ld e, a
+    ld d, 0
+    ld hl, RangeTab
+    add hl, de
+    ld a, [hli]
+    ld h, [hl]
+    ld l, a
+    push hl
+    ld hl, $d8ee
+    ld a, $20
+    ld b, 5
+.b: ld [hli], a
+    dec b
+    jr nz, .b
+    pop hl
+    ld a, [hli]             ; start cell in the field
+    add $ee
+    ld e, a
+    ld d, $d8
+    call Stub_PrintZ
+    ld hl, $c562
+    ret
+RangeTab:
+    dw RangeS, RangeM, RangeL, RangeN
+RangeS:                     ; start cell, blank-glyph lead ($7C 2 px, ' ' 3 px), word: ends at col 18 (40 px field)
+    db 1, " ", $7c, $7c, $7c, "Short", 0       ; 23 px -> x 17 = cell 1 + 9
+RangeM:
+    db 1, " ", "Medium", 0                     ; 29 px -> x 11 = cell 1 + 3
+RangeL:
+    db 2, $7c, $7c, "Long", 0                  ; 20 px -> x 20 = cell 2 + 4
+RangeN:
+    db 4, "--", 0                              ; 8 px -> x 32 = cell 4
+    assert @ <= $8000, "bank 41 overflow"
+
 ; --- Find allies list (20:62C6: name copy DE (SRAM roster) -> HL, codes $80+ with the VRAM1 bit; BC/HL are
 ;     popped from the stack at 20:62E2) -> VWF
     org $20, $62c6
