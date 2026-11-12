@@ -11,6 +11,15 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
 - Open: ...
 ```
 
+## 2026-11-12 - remaining 8 px text, tooling, design docs
+- ROM: `6389ee3` sent.
+- Small font: event party list (magic circle; status words were blank), item info range word and negative AC,
+  camp heal box, character creation '?' fields, Search Person (dots, 'B1 X0, Y0', stray particle removed), item
+  list marks '?'/'-' (4 sites). Text: inn old-age death line ('...died of old age.').
+- Tooling: route-state cache, parallel tour, tools/check.py (build+tests+tour+pixel diff), tools/play.py
+  (persistent session), gbdis --en/--xref/BB:AAAA, emu tokens poke:/KEY>KEY, asm overlap check.
+- Docs: docs/design/ (characters, items + table, monsters + table, dungeon); docs/re/glyphs8.md, debug-mode.md.
+
 ## 2026-11-12 - small-font numbers: AC sign, HP slash, party list, spell grid, monster panel
 - ROM: `d0727be` sent.
 - Card/shop: negative AC as one right-aligned '-N'; 'Lo'/'Hi' in the VWF; card HP '/' + max as one string.
