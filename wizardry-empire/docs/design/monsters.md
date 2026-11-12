@@ -71,7 +71,7 @@ calls for help 25 % of its turns and flees 10 %, worth 290 EXP and 30 gold, foun
 **Notes:** a battle flag can switch off a monster's special hits; what sets it was not traced. The "Spells" column
 names schools 2-5 only by number (see Open questions).
 
-Tech: [monsters.md §1](../tech/monsters.md#1-the-monster-record-bank-57-4820--64--id)
+Tech: [monsters.md §1](../tech/monsters.md#1-the-monster-record)
 
 ---
 
@@ -130,7 +130,7 @@ stone 8, sleep 3. Reach: 102 melee, 45 reach, 20 ranged.
 repeat a spell name (Ifrit, Lion of Hell, Ancient One...): those are the same creatures the Summoner's pacts call
 ([spells.md](spells.md#6-summoner-pacts)).
 
-Tech: [monsters.md overview](../tech/monsters.md#overview-two-minute-read), [monsters.md §1](../tech/monsters.md#1-the-monster-record-bank-57-4820--64--id)
+Tech: [monsters.md overview](../tech/monsters.md#overview-two-minute-read), [monsters.md §1](../tech/monsters.md#1-the-monster-record)
 
 ---
 
@@ -158,7 +158,7 @@ door rate comes from the game's code and was not measured separately.
 that is intended is discussed in [findings.md](findings.md). Doors, squares and damage zones are described in
 [dungeon.md](dungeon.md#damage-zones-and-anti-magic-zones).
 
-Tech: [monsters.md §2.1](../tech/monsters.md#21-when-a-fight-starts-code-204422-4460-emu)
+Tech: [monsters.md §2.1](../tech/monsters.md#21-when-a-fight-starts)
 
 ---
 
@@ -217,7 +217,7 @@ formations of the last floors put a level 27-29 "ancient" monster behind three l
 **Notes:** areas 54-100 are overlapping slices of the formation list that no map or event uses; they may be a cut
 "random depth" table **(inferred)**, see [findings.md](findings.md). There are 150 formations.
 
-Tech: [monsters.md §2.3](../tech/monsters.md#23-group-formation-code-2240c7-41b5-data-397a27-397573)
+Tech: [monsters.md §2.3](../tech/monsters.md#23-group-formation)
 
 ---
 
@@ -264,7 +264,7 @@ value 0 that is Afraid just stands there.
 **Notes:** what "call for help" does (how many monsters arrive, into which group) was not traced. Breath damage was
 not traced either ([combat.md](combat.md#breath)).
 
-Tech: [monsters.md §3](../tech/monsters.md#3-monster-turn-ai-code-2261b2-6315)
+Tech: [monsters.md §3](../tech/monsters.md#3-monster-turn)
 
 ---
 

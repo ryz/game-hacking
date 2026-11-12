@@ -49,7 +49,7 @@ Because 256 is not a multiple of 20 or 100, the results are very slightly uneven
 This document writes chances as the intended round numbers (5 %, 95 %); the real values differ by less than half a
 percentage point.
 
-Tech: [characters.md §1 header](../tech/characters.md#characters-races-classes-creation-leveling-aging-statuses-spells), [monsters.md §2.1](../tech/monsters.md#21-when-a-fight-starts-code-204422-4460-emu)
+Tech: [characters.md §1 header](../tech/characters.md#characters-races-classes-creation-leveling-aging-statuses-spells), [monsters.md §2.1](../tech/monsters.md#21-when-a-fight-starts)
 
 ---
 
@@ -67,7 +67,7 @@ sizes, so a surprise roll, if it exists, is elsewhere. This is an open question.
 the **back ranks**. Ranks decide who monsters can reach ([below](#monster-reach-and-targets)); which monster groups each
 party weapon range (S, M, L) can reach was not traced.
 
-Tech: [monsters.md §2.4](../tech/monsters.md#24-surprise--initiative), [monsters.md §4.2](../tech/monsters.md#42-reach-and-targets-code-2262b5-62e0)
+Tech: [monsters.md §2.4](../tech/monsters.md#24-surprise--initiative), [monsters.md §4.2](../tech/monsters.md#42-reach-and-targets)
 
 ---
 
@@ -160,7 +160,7 @@ Example (computed): a Long Sword with STR 18 does 1-8 plus 0-3, so 1 to 11 per h
 
 **Notes:** with a launcher and ammo, the slaying property comes from the ammo, not from the bow.
 
-Tech: [items.md §4.3](../tech/items.md#43-damage-per-hit-324474-4537), [items.md §2](../tech/items.md#2-equipment-rules)
+Tech: [items.md §4.3](../tech/items.md#43-damage-per-hit), [items.md §2](../tech/items.md#2-equipment-rules)
 
 ---
 
@@ -186,7 +186,7 @@ damage halved. The base critical-hit rule for the party was not traced.
 **Notes:** the two "vs Undead" texts are swapped against the code: the property whose text says "damage up 2" gives
 ×1.5, and the one that says plain "damage up" gives ×2. No item uses the first one. See [findings.md](findings.md).
 
-Tech: [items.md §4.4](../tech/items.md#44-slaying-byte-38-target-type-bits--monster-record-byte-0e-c51d-code-32454e)
+Tech: [items.md §4.4](../tech/items.md#44-slaying)
 
 ---
 
@@ -254,7 +254,7 @@ reach monsters in the back groups.
 
 **Notes:** which character is chosen among those allowed was not traced.
 
-Tech: [monsters.md §4.2](../tech/monsters.md#42-reach-and-targets-code-2262b5-62e0)
+Tech: [monsters.md §4.2](../tech/monsters.md#42-reach-and-targets)
 
 ---
 
@@ -292,7 +292,7 @@ and level drain 80 %.
 has a high base save (at least 60 %) but its cap is 95 %, so without drain protection it lands at least 1 time in
 20. Statuses and their cures are in [characters.md](characters.md#6-status-ailments-and-cures).
 
-Tech: [monsters.md §4.3](../tech/monsters.md#43-special-hit-effects-code-324fbf-51cd-one-roll-per-special-after-a-hit)
+Tech: [monsters.md §4.3](../tech/monsters.md#43-special-hit-effects-one-roll-per-special-after-a-hit)
 
 ---
 
@@ -304,7 +304,7 @@ frost, poison, lightning, acid or stone; the battle text names it ("breathed fir
 
 **Not known:** the breath damage formula and any save against it were not traced.
 
-Tech: [monsters.md §4.4](../tech/monsters.md#44-breath-227121-32-side-not-traced)
+Tech: [monsters.md §4.4](../tech/monsters.md#44-breath)
 
 ---
 
@@ -337,7 +337,7 @@ an Abyss Lurker (100 % everywhere) it never works.
 
 **Notes:** resistance values are shown in the museum and in [monsters_table.md](monsters_table.md) (Resist %).
 
-Tech: [monsters.md §5](../tech/monsters.md#5-party-attacks-and-spells-on-monsters), [characters.md §10.1](../tech/characters.md#101-the-spell-record-246c95-16-bytes--125-id-order)
+Tech: [monsters.md §5](../tech/monsters.md#5-party-attacks-and-spells-on-monsters), [characters.md §10.1](../tech/characters.md#101-the-spell-record)
 
 ---
 
@@ -356,7 +356,7 @@ Only the battle effects are listed here; the statuses themselves, cures and the 
 **Not known:** how Afraid, Asleep and Paralyzed wear off during a battle; the effect of Poisoned and Silenced in
 battle.
 
-Tech: [characters.md §9](../tech/characters.md#9-status-ailments-and-recovery), [monsters.md §3](../tech/monsters.md#3-monster-turn-ai-code-2261b2-6315)
+Tech: [characters.md §9](../tech/characters.md#9-status-ailments-and-recovery), [monsters.md §3](../tech/monsters.md#3-monster-turn)
 
 ---
 
@@ -400,7 +400,7 @@ traced); both are 0 for a standard party. The escape block is the **Esc** column
 
 **Notes:** the cap is 95 %, so running can always fail.
 
-Tech: [monsters.md §6](../tech/monsters.md#6-escape-code-2247c1-4858)
+Tech: [monsters.md §6](../tech/monsters.md#6-escape)
 
 ---
 
@@ -423,7 +423,7 @@ share, each gets 290 EXP and 30 gold; with one member dead, each of the other fi
 **Notes:** because the split ignores who did the killing, keeping a weak character alive in the back row gives it a
 full share. How the game decides at battle start whether a group is identified was not traced.
 
-Tech: [monsters.md §7](../tech/monsters.md#7-rewards-code-02eee-2f22-split-itemsmd-9), [items.md §9](../tech/items.md#9-gold-sources)
+Tech: [monsters.md §7](../tech/monsters.md#7-rewards), [items.md §9](../tech/items.md#9-gold-sources)
 
 ---
 

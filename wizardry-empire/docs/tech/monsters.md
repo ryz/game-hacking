@@ -48,7 +48,9 @@ in [dungeon.md](dungeon.md). Party-side weapon damage, slaying and chests are in
 
 ---
 
-## 1. The monster record (bank 57 `$4820 + 64 × id`)
+## 1. The monster record
+
+Code: (bank 57 `$4820 + 64 × id`.
 
 The game copies a record to `$C50F` with `0:2394` / `0:2397` (64 bytes). It also keeps one copy per monster group
 at WRAM4 `$D4B8 + $40 × group` (`22:41DB`). So the `$C5xx` address of a field is `$C50F + offset`. "Readers" are
@@ -97,7 +99,9 @@ change it).
 
 ## 2. Encounters
 
-### 2.1 When a fight starts (code `20:4422-4460`, emu)
+### 2.1 When a fight starts
+
+Code: (code `20:4422-4460`, emu.
 After every action in the maze, the main loop `20:43E4` returns to `20:4410`. Actions are a step, a turn, a
 turn-around, and the "moved" handling. Then:
 1. If `$CC06` ≠ 0 ("just went through a door"), the fight chance is `rand(0..19) == 0`. `0:0DC0` computes
@@ -122,7 +126,9 @@ There is no step counter and no floor-depth modifier. The rate is the same on ev
   have one fixed formation each (bosses and named monsters). Areas `$30`/`$31` (48/49) play the boss music (`22:4033`,
   `$C04A` = 4/3; the normal music is 2).
 
-### 2.3 Group formation (code `22:40C7-41B5`, data `39:7A27`, `39:7573`)
+### 2.3 Group formation
+
+Code: (code `22:40C7-41B5`, data `39:7A27`, `39:7573`.
 1. Row = `39:7A27 + 4 × areaId`. Take `formation = row[rand & 3]` (4 equally likely formations; repeats in a row
    weight them).
 2. Formation record = `39:7573 + 8 × formation` = 4 × [monster id][size code]. There are 150 formations.
@@ -145,7 +151,9 @@ question.
 
 ---
 
-## 3. Monster turn (AI, code `22:61B2-6315`)
+## 3. Monster turn
+
+Code: (AI, code `22:61B2-6315`.
 
 Per monster per round, the first rule that fires decides the action:
 
@@ -167,7 +175,9 @@ nothing this turn.
 
 ---
 
-## 4. Monster attacks on the party (code `32:4D55-4E29`)
+## 4. Monster attacks on the party
+
+Code: (code `32:4D55-4E29`.
 
 ### 4.1 Hit and damage
 For each of the `Att` swings (`+$11`):
@@ -183,7 +193,9 @@ For each of the `Att` swings (`+$11`):
 Emulator check (`hitx.py`, `bt.state`, Crawling Claw H 19 vs AC 8): T = 11 logged for every swing, so a 45 % hit
 chance.
 
-### 4.2 Reach and targets (code `22:62B5-62E0`)
+### 4.2 Reach and targets
+
+Code: (code `22:62B5-62E0`.
 Monster groups 1-2 count as the front ranks and groups 3-4 as the back ranks. Party members 1-3 are the front row.
 
 | Reach `+$2C`&3 | From group 1-2 | From group 3-4 |
@@ -192,7 +204,9 @@ Monster groups 1-2 count as the front ranks and groups 3-4 as the back ranks. Pa
 | 1 reach | anyone | front row |
 | 2-3 ranged | anyone | anyone |
 
-### 4.3 Special hit effects (code `32:4FBF-51CD`), one roll per special after a hit
+### 4.3 Special hit effects, one roll per special after a hit
+
+Code: (code `32:4FBF-51CD`.
 The save S is capped at 99. Roll `rand(0..99)`: if roll < S the target resists. Lvl = the target's level
 (`0:2C72`; 255 if level ≥ 256).
 
@@ -214,7 +228,9 @@ Notes:
 - Stats are party record offsets `+$51` STR, `+$52` IQ, `+$53` PIE, `+$54` VIT, `+$55` AGI, `+$56` LUK (read from a JP
   state; characters.md has the record).
 
-### 4.4 Breath (`22:7121`, `32` side not traced)
+### 4.4 Breath
+
+Code: (`22:7121`, `32` side not traced.
 The element is `+$33`. The verb is 15 + element ("breathed fire" ...). The damage formula was not traced **(not found:
 I did not reach the breath damage routine; the breath verb path starts at `22:7119`)**.
 
@@ -237,7 +253,9 @@ I did not reach the breath damage routine; the breath verb path starts at `22:71
 
 ---
 
-## 6. Escape (code `22:47C1-4858`)
+## 6. Escape
+
+Code: (code `22:47C1-4858`.
 
 Chance = `75 + A + B + 4 × (party size − $CB8C) − max over groups of +$24`. A and B are the party averages of the
 combatant fields `+$49` and `+$4A` over members with status < 2. These are 0 for the standard party, and their meaning
@@ -249,7 +267,9 @@ Examples (data, party bonus 0): vs Goblins (`+$24` 10) 65 %. vs Bowmen (12) 63 %
 
 ---
 
-## 7. Rewards (code `0:2EEE-2F22`; split: items.md 9)
+## 7. Rewards
+
+Code: (code `0:2EEE-2F22`; split: items.md 9.
 
 - Each monster killed adds `+$30` EXP and `+$2E` gold to the battle pools (`$DD2C` EXP, `$DD2F` gold). Monsters that
   flee or are left alive give nothing.
@@ -260,7 +280,9 @@ Examples (data, party bonus 0): vs Goblins (`+$24` 10) 65 %. vs Bowmen (12) 63 %
 
 ---
 
-## 8. Summoner pacts (code `2D:64CF-6664`, data `2D:63BB`)
+## 8. Summoner pacts
+
+Code: (code `2D:64CF-6664`, data `2D:63BB`.
 
 - **Where.** Magic-circle squares (event type `$0A`, parameter p = circle 0-15). Their floors are listed in dungeon.md.
   Message "A strange pattern is drawn on the ground" (`45:4490`).

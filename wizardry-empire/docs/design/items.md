@@ -71,8 +71,8 @@ Read: a one-handed axe for the fighting classes, 2-7 damage per hit, can be thro
   Halberd and others) carry a Hit+ of 47 to 50 instead of 0-8, which puts them at the 95% maximum hit chance (data);
   see [combat.md](combat.md#party-attacks-to-hit) for the rule and whether it is intended.
 
-Tech: [items.md §1](../tech/items.md#1-the-item-record-bank-40-4000--40--id),
-[items.md, inventory slot](../tech/items.md#inventory-slot-party-record-wram-c880--80--member)
+Tech: [items.md §1](../tech/items.md#1-the-item-record),
+[items.md, inventory slot](../tech/items.md#inventory-slot)
 
 ---
 
@@ -176,20 +176,19 @@ Rows quoted from [items_table.md](items_table.md):
 
 | # | English | Japanese | Price | Use (break %) |
 |---|---|---|---|---|
-| 18 | Staff of Healing | いやしのつえ | 1000 | Healing [battle+camp, Lv9] (breaks 25%) |
-| 20 | Rod of Flame | ロッド オブ フレイム | 10000 | Fireball [battle, Lv6] (breaks 10%) |
-| 172 | Revival Charm | ふっかつのごふ | 1000000 | Cures death, ashes and even Lost [battle+camp, Lv9] (breaks 100%) |
-| 193 | Map Record Sheet | マップきろくシート | 400 | Shows the map [camp, Lv0] (breaks 30%) |
-| 194 | Healing Potion | ヒーリングポーション | 100 | Healing [battle+camp, Lv9] (breaks 100%) |
-| 202 | Ring of Warping | てんいのゆびわ | 25000 | Teleport [camp, Lv10] (breaks 25%) |
+| 18 | Staff of Healing | いやしのつえ | 1000 | Healing [battle+camp, mode 9] (breaks 25%) |
+| 20 | Rod of Flame | ロッド オブ フレイム | 10000 | Fireball [battle, mode 6] (breaks 10%) |
+| 172 | Revival Charm | ふっかつのごふ | 1000000 | Cures death, ashes and even Lost [battle+camp, mode 9] (breaks 100%) |
+| 193 | Map Record Sheet | マップきろくシート | 400 | Shows the map [camp, mode 0] (breaks 30%) |
+| 194 | Healing Potion | ヒーリングポーション | 100 | Healing [battle+camp, mode 9] (breaks 100%) |
+| 202 | Ring of Warping | てんいのゆびわ | 25000 | Teleport [camp, mode 10] (breaks 25%) |
 
 So a Staff of Healing is a reusable healer that lasts 4 uses on average (computed: 1 / 25%), and a Rod of Flame
 about 10 (1 / 10%).
 
 **Use mode (inferred).** Each usable item also has a target mode: none, one enemy group, all enemies, one ally,
 or the party / the user. This reading comes from which items carry which value and is not confirmed in code. The
-"Lv" number in the table's Use column takes exactly the values of this mode (0 none, 6 enemy group, 7 all enemies,
-9 one ally, 10 party or self) (inferred), so it is probably the target mode, not a spell level.
+table's Use column shows it as "mode N" (0 none, 6 enemy group, 7 all enemies, 9 one ally, 10 party or self).
 
 What each spell effect does (damage, healing amount) is in [spells.md](spells.md); the item side uses the effect
 by name only and its power was not traced (open question).
@@ -260,7 +259,7 @@ All values in this table: (data).
 
 Tech: [items.md §3.1](../tech/items.md#31-spell-items-byte-33), [§3.2](../tech/items.md#32-throwing-command-throw),
 [§3.3](../tech/items.md#33-special-powers-byte-35-prompt-use-its-special-power),
-[characters.md §5.5](../tech/characters.md#55-special-classes-legendary-items-item-byte-35-handler-2a5ef6)
+[characters.md §5.5](../tech/characters.md#55-special-classes-legendary-items)
 
 ---
 
@@ -312,7 +311,7 @@ formula).
 |---|---|---|---|---|---|---|---|---|---|
 | Chance to become Afraid | 20% | 19% | 18% | 17% | 15% | 12% | 10% | 7% | 5% |
 
-Tech: [items.md §5](../tech/items.md#5-identification-and-curses), [items.md §1](../tech/items.md#1-the-item-record-bank-40-4000--40--id)
+Tech: [items.md §5](../tech/items.md#5-identification-and-curses), [items.md §1](../tech/items.md#1-the-item-record)
 
 ---
 

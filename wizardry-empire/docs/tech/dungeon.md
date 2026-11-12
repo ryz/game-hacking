@@ -27,7 +27,9 @@ that file. Earlier reachability notes: `docs/re/reach.md`.
 
 ---
 
-## 1. Map storage and cell format (code `20:58EA`, `20:5909`)
+## 1. Map storage and cell format
+
+Code: (code `20:58EA`, `20:5909`.
 
 - Floor f (0-29) is 1024 bytes at bank `$3E + f/16`, address `$4000 + $400 × (f mod 16)`. It is copied to WRAM4
   `$D000` when you arrive. Slots 31-32 (bank `$3F` `$7800-$7FFF`) are empty, so there are 30 floors (data).
@@ -58,7 +60,9 @@ square of the floor (`20:4754-477D`). Items.md lists an item property "teleport"
 
 ---
 
-## 2. Square types (handler table `20:6405` per floor; types 0-14 are the same on every floor)
+## 2. Square types
+
+Code: (handler table `20:6405` per floor; types 0-14 are the same on every floor.
 
 | Type | Name | Effect (code) |
 |---|---|---|
@@ -80,7 +84,9 @@ Anything else means the floor or position changed (teleport), and the map is rel
 
 ---
 
-## 3. Event catalogue (bank 45, handler table `2D:4400`, index `$FFB0 − 7`)
+## 3. Event catalogue
+
+Code: (bank 45, handler table `2D:4400`, index `$FFB0 − 7`.
 
 | Code / p | Handler | What it is (first messages) |
 |---|---|---|

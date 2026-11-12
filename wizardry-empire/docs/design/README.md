@@ -18,15 +18,15 @@ the source of truth for every number. Rules for these documents: `../README.md`.
 
 | Document | Covers |
 |---|---|
-| characters.md | Races, character creation and bonus points, classes and their requirements, special classes, class change, experience and leveling, aging, status ailments |
-| spells.md | Spell schools and levels, the spell list, how spells are learned, spell slots, Summoner pacts |
-| combat.md | Round structure, hitting and damage for the party and for monsters, special attacks and saves, spell resistance, escape, rewards |
-| items.md | Equipment rules, using items, special powers, identification and curses |
+| [characters.md](characters.md) | Races, character creation and bonus points, classes and their requirements, special classes, class change, experience and leveling, aging, status ailments |
+| [spells.md](spells.md) | Spell schools and levels, the spell list, how spells are learned, spell slots, Summoner pacts |
+| [combat.md](combat.md) | Round structure, hitting and damage for the party and for monsters, special attacks and saves, spell resistance, escape, rewards |
+| [items.md](items.md) | Equipment rules, using items, special powers, identification and curses |
 | [items_table.md](items_table.md) | Every item with its stats (generated) |
-| town.md | Shop, inn (healing, aging), temple (fees, resurrection), where gold comes from |
-| monsters.md | The bestiary, encounters and group formation, how monsters choose actions |
+| [town.md](town.md) | Shop, inn (healing, aging), temple (fees, resurrection), where gold comes from |
+| [monsters.md](monsters.md) | The bestiary, encounters and group formation, how monsters choose actions |
 | [monsters_table.md](monsters_table.md) | Every monster with its stats, plus the encounter tables (generated) |
-| dungeon.md | Floors, special squares, damage zones, traps, chests, events per floor |
-| findings.md | Designer's notes: quirks and likely original bugs, with what the game does and what was probably intended |
+| [dungeon.md](dungeon.md) | Floors, special squares, damage zones, traps, chests, events per floor |
+| [findings.md](findings.md) | Designer's notes: quirks and likely original bugs, with what the game does and what was probably intended |
 
-Documents without a link are being written (2026-11-12). Until then the full material is in `../tech/`.
+Start with the Overview of each document; [findings.md](findings.md) collects everything that looks unintended.

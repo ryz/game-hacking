@@ -64,7 +64,7 @@ learn extra spells (section 4.2):
 special classes at 35.
 
 Tech: [characters.md §5.3](../tech/characters.md#53-spell-schedule-per-class-learning-103),
-[characters.md §10.1](../tech/characters.md#101-the-spell-record-246c95-16-bytes--125-id-order)
+[characters.md §10.1](../tech/characters.md#101-the-spell-record)
 
 ---
 
@@ -98,7 +98,7 @@ Tech: [characters.md §5.3](../tech/characters.md#53-spell-schedule-per-class-le
 a raising spell (age, the patient's VIT, the caster's PIE) is with the other cures in
 [characters.md](characters.md#6-status-ailments-and-cures).
 
-Tech: [characters.md §10.1](../tech/characters.md#101-the-spell-record-246c95-16-bytes--125-id-order),
+Tech: [characters.md §10.1](../tech/characters.md#101-the-spell-record),
 [monsters.md §5](../tech/monsters.md#5-party-attacks-and-spells-on-monsters)
 
 ---
@@ -293,7 +293,7 @@ if (newLevel == openingLevel[spellLevel])
 Each spell level opens with one spell for certain, then grows through the extra chances. Special rule: if the
 guaranteed Priest level-6 spell is **Recall Word**, the character also learns one of Magic Armor, Cure All or Bless.
 
-Tech: [characters.md §10.3](../tech/characters.md#103-learning-2a416d-at-creation-and-level-up-2a417f-after-a-class-change)
+Tech: [characters.md §10.3](../tech/characters.md#103-learning)
 
 ### 4.2 Extra spells
 
@@ -319,7 +319,7 @@ the guaranteed spells.
 - By the same limits, the 20+ columns are reachable only by an Elf (IQ), an Elf, Dwarf or Gnome (PIE), a Dwarf
   (VIT; 21 for a female Dwarf) or a Hobbit (LUK) (computed from the race table).
 
-Tech: [characters.md §10.3](../tech/characters.md#103-learning-2a416d-at-creation-and-level-up-2a417f-after-a-class-change)
+Tech: [characters.md §10.3](../tech/characters.md#103-learning)
 
 ### 4.3 At creation
 
@@ -327,7 +327,7 @@ The learning step runs once for a new character as if it had just reached level 
 guaranteed level-1 spell of its school (a Bishop: Mage) plus the extra-spell chance at every other level-1 spell.
 Example: the ready-made Bishop starts with Call Fear and Flame Arrow ([characters.md](characters.md#26-ready-made-characters)).
 
-Tech: [characters.md §3.5](../tech/characters.md#35-what-the-new-character-gets-2647da-4852), [characters.md §3.6](../tech/characters.md#36-ready-made-characters-2e4000-6-records--scripttemplatesjson)
+Tech: [characters.md §3.5](../tech/characters.md#35-what-the-new-character-gets), [characters.md §3.6](../tech/characters.md#36-ready-made-characters)
 
 ### 4.4 After a class change
 
@@ -337,8 +337,8 @@ Tech: [characters.md §3.5](../tech/characters.md#35-what-the-new-character-gets
   A class change by item gives no spell; the special schools open at level 5 anyway.
 - After that, the new class learns on its own schedule from level 1 ([characters.md](characters.md#34-change-class-training-grounds)).
 
-Tech: [characters.md §10.3](../tech/characters.md#103-learning-2a416d-at-creation-and-level-up-2a417f-after-a-class-change),
-[characters.md §5.4](../tech/characters.md#54-change-class-training-grounds-265140-on-the-roster-record-item-version-26521e-on-the-working-copy)
+Tech: [characters.md §10.3](../tech/characters.md#103-learning),
+[characters.md §5.4](../tech/characters.md#54-change-class)
 
 ---
 
@@ -370,7 +370,7 @@ Examples:
 **Notes:** a Summoner's slots follow the same rule with its own opening levels; a pact also raises a spell level that
 had 0 slots to 1 straight away (section 6).
 
-Tech: [characters.md §10.4](../tech/characters.md#104-spell-slots-2a45f3--2a4737-run-at-every-inn-stay-level-up-and-class-change)
+Tech: [characters.md §10.4](../tech/characters.md#104-spell-slots)
 
 ---
 
@@ -414,8 +414,8 @@ Summoner's slots for that spell level open (section 1). The exact square of each
   the table above.
 - How a summon behaves in battle (the summoned creature, its strength, how long it stays) was not traced.
 
-Tech: [characters.md §10.5](../tech/characters.md#105-summoner-pacts-maze-events-2d6560-table-2d63bb),
-[monsters.md §8](../tech/monsters.md#8-summoner-pacts-code-2d64cf-6664-data-2d63bb),
+Tech: [characters.md §10.5](../tech/characters.md#105-summoner-pacts),
+[monsters.md §8](../tech/monsters.md#8-summoner-pacts),
 [dungeon.md §4](../tech/dungeon.md#4-floors)
 
 ---

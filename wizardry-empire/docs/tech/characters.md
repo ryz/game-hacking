@@ -72,12 +72,16 @@ Race table `26:5B13` (8 bytes per race; a byte-identical copy at `27:56D9` is us
 
 Order of steps (bank 26 menus): name -> race -> gender -> alignment -> bonus points -> class -> confirm.
 
-### 3.1 Starting age (`26:55E2`, at the gender step)
+### 3.1 Starting age
+
+Code: (`26:55E2`, at the gender step.
 `r = Random(2)`; r = 0: 16; r = 1: 16 − Random(1); r = 2: 90% 16 − Random(1), 10% 16 − Random(2).
 Result: **16 years ≈ 66%, 15 ≈ 33%, 14 ≈ 1%**. The day-of-year counter starts at a random 0-255
 (`26:4802`), so the first birthday comes after 105-360 inn days.
 
-### 3.2 Bonus points (`26:5F6F`)
+### 3.2 Bonus points
+
+Code: (`26:5F6F`.
 1. Base roll: `r = Random(20)`. r < 5 (5/21): **8 + Random(2)** (8-10). 5 <= r < 10 (5/21): **4 + Random(3)**
    (4-7). Otherwise (11/21): **10 + Random(3)** (10-13).
 2. Four independent "jackpot" rolls: each `Random(99) < 2` (2.3% each with the byte quantisation) adds **+10**.
@@ -89,14 +93,18 @@ Distribution without the race extra (exact, computed from the code: `work/design
 backs out to the alignment step and the roll is repeated on re-entry, since `5F6F` runs on entering the screen,
 `26:5CC8`).
 
-### 3.3 Spending points (`26:5F54`, `26:5D10-5DCC`)
+### 3.3 Spending points
+
+Code: (`26:5F54`, `26:5D10-5DCC`.
 - Up/down picks a stat, left/right moves a point. **Each stat takes at most +10 points** (`cp $0B`), never below
   the race value.
 - **All points must be spent** before a class can be chosen: otherwise the message "Bonus points remain."
   (`26:7277`); if no class qualifies, "No class is available." (`26:7289`).
 - Eligibility is recomputed live (`26:628B`) and the qualifying class names are shown.
 
-### 3.4 Class eligibility (`26:628B`, table `26:6229`, 7 bytes per class)
+### 3.4 Class eligibility
+
+Code: (`26:628B`, table `26:6229`, 7 bytes per class.
 A class qualifies when every stat >= its minimum (0 = no minimum), the gender nibble matches (`F` = any) and the
 alignment bit is set (bit 0 Good, bit 1 Neutral, bit 2 Evil). Creation and the Change Class menu only cycle
 indices **0-8** (`26:5D81 cp $09`, `26:4FE8`), so the special classes are never offered there although the table
@@ -122,7 +130,9 @@ has their requirements (they apply to the stat reset when the item changes the c
 Ninja at creation needs 16/16/16/16/15/16: with the +10 per-stat cap and a typical 10-point roll it is only
 reachable with a jackpot roll (a Human needs 8+8+10+8+7+7 = 48 points).
 
-### 3.5 What the new character gets (`26:47DA-4852`)
+### 3.5 What the new character gets
+
+Code: (`26:47DA-4852`.
 - Stats = race base (+ gender) + allocated points.
 - **HP** (`26:6156`, table `26:6134`, classes 0-8 only): `Random(a) + 1 + b + VITbonus`.
 
@@ -156,7 +166,9 @@ reachable with a jackpot roll (a Human needs 8+8+10+8+7+7 = 48 points).
 - The record is stamped with "Wizardry EMPIRE1" at `+$70` (`26:6187`) and stored in the first free SRAM roster
   slot (`$A000 + $80×n`, `26:4822`).
 
-### 3.6 Ready-made characters (`2E:4000`, 6 records = script/templates.json)
+### 3.6 Ready-made characters
+
+Code: (`2E:4000`, 6 records = script/templates.json.
 
 | Name | Race | Class | Align | Sex | STR IQ PIE VIT AGI LUK | HP | AC |
 |---|---|---|---|---|---|---|---|
@@ -172,7 +184,9 @@ Flame Arrow.
 
 ---
 
-## 4. Party record (`$80` bytes; party `$C880 + $80×n`, working copy `$C48F`, roster SRAM `$A001 + $80×n`)
+## 4. Party record
+
+Code: (`$80` bytes; party `$C880 + $80×n`, working copy `$C48F`, roster SRAM `$A001 + $80×n`.
 
 Offsets from the record start. Confidence: **code** = read/written by a routine named here; **(guess)** = pattern only.
 
@@ -287,7 +301,9 @@ Rings and "odd objects" are open to every class. Exact per-item lists: [../desig
 | Summoner | Summons | slot schedule 3, 6, 14, 16, 20, 27, 34 (`2A:4109`); spells only by pacts (§10.5) | - |
 | Fighter, Thief, Ninja, Archer | none | - | - |
 
-### 5.4 Change Class (Training Grounds `26:5140` on the roster record; item version `26:521E` on the working copy)
+### 5.4 Change Class
+
+Code: (Training Grounds `26:5140` on the roster record; item version `26:521E` on the working copy.
 Only classes 0-8 the character qualifies for (current stats, alignment, gender) and not the current class.
 Effects:
 - Level 1, **EXP 0**; age **+1..3 years** (`Random(2)+1`, cap 99).
@@ -300,7 +316,9 @@ Effects:
   (`26:5213` -> `2A:417F`; Mage/Priest/Bishop only) and slots are recomputed; the item version does not roll a
   spell (special schools open at level 5 anyway).
 
-### 5.5 Special classes: legendary items (item byte 35, handler `2A:5EF6`)
+### 5.5 Special classes: legendary items
+
+Code: (item byte 35, handler `2A:5EF6`.
 "Use its special power" on these items: (items.md §3.3 covers the item side)
 
 | Item (byte 35) | Effect |
@@ -324,7 +342,9 @@ to the new class minimums (e.g. a Musashi starts with STR 18, VIT 18, AGI 17).
 
 ## 6. Experience and leveling
 
-### 6.1 EXP needed (`27:5B70` / `27:5BEA`, per-class pointer table `27:5B54`, 16 × 3-byte steps per class)
+### 6.1 EXP needed
+
+Code: (`27:5B70` / `27:5BEA`, per-class pointer table `27:5B54`, 16 × 3-byte steps per class.
 Total EXP to reach level L = sum of the first L steps of the class table for L <= 16; from level 17 on each
 level costs the 16th step again (Rev 1 multiplies it out with `0:0DFA`, see `docs/re/rev1.md`). Level 1 -> 2 thus
 needs the first **two** steps. Confirmed in the emulator: a level-1 Fighter with 0 EXP is told "1200 more EXP"
@@ -367,7 +387,9 @@ grants **one** level (`27:4F2B` -> `27:5451`), otherwise the Inn shows "Next lev
 Level-up (`27:5451`), in this order: level +1; each of the six stats is rolled (§6.4); HP gain (§6.3); spells
 (`27:54B5` -> `2A:416D`, §10).
 
-### 6.3 HP gained per level (`27:57FD`)
+### 6.3 HP gained per level
+
+Code: (`27:57FD`.
 1. A special case: `Random(99) == LUK + Random(LUK)` (about 1%) -> gain only **1 HP**. (The age bracket computed
    just before is overwritten here and has no effect.)
 2. Otherwise, with D = class die (§5.1 table, `27:57EF`):
@@ -380,7 +402,9 @@ Level-up (`27:5451`), in this order: level +1; each of the six stats is rolled (
 
 Example, Fighter (D = 9), VIT+LUK = 30: base 1-10 (avg 5.5); 70% chance of +0-8; then usually another +0-7.
 
-### 6.4 Stat changes per level (`27:566F`, table `27:7451`, 6 stats × 10 age brackets × 2 bytes)
+### 6.4 Stat changes per level
+
+Code: (`27:566F`, table `27:7451`, 6 stats × 10 age brackets × 2 bytes.
 Age bracket by years: <20, 20-24, 25-29, 30-39, 40-49, 50-59, 60-69, 70-79, 80-89, 90+. Roll
 `r = Random(100)`: **r < gain → +1**; gain <= r < keep → no change; **r >= keep → −1**. Limits from §2 apply
 (a blocked change is simply no change). Messages "STR rose." / "STR fell." etc. (`27:7787...`).
@@ -424,7 +448,9 @@ Raw thresholds (gain, keep) as stored, e.g. STR <20 = (75, 90), are in `27:7451`
 
 ---
 
-## 8. Inn rest (Aries Inn, `27:5046-5B53`)
+## 8. Inn rest
+
+Code: (Aries Inn, `27:5046-5B53`.
 
 | Room | Price (per night charged) | Nights | HP per night (`27:5A96`) | Ages? |
 |---|---|---|---|---|
@@ -478,7 +504,9 @@ code, banks 22/32; see `monsters.md` if written).
 
 ## 10. Spells
 
-### 10.1 The spell record (`24:6C95`, 16 bytes × 125, id order)
+### 10.1 The spell record
+
+Code: (`24:6C95`, 16 bytes × 125, id order.
 | Byte | Meaning | Confidence |
 |---|---|---|
 | 0-10 | Name (11 bytes; the patch keeps a short fallback name here) | code (`0:24E8`) |
@@ -658,7 +686,9 @@ record bytes 11-15.
 | 7 | 123 | From Beyond | かなたよりのもの | battle+camp | 0 (none/field) | 7 (none) | `00 60 07 16 06` |
 | 7 | 124 | Unspeakable | けいようしがたきもの | battle+camp | 0 (none/field) | 7 (none) | `00 60 07 06 06` |
 
-### 10.3 Learning (`2A:416D` at creation and level-up; `2A:417F` after a class change)
+### 10.3 Learning
+
+Code: (`2A:416D` at creation and level-up; `2A:417F` after a class change.
 1. **Guaranteed spell** (`2A:418B`): when the new character level equals the opening level of a spell level
    (§5.3) - exactly that level, not later - the character learns **one random spell of that spell level**
    (`Random(count−1)`; re-rolling a spell already known gives nothing). Minimum character level per school
@@ -683,7 +713,9 @@ record bytes 11-15.
 3. Bishops use IQ for the guaranteed roll of both schools; extra spells use IQ (Mage) and PIE (Priest).
 4. Spells of other schools learned in a previous class stay known and castable (§10.4).
 
-### 10.4 Spell slots (`2A:45F3` + `2A:4737`, run at every inn stay, level-up and class change)
+### 10.4 Spell slots
+
+Code: (`2A:45F3` + `2A:4737`, run at every inn stay, level-up and class change.
 For each school and spell level i:
 - known_i = number of spells known at that level; slots = known_i (`2A:45F3`, applies to Mage and Priest for every
   class, so ex-casters keep "one cast per known spell").
@@ -694,7 +726,9 @@ Example, Mage: level-1 slots = L at levels 1-8, then 9; level-7 slots open at ch
 Example, Samurai: Mage level-1 slots appear at character level 4 (1 slot), reach 9 at level 12.
 The camp/sheet shows the current remaining slots per level as "n/n/n/n/n/n/n" (`2A:4B7B`).
 
-### 10.5 Summoner pacts (maze events, `2D:6560`, table `2D:63BB`)
+### 10.5 Summoner pacts
+
+Code: (maze events, `2D:6560`, table `2D:63BB`.
 Summons are never learned at level-up (`2A:41D5` returns for class 13). A maze event shows a monster in a magic
 circle: "From the pattern's center X appeared! Will you form a pact?" (`2D:44CF`). A Summoner of at least the
 listed level learns the summon (bit in `+39`); if that slot level had 0 slots it gets 1 ("The pact is sealed.").

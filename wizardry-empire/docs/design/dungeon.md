@@ -54,7 +54,7 @@ appear there), a square type and one parameter (an event number, trap kind and s
 **Notes:** the game keeps a visited-square memory per floor and the deepest floor reached (marker squares,
 below); this is inferred to feed the auto-map.
 
-Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format-code-2058ea-205909)
+Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format)
 
 ---
 
@@ -119,7 +119,7 @@ are tied to one floor's events.
 After an event, the game either does nothing, starts a fight with a given encounter area, or (if the event moved
 the party) reloads the map.
 
-Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types-handler-table-206405-per-floor-types-0-14-are-the-same-on-every-floor)
+Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types)
 
 ---
 
@@ -144,7 +144,7 @@ is never below 5 % or above 99 %.
 
 **Notes:** the same party flag that marks floating is inferred to protect against damage zones too (below).
 
-Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types-handler-table-206405-per-floor-types-0-14-are-the-same-on-every-floor)
+Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types)
 
 ---
 
@@ -168,7 +168,7 @@ the wording leaves the exact cap unclear).
 
 **Notes:** a spot is one-shot; how long it stays used was not traced.
 
-Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types-handler-table-206405-per-floor-types-0-14-are-the-same-on-every-floor)
+Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types)
 
 ---
 
@@ -201,7 +201,7 @@ named on a sign. **(inferred)**
 ([findings](findings.md#stoned-members-still-take-damage-zone-damage)). The fourth zone value has no known effect
 ([findings](findings.md#map-values-with-no-known-effect)).
 
-Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format-code-2058ea-205909)
+Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format)
 
 ---
 
@@ -213,7 +213,7 @@ square of the current floor**. The flag is inferred to come from items with the 
 
 **Notes:** whether the random square can be rock (which kills the party) was not traced; see Open questions.
 
-Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format-code-2058ea-205909)
+Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format)
 
 ---
 
@@ -222,11 +222,8 @@ Tech: [dungeon.md §1](../tech/dungeon.md#1-map-storage-and-cell-format-code-205
 Which monsters a square can produce and how often. Formations and group sizes are in [monsters.md](monsters.md)
 and the [encounter tables](monsters_table.md).
 
-- The chance is checked after **every action** in the maze (step, turn, turn-around).
-- **Normal chance: 1 in 512 (0.2 %) per action.** (verified: 357 random actions in the emulator gave 1 fight)
-- **After walking through a door: 13 in 256 (5.1 %) per action**, until the next plain step or turn-around.
-  Turning left or right keeps the higher chance.
-- No step counter and no depth bonus: the rate is the same on every floor.
+- The chance per action (1 in 512 normally, 5.1 % right after a door) and how it is rolled:
+  [monsters.md, When a fight starts](monsters.md#when-a-fight-starts). It is the same on every floor.
 - A fight needs a non-zero encounter area on the current square. Some corridors on floors 2, 9, 13, 17, 19, 21,
   22 and 25 have area 0 and never have random fights.
 - Each area lists 4 formations (one is picked at random); a formation has up to 4 groups of 1-9 monsters.
@@ -237,8 +234,8 @@ keeps the 5.1 % chance ([findings](findings.md#random-encounters-almost-only-hap
 never give a chest (verified: 25 random battles, no chest). Areas 54-100 are on no map
 ([findings](findings.md#encounter-areas-54-100-are-unused)).
 
-Tech: [monsters.md §2.1](../tech/monsters.md#21-when-a-fight-starts-code-204422-4460-emu),
-[§2.3](../tech/monsters.md#23-group-formation-code-2240c7-41b5-data-397a27-397573)
+Tech: [monsters.md §2.1](../tech/monsters.md#21-when-a-fight-starts),
+[§2.3](../tech/monsters.md#23-group-formation)
 
 ---
 
@@ -258,7 +255,7 @@ Guarded squares are fixed spots where monsters wait; one-shot events are story a
 
 **Notes:** whether the story events also keep a permanent "done" flag of their own was not traced.
 
-Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types-handler-table-206405-per-floor-types-0-14-are-the-same-on-every-floor),
+Tech: [dungeon.md §2](../tech/dungeon.md#2-square-types),
 [monsters.md §2.2](../tech/monsters.md#22-fixed-fights)
 
 ---
@@ -329,8 +326,8 @@ tables, see Open questions):
 | 14 | 29 | 37 | From Beyond |
 | 15 | 30 | 38 | Unspeakable |
 
-Tech: [dungeon.md §3](../tech/dungeon.md#3-event-catalogue-bank-45-handler-table-2d4400-index-ffb0--7),
-[monsters.md §8](../tech/monsters.md#8-summoner-pacts-code-2d64cf-6664-data-2d63bb)
+Tech: [dungeon.md §3](../tech/dungeon.md#3-event-catalogue),
+[monsters.md §8](../tech/monsters.md#8-summoner-pacts)
 
 ---
 
@@ -454,8 +451,8 @@ the party or the roster; who uses that check was not traced, inferred to be the 
 guards and the damage-zone guards on floors 8 and 11 give much better chests than the rest of their floor; the
 damage-zone guards on floor 25 give worse ones.
 
-Tech: [items.md §10.1](../tech/items.md#101-chest-value-and-type-2540d8-416b),
-[§10.2](../tech/items.md#102-chest-contents-255185-521a), [§9](../tech/items.md#9-gold-sources),
+Tech: [items.md §10.1](../tech/items.md#101-chest-value-and-type),
+[§10.2](../tech/items.md#102-chest-contents), [§9](../tech/items.md#9-gold-sources),
 [§6](../tech/items.md#6-shop-bank-41-lorelei)
 
 ---
@@ -491,7 +488,7 @@ Needle, Paralysis Gas, Medusa's Curse, Last Kiss, Teleporter, Level Teleporter.
 **Notes:** the rules for inspecting and disarming chests were not traced. The Priest spell Inspect and the Kunoichi
 art Trap Breaker work on chests (their effects were not traced either; see [spells.md](spells.md)).
 
-Tech: [items.md §10.3](../tech/items.md#103-traps-2547ac-table-25551c--tier256-handlers-2550f1)
+Tech: [items.md §10.3](../tech/items.md#103-traps)
 
 ---
 

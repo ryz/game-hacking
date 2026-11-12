@@ -44,7 +44,9 @@ The full 224-item table is generated into **[../design/items_table.md](../design
 
 ---
 
-## 1. The item record (bank 40 `$4000 + 40 × id`)
+## 1. The item record
+
+Code: (bank 40 `$4000 + 40 × id`.
 
 The game copies a record to `$C54F` with `0:24FF` (40 bytes, `0:0C97`) before every use, so the `$C5xx` address of a
 field is `$C54F + offset`. The column "who reads it" lists the routines that prove the meaning.
@@ -80,7 +82,9 @@ Example, Hand Axe (id 0): `00 00 3C 00 00 E1 1A 07 01 06 02 00 00 00 80 46 ...`,
 - Classes: Fighter, Samurai, Lord, Ninja, Valiant, Musashi, Kunoichi. Any alignment.
 - Damage 2-7 (1d6+1). Range S. Throwable, kept 70% of the time.
 
-### Inventory slot (party record, WRAM `$C880 + $80 × member`)
+### Inventory slot
+
+Code: (party record, WRAM `$C880 + $80 × member`.
 - Items are 8 pairs `[id][flags]` at record `+$11..+$20`; id `$FF` = empty. Read from a JP battle savestate and from
   `22:4330`.
 - Flag bits: **7 = equipped**, 6 = unidentified, 5 = cursed/stuck (cannot be unequipped), 4 = worn in the off hand.
@@ -176,7 +180,9 @@ Code `2A:5E53-5F5C`:
 
 ---
 
-## 4. Weapons in combat (bank 50, `32:42F1-4628`; the second copy `32:48xx` is the same formula)
+## 4. Weapons in combat
+
+Code: (bank 50, `32:42F1-4628`; the second copy `32:48xx` is the same formula.
 
 ### 4.1 Swings per round
 - swings = `$C508` + 1 + weapon byte 30.
@@ -194,7 +200,9 @@ Code `2A:5E53-5F5C`:
 3. Long-range weapons (main range L) against targets with `$C54D` bit 1 hit only on a natural 0 (5%, `32:4450`).
    The meaning of the target flag was not traced.
 
-### 4.3 Damage per hit (`32:4474-4537`)
+### 4.3 Damage per hit
+
+Code: (`32:4474-4537`.
 1. `Σ N × rand(0..S-1) + base`, from bytes 25-27. Without ammo a launcher uses `rand(0..S/4)` per die.
 2. `+ rand(0..STRtab[STR])`. STRtab (`32:592A`, STR capped at 22): 0 up to STR 12; 13-15: 1; 16-17: 2; 18: 3; 19: 4;
    20: 6; 21: 8; 22: 10.
@@ -204,7 +212,9 @@ Code `2A:5E53-5F5C`:
 5. Sleeping target (status 2): ×2. Clockwork Doll: ×2.
 6. Slaying (4.4).
 
-### 4.4 Slaying (byte 38; target type bits = monster record byte `$0E`, `$C51D`; code `32:454E`)
+### 4.4 Slaying
+
+Code: (byte 38; target type bits = monster record byte `$0E`, `$C51D`; code `32:454E`.
 | Code | Museum text | Target bits | Multiplier | Items |
 |---|---|---|---|---|
 | 15 | vs Demons, Undead | `&3` | ×1.5 | Sword of Flash |
@@ -359,12 +369,16 @@ Example: a 25-year-old with VIT 12 has 84/101 = 83%.
 
 ---
 
-## 10. Chests and traps (bank 37 `$25`)
+## 10. Chests and traps
+
+Code: (bank 37 `$25`.
 
 Only fixed fights on **guarded squares** give a chest (`$C00B` bit 2, set only by `20:5D0B`; `docs/re/reach.md`).
 Random encounters give gold only.
 
-### 10.1 Chest value and type (`25:40D8-416B`)
+### 10.1 Chest value and type
+
+Code: (`25:40D8-416B`.
 - **Row.** R = the highest monster byte `+$2D` among the groups present.
 - **Value.** V = a random byte of row R in the table at bank 55 (`$37`) `$4000 + R×256`. Row R holds values 0..R.
 - **Tier.** V gives the chest tier:
@@ -389,7 +403,9 @@ Random encounters give gold only.
   - Row 36: 66% platinum.
   - Rows 49-63: flat, 14-16% bag up to 19% bewitching.
 
-### 10.2 Chest contents (`25:5185-521A`)
+### 10.2 Chest contents
+
+Code: (`25:5185-521A`.
 1. 1-4 attempts (`rand & 3` + 1). Each picks a random party member.
 2. The member must have status < 3. Success if `rand(0..99) < level/2 (max 31) + 2×LUK`.
 3. The item comes from list `25:6A02[rand(0..V-1)]`, a random entry. It goes into the first empty slot, unidentified;
@@ -402,7 +418,9 @@ Random encounters give gold only.
 5. V >= 48 (some bewitching chests) can index past list 46, into the list data (not checked).
 6. Note that `rand(0..V-1)` lets a high chest also roll the low lists.
 
-### 10.3 Traps (`25:47AC`, table `25:551C + tier×256`; handlers `25:50F1`)
+### 10.3 Traps
+
+Code: (`25:47AC`, table `25:551C + tier×256`; handlers `25:50F1`.
 The trap is picked per chest tier. Fire Bolt hits the opener for L×d8 (`L + Σ L × rand(0..7)`, L = `$C636`,
 `25:4D26`). Bomb hits every member for L×d4; each member dodges with `rand(0..99) < LUK` (`25:4D6E`). The other 11
 effects are known only by name (handler addresses: `25:50F1` table).

@@ -84,7 +84,7 @@ the time and otherwise subtracts 0, 1 or 2.
 The position within the year starts at a random day from 0 to 255 of the 360-day year, so the first birthday comes
 after 105 to 360 inn nights.
 
-Tech: [characters.md §3.1](../tech/characters.md#31-starting-age-2655e2-at-the-gender-step)
+Tech: [characters.md §3.1](../tech/characters.md#31-starting-age)
 
 ### 2.2 Bonus points
 
@@ -112,7 +112,7 @@ Average **10.4**; 20 or more: **5.6%**.
 **Notes:** whether the player can re-roll by backing out of the screen was not tested; the roll runs each time the
 screen is entered, so backing out to the alignment step and returning probably re-rolls it (inferred).
 
-Tech: [characters.md §3.2](../tech/characters.md#32-bonus-points-265f6f)
+Tech: [characters.md §3.2](../tech/characters.md#32-bonus-points)
 
 ### 2.3 Spending the points
 
@@ -122,7 +122,7 @@ Tech: [characters.md §3.2](../tech/characters.md#32-bonus-points-265f6f)
   game says "No class is available."
 - The list of qualifying classes updates live as points move.
 
-Tech: [characters.md §3.3](../tech/characters.md#33-spending-points-265f54-265d10-5dcc)
+Tech: [characters.md §3.3](../tech/characters.md#33-spending-points)
 
 ### 2.4 Class requirements
 
@@ -151,7 +151,7 @@ offer the first nine classes; for the special classes the minimums are used only
 **Notes:** a Ninja at creation needs a jackpot roll: a Human needs 8+8+10+8+7+7 = 48 points to reach the minimums,
 far above the usual 4-13.
 
-Tech: [characters.md §3.4](../tech/characters.md#34-class-eligibility-26628b-table-266229-7-bytes-per-class)
+Tech: [characters.md §3.4](../tech/characters.md#34-class-eligibility)
 
 ### 2.5 What a new character starts with
 
@@ -189,7 +189,7 @@ Tech: [characters.md §3.4](../tech/characters.md#34-class-eligibility-26628b-ta
 - **Spells:** the level-up spell routine runs once, so a Mage, Priest or Bishop starts with one guaranteed random
   level-1 spell and a stat-based chance at each other level-1 spell ([spells.md](spells.md#4-learning-spells)).
 
-Tech: [characters.md §3.5](../tech/characters.md#35-what-the-new-character-gets-2647da-4852)
+Tech: [characters.md §3.5](../tech/characters.md#35-what-the-new-character-gets)
 
 ### 2.6 Ready-made characters
 
@@ -204,7 +204,7 @@ Six characters come with the game, all level 1, age 16, 100 gold, 0 EXP:
 | Mage (まほうつかい) | Elf | Mage | Evil | F | 8 | 15 | 12 | 8 | 12 | 8 | 5 | 9 | Call Fear |
 | Bishop (ビショップ) | Elf | Bishop | Good | M | 8 | 13 | 13 | 8 | 12 | 8 | 7 | 9 | Call Fear, Flame Arrow |
 
-Tech: [characters.md §3.6](../tech/characters.md#36-ready-made-characters-2e4000-6-records--scripttemplatesjson)
+Tech: [characters.md §3.6](../tech/characters.md#36-ready-made-characters)
 
 ---
 
@@ -307,7 +307,7 @@ restriction there.
 - A successful change also marks the class as unlocked in the museum (it then shows the hidden class letters).
 - What else the item use does (unequipping it, the item side of the change): [items.md](items.md).
 
-Tech: [characters.md §5.5](../tech/characters.md#55-special-classes-legendary-items-item-byte-35-handler-2a5ef6),
+Tech: [characters.md §5.5](../tech/characters.md#55-special-classes-legendary-items),
 [items.md §3.3](../tech/items.md#33-special-powers-byte-35-prompt-use-its-special-power)
 
 ### 3.4 Change Class (Training Grounds)
@@ -328,7 +328,7 @@ stats, alignment and gender meet (section 2.4). The price is steep:
 **Notes:** because HP is kept and the new class starts at level 1, Change Class is how a character carries a large
 HP pool into a new class.
 
-Tech: [characters.md §5.4](../tech/characters.md#54-change-class-training-grounds-265140-on-the-roster-record-item-version-26521e-on-the-working-copy)
+Tech: [characters.md §5.4](../tech/characters.md#54-change-class)
 
 ---
 
@@ -379,7 +379,7 @@ Lord, Musashi, Ninja = Kunoichi, Valiant. Ninja and Kunoichi share the same curv
   changed between revisions. See [findings.md](findings.md).
 - The level cap is 9999.
 
-Tech: [characters.md §6.1](../tech/characters.md#61-exp-needed-275b70--275bea-per-class-pointer-table-275b54-16--3-byte-steps-per-class)
+Tech: [characters.md §6.1](../tech/characters.md#61-exp-needed)
 
 ### 4.2 When a level is gained
 
@@ -426,7 +426,7 @@ usually another 0-7.
   HP gain. See [findings.md](findings.md).
 - The exact nesting of the second extra die (only after the first one) follows the tech description (inferred).
 
-Tech: [characters.md §6.3](../tech/characters.md#63-hp-gained-per-level-2757fd)
+Tech: [characters.md §6.3](../tech/characters.md#63-hp-gained-per-level)
 
 ### 4.4 Stat changes by age
 
@@ -456,7 +456,7 @@ Chance to gain / chance to lose, in percent:
 gain, and a roll of 90 or more (11%) to lose. The upper brackets matter little in practice,
 because the inn birthday that reaches 57 kills (section 5).
 
-Tech: [characters.md §6.4](../tech/characters.md#64-stat-changes-per-level-27566f-table-277451-6-stats--10-age-brackets--2-bytes)
+Tech: [characters.md §6.4](../tech/characters.md#64-stat-changes-per-level)
 
 ---
 

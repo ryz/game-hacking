@@ -173,7 +173,7 @@ else
   see above) and collect a level-up there without spending days (follows from the rules above).
 
 Tech: [items.md §7](../tech/items.md#7-inn-bank-39-aries-inn),
-[characters.md §8](../tech/characters.md#8-inn-rest-aries-inn-275046-5b53),
+[characters.md §8](../tech/characters.md#8-inn-rest),
 [characters.md §7](../tech/characters.md#7-aging),
 [characters.md §6.2](../tech/characters.md#62-when-the-level-up-happens)
 
@@ -277,8 +277,8 @@ Comparisons computed from the numbers above:
   Selling chest finds at half price is the other large income.
 
 Tech: [items.md §9](../tech/items.md#9-gold-sources),
-[monsters.md §7](../tech/monsters.md#7-rewards-code-02eee-2f22-split-itemsmd-9),
-[characters.md §3.5](../tech/characters.md#35-what-the-new-character-gets-2647da-4852)
+[monsters.md §7](../tech/monsters.md#7-rewards),
+[characters.md §3.5](../tech/characters.md#35-what-the-new-character-gets)
 
 ---
 
