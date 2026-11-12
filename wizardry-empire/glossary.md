@@ -51,7 +51,9 @@ Binding names and terms. Use them exactly; add new rows when a new name is decid
 | バディック | Badick |
 | ワーナード | Warnard |
 | デーモンアディッシュ | Demon Adish |
-| こうてい | the Emperor |
+| こうてい | the Emperor (the surface Emperor; ときのこうてい = the reigning Emperor) |
+| まかいのこうてい | the Emperor of the Abyss (the netherworld's ruler; never plain "the Emperor" where the two could be confused) |
+| きょうおう | Mad Overlord (狂王, as in Wizardry I) |
 | レイ / シア | Rei / Shia (fairy twins) |
 
 ## Classes, races, alignments

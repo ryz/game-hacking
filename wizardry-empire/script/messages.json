@@ -39,7 +39,7 @@
 {"bank": 45, "addr": "0x4e5b", "jp": "\n\n\nローブをきたおとこが たたずんでいる\n\n『わたしは ワーナード\n\n わがれきしは このせかいと\n\n ともにある\n\n いままでも そして これからも』", "en": "\n\n\nA robed man stands still.\n\n\"I am Warnard. My history\n\n is one with this world -\n\n so it was, so it shall be.\""},
 {"bank": 45, "addr": "0x4ea9", "jp": "\n\n\n\n  『わたしが きえるときは\n\n   このせかいが しぬとき\n\n   せかいとともに\n\n   たびをするきはないか?』", "en": "\n\n\n\n  \"When I vanish, this\n\n   world dies. Would you\n\n   journey with the world\n\n   at your side?\""},
 {"bank": 45, "addr": "0x4ee9", "jp": "\n\n\n\n\n     『ワーナード』を\n\n  パーティーに くわえますか?\n\n\n        はい\n\n        いいえ", "en": "\n\n\n\n\n     Add \"Warnard\"\n\n  to the party?\n\n\n{col:8}Yes\n\n{col:8}No"},
-{"bank": 45, "addr": "0x4f28", "jp": "\n\n\n 『ふっ それでは まだみぬ\n\n  きょうおうの たんじょうを\n\n  たのしみに ふたたび\n\n  ねむりに つくことにするかな』\n\n おとこは スゥーっときえてしまった", "en": "\n\n\n \"Heh. Then I shall sleep\n\n  again, and await the\n\n  birth of a hero yet\n\n  unseen.\"\n\n The man faded away."},
+{"bank": 45, "addr": "0x4f28", "jp": "\n\n\n 『ふっ それでは まだみぬ\n\n  きょうおうの たんじょうを\n\n  たのしみに ふたたび\n\n  ねむりに つくことにするかな』\n\n おとこは スゥーっときえてしまった", "en": "\n\n\n \"Heh. Then I shall sleep\n\n  again, and await the birth\n\n  of a Mad Overlord yet\n\n  unseen.\"\n\n The man faded away."},
 {"bank": 45, "addr": "0x4f80", "jp": "\nまもののしたいが よこたわっている\n\nかすかに ふしゅうが ただよっている\n\n     しらベてみますか?\n\n\n        はい\n        いいえ", "en": "\nA monster's corpse lies here.\n\nA faint stench hangs in the air.\n\n     Examine it?\n\n\n{col:8}Yes\n{col:8}No"},
 {"bank": 45, "addr": "0x4fd0", "jp": "\nとくに なにもなかった", "en": "\nNothing in particular."},
 {"bank": 45, "addr": "0x4fdd", "jp": "\nまもののしたいが うごきだした\n\n『わたしのねむりを\n\n さまたげるのは だれだ!』", "en": "\nThe corpse began to move!\n\n\"Who dares disturb\n\n my slumber!\""},
