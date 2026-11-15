@@ -26,6 +26,38 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w1400,settle",
+    "INTRO": "start,w60,a,w60,mash:a:600,settle,mash:a:300,settle,mash:a:150,settle,w60,settle,a,w30,settle",
+    "NAME_RYZ": "a,w30,settle,select,settle,down,right*8,a,down,left*2,a,right,a,settle,start,w60,settle",
+    "RIVAL_RED": "mash:a:300,settle,mash:a:100,settle,a,w30,settle,down,a,w30,settle",
+    "NEWGAME": "INTRO,NAME_RYZ,RIVAL_RED,mash:a:300,settle,mash:a:150,w300,settle",
+    "FASTTEXT": "poke:D355=01"
+  },
+  "ram": {
+    "map": {
+      "addr": "D35E",
+      "size": 1
+    },
+    "y": {
+      "addr": "D361",
+      "size": 1
+    },
+    "x": {
+      "addr": "D362",
+      "size": 1
+    },
+    "party": {
+      "addr": "D163",
+      "size": 1
+    },
+    "money_bcd": {
+      "addr": "D347",
+      "size": 3
+    },
+    "badges": {
+      "addr": "D356",
+      "size": 1
+    }
+  }
 }

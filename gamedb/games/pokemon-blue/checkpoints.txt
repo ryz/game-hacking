@@ -1,3 +1,5 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title screen (Squirtle shown), settled | pow,w1400,settle
+start | First control: ryz in his bedroom (Red's house 2F), rival RED, no Pokemon, 3000 money | @title,NEWGAME
