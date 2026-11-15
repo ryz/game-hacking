@@ -1,5 +1,5 @@
 ---
-updated: 2026-11-12
+updated: 2026-11-15
 ---
 
 # Skill index
@@ -20,12 +20,15 @@ to it. Every skill folder has a `feedback.md` - read its open entries before wor
 - **Verification:** playtester (plays toward a goal), visual-qa (judges screenshot sheets).
 - **Documentation:** photographer (pixel-exact reference screenshots, English and original side by side),
   design-writer (game-design documents for designers, from the tech reference).
+- **Game database (gamedb/, any GB/GBC game):** game-scout (research + playbook), game-capture (play +
+  screenshot set).
 - **Upkeep:** maintenance (repo health check: docs vs code, skills, feedback, status drift).
 
 Typical chains: tracer -> (coordinator hooks it) -> translator -> reviewer -> build -> tour -> visual-qa;
 user bug report -> triage -> coordinator fix -> playtester repro;
 photographer set -> visual-qa (or reviewer with the compare images) for a screen-by-screen JP/EN check;
-tracer (design/rules question -> docs/tech/) -> design-writer (docs/design/) -> editor (readability).
+tracer (design/rules question -> docs/tech/) -> design-writer (docs/design/) -> editor (readability);
+new ROM -> `gamedb/tools/intake.py` (coordinator) -> game-scout -> game-capture -> coordinator review + commit.
 
 ## Skills
 
@@ -113,6 +116,26 @@ tracer (design/rules question -> docs/tech/) -> design-writer (docs/design/) -> 
 - Also load: `wizardry-empire/tools/routes/shots.txt`, `tools/routes/tour.txt`.
 - Do not use for: judging the translation (visual-qa) or finding bugs on purpose (playtester).
 - Guardrails: writes `work/shots/<set>/` and `docs/shots/<set>/`; commits only its shot set (no ROM/state files); never pushes.
+
+### game-scout
+- File: `skills/game-scout/skill.md`
+- Use when: a ROM was registered with `gamedb/tools/intake.py` and has no filled playbook yet (or the playbook
+  lacks controls, boot route or shot plan).
+- Main output: `gamedb/games/<slug>/playbook.md` (controls, structure, shot plan, strategy, shortcuts, sources),
+  `game.json` macros/RAM, checkpoints `title` and `start`.
+- Also load: `gamedb/docs/emulator.md`, `gamedb/docs/capture-guide.md`.
+- Do not use for: capturing the set (game-capture); Wizardry Empire translation work.
+- Guardrails: writes only `games/<slug>/` (not `shots/`) and `work/scout/<slug>/`; marks facts verified/source;
+  no commits.
+
+### game-capture
+- File: `skills/game-capture/skill.md`
+- Use when: a game has a playbook and needs (more) database screenshots.
+- Main output: `gamedb/games/<slug>/shots/<set>/` (native + @3x PNGs, index.json/md, sheet.png, shots.txt),
+  verified with `shoot.py --verify`; playbook updated with what was learned.
+- Also load: `gamedb/docs/emulator.md`, `gamedb/docs/capture-guide.md`, the game's playbook.
+- Do not use for: research from scratch (game-scout); Wizardry Empire JP/EN reference sets (photographer).
+- Guardrails: writes only `work/` and `games/<slug>/`; pokes that show on screen are captioned; no commits.
 
 ### maintenance
 - File: `skills/maintenance/skill.md`

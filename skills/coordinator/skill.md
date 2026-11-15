@@ -3,7 +3,7 @@ skill: coordinator
 project: all
 summary: The main session: plan, dispatch subagents, verify and integrate their results, build and ship.
 access: write (repo)
-updated: 2026-11-12
+updated: 2026-11-15
 ---
 
 # Coordinator
@@ -63,3 +63,14 @@ never commit them. Say what is new and what is known to be broken.
 - Give writers one literal example row per table/row kind; state your own derived claims in a dispatch as
   "to be checked" (the floor-7 warp claim was wrong).
 
+
+## Game database (gamedb/, 2026-11-15)
+- New ROM: `cd gamedb && sh tools/setup_emu.sh` (once per container), `python3 tools/intake.py ROM` (copies it to
+  `rom/`, creates `games/<slug>/`, films the boot), look at `work/intake/<slug>/sheet.png`, then dispatch
+  game-scout. ROMs are uploaded by the owner per session; containers forget them.
+- After the scout: check the playbook (sources listed, controls marked, `title`/`start` checkpoints replay), commit
+  `games/<slug>/` (no shots yet), then dispatch game-capture with the set name and a time budget.
+- After the capture: rerun `python3 tools/shoot.py SLUG SET --verify` yourself, look at `sheet.png`, run
+  `python3 -m pytest -q tests` in gamedb/ if tools changed, commit `games/<slug>/` (one commit per game set).
+- Several games: one scout or capture agent per game in parallel (each uses `play.py --name <slug>`).
+- Tool or doc lessons from either skill that apply to every game go into `gamedb/docs/emulator.md`.

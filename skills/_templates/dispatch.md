@@ -3,7 +3,7 @@
 Agents start cold: they see none of the conversation. Fill every field; leave none implicit.
 
 ```
-Skill: <name> (agent type <name>)      Project dir: wizardry-empire/
+Skill: <name> (agent type <name>)      Project dir: wizardry-empire/ | gamedb/ (+ game slug)
 Goal: <one sentence: what "done" means>
 Inputs: <exact paths: batch file / state / ROM (+ commit) / sheets / question>
 Output: <exact path(s) it may write; "none (report only)" for read-only skills>

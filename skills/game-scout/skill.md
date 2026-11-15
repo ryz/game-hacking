@@ -1,0 +1,80 @@
+---
+skill: game-scout
+project: gamedb
+summary: Research a newly registered game (controls, structure, strategy, shortcuts) into its playbook and verify the basics in the emulator.
+access: write (gamedb/games/<slug>/ except shots/, gamedb/work/scout/<slug>/)
+updated: 2026-11-15
+---
+
+# Game scout - research a game before anyone plays it
+
+> **Before you start:** paths are relative to `gamedb/`. Read `docs/emulator.md` (how to drive the emulator) and
+> `docs/capture-guide.md` (what the database needs), and the open entries in this skill's `feedback.md`.
+
+You turn a ROM nobody has played here into a **playbook** that lets a capture agent play it efficiently: verified
+controls and boot route, the game's structure, a shot plan, strategy notes and shortcuts, all with sources. You
+do not capture the database set (that is `game-capture`), but you do create the first checkpoints.
+
+## Inputs (from the dispatch)
+- Game slug (`games/<slug>/game.json` exists: `tools/intake.py` ran) and the ROM in `rom/`.
+- Optional: what the owner wants emphasised.
+
+## Steps
+1. **Identify.** `game.json` (header title, region, revision, SHA-1/CRC32) + `work/intake/<slug>/sheet.png`
+   (first 30 s, no input). Pin down the exact game and release: the header title is often abbreviated; match the
+   CRC32/SHA-1 against No-Intro naming if a source lists it. Fill the playbook Identity table; set
+   `game.json` "title" to the official English title (or the romanised original).
+2. **Research** (web search and fetch; prefer primary and specific sources, in this order):
+   - The **instruction manual** (scans/transcriptions: controls, modes, menus, items, official names).
+   - **GameFAQs** FAQs/walkthroughs (controls, critical path, bosses, passwords/codes), **StrategyWiki**.
+   - **The Cutting Room Floor** (tcrf.net): debug menus, level selects, sound tests, unused content, regional
+     differences. Often the fastest way to reach late content.
+   - **Data Crystal** (datacrystal.tcrf.net): RAM maps, ROM maps.
+   - GameShark / Game Genie code lists (GB GameShark `01VVAAAA` = write VV to address AAAA, low byte first).
+   - Fan wikis for item/enemy/area names. Wikipedia only for release facts.
+   Record every source in the playbook Sources table (URL, what you took, date). Take facts, not prose: no copied
+   walkthrough text beyond short quotes of names.
+3. **Verify in the emulator** (`tools/play.py`, small steps, look at every screenshot):
+   - The boot route to the title and to first control: write macros `TITLE`, `NEWGAME` (and others you need)
+     into `game.json` "macros"; checkpoints `title` and `start` (`play.py checkpoint`).
+   - Every control in the table: mark **verified** with the context, or note where the source is wrong.
+   - Input timing: does the default press (hold 8, wait 40) work in menus and in play? Adjust `game.json`
+     "press" if not, and write the symptom in Emulation notes.
+   - 2-4 RAM addresses that make capture easier (lives/health, money, stage, position): from the sources, else
+     `play.py find`. Confirm each with a poke; add them to `game.json` "ram" and the RAM map.
+   - Shortcuts from the sources (passwords, level select, debug menu): try them; mark verified/failed.
+4. **Plan the shots.** From the structure and `docs/capture-guide.md`: the playbook Shot plan (ids, category,
+   what and where), with the systems that make this game distinctive. For each area the plan needs, say how to
+   reach it (play, password, poke, debug menu) and how long it takes.
+5. **Strategy notes.** What a capture agent needs to reach the plan's targets: the critical path, the hard parts
+   and how to beat them (patterns, items, levels), which pokes are safe. Short and concrete.
+6. Fill the playbook completely (empty sections: "none found" + where you looked). Leave Open questions for
+   whatever you could not settle.
+
+## Guardrails
+- Write only `games/<slug>/game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt` (plan lines without routes
+  are fine as comments) and `work/scout/<slug>/`. No commits; the coordinator commits.
+- Never commit or upload the ROM; never send ROM data, hashes of private dumps or the user's details to web
+  services (searching for a public CRC32 of a retail game is fine).
+- Mark every fact verified or source. A control or code you could not confirm stays "source".
+- Time box: research ~15 min of fetching; verification until boot, controls and the first area work. Deeper
+  play is the capture agent's job.
+
+## Report (your final message)
+- Playbook path; one-paragraph summary of the game as the database will describe it.
+- Verified: boot macros, checkpoints made (names), controls verified / unverified / wrong in sources.
+- RAM addresses and shortcuts found (verified or not).
+- Shot plan size by category; areas that need special effort to reach, with the method.
+- Sources used (count, best ones) and open questions.
+
+## Feedback (end of every run)
+End your final report with this block; the coordinator files it in `skills/game-scout/feedback.md` and in
+`agent-log/YYYY-MM.md`:
+
+```
+## Feedback
+- Task: <one line>
+- Worked: <what went well, worth keeping>
+- Friction: <what slowed you down or was unclear in this skill, the tools or docs/emulator.md>
+- Proposed rule change: <a concrete change to skill.md or docs/emulator.md, or "none">
+```

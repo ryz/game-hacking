@@ -8,6 +8,7 @@ people: `README.md`. Current projects:
 | Directory | Game | Platform | Work |
 |---|---|---|---|
 | `wizardry-empire/` | Wizardry Empire (J) | Game Boy Color | English translation, VWF engine, RE notes, design docs, floor maps |
+| `gamedb/` | any game you provide (GB/GBC for now) | Game Boy / Color | screenshot database: research playbooks, automated play, reproducible screenshot sets |
 
 ## Rules (all projects)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.sav`,
@@ -64,11 +65,21 @@ Run from `wizardry-empire/`:
   reverse-engineering notes: `docs/re/`. Data tables: `python3 tools/designtables`.
 - Read `docs/re/text.md` (text engines, control codes) and `docs/re/vwf.md` (VWF design) before touching `asm/`.
 
+## Game database quick reference
+Run from `gamedb/` (README: `gamedb/README.md`; rules for driving any game: `gamedb/docs/emulator.md`; what to
+capture: `gamedb/docs/capture-guide.md`):
+- Setup: `sh tools/setup_emu.sh`; register a ROM: `python3 tools/intake.py ROM` -> `games/<slug>/` + `rom/<slug>.*`.
+- Play: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
+  `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `stop`.
+- Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish]`. Tests: `python3 -m pytest -q tests`.
+- Per game: `games/<slug>/playbook.md` is read before playing and updated after; states are never committed
+  (checkpoints are routes).
+
 ## Skills and subagents
 - `skills/skill-index.md` routes every job to a skill; each `skills/<name>/` has `skill.md` (source of truth) and
   `feedback.md` (running log). Templates: `skills/_templates/`.
 - Subagents are thin wrappers in `.claude/agents/<name>.md` that load `skills/<name>/skill.md`. Dispatch these
-  types (translator, reviewer, editor, playtester, visual-qa, photographer, tracer, triage, maintenance, design-writer), not general-purpose
+  types (translator, reviewer, editor, playtester, visual-qa, photographer, tracer, triage, maintenance, design-writer, game-scout, game-capture), not general-purpose
   agents, with exact paths filled in from `skills/_templates/dispatch.md`. Bug reports: `skills/_templates/bug-report.md`. The main session follows `skills/coordinator/skill.md`.
 - Binding terms: `wizardry-empire/glossary.md`.
 
