@@ -76,7 +76,7 @@ capture: `gamedb/docs/capture-guide.md`):
 - Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish]`. Tests: `python3 -m pytest -q tests`.
 - Per game: `games/<slug>/playbook.md` is read before playing and updated after; checkpoints are routes (cache
   states are not committed). Milestone saves for the owner: save in the game, then `play.py export NAME "desc"`
-  -> `games/<slug>/saves/` (committed).
+  -> `games/<slug>/saves/` (committed). Capture agents commit + push their game folder at every major milestone.
 
 ## Skills and subagents
 - `skills/skill-index.md` routes every job to a skill; each `skills/<name>/` has `skill.md` (source of truth) and

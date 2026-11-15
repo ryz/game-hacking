@@ -3,7 +3,7 @@ skill: game-capture
 project: gamedb
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (gamedb/work/, gamedb/games/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-15
+updated: 2026-11-15 (in-between commits)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -35,6 +35,16 @@ edit anything outside the game's folder.
 3. `checkpoint` at every milestone (new area, before a boss, a menu reached), with a description. At the bigger
    milestones also leave a save for the owner: save in the game, then `play.py export NN_place "contents"`
    (`docs/emulator.md`, "Saves for the owner").
+   **In-between commit at every major milestone** (owner's rule 2026-11-15; e.g. starter chosen, each
+   badge/world, late game reached, end): save in the game + `export`, `shoot.py SLUG SET --verify` (fix
+   mismatches first), `shoot.py SLUG SET --publish`, then commit and push only the game folder:
+   ```sh
+   git add gamedb/games/SLUG
+   git commit -m "gamedb: SLUG capture - <milestone> (<n> shots)"   # + the attribution lines from the dispatch
+   git pull --rebase origin master && git push origin master        # retry up to 4 times on a network error
+   ```
+   Never `git add` anything outside `gamedb/games/SLUG/`, never force-push, never commit `work/` or `rom/`.
+   A failing rebase (someone changed the same files): stop committing, report it.
 4. Stuck for more than ~10 steps: re-read the playbook strategy and shortcuts, `undo`/`goto`, look up the
    specific problem (a FAQ section, a code list), or poke/code past it. Never grind.
 5. **Document the game as you play** in `games/SLUG/design/` (notation in its README): every rule, number and
@@ -52,7 +62,9 @@ edit anything outside the game's folder.
 
 ## Guardrails
 - Write only `work/`, `rom/saves/SLUG/`, `rom/patches/SLUG/` and `games/SLUG/` (playbook.md, design/, saves/,
-  game.json macros/ram/press/rom_variants, checkpoints.txt, shots.txt, shots/SET/ via --publish). No commits; the coordinator reviews and commits.
+  game.json macros/ram/press/rom_variants, checkpoints.txt, shots.txt, shots/SET/ via --publish). Commits:
+  only the in-between commits above (game folder only, to master); the coordinator reviews and makes the final
+  commit.
 - Never commit ROMs, states or saves (`work/` is ignored; `--publish` copies only PNGs and the catalogue).
 - Cheated values that show on screen are realistic (below the cap, not round, varied); captions describe the
   screen, they need not mention the cheat.
@@ -60,6 +72,7 @@ edit anything outside the game's folder.
 
 ## Report (your final message)
 - Set path, shot count by category, `--verify` result (n/n reproduce), published path.
+- In-between commits (hash: milestone).
 - Table: id | category | caption | notes (not settled, poke used, retake wanted).
 - Plan targets not captured and why (unreachable in budget, needs a password, ...).
 - Playbook changes (sections touched, new checkpoints/macros/RAM, saves/codes used).

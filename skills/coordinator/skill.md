@@ -70,6 +70,8 @@ never commit them. Say what is new and what is known to be broken.
   game-scout. ROMs are uploaded by the owner per session; containers forget them.
 - After the scout: check the playbook (sources listed, controls marked, `title`/`start` checkpoints replay), commit
   `games/<slug>/` (no shots yet), then dispatch game-capture with the set name and a time budget.
+- Capture agents commit and push their game folder at every major milestone (game-capture skill); in the
+  dispatch give the attribution lines for commits. Review those commits too, not only the final state.
 - After the capture: rerun `python3 tools/shoot.py SLUG SET --verify` yourself, look at `sheet.png`, run
   `python3 -m pytest -q tests` in gamedb/ if tools changed, commit `games/<slug>/` (one commit per game set).
 - Several games: one scout or capture agent per game in parallel (each uses `play.py --name <slug>`).
