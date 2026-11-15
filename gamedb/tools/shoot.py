@@ -19,7 +19,8 @@ Outputs per shot: <id>.png (native, framebuffer as is: no filter, no colour corr
 Clips: a route ending in `rec:N[:K[:P]]` records N frames (every Kth kept) from the end of the route: <id>.gif and
 <id>@3x.gif at game speed, <id>.png / @3x = the poster (kept frame P, default the first). --verify compares every clip frame.
 Sequences: a set named `seq-<action>` is an ordered action (shots in list order = steps): it also gets
-strip.png (the steps left to right, numbered and captioned) and steps.gif / steps@3x.gif (one step per 1.5 s).
+strip.png (the steps left to right, numbered and captioned), steps.gif / steps@3x.gif (one still per 1.5 s) and
+full.gif / full@3x.gif (all steps stitched in order: stills held 1.5 s, clips played in full at game speed).
 """
 import argparse, datetime, hashlib, json, os, shutil, sys, tempfile
 
@@ -82,6 +83,29 @@ def sequence_files(idx, d):
     paths = [os.path.join(d, s["file"]) for s in shots]
     E.write_gif(paths, os.path.join(d, "steps.gif"), hold_ms=1500)
     E.write_gif(paths, os.path.join(d, "steps@3x.gif"), scale=3, hold_ms=1500)
+    full_gif(shots, d)
+
+
+STILL_MS, FIRST_MS, LAST_MS = 1500, 2000, 3000   # stitched GIF: how long stills stay; the first/last a bit longer
+
+
+def full_gif(shots, d):
+    """full.gif / full@3x.gif: every step stitched in order - stills held STILL_MS, clips played in full at
+    game speed (their own frames and delays)."""
+    from PIL import Image, ImageSequence
+    frames, durs = [], []
+    for i, s in enumerate(shots):
+        clip = s.get("clip")
+        if clip and os.path.exists(os.path.join(d, clip["file"])):
+            g = Image.open(os.path.join(d, clip["file"]))
+            for f in ImageSequence.Iterator(g):
+                frames.append(f.convert("RGB"))
+                durs.append(f.info.get("duration", 33))
+        else:
+            frames.append(Image.open(os.path.join(d, s["file"])).convert("RGB"))
+            durs.append(FIRST_MS if i == 0 else LAST_MS if i == len(shots) - 1 else STILL_MS)
+    E.write_gif(frames, os.path.join(d, "full.gif"), durations=durs)
+    E.write_gif(frames, os.path.join(d, "full@3x.gif"), scale=3, durations=durs)
 
 
 def write_md(idx, d):
@@ -96,7 +120,8 @@ def write_md(idx, d):
             s["id"], s["category"], s.get("caption", ""), "yes" if s.get("settled") else "clip" if clip else "no",
             s["file"], s["file_3x"], clip))
     if idx["set"].startswith("seq-"):
-        out += ["", "Sequence: [strip.png](strip.png), [steps.gif](steps.gif) ([3x](steps@3x.gif))."]
+        out += ["", "Sequence: [full.gif](full.gif) ([3x](full@3x.gif)) = all steps stitched (stills held, clips "
+                "played), [strip.png](strip.png), [steps.gif](steps.gif) ([3x](steps@3x.gif)) = stills only."]
     out += ["", "Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.", ""]
     open(os.path.join(d, "index.md"), "w", encoding="utf-8").write("\n".join(out))
 
@@ -228,13 +253,16 @@ def main():
         return 3 if bad else 0
     print("set: %s" % os.path.relpath(d, ROOT))
     if a.publish:
+        if a.set.startswith("seq-"):
+            reindex(game, d)            # strip, steps and the stitched full GIF from the current files
         pub = os.path.join(game.dir, "shots", a.set)
         os.makedirs(pub, exist_ok=True)
         idx = json.load(open(os.path.join(d, "index.json"), encoding="utf-8"))
         for s in idx["shots"]:
             for f in (s["file"], s["file_3x"]) + ((s["clip"]["file"], s["clip"]["file_3x"]) if s.get("clip") else ()):
                 shutil.copyfile(os.path.join(d, f), os.path.join(pub, f))
-        for f in ("index.json", "index.md", "sheet.png", "shots.txt", "strip.png", "steps.gif", "steps@3x.gif"):
+        for f in ("index.json", "index.md", "sheet.png", "shots.txt", "strip.png", "steps.gif", "steps@3x.gif",
+                  "full.gif", "full@3x.gif"):
             if os.path.exists(os.path.join(d, f)):
                 shutil.copyfile(os.path.join(d, f), os.path.join(pub, f))
         print("published: %s (%d shots)" % (os.path.relpath(pub, ROOT), len(idx["shots"])))

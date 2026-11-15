@@ -407,17 +407,20 @@ def record(emu, game, n, every=2):
     return frames
 
 
-def write_gif(frames, path, every=2, scale=1, hold_ms=None):
+def write_gif(frames, path, every=2, scale=1, hold_ms=None, durations=None):
     """Animated GIF from PNG bytes, nearest-neighbour scaled, at game speed (or hold_ms per frame), looping.
     GIF delays are in 10 ms steps: the per-frame delay alternates so the average matches the game's timing."""
     from PIL import Image
     ims = []
     for f in frames:
-        im = Image.open(io.BytesIO(f) if isinstance(f, bytes) else f).convert("RGB")
+        im = f if isinstance(f, Image.Image) else Image.open(io.BytesIO(f) if isinstance(f, bytes) else f)
+        im = im.convert("RGB")
         if scale > 1:
             im = im.resize((im.width * scale, im.height * scale), Image.NEAREST)
         ims.append(im.convert("P", palette=Image.ADAPTIVE, colors=256))
-    if hold_ms:
+    if durations:
+        durs = list(durations)
+    elif hold_ms:
         durs = [hold_ms] * len(ims)
     else:
         per = every * 1000.0 / FPS

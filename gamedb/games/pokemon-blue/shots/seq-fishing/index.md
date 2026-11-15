@@ -20,6 +20,6 @@ Platform gb, model dmg, ROM SHA-1 `d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`. 15
 | 14_nibble | dialogue | Failed outcome: "Not even a nibble!" - no battle | no | [png](14_nibble.png) [3x](14_nibble@3x.png) |
 | 15_nibble_end | gameplay | A closes the text: ryz is back on the harbour, free to cast again | no | [png](15_nibble_end.png) [3x](15_nibble_end@3x.png) |
 
-Sequence: [strip.png](strip.png), [steps.gif](steps.gif) ([3x](steps@3x.gif)).
+Sequence: [full.gif](full.gif) ([3x](full@3x.gif)) = all steps stitched (stills held, clips played), [strip.png](strip.png), [steps.gif](steps.gif) ([3x](steps@3x.gif)) = stills only.
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

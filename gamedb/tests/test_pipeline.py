@@ -244,8 +244,17 @@ def test_clip_and_sequence(selftest):
     assert "3/3 reproduce" in run("tools/shoot.py", SLUG, "seq-test", "--verify")
     run("tools/shoot.py", SLUG, "seq-test", "--publish-only")
     pub = os.path.join(ROOT, "games", SLUG, "shots", "seq-test")
-    for f in ("s02_clip.gif", "s02_clip@3x.gif", "s02_clip.png", "strip.png", "steps.gif", "steps@3x.gif"):
+    for f in ("s02_clip.gif", "s02_clip@3x.gif", "s02_clip.png", "strip.png", "steps.gif", "steps@3x.gif",
+              "full.gif", "full@3x.gif"):
         assert os.path.exists(os.path.join(pub, f)), f
     idx = json.load(open(os.path.join(pub, "index.json")))
     clip = [s for s in idx["shots"] if s["id"] == "s02_clip"][0]["clip"]
     assert clip["frames"] == 60 and clip["every"] == 3 and clip["kept"] == 21 and clip["poster"] == -1
+    from PIL import Image
+    full = Image.open(os.path.join(pub, "full.gif"))
+    total = 0
+    for i in range(full.n_frames):
+        full.seek(i)
+        total += full.info["duration"]
+    clip_ms = 60 * 1000 / 59.7275
+    assert abs(total - (2000 + clip_ms + 3000)) < 60, total     # first still + clip at game speed + last still

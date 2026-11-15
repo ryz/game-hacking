@@ -14,6 +14,6 @@ Platform gb, model dmg, ROM SHA-1 `d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`. 9 
 | 08_landing_clip | gameplay | Clip: Lavender Town fades in and Pidgeot glides down to drop ryz in front of the POKéMON CENTER | clip | [png](08_landing_clip.png) [3x](08_landing_clip@3x.png) [gif](08_landing_clip.gif) [gif 3x](08_landing_clip@3x.gif) |
 | 09_lavender | gameplay | Arrived: ryz stands in Lavender Town in front of its POKéMON CENTER | yes | [png](09_lavender.png) [3x](09_lavender@3x.png) |
 
-Sequence: [strip.png](strip.png), [steps.gif](steps.gif) ([3x](steps@3x.gif)).
+Sequence: [full.gif](full.gif) ([3x](full@3x.gif)) = all steps stitched (stills held, clips played), [strip.png](strip.png), [steps.gif](steps.gif) ([3x](steps@3x.gif)) = stills only.
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

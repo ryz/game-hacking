@@ -2,6 +2,11 @@
 
 Append-only, newest first.
 
+## 2026-11-15 - stitched sequence GIFs
+- Owner's request: a full GIF per sequence with all steps stitched. `seq-*` sets now get full.gif / full@3x.gif
+  (stills held, clips at game speed), rebuilt on publish. Pokémon Blue: seq-fishing 34 s (144 KB / 626 KB @3x),
+  seq-fly 19 s (49 KB / 207 KB @3x). Test checks the stitched timing.
+
 ## 2026-11-15 - Pokémon Blue sequences: fishing, Fly
 - game-capture: seq-fishing (Vermilion harbour: menu path, cast clip, bite, battle-transition clip, hooked
   Shellder, plus the "Not even a nibble!" branch) and seq-fly (Vermilion -> Lavender: party, FLY, town map,

@@ -51,7 +51,9 @@ Some actions are best shown as what happens, step by step (fishing, fast travel,
   ids `01_<step>`, `02_<step>`, ... (the order of the shot list is the order of the steps). Start from the
   last normal gameplay frame before the action and end on the first normal frame after it. Every menu, prompt
   and text box of the action is a step; captions say what the player did ("Select SUPER ROD, USE").
-  shoot.py adds `strip.png` (all steps, numbered) and `steps.gif` (1.5 s per step).
+  shoot.py adds `strip.png` (all steps, numbered), `steps.gif` (stills only, 1.5 s each) and **`full.gif`**
+  (owner's request: every step stitched in order - stills held 1.5 s, the first 2 s and the last 3 s, clips
+  played in full at game speed), each also @3x. They are rebuilt on every snap/record, full --verify and publish.
 - **Clips** for the motion itself (an animation between two steps: casting, take-off, landing, a transition):
   `play.py record ID CATEGORY FRAMES "caption" --every K --set seq-<action>` -> `<id>.gif` / `@3x.gif` at game
   speed (poster frame `<id>.png`). Keep clips short (1-6 s: FRAMES 60-360) and K=2 (30 fps) for smooth motion,
