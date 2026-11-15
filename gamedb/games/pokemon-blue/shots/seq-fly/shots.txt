@@ -1,0 +1,9 @@
+01_vermilion | gameplay | ryz stands in Vermilion City in front of the POKéMON CENTER | @vermilion,settle,settle
+02_start_menu | menu | Press START: the menu opens with the cursor on POKéMON | @vermilion,settle,settle,start,w30,settle,settle
+03_party | menu | POKéMON: the party list, cursor on PIDGEOT (knows FLY) | @vermilion,settle,settle,start,w30,settle,settle,a,w60,settle,settle
+04_fly_option | menu | A on PIDGEOT: field-move menu with FLY on top (STATS, SWITCH, CANCEL) | @vermilion,settle,settle,start,w30,settle,settle,a,w60,settle,settle,a,w30,settle,settle
+05_town_map | map | FLY: the town map opens on "To PALLET TOWN"; Pidgeot marks the target, ryz's head marks Vermilion | @vermilion,settle,settle,start,w30,settle,settle,a,w60,settle,settle,a,w30,settle,settle,a,w90,settle,settle
+06_to_lavender | map | UP x4 moves the cursor through the visited towns to "To LAVENDER TOWN" | @vermilion,settle,settle,start,w30,settle,settle,a,w60,settle,settle,a,w30,settle,settle,a,w90,settle,settle,up,settle,up,settle,up,settle,up,settle,settle
+07_takeoff_clip | gameplay | Clip: A confirms; back in Vermilion, Pidgeot flaps and carries ryz up off the screen | @seqfly_lavender,a:8,w34,rec:210:2
+08_landing_clip | gameplay | Clip: Lavender Town fades in and Pidgeot glides down to drop ryz in front of the POKéMON CENTER | @seqfly_lavender,a:8,w34,w210,w50,rec:190:2
+09_lavender | gameplay | Arrived: ryz stands in Lavender Town in front of its POKéMON CENTER | @seqfly_lavender,a:8,w34,w210,w50,rec:190:2,settle,settle

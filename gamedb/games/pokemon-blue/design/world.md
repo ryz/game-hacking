@@ -35,6 +35,18 @@ wild Pokémon **(verified: route1_grass)**.
 - Fishing: facing water, ITEM > SUPER ROD; either "Oh! It's a bite!" (battle) or "Not even a nibble!";
   which one depends on the frame the rod is used (4 of 6 timings bit at Vermilion) **(verified: fishing)**.
   Vermilion with the Super Rod gave a Krabby L15 **(verified)**.
+  - Step by step (set `seq-fishing`): facing water, START > ITEM > SUPER ROD > USE; "ryz used SUPER ROD!", then
+    ryz casts and holds the rod for about 4 s; on a bite a "!" pops up over his head, then "Oh! It's a bite!",
+    the wild-battle transition, and "The hooked <POKéMON> attacked!" opens an ordinary wild battle
+    **(verified: seq-fishing 06_used_rod - 12_battle_menu)**. On a failure the same cast plays without the "!"
+    and "Not even a nibble!" ends the action with no battle; ryz can cast again at once **(verified:
+    seq-fishing 13_nibble_clip - 15_nibble_end)**.
+  - What decides it: the moment of use, not the wait. From one USE menu, pressing A on four consecutive frames
+    gave nibble / bite / nibble / nibble **(verified: seq-fishing routes, emu.py timing test)**, so the game
+    rolls at the moment the rod is used; holding the rod longer changes nothing, the outcome is shown after a
+    fixed delay **(inferred)**. The rolled species also varies with that moment: two bites at the same spot gave
+    Krabby L15 (`fishing_battle`) and Shellder L15 (seq-fishing 10_hooked) **(verified)**. The level was 15 both
+    times, so the Super Rod table at Vermilion lists Pokémon of one level **(inferred)**.
 - Safari Zone center: wild Nidorina L31 in its grass **(verified)**. Entry costs 500, gives 30 Safari Balls
   **(verified: money 48215 -> 47715, BALL x30)**; the game lasts 500 steps **(source)**.
 - Bicycle: twice walking speed (a tile in 8 frames instead of 16) **(RAM/verified: bicycle route)**.
@@ -43,5 +55,21 @@ wild Pokémon **(verified: route1_grass)**.
 ## 3. Maps
 - TOWN MAP item and the Pokédex AREA page share the same Kanto map **(verified: town_map, pokedex_area)**.
 
+## 4. Fast travel: Fly
+- Requirements: a party Pokémon that knows FLY (HM02, from the Route 16 house) and, outside battle, the
+  Thunder Badge from Vermilion's Gym **(source)**; it works outdoors only (towns and routes) **(source)**. The move appears at the top of that Pokémon's party sub-menu,
+  above STATS / SWITCH / CANCEL **(verified: seq-fly 04_fly_option)**.
+- Offered towns: only towns already visited. The map always opens on "To PALLET TOWN", not on the current
+  town (ryz's head marks where he stands); Up/Down step through the visited towns in a fixed list (Pallet,
+  Viridian, Pewter, Cerulean, Lavender, Vermilion, ...), Up four times from Pallet = Lavender Town **(verified:
+  seq-fly 05_town_map, 06_to_lavender; fly_map)**. Indigo Plateau is in the list once visited **(verified:
+  fly_select route started there)**.
+- The trip: A confirms, the field returns, the bird flaps and carries the player straight up off the screen
+  (~3.5 s), the screen fades to white, the destination fades in and the bird glides down; the player lands in
+  front of the destination's Pokémon Center (~3 s) **(verified: seq-fly 07_takeoff_clip, 08_landing_clip,
+  09_lavender)**. No money, item or step cost **(verified: money 48215 before and after)**.
+
 ## Open questions
 - ~~Caves, Surf, fishing, Safari~~ visited 2026-11-15. Safari step counter and Bait odds not measured.
+- Fishing: the bite chance per rod and the Super Rod table per spot not measured (only 4 + 6 frame tests at Vermilion).
+- Fly: the full town order past Vermilion and where Indigo Plateau sits in it not checked.

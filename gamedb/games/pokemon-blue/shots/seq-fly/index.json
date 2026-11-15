@@ -1,0 +1,146 @@
+{
+ "game": {
+  "slug": "pokemon-blue",
+  "title": "Pokémon Blue Version",
+  "platform": "gb",
+  "model": "dmg",
+  "sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+  "crc32": "d6da8a1a"
+ },
+ "set": "seq-fly",
+ "shots": [
+  {
+   "id": "01_vermilion",
+   "category": "gameplay",
+   "caption": "ryz stands in Vermilion City in front of the POKéMON CENTER",
+   "route": "@vermilion,settle,settle",
+   "settled": false,
+   "model": "dmg",
+   "source": "play.py snap",
+   "file": "01_vermilion.png",
+   "file_3x": "01_vermilion@3x.png",
+   "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+   "captured": "2026-11-15"
+  },
+  {
+   "id": "02_start_menu",
+   "category": "menu",
+   "caption": "Press START: the menu opens with the cursor on POKéMON",
+   "route": "@vermilion,settle,settle,start,w30,settle,settle",
+   "settled": false,
+   "model": "dmg",
+   "source": "play.py snap",
+   "file": "02_start_menu.png",
+   "file_3x": "02_start_menu@3x.png",
+   "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+   "captured": "2026-11-15"
+  },
+  {
+   "id": "03_party",
+   "category": "menu",
+   "caption": "POKéMON: the party list, cursor on PIDGEOT (knows FLY)",
+   "route": "@vermilion,settle,settle,start,w30,settle,settle,a,w60,settle,settle",
+   "settled": true,
+   "model": "dmg",
+   "source": "play.py snap",
+   "file": "03_party.png",
+   "file_3x": "03_party@3x.png",
+   "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+   "captured": "2026-11-15"
+  },
+  {
+   "id": "04_fly_option",
+   "category": "menu",
+   "caption": "A on PIDGEOT: field-move menu with FLY on top (STATS, SWITCH, CANCEL)",
+   "route": "@vermilion,settle,settle,start,w30,settle,settle,a,w60,settle,settle,a,w30,settle,settle",
+   "settled": true,
+   "model": "dmg",
+   "source": "play.py snap",
+   "file": "04_fly_option.png",
+   "file_3x": "04_fly_option@3x.png",
+   "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+   "captured": "2026-11-15"
+  },
+  {
+   "id": "05_town_map",
+   "category": "map",
+   "caption": "FLY: the town map opens on \"To PALLET TOWN\"; Pidgeot marks the target, ryz's head marks Vermilion",
+   "route": "@vermilion,settle,settle,start,w30,settle,settle,a,w60,settle,settle,a,w30,settle,settle,a,w90,settle,settle",
+   "settled": true,
+   "model": "dmg",
+   "source": "play.py snap",
+   "file": "05_town_map.png",
+   "file_3x": "05_town_map@3x.png",
+   "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+   "captured": "2026-11-15"
+  },
+  {
+   "id": "06_to_lavender",
+   "category": "map",
+   "caption": "UP x4 moves the cursor through the visited towns to \"To LAVENDER TOWN\"",
+   "route": "@vermilion,settle,settle,start,w30,settle,settle,a,w60,settle,settle,a,w30,settle,settle,a,w90,settle,settle,up,settle,up,settle,up,settle,up,settle,settle",
+   "settled": true,
+   "model": "dmg",
+   "source": "play.py snap",
+   "file": "06_to_lavender.png",
+   "file_3x": "06_to_lavender@3x.png",
+   "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+   "captured": "2026-11-15"
+  },
+  {
+   "id": "07_takeoff_clip",
+   "category": "gameplay",
+   "caption": "Clip: A confirms; back in Vermilion, Pidgeot flaps and carries ryz up off the screen",
+   "route": "@seqfly_lavender,a:8,w34,rec:210:2",
+   "settled": false,
+   "model": "dmg",
+   "source": "play.py record",
+   "clip": {
+    "frames": 210,
+    "every": 2,
+    "kept": 106,
+    "seconds": 3.52,
+    "file": "07_takeoff_clip.gif",
+    "file_3x": "07_takeoff_clip@3x.gif"
+   },
+   "file": "07_takeoff_clip.png",
+   "file_3x": "07_takeoff_clip@3x.png",
+   "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+   "captured": "2026-11-15"
+  },
+  {
+   "id": "08_landing_clip",
+   "category": "gameplay",
+   "caption": "Clip: Lavender Town fades in and Pidgeot glides down to drop ryz in front of the POKéMON CENTER",
+   "route": "@seqfly_lavender,a:8,w34,w210,w50,rec:190:2",
+   "settled": false,
+   "model": "dmg",
+   "source": "play.py record",
+   "clip": {
+    "frames": 190,
+    "every": 2,
+    "kept": 96,
+    "seconds": 3.18,
+    "file": "08_landing_clip.gif",
+    "file_3x": "08_landing_clip@3x.gif"
+   },
+   "file": "08_landing_clip.png",
+   "file_3x": "08_landing_clip@3x.png",
+   "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+   "captured": "2026-11-15"
+  },
+  {
+   "id": "09_lavender",
+   "category": "gameplay",
+   "caption": "Arrived: ryz stands in Lavender Town in front of its POKéMON CENTER",
+   "route": "@seqfly_lavender,a:8,w34,w210,w50,rec:190:2,settle,settle",
+   "settled": true,
+   "model": "dmg",
+   "source": "play.py snap",
+   "file": "09_lavender.png",
+   "file_3x": "09_lavender@3x.png",
+   "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+   "captured": "2026-11-15"
+  }
+ ]
+}

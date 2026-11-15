@@ -92,6 +92,10 @@ Main set ~45 shots (`shots.txt` has the planned ids; lines with routes are ready
 | gameover | blackout | lose a battle (e.g. MID party vs a strong trainer, or poke HP to 1) |
 | link | cable_club (done) | Cable Club desk in any Center; a trade screen needs a partner: not reachable alone |
 
+Sequences 2026-11-15 (third run): `seq-fishing` (15 steps: shore -> START -> ITEM -> SUPER ROD -> USE -> cast
+clip -> bite -> battle clip -> hooked SHELLDER -> battle menu, + nibble branch) and `seq-fly` (9 steps: Vermilion
+-> START -> PIDGEOT -> FLY -> map -> To LAVENDER -> take-off clip -> landing clip -> Lavender), both verified.
+
 Status 2026-11-15, second run (main set, 92 shots, all verified): added the Pewter Gym (walk, Brock talk,
 battle, badge), move learning (2), evolution (2), Indigo Plateau outside, Fly map, Surf, fishing (bite +
 battle), bicycle, Cut, Viridian Forest, Mt. Moon, Safari (gate, center, battle, rock), Game Corner (hall + 3
@@ -229,7 +233,7 @@ Addresses for the US/EU Red/Blue (pret pokered). Status verified = read/poked he
 | D5A4 | 2 | Game Corner coins, BCD (1283 -> "CREDIT 1283") | verified |
 | D5F0 | ~120 | map script numbers (wGameProgressFlags): Oak's lab D5F0, Pewter Gym D5FC, Hall of Fame D64B, Champion's room D64C | verified (D5F0, D64C) |
 | D715 / D717 | 1 / 1 | rival's / player's starter (internal id; Squirtle game: 99 / B1) | verified (lab_after_rival) |
-| D70B | 2 | towns visited (Fly list) | source; poked in LATE, Fly not tested |
+| D70B | 2 | towns visited (Fly list) | verified: LATE's value offers Lavender etc. (seq-fly) |
 | D719 | 1 | last blackout map (where you respawn) | source |
 | D747 | 320 | event flags (index from pret event_constants; byte D747+n/8, bit n%8) | verified indirectly (EVENT_GOT_POKEDEX -> POKéDEX in start menu) |
 | DA41 / DA43 / DA44 | 1 each | play time hours / minutes / seconds | verified (trainer card 27:47) |
@@ -240,11 +244,21 @@ Watches in `game.json`: map, y, x, party, badges, battle (money is BCD: read wit
   screen shows SGB transfer garbage (border tile data) and stays there (route `w2400,settle`, pc=20b4, 160x144
   output, `work/scout/pokemon-blue/sgbtest/`). Probably the game's SGB handshake never completes in gbemu-cli;
   a tools question for the coordinator.
+- **Sequences/clips (third run)**: fishing outcome is fixed by the frame of A on USE: from `@seqfish_use`
+  (USE/TOSS open) `a` = nibble, `w1,a` = bite (SHELLDER L15; the old `@vermilion_rod,a,w30,w1,a` route gives
+  KRABBY), `w2,a`/`w3,a` = nibble. The bite text appears ~4 s after "used SUPER ROD!" (`w1,a,w20` + 240 + `w30`).
+  Fly from `@vermilion`: the START cursor is already on POKéMON and the party cursor on PIDGEOT, so
+  `start,a,a,a` opens the map; it opens on PALLET TOWN, `up*4` = LAVENDER (checkpoint `seqfly_lavender`).
+  After A: field is back after ~34 frames, take-off ~210 frames, white ~50 frames, landing ~190 frames.
+  A clip's poster (and its frame in strip.png/steps.gif) is the clip's FIRST frame: start the recording after
+  white fades (`do! "a:8,wN"` then `record`), otherwise the strip shows a blank step.
 - Settle can stop on all-white fade frames (title -> menu, Oak transitions): add `w60` after such presses.
 - Deterministic: same route -> same intro timing; NEWGAME's `mash` block lengths are measured, keep them.
 - The play-time counter runs (seconds at DA44); exported saves show whatever was poked plus the real minutes.
 
 ## Checkpoints
+- Added 2026-11-15 (third run, sequences): `seqfish_use` (Vermilion harbour, SUPER ROD USE/TOSS open),
+  `seqfish_bite` ("Oh! It's a bite!"), `seqfly_lavender` (Vermilion, FLY map on To LAVENDER TOWN).
 - Added 2026-11-15 (second run): `nurse_yesno`, `pewter_gym`, `brock_*` (battle, learned, onix, proof, evolving,
   saved), `indigo_outside`, `fly_select`, `vermilion*` (surf, rod, tree, cutmenu), `mtmoon`, `safari_gate`,
   `safari_in`, `safari_battle`, `game_corner`, `slots`, `tower3`, `champion_room`, `champion_talk`,
@@ -267,7 +281,7 @@ Watches in `game.json`: map, y, x, party, badges, battle (money is BCD: read wit
 | TCRF, GameFAQs | tcrf.net, gamefaqs.gamespot.com | unavailable (403 bot protection / WebFetch DNS) | 2026-11-15 |
 
 ## Open questions
-- ~~Battles with the recipe party not yet run~~ verified: the LATE party beats Lorelei (Raichu alone). Fly with D70B not tested.
+- ~~Battles with the recipe party not yet run~~ verified: the LATE party beats Lorelei (Raichu alone). ~~Fly with D70B not tested~~ verified: Vermilion -> Lavender (seq-fly).
 - ~~Safari Zone by warp~~ answered: warp into the gate ($9C) and walk up; the fee script works (verified).
 - ~~Champion/Hall of Fame by warp~~ answered: warp + `D64C=01` (verified, see Strategy).
 - SGB model output (see Emulation notes).

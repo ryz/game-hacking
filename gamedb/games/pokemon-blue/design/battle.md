@@ -82,7 +82,8 @@ party Pokémon has fainted the player blacks out, loses half the money and wakes
 - Safari Zone: no Pokémon of your own; the menu is BALL x<count> / BAIT / THROW ROCK / RUN **(verified:
   safari_battle)**. A rock makes the wild Pokémon "angry" (easier to catch, more likely to flee); bait makes it
   "eating" (the opposite) **(verified for the rock text: safari_rock; effect from source)**.
-- Fishing: "The hooked KRABBY attacked!" opens a normal wild battle **(verified: fishing_battle)**.
+- Fishing: "The hooked KRABBY attacked!" opens a normal wild battle **(verified: fishing_battle; step by step in
+  seq-fishing 08_bite - 12_battle_menu, rules in [world.md](world.md) section 2)**.
 - Pokémon Tower without the SILPH SCOPE: "GHOST appeared!" / "Darn! The GHOST can't be ID'd!"; the ghost
   cannot be fought or caught **(verified: tower_ghost; consequences from source)**.
 
