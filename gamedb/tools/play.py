@@ -149,11 +149,13 @@ class Session:
                     "state's); run `do settle` (or `do! w1`) first, then snap")
         d = os.path.join(ROOT, "work", "shots", self.game.slug, set_)
         os.makedirs(d, exist_ok=True)
-        native = os.path.join(d, "%s.png" % sid)
+        import shoot
+        stem = shoot.prefix(set_) + sid
+        native = os.path.join(d, "%s.png" % stem)
         before = open(native, "rb").read() if os.path.exists(native) else None
         self.emu.screen_png(native)
         unchanged = before is not None and _pixels(before) == _pixels(open(native, "rb").read())
-        self.E.enlarge(native, os.path.join(d, "%s@3x.png" % sid))
+        self.E.enlarge(native, os.path.join(d, "%s@3x.png" % stem))
         a = self.emu.screen()
         self.emu.save_state(os.path.join(self.dir, "snap.state"))
         self.emu.frames(self.game.settle_step)
@@ -188,7 +190,7 @@ class Session:
         self.undo_state, self.undo_toks = os.path.join(self.dir, "undo.state"), list(self.toks)
         self.undo_freezes = list(getattr(self.emu, "freezes", []))
         n, k, p = int(frames), int(every), int(poster)
-        clip = shoot.clip_files(self.game, self.emu, sid, d, n, k, p)
+        clip = shoot.clip_files(self.game, self.emu, shoot.prefix(set_) + sid, d, n, k, p)
         kept = clip.pop("_frames")
         tok = "rec:%d:%d" % (n, k) + (":%d" % p if p else "")
         route = self.route() + "," + tok

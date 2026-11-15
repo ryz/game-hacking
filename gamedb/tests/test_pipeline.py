@@ -244,14 +244,15 @@ def test_clip_and_sequence(selftest):
     assert "3/3 reproduce" in run("tools/shoot.py", SLUG, "seq-test", "--verify")
     run("tools/shoot.py", SLUG, "seq-test", "--publish-only")
     pub = os.path.join(ROOT, "games", SLUG, "shots", "seq-test")
-    for f in ("s02_clip.gif", "s02_clip@3x.gif", "s02_clip.png", "strip.png", "steps.gif", "steps@3x.gif",
-              "full.gif", "full@3x.gif"):
-        assert os.path.exists(os.path.join(pub, f)), f
+    for f in ("s01_start.png", "s02_clip.gif", "s02_clip@3x.gif", "s02_clip.png", "s03_after@3x.png", "strip.png",
+              "steps.gif", "steps@3x.gif", "full.gif", "full@3x.gif", "sheet.png"):
+        assert os.path.exists(os.path.join(pub, "seq-test_" + f)), f          # sequence files carry the set name
+    assert not [f for f in os.listdir(pub) if f.endswith((".png", ".gif")) and not f.startswith("seq-test_")]
     idx = json.load(open(os.path.join(pub, "index.json")))
     clip = [s for s in idx["shots"] if s["id"] == "s02_clip"][0]["clip"]
     assert clip["frames"] == 60 and clip["every"] == 3 and clip["kept"] == 21 and clip["poster"] == -1
     from PIL import Image
-    full = Image.open(os.path.join(pub, "full.gif"))
+    full = Image.open(os.path.join(pub, "seq-test_full.gif"))
     total = 0
     for i in range(full.n_frames):
         full.seek(i)

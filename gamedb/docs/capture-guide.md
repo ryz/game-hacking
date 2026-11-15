@@ -47,6 +47,10 @@ situations - every core system the playbook lists - one boss (if the game has bo
 
 ## Action sequences and clips (owner's request 2026-11-15)
 Some actions are best shown as what happens, step by step (fishing, fast travel, a level-up, a transformation).
+- **File names:** every image and GIF of a sequence set starts with the set name (owner's rule 2026-11-15):
+  `seq-fishing_01_shore.png`, `seq-fishing_07_cast_clip.gif`, `seq-fishing_full.gif`, `seq-fishing_strip.png`,
+  so files keep their context outside the folder. The shot ids stay short (`01_shore`); the tools add the
+  prefix. `index.json`, `index.md` and `shots.txt` keep their names.
 - **Sequence set** `seq-<action>` (e.g. `seq-fishing`): one shot per step, in the order the player sees them,
   ids `01_<step>`, `02_<step>`, ... (the order of the shot list is the order of the steps). Start from the
   last normal gameplay frame before the action and end on the first normal frame after it. Every menu, prompt

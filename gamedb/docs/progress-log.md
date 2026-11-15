@@ -2,6 +2,11 @@
 
 Append-only, newest first.
 
+## 2026-11-15 - sequence file names carry the set name
+- Owner's request: files of `seq-*` sets are prefixed with the set name (seq-fishing_01_shore.png,
+  seq-fishing_full.gif, ...); ids unchanged; shoot.py/play.py add the prefix (shoot.prefix()). Pokémon Blue
+  seq-fishing and seq-fly reshot under the new names (15/15, 9/9). Test checks no unprefixed media remain.
+
 ## 2026-11-15 - stitched sequence GIFs
 - Owner's request: a full GIF per sequence with all steps stitched. `seq-*` sets now get full.gif / full@3x.gif
   (stills held, clips at game speed), rebuilt on publish. Pokémon Blue: seq-fishing 34 s (144 KB / 626 KB @3x),
