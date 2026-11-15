@@ -33,6 +33,7 @@ playbooks (committed) are not. That is why every state is defined by a route.
 | `mash:a:600` | tap A every 8 frames for 600 frames | skipping text and intros |
 | `settle` | run until two frames 10 apart are identical (max 300) | before a capture |
 | `!` | last token: capture as is, no settle | auto-advancing messages, mid-animation |
+| `rec:240:2` | last token of a shot: record 240 frames as a GIF clip (every 2nd kept); elsewhere a wait | clips (`play.py record`) |
 | `poke:C0A2=09` | write RAM bytes once | shortcuts (recorded in the route) |
 | `set:C0B0=8973:2` | write a decimal value (N bytes; `:bcd`, `:be`) | money, score, EXP |
 | `gs:0109A2C0` | GameShark code, held for the rest of the route | infinite health/lives, codes from the web |

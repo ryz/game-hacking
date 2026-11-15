@@ -12,6 +12,10 @@ is reproducible from power-on (states are a cache, routes are the record).
                                              capture the current frame for the database: native PNG + @3x into
                                              work/shots/GAME/SET/ (default set: main), its line (with the full
                                              route) appended to that set's shots.txt and index.json
+  python3 tools/play.py record ID CATEGORY FRAMES "caption" [--every K] [--set SET]
+                                             clip: record FRAMES frames from now (every Kth kept, default 2) as
+                                             <id>.gif + @3x.gif (poster <id>.png) into the set, route + `rec:N:K`
+                                             in its shots.txt; the session moves on by FRAMES frames
   python3 tools/play.py checkpoint NAME "description"
                                              save a state and add `NAME | description | route` to
                                              games/GAME/checkpoints.txt (replaces a line of the same name)
@@ -164,6 +168,32 @@ class Session:
         return "%s%s%s" % (rel(native), "" if settled else "  (not settled: animated frame, check it)",
                            "  (UNCHANGED: identical to the PNG this id already had)" if unchanged else "")
 
+    def record(self, sid, cat, frames, caption, every=2, set_="main"):
+        if not re.match(r"^[a-z0-9_]+$", sid):
+            return "error: id must be lowercase a-z0-9_ (area_thing)"
+        if self.stale:
+            return "error: the screen is stale after goto/undo; run `do settle` (or `do! w1`) first"
+        import shoot
+        d = os.path.join(ROOT, "work", "shots", self.game.slug, set_)
+        os.makedirs(d, exist_ok=True)
+        self.emu.save_state(os.path.join(self.dir, "undo.state"))
+        self.undo_state, self.undo_toks = os.path.join(self.dir, "undo.state"), list(self.toks)
+        self.undo_freezes = list(getattr(self.emu, "freezes", []))
+        clip = shoot.clip_files(self.game, self.emu, sid, d, int(frames), int(every))
+        route = self.route() + ",rec:%d:%d" % (int(frames), int(every))
+        self.toks.append("rec:%d:%d" % (int(frames), int(every)))
+        lines = [l for l in (open(os.path.join(d, "shots.txt"), encoding="utf-8").read().splitlines()
+                             if os.path.exists(os.path.join(d, "shots.txt")) else [])
+                 if not l.startswith(sid + " ")]
+        lines.append("%s | %s | %s | %s" % (sid, cat, caption.replace("|", "/"), route))
+        open(os.path.join(d, "shots.txt"), "w", encoding="utf-8").write("\n".join(lines) + "\n")
+        shoot.index_update(self.game, d, {"id": sid, "category": cat, "caption": caption, "route": route,
+                                          "settled": False, "model": self.model, "source": "play.py record",
+                                          "clip": clip})
+        self.shot()
+        return "%s (%d frames kept, %.1f s; session moved on %s frames)" % (
+            rel(os.path.join(d, clip["file"])), clip["kept"], clip["seconds"], frames)
+
     def checkpoint(self, name, desc):
         if not re.match(r"^[a-z0-9_]+$", name):
             return "error: checkpoint name must be lowercase a-z0-9_"
@@ -241,6 +271,13 @@ class Session:
                 set_ = args[i + 1]
                 args = args[:i] + args[i + 2:]
             return self.snap(args[0], args[1], args[2] if len(args) > 2 else "", set_)
+        if cmd == "record":
+            every, set_ = "2", "main"
+            if "--every" in args:
+                i = args.index("--every"); every = args[i + 1]; args = args[:i] + args[i + 2:]
+            if "--set" in args:
+                i = args.index("--set"); set_ = args[i + 1]; args = args[:i] + args[i + 2:]
+            return self.record(args[0], args[1], args[2], args[3] if len(args) > 3 else "", every, set_)
         if cmd == "checkpoint":
             return self.checkpoint(args[0], args[1] if len(args) > 1 else "")
         if cmd == "export":

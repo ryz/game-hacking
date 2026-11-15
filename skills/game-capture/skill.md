@@ -55,6 +55,8 @@ edit anything outside the game's folder.
    tagged (verified) with the shot id or checkpoint that shows it, or (RAM) when measured through memory;
    quirks and likely bugs in `design/findings.md`. Measure instead of guessing: e.g. note HP before and after a
    hit over several hits. Write as you go (the next agent starts from it), not at the end.
+   Action sequences (`docs/capture-guide.md`, "Action sequences and clips"): a `seq-<action>` set per action, a
+   snap per step and `play.py record` clips for the motion, published like any set.
 6. Add opportunistic shots of anything distinctive the plan missed (category `extra` or the right one).
 7. Finish: `python3 tools/shoot.py SLUG SET --verify` (every shot must reproduce; re-snap or fix the route of a
    MISMATCH), then look at `work/shots/SLUG/SET/sheet.png` as a whole: variety, duplicates, broken frames.

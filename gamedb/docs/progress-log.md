@@ -2,6 +2,11 @@
 
 Append-only, newest first.
 
+## 2026-11-15 - action sequences and clips
+- Owner's request: capture actions as sequences (fishing, Fly). Tools: `rec:N[:K]` token, `play.py record`
+  (GIF clips at game speed, @3x, poster PNG), `seq-<action>` sets get strip.png + steps.gif, --verify compares
+  every clip frame, publish copies GIFs. Image labels fold accents. Test added (9 pass).
+
 ## 2026-11-15 - Pokémon Blue main set, run 2
 - game-capture: 42 new shots (92 total): Brock gym and badge, learn move, evolution, Surf, fishing, bicycle, Cut,
   Fly map, forest, Mt. Moon, Safari Zone, Game Corner slots, S.S. Anne, Pokémon Tower ghost, Silph Co.,

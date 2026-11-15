@@ -19,6 +19,9 @@ Routes are comma-separated tokens:
                                         apart, at most `settle.limit` frames); deterministic like any token
   !                                     last token only (shoot.py): take the frame as is, no final settle
                                         (auto-advancing messages, animations caught mid-way)
+  rec:N[:K]                             clip: record N frames, keeping every Kth (default 2), as an animated GIF
+                                        (last token of a shot route: shoot.py / play.py record); elsewhere a plain
+                                        wait of N frames, so routes that continue after a clip stay the same
   pow, shot                             no-ops (power-on marker, extra screenshot)
   NAME                                  macro from game.json "macros" (UPPERCASE), expanded recursively
   @checkpoint                           first token only: start from that checkpoint (games/<slug>/checkpoints.txt)
@@ -264,6 +267,8 @@ def step(emu, game, tok):
             settle(emu, game)
         elif re.match(r"^w\d+$", base):
             emu.frames(int(base[1:]))
+        elif re.match(r"^rec:\d+(:\d+)?$", base):
+            emu.frames(int(base.split(":")[1]))
         elif base.startswith("poke:"):
             addr, data = base[5:].split("=")
             emu.poke(int(addr, 16), bytes.fromhex(data))
@@ -377,11 +382,63 @@ def start(game, route, model=None, cache=True):
     return emu, rest, base + rest
 
 
+# ------------------------------------------------------------------ clips
+FPS = 59.7275       # Game Boy frame rate
+
+
+def rec_token(tok):
+    """'rec:240:2' -> (240, 2); None if not a rec token."""
+    m = re.match(r"^rec:(\d+)(?::(\d+))?$", tok)
+    return (int(m.group(1)), int(m.group(2) or 2)) if m else None
+
+
+def record(emu, game, n, every=2):
+    """Run n frames from the current state, keeping a frame every `every` frames (the first one included).
+    Held GameShark values stay applied. Returns PNG bytes per kept frame."""
+    frames = [emu.screen()]
+    for _ in range(n // every):
+        emu.frames(every)
+        apply_freezes(emu)
+        frames.append(emu.screen())
+    rest = n - (n // every) * every
+    if rest:
+        emu.frames(rest)
+    return frames
+
+
+def write_gif(frames, path, every=2, scale=1, hold_ms=None):
+    """Animated GIF from PNG bytes, nearest-neighbour scaled, at game speed (or hold_ms per frame), looping.
+    GIF delays are in 10 ms steps: the per-frame delay alternates so the average matches the game's timing."""
+    from PIL import Image
+    ims = []
+    for f in frames:
+        im = Image.open(io.BytesIO(f) if isinstance(f, bytes) else f).convert("RGB")
+        if scale > 1:
+            im = im.resize((im.width * scale, im.height * scale), Image.NEAREST)
+        ims.append(im.convert("P", palette=Image.ADAPTIVE, colors=256))
+    if hold_ms:
+        durs = [hold_ms] * len(ims)
+    else:
+        per = every * 1000.0 / FPS
+        durs, acc = [], 0.0
+        for _ in ims:
+            acc += per
+            d = int(round(acc / 10.0)) * 10 - sum(durs)
+            durs.append(max(d, 20))
+    ims[0].save(path, save_all=True, append_images=ims[1:], duration=durs, loop=0, optimize=False, disposal=1)
+
+
 # ------------------------------------------------------------------ images
 def enlarge(src, dst, scale=3):
     from PIL import Image
     im = Image.open(src).convert("RGB")
     im.resize((im.width * scale, im.height * scale), Image.NEAREST).save(dst)
+
+
+def ascii_label(s):
+    """Image labels use PIL's default bitmap font: fold accents (Pokémon -> Pokemon), drop what it cannot draw."""
+    import unicodedata
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
 
 
 def sheet(paths, out, cols=4, labels=None):
@@ -399,7 +456,7 @@ def sheet(paths, out, cols=4, labels=None):
         x, y = (i % cols) * w, (i // cols) * (h + lh)
         s.paste(im, (x, y))
         if labels:
-            d.text((x + 2, y + h), labels[i][:26], fill=(230, 230, 230))
+            d.text((x + 2, y + h), ascii_label(labels[i])[:26], fill=(230, 230, 230))
     s.save(out)
 
 

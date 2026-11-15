@@ -45,6 +45,20 @@ situations - every core system the playbook lists - one boss (if the game has bo
 - **Ids:** lowercase `area_thing` (`title_screen`, `w1_forest_start`, `battle_magic`, `boss_dragon`). Stable:
   they name the files.
 
+## Action sequences and clips (owner's request 2026-11-15)
+Some actions are best shown as what happens, step by step (fishing, fast travel, a level-up, a transformation).
+- **Sequence set** `seq-<action>` (e.g. `seq-fishing`): one shot per step, in the order the player sees them,
+  ids `01_<step>`, `02_<step>`, ... (the order of the shot list is the order of the steps). Start from the
+  last normal gameplay frame before the action and end on the first normal frame after it. Every menu, prompt
+  and text box of the action is a step; captions say what the player did ("Select SUPER ROD, USE").
+  shoot.py adds `strip.png` (all steps, numbered) and `steps.gif` (1.5 s per step).
+- **Clips** for the motion itself (an animation between two steps: casting, take-off, landing, a transition):
+  `play.py record ID CATEGORY FRAMES "caption" --every K --set seq-<action>` -> `<id>.gif` / `@3x.gif` at game
+  speed (poster frame `<id>.png`). Keep clips short (1-6 s: FRAMES 60-360) and K=2 (30 fps) for smooth motion,
+  K=3-4 for slow scenes; a clip is part of the step order like any shot.
+- Same quality rules as stills: realistic values, nothing broken; a sequence uses one consistent situation
+  (same place, same party) from start to end.
+
 ## Design reference
 Shots are evidence for `games/<slug>/design/`: when a shot shows a rule or a number (a shop price list, a level-up
 screen, a status screen), link it from the design document that states the rule.
