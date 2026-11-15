@@ -61,8 +61,14 @@ python3 tools/play.py stop
 2. **Checkpoint every milestone** (new area, before a boss, after a menu was reached). Cheap, and other agents
    reuse them.
 3. **Snap as you go**: when the screen is worth having, `snap` it now; do not plan to come back.
-4. Parallel work: `--name N` gives an independent session (one emulator each).
-5. `do` settles after the tokens (the wait is recorded as `settle` in the route). Screens that never settle
+4. `undo` is one level deep: before a risky sequence make a `checkpoint` (or `do` it in smaller steps).
+5. Parallel work: `--name N` gives an independent session (one emulator each).
+6. **Never mash into a prompt.** `mash:a:N` happily types A's into a name-entry keyboard or picks a menu entry.
+   Mash in short blocks (`mash:a:150,settle`) and look at the screenshot before a naming or Yes/No prompt.
+7. **Settle stops on blank frames.** A fully white or black frame (mid-fade) counts as stable. After transitions
+   (title START, doors, cutscene cuts) add `w60` before `settle`. Do not change `settle` itself: routes depend
+   on its exact behaviour.
+8. `do` settles after the tokens (the wait is recorded as `settle` in the route). Screens that never settle
    (animated backgrounds, blinking cursors, moving enemies) report "still changing": that is normal in action
    games; use `do!` and exact `wN` to pick the frame you want.
 
@@ -113,8 +119,8 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
 2. Otherwise search: `find reset`, change the value in game (lose a life), `find "new == old - 1"`, repeat with
    `find "new == old"` while nothing changes, until 1-3 candidates remain; confirm with `poke` and a screenshot.
    16-bit values: add `--wide`.
-3. Record it in `game.json` "ram" (`"lives": {"addr": "C0A2", "size": 1}`: shown by every `do`) and the playbook
-   RAM map.
+3. Record it in `game.json` "ram" (`"lives": {"addr": "C0A2", "size": 1}`: shown by every `do`; `"fmt": "bcd"`
+   for packed-BCD values such as money, `"be"` for big-endian) and the playbook RAM map.
 - Pokes are part of the route and fine anywhere; values that show on screen follow the realistic-values rule.
 
 ## Choosing the model (GB/GBC)

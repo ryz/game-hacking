@@ -2,6 +2,12 @@
 
 Append-only, newest first.
 
+## 2026-11-15 - Pokémon Blue scouted
+- game-scout: playbook (controls, RAM map, sources: pret/pokered), macros TITLE/NEWGAME/CONTINUE/LATE/MID,
+  checkpoints title/start/late, door-warp recipe, ~50-id shot plan, design README started; saves 01_start and
+  02_late_game_test exported. Verified by the coordinator (replay without cache, both saves boot).
+- Tools: RAM watches take `"fmt": "bcd"`; emulator.md: mash and blank-frame rules, undo depth.
+
 ## 2026-11-15 - milestone saves committed
 - Owner's rule: commit the saves agents make, so the owner can jump in. `play.py export NAME "desc" [--state]`
   writes `games/<slug>/saves/NAME.sav` (+ SameBoy `.state`) and its README row; `.gitignore` exception added;

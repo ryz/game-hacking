@@ -115,7 +115,8 @@ class Game:
         return read_table(os.path.join(self.dir, "checkpoints.txt"), ("name", "description", "route"))
 
     def ram(self):
-        """game.json "ram": {"lives": {"addr": "C0A2", "size": 1, "note": "..."}} -> watch list for status."""
+        """game.json "ram": {"lives": {"addr": "C0A2", "size": 1, "fmt": "le|be|bcd", "note": "..."}} -> the
+        values every play.py do/status prints (fmt bcd = packed BCD, high byte first, e.g. money)."""
         return self.meta.get("ram", {})
 
 

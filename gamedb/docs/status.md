@@ -19,9 +19,14 @@ Current snapshot; history in `progress-log.md`.
 ## Games
 | Slug | Title | Playbook | Sets |
 |---|---|---|---|
-| (none yet) | | | |
+| pokemon-blue | Pokémon Blue Version (USA, Europe) | scouted 2026-11-15: controls, RAM map, LATE/MID recipes, door warp; design reference started | none yet (saves 01_start, 02_late_game_test) |
 
 ## Next
+- Capture Pokémon Blue (game-capture; plan: games/pokemon-blue/shots.txt, ~50 ids).
+- `--model sgb` hangs on the SGB transfer screen (Pokémon Blue, pc=20b4): gbemu-cli SGB handshake; until fixed,
+  capture in dmg.
+- Routes using a macro change silently when the macro is edited: freeze macros once used in published shots
+  (copy as a new macro name instead of editing), or store expanded routes in index.json.
 - First real game through the whole pipeline; promote its lessons into docs/emulator.md and the skills.
 - More platforms: a backend per system in tools/platforms.py (candidates: stable-retro / libretro cores for
   NES, SNES, GBA, Genesis; needs a pip install approved by the owner).

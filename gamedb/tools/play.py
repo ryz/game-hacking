@@ -78,7 +78,11 @@ class Session:
         for k, v in self.game.ram().items():
             n = int(v.get("size", 1))
             b = self.emu.peek(int(v["addr"], 16), n)
-            out.append("%s=%d" % (k, int.from_bytes(b, "little")))
+            fmt = v.get("fmt", "le")
+            if fmt == "bcd":          # packed BCD, most significant byte first (as most GB games store money)
+                out.append("%s=%s" % (k, b.hex().lstrip("0") or "0"))
+            else:
+                out.append("%s=%d" % (k, int.from_bytes(b, "big" if fmt == "be" else "little")))
         r = self.emu.regs()
         return "pc=%s bank=%s  %s" % (r["pc"], r.get("bank"), " ".join(out))
 

@@ -4,3 +4,58 @@
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/pokemon-blue/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # title_screen | title | Title screen | @title
+title_screen | title | Title screen: POKéMON Blue Version logo, Squirtle and the player | @title
+menu_main | menu | Main menu: NEW GAME / OPTION (no save yet) | @title,start,settle,w60,settle
+oak_name_menu | menu | Oak asks your name: NEW NAME or the defaults BLUE / GARY / JOHN | @title,start,w60,a,w60,mash:a:600,settle,mash:a:300,settle,mash:a:150,settle,w60,settle,a,w30,settle
+naming_player | menu | Name entry: player named ryz (lower case keyboard) | @title,start,w60,a,w60,mash:a:600,settle,mash:a:300,settle,mash:a:150,settle,w60,settle,a,w30,settle,a,w30,settle,select,settle,down,right*8,a,down,left*2,a,right,a,settle
+save_prompt | save | Save screen: player, badges, Pokedex count, play time; YES/NO | @start,start,down*3,a,settle
+pokecenter_heal | system | Pokemon Center healing: six Poke Balls on the machine | @start,LATE,TO_DOOR,settle,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,settle,up:16*3,settle,start,down*3,a,w60,settle,b,w30,poke:DA41=1B,poke:DA43=2E,a,w60,settle,b,w30,start,up,a,w30,settle,a,w60,settle,a,w60,settle,a,w200,settle,a,w240,settle,a,w60,settle
+options | options | OPTION screen: text speed, battle animation, battle style | @start,LATE,TO_DOOR,settle,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,settle,up:16*3,settle,start,down*3,a,w60,settle,b,w30,poke:DA41=1B,poke:DA43=2E,a,w60,settle,b,w30,start,up,a,w30,settle,a,w60,settle,a,w60,settle,a,w200,settle,a,w240,settle,a,w60,settle,w200,a,w60,a,w60,settle,a,w30,start,down*2,a,w30,settle
+bag_items | inventory | Bag (ITEM): Bicycle, Town Map, Hyper Potion x7, Super Potion x4 | @start,LATE,TO_DOOR,settle,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,settle,up:16*3,settle,start,down*3,a,w60,settle,b,w30,poke:DA41=1B,poke:DA43=2E,a,w60,settle,b,w30,start,up,a,w30,settle,a,w60,settle,a,w60,settle,a,w200,settle,a,w240,settle,a,w60,settle,w200,a,w60,a,w60,settle,a,w30,start,down*2,a,w30,settle,left,b,w30,up*3,a,w30,settle
+cable_club | dialogue | Indigo Plateau lobby: Cable Club attendant (link trade/battle desk) | @start,LATE,TO_DOOR,settle,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,settle,up:16*3,settle,start,down*3,a,w60,settle,b,w30,poke:DA41=1B,poke:DA43=2E,a,w60,settle,b,w30,start,up,a,w30,settle,a,w60,settle,a,w60,settle,a,w200,settle,a,w240,settle,a,w60,settle,w200,a,w60,a,w60,settle,a,w30,start,down*2,a,w30,settle,left,b,w30,up*3,a,w30,settle,b,w20,down*2,a,w30,settle,a,w60,settle,w120,settle,right:16*5,up:16*7,w60,settle,right:16,up,a,w60,settle
+# --- planned (no route yet; method in playbook "Shot plan") ---
+# boot_gamefreak | boot | Game Freak logo with shooting star | w420.. (find frame with do!)
+# intro_fight | cutscene | Intro: Gengar vs Nidorino | w900 (do!)
+# oak_intro | cutscene | Prof. Oak: "Welcome to the world of POKeMON!" | @title,start,w60,a,w60
+# naming_rival | menu | Rival naming menu: NEW NAME / RED / ASH / JACK | RIVAL_RED stops there
+# start_room | gameplay | ryz in his bedroom, first control | @start
+# pallet_town | gameplay | Pallet Town overworld | play from @start
+# oak_lab_choose | cutscene | Oak's lab: choosing the starter | play from @start (Route 1 edge -> Oak)
+# battle_rival_first | battle | First rival battle in Oak's lab | play
+# route1_wild | battle | Wild battle on Route 1 (grass) | play / MID + warp
+# battle_menu | battle | FIGHT / PKMN / ITEM / RUN menu | wild battle
+# battle_moves | battle | Move selection with type/PP box | wild battle
+# battle_catch | system | Poke Ball throw / "Gotcha!" | wild battle with balls
+# battle_levelup | battle | Level-up stats box | low-exp party member (set exp near next level)
+# learn_move | system | "Trying to learn a new move" prompt | exp before a learnset level
+# evolution | system | "What? X is evolving!" | exp before an evolution level
+# gym_brock | boss | Brock battle, Pewter Gym | MID or LATE + door warp $36
+# trainer_battle | battle | Trainer challenge "!" + battle intro | gym trainer
+# viridian_forest | gameplay | Viridian Forest | warp $33
+# mt_moon | gameplay | Mt. Moon cave | warp $3B
+# pokecenter_nurse | dialogue | Nurse Joy greeting | (scout route)
+# mart_buy | shop | Poke Mart buy list | warp to a Mart ($2A/$38/$43...)
+# pc_bills | system | Bill's PC / item storage | Pokemon Center PC
+# start_menu | menu | Start menu (POKeDEX ... EXIT) | any field state + start
+# pokedex_list | inventory | Pokedex contents list with SEEN/OWN | LATE
+# pokedex_entry | inventory | Pokedex DATA entry page | LATE
+# party_screen | inventory | Party of six with HP bars | LATE
+# summary_stats | inventory | Summary page 1: stats/type/OT | LATE
+# summary_moves | inventory | Summary page 2: EXP + moves/PP | LATE
+# trainer_card | inventory | Trainer card with 8 badges | LATE
+# town_map | map | Town Map item | LATE, ITEM > TOWN MAP
+# fly_map | map | Fly destination map | LATE (D70B visited flags), PIDGEOT > FLY outdoors
+# surfing | system | Surfing on water | LATE, Blastoise SURF next to water
+# fishing | system | Fishing with SUPER ROD | LATE, face water + use rod
+# bicycle | gameplay | Riding the Bicycle (cycling music) | LATE, ITEM > BICYCLE outdoors
+# cut_tree | system | Cutting a tree | LATE, Victreebel CUT
+# safari_zone | minigame | Safari Zone battle (BAIT/ROCK/BALL) | warp $DC + Safari state (open question)
+# game_corner | minigame | Game Corner slot machine | warp $87, needs COIN CASE
+# ss_anne | gameplay | S.S. Anne | warp $5F
+# pokemon_tower | gameplay | Pokemon Tower ghost (SILPH SCOPE) | warp $8E..$94
+# silph_co | gameplay | Silph Co. | warp $B5
+# elite_four | boss | Elite Four Lorelei | @late, walk north from lobby (x8,y0)
+# champion | boss | Champion (rival RED) | warp $78 (open question: script state)
+# hall_of_fame | ending | Hall of Fame | after champion
+# credits | credits | Credits | after Hall of Fame
+# blackout | gameover | "ryz is out of usable POKeMON! ... blacked out!" | lose a battle

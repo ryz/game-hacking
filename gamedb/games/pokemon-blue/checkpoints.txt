@@ -3,3 +3,4 @@
 # title | Title screen, settled | TITLE,settle
 title | Title screen (Squirtle shown), settled | pow,w1400,settle
 start | First control: ryz in his bedroom (Red's house 2F), rival RED, no Pokemon, 3000 money | @title,NEWGAME
+late | RAM recipe LATE (8 badges, party L42-52, 48215 money, 27:47) + door warp to Indigo Plateau lobby, by the entrance | @start,LATE,TO_DOOR,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,poke:D355=01
