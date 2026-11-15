@@ -1,6 +1,6 @@
 # Pokémon Blue Version - shots: main
 
-Platform gb, model dmg, ROM SHA-1 `d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`. 50 shots. Contact sheet: [sheet.png](sheet.png).
+Platform gb, model dmg, ROM SHA-1 `d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`. 68 shots. Contact sheet: [sheet.png](sheet.png).
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -52,7 +52,25 @@ Platform gb, model dmg, ROM SHA-1 `d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`. 50
 | pokecenter_nurse | dialogue | Pokemon Center nurse: "Welcome to our POKéMON CENTER!" (Indigo Plateau lobby) | no | [png](pokecenter_nurse.png) [3x](pokecenter_nurse@3x.png) |
 | save_prompt | save | Save screen: PLAYER ryz, BADGES 8, POKéDEX 71, TIME 27:46; "Would you like to SAVE the game?" | yes | [png](save_prompt.png) [3x](save_prompt@3x.png) |
 | options | options | OPTION screen: TEXT SPEED FAST/MEDIUM/SLOW, BATTLE ANIMATION ON/OFF, BATTLE STYLE SHIFT/SET | yes | [png](options.png) [3x](options@3x.png) |
-| pokecenter_heal | system | Pokemon Center healing: six Poke Balls on the machine | yes | [png](pokecenter_heal.png) [3x](pokecenter_heal@3x.png) |
+| pokecenter_heal | system | Pokemon Center healing: the nurse sets six Poke Balls on the healing machine | no | [png](pokecenter_heal.png) [3x](pokecenter_heal@3x.png) |
 | cable_club | dialogue | Indigo Plateau lobby: Cable Club attendant (link trade/battle desk) | yes | [png](cable_club.png) [3x](cable_club@3x.png) |
+| pewter_gym | gameplay | Pewter Gym: ryz walks between the boulders toward Brock | yes | [png](pewter_gym.png) [3x](pewter_gym@3x.png) |
+| brock_talk | dialogue | Pewter Gym: "I'm BROCK! I'm PEWTER's GYM LEADER!" | no | [png](brock_talk.png) [3x](brock_talk@3x.png) |
+| gym_brock | boss | Gym Leader battle: "BROCK wants to fight!" in Pewter Gym (2 vs 4 Pokemon) | no | [png](gym_brock.png) [3x](gym_brock@3x.png) |
+| learn_move | system | Learning a move: "BUTTERFREE is trying to learn STUN SPORE!" (L16, four moves known) | no | [png](learn_move.png) [3x](learn_move@3x.png) |
+| learn_move_forget | system | Learning a move: "Which move should be forgotten?" cursor on HARDEN | yes | [png](learn_move_forget.png) [3x](learn_move_forget@3x.png) |
+| badge_received | system | Gym victory: "ryz received the BOULDERBADGE!" from Brock | yes | [png](badge_received.png) [3x](badge_received@3x.png) |
+| evolution_start | system | Evolution: "What? SQUIRTLE is evolving!" after the Brock battle (L16) | yes | [png](evolution_start.png) [3x](evolution_start@3x.png) |
+| evolution | system | Evolution: "SQUIRTLE evolved into WARTORTLE!" | yes | [png](evolution.png) [3x](evolution@3x.png) |
+| indigo_plateau | gameplay | Indigo Plateau: ryz outside the Pokemon League building | yes | [png](indigo_plateau.png) [3x](indigo_plateau@3x.png) |
+| fly_map | map | FLY: town-select map of Kanto, "To PALLET TOWN" with Pidgeot as the cursor | yes | [png](fly_map.png) [3x](fly_map@3x.png) |
+| surfing | gameplay | Surfing: ryz rides the SURF sprite across Vermilion City's water | no | [png](surfing.png) [3x](surfing@3x.png) |
+| fishing | system | Fishing with the SUPER ROD at Vermilion's harbour: "Oh! It's a bite!" | no | [png](fishing.png) [3x](fishing@3x.png) |
+| fishing_battle | battle | Fishing battle: "The hooked KRABBY attacked!" (Super Rod, Vermilion City) | yes | [png](fishing_battle.png) [3x](fishing_battle@3x.png) |
+| bicycle | gameplay | Riding the BICYCLE through Vermilion City (twice walking speed) | no | [png](bicycle.png) [3x](bicycle@3x.png) |
+| cut_tree | system | Field move CUT: "VICTREEBEL hacked away with CUT!" at the tree beside Vermilion Gym | no | [png](cut_tree.png) [3x](cut_tree@3x.png) |
+| viridian_forest | gameplay | Viridian Forest: tall grass and trees, a youngster beside ryz | yes | [png](viridian_forest.png) [3x](viridian_forest@3x.png) |
+| mt_moon | gameplay | Mt. Moon 1F: cave floor and rock ledges, a sign and a trainer ahead | yes | [png](mt_moon.png) [3x](mt_moon@3x.png) |
+| safari_gate | dialogue | Safari Zone gate: "Welcome to the SAFARI ZONE!" | yes | [png](safari_gate.png) [3x](safari_gate@3x.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

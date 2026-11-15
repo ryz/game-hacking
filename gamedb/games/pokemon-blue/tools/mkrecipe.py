@@ -123,6 +123,18 @@ PRESETS = {
         bag=[("TOWN_MAP", 1), ("POTION", 6), ("ANTIDOTE", 3), ("PARLYZ_HEAL", 1), ("POKE_BALL", 9),
              ("ESCAPE_ROPE", 1), ("HM01", 1), ("TM28", 1)],
         money=3172, badges=0x07, owned=19, seen=31),
+    # before Brock: Butterfree one level short of STUN SPORE (learn-move prompt), Squirtle one level short of
+    # evolving; Pewter Gym trainer already beaten so the walk to Brock is free
+    "brock": dict(
+        party=[
+            ("BUTTERFREE", 15, ["CONFUSION", "POISONPOWDER", "HARDEN", "TACKLE"], (13, 8, 11, 14), 610, 0),
+            ("SQUIRTLE", 15, ["TACKLE", "TAIL_WHIP", "BUBBLE", "WATER_GUN"], (12, 9, 14, 11), 720, 3),
+            ("PIDGEY", 12, ["GUST", "SAND_ATTACK", "QUICK_ATTACK"], (10, 13, 15, 6), 340, 0),
+            ("PIKACHU", 10, ["THUNDERSHOCK", "GROWL", "THUNDER_WAVE"], (14, 7, 12, 13), 150, 0),
+        ],
+        bag=[("TOWN_MAP", 1), ("POTION", 4), ("ANTIDOTE", 2), ("POKE_BALL", 7)],
+        money=1386, badges=0x00, owned=8, seen=14, exp_frac=[93, 88, 41, 26],
+        events=["EVENT_BEAT_PEWTER_GYM_TRAINER_0"], time=(1, 52)),
 }
 LEGEND = {"ARTICUNO", "ZAPDOS", "MOLTRES", "MEWTWO", "MEW"}
 
@@ -149,7 +161,8 @@ for i, (sp, lvl, moves, dvs, sexp, hurt) in enumerate(party):
     st = [stat(b["atk"], a, se[1], lvl), stat(b["df"], d, se[2], lvl), stat(b["spd"], s, se[3], lvl),
           stat(b["spc"], c, se[4], lvl)]
     e0, e1 = exp_at(b["growth"], lvl), exp_at(b["growth"], lvl + 1)
-    exp = e0 + (e1 - e0) * (17 + 13 * i) // 100     # 17%..82% of the way to the next level
+    frac = p["exp_frac"][i] if "exp_frac" in p else 17 + 13 * i
+    exp = e0 + (e1 - e0) * frac // 100     # default 17%..82% of the way to the next level
     mv = [MOVE[m] for m in moves] + [0] * (4 - len(moves))
     pp = [PP[m] for m in moves] + [0] * (4 - len(moves))
     rec = [MON[sp]] + list((mhp - hurt).to_bytes(2, "big")) + [lvl, 0, b["t1"], b["t2"], b["catch"]] + mv + OTID
@@ -168,7 +181,8 @@ for i, (sp, lvl, moves, dvs, sexp, hurt) in enumerate(party):
 own = {DEX["DEX_" + s] for s, *_ in party}
 pre_evos = {"BLASTOISE": ["SQUIRTLE", "WARTORTLE"], "PIDGEOT": ["PIDGEY", "PIDGEOTTO"], "RAICHU": ["PIKACHU"],
             "VICTREEBEL": ["BELLSPROUT", "WEEPINBELL"], "KADABRA": ["ABRA"], "WARTORTLE": ["SQUIRTLE"],
-            "PIDGEOTTO": ["PIDGEY"], "NIDORINO": ["NIDORAN_M"]}
+            "PIDGEOTTO": ["PIDGEY"], "NIDORINO": ["NIDORAN_M"],
+            "BUTTERFREE": ["CATERPIE", "METAPOD"]}
 for s, *_ in party:
     own |= {DEX["DEX_" + x] for x in pre_evos.get(s, [])}
 names = sorted(DEX, key=DEX.get)
@@ -203,11 +217,14 @@ poke(0xD356, [p["badges"]])
 # event flags: got starter, Pokedex, Oak's parcel delivered (start menu shows POKEDEX)
 ev = {}
 for e in ["EVENT_GOT_STARTER", "EVENT_GOT_POKEDEX", "EVENT_OAK_GOT_PARCEL", "EVENT_GOT_OAKS_PARCEL",
-          "EVENT_BATTLED_RIVAL_IN_OAKS_LAB", "EVENT_GOT_TOWN_MAP"]:
+          "EVENT_BATTLED_RIVAL_IN_OAKS_LAB", "EVENT_GOT_TOWN_MAP"] + p.get("events", []):
     n = EVENT[e]
     ev.setdefault(0xD747 + n // 8, 0)
     ev[0xD747 + n // 8] |= 1 << (n % 8)
     print("# %s = %d -> %04X bit %d" % (e, n, 0xD747 + n // 8, n % 8), file=sys.stderr)
 for addr, v in sorted(ev.items()):
     toks.append("poke:%04X=%02X" % (addr, v))  # fresh game: these bytes are 0
+if "time" in p:
+    toks.append("poke:DA41=%02X" % p["time"][0])
+    toks.append("poke:DA43=%02X" % p["time"][1])
 print(",".join(toks))
