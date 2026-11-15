@@ -61,7 +61,9 @@ python3 tools/play.py stop
 2. **Checkpoint every milestone** (new area, before a boss, after a menu was reached). Cheap, and other agents
    reuse them.
 3. **Snap as you go**: when the screen is worth having, `snap` it now; do not plan to come back.
-4. `undo` is one level deep: before a risky sequence make a `checkpoint` (or `do` it in smaller steps).
+4. After `goto` or `undo` the screen still shows an old frame: `snap` refuses until a `do` has run (`do settle`).
+   `game.json` edits (macros, watches) are picked up by the next `do`, no restart needed.
+   `undo` is one level deep: before a risky sequence make a `checkpoint` (or `do` it in smaller steps).
 5. Parallel work: `--name N` gives an independent session (one emulator each).
 6. **Never mash into a prompt.** `mash:a:N` happily types A's into a name-entry keyboard or picks a menu entry.
    Mash in short blocks (`mash:a:150,settle`) and look at the screenshot before a naming or Yes/No prompt.

@@ -120,13 +120,13 @@ def main():
                 if not same:
                     shutil.copyfile(os.path.join(t, s["id"] + ".png"), os.path.join(d, s["id"] + ".replay.png"))
                     bad += 1
-                print("%-24s %s" % (s["id"], "ok" if same else "MISMATCH (see %s.replay.png)" % s["id"]))
+                print("%-24s %s" % (s["id"], "ok" if same else "MISMATCH (see %s.replay.png)" % s["id"]), flush=True)
             continue
         settled = shoot_one(game, s, d, model)
         index_update(game, d, {"id": s["id"], "category": s["category"], "caption": s["caption"],
                                "route": s["route"], "settled": settled, "model": model,
                                "source": "shoot.py"}, sha)
-        print("%-24s %s" % (s["id"], "settled" if settled else "NOT settled (animated?)"))
+        print("%-24s %s" % (s["id"], "settled" if settled else "NOT settled (animated?)"), flush=True)
     if a.verify:
         print("%d/%d reproduce" % (len(shots) - bad, len(shots)))
         return 3 if bad else 0

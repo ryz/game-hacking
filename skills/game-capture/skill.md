@@ -45,6 +45,9 @@ edit anything outside the game's folder.
    ```
    Never `git add` anything outside `gamedb/games/SLUG/`, never force-push, never commit `work/` or `rom/`.
    A failing rebase (someone changed the same files): stop committing, report it.
+   Before snapping screens that show RAM-recipe values (summary, EXP, trainer card, Pokédex counts), check them
+   on screen against the game's own rules (EXP inside the level's range, stats plausible for the level) and fix
+   the recipe first.
 4. Stuck for more than ~10 steps: re-read the playbook strategy and shortcuts, `undo`/`goto`, look up the
    specific problem (a FAQ section, a code list), or poke/code past it. Never grind.
 5. **Document the game as you play** in `games/SLUG/design/` (notation in its README): every rule, number and

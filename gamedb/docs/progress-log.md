@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-15 - Pokémon Blue main set
+- game-capture: 50 shots published (boot to Elite Four Lorelei, menus, battles, catch, blackout, Mart, Center),
+  design docs, saves 03_starter_lab and 05_elite_four_lorelei; commit 4d04ea9. Coordinator --verify rerun 50/50.
+- Fixes: mkrecipe.py growth groups (3 medium slow / 5 slow) and EXP fraction, committed in
+  games/pokemon-blue/tools/; MID macro EXP regenerated (LATE kept, LATE_EXP corrects it). play.py: snap refuses
+  stale frames after goto/undo, reloads game.json on every do; shoot.py flushes progress lines.
+
 ## 2026-11-15 - Pokémon Blue scouted
 - game-scout: playbook (controls, RAM map, sources: pret/pokered), macros TITLE/NEWGAME/CONTINUE/LATE/MID,
   checkpoints title/start/late, door-warp recipe, ~50-id shot plan, design README started; saves 01_start and

@@ -69,6 +69,16 @@ class Session:
         self.toks = [t for t in toks if not t.startswith("@") and t != "pow"]
         self.undo_state = None
         self.n = 0
+        # a loaded state has no rendered frame yet: snap refuses until a `do` has run frames
+        self.stale = bool(rest == [] and route.split(",")[0].startswith("@"))
+        self.meta_mtime = os.path.getmtime(os.path.join(self.game.dir, "game.json"))
+
+    def reload_game(self):
+        """Pick up game.json edits (new macros, RAM watches) without restarting the session."""
+        p = os.path.join(self.game.dir, "game.json")
+        if os.path.getmtime(p) != self.meta_mtime:
+            self.game = self.E.Game(self.game.slug)
+            self.meta_mtime = os.path.getmtime(p)
 
     def route(self):
         return ",".join([self.base] + self.toks)
@@ -94,6 +104,8 @@ class Session:
         return path
 
     def do(self, seq, settle=True):
+        self.reload_game()
+        self.stale = False
         raw = [t for t in self.E.split(seq) if t != "pow"]
         toks = self.E.expand(self.game, raw)
         self.undo_state = os.path.join(self.dir, "undo.state")
@@ -117,6 +129,9 @@ class Session:
     def snap(self, sid, cat, caption, set_="main"):
         if not re.match(r"^[a-z0-9_]+$", sid):
             return "error: id must be lowercase a-z0-9_ (area_thing)"
+        if self.stale:
+            return ("error: the screen is stale after goto/undo/start at a checkpoint (the frame shown is not this "
+                    "state's); run `do settle` (or `do! w1`) first, then snap")
         d = os.path.join(ROOT, "work", "shots", self.game.slug, set_)
         os.makedirs(d, exist_ok=True)
         native = os.path.join(d, "%s.png" % sid)
@@ -193,6 +208,7 @@ class Session:
         self.emu.close()        # reopen: the checkpoint may use another ROM variant or save (start() uses the cache)
         self.emu, _, _ = self.E.start(self.game, "@" + name, self.model)
         self.base, self.toks = "@" + name, []
+        self.stale = True
         return self.watch()
 
     def handle(self, cmd, args):
@@ -205,7 +221,8 @@ class Session:
             e.load_state(self.undo_state)
             self.toks, self.undo_state = self.undo_toks, None
             e.freezes = self.undo_freezes
-            return rel(self.shot()) + "\n" + self.watch()
+            self.stale = True
+            return "%s (frame not redrawn yet: `do settle` before a snap)\n%s" % (rel(self.shot()), self.watch())
         if cmd == "shot":
             return rel(self.shot(args[0] if args else None))
         if cmd == "snap":
