@@ -231,12 +231,16 @@ def test_clip_and_sequence(selftest):
     run(*P, "start", SLUG)
     run(*P, "do", "w30")
     run(*P, "snap", "s01_start", "gameplay", "Start", "--set", "seq-test")
-    assert "frames kept" in run(*P, "record", "s02_clip", "gameplay", "60", "Clip", "--every", "3", "--set", "seq-test")
+    bad = subprocess.run([sys.executable] + P + ["record", "s02_clip", "clip", "60", "Clip", "--set", "seq-test"],
+                         cwd=ROOT, capture_output=True, text=True)
+    assert bad.returncode == 1 and "error: category 'clip' unknown" in bad.stdout
+    out = run(*P, "record", "s02_clip", "gameplay", "60", "Clip", "--every", "3", "--poster", "-1", "--set", "seq-test")
+    assert "frames kept" in out and "poster = kept frame -1" in out
     run(*P, "do", "a")
     run(*P, "snap", "s03_after", "gameplay", "After A", "--set", "seq-test")
     run(*P, "stop")
     d = os.path.join(ROOT, "work", "shots", SLUG, "seq-test")
-    assert open(os.path.join(d, "shots.txt")).read().count("rec:60:3") == 2     # the clip, and the step after it
+    assert open(os.path.join(d, "shots.txt")).read().count("rec:60:3:-1") == 2  # the clip, and the step after it
     assert "3/3 reproduce" in run("tools/shoot.py", SLUG, "seq-test", "--verify")
     run("tools/shoot.py", SLUG, "seq-test", "--publish-only")
     pub = os.path.join(ROOT, "games", SLUG, "shots", "seq-test")
@@ -244,4 +248,4 @@ def test_clip_and_sequence(selftest):
         assert os.path.exists(os.path.join(pub, f)), f
     idx = json.load(open(os.path.join(pub, "index.json")))
     clip = [s for s in idx["shots"] if s["id"] == "s02_clip"][0]["clip"]
-    assert clip["frames"] == 60 and clip["every"] == 3 and clip["kept"] == 21
+    assert clip["frames"] == 60 and clip["every"] == 3 and clip["kept"] == 21 and clip["poster"] == -1

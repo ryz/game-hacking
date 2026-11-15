@@ -9,6 +9,24 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-15 - Pokémon Blue sequences: seq-fishing, seq-fly
+- Task: publish seq-fishing (15 steps, 3 clips, incl. the no-bite branch) and seq-fly (9 steps, 2 clips),
+  design notes, commit 12fdafe.
+- Worked: record fits the do/snap loop, undo after record works; checkpoints just before each deciding input
+  made retakes cheap; an emu.py w0..w3 loop found the bite frame; --verify handles clips; --publish-only.
+- Friction: poster = first frame (transitions start white; 3-4 re-records for usable posters); clip length is
+  hard to judge (GIF merges duplicate frames); no `clip` category, unknown categories only warned after the
+  fact; hand edits of index.json did not refresh index.md/strip; re-recording a later clip from a checkpoint
+  needed a hand-made `wN` for the earlier `rec:` (undocumented).
+- Proposed rule change: record --poster N (or first non-blank frame) + a frame strip; reject unknown categories
+  up front, clips take the category of what they show; --verify regenerates index.md/strip/steps; capture-guide
+  line on posters.
+- Corrected: coordinator reran --verify (15/15, 9/9), looked at both strips. Implemented: `rec:N:K:P` poster
+  index, `record --poster P` + numbered kept-frame sheet, category check in snap/record, a full passing --verify
+  rebuilds index.md/sheet/strip/steps; capture-guide poster and category notes. Re-picked the posters of
+  07_cast_clip (102), 09_battle_clip (72), 07_takeoff_clip (42), 08_landing_clip (24), republished.
+- Status: promoted 2026-11-15 (all four)
+
 ### 2026-11-15 - Pokémon Blue main set, run 2 (50 -> 92 shots)
 - Task: extend the main set (gym, learn move/evolution, field moves, locations, endgame, PC), design docs,
   saves, milestone commits.

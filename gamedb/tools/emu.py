@@ -19,9 +19,10 @@ Routes are comma-separated tokens:
                                         apart, at most `settle.limit` frames); deterministic like any token
   !                                     last token only (shoot.py): take the frame as is, no final settle
                                         (auto-advancing messages, animations caught mid-way)
-  rec:N[:K]                             clip: record N frames, keeping every Kth (default 2), as an animated GIF
+  rec:N[:K[:P]]                         clip: record N frames, keeping every Kth (default 2), as an animated GIF
                                         (last token of a shot route: shoot.py / play.py record); elsewhere a plain
-                                        wait of N frames, so routes that continue after a clip stay the same
+                                        wait of N frames, so routes that continue after a clip stay the same;
+                                        P = kept frame used as the poster still (default 0 = first; -1 = last)
   pow, shot                             no-ops (power-on marker, extra screenshot)
   NAME                                  macro from game.json "macros" (UPPERCASE), expanded recursively
   @checkpoint                           first token only: start from that checkpoint (games/<slug>/checkpoints.txt)
@@ -267,7 +268,7 @@ def step(emu, game, tok):
             settle(emu, game)
         elif re.match(r"^w\d+$", base):
             emu.frames(int(base[1:]))
-        elif re.match(r"^rec:\d+(:\d+)?$", base):
+        elif re.match(r"^rec:\d+(:\d+)?(:-?\d+)?$", base):
             emu.frames(int(base.split(":")[1]))
         elif base.startswith("poke:"):
             addr, data = base[5:].split("=")
@@ -387,9 +388,9 @@ FPS = 59.7275       # Game Boy frame rate
 
 
 def rec_token(tok):
-    """'rec:240:2' -> (240, 2); None if not a rec token."""
-    m = re.match(r"^rec:(\d+)(?::(\d+))?$", tok)
-    return (int(m.group(1)), int(m.group(2) or 2)) if m else None
+    """'rec:240:2:30' -> (240, 2, 30) (frames, every, poster index); None if not a rec token."""
+    m = re.match(r"^rec:(\d+)(?::(\d+))?(?::(-?\d+))?$", tok)
+    return (int(m.group(1)), int(m.group(2) or 2), int(m.group(3) or 0)) if m else None
 
 
 def record(emu, game, n, every=2):

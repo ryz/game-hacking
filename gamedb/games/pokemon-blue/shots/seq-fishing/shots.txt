@@ -4,9 +4,9 @@
 04_super_rod | menu | Scroll down to SUPER ROD | @vermilion,down:16*2,left:16,settle,settle,start,w30,settle,settle,down,settle,settle,a,w60,settle,settle,down*10,settle,settle,settle,settle
 05_use | menu | A on SUPER ROD: USE / TOSS, cursor on USE | @vermilion,down:16*2,left:16,settle,settle,start,w30,settle,settle,down,settle,settle,a,w60,settle,settle,down*10,settle,settle,settle,settle,a,w30,settle,settle
 06_used_rod | dialogue | A on USE: "ryz used SUPER ROD!" | @seqfish_use,w1,a,w20,!
-07_cast_clip | gameplay | Clip: ryz casts the line and waits; the rod jerks when something bites | @seqfish_use,w1,a,w20,rec:240:2
+07_cast_clip | gameplay | Clip: ryz casts the line and waits; the rod jerks when something bites | @seqfish_use,w1,a,w20,rec:240:2:102
 08_bite | dialogue | "Oh! It's a bite!" - the cast was hooked | @seqfish_use,w1,a,w20,rec:240:2,w30,settle,settle
-09_battle_clip | battle | Clip: A closes the text; the wild-battle transition flashes and wipes the screen, the hooked POKéMON slides in | @seqfish_bite,a:8,rec:330:2
+09_battle_clip | battle | Clip: A closes the text; the wild-battle transition flashes and wipes the screen, the hooked POKéMON slides in | @seqfish_bite,a:8,rec:330:2:72
 10_hooked | battle | Battle starts: "The hooked SHELLDER..." (6 party balls shown) | @seqfish_bite,a:8,rec:330:2,settle,settle
 11_attacked | battle | A: "...SHELLDER attacked!" | @seqfish_bite,a:8,rec:330:2,settle,settle,a,w30,settle,settle
 12_battle_menu | battle | BLASTOISE L52 is sent out; the battle menu opens vs the wild SHELLDER L15 | @seqfish_bite,a:8,rec:330:2,settle,settle,a,w30,settle,settle,a,w200,settle,settle

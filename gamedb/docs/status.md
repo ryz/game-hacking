@@ -10,6 +10,8 @@ Current snapshot; history in `progress-log.md`.
 - Skills game-scout and game-capture with agent wrappers; docs emulator.md and capture-guide.md.
 - Shortcuts: `set:` (decimal/BCD values), `gs:` GameShark codes held like the device, `freeze:`, ROM variants
   (`rom:` with Game Genie / IPS / bytes, built in work/roms/), downloaded saves (`sav:` from rom/saves/).
+- Action sequences (`seq-<action>` sets: strip.png, steps.gif) and GIF clips (`rec:N:K:P`, `play.py record`
+  with poster choice).
 - Per-game design reference (`games/<slug>/design/`, written by scout and capture agents).
 - Network: research hosts allowed in the environment (GameFAQs, TCRF, Data Crystal, StrategyWiki, Wikipedia,
   gamehacking.org, Kodewerx, archive.org). curl reached them from this session; WebFetch did not yet (may need a
@@ -19,7 +21,7 @@ Current snapshot; history in `progress-log.md`.
 ## Games
 | Slug | Title | Playbook | Sets |
 |---|---|---|---|
-| pokemon-blue | Pokémon Blue Version (USA, Europe) | scouted + first capture 2026-11-15; design docs battle, pokemon, progression, world, economy, findings | main: 92 shots (verified 92/92); saves 01-06 (start, late test, starter lab, Boulder Badge, Lorelei, Hall of Fame) |
+| pokemon-blue | Pokémon Blue Version (USA, Europe) | scouted + first capture 2026-11-15; design docs battle, pokemon, progression, world, economy, findings | main: 92 shots (verified 92/92); sequences seq-fishing (15), seq-fly (9) with GIF clips; saves 01-06 (start, late test, starter lab, Boulder Badge, Lorelei, Hall of Fame) |
 
 ## Next
 - Pokémon Blue leftovers (optional): trainer "!" spotting, a PC box with Pokémon, Safari BAIT, stone evolution,

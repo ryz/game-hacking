@@ -55,7 +55,12 @@ Some actions are best shown as what happens, step by step (fishing, fast travel,
 - **Clips** for the motion itself (an animation between two steps: casting, take-off, landing, a transition):
   `play.py record ID CATEGORY FRAMES "caption" --every K --set seq-<action>` -> `<id>.gif` / `@3x.gif` at game
   speed (poster frame `<id>.png`). Keep clips short (1-6 s: FRAMES 60-360) and K=2 (30 fps) for smooth motion,
-  K=3-4 for slow scenes; a clip is part of the step order like any shot.
+  K=3-4 for slow scenes; a clip is part of the step order like any shot. A clip takes the category of what it
+  shows (gameplay, battle, map); there is no `clip` category.
+- **Poster:** the clip's still (`<id>.png`, its picture in strip.png / steps.gif) is kept frame 0 unless chosen:
+  `record` prints `work/play/NAME/clip_<id>.png` with every kept frame numbered; pick the frame that shows the
+  action (not the frame of the step before, not a white fade) and re-record with `--poster N` after `undo`, or
+  add `:N` to the clip's `rec:` token and reshoot it with `shoot.py --only`.
 - Same quality rules as stills: realistic values, nothing broken; a sequence uses one consistent situation
   (same place, same party) from start to end.
 

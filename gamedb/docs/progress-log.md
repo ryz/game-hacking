@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-15 - Pokémon Blue sequences: fishing, Fly
+- game-capture: seq-fishing (Vermilion harbour: menu path, cast clip, bite, battle-transition clip, hooked
+  Shellder, plus the "Not even a nibble!" branch) and seq-fly (Vermilion -> Lavender: party, FLY, town map,
+  take-off and landing clips), commit 12fdafe; world.md: fishing outcome rules and Fly.
+- Tools from its feedback: clip poster choice (`rec:N:K:P`, `record --poster`, numbered frame sheet), category
+  check up front, passing --verify rebuilds index.md/strip/steps. Coordinator re-picked 4 posters; 15/15, 9/9.
+
 ## 2026-11-15 - action sequences and clips
 - Owner's request: capture actions as sequences (fishing, Fly). Tools: `rec:N[:K]` token, `play.py record`
   (GIF clips at game speed, @3x, poster PNG), `seq-<action>` sets get strip.png + steps.gif, --verify compares

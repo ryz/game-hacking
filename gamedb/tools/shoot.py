@@ -9,14 +9,15 @@
                                                     reproduces its frame; exit 3 on a mismatch
   python3 tools/shoot.py GAME SET --publish         replay the set, then copy it to games/GAME/shots/SET/ (committed)
   python3 tools/shoot.py GAME SET --publish-only    copy without replaying (right after a passing --verify)
+  (a passing full --verify also rebuilds index.md, sheet.png and a sequence's strip/steps from index.json)
   python3 tools/shoot.py GAME SET --model dmg       capture with another model (e.g. a DMG game also in CGB colours)
 
 Shot list lines: `id | category | caption | route` (route: tools/emu.py tokens; may start with @checkpoint).
 A route is played exactly, then `settle` is added unless it already ends with `settle` or `!`.
 Outputs per shot: <id>.png (native, framebuffer as is: no filter, no colour correction, no scaling),
 <id>@3x.png (nearest neighbour). Per set: index.json, index.md, sheet.png (all shots, captioned).
-Clips: a route ending in `rec:N[:K]` records N frames (every Kth kept) from the end of the route: <id>.gif and
-<id>@3x.gif at game speed, <id>.png / @3x = the first frame (poster). --verify compares every clip frame.
+Clips: a route ending in `rec:N[:K[:P]]` records N frames (every Kth kept) from the end of the route: <id>.gif and
+<id>@3x.gif at game speed, <id>.png / @3x = the poster (kept frame P, default the first). --verify compares every clip frame.
 Sequences: a set named `seq-<action>` is an ordered action (shots in list order = steps): it also gets
 strip.png (the steps left to right, numbered and captioned) and steps.gif / steps@3x.gif (one step per 1.5 s).
 """
@@ -108,7 +109,10 @@ def shoot_one(game, s, d, model):
     if rec:
         e, rest, _ = E.start(game, ",".join(toks[:-1]), model)
         E.play(e, game, rest)
-        return clip_files(game, e, s["id"], d, *rec, close=True)
+        n, every, poster = rec
+        clip = clip_files(game, e, s["id"], d, n, every, poster, close=True)
+        clip.pop("_frames")
+        return clip
     if not toks or toks[-1] not in ("settle", "!"):
         route += ",settle"
     e, rest, _ = E.start(game, route, model)
@@ -123,22 +127,44 @@ def shoot_one(game, s, d, model):
     return settled
 
 
-def clip_files(game, e, sid, d, n, every, close=False):
-    """Record a clip from the emulator's current state into d: <id>.gif, <id>@3x.gif, poster <id>.png/@3x."""
+def clip_files(game, e, sid, d, n, every, poster=0, close=False):
+    """Record a clip from the emulator's current state into d: <id>.gif, <id>@3x.gif, poster <id>.png/@3x
+    (kept frame number `poster`; 0 = first, -1 = last)."""
     frames = E.record(e, game, n, every)
     if close:
         e.close()
     E.write_gif(frames, os.path.join(d, sid + ".gif"), every)
     E.write_gif(frames, os.path.join(d, sid + "@3x.gif"), every, scale=3)
-    open(os.path.join(d, sid + ".png"), "wb").write(frames[0])
+    open(os.path.join(d, sid + ".png"), "wb").write(frames[poster])
     E.enlarge(os.path.join(d, sid + ".png"), os.path.join(d, sid + "@3x.png"))
-    return {"frames": n, "every": every, "kept": len(frames), "seconds": round(n / E.FPS, 2),
-            "file": sid + ".gif", "file_3x": sid + "@3x.gif"}
+    return {"frames": n, "every": every, "kept": len(frames), "poster": poster, "seconds": round(n / E.FPS, 2),
+            "file": sid + ".gif", "file_3x": sid + "@3x.gif", "_frames": frames}
 
 
 def _gif_frames(path):
     from PIL import Image, ImageSequence
     return [f.convert("RGB").tobytes() for f in ImageSequence.Iterator(Image.open(path))]
+
+
+def check_category(cat):
+    if cat not in CATEGORIES:
+        return "error: category %r unknown; use one of %s (a clip takes the category of what it shows)" % (
+            cat, ", ".join(CATEGORIES))
+    return None
+
+
+def reindex(game, d):
+    """Rebuild index.md, sheet.png and (seq-*) strip/steps GIFs from index.json (after hand edits)."""
+    p = os.path.join(d, "index.json")
+    if not os.path.exists(p):
+        return
+    idx = json.load(open(p, encoding="utf-8"))
+    write_md(idx, d)
+    if os.path.basename(d).startswith("seq-"):
+        sequence_files(idx, d)
+    have = [s for s in idx["shots"] if os.path.exists(os.path.join(d, s["file"]))]
+    E.sheet([os.path.join(d, s["file"]) for s in have], os.path.join(d, "sheet.png"), cols=5,
+            labels=[s["id"] for s in have])
 
 
 def main():
@@ -197,6 +223,8 @@ def main():
                                      "settled" if r else "NOT settled (animated?)"), flush=True)
     if a.verify:
         print("%d/%d reproduce" % (len(shots) - bad, len(shots)))
+        if not bad and not a.only:
+            reindex(game, d)        # pick up hand edits of captions/categories in index.json
         return 3 if bad else 0
     print("set: %s" % os.path.relpath(d, ROOT))
     if a.publish:
