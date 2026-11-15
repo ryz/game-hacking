@@ -12,3 +12,7 @@ __pycache__/
 *.ips
 # Exception (owner's decision 2026-11-12): test save files made by a project's tools, documented in <project>/saves/README.md
 !*/saves/*.sav
+# Exception (owner's decision 2026-11-15): saves the gamedb agents made while playing, documented in
+# gamedb/games/<slug>/saves/README.md (downloaded saves stay in gamedb/rom/saves/, ignored)
+!gamedb/games/*/saves/*.sav
+!gamedb/games/*/saves/*.state

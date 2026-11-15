@@ -165,6 +165,10 @@ class GameBoy(Backend):
     def peek(self, addr, n, bank=None):
         return bytes(self.g.mem_read(addr, n, bank=bank))
 
+    def battery(self, size):
+        """The cartridge RAM (battery save) as an emulator .sav file: `size` bytes from offset 0."""
+        return bytes(self.g.mem_read(0, size, region="cart_ram", offset=0))
+
     def poke(self, addr, data):
         self.g.mem_write(addr, list(data))
 

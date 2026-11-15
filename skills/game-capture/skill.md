@@ -32,7 +32,9 @@ edit anything outside the game's folder.
    (save, code, poke, debug menu; playing last), make the
    screen good (`docs/capture-guide.md` quality rules), then
    `play.py --name SLUG snap ID CATEGORY "caption" --set SET`. Look at the native PNG it wrote.
-3. `checkpoint` at every milestone (new area, before a boss, a menu reached), with a description.
+3. `checkpoint` at every milestone (new area, before a boss, a menu reached), with a description. At the bigger
+   milestones also leave a save for the owner: save in the game, then `play.py export NN_place "contents"`
+   (`docs/emulator.md`, "Saves for the owner").
 4. Stuck for more than ~10 steps: re-read the playbook strategy and shortcuts, `undo`/`goto`, look up the
    specific problem (a FAQ section, a code list), or poke/code past it. Never grind.
 5. **Document the game as you play** in `games/SLUG/design/` (notation in its README): every rule, number and
@@ -49,7 +51,7 @@ edit anything outside the game's folder.
    `games/SLUG/shots.txt` so the plan is replayable. Tick the Shot plan.
 
 ## Guardrails
-- Write only `work/`, `rom/saves/SLUG/`, `rom/patches/SLUG/` and `games/SLUG/` (playbook.md, design/,
+- Write only `work/`, `rom/saves/SLUG/`, `rom/patches/SLUG/` and `games/SLUG/` (playbook.md, design/, saves/,
   game.json macros/ram/press/rom_variants, checkpoints.txt, shots.txt, shots/SET/ via --publish). No commits; the coordinator reviews and commits.
 - Never commit ROMs, states or saves (`work/` is ignored; `--publish` copies only PNGs and the catalogue).
 - Cheated values that show on screen are realistic (below the cap, not round, varied); captions describe the
@@ -61,6 +63,7 @@ edit anything outside the game's folder.
 - Table: id | category | caption | notes (not settled, poke used, retake wanted).
 - Plan targets not captured and why (unreachable in budget, needs a password, ...).
 - Playbook changes (sections touched, new checkpoints/macros/RAM, saves/codes used).
+- Saves exported (name: contents).
 - Design reference: documents written or extended, number of claims by tag, findings added.
 
 ## Feedback (end of every run)

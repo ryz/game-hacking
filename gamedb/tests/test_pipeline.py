@@ -197,3 +197,28 @@ def test_rom_variant_and_set(selftest):
     emu.play(e, g, rest)
     assert e.peek(0xC200, 2) == bytes([0x0D, 0x23]) and e.peek(0xC255, 1) == b"\x55"
     e.close()
+
+
+def test_export_save(selftest):
+    data = bytearray(open(selftest, "rb").read())
+    data[0x147], data[0x149] = 0x1B, 0x02          # MBC5+RAM+BATTERY, 8 KiB
+    chk = 0
+    for b in data[0x134:0x14D]:
+        chk = (chk - b - 1) & 0xFF
+    data[0x14D] = chk
+    open(selftest, "wb").write(data)
+    run("tools/intake.py", str(selftest), "--slug", SLUG, "--probe", "0")
+    P = ["tools/play.py", "--name", SLUG]
+    run(*P, "start", SLUG)
+    run(*P, "do", "w60")
+    out = run(*P, "export", "early", "After power-on, nothing saved", "--state")
+    assert "early.sav" in out
+    run(*P, "stop")
+    d = os.path.join(ROOT, "games", SLUG, "saves")
+    assert os.path.getsize(os.path.join(d, "early.sav")) == 8192
+    assert os.path.exists(os.path.join(d, "early.state"))
+    assert "| early | `early.sav`, `early.state` |" in open(os.path.join(d, "README.md")).read()
+    g = emu.Game(SLUG)
+    e, rest, _ = emu.start(g, "sav:early,w10")
+    emu.play(e, g, rest)
+    e.close()

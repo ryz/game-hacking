@@ -94,6 +94,18 @@ show; a frozen value that does show on screen also follows this rule.
 members, if the game asks for names too: condi, ebo, cubi, deddo, mnz (the owner's standard party, in that
 order). Pets, rivals, towns, files: keep the game's default or suggested name.
 
+## Saves for the owner (owner's rule, 2026-11-15)
+The owner wants to jump into a game at any milestone and take screenshots by hand, so agents leave saves behind:
+1. At every milestone (after naming, each town/badge/world, before the final boss, the end) **save in the game**
+   (its own Save menu, or the save point) and check the "saved" message.
+2. `python3 tools/play.py export NAME "what it contains"` writes the battery save to
+   `games/<slug>/saves/NAME.sav` and adds a row (contents, route, SHA-1, date) to `saves/README.md`. Add
+   `--state` for a SameBoy savestate of that exact moment (useful where the game saves only at fixed points).
+3. Names say where you are: `01_start`, `02_pewter_badge1`, `08_before_elite_four` (sortable).
+The `.sav` loads in any emulator (copy it next to the ROM as `<rom name>.sav`) and in routes as `sav:NAME`.
+Values in an exported save follow the realistic-values rule: it is what the owner will see. Only saves made here
+are committed; downloaded ones stay in `rom/saves/`.
+
 ## RAM: find it once, write it down
 Most shortcuts come from a few addresses: lives, health, money, level/stage, position, timer, inventory.
 1. Look in the playbook and its sources first (Data Crystal RAM maps, TCRF, GameShark codes: a GameShark code

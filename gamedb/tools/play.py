@@ -15,6 +15,12 @@ is reproducible from power-on (states are a cache, routes are the record).
   python3 tools/play.py checkpoint NAME "description"
                                              save a state and add `NAME | description | route` to
                                              games/GAME/checkpoints.txt (replaces a line of the same name)
+  python3 tools/play.py export NAME "description" [--state]
+                                             after saving IN THE GAME: write the battery save to
+                                             games/GAME/saves/NAME.sav (committed; loads in any emulator as
+                                             <rom name>.sav, and in routes as sav:NAME) and document it in
+                                             games/GAME/saves/README.md; --state also writes NAME.state
+                                             (SameBoy savestate of this exact moment, SameBoy only)
   python3 tools/play.py goto NAME            jump to a checkpoint (built from its route if not cached)
   python3 tools/play.py route                the current route (replay it with emu.py or a shots.txt line)
   python3 tools/play.py status               PC/bank + every game.json "ram" watch value
@@ -148,6 +154,37 @@ class Session:
         self.base, self.toks = "@" + name, []
         return "checkpoint %s saved (%d tokens from power-on)" % (name, len(full))
 
+    def export(self, name, desc, state=False):
+        if not re.match(r"^[a-z0-9_]+$", name):
+            return "error: save name must be lowercase a-z0-9_"
+        kib = self.game.meta.get("header", {}).get("ram_kib")
+        if not kib:
+            return "error: this cartridge has no battery RAM (header ram_kib); use --state only via checkpoint"
+        d = os.path.join(self.game.dir, "saves")
+        os.makedirs(d, exist_ok=True)
+        data = self.emu.battery(kib * 1024)
+        p = os.path.join(d, name + ".sav")
+        open(p, "wb").write(data)
+        files = "`%s.sav`" % name
+        if state:
+            self.emu.save_state(os.path.join(d, name + ".state"))
+            files += ", `%s.state`" % name
+        import hashlib
+        readme = os.path.join(d, "README.md")
+        head = ("# %s - saves\n\nMade by the agents while playing (owner's rule 2026-11-15: committed so the owner can "
+                "jump in). `.sav` = the game's own battery save: copy it next to your ROM as `<rom name>.sav` in any "
+                "emulator, then Continue. `.state` = SameBoy savestate of the exact moment (SameBoy only). In routes: "
+                "`sav:NAME` prefix (power on with that save).\n\n| Save | Files | What it contains | Route at export | "
+                "SHA-1 (.sav) | Date |\n|---|---|---|---|---|---|\n" % self.game.meta["title"])
+        lines = open(readme, encoding="utf-8").read().splitlines() if os.path.exists(readme) else head.splitlines()
+        lines = [l for l in lines if not l.startswith("| %s |" % name)]
+        import datetime
+        lines.append("| %s | %s | %s | `%s` | `%s` | %s |" % (name, files, desc.replace("|", "/"), self.route(),
+                     hashlib.sha1(data).hexdigest()[:12], datetime.date.today().isoformat()))
+        open(readme, "w", encoding="utf-8").write("\n".join(lines) + "\n")
+        return "%s (%d KiB)%s - check the in-game save was made before exporting" % (
+            rel(p), kib, " + state" if state else "")
+
     def goto(self, name):
         self.emu.close()        # reopen: the checkpoint may use another ROM variant or save (start() uses the cache)
         self.emu, _, _ = self.E.start(self.game, "@" + name, self.model)
@@ -176,6 +213,10 @@ class Session:
             return self.snap(args[0], args[1], args[2] if len(args) > 2 else "", set_)
         if cmd == "checkpoint":
             return self.checkpoint(args[0], args[1] if len(args) > 1 else "")
+        if cmd == "export":
+            st = "--state" in args
+            args = [a for a in args if a != "--state"]
+            return self.export(args[0], args[1] if len(args) > 1 else "", st)
         if cmd == "goto":
             return self.goto(args[0])
         if cmd == "route":

@@ -134,7 +134,7 @@ new ROM -> `gamedb/tools/intake.py` (coordinator) -> game-scout -> game-capture 
 - Use when: a game has a playbook and needs (more) database screenshots.
 - Main output: `gamedb/games/<slug>/shots/<set>/` (native + @3x PNGs, index.json/md, sheet.png, shots.txt),
   verified with `shoot.py --verify`; playbook and `design/` reference (rules, numbers, findings) written while
-  playing.
+  playing; milestone saves in `games/<slug>/saves/` for the owner.
 - Also load: `gamedb/docs/emulator.md`, `gamedb/docs/capture-guide.md`, the game's playbook.
 - Do not use for: research from scratch (game-scout); Wizardry Empire JP/EN reference sets (photographer).
 - Guardrails: writes only `work/`, `rom/saves|patches/<slug>/` and `games/<slug>/`; cheat freely, but visible

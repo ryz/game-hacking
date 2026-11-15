@@ -55,6 +55,8 @@ do not capture the database set (that is `game-capture`), but you do create the 
 4. **Start the design reference** (`games/<slug>/design/README.md`, notation in that file): the Overview and a
    document list for the game's systems, filled with what the research says, tagged **(source)**, plus what you
    verified. The capture agent extends it while playing.
+   Once the `start` checkpoint exists, save in the game if it allows it that early and
+   `play.py export 01_start "contents"` (`docs/emulator.md`, "Saves for the owner").
 5. **Plan the shots.** From the structure and `docs/capture-guide.md`: the playbook Shot plan (ids, category,
    what and where), with the systems that make this game distinctive. For each area the plan needs, say how to
    reach it (save, password, code, poke, debug menu, play) and pick the fastest.

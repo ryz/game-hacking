@@ -14,7 +14,8 @@ people: `README.md`. Current projects:
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.sav`,
   `*.state`, `rom/`, `build/`, `work/`). The original dump is verified by SHA-1 (`rom.sha1`). Exception (owner's
   decision 2026-11-12): test saves made by a project's own tools in `<project>/saves/`, each documented in
-  `<project>/saves/README.md`.
+  `<project>/saves/README.md`; and (2026-11-15) battery saves/states the gamedb agents made while playing, in
+  `gamedb/games/<slug>/saves/` (documented in its README.md). Downloaded saves are never committed.
 - Screenshots may be committed: reference sets go to `<project>/docs/shots/<set>/` (photographer,
   `tools/shoot.py SET --publish`).
 - Document as you go: reverse-engineering findings in `docs/re/`, the current snapshot in `docs/status.md`, the
@@ -73,8 +74,9 @@ capture: `gamedb/docs/capture-guide.md`):
 - Play: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
   `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `stop`.
 - Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish]`. Tests: `python3 -m pytest -q tests`.
-- Per game: `games/<slug>/playbook.md` is read before playing and updated after; states are never committed
-  (checkpoints are routes).
+- Per game: `games/<slug>/playbook.md` is read before playing and updated after; checkpoints are routes (cache
+  states are not committed). Milestone saves for the owner: save in the game, then `play.py export NAME "desc"`
+  -> `games/<slug>/saves/` (committed).
 
 ## Skills and subagents
 - `skills/skill-index.md` routes every job to a skill; each `skills/<name>/` has `skill.md` (source of truth) and

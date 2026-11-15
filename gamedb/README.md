@@ -32,7 +32,7 @@ ROM --intake.py--> games/<slug>/ --game-scout--> playbook + checkpoints --game-c
 | `docs/emulator.md` | **how to drive the emulator** (read first) |
 | `docs/capture-guide.md` | what a set must contain, categories, quality rules |
 | `games/_template/` | playbook, checkpoints and shot-list templates |
-| `games/<slug>/` | `game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt`, `shots/<set>/`, `design/` (design reference: rules, numbers, findings) |
+| `games/<slug>/` | `game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt`, `shots/<set>/`, `design/` (design reference: rules, numbers, findings), `saves/` (milestone saves to jump in: `.sav` for any emulator, `.state` for SameBoy; list in its README) |
 | `rom/`, `work/` | ROMs, downloaded saves (`rom/saves/<slug>/`) and patches, states, caches, scratch (gitignored) |
 
 ## House rules

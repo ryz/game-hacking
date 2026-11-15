@@ -2,6 +2,12 @@
 
 Append-only, newest first.
 
+## 2026-11-15 - milestone saves committed
+- Owner's rule: commit the saves agents make, so the owner can jump in. `play.py export NAME "desc" [--state]`
+  writes `games/<slug>/saves/NAME.sav` (+ SameBoy `.state`) and its README row; `.gitignore` exception added;
+  `sav:NAME` finds these first. Test added (8 pass).
+- Pokémon Blue registered (intake); game-scout running.
+
 ## 2026-11-15 - shortcuts, naming, design reference
 - Owner's rules: cataloguing over fair play (cheat/hack freely, realistic values), main character "ryz", use
   saves/codes from the web, document systems in a design reference while playing.

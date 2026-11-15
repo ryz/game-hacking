@@ -103,7 +103,10 @@ class Game:
         return out
 
     def sav_file(self, name):
-        p = os.path.join(ROOT, "rom", "saves", self.slug, name + ".sav")
+        """Battery save NAME: games/<slug>/saves/ (made here, committed) first, then rom/saves/<slug>/ (downloaded)."""
+        p = os.path.join(self.dir, "saves", name + ".sav")
+        if not os.path.exists(p):
+            p = os.path.join(ROOT, "rom", "saves", self.slug, name + ".sav")
         if not os.path.exists(p):
             raise SystemExit("save missing: %s (see the playbook Shortcuts for its source)" % os.path.relpath(p, ROOT))
         return p
