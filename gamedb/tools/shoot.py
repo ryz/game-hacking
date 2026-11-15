@@ -7,7 +7,8 @@
   python3 tools/shoot.py GAME SET --verify          replay into a temp dir and compare with the PNGs already in
                                                     the set (e.g. made with play.py snap): proves every route
                                                     reproduces its frame; exit 3 on a mismatch
-  python3 tools/shoot.py GAME SET --publish         copy the set to games/GAME/shots/SET/ (committed)
+  python3 tools/shoot.py GAME SET --publish         replay the set, then copy it to games/GAME/shots/SET/ (committed)
+  python3 tools/shoot.py GAME SET --publish-only    copy without replaying (right after a passing --verify)
   python3 tools/shoot.py GAME SET --model dmg       capture with another model (e.g. a DMG game also in CGB colours)
 
 Shot list lines: `id | category | caption | route` (route: tools/emu.py tokens; may start with @checkpoint).
@@ -91,6 +92,8 @@ def main():
     ap.add_argument("--only")
     ap.add_argument("--verify", action="store_true")
     ap.add_argument("--publish", action="store_true")
+    ap.add_argument("--publish-only", action="store_true",
+                    help="copy the work set to games/GAME/shots/SET/ without replaying (after a passing --verify)")
     ap.add_argument("--model")
     a = ap.parse_args()
     game = E.Game(a.game)
@@ -107,6 +110,8 @@ def main():
     own = os.path.join(d, "shots.txt")
     if os.path.abspath(lst) != os.path.abspath(own) and not (a.only or a.verify):
         shutil.copyfile(lst, own)       # the set keeps the list it was shot from
+    if a.publish_only:
+        shots, a.publish = [], True     # skip the replay loop, go straight to the copy
     sha = game.check_rom()
     bad = 0
     for s in shots:

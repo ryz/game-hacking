@@ -48,6 +48,12 @@ def sock_path(name):
     return os.path.join("/tmp", "gamedb_play_%s_%d.sock" % (name, os.getuid()))
 
 
+def _pixels(png):
+    import io
+    from PIL import Image
+    return Image.open(io.BytesIO(png)).convert("RGB").tobytes()
+
+
 def rel(p):
     return os.path.relpath(p, ROOT)
 
@@ -135,7 +141,9 @@ class Session:
         d = os.path.join(ROOT, "work", "shots", self.game.slug, set_)
         os.makedirs(d, exist_ok=True)
         native = os.path.join(d, "%s.png" % sid)
+        before = open(native, "rb").read() if os.path.exists(native) else None
         self.emu.screen_png(native)
+        unchanged = before is not None and _pixels(before) == _pixels(open(native, "rb").read())
         self.E.enlarge(native, os.path.join(d, "%s@3x.png" % sid))
         a = self.emu.screen()
         self.emu.save_state(os.path.join(self.dir, "snap.state"))
@@ -153,7 +161,8 @@ class Session:
         import shoot
         shoot.index_update(self.game, d, {"id": sid, "category": cat, "caption": caption, "route": route,
                                           "settled": settled, "model": self.model, "source": "play.py snap"})
-        return "%s%s" % (rel(native), "" if settled else "  (not settled: animated frame, check it)")
+        return "%s%s%s" % (rel(native), "" if settled else "  (not settled: animated frame, check it)",
+                           "  (UNCHANGED: identical to the PNG this id already had)" if unchanged else "")
 
     def checkpoint(self, name, desc):
         if not re.match(r"^[a-z0-9_]+$", name):

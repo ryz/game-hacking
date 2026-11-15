@@ -74,6 +74,9 @@ python3 tools/play.py stop
    (animated backgrounds, blinking cursors, moving enemies) report "still changing": that is normal in action
    games; use `do!` and exact `wN` to pick the frame you want.
 
+Pick animation frames (`do!` + `wN`) in `play.py`, not with `emu.py` montages: `shoot.py` reproduces play.py's
+timing, and a frame found with emu.py may not appear at the same `wN` there (seen with the Safari rock).
+
 One-shot runs with a screenshot per token (good for finding timings): `python3 tools/emu.py SLUG --seq "@title,a,w10,a" --out work/x`
 -> `work/x/NN_token.png`, `sheet.png`, `log.txt` (PC per token, the full route).
 

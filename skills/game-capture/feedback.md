@@ -9,6 +9,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-15 - Pokémon Blue main set, run 2 (50 -> 92 shots)
+- Task: extend the main set (gym, learn move/evolution, field moves, locations, endgame, PC), design docs,
+  saves, milestone commits.
+- Worked: one recipe tuned to a single fight (BROCK) gave five shots (learn move, level-up, badge, evolution,
+  gym); lobby-exit warps + a map-script poke (D64C) reached Champion, Hall of Fame and credits in ~10 min;
+  background `--verify --only` between milestones; goto + do loops with montages to pick frames.
+- Friction: animation frames found with emu.py montages did not appear at the same wN in play.py (Safari rock,
+  6 tries); start/party cursors remembered inside checkpoints broke `down*N`; a re-snap identical to the old
+  PNG gave no sign (pokecenter_heal retake changed nothing); --publish replays the whole set.
+- Proposed rule change: pick `!` frames in play.py, not emu.py; snap reports an unchanged re-snap;
+  --publish copies without replay after a passing --verify.
+- Corrected: coordinator checked both commits (game folder only), the contact sheet, booted saves 04 and 06
+  (values as reported), reran full --verify. Added: snap prints UNCHANGED, `shoot.py --publish-only`,
+  emulator.md note on picking animation frames in play.py. Cursor memory stays a playbook note.
+- Status: promoted 2026-11-15 (all three, in tools/docs)
+
 ### 2026-11-15 - Pokémon Blue main set (first capture)
 - Task: capture the Pokémon Blue main set (early game, menus, battles, Elite Four, blackout), design docs,
   saves, milestone commits (rule arrived mid-run).

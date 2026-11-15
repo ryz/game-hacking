@@ -126,11 +126,12 @@ def test_pipeline(selftest):
     run(*P, "do", "right:20,a")
     assert run(*P, "route").strip() == "@title,right:20,a,settle"
     run(*P, "snap", "a_shot", "gameplay", "after A")
+    assert "UNCHANGED" in run(*P, "snap", "a_shot", "gameplay", "after A")
     assert "candidates" in run(*P, "find", "new == old")
     run(*P, "stop")
     out = run("tools/shoot.py", SLUG, "main", "--verify")
     assert "1/1 reproduce" in out
-    run("tools/shoot.py", SLUG, "main", "--publish")
+    run("tools/shoot.py", SLUG, "main", "--publish-only")
     idx = json.load(open(os.path.join(ROOT, "games", SLUG, "shots", "main", "index.json")))
     s = idx["shots"][0]
     assert s["id"] == "a_shot" and s["route"] == "@title,right:20,a,settle" and s["rom_sha1"] == meta["sha1"]

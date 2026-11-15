@@ -19,12 +19,11 @@ Current snapshot; history in `progress-log.md`.
 ## Games
 | Slug | Title | Playbook | Sets |
 |---|---|---|---|
-| pokemon-blue | Pokémon Blue Version (USA, Europe) | scouted + first capture 2026-11-15; design docs battle, pokemon, progression, world, economy, findings | main: 50 shots (verified 50/50); saves 01_start, 02_late_game_test, 03_starter_lab, 05_elite_four_lorelei |
+| pokemon-blue | Pokémon Blue Version (USA, Europe) | scouted + first capture 2026-11-15; design docs battle, pokemon, progression, world, economy, findings | main: 92 shots (verified 92/92); saves 01-06 (start, late test, starter lab, Boulder Badge, Lorelei, Hall of Fame) |
 
 ## Next
-- Pokémon Blue, second capture run for what is missing: learning a move, evolution, a gym leader, cave/forest,
-  Surf, fishing, bicycle, Cut, Fly map, Safari Zone, Game Corner, S.S. Anne, Pokémon Tower, Silph Co.,
-  Champion, Hall of Fame, credits, PC; retake pokecenter_heal (machine frame).
+- Pokémon Blue leftovers (optional): trainer "!" spotting, a PC box with Pokémon, Safari BAIT, stone evolution,
+  Rocket Hideout; the MID recipe has never been shown on screen.
 - `--model sgb` hangs on the SGB transfer screen (Pokémon Blue, pc=20b4): gbemu-cli SGB handshake; until fixed,
   capture in dmg.
 - Routes using a macro change silently when the macro is edited: freeze macros once used in published shots
