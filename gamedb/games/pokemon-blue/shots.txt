@@ -2,48 +2,67 @@
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/pokemon-blue/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
-title_screen | title | Title screen: POKéMON Blue Version logo, Squirtle and the player | @title
-menu_main | menu | Main menu: NEW GAME / OPTION (no save yet) | @title,start,settle,w60,settle
-oak_name_menu | menu | Oak asks your name: NEW NAME or the defaults BLUE / GARY / JOHN | @title,start,w60,a,w60,mash:a:600,settle,mash:a:300,settle,mash:a:150,settle,w60,settle,a,w30,settle
-naming_player | menu | Name entry: player named ryz (lower case keyboard) | @title,start,w60,a,w60,mash:a:600,settle,mash:a:300,settle,mash:a:150,settle,w60,settle,a,w30,settle,a,w30,settle,select,settle,down,right*8,a,down,left*2,a,right,a,settle
-save_prompt | save | Save screen: player, badges, Pokedex count, play time; YES/NO | @start,start,down*3,a,settle
+# --- main set (captured 2026-11-15, verified 50/50) ---
+boot_gamefreak | boot | Game Freak logo with falling stars | pow,w500,!
+intro_fight | cutscene | Intro: Gengar raises its arm against Nidorino | pow,w500,w400,!
+title_screen | title | Title screen: POKéMON Blue Version logo, Squirtle and the player | @title,settle,settle
+menu_main | menu | Main menu: NEW GAME / OPTION (no save yet) | @title,settle,settle,start,settle,w60,settle,settle
+oak_intro | cutscene | Prof. Oak: "Hello there! Welcome to the world of POKéMON!" | @title,settle,settle,start,settle,w60,settle,settle,a,w60,settle,settle
+oak_nidorino | cutscene | Oak's speech: "This world is inhabited by..." with Nidorino | @title,settle,settle,start,settle,w60,settle,settle,a,w60,settle,settle,mash:a:150,settle,settle,mash:a:200,settle,settle
+oak_name_menu | menu | Oak asks your name: NEW NAME or the defaults BLUE / GARY / JOHN | @title,settle,settle,start,settle,w60,settle,settle,a,w60,settle,settle,mash:a:150,settle,settle,mash:a:200,settle,settle,mash:a:300,settle,settle,mash:a:200,settle,settle,a,w30,settle,settle
+naming_player | menu | Name entry: player named ryz (lower case keyboard) | @title,settle,settle,start,settle,w60,settle,settle,a,w60,settle,settle,mash:a:150,settle,settle,mash:a:200,settle,settle,mash:a:300,settle,settle,mash:a:200,settle,settle,a,w30,settle,settle,a,w30,settle,select,settle,down,right*8,a,down,left*2,a,right,a,settle,settle
+oak_rival_intro | cutscene | Oak introduces the rival: "...your rival since you were a baby." | @title,settle,settle,start,settle,w60,settle,settle,a,w60,settle,settle,mash:a:150,settle,settle,mash:a:200,settle,settle,mash:a:300,settle,settle,mash:a:200,settle,settle,a,w30,settle,settle,a,w30,settle,select,settle,down,right*8,a,down,left*2,a,right,a,settle,settle,start,w60,settle,mash:a:300,settle,settle
+naming_rival | menu | Rival naming menu: NEW NAME / RED / ASH / JACK | @title,settle,settle,start,settle,w60,settle,settle,a,w60,settle,settle,mash:a:150,settle,settle,mash:a:200,settle,settle,mash:a:300,settle,settle,mash:a:200,settle,settle,a,w30,settle,settle,a,w30,settle,select,settle,down,right*8,a,down,left*2,a,right,a,settle,settle,start,w60,settle,mash:a:300,settle,settle,mash:a:100,settle,settle
+start_room | gameplay | ryz in his bedroom (Red's house 2F): first control, SNES and TV | @start,settle,settle
+pallet_town | gameplay | Pallet Town: ryz between the houses and Prof. Oak's lab | @start,settle,settle,TO_DOOR,settle,EXIT,w60,settle,settle,down:16,right:16*4,down:16*2,settle,settle
+oak_wait | dialogue | Route 1 edge: "OAK: Hey! Wait! Don't go out!" with the ! above ryz | @start,settle,settle,TO_DOOR,settle,EXIT,w60,settle,settle,down:16,right:16*4,down:16*2,settle,settle,right:16,up:16*8,settle,settle,right:16,up:16*2,w60,settle,settle
+starter_preview | cutscene | Oak's lab: a Poke Ball shows Squirtle's Pokedex page (No.007, height, weight) | @start,settle,settle,TO_DOOR,settle,EXIT,w60,settle,settle,down:16,right:16*4,down:16*2,settle,settle,right:16,up:16*8,settle,settle,right:16,up:16*2,w60,settle,settle,FASTTEXT,mash:a:300,settle,settle,mash:a:400,w200,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle,mash:a:200,settle,settle,mash:a:120,settle,settle,a,w30,settle,down:16,right:16*2,up:6,w20,settle,settle,a,w60,settle,settle,up,a,w60,settle,settle,a,w30,settle,settle
+oak_lab_choose | cutscene | Oak's lab: "So! You want the water POKéMON, SQUIRTLE?" YES / NO | @start,settle,settle,TO_DOOR,settle,EXIT,w60,settle,settle,down:16,right:16*4,down:16*2,settle,settle,right:16,up:16*8,settle,settle,right:16,up:16*2,w60,settle,settle,FASTTEXT,mash:a:300,settle,settle,mash:a:400,w200,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle,mash:a:200,settle,settle,mash:a:120,settle,settle,a,w30,settle,down:16,right:16*2,up:6,w20,settle,settle,a,w60,settle,settle,up,a,w60,settle,settle,a,w30,settle,settle,a,w30,settle,settle,a,w60,settle,settle,w90,settle,settle,a,w60,settle,settle
+starter_received | dialogue | Oak's lab: "ryz received a SQUIRTLE!" | @start,settle,settle,TO_DOOR,settle,EXIT,w60,settle,settle,down:16,right:16*4,down:16*2,settle,settle,right:16,up:16*8,settle,settle,right:16,up:16*2,w60,settle,settle,FASTTEXT,mash:a:300,settle,settle,mash:a:400,w200,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle,mash:a:200,settle,settle,mash:a:120,settle,settle,a,w30,settle,down:16,right:16*2,up:6,w20,settle,settle,a,w60,settle,settle,up,a,w60,settle,settle,a,w30,settle,settle,a,w30,settle,settle,a,w60,settle,settle,w90,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle
+battle_rival_first | battle | First rival battle in Oak's lab: "RED wants to fight!" with party ball counters | @lab_starter,down:16,left:16*2,down:16,w90,settle,settle,mash:a:200,w120,settle,settle,w200,settle,settle
+battle_menu | battle | Battle command menu: FIGHT / PKMN / ITEM / RUN (Squirtle vs rival's Bulbasaur) | @lab_starter,down:16,left:16*2,down:16,w90,settle,settle,mash:a:200,w120,settle,settle,w200,settle,settle,a,w120,settle,settle,w120,settle,settle
+battle_moves | battle | Move selection: TACKLE / TAIL WHIP with TYPE/NORMAL and PP 35/35 box | @lab_starter,down:16,left:16*2,down:16,w90,settle,settle,mash:a:200,w120,settle,settle,w200,settle,settle,a,w120,settle,settle,w120,settle,settle,a,w30,settle,settle
+battle_levelup | battle | Level up: "SQUIRTLE grew to level 6!" with the new ATTACK/DEFENSE/SPEED/SPECIAL box | @lab_starter,down:16,left:16*2,down:16,w90,settle,settle,mash:a:200,w120,settle,settle,w200,settle,settle,a,w120,settle,settle,w120,settle,settle,a,w30,settle,settle,a,w60,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,poke:CFE6=0003,a,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle
+battle_rival_defeated | battle | Rival defeated: "RED: ...I picked the wrong POKéMON!" | @lab_starter,down:16,left:16*2,down:16,w90,settle,settle,mash:a:200,w120,settle,settle,w200,settle,settle,a,w120,settle,settle,w120,settle,settle,a,w30,settle,settle,a,w60,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,poke:CFE6=0003,a,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle,a,w40,settle,settle
+route1_grass | gameplay | Route 1: ryz walking through tall grass north of Pallet Town | @lab_after_rival,start,w30,settle,down*3,a,w60,settle,settle,a,w120,w120,settle,settle,poke:D31D=010405FF,down:16*5,down:16,w120,settle,settle,left:16*3,up:16*10,settle,settle,right:16,up:16*3,settle,settle
+battle_wild | battle | Route 1 wild battle: "Wild PIDGEY appeared!" | @lab_after_rival,start,w30,settle,down*3,a,w60,settle,settle,a,w120,w120,settle,settle,poke:D31D=010405FF,down:16*5,down:16,w120,settle,settle,left:16*3,up:16*10,settle,settle,right:16,up:16*3,settle,settle,up:16,w200,settle,settle,up:16,w30,settle,up:16,w30,settle,up:16,w30,settle,up:16,w30,settle,down:16,w30,settle,down:16,w30,settle,down:16,w30,settle,down:16,w30,settle,down:16,w30,settle,down:16,w30,settle,up:16,w7,settle,up:16,w7,settle,up:16,w7,settle,up:16,w7,settle,up:16,w7,settle,up:16,w7,settle,up:16,w7,settle,up:16,w7,settle,poke:D887=FF,up:16,w200,settle,settle,down:16,w7,settle,down:16,w7,settle,down:16,w7,settle,down:64,w60,settle,up:64,w60,settle,w60,settle,settle
+battle_ball_throw | system | Catching: "ryz used POKé BALL!", the ball flies at the wild Pidgey | @route1_pidgey_ball,a,w40,!
+battle_catch_fail | system | Catching: "Aww! It appeared to be caught!" - the Pidgey broke free | @route1_pidgey_ball,a,w40,w200,settle,settle
+battle_catch | system | Catching: "PIDGEY was caught!" - the Poke Ball rests where the Pidgey was | @route1_pidgey_ball,w5,a,w300,settle,settle,a,w30,settle,settle
+pokedex_entry | inventory | Pokedex entry after a catch: PIDGEY, TINY BIRD, No.016, height, weight, description | @route1_pidgey_ball,w5,a,w300,settle,settle,a,w30,settle,settle,a,w60,settle,settle,w60,a,w60,settle,settle,a,w30,settle,a,w90,settle,settle
+start_menu | menu | START menu: POKéDEX / POKéMON / ITEM / ryz / SAVE / OPTION / EXIT (Indigo Plateau lobby) | @late,up:16*3,settle,start,w30,settle,settle
+pokedex_list | inventory | Pokedex CONTENTS list (011-017) with owned marks, SEEN 104 / OWN 71, DATA/CRY/AREA/QUIT | @late_menu,a,w60,settle,settle,down:4*30,w20,settle,settle
+pokedex_area | map | Pokedex AREA: PIKACHU's NEST on the Kanto map (Viridian Forest, Power Plant) | @late_menu,a,w60,settle,settle,down:4*30,w20,settle,settle,right,down,a,w60,settle,settle,down*2,a,w90,settle,settle
+party_screen | inventory | Party of six (L42-52) with HP bars: BLASTOISE, PIDGEOT, RAICHU, SNORLAX, VICTREEBEL, KADABRA | @late_menu,settle,down,a,w60,settle,settle
+party_submenu | menu | Party sub-menu for BLASTOISE: field moves SURF / STRENGTH, STATS, SWITCH, CANCEL | @late_menu,settle,down,a,w60,settle,settle,a,w30,settle,settle
+summary_stats | inventory | Summary page 1: BLASTOISE L52, HP 172/172, STATUS/OK, stats, TYPE1 WATER, IDNo, OT ryz | @late_lobby,start,w30,settle,down,a,w60,settle,a,w30,settle,down*2,a,w90,settle,settle
+summary_moves | inventory | Summary page 2: BLASTOISE EXP 134665, 7012 to L53, moves SURF / ICE BEAM / BITE / STRENGTH with PP | @late_lobby,start,w30,settle,down,a,w60,settle,a,w30,settle,down*2,a,w90,settle,settle,w120,a:20,w60,settle,settle
+trainer_card | inventory | Trainer card: NAME ryz, MONEY 48215, TIME 27:46, all eight badges | @late_lobby,start,w30,settle,down*3,a,w60,settle,settle
+bag_items | inventory | Bag (ITEM): BICYCLE, TOWN MAP, HYPER POTION x7, SUPER POTION x4 | @late_lobby,start,w30,settle,down*2,a,w60,settle,settle
+town_map | map | TOWN MAP item: Kanto with the cursor on INDIGO PLATEAU | @late_lobby,start,w30,settle,down*2,a,w60,settle,settle,down,a,w30,settle,a,w90,settle,settle
+elite_four_room | gameplay | Elite Four: ryz enters Lorelei's ice-floored room, Lorelei waiting at the far door | @late_lobby,poke:D3B1=00F5,poke:D3B5=00F5,down:16*3,EXIT,w60,settle,settle
+lorelei_talk | dialogue | Elite Four: "I am LORELEI of the ELITE FOUR!" | @lorelei_room,right:16,up:16*3,up,a,w60,settle,settle,a,w30,settle,settle
+elite_four | boss | Elite Four battle: "LORELEI wants to fight!" - five Pokemon against ryz's six | @lorelei_room,right:16,up:16*3,up,a,w60,settle,settle,a,w30,settle,settle,mash:a:200,w200,settle,settle,a,w30,a,w30,a,w300,settle,settle,a,w300,settle,settle
+battle_attack | battle | Move animation: RAICHU used THUNDERBOLT on Lorelei's Dewgong | @lorelei_tbolt,a,w110,!
+battle_super_effective | battle | "It's super effective!" - Thunderbolt took Dewgong from 169 to 43 HP | @lorelei_tbolt,a,w110,w200,settle,settle
+boss_defeated | boss | "ryz defeated LORELEI!" - Raichu (L47 after the battle) wins the first Elite Four fight | @lorelei_tbolt,a,w110,w200,settle,settle,poke:D355=41,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle,a,w50,settle,settle
+blackout | gameover | Blackout: "ryz blacked out!" after the last Pokemon faints from poison in the field | @late_lobby,poke:D198=0000,poke:D1C4=0000,poke:D1F0=0000,poke:D21C=0000,poke:D248=0000,poke:D16C=0001,poke:D16F=08,left:16*4,w30,settle,settle,a,w30,settle,settle,a,w30,settle,settle
+mart_buy | shop | POKé MART buy list (Indigo Plateau): ULTRA BALL 1200, GREAT BALL 600, FULL RESTORE 3000, MAX POTION 2500 | @late_lobby,left:16*6,up:16*3,settle,settle,left:16*2,up:16*2,left,a,w60,settle,settle,a,w60,settle,settle
+pokecenter_nurse | dialogue | Pokemon Center nurse: "Welcome to our POKéMON CENTER!" (Indigo Plateau lobby) | @late_lobby,up:16*2,up,a,w60,settle,settle
+save_prompt | save | Save screen: PLAYER ryz, BADGES 8, POKéDEX 71, TIME 27:46; "Would you like to SAVE the game?" | @late_lobby,start,w30,settle,down*4,a,w60,settle,settle
+options | options | OPTION screen: TEXT SPEED FAST/MEDIUM/SLOW, BATTLE ANIMATION ON/OFF, BATTLE STYLE SHIFT/SET | @late_lobby,start,w30,settle,down*5,a,w60,settle,settle
 pokecenter_heal | system | Pokemon Center healing: six Poke Balls on the machine | @start,LATE,TO_DOOR,settle,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,settle,up:16*3,settle,start,down*3,a,w60,settle,b,w30,poke:DA41=1B,poke:DA43=2E,a,w60,settle,b,w30,start,up,a,w30,settle,a,w60,settle,a,w60,settle,a,w200,settle,a,w240,settle,a,w60,settle
-options | options | OPTION screen: text speed, battle animation, battle style | @start,LATE,TO_DOOR,settle,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,settle,up:16*3,settle,start,down*3,a,w60,settle,b,w30,poke:DA41=1B,poke:DA43=2E,a,w60,settle,b,w30,start,up,a,w30,settle,a,w60,settle,a,w60,settle,a,w200,settle,a,w240,settle,a,w60,settle,w200,a,w60,a,w60,settle,a,w30,start,down*2,a,w30,settle
-bag_items | inventory | Bag (ITEM): Bicycle, Town Map, Hyper Potion x7, Super Potion x4 | @start,LATE,TO_DOOR,settle,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,settle,up:16*3,settle,start,down*3,a,w60,settle,b,w30,poke:DA41=1B,poke:DA43=2E,a,w60,settle,b,w30,start,up,a,w30,settle,a,w60,settle,a,w60,settle,a,w200,settle,a,w240,settle,a,w60,settle,w200,a,w60,a,w60,settle,a,w30,start,down*2,a,w30,settle,left,b,w30,up*3,a,w30,settle
 cable_club | dialogue | Indigo Plateau lobby: Cable Club attendant (link trade/battle desk) | @start,LATE,TO_DOOR,settle,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,settle,up:16*3,settle,start,down*3,a,w60,settle,b,w30,poke:DA41=1B,poke:DA43=2E,a,w60,settle,b,w30,start,up,a,w30,settle,a,w60,settle,a,w60,settle,a,w200,settle,a,w240,settle,a,w60,settle,w200,a,w60,a,w60,settle,a,w30,start,down*2,a,w30,settle,left,b,w30,up*3,a,w30,settle,b,w20,down*2,a,w30,settle,a,w60,settle,w120,settle,right:16*5,up:16*7,w60,settle,right:16,up,a,w60,settle
+# work/shots/pokemon-blue/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # --- planned (no route yet; method in playbook "Shot plan") ---
-# boot_gamefreak | boot | Game Freak logo with shooting star | w420.. (find frame with do!)
-# intro_fight | cutscene | Intro: Gengar vs Nidorino | w900 (do!)
-# oak_intro | cutscene | Prof. Oak: "Welcome to the world of POKeMON!" | @title,start,w60,a,w60
-# naming_rival | menu | Rival naming menu: NEW NAME / RED / ASH / JACK | RIVAL_RED stops there
-# start_room | gameplay | ryz in his bedroom, first control | @start
-# pallet_town | gameplay | Pallet Town overworld | play from @start
-# oak_lab_choose | cutscene | Oak's lab: choosing the starter | play from @start (Route 1 edge -> Oak)
-# battle_rival_first | battle | First rival battle in Oak's lab | play
 # route1_wild | battle | Wild battle on Route 1 (grass) | play / MID + warp
-# battle_menu | battle | FIGHT / PKMN / ITEM / RUN menu | wild battle
-# battle_moves | battle | Move selection with type/PP box | wild battle
-# battle_catch | system | Poke Ball throw / "Gotcha!" | wild battle with balls
-# battle_levelup | battle | Level-up stats box | low-exp party member (set exp near next level)
 # learn_move | system | "Trying to learn a new move" prompt | exp before a learnset level
 # evolution | system | "What? X is evolving!" | exp before an evolution level
 # gym_brock | boss | Brock battle, Pewter Gym | MID or LATE + door warp $36
 # trainer_battle | battle | Trainer challenge "!" + battle intro | gym trainer
 # viridian_forest | gameplay | Viridian Forest | warp $33
 # mt_moon | gameplay | Mt. Moon cave | warp $3B
-# pokecenter_nurse | dialogue | Nurse Joy greeting | (scout route)
-# mart_buy | shop | Poke Mart buy list | warp to a Mart ($2A/$38/$43...)
 # pc_bills | system | Bill's PC / item storage | Pokemon Center PC
-# start_menu | menu | Start menu (POKeDEX ... EXIT) | any field state + start
-# pokedex_list | inventory | Pokedex contents list with SEEN/OWN | LATE
-# pokedex_entry | inventory | Pokedex DATA entry page | LATE
-# party_screen | inventory | Party of six with HP bars | LATE
-# summary_stats | inventory | Summary page 1: stats/type/OT | LATE
-# summary_moves | inventory | Summary page 2: EXP + moves/PP | LATE
-# trainer_card | inventory | Trainer card with 8 badges | LATE
-# town_map | map | Town Map item | LATE, ITEM > TOWN MAP
 # fly_map | map | Fly destination map | LATE (D70B visited flags), PIDGEOT > FLY outdoors
 # surfing | system | Surfing on water | LATE, Blastoise SURF next to water
 # fishing | system | Fishing with SUPER ROD | LATE, face water + use rod
@@ -54,8 +73,6 @@ cable_club | dialogue | Indigo Plateau lobby: Cable Club attendant (link trade/b
 # ss_anne | gameplay | S.S. Anne | warp $5F
 # pokemon_tower | gameplay | Pokemon Tower ghost (SILPH SCOPE) | warp $8E..$94
 # silph_co | gameplay | Silph Co. | warp $B5
-# elite_four | boss | Elite Four Lorelei | @late, walk north from lobby (x8,y0)
 # champion | boss | Champion (rival RED) | warp $78 (open question: script state)
 # hall_of_fame | ending | Hall of Fame | after champion
 # credits | credits | Credits | after Hall of Fame
-# blackout | gameover | "ryz is out of usable POKeMON! ... blacked out!" | lose a battle

@@ -50,11 +50,11 @@ rival **(verified: oak_name_menu, NEWGAME route)**.
 | Document | Covers |
 |---|---|
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
-| battle.md (to write) | turn order, damage, types, status, catching odds |
-| pokemon.md (to write) | species, stats, growth rates, evolution, learnsets |
-| progression.md (to write) | badges, HMs and what they unlock, story order |
-| world.md (to write) | towns, routes, dungeons, encounter areas |
-| economy.md (to write) | money, prize money, marts and prices |
+| [battle.md](battle.md) | turn order, damage, types, status, catching odds |
+| [pokemon.md](pokemon.md) | species, stats, growth rates, evolution, learnsets |
+| [progression.md](progression.md) | badges, HMs and what they unlock, story order |
+| [world.md](world.md) | towns, routes, dungeons, encounter areas |
+| [economy.md](economy.md) | money, prize money, marts and prices |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
      enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
