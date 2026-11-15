@@ -1,0 +1,31 @@
+{
+  "slug": "pokemon-blue",
+  "title": "Pokémon Blue Version",
+  "platform": "gb",
+  "model": "dmg",
+  "rom": "rom/pokemon-blue.gb",
+  "sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
+  "crc32": "d6da8a1a",
+  "size": 1048576,
+  "header": {
+    "header_title": "POKEMON BLUE",
+    "cgb_flag": "dmg",
+    "sgb": true,
+    "cart_type": "MBC3+RAM+BATTERY",
+    "rom_kib": 1024,
+    "ram_kib": 32,
+    "region": "Overseas",
+    "version": 0,
+    "header_checksum_ok": true
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
