@@ -9,6 +9,7 @@ Writes (never overwrites existing files in games/<slug>/):
   games/<slug>/playbook.md               controls/structure/strategy, filled by the game-scout skill
   games/<slug>/checkpoints.txt           named states as routes
   games/<slug>/shots.txt                 the shot plan
+  games/<slug>/design/                   the design reference (README with notation, findings.md)
   work/intake/<slug>/probe_NNNN.png + sheet.png    a frame every 60 frames from power-on, no input
 Then: python3 tools/emu.py SLUG --seq "pow,w300,start" --out work/x  to find the boot inputs.
 """
@@ -77,12 +78,15 @@ def main():
         }
         json.dump(meta, open(gj, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
         open(gj, "a").write("\n")
-    for f in os.listdir(TEMPLATE):
-        p = os.path.join(gdir, f)
-        if not os.path.exists(p):
-            txt = open(os.path.join(TEMPLATE, f), encoding="utf-8").read()
-            txt = txt.replace("{{TITLE}}", meta["title"]).replace("{{SLUG}}", slug)
-            open(p, "w", encoding="utf-8").write(txt)
+    for dirpath, _, files in os.walk(TEMPLATE):
+        for f in files:
+            src = os.path.join(dirpath, f)
+            p = os.path.join(gdir, os.path.relpath(src, TEMPLATE))
+            if not os.path.exists(p):
+                os.makedirs(os.path.dirname(p), exist_ok=True)
+                txt = open(src, encoding="utf-8").read()
+                txt = txt.replace("{{TITLE}}", meta["title"]).replace("{{SLUG}}", slug)
+                open(p, "w", encoding="utf-8").write(txt)
     print(json.dumps({k: meta[k] for k in ("slug", "title", "platform", "model", "sha1")}, indent=2))
     print("header:", json.dumps(meta["header"]))
 

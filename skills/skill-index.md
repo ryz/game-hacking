@@ -121,8 +121,9 @@ new ROM -> `gamedb/tools/intake.py` (coordinator) -> game-scout -> game-capture 
 - File: `skills/game-scout/skill.md`
 - Use when: a ROM was registered with `gamedb/tools/intake.py` and has no filled playbook yet (or the playbook
   lacks controls, boot route or shot plan).
-- Main output: `gamedb/games/<slug>/playbook.md` (controls, structure, shot plan, strategy, shortcuts, sources),
-  `game.json` macros/RAM, checkpoints `title` and `start`.
+- Main output: `gamedb/games/<slug>/playbook.md` (controls, structure, shot plan, strategy, shortcuts: saves,
+  codes, debug menus, sources), `game.json` macros/RAM, checkpoints `title` and `start`, the start of
+  `design/` (overview, systems from sources).
 - Also load: `gamedb/docs/emulator.md`, `gamedb/docs/capture-guide.md`.
 - Do not use for: capturing the set (game-capture); Wizardry Empire translation work.
 - Guardrails: writes only `games/<slug>/` (not `shots/`) and `work/scout/<slug>/`; marks facts verified/source;
@@ -132,10 +133,12 @@ new ROM -> `gamedb/tools/intake.py` (coordinator) -> game-scout -> game-capture 
 - File: `skills/game-capture/skill.md`
 - Use when: a game has a playbook and needs (more) database screenshots.
 - Main output: `gamedb/games/<slug>/shots/<set>/` (native + @3x PNGs, index.json/md, sheet.png, shots.txt),
-  verified with `shoot.py --verify`; playbook updated with what was learned.
+  verified with `shoot.py --verify`; playbook and `design/` reference (rules, numbers, findings) written while
+  playing.
 - Also load: `gamedb/docs/emulator.md`, `gamedb/docs/capture-guide.md`, the game's playbook.
 - Do not use for: research from scratch (game-scout); Wizardry Empire JP/EN reference sets (photographer).
-- Guardrails: writes only `work/` and `games/<slug>/`; pokes that show on screen are captioned; no commits.
+- Guardrails: writes only `work/`, `rom/saves|patches/<slug>/` and `games/<slug>/`; cheat freely, but visible
+  values stay realistic; main character "ryz"; no commits.
 
 ### maintenance
 - File: `skills/maintenance/skill.md`

@@ -33,7 +33,12 @@ playbooks (committed) are not. That is why every state is defined by a route.
 | `mash:a:600` | tap A every 8 frames for 600 frames | skipping text and intros |
 | `settle` | run until two frames 10 apart are identical (max 300) | before a capture |
 | `!` | last token: capture as is, no settle | auto-advancing messages, mid-animation |
-| `poke:C0A2=09` | write RAM | shortcuts (recorded in the route) |
+| `poke:C0A2=09` | write RAM bytes once | shortcuts (recorded in the route) |
+| `set:C0B0=8973:2` | write a decimal value (N bytes; `:bcd`, `:be`) | money, score, EXP |
+| `gs:0109A2C0` | GameShark code, held for the rest of the route | infinite health/lives, codes from the web |
+| `freeze:C0A2=09` / `unfreeze` | hold a raw value / drop all held values | same, own addresses |
+| `rom:NAME` | route prefix: patched ROM (Game Genie, IPS, bytes) | level select, debug menu, invincibility |
+| `sav:NAME` | route prefix: power on with a battery save | late-game saves from the web |
 | `NAME` | macro from `game.json` "macros" | `TITLE`, `NEWGAME`, `MENU` |
 | `@name` | first token: start from a checkpoint | everything after the boot |
 
@@ -64,6 +69,31 @@ python3 tools/play.py stop
 One-shot runs with a screenshot per token (good for finding timings): `python3 tools/emu.py SLUG --seq "@title,a,w10,a" --out work/x`
 -> `work/x/NN_token.png`, `sheet.png`, `log.txt` (PC per token, the full route).
 
+## Cataloguing, not playing fair (owner's rule, 2026-11-15)
+The goal is a complete, good-looking catalogue, not an honest playthrough. Skip, cheat, hack RAM and patch the
+ROM whenever it is faster than playing. Prefer, in this order, whatever reaches the target soonest:
+1. **What others already made:** completed saves (GameFAQs "Saves" section on many game pages), password lists,
+   GameShark/Game Genie code lists (GameFAQs "Cheats", gamehacking.org), debug menus and level selects (TCRF).
+   Downloaded saves go to `rom/saves/<slug>/NAME.sav` (gitignored: `rom/`), loaded with the `sav:NAME` route
+   prefix; record URL, SHA-1 and what the save contains in the playbook Shortcuts table so it can be fetched again.
+   A save made for another revision or emulator may not load: check the in-game file screen.
+2. **Codes:** `gs:` tokens (held like the device), Game Genie codes in a `rom:` variant (game.json
+   `"rom_variants": {"gg": {"gg": ["ABC-DEF-GHI"]}}`), IPS hacks (e.g. a debug-menu patch) the same way
+   (`"ips": ["rom/patches/x.ips"]`; patches are not committed either).
+3. **RAM:** stage/level number, position, items, flags (see below).
+4. **Playing** only for what cannot be reached otherwise, or where the play itself is the shot.
+
+**Realistic values.** Whatever is set by cheating must look like a plausible save, not like a cheat: below the cap
+and not round, varied between stats and characters, consistent with the progress shown. Money capped at 9999 ->
+`8973`, not `9999`; lives 3-7, not 99; a level-30 party has HP in the level-30 range, each member different;
+one or two items short of a full inventory. Pick the numbers yourself, write them as `set:`/`poke:` tokens (so
+they stay reproducible) and vary them between games. Infinite health/lives via `gs:` is fine because it does not
+show; a frozen value that does show on screen also follows this rule.
+
+**Names.** If the game lets you name the main character, the name is **ryz** (owner's rule). Further party
+members, if the game asks for names too: condi, ebo, cubi, deddo, mnz (the owner's standard party, in that
+order). Pets, rivals, towns, files: keep the game's default or suggested name.
+
 ## RAM: find it once, write it down
 Most shortcuts come from a few addresses: lives, health, money, level/stage, position, timer, inventory.
 1. Look in the playbook and its sources first (Data Crystal RAM maps, TCRF, GameShark codes: a GameShark code
@@ -73,8 +103,7 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
    16-bit values: add `--wide`.
 3. Record it in `game.json` "ram" (`"lives": {"addr": "C0A2", "size": 1}`: shown by every `do`) and the playbook
    RAM map.
-- Pokes are part of the route. A poke may make capture possible (lives, money, stage select), but the shot must
-  not show an impossible value (999 lives, 9999999 gold) unless the caption says so.
+- Pokes are part of the route and fine anywhere; values that show on screen follow the realistic-values rule.
 
 ## Choosing the model (GB/GBC)
 - `game.json` "model" comes from the header: CGB games -> `cgb`, everything else -> `dmg` (the original grey).
@@ -87,10 +116,18 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
 - There is no generic hang detector. If several inputs change nothing: check `status` (PC moving?), wait 300
   frames, try Start/B. A PC stuck in one tight loop with no screen change across inputs is a hang: report the
   route, PC and bank.
-- A softlock or a lost fight: `undo`, or `goto` the last checkpoint. Do not grind blindly: read the strategy
-  notes, or poke.
+- A softlock or a lost fight: `undo`, or `goto` the last checkpoint. Never grind: poke, use a code or a save.
 - Battery saves live in the savestate (SRAM included). In-game save/load screens are worth a shot (`save`).
 
 ## Speed
 `do` ~0.5-2 s; a cached checkpoint loads instantly; `shoot.py` replays ~1-5 s per shot. Long routes: make
 checkpoints so replays start late.
+
+## Web research from the container
+- Use WebSearch/WebFetch. The environment allows: gamefaqs.gamespot.com, tcrf.net, datacrystal.tcrf.net,
+  strategywiki.org, en.wikipedia.org, gamehacking.org, doc.kodewerx.org, archive.org (owner approved 2026-11-15).
+  Another host: ask the coordinator; it cannot be added from inside an agent.
+- A site that refuses automated access (403, captcha) is skipped and noted as unavailable in the playbook
+  Sources; never work around bot protection.
+- Binary downloads (saves, patches) with `curl -L -o rom/saves/<slug>/NAME.sav URL` where the site serves the file
+  directly; otherwise note the URL for the owner to fetch.

@@ -11,6 +11,10 @@ updated: 2026-11-15
 > **Before you start:** paths are relative to `gamedb/`. Read `docs/emulator.md` (how to drive the emulator) and
 > `docs/capture-guide.md` (what the database needs), and the open entries in this skill's `feedback.md`.
 
+Owner's rules (2026-11-15): this is cataloguing, not a fair playthrough, so the most valuable research is
+**shortcuts**: completed saves, codes, passwords, debug menus, level selects, RAM maps. Main character name:
+**ryz**. Cheated values look realistic (`docs/emulator.md`, "Cataloguing, not playing fair").
+
 You turn a ROM nobody has played here into a **playbook** that lets a capture agent play it efficiently: verified
 controls and boot route, the game's structure, a shot plan, strategy notes and shortcuts, all with sources. You
 do not capture the database set (that is `game-capture`), but you do create the first checkpoints.
@@ -30,8 +34,13 @@ do not capture the database set (that is `game-capture`), but you do create the 
    - **The Cutting Room Floor** (tcrf.net): debug menus, level selects, sound tests, unused content, regional
      differences. Often the fastest way to reach late content.
    - **Data Crystal** (datacrystal.tcrf.net): RAM maps, ROM maps.
-   - GameShark / Game Genie code lists (GB GameShark `01VVAAAA` = write VV to address AAAA, low byte first).
+   - GameShark / Game Genie code lists (GameFAQs "Cheats", gamehacking.org). GB GameShark `01VVAAAA` = write VV
+     to address AAAA, low byte first: use as `gs:` tokens; Game Genie codes go into a `rom:` variant.
+   - **Saves:** GameFAQs game pages often have a "Saves" section (100% / late-game battery saves). Fetch the
+     best one into `rom/saves/<slug>/` if the site serves it directly, test it with the `sav:NAME` prefix, and
+     record URL, SHA-1 and contents in the playbook. If it needs a browser, list the URL for the owner.
    - Fan wikis for item/enemy/area names. Wikipedia only for release facts.
+   A site that refuses automated access is noted as unavailable; never work around bot protection.
    Record every source in the playbook Sources table (URL, what you took, date). Take facts, not prose: no copied
    walkthrough text beyond short quotes of names.
 3. **Verify in the emulator** (`tools/play.py`, small steps, look at every screenshot):
@@ -43,17 +52,20 @@ do not capture the database set (that is `game-capture`), but you do create the 
    - 2-4 RAM addresses that make capture easier (lives/health, money, stage, position): from the sources, else
      `play.py find`. Confirm each with a poke; add them to `game.json` "ram" and the RAM map.
    - Shortcuts from the sources (passwords, level select, debug menu): try them; mark verified/failed.
-4. **Plan the shots.** From the structure and `docs/capture-guide.md`: the playbook Shot plan (ids, category,
+4. **Start the design reference** (`games/<slug>/design/README.md`, notation in that file): the Overview and a
+   document list for the game's systems, filled with what the research says, tagged **(source)**, plus what you
+   verified. The capture agent extends it while playing.
+5. **Plan the shots.** From the structure and `docs/capture-guide.md`: the playbook Shot plan (ids, category,
    what and where), with the systems that make this game distinctive. For each area the plan needs, say how to
-   reach it (play, password, poke, debug menu) and how long it takes.
-5. **Strategy notes.** What a capture agent needs to reach the plan's targets: the critical path, the hard parts
+   reach it (save, password, code, poke, debug menu, play) and pick the fastest.
+6. **Strategy notes.** What a capture agent needs to reach the plan's targets: the critical path, the hard parts
    and how to beat them (patterns, items, levels), which pokes are safe. Short and concrete.
-6. Fill the playbook completely (empty sections: "none found" + where you looked). Leave Open questions for
+7. Fill the playbook completely (empty sections: "none found" + where you looked). Leave Open questions for
    whatever you could not settle.
 
 ## Guardrails
 - Write only `games/<slug>/game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt` (plan lines without routes
-  are fine as comments) and `work/scout/<slug>/`. No commits; the coordinator commits.
+  are fine as comments), `design/`, `rom/saves/<slug>/`, `rom/patches/<slug>/` and `work/scout/<slug>/`. No commits; the coordinator commits.
 - Never commit or upload the ROM; never send ROM data, hashes of private dumps or the user's details to web
   services (searching for a public CRC32 of a retail game is fine).
 - Mark every fact verified or source. A control or code you could not confirm stays "source".
@@ -63,7 +75,8 @@ do not capture the database set (that is `game-capture`), but you do create the 
 ## Report (your final message)
 - Playbook path; one-paragraph summary of the game as the database will describe it.
 - Verified: boot macros, checkpoints made (names), controls verified / unverified / wrong in sources.
-- RAM addresses and shortcuts found (verified or not).
+- RAM addresses and shortcuts found (verified or not): saves, codes, passwords, debug features.
+- Design reference: documents started, claims by tag.
 - Shot plan size by category; areas that need special effort to reach, with the method.
 - Sources used (count, best ones) and open questions.
 

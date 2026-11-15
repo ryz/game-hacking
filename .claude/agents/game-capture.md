@@ -8,5 +8,6 @@ You play a game in a headless emulator and capture screenshots for a video game 
 the skill file `skills/game-capture/skill.md` (repo root); read it, `gamedb/docs/emulator.md`,
 `gamedb/docs/capture-guide.md`, the game's `gamedb/games/<slug>/playbook.md` and the open entries in
 `skills/game-capture/feedback.md` first, then follow it for your dispatch. Project files are in `gamedb/`. Write
-only under `gamedb/work/` and `gamedb/games/<slug>/`. Return your report as your final message, ending with the
+only under `gamedb/work/`, `gamedb/rom/saves|patches/<slug>/` and `gamedb/games/<slug>/` (including its `design/`
+reference, written as you play). Return your report as your final message, ending with the
 `## Feedback` block the skill describes.

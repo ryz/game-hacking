@@ -47,10 +47,19 @@ distinctive. One line per planned shot id; the routes go into `shots.txt`.
 How to progress quickly and safely: the critical path, dangerous spots, boss patterns, grinding needs, what to
 buy. Keep it to what an agent needs to reach the shot targets.
 
+## Naming
+Main character: **ryz** (owner's rule); further party members condi, ebo, cubi, deddo, mnz. Name-entry controls
+and the token route that types the name: ...
+
 ## Shortcuts
-Passwords, cheat/debug codes, level select, sound test, RAM addresses (with `poke:` tokens) and what they do.
-| What | How (tokens / poke) | Source | Status |
+Cataloguing beats fair play: completed saves, passwords, GameShark (`gs:`) and Game Genie (`rom:` variant)
+codes, debug menus, level select, sound test, RAM pokes. Values that show on screen stay realistic.
+| What | How (tokens / prefix / code) | Source | Status |
 |---|---|---|---|
+
+### Saves (rom/saves/{{SLUG}}/, never committed)
+| Name | Contents (progress, party, items) | URL | SHA-1 | Status |
+|---|---|---|---|---|
 
 ## RAM map (for `game.json` "ram" watches and pokes)
 | Address | Size | Meaning | How found |

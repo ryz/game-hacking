@@ -36,12 +36,18 @@ situations - every core system the playbook lists - one boss (if the game has bo
   for genuinely animated screens; then pick the frame by eye (`do!` + `wN`) so nothing is cut off.
 - **Representative:** enemies and items on screen, not an empty corridor; the player visible; mid-action beats
   standing still. Avoid the pause overlay unless the shot is of the pause menu.
-- **Readable:** cursor not covering text; HUD numbers plausible (no visible poked values unless captioned).
+- **Readable:** cursor not covering text.
+- **Plausible:** cheated values look like a real save (`docs/emulator.md`, realistic values): 8973 gold, not 9999.
+  The main character is named **ryz** where the game allows naming.
 - **No duplicates:** two shots must differ in content, not only in a few pixels.
 - **Captions:** factual, what is on screen, max ~80 characters: "World 1-2: underground level, Koopa shells"
   is better than "Cool level". Use the game's own names (from the playbook glossary/sources).
 - **Ids:** lowercase `area_thing` (`title_screen`, `w1_forest_start`, `battle_magic`, `boss_dragon`). Stable:
   they name the files.
+
+## Design reference
+Shots are evidence for `games/<slug>/design/`: when a shot shows a rule or a number (a shop price list, a level-up
+screen, a status screen), link it from the design document that states the rule.
 
 ## Sets
 - `main` is the database set. Other sets for variants: `dmg` / `sgb` (another model), `jp` (another region/ROM

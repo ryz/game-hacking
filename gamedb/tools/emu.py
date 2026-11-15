@@ -22,6 +22,17 @@ Routes are comma-separated tokens:
   pow, shot                             no-ops (power-on marker, extra screenshot)
   NAME                                  macro from game.json "macros" (UPPERCASE), expanded recursively
   @checkpoint                           first token only: start from that checkpoint (games/<slug>/checkpoints.txt)
+Shortcuts (cataloguing, not a fair playthrough: use them freely, with realistic values; docs/emulator.md):
+  set:ADDR=DEC[:N[:bcd|be]]             write a decimal value in N bytes (default 1; little-endian binary,
+                                        `bcd` = packed BCD low byte first, `be` = big-endian): set:C0B0=8973:2
+  gs:01VVAAAA                           GameShark code: written now and re-written after every token for the
+                                        rest of the route, like the device (8n/9n = CGB WRAM bank n)
+  freeze:ADDR=HEX / unfreeze            the same for a raw value; unfreeze drops all held values
+Route prefixes (start of a route or a checkpoint route only; a route from @checkpoint inherits them):
+  rom:NAME                              play a patched copy: game.json "rom_variants" NAME
+                                        {"gg": [Game Genie codes], "ips": [paths], "bytes": {"HEXOFF": "HEX"}}
+  sav:NAME                              power on with the battery save rom/saves/<slug>/NAME.sav (downloaded or
+                                        made; never committed; record its source and SHA-1 in the playbook)
 
 Checkpoints (`name | description | route`) are built on demand by replaying their route from power-on and cached
 per exact ROM and route in work/cache/<slug>/ (savestates are never committed; the route is the source of truth).
@@ -66,12 +77,65 @@ class Game:
             raise SystemExit("ROM %s has SHA-1 %s, game.json expects %s" % (self.rom, sha, self.meta["sha1"]))
         return sha
 
+    def rom_file(self, variant=None):
+        """The ROM to load: the dump, or a patched copy built from game.json "rom_variants" (work/roms/)."""
+        self.check_rom()
+        if not variant:
+            return self.rom
+        spec = self.meta.get("rom_variants", {}).get(variant)
+        if spec is None:
+            raise ValueError("unknown rom variant %r (game.json rom_variants)" % variant)
+        data = bytearray(open(self.rom, "rb").read())
+        for ips in spec.get("ips", []):
+            apply_ips(data, open(os.path.join(ROOT, ips), "rb").read())
+        for off, hx in spec.get("bytes", {}).items():
+            o = int(off, 16)
+            data[o:o + len(bytes.fromhex(hx))] = bytes.fromhex(hx)
+        backend = platforms.PLATFORMS[self.platform]
+        for code in spec.get("gg", []):
+            if not backend.apply_game_genie(data, code):
+                print("warning: Game Genie %s patched nothing (compare byte differs: other ROM revision?)" % code,
+                      file=sys.stderr)
+        out = os.path.join(WORK, "roms", self.slug, variant + os.path.splitext(self.rom)[1])
+        os.makedirs(os.path.dirname(out), exist_ok=True)
+        if not os.path.exists(out) or open(out, "rb").read() != data:
+            open(out, "wb").write(data)
+        return out
+
+    def sav_file(self, name):
+        p = os.path.join(ROOT, "rom", "saves", self.slug, name + ".sav")
+        if not os.path.exists(p):
+            raise SystemExit("save missing: %s (see the playbook Shortcuts for its source)" % os.path.relpath(p, ROOT))
+        return p
+
     def checkpoints(self):
         return read_table(os.path.join(self.dir, "checkpoints.txt"), ("name", "description", "route"))
 
     def ram(self):
         """game.json "ram": {"lives": {"addr": "C0A2", "size": 1, "note": "..."}} -> watch list for status."""
         return self.meta.get("ram", {})
+
+
+def apply_ips(data, patch):
+    """Apply an IPS patch to a bytearray in place (RLE records and truncation extension supported)."""
+    if patch[:5] != b"PATCH":
+        raise ValueError("not an IPS patch")
+    i = 5
+    while patch[i:i + 3] != b"EOF":
+        off = int.from_bytes(patch[i:i + 3], "big")
+        size = int.from_bytes(patch[i + 3:i + 5], "big")
+        i += 5
+        if size:
+            chunk = patch[i:i + size]
+            i += size
+        else:
+            n = int.from_bytes(patch[i:i + 2], "big")
+            chunk = patch[i + 2:i + 3] * n
+            i += 3
+        if off + len(chunk) > len(data):
+            data.extend(b"\0" * (off + len(chunk) - len(data)))
+        data[off:off + len(chunk)] = chunk
+    return data
 
 
 def read_table(path, fields):
@@ -122,6 +186,57 @@ def resolve(game, route, seen=()):
     return toks
 
 
+def prefix(toks):
+    """Leading rom:/sav: tokens -> ({"rom": NAME, "sav": NAME}, the rest)."""
+    opts, i = {}, 0
+    while i < len(toks) and toks[i].split(":")[0] in ("rom", "sav") and ":" in toks[i]:
+        k, v = toks[i].split(":", 1)
+        opts[k] = v
+        i += 1
+    return opts, toks[i:]
+
+
+def encode_value(value, n=1, fmt="le"):
+    if fmt == "bcd":
+        digits = "%0*d" % (n * 2, value)
+        if len(digits) > n * 2:
+            raise ValueError("%d does not fit %d BCD bytes" % (value, n))
+        return bytes(int(digits[j:j + 2], 16) for j in range(len(digits) - 2, -1, -2))
+    return value.to_bytes(n, "big" if fmt == "be" else "little")
+
+
+def apply_freezes(emu):
+    for bank, addr, data in getattr(emu, "freezes", []):
+        if bank is None:
+            emu.poke(addr, data)
+        else:
+            emu.poke_bank(bank, addr, data)
+
+
+def hold_value(emu, game, tok):
+    """gs:/freeze:/unfreeze bookkeeping (also used to restore held values after loading a cached state)."""
+    if not hasattr(emu, "freezes"):
+        emu.freezes = []
+    if tok == "unfreeze":
+        emu.freezes = []
+    elif tok.startswith("gs:"):
+        bank, addr, v = platforms.PLATFORMS[game.platform].gameshark(tok[3:])
+        emu.freezes = [f for f in emu.freezes if f[:2] != (bank, addr)] + [(bank, addr, bytes([v]))]
+    elif tok.startswith("freeze:"):
+        addr, data = tok[7:].split("=")
+        emu.freezes = [f for f in emu.freezes if f[:2] != (None, int(addr, 16))] + \
+            [(None, int(addr, 16), bytes.fromhex(data))]
+    else:
+        return False
+    return True
+
+
+def restore_freezes(emu, game, toks):
+    emu.freezes = []
+    for t in toks:
+        hold_value(emu, game, t)
+
+
 KEYTOK = re.compile(r"^([a-z+>]+)(?::(\d+))?$")
 
 
@@ -132,8 +247,15 @@ def step(emu, game, tok):
     if m:
         base, n = m.group(1), int(m.group(2))
     for _ in range(n):
-        if base in ("pow", "shot", "!"):
-            pass
+        if base in ("pow", "shot", "!") or base.startswith(("rom:", "sav:")):
+            pass                    # rom:/sav: act at power-on (start()), nothing to do mid-route
+        elif hold_value(emu, game, base):
+            apply_freezes(emu)
+        elif base.startswith("set:"):
+            addr, rest = base[4:].split("=")
+            parts = rest.split(":")
+            n = int(parts[1]) if len(parts) > 1 else 1
+            emu.poke(int(addr, 16), encode_value(int(parts[0]), n, parts[2] if len(parts) > 2 else "le"))
         elif base == "settle":
             settle(emu, game)
         elif re.match(r"^w\d+$", base):
@@ -173,6 +295,7 @@ def step(emu, game, tok):
             emu.input([])
             if not held:
                 emu.frames(game.wait)
+        apply_freezes(emu)
     return True
 
 
@@ -189,6 +312,7 @@ def settle(emu, game, step_=None, limit=None):
     prev, ran = emu.screen(), 0
     while ran < limit:
         emu.frames(step_)
+        apply_freezes(emu)
         ran += step_
         cur = emu.screen()
         if cur == prev:
@@ -198,18 +322,27 @@ def settle(emu, game, step_=None, limit=None):
 
 
 # ------------------------------------------------------------------ opening a game at a route
-def open_game(game, model=None, state=None):
-    game.check_rom()
-    emu = platforms.backend(game.platform).open(game.rom, model=model or game.model, seed=1)
+def open_game(game, model=None, state=None, opts=None):
+    """Power on (opts: {"rom": variant, "sav": name} from the route prefix), optionally load a state."""
+    opts = opts or {}
+    rom = game.rom_file(opts.get("rom"))
+    sav = game.sav_file(opts["sav"]) if opts.get("sav") else None
+    emu = platforms.backend(game.platform).open(rom, model=model or game.model, seed=1, sav=sav)
+    emu.freezes = []
     if state:
         emu.load_state(state)
     return emu
 
 
 def cache_path(game, toks, model):
-    sha = hashlib.sha1(open(game.rom, "rb").read()).hexdigest()[:12]
-    key = hashlib.sha1((model + "|" + ",".join(toks)).encode()).hexdigest()[:12]
-    return os.path.join(WORK, "cache", game.slug, sha, key + ".state")
+    """Cache file for the state at the end of a flat route: keyed by the exact ROM (dump or variant), the save
+    file, the model and the tokens."""
+    opts, _ = prefix(toks)
+    h = hashlib.sha1(open(game.rom_file(opts.get("rom")), "rb").read())
+    if opts.get("sav"):
+        h.update(open(game.sav_file(opts["sav"]), "rb").read())
+    key = hashlib.sha1((h.hexdigest() + "|" + model + "|" + ",".join(toks)).encode()).hexdigest()[:16]
+    return os.path.join(WORK, "cache", game.slug, key + ".state")
 
 
 def start(game, route, model=None, cache=True):
@@ -218,20 +351,26 @@ def start(game, route, model=None, cache=True):
     model = model or game.model
     toks = expand(game, split(route))
     if not (toks and toks[0].startswith("@")):
-        return open_game(game, model), toks, resolve(game, route)
+        opts, rest = prefix(toks)
+        return open_game(game, model, opts=opts), rest, resolve(game, route)
     base = resolve(game, toks[0])
     rest = toks[1:]
+    if prefix(rest)[0]:
+        raise ValueError("rom:/sav: must come first in a checkpoint's own route, not after @checkpoint")
+    opts, base_toks = prefix(base)
     path = cache_path(game, base, model)
     if not (cache and os.path.exists(path)):
-        emu = open_game(game, model)
-        play(emu, game, base)
+        emu = open_game(game, model, opts=opts)
+        play(emu, game, base_toks)
         if cache:
             os.makedirs(os.path.dirname(path), exist_ok=True)
             tmp = "%s.%d.tmp" % (path, os.getpid())
             emu.save_state(tmp)
             os.replace(tmp, path)       # atomic: parallel runs may race
         return emu, rest, base + rest
-    return open_game(game, model, path), rest, base + rest
+    emu = open_game(game, model, path, opts)
+    restore_freezes(emu, game, base)        # held GameShark values are not part of a savestate
+    return emu, rest, base + rest
 
 
 # ------------------------------------------------------------------ images

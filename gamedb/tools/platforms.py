@@ -15,6 +15,7 @@ Backend interface (what the tools rely on):
   save_state(path) / load_state(path)
   peek(addr, n, bank=None) -> bytes, poke(addr, data)
   ram_search(expr) / ram_search_reset()   cheat-search style narrowing (optional)
+  gameshark(code), apply_game_genie(rom, code), poke_bank()   the platform's cheat formats (optional)
   regs() -> dict             at least {"pc": "..."} for logs
   close()
 """
@@ -75,6 +76,61 @@ class GameBoy(Backend):
             # default capture model: colour for CGB games, the original grey DMG for the rest
             "model": "cgb" if cgb in (0x80, 0xC0) else "dmg",
         }
+
+    # ---- cheat formats (GB/GBC). GameShark: write every frame; Game Genie: ROM patch.
+    @staticmethod
+    def gameshark(code):
+        """'TTVVAAAA' -> (bank or None, addr, value). Type 01 = the mapped bank; 8n/9n = RAM bank n of the
+        address's banked region (cart RAM A000-BFFF, CGB WRAM D000-DFFF). Address low byte first: 0109A2C0 =
+        write 09 to C0A2. (EnHacklopedia "Hacking Gameboy"; SameBoy Core/cheats.c GB_import_cheat.)"""
+        c = code.replace("-", "").strip()
+        if len(c) != 8:
+            raise ValueError("GameShark code must be 8 hex digits: %r" % code)
+        t, v, lo, hi = int(c[0:2], 16), int(c[2:4], 16), int(c[4:6], 16), int(c[6:8], 16)
+        bank = None if t == 0x01 else (t & 0x0F)
+        return bank, hi << 8 | lo, v
+
+    @staticmethod
+    def game_genie(code):
+        """'ABC-DEF[-GHI]' -> (addr, value, compare or None). value = AB, addr = (F^F)CDE,
+        compare = ror(GI, 2) ^ 0xBA (H unused). Same as SameBoy Core/cheats.c GB_import_cheat."""
+        d = [int(x, 16) for x in code.replace("-", "").strip()]
+        if len(d) not in (6, 9):
+            raise ValueError("Game Genie code must be 6 or 9 hex digits: %r" % code)
+        value = d[0] << 4 | d[1]
+        addr = (d[5] ^ 0xF) << 12 | d[2] << 8 | d[3] << 4 | d[4]
+        cmp_ = None
+        if len(d) == 9:
+            g = d[6] << 4 | d[8]
+            cmp_ = (((g >> 2) | (g << 6)) & 0xFF) ^ 0xBA
+        return addr, value, cmp_
+
+    @classmethod
+    def apply_game_genie(cls, rom, code):
+        """Patch a ROM bytearray like the device would: the address in bank 0, or in every switchable bank (the
+        device patches whatever bank is mapped), only where the compare byte matches. Returns patched offsets."""
+        addr, value, cmp_ = cls.game_genie(code)
+        if addr >= 0x8000:
+            raise ValueError("Game Genie address %04X is not ROM" % addr)
+        if addr < 0x4000:
+            offs = [addr]
+        else:
+            offs = [b * 0x4000 + (addr - 0x4000) for b in range(1, max(2, len(rom) // 0x4000))]
+        done = []
+        for o in offs:
+            if o < len(rom) and (cmp_ is None or rom[o] == cmp_):
+                rom[o] = value
+                done.append(o)
+        return done
+
+    def poke_bank(self, bank, addr, data):
+        """Write RAM bank n of a banked region (GameShark 8n/9n): cart RAM A000-BFFF, WRAM D000-DFFF."""
+        if 0xA000 <= addr < 0xC000:
+            self.g.mem_write(None, list(data), region="cart_ram", offset=bank * 0x2000 + (addr - 0xA000))
+        elif 0xD000 <= addr < 0xE000:
+            self.g.mem_write(None, list(data), region="wram", offset=bank * 0x1000 + (addr - 0xD000))
+        else:
+            self.poke(addr, data)
 
     def open(self, rom, model="cgb", seed=1, turbo=True, sav=None):
         sys.path.insert(0, os.path.join(HERE, "gbemu-cli", "cli", "py"))

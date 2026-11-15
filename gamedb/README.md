@@ -1,7 +1,7 @@
 # Game database captures
 
-Agents play games you provide as ROMs and capture screenshots of their screens, gameplay and systems for a video
-game database. Each game gets a **playbook** (controls, structure, strategy, shortcuts, RAM, sources) so no agent
+Agents play games you provide as ROMs, capture screenshots of their screens, gameplay and systems for a video
+game database, and write a design reference of how each game works. Each game gets a **playbook** (controls, structure, strategy, shortcuts, RAM, sources) so no agent
 has to work out the same game twice, and a **screenshot set** whose every image can be reproduced from
 power-on by its recorded route.
 
@@ -32,8 +32,12 @@ ROM --intake.py--> games/<slug>/ --game-scout--> playbook + checkpoints --game-c
 | `docs/emulator.md` | **how to drive the emulator** (read first) |
 | `docs/capture-guide.md` | what a set must contain, categories, quality rules |
 | `games/_template/` | playbook, checkpoints and shot-list templates |
-| `games/<slug>/` | `game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt`, `shots/<set>/` |
-| `rom/`, `work/` | ROMs, states, caches, scratch (gitignored) |
+| `games/<slug>/` | `game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt`, `shots/<set>/`, `design/` (design reference: rules, numbers, findings) |
+| `rom/`, `work/` | ROMs, downloaded saves (`rom/saves/<slug>/`) and patches, states, caches, scratch (gitignored) |
+
+## House rules
+Cataloguing, not fair play: saves, codes, RAM and ROM hacks are used whenever faster, with realistic values on
+screen (8973, not 9999). The main character is named **ryz**. Details: `docs/emulator.md`.
 
 ## A set (`games/<slug>/shots/<set>/`)
 `<id>.png` (native resolution, raw framebuffer), `<id>@3x.png` (nearest neighbour), `index.json` (game identity

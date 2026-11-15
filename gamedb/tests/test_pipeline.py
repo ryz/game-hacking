@@ -136,3 +136,64 @@ def test_pipeline(selftest):
     assert s["id"] == "a_shot" and s["route"] == "@title,right:20,a,settle" and s["rom_sha1"] == meta["sha1"]
     from PIL import Image
     assert Image.open(os.path.join(ROOT, "games", SLUG, "shots", "main", "a_shot.png")).size == (160, 144)
+
+
+def test_cheat_formats():
+    GB = platforms.GameBoy
+    assert GB.gameshark("0109A2C0") == (None, 0xC0A2, 0x09)
+    assert GB.gameshark("9163D0DA") == (1, 0xDAD0, 0x63)
+    assert GB.gameshark("8205B3A0") == (2, 0xA0B3, 0x05)
+
+    def encode(addr, value, cmp_=None):          # inverse of the SameBoy decoder
+        d = "%02X%03X%X" % (value, addr & 0xFFF, (addr >> 12) ^ 0xF)
+        if cmp_ is None:
+            return d[:3] + "-" + d[3:]
+        x = cmp_ ^ 0xBA
+        g = ((x << 2) | (x >> 6)) & 0xFF
+        return "%s-%s-%X0%X" % (d[:3], d[3:], g >> 4, g & 0xF)
+    for addr, val, cmp_ in [(0x4ABC, 0x00, 0x3D), (0x0150, 0xC9, None), (0x7FFF, 0x12, 0xBA)]:
+        assert GB.game_genie(encode(addr, val, cmp_)) == (addr, val, cmp_)
+    rom = bytearray(0x10000)
+    rom[0x0ABC] = 0x3D           # bank 0 copy: not touched (address is in the switchable bank)
+    rom[0x4000 + 0x0ABC] = 0x3D  # bank 1
+    rom[0x8000 + 0x0ABC] = 0x11  # bank 2: compare differs
+    rom[0xC000 + 0x0ABC] = 0x3D  # bank 3
+    assert GB.apply_game_genie(rom, encode(0x4ABC, 0x00, 0x3D)) == [0x4ABC, 0xCABC]
+    assert rom[0x8ABC] == 0x11 and rom[0x0ABC] == 0x3D
+
+
+def test_values_ips_prefix_freezes():
+    assert emu.encode_value(8973, 2) == bytes([0x0D, 0x23])
+    assert emu.encode_value(8973, 2, "be") == bytes([0x23, 0x0D])
+    assert emu.encode_value(8973, 3, "bcd") == bytes([0x73, 0x89, 0x00])
+    data = bytearray(b"\0" * 8)
+    emu.apply_ips(data, b"PATCH" + b"\0\0\2\0\2AB" + b"\0\0\6\0\0\0\4Z" + b"EOF")
+    assert bytes(data) == b"\0\0AB\0\0ZZZZ"
+    assert emu.prefix(["rom:gg", "sav:end", "a"]) == ({"rom": "gg", "sav": "end"}, ["a"])
+    e, g = FakeEmu(), FakeGame()
+    g.platform = "gb"
+    emu.step(e, g, "gs:0109A2C0")
+    e.log = []
+    emu.step(e, g, "w10")
+    assert e.log == [("f", 10), ("poke", 0xC0A2, b"\x09")]      # held value re-written after the token
+    emu.step(e, g, "unfreeze")
+    e.log = []
+    emu.step(e, g, "w10")
+    assert e.log == [("f", 10)]
+    emu.step(e, g, "set:C0B0=8973:2")
+    assert e.log[-1] == ("poke", 0xC0B0, bytes([0x0D, 0x23]))
+
+
+def test_rom_variant_and_set(selftest):
+    run("tools/intake.py", str(selftest), "--slug", SLUG, "--probe", "0")
+    gj = os.path.join(ROOT, "games", SLUG, "game.json")
+    meta = json.load(open(gj))
+    meta["rom_variants"] = {"patched": {"bytes": {"7FF0": "AB"}}}
+    json.dump(meta, open(gj, "w"))
+    g = emu.Game(SLUG)
+    p = g.rom_file("patched")
+    assert open(p, "rb").read()[0x7FF0] == 0xAB and "work/roms" in p
+    e, rest, _ = emu.start(g, "rom:patched,w60,set:C200=8973:2,gs:015555C2")
+    emu.play(e, g, rest)
+    assert e.peek(0xC200, 2) == bytes([0x0D, 0x23]) and e.peek(0xC255, 1) == b"\x55"
+    e.close()

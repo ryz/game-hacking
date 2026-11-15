@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-15 - shortcuts, naming, design reference
+- Owner's rules: cataloguing over fair play (cheat/hack freely, realistic values), main character "ryz", use
+  saves/codes from the web, document systems in a design reference while playing.
+- Tools: set:/gs:/freeze: tokens, rom: variants (Game Genie decoding checked against SameBoy's cheats.c; GameShark
+  types against EnHacklopedia), sav: prefix, IPS; tests for all (7 pass, run without pytest: not installed).
+- Templates: design/README.md (notation, confidence tags) and findings.md; playbook Naming and Saves sections.
+
 ## 2026-11-15 - pipeline set up
 - New project `gamedb/`: generalised the Wizardry Empire photographer/playtester tooling for any GB/GBC ROM.
 - Tools: platforms.py (backend registry), emu.py, play.py, shoot.py, intake.py; tests in tests/.

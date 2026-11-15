@@ -89,6 +89,7 @@ class Session:
         self.undo_state = os.path.join(self.dir, "undo.state")
         self.emu.save_state(self.undo_state)
         self.undo_toks = list(self.toks)
+        self.undo_freezes = list(getattr(self.emu, "freezes", []))
         self.E.play(self.emu, self.game, toks)
         settled = None
         if settle:
@@ -148,13 +149,8 @@ class Session:
         return "checkpoint %s saved (%d tokens from power-on)" % (name, len(full))
 
     def goto(self, name):
-        full = self.E.resolve(self.game, "@" + name)
-        cp = self.E.cache_path(self.game, full, self.model)
-        if os.path.exists(cp):
-            self.emu.load_state(cp)
-        else:
-            self.emu.close()
-            self.emu, _, _ = self.E.start(self.game, "@" + name, self.model)
+        self.emu.close()        # reopen: the checkpoint may use another ROM variant or save (start() uses the cache)
+        self.emu, _, _ = self.E.start(self.game, "@" + name, self.model)
         self.base, self.toks = "@" + name, []
         return self.watch()
 
@@ -167,6 +163,7 @@ class Session:
                 return "error: nothing to undo"
             e.load_state(self.undo_state)
             self.toks, self.undo_state = self.undo_toks, None
+            e.freezes = self.undo_freezes
             return rel(self.shot()) + "\n" + self.watch()
         if cmd == "shot":
             return rel(self.shot(args[0] if args else None))
