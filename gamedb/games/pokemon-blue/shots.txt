@@ -2,7 +2,7 @@
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# --- main set (captured 2026-11-15, verified 50/50) ---
+# --- main set (captured 2026-11-15, extended the same day: 92 shots, verified) ---
 boot_gamefreak | boot | Game Freak logo with falling stars | pow,w500,!
 intro_fight | cutscene | Intro: Gengar raises its arm against Nidorino | pow,w500,w400,!
 title_screen | title | Title screen: POKéMON Blue Version logo, Squirtle and the player | @title,settle,settle
@@ -51,28 +51,53 @@ mart_buy | shop | POKé MART buy list (Indigo Plateau): ULTRA BALL 1200, GREAT B
 pokecenter_nurse | dialogue | Pokemon Center nurse: "Welcome to our POKéMON CENTER!" (Indigo Plateau lobby) | @late_lobby,up:16*2,up,a,w60,settle,settle
 save_prompt | save | Save screen: PLAYER ryz, BADGES 8, POKéDEX 71, TIME 27:46; "Would you like to SAVE the game?" | @late_lobby,start,w30,settle,down*4,a,w60,settle,settle
 options | options | OPTION screen: TEXT SPEED FAST/MEDIUM/SLOW, BATTLE ANIMATION ON/OFF, BATTLE STYLE SHIFT/SET | @late_lobby,start,w30,settle,down*5,a,w60,settle,settle
-pokecenter_heal | system | Pokemon Center healing: six Poke Balls on the machine | @start,LATE,TO_DOOR,settle,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,settle,up:16*3,settle,start,down*3,a,w60,settle,b,w30,poke:DA41=1B,poke:DA43=2E,a,w60,settle,b,w30,start,up,a,w30,settle,a,w60,settle,a,w60,settle,a,w200,settle,a,w240,settle,a,w60,settle
 cable_club | dialogue | Indigo Plateau lobby: Cable Club attendant (link trade/battle desk) | @start,LATE,TO_DOOR,settle,poke:D3B1=00AE,poke:D3B5=00AE,poke:D365=09,poke:D719=09,EXIT,settle,up:16*3,settle,start,down*3,a,w60,settle,b,w30,poke:DA41=1B,poke:DA43=2E,a,w60,settle,b,w30,start,up,a,w30,settle,a,w60,settle,a,w60,settle,a,w200,settle,a,w240,settle,a,w60,settle,w200,a,w60,a,w60,settle,a,w30,start,down*2,a,w30,settle,left,b,w30,up*3,a,w30,settle,b,w20,down*2,a,w30,settle,a,w60,settle,w120,settle,right:16*5,up:16*7,w60,settle,right:16,up,a,w60,settle
+pokecenter_heal | system | Pokemon Center healing: the nurse sets six Poke Balls on the healing machine | @nurse_yesno,a,w60,w150,!,settle
+pewter_gym | gameplay | Pewter Gym: ryz walks between the boulders toward Brock | @pewter_gym,up:16*6,settle,settle,up:16*3,settle,settle
+brock_talk | dialogue | Pewter Gym: "I'm BROCK! I'm PEWTER's GYM LEADER!" | @pewter_gym,up:16*6,settle,settle,up:16*3,settle,settle,up:16*2,settle,up,a,w60,settle,settle
+gym_brock | boss | Gym Leader battle: "BROCK wants to fight!" in Pewter Gym (2 vs 4 Pokemon) | @pewter_gym,up:16*6,settle,settle,up:16*3,settle,settle,up:16*2,settle,up,a,w60,settle,settle,mash:a:200,w200,settle,settle,mash:a:300,w200,settle,settle
+learn_move | system | Learning a move: "BUTTERFREE is trying to learn STUN SPORE!" (L16, four moves known) | @brock_battle,a,w200,settle,settle,w60,settle,settle,w60,settle,a,w30,settle,settle,poke:CFE6=0005,a,w200,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle
+learn_move_forget | system | Learning a move: "Which move should be forgotten?" cursor on HARDEN | @brock_battle,a,w200,settle,settle,w60,settle,settle,w60,settle,a,w30,settle,settle,poke:CFE6=0005,a,w200,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,down*2,settle,settle
+badge_received | system | Gym victory: "ryz received the BOULDERBADGE!" from Brock | @brock_proof,a,w90,settle,a,w90,settle,settle
+evolution | system | Evolution: "SQUIRTLE evolved into WARTORTLE!" | @brock_evolving,w140,!,settle,w360,!,settle
+evolution_start | system | Evolution: "What? SQUIRTLE is evolving!" after the Brock battle (L16) | @brock_evolving,settle,settle
+indigo_plateau | gameplay | Indigo Plateau: ryz outside the Pokemon League building | @late_lobby,down:16*3,EXIT,w60,settle,settle
+fly_map | map | FLY: town-select map of Kanto, "To PALLET TOWN" with Pidgeot as the cursor | @indigo_outside,start,w30,settle,up*5,down,a,w60,settle,down,a,w30,settle,settle,up*2,a,w60,settle,settle,down,a,w30,settle,settle,a,w90,settle,settle
+surfing | gameplay | Surfing: ryz rides the SURF sprite across Vermilion City's water | @vermilion,down:16*2,left:16,settle,settle,start,w30,settle,settle,a,w60,settle,a,w30,settle,settle,b,w20,settle,up,a,w30,settle,settle,a,w90,settle,settle,a,w90,settle,settle,left:16*1,down:16*3,settle,settle
+fishing | system | Fishing with the SUPER ROD at Vermilion's harbour: "Oh! It's a bite!" | @vermilion_rod,a,w30,w1,a,w300,settle,settle
+fishing_battle | battle | Fishing battle: "The hooked KRABBY attacked!" (Super Rod, Vermilion City) | @vermilion_rod,a,w30,w1,a,w300,settle,settle,a,w200,settle,settle,w60,settle,settle
+bicycle | gameplay | Riding the BICYCLE through Vermilion City (twice walking speed) | @vermilion,start,w30,settle,down,a,w60,settle,a,w30,settle,a,w60,settle,settle,right:8*6,down:8*4,settle,settle,right:8*2,down:8*6,settle,settle,down:8*5,settle,settle
+cut_tree | system | Field move CUT: "VICTREEBEL hacked away with CUT!" at the tree beside Vermilion Gym | @vermilion_cutmenu,a,w300,settle,settle
+viridian_forest | gameplay | Viridian Forest: tall grass and trees, a youngster beside ryz | @late_lobby,poke:D3B1=0433,poke:D3B5=0433,poke:D365=0D,down:16*3,EXIT,w60,settle,settle,up:16*4,settle,settle
+mt_moon | gameplay | Mt. Moon 1F: cave floor and rock ledges, a sign and a trainer ahead | @mtmoon,up:16*5,settle,settle,up:16*4,settle,settle
+safari_gate | dialogue | Safari Zone gate: "Welcome to the SAFARI ZONE!" | @safari_gate,up:16,w60,settle,settle,up:16,w60,settle,settle,up:16,w90,settle,settle
+safari_zone | gameplay | Safari Zone center: tall grass, signs and the rest house | @safari_in,up:16*2,settle,settle
+safari_battle | minigame | Safari battle: wild NIDORINA L31, menu BALL x30 / BAIT / THROW ROCK / RUN | @safari_in,up:16*2,settle,settle,poke:D887=FF,left:64,w60,settle,settle,w200,settle,settle,a,w60,settle,settle
+safari_rock | minigame | Safari battle: after THROW ROCK, "Wild NIDORINA is angry!" (more likely to flee, easier to catch) | @safari_battle,down,a,w110,!,settle
+game_corner | gameplay | Celadon Game Corner: rows of slot machines and gamblers | @game_corner,up:16*3,settle,settle
+slots_bet | minigame | Game Corner slot machine: CREDIT 1283, "Bet how many coins?" x3 / x2 / x1 | @game_corner,up:16*3,settle,settle,left,a,w60,settle,settle,a,w90,settle,settle
+slots_spin | minigame | Slot machine: 3 coins bet (CREDIT 1280), reels spinning - "Start!" | @slots,a,w60,!,settle
+slots_win | minigame | Slot machine win: cherries lined up on the bottom line, "Scored 8 coins!" | @slots,a,w60,!,settle,a,w30,a,w30,a,w150,settle,settle
+ss_anne | gameplay | S.S. Anne 1F: ryz steps aboard past a sailor, portholes along the deck corridor | @late_lobby,poke:D3B1=005F,poke:D3B5=005F,poke:D365=05,down:16*3,EXIT,w60,settle,settle,down:16*5,settle,settle,settle,settle
+pokemon_tower | gameplay | Pokemon Tower 3F: rows of gravestones and CHANNELERs | @late_lobby,poke:D336=0B03,poke:D3B1=0090,poke:D3B5=0090,poke:D365=04,down:16*3,EXIT,w60,settle,settle,right:16*2,settle,settle
+tower_ghost | battle | Pokemon Tower without the SILPH SCOPE: "Darn! The GHOST can't be ID'd!" | @tower3,poke:D887=FF,up:64,w60,settle,settle,w200,settle,settle,a,w120,settle,settle
+silph_co | gameplay | Silph Co. 3F: office floor with a warp tile, machines and a staff member | @late_lobby,poke:D3B1=00D0,poke:D3B5=00D0,poke:D365=0A,down:16*3,EXIT,w60,settle,settle,down:16*2,left:16*4,settle,settle
+champion_room | gameplay | Champion's room: the rival RED waits at the top of the hall | @champion_room,up:16*2,w60,settle,settle
+champion | boss | Champion battle: "RED wants to fight!" - the rival, Pokemon League Champion | @champion_talk,mash:a:400,settle,settle,mash:a:400,settle,settle,a,w60,settle,settle,a,w60,settle,settle
+champion_defeated | boss | Champion defeated: "RED: NO! That can't be!" - Blastoise L54 wins the League | @champion_battle,poke:D355=C1,freeze:D015=00AC,mash:a:120,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,poke:CFE6=0001,mash:a:300,settle,settle,a,w30,settle,settle,poke:CFE6=0001,down,a,w200,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle
+oak_congrats | cutscene | Champion's room: Prof. Oak arrives - "OAK: So, you won! Congratulations!" | @champion_won,unfreeze,a,w60,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle
+hall_of_fame_room | cutscene | Hall of Fame room: "OAK: Er-hem! Congratulations" - the League's record machine | @oak_lecture,mash:a:300,settle,settle
+hall_of_fame | ending | Hall of Fame: each party Pokemon is recorded - PIDGEOT L47, NORMAL/FLYING | @oak_lecture,mash:a:300,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle
+hall_of_fame_trainer | ending | Hall of Fame: ryz's record - PLAY TIME 27:51, money 54650, Pokedex Seen 105 / Owned 71 | @hof_kadabra,mash:a:300,settle,settle
+dex_rating | ending | Hall of Fame: Prof. Oak rates the Pokedex - "Go fish for some marine POKeMON!" | @hof_kadabra,mash:a:300,settle,settle,mash:a:300,settle,settle
+credits | credits | Credits: DIRECTOR SATOSHI TAJIRI | @hof_kadabra,mash:a:300,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle,mash:a:300,settle,settle
+credits_programmers | credits | Credits: PROGRAMMERS TETSUYA WATANABE, JUNICHI MASUDA, SOUSUKE TAMADA | @credits,mash:a:300,settle,settle
+the_end | credits | End of the credits: "THE END" | @credits,mash:a:300,settle,settle,w3000,settle,settle,w6000,settle,settle
+pc_menu | system | Pokemon Center PC: BILL's PC / ryz's PC / PROF.OAK's PC / LOG OFF | @late_lobby,poke:D7F1=01,poke:D7F2=30,poke:D53A=0631010A0220014F0351021401FF,up:16,right:16*5,right:16*2,down:16,right:16,up,a,w90,settle,a,w60,settle,settle,up,a,w90,settle,settle,a,w60,settle,settle
+pc_items | system | Item storage (ryz's PC): WITHDRAW ITEM list - NUGGET, MOON STONE x2, FIRE STONE, PP UP x3 | @pc_menu,down,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle,a,w60,settle,settle
 # work/shots/pokemon-blue/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # --- planned (no route yet; method in playbook "Shot plan") ---
-# route1_wild | battle | Wild battle on Route 1 (grass) | play / MID + warp
-# learn_move | system | "Trying to learn a new move" prompt | exp before a learnset level
-# evolution | system | "What? X is evolving!" | exp before an evolution level
-# gym_brock | boss | Brock battle, Pewter Gym | MID or LATE + door warp $36
-# trainer_battle | battle | Trainer challenge "!" + battle intro | gym trainer
-# viridian_forest | gameplay | Viridian Forest | warp $33
-# mt_moon | gameplay | Mt. Moon cave | warp $3B
-# pc_bills | system | Bill's PC / item storage | Pokemon Center PC
-# fly_map | map | Fly destination map | LATE (D70B visited flags), PIDGEOT > FLY outdoors
-# surfing | system | Surfing on water | LATE, Blastoise SURF next to water
-# fishing | system | Fishing with SUPER ROD | LATE, face water + use rod
-# bicycle | gameplay | Riding the Bicycle (cycling music) | LATE, ITEM > BICYCLE outdoors
-# cut_tree | system | Cutting a tree | LATE, Victreebel CUT
-# safari_zone | minigame | Safari Zone battle (BAIT/ROCK/BALL) | warp $DC + Safari state (open question)
-# game_corner | minigame | Game Corner slot machine | warp $87, needs COIN CASE
-# ss_anne | gameplay | S.S. Anne | warp $5F
-# pokemon_tower | gameplay | Pokemon Tower ghost (SILPH SCOPE) | warp $8E..$94
-# silph_co | gameplay | Silph Co. | warp $B5
-# champion | boss | Champion (rival RED) | warp $78 (open question: script state)
-# hall_of_fame | ending | Hall of Fame | after champion
-# credits | credits | Credits | after Hall of Fame
+# trainer_battle | battle | Trainer challenge "!" + battle intro | gym trainer (clear EVENT_BEAT_PEWTER_GYM_TRAINER_0 in BROCK)
+# pc_box | system | BILL's PC box list with stored Pokemon | needs box data (wBoxMons) in a recipe
+# safari_bait | minigame | Safari BAIT ("is eating!") | @safari_battle,right,a
+# stone_evolution | system | Evolution by an item (Moon/Thunder Stone) | bag item USE on a party member

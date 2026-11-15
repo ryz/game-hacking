@@ -32,5 +32,21 @@ and ID number **(verified: summary_stats, summary_moves, starter_preview)**. The
   **(verified: pokedex_area)**. Starters: Squirtle No.007 TINYTURTLE 1'08" 20.0 lb; Pidgey No.016 TINY BIRD
   1'00" 4.0 lb **(verified)**.
 
+## 6. Learning moves and evolution
+See [battle.md section 4a](battle.md) for the dialogs. Level-up stat rise measured on Butterfree L15 -> L16:
+ATTACK 23 -> 24, DEFENSE 23 -> 24, SPEED 30 -> 31, SPECIAL 34 -> 36, HP 46 -> 49 **(verified: Brock route)**;
+Squirtle L15 -> L16: HP 40 -> 42 **(verified)**. Evolution levels used: Squirtle 16, Butterfree learns STUN
+SPORE at 16 **(source: pret learnsets; verified on screen)**.
+
+## 7. Field moves (HMs) in use
+| Move | Effect seen | Shot |
+|---|---|---|
+| CUT | facing a small tree: "VICTREEBEL hacked away with CUT!", the tree disappears | cut_tree (verified) |
+| SURF | facing water: "ryz got on BLASTOISE!", the player sprite becomes a sea creature and moves on water | surfing (verified) |
+| FLY | outdoors only: a Kanto map titled "To <TOWN>", Up/Down cycles through visited towns, A flies there | fly_map (verified) |
+| FLASH | lights dark caves; usable outside battle after the BOULDERBADGE | badge text (verified), effect source |
+The party sub-menu shows only the field moves the Pokémon knows (FLY for Pidgeot, SURF/STRENGTH for
+Blastoise, CUT for Victreebel) **(verified)**.
+
 ## Open questions
-- Evolution and move learning not captured this run (need a level-up at the right level).
+- ~~Evolution and move learning not captured~~ captured 2026-11-15 (learn_move, evolution). Stone evolution not tested.

@@ -46,6 +46,28 @@ party Pokémon has fainted the player blacks out, loses half the money and wakes
   level n **(source; RAM-confirmed: Blastoise 134665 EXP shows 7012 to L53, summary_moves)**.
 - After the first rival battle the game heals the party (Squirtle back to 22/22 on Route 1) **(verified)**.
 
+- EXP per defeated Pokémon = species EXP yield x level / 7, x 1.5 for trainer battles **(source)**; observed:
+  Brock's Geodude L12 gave 220, his Onix L14 gave 324, the Champion's Venusaur L65 gave 2896 **(verified;
+  computed with yields 86 / 108 / 208)**. Only Pokémon that took part get EXP: Butterfree, switched out before
+  Onix, got none of its 324 **(verified: brock route)**.
+- Gym Leader prize: Brock paid 1386 (= 99 x Onix's level 14) **(verified: money 1386 -> 2772)**; the
+  Champion paid 6435 (= 99 x 65) **(verified: 48215 -> 54650)**.
+- Badge: after the leader's defeat text, "ryz received the BOULDERBADGE!" and an explanation of its effect
+  ("POKéMON become more powerful", "FLASH can now be used any time") inside the battle screen; the badge counts
+  from then on **(verified: badge_received; RAM: badge byte set)**. Brock adds TM34 on the field afterwards
+  ("Wait! Take this with you!") **(verified)**.
+
+## 4a. Learning moves and evolving
+- On reaching a learnset level a Pokémon with fewer than four moves learns the move at once; with four it asks:
+  "X is trying to learn Y!" -> "But, X can't learn more than 4 moves!" -> "Delete an older move to make room
+  for Y?" YES/NO -> "Which move should be forgotten?" (move list) -> "1, 2 and... Poof!" -> "X forgot Z!" ->
+  "And..." -> "X learned Y!" **(verified: learn_move, learn_move_forget; Butterfree L16, STUN SPORE over
+  HARDEN)**. Answering NO skips the move **(source)**.
+- Level evolution is checked when the battle ends, not when the level is reached: Squirtle reached L16 against
+  Onix, finished the battle as Squirtle, and evolved after Brock's badge speech ("What? SQUIRTLE is
+  evolving!" -> sprites alternate for about 6 seconds -> "SQUIRTLE evolved into WARTORTLE!")
+  **(verified: evolution_start, evolution)**. Pressing B during the animation cancels it **(source)**.
+
 ## 5. Losing (blackout)
 - "ryz is out of useable POKéMON!" then "ryz blacked out!" **(verified: blackout)**. Also happens in the field
   when the last Pokémon faints from poison (1 HP lost per few steps) **(verified)**.
@@ -55,6 +77,14 @@ party Pokémon has fainted the player blacks out, loses half the money and wakes
 ## 6. Battle style
 - SHIFT (default) asks "Will ryz change POKéMON?" after each enemy faints; SET does not **(source;
   verified: options screen)**.
+
+## 7. Special battles
+- Safari Zone: no Pokémon of your own; the menu is BALL x<count> / BAIT / THROW ROCK / RUN **(verified:
+  safari_battle)**. A rock makes the wild Pokémon "angry" (easier to catch, more likely to flee); bait makes it
+  "eating" (the opposite) **(verified for the rock text: safari_rock; effect from source)**.
+- Fishing: "The hooked KRABBY attacked!" opens a normal wild battle **(verified: fishing_battle)**.
+- Pokémon Tower without the SILPH SCOPE: "GHOST appeared!" / "Darn! The GHOST can't be ID'd!"; the ghost
+  cannot be fought or caught **(verified: tower_ghost; consequences from source)**.
 
 ## Open questions
 - Exact damage formula and random spread not measured beyond the samples above.

@@ -1,6 +1,6 @@
 # Pokémon Blue Version - shots: main
 
-Platform gb, model dmg, ROM SHA-1 `d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`. 68 shots. Contact sheet: [sheet.png](sheet.png).
+Platform gb, model dmg, ROM SHA-1 `d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`. 92 shots. Contact sheet: [sheet.png](sheet.png).
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -72,5 +72,29 @@ Platform gb, model dmg, ROM SHA-1 `d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`. 68
 | viridian_forest | gameplay | Viridian Forest: tall grass and trees, a youngster beside ryz | yes | [png](viridian_forest.png) [3x](viridian_forest@3x.png) |
 | mt_moon | gameplay | Mt. Moon 1F: cave floor and rock ledges, a sign and a trainer ahead | yes | [png](mt_moon.png) [3x](mt_moon@3x.png) |
 | safari_gate | dialogue | Safari Zone gate: "Welcome to the SAFARI ZONE!" | yes | [png](safari_gate.png) [3x](safari_gate@3x.png) |
+| safari_zone | gameplay | Safari Zone center: tall grass, signs and the rest house | yes | [png](safari_zone.png) [3x](safari_zone@3x.png) |
+| safari_battle | minigame | Safari battle: wild NIDORINA L31, menu BALL x30 / BAIT / THROW ROCK / RUN | yes | [png](safari_battle.png) [3x](safari_battle@3x.png) |
+| safari_rock | minigame | Safari battle: after THROW ROCK, "Wild NIDORINA is angry!" (more likely to flee, easier to catch) | yes | [png](safari_rock.png) [3x](safari_rock@3x.png) |
+| game_corner | gameplay | Celadon Game Corner: rows of slot machines and gamblers | yes | [png](game_corner.png) [3x](game_corner@3x.png) |
+| slots_bet | minigame | Game Corner slot machine: CREDIT 1283, "Bet how many coins?" x3 / x2 / x1 | yes | [png](slots_bet.png) [3x](slots_bet@3x.png) |
+| slots_spin | minigame | Slot machine: 3 coins bet (CREDIT 1280), reels spinning - "Start!" | no | [png](slots_spin.png) [3x](slots_spin@3x.png) |
+| slots_win | minigame | Slot machine win: cherries lined up on the bottom line, "Scored 8 coins!" | yes | [png](slots_win.png) [3x](slots_win@3x.png) |
+| ss_anne | gameplay | S.S. Anne 1F: ryz steps aboard past a sailor, portholes along the deck corridor | yes | [png](ss_anne.png) [3x](ss_anne@3x.png) |
+| pokemon_tower | gameplay | Pokemon Tower 3F: rows of gravestones and CHANNELERs | yes | [png](pokemon_tower.png) [3x](pokemon_tower@3x.png) |
+| tower_ghost | battle | Pokemon Tower without the SILPH SCOPE: "Darn! The GHOST can't be ID'd!" | no | [png](tower_ghost.png) [3x](tower_ghost@3x.png) |
+| silph_co | gameplay | Silph Co. 3F: office floor with a warp tile, machines and a staff member | yes | [png](silph_co.png) [3x](silph_co@3x.png) |
+| champion_room | gameplay | Champion's room: the rival RED waits at the top of the hall | yes | [png](champion_room.png) [3x](champion_room@3x.png) |
+| champion | boss | Champion battle: "RED wants to fight!" - the rival, Pokemon League Champion | no | [png](champion.png) [3x](champion@3x.png) |
+| champion_defeated | boss | Champion defeated: "RED: NO! That can't be!" - Blastoise L54 wins the League | no | [png](champion_defeated.png) [3x](champion_defeated@3x.png) |
+| oak_congrats | cutscene | Champion's room: Prof. Oak arrives - "OAK: So, you won! Congratulations!" | yes | [png](oak_congrats.png) [3x](oak_congrats@3x.png) |
+| hall_of_fame_room | cutscene | Hall of Fame room: "OAK: Er-hem! Congratulations" - the League's record machine | yes | [png](hall_of_fame_room.png) [3x](hall_of_fame_room@3x.png) |
+| hall_of_fame | ending | Hall of Fame: each party Pokemon is recorded - PIDGEOT L47, NORMAL/FLYING | yes | [png](hall_of_fame.png) [3x](hall_of_fame@3x.png) |
+| hall_of_fame_trainer | ending | Hall of Fame: ryz's record - PLAY TIME 27:51, money 54650, Pokedex Seen 105 / Owned 71 | yes | [png](hall_of_fame_trainer.png) [3x](hall_of_fame_trainer@3x.png) |
+| dex_rating | ending | Hall of Fame: Prof. Oak rates the Pokedex - "Go fish for some marine POKeMON!" | yes | [png](dex_rating.png) [3x](dex_rating@3x.png) |
+| credits | credits | Credits: DIRECTOR SATOSHI TAJIRI | yes | [png](credits.png) [3x](credits@3x.png) |
+| credits_programmers | credits | Credits: PROGRAMMERS TETSUYA WATANABE, JUNICHI MASUDA, SOUSUKE TAMADA | yes | [png](credits_programmers.png) [3x](credits_programmers@3x.png) |
+| the_end | credits | End of the credits: "THE END" | yes | [png](the_end.png) [3x](the_end@3x.png) |
+| pc_menu | system | Pokemon Center PC: BILL's PC / ryz's PC / PROF.OAK's PC / LOG OFF | yes | [png](pc_menu.png) [3x](pc_menu@3x.png) |
+| pc_items | system | Item storage (ryz's PC): WITHDRAW ITEM list - NUGGET, MOON STONE x2, FIRE STONE, PP UP x3 | no | [png](pc_items.png) [3x](pc_items@3x.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

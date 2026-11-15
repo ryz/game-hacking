@@ -51,7 +51,14 @@ Door mats/exits need a D-pad press onto the mat in the exit direction (`down:16`
 **Wild encounters need held walking**: 18 single-tile `up:16`/`down:16` taps in Route 1 grass gave no battle, even
 with `poke:D887=FF` (grass rate max); `down:64` (one 4-tile hold) started one at once. Use long holds + D887=FF.
 **After `goto`, `snap` captures a black frame** (no frame rendered yet): always `do "settle"` (or any token) first.
-**New macros need a session restart** (`stop`, `start --route @...`): the server loads game.json once.
+~~New macros need a session restart~~ (fixed 2026-11-15: game.json is re-read on every `do`).
+**Start-menu and party cursors are remembered** (also inside checkpoints): after a checkpoint the START cursor may
+sit on ITEM or ryz, the party cursor on PIDGEOT. Look before pressing `down*N`.
+**Mashing into battles/menus**: `mash:a:300` blocks after a Gym Leader/Champion talk run straight into the
+battle; take one block at a time and peek D057.
+**emu.py vs play.py timing for `!` frames**: an animation frame found with `tools/emu.py` (per-token PNGs)
+did not appear at the same `wN` in play.py (Safari rock: emu showed the rock at `w30`, play/shoot.py never);
+pick animation frames in play.py (shoot.py reproduces play.py).
 
 ## Game structure
 - Start: Pallet Town (bedroom 2F -> 1F -> outside). Walking into Route 1 grass triggers Oak -> his lab -> starter
@@ -85,7 +92,14 @@ Main set ~45 shots (`shots.txt` has the planned ids; lines with routes are ready
 | gameover | blackout | lose a battle (e.g. MID party vs a strong trainer, or poke HP to 1) |
 | link | cable_club (done) | Cable Club desk in any Center; a trade screen needs a partner: not reachable alone |
 
-Status 2026-11-15 (main set, 50 shots): done - boot, intro, title, main menu, Oak intro, naming x2, bedroom,
+Status 2026-11-15, second run (main set, 92 shots, all verified): added the Pewter Gym (walk, Brock talk,
+battle, badge), move learning (2), evolution (2), Indigo Plateau outside, Fly map, Surf, fishing (bite +
+battle), bicycle, Cut, Viridian Forest, Mt. Moon, Safari (gate, center, battle, rock), Game Corner (hall + 3
+slot screens), S.S. Anne, Pokémon Tower + ghost, Silph Co., Champion (room, battle, defeat, Oak), Hall of
+Fame (room, entry, record, dex rating), credits (2) + THE END, PC menu + item storage. Open: a trainer
+"!" encounter, BILL's PC box with Pokémon, Safari BAIT, stone evolution, Rocket Hideout.
+
+Status 2026-11-15 (first run, main set, 50 shots): done - boot, intro, title, main menu, Oak intro, naming x2, bedroom,
 Pallet, Oak stop, lab (preview/choose/received), first rival battle (intro, menu, moves, level-up, defeat),
 Route 1 grass, wild battle, ball throw, failed + successful catch, Pokédex entry/list/area, start menu, party +
 sub-menu, summary x2, trainer card, bag, town map, Elite Four room/talk/battle/defeat, move animation, super
@@ -121,6 +135,39 @@ Champion, Hall of Fame, credits, PC.
 - Battles at MEDIUM text are slow: use `FASTTEXT`; battle animations can be turned off with `poke:D355=81` but keep
   them ON for move-animation shots.
 
+- **Gym battles (verified 2026-11-15)**: `BROCK` macro (mkrecipe.py preset `brock`: Butterfree/Squirtle L15 one
+  battle short of L16, Pidgey L12, Pikachu L10, 0 badges, 1386 money, 1:52, Pewter Gym trainer flag set) from
+  `@start`, then `TO_DOOR`, door warp `poke:D3B1=0036,poke:D3B5=0036,poke:D365=02,poke:D719=02`, `EXIT` ->
+  Pewter Gym entrance (checkpoint `pewter_gym`). `up:16*9` -> y4 (Brock in view), `up:16*2,up,a` talks. One
+  Brock battle gives: Butterfree learns STUN SPORE (forget HARDEN: `down*2,a`), switch to Squirtle at the
+  SHIFT prompt (`a`, `down,a`), WATER GUN (`down*3`) one-shots Onix, badge text, then Squirtle evolves.
+  `poke:CFE6=0005` before an attack shortens the Geodude fight. Same pattern for other leaders: a preset +
+  the gym's map id (Cerulean $41, Vermilion $5C, Celadon $86, Fuchsia $9D, Saffron $B2, Cinnabar $A6, Viridian $2D).
+- **Field moves (verified)**: from `@indigo_outside` PIDGEOT > FLY (party slot 2) -> town map; `up*5` = VERMILION
+  CITY (order Pallet, Viridian, Pewter, Cerulean, ?, Vermilion). In Vermilion (`@vermilion`, x11 y4 by the
+  Center): `down:16*2,left:16` faces the water: SURF (Blastoise) or ITEM > SUPER ROD (11th bag item);
+  bite or nibble depends on the frame (`a,w30,w1,a` bites, `w2` does not). BICYCLE is the first bag item
+  (`right:8` = one tile on the bike). The Cut tree beside the gym: bike `right:8*6,down:8*4`,
+  `right:8*2,down:8*6`, `down:8*5`, `left:8*3` -> x15 y17 facing down (checkpoint `vermilion_tree`), Victreebel
+  is party slot 5.
+- **Warp targets that worked from the lobby exit** (`@late_lobby,poke:D3B1=WWMM,poke:D3B5=WWMM,down:16*3,EXIT`):
+  Viridian Forest `0433` (south entrance), Mt. Moon `003B`, Safari gate `009C` (walk `up:16*3`: the fee script
+  runs at y2; YES costs 500), Game Corner `0087`, S.S. Anne 1F `005F` (gangway), Pokémon Tower 3F `0090`,
+  Silph Co. 1F `00B5` / 3F `00D0`, Champion's room `0078`.
+- **Champion/Hall of Fame/credits (verified)**: the warped-in Champion's room has no walk-in script; poke its
+  script number `D64C=01` (wChampionsRoomCurScript = wGameProgressFlags D5F0 + 92) and the game walks ryz up
+  and starts the speech (checkpoint `champion_talk`). Also poke the starters `D715=99` (rival Bulbasaur),
+  `D717=B1` (player Squirtle) so the rival's team matches. Battle: `poke:D355=C1` (SET, no animations),
+  `freeze:D015=00AC` (Blastoise HP), then blocks `poke:CFE6=0001,mash:a:300,settle`; SURF runs out of PP
+  before Venusaur: pick ICE BEAM (`down,a`). After the win, `mash:a:300` blocks run Oak's speech, the Hall of
+  Fame and the credits (`w3000`, `w6000` reach THE END). The game saves itself at the Hall of Fame.
+- **Game Corner**: bag `poke:D31D=14,poke:D344=4501FF` (COIN CASE as 20th item), coins `poke:D5A4=1283` (BCD).
+  From the entrance `up:16*3,left,a` = a machine; YES -> bet menu; `a` bets 3, `a,w30,a,w30,a` stops the reels.
+- **Pokémon Tower ghost**: remove the SILPH SCOPE (13th bag item: `poke:D336=0B03`, ANTIDOTE x3 instead), warp to
+  3F, `poke:D887=FF,up:64`.
+- **PC**: met-Bill events `poke:D7F1=01,poke:D7F2=30` (else "SOMEONE's PC"), stored items at D53A (count,
+  pairs, FF). Indigo lobby PC: stand at x15 y8 facing up (PCs work only facing up).
+
 ## Naming
 Player **ryz** (lower case: SELECT toggles the keyboard case), rival **RED** (first default offered). Keyboard:
 9 columns x 5 rows + "lower case/UPPER CASE" line; letters a-i row 1, j-r row 2, s-z row 3. Route (from the
@@ -134,6 +181,7 @@ Cataloguing beats fair play. Values that show on screen stay realistic.
 | Fast text | `FASTTEXT` = `poke:D355=01` (bits 0-3 text delay 1/3/5, bit 6 battle style SET, bit 7 animations off) | pret wram + OPTION screen | verified |
 | Late-game state | `LATE` macro (from `@start`): party of 6 L42-52 with computed stats, Pokédex 71/104, 19 bag items, 48215 money, 8 badges, all towns visited (Fly), play time 27:47, flags got starter/Pokédex/parcel/town map | generated by `work/scout/pokemon-blue/mkrecipe.py` from pret constants + ROM base stats | verified: party screen, summary p1+p2, Pokédex list, bag, trainer card, save screen, Center heal; battle and Fly not tested |
 | EXP fix for LATE | `LATE_EXP` macro (after `LATE`): the scout's mkrecipe.py swapped growth groups 3/5 (medium slow/slow) and let the in-level fraction exceed 100% for slots 5-6, so LATE's EXP showed "741376 to L53" on summary page 2. LATE_EXP rewrites the six EXP values inside each level (Blastoise 134665 -> 7012 to L53, verified). `MID` has the same bug (not fixed: add MID_EXP if used) | computed here | verified (summary_moves) |
+| Gym state (Brock) | `BROCK` macro: see Strategy "Gym battles" | `games/pokemon-blue/tools/mkrecipe.py ... brock` | verified (whole Brock battle, badge, evolution, save 04) |
 | Mid-game state | `MID` macro: 4 Pokémon L22-27, 3 badges, 3172 money, 19/31 dex, Cut HM + TM28 | same script | generated, not shown on screen yet |
 | Warp to any map | stand next to a door/warp, poke its warp entry, step on it: warp *k* of the current map is `wWarpEntries` D3AF+4k = (y, x, dest warp id, dest map); poke D3AF+4k+2 = warp id, +3 = map. Also poke `wLastMap` D365 = the outdoor map you "came from" so exits work, and `wLastBlackoutMap` D719 for whiteouts. From the start room: `TO_DOOR` (walk to the house door on 1F), `poke:D3B1=WWMM,poke:D3B5=WWMM`, `EXIT` | pret wram.asm | verified: house door -> Pewter Gym ($36), exit -> Pewter City (D365=02); -> Indigo lobby ($AE) |
 | Battery save load | `sav:NAME` + `TITLE,CONTINUE` | tools | verified with 02_late_game_test |
@@ -146,6 +194,8 @@ Cataloguing beats fair play. Values that show on screen stay realistic.
 | 01_start | ryz in bedroom, new game, rival RED, no Pokémon, 3000 money (exported by play.py, + .state) | made here | see `saves/README.md` | verified saved message |
 | 02_late_game_test | LATE recipe at Indigo Plateau lobby: 8 badges, 48215, 27:47, dex 71, party BLASTOISE 52 / PIDGEOT 47 / RAICHU 45 / SNORLAX 46 / VICTREEBEL 44 / KADABRA 42 (+ .state) | made here | see `saves/README.md` | verified: loads, CONTINUE puts you in the lobby |
 | 03_starter_lab | Oak's lab after the first rival battle: Squirtle L6, 3175 money, 0:02 | made here | see `saves/README.md` | verified saved message |
+| 04_pewter_boulderbadge | Pewter Gym after Brock: BOULDERBADGE, WARTORTLE L16 (just evolved), BUTTERFREE L16, PIDGEY L12, PIKACHU L10, 2772 money, dex 9, 1:55 | made here | see `saves/README.md` | verified saved message |
+| 06_hall_of_fame | saved by the game at the Hall of Fame: LATE party, Blastoise L54, 54650 money, dex 105/71, 27:51 | made here | see `saves/README.md` | verified: CONTINUE -> Pallet Town |
 | 05_elite_four_lorelei | LATE party after beating Lorelei, in her room: 53759 money, Raichu L47 (SET battle style) | made here | see `saves/README.md` | saved via START > SAVE (message not re-checked) |
 | downloads | Project Pokémon hosts Blue/Red saves (e.g. "Pokemon Red completed pokedex with Mew") - not needed, the recipe is better | https://projectpokemon.org/home/files/file/5585-pokemon-red-completed-pokedex-with-mew/ | - | not fetched |
 
@@ -174,7 +224,11 @@ Addresses for the US/EU Red/Blue (pret pokered). Status verified = read/poked he
 | D361 / D362 | 1 / 1 | Y / X tile | verified |
 | D365 | 1 | wLastMap (where "outside" exits lead) | verified (gym exit -> Pewter) |
 | D3AE / D3AF | 1 / 4n | number of warps / warp entries of the current map | verified |
-| D700 | 1 | walk/bike/surf state | source, 0 on foot (peek) |
+| D700 | 1 | walk/bike/surf state (0 foot, 1 bike, 2 surf) | verified (1 on the bike) |
+| D53A | 1+2n+1 | PC item storage: count, (item, qty), FF (new game: POTION x1) | verified (pc_items) |
+| D5A4 | 2 | Game Corner coins, BCD (1283 -> "CREDIT 1283") | verified |
+| D5F0 | ~120 | map script numbers (wGameProgressFlags): Oak's lab D5F0, Pewter Gym D5FC, Hall of Fame D64B, Champion's room D64C | verified (D5F0, D64C) |
+| D715 / D717 | 1 / 1 | rival's / player's starter (internal id; Squirtle game: 99 / B1) | verified (lab_after_rival) |
 | D70B | 2 | towns visited (Fly list) | source; poked in LATE, Fly not tested |
 | D719 | 1 | last blackout map (where you respawn) | source |
 | D747 | 320 | event flags (index from pret event_constants; byte D747+n/8, bit n%8) | verified indirectly (EVENT_GOT_POKEDEX -> POKéDEX in start menu) |
@@ -191,6 +245,10 @@ Watches in `game.json`: map, y, x, party, badges, battle (money is BCD: read wit
 - The play-time counter runs (seconds at DA44); exported saves show whatever was poked plus the real minutes.
 
 ## Checkpoints
+- Added 2026-11-15 (second run): `nurse_yesno`, `pewter_gym`, `brock_*` (battle, learned, onix, proof, evolving,
+  saved), `indigo_outside`, `fly_select`, `vermilion*` (surf, rod, tree, cutmenu), `mtmoon`, `safari_gate`,
+  `safari_in`, `safari_battle`, `game_corner`, `slots`, `tower3`, `champion_room`, `champion_talk`,
+  `champion_battle`, `champion_won`, `oak_lecture`, `hof_pidgeot`, `hof_kadabra`, `credits`, `pc_menu`.
 - `title` (title screen), `start` (bedroom, first control after naming), `late` (LATE recipe, Indigo Plateau lobby by
   the entrance, FAST text). Build other states from `@late`/`@start` + warp.
 - Added 2026-11-15: `lab_starter` (Squirtle chosen, free control), `lab_after_rival` (rival beaten, Squirtle L6),
@@ -210,10 +268,8 @@ Watches in `game.json`: map, y, x, party, badges, battle (money is BCD: read wit
 
 ## Open questions
 - ~~Battles with the recipe party not yet run~~ verified: the LATE party beats Lorelei (Raichu alone). Fly with D70B not tested.
-- Safari Zone: does warping to $DC without the gate script give a valid Safari game (balls count, steps)? Prefer
-  walking in through the gate ($9C) with money.
-- Champion/Hall of Fame by warp: Lance/Champion scripts may need the earlier E4 flags; playing through from Lorelei
-  with the LATE party is the safe route.
+- ~~Safari Zone by warp~~ answered: warp into the gate ($9C) and walk up; the fee script works (verified).
+- ~~Champion/Hall of Fame by warp~~ answered: warp + `D64C=01` (verified, see Strategy).
 - SGB model output (see Emulation notes).
 - Summary screen: why the first A press was ignored (timing during the cry?).
 - Hide/show object flags (wToggleableObjectFlags; address not verified) are untouched by the recipe: story NPCs/items appear as in a new game in
