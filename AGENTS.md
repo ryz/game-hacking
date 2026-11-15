@@ -23,6 +23,7 @@ people: `README.md`. Current projects:
 - Agent work follows the skills in `skills/` (index: `skills/skill-index.md`) and its feedback loop (below).
 - Translations live in `script/*.json` (Japanese kept next to the English for review). Edit those, not the ROM.
 - Commit messages: what changed and why; one topic per commit.
+- Branch: work and push on `master` (owner's rule 2026-11-15); merge any session branch into it.
 
 ## Wizardry Empire quick reference
 Run from `wizardry-empire/`:
