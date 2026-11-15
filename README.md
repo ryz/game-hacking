@@ -8,6 +8,7 @@ builds from your own dump of the original, verified by checksum.
 
 | Project | Platform | What it is | Status |
 |---|---|---|---|
+| [Game database](gamedb/README.md) | Game Boy / Game Boy Color (more later) | Agents research, play and screenshot any game you provide as a ROM: per-game playbooks (controls, strategy, shortcuts) and reproducible screenshot sets with a JSON catalogue | Pipeline ready; no games captured yet ([status](gamedb/docs/status.md)) |
 | [Wizardry Empire](wizardry-empire/README.md) | Game Boy Color (Starfish, 1999) | Unofficial English translation of the Japanese Rev 1, with a variable-width font engine, reverse-engineering notes, a design reference for the game's rules and all 30 dungeon floors mapped | Playable in English throughout; polish and speed work ongoing ([status](wizardry-empire/docs/status.md)) |
 
 ### Wizardry Empire at a glance
