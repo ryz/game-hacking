@@ -280,7 +280,8 @@ class Libretro(Backend):
         code = compile(expr, "<search>", "eval")
         now = self._snapshot(wide)
         if self._search is None or self._search[0] != wide:
-            self._search = (wide, dict(now))
+            base = getattr(self, "_base", None)          # snapshot from ram_search_reset, else start here
+            self._search = (wide, dict(base[wide]) if base else dict(now))
         old = self._search[1]
         keep = {a: v for a, v in now.items()
                 if a in old and eval(code, {"__builtins__": {}}, {"new": v, "old": old[a]})}
@@ -289,7 +290,9 @@ class Libretro(Backend):
         return {"count": len(keep), "results": rows}
 
     def ram_search_reset(self):
+        """Start a new search from the RAM as it is now (the next find compares against this)."""
         self._search = None
+        self._base = {False: self._snapshot(False), True: self._snapshot(True)}
 
     def regs(self):
         return {"pc": self.PC_FORMAT % self.c.L.retro_mesen_pc()}

@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-17 - Megami Tensei scouted; NES/SNES RAM search fixed
+- `play.py find reset` on the libretro backends (NES, SNES) cleared the search without a snapshot, so the first
+  `find` compared RAM with itself (`new == old + 1` always 0 candidates). Reset now snapshots; reported by the
+  Megami Tensei scout, rechecked on the game (12 candidates after one step).
+- Megami Tensei (Famicom, English BPS): scout done (commit 2ef4abc), 9 routed shots verified 9/9 from an empty
+  cache by the coordinator. Capture run next.
+
 ## 2026-11-17 - owner-supplied patches are always applied
 - Owner's rule: if an IPS/BPS/UPS patch comes with a ROM, use it. Written into `AGENTS.md` (rules + quick
   reference), the coordinator skill and `docs/emulator/README.md`.
