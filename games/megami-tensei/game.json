@@ -1,0 +1,47 @@
+{
+  "slug": "megami-tensei",
+  "title": "Digital Devil Monogatari: Megami Tensei (Famicom, English translation patch)",
+  "platform": "nes",
+  "model": "ntsc",
+  "rom": "rom/megami-tensei.nes",
+  "sha1": "0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b",
+  "crc32": "ac5acc89",
+  "size": 393232,
+  "header": {
+    "format": "iNES",
+    "mapper": 76,
+    "submapper": null,
+    "prg_kib": 256,
+    "chr_kib": 128,
+    "battery": false,
+    "ram_kib": 0,
+    "mirroring": "vertical",
+    "trainer": false,
+    "region": "NTSC"
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {},
+  "source": {
+    "note": "rom/megami-tensei.nes is the dump with the patches below applied in order. Rebuild: python3 tools/patch.py rom/src/megami-tensei-base.nes rom/megami-tensei.nes rom/patches/megami-tensei/Digital_Devil_Monogatari_Megami_Tensei_NES_J.bps:ines1. Nothing of this is committed.",
+    "base_sha1": "d012e60c1c706fe60187a9dfa6a3cc5b071a348f",
+    "base_name": "Digital_Devil_Monogatari_Megami_Tensei_NES_J.nes",
+    "base_copy": "rom/src/megami-tensei-base.nes",
+    "patches": [
+      {
+        "name": "Digital_Devil_Monogatari_Megami_Tensei_NES_J.bps",
+        "format": "bps",
+        "sha1": "7bbce7449a565c01625523849249bdfb196fd19d",
+        "copy": "rom/patches/megami-tensei/Digital_Devil_Monogatari_Megami_Tensei_NES_J.bps",
+        "layout": "ines1"
+      }
+    ]
+  }
+}
