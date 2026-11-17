@@ -54,6 +54,10 @@ Never delete a fact that turned out wrong: strike it and say what is true.
 | | Right or A / Left | add / take back a point | verified |
 | | A at 0 points left | "This okay?" Yes/No appears by itself when the last point is spent; A = Yes | verified |
 | Menus | Up / Down, A / B | move, confirm / back | verified |
+| Battle | A on FIGHT / ESCAPE / TALK / AUTO (`D` to move) | party command; FIGHT -> per character SWORD / GUN / COMP / ITEM / DEFEND -> "Is this all right?" Yes | verified (run 2) |
+| Battle text | `a,w90` per message | every message waits for a button; one `a,w90` per message is reliable | verified |
+| Negotiation | A (`a,w150` per page) | next page; Yes/No and two-choice prompts start on the first entry | verified |
+| 3D view, COMP | A, A, then `D` x4, A | Auto-Mapping (after the day-2 mail): grid of the squares walked | verified |
 | 3D view (buildings, dungeons) | Up | step forward | verified |
 | | Left / Right | turn 90 degrees | verified |
 | | Down | turn around (180 degrees) | verified |
@@ -129,9 +133,32 @@ Verified by the capture run (2026-11-17), all in Kichijoji before any story prog
   of 7,4 and around 4,2/4,3 (pages kept in `work/capture/explore/arcade/`, not captured).
   The step south from 5,3 to 5,4 failed several times in a row and then worked (input lost, not a wall).
 - Checkpoints `armed` (Attack Knife bought and equipped, 5000 yen) and `coffee` (errand done).
-- **Not found: the way back into the apartment** from the map. The hero leaves onto 32,86; from there Up and
-  Left do nothing, and coming back onto it from the south plays a police scene. Until this is solved the story
-  cannot advance (mother, "Go to sleep", second dream), which is why no battle, demon or terminal was reached.
+- ~~**Not found: the way back into the apartment** from the map. The hero leaves onto 32,86; from there Up and
+  Left do nothing, and coming back onto it from the south plays a police scene.~~ Solved in run 2: the
+  apartment exit square is **32,88**, not 32,86 (run 1 read the decimal watch 134/136 as hex; the `home_map`
+  checkpoint therefore warps to the wrong square, two north of the door). The apartment is entered with
+  **Left from 32,88** (door table record `31 88 -> map 1A, square 2,1 facing west`). The apartment and the
+  clinic are the same 3D map (1A; the doctor is "the doctor next door"); the home door is square 0,0, entered
+  north from 0,1. Run 2 reached it before knowing this by entering the clinic and poking 7E070C/D = 0,1
+  (checkpoint `home_back`); both ways give the same mother scene.
+
+Verified in run 2 (2026-11-17), day 1 evening to day 2:
+- Back home after the errand the mother talks about the park murder and Pascal (the dog). "Go to sleep"
+  then only says "ryz went to sleep..." and the next morning repeats day 1 (the police sirens page): **the
+  second dream needs story flag 9 (7E07C1 bit 02)**, which nothing seen so far had set (the event that sets it
+  is unknown: not the cafe, the park police or the roadblock). Poking it (`poke:7E07C1=02` before "Go to
+  sleep", checkpoint `dream2`) plays the second dream normally. Leads for the real trigger: the people in the
+  arcade not talked to (west of 7,4, around 4,2/4,3) or a later line of the mother's ("Some strange old man was
+  looking for you").
+- **Second dream**: blue corridor, automatic walk; condi and ebo join the party table (ryz 22, condi 20/14 MP,
+  ebo 22/9 MP), Yuriko appears, then a ceremony: hooded priests sacrifice a girl. "Will you save the girl?"
+  (Yes), the girl asks to be called by name: **heroine name entry -> cubi**, Yes, then "Divide 18 points"
+  (STR 7 INT 9 MAG 10 VIT 6 SPD 8 LUK 8, 16 HP 14 MP). She says they will not meet again until later.
+- **Day 2 morning**: mother wakes ryz; new mail from STEVEN with the **Auto-Mapping Program**; the mother asks
+  about the girl next door (cubi). Leaving the room: corridor 0,1 facing south; the exit is Left, F, F, F
+  (square 3,1), Yes -> town map at 32,88.
+- **Random encounters start on day 2 on the town map**: the first came at 32,93 (walking south from 32,88,
+  then right/down toward the park), two Jirae Brownies. Battles are shown in the street view.
 
 Recalled outline of the critical path (not verified, order from memory; Wikipedia confirms the three acts):
 1. 199X Tokyo: Kichijoji (arcade/mall, Inokashira Park murder, hospital, the "Echo Building" terminal), then
@@ -179,28 +206,29 @@ Reachable now (routes in `shots.txt`):
 To be reached by the capture agent (play from `@kichijoji`; see Strategy):
 - [x] `arcade_mall` gameplay - Kichijoji arcade (shops, cafe)
 - [x] `shop_buy` shop - a shop's buy list with prices
-- [ ] `first_battle` battle - first demon encounter: command menu
-- [ ] `battle_attack` battle - sword / gun attack result
+- [x] `first_battle` battle - first demon encounter: command menu (run 2; also `battle_commands`, `battle_enemy_spell`, `battle_escape`, `battle_death`, `encounter_pixie`)
+- [x] `battle_attack` battle - sword / gun attack result (sword; `battle_result` = EXP and yen)
 - [ ] `battle_magic` battle - a spell being cast (needs the Law hero or a demon)
-- [ ] `demon_talk` system - TALK: Friendly / Threatening choice
-- [ ] `demon_talk_offer` system - a demon asking for yen / MAG / an item
-- [ ] `demon_joins` system - a demon becomes a minion
+- [x] `demon_talk` system - TALK: Friendly / Threatening choice (plus `demon_talk_tease`, `demon_talk_ask`, `talk_fullmoon`)
+- [x] `demon_talk_offer` system - a demon asking for yen / MAG / an item (plus `demon_talk_fail`: no Bead)
+- [ ] `demon_joins` system - a demon becomes a minion (Pixies ask for a Bead after the yen; the item list RAM is not found, so no Bead could be given)
 - [ ] `comp_summon` system - summoning a minion (MAG cost shown)
 - [ ] `party_with_demons` hud - party table with humans and demons
 - [ ] `cathedral_shadows` system - Cathedral of Shadows: fusion menu
 - [ ] `fusion_result` system - fusion preview / result
+- [x] run 2 story shots: `dream2_condi`, `dream2_yuriko`, `dream2_ceremony`, `dream2_save_girl`, `name_heroine`
 - [x] extras captured outside the plan: `intro_scene`, `clinic_doctor`, `police_roadblock`, `shop_menu`, `shop_antique`, `arcade_rumor`, `cafe_master`
 - [ ] `terminal_save` save - a terminal (save and warp list)
-- [ ] `automap` map - dungeon automap
+- [x] `automap` map - dungeon automap (COMP > Auto-Mapping, day 2, apartment corridor)
 - [ ] `healing_station` shop - healing prices
 - [x] `equipment` inventory - equipment screen with sword, gun, ammo, armour
 - [ ] `items` inventory - item list
 - [ ] `boss_first` boss - first story boss
-- [ ] `level_up` system - level-up with a stat point to place
+- [x] `level_up` system - level-up with a stat point to place
 - [x] `full_moon` system - full-moon window (town map only; the demon refusing to talk is still open)
 - [ ] `alignment_choice` dialogue - a Law / Chaos choice
 - [ ] `ruined_tokyo_map` map - Tokyo map after the 30-year jump (needs a late state: see Shortcuts)
-- [ ] `gameover` gameover - game-over sequence (lose the first fight on purpose)
+- [x] `gameover` gameover - game-over sequence (first fight, hero poked to 1 HP)
 - [ ] `ending`, `credits` - only with a late save
 
 ## Strategy and walkthrough notes
@@ -246,17 +274,19 @@ cursor on `A`; `x` switches to lower case and keeps the cursor.
 | Pro Action Replay codes | Almar's Guides lists per-character and per-demon codes (e.g. character 1 strength `7E1010xx`, character 2 level `7E106Axx`, money from `7E0405`), "no random battles", item codes | almarsguides.com (search result only: the host is not reachable from the container) | the three addresses seen in the search result match the layout found here; the rest unread. Ask the coordinator to allow the host or the owner to save the pages. |
 | Debug features | TCRF has a page for the game (the search result mentions a flag editor shared with the later games) | tcrf.net/Shin_Megami_Tensei_(SNES) | unavailable (403); not tried. Most valuable open lead for late-game states. |
 | Late-game save from the web | GameFAQs "Saves" section | gamefaqs.gamespot.com | unavailable (403); a save made for the Japanese ROM should load in the patched ROM if the translation keeps the save layout (untested) |
-| Town-map warp | at any exit prompt: `poke:7E07F5=XX,poke:7E07F6=YY,w30,a,w150` puts the marker on tile XX,YY with the map drawn correctly (used: arcade exit -> 32,86, checkpoint `home_map`). The tile must be a street, or the marker cannot move. Poking the tile while on the map does nothing useful. | found here | verified |
+| Town-map warp | at any exit prompt: `poke:7E07F5=XX,poke:7E07F6=YY,w30,a,w150` puts the marker on tile XX,YY with the map drawn correctly (used: arcade exit -> 32,86, checkpoint `home_map`; note 32,86 is two squares north of the apartment door 32,88). The tile must be a street, or the marker cannot move. Poking the tile while on the map does nothing useful. | found here | verified |
 | 3D warp inside a building | `poke:7E070C=XX,poke:7E070D=YY` then turn: the view is redrawn from the new square (used: arcade 5,4 -> 7,6) | found here | verified |
 | Moon phase | `poke:7E040F=70` then walk: the window turns to FULLMOON when the counter reaches 80 hex | found here | verified (`full_moon`) |
-| Late state by poking | story flags and the map/area id are still not mapped | - | open: see Open questions |
+| Second dream | `poke:7E07C1=02` (story flag 9) at the room menu after the errand, then Go to sleep (checkpoint `dream2`) | found here (bit-by-bit test of 7E07C1) | verified |
+| Back home from anywhere in Kichijoji | walk to 32,88 and press Left; or inside the clinic `poke:7E070C=00,poke:7E070D=01`, face north, step (checkpoint `home_back`) | found here | verified |
+| Late state by poking | story flags found (7E07C0..), map id 7E0710; the meaning of most flags is unknown | - | open: see Open questions |
 
 ### Saves (rom/saves/shin-megami-tensei/, never committed)
 | Name | Contents (progress, party, items) | URL | SHA-1 | Status |
 |---|---|---|---|---|
 | none downloaded | GameFAQs and other save hosts were not reachable (403 / not allowed) | - | - | - |
 
-Own saves (committed, `saves/README.md`): `01_start` (hero's room after the dream, File 1; `.sav` + `.state`).
+Own saves (committed, `saves/README.md`): `01_start` (hero's room after the dream, File 1; `.sav` + `.state`), `03_second_dream` (day 2 morning in the hero's room after the second dream, cubi named, File 1; `.sav` + `.state`).
 
 ## RAM map (for `game.json` "ram" watches and pokes)
 Work RAM, patched ROM. "poke" = written and seen on screen; "read" = value matched the screen, not written.
@@ -283,7 +313,13 @@ Work RAM, patched ROM. "poke" = written and seen on screen; "read" = value match
 | 7E0724, 7E07EE | 1 each | also +1 per 3D step (other step counters) | read |
 | 7E07F5 / 7E07F6 | 1 each | town-map tile x / y of the marker (apartment exit 32,86; clinic door 32,89; arcade door 39,8B; park entrance 34,94) | RAM dumps; used for the exit-prompt warp |
 | 7E0B04 / 7E0B06 (and 7E0B08 / 7E0B0A) | 2 each | town-map marker position in half squares (2 per square) and a scrolled copy; poking them does not move anything | read |
-| not found | - | map/area id, floor, story flags, party list, demon records, item list | - |
+| 7E0710 | 1 | 3D map id: 07 arcade map (and town), 1A clinic + apartment building, set on entry from the door table | frame trace across the clinic entry |
+| 7E0711 | 1 | zone inside the map (apartment corridor 0D, clinic 0A, hero's room 0E, arcade 07..0B): which scripts run | RAM diffs |
+| 7E0714 | 1 | last building region entered (03 apartment, 04 clinic, 05 arcade); poking it inside a building gives "ERROR 00 01 SIGN A" | RAM diffs; do not poke |
+| 7E07C0.. | bits | story flags, flag n = byte 7E07C0 + n/8, bit 1 << (n mod 8): flag 2 (07C0 04) set from the start, flag 3 (07C0 08) set while outside, flag 7 (07C0 80) set, flag 9 (07C1 02) opens the second dream, flag 12 (07C1 10) set while inside the cafe errand, flag 23 (07C2 80) coffee errand done | RAM diffs; flag 9 poked and the dream played |
+| ROM 0x135C3 | 8 per entry | door table of the town map: x, y, square x in the building, y + facing (top 2 bits: 0 N 1 E 2 S 3 W), map id, 3 zero bytes (e.g. `31 88 02 C1 1A` = apartment, `31 89 02 C3 1A` = clinic, `39 8B 07 06 07` = arcade) | read; matches three doors |
+| ROM 0x48F50 | FF-separated | item names (Attack Knife first ... Bead, Hiranya, Dis-Poison ...) | read |
+| not found | - | floor, party list, demon records, item list (7E0781 changes when a sword is bought, but poking 7E0780.. did not put items in the ITEM list) | - |
 
 ## Emulation notes
 First SNES game here; Mesen-S libretro backend. What was seen (2026-11-17):
@@ -321,9 +357,11 @@ entrance 7,6), `knifeshop` (knife shop menu), `armed` (knife equipped, arcade 7,
 | The game itself | `@start`, `@apartment`, `@kichijoji` | everything marked verified | 2026-11-17 |
 
 ## Open questions
-- **How to re-enter the apartment from the town map** (blocks everything after the cafe errand). Ideas not
-  tried: the 3D position poke into the apartment's own map from another building (needs the map id), the
-  square north of 32,86, talking to the policemen again after the errand.
+- ~~How to re-enter the apartment from the town map~~ Left from 32,88 (run 2).
+- Which day-1 event sets story flag 9 (the second dream). Not the cafe, park police or roadblock.
+- Item list in RAM (needed to give a Bead and get the first minion). Next try: buy something at an item shop
+  (not found in the arcade yet) and diff RAM before/after; or read the shop's buy code.
+- Battle controls still to see: AUTO, magic (condi and ebo are only in the dream party so far), COMP summon.
 - Map/area id and story flags (reading 7E0700-7E0730 at `@apartment`, `@bldg_red` and `@map2`
   showed only the position block changing; 7E0710 was 1A in all three; the arcade was not compared).
 - ~~Position, facing~~ found (RAM map). Floor, map id and the story flags are not located: needed for a real

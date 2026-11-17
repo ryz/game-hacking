@@ -49,3 +49,11 @@ before the next press makes it register (checkpoint `armed`, then the walk to th
 **Intended:** the game is still finishing the door or scene transition and does not buffer input.
 **Confidence:** (verified) in this emulator, by position read from memory after each press.
 **Impact:** none for a human; automated routes need a pause after doors and room scenes.
+
+## The second dream can stay locked after the coffee errand
+After the cafe errand and the mother's evening talk, "Go to sleep" only says "ryz went to sleep..." and the
+next morning repeats the first morning's lines (police sirens) without the second dream **(verified:
+checkpoint `home_room`, then `morning2`)**. The dream needs a day-1 story event that the run here never
+triggered (cafe, park police and roadblock were all seen); setting it by hand plays the dream normally
+**(RAM: checkpoint `dream2`)**. Either an event was missed (likely: one of the arcade's people not talked to)
+or the event can be skipped by the order of visits, which would be a progression trap.

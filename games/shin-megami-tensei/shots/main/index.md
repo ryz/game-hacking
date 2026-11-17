@@ -1,6 +1,6 @@
 # Shin Megami Tensei (Super Famicom, English translation patch) - shots: main
 
-Platform snes, model ntsc, ROM SHA-1 `3581a9a51354ad68662dca6a6856da2963f62562`. 34 shots. Contact sheet: [sheet.png](sheet.png).
+Platform snes, model ntsc, ROM SHA-1 `3581a9a51354ad68662dca6a6856da2963f62562`. 56 shots. Contact sheet: [sheet.png](sheet.png).
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -38,5 +38,27 @@ Platform snes, model ntsc, ROM SHA-1 `3581a9a51354ad68662dca6a6856da2963f62562`.
 | cafe_master | dialogue | Arcade cafe: the Master greets ryz and asks about the usual coffee | no | [png](cafe_master.png) [3x](cafe_master@3x.png) |
 | police_roadblock | dialogue | Street roadblock: policemen declare the area off-limits during the murder investigation | no | [png](police_roadblock.png) [3x](police_roadblock@3x.png) |
 | full_moon | system | Town map at full moon: the MOON'S AGE window reads FULLMOON | no | [png](full_moon.png) [3x](full_moon@3x.png) |
+| dream2_condi | cutscene | Second dream: condi meets ryz again in a blue corridor | no | [png](dream2_condi.png) [3x](dream2_condi@3x.png) |
+| dream2_yuriko | cutscene | Second dream: Yuriko meets ryz in the blue corridor | no | [png](dream2_yuriko.png) [3x](dream2_yuriko@3x.png) |
+| dream2_ceremony | cutscene | Second dream: hooded cultists perform a strange ceremony | no | [png](dream2_ceremony.png) [3x](dream2_ceremony@3x.png) |
+| name_heroine | system | Second dream: the girl asks ryz to call her name; cubi typed | no | [png](name_heroine.png) [3x](name_heroine@3x.png) |
+| first_battle | battle | First battle: Jirae Brownie on a Kichijoji street; FIGHT / ESCAPE / TALK / AUTO | yes | [png](first_battle.png) [3x](first_battle@3x.png) |
+| talk_fullmoon | system | TALK at full moon: It's no good! They're spoiling for a fight! | no | [png](talk_fullmoon.png) [3x](talk_fullmoon@3x.png) |
+| battle_commands | battle | ryz's move: SWORD / GUN / COMP / ITEM / DEFEND against two Brownies | yes | [png](battle_commands.png) [3x](battle_commands@3x.png) |
+| battle_attack | battle | ryz slashes with the Attack Knife: Brownie took 8 damage | no | [png](battle_attack.png) [3x](battle_attack@3x.png) |
+| battle_enemy_spell | battle | A Brownie casts Sukunda on the party (accuracy down) | no | [png](battle_enemy_spell.png) [3x](battle_enemy_spell@3x.png) |
+| battle_result | battle | Battle won: Brownie lost! ryz got 16 EXP | no | [png](battle_result.png) [3x](battle_result@3x.png) |
+| level_up | system | Level up: ryz reaches level 2 with one stat point to place (Left 1Pts) | yes | [png](level_up.png) [3x](level_up@3x.png) |
+| battle_escape | battle | ESCAPE: Started to run... but failed! | no | [png](battle_escape.png) [3x](battle_escape@3x.png) |
+| battle_death | battle | ryz died! (hero at 1 HP, Brownie's attack) | no | [png](battle_death.png) [3x](battle_death@3x.png) |
+| gameover | gameover | Game over: by the river of the dead a voice says Do not be afraid... | yes | [png](gameover.png) [3x](gameover@3x.png) |
+| encounter_pixie | battle | Encounter on a residential street: two Fairy Pixies (7/8 moon) | no | [png](encounter_pixie.png) [3x](encounter_pixie@3x.png) |
+| demon_talk | system | TALK with a Pixie: Take which attitude? Friendly / Threatening | no | [png](demon_talk.png) [3x](demon_talk@3x.png) |
+| demon_talk_tease | system | Negotiation: Pixie is teasing you; Smile / Act scared | no | [png](demon_talk_tease.png) [3x](demon_talk_tease@3x.png) |
+| demon_talk_offer | system | Negotiation: the Pixie wants a sign of sincerity, Give them 226 yen? Yes / No | no | [png](demon_talk_offer.png) [3x](demon_talk_offer@3x.png) |
+| demon_talk_ask | system | Threatened Pixie: What will you ask for? Make it your minion / Money / Magnetite | no | [png](demon_talk_ask.png) [3x](demon_talk_ask@3x.png) |
+| dream2_save_girl | dialogue | Second dream: Will you save the girl? Yes / No | no | [png](dream2_save_girl.png) [3x](dream2_save_girl@3x.png) |
+| demon_talk_fail | system | Negotiation fails: ryz didn't have the Bead the Pixie was asking for | no | [png](demon_talk_fail.png) [3x](demon_talk_fail@3x.png) |
+| automap | map | COMP Auto-Mapping: the squares walked so far in the apartment corridor, hero marked yellow | yes | [png](automap.png) [3x](automap@3x.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

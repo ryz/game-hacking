@@ -15,3 +15,33 @@ knifeshop | Kichijoji arcade knife shop menu: Buy / Sell / Equip / Status / Sort
 armed | Arcade square 7,3 facing east, Attack Knife bought and equipped, 5000 yen left | @knifeshop,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,b,w120,settle,b,w120,settle,P,w60,settle,a,w60,D,D,a,w90,settle,a,w90,settle,a,w90,settle,a,w60,D,a,w90,settle,a,w90,settle,a,w90,settle,D,w30,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,b,w60,b,w60,b,w60,settle,a,w60,D,D,D,a,w60,a,w90,settle,b,w90,b,w60,b,w60,settle
 coffee | Arcade square 5,2 facing south after the cafe Master's coffee dialogue (mother's errand done), knife equipped, 5000 yen | @armed,R,F,F,R,F,F,R,F,w60,F,settle,F,w120,settle,F,w120,P,settle,P,P,w60,settle,F,w150,settle,P,P,w150,settle,P,w60,settle
 home_map | Town map just outside the apartment building after the cafe errand (warped from the arcade exit), knife equipped, 5000 yen | @coffee,F,F,w60,F,w60,L,F,F,R,F,settle,F,w120,settle,F,w90,settle,F,w90,settle,L,F,w90,settle,F,w90,settle,poke:7E070C=07,poke:7E070D=06,R,F,w120,settle,F,w120,settle,poke:7E07F5=32,poke:7E07F6=86,w30,a,w150,settle
+t0 | scratch | @home_map,w10,settle
+home_back | Mother greets ryz back home after the cafe errand (reached by entering the clinic, map 1A, and poking position 0,1 in front of the home door) | @home_map,MD,MD,MD,settle,ML,w60,settle,poke:7E070C=00,poke:7E070D=01,poke:7E040D=00,L,R,settle,F,w60,settle,R,F,w60,settle,F,w90,settle
+home_room | Hero's room menu after the cafe errand (before Go to sleep) | @home_back,P,settle,P,settle,P,settle,P,settle,P,P,settle,P,settle,P,settle,a,w120,settle
+morning2 | Next morning after sleeping: mother says Good morning (day 2) | @home_room,D,D,a,w150,a,w300,settle,settle,D,D,D,a,w150,settle,w30,D,D,D,w30,a,w150,settle
+dream2 | Second dream: condi greets ryz in the blue corridor (flag 7E07C1 bit 02 poked before Go to sleep) | @home_room,poke:7E07C1=02,D,D,a,w150,a,w300,a,w600,settle
+dream2_party | Second dream: party ryz, condi, ebo, free movement in the blue dream corridor | @dream2,P,P,settle
+ceremony | Second dream: the ceremony scene, first page | @dream2_party,w60,settle,P,settle,P,settle,w120,settle,w200,settle
+ceremony2 | Second dream: after answering Yes to Will you save the girl? | @ceremony,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle
+cubi_named | Second dream: cubi named, stats placed (STR7 INT9 MAG10 VIT6 SPD8 LUK8) | @ceremony2,P,settle,P,settle,P,settle,P,settle,x,right*2,a,down,down,left*2,a,up,up,right,a,right*7,a,settle,start,a,w150,settle,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle,D,right*4,D,right*5,D,right,D,right*3,D,right*2,settle,right,w60,settle,a,w150,settle
+day2_room | Day 2 morning: hero's room menu after the second dream (cubi named, Auto-Mapping Program received) | @cubi_named,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle,P,settle
+day2_corridor | Day 2: apartment corridor outside the home door, 0,1 facing south | @day2_room,w30,D,D,D,w30,a,w150,P,P,P,P,D,a,w120,settle,P,w60,settle
+day2_map | Day 2: Kichijoji town map outside the apartment (32,86) | @day2_corridor,y,w60,settle,L,F,settle,F,settle,F,settle,a,w150,settle
+enc1 | Day 2: first random encounter on the Kichijoji street (full moon), demon appears | @day2_map,MR,w60,settle,MD,w30,settle,MD,w30,settle,MD,w30,settle,MD,settle,MD,settle,MD,settle,MD,settle,MD,settle,MD,settle,MD,settle,MR,w60,settle,MR,w60,settle,MD,w60,settle
+battle1 | First battle command menu: Jirae Brownie x2, full moon | @enc1,w60,settle
+battle1_fight | First battle: ryz's move menu after FIGHT | @battle1,D,D,a,w120,settle,P,settle,w10,settle,P,settle,a,w90,settle
+battle1_r2 | First battle, round 2 confirm prompt | @battle1_fight,a,w90,a,w40,w40,w60,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle
+battle1_r3 | First battle, round 3 ryz's move (HP 14/22) | @battle1_r2,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle
+battle1_low | First battle: one Brownie left, ryz 6/22, sword confirm prompt | @battle1_r3,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle
+battle1_hp2 | First battle: ryz 2/22, ryz's move menu | @battle1_low,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle
+battle1_last | First battle: last Brownie wounded, ryz 2/22, ryz's move menu | @battle1_hp2,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle
+levelup1 | ryz level 2 stat screen after the first battle, 1 point to place | @battle1_last,a,w90,a,w90,a,w90,a,w90,a,w90,settle,a,w90,settle,a,w90,settle
+after_b1 | Town map after winning the first battle: ryz level 2 (STR 12), 5064 yen, full moon | @levelup1,right,w60,a,w120,settle,w60,settle,a,w90,settle
+battle1_hp1 | First battle: ryz 1/22 (poked), Brownie wounded, Command? menu | @battle1_hp2,poke:7E102E=0100,D,D,D,D,w30,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle
+pixie | Day 2 encounter: two Fairy Pixies on a residential street (7/8 moon), Command? menu | @after_b1,MU,settle,MU,settle,MU,settle,MU,settle,MU,settle,MD,settle,MD,settle,MD,settle,MD,settle,MD,settle
+talk_attitude | Pixie TALK: Take which attitude? Friendly / Threatening | @pixie,D,D,a,w120,settle,a,w120,settle
+talk_tease | Pixie negotiation: Pixie is teasing you, Smile / Act scared | @talk_attitude,a,w150,settle,a,w150,settle,a,w150,settle
+talk_sincerity | Pixie negotiation: I want to see a sign of your sincerity! | @talk_tease,a,w150,settle,a,w150,settle,a,w150,settle
+talk_offer | Pixie negotiation: Give them 226 yen? Yes / No | @talk_sincerity,a,w150,settle,a,w150,settle
+talk_bead | Pixie negotiation: More! More! Give them Bead? (none owned) | @talk_offer,a,w150,settle,a,w150,settle,a,w150,settle
+talk_ask | Pixie threatened: What will you ask for? Make it your minion / Money / Magnetite / Go away | @talk_attitude,D,a,w150,a,w150,a,w150,a,w150,a,w150,settle,a,w150,settle

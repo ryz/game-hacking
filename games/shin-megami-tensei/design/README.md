@@ -41,9 +41,10 @@ release with the Aeon Genesis English translation; the on-screen names used here
 | [world.md](world.md) | view modes, the opening sequence, places seen so far, moon phase |
 | [economy.md](economy.md) | yen, the arcade shops, price lists |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
+| [combat.md](combat.md) | battle commands, first damage and EXP numbers, level-up, death, demon negotiation (started run 2) |
 
-Planned, to be started by the capture agent when the systems are seen: `combat.md` (battle commands, sword and
-gun, magic), `demons.md` (negotiation, summoning, Magnetite, fusion), `alignment.md`, `items.md`.
+Planned, to be started by the capture agent when the systems are seen: `demons.md` (summoning, Magnetite,
+fusion; negotiation is in `combat.md` for now), `alignment.md`, `items.md`.
 
 ## Sources
 | Source | URL | Used for |

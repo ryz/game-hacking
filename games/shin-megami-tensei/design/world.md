@@ -54,8 +54,23 @@ Rooms inside buildings are single squares that run their scene as the hero steps
 the corridor **(verified: doctor, knife shop, antique shop, cafe)**. People standing in the corridor speak when
 the hero walks into their square **(verified: `../shots/main/arcade_rumor.png`)**.
 
+## 5. Day 1 evening to day 2
+The hero's apartment door opens onto the street square just south of a police line; walking left from that
+square enters the building, which is the same building as the clinic ("the doctor next door")
+**(verified: checkpoint `day2_map`, Left from the apartment square)**. Back home after the coffee errand the
+mother talks about the park murder and asks ryz to walk the dog Pascal **(verified: checkpoint `home_back`)**.
+Sleeping only leads to the second dream once a story event of day 1 has happened; in the run here that event
+was not found and was set by hand **(RAM: checkpoint `dream2`)**. The second dream: the two heroes meet ryz
+again, Yuriko appears, and a hooded priest is about to sacrifice a girl; agreeing to save her and calling her
+by name (the heroine's name entry, 18 points to divide) rescues her
+**(verified: `../shots/main/dream2_save_girl.png`, `../shots/main/name_heroine.png`)**. Next morning a mail
+brings the Auto-Mapping Program (a new COMP entry that draws the squares walked)
+**(verified: `../shots/main/automap.png`)**, and from then on demons attack on the town map
+**(verified: `../shots/main/first_battle.png`)**.
+
 ## Open questions
-- How the hero gets back into his apartment building from the map (the square he leaves onto is a police line
-  when entered from the south; no direction tried from it led inside).
+- ~~How the hero gets back into his apartment building from the map.~~ Walk left from the square south of the
+  police line (section 5).
+- Which day-1 event opens the second dream (not the cafe, the park police or the roadblock).
 - Size of the moon cycle after the full moon (the first half is 16 counted steps per eighth).
 - What "Go to sleep" does before the first errand.

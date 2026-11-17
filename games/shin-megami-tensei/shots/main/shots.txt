@@ -32,3 +32,25 @@ arcade_rumor | dialogue | Arcade: a woman passes on the rumour about the hospita
 cafe_master | dialogue | Arcade cafe: the Master greets ryz and asks about the usual coffee | @armed,R,F,F,R,F,F,R,F,w60,F,settle,F,w120,settle,F,w120,P,settle,P,P,w60,settle,F,w150,settle
 police_roadblock | dialogue | Street roadblock: policemen declare the area off-limits during the murder investigation | @home_map,ML,w60,settle,MU,w60,settle,MD,w60,settle,MU,w90,settle
 full_moon | system | Town map at full moon: the MOON'S AGE window reads FULLMOON | @home_map,ML,w60,settle,MU,w60,settle,MD,w60,settle,MU,w90,settle,P,settle,P,settle,P,settle,b,w60,poke:7E040F=7E,MD,MD,MD,settle,poke:7E040F=70,MD*3,MU*3,MD*3,settle
+dream2_condi | cutscene | Second dream: condi meets ryz again in a blue corridor | @dream2,!
+dream2_yuriko | cutscene | Second dream: Yuriko meets ryz in the blue corridor | @dream2_party,w60,settle
+dream2_ceremony | cutscene | Second dream: hooded cultists perform a strange ceremony | @dream2_party,w60,settle,P,settle,P,settle,w120,settle,w200,settle
+name_heroine | system | Second dream: the girl asks ryz to call her name; cubi typed | @ceremony2,P,settle,P,settle,P,settle,P,settle,x,right*2,a,down,down,left*2,a,up,up,right,a,right*7,a,settle
+first_battle | battle | First battle: Jirae Brownie on a Kichijoji street; FIGHT / ESCAPE / TALK / AUTO | @enc1,w60,settle
+talk_fullmoon | system | TALK at full moon: It's no good! They're spoiling for a fight! | @battle1,D,D,a,w120,settle,P,settle,w10,settle
+battle_commands | battle | ryz's move: SWORD / GUN / COMP / ITEM / DEFEND against two Brownies | @battle1,D,D,a,w120,settle,P,settle,w10,settle,P,settle,a,w90,settle
+battle_attack | battle | ryz slashes with the Attack Knife: Brownie took 8 damage | @battle1_fight,a,w90,a,w40,w40,w60,a,w90,settle
+battle_enemy_spell | battle | A Brownie casts Sukunda on the party (accuracy down) | @battle1_fight,a,w90,a,w40,w40,w60,a,w90,settle,a,w90,settle
+battle_result | battle | Battle won: Brownie lost! ryz got 16 EXP | @battle1_last,a,w90,a,w90,a,w90,a,w90,a,w90,settle
+level_up | system | Level up: ryz reaches level 2 with one stat point to place (Left 1Pts) | @battle1_last,a,w90,a,w90,a,w90,a,w90,a,w90,settle,a,w90,settle,a,w90,settle
+battle_escape | battle | ESCAPE: Started to run... but failed! | @battle1_hp1,D,a,w90,a,w90,settle
+battle_death | battle | ryz died! (hero at 1 HP, Brownie's attack) | @battle1_hp1,D,a,w90,a,w90,settle,a,w90,a,w90,a,w150,settle
+gameover | gameover | Game over: by the river of the dead a voice says Do not be afraid... | @battle1_hp1,D,a,w90,a,w90,settle,a,w90,a,w90,a,w150,settle,a,w150,settle,w40,settle
+encounter_pixie | battle | Encounter on a residential street: two Fairy Pixies (7/8 moon) | @pixie,w10,settle
+demon_talk | system | TALK with a Pixie: Take which attitude? Friendly / Threatening | @talk_attitude,w10,settle
+demon_talk_tease | system | Negotiation: Pixie is teasing you; Smile / Act scared | @talk_tease,w10,settle
+demon_talk_offer | system | Negotiation: the Pixie wants a sign of sincerity, Give them 226 yen? Yes / No | @talk_offer,w10,settle
+demon_talk_ask | system | Threatened Pixie: What will you ask for? Make it your minion / Money / Magnetite | @talk_ask,w10,settle
+dream2_save_girl | dialogue | Second dream: Will you save the girl? Yes / No | @ceremony,P,P,P,P,P,settle
+demon_talk_fail | system | Negotiation fails: ryz didn't have the Bead the Pixie was asking for | @talk_ask,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,settle
+automap | map | COMP Auto-Mapping: the squares walked so far in the apartment corridor, hero marked yellow | @day2_corridor,L,F,F,T,F,F,w30,settle,a,w60,a,w90,D,D,D,D,a,w120,settle,a,w90,settle,D,D,D,D,w30,a,w120,settle
