@@ -63,6 +63,7 @@ python3 tools/play.py checkpoint title "Title screen, settled"
 python3 tools/play.py do "start,w60,a"           # small steps: 1-10 tokens, then LOOK at the screenshot
 python3 tools/play.py undo                       # one step back if it went wrong
 python3 tools/play.py snap menu_main menu "Main menu: New game / Continue / Options"
+python3 tools/play.py recaption menu_main "Main menu"   # fix a caption; `unsnap ID` removes a shot (no replay)
 python3 tools/play.py stop
 ```
 1. **Look at every screenshot** (Read the PNG) before the next input. Never chain long blind sequences in an
@@ -134,6 +135,8 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
 2. Otherwise search: `find reset`, change the value in game (lose a life), `find "new == old - 1"`, repeat with
    `find "new == old"` while nothing changes, until 1-3 candidates remain; confirm with `poke` and a screenshot.
    16-bit values: add `--wide`.
+   If the search runs dry (one of the test steps did not do what you thought, e.g. walked into a wall): dump RAM
+   before and after one confirmed step (`peek` a block, or a small script over the backend) and diff the dumps.
 3. Record it in `game.json` "ram" (`"lives": {"addr": "C0A2", "size": 1}`: shown by every `do`; `"fmt": "bcd"`
    for packed-BCD values such as money, `"be"` for big-endian) and the playbook RAM map.
 - A position poke does not redraw the map: the old background stays until the screen scrolls. For a clean warp

@@ -12,6 +12,8 @@ is reproducible from power-on (states are a cache, routes are the record).
                                              capture the current frame for the database: native PNG + @3x into
                                              work/shots/GAME/SET/ (default set: main), its line (with the full
                                              route) appended to that set's shots.txt and index.json
+  python3 tools/play.py recaption ID "caption" [--set SET]    change a shot's caption (no replay)
+  python3 tools/play.py unsnap ID [--set SET]                 remove a shot from the working set
   python3 tools/play.py record ID CATEGORY FRAMES "caption" [--every K] [--poster P] [--set SET]
                                              clip: record FRAMES frames from now (every Kth kept, default 2) as
                                              <id>.gif + @3x.gif (poster <id>.png) into the set, route + `rec:N:K`
@@ -138,6 +140,44 @@ class Session:
             f.write("%03d %s -> %s%s\n" % (self.n, seq, rel(p), note))
         return "%s%s\n%s" % (rel(p), note, self.watch())
 
+    def edit_shot(self, cmd, sid, caption, set_="main"):
+        """unsnap: remove a shot from the working set (shots.txt, index.json, its images). recaption: change its
+        caption in both files. No replay; index.md and the sheet are rebuilt."""
+        import shoot
+        d = os.path.join(ROOT, "work", "shots", self.game.slug, set_)
+        lst, ip = os.path.join(d, "shots.txt"), os.path.join(d, "index.json")
+        if not (os.path.exists(lst) and os.path.exists(ip)):
+            return "error: no working set %s" % os.path.relpath(d, ROOT)
+        idx = json.load(open(ip, encoding="utf-8"))
+        shot = next((s for s in idx["shots"] if s["id"] == sid), None)
+        if shot is None:
+            return "error: no shot %r in set %s" % (sid, set_)
+        lines = open(lst, encoding="utf-8").read().splitlines()
+        if cmd == "unsnap":
+            idx["shots"] = [s for s in idx["shots"] if s["id"] != sid]
+            lines = [l for l in lines if l.split("|")[0].strip() != sid]
+            for k in ("file", "file_3x", "clip", "clip_3x"):
+                f = shot.get(k) and os.path.join(d, shot[k])
+                if f and os.path.exists(f):
+                    os.remove(f)
+        else:
+            if not caption:
+                return 'usage: play.py recaption ID "new caption"'
+            shot["caption"] = caption
+            out = []
+            for l in lines:
+                parts = [x.strip() for x in l.split("|")]
+                if parts[0] == sid and len(parts) >= 4:
+                    parts[2] = caption.replace("|", "/")
+                    l = " | ".join(parts[:3]) + " | " + "|".join(l.split("|")[3:]).strip()
+                out.append(l)
+            lines = out
+        open(lst, "w", encoding="utf-8").write("\n".join(lines) + "\n")
+        json.dump(idx, open(ip, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+        shoot.reindex(self.game, d)
+        return "%s %s (%d shots in %s); publish again to update games/%s/shots/%s/" % (
+            "removed" if cmd == "unsnap" else "recaptioned", sid, len(idx["shots"]), set_, self.game.slug, set_)
+
     def snap(self, sid, cat, caption, set_="main"):
         if not re.match(r"^[a-z0-9_]+$", sid):
             return "error: id must be lowercase a-z0-9_ (area_thing)"
@@ -244,6 +284,9 @@ class Session:
         d = os.path.join(self.game.dir, "saves")
         os.makedirs(d, exist_ok=True)
         data = self.emu.battery(kib * 1024)
+        if not data.strip(b"\x00") or not data.strip(b"\xff"):
+            return ("error: the battery RAM is empty (nothing was saved in the game on this route). Save in the "
+                    "game first, then export; nothing written")
         p = os.path.join(d, name + ".sav")
         open(p, "wb").write(data)
         files = "`%s.sav`" % name
@@ -287,6 +330,13 @@ class Session:
             return "%s (frame not redrawn yet: `do settle` before a snap)\n%s" % (rel(self.shot()), self.watch())
         if cmd == "shot":
             return rel(self.shot(args[0] if args else None))
+        if cmd in ("unsnap", "recaption"):
+            set_ = "main"
+            if "--set" in args:
+                i = args.index("--set")
+                set_ = args[i + 1]
+                args = args[:i] + args[i + 2:]
+            return self.edit_shot(cmd, args[0], args[1] if len(args) > 1 else None, set_)
         if cmd == "snap":
             set_ = "main"
             if "--set" in args:

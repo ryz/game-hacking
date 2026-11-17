@@ -198,13 +198,17 @@ def resolve(game, route, seen=()):
 
 
 def prefix(toks):
-    """Leading rom:/sav: tokens -> ({"rom": NAME, "sav": NAME}, the rest)."""
+    """Leading rom:/sav: tokens -> ({"rom": NAME, "sav": NAME}, the rest). A `pow` marker before them is
+    skipped (play.py records routes as `pow,sav:NAME,...`)."""
     opts, i = {}, 0
+    while i < len(toks) and toks[i] == "pow":
+        i += 1
+    first = i
     while i < len(toks) and toks[i].split(":")[0] in ("rom", "sav") and ":" in toks[i]:
         k, v = toks[i].split(":", 1)
         opts[k] = v
         i += 1
-    return opts, toks[i:]
+    return (opts, toks[i:]) if i > first else ({}, toks)
 
 
 def encode_value(value, n=1, fmt="le"):

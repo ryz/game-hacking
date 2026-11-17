@@ -62,6 +62,12 @@ def test_press_hold_chord_mash_poke():
     assert not emu.step(e, g, "x:10")
 
 
+def test_prefix_skips_pow():
+    assert emu.prefix(["pow", "sav:x", "rom:y", "a"]) == ({"sav": "x", "rom": "y"}, ["a"])
+    assert emu.prefix(["sav:x", "a"]) == ({"sav": "x"}, ["a"])
+    assert emu.prefix(["pow", "a"]) == ({}, ["pow", "a"])
+
+
 def test_macro_repeat():
     assert emu.expand(FakeGame(), ["TITLE*2", "a*2"]) == ["w100", "start", "w100", "start", "a*2"]
 
@@ -153,6 +159,13 @@ def test_pipeline(selftest):
     run(*P, "snap", "a_shot", "gameplay", "after A")
     assert "UNCHANGED" in run(*P, "snap", "a_shot", "gameplay", "after A")
     assert "candidates" in run(*P, "find", "new == old")
+    run(*P, "snap", "oops", "gameplay", "wrong caption")
+    assert "recaptioned" in run(*P, "recaption", "oops", "right caption")
+    d = os.path.join(ROOT, "work", "shots", SLUG, "main")
+    assert "| right caption |" in open(os.path.join(d, "shots.txt")).read()
+    assert "right caption" in open(os.path.join(d, "index.md")).read()
+    assert "removed" in run(*P, "unsnap", "oops")
+    assert "oops" not in open(os.path.join(d, "shots.txt")).read() and not os.path.exists(os.path.join(d, "oops.png"))
     run(*P, "stop")
     out = run("tools/shoot.py", SLUG, "main", "--verify")
     assert "1/1 reproduce" in out
@@ -237,7 +250,12 @@ def test_export_save(selftest):
     P = ["tools/play.py", "--name", SLUG]
     run(*P, "start", SLUG)
     run(*P, "do", "w60")
-    out = run(*P, "export", "early", "After power-on, nothing saved", "--state")
+    r = subprocess.run([sys.executable, *P, "export", "early", "nothing saved"], cwd=ROOT, capture_output=True,
+                       text=True)
+    assert r.returncode != 0 and "battery RAM is empty" in r.stdout        # refused: nothing was saved
+    assert not os.path.exists(os.path.join(ROOT, "games", SLUG, "saves", "early.sav"))
+    run(*P, "do", "gs:802A00A0,w2")                                 # writes cartridge RAM bank 0
+    out = run(*P, "export", "early", "After power-on, one byte written", "--state")
     assert "early.sav" in out
     run(*P, "stop")
     d = os.path.join(ROOT, "games", SLUG, "saves")

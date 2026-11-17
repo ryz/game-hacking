@@ -9,6 +9,26 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-17 - Shin Megami Tensei (Super Famicom, English patches; first SNES game) main set, run 1
+- Task: capture, verify, publish and commit the early-game main set of Shin Megami Tensei (first SNES game);
+  34 shots, priorities 1-4 plus the full moon, story blocked at re-entering the apartment.
+- Worked: RAM dumps before and after single steps (`work/capture/ramdiff.py`) found position where `play.py
+  find` did not; poking the map tile at an exit prompt gives a correctly drawn warp; watches for x/y/facing made
+  lost inputs visible at once; a depth-first explorer found every shop and NPC of the arcade in one call;
+  committing at three milestones.
+- Friction: `find` narrowed to nothing when one of the test steps silently hit a wall; lost inputs after doors
+  and scenes broke two "clean" routes and produced wrongly captioned snaps caught only by looking; no command to
+  delete or recaption a shot; the `pow,sav:` route problem; the empty `.sav` export; contact-sheet labels are
+  hard to match to images when a 512x448 frame is in the row.
+- Proposed rule change: (1) record or accept `sav:`/`rom:` after `pow`. (2) `play.py export` refuses an empty
+  battery. (3) `play.py unsnap ID` and `recaption`. (4) emulator guide RAM section: if `find` runs dry, dump RAM
+  before and after one confirmed step and diff. (5) skill.md: look at the snapped PNG, not the last play frame.
+- Corrected: (1) `emu.prefix()` skips `pow`; (2) export refuses all-00/FF battery RAM; (3) `play.py unsnap` and
+  `recaption` added (recaption was also asked for in the Dragon Quest entry); (4) added to
+  `docs/emulator/README.md`. All with tests. Coordinator reran the full verify.
+- Status: promoted 2026-11-17 (tools); open ((5) skill wording, contact-sheet labels with mixed frame sizes,
+  session clock from the Dragon Quest entry)
+
 ### 2026-11-17 - Dragon Quest (Famicom, English patch; first NES game) main set
 - Task: capture, verify, publish and commit the Dragon Quest (Famicom) main set, first NES game, title to credits.
 - Worked: checkpoint at every menu or battle the moment it appeared (cheap retakes); a shell loop on the `ehp`
@@ -23,7 +43,7 @@ Never delete entries.
   transition or use stairs. (2) `play.py recaption ID "caption"`. (3) `play.py status` prints elapsed session
   time so agents can keep a time budget.
 - Corrected: (1) added to `gamedb/docs/emulator.md`. Coordinator reran the full verify from an empty cache.
-- Status: open ((2) recaption command, (3) session clock: tool changes not made yet)
+- Status: open ((3) session clock); (2) recaption command added 2026-11-17
 
 ### 2026-11-15 - Pokémon Blue sequences: seq-fishing, seq-fly
 - Task: publish seq-fishing (15 steps, 3 clips, incl. the no-bite branch) and seq-fly (9 steps, 2 clips),
