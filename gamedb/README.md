@@ -5,8 +5,9 @@ game database, and write a design reference of how each game works. Each game ge
 has to work out the same game twice, and a **screenshot set** whose every image can be reproduced from
 power-on by its recorded route.
 
-Platforms: Game Boy and Game Boy Color (gbemu-cli, a headless SameBoy). Other systems plug in as a backend in
-`tools/platforms.py`; nothing above it is GB-specific.
+Platforms: Game Boy and Game Boy Color (gbemu-cli, a headless SameBoy) and NES / Famicom cartridges (Mesen as a
+libretro core, `tools/lrcore.py`). Other systems plug in as a backend in `tools/platforms.py`; nothing above it
+is platform-specific.
 
 ## Pipeline
 ```
@@ -24,7 +25,8 @@ ROM --intake.py--> games/<slug>/ --game-scout--> playbook + checkpoints --game-c
 ## Layout
 | Path | What |
 |---|---|
-| `tools/platforms.py` | platform backends (GB/GBC now) and ROM header identification |
+| `tools/platforms.py` | platform backends (GB/GBC, NES) and ROM header identification |
+| `tools/lrcore.py` | minimal headless libretro frontend (ctypes) used by the NES backend |
 | `tools/emu.py` | games, tokens, macros, checkpoints, settling, one-shot runs |
 | `tools/play.py` | persistent play session: do / undo / snap / checkpoint / goto / find (RAM search) |
 | `tools/shoot.py` | replay a shot list, verify, publish a set |

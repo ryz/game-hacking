@@ -2,6 +2,18 @@
 
 Append-only, newest first.
 
+## 2026-11-17 - NES / Famicom backend (Mesen)
+- Owner's request: an emulator for NES/Famicom games like the GB one. Checked FCEUmm and Mesen as libretro cores
+  (both build headless here, deterministic, savestates round-trip); owner chose Mesen.
+- `tools/setup_emu.sh [gb|nes]` builds libretro/Mesen at 0102910 with `tools/mesen-debug.patch`
+  (retro_mesen_peek/poke/pc). `tools/lrcore.py`: ctypes libretro frontend. `platforms.Nes`: iNES/NES 2.0
+  identification, ntsc/pal/dendy, private empty save directory per run, RAM search in Python, Game Genie as a
+  ROM patch (8-letter; 6-letter only without bank switching), `gs:` refused. play.py export names the emulator
+  of the `.state`. `.gitignore`: `*.nes`, `*.fds`, `tools/mesen/`.
+- Tests: generated NES test ROM (`tests/make_nes_rom.py`, hand-assembled, no game data); header/Game Genie,
+  backend, and the intake -> play -> snap -> export -> shoot --verify pipeline. 12 pass. ~700 fps.
+- Open: first commercial NES game (scout + capture) will show what the docs and skills still assume about GB.
+
 ## 2026-11-15 - sequence file names carry the set name
 - Owner's request: files of `seq-*` sets are prefixed with the set name (seq-fishing_01_shore.png,
   seq-fishing_full.gif, ...); ids unchanged; shoot.py/play.py add the prefix (shoot.prefix()). Pokémon Blue

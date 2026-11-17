@@ -8,10 +8,10 @@ people: `README.md`. Current projects:
 | Directory | Game | Platform | Work |
 |---|---|---|---|
 | `wizardry-empire/` | Wizardry Empire (J) | Game Boy Color | English translation, VWF engine, RE notes, design docs, floor maps |
-| `gamedb/` | any game you provide (GB/GBC for now) | Game Boy / Color | screenshot database: research playbooks, automated play, reproducible screenshot sets |
+| `gamedb/` | any game you provide (GB/GBC, NES/Famicom) | Game Boy / Color, NES / Famicom | screenshot database: research playbooks, automated play, reproducible screenshot sets |
 
 ## Rules (all projects)
-- Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.sav`,
+- Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`, `*.sav`,
   `*.state`, `rom/`, `build/`, `work/`). The original dump is verified by SHA-1 (`rom.sha1`). Exception (owner's
   decision 2026-11-12): test saves made by a project's own tools in `<project>/saves/`, each documented in
   `<project>/saves/README.md`; and (2026-11-15) battery saves/states the gamedb agents made while playing, in
@@ -70,7 +70,8 @@ Run from `wizardry-empire/`:
 ## Game database quick reference
 Run from `gamedb/` (README: `gamedb/README.md`; rules for driving any game: `gamedb/docs/emulator.md`; what to
 capture: `gamedb/docs/capture-guide.md`):
-- Setup: `sh tools/setup_emu.sh`; register a ROM: `python3 tools/intake.py ROM` -> `games/<slug>/` + `rom/<slug>.*`.
+- Setup: `sh tools/setup_emu.sh` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom `.nes`; NES notes in
+  `docs/emulator.md` "NES / Famicom"); register a ROM: `python3 tools/intake.py ROM` -> `games/<slug>/` + `rom/<slug>.*`.
 - Play: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
   `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `stop`.
 - Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish]`. Tests: `python3 -m pytest -q tests`.

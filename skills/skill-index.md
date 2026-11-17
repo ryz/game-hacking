@@ -20,7 +20,7 @@ to it. Every skill folder has a `feedback.md` - read its open entries before wor
 - **Verification:** playtester (plays toward a goal), visual-qa (judges screenshot sheets).
 - **Documentation:** photographer (pixel-exact reference screenshots, English and original side by side),
   design-writer (game-design documents for designers, from the tech reference).
-- **Game database (gamedb/, any GB/GBC game):** game-scout (research + playbook), game-capture (play +
+- **Game database (gamedb/, any GB/GBC or NES/Famicom game):** game-scout (research + playbook), game-capture (play +
   screenshot set).
 - **Upkeep:** maintenance (repo health check: docs vs code, skills, feedback, status drift).
 

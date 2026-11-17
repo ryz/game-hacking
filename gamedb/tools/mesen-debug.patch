@@ -1,0 +1,32 @@
+diff --git a/Libretro/libretro.cpp b/Libretro/libretro.cpp
+index 48fa641..5cbdacd 100644
+--- a/Libretro/libretro.cpp
++++ b/Libretro/libretro.cpp
+@@ -10,6 +10,7 @@
+ #include "../Core/VideoDecoder.h"
+ #include "../Core/VideoRenderer.h"
+ #include "../Core/MemoryManager.h"
++#include "../Core/CPU.h"
+ #include "../Core/BaseMapper.h"
+ #include "../Core/EmulationSettings.h"
+ #include "../Core/CheatManager.h"
+@@ -1211,4 +1212,19 @@ extern "C" {
+ 		}
+ 		return 0;
+ 	}
++	// gamedb: side-effect-free access to the whole CPU address space and the program counter
++	RETRO_API uint8_t retro_mesen_peek(uint16_t addr)
++	{
++		return _console->GetMemoryManager()->DebugRead(addr);
++	}
++
++	RETRO_API void retro_mesen_poke(uint16_t addr, uint8_t value)
++	{
++		_console->GetMemoryManager()->DebugWrite(addr, value);
++	}
++
++	RETRO_API uint16_t retro_mesen_pc()
++	{
++		return _console->GetCpu()->GetDebugPC();
++	}
+ }

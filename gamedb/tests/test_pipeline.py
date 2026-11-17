@@ -1,5 +1,6 @@
 """gamedb tests: tokens, routes, header identification (no emulator), and the whole pipeline on gbemu's generated
-test ROM (skipped when tools/gbemu-cli is not built)."""
+test ROM (skipped when tools/gbemu-cli is not built) and on a generated NES test ROM (skipped when the Mesen
+core is not built)."""
 import json, os, shutil, subprocess, sys
 
 import pytest
@@ -103,6 +104,26 @@ def selftest(tmp_path):
         shutil.rmtree(p, ignore_errors=True)
     if os.path.exists(os.path.join(ROOT, "rom", SLUG + ".gb")):
         os.remove(os.path.join(ROOT, "rom", SLUG + ".gb"))
+
+
+NES_SLUG = "zz-selftest-nes"
+
+
+@pytest.fixture
+def nes_selftest(tmp_path):
+    if not os.path.exists(platforms.Nes.SO):
+        pytest.skip("Mesen core not built (sh tools/setup_emu.sh nes)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_nes_rom
+    rom = tmp_path / "t.nes"
+    rom.write_bytes(make_nes_rom.build())
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", NES_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games", "work/shots", "work/cache", "work/intake", "work/play"):
+        shutil.rmtree(os.path.join(ROOT, sub, NES_SLUG), ignore_errors=True)
+    if os.path.exists(os.path.join(ROOT, "rom", NES_SLUG + ".nes")):
+        os.remove(os.path.join(ROOT, "rom", NES_SLUG + ".nes"))
 
 
 def run(*args):
@@ -259,3 +280,91 @@ def test_clip_and_sequence(selftest):
         total += full.info["duration"]
     clip_ms = 60 * 1000 / 59.7275
     assert abs(total - (2000 + clip_ms + 3000)) < 60, total     # first still + clip at game speed + last still
+
+
+# ------------------------------------------------------------------ NES (Mesen libretro core)
+def test_nes_header_and_game_genie():
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_nes_rom
+    h = platforms.Nes.identify(make_nes_rom.build())
+    assert h["platform"] == "nes" and h["model"] == "ntsc" and h["mapper"] == 0 and h["prg_kib"] == 16
+    assert h["battery"] and h["ram_kib"] == 8 and h["chr_kib"] == 0
+    nes2 = bytearray(b"NES\x1a" + bytes([2, 1, 0x12, 0x48, 0x10, 0, 0x70, 0, 1, 0, 0, 0]))
+    h = platforms.Nes.identify(bytes(nes2))
+    assert h["format"] == "NES 2.0" and h["mapper"] == 0x41 and h["submapper"] == 1 and h["region"] == "PAL"
+    assert h["model"] == "pal" and h["ram_kib"] == 8
+    N = platforms.Nes
+    assert N.game_genie("SXIOPO") == (0x91D9, 0xAD, None)           # nesdev wiki examples
+    assert N.game_genie("ZEXPYGLA") == (0x94A7, 0x02, 0x03)
+    rom = bytearray(b"NES\x1a" + bytes([4, 0, 0, 0]) + bytes(8) + bytes(0x10000))
+    rom[16 + 0x14A7], rom[16 + 0x34A7], rom[16 + 0x54A7] = 3, 3, 9
+    assert N.apply_game_genie(rom, "ZEXPYGLA") == [16 + 0x14A7, 16 + 0x34A7] and rom[16 + 0x14A7] == 2
+    with pytest.raises(ValueError):
+        N.apply_game_genie(rom, "SXIOPO")                           # 6 letters, bank-switched: ambiguous
+    small = bytearray(b"NES\x1a" + bytes([1, 0, 0, 0]) + bytes(8) + bytes(0x4000))
+    assert N.apply_game_genie(small, "SXIOPO") == [16 + 0x11D9] and small[16 + 0x11D9] == 0xAD
+
+
+def test_nes_backend(nes_selftest, tmp_path):
+    from PIL import Image
+    import io
+    e = platforms.Nes().open(str(nes_selftest))
+    e.frames(30)
+    px = lambda: Image.open(io.BytesIO(e.screen())).convert("RGB").getpixel((100, 100))
+    blue = px()
+    assert blue[2] > 200 and e.peek(0x11, 1) == b"\x00" and e.regs()["pc"].startswith("c0")
+    assert e.peek(0xFFFC, 2) == b"\x00\xc0"                        # PRG through the mapper
+    e.input(["a"])
+    e.frames(5)
+    red = px()
+    assert red[0] > 150 and red[2] < 100 and e.peek(0x11, 1) == b"\x01"
+    st = str(tmp_path / "x.state")
+    e.save_state(st)
+    count = e.peek(0x10, 1)[0]
+    e.input([])
+    e.frames(5)
+    assert px() == blue
+    e.ram_search("new == old")
+    e.frames(3)
+    r = e.ram_search("new == old + 3")
+    assert [x["addr"] for x in r["results"]] == ["0010", "6000"]
+    e.poke(0x10, b"\x80")
+    e.frames(1)
+    assert e.peek(0x10, 1) == b"\x81" and e.battery(0)[0] == 0x81 and len(e.battery(0)) == 8192
+    e2 = platforms.Nes().open(str(nes_selftest))                    # two games at once in one process
+    e2.load_state(st)
+    assert e2.peek(0x10, 1)[0] == count and e.peek(0x10, 1) == b"\x81"
+    e2.close()
+    e.close()
+
+
+def test_nes_pipeline(nes_selftest):
+    run("tools/intake.py", str(nes_selftest), "--slug", NES_SLUG, "--probe", "120")
+    gj = os.path.join(ROOT, "games", NES_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "nes" and meta["model"] == "ntsc"
+    meta["macros"] = {"TITLE": "w60"}
+    meta["ram"] = {"joy": {"addr": "0012", "size": 1}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", NES_SLUG]
+    run(*P, "start", NES_SLUG)
+    run(*P, "do", "TITLE")
+    assert "saved" in run(*P, "checkpoint", "title", "after boot")
+    run(*P, "do", "a+right:20")
+    assert "joy=1" in run(*P, "status")
+    run(*P, "snap", "held_a", "gameplay", "after A was held")
+    assert "candidates" in run(*P, "find", "new == old")
+    assert "early.sav" in run(*P, "export", "early", "frame counter in battery RAM", "--state")
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", NES_SLUG, "main", "--verify")
+    run("tools/shoot.py", NES_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", NES_SLUG, "shots", "main", "held_a.png")).convert("RGB")
+    assert im.size == (256, 240) and im.getpixel((10, 10))[2] > 200
+    d = os.path.join(ROOT, "games", NES_SLUG, "saves")
+    assert os.path.getsize(os.path.join(d, "early.sav")) == 8192
+    assert "Mesen" in open(os.path.join(d, "README.md")).read()
+    g = emu.Game(NES_SLUG)
+    e, rest, _ = emu.start(g, "sav:early")
+    assert e.peek(0x6000, 1)[0] == open(os.path.join(d, "early.sav"), "rb").read()[0] != 0
+    e.close()

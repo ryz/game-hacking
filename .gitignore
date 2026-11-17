@@ -1,12 +1,15 @@
 # Never commit game data
 *.gbc
 *.gb
+*.nes
+*.fds
 *.sav
 *.state
 rom/
 build/
 work/
 **/tools/gbemu-cli/
+**/tools/mesen/
 __pycache__/
 *.bps
 *.ips

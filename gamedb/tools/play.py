@@ -254,9 +254,9 @@ class Session:
         readme = os.path.join(d, "README.md")
         head = ("# %s - saves\n\nMade by the agents while playing (owner's rule 2026-11-15: committed so the owner can "
                 "jump in). `.sav` = the game's own battery save: copy it next to your ROM as `<rom name>.sav` in any "
-                "emulator, then Continue. `.state` = SameBoy savestate of the exact moment (SameBoy only). In routes: "
+                "emulator, then Continue. `.state` = %s savestate of the exact moment (that emulator only). In routes: "
                 "`sav:NAME` prefix (power on with that save).\n\n| Save | Files | What it contains | Route at export | "
-                "SHA-1 (.sav) | Date |\n|---|---|---|---|---|---|\n" % self.game.meta["title"])
+                "SHA-1 (.sav) | Date |\n|---|---|---|---|---|---|\n" % (self.game.meta["title"], self.emu.emulator))
         lines = open(readme, encoding="utf-8").read().splitlines() if os.path.exists(readme) else head.splitlines()
         lines = [l for l in lines if not l.startswith("| %s |" % name)]
         import datetime

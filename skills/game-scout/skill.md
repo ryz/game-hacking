@@ -3,7 +3,7 @@ skill: game-scout
 project: gamedb
 summary: Research a newly registered game (controls, structure, strategy, shortcuts) into its playbook and verify the basics in the emulator.
 access: write (gamedb/games/<slug>/ except shots/, gamedb/work/scout/<slug>/)
-updated: 2026-11-15
+updated: 2026-11-17
 ---
 
 # Game scout - research a game before anyone plays it
@@ -34,7 +34,7 @@ do not capture the database set (that is `game-capture`), but you do create the 
    - **The Cutting Room Floor** (tcrf.net): debug menus, level selects, sound tests, unused content, regional
      differences. Often the fastest way to reach late content.
    - **Data Crystal** (datacrystal.tcrf.net): RAM maps, ROM maps.
-   - GameShark / Game Genie code lists (GameFAQs "Cheats", gamehacking.org). GB GameShark `01VVAAAA` = write VV
+   - GameShark / Game Genie code lists (GameFAQs "Cheats", gamehacking.org). NES: no GameShark (use `freeze:`), Game Genie rules in `gamedb/docs/emulator.md` "NES / Famicom". GB GameShark `01VVAAAA` = write VV
      to address AAAA, low byte first: use as `gs:` tokens; Game Genie codes go into a `rom:` variant.
    - **Saves:** GameFAQs game pages often have a "Saves" section (100% / late-game battery saves). Fetch the
      best one into `rom/saves/<slug>/` if the site serves it directly, test it with the `sav:NAME` prefix, and

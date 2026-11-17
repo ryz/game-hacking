@@ -5,8 +5,8 @@ How agents drive games here, for any game. Game-specific facts (controls, routes
 
 ## Setup (once per container)
 ```sh
-sh tools/setup_emu.sh                         # gbemu-cli: headless SameBoy, JSON-lines API (~1 min)
-python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<slug>/, rom/<slug>.gbc
+sh tools/setup_emu.sh                         # GB/GBC: gbemu-cli (headless SameBoy); NES/Famicom: Mesen core (~2 min)
+python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<slug>/, rom/<slug>.gbc (or .gb, .nes)
 ```
 Containers are wiped between sessions: ROMs (`rom/`), states and caches (`work/`) are gone next time, routes and
 playbooks (committed) are not. That is why every state is defined by a route.
@@ -36,7 +36,7 @@ playbooks (committed) are not. That is why every state is defined by a route.
 | `rec:240:2` | last token of a shot: record 240 frames as a GIF clip (every 2nd kept); elsewhere a wait | clips (`play.py record`) |
 | `poke:C0A2=09` | write RAM bytes once | shortcuts (recorded in the route) |
 | `set:C0B0=8973:2` | write a decimal value (N bytes; `:bcd`, `:be`) | money, score, EXP |
-| `gs:0109A2C0` | GameShark code, held for the rest of the route | infinite health/lives, codes from the web |
+| `gs:0109A2C0` | GameShark code, held for the rest of the route (GB/GBC only; NES: `freeze:`) | infinite health/lives, codes from the web |
 | `freeze:C0A2=09` / `unfreeze` | hold a raw value / drop all held values | same, own addresses |
 | `rom:NAME` | route prefix: patched ROM (Game Genie, IPS, bytes) | level select, debug menu, invincibility |
 | `sav:NAME` | route prefix: power on with a battery save | late-game saves from the web |
@@ -112,7 +112,7 @@ The owner wants to jump into a game at any milestone and take screenshots by han
    (its own Save menu, or the save point) and check the "saved" message.
 2. `python3 tools/play.py export NAME "what it contains"` writes the battery save to
    `games/<slug>/saves/NAME.sav` and adds a row (contents, route, SHA-1, date) to `saves/README.md`. Add
-   `--state` for a SameBoy savestate of that exact moment (useful where the game saves only at fixed points).
+   `--state` for an emulator savestate of that exact moment (SameBoy for GB/GBC, Mesen core for NES; useful where the game saves only at fixed points).
 3. Names say where you are: `01_start`, `02_pewter_badge1`, `08_before_elite_four` (sortable).
 The `.sav` loads in any emulator (copy it next to the ROM as `<rom name>.sav`) and in routes as `sav:NAME`.
 Values in an exported save follow the realistic-values rule: it is what the owner will see. Only saves made here
@@ -129,12 +129,34 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
    for packed-BCD values such as money, `"be"` for big-endian) and the playbook RAM map.
 - Pokes are part of the route and fine anywhere; values that show on screen follow the realistic-values rule.
 
-## Choosing the model (GB/GBC)
+## Choosing the model (GB/GBC; NES: see NES / Famicom)
 - `game.json` "model" comes from the header: CGB games -> `cgb`, everything else -> `dmg` (the original grey).
 - Dual-mode games (CGB-enhanced) are shot in `cgb`; a `--model dmg` set may be added. Super Game Boy games:
   `--model sgb` captures 256x224 with the border and SGB colours (a separate set, e.g. `sgb`).
 - Screenshots are the raw framebuffer (CGB colours 5->8 bit, no colour correction, no filter); `@3x` is nearest
   neighbour. Never resample by non-integer factors.
+
+## NES / Famicom
+- Backend: Mesen as a libretro core, run inside the Python process (`tools/lrcore.py`); one process = one game,
+  parallel sessions work as on GB (`--name`). Cartridge games as `.nes` files with an iNES or NES 2.0 header
+  (Famicom carts included). Famicom Disk System images are not set up (they need the disk BIOS).
+- Screenshots are 256x240, the full frame without overscan crop, Mesen's default palette (the NES has no RGB
+  output, so every palette is a choice; this one is fixed for all sets). Many games leave garbage in the top and
+  bottom 8 lines and the left column: that is what the console outputs, do not crop.
+- `game.json` "model": `ntsc` (NES and Famicom, 60 Hz; default), `pal` (50 Hz) or `dendy`, taken from the header.
+  iNES headers often lack the region: a European ROM that runs too fast or glitches needs `--model pal`.
+- Buttons: `a b start select up down left right` (player 1). No second controller, microphone or Zapper yet.
+- Memory is the CPU address space: `0000-07FF` RAM (mirrored to 1FFF), `6000-7FFF` cartridge RAM (battery
+  save or work RAM, when the cartridge has it), `8000-FFFF` the PRG banks mapped at that moment. `peek` has no
+  side effects; `poke` reaches RAM and mapped PRG, not the PPU/APU/mapper registers. `find` searches
+  `0000-07FF` and `6000-7FFF`. `status` shows the PC (no bank number: it depends on the mapper).
+- Cheats: no GameShark on the NES, so `gs:` is refused; hold RAM values with `freeze:ADDR=HEX` (Pro Action
+  Replay style RAM codes `AAAA:VV` are exactly that). Game Genie in a `rom:` variant: 8-letter codes always;
+  6-letter codes only for games without bank switching (PRG <= 32 KiB), otherwise the bank is unknown: find
+  the 8-letter form or patch the file offset with `"bytes"`.
+- Exported `.sav` files are the raw battery RAM (8 KiB on most cartridges), the format every NES emulator uses.
+- Power-on RAM is all zeros (fixed, so routes reproduce). A few games seed their RNG from uninitialised RAM and
+  behave the same on every boot here; that is intended.
 
 ## Hangs and dead ends
 - There is no generic hang detector. If several inputs change nothing: check `status` (PC moving?), wait 300

@@ -66,7 +66,7 @@ codes, debug menus, level select, sound test, RAM pokes. Values that show on scr
 |---|---|---|---|
 
 ## Emulation notes
-Model choice (DMG/CGB/SGB) and why, RNG behaviour, lag, screens that never settle (animations), anything that
+Model choice (GB: DMG/CGB/SGB; NES: ntsc/pal) and why, RNG behaviour, lag, screens that never settle (animations), anything that
 broke a route.
 
 ## Checkpoints
