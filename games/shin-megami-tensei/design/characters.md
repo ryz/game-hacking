@@ -31,6 +31,11 @@ memory, see the playbook)**.
 LVL, HP, MP, EXP, Next, Stat (condition); equipment: Swd, Gun, Ammo, Head, Body, Arm, Leg; Power and Accur for
 sword and gun, Defense, Evade, M.Power, M.Effect; six stat bars **(verified: `@apartment`, command menu, STATUS)**.
 
+Equipping the Attack Knife on the level-1 hero (STR 11, SPD 9, LUK 8) changed sword Power from 0 to 17 and
+sword Accur from 0 to 15; Defense 10, Evade 12, M.Power 6 and M.Effect 6 stayed as they were **(verified:
+`../shots/main/status_hero.png` before, `../shots/main/equipment.png` after)**. The equipment slot shows the
+name cut to eight letters ("Attack K").
+
 ## Open questions
 - Exact formulas for HP, MP and the derived values (only single data points so far).
 - Stat points per level-up and the stat cap (the bars have room for about 40).

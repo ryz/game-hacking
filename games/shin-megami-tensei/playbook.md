@@ -61,9 +61,12 @@ Never delete a fact that turned out wrong: strike it and say what is true.
 | | A | command menu: `COMP / MAGIC / ITEM / STATUS` (yen and MAG shown while open) | verified |
 | | B | close the menu | verified |
 | | X, Y, Start, Select | nothing at the start of the game | verified (Y is the automap once a mapping spell or item exists: recalled) |
-| Town map (2D) | D-pad | move the blue marker along the streets | verified |
-| | A, X, Y | nothing seen at the start | verified |
-| Exit squares | Yes / No prompt ("There is an exit here. Will you leave?"), default **No** | Up then A | verified |
+| Town map (2D) | D-pad | move the blue marker along the streets, one square per press (`MU MD ML MR` = 16-frame hold, wait 60) | verified |
+| | A | ~~nothing~~ opens the command menu over a street view (seen on the squares with a police line after their scene; the scout saw nothing at the apartment square) | verified |
+| | X, Y | nothing seen at the start | verified |
+| Town map, walking into a building | D-pad toward it | enters the 3D view (clinic: left from 32,89; arcade: up from 39,8C) | verified |
+| Shops | A / B | choose / back; B on the shop's main menu leaves the shop | verified |
+| Exit squares | Yes / No prompt ("There is an exit here. Will you leave?"), default **No** | Up then A | verified in the apartment by the scout; in the clinic and the arcade the cursor starts on **Yes** (one `a` leaves) |
 
 Input timing (verified):
 - Default press (hold 8, wait 40) works for A/B and for Left/Right everywhere.
@@ -72,7 +75,13 @@ Input timing (verified):
 - Text is typed slowly. A press that arrives while a page is still being typed is not reliably counted, so
   `a*10` or `mash` gives a different page count every time the spacing changes. Routes use `a,w150` per page
   (`a,w90` for short pages): then one press is exactly one page.
-- A macro cannot be repeated (`A*3` with a macro `A` fails: "unknown token"); repeats work on plain tokens only.
+- ~~A macro cannot be repeated (`A*3` with a macro `A` fails: "unknown token"); repeats work on plain tokens only.~~
+  True now (capture run, 2026-11-17): `MD*10`, `P*3` work. But `down:16,w60*10` repeats only the last token
+  (`w60`): put the pair in a macro (`MD`) and repeat that.
+- **A step given 60 frames after a door, a room scene or a text box can be lost** (arcade: leaving 5,5 north,
+  leaving the cafe). Check the `x`/`y` watches after each leg, or add `w60` after such squares.
+- A press right after pokes inside one `do` can arrive while a prompt is still typing: `F,poke:..,a` lost the
+  `a`; use `F,w120` in one `do`, then `poke:..,w30,a,w150`.
 - Screens with a blinking "more" arrow or the moon window never settle (`screen still changing`): normal.
 
 ## Game structure
@@ -93,6 +102,37 @@ Verified so far:
 - Saving: in the hero's room at the start (verified). Recalled: later at the terminals found in most districts,
   which also warp between each other once visited.
 
+Verified by the capture run (2026-11-17), all in Kichijoji before any story progress:
+- **Town map**: streets only. The marker starts at tile 32,86 (hex, RAM map). Squares marked with a pair of X
+  are police lines: stepping on one plays the policemen's scene and nothing else (tried: 32,86 from the south,
+  3F,86, the Inokashira Park entrance 34,94).
+- **Clinic** (two red roofs): from `@map2` one `ML`. Four squares; `R,F,L,F,L,F` reaches the doctor, who says
+  his daughter is out (two pages) and pushes the hero back. Checkpoint `bldg_red`.
+- **Arcade** (yellow cross-shaped roof): `@map2,MD*3,MR*7,MU` (checkpoint `arcade`, square 7,6 facing north).
+  Map from `tools/explore.py` (x,y in hex digits; north is up; walls drawn, gaps are open; incomplete):
+  ```
+           |71
+  +--+--+--+
+  |42 52|62 72
+  +  +  +  +
+  |43 53   |73
+  +  +  +  +
+     |54   |74
+  +  +--+  +
+     |55 65 75
+  +  +--+  +
+     |56 66|76
+  ```
+  Knife shop: west of 7,3 (`@arcade,F,F,F,L,F`; checkpoint `knifeshop` is its menu). Antique shop: north of 6,2.
+  Cafe: north of 5,2 (the Master's three pages finish the mother's coffee errand: he will bring it to the house).
+  A woman on 5,2 (walk north from 5,3) tells the hospital-director rumour, three pages. Other people stand west
+  of 7,4 and around 4,2/4,3 (pages kept in `work/capture/explore/arcade/`, not captured).
+  The step south from 5,3 to 5,4 failed several times in a row and then worked (input lost, not a wall).
+- Checkpoints `armed` (Attack Knife bought and equipped, 5000 yen) and `coffee` (errand done).
+- **Not found: the way back into the apartment** from the map. The hero leaves onto 32,86; from there Up and
+  Left do nothing, and coming back onto it from the south plays a police scene. Until this is solved the story
+  cannot advance (mother, "Go to sleep", second dream), which is why no battle, demon or terminal was reached.
+
 Recalled outline of the critical path (not verified, order from memory; Wikipedia confirms the three acts):
 1. 199X Tokyo: Kichijoji (arcade/mall, Inokashira Park murder, hospital, the "Echo Building" terminal), then
    Shinjuku, the three factions (Gotou's coup, the US ambassador Thorman, the resistance), ending with the
@@ -112,33 +152,33 @@ Target about 45 shots (large RPG). Ids and categories; routes for the reachable 
 "Reach" says how. Both frame sizes are expected: 256x224 normally, 512x448 for the hi-res terminal intro.
 
 Reachable now (routes in `shots.txt`):
-- [ ] `boot_atlus` boot - Atlus logo
-- [ ] `intro_circle` cutscene - magic circle of the intro
-- [ ] `intro_199x` cutscene - "199X Kichijoji, Tokyo"
-- [ ] `intro_terminal` cutscene - hi-res terminal text (512x448)
-- [ ] `title_screen` title - title with START / CONTINUE
-- [ ] `dream_door` dialogue - the talking door asks who passes
-- [ ] `name_entry` system - letter grid with "ryz" typed
-- [ ] `stat_allocation` system - dividing 18 points among six stats
-- [ ] `dream_law_hero` cutscene - crucified man and the messenger
-- [ ] `dream_chaos_hero` cutscene - demon holding a man down
-- [ ] `dream_pond` cutscene - the woman at the pond
-- [ ] `room_menu` menu - hero's room: Computer / Save / Go to sleep / Leave the room
-- [ ] `room_mail` dialogue - STEVEN's mail with the Demon Summoning Program
-- [ ] `save_files` save - "Save which file?" with FILE 1 / FILE 2
-- [ ] `load_files` menu - CONTINUE: "Load which file?" with the file summary
-- [ ] `home_mother` dialogue - mother hands over the allowance
-- [ ] `apartment_corridor` gameplay - first free 3D movement (also the `hud`: moon, floor, facing, party table)
-- [ ] `menu_command` menu - COMP / MAGIC / ITEM / STATUS with yen and MAG
-- [ ] `menu_comp` system - COMP: Summon / Return / Dismiss Minion, Change Formation
-- [ ] `status_hero` inventory - status screen (use `@lv23` for a mid-game look, or the start for level 1)
-- [ ] `exit_prompt` gameplay - street view with the exit prompt
-- [ ] `map_kichijoji` map - Kichijoji town map
-- [ ] `kichijoji_police` dialogue - policemen blocking the district
+- [x] `boot_atlus` boot - Atlus logo
+- [x] `intro_circle` cutscene - magic circle of the intro
+- [x] `intro_199x` cutscene - "199X Kichijoji, Tokyo"
+- [x] `intro_terminal` cutscene - hi-res terminal text (512x448)
+- [x] `title_screen` title - title with START / CONTINUE
+- [x] `dream_door` dialogue - the talking door asks who passes
+- [x] `name_entry` system - letter grid with "ryz" typed
+- [x] `stat_allocation` system - dividing 18 points among six stats
+- [x] `dream_law_hero` cutscene - crucified man and the messenger
+- [x] `dream_chaos_hero` cutscene - demon holding a man down
+- [x] `dream_pond` cutscene - the woman at the pond
+- [x] `room_menu` menu - hero's room: Computer / Save / Go to sleep / Leave the room
+- [x] `room_mail` dialogue - STEVEN's mail with the Demon Summoning Program
+- [x] `save_files` save - "Save which file?" with FILE 1 / FILE 2
+- [x] `load_files` menu - CONTINUE: "Load which file?" with the file summary
+- [x] `home_mother` dialogue - mother hands over the allowance
+- [x] `apartment_corridor` gameplay - first free 3D movement (also the `hud`: moon, floor, facing, party table)
+- [x] `menu_command` menu - COMP / MAGIC / ITEM / STATUS with yen and MAG
+- [x] `menu_comp` system - COMP: Summon / Return / Dismiss Minion, Change Formation
+- [x] `status_hero` inventory - status screen (use `@lv23` for a mid-game look, or the start for level 1)
+- [x] `exit_prompt` gameplay - street view with the exit prompt
+- [x] `map_kichijoji` map - Kichijoji town map
+- [x] `kichijoji_police` dialogue - policemen blocking the district
 
 To be reached by the capture agent (play from `@kichijoji`; see Strategy):
-- [ ] `arcade_mall` gameplay - Kichijoji arcade (shops, cafe)
-- [ ] `shop_buy` shop - a shop's buy list with prices
+- [x] `arcade_mall` gameplay - Kichijoji arcade (shops, cafe)
+- [x] `shop_buy` shop - a shop's buy list with prices
 - [ ] `first_battle` battle - first demon encounter: command menu
 - [ ] `battle_attack` battle - sword / gun attack result
 - [ ] `battle_magic` battle - a spell being cast (needs the Law hero or a demon)
@@ -149,14 +189,15 @@ To be reached by the capture agent (play from `@kichijoji`; see Strategy):
 - [ ] `party_with_demons` hud - party table with humans and demons
 - [ ] `cathedral_shadows` system - Cathedral of Shadows: fusion menu
 - [ ] `fusion_result` system - fusion preview / result
+- [x] extras captured outside the plan: `intro_scene`, `clinic_doctor`, `police_roadblock`, `shop_menu`, `shop_antique`, `arcade_rumor`, `cafe_master`
 - [ ] `terminal_save` save - a terminal (save and warp list)
 - [ ] `automap` map - dungeon automap
 - [ ] `healing_station` shop - healing prices
-- [ ] `equipment` inventory - equipment screen with sword, gun, ammo, armour
+- [x] `equipment` inventory - equipment screen with sword, gun, ammo, armour
 - [ ] `items` inventory - item list
 - [ ] `boss_first` boss - first story boss
 - [ ] `level_up` system - level-up with a stat point to place
-- [ ] `full_moon` system - full-moon window and a demon refusing to talk
+- [x] `full_moon` system - full-moon window (town map only; the demon refusing to talk is still open)
 - [ ] `alignment_choice` dialogue - a Law / Chaos choice
 - [ ] `ruined_tokyo_map` map - Tokyo map after the 30-year jump (needs a late state: see Shortcuts)
 - [ ] `gameover` gameover - game-over sequence (lose the first fight on purpose)
@@ -205,7 +246,10 @@ cursor on `A`; `x` switches to lower case and keeps the cursor.
 | Pro Action Replay codes | Almar's Guides lists per-character and per-demon codes (e.g. character 1 strength `7E1010xx`, character 2 level `7E106Axx`, money from `7E0405`), "no random battles", item codes | almarsguides.com (search result only: the host is not reachable from the container) | the three addresses seen in the search result match the layout found here; the rest unread. Ask the coordinator to allow the host or the owner to save the pages. |
 | Debug features | TCRF has a page for the game (the search result mentions a flag editor shared with the later games) | tcrf.net/Shin_Megami_Tensei_(SNES) | unavailable (403); not tried. Most valuable open lead for late-game states. |
 | Late-game save from the web | GameFAQs "Saves" section | gamefaqs.gamespot.com | unavailable (403); a save made for the Japanese ROM should load in the patched ROM if the translation keeps the save layout (untested) |
-| Late state by poking | story flags and location are not mapped yet | - | open: see Open questions |
+| Town-map warp | at any exit prompt: `poke:7E07F5=XX,poke:7E07F6=YY,w30,a,w150` puts the marker on tile XX,YY with the map drawn correctly (used: arcade exit -> 32,86, checkpoint `home_map`). The tile must be a street, or the marker cannot move. Poking the tile while on the map does nothing useful. | found here | verified |
+| 3D warp inside a building | `poke:7E070C=XX,poke:7E070D=YY` then turn: the view is redrawn from the new square (used: arcade 5,4 -> 7,6) | found here | verified |
+| Moon phase | `poke:7E040F=70` then walk: the window turns to FULLMOON when the counter reaches 80 hex | found here | verified (`full_moon`) |
+| Late state by poking | story flags and the map/area id are still not mapped | - | open: see Open questions |
 
 ### Saves (rom/saves/shin-megami-tensei/, never committed)
 | Name | Contents (progress, party, items) | URL | SHA-1 | Status |
@@ -231,7 +275,15 @@ Work RAM, patched ROM. "poke" = written and seen on screen; "read" = value match
 | record+2E / 30 | 2 each | HP / maximum HP | poke (167 / 178) |
 | record+32 / 34 | 2 each | MP / maximum MP | read (condi 14 / 14, ebo 9 / 9) |
 | record+0C | ? | EXP (0 at the start) | inferred, unverified |
-| 7E09F3, 7E09F7, 7E0E00.. | 1 | change with every step in the 3D view (animation or step state, not coordinates) | `find`; **position, facing, floor and map id are not found yet** |
+| 7E09F3, 7E09F7, 7E0E00.. | 1 | change with every step in the 3D view (animation or step state, not coordinates) | `find` |
+| 7E070C / 7E070D | 1 each | 3D position x / y inside the current building (west and north decrease) | RAM dumps before and after steps (`work/capture/ramdiff.py`); poke + turn redraws the view |
+| 7E070E / 7E070F | 1 each | the square the building was entered on (clinic 02,03; apartment 0F,0E) | read only, inferred |
+| 7E040D | 1 | facing: 0 north, 1 east, 2 south, 3 west (reads other values for a moment during scenes) | read against the window over eight turns |
+| 7E040F | 1 | step counter; high nibble = moon phase in eighths (40 half moon, 80 full moon). +1 per 3D step, +16 at a time on the town map | read; poke 70 + walking gave FULLMOON |
+| 7E0724, 7E07EE | 1 each | also +1 per 3D step (other step counters) | read |
+| 7E07F5 / 7E07F6 | 1 each | town-map tile x / y of the marker (apartment exit 32,86; clinic door 32,89; arcade door 39,8B; park entrance 34,94) | RAM dumps; used for the exit-prompt warp |
+| 7E0B04 / 7E0B06 (and 7E0B08 / 7E0B0A) | 2 each | town-map marker position in half squares (2 per square) and a scrolled copy; poking them does not move anything | read |
+| not found | - | map/area id, floor, story flags, party list, demon records, item list | - |
 
 ## Emulation notes
 First SNES game here; Mesen-S libretro backend. What was seen (2026-11-17):
@@ -251,7 +303,11 @@ First SNES game here; Mesen-S libretro backend. What was seen (2026-11-17):
 `title` (static), `dream` (door's first message; nothing named yet: start here to redo names or stats),
 `start` (room menu: the first free choice, and the place to save), `apartment` (first free movement, 10000
 yen), `kichijoji` (town map; its route contains the scout's control tests in the corridor, harmless),
-`lv23` (apartment with the poked hero for menu shots).
+`lv23` (apartment with the poked hero for menu shots), `lv23ready` (same after opening the status screen once,
+so the party table shows 167/178), `map2` (town map at 32,89 beside the clinic), `bldg_red` (clinic entrance
+square), `map_park` (park entrance after the police scene, command menu open: press `b`), `arcade` (arcade
+entrance 7,6), `knifeshop` (knife shop menu), `armed` (knife equipped, arcade 7,3 facing east), `coffee`
+(arcade 5,2 facing south, errand done), `home_map` (town map at the apartment square 32,86, warped there).
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -265,9 +321,13 @@ yen), `kichijoji` (town map; its route contains the scout's control tests in the
 | The game itself | `@start`, `@apartment`, `@kichijoji` | everything marked verified | 2026-11-17 |
 
 ## Open questions
-- Position, facing, floor, map id and the story flags are not located: needed for warps and a real late-game
-  state. Try `find` on the town map (marker x/y) and when changing floors; the TCRF page may describe a flag
-  editor.
+- **How to re-enter the apartment from the town map** (blocks everything after the cafe errand). Ideas not
+  tried: the 3D position poke into the apartment's own map from another building (needs the map id), the
+  square north of 32,86, talking to the policemen again after the errand.
+- Map/area id and story flags (reading 7E0700-7E0730 at `@apartment`, `@bldg_red` and `@map2`
+  showed only the position block changing; 7E0710 was 1A in all three; the arcade was not compared).
+- ~~Position, facing~~ found (RAM map). Floor, map id and the story flags are not located: needed for a real
+  late-game state. The TCRF page may describe a flag editor.
 - Are the derived status values refreshed by a level-up or by equipping? (For clean poked status screens.)
 - Party membership list (which records are in the active party) and the demon records: unread.
 - Does a save made on the Japanese ROM load in the patched ROM?

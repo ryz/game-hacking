@@ -39,14 +39,14 @@ release with the Aeon Genesis English translation; the on-screen names used here
 |---|---|
 | [characters.md](characters.md) | character creation, the six stats, what the status screen shows |
 | [world.md](world.md) | view modes, the opening sequence, places seen so far, moon phase |
+| [economy.md](economy.md) | yen, the arcade shops, price lists |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 
 Planned, to be started by the capture agent when the systems are seen: `combat.md` (battle commands, sword and
-gun, magic), `demons.md` (negotiation, summoning, Magnetite, fusion), `alignment.md`, `economy.md` (yen, shops,
-healing), `items.md`.
+gun, magic), `demons.md` (negotiation, summoning, Magnetite, fusion), `alignment.md`, `items.md`.
 
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
 | Wikipedia | https://en.wikipedia.org/wiki/Shin_Megami_Tensei_(video_game) | genre, systems, structure, endings |
-| The game (checkpoints `dream`, `start`, `apartment`, `kichijoji`, `lv23`) | `../checkpoints.txt` | everything tagged verified or RAM |
+| The game (checkpoints `dream`, `start`, `apartment`, `kichijoji`, `lv23`, `bldg_red`, `arcade`, `knifeshop`, `armed`, `coffee`) | `../checkpoints.txt` | everything tagged verified or RAM |

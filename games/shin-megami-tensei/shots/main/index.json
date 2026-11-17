@@ -424,6 +424,32 @@
    "file_3x": "cafe_master@3x.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
    "captured": "2026-11-17"
+  },
+  {
+   "id": "police_roadblock",
+   "category": "dialogue",
+   "caption": "Street roadblock: policemen declare the area off-limits during the murder investigation",
+   "route": "@home_map,ML,w60,settle,MU,w60,settle,MD,w60,settle,MU,w90,settle",
+   "settled": false,
+   "model": "ntsc",
+   "source": "play.py snap",
+   "file": "police_roadblock.png",
+   "file_3x": "police_roadblock@3x.png",
+   "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
+   "captured": "2026-11-17"
+  },
+  {
+   "id": "full_moon",
+   "category": "system",
+   "caption": "Town map at full moon: the MOON'S AGE window reads FULLMOON",
+   "route": "@home_map,ML,w60,settle,MU,w60,settle,MD,w60,settle,MU,w90,settle,P,settle,P,settle,P,settle,b,w60,poke:7E040F=7E,MD,MD,MD,settle,poke:7E040F=70,MD*3,MU*3,MD*3,settle",
+   "settled": false,
+   "model": "ntsc",
+   "source": "play.py snap",
+   "file": "full_moon.png",
+   "file_3x": "full_moon@3x.png",
+   "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
+   "captured": "2026-11-17"
   }
  ]
 }

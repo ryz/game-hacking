@@ -1,6 +1,6 @@
 # Shin Megami Tensei (Super Famicom, English translation patch) - shots: main
 
-Platform snes, model ntsc, ROM SHA-1 `3581a9a51354ad68662dca6a6856da2963f62562`. 32 shots. Contact sheet: [sheet.png](sheet.png).
+Platform snes, model ntsc, ROM SHA-1 `3581a9a51354ad68662dca6a6856da2963f62562`. 34 shots. Contact sheet: [sheet.png](sheet.png).
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -36,5 +36,7 @@ Platform snes, model ntsc, ROM SHA-1 `3581a9a51354ad68662dca6a6856da2963f62562`.
 | shop_antique | shop | Antique shop buy list: Hanging Scroll 10000 yen to Golden Buddha 43000 yen | yes | [png](shop_antique.png) [3x](shop_antique@3x.png) |
 | arcade_rumor | dialogue | Arcade: a woman passes on the rumour about the hospital director | no | [png](arcade_rumor.png) [3x](arcade_rumor@3x.png) |
 | cafe_master | dialogue | Arcade cafe: the Master greets ryz and asks about the usual coffee | no | [png](cafe_master.png) [3x](cafe_master@3x.png) |
+| police_roadblock | dialogue | Street roadblock: policemen declare the area off-limits during the murder investigation | no | [png](police_roadblock.png) [3x](police_roadblock@3x.png) |
+| full_moon | system | Town map at full moon: the MOON'S AGE window reads FULLMOON | no | [png](full_moon.png) [3x](full_moon@3x.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

@@ -19,7 +19,13 @@ the corner always shows the moon phase; in 3D it adds the floor and the facing, 
 
 ## 2. Moon phase
 The phase advances with movement: NEW MOON, 1/8, 2/8, 3/8 were passed between the start of the dream and the
-hero's room **(verified)**. Its effects (negotiation at full moon) are not seen yet **(source: none yet)**.
+hero's room **(verified)**. The game counts steps; every 16 counted steps move the moon on by one eighth: the
+window read HALFMOON at 64 steps, 5/8 MOON at 80, 6/8 at 96, 7/8 at 112 and FULLMOON at 128 **(RAM: step
+counter read next to the window; `../shots/main/full_moon.png` was reached by setting the counter to 112 and
+walking)**. In 3D one step forward counts as one; turning and bumping into a wall do not **(RAM)**. On the
+town map the counter rises in jumps of 16 after a stretch of walking rather than once per square **(RAM)**.
+What follows the full moon (waning names, the length of the whole cycle) and its effects (negotiation at full
+moon) are not seen yet **(source: none yet)**.
 
 ## 3. Places
 | Place | View | Seen | Tag |
@@ -27,9 +33,29 @@ hero's room **(verified)**. Its effects (negotiation at full moon) are not seen 
 | Hero's room | menu over a 3D backdrop: Computer, Save, Go to sleep, Leave the room | `@start` | **(verified)** |
 | Home | menu: Go to your room, Go outside | after the mother's talk | **(verified)** |
 | Apartment building, 1F | 3D corridor with an exit square | `@apartment` | **(verified)** |
-| Kichijoji | 2D town map | `@kichijoji` | **(verified)** |
+| Kichijoji | 2D town map | `@kichijoji`, `../shots/main/map_kichijoji.png` | **(verified)** |
+| Clinic (two red roofs south of the apartment) | 3D, four squares; the doctor's room pushes the hero back out after two pages ("My daughter's out at the moment") | `../shots/main/clinic_doctor.png` | **(verified)** |
+| Kichijoji arcade (yellow cross-shaped roof north of the railway) | 3D corridor of shop windows, 1F; knife shop, antique shop, cafe, a woman with a rumour about the hospital director | `../shots/main/arcade_mall.png` | **(verified)** |
+| Inokashira Park entrance | scene with three policemen: the park is closed after the murder | `../shots/main/kichijoji_police.png` | **(verified)** |
+| Street roadblocks (the X-shaped marks on the map) | scene with three policemen: "this area is currently off-limits" | `../shots/main/police_roadblock.png` | **(verified)** |
 | Later districts and the three acts | - | not reached | **(source: Wikipedia)**, see the playbook |
 
+## 4. Moving on the town map and into buildings
+The marker moves one map square per press and only along streets **(verified)**. Walking against a building
+with an entrance (the clinic's red roofs from the street east of them, the arcade's south arm from the street
+below it) switches to the 3D view inside **(verified: checkpoints `bldg_red`, `arcade`)**. Inside, the square
+behind the entrance asks "There is an exit here. Will you leave?" with Yes preselected, over a view of the
+street **(verified: `../shots/main/exit_prompt.png`)**. Squares marked with a pair of X on the map are police
+lines in this part of the story: stepping onto one plays the policemen's scene and the marker stays put
+**(verified: three of them tried)**. Pressing the confirm button on the map opens the command menu over a
+street view of the square the marker stands on **(verified: after the roadblock scenes)**.
+
+Rooms inside buildings are single squares that run their scene as the hero steps in and then put him back in
+the corridor **(verified: doctor, knife shop, antique shop, cafe)**. People standing in the corridor speak when
+the hero walks into their square **(verified: `../shots/main/arcade_rumor.png`)**.
+
 ## Open questions
-- Size of the moon cycle (eighths: 8 steps each way?) and steps per phase.
+- How the hero gets back into his apartment building from the map (the square he leaves onto is a police line
+  when entered from the south; no direction tried from it led inside).
+- Size of the moon cycle after the full moon (the first half is 16 counted steps per eighth).
 - What "Go to sleep" does before the first errand.
