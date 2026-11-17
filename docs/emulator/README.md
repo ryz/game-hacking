@@ -137,10 +137,15 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
    16-bit values: add `--wide`.
    If the search runs dry (one of the test steps did not do what you thought, e.g. walked into a wall): dump RAM
    before and after one confirmed step (`peek` a block, or a small script over the backend) and diff the dumps.
-3. Record it in `game.json` "ram" (`"lives": {"addr": "C0A2", "size": 1}`: shown by every `do`; `"fmt": "bcd"`
+3. Record it in `game.json` "ram" (`"lives": {"addr": "C0A2", "size": 1}`: shown by every `do`; `"fmt": "hex"` to print it as hex
+   (use it for coordinates, ids and flags that the playbook writes in hex; a decimal watch read as hex sent one
+   capture run to the wrong map square), `"fmt": "bcd"`
    for packed-BCD values such as money, `"be"` for big-endian) and the playbook RAM map.
 - A position poke does not redraw the map: the old background stays until the screen scrolls. For a clean warp
   poke during a map transition (door, stairs, town entry), or leave and re-enter the map before the shot.
+- A story event that will not fire: decode the script text next to the event in the ROM, then test the nearby
+  flag bits one at a time from a checkpoint (one `emu.py` run per bit) before exploring further. A flag set by a
+  poke stays in the route and is noted in the playbook.
 - Pokes are part of the route and fine anywhere; values that show on screen follow the realistic-values rule.
 
 ## Hangs and dead ends

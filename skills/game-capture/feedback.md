@@ -9,6 +9,26 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-17 - Shin Megami Tensei main set, run 2
+- Task: extend the Shin Megami Tensei main set past run 1's apartment blocker; battles, negotiation, game over,
+  automap (56/56 verified, one commit bd1607c).
+- Worked: listing RAM bytes that took a distinct value in each of three buildings found the map id; the door
+  table in the ROM explained the entrance; decoding the event text in the ROM showed the sleep script has a
+  condition; testing one bit at a time with emu.py found the flag in a few runs; a checkpoint before every
+  negotiation choice made branch exploration cheap.
+- Friction: watches print decimal while the playbook uses hex coordinates (the cause of run 1's wrong square); a
+  brute-force script comparing whole screens gave false positives from animation timing; a full `--verify`
+  takes about 10 minutes and blocks snapping; the end-of-task wait loop overflowed the output (own mistake);
+  one commit only, despite the dispatch asking for milestone commits; about 325 tool calls against a budget of
+  about 250.
+- Proposed rule change: (1) `"fmt": "hex"` for RAM watches; (2) emulator guide: decode the script next to a
+  stuck event and test nearby flag bits one at a time; (3) mention `shoot.py --verify --only ID,...` in the skill
+  for shots added during a run.
+- Corrected: (1) added to `tools/play.py`; (2) added to `docs/emulator/README.md`; `automap` (snapped during a
+  verify) verified by the coordinator, 4/4 sample incl. it.
+- Status: promoted 2026-11-17 ((1), (2)); open ((3) skill wording; milestone commits asked for twice and
+  skipped twice: next time state the milestones explicitly in the dispatch)
+
 ### 2026-11-17 - Shin Megami Tensei (Super Famicom, English patches; first SNES game) main set, run 1
 - Task: capture, verify, publish and commit the early-game main set of Shin Megami Tensei (first SNES game);
   34 shots, priorities 1-4 plus the full moon, story blocked at re-entering the apartment.

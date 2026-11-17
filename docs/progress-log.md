@@ -2,6 +2,16 @@
 
 Append-only, newest first.
 
+## 2026-11-17 - Shin Megami Tensei main set, run 2
+- game-capture: 22 new shots (56): second dream, heroine naming (cubi), first battle and commands, damage, enemy
+  spell, result, level-up, failed escape, death, game over, full-moon refusal, negotiation steps, automap.
+  Commit bd1607c. Run 1's blocker was a misread watch: the apartment door is square 32,88 (decimal 134/136 read
+  as hex). The second dream needs story flag 7E07C1 bit 02; its real trigger is not found, so the route pokes it.
+- Not reached: a demon joining (always asks for a Bead), summoning, fusion, terminals, healing, items list,
+  bosses. Save 03_second_dream exported.
+- Coordinator: `automap` (snapped while a verify was starting) and a sample verified 4/4; the agent's full
+  verify covered the other 55. Tools: RAM watches take `"fmt": "hex"`; emulator guide notes on stuck events.
+
 ## 2026-11-17 - Shin Megami Tensei (Super Famicom, English patches): intake, scout, main set run 1
 - Owner supplied the Japanese dump and two IPS patches (translation, then its bug-fix). The patches expect
   different layouts (smte1 with the 512-byte copier header, smte2 without): `games/shin-megami-tensei/tools/

@@ -16,10 +16,10 @@ Current snapshot; history in `progress-log.md`.
 - SNES/Super Famicom backend (2026-11-17): Mesen-S libretro core at a pinned commit, same driver as NES;
   `.sfc`/`.smc`, 256x224 (239-line and hi-res frames kept), models ntsc/pal, 12 buttons, 24-bit peek/poke and PC
   (`tools/mesen-s-debug.patch`), RAM search over work RAM, Pro Action Replay (`gs:`) and Game Genie. First game: Shin
-  Megami Tensei (Super Famicom, English patches), 2026-11-17: main set 34 shots (boot to the Kichijoji arcade,
-  one hi-res 512x448 frame), 34/34 verified. Open there: the story is stuck at re-entering the hero's
-  apartment, so no battles, demons, fusion or anything later; story flags, party and demon records not located
-  in RAM. Special-chip games untested.
+  Megami Tensei (Super Famicom, English patches), 2026-11-17: main set 56 shots after two runs (boot to day 2:
+  second dream, battles, level-up, game over, negotiation, automap; one hi-res frame), verified. Open there: no
+  demon has joined (negotiation needs a Bead; item list not found in RAM), so no summoning, fusion or
+  terminals; the second dream needs a flag poke (real trigger unknown). Special-chip games untested.
 - Layout (2026-11-17): every game under `games/<slug>/`, shared tools/tests/docs at the repo root; emulator
   guide split into general rules and one file per platform.
 - Skills game-scout and game-capture with agent wrappers; docs `emulator/` and `capture-guide.md`.
