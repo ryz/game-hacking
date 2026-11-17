@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-17 - owner-supplied patches are always applied
+- Owner's rule: if an IPS/BPS/UPS patch comes with a ROM, use it. Written into `AGENTS.md` (rules + quick
+  reference), the coordinator skill and `docs/emulator/README.md`.
+- New `tools/patch.py` (IPS incl. RLE and truncation, BPS, UPS; CRC checks; header layout detected for BPS/UPS
+  from the source CRC, given by hand for IPS) and `intake.py --patch` (repeatable): patched ROM in `rom/`, dump in
+  `rom/src/`, patches in `rom/patches/<slug>/`, game.json "source" with names, SHA-1s, layouts and the rebuild
+  command. Tests: `tests/test_patch.py`; end-to-end intake with a BPS on the synthetic NES ROM rebuilt the same
+  SHA-1. Wizardry Empire's own `translation/tools/bps.py` left as is.
+
 ## 2026-11-17 - 3x copies in a subfolder
 - Owner's request: originals in the set folder, 3x copies in a `3x/` subfolder with the same file names
   (`title_screen.png` and `3x/title_screen.png`; also clips, `steps.gif`, `full.gif`, Wizardry's compare images

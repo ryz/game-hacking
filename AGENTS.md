@@ -26,6 +26,11 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
   `rom.sha1` for the Wizardry Empire translation). Exceptions (owner's decisions 2026-11-12 and 2026-11-15):
   saves made by a game's own tools or by the capture agents while playing, in `games/<slug>/saves/`, each
   documented in its `README.md`. Downloaded saves are never committed.
+- Patches supplied by the owner (IPS, BPS, UPS: translations, bug fixes, restorations) are always used (owner's
+  rule 2026-11-17): register the ROM with them applied, in the order given (`tools/intake.py ROM --patch P ...`),
+  so screenshots, playbook and design reference describe the patched game. A patch that does not apply (CRC
+  mismatch: wrong revision or header layout) is reported to the owner, never skipped silently. Patches and dumps
+  stay uncommitted; `game.json` "source" records their names, SHA-1s and layouts.
 - Screenshots may be committed: sets go to `games/<slug>/shots/<set>/` (`shoot.py ... --publish`).
 - Document as you go. Shared tooling: `docs/status.md` (current snapshot) and `docs/progress-log.md` (history,
   append-only, newest first). Wizardry Empire translation: `games/wizardry-empire/translation/docs/status.md`
@@ -44,7 +49,8 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
 `docs/emulator/gb.md`, `nes.md` or `snes.md`; what to capture: `docs/capture-guide.md`):
 - Setup: `sh tools/setup_emu.sh [gb|nes|snes]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom
   `.nes`, Mesen-S libretro core for SNES/Super Famicom `.sfc`/`.smc`).
-- Register a ROM: `python3 tools/intake.py ROM` -> `games/<slug>/` + `rom/<slug>.*`.
+- Register a ROM: `python3 tools/intake.py ROM [--patch PATCH[:headered|unheadered] ...]` -> `games/<slug>/` +
+  `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`.
 - Play: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
   `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `stop`.
 - Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish]`. Tests: `python3 -m pytest -q tests`.

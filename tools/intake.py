@@ -2,9 +2,14 @@
 first seconds after power-on so the boot sequence is visible without playing.
 
   python3 tools/intake.py PATH/TO/ROM.gbc [--slug SLUG] [--title "Title"] [--model dmg|cgb|sgb] [--probe 1800]
+                         [--patch PATCH[:auto|headered|unheadered] ...]
+
+--patch (repeatable, applied in order; IPS, BPS, UPS via tools/patch.py): ROM is then the unpatched dump. The
+patched ROM is what gets registered and played; the dump goes to rom/src/<slug>-base.<ext>, the patches to
+rom/patches/<slug>/, and game.json "source" records names, SHA-1s and layouts (rebuild: tools/patch.py).
 
 Writes (never overwrites existing files in games/<slug>/):
-  rom/<slug>.<ext>                       the dump (gitignored)
+  rom/<slug>.<ext>                       the dump, or the patched ROM with --patch (gitignored)
   games/<slug>/game.json                 identity (SHA-1, CRC32, header), platform, model, macros, ram, press/settle
   games/<slug>/playbook.md               controls/structure/strategy, filled by the game-scout skill
   games/<slug>/checkpoints.txt           named states as routes
@@ -19,6 +24,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, ".."))
 sys.path.insert(0, HERE)
 import platforms  # noqa: E402
+import patch  # noqa: E402
 
 TEMPLATE = os.path.join(ROOT, "games", "_template")
 
@@ -35,9 +41,18 @@ def main():
     ap.add_argument("--title", help="display title (default: header title)")
     ap.add_argument("--model", help="capture model override (gb: dmg|cgb|sgb|agb)")
     ap.add_argument("--probe", type=int, default=1800, help="frames to film after power-on (0 = skip)")
+    ap.add_argument("--patch", action="append", default=[], metavar="PATCH[:LAYOUT]",
+                    help="IPS/BPS/UPS patch to apply to ROM before registering (repeatable, in order)")
     a = ap.parse_args()
 
     data = open(a.rom, "rb").read()
+    base, applied = data, []
+    for spec in a.patch:
+        path, _, layout = spec.partition(":")
+        pdata = open(path, "rb").read()
+        data, used, kind = patch.apply(data, pdata, os.path.splitext(a.rom)[1], layout or "auto")
+        applied.append((path, pdata, used, kind))
+        print("patched: %s (%s, %s layout)" % (os.path.basename(path), kind, used))
     pname, cls = platforms.by_extension(a.rom)
     info = cls.identify(data)
     platform = info.pop("platform", pname)
@@ -48,7 +63,29 @@ def main():
     rom_rel = "rom/%s%s" % (slug, ext)
     os.makedirs(os.path.join(ROOT, "rom"), exist_ok=True)
     dst = os.path.join(ROOT, rom_rel)
-    if os.path.abspath(a.rom) != os.path.abspath(dst):
+    source = None
+    if applied:
+        open(dst, "wb").write(data)
+        base_rel = "rom/src/%s-base%s" % (slug, ext)
+        os.makedirs(os.path.join(ROOT, "rom", "src"), exist_ok=True)
+        open(os.path.join(ROOT, base_rel), "wb").write(base)
+        os.makedirs(os.path.join(ROOT, "rom", "patches", slug), exist_ok=True)
+        source = {
+            "note": "%s is the dump with the patches below applied in order. Rebuild: python3 tools/patch.py "
+                    "%s %s %s. Nothing of this is committed." % (rom_rel, base_rel, rom_rel, " ".join(
+                        "rom/patches/%s/%s:%s" % (slug, os.path.basename(p), u) for p, _, u, _ in applied)),
+            "base_sha1": hashlib.sha1(base).hexdigest(),
+            "base_name": os.path.basename(a.rom),
+            "base_copy": base_rel,
+            "patches": [],
+        }
+        for p, pdata, used, kind in applied:
+            copy = "rom/patches/%s/%s" % (slug, os.path.basename(p))
+            if os.path.abspath(p) != os.path.join(ROOT, copy):
+                shutil.copyfile(p, os.path.join(ROOT, copy))
+            source["patches"].append({"name": os.path.basename(p), "format": kind,
+                                      "sha1": hashlib.sha1(pdata).hexdigest(), "copy": copy, "layout": used})
+    elif os.path.abspath(a.rom) != os.path.abspath(dst):
         shutil.copyfile(a.rom, dst)
 
     gdir = os.path.join(ROOT, "games", slug)
@@ -76,6 +113,8 @@ def main():
             "macros": {},
             "ram": {},
         }
+        if source:
+            meta["source"] = source
         json.dump(meta, open(gj, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
         open(gj, "a").write("\n")
     for dirpath, _, files in os.walk(TEMPLATE):

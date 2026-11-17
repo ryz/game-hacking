@@ -10,6 +10,9 @@ Current snapshot; history in `progress-log.md`.
   verified from an empty cache. Open there: shop_keys, swamp, bridge, check_command, a rainbow-bridge clip set,
   the middle floors of the Dragon King's castle, a retake of commands_window (cursor blinked off). Not set up: Famicom Disk System, second controller, 6-letter Game Genie codes on
   bank-switched games.
+- Owner-supplied patches (2026-11-17): `tools/patch.py` applies IPS, BPS and UPS (CRC checks, iNES/SNES copier
+  header layout found from the CRC or given as `:headered`/`:unheadered`); `intake.py --patch` registers the
+  patched ROM and records the source in game.json. Dragon Quest and SMT were patched before this by hand.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).
 - `play.py`: persistent session with undo, snap (capture + route), checkpoint/goto, RAM search, RAM watches.
 - `shoot.py`: replay, `--verify` (pixel-exact reproduction), `--publish`; catalogue index.json/md + contact sheet.
