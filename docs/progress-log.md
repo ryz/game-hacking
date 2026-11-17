@@ -19,6 +19,8 @@ Append-only, newest first.
 - One emulator build: the Wizardry tools use `tools/gbemu-cli` at the repo root (its own copy of the setup and
   the Linux patch are gone). Its design-table, map and publish tools write to the game-level folders.
 - NES notes are their own document, not a list of differences from Game Boy.
+- Wizardry Empire checked with the owner's ROM after the move: identical build (ROM and IPS) and identical tour
+  frames (135) compared with the pre-move commit; generators reproduce the committed files.
 - Not done: Wizardry Empire is not registered with the shared tools (no game.json/playbook/checkpoints); its
   play, tour and screenshot tools are still its own. Merging the two toolchains is a separate job.
 

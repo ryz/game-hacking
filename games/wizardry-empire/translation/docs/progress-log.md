@@ -9,6 +9,10 @@ snapshot; this file is the history (what changed since the ROM you tested). Form
   and saves are game-level folders (`../design`, `../tech`, `../shots`, `../saves`), everything else is this
   `translation/` folder; document rules are in `../DOCUMENTS.md`. The emulator is the shared build at the repo
   root. Entries below keep the old paths. Mapping: `docs/progress-log.md` (repo root), same date.
+- Checked with the owner's Rev 1 dump: build from the new location gives the same ROM and IPS as the last
+  pre-move commit 77e94a9 (ROM SHA-1 359f78e1..., IPS d07e1705...); tour 135/135 frames identical; 14 tests
+  pass; designtables, floor map 1 and the test save regenerate byte-identical into `../design` and `../saves`.
+  No test ROM sent.
 
 ## YYYY-MM-DD - <headline>
 - ROM: <commit> sent? (yes/no)
