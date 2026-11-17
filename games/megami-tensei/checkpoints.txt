@@ -1,3 +1,10 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+title | Title screen (START / PASSWORD, cursor on START), settled | pow,TITLE
+start | First control on 8F facing E (Comp / Stats / Magic window): Nakajima (STR 9 WIS 7 ATT 9 AGI 8 LUK 7) and Yumiko (STR 8 WIS 10 ATT 7 AGI 8 LUK 7) in the first corridor of the dungeon, full moon, HP 23/21, no demons | @title,NEWGAME
+guard | 8F: the guard's warning ("Hold it right there, child!"), facing S, second page still on screen | @start,up*3,right,up,up,w150,a,w150,a,w300,settle
+f7_arrival | 7F: just down the stairs from 8F (stairs prompt "Use the stairs?" -> Use), facing S, info panel (floor/direction, CLASS) open | @guard,up,w60,settle,up,settle,up,settle,up,a,w120,settle,b,settle
+battle_gnome | 7F: battle vs Gnome x4 (first random encounter), Fight / Run / Order / Auto menu open | @f7_arrival,left,up,up,up,right,up,up,left,up,up,right,up,up,down,up,up,up,w120,settle,w200,settle
+f7_mappa | 7F: Yumiko cast Mappa (MP 13 -> 11), automap shown in the info panel | @f7_arrival,b,w30,a,w30,down*2,a,w120,a,w120,a,w120,a,w200,settle
+password_entry | Title -> PASSWORD: empty 40-character password entry screen | @title,down,w30,start,w90,settle
+gameover | GAME OVER screen (party wiped by Gnome x4 after choosing Auto) | @battle_gnome,up,a,w1200,settle

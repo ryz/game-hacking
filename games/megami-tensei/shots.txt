@@ -3,4 +3,15 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/megami-tensei/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+title_screen | title | Title screen: DIGITAL DEVIL STORY MEGAMI TENSEI, START / PASSWORD | @title
+start_corridor | gameplay | 8F: first corridor, Comp / Stats / Magic window, Nakajima and Yumiko at level 1 | @start
+hud_panel | hud | 8F: info panel open (floor and facing "8F E", CLASS levels, HP/MP) | @start,b,settle
+guard | dialogue | 8F: the guard warns "Tread these corridors carefully!" | @guard
+f7_corridor | gameplay | 7F after the stairs down from Micom, facing south | @f7_arrival
+mappa | map | 7F: automap in the info panel after Yumiko casts Mappa | @f7_mappa
+battle_menu | battle | 7F: Gnome x4, Fight / Run / Order / Auto | @battle_gnome
+password_screen | save | Password entry: 40 characters from 0-9, A-Y | @password_entry
+gameover | gameover | GAME OVER: "I thought you'd put up more of a fight!" | @gameover
+# Planned without verified routes yet (see playbook Shot plan): boot_dragon (pow,w180!), intro_code, intro_story,
+# stats_nakajima, stats_confirm, pyramid, status_nakajima, status_yumiko, comp_menu, battle_attack, battle_magic,
+# negotiation, summon, fusion, sage_password, shop, heal, levelup, boss_minotaur, later_floor, ending.
