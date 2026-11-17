@@ -9,6 +9,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-17 - Dragon Quest (Famicom, English patch; first NES game) main set
+- Task: capture, verify, publish and commit the Dragon Quest (Famicom) main set, first NES game, title to credits.
+- Worked: checkpoint at every menu or battle the moment it appeared (cheap retakes); a shell loop on the `ehp`
+  watch to find random battles; poking position or map number during a map transition (correctly drawn warps,
+  skipped the seven-floor castle); reading the ROM bytes around `LDA #enemy` to find the fixed-fight triggers;
+  full `--verify` in the background while exploring.
+- Friction: the position warp leaves a stale background (three retakes before the transition trick); `do!` can
+  capture mid-scroll; `ls 0*.png` stopped matching once play screenshots passed 099; snapping while a
+  `--verify` or `--publish` is running is unsafe; caption edits need a re-shoot to reach `index.md`; no usable
+  wall clock in the container (budget could not be measured); only one in-between commit, at the end.
+- Proposed rule change: (1) emulator.md RAM section: a position poke does not redraw the map; poke during a map
+  transition or use stairs. (2) `play.py recaption ID "caption"`. (3) `play.py status` prints elapsed session
+  time so agents can keep a time budget.
+- Corrected: (1) added to `gamedb/docs/emulator.md`. Coordinator reran the full verify from an empty cache.
+- Status: open ((2) recaption command, (3) session clock: tool changes not made yet)
+
 ### 2026-11-15 - Pokémon Blue sequences: seq-fishing, seq-fly
 - Task: publish seq-fishing (15 steps, 3 clips, incl. the no-bite branch) and seq-fly (9 steps, 2 clips),
   design notes, commit 12fdafe.

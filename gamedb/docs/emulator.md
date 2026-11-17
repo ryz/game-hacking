@@ -127,6 +127,8 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
    16-bit values: add `--wide`.
 3. Record it in `game.json` "ram" (`"lives": {"addr": "C0A2", "size": 1}`: shown by every `do`; `"fmt": "bcd"`
    for packed-BCD values such as money, `"be"` for big-endian) and the playbook RAM map.
+- A position poke does not redraw the map: the old background stays until the screen scrolls. For a clean warp
+  poke during a map transition (door, stairs, town entry), or leave and re-enter the map before the shot.
 - Pokes are part of the route and fine anywhere; values that show on screen follow the realistic-values rule.
 
 ## Choosing the model (GB/GBC; NES: see NES / Famicom)
