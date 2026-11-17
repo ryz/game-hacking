@@ -1,6 +1,11 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
 title | Title menu (START / CONTINUE, message speed NORMAL), settled | pow,w760,settle,settle
 password_entry | CONTINUE: empty return-spell (password) entry screen, message speed FAST | @title,right,settle,down,settle,start,w60,settle
-start | First control: ryz before King Lars in the Tantegel throne room, LVL 1, 0 G, message speed FAST, chests unopened | @title,NEWGAME,settle
+start | First control: ryz before the king in the Tantegel throne room, LVL 1, 0 G, message speed FAST, 3 chests unopened, status window up | @title,NEWGAME,settle
+late | Password state: ryz LVL 21, 6135 G, E 34218, Loto's sword/armor + Mirror shield, 4 herbs, 3 keys, Rainbow Drop/Love/Mark/Scale/Wing/Torch; throne room (door open, princess beside the king), message speed FAST | @title,LATE,settle
+late_castle | LATE state in Tantegel Castle 1F at the foot of the throne-room stairs | @late,right:16,down:16*2,settle,down:16*2,settle,right:16*4,settle,a,down*2,a,w60,settle
+late_overworld | LATE state on the overworld, one step south of Tantegel Castle (43,44) | @late_castle,poke:003A=0B1D,poke:008E=0B1D,poke:0090=B000D001,down:16,w60,settle,down:16,w60,settle
+late_brecconary | LATE state inside the first town east of Tantegel (map 8; Brecconary in Dragon Warrior), west gate | @late_overworld,poke:003A=2F29,poke:008E=2F29,poke:0090=F0029002,right:16,w60,settle,right:16*3,settle
+late_battle | LATE state, battle vs a Slimess (red slime) west of Tantegel, command menu open (cursor on Flee). RNG-dependent: see playbook Emulation notes | @late_overworld,left:16*4,w30,settle,left:16*4,w30,settle,left:16*4,w30,settle,left:16*4,w30,settle,left:16*4,w30,settle,left:16*4,w30,settle,down:16*2,settle,right:16*3,w30,settle,left:16*3,w30,settle,right:16*3,w30,settle,left:16*3,w30,settle,right:16*3,w30,settle,left:16*3,w30,settle,right:16*3,w30,settle,left:16*3,w30,settle,right:16*3,w30,settle,left:16*3,w30,settle,right:16*3,w30,settle,left:16*3,w30,settle,left,settle
+late_charlock | LATE state inside the Dragon King's castle (map 2; Charlock in Dragon Warrior), entrance, by overworld position warp | @late_overworld,poke:003A=2F30,poke:008E=2F30,poke:0090=F0020003,right:16,w90,settle,up:16*3,settle

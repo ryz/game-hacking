@@ -32,9 +32,55 @@
     "FAST": "right",
     "NAME_RYZ": "down*4,right*5,a,down,left,a,right,a,right*3,a,w60,settle",
     "KING_INTRO": "a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,b,settle",
-    "NEWGAME": "FAST,start,w60,settle,NAME_RYZ,KING_INTRO"
+    "NEWGAME": "FAST,start,w60,settle,NAME_RYZ,KING_INTRO",
+    "CONTINUE": "FAST,down,start,w60,settle",
+    "PW_LATE": "right,right,right,down,down,down,down,a,up,up,up,up,a,right,right,down,down,a,down,down,a,up,up,a,left,left,down,a,right,right,right,right,right,right,up,a,left,a,left,down,a,a,right,up,up,a,left,left,down,a,left,left,left,a,right,right,right,right,right,up,up,a,left,left,left,left,down,down,down,down,a,right,right,right,up,up,up,up,a,right,down,down,down,down,a,left,left,left,left,left,a,up,up,up,up,a,right,right,right,right,right,right,down,down,down,down,a",
+    "KING_RETURN": "w60,NAME_FIX,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,b,settle",
+    "NAME_FIX": "poke:00B5=3B45465F",
+    "LATE": "CONTINUE,PW_LATE,KING_RETURN"
   },
-  "ram": {},
+  "ram": {
+    "map": {
+      "addr": "0045",
+      "size": 1
+    },
+    "x": {
+      "addr": "003A",
+      "size": 1
+    },
+    "y": {
+      "addr": "003B",
+      "size": 1
+    },
+    "lvl": {
+      "addr": "00C7",
+      "size": 1
+    },
+    "hp": {
+      "addr": "00C5",
+      "size": 1
+    },
+    "mp": {
+      "addr": "00C6",
+      "size": 1
+    },
+    "gold": {
+      "addr": "00BC",
+      "size": 2
+    },
+    "exp": {
+      "addr": "00BA",
+      "size": 2
+    },
+    "enemy": {
+      "addr": "00E0",
+      "size": 1
+    },
+    "ehp": {
+      "addr": "00E2",
+      "size": 1
+    }
+  },
   "source": {
     "note": "rom/dragon-quest.nes is the owner's Japanese Famicom dump with the owner's English translation IPS applied (2026-11-17). Rebuild: apply the IPS to the dump (tools/emu.py apply_ips) and check the SHA-1 above. Neither file is committed.",
     "base_sha1": "5b7c80c3404b93523577521927f7c99ab4a7ad57",
@@ -43,5 +89,13 @@
     "patch_name": "Dragon_Quest_NES_J.ips",
     "patch_copy": "rom/patches/dragon-quest/en.ips",
     "base_copy": "rom/src/dragon-quest-j.nes"
+  },
+  "rom_variants": {
+    "jp": {
+      "ips": [
+        "rom/patches/dragon-quest/jp.ips"
+      ],
+      "note": "inverse of the translation patch: the untouched Japanese ROM (SHA-1 = source.base_sha1), for comparing screens and the kana password grid. Rebuild jp.ips: byte diff rom/dragon-quest.nes -> rom/src/dragon-quest-j.nes (games/dragon-quest/tools/mkjp.py)."
+    }
   }
 }

@@ -1,6 +1,61 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/dragon-quest/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# The plan for the main set (scout 2026-11-17). Lines with a route were tried by the scout; commented lines are
+# plan only: the capture agent finds the route (playbook: Shot plan, Shortcuts, Emulation notes).
+# play.py snap writes captured shots (with exact routes) to work/shots/dragon-quest/<set>/shots.txt; copy
+# finished lines back here so the plan stays replayable.
+boot_logo | boot | DRAGON QUEST logo alone, before the menu appears | pow,w300,!
+title_screen | title | Title: logo with the dragon, START / CONTINUE, MESSAGE SPEED, (C)1986 ENIX | @title
+password_entry | save | CONTINUE: "Enter a Return Spell!" with the 64-symbol grid | @password_entry
+throne_room_start | gameplay | Throne room: ryz before the king, three chests, status window (LVL 1, HP 15) | @start
+late_stats | inventory | STATUS sheet at level 21: Power 95, Speed 82, Loto's sword and armour, Mirror shield | @late,a,down,a,w30
+late_items | inventory | Items window: Herb 4, Key 3, Drop, Love, Mark, Scale, Wing, Torch | @late,a,right,down,a,w30
+late_spells | inventory | Spell window with all ten spells (Hoimi ... Begira) | @late,a,right,a,w30
+overworld_tantegel | map | Overworld south of Tantegel: castle, town and the Dragon King's castle across the water | @late_overworld
+charlock_entrance | gameplay | Inside the Dragon King's castle, entrance hall | @late_charlock
+# name_entry | menu | "Enter Name" grid with ryz typed | @title,FAST,start,w60,settle,down*4,right*5,a,down,left,a,right,a
+# password_typed | save | Return Spell entry with 19 symbols typed
+# king_intro | cutscene | The king: "Scion of Loto the Brave! I've awaited you!"
+# king_gifts | cutscene | The king: "Take the gifts I have for you beside me."
+# king_password | save | The king tells the Return Spell (20 symbols)
+# commands_window | menu | Commands: Talk, Spell, Stats, Items, Stairs, Check, Door, Take
+# talk_compass | system | Talk asks for a direction: N / W / E / S
+# npc_soldier | dialogue | A throne-room soldier's advice
+# throne_room_chest | system | Take on a chest: "ryz obtained 120 Gold!"
+# throne_room_door | system | Door command opens the throne-room door with the Key
+# stairs_command | system | Stairs command on the throne-room staircase
+# castle_1f | gameplay | Tantegel Castle ground floor
+# town_first | gameplay | The first town: street with the INN sign
+# shop_weapons | shop | Weapon shop price list in the first town
+# shop_tools | shop | Tool shop: Herb, Torch, Wing ...
+# inn_stay | system | Inn: price question and the night passing
+# town_kol | gameplay | Kol
+# town_rimuldar | gameplay | Rimuldar, the lake town
+# town_cantlin | gameplay | Cantlin, the walled town
+# ruins_hauksness | gameplay | The ruined desert town
+# cave_dark | system | Cave without light: only the hero's tile visible
+# cave_torch | system | Cave with a Torch lit
+# cave_remira | system | Cave lit wider by the Remira spell
+# swamp | gameplay | Poison swamp on the overworld
+# bridge | gameplay | Crossing a bridge: stronger enemies beyond
+# hud_status_popup | hud | Status window that appears when standing still (overworld)
+# spell_field | system | Casting Hoimi from the field Spell window
+# lura_return | system | Lulra / Wing: back to Tantegel
+# rainbow_bridge | system | The Rainbow Drop builds the bridge to the Dragon King's island
+# battle_slime | battle | First battle near Tantegel: a Slime appears
+# battle_command | battle | Battle Commands: Fight / Spell / Flee / Items
+# battle_spell | battle | Battle spell list
+# battle_levelup | battle | Level up message with the new stats
+# battle_late | battle | A strong enemy of the late areas
+# boss_golem | boss | Golem at the gate of Cantlin
+# boss_green_dragon | boss | Green dragon guarding the princess in the swamp cave
+# dragon_king_offer | cutscene | The Dragon King offers half the world: yes / no
+# boss_dragon_king_1 | boss | Dragon King, first form
+# boss_dragon_king_2 | boss | Dragon King, true form
+# charlock_lair | gameplay | Bottom floor of the Dragon King's castle
+# death_king | gameover | After dying: back before the king, half the gold gone
+# ending_king | ending | The king after the Dragon King's fall
+# ending_credits | credits | Staff roll
+# jp_title | extra | Original Japanese title menu (rom:jp)
+# jp_password_entry | extra | Original kana password grid (rom:jp) | rom:jp,w760,settle,down,start,w60,settle

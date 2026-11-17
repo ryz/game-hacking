@@ -23,17 +23,33 @@ the evidence: link them (`../shots/main/<id>.png`).
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Dragon Quest is a role-playing game for one player and one hero, seen from above on the overworld, in towns and
+in caves, with battles against a single enemy shown from the hero's eyes. **(verified)** `@start`, `@late_battle`
+The loop: fight random encounters near the castle for experience (E) and gold (G), buy better equipment, reach
+the next town, and travel further as the enemies allow; enemies get stronger with distance from Tantegel
+Castle. **(source)** The goal is to defeat the Dragon King, whose castle is visible across the water from the
+first step outside. **(verified)** `@late_overworld`
+What makes this first version distinctive: every action is a menu command, including taking stairs (Stairs),
+opening doors (Door), opening chests (Take) and talking, which asks for a compass direction because the hero
+never turns. **(verified)** `@start` Progress is kept as a 20-symbol password told by the king; the level and
+all stats are rebuilt from experience when it is entered, and the hero's name keeps only part of each symbol.
+**(verified)** `@late` The hero has ten spells, learned by level, and one weapon, one armour and one shield at a
+time. **(verified)** `@late` Stats window. Length: one continuous world, about ten hours of play without
+shortcuts. **(source)**
 
 ## Documents
 | Document | Covers |
 |---|---|
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
-<!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
-     unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
-     enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
+| [controls-and-commands.md](controls-and-commands.md) | the command windows, what each command does (started) |
+| progression.md (to write) | levels, experience table, spells by level, the critical path |
+| combat.md (to write) | battle commands, damage, fleeing, enemy list |
+| items-and-shops.md (to write) | equipment, tools, prices, inns, keys |
+| world.md (to write) | overworld, towns, caves, light, damage floors |
+| password.md (to write) | what the Return Spell stores and what it drops |
 
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Wikipedia, Dragon Quest (video game) | https://en.wikipedia.org/wiki/Dragon_Quest_(video_game) | release, differences to Dragon Warrior |
+| Data Crystal, Dragon Warrior RAM map | https://datacrystal.tcrf.net/wiki/Dragon_Warrior/RAM_map | item and spell lists |
