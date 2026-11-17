@@ -1,32 +1,32 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/shin-megami-tensei/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# Scout 2026-11-17: the lines below were replayed once with tools/emu.py (work/scout/shin-megami-tensei/plan/)
-# and looked at; they have not been through shoot.py. Vertical lists need 4-frame taps (macro D = down:4,w30).
-title_screen | title | Title screen: START / CONTINUE | @title
-dream_door | dialogue | Dream: a door with a face asks who dares to pass | @dream
-name_entry | system | Name entry: letter grid with "ryz" typed for the hero | @dream,a,w150,a,w150,a,w150,x,down,right*7,a,down,left*3,a,right,a
-stat_allocation | system | Dividing 18 points among STR INT MAG VIT SPD LUK for the hero | @dream,a,w150,a,w150,a,w150,NAME_RYZ,w150,OK3,right*6,D,D,D,right*5,D,right*4
-room_menu | menu | Hero's room: Computer / Save / Go to sleep / Leave the room | @start
-save_files | save | Save which file? FILE 1 / FILE 2 | @start,D,a,w90
-load_files | menu | CONTINUE: Load which file? FILE 1 "Home, ryz Lev:01" | sav:01_start,TITLE,right,w30,a,w120
-home_mother | dialogue | Mother: "Here's your allowance for this month" (the next page adds 10000 yen) | @start,D,D,D,a,w90,a,w90,a,w90,a,w90,a,w90
-apartment_corridor | hud | First free movement: apartment building in 3D with moon, floor, facing and the party table (faces a wall: turn with left for the corridor view) | @apartment
-menu_command | menu | Command menu COMP / MAGIC / ITEM / STATUS with yen and MAG | @apartment,a,w60
-menu_comp | system | COMP: Summon Minion / Return Minion / Dismiss Minion / Change Formation | @apartment,a,w60,a,w60
-status_hero | inventory | Status screen of ryz at level 1: stats, derived values, empty equipment | @apartment,a,w60,D,D,D,a,w60,a,w60
-map_kichijoji | map | Kichijoji town map with moon's age and place name | @kichijoji
-# --- plan lines without a verified route (frame or path still to be found by the capture agent) ---
-# boot_atlus | boot | Atlus logo | power-on, no input, around w450 (probe sheet), `!`
-# intro_circle | cutscene | Magic circle of the intro | power-on, no input, around w1000, `!`
-# intro_199x | cutscene | "199X Kichijoji, Tokyo" | power-on, no input, around w1600, `!`
-# intro_terminal | cutscene | Hi-res terminal typing program text (512x448) | power-on, no input, around w3300, `!`
-# dream_law_hero | cutscene | Dream: the crucified man and the messenger of God | inside DREAM_CONDI (after its 7th a,w150)
-# dream_chaos_hero | cutscene | Dream: a demon holding a man down | inside DREAM_EBO (after its 9th a,w150)
-# dream_pond | cutscene | Dream: the woman bathing in a pond | inside WAKE (after its 5th a,w150)
-# room_mail | dialogue | STEVEN's mail on DDS-NET | @start,a,w150,a,w150,a,w150 (Computer; 13 pages to return to the menu)
+# The main set. Lines without '#' are captured shots with the exact route play.py snap recorded (verified with
+# tools/shoot.py --verify); the commented lines at the end are plan targets not reached yet.
+boot_atlus | boot | Atlus logo at power-on | pow,w450,!
+intro_circle | cutscene | Intro: the rotating magic circle | pow,w450,w550,!
+intro_terminal | cutscene | Intro: hi-res terminal typing the summoning program (512x448) | pow,w450,w550,w600,w1700,!
+intro_199x | cutscene | Intro caption: 199X Kichijoji, Tokyo | pow,w1560,w535,!
+intro_scene | cutscene | Intro: scene cut between terminal pages, a woman at a computer desk | pow,w3195,!
+title_screen | title | Title screen: START / CONTINUE | @title,settle,settle
+dream_door | dialogue | Dream: a door with a face asks who dares to pass | @dream,settle,settle
+name_entry | system | Name entry: letter grid with "ryz" typed for the hero | @dream,settle,settle,a,w150,a,w150,a,w150,x,down,right*7,a,down,left*3,a,right,a,settle
+stat_allocation | system | Dividing 18 points among STR INT MAG VIT SPD LUK for the hero | @dream,settle,settle,a,w150,a,w150,a,w150,x,down,right*7,a,down,left*3,a,right,a,settle,start,a,w150,OK3,right*6,D,D,D,right*5,D,right*4,settle
+dream_law_hero | cutscene | Dream: the Messenger of God beside a cross, offering a soul to God | @dream,settle,settle,a,w150,a,w150,a,w150,x,down,right*7,a,down,left*3,a,right,a,settle,start,a,w150,OK3,right*6,D,D,D,right*5,D,right*4,settle,D,right*3,w30,a,w150,settle,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,settle
+dream_chaos_hero | cutscene | Dream: a demon crouching over a man lying on the floor | @dream,settle,settle,a,w150,a,w150,a,w150,x,down,right*7,a,down,left*3,a,right,a,settle,start,a,w150,OK3,right*6,D,D,D,right*5,D,right*4,settle,D,right*3,w30,a,w150,settle,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,settle,a,w150,a,w150,NAME_CONDI,w150,OK3,STATS_CONDI,w150,settle,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,settle
+dream_pond | cutscene | Dream: a woman bathing in a pond; party table lists condi and ebo | @dream,settle,settle,a,w150,a,w150,a,w150,x,down,right*7,a,down,left*3,a,right,a,settle,start,a,w150,OK3,right*6,D,D,D,right*5,D,right*4,settle,D,right*3,w30,a,w150,settle,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,settle,a,w150,a,w150,NAME_CONDI,w150,OK3,STATS_CONDI,w150,settle,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,settle,a,w150,NAME_EBO,w150,OK3,STATS_EBO,w150,settle,a,w150,a,w150,a,w150,a,w150,a,w150,settle
+room_menu | menu | Hero's room: Computer / Save / Go to sleep / Leave the room | @start,settle,settle
+room_mail | dialogue | Computer: DDS-NET mail from STEVEN with the Demon Summoning Program | @start,a,w150,settle,a,w150,settle
+save_files | save | Save which file? FILE 1 / FILE 2 | @start,D,a,w90,settle
+home_mother | dialogue | Mother hands over this month's allowance | @start,D,D,D,a,w90,a,w90,a,w90,a,w90,a,w90,settle
+apartment_corridor | hud | Apartment corridor in 3D: moon phase, floor, facing and the party table | @apartment,left,w30,settle
+menu_command | menu | Command menu COMP / MAGIC / ITEM / STATUS with yen and MAG | @lv23ready,a,w60,settle
+menu_comp | system | COMP: Summon Minion / Return Minion / Dismiss Minion / Change Formation | @lv23ready,a,w60,settle,a,w60,settle
+status_hero | inventory | Status screen of ryz at level 1: stats, derived values, empty equipment | @apartment,a,w60,D,D,D,a,w60,a,w90,settle
+load_files | menu | CONTINUE: Load which file? FILE 1 shows place, name and level | sav:01_start,TITLE,right,w30,a,w120,w30,settle
+# --- plan lines without a verified route (still to be reached) ---
+# id | category | caption | route
+# id | category | caption | route
 # exit_prompt | gameplay | Street view: "There is an exit here. Will you leave?" | from @apartment walk to the exit square (the kichijoji checkpoint route passes it)
 # kichijoji_police | dialogue | Policemen: the area is off-limits | @kichijoji, move the marker up/right to the district edge
 # arcade_mall | gameplay | Kichijoji arcade | play from @kichijoji
