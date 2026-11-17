@@ -467,7 +467,13 @@ class Snes(Libretro):
         title = bytes(h[:21]).decode("shift_jis", "replace").strip()
         mode = h[0x15]
         chk, comp = h[0x1E] | h[0x1F] << 8, h[0x1C] | h[0x1D] << 8
-        total = sum(data[skip:]) & 0xFFFF
+        body, p2 = data[skip:], 1
+        while p2 * 2 <= len(body):
+            p2 *= 2
+        total = sum(body[:p2])                          # sizes that are not a power of two: the rest is mirrored
+        if len(body) > p2:
+            total += sum(body[p2:]) * (p2 // (len(body) - p2))
+        total &= 0xFFFF
         region = SNES_REGION.get(h[0x19], "0x%02X" % h[0x19])
         pal = 2 <= h[0x19] <= 12 or h[0x19] == 17
         return {

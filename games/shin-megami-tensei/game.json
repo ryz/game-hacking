@@ -1,0 +1,52 @@
+{
+  "slug": "shin-megami-tensei",
+  "title": "Shin Megami Tensei (Super Famicom, English translation patch)",
+  "platform": "snes",
+  "model": "ntsc",
+  "rom": "rom/shin-megami-tensei.sfc",
+  "sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
+  "crc32": "9165294a",
+  "size": 2097152,
+  "header": {
+    "header_title": "SHIN MEGAMI TENSEI",
+    "mapping": "LoROM",
+    "fast_rom": false,
+    "cart_type": "ROM+RAM+BATTERY",
+    "rom_kib": 2048,
+    "ram_kib": 8,
+    "region": "Japan",
+    "version": 0,
+    "copier_header": false,
+    "header_checksum_ok": false
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {},
+  "source": {
+    "note": "rom/shin-megami-tensei.sfc is the owner's Japanese Super Famicom dump with the owner's two English translation IPS patches applied in order (2026-11-17): smte1 = the translation (made for a ROM with the 512-byte copier header), smte2 = its bug-fix patch (made for a ROM without). Rebuild: python3 games/shin-megami-tensei/tools/mkrom.py. The patched ROM's internal checksum is not updated by the patches (header_checksum_ok false is expected). Nothing of this is committed.",
+    "base_sha1": "f765341b62ff3e7d119e8185be51c6f0757a86c6",
+    "base_name": "Shin_Megami_Tensei_SNES_J.sfc",
+    "base_copy": "rom/src/shin-megami-tensei-j.sfc",
+    "patches": [
+      {
+        "name": "smte1.ips",
+        "sha1": "4058ff67383ef90199d2ae638c2aedc350998a85",
+        "copy": "rom/patches/shin-megami-tensei/smte1.ips",
+        "layout": "headered"
+      },
+      {
+        "name": "smte2.ips",
+        "sha1": "513d72395ea9cd811df6f2a30e78004ca2bf7bc3",
+        "copy": "rom/patches/shin-megami-tensei/smte2.ips",
+        "layout": "unheadered"
+      }
+    ]
+  }
+}
