@@ -80,3 +80,10 @@ def test_ips_layout_and_snes_header():
     assert patch.apply(rom, ips, ".sfc", "headered")[0] == rom    # write lands in the added header, removed again
     assert patch.apply(rom, ips, ".sfc")[0][:1] == b"X"
     assert patch.apply(NES_HDR + PRG, ips, ".nes", "unheadered")[0][:17] == NES_HDR + b"X"
+
+
+def test_bps_against_ines1_header():
+    nes2 = b"NES\x1a\x01\x00\xc1\x48" + bytes(7) + b"\x01"
+    ines1 = b"NES\x1a\x01\x00\xc1\x40" + bytes(8)
+    out, layout, _ = patch.apply(nes2 + PRG, make_bps(ines1 + PRG, ines1 + NEW), ".nes")
+    assert (out, layout) == (ines1 + NEW, "ines1")

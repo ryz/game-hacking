@@ -28,8 +28,9 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
   documented in its `README.md`. Downloaded saves are never committed.
 - Patches supplied by the owner (IPS, BPS, UPS: translations, bug fixes, restorations) are always used (owner's
   rule 2026-11-17): register the ROM with them applied, in the order given (`tools/intake.py ROM --patch P ...`),
-  so screenshots, playbook and design reference describe the patched game. A patch that does not apply (CRC
-  mismatch: wrong revision or header layout) is reported to the owner, never skipped silently. Patches and dumps
+  so screenshots, playbook and design reference describe the patched game. Header-only differences are handled
+  by `tools/patch.py` (layouts, iNES 1.0 vs NES 2.0); a patch that still does not apply (wrong revision) is
+  reported to the owner, never skipped silently. Patches and dumps
   stay uncommitted; `game.json` "source" records their names, SHA-1s and layouts.
 - Screenshots may be committed: sets go to `games/<slug>/shots/<set>/` (`shoot.py ... --publish`).
 - Document as you go. Shared tooling: `docs/status.md` (current snapshot) and `docs/progress-log.md` (history,

@@ -4,6 +4,9 @@ Patches are applied in the order given. LAYOUT says which file layout a patch wa
   auto        (default) BPS/UPS: the layout whose CRC32 matches; IPS: the layout the dump already has
   headered    with the copier/iNES header (NES 16 bytes, SNES 512 bytes)
   unheadered  without it
+  ines1       NES only: the dump's iNES header rewritten as plain iNES 1.0 (same mapper, sizes, mirroring,
+              battery; NES 2.0 fields and bytes 8-15 cleared). Many patches were made against old iNES 1.0
+              dumps; a dump re-headered as NES 2.0 differs only there. The patch's own target header is kept.
 BPS and UPS check source, target and patch CRC32s; IPS has no checksum, so give the layout when the patch notes
 name one (a wrong layout shifts every write by the header size). Used by tools/intake.py --patch.
 """
@@ -157,7 +160,12 @@ def _layouts(data, ext):
     """(name, bytes) for the dump with and without its header; the header to re-add when one is missing."""
     h = header_size(data, ext)
     if h:
-        return [("headered", bytes(data)), ("unheadered", bytes(data[h:]))], data[:h]
+        out = [("headered", bytes(data)), ("unheadered", bytes(data[h:]))]
+        if h == 16 and data[:4] == b"NES\x1a":
+            ines1 = data[:7] + bytes([data[7] & 0xF0]) + bytes(8) + data[16:]
+            if ines1 != data:
+                out.append(("ines1", bytes(ines1)))
+        return out, data[:h]
     if ext.lower() in (".sfc", ".smc"):
         return [("unheadered", bytes(data)), ("headered", b"\0" * 512 + bytes(data))], b""
     return [("unheadered", bytes(data))], b""
@@ -188,7 +196,7 @@ def apply(data, patch, ext, layout="auto"):
                 errors.append("%s: %s" % (name, e))
         else:
             raise ValueError("; ".join(errors))
-    if name != have:                         # back to the dump's own layout
+    if name != have and name != "ines1":     # back to the dump's own layout
         out = bytearray(hdr) + out if have == "headered" else out[512 if ext.lower() in (".sfc", ".smc") else 16:]
     return bytes(out), name, k
 

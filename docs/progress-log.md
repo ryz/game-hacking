@@ -10,6 +10,9 @@ Append-only, newest first.
   `rom/src/`, patches in `rom/patches/<slug>/`, game.json "source" with names, SHA-1s, layouts and the rebuild
   command. Tests: `tests/test_patch.py`; end-to-end intake with a BPS on the synthetic NES ROM rebuilt the same
   SHA-1. Wizardry Empire's own `translation/tools/bps.py` left as is.
+- `patch.py` layout `ines1` (tried automatically): the dump's header rewritten as plain iNES 1.0. Found with
+  Megami Tensei (Famicom): the owner's dump has an NES 2.0 header, the BPS was made against the iNES 1.0 header
+  of the same body (mapper 76); CRC matched after that, body untouched.
 
 ## 2026-11-17 - 3x copies in a subfolder
 - Owner's request: originals in the set folder, 3x copies in a `3x/` subfolder with the same file names
