@@ -9,6 +9,25 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-17 - Megami Tensei (Famicom, English BPS patch)
+- Task: scout Digital Devil Story: Megami Tensei (Famicom, English patch): playbook, macros, title/start and
+  later checkpoints, RAM, password handling, shot plan.
+- Worked: one-shot `emu.py` runs with a contact sheet per token to learn menus; decoding the patched ROM's script
+  by relative search ("password") replaced the blocked web sources (sage in Micom gives passwords, floor/town/boss
+  names); dump-and-diff RAM over four turns found the facing byte; empty-cache rebuild vs cache hit for every
+  checkpoint.
+- Friction: `play.py find` gave 0 candidates right after `find reset` although `055C` counts steps; `play.py
+  checkpoint` writes straight into checkpoints.txt (a scratch checkpoint removed by hand); GameFAQs,
+  StrategyWiki, TCRF, gamehacking.org 403, archive.org download host refused; the status window does not redraw
+  after a poke, so HP pokes looked as if they failed.
+- Proposed rule change: skill.md step 2: when web sources are blocked and the game is a translation, decode the
+  ROM script (relative search for a known word) and tag those facts "ROM text"; tools: check `play.py find` on
+  NES; `play.py checkpoint --scratch`; proxy: allow archive.org download hosts.
+- Corrected: coordinator re-took the 9 routed shots and verified 9/9 from an empty cache. Proxy hosts are the
+  owner's environment decision (not changed).
+- Status: open (ROM-script decoding: first occurrence; `--scratch` not done). `find` on NES fixed 2026-11-17
+  (reset took no snapshot).
+
 ### 2026-11-17 - Shin Megami Tensei (Super Famicom, English patches; first SNES game)
 - Task: scout Shin Megami Tensei (Super Famicom, English patch), the first SNES game: playbook, macros,
   title/start checkpoints, RAM map, save, shot plan.
