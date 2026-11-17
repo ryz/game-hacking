@@ -1,0 +1,6 @@
+# name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
+# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
+# title | Title screen, settled | TITLE,settle
+title | Title menu (START / CONTINUE, message speed NORMAL), settled | pow,w760,settle,settle
+password_entry | CONTINUE: empty return-spell (password) entry screen, message speed FAST | @title,right,settle,down,settle,start,w60,settle
+start | First control: ryz before King Lars in the Tantegel throne room, LVL 1, 0 G, message speed FAST, chests unopened | @title,NEWGAME,settle

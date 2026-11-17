@@ -1,0 +1,47 @@
+{
+  "slug": "dragon-quest",
+  "title": "Dragon Quest (Famicom, English translation patch)",
+  "platform": "nes",
+  "model": "ntsc",
+  "rom": "rom/dragon-quest.nes",
+  "sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
+  "crc32": "9dbc4fc1",
+  "size": 65552,
+  "header": {
+    "format": "NES 2.0",
+    "mapper": 3,
+    "submapper": 2,
+    "prg_kib": 32,
+    "chr_kib": 32,
+    "battery": false,
+    "ram_kib": 0,
+    "mirroring": "vertical",
+    "trainer": false,
+    "region": "NTSC"
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {
+    "TITLE": "w760,settle",
+    "FAST": "right",
+    "NAME_RYZ": "down*4,right*5,a,down,left,a,right,a,right*3,a,w60,settle",
+    "KING_INTRO": "a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,b,settle",
+    "NEWGAME": "FAST,start,w60,settle,NAME_RYZ,KING_INTRO"
+  },
+  "ram": {},
+  "source": {
+    "note": "rom/dragon-quest.nes is the owner's Japanese Famicom dump with the owner's English translation IPS applied (2026-11-17). Rebuild: apply the IPS to the dump (tools/emu.py apply_ips) and check the SHA-1 above. Neither file is committed.",
+    "base_sha1": "5b7c80c3404b93523577521927f7c99ab4a7ad57",
+    "base_name": "Dragon_Quest_NES_J.nes",
+    "patch_sha1": "0a6c3685494c97e49a15bbb051e5cf948ba0997d",
+    "patch_name": "Dragon_Quest_NES_J.ips",
+    "patch_copy": "rom/patches/dragon-quest/en.ips",
+    "base_copy": "rom/src/dragon-quest-j.nes"
+  }
+}
