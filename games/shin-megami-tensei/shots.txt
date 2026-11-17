@@ -24,13 +24,21 @@ menu_command | menu | Command menu COMP / MAGIC / ITEM / STATUS with yen and MAG
 menu_comp | system | COMP: Summon Minion / Return Minion / Dismiss Minion / Change Formation | @lv23ready,a,w60,settle,a,w60,settle
 status_hero | inventory | Status screen of ryz at level 1: stats, derived values, empty equipment | @apartment,a,w60,D,D,D,a,w60,a,w90,settle
 load_files | menu | CONTINUE: Load which file? FILE 1 shows place, name and level | sav:01_start,TITLE,right,w30,a,w120,w30,settle
+map_kichijoji | map | Kichijoji town map with moon's age and place name | @kichijoji,settle,settle
+clinic_doctor | dialogue | Kichijoji clinic: the doctor greets the hero | @bldg_red,R,F,L,F,L,F,w90,settle
+kichijoji_police | dialogue | Inokashira Park entrance: policemen investigating the murder block the way | @map2,MD*10,MR*2,MD,w150,settle,P,settle
+exit_prompt | gameplay | Street view at a building exit: There is an exit here. Will you leave? | @bldg_red,w10,settle,T,F,settle
+arcade_mall | gameplay | Kichijoji arcade: covered shopping street with shop windows | @arcade,!
+shop_menu | shop | Knife shop in the arcade: Buy / Sell / Equip / Status / Sort your items / Leave | @knifeshop,!
+shop_buy | shop | Knife shop buy list: Attack Knife 5000 yen to Unnamed Katana 12000 yen | @knifeshop,a,w120,settle
+equipment | inventory | Status with the Attack Knife equipped: sword Power 17, Accuracy 15 | @knifeshop,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,b,w120,settle,b,w120,settle,P,w60,settle,a,w60,D,D,a,w90,settle,a,w90,settle,a,w90,settle,a,w60,D,a,w90,settle,a,w90,settle,a,w90,settle,D,w30,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,settle,a,w90,b,w60,b,w60,b,w60,settle,a,w60,D,D,D,a,w60,a,w90,settle
+shop_antique | shop | Antique shop buy list: Hanging Scroll 10000 yen to Golden Buddha 43000 yen | @armed,L,F,L,F,R,F,w120,settle,P,settle,P,settle
+arcade_rumor | dialogue | Arcade: a woman passes on the rumour about the hospital director | @armed,R,F,F,R,F,F,R,F,w60,F,settle,F,w120,settle,F,w120,P,settle
+cafe_master | dialogue | Arcade cafe: the Master greets ryz and asks about the usual coffee | @armed,R,F,F,R,F,F,R,F,w60,F,settle,F,w120,settle,F,w120,P,settle,P,P,w60,settle,F,w150,settle
 # --- plan lines without a verified route (still to be reached) ---
 # id | category | caption | route
 # id | category | caption | route
-# exit_prompt | gameplay | Street view: "There is an exit here. Will you leave?" | from @apartment walk to the exit square (the kichijoji checkpoint route passes it)
-# kichijoji_police | dialogue | Policemen: the area is off-limits | @kichijoji, move the marker up/right to the district edge
-# arcade_mall | gameplay | Kichijoji arcade | play from @kichijoji
-# shop_buy | shop | Shop buy list with prices | play
+# id | category | caption | route
 # first_battle | battle | First demon encounter: command menu | play
 # battle_attack | battle | Sword or gun attack result | play
 # battle_magic | battle | A spell being cast | play (needs the Law hero or a demon)
@@ -44,7 +52,6 @@ load_files | menu | CONTINUE: Load which file? FILE 1 shows place, name and leve
 # terminal_save | save | A terminal: save and warp list | play
 # automap | map | Dungeon automap | play
 # healing_station | shop | Healing prices | play
-# equipment | inventory | Equipment with sword, gun, ammo, armour | play (buy first)
 # items | inventory | Item list | play
 # level_up | system | Level-up with a stat point to place | play (or poke EXP once found)
 # boss_first | boss | First story boss | play; hero poked with POKE_LV23 makes it safe

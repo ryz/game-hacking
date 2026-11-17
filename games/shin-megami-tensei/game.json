@@ -47,7 +47,16 @@
     "SAVE_ROOM": "down:4,w30,a,w90,a,w90,a,w150,a,w90,a,w90",
     "LEAVE_HOME": "down:4,w30,down:4,w30,down:4,w30,a,w90,a,w90,a,w90,a,w90,a,w90,a,w90,a,w90,a,w90,a,w90,down:4,w30,a,w120,w60",
     "MENU": "a,w60",
-    "POKE_LV23": "set:7E0405=8973:3,poke:7E100A=17,poke:7E1010=13,poke:7E1012=09,poke:7E1014=07,poke:7E1016=12,poke:7E1018=10,poke:7E101A=0D,poke:7E102E=A700,poke:7E1030=B200"
+    "POKE_LV23": "set:7E0405=8973:3,poke:7E100A=17,poke:7E1010=13,poke:7E1012=09,poke:7E1014=07,poke:7E1016=12,poke:7E1018=10,poke:7E101A=0D,poke:7E102E=A700,poke:7E1030=B200",
+    "F": "up,w60",
+    "L": "left,w60",
+    "R": "right,w60",
+    "T": "down,w60",
+    "MU": "up:16,w60",
+    "MD": "down:16,w60",
+    "ML": "left:16,w60",
+    "MR": "right:16,w60",
+    "P": "a,w150"
   },
   "ram": {
     "yen": {
@@ -69,6 +78,30 @@
     "maxhp": {
       "addr": "7E1030",
       "size": 2
+    },
+    "x": {
+      "addr": "7E070C",
+      "size": 1
+    },
+    "y": {
+      "addr": "7E070D",
+      "size": 1
+    },
+    "dir": {
+      "addr": "7E040D",
+      "size": 1
+    },
+    "tx": {
+      "addr": "7E0B04",
+      "size": 2
+    },
+    "ty": {
+      "addr": "7E0B06",
+      "size": 2
+    },
+    "steps": {
+      "addr": "7E040F",
+      "size": 1
     }
   },
   "source": {

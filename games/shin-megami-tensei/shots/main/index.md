@@ -1,6 +1,6 @@
 # Shin Megami Tensei (Super Famicom, English translation patch) - shots: main
 
-Platform snes, model ntsc, ROM SHA-1 `3581a9a51354ad68662dca6a6856da2963f62562`. 21 shots. Contact sheet: [sheet.png](sheet.png).
+Platform snes, model ntsc, ROM SHA-1 `3581a9a51354ad68662dca6a6856da2963f62562`. 32 shots. Contact sheet: [sheet.png](sheet.png).
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -25,5 +25,16 @@ Platform snes, model ntsc, ROM SHA-1 `3581a9a51354ad68662dca6a6856da2963f62562`.
 | menu_comp | system | COMP: Summon Minion / Return Minion / Dismiss Minion / Change Formation | yes | [png](menu_comp.png) [3x](menu_comp@3x.png) |
 | status_hero | inventory | Status screen of ryz at level 1: stats, derived values, empty equipment | yes | [png](status_hero.png) [3x](status_hero@3x.png) |
 | load_files | menu | CONTINUE: Load which file? FILE 1 shows place, name and level | yes | [png](load_files.png) [3x](load_files@3x.png) |
+| map_kichijoji | map | Kichijoji town map with moon's age and place name | no | [png](map_kichijoji.png) [3x](map_kichijoji@3x.png) |
+| clinic_doctor | dialogue | Kichijoji clinic: the doctor greets the hero | no | [png](clinic_doctor.png) [3x](clinic_doctor@3x.png) |
+| kichijoji_police | dialogue | Inokashira Park entrance: policemen investigating the murder block the way | no | [png](kichijoji_police.png) [3x](kichijoji_police@3x.png) |
+| exit_prompt | gameplay | Street view at a building exit: There is an exit here. Will you leave? | yes | [png](exit_prompt.png) [3x](exit_prompt@3x.png) |
+| arcade_mall | gameplay | Kichijoji arcade: covered shopping street with shop windows | no | [png](arcade_mall.png) [3x](arcade_mall@3x.png) |
+| shop_menu | shop | Knife shop in the arcade: Buy / Sell / Equip / Status / Sort your items / Leave | yes | [png](shop_menu.png) [3x](shop_menu@3x.png) |
+| shop_buy | shop | Knife shop buy list: Attack Knife 5000 yen to Unnamed Katana 12000 yen | yes | [png](shop_buy.png) [3x](shop_buy@3x.png) |
+| equipment | inventory | Status with the Attack Knife equipped: sword Power 17, Accuracy 15 | yes | [png](equipment.png) [3x](equipment@3x.png) |
+| shop_antique | shop | Antique shop buy list: Hanging Scroll 10000 yen to Golden Buddha 43000 yen | yes | [png](shop_antique.png) [3x](shop_antique@3x.png) |
+| arcade_rumor | dialogue | Arcade: a woman passes on the rumour about the hospital director | no | [png](arcade_rumor.png) [3x](arcade_rumor@3x.png) |
+| cafe_master | dialogue | Arcade cafe: the Master greets ryz and asks about the usual coffee | no | [png](cafe_master.png) [3x](cafe_master@3x.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
