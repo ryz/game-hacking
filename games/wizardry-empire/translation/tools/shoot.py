@@ -11,16 +11,16 @@
 Shot list lines: `id | category | description | tokens` (tokens as in tools/emu.py; `pow` = power on only,
 `boot` = power on to the town, `poke` = mark all monsters seen (museum), PARTY = form the 6-member party at the tavern from the town).
 For every shot and ROM: `<id>.<rom>.png` (native 160x144, the emulator's framebuffer: CGB colours expanded
-5->8 bit, no colour correction, no filtering), `<id>.<rom>@3x.png` (nearest neighbour), and for both ROMs
-`<id>.compare@3x.png` (JP left, EN right). With `--rom all`: `<id>.compare3@3x.png` instead, JP | EN | REF
+5->8 bit, no colour correction, no filtering), `3x/<id>.<rom>.png` (nearest neighbour, in the 3x/ subfolder), and for both ROMs
+`3x/<id>.compare.png` (JP left, EN right). With `--rom all`: `3x/<id>.compare3.png` instead, JP | EN | REF
 left to right, each panel labelled at the top ("Original (JP)", "This patch", "Other patch"); same gap and
-background as the two-way compare, the panels themselves are the unchanged @3x images. Each shot waits until
+background as the two-way compare, the panels themselves are the unchanged 3x images. Each shot waits until
 the screen is stable (two identical frames 10 frames apart, up to 300 frames) so text has finished typing and
 fades are done; the catalogue records whether it settled. Catalogue: `index.md` + `index.json` (id, category,
 description, tokens, ROM, commit, ROM SHA-1, settled); with `--rom all` index.md also links the three native
 images and the compare3 image of every shot.
 --publish copies the native PNGs, the compare / compare3 images and index.md/index.json (and any other .md in
-the set folder, e.g. a README.md) to ../shots/SET/ (the @3x single-ROM images are left out: they are the
+the set folder, e.g. a README.md) to ../shots/SET/ (compare images into its 3x/; the 3x single-ROM images are left out: they are the
 native ones enlarged).
 """
 import argparse, hashlib, json, os, shutil, subprocess, sys
@@ -75,7 +75,7 @@ def rom_info(path):
 
 
 def compare3(images, roms):
-    """JP | EN | REF @3x panels side by side, each with its label in a band above it (same gap/background)."""
+    """JP | EN | REF 3x panels side by side, each with its label in a band above it (same gap/background)."""
     from PIL import Image, ImageDraw, ImageFont
     try:
         font = ImageFont.load_default(size=18)     # Pillow >= 10.1: bundled scalable font, same on every machine
@@ -96,11 +96,13 @@ def publish(out, pub):
     """Copy a checked set to ../shots/SET/: native PNGs, compare images, index and notes (.md/.json)."""
     os.makedirs(pub, exist_ok=True)
     for f in sorted(os.listdir(out)):
-        if not os.path.isfile(os.path.join(out, f)):
-            continue
-        if f.endswith((".md", ".json")) or (f.endswith(".png") and "@3x" not in f) \
-                or f.endswith((".compare@3x.png", ".compare3@3x.png")):
+        if os.path.isfile(os.path.join(out, f)) and f.endswith((".md", ".json", ".png")):
             shutil.copy2(os.path.join(out, f), os.path.join(pub, f))
+    x3 = os.path.join(out, "3x")            # only the compare images; single-ROM 3x copies are left out
+    for f in sorted(os.listdir(x3)) if os.path.isdir(x3) else []:
+        if f.endswith((".compare.png", ".compare3.png")):
+            os.makedirs(os.path.join(pub, "3x"), exist_ok=True)
+            shutil.copy2(os.path.join(x3, f), os.path.join(pub, "3x", f))
 
 
 def main():
@@ -134,20 +136,21 @@ def main():
             im = Image.open(p).convert("RGB")
             im.save(p)
             big = im.resize((im.width * 3, im.height * 3), Image.NEAREST)
-            big.save(os.path.join(out, "%s.%s@3x.png" % (s["id"], r)))
+            os.makedirs(os.path.join(out, "3x"), exist_ok=True)
+            big.save(os.path.join(out, "3x", "%s.%s.png" % (s["id"], r)))
             rec["files"][r] = os.path.basename(p)
             rec["rom_sha1"][r] = rom_info(ROMS[r])[:12]
         if len(which) == 2:
-            a3 = [Image.open(os.path.join(out, "%s.%s@3x.png" % (s["id"], r))) for r in which]
+            a3 = [Image.open(os.path.join(out, "3x", "%s.%s.png" % (s["id"], r))) for r in which]
             gap = GAP
             c = Image.new("RGB", (a3[0].width * 2 + gap, a3[0].height), BG)
             c.paste(a3[0], (0, 0))
             c.paste(a3[1], (a3[0].width + gap, 0))
-            c.save(os.path.join(out, "%s.compare@3x.png" % s["id"]))
+            c.save(os.path.join(out, "3x", "%s.compare.png" % s["id"]))
         elif len(which) == 3:
-            a3 = [Image.open(os.path.join(out, "%s.%s@3x.png" % (s["id"], r))).convert("RGB") for r in which]
-            compare3(a3, which).save(os.path.join(out, "%s.compare3@3x.png" % s["id"]))
-            rec["files"]["compare3"] = "%s.compare3@3x.png" % s["id"]
+            a3 = [Image.open(os.path.join(out, "3x", "%s.%s.png" % (s["id"], r))).convert("RGB") for r in which]
+            compare3(a3, which).save(os.path.join(out, "3x", "%s.compare3.png" % s["id"]))
+            rec["files"]["compare3"] = "3x/%s.compare3.png" % s["id"]
         cat.append(rec)
         print("%-18s %s" % (s["id"], " ".join("%s:%s" % (r, "ok" if rec["settled"][r] else "NOT SETTLED") for r in which)), flush=True)
     idx = os.path.join(out, "index.json")
@@ -161,11 +164,11 @@ def main():
         f.write("# Reference screenshots - set `%s` (commit `%s`)\n\n" % (a.set, commit))
         if three:
             f.write("Native 160x144 PNGs (`<id>.<rom>.png`: jp = original, en = this patch, ref = other patch), "
-                    "JP|EN|REF 3x nearest (`compare3@3x`).\n\n")
+                    "JP|EN|REF 3x nearest (`3x/<id>.compare3.png`).\n\n")
             f.write("| id | category | description | settled | JP | EN | REF | compare | tokens |\n"
                     "|---|---|---|---|---|---|---|---|---|\n")
         else:
-            f.write("Native 160x144 PNGs (`<id>.<rom>.png`), 3x nearest (`@3x`), JP|EN (`compare@3x`).\n\n")
+            f.write("Native 160x144 PNGs (`<id>.<rom>.png`); 3x nearest in `3x/`: JP|EN (`3x/<id>.compare.png`).\n\n")
             f.write("| id | category | description | settled | tokens |\n|---|---|---|---|---|\n")
         for r in cat:
             settled = ", ".join("%s:%s" % (k, "yes" if v else "no") for k, v in r["settled"].items())

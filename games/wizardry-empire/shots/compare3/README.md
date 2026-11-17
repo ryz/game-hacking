@@ -4,8 +4,8 @@ Three-way visual comparison of every curated shot in `tools/routes/shots.txt` (3
 our English build and the other (reference) fan translation, played with the same inputs from power-on and
 captured on the same frame.
 
-- `<id>.compare3@3x.png`: JP | EN | REF left to right, 3x nearest neighbour, labelled "Original (JP)",
-  "This patch", "Other patch"; same 12 px gap and background as the two-way `compare@3x` images.
+- `<id>3x/.compare3.png`: JP | EN | REF left to right, 3x nearest neighbour, labelled "Original (JP)",
+  "This patch", "Other patch"; same 12 px gap and background as the two-way `3x/<id>.compare.png` images.
 - `<id>.jp.png`, `<id>.en.png`, `<id>.ref.png`: native 160x144 framebuffer (CGB 5->8 bit, no correction).
 - `index.md` / `index.json`: catalogue (tokens, settled per ROM, ROM SHA-1s, commit).
 

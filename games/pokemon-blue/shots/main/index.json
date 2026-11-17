@@ -18,7 +18,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "boot_gamefreak.png",
-   "file_3x": "boot_gamefreak@3x.png",
+   "file_3x": "3x/boot_gamefreak.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -31,7 +31,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "intro_fight.png",
-   "file_3x": "intro_fight@3x.png",
+   "file_3x": "3x/intro_fight.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -44,7 +44,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "title_screen.png",
-   "file_3x": "title_screen@3x.png",
+   "file_3x": "3x/title_screen.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -57,7 +57,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "menu_main.png",
-   "file_3x": "menu_main@3x.png",
+   "file_3x": "3x/menu_main.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -70,7 +70,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "oak_intro.png",
-   "file_3x": "oak_intro@3x.png",
+   "file_3x": "3x/oak_intro.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -83,7 +83,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "oak_nidorino.png",
-   "file_3x": "oak_nidorino@3x.png",
+   "file_3x": "3x/oak_nidorino.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -96,7 +96,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "oak_name_menu.png",
-   "file_3x": "oak_name_menu@3x.png",
+   "file_3x": "3x/oak_name_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -109,7 +109,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "naming_player.png",
-   "file_3x": "naming_player@3x.png",
+   "file_3x": "3x/naming_player.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -122,7 +122,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "oak_rival_intro.png",
-   "file_3x": "oak_rival_intro@3x.png",
+   "file_3x": "3x/oak_rival_intro.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -135,7 +135,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "naming_rival.png",
-   "file_3x": "naming_rival@3x.png",
+   "file_3x": "3x/naming_rival.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -148,7 +148,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "start_room.png",
-   "file_3x": "start_room@3x.png",
+   "file_3x": "3x/start_room.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -161,7 +161,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pallet_town.png",
-   "file_3x": "pallet_town@3x.png",
+   "file_3x": "3x/pallet_town.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -174,7 +174,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "oak_wait.png",
-   "file_3x": "oak_wait@3x.png",
+   "file_3x": "3x/oak_wait.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -187,7 +187,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "starter_preview.png",
-   "file_3x": "starter_preview@3x.png",
+   "file_3x": "3x/starter_preview.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -200,7 +200,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "oak_lab_choose.png",
-   "file_3x": "oak_lab_choose@3x.png",
+   "file_3x": "3x/oak_lab_choose.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -213,7 +213,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "starter_received.png",
-   "file_3x": "starter_received@3x.png",
+   "file_3x": "3x/starter_received.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -226,7 +226,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_rival_first.png",
-   "file_3x": "battle_rival_first@3x.png",
+   "file_3x": "3x/battle_rival_first.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -239,7 +239,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_menu.png",
-   "file_3x": "battle_menu@3x.png",
+   "file_3x": "3x/battle_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -252,7 +252,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_moves.png",
-   "file_3x": "battle_moves@3x.png",
+   "file_3x": "3x/battle_moves.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -265,7 +265,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_levelup.png",
-   "file_3x": "battle_levelup@3x.png",
+   "file_3x": "3x/battle_levelup.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -278,7 +278,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_rival_defeated.png",
-   "file_3x": "battle_rival_defeated@3x.png",
+   "file_3x": "3x/battle_rival_defeated.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -291,7 +291,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "route1_grass.png",
-   "file_3x": "route1_grass@3x.png",
+   "file_3x": "3x/route1_grass.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -304,7 +304,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_wild.png",
-   "file_3x": "battle_wild@3x.png",
+   "file_3x": "3x/battle_wild.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -317,7 +317,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_ball_throw.png",
-   "file_3x": "battle_ball_throw@3x.png",
+   "file_3x": "3x/battle_ball_throw.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -330,7 +330,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_catch_fail.png",
-   "file_3x": "battle_catch_fail@3x.png",
+   "file_3x": "3x/battle_catch_fail.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -343,7 +343,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_catch.png",
-   "file_3x": "battle_catch@3x.png",
+   "file_3x": "3x/battle_catch.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -356,7 +356,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokedex_entry.png",
-   "file_3x": "pokedex_entry@3x.png",
+   "file_3x": "3x/pokedex_entry.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -369,7 +369,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "start_menu.png",
-   "file_3x": "start_menu@3x.png",
+   "file_3x": "3x/start_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -382,7 +382,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokedex_list.png",
-   "file_3x": "pokedex_list@3x.png",
+   "file_3x": "3x/pokedex_list.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -395,7 +395,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokedex_area.png",
-   "file_3x": "pokedex_area@3x.png",
+   "file_3x": "3x/pokedex_area.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -408,7 +408,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "party_screen.png",
-   "file_3x": "party_screen@3x.png",
+   "file_3x": "3x/party_screen.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -421,7 +421,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "party_submenu.png",
-   "file_3x": "party_submenu@3x.png",
+   "file_3x": "3x/party_submenu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -434,7 +434,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "summary_stats.png",
-   "file_3x": "summary_stats@3x.png",
+   "file_3x": "3x/summary_stats.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -447,7 +447,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "summary_moves.png",
-   "file_3x": "summary_moves@3x.png",
+   "file_3x": "3x/summary_moves.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -460,7 +460,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "trainer_card.png",
-   "file_3x": "trainer_card@3x.png",
+   "file_3x": "3x/trainer_card.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -473,7 +473,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "bag_items.png",
-   "file_3x": "bag_items@3x.png",
+   "file_3x": "3x/bag_items.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -486,7 +486,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "town_map.png",
-   "file_3x": "town_map@3x.png",
+   "file_3x": "3x/town_map.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -499,7 +499,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "elite_four_room.png",
-   "file_3x": "elite_four_room@3x.png",
+   "file_3x": "3x/elite_four_room.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -512,7 +512,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "lorelei_talk.png",
-   "file_3x": "lorelei_talk@3x.png",
+   "file_3x": "3x/lorelei_talk.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -525,7 +525,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "elite_four.png",
-   "file_3x": "elite_four@3x.png",
+   "file_3x": "3x/elite_four.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -538,7 +538,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_attack.png",
-   "file_3x": "battle_attack@3x.png",
+   "file_3x": "3x/battle_attack.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -551,7 +551,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "battle_super_effective.png",
-   "file_3x": "battle_super_effective@3x.png",
+   "file_3x": "3x/battle_super_effective.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -564,7 +564,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "boss_defeated.png",
-   "file_3x": "boss_defeated@3x.png",
+   "file_3x": "3x/boss_defeated.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -577,7 +577,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "blackout.png",
-   "file_3x": "blackout@3x.png",
+   "file_3x": "3x/blackout.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -590,7 +590,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "mart_buy.png",
-   "file_3x": "mart_buy@3x.png",
+   "file_3x": "3x/mart_buy.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -603,7 +603,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokecenter_nurse.png",
-   "file_3x": "pokecenter_nurse@3x.png",
+   "file_3x": "3x/pokecenter_nurse.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -616,7 +616,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "save_prompt.png",
-   "file_3x": "save_prompt@3x.png",
+   "file_3x": "3x/save_prompt.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -629,7 +629,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "options.png",
-   "file_3x": "options@3x.png",
+   "file_3x": "3x/options.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -642,7 +642,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokecenter_heal.png",
-   "file_3x": "pokecenter_heal@3x.png",
+   "file_3x": "3x/pokecenter_heal.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -655,7 +655,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "cable_club.png",
-   "file_3x": "cable_club@3x.png",
+   "file_3x": "3x/cable_club.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -668,7 +668,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pewter_gym.png",
-   "file_3x": "pewter_gym@3x.png",
+   "file_3x": "3x/pewter_gym.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -681,7 +681,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "brock_talk.png",
-   "file_3x": "brock_talk@3x.png",
+   "file_3x": "3x/brock_talk.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -694,7 +694,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "gym_brock.png",
-   "file_3x": "gym_brock@3x.png",
+   "file_3x": "3x/gym_brock.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -707,7 +707,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "learn_move.png",
-   "file_3x": "learn_move@3x.png",
+   "file_3x": "3x/learn_move.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -720,7 +720,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "learn_move_forget.png",
-   "file_3x": "learn_move_forget@3x.png",
+   "file_3x": "3x/learn_move_forget.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -733,7 +733,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "badge_received.png",
-   "file_3x": "badge_received@3x.png",
+   "file_3x": "3x/badge_received.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -746,7 +746,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "evolution_start.png",
-   "file_3x": "evolution_start@3x.png",
+   "file_3x": "3x/evolution_start.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -759,7 +759,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "evolution.png",
-   "file_3x": "evolution@3x.png",
+   "file_3x": "3x/evolution.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -772,7 +772,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "indigo_plateau.png",
-   "file_3x": "indigo_plateau@3x.png",
+   "file_3x": "3x/indigo_plateau.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -785,7 +785,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "fly_map.png",
-   "file_3x": "fly_map@3x.png",
+   "file_3x": "3x/fly_map.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -798,7 +798,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "surfing.png",
-   "file_3x": "surfing@3x.png",
+   "file_3x": "3x/surfing.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -811,7 +811,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "fishing.png",
-   "file_3x": "fishing@3x.png",
+   "file_3x": "3x/fishing.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -824,7 +824,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "fishing_battle.png",
-   "file_3x": "fishing_battle@3x.png",
+   "file_3x": "3x/fishing_battle.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -837,7 +837,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "bicycle.png",
-   "file_3x": "bicycle@3x.png",
+   "file_3x": "3x/bicycle.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -850,7 +850,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "cut_tree.png",
-   "file_3x": "cut_tree@3x.png",
+   "file_3x": "3x/cut_tree.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -863,7 +863,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "viridian_forest.png",
-   "file_3x": "viridian_forest@3x.png",
+   "file_3x": "3x/viridian_forest.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -876,7 +876,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "mt_moon.png",
-   "file_3x": "mt_moon@3x.png",
+   "file_3x": "3x/mt_moon.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -889,7 +889,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "safari_gate.png",
-   "file_3x": "safari_gate@3x.png",
+   "file_3x": "3x/safari_gate.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -902,7 +902,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "safari_zone.png",
-   "file_3x": "safari_zone@3x.png",
+   "file_3x": "3x/safari_zone.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -915,7 +915,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "safari_battle.png",
-   "file_3x": "safari_battle@3x.png",
+   "file_3x": "3x/safari_battle.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -928,7 +928,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "safari_rock.png",
-   "file_3x": "safari_rock@3x.png",
+   "file_3x": "3x/safari_rock.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -941,7 +941,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "game_corner.png",
-   "file_3x": "game_corner@3x.png",
+   "file_3x": "3x/game_corner.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -954,7 +954,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "slots_bet.png",
-   "file_3x": "slots_bet@3x.png",
+   "file_3x": "3x/slots_bet.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -967,7 +967,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "slots_spin.png",
-   "file_3x": "slots_spin@3x.png",
+   "file_3x": "3x/slots_spin.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -980,7 +980,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "slots_win.png",
-   "file_3x": "slots_win@3x.png",
+   "file_3x": "3x/slots_win.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -993,7 +993,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "ss_anne.png",
-   "file_3x": "ss_anne@3x.png",
+   "file_3x": "3x/ss_anne.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1006,7 +1006,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon_tower.png",
-   "file_3x": "pokemon_tower@3x.png",
+   "file_3x": "3x/pokemon_tower.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1019,7 +1019,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "tower_ghost.png",
-   "file_3x": "tower_ghost@3x.png",
+   "file_3x": "3x/tower_ghost.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1032,7 +1032,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "silph_co.png",
-   "file_3x": "silph_co@3x.png",
+   "file_3x": "3x/silph_co.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1045,7 +1045,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "champion_room.png",
-   "file_3x": "champion_room@3x.png",
+   "file_3x": "3x/champion_room.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1058,7 +1058,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "champion.png",
-   "file_3x": "champion@3x.png",
+   "file_3x": "3x/champion.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1071,7 +1071,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "champion_defeated.png",
-   "file_3x": "champion_defeated@3x.png",
+   "file_3x": "3x/champion_defeated.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1084,7 +1084,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "oak_congrats.png",
-   "file_3x": "oak_congrats@3x.png",
+   "file_3x": "3x/oak_congrats.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1097,7 +1097,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "hall_of_fame_room.png",
-   "file_3x": "hall_of_fame_room@3x.png",
+   "file_3x": "3x/hall_of_fame_room.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1110,7 +1110,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "hall_of_fame.png",
-   "file_3x": "hall_of_fame@3x.png",
+   "file_3x": "3x/hall_of_fame.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1123,7 +1123,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "hall_of_fame_trainer.png",
-   "file_3x": "hall_of_fame_trainer@3x.png",
+   "file_3x": "3x/hall_of_fame_trainer.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1136,7 +1136,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "dex_rating.png",
-   "file_3x": "dex_rating@3x.png",
+   "file_3x": "3x/dex_rating.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1149,7 +1149,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "credits.png",
-   "file_3x": "credits@3x.png",
+   "file_3x": "3x/credits.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1162,7 +1162,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "credits_programmers.png",
-   "file_3x": "credits_programmers@3x.png",
+   "file_3x": "3x/credits_programmers.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1175,7 +1175,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "the_end.png",
-   "file_3x": "the_end@3x.png",
+   "file_3x": "3x/the_end.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1188,7 +1188,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pc_menu.png",
-   "file_3x": "pc_menu@3x.png",
+   "file_3x": "3x/pc_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -1201,7 +1201,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pc_items.png",
-   "file_3x": "pc_items@3x.png",
+   "file_3x": "3x/pc_items.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   }

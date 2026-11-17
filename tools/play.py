@@ -9,14 +9,14 @@ is reproducible from power-on (states are a cache, routes are the record).
   python3 tools/play.py undo                 back to before the last do (one level)
   python3 tools/play.py shot [PATH]          screenshot only (default work/play/NAME/last.png, 3x)
   python3 tools/play.py snap ID CATEGORY "caption" [--set SET]
-                                             capture the current frame for the database: native PNG + @3x into
+                                             capture the current frame for the database: native PNG (+ 3x copy in 3x/) into
                                              work/shots/GAME/SET/ (default set: main), its line (with the full
                                              route) appended to that set's shots.txt and index.json
   python3 tools/play.py recaption ID "caption" [--set SET]    change a shot's caption (no replay)
   python3 tools/play.py unsnap ID [--set SET]                 remove a shot from the working set
   python3 tools/play.py record ID CATEGORY FRAMES "caption" [--every K] [--poster P] [--set SET]
                                              clip: record FRAMES frames from now (every Kth kept, default 2) as
-                                             <id>.gif + @3x.gif (poster <id>.png) into the set, route + `rec:N:K`
+                                             <id>.gif (+ 3x/<id>.gif; poster <id>.png) into the set, route + `rec:N:K`
                                              in its shots.txt; the session moves on by FRAMES frames; prints
                                              work/play/NAME/clip_ID.png (every kept frame, numbered) - pick a
                                              poster still with --poster P (kept frame number; -1 = last)
@@ -197,7 +197,7 @@ class Session:
         before = open(native, "rb").read() if os.path.exists(native) else None
         self.emu.screen_png(native)
         unchanged = before is not None and _pixels(before) == _pixels(open(native, "rb").read())
-        self.E.enlarge(native, os.path.join(d, "%s@3x.png" % stem))
+        self.E.enlarge(native, self.E.x3(native))
         a = self.emu.screen()
         self.emu.save_state(os.path.join(self.dir, "snap.state"))
         self.emu.frames(self.game.settle_step)

@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-17 - 3x copies in a subfolder
+- Owner's request: originals in the set folder, 3x copies in a `3x/` subfolder with the same file names
+  (`title_screen.png` and `3x/title_screen.png`; also clips, `steps.gif`, `full.gif`, Wizardry's compare images
+  `3x/<id>.compare.png`). Tools: `emu.x3()`, shoot.py, play.py, Wizardry's `translation/tools/shoot.py`
+  (publishes only the compare images into `3x/`). `index.json` `file_3x` is `3x/<name>`.
+- Migration: 404 published files moved with `git mv` across all 8 sets, catalogues rewritten (links checked: 0
+  broken), working sets in `work/` migrated the same way. Sample shots re-verified (Dragon Quest 2/2, SMT
+  republished with no `@3x` left). 18 shared tests and 14 Wizardry tests pass.
+
 ## 2026-11-17 - Shin Megami Tensei main set, run 2
 - game-capture: 22 new shots (56): second dream, heroine naming (cubi), first battle and commands, damage, enemy
   spell, result, level-up, failed escape, death, game over, full-moon refusal, negotiation steps, automap.

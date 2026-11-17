@@ -132,7 +132,7 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 ### game-capture
 - File: `skills/game-capture/skill.md`
 - Use when: a game has a playbook and needs (more) database screenshots.
-- Main output: `games/<slug>/shots/<set>/` (native + @3x PNGs, index.json/md, sheet.png, shots.txt),
+- Main output: `games/<slug>/shots/<set>/` (native PNGs, 3x copies in `3x/`, index.json/md, sheet.png, shots.txt),
   verified with `shoot.py --verify`; playbook and `design/` reference (rules, numbers, findings) written while
   playing; milestone saves in `games/<slug>/saves/` for the owner.
 - Also load: `docs/emulator/README.md`, `docs/capture-guide.md`, the game's playbook.

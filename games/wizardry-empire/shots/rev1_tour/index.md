@@ -1,6 +1,6 @@
 # Reference screenshots - set `rev1_tour` (commit `5ff5c57`)
 
-Native 160x144 PNGs (`<id>.<rom>.png`), 3x nearest (`@3x`), JP|EN (`compare@3x`).
+Native 160x144 PNGs (`<id>.<rom>.png`), 3x nearest in `3x/`: JP|EN (`3x/<id>.compare.png`).
 
 | id | category | description | settled | tokens |
 |---|---|---|---|---|

@@ -1,4 +1,4 @@
-"""Replay a shot list and build the database set: pixel-exact PNGs, @3x copies, catalogue, contact sheet.
+"""Replay a shot list and build the database set: pixel-exact PNGs, 3x copies (in 3x/), catalogue, contact sheet.
 
   python3 tools/shoot.py GAME [SET]                 replay work/shots/GAME/SET/shots.txt (default set: main;
                                                     falls back to the plan games/GAME/shots.txt)
@@ -15,12 +15,12 @@
 Shot list lines: `id | category | caption | route` (route: tools/emu.py tokens; may start with @checkpoint).
 A route is played exactly, then `settle` is added unless it already ends with `settle` or `!`.
 Outputs per shot: <id>.png (native, framebuffer as is: no filter, no colour correction, no scaling),
-<id>@3x.png (nearest neighbour). Per set: index.json, index.md, sheet.png (all shots, captioned).
+3x/<id>.png (nearest neighbour, same name in the 3x/ subfolder). Per set: index.json, index.md, sheet.png (all shots, captioned).
 Clips: a route ending in `rec:N[:K[:P]]` records N frames (every Kth kept) from the end of the route: <id>.gif and
-<id>@3x.gif at game speed, <id>.png / @3x = the poster (kept frame P, default the first). --verify compares every clip frame.
+3x/<id>.gif at game speed, <id>.png (and 3x/) = the poster (kept frame P, default the first). --verify compares every clip frame.
 Sequences: a set named `seq-<action>` is an ordered action (shots in list order = steps): it also gets
-strip.png (the steps left to right, numbered and captioned), steps.gif / steps@3x.gif (one still per 1.5 s) and
-full.gif / full@3x.gif (all steps stitched in order: stills held 1.5 s, clips played in full at game speed).
+strip.png (the steps left to right, numbered and captioned), steps.gif (and 3x/steps.gif) (one still per 1.5 s) and
+full.gif (and 3x/full.gif) (all steps stitched in order: stills held 1.5 s, clips played in full at game speed).
 """
 import argparse, datetime, hashlib, json, os, shutil, sys, tempfile
 
@@ -51,7 +51,7 @@ def index_update(game, d, entry, rom_sha1=None):
     entry = dict(entry)
     pfx = prefix(os.path.basename(d))
     entry.setdefault("file", pfx + entry["id"] + ".png")
-    entry.setdefault("file_3x", pfx + entry["id"] + "@3x.png")
+    entry.setdefault("file_3x", E.X3 + "/" + pfx + entry["id"] + ".png")
     entry["rom_sha1"] = rom_sha1 or m.get("sha1")
     entry["captured"] = datetime.date.today().isoformat()
     shots[entry["id"]] = entry
@@ -90,7 +90,7 @@ def sequence_files(idx, d):
     st.save(os.path.join(d, pfx + "strip.png"))
     paths = [os.path.join(d, s["file"]) for s in shots]
     E.write_gif(paths, os.path.join(d, pfx + "steps.gif"), hold_ms=1500)
-    E.write_gif(paths, os.path.join(d, pfx + "steps@3x.gif"), scale=3, hold_ms=1500)
+    E.write_gif(paths, E.x3(os.path.join(d, pfx + "steps.gif")), scale=3, hold_ms=1500)
     full_gif(shots, d)
 
 
@@ -98,7 +98,7 @@ STILL_MS, FIRST_MS, LAST_MS = 1500, 2000, 3000   # stitched GIF: how long stills
 
 
 def full_gif(shots, d):
-    """full.gif / full@3x.gif: every step stitched in order - stills held STILL_MS, clips played in full at
+    """full.gif / 3x/full.gif: every step stitched in order - stills held STILL_MS, clips played in full at
     game speed (their own frames and delays)."""
     from PIL import Image, ImageSequence
     frames, durs = [], []
@@ -114,13 +114,14 @@ def full_gif(shots, d):
             durs.append(FIRST_MS if i == 0 else LAST_MS if i == len(shots) - 1 else STILL_MS)
     pfx = prefix(os.path.basename(d))
     E.write_gif(frames, os.path.join(d, pfx + "full.gif"), durations=durs)
-    E.write_gif(frames, os.path.join(d, pfx + "full@3x.gif"), scale=3, durations=durs)
+    E.write_gif(frames, E.x3(os.path.join(d, pfx + "full.gif")), scale=3, durations=durs)
 
 
 def write_md(idx, d):
     g = idx["game"]
     out = ["# %s - shots: %s" % (g["title"], idx["set"]), "",
-           "Platform %s, model %s, ROM SHA-1 `%s`. %d shots. Contact sheet: [{p}sheet.png]({p}sheet.png).".format(p=prefix(idx["set"])) % (
+           "Platform %s, model %s, ROM SHA-1 `%s`. %d shots. Contact sheet: [{p}sheet.png]({p}sheet.png). Originals "
+           "here, 3x nearest-neighbour copies with the same names in `3x/`.".format(p=prefix(idx["set"])) % (
                g["platform"], g["model"], g["sha1"], len(idx["shots"])), "",
            "| id | category | caption | settled | image |", "|---|---|---|---|---|"]
     for s in idx["shots"]:
@@ -129,9 +130,9 @@ def write_md(idx, d):
             s["id"], s["category"], s.get("caption", ""), "yes" if s.get("settled") else "clip" if clip else "no",
             s["file"], s["file_3x"], clip))
     if idx["set"].startswith("seq-"):
-        out += ["", ("Sequence: [{p}full.gif]({p}full.gif) ([3x]({p}full@3x.gif)) = all steps stitched (stills "
+        out += ["", ("Sequence: [{p}full.gif]({p}full.gif) ([3x]({x}/{p}full.gif)) = all steps stitched (stills "
                      "held, clips played), [{p}strip.png]({p}strip.png), [{p}steps.gif]({p}steps.gif) "
-                     "([3x]({p}steps@3x.gif)) = stills only.").format(p=prefix(idx["set"]))]
+                     "([3x]({x}/{p}steps.gif)) = stills only.").format(p=prefix(idx["set"]), x=E.X3)]
     out += ["", "Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.", ""]
     open(os.path.join(d, "index.md"), "w", encoding="utf-8").write("\n".join(out))
 
@@ -158,22 +159,22 @@ def shoot_one(game, s, d, model, pfx=""):
     e.frames(game.settle_step)
     settled = a == e.screen()
     e.close()
-    E.enlarge(native, os.path.join(d, pfx + s["id"] + "@3x.png"))
+    E.enlarge(native, E.x3(native))
     return settled
 
 
 def clip_files(game, e, sid, d, n, every, poster=0, close=False):
-    """Record a clip from the emulator's current state into d: <id>.gif, <id>@3x.gif, poster <id>.png/@3x
+    """Record a clip from the emulator's current state into d: <id>.gif, 3x/<id>.gif, poster <id>.png and 3x/
     (kept frame number `poster`; 0 = first, -1 = last)."""
     frames = E.record(e, game, n, every)
     if close:
         e.close()
     E.write_gif(frames, os.path.join(d, sid + ".gif"), every)
-    E.write_gif(frames, os.path.join(d, sid + "@3x.gif"), every, scale=3)
+    E.write_gif(frames, E.x3(os.path.join(d, sid + ".gif")), every, scale=3)
     open(os.path.join(d, sid + ".png"), "wb").write(frames[poster])
-    E.enlarge(os.path.join(d, sid + ".png"), os.path.join(d, sid + "@3x.png"))
+    E.enlarge(os.path.join(d, sid + ".png"), E.x3(os.path.join(d, sid + ".png")))
     return {"frames": n, "every": every, "kept": len(frames), "poster": poster, "seconds": round(n / E.FPS, 2),
-            "file": sid + ".gif", "file_3x": sid + "@3x.gif", "_frames": frames}
+            "file": sid + ".gif", "file_3x": E.X3 + "/" + sid + ".gif", "_frames": frames}
 
 
 def _gif_frames(path):
@@ -272,9 +273,11 @@ def main():
         idx = json.load(open(os.path.join(d, "index.json"), encoding="utf-8"))
         for s in idx["shots"]:
             for f in (s["file"], s["file_3x"]) + ((s["clip"]["file"], s["clip"]["file_3x"]) if s.get("clip") else ()):
+                os.makedirs(os.path.dirname(os.path.join(pub, f)), exist_ok=True)
                 shutil.copyfile(os.path.join(d, f), os.path.join(pub, f))
         for f in ["index.json", "index.md", "shots.txt"] + [pfx + f for f in (
-                "sheet.png", "strip.png", "steps.gif", "steps@3x.gif", "full.gif", "full@3x.gif")]:
+                "sheet.png", "strip.png", "steps.gif", "full.gif")] + [E.X3 + "/" + pfx + f for f in (
+                "steps.gif", "full.gif")]:
             if os.path.exists(os.path.join(d, f)):
                 shutil.copyfile(os.path.join(d, f), os.path.join(pub, f))
         print("published: %s (%d shots)" % (os.path.relpath(pub, ROOT), len(idx["shots"])))

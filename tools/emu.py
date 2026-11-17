@@ -417,6 +417,7 @@ def record(emu, game, n, every=2):
 def write_gif(frames, path, every=2, scale=1, hold_ms=None, durations=None):
     """Animated GIF from PNG bytes, nearest-neighbour scaled, at game speed (or hold_ms per frame), looping.
     GIF delays are in 10 ms steps: the per-frame delay alternates so the average matches the game's timing."""
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
     from PIL import Image
     ims = []
     for f in frames:
@@ -440,8 +441,17 @@ def write_gif(frames, path, every=2, scale=1, hold_ms=None, durations=None):
 
 
 # ------------------------------------------------------------------ images
+X3 = "3x"        # subfolder of a set for the 3x copies: same file names as the originals
+
+
+def x3(path):
+    """The 3x copy of a set file: <set>/3x/<same name> (originals stay in the set folder)."""
+    return os.path.join(os.path.dirname(path), X3, os.path.basename(path))
+
+
 def enlarge(src, dst, scale=3):
     from PIL import Image
+    os.makedirs(os.path.dirname(dst) or ".", exist_ok=True)
     im = Image.open(src).convert("RGB")
     im.resize((im.width * scale, im.height * scale), Image.NEAREST).save(dst)
 

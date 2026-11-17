@@ -174,7 +174,11 @@ def test_pipeline(selftest):
     s = idx["shots"][0]
     assert s["id"] == "a_shot" and s["route"] == "@title,right:20,a,settle" and s["rom_sha1"] == meta["sha1"]
     from PIL import Image
-    assert Image.open(os.path.join(ROOT, "games", SLUG, "shots", "main", "a_shot.png")).size == (160, 144)
+    pub = os.path.join(ROOT, "games", SLUG, "shots", "main")
+    assert Image.open(os.path.join(pub, "a_shot.png")).size == (160, 144)
+    assert Image.open(os.path.join(pub, "3x", "a_shot.png")).size == (480, 432)    # same name, 3x/ subfolder
+    assert s["file_3x"] == "3x/a_shot.png" and not [f for f in os.listdir(pub) if "@3x" in f]
+    assert "(3x/a_shot.png)" in open(os.path.join(pub, "index.md")).read()
 
 
 def test_cheat_formats():
@@ -287,9 +291,10 @@ def test_clip_and_sequence(selftest):
     assert "3/3 reproduce" in run("tools/shoot.py", SLUG, "seq-test", "--verify")
     run("tools/shoot.py", SLUG, "seq-test", "--publish-only")
     pub = os.path.join(ROOT, "games", SLUG, "shots", "seq-test")
-    for f in ("s01_start.png", "s02_clip.gif", "s02_clip@3x.gif", "s02_clip.png", "s03_after@3x.png", "strip.png",
-              "steps.gif", "steps@3x.gif", "full.gif", "full@3x.gif", "sheet.png"):
-        assert os.path.exists(os.path.join(pub, "seq-test_" + f)), f          # sequence files carry the set name
+    for f in ("s01_start.png", "s02_clip.gif", "3x/s02_clip.gif", "s02_clip.png", "3x/s03_after.png", "strip.png",
+              "steps.gif", "3x/steps.gif", "full.gif", "3x/full.gif", "sheet.png"):
+        sub, name = os.path.split(f)                                        # 3x copies in the 3x/ subfolder
+        assert os.path.exists(os.path.join(pub, sub, "seq-test_" + name)), f  # sequence files carry the set name
     assert not [f for f in os.listdir(pub) if f.endswith((".png", ".gif")) and not f.startswith("seq-test_")]
     idx = json.load(open(os.path.join(pub, "index.json")))
     clip = [s for s in idx["shots"] if s["id"] == "s02_clip"][0]["clip"]

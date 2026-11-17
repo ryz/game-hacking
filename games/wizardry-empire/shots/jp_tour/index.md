@@ -1,6 +1,6 @@
 # Reference screenshots - set `jp_tour` (commit `1737042`)
 
-Native 160x144 PNGs (`<id>.<rom>.png`), 3x nearest (`@3x`), JP|EN (`compare@3x`).
+Native 160x144 PNGs (`<id>.<rom>.png`), 3x nearest in `3x/`: JP|EN (`3x/<id>.compare.png`).
 
 | id | category | description | settled | tokens |
 |---|---|---|---|---|
@@ -128,7 +128,7 @@ Native 160x144 PNGs (`<id>.<rom>.png`), 3x nearest (`@3x`), JP|EN (`compare@3x`)
 
 ## State-based shots (`states/`)
 
-Not reproducible from power-on (random encounter / chest), so not in the shot list. Original ROM only; native 160x144 `states/<id>.jp.png` + `states/<id>.jp@3x.png`. Start state (gitignored, under `work/`) then the tokens (tools/emu.py syntax), then wait for a stable frame (same rule as shoot.py); a trailing `!` means captured right after the inputs (animated screen).
+Not reproducible from power-on (random encounter / chest), so not in the shot list. Original ROM only; native 160x144 `states/<id>.jp.png` + `states/<id>3x/.jp.png`. Start state (gitignored, under `work/`) then the tokens (tools/emu.py syntax), then wait for a stable frame (same rule as shoot.py); a trailing `!` means captured right after the inputs (animated screen).
 The states were made from power-on: `boot,PARTY,left*3,a,w60,a,w150` (camp) -> `b,w60` (mzbase) -> `work/triage/battle1/explore.py` seed 3 (encounter b1) -> fight -> chest.
 
 | id | category | description | settled | state | tokens |

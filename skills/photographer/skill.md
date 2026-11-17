@@ -19,17 +19,17 @@ screenshot sets (owner's rule, 2026-11-11); you edit nothing else in the repo.
 
 ## What "pixel-perfect" means here
 - Native resolution 160x144, straight from the emulator framebuffer: CGB colours expanded 5->8 bit, no colour
-  correction, no filtering, no scaling. Enlargements only by integer nearest-neighbour (`@3x`).
+  correction, no filtering, no scaling. Enlargements only by integer nearest-neighbour (the `3x/` subfolder).
 - Captured on a stable frame: `tools/shoot.py` waits until two frames 10 apart are identical (max 300 frames).
   Text must have finished typing; no fades. Screens with animation (cursor blink, town sprites) never settle:
   they are still captured and marked `settled: no` - check those by eye and retake at another frame if a
   cursor or effect hides text.
-- Same inputs for both ROMs, so `compare@3x` shows the same moment JP | EN.
+- Same inputs for both ROMs, so `3x/<id>.compare.png` shows the same moment JP | EN.
 
 ## Tools
 - `python3 tools/shoot.py SET [--list FILE] [--only id,id] [--rom en|jp|both|ref]` (`ref` = the reference fan patch on
   Rev 1: `tools/bps.py rom/reference_en.bps rom/wizardry_empire_j.gbc rom/wizardry_empire_ref.gbc`) -> `work/shots/SET/`:
-  `<id>.<rom>.png` (native), `<id>.<rom>@3x.png`, `<id>.compare@3x.png`, `index.md` + `index.json`.
+  `<id>.<rom>.png` (native), `3x/<id>.<rom>.png`, `3x/<id>.compare.png`, `index.md` + `index.json`.
 - Shot list format (`tools/routes/shots.txt` is the curated list): `id | category | description | tokens`.
   Tokens are `tools/emu.py` tokens: `pow` (power on only), `boot` (to the town), `PARTY` (form the 6-member
   party), keys (`a b start select up down left right`, `KEY*n`, `KEY+KEY`), `wN` (wait N frames), `poke` (all
@@ -46,7 +46,7 @@ screenshot sets (owner's rule, 2026-11-11); you edit nothing else in the repo.
 1. Read the dispatch: the set name and which areas to cover (or "everything reachable").
 2. Run the curated list first if asked (`shoot.py SET`), then extend: write your own list
    `work/shots/SET/shots.txt` for new screens (ids: lowercase `area_thing`, stable), run it with `--list`.
-3. Look at every `compare@3x` you made: is it the screen you meant, is text complete, nothing mid-fade?
+3. Look at every `3x/<id>.compare.png` you made: is it the screen you meant, is text complete, nothing mid-fade?
    Retake with different waits if not.
 4. Report.
 
@@ -55,7 +55,7 @@ take them from a savestate with no settle wait. Museum monster room: the `poke` 
 
 ## Guardrails
 - Work in `work/shots/SET/` (gitignored). When the set is checked, publish it with `--publish` (copies native
-  PNGs, `compare@3x` and the index to `../shots/SET/`) and commit only that folder:
+  PNGs, the `3x/` compare images and the index to `../shots/SET/`) and commit only that folder:
   `git add ../shots/SET && git commit -m "Shots: SET - <what it covers>"` (end the message with the
   attribution lines from the dispatch). Do not push; the coordinator pushes.
 - Commit only screenshots and their index: never ROMs, savestates or save files.

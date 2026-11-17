@@ -16,7 +16,7 @@ side-effect-free memory access and the program counter. One process runs one gam
 Korea; 60 Hz) or `pal` (Europe, Australia; 50 Hz). Override with `--model`.
 
 ## Screenshots
-256x224, the raw frame, no filter; `@3x` is nearest neighbour.
+256x224, the raw frame, no filter; the 3x copy (in the set's `3x/` folder) is nearest neighbour.
 - The core always sends 239 lines; a normal picture is lines 7-230 with black above and below, and that black
   margin is cut off. A game that really uses the 239-line overscan mode has picture in the margin and keeps the
   full 256x239 frame, so a set can contain both sizes.

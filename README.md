@@ -42,7 +42,8 @@ ROM --tools/intake.py--> games/<slug>/ --scout--> playbook + checkpoints --captu
    replays from power-on, publishes the set, extends the design reference.
 4. **Review:** the coordinator reruns the verification, looks at the contact sheet and commits.
 
-A set is `<id>.png` (native resolution, raw framebuffer), `<id>@3x.png`, `index.json` (identity and per shot:
+A set is `<id>.png` (native resolution, raw framebuffer), `3x/<id>.png` (the same image enlarged 3x,
+nearest neighbour, same name in a subfolder), `index.json` (identity and per shot:
 category, caption, route, model, ROM SHA-1, date), `index.md`, `sheet.png` and the routes in `shots.txt`.
 
 ## Quick start

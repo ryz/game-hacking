@@ -18,7 +18,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "seq-fly_01_vermilion.png",
-   "file_3x": "seq-fly_01_vermilion@3x.png",
+   "file_3x": "3x/seq-fly_01_vermilion.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -31,7 +31,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "seq-fly_02_start_menu.png",
-   "file_3x": "seq-fly_02_start_menu@3x.png",
+   "file_3x": "3x/seq-fly_02_start_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -44,7 +44,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "seq-fly_03_party.png",
-   "file_3x": "seq-fly_03_party@3x.png",
+   "file_3x": "3x/seq-fly_03_party.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -57,7 +57,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "seq-fly_04_fly_option.png",
-   "file_3x": "seq-fly_04_fly_option@3x.png",
+   "file_3x": "3x/seq-fly_04_fly_option.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -70,7 +70,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "seq-fly_05_town_map.png",
-   "file_3x": "seq-fly_05_town_map@3x.png",
+   "file_3x": "3x/seq-fly_05_town_map.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -83,7 +83,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "seq-fly_06_to_lavender.png",
-   "file_3x": "seq-fly_06_to_lavender@3x.png",
+   "file_3x": "3x/seq-fly_06_to_lavender.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -102,10 +102,10 @@
     "poster": 42,
     "seconds": 3.52,
     "file": "seq-fly_07_takeoff_clip.gif",
-    "file_3x": "seq-fly_07_takeoff_clip@3x.gif"
+    "file_3x": "3x/seq-fly_07_takeoff_clip.gif"
    },
    "file": "seq-fly_07_takeoff_clip.png",
-   "file_3x": "seq-fly_07_takeoff_clip@3x.png",
+   "file_3x": "3x/seq-fly_07_takeoff_clip.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -124,10 +124,10 @@
     "poster": 24,
     "seconds": 3.18,
     "file": "seq-fly_08_landing_clip.gif",
-    "file_3x": "seq-fly_08_landing_clip@3x.gif"
+    "file_3x": "3x/seq-fly_08_landing_clip.gif"
    },
    "file": "seq-fly_08_landing_clip.png",
-   "file_3x": "seq-fly_08_landing_clip@3x.png",
+   "file_3x": "3x/seq-fly_08_landing_clip.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -140,7 +140,7 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "seq-fly_09_lavender.png",
-   "file_3x": "seq-fly_09_lavender@3x.png",
+   "file_3x": "3x/seq-fly_09_lavender.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   }

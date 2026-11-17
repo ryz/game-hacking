@@ -22,7 +22,8 @@ iNES headers often lack the region: a European ROM that runs too fast or glitche
 ## Screenshots
 256x240, the full frame without overscan crop, in Mesen's default palette. The console has no RGB output, so
 every palette is a choice; this one is fixed for all sets. Many games leave garbage in the top and bottom 8
-lines and the left column: that is what the console outputs, do not crop. `@3x` is nearest neighbour.
+lines and the left column: that is what the console outputs, do not crop. The 3x copy (in the set's `3x/` folder) is
+nearest neighbour.
 
 A screenshot never advances emulation. Savestates are the core's own state followed by a trailer holding the
 frame on screen, so a cached checkpoint and a freshly built one give the same picture and the same timing.
