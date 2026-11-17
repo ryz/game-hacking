@@ -47,7 +47,7 @@ Platform nes, model ntsc, ROM SHA-1 `991969075f1d8f3cf5d8c61b42cfaa721e3487d8`. 
 | battle_spell_cast | battle | Casting Begira in battle: the screen flashes grey ("ryz chanted Begira Spell!") | yes | [png](battle_spell_cast.png) [3x](battle_spell_cast@3x.png) |
 | boss_golem | boss | Golem guards the way into Cantlin: "Golem appeared! Command?" | no | [png](boss_golem.png) [3x](boss_golem@3x.png) |
 | boss_green_dragon | boss | The Dragon guarding the princess in the swamp cave: "Dragon appeared! Command?" | no | [png](boss_green_dragon.png) [3x](boss_green_dragon@3x.png) |
-| boss_dragon_king_2 | boss | The Dragon King's true form appeared: the final battle, command menu open | yes | [png](boss_dragon_king_2.png) [3x](boss_dragon_king_2@3x.png) |
+| boss_dragon_king_2 | boss | The Dragon King's true form strikes before ryz is ready: "DrgnKing attacks!" | yes | [png](boss_dragon_king_2.png) [3x](boss_dragon_king_2@3x.png) |
 | dragon_king_offer | cutscene | The Dragon King on his throne: "Be my ally and half the world is yours." | no | [png](dragon_king_offer.png) [3x](dragon_king_offer@3x.png) |
 | dragon_king_question | cutscene | The Dragon King asks "Will you be my ally?" Yes / No | no | [png](dragon_king_question.png) [3x](dragon_king_question@3x.png) |
 | boss_dragon_king_1 | boss | Final battle, first form: "DrgnKing appeared! Command?" in his throne room | no | [png](boss_dragon_king_1.png) [3x](boss_dragon_king_1@3x.png) |
