@@ -6,7 +6,9 @@ Current snapshot; history in `progress-log.md`.
 - GB/GBC backend (gbemu-cli), ROM intake with header identification and a boot probe.
 - NES/Famicom backend (2026-11-17): Mesen libretro core at a pinned commit, driven in-process by `tools/lrcore.py`;
   `.nes` cartridges, 256x240, models ntsc/pal/dendy, savestates, battery saves, full CPU-space peek/poke and PC
-  (`tools/mesen-debug.patch`), RAM search, NES Game Genie. First game: Dragon Quest (Famicom, English patch), scouted 2026-11-17. Not set up: Famicom Disk System, second controller, 6-letter Game Genie codes on
+  (`tools/mesen-debug.patch`), RAM search, NES Game Genie. First game: Dragon Quest (Famicom, English patch), 2026-11-17: main set 67 shots, title to staff roll, 67/67
+  verified from an empty cache. Open there: shop_keys, swamp, bridge, check_command, a rainbow-bridge clip set,
+  the middle floors of the Dragon King's castle, a retake of commands_window (cursor blinked off). Not set up: Famicom Disk System, second controller, 6-letter Game Genie codes on
   bank-switched games.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).
 - `play.py`: persistent session with undo, snap (capture + route), checkpoint/goto, RAM search, RAM watches.

@@ -2,6 +2,16 @@
 
 Append-only, newest first.
 
+## 2026-11-17 - Dragon Quest (Famicom, English patch): main set
+- game-capture: 67 shots from the logo to the staff roll (towns, shops, inn, caves with torch/Remira, 7 battles,
+  Golem, green dragon, both Dragon King forms, death, full ending, password screens, the kana password grid via
+  `rom:jp`), 27 new checkpoints, design docs combat/world/items-and-shops, commits d253e69, c131c6c.
+  Techniques: poke position or map number during a map transition for clean warps.
+- Coordinator: full `--verify` from an empty cache, 67/67 reproduce (about 15 min; the first attempt hit a
+  10-minute command limit). Sheet reviewed.
+- Open tool requests from the capture feedback: `play.py recaption`, a session clock in `play.py status`.
+- Not captured: shop_keys, swamp, bridge, check_command, seq-rainbow clips, castle middle floors.
+
 ## 2026-11-17 - Dragon Quest (Famicom, English patch): intake, scout, NES frame fix
 - Owner supplied the Japanese dump and an English translation IPS; the patched ROM is registered as
   `dragon-quest` (SHA-1s of dump, patch and result in game.json "source"; a `rom:jp` variant restores the
