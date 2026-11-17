@@ -11,6 +11,10 @@ game; parallel sessions use `play.py --name`. ROMs: `.nes` with an iNES or NES 2
 included). Deterministic: power-on RAM is all zeros, so the same route always gives the same frames. A few
 games seed their RNG from uninitialised RAM and therefore behave the same on every boot; that is intended.
 
+Core options (region, power-on RAM, no overscan crop) are passed explicitly. Until 2026-11-17 a bug in
+`tools/lrcore.py` dropped them and the core ran on its defaults, which gave the same result except that the
+region was detected by the core instead of forced; `--model pal` had no effect before that date.
+
 ## Models
 `game.json` "model" comes from the header: `ntsc` (NES and Famicom, 60 Hz; default), `pal` (50 Hz) or `dendy`.
 iNES headers often lack the region: a European ROM that runs too fast or glitches needs `--model pal`.

@@ -2,6 +2,8 @@
 *.gbc
 *.gb
 *.nes
+*.sfc
+*.smc
 *.fds
 *.sav
 *.state
@@ -10,6 +12,7 @@ build/
 work/
 **/tools/gbemu-cli/
 **/tools/mesen/
+**/tools/mesen-s/
 __pycache__/
 *.bps
 *.ips

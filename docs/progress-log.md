@@ -2,6 +2,21 @@
 
 Append-only, newest first.
 
+## 2026-11-17 - SNES / Super Famicom backend (Mesen-S); core options were not applied
+- Owner's request: an emulator for SNES/SFC games. Mesen-S as a libretro core (libretro/Mesen-S at 9e4fdeb),
+  chosen to match the NES setup: same driver, same kind of debug patch (`tools/mesen-s-debug.patch`: peek/poke
+  over the 24-bit address space, PC with bank). `setup_emu.sh [gb|nes|snes]`.
+- `platforms.py`: shared `Libretro` base class (states, screenshots, RAM search, battery) for `Nes` and the new
+  `Snes` (header detection LoROM/HiROM/ExHiROM with copier header, region -> ntsc/pal, 12 buttons, PAR codes
+  through `gs:`, Game Genie as a ROM patch through the mapping). Frames: the 239-line output is cropped to 224
+  when the margins are black.
+- Bug found and fixed: `lrcore.py` compared option keys as text against the core's bytes, so no core option was
+  ever applied. NES ran on defaults that equal the intended values (only the region was auto-detected instead
+  of forced; `--model pal` did nothing). On SNES the default power-on RAM is random, which the new test caught.
+  Dragon Quest shots re-verified from an empty cache after the fix (5/5).
+- Tests: generated SNES test ROM (`tests/make_snes_rom.py`), header/cheats, backend, full pipeline. 16 pass.
+  ~330 fps. Docs: `docs/emulator/snes.md`.
+
 ## 2026-11-17 - repository restructured
 - Owner's request: the repo had grown project by project (a translation, then a screenshot database next to it).
   Now the repo is the database: every game under `games/<slug>/`, shared tooling at the root, the Wizardry

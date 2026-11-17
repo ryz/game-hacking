@@ -13,6 +13,10 @@ Current snapshot; history in `progress-log.md`.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).
 - `play.py`: persistent session with undo, snap (capture + route), checkpoint/goto, RAM search, RAM watches.
 - `shoot.py`: replay, `--verify` (pixel-exact reproduction), `--publish`; catalogue index.json/md + contact sheet.
+- SNES/Super Famicom backend (2026-11-17): Mesen-S libretro core at a pinned commit, same driver as NES;
+  `.sfc`/`.smc`, 256x224 (239-line and hi-res frames kept), models ntsc/pal, 12 buttons, 24-bit peek/poke and PC
+  (`tools/mesen-s-debug.patch`), RAM search over work RAM, Pro Action Replay (`gs:`) and Game Genie. Tested on
+  a generated test ROM only: no commercial game run yet, special chips and hi-res untested.
 - Layout (2026-11-17): every game under `games/<slug>/`, shared tools/tests/docs at the repo root; emulator
   guide split into general rules and one file per platform.
 - Skills game-scout and game-capture with agent wrappers; docs `emulator/` and `capture-guide.md`.

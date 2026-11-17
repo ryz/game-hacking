@@ -1,7 +1,7 @@
 # Emulator use - the general rules
 
 Platform specifics (models, memory layout, cheat formats, screenshot format, limits) are in one file per system:
-[Game Boy / Game Boy Color](gb.md) and [NES / Famicom](nes.md). Read this file and the one for your game's
+[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md) and [SNES / Super Famicom](snes.md). Read this file and the one for your game's
 platform.
 
 How agents drive games here, for any game. Game-specific facts (controls, routes, RAM) go into
@@ -9,7 +9,7 @@ How agents drive games here, for any game. Game-specific facts (controls, routes
 
 ## Setup (once per container)
 ```sh
-sh tools/setup_emu.sh                         # both emulators (~2 min); `gb` or `nes` builds one
+sh tools/setup_emu.sh                         # all emulators (~3 min); `gb`, `nes` or `snes` builds one
 python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<slug>/, rom/<slug>.gbc (or .gb, .nes)
 ```
 Containers are wiped between sessions: ROMs (`rom/`), states and caches (`work/`) are gone next time, routes and
@@ -28,7 +28,7 @@ playbooks (committed) are not. That is why every state is defined by a route.
 ## Tokens (comma-separated; full list in `tools/emu.py`)
 | Token | Effect | Use for |
 |---|---|---|
-| `a` `b` `start` `select` `up` `down` `left` `right` | press 8 frames, then wait 40 | menus, dialogue |
+| `a` `b` `start` `select` `up` `down` `left` `right` (SNES also `x` `y` `l` `r`) | press 8 frames, then wait 40 | menus, dialogue |
 | `b+a` | press together | combos |
 | `select>a` | hold the first 4 frames, then both | held-modifier shortcuts |
 | `right:30` `a+right:60` | hold N frames, release, no wait | walking, running, charging, jump height |
@@ -40,7 +40,7 @@ playbooks (committed) are not. That is why every state is defined by a route.
 | `rec:240:2` | last token of a shot: record 240 frames as a GIF clip (every 2nd kept); elsewhere a wait | clips (`play.py record`) |
 | `poke:C0A2=09` | write RAM bytes once | shortcuts (recorded in the route) |
 | `set:C0B0=8973:2` | write a decimal value (N bytes; `:bcd`, `:be`) | money, score, EXP |
-| `gs:0109A2C0` | GameShark code, held for the rest of the route (Game Boy only, see [gb.md](gb.md)) | infinite health/lives, codes from the web |
+| `gs:0109A2C0` | RAM cheat code, held for the rest of the route (GameShark on Game Boy, Pro Action Replay on SNES; not on NES) | infinite health/lives, codes from the web |
 | `freeze:C0A2=09` / `unfreeze` | hold a raw value / drop all held values | same, own addresses |
 | `rom:NAME` | route prefix: patched ROM (Game Genie, IPS, bytes) | level select, debug menu, invincibility |
 | `sav:NAME` | route prefix: power on with a battery save | late-game saves from the web |
@@ -126,7 +126,7 @@ are committed; downloaded ones stay in `rom/saves/`.
 ## RAM: find it once, write it down
 Most shortcuts come from a few addresses: lives, health, money, level/stage, position, timer, inventory.
 1. Look in the playbook and its sources first (Data Crystal RAM maps, TCRF, cheat-code lists: a RAM code names
-   the address directly; formats per platform in [gb.md](gb.md) and [nes.md](nes.md)).
+   the address directly; formats per platform in [gb.md](gb.md), [nes.md](nes.md) and [snes.md](snes.md)).
 2. Otherwise search: `find reset`, change the value in game (lose a life), `find "new == old - 1"`, repeat with
    `find "new == old"` while nothing changes, until 1-3 candidates remain; confirm with `poke` and a screenshot.
    16-bit values: add `--wide`.

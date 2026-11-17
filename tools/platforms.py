@@ -1,5 +1,5 @@
 """Platform registry: one entry per supported system. Everything platform-specific lives here, so another system
-(SNES, GBA, ...) is added by writing one Backend subclass and one PLATFORMS entry; the tools above it
+(GBA, Mega Drive, ...) is added by writing one Backend subclass and one PLATFORMS entry; the tools above it
 (emu.py, play.py, shoot.py, intake.py) only use the Backend interface.
 
 Backend interface (what the tools rely on):
@@ -188,11 +188,123 @@ class GameBoy(Backend):
         self.g.close()
 
 
+# ------------------------------------------------------------------ libretro cores (in-process, tools/lrcore.py)
+class Libretro(Backend):
+    """Shared part of the backends that run a Mesen libretro core patched with retro_mesen_peek/poke/pc
+    (tools/mesen-debug.patch, tools/mesen-s-debug.patch). Subclasses set SO, ADDR_MASK, PC_FORMAT, SEARCH and
+    call _open() with the core options."""
+    SO = None
+    ADDR_MASK = 0xFFFF
+    PC_FORMAT = "%04x"
+    SEARCH = []                 # RAM search ranges (addr, size)
+
+    def _open(self, rom, options, sav):
+        import ctypes, tempfile
+        import lrcore
+        if not os.path.exists(self.SO):
+            raise SystemExit("%s missing: run sh tools/setup_emu.sh" % self.emulator)
+        # A private empty save directory: the core must never pick up a battery file from an earlier run.
+        self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
+        self.c = lrcore.Core(self.SO, os.path.abspath(rom), system_dir=self.tmp, save_dir=self.tmp, options=options)
+        L = self.c.L
+        L.retro_mesen_peek.restype, L.retro_mesen_peek.argtypes = ctypes.c_uint8, [ctypes.c_uint32]
+        L.retro_mesen_poke.restype, L.retro_mesen_poke.argtypes = None, [ctypes.c_uint32, ctypes.c_uint8]
+        L.retro_mesen_pc.restype = ctypes.c_uint32
+        if sav:
+            data = open(sav, "rb").read()
+            ram = self.c.memory(lrcore.MEM_SAVE_RAM)
+            if ram is None:
+                raise SystemExit("this cartridge has no battery RAM; %s cannot be loaded" % sav)
+            ctypes.memmove(ram, data, min(len(data), len(ram)))
+        self.c.size = self.native_size
+        self._search = None
+        return self
+
+    def input(self, keys):
+        self.c.keys = set(keys)
+
+    def frames(self, n):
+        if n > 0:
+            self.c.run(n)
+
+    def image(self):
+        """The current frame as a PIL image (subclasses crop or convert here)."""
+        return self.c.image()
+
+    def screen(self):
+        import io
+        b = io.BytesIO()
+        self.image().save(b, "PNG")
+        return b.getvalue()
+
+    def screen_png(self, path):
+        self.image().save(os.path.abspath(path), "PNG")
+
+    def save_state(self, path):
+        open(os.path.abspath(path), "wb").write(self.c.serialize())
+
+    def load_state(self, path):
+        self.c.unserialize(open(os.path.abspath(path), "rb").read())
+
+    def peek(self, addr, n, bank=None):
+        if bank is not None:
+            raise NotImplementedError("peek reads the mapped address space only (no bank argument)")
+        return bytes(self.c.L.retro_mesen_peek((addr + i) & self.ADDR_MASK) for i in range(n))
+
+    def poke(self, addr, data):
+        for i, b in enumerate(bytes(data)):
+            self.c.L.retro_mesen_poke((addr + i) & self.ADDR_MASK, b)
+
+    def battery(self, size):
+        """The battery RAM as an emulator .sav file (the core's real size; `size` is only the header's guess)."""
+        import lrcore
+        ram = self.c.memory(lrcore.MEM_SAVE_RAM)
+        if ram is None:
+            raise SystemExit("this cartridge has no battery RAM")
+        return bytes(ram)
+
+    # ---- RAM search (cheat-search style): the first call takes a snapshot and applies the filter with
+    # old == new; later calls keep the addresses where the expression holds. Names: new, old.
+    def _snapshot(self, wide):
+        out = {}
+        for base, size in self.SEARCH:
+            data = self.peek(base, size)
+            for i in range(size - (1 if wide else 0)):
+                out[base + i] = data[i] | (data[i + 1] << 8 if wide else 0)
+        return out
+
+    def ram_search(self, expr, wide=False, max_results=64):
+        import re
+        if not re.fullmatch(r"[\s\w+\-*/%<>=!&|^()~]+", expr) or "__" in expr:
+            raise ValueError("search expression may only use new, old, numbers and operators: %r" % expr)
+        code = compile(expr, "<search>", "eval")
+        now = self._snapshot(wide)
+        if self._search is None or self._search[0] != wide:
+            self._search = (wide, dict(now))
+        old = self._search[1]
+        keep = {a: v for a, v in now.items()
+                if a in old and eval(code, {"__builtins__": {}}, {"new": v, "old": old[a]})}
+        self._search = (wide, keep)
+        rows = [{"addr": self.PC_FORMAT % a, "value": v} for a, v in sorted(keep.items())[:max_results]]
+        return {"count": len(keep), "results": rows}
+
+    def ram_search_reset(self):
+        self._search = None
+
+    def regs(self):
+        return {"pc": self.PC_FORMAT % self.c.L.retro_mesen_pc()}
+
+    def close(self):
+        import shutil
+        self.c.close()
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+
 # ------------------------------------------------------------------ NES / Famicom (Mesen libretro core)
 NES_GG = "APZLGITYEOXUKSVN"
 
 
-class Nes(Backend):
+class Nes(Libretro):
     """Mesen (libretro core, in-process through tools/lrcore.py). Models: ntsc (NES/Famicom, 60 Hz), pal, dendy.
     Cartridge games (.nes, iNES/NES 2.0 header); Famicom Disk System images are not set up (they need the BIOS).
     Memory is the CPU address space: 0000-07FF RAM, 6000-7FFF cartridge RAM (battery save), 8000-FFFF the PRG
@@ -203,7 +315,7 @@ class Nes(Backend):
     emulator = "Mesen libretro core"
     SO = os.path.join(HERE, "mesen", "Libretro", "mesen_libretro.so")
     MODELS = {"ntsc": "NTSC", "pal": "PAL", "dendy": "Dendy"}
-    SEARCH = [(0x0000, 0x0800), (0x6000, 0x2000)]       # RAM search ranges (addr, size)
+    SEARCH = [(0x0000, 0x0800), (0x6000, 0x2000)]
 
     @staticmethod
     def identify(data):
@@ -279,110 +391,176 @@ class Nes(Backend):
         return [head + o for o in offs]
 
     def open(self, rom, model="ntsc", seed=1, turbo=True, sav=None):
-        import shutil, tempfile
-        import lrcore
-        if not os.path.exists(self.SO):
-            raise SystemExit("Mesen core missing: run sh tools/setup_emu.sh")
         if (model or "ntsc") not in self.MODELS:
             raise SystemExit("NES model %r unknown (have: %s)" % (model, ", ".join(sorted(self.MODELS))))
-        # fixed power-on state: RAM all zeros (Mesen default, set explicitly), no overscan crop, default palette.
-        # A private empty save directory: the core must never pick up a battery file from an earlier run.
-        self.tmp = tempfile.mkdtemp(prefix="gamedb-nes")
-        self.c = lrcore.Core(self.SO, os.path.abspath(rom), system_dir=self.tmp, save_dir=self.tmp, options={
+        # fixed power-on state: RAM all zeros (Mesen default, set explicitly), no overscan crop, default palette
+        return self._open(rom, {
             "mesen_region": self.MODELS[model or "ntsc"], "mesen_ramstate": "All 0s (Default)",
             "mesen_overscan_left": "None", "mesen_overscan_right": "None", "mesen_overscan_up": "None",
             "mesen_overscan_down": "None", "mesen_palette": "Default", "mesen_ntsc_filter": "Disabled",
-            "mesen_nospritelimit": "disabled", "mesen_overclock": "None"})
-        import ctypes
-        L = self.c.L
-        L.retro_mesen_peek.restype, L.retro_mesen_peek.argtypes = ctypes.c_uint8, [ctypes.c_uint16]
-        L.retro_mesen_poke.restype, L.retro_mesen_poke.argtypes = None, [ctypes.c_uint16, ctypes.c_uint8]
-        L.retro_mesen_pc.restype = ctypes.c_uint16
-        if sav:
-            data = open(sav, "rb").read()
-            ram = self.c.memory(lrcore.MEM_SAVE_RAM)
-            if ram is None:
-                raise SystemExit("this cartridge has no battery RAM; %s cannot be loaded" % sav)
-            n = min(len(data), len(ram))
-            ctypes.memmove(ram, data, n)
-        self.c.size = self.native_size
-        self._search = None
-        return self
+            "mesen_nospritelimit": "disabled", "mesen_overclock": "None"}, sav)
 
-    def input(self, keys):
-        self.c.keys = set(keys)
-
-    def frames(self, n):
-        if n > 0:
-            self.c.run(n)
-
-    def screen(self):
-        return self.c.png_bytes()
-
-    def screen_png(self, path):
-        self.c.png(os.path.abspath(path))
-
-    def save_state(self, path):
-        open(os.path.abspath(path), "wb").write(self.c.serialize())
-
-    def load_state(self, path):
-        self.c.unserialize(open(os.path.abspath(path), "rb").read())
-
-    def peek(self, addr, n, bank=None):
-        if bank is not None:
-            raise NotImplementedError("NES peek reads the mapped address space only (no bank argument)")
-        return bytes(self.c.L.retro_mesen_peek((addr + i) & 0xFFFF) for i in range(n))
-
-    def poke(self, addr, data):
-        for i, b in enumerate(bytes(data)):
-            self.c.L.retro_mesen_poke((addr + i) & 0xFFFF, b)
-
-    def battery(self, size):
-        """The battery RAM as an emulator .sav file (the core's real size; `size` is only the header's guess)."""
-        import lrcore
-        ram = self.c.memory(lrcore.MEM_SAVE_RAM)
-        if ram is None:
-            raise SystemExit("this cartridge has no battery RAM")
-        return bytes(ram)
-
-    # ---- RAM search (cheat-search style): the first call takes a snapshot and applies the filter with
-    # old == new; later calls keep the addresses where the expression holds. Names: new, old.
-    def _snapshot(self, wide):
-        out = {}
-        for base, size in self.SEARCH:
-            data = self.peek(base, size)
-            for i in range(size - (1 if wide else 0)):
-                out[base + i] = data[i] | (data[i + 1] << 8 if wide else 0)
-        return out
-
-    def ram_search(self, expr, wide=False, max_results=64):
-        import re
-        if not re.fullmatch(r"[\s\w+\-*/%<>=!&|^()~]+", expr) or "__" in expr:
-            raise ValueError("search expression may only use new, old, numbers and operators: %r" % expr)
-        code = compile(expr, "<search>", "eval")
-        now = self._snapshot(wide)
-        if self._search is None or self._search[0] != wide:
-            self._search = (wide, dict(now))
-        old = self._search[1]
-        keep = {a: v for a, v in now.items()
-                if a in old and eval(code, {"__builtins__": {}}, {"new": v, "old": old[a]})}
-        self._search = (wide, keep)
-        rows = [{"addr": "%04x" % a, "value": v} for a, v in sorted(keep.items())[:max_results]]
-        return {"count": len(keep), "results": rows}
-
-    def ram_search_reset(self):
-        self._search = None
-
-    def regs(self):
-        return {"pc": "%04x" % self.c.L.retro_mesen_pc()}
-
-    def close(self):
-        import shutil
-        self.c.close()
-        shutil.rmtree(self.tmp, ignore_errors=True)
+# ------------------------------------------------------------------ SNES / Super Famicom (Mesen-S libretro core)
+SNES_GG = "DF4709156BC8A23E"
+SNES_REGION = {0: "Japan", 1: "North America", 2: "Europe", 3: "Sweden/Scandinavia", 4: "Finland", 5: "Denmark",
+               6: "France", 7: "Netherlands", 8: "Spain", 9: "Germany", 10: "Italy", 11: "China", 12: "Indonesia",
+               13: "South Korea", 15: "Canada", 16: "Brazil", 17: "Australia"}
+SNES_CHIP = {0x00: "ROM", 0x01: "ROM+RAM", 0x02: "ROM+RAM+BATTERY", 0x03: "DSP", 0x04: "DSP+RAM",
+             0x05: "DSP+RAM+BATTERY", 0x13: "SuperFX", 0x14: "SuperFX+RAM", 0x15: "SuperFX+RAM+BATTERY",
+             0x1A: "SuperFX+RAM+BATTERY", 0x25: "OBC1+RAM+BATTERY", 0x32: "SA-1+RAM", 0x34: "SA-1+RAM",
+             0x35: "SA-1+RAM+BATTERY", 0x43: "S-DD1", 0x45: "S-DD1+RAM+BATTERY", 0x55: "S-RTC+RAM+BATTERY",
+             0xE3: "Super Game Boy", 0xE5: "BS-X", 0xF3: "CX4", 0xF5: "ST018/SPC7110+RAM+BATTERY",
+             0xF6: "ST010/ST011+BATTERY", 0xF9: "SPC7110+RTC+RAM+BATTERY"}
 
 
-PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes}
+class Snes(Libretro):
+    """Mesen-S (libretro core, in-process through tools/lrcore.py). Models: ntsc (SNES/Super Famicom, 60 Hz), pal.
+    Cartridge games (.sfc; .smc with or without the 512-byte copier header), special chips included.
+    Memory is the 24-bit CPU address space BB:AAAA written as six hex digits: 7E0000-7FFFFF work RAM (the first
+    8 KiB also at 00:0000-1FFF), ROM and battery RAM where the cartridge maps them (LoROM RAM 70:0000-,
+    HiROM RAM 30:6000-). peek has no side effects; poke writes work RAM, battery RAM and ROM, never registers."""
+    keys = {"a", "b", "x", "y", "l", "r", "start", "select", "up", "down", "left", "right"}
+    extensions = (".sfc", ".smc")
+    native_size = (256, 224)
+    emulator = "Mesen-S libretro core"
+    SO = os.path.join(HERE, "mesen-s", "Libretro", "mesen-s_libretro.so")
+    MODELS = {"ntsc": "NTSC", "pal": "PAL"}
+    ADDR_MASK = 0xFFFFFF
+    PC_FORMAT = "%06x"
+    SEARCH = [(0x7E0000, 0x20000)]
+
+    @staticmethod
+    def header(data):
+        """(file offset of the internal header at xxFFC0, copier header size) by the best checksum/plausibility
+        score among LoROM, HiROM and ExHiROM."""
+        skip = 512 if len(data) % 1024 == 512 else 0
+        best = (-1, None)
+        for base in (0x7FC0, 0xFFC0, 0x40FFC0):
+            o = skip + base
+            if o + 0x40 > len(data):
+                continue
+            h = data[o:o + 0x40]
+            score = 0
+            chk, comp = h[0x1E] | h[0x1F] << 8, h[0x1C] | h[0x1D] << 8
+            if chk ^ comp == 0xFFFF and chk + comp == 0xFFFF:
+                score += 8
+            mode = h[0x15] & 0x2F
+            if (base == 0x7FC0 and mode in (0x20, 0x22, 0x23)) or (base == 0xFFC0 and mode == 0x21) or \
+                    (base == 0x40FFC0 and mode == 0x25):
+                score += 4
+            if all(0x20 <= c < 0x7F or c >= 0xA0 for c in h[:21]):
+                score += 2
+            if h[0x3D] >= 0x80:                         # reset vector points into ROM
+                score += 2
+            if h[0x17] < 0x0E and h[0x18] < 0x09:
+                score += 1
+            if score > best[0]:
+                best = (score, o)
+        if best[1] is None:
+            raise SystemExit("too small for a SNES ROM")
+        return best[1], skip
+
+    @classmethod
+    def identify(cls, data):
+        o, skip = cls.header(data)
+        h = data[o:o + 0x40]
+        title = bytes(h[:21]).decode("shift_jis", "replace").strip()
+        mode = h[0x15]
+        chk, comp = h[0x1E] | h[0x1F] << 8, h[0x1C] | h[0x1D] << 8
+        total = sum(data[skip:]) & 0xFFFF
+        region = SNES_REGION.get(h[0x19], "0x%02X" % h[0x19])
+        pal = 2 <= h[0x19] <= 12 or h[0x19] == 17
+        return {
+            "header_title": title,
+            "mapping": {0: "LoROM", 1: "HiROM", 2: "LoROM (S-DD1)", 3: "LoROM (SA-1)", 5: "ExHiROM"}.get(
+                mode & 0x0F, "0x%02X" % mode),
+            "fast_rom": bool(mode & 0x10),
+            "cart_type": SNES_CHIP.get(h[0x16], "0x%02X" % h[0x16]),
+            "rom_kib": 1 << h[0x17] if h[0x17] < 0x10 else None,
+            "ram_kib": (1 << h[0x18]) if 0 < h[0x18] < 0x10 else 0,
+            "region": region,
+            "version": h[0x1B],
+            "copier_header": bool(skip),
+            "header_checksum_ok": chk ^ comp == 0xFFFF and chk == total,
+            "platform": "snes",
+            "model": "pal" if pal else "ntsc",
+        }
+
+    # ---- cheat formats (SNES). Pro Action Replay AAAAAAVV: RAM codes are held like the device (gs: token);
+    # Game Genie XXXX-XXXX and ROM-address PAR codes are ROM patches.
+    @staticmethod
+    def gameshark(code):
+        """Pro Action Replay 'AAAAAAVV' -> (None, addr, value), for the gs: token (written every frame)."""
+        c = code.replace("-", "").replace(":", "").strip()
+        if len(c) != 8:
+            raise ValueError("Pro Action Replay code must be 8 hex digits AAAAAAVV: %r" % code)
+        return None, int(c[:6], 16), int(c[6:], 16)
+
+    @staticmethod
+    def game_genie(code):
+        """'XXXX-XXXX' -> (24-bit CPU address, value, None). Same decoding as Mesen-S Core/CheatManager.cpp."""
+        c = code.replace("-", "").strip().upper()
+        if len(c) != 8 or any(ch not in SNES_GG for ch in c):
+            raise ValueError("SNES Game Genie code must be XXXX-XXXX with letters of %s: %r" % (SNES_GG, code))
+        raw = 0
+        for ch in c:
+            raw = raw << 4 | SNES_GG.index(ch)
+        addr = ((raw & 0x3C00) << 10) | ((raw & 0x3C) << 14) | ((raw & 0xF00000) >> 8) | ((raw & 0x03) << 10) | \
+            ((raw & 0xC000) >> 6) | ((raw & 0xF0000) >> 12) | ((raw & 0x3C0) >> 6)
+        return addr, raw >> 24, None
+
+    @classmethod
+    def rom_offset(cls, rom, addr):
+        """File offset of a CPU address that maps to ROM, by the cartridge's mapping (LoROM / HiROM / ExHiROM)."""
+        o, skip = cls.header(rom)
+        mode = rom[o + 0x15] & 0x0F
+        bank, a = addr >> 16, addr & 0xFFFF
+        if mode in (1, 5):                              # HiROM / ExHiROM: banks C0-FF (and 40-7D), 8000+ in 00-3F
+            if a < 0x8000 and not (0x40 <= bank <= 0x7D or bank >= 0xC0):
+                raise ValueError("%06X is not ROM" % addr)
+            off = (bank & 0x3F) << 16 | a
+            if mode == 5 and bank < 0x80:
+                off += 0x400000
+        else:                                           # LoROM: 32 KiB per bank at 8000-FFFF
+            if a < 0x8000:
+                raise ValueError("%06X is not ROM" % addr)
+            off = (bank & 0x7F) << 15 | (a & 0x7FFF)
+        if off >= len(rom) - skip:
+            off %= len(rom) - skip                      # mirrored
+        return skip + off
+
+    @classmethod
+    def apply_game_genie(cls, rom, code):
+        """Patch a ROM bytearray at the code's address (no compare byte on this console). Returns the offset."""
+        addr, value, _ = cls.game_genie(code)
+        off = cls.rom_offset(rom, addr)
+        rom[off] = value
+        return [off]
+
+    def image(self):
+        """The core always sends 239 lines (478 in hi-res/interlace). Nearly every game shows 224 lines, at rows
+        7-230 with black above and below: those frames are cropped to 256x224 (512x448). A game that really
+        uses the 239-line overscan mode has picture in the margins and keeps the full frame."""
+        im = self.c.image()
+        k = im.height // 239
+        if im.height == 239 * k and k in (1, 2):
+            top, bottom = im.crop((0, 0, im.width, 7 * k)), im.crop((0, 231 * k, im.width, im.height))
+            if not top.getbbox() and not bottom.getbbox():
+                im = im.crop((0, 7 * k, im.width, 231 * k))
+        return im
+
+    def open(self, rom, model="ntsc", seed=1, turbo=True, sav=None):
+        if (model or "ntsc") not in self.MODELS:
+            raise SystemExit("SNES model %r unknown (have: %s)" % (model, ", ".join(sorted(self.MODELS))))
+        # fixed power-on state: RAM all zeros (the core's default is random), no overscan crop, no filters
+        return self._open(rom, {
+            "mesen-s_region": self.MODELS[model or "ntsc"], "mesen-s_ramstate": "All 0s",
+            "mesen-s_overscan_vertical": "None", "mesen-s_overscan_horizontal": "None",
+            "mesen-s_ntsc_filter": "Disabled", "mesen-s_blend_high_res": "disabled",
+            "mesen-s_overclock": "None", "mesen-s_superfx_overclock": "100%"}, sav)
+
+
+PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes}
 
 
 def backend(platform):

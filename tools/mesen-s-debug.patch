@@ -1,0 +1,46 @@
+diff --git a/Libretro/libretro.cpp b/Libretro/libretro.cpp
+index 6ecae6d..733708c 100644
+--- a/Libretro/libretro.cpp
++++ b/Libretro/libretro.cpp
+@@ -11,6 +11,9 @@
+ #include "../Core/Gameboy.h"
+ #include "../Core/BaseCartridge.h"
+ #include "../Core/MemoryManager.h"
++#include "../Core/MemoryMappings.h"
++#include "../Core/Cpu.h"
++#include "../Core/DebugTypes.h"
+ #include "../Core/VideoDecoder.h"
+ #include "../Core/VideoRenderer.h"
+ #include "../Core/EmuSettings.h"
+@@ -791,4 +794,31 @@ extern "C" {
+ 		}
+ 		return 0;
+ 	}
++	// gamedb: side-effect-free access to the 24-bit CPU address space and the program counter
++	RETRO_API uint8_t retro_mesen_peek(uint32_t addr)
++	{
++		return _console->GetMemoryManager()->Peek(addr & 0xFFFFFF);
++	}
++
++	// writes work RAM, save RAM and ROM (never registers); returns false when the address maps to none of them
++	RETRO_API bool retro_mesen_poke(uint32_t addr, uint8_t value)
++	{
++		AddressInfo info = _console->GetMemoryManager()->GetMemoryMappings()->GetAbsoluteAddress(addr & 0xFFFFFF);
++		shared_ptr<BaseCartridge> cart = _console->GetCartridge();
++		if(info.Address < 0) {
++			return false;
++		}
++		switch(info.Type) {
++			case SnesMemoryType::WorkRam: _console->GetMemoryManager()->DebugGetWorkRam()[info.Address] = value; return true;
++			case SnesMemoryType::SaveRam: cart->DebugGetSaveRam()[info.Address] = value; return true;
++			case SnesMemoryType::PrgRom: cart->DebugGetPrgRom()[info.Address] = value; return true;
++			default: return false;
++		}
++	}
++
++	RETRO_API uint32_t retro_mesen_pc()
++	{
++		CpuState state = _console->GetCpu()->GetState();
++		return ((uint32_t)state.K << 16) | state.PC;
++	}
+ }

@@ -53,7 +53,7 @@ class Core:
             _in_use.add(so)
             self._shared = True
         self.L = L = C.CDLL(path)
-        self.options = {k: v.encode() for k, v in (options or {}).items()}
+        self.options = {k.encode(): v.encode() for k, v in (options or {}).items()}
         self._dirs = {ENV_GET_SYSTEM_DIRECTORY: (system_dir or tempfile.gettempdir()).encode(),
                       ENV_GET_SAVE_DIRECTORY: (save_dir or tempfile.gettempdir()).encode()}
         self.fmt, self.keys, self._held, self.frame, self.open = 0, set(), set(), None, False

@@ -4,7 +4,9 @@
 #              tools/gbemu-linux.patch fixes the Linux link (macOS-only symbol).
 #   mesen      Mesen as a libretro core (driven in-process by tools/lrcore.py). Backend for nes.
 #              tools/mesen-debug.patch adds retro_mesen_peek/poke/pc (whole CPU address space, program counter).
-# sh tools/setup_emu.sh [gb|nes]   (default: both)
+#   mesen-s    Mesen-S as a libretro core (same driver). Backend for snes.
+#              tools/mesen-s-debug.patch adds retro_mesen_peek/poke/pc (24-bit address space).
+# sh tools/setup_emu.sh [gb|nes|snes]   (default: all)
 set -e
 cd "$(dirname "$0")"
 want=${1:-all}
@@ -23,4 +25,13 @@ if [ "$want" = all ] || [ "$want" = nes ]; then
       git apply ../mesen-debug.patch)
   fi
   make -C mesen/Libretro -j"$(nproc 2>/dev/null || echo 2)"
+fi
+if [ "$want" = all ] || [ "$want" = snes ]; then
+  if [ ! -d mesen-s ]; then
+    mkdir mesen-s
+    (cd mesen-s && git init -q && git remote add origin https://github.com/libretro/Mesen-S.git &&
+      git fetch -q --depth 1 origin 9e4fdeb9b336470bc96beb8765b2e79c86a2da1e && git checkout -q FETCH_HEAD &&
+      git apply ../mesen-s-debug.patch)
+  fi
+  make -C mesen-s/Libretro -j"$(nproc 2>/dev/null || echo 2)"
 fi

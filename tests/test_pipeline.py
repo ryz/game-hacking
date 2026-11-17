@@ -1,6 +1,6 @@
 """Shared tooling tests: tokens, routes, header identification (no emulator), and the whole pipeline on gbemu's generated
 test ROM (skipped when tools/gbemu-cli is not built) and on a generated NES test ROM (skipped when the Mesen
-core is not built)."""
+core is not built) and a generated SNES test ROM (skipped when the Mesen-S core is not built)."""
 import json, os, shutil, subprocess, sys
 
 import pytest
@@ -387,4 +387,134 @@ def test_nes_pipeline(nes_selftest):
     g = emu.Game(NES_SLUG)
     e, rest, _ = emu.start(g, "sav:early")
     assert e.peek(0x6000, 1)[0] == open(os.path.join(d, "early.sav"), "rb").read()[0] != 0
+    e.close()
+
+
+# ------------------------------------------------------------------ SNES (Mesen-S libretro core)
+SNES_SLUG = "zz-selftest-snes"
+
+
+@pytest.fixture
+def snes_selftest(tmp_path):
+    if not os.path.exists(platforms.Snes.SO):
+        pytest.skip("Mesen-S core not built (sh tools/setup_emu.sh snes)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_snes_rom
+    rom = tmp_path / "t.sfc"
+    rom.write_bytes(make_snes_rom.build())
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", SNES_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games", "work/shots", "work/cache", "work/intake", "work/play"):
+        shutil.rmtree(os.path.join(ROOT, sub, SNES_SLUG), ignore_errors=True)
+    if os.path.exists(os.path.join(ROOT, "rom", SNES_SLUG + ".sfc")):
+        os.remove(os.path.join(ROOT, "rom", SNES_SLUG + ".sfc"))
+
+
+def test_snes_header_and_cheats():
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_snes_rom
+    S = platforms.Snes
+    rom = make_snes_rom.build()
+    h = S.identify(rom)
+    assert h["platform"] == "snes" and h["model"] == "ntsc" and h["header_title"] == "GAMEDB SELFTEST"
+    assert h["mapping"] == "LoROM" and h["cart_type"] == "ROM+RAM+BATTERY" and h["ram_kib"] == 8
+    assert h["header_checksum_ok"] and not h["copier_header"]
+    smc = bytes(512) + rom                                          # copier header
+    h2 = S.identify(smc)
+    assert h2["copier_header"] and h2["header_title"] == "GAMEDB SELFTEST" and h2["header_checksum_ok"]
+    hi = bytearray(0x10000)                                         # HiROM, PAL region
+    hi[0xFFC0:0xFFD5] = b"HIROM TEST".ljust(21)
+    hi[0xFFD5:0xFFDA] = bytes([0x21, 0x00, 0x06, 0x00, 0x02])
+    hi[0xFFDC:0xFFE0] = b"\xff\xff\x00\x00"
+    hi[0xFFFC:0xFFFE] = b"\x00\x80"
+    c = sum(hi) & 0xFFFF
+    hi[0xFFDC:0xFFE0] = bytes([(c ^ 0xFFFF) & 0xFF, (c ^ 0xFFFF) >> 8, c & 0xFF, c >> 8])
+    h3 = S.identify(bytes(hi))
+    assert h3["mapping"] == "HiROM" and h3["model"] == "pal" and h3["region"] == "Europe" and h3["ram_kib"] == 0
+    # Game Genie: decoded against the documented bit layout (encoded ijklqrst opabcduv wxefghmn -> a..x)
+    lay = "ijklqrstopabcduvwxefghmn"
+    for code in ("DD62-6DAD", "C2A7-0F6D", "1DF6-A4E3"):
+        n = [platforms.SNES_GG.index(ch) for ch in code.replace("-", "")]
+        enc = 0
+        for d in n[2:]:
+            enc = enc << 4 | d
+        bits = {lay[i]: (enc >> (23 - i)) & 1 for i in range(24)}
+        addr = 0
+        for ch in "abcdefghijklmnopqrstuvwx":
+            addr = addr << 1 | bits[ch]
+        assert S.game_genie(code) == (addr, n[0] << 4 | n[1], None)
+    assert S.gameshark("7E0DBE05") == (None, 0x7E0DBE, 0x05)        # Pro Action Replay
+    lo = bytearray(rom)
+    assert S.rom_offset(lo, 0x008123) == 0x0123 and S.rom_offset(smc, 0x808123) == 512 + 0x0123
+    assert S.rom_offset(hi, 0xC01234) == 0x1234 and S.rom_offset(hi, 0x00FFC0) == 0xFFC0
+    with pytest.raises(ValueError):
+        S.rom_offset(lo, 0x7E0010)
+
+
+def test_snes_backend(snes_selftest, tmp_path):
+    from PIL import Image
+    import io
+    e = platforms.Snes().open(str(snes_selftest))
+    assert e.peek(0x7E0010, 1) == b"\x00" and e.screen() and e.peek(0x7E0010, 1) == b"\x00"   # no frame run
+    e.frames(30)
+    img = lambda x: Image.open(io.BytesIO(x.screen())).convert("RGB")
+    assert img(e).size == (256, 224) and img(e).getpixel((100, 100)) == (0, 0, 255)
+    # core options are applied: power-on RAM is zero (the core's default is random), so the counter is exact
+    assert e.peek(0x7E0012, 1) == b"\x00" and 25 <= e.peek(0x7E0010, 1)[0] <= 30
+    assert e.peek(0x7E0011, 1) == b"\x00" and e.peek(0x000011, 1) == b"\x00" and e.regs()["pc"].startswith("0080")
+    assert e.peek(0x008000, 2) == b"\x78\xd8"                      # ROM through the mapping
+    e.input(["a"])
+    e.frames(5)
+    assert img(e).getpixel((100, 100)) == (255, 0, 0) and e.peek(0x7E0011, 1) == b"\x80"
+    st = str(tmp_path / "x.state")
+    e.save_state(st)
+    shot, count = e.screen(), e.peek(0x7E0010, 1)
+    b = platforms.Snes().open(str(snes_selftest))                   # two games at once; state keeps the frame
+    b.load_state(st)
+    assert b.screen() == shot and b.peek(0x7E0010, 1) == count
+    e.input([]); b.input([])
+    e.frames(10); b.frames(10)
+    assert e.screen() == b.screen() and e.peek(0x7E0010, 1) == b.peek(0x7E0010, 1)
+    b.close()
+    e.ram_search("new == old")
+    e.frames(3)
+    assert [x["addr"] for x in e.ram_search("new == old + 3")["results"]] == ["7e0010"]
+    e.poke(0x7E0010, b"\x80")
+    e.frames(1)
+    assert e.peek(0x7E0010, 1) == b"\x81" and e.battery(0)[0] == 0x81 and len(e.battery(0)) == 8192
+    assert e.peek(0x700000, 1) == b"\x81"                           # battery RAM where LoROM maps it
+    e.close()
+
+
+def test_snes_pipeline(snes_selftest):
+    run("tools/intake.py", str(snes_selftest), "--slug", SNES_SLUG, "--probe", "120")
+    gj = os.path.join(ROOT, "games", SNES_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "snes" and meta["model"] == "ntsc" and meta["title"] == "GAMEDB SELFTEST"
+    meta["macros"] = {"TITLE": "w60"}
+    meta["ram"] = {"joy": {"addr": "7E0012", "size": 1}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", SNES_SLUG]
+    run(*P, "start", SNES_SLUG)
+    run(*P, "do", "TITLE")
+    assert "saved" in run(*P, "checkpoint", "title", "after boot")
+    run(*P, "do", "a+l:20,poke:7E0020=2A")
+    assert "joy=128" in run(*P, "status")                           # exactly the A bit: RAM started at zero
+    assert "2a" in run(*P, "peek", "7E0020", "1")
+    run(*P, "snap", "held_a", "gameplay", "after A was held")
+    assert "candidates" in run(*P, "find", "new == old")
+    assert "early.sav" in run(*P, "export", "early", "frame counter in battery RAM", "--state")
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", SNES_SLUG, "main", "--verify")
+    run("tools/shoot.py", SNES_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", SNES_SLUG, "shots", "main", "held_a.png")).convert("RGB")
+    assert im.size == (256, 224) and im.getpixel((10, 10)) == (0, 0, 255)
+    d = os.path.join(ROOT, "games", SNES_SLUG, "saves")
+    assert os.path.getsize(os.path.join(d, "early.sav")) == 8192
+    assert "Mesen-S" in open(os.path.join(d, "README.md")).read()
+    g = emu.Game(SNES_SLUG)
+    e, rest, _ = emu.start(g, "sav:early")
+    assert e.peek(0x700000, 1)[0] == open(os.path.join(d, "early.sav"), "rb").read()[0] != 0
     e.close()

@@ -21,7 +21,7 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | `games/dragon-quest/` | Famicom (English translation patch) | screenshot set, design reference, password tools |
 
 ## Rules (all work)
-- Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`,
+- Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`, `*.sfc`, `*.smc`,
   `*.sav`, `*.state`, `rom/`, `build/`, `work/`). Original dumps are verified by SHA-1 (`game.json`, or
   `rom.sha1` for the Wizardry Empire translation). Exceptions (owner's decisions 2026-11-12 and 2026-11-15):
   saves made by a game's own tools or by the capture agents while playing, in `games/<slug>/saves/`, each
@@ -41,8 +41,9 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 
 ## Shared tooling quick reference
 Run from the repo root (how to drive any game: `docs/emulator/README.md`, then the platform file
-`docs/emulator/gb.md` or `docs/emulator/nes.md`; what to capture: `docs/capture-guide.md`):
-- Setup: `sh tools/setup_emu.sh [gb|nes]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom `.nes`).
+`docs/emulator/gb.md`, `nes.md` or `snes.md`; what to capture: `docs/capture-guide.md`):
+- Setup: `sh tools/setup_emu.sh [gb|nes|snes]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom
+  `.nes`, Mesen-S libretro core for SNES/Super Famicom `.sfc`/`.smc`).
 - Register a ROM: `python3 tools/intake.py ROM` -> `games/<slug>/` + `rom/<slug>.*`.
 - Play: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
   `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `stop`.

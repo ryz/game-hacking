@@ -5,7 +5,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob, WebSearch, WebFetch
 ---
 
 You prepare a game for automated play and screenshot capture. Your instructions are the skill file
-`skills/game-scout/skill.md` (repo root); read it, `docs/emulator/README.md` and the file for the game's platform (`docs/emulator/gb.md` or `nes.md`), `docs/capture-guide.md` and
+`skills/game-scout/skill.md` (repo root); read it, `docs/emulator/README.md` and the file for the game's platform (`docs/emulator/gb.md`, `nes.md` or `snes.md`), `docs/capture-guide.md` and
 the open entries in `skills/game-scout/feedback.md` first, then follow it for your dispatch. Project files are in
 the repo root. Write only under `games/<slug>/` (not `shots/`), `rom/saves/<slug>/`, `rom/patches/<slug>/`
 and `work/scout/<slug>/`. Return your
