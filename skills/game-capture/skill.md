@@ -1,20 +1,20 @@
 ---
 skill: game-capture
-project: gamedb
+project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
-access: write (gamedb/work/, gamedb/games/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-15 (in-between commits)
+access: write (work/, games/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
+updated: 2026-11-17 (repository restructured: new paths)
 ---
 
 # Game capture - play and photograph a game for the database
 
-> **Before you start:** paths are relative to `gamedb/`. Read `docs/emulator.md`, `docs/capture-guide.md`, the
+> **Before you start:** paths are relative to the repo root. Read `docs/emulator/README.md` and the file for the game's platform (`docs/emulator/gb.md` or `nes.md`), `docs/capture-guide.md`, the
 > game's `games/<slug>/playbook.md` (all of it: controls, strategy, shortcuts) and the open entries in this
 > skill's `feedback.md`. The playbook exists so you do not rediscover the game: use its macros, checkpoints and
 > RAM before experimenting.
 
 Owner's rules (2026-11-15): cataloguing, not a fair playthrough. Skip, cheat, hack RAM, patch the ROM, load
-downloaded saves whenever that is faster than playing (`docs/emulator.md`, "Cataloguing, not playing fair").
+downloaded saves whenever that is faster than playing (`docs/emulator/README.md`, "Cataloguing, not playing fair").
 Anything set by cheating looks realistic (8973 gold, not 9999; varied, consistent with progress). Main character
 name: **ryz** (further party members: condi, ebo, cubi, deddo, mnz).
 
@@ -34,16 +34,16 @@ edit anything outside the game's folder.
    `play.py --name SLUG snap ID CATEGORY "caption" --set SET`. Look at the native PNG it wrote.
 3. `checkpoint` at every milestone (new area, before a boss, a menu reached), with a description. At the bigger
    milestones also leave a save for the owner: save in the game, then `play.py export NN_place "contents"`
-   (`docs/emulator.md`, "Saves for the owner").
+   (`docs/emulator/README.md`, "Saves for the owner").
    **In-between commit at every major milestone** (owner's rule 2026-11-15; e.g. starter chosen, each
    badge/world, late game reached, end): save in the game + `export`, `shoot.py SLUG SET --verify` (fix
    mismatches first), `shoot.py SLUG SET --publish`, then commit and push only the game folder:
    ```sh
-   git add gamedb/games/SLUG
-   git commit -m "gamedb: SLUG capture - <milestone> (<n> shots)"   # + the attribution lines from the dispatch
+   git add games/SLUG
+   git commit -m "SLUG: capture - <milestone> (<n> shots)"   # + the attribution lines from the dispatch
    git pull --rebase origin master && git push origin master        # retry up to 4 times on a network error
    ```
-   Never `git add` anything outside `gamedb/games/SLUG/`, never force-push, never commit `work/` or `rom/`.
+   Never `git add` anything outside `games/SLUG/`, never force-push, never commit `work/` or `rom/`.
    A failing rebase (someone changed the same files): stop committing, report it.
    Before snapping screens that show RAM-recipe values (summary, EXP, trainer card, Pokédex counts), check them
    on screen against the game's own rules (EXP inside the level's range, stats plausible for the level) and fix
@@ -92,6 +92,6 @@ End your final report with this block; the coordinator files it in `skills/game-
 ## Feedback
 - Task: <one line>
 - Worked: <what went well, worth keeping>
-- Friction: <what slowed you down or was unclear in this skill, the tools or docs/emulator.md>
-- Proposed rule change: <a concrete change to skill.md or docs/emulator.md, or "none">
+- Friction: <what slowed you down or was unclear in this skill, the tools or docs/emulator/>
+- Proposed rule change: <a concrete change to skill.md or docs/emulator/, or "none">
 ```

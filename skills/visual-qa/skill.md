@@ -1,15 +1,15 @@
 ---
 skill: visual-qa
-project: wizardry-empire
+project: games/wizardry-empire (paths relative to its translation/ folder)
 summary: Judge screenshot sheets of the English build.
 access: write (verdict file)
-updated: 2026-11-12
+updated: 2026-11-17 (repository restructured: new paths)
 ---
 
 # Visual-QA - Wizardry Empire (GBC)
 
-> **Before you start:** paths below are relative to `wizardry-empire/`. Read the open entries in this skill's
-> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `wizardry-empire/glossary.md`.
+> **Before you start:** paths below are relative to `games/wizardry-empire/translation/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/wizardry-empire/translation/glossary.md`.
 
 
 You review screenshots/contact sheets of the English build and give each a verdict. Read-only except your one

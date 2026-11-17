@@ -1,35 +1,62 @@
 # Agent instructions
 
-This repository (`game-hacking`, formerly `game-translations`) holds game-hacking projects, one directory per game:
-fan translations, reverse engineering, ROM patches and tools, and game-design documentation drawn from the code.
-Each project is self-contained (its own `tools/`, `docs/`, `tests/`, and `script/` for translations). Overview for
-people: `README.md`. Current projects:
+This repository (`game-hacking`, formerly `game-translations`) is a game database built by taking games apart:
+per game, reproducible screenshot sets, a design reference, a playbook for automated play and, where there is
+one, a fan translation with its patch tools and reverse-engineering notes. Overview for people: `README.md`.
 
-| Directory | Game | Platform | Work |
-|---|---|---|---|
-| `wizardry-empire/` | Wizardry Empire (J) | Game Boy Color | English translation, VWF engine, RE notes, design docs, floor maps |
-| `gamedb/` | any game you provide (GB/GBC, NES/Famicom) | Game Boy / Color, NES / Famicom | screenshot database: research playbooks, automated play, reproducible screenshot sets |
+## Layout
+| Path | What |
+|---|---|
+| `games/<slug>/` | everything about one game: `game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt`, `shots/<set>/`, `design/`, `saves/`, `tools/` (game-specific helpers); optional `translation/` and `tech/` |
+| `games/_template/` | starting files for a new game (used by `tools/intake.py`) |
+| `tools/`, `tests/` | shared tooling for all games (emulators, play, capture) and its tests |
+| `docs/` | shared tooling docs: `emulator/` (general rules + one file per platform), `capture-guide.md`, `status.md`, `progress-log.md` |
+| `skills/`, `.claude/agents/`, `agent-log/` | agent procedures, their wrappers, the run log |
+| `rom/`, `work/` (also inside `games/wizardry-empire/translation/`) | ROMs, downloads, states, caches, scratch: ignored by git |
 
-## Rules (all projects)
-- Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`, `*.sav`,
-  `*.state`, `rom/`, `build/`, `work/`). The original dump is verified by SHA-1 (`rom.sha1`). Exception (owner's
-  decision 2026-11-12): test saves made by a project's own tools in `<project>/saves/`, each documented in
-  `<project>/saves/README.md`; and (2026-11-15) battery saves/states the gamedb agents made while playing, in
-  `gamedb/games/<slug>/saves/` (documented in its README.md). Downloaded saves are never committed.
-- Screenshots may be committed: reference sets go to `<project>/docs/shots/<set>/` (photographer,
-  `tools/shoot.py SET --publish`).
-- Document as you go: reverse-engineering findings in `docs/re/`, the current snapshot in `docs/status.md`, the
-  history in `docs/progress-log.md` (append-only, newest first). Update both at the end of every session and log
-  every test ROM sent (commit hash).
+| Game | Platform | Work |
+|---|---|---|
+| `games/wizardry-empire/` | Game Boy Color | English translation (`translation/`: script, VWF engine, build chain, RE notes), design docs, tech docs, floor maps, reference screenshots |
+| `games/pokemon-blue/` | Game Boy | screenshot sets and sequences, design reference, saves |
+| `games/dragon-quest/` | Famicom (English translation patch) | screenshot set, design reference, password tools |
+
+## Rules (all work)
+- Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`,
+  `*.sav`, `*.state`, `rom/`, `build/`, `work/`). Original dumps are verified by SHA-1 (`game.json`, or
+  `rom.sha1` for the Wizardry Empire translation). Exceptions (owner's decisions 2026-11-12 and 2026-11-15):
+  saves made by a game's own tools or by the capture agents while playing, in `games/<slug>/saves/`, each
+  documented in its `README.md`. Downloaded saves are never committed.
+- Screenshots may be committed: sets go to `games/<slug>/shots/<set>/` (`shoot.py ... --publish`).
+- Document as you go. Shared tooling: `docs/status.md` (current snapshot) and `docs/progress-log.md` (history,
+  append-only, newest first). Wizardry Empire translation: `games/wizardry-empire/translation/docs/status.md`
+  and `progress-log.md`, reverse-engineering findings in its `docs/re/`; log every test ROM sent (commit hash).
+  Update both files of the area you worked in at the end of every session.
+- History is not rewritten: progress logs, feedback logs and `agent-log/` keep the paths that were true when
+  they were written. Before 2026-11-17 the layout was `wizardry-empire/` and `gamedb/` at the root (mapping in
+  `docs/progress-log.md`, entry "repository restructured").
 - Agent work follows the skills in `skills/` (index: `skills/skill-index.md`) and its feedback loop (below).
-- Translations live in `script/*.json` (Japanese kept next to the English for review). Edit those, not the ROM.
+- Translations live in script files (Japanese kept next to the English for review). Edit those, not the ROM.
 - Commit messages: what changed and why; one topic per commit.
 - Branch: work and push on `master` (owner's rule 2026-11-15); merge any session branch into it.
 
+## Shared tooling quick reference
+Run from the repo root (how to drive any game: `docs/emulator/README.md`, then the platform file
+`docs/emulator/gb.md` or `docs/emulator/nes.md`; what to capture: `docs/capture-guide.md`):
+- Setup: `sh tools/setup_emu.sh [gb|nes]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom `.nes`).
+- Register a ROM: `python3 tools/intake.py ROM` -> `games/<slug>/` + `rom/<slug>.*`.
+- Play: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
+  `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `stop`.
+- Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish]`. Tests: `python3 -m pytest -q tests`.
+- Per game: `games/<slug>/playbook.md` is read before playing and updated after; checkpoints are routes (cache
+  states are not committed). Milestone saves for the owner: save in the game, then `play.py export NAME "desc"`
+  -> `games/<slug>/saves/` (committed); password games record passwords in the playbook instead. Capture agents
+  commit + push their game folder at every major milestone.
+- Wizardry Empire is not registered with these tools yet; it uses its own in `translation/tools/` (below).
+
 ## Wizardry Empire quick reference
-Run from `wizardry-empire/`:
-- Setup emulator: `sh tools/setup_emu.sh` (builds gbemu-cli, a headless SameBoy with a JSON-lines API, into
-  `tools/gbemu-cli`; Python client in `tools/gbemu-cli/cli/py/gbemu.py`).
+Run from `games/wizardry-empire/translation/`:
+- Setup emulator: `sh tools/setup_emu.sh` (calls the shared setup: gbemu-cli, a headless SameBoy with a JSON-lines
+  API, built once into `tools/gbemu-cli` at the repo root; Python client in its `cli/py/gbemu.py`).
 - ROM: copy your dump of the Japanese **Rev 1** to `rom/wizardry_empire_j.gbc` (`rom.sha1`); v1.0 only as
   `rom/wizardry_empire_j_v10.gbc` for `tools/revmap.py` (old addresses -> Rev 1).
 - Build: `python3 tools/build.py` -> `build/wizardry_empire_en.gbc` + `.ips`. The build fails loudly when a
@@ -48,12 +75,12 @@ Run from `wizardry-empire/`:
   `save NAME` / `load NAME` / `peek` / `poke` / `stop` (one emulator kept running; ~1-2 s per command).
 - Standard playtest party (ryz, condi, ebo, cubi, deddo, mnz) + checkpoint states for the current build:
   `python3 tools/party.py --out work/states/party` (renamed/party/camp/maze.state).
-- Test save with a powerful party knowing every spell (level 60, special classes): `saves/test-party-all-spells.sav`,
-  rebuilt by `python3 tools/testsave.py --out saves/test-party-all-spells.sav` (see `saves/README.md`).
+- Test save with a powerful party knowing every spell (level 60, special classes): `../saves/test-party-all-spells.sav`,
+  rebuilt by `python3 tools/testsave.py --out ../saves/test-party-all-spells.sav` (see `../saves/README.md`).
 - Screen tour: `python3 tools/tour.py [--jp] [route ...]` (routes in `tools/routes/tour.txt`) ->
   `work/qa/tour_en|tour_jp/<route>/sheet.png`; run it after every build and give the sheets to `visual-qa`.
 - Reference screenshots: `python3 tools/shoot.py SET [--only ids]` (curated list `tools/routes/shots.txt`) ->
-  `work/shots/SET/` native 160x144 + 3x + JP|EN compare PNGs and a catalogue.
+  `work/shots/SET/` native 160x144 + 3x + JP|EN compare PNGs and a catalogue (`--publish` copies to `../shots/SET/`).
 - Maze reach: `tools/maze_goto.py` (poke next to a square + check the event), `tools/maze_route.py` (walking
   tokens), `tools/maze_make_chest.py` (chest after a battle); random walk to a battle: `tools/explore.py ROM STATE
   OUTDIR [MAXSTEPS] [SEED]`. Recipes: `docs/re/reach.md`.
@@ -62,22 +89,20 @@ Run from `wizardry-empire/`:
 - Disassemble: `python3 tools/gbdis.py BANK ADDR [N]`. Assembler: `tools/asm.py` (rgbds-like syntax, see its docstring).
 - Census tools (find text in the original ROM): `tools/census_rects.py`, `tools/chain_rects.py`,
   `tools/census_msgs.py`, `tools/census_inline.py`.
-- Docs map and rules for all documents: `docs/README.md`. Game design for designers (rules, formulas, data, no
-  addresses): `docs/design/`; the same systems with addresses and evidence: `docs/tech/`; patch/text
-  reverse-engineering notes: `docs/re/`. Data tables: `python3 tools/designtables`.
+- Docs map and rules for all documents of the game: `../DOCUMENTS.md`. Game design for designers (rules, formulas,
+  data, no addresses): `../design/`; the same systems with addresses and evidence: `../tech/`; reference
+  screenshot sets: `../shots/`; patch/text reverse-engineering notes: `docs/re/`. Data tables and floor maps:
+  `python3 tools/designtables` (writes into `../design/`).
 - Read `docs/re/text.md` (text engines, control codes) and `docs/re/vwf.md` (VWF design) before touching `asm/`.
 
-## Game database quick reference
-Run from `gamedb/` (README: `gamedb/README.md`; rules for driving any game: `gamedb/docs/emulator.md`; what to
-capture: `gamedb/docs/capture-guide.md`):
-- Setup: `sh tools/setup_emu.sh` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom `.nes`; NES notes in
-  `docs/emulator.md` "NES / Famicom"); register a ROM: `python3 tools/intake.py ROM` -> `games/<slug>/` + `rom/<slug>.*`.
-- Play: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
-  `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `stop`.
-- Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish]`. Tests: `python3 -m pytest -q tests`.
-- Per game: `games/<slug>/playbook.md` is read before playing and updated after; checkpoints are routes (cache
-  states are not committed). Milestone saves for the owner: save in the game, then `play.py export NAME "desc"`
-  -> `games/<slug>/saves/` (committed). Capture agents commit + push their game folder at every major milestone.
+## Text formats (Wizardry Empire translation, `games/wizardry-empire/translation/`)
+| File | What | Notes |
+|---|---|---|
+| `script/rects.json` | fixed boxes `[w][h][tiles]` | `^` center, `>` right, `@N:` cell column N, `{x:N}` pixel x; `fixed: true` = 8 px ASCII in place |
+| `script/messages.json` | typewriter messages | `\n` = row; `{col:N}` cursor column; `{F8 ..}`/`{F3 ..}` inserts copied from the Japanese |
+| `script/inline.json` | text written by code | replaced by `rst $38` calls; `hl` moves the destination |
+| `script/items.json`, `monsters.json`, `templates.json`, `npcs.json` | name fields in data records | in place: 16 / 12 / 7 / 7 chars max |
+| `script/classprompts.json` | Training "Become a <class>?" records | RAM rect header (like titles) |
 
 ## Skills and subagents
 - `skills/skill-index.md` routes every job to a skill; each `skills/<name>/` has `skill.md` (source of truth) and
@@ -85,7 +110,7 @@ capture: `gamedb/docs/capture-guide.md`):
 - Subagents are thin wrappers in `.claude/agents/<name>.md` that load `skills/<name>/skill.md`. Dispatch these
   types (translator, reviewer, editor, playtester, visual-qa, photographer, tracer, triage, maintenance, design-writer, game-scout, game-capture), not general-purpose
   agents, with exact paths filled in from `skills/_templates/dispatch.md`. Bug reports: `skills/_templates/bug-report.md`. The main session follows `skills/coordinator/skill.md`.
-- Binding terms: `wizardry-empire/glossary.md`.
+- Binding terms: `games/wizardry-empire/translation/glossary.md`.
 
 ### Feedback loop
 - Every agent ends its report with a `## Feedback` block (Task, Worked, Friction, Proposed rule change).
@@ -100,13 +125,5 @@ capture: `gamedb/docs/capture-guide.md`):
    (Maintenance skill after big changes.)
 3. Agent-log line written.
 4. Build + tests + tour pass for code changes; commits pushed.
-5. `docs/status.md` and `docs/progress-log.md` updated; the user told plainly what changed and what remains open.
-
-## Text formats (Wizardry Empire)
-| File | What | Notes |
-|---|---|---|
-| `script/rects.json` | fixed boxes `[w][h][tiles]` | `^` center, `>` right, `@N:` cell column N, `{x:N}` pixel x; `fixed: true` = 8 px ASCII in place |
-| `script/messages.json` | typewriter messages | `\n` = row; `{col:N}` cursor column; `{F8 ..}`/`{F3 ..}` inserts copied from the Japanese |
-| `script/inline.json` | text written by code | replaced by `rst $38` calls; `hl` moves the destination |
-| `script/items.json`, `monsters.json`, `templates.json`, `npcs.json` | name fields in data records | in place: 16 / 12 / 7 / 7 chars max |
-| `script/classprompts.json` | Training "Become a <class>?" records | RAM rect header (like titles) |
+5. the area's `status.md` and `progress-log.md` updated (shared tooling: `docs/`; Wizardry Empire translation:
+   `games/wizardry-empire/translation/docs/`); the user told plainly what changed and what remains open.

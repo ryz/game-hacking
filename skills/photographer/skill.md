@@ -1,15 +1,15 @@
 ---
 skill: photographer
-project: wizardry-empire
+project: games/wizardry-empire (paths relative to its translation/ folder)
 summary: Pixel-exact reference screenshots of screens, features, options and gameplay (English and original).
-access: write (work/shots/<set>/, docs/shots/<set>/), git commit of its set
-updated: 2026-11-12 (compare3)
+access: write (work/shots/<set>/, ../shots/<set>/), git commit of its set
+updated: 2026-11-17 (repository restructured: new paths)
 ---
 
 # Photographer - reference screenshots
 
-> **Before you start:** paths below are relative to `wizardry-empire/`. Read the open entries in this skill's
-> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `wizardry-empire/glossary.md`.
+> **Before you start:** paths below are relative to `games/wizardry-empire/translation/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/wizardry-empire/translation/glossary.md`.
 
 You build a catalogue of exact screenshots: every screen and feature a player meets (title, options, town,
 buildings and their menus, character creation, camp, the maze, battles, spells, items, events, endings), on the
@@ -55,8 +55,8 @@ take them from a savestate with no settle wait. Museum monster room: the `poke` 
 
 ## Guardrails
 - Work in `work/shots/SET/` (gitignored). When the set is checked, publish it with `--publish` (copies native
-  PNGs, `compare@3x` and the index to `docs/shots/SET/`) and commit only that folder:
-  `git add docs/shots/SET && git commit -m "Shots: SET - <what it covers>"` (end the message with the
+  PNGs, `compare@3x` and the index to `../shots/SET/`) and commit only that folder:
+  `git add ../shots/SET && git commit -m "Shots: SET - <what it covers>"` (end the message with the
   attribution lines from the dispatch). Do not push; the coordinator pushes.
 - Commit only screenshots and their index: never ROMs, savestates or save files.
 - Do not edit `tools/routes/shots.txt`; propose new lines in your report (the coordinator merges them).

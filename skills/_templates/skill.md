@@ -3,7 +3,7 @@ skill: <name>
 project: <project dir or all>
 summary: <one line: what this skill does>
 access: <read-only | write (<where>)>
-updated: <YYYY-MM-DD>
+updated: 2026-11-17 (repository restructured: new paths)
 ---
 
 # <Name>

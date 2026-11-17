@@ -1,0 +1,390 @@
+"""Shared tooling tests: tokens, routes, header identification (no emulator), and the whole pipeline on gbemu's generated
+test ROM (skipped when tools/gbemu-cli is not built) and on a generated NES test ROM (skipped when the Mesen
+core is not built)."""
+import json, os, shutil, subprocess, sys
+
+import pytest
+
+ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import emu  # noqa: E402
+import platforms  # noqa: E402
+
+SLUG = "zz-selftest"
+GBEMU = os.path.join(ROOT, "tools", "gbemu-cli")
+
+
+class FakeEmu:
+    def __init__(self):
+        self.log = []
+
+    def input(self, keys):
+        self.log.append(("in", tuple(keys)))
+
+    def frames(self, n):
+        self.log.append(("f", n))
+
+    def poke(self, addr, data):
+        self.log.append(("poke", addr, bytes(data)))
+
+
+class FakeGame:
+    keys = platforms.GameBoy.keys
+    hold, wait = 8, 40
+    macros = {"TITLE": "w100,start", "NEWGAME": "TITLE,a"}
+    slug = "fake"
+
+    def checkpoints(self):
+        return [{"name": "title", "description": "", "route": "TITLE,settle"},
+                {"name": "w2", "description": "", "route": "@title,right:30"}]
+
+
+def test_press_hold_chord_mash_poke():
+    e, g = FakeEmu(), FakeGame()
+    assert emu.step(e, g, "a")
+    assert e.log == [("in", ("a",)), ("f", 8), ("in", ()), ("f", 40)]
+    e.log = []
+    emu.step(e, g, "right:30")
+    assert e.log == [("in", ("right",)), ("f", 30), ("in", ())]
+    e.log = []
+    emu.step(e, g, "select>a")
+    assert e.log[:3] == [("in", ("select",)), ("f", 4), ("in", ("select", "a"))]
+    e.log = []
+    emu.step(e, g, "b+a*2")
+    assert e.log.count(("in", ("b", "a"))) == 2
+    e.log = []
+    emu.step(e, g, "mash:a:80")
+    assert e.log.count(("in", ("a",))) == 10
+    e.log = []
+    emu.step(e, g, "poke:C0A2=0901")
+    assert e.log == [("poke", 0xC0A2, b"\x09\x01")]
+    assert not emu.step(e, g, "jump")
+    assert not emu.step(e, g, "x:10")
+
+
+def test_macros_and_checkpoints_resolve():
+    g = FakeGame()
+    assert emu.resolve(g, "NEWGAME,b") == ["w100", "start", "a", "b"]
+    assert emu.resolve(g, "@w2,a") == ["w100", "start", "settle", "right:30", "a"]
+    with pytest.raises(ValueError):
+        emu.resolve(g, "@nope")
+
+
+def test_gb_header():
+    rom = bytearray(0x8000)
+    rom[0x134:0x134 + 5] = b"HELLO"
+    rom[0x143] = 0x80
+    rom[0x146] = 0x03
+    rom[0x147] = 0x1B
+    rom[0x148] = 0x05
+    rom[0x149] = 0x03
+    chk = 0
+    for b in rom[0x134:0x14D]:
+        chk = (chk - b - 1) & 0xFF
+    rom[0x14D] = chk
+    h = platforms.GameBoy.identify(bytes(rom))
+    assert h["header_title"] == "HELLO" and h["platform"] == "gbc" and h["model"] == "cgb"
+    assert h["sgb"] and h["cart_type"] == "MBC5+RAM+BATTERY" and h["rom_kib"] == 1024 and h["ram_kib"] == 32
+    assert h["header_checksum_ok"]
+
+
+@pytest.fixture
+def selftest(tmp_path):
+    maker = os.path.join(GBEMU, "cli", "tests", "make_test_rom.py")
+    if not (os.path.exists(platforms.GameBoy.BIN) and os.path.exists(maker)):
+        pytest.skip("gbemu-cli not built (sh tools/setup_emu.sh)")
+    rom = tmp_path / "t.gb"
+    subprocess.run([sys.executable, maker, str(rom), str(tmp_path / "t.json")], check=True, capture_output=True)
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", SLUG, "stop"],
+                   capture_output=True)
+    for p in (os.path.join(ROOT, "games", SLUG), os.path.join(ROOT, "work", "shots", SLUG),
+              os.path.join(ROOT, "work", "cache", SLUG), os.path.join(ROOT, "work", "intake", SLUG),
+              os.path.join(ROOT, "work", "play", SLUG)):
+        shutil.rmtree(p, ignore_errors=True)
+    if os.path.exists(os.path.join(ROOT, "rom", SLUG + ".gb")):
+        os.remove(os.path.join(ROOT, "rom", SLUG + ".gb"))
+
+
+NES_SLUG = "zz-selftest-nes"
+
+
+@pytest.fixture
+def nes_selftest(tmp_path):
+    if not os.path.exists(platforms.Nes.SO):
+        pytest.skip("Mesen core not built (sh tools/setup_emu.sh nes)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_nes_rom
+    rom = tmp_path / "t.nes"
+    rom.write_bytes(make_nes_rom.build())
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", NES_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games", "work/shots", "work/cache", "work/intake", "work/play"):
+        shutil.rmtree(os.path.join(ROOT, sub, NES_SLUG), ignore_errors=True)
+    if os.path.exists(os.path.join(ROOT, "rom", NES_SLUG + ".nes")):
+        os.remove(os.path.join(ROOT, "rom", NES_SLUG + ".nes"))
+
+
+def run(*args):
+    r = subprocess.run([sys.executable] + list(args), cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+    return r.stdout
+
+
+def test_pipeline(selftest):
+    run("tools/intake.py", str(selftest), "--slug", SLUG, "--probe", "120")
+    gj = os.path.join(ROOT, "games", SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "gb" and meta["model"] == "dmg"
+    meta["macros"] = {"TITLE": "w120"}
+    meta["ram"] = {"joy": {"addr": "C010", "size": 1}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", SLUG]
+    run(*P, "start", SLUG)
+    run(*P, "do", "TITLE")
+    assert "saved" in run(*P, "checkpoint", "title", "after boot")
+    run(*P, "do", "right:20,a")
+    assert run(*P, "route").strip() == "@title,right:20,a,settle"
+    run(*P, "snap", "a_shot", "gameplay", "after A")
+    assert "UNCHANGED" in run(*P, "snap", "a_shot", "gameplay", "after A")
+    assert "candidates" in run(*P, "find", "new == old")
+    run(*P, "stop")
+    out = run("tools/shoot.py", SLUG, "main", "--verify")
+    assert "1/1 reproduce" in out
+    run("tools/shoot.py", SLUG, "main", "--publish-only")
+    idx = json.load(open(os.path.join(ROOT, "games", SLUG, "shots", "main", "index.json")))
+    s = idx["shots"][0]
+    assert s["id"] == "a_shot" and s["route"] == "@title,right:20,a,settle" and s["rom_sha1"] == meta["sha1"]
+    from PIL import Image
+    assert Image.open(os.path.join(ROOT, "games", SLUG, "shots", "main", "a_shot.png")).size == (160, 144)
+
+
+def test_cheat_formats():
+    GB = platforms.GameBoy
+    assert GB.gameshark("0109A2C0") == (None, 0xC0A2, 0x09)
+    assert GB.gameshark("9163D0DA") == (1, 0xDAD0, 0x63)
+    assert GB.gameshark("8205B3A0") == (2, 0xA0B3, 0x05)
+
+    def encode(addr, value, cmp_=None):          # inverse of the SameBoy decoder
+        d = "%02X%03X%X" % (value, addr & 0xFFF, (addr >> 12) ^ 0xF)
+        if cmp_ is None:
+            return d[:3] + "-" + d[3:]
+        x = cmp_ ^ 0xBA
+        g = ((x << 2) | (x >> 6)) & 0xFF
+        return "%s-%s-%X0%X" % (d[:3], d[3:], g >> 4, g & 0xF)
+    for addr, val, cmp_ in [(0x4ABC, 0x00, 0x3D), (0x0150, 0xC9, None), (0x7FFF, 0x12, 0xBA)]:
+        assert GB.game_genie(encode(addr, val, cmp_)) == (addr, val, cmp_)
+    rom = bytearray(0x10000)
+    rom[0x0ABC] = 0x3D           # bank 0 copy: not touched (address is in the switchable bank)
+    rom[0x4000 + 0x0ABC] = 0x3D  # bank 1
+    rom[0x8000 + 0x0ABC] = 0x11  # bank 2: compare differs
+    rom[0xC000 + 0x0ABC] = 0x3D  # bank 3
+    assert GB.apply_game_genie(rom, encode(0x4ABC, 0x00, 0x3D)) == [0x4ABC, 0xCABC]
+    assert rom[0x8ABC] == 0x11 and rom[0x0ABC] == 0x3D
+
+
+def test_values_ips_prefix_freezes():
+    assert emu.encode_value(8973, 2) == bytes([0x0D, 0x23])
+    assert emu.encode_value(8973, 2, "be") == bytes([0x23, 0x0D])
+    assert emu.encode_value(8973, 3, "bcd") == bytes([0x73, 0x89, 0x00])
+    data = bytearray(b"\0" * 8)
+    emu.apply_ips(data, b"PATCH" + b"\0\0\2\0\2AB" + b"\0\0\6\0\0\0\4Z" + b"EOF")
+    assert bytes(data) == b"\0\0AB\0\0ZZZZ"
+    assert emu.prefix(["rom:gg", "sav:end", "a"]) == ({"rom": "gg", "sav": "end"}, ["a"])
+    e, g = FakeEmu(), FakeGame()
+    g.platform = "gb"
+    emu.step(e, g, "gs:0109A2C0")
+    e.log = []
+    emu.step(e, g, "w10")
+    assert e.log == [("f", 10), ("poke", 0xC0A2, b"\x09")]      # held value re-written after the token
+    emu.step(e, g, "unfreeze")
+    e.log = []
+    emu.step(e, g, "w10")
+    assert e.log == [("f", 10)]
+    emu.step(e, g, "set:C0B0=8973:2")
+    assert e.log[-1] == ("poke", 0xC0B0, bytes([0x0D, 0x23]))
+
+
+def test_rom_variant_and_set(selftest):
+    run("tools/intake.py", str(selftest), "--slug", SLUG, "--probe", "0")
+    gj = os.path.join(ROOT, "games", SLUG, "game.json")
+    meta = json.load(open(gj))
+    meta["rom_variants"] = {"patched": {"bytes": {"7FF0": "AB"}}}
+    json.dump(meta, open(gj, "w"))
+    g = emu.Game(SLUG)
+    p = g.rom_file("patched")
+    assert open(p, "rb").read()[0x7FF0] == 0xAB and "work/roms" in p
+    e, rest, _ = emu.start(g, "rom:patched,w60,set:C200=8973:2,gs:015555C2")
+    emu.play(e, g, rest)
+    assert e.peek(0xC200, 2) == bytes([0x0D, 0x23]) and e.peek(0xC255, 1) == b"\x55"
+    e.close()
+
+
+def test_export_save(selftest):
+    data = bytearray(open(selftest, "rb").read())
+    data[0x147], data[0x149] = 0x1B, 0x02          # MBC5+RAM+BATTERY, 8 KiB
+    chk = 0
+    for b in data[0x134:0x14D]:
+        chk = (chk - b - 1) & 0xFF
+    data[0x14D] = chk
+    open(selftest, "wb").write(data)
+    run("tools/intake.py", str(selftest), "--slug", SLUG, "--probe", "0")
+    P = ["tools/play.py", "--name", SLUG]
+    run(*P, "start", SLUG)
+    run(*P, "do", "w60")
+    out = run(*P, "export", "early", "After power-on, nothing saved", "--state")
+    assert "early.sav" in out
+    run(*P, "stop")
+    d = os.path.join(ROOT, "games", SLUG, "saves")
+    assert os.path.getsize(os.path.join(d, "early.sav")) == 8192
+    assert os.path.exists(os.path.join(d, "early.state"))
+    assert "| early | `early.sav`, `early.state` |" in open(os.path.join(d, "README.md")).read()
+    g = emu.Game(SLUG)
+    e, rest, _ = emu.start(g, "sav:early,w10")
+    emu.play(e, g, rest)
+    e.close()
+
+
+def test_clip_and_sequence(selftest):
+    run("tools/intake.py", str(selftest), "--slug", SLUG, "--probe", "0")
+    P = ["tools/play.py", "--name", SLUG]
+    run(*P, "start", SLUG)
+    run(*P, "do", "w30")
+    run(*P, "snap", "s01_start", "gameplay", "Start", "--set", "seq-test")
+    bad = subprocess.run([sys.executable] + P + ["record", "s02_clip", "clip", "60", "Clip", "--set", "seq-test"],
+                         cwd=ROOT, capture_output=True, text=True)
+    assert bad.returncode == 1 and "error: category 'clip' unknown" in bad.stdout
+    out = run(*P, "record", "s02_clip", "gameplay", "60", "Clip", "--every", "3", "--poster", "-1", "--set", "seq-test")
+    assert "frames kept" in out and "poster = kept frame -1" in out
+    run(*P, "do", "a")
+    run(*P, "snap", "s03_after", "gameplay", "After A", "--set", "seq-test")
+    run(*P, "stop")
+    d = os.path.join(ROOT, "work", "shots", SLUG, "seq-test")
+    assert open(os.path.join(d, "shots.txt")).read().count("rec:60:3:-1") == 2  # the clip, and the step after it
+    assert "3/3 reproduce" in run("tools/shoot.py", SLUG, "seq-test", "--verify")
+    run("tools/shoot.py", SLUG, "seq-test", "--publish-only")
+    pub = os.path.join(ROOT, "games", SLUG, "shots", "seq-test")
+    for f in ("s01_start.png", "s02_clip.gif", "s02_clip@3x.gif", "s02_clip.png", "s03_after@3x.png", "strip.png",
+              "steps.gif", "steps@3x.gif", "full.gif", "full@3x.gif", "sheet.png"):
+        assert os.path.exists(os.path.join(pub, "seq-test_" + f)), f          # sequence files carry the set name
+    assert not [f for f in os.listdir(pub) if f.endswith((".png", ".gif")) and not f.startswith("seq-test_")]
+    idx = json.load(open(os.path.join(pub, "index.json")))
+    clip = [s for s in idx["shots"] if s["id"] == "s02_clip"][0]["clip"]
+    assert clip["frames"] == 60 and clip["every"] == 3 and clip["kept"] == 21 and clip["poster"] == -1
+    from PIL import Image
+    full = Image.open(os.path.join(pub, "seq-test_full.gif"))
+    total = 0
+    for i in range(full.n_frames):
+        full.seek(i)
+        total += full.info["duration"]
+    clip_ms = 60 * 1000 / 59.7275
+    assert abs(total - (2000 + clip_ms + 3000)) < 60, total     # first still + clip at game speed + last still
+
+
+# ------------------------------------------------------------------ NES (Mesen libretro core)
+def test_nes_header_and_game_genie():
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_nes_rom
+    h = platforms.Nes.identify(make_nes_rom.build())
+    assert h["platform"] == "nes" and h["model"] == "ntsc" and h["mapper"] == 0 and h["prg_kib"] == 16
+    assert h["battery"] and h["ram_kib"] == 8 and h["chr_kib"] == 0
+    nes2 = bytearray(b"NES\x1a" + bytes([2, 1, 0x12, 0x48, 0x10, 0, 0x70, 0, 1, 0, 0, 0]))
+    h = platforms.Nes.identify(bytes(nes2))
+    assert h["format"] == "NES 2.0" and h["mapper"] == 0x41 and h["submapper"] == 1 and h["region"] == "PAL"
+    assert h["model"] == "pal" and h["ram_kib"] == 8
+    N = platforms.Nes
+    assert N.game_genie("SXIOPO") == (0x91D9, 0xAD, None)           # nesdev wiki examples
+    assert N.game_genie("ZEXPYGLA") == (0x94A7, 0x02, 0x03)
+    rom = bytearray(b"NES\x1a" + bytes([4, 0, 0, 0]) + bytes(8) + bytes(0x10000))
+    rom[16 + 0x14A7], rom[16 + 0x34A7], rom[16 + 0x54A7] = 3, 3, 9
+    assert N.apply_game_genie(rom, "ZEXPYGLA") == [16 + 0x14A7, 16 + 0x34A7] and rom[16 + 0x14A7] == 2
+    with pytest.raises(ValueError):
+        N.apply_game_genie(rom, "SXIOPO")                           # 6 letters, bank-switched: ambiguous
+    small = bytearray(b"NES\x1a" + bytes([1, 0, 0, 0]) + bytes(8) + bytes(0x4000))
+    assert N.apply_game_genie(small, "SXIOPO") == [16 + 0x11D9] and small[16 + 0x11D9] == 0xAD
+
+
+def test_nes_backend(nes_selftest, tmp_path):
+    from PIL import Image
+    import io
+    e = platforms.Nes().open(str(nes_selftest))
+    e.frames(30)
+    px = lambda: Image.open(io.BytesIO(e.screen())).convert("RGB").getpixel((100, 100))
+    blue = px()
+    assert blue[2] > 200 and e.peek(0x11, 1) == b"\x00" and e.regs()["pc"].startswith("c0")
+    assert e.peek(0xFFFC, 2) == b"\x00\xc0"                        # PRG through the mapper
+    e.input(["a"])
+    e.frames(5)
+    red = px()
+    assert red[0] > 150 and red[2] < 100 and e.peek(0x11, 1) == b"\x01"
+    st = str(tmp_path / "x.state")
+    e.save_state(st)
+    count = e.peek(0x10, 1)[0]
+    e.input([])
+    e.frames(5)
+    assert px() == blue
+    e.ram_search("new == old")
+    e.frames(3)
+    r = e.ram_search("new == old + 3")
+    assert [x["addr"] for x in r["results"]] == ["0010", "6000"]
+    e.poke(0x10, b"\x80")
+    e.frames(1)
+    assert e.peek(0x10, 1) == b"\x81" and e.battery(0)[0] == 0x81 and len(e.battery(0)) == 8192
+    e2 = platforms.Nes().open(str(nes_selftest))                    # two games at once in one process
+    e2.load_state(st)
+    assert e2.peek(0x10, 1)[0] == count and e.peek(0x10, 1) == b"\x81"
+    e2.close()
+    e.close()
+
+
+def test_nes_state_keeps_frame_and_timing(nes_selftest, tmp_path):
+    """A screenshot never advances emulation: played straight and loaded from a state give the same picture and
+    the same frame count (a cached checkpoint must equal a freshly built one)."""
+    st = str(tmp_path / "x.state")
+    a = platforms.Nes().open(str(nes_selftest))
+    assert a.peek(0x10, 1) == b"\x00" and a.screen() and a.peek(0x10, 1) == b"\x00"     # power-on picture: no frame run
+    a.input(["a"])
+    a.frames(40)
+    a.save_state(st)
+    shot, count = a.screen(), a.peek(0x10, 1)
+    b = platforms.Nes().open(str(nes_selftest))
+    b.load_state(st)
+    assert b.screen() == shot and b.peek(0x10, 1) == count          # red frame kept, nothing emulated
+    a.input([]); b.input([])
+    a.frames(10); b.frames(10)
+    assert a.screen() == b.screen() and a.peek(0x10, 1) == b.peek(0x10, 1)
+    a.close()
+    b.close()
+
+
+def test_nes_pipeline(nes_selftest):
+    run("tools/intake.py", str(nes_selftest), "--slug", NES_SLUG, "--probe", "120")
+    gj = os.path.join(ROOT, "games", NES_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "nes" and meta["model"] == "ntsc"
+    meta["macros"] = {"TITLE": "w60"}
+    meta["ram"] = {"joy": {"addr": "0012", "size": 1}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", NES_SLUG]
+    run(*P, "start", NES_SLUG)
+    run(*P, "do", "TITLE")
+    assert "saved" in run(*P, "checkpoint", "title", "after boot")
+    run(*P, "do", "a+right:20")
+    assert "joy=1" in run(*P, "status")
+    run(*P, "snap", "held_a", "gameplay", "after A was held")
+    assert "candidates" in run(*P, "find", "new == old")
+    assert "early.sav" in run(*P, "export", "early", "frame counter in battery RAM", "--state")
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", NES_SLUG, "main", "--verify")
+    run("tools/shoot.py", NES_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", NES_SLUG, "shots", "main", "held_a.png")).convert("RGB")
+    assert im.size == (256, 240) and im.getpixel((10, 10))[2] > 200
+    d = os.path.join(ROOT, "games", NES_SLUG, "saves")
+    assert os.path.getsize(os.path.join(d, "early.sav")) == 8192
+    assert "Mesen" in open(os.path.join(d, "README.md")).read()
+    g = emu.Game(NES_SLUG)
+    e, rest, _ = emu.start(g, "sav:early")
+    assert e.peek(0x6000, 1)[0] == open(os.path.join(d, "early.sav"), "rb").read()[0] != 0
+    e.close()

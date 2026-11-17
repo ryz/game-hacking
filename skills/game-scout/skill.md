@@ -1,19 +1,19 @@
 ---
 skill: game-scout
-project: gamedb
+project: all games (shared tools at the repo root)
 summary: Research a newly registered game (controls, structure, strategy, shortcuts) into its playbook and verify the basics in the emulator.
-access: write (gamedb/games/<slug>/ except shots/, gamedb/work/scout/<slug>/)
-updated: 2026-11-17
+access: write (games/<slug>/ except shots/, work/scout/<slug>/)
+updated: 2026-11-17 (repository restructured: new paths)
 ---
 
 # Game scout - research a game before anyone plays it
 
-> **Before you start:** paths are relative to `gamedb/`. Read `docs/emulator.md` (how to drive the emulator) and
+> **Before you start:** paths are relative to the repo root. Read `docs/emulator/README.md` (how to drive the emulator), the file for the game's platform (`docs/emulator/gb.md` or `nes.md`) and
 > `docs/capture-guide.md` (what the database needs), and the open entries in this skill's `feedback.md`.
 
 Owner's rules (2026-11-15): this is cataloguing, not a fair playthrough, so the most valuable research is
 **shortcuts**: completed saves, codes, passwords, debug menus, level selects, RAM maps. Main character name:
-**ryz**. Cheated values look realistic (`docs/emulator.md`, "Cataloguing, not playing fair").
+**ryz**. Cheated values look realistic (`docs/emulator/README.md`, "Cataloguing, not playing fair").
 
 You turn a ROM nobody has played here into a **playbook** that lets a capture agent play it efficiently: verified
 controls and boot route, the game's structure, a shot plan, strategy notes and shortcuts, all with sources. You
@@ -34,7 +34,7 @@ do not capture the database set (that is `game-capture`), but you do create the 
    - **The Cutting Room Floor** (tcrf.net): debug menus, level selects, sound tests, unused content, regional
      differences. Often the fastest way to reach late content.
    - **Data Crystal** (datacrystal.tcrf.net): RAM maps, ROM maps.
-   - GameShark / Game Genie code lists (GameFAQs "Cheats", gamehacking.org). NES: no GameShark (use `freeze:`), Game Genie rules in `gamedb/docs/emulator.md` "NES / Famicom". GB GameShark `01VVAAAA` = write VV
+   - GameShark / Game Genie code lists (GameFAQs "Cheats", gamehacking.org). NES: no GameShark (use `freeze:`), Game Genie rules in `docs/emulator/nes.md`. GB GameShark `01VVAAAA` = write VV
      to address AAAA, low byte first: use as `gs:` tokens; Game Genie codes go into a `rom:` variant.
    - **Saves:** GameFAQs game pages often have a "Saves" section (100% / late-game battery saves). Fetch the
      best one into `rom/saves/<slug>/` if the site serves it directly, test it with the `sav:NAME` prefix, and
@@ -56,7 +56,7 @@ do not capture the database set (that is `game-capture`), but you do create the 
    document list for the game's systems, filled with what the research says, tagged **(source)**, plus what you
    verified. The capture agent extends it while playing.
    Once the `start` checkpoint exists, save in the game if it allows it that early and
-   `play.py export 01_start "contents"` (`docs/emulator.md`, "Saves for the owner").
+   `play.py export 01_start "contents"` (`docs/emulator/README.md`, "Saves for the owner").
 5. **Plan the shots.** From the structure and `docs/capture-guide.md`: the playbook Shot plan (ids, category,
    what and where), with the systems that make this game distinctive. For each area the plan needs, say how to
    reach it (save, password, code, poke, debug menu, play) and pick the fastest.
@@ -69,7 +69,7 @@ do not capture the database set (that is `game-capture`), but you do create the 
 - Write only `games/<slug>/game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt` (plan lines without routes
   are fine as comments), `design/`, `rom/saves/<slug>/`, `rom/patches/<slug>/` and `work/scout/<slug>/`. Commits: one at the end of a long
   scout, or when the `start` checkpoint and its save exist, with the same rules as game-capture's in-between
-  commits (only `gamedb/games/<slug>/`, pull --rebase, push to master); the coordinator makes the final commit.
+  commits (only `games/<slug>/`, pull --rebase, push to master); the coordinator makes the final commit.
 - Never commit or upload the ROM; never send ROM data, hashes of private dumps or the user's details to web
   services (searching for a public CRC32 of a retail game is fine).
 - Mark every fact verified or source. A control or code you could not confirm stays "source".
@@ -92,6 +92,6 @@ End your final report with this block; the coordinator files it in `skills/game-
 ## Feedback
 - Task: <one line>
 - Worked: <what went well, worth keeping>
-- Friction: <what slowed you down or was unclear in this skill, the tools or docs/emulator.md>
-- Proposed rule change: <a concrete change to skill.md or docs/emulator.md, or "none">
+- Friction: <what slowed you down or was unclear in this skill, the tools or docs/emulator/>
+- Proposed rule change: <a concrete change to skill.md or docs/emulator/, or "none">
 ```

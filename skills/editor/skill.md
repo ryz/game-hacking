@@ -1,15 +1,15 @@
 ---
 skill: editor
-project: wizardry-empire
+project: games/wizardry-empire (paths relative to its translation/ folder)
 summary: Proofread the whole English script for consistency and voice (read-only).
 access: read-only
-updated: 2026-11-12
+updated: 2026-11-17 (repository restructured: new paths)
 ---
 
 # English editor - Wizardry Empire (GBC)
 
-> **Before you start:** paths below are relative to `wizardry-empire/`. Read the open entries in this skill's
-> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `wizardry-empire/glossary.md`.
+> **Before you start:** paths below are relative to `games/wizardry-empire/translation/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/wizardry-empire/translation/glossary.md`.
 
 
 You proofread the English script as a whole for a native-English reader. You suggest; you do not edit.

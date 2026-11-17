@@ -1,26 +1,26 @@
 ---
 skill: design-writer
-project: wizardry-empire
+project: games/wizardry-empire (paths relative to its translation/ folder)
 summary: Write one game-design document for designers from the technical reference (rules, formulas, data; no addresses).
-access: write (wizardry-empire/docs/design/<file>.md named in the dispatch, scratch under work/design/<topic>/)
-updated: 2026-11-12 (floor pages)
+access: write (games/wizardry-empire/design/<file>.md named in the dispatch, scratch under work/design/<topic>/)
+updated: 2026-11-17 (repository restructured: new paths)
 ---
 
 # Design writer - Wizardry Empire: game-design documents
 
-> **Before you start:** paths are relative to `wizardry-empire/`. Read the open entries in `feedback.md` (same
-> folder) and apply their proposed rules. Then read `docs/README.md` and the "Notation and style" section of
-> `docs/design/README.md`: both are binding (notation, confidence tags, terms, spelling, structure, cross-links).
+> **Before you start:** paths are relative to `games/wizardry-empire/translation/`. Read the open entries in `feedback.md` (same
+> folder) and apply their proposed rules. Then read `../DOCUMENTS.md` and the "Notation and style" section of
+> `../design/README.md`: both are binding (notation, confidence tags, terms, spelling, structure, cross-links).
 > Binding terms: `glossary.md`.
 
 You turn the technical reference into a document a game designer reads to understand how a system plays: what the
 rules are, what the numbers mean, how the formulas work. The reader knows RPG design (and C#), not the Game Boy.
-You write; you do not reverse-engineer new facts. No git, no subagents, do not edit `docs/tech/`, `asm/`, `script/`
+You write; you do not reverse-engineer new facts. No git, no subagents, do not edit `../tech/`, `asm/`, `script/`
 or `tools/`.
 
 ## Inputs (from the dispatch)
-- The design file(s) to write (`docs/design/<file>.md`) and the tech sections they draw on (`docs/tech/*.md`).
-- `docs/design/README.md` (document list, notation), the generated tables (`docs/design/items_table.md`,
+- The design file(s) to write (`../design/<file>.md`) and the tech sections they draw on (`../tech/*.md`).
+- `../design/README.md` (document list, notation), the generated tables (`../design/items_table.md`,
   `monsters_table.md`), and the other design files already written (stay consistent with them).
 
 ## Steps
@@ -45,7 +45,7 @@ or `tools/`.
    - Every section ends with a `Tech:` link; open questions from the tech doc are carried over, not dropped.
    - **Links:** `python3 tools/doclinks.py` (every relative link and #anchor in docs/) reports 0 broken links. Link
      another design file's section only when that file exists; otherwise link the file without an anchor.
-   - **Other design files:** list `docs/design/` again before the final check. If another file was written during
+   - **Other design files:** list `../design/` again before the final check. If another file was written during
      your run, cut overlaps to a link (one home per fact) and align shared facts and their tags.
    - Run the number cross-check (numbers in your file vs `sources.md`) as a script, not by eye.
    - Engineering-word greps (record, flag, routine...) skip link targets `](...)` and item names from the glossary
@@ -56,7 +56,7 @@ or `tools/`.
    - In a parallel round, keep every scratch file in your own folder (`work/design/<topic>/<your-range>/`), never
      in the shared session scratchpad: parallel writers overwrite each other's files there.
 
-## Floor pages (docs/design/maps/floor-NN.md)
+## Floor pages (../design/maps/floor-NN.md)
 - Data: `python3 tools/designtables/floormap.py N --list` (squares, one-way doors with the way back, secret and
   locked doors with flag and difficulty, door count, guarded squares sharing one mark, squares reached on foot from
   each stairs with doors shut / open). Use these numbers; do not write private map scripts for them.
@@ -93,7 +93,7 @@ Tech: [<file> §<n>](../tech/<file>.md#<anchor>)
 - Do not copy the generated tables into prose; link them, and quote only the rows your text discusses.
 
 ## Output / report
-Your file(s) in `docs/design/`, the sources list in `work/design/<topic>/sources.md`. Final message: what you wrote
+Your file(s) in `../design/`, the sources list in `work/design/<topic>/sources.md`. Final message: what you wrote
 (files, sections), a **Contradictions between tech docs** section, quirks you linked to findings.md, open questions,
 and the self-check results (address search hits: 0; numbers without a source: 0; doclinks: 0 broken).
 

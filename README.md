@@ -1,56 +1,72 @@
 # game-hacking
 
-Game-hacking projects, one directory per game: fan translations, reverse engineering, ROM patches and the tools
-that build them, and game-design documentation worked out from the code. No game data is included: every project
-builds from your own dump of the original, verified by checksum.
+A game database built by taking games apart: for each game, reproducible screenshot sets, a design reference of
+how it works, a playbook for automated play and, where there is one, a fan translation with its patch tools and
+reverse-engineering notes. No game data is included: everything runs from your own dump, verified by checksum.
 
-## Projects
+## Games
 
-| Project | Platform | What it is | Status |
-|---|---|---|---|
-| [Game database](gamedb/README.md) | Game Boy / Game Boy Color, NES / Famicom (more later) | Agents research, play and screenshot any game you provide as a ROM: per-game playbooks (controls, strategy, shortcuts) and reproducible screenshot sets with a JSON catalogue | Pipeline ready; no games captured yet ([status](gamedb/docs/status.md)) |
-| [Wizardry Empire](wizardry-empire/README.md) | Game Boy Color (Starfish, 1999) | Unofficial English translation of the Japanese Rev 1, with a variable-width font engine, reverse-engineering notes, a design reference for the game's rules and all 30 dungeon floors mapped | Playable in English throughout; polish and speed work ongoing ([status](wizardry-empire/docs/status.md)) |
+| Game | Platform | What is here |
+|---|---|---|
+| [Wizardry Empire](games/wizardry-empire/README.md) | Game Boy Color (Starfish, 1999) | English translation (playable throughout, [status](games/wizardry-empire/translation/docs/status.md)) with a variable-width font engine; design and technical reference; all 30 dungeon floors mapped; reference screenshots, original next to translation |
+| [Pokémon Blue](games/pokemon-blue/playbook.md) | Game Boy | Screenshot sets ([main](games/pokemon-blue/shots/main/index.md), action sequences), design reference, milestone saves |
+| [Dragon Quest](games/dragon-quest/playbook.md) | Famicom, with an English translation patch | Screenshot set from the logo to the staff roll ([main](games/dragon-quest/shots/main/index.md)), design reference, password tools |
 
-### Wizardry Empire at a glance
-- **Patch:** `wizardry-empire/tools/build.py` turns the Japanese ROM into an English build and an IPS patch; the
-  English text lives in `script/*.json` next to the Japanese.
-- **Engine:** a variable-width font (mixed case, proportional) drawn into a tile pool at run time
-  ([VWF notes](wizardry-empire/docs/re/vwf.md)).
-- **Docs:** [design reference](wizardry-empire/docs/design/README.md) (rules, formulas, item and monster tables,
-  [floor maps](wizardry-empire/docs/design/maps/README.md), [quirks and likely bugs](wizardry-empire/docs/design/findings.md)),
-  [technical reference](wizardry-empire/docs/tech/README.md) (the same systems with ROM addresses and evidence),
-  [reverse-engineering notes](wizardry-empire/docs/re/README.md).
-- **Screenshots:** reference sets with the original next to the translation, e.g.
-  [rev1_tour](wizardry-empire/docs/shots/rev1_tour/index.md) and a three-way comparison with another fan patch,
-  [compare3](wizardry-empire/docs/shots/compare3/README.md).
+Platforms: Game Boy / Game Boy Color and NES / Famicom cartridges. Another system is one backend class in
+`tools/platforms.py`. Current state of the tooling: [docs/status.md](docs/status.md).
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `<project>/` | Everything for one game: `tools/`, `docs/`, `tests/`, `asm/`, `script/` (as the project needs); its own README |
-| `skills/` | Working procedures for the AI agents that do much of the work (translator, tracer, playtester, ...), each with a feedback log; index in `skills/skill-index.md` |
-| `agent-log/` | One line per agent run: who, what, which files, outcome |
-| `AGENTS.md` | Rules for all projects and agents (also read by `CLAUDE.md`) |
+| `games/<slug>/` | Everything about one game: `game.json` (identity), `playbook.md` (controls, strategy, shortcuts, RAM), `checkpoints.txt`, `shots.txt` and `shots/<set>/` (screenshots), `design/` (design reference), `saves/`, `tools/` (game-specific helpers). A game with a translation or deeper reverse engineering adds `translation/` and `tech/`. |
+| `games/_template/` | Starting files for a new game. |
+| `tools/` | Shared tooling for every game: register a ROM, drive the emulators, play, capture and verify screenshot sets. |
+| `tests/` | Tests for the shared tooling. |
+| `docs/` | How the tooling is used: [emulator guide](docs/emulator/README.md) (general rules, plus one file per platform), [capture guide](docs/capture-guide.md), status and history. |
+| `skills/` | Working procedures for the AI agents that do much of the work, each with a feedback log ([index](skills/skill-index.md)). |
+| `agent-log/` | One line per agent run: who, what, which files, outcome. |
+| `AGENTS.md` | Rules for all work in this repository (also read through `CLAUDE.md`). |
+| `rom/`, `work/` | Your ROMs, downloaded saves and patches; states, caches and scratch. Ignored by git. |
 
-## Rules in short
-- Never commit game data: ROMs, savestates, saves or patched builds (`.gitignore` covers them).
-- Translations are edited in each project's script files, never in a ROM.
-- Every project keeps a current snapshot (`docs/status.md`) and an append-only history (`docs/progress-log.md`).
+## How a game gets into the database
 
-## Getting started (Wizardry Empire)
+```
+ROM --tools/intake.py--> games/<slug>/ --scout--> playbook + checkpoints --capture--> shots/<set>/ --> commit
+```
+1. **Intake:** `python3 tools/intake.py /path/game.gbc` identifies the ROM (header, SHA-1, CRC32), copies it to
+   `rom/` (never committed), creates `games/<slug>/` and films the first seconds after power-on.
+2. **Scout** (`skills/game-scout/`): researches the game, verifies boot route, controls, RAM and shortcuts in
+   the emulator, writes the playbook and the shot plan.
+3. **Capture** (`skills/game-capture/`): plays toward the shot plan, snaps each target, verifies that every shot
+   replays from power-on, publishes the set, extends the design reference.
+4. **Review:** the coordinator reruns the verification, looks at the contact sheet and commits.
+
+A set is `<id>.png` (native resolution, raw framebuffer), `<id>@3x.png`, `index.json` (identity and per shot:
+category, caption, route, model, ROM SHA-1, date), `index.md`, `sheet.png` and the routes in `shots.txt`.
+
+## Quick start
 
 ```sh
-cd wizardry-empire
-cp /path/to/your/dump.gbc rom/wizardry_empire_j.gbc    # Japanese Rev 1, SHA-1 in rom.sha1
-python3 tools/build.py                                   # -> build/wizardry_empire_en.gbc + .ips
+sh tools/setup_emu.sh                                   # builds both emulators into tools/ (once)
+python3 tools/intake.py ~/roms/mygame.nes
+python3 tools/play.py start mygame
+python3 tools/play.py do "w300,start"
+python3 tools/play.py snap title_screen title "Title screen"
+python3 tools/shoot.py mygame main --verify
 python3 -m pytest -q tests
 ```
 
-Optional: `sh tools/setup_emu.sh` builds a headless emulator for the automated checks
-(`python3 tools/check.py`: build, tests, screen tour and pixel diff).
+Building the Wizardry Empire translation: [games/wizardry-empire/translation/README.md](games/wizardry-empire/translation/README.md).
+
+## Rules in short
+- Never commit game data: ROMs, savestates, downloaded saves or patched builds (`.gitignore` covers them).
+- Screenshots are catalogue pieces, not a fair playthrough: saves, codes and RAM pokes are used whenever faster,
+  with realistic values on screen. Every shot keeps the route that reproduces it.
+- Translations are edited in script files, never in a ROM.
+- Every area keeps a current snapshot (`status.md`) and an append-only history (`progress-log.md`).
 
 ## Licence
 
-Tools, patches and documentation: MIT. Original game text appears only where a project needs it to check its work
-against the source. Do not share patched ROMs.
+Tools, patches and documentation: MIT. Original game text appears only where a translation needs it to check
+its work against the source. Do not share patched ROMs.

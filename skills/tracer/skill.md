@@ -1,15 +1,15 @@
 ---
 skill: tracer
-project: wizardry-empire
+project: games/wizardry-empire (paths relative to its translation/ folder)
 summary: Answer one reverse-engineering question about where/how text is printed.
 access: write (notes file)
-updated: 2026-11-12 (automap)
+updated: 2026-11-17 (repository restructured: new paths)
 ---
 
 # Tracer - Wizardry Empire (GBC): reverse-engineering questions
 
-> **Before you start:** paths below are relative to `wizardry-empire/`. Read the open entries in this skill's
-> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `wizardry-empire/glossary.md`.
+> **Before you start:** paths below are relative to `games/wizardry-empire/translation/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/wizardry-empire/translation/glossary.md`.
 
 
 You answer one reverse-engineering question from your dispatch, e.g. "where do the status values on the character
@@ -105,20 +105,20 @@ breakpoint on the dispatcher. To run one routine: stop at 0:07C5 first (HALT/IME
   the party record `$C880+` are overwritten by it. RNG seed: poke `$FF96/97`. Count-only breakpoints log to `break.log` (drain it after the run).
 - 'No direct call' is not 'dead code': routines are also reached through jump tables (0:37FC, the heal box).
 
-## Design / rules questions (2026-11-12, owner asked for docs/design/)
-- Output is the technical reference in `wizardry-empire/docs/tech/<topic>.md` (rules in `docs/README.md`); the
-  design-writer skill turns it into the designer document in `docs/design/`. Start with a two-minute Overview, then
+## Design / rules questions (2026-11-12, owner asked for ../design/)
+- Output is the technical reference in `games/wizardry-empire/tech/<topic>.md` (rules in `../DOCUMENTS.md`); the
+  design-writer skill turns it into the designer document in `../design/`. Start with a two-minute Overview, then
   tables. Tag every number with its source and kind: `(code BB:AAAA)`, `(data BB:AAAA)`, `(display)` (museum or
   menu text only), `(emulator)` or `(inferred)`.
 - Record fields: byte-search the readers of the record copy (`ld a,[$C5xx]`, `ld hl,$C5xx`; `gbdis.py --xref`).
 - Record fields: then confirm with a count-only memory breakpoint on the record copy during one real use.
 - RNG-based probabilities: confirm once in the emulator by forcing the seed (RNG 0:0DA6, x = 5x + $4123, A = high byte).
-- Headings without addresses: put them on a `Code:` line under the heading (docs/README.md).
+- Headings without addresses: put them on a `Code:` line under the heading (../DOCUMENTS.md).
 - Banks: write them in hex like the rest of the docs (`25:551C`, or `$25 (37)`); `gbdis.py 25:551C` takes that form.
 - Surprising code-read conclusions (an unused roll, odd data values) go in an "Emulator checks" list with the exact
   poke + route to test them (`tools/play.py`), unless you can run the check yourself. Fast check: poke the working
   copy of the character (`$C48F`+) at the screen that runs the routine.
-- Read the sibling `docs/tech/*.md` first so the documents agree (class masks, inn, temple ...).
+- Read the sibling `../tech/*.md` first so the documents agree (class masks, inn, temple ...).
 - `script/*.json` and `text.md` give banks in decimal ("bank 45"); convert to hex (`2D:`) when citing.
-- `docs/shots/jp_tour/` was shot on v1.0 (`rom_sha1` 041c125...): never cite it as Rev 1 behaviour; use
-  `docs/shots/rev1_tour/` (Rev 1 + EN, same 121 routes).
+- `../shots/jp_tour/` was shot on v1.0 (`rom_sha1` 041c125...): never cite it as Rev 1 behaviour; use
+  `../shots/rev1_tour/` (Rev 1 + EN, same 121 routes).

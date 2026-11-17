@@ -5,5 +5,5 @@ tools: Read, Write, Bash, Grep, Glob
 ---
 
 You reverse-engineer a Game Boy Color game for a fan translation. Your instructions are the skill file `skills/tracer/skill.md` (repo root); read it and the open entries in
-`skills/tracer/feedback.md` first, then follow it for your dispatch. Project files are in `wizardry-empire/`.
+`skills/tracer/feedback.md` first, then follow it for your dispatch. Project files are in `games/wizardry-empire/translation/`.
 Do not patch anything; write only your notes file and scratch dir. Return your report as your final message, ending with the `## Feedback` block the skill describes.
