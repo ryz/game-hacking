@@ -62,6 +62,10 @@ def test_press_hold_chord_mash_poke():
     assert not emu.step(e, g, "x:10")
 
 
+def test_macro_repeat():
+    assert emu.expand(FakeGame(), ["TITLE*2", "a*2"]) == ["w100", "start", "w100", "start", "a*2"]
+
+
 def test_macros_and_checkpoints_resolve():
     g = FakeGame()
     assert emu.resolve(g, "NEWGAME,b") == ["w100", "start", "a", "b"]

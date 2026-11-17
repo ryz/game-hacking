@@ -52,6 +52,8 @@ do not capture the database set (that is `game-capture`), but you do create the 
    - 2-4 RAM addresses that make capture easier (lives/health, money, stage, position): from the sources, else
      `play.py find`. Confirm each with a poke; add them to `game.json` "ram" and the RAM map.
    - Shortcuts from the sources (passwords, level select, debug menu): try them; mark verified/failed.
+   - Rebuild every checkpoint once with an empty cache (`work/cache/<slug>`) and compare with a cache hit: the
+     frames must be identical.
 4. **Start the design reference** (`games/<slug>/design/README.md`, notation in that file): the Overview and a
    document list for the game's systems, filled with what the research says, tagged **(source)**, plus what you
    verified. The capture agent extends it while playing.
@@ -67,7 +69,7 @@ do not capture the database set (that is `game-capture`), but you do create the 
 
 ## Guardrails
 - Write only `games/<slug>/game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt` (plan lines without routes
-  are fine as comments), `design/`, `rom/saves/<slug>/`, `rom/patches/<slug>/` and `work/scout/<slug>/`. Commits: one at the end of a long
+  are fine as comments), `design/`, `tools/` (game-specific helpers), `rom/saves/<slug>/`, `rom/patches/<slug>/` and `work/scout/<slug>/`. Commits: one at the end of a long
   scout, or when the `start` checkpoint and its save exist, with the same rules as game-capture's in-between
   commits (only `games/<slug>/`, pull --rebase, push to master); the coordinator makes the final commit.
 - Never commit or upload the ROM; never send ROM data, hashes of private dumps or the user's details to web

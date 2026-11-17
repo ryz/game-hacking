@@ -9,6 +9,26 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-17 - Shin Megami Tensei (Super Famicom, English patches; first SNES game)
+- Task: scout Shin Megami Tensei (Super Famicom, English patch), the first SNES game: playbook, macros,
+  title/start checkpoints, RAM map, save, shot plan.
+- Worked: a small step-and-tile helper (several token groups, one tiled image) cut the look-at-every-frame cost;
+  fixed `a,w150` per text page made the naming route replayable; `find "new == 10000"` right after the allowance
+  found the money address in one call; rebuilding every checkpoint with an empty cache and comparing with a
+  cache hit.
+- Friction: about 30 minutes on the opening (presses during typing text counted unreliably, two macro attempts
+  typed wrong names); macros could not be repeated with `*N`; 8-frame Up/Down skips rows in this game; SNES
+  emulation about half the NES speed and the opening is 20,000 frames; TCRF, GameFAQs and StrategyWiki 403 and
+  the only code list is on a host that is not allowed (no walkthrough, debug or save source); the write list
+  excludes `work/shots/`, so planned routes could not go through `shoot.py`.
+- Proposed rule change: emulator guide: typewriter text needs one press per page with a fixed wait; support
+  `MACRO*N` or document that it is not supported; skill.md step 3: test Up/Down with a 4-frame hold if a default
+  press skips a row; let the scout run `shoot.py` into `work/scout/<slug>/`.
+- Corrected: `MACRO*N` added to `tools/emu.py` (test); typewriter-text and short-hold notes added to
+  `docs/emulator/README.md`. No late-game checkpoint: flags and position not found (left to the capture run).
+- Status: promoted 2026-11-17 (empty-cache check and `games/<slug>/tools/` in the write list: second
+  occurrence, see the Dragon Quest entry); open (scout running `shoot.py`)
+
 ### 2026-11-17 - Dragon Quest (Famicom, English patch; first NES game)
 - Task: scout Dragon Quest (Famicom, English patch), the first NES game: playbook, macros, title/start/late
   checkpoints, password handling, RAM map, shot plan.

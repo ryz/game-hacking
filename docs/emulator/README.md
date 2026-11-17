@@ -44,12 +44,16 @@ playbooks (committed) are not. That is why every state is defined by a route.
 | `freeze:C0A2=09` / `unfreeze` | hold a raw value / drop all held values | same, own addresses |
 | `rom:NAME` | route prefix: patched ROM (Game Genie, IPS, bytes) | level select, debug menu, invincibility |
 | `sav:NAME` | route prefix: power on with a battery save | late-game saves from the web |
-| `NAME` | macro from `game.json` "macros" | `TITLE`, `NEWGAME`, `MENU` |
+| `NAME`, `NAME*3` | macro from `game.json` "macros" (repeatable) | `TITLE`, `NEWGAME`, `MENU` |
 | `@name` | first token: start from a checkpoint | everything after the boot |
 
 Press timing is per game (`game.json` "press": hold/wait). Symptoms of wrong timing: a press does nothing (the
 game polls slowly or ignores presses during a transition -> add `w30` before it or raise `hold`), two presses act
-as one (edge-triggered input -> keep the release wait), a menu skips an entry (key repeat -> shorter hold).
+as one (edge-triggered input -> keep the release wait), a menu skips an entry (key repeat -> shorter hold,
+e.g. `down:4,w30` in a macro).
+**Typewriter text:** a press while a page is still typing is not reliably counted. Use one press per page with a
+fixed wait long enough for the page to finish (`a,w150`), not `a*N` or `mash`, wherever the count matters (naming
+routes, choices after dialogue), and prefer fixed waits to `settle` there.
 
 ## The working loop (play.py)
 ```sh

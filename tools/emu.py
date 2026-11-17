@@ -168,13 +168,16 @@ def split(route):
 
 
 def expand(game, toks, depth=0):
-    """Expand macros (UPPERCASE names in game.json) recursively."""
+    """Expand macros (UPPERCASE names in game.json) recursively; NAME*N repeats a macro."""
     if depth > 20:
         raise ValueError("macro recursion too deep")
     out = []
     for t in toks:
+        name, _, rep = t.partition("*")
         if t in game.macros:
             out += expand(game, split(game.macros[t]), depth + 1)
+        elif name in game.macros and rep.isdigit():         # MACRO*N
+            out += expand(game, split(game.macros[name]), depth + 1) * int(rep)
         else:
             out.append(t)
     return out
