@@ -27,8 +27,50 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {},
+  "macros": {
+    "TITLE": "w300,start,w120,start,w240,settle",
+    "DREAM": "start,w900",
+    "D": "down:4,w30",
+    "NAME_RYZ": "x,down,right*7,a,down,left*3,a,right,a,start,a",
+    "NAME_CONDI": "x,right*2,a,down,right*2,a,left,a,up,a,right*5,a,start,a",
+    "NAME_EBO": "x,right*4,a,left*3,a,down,right*3,a,start,a",
+    "STATS_RYZ": "right*6,D,D,D,right*5,D,right*4,D,right*3,w30,a",
+    "STATS_CONDI": "right*2,D,right*5,D,right*6,D,right*2,D,right*2,D,right,w30,a",
+    "STATS_EBO": "right*5,D,right,D,right*3,D,right*4,D,right*3,D,right*2,w30,a",
+    "OK3": "a,w150,a,w150,a,w150",
+    "DREAM_RYZ": "a,w150,a,w150,a,w150,NAME_RYZ,w150,OK3,STATS_RYZ,w150",
+    "DREAM_CONDI": "a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,NAME_CONDI,w150,OK3,STATS_CONDI,w150",
+    "DREAM_EBO": "a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,NAME_EBO,w150,OK3,STATS_EBO,w150",
+    "WAKE": "a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150,a,w150",
+    "NEWGAME": "DREAM,DREAM_RYZ,DREAM_CONDI,DREAM_EBO,WAKE",
+    "CONTINUE": "right,w30,a,w120,a,w150,a,w150",
+    "SAVE_ROOM": "down:4,w30,a,w90,a,w90,a,w150,a,w90,a,w90",
+    "LEAVE_HOME": "down:4,w30,down:4,w30,down:4,w30,a,w90,a,w90,a,w90,a,w90,a,w90,a,w90,a,w90,a,w90,a,w90,down:4,w30,a,w120,w60",
+    "MENU": "a,w60",
+    "POKE_LV23": "set:7E0405=8973:3,poke:7E100A=17,poke:7E1010=13,poke:7E1012=09,poke:7E1014=07,poke:7E1016=12,poke:7E1018=10,poke:7E101A=0D,poke:7E102E=A700,poke:7E1030=B200"
+  },
+  "ram": {
+    "yen": {
+      "addr": "7E0405",
+      "size": 4
+    },
+    "mag": {
+      "addr": "7E0409",
+      "size": 4
+    },
+    "lvl": {
+      "addr": "7E100A",
+      "size": 1
+    },
+    "hp": {
+      "addr": "7E102E",
+      "size": 2
+    },
+    "maxhp": {
+      "addr": "7E1030",
+      "size": 2
+    }
+  },
   "source": {
     "note": "rom/shin-megami-tensei.sfc is the owner's Japanese Super Famicom dump with the owner's two English translation IPS patches applied in order (2026-11-17): smte1 = the translation (made for a ROM with the 512-byte copier header), smte2 = its bug-fix patch (made for a ROM without). Rebuild: python3 games/shin-megami-tensei/tools/mkrom.py. The patched ROM's internal checksum is not updated by the patches (header_checksum_ok false is expected). Nothing of this is committed.",
     "base_sha1": "f765341b62ff3e7d119e8185be51c6f0757a86c6",

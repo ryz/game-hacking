@@ -2,79 +2,274 @@
 
 Everything an agent needs to play this game efficiently: read it before playing, add to it after every run.
 Status of each fact: **verified** (seen in the emulator, with the route) or **source** (manual/FAQ/wiki, not yet
-checked). Never delete a fact that turned out wrong: strike it and say what is true.
+checked). Facts marked **recalled** come from the scout's general knowledge of the game because the sites that
+would confirm them were unreachable on 2026-11-17 (see Sources): treat them as leads, not as facts.
+Never delete a fact that turned out wrong: strike it and say what is true.
 
 ## Identity
 | Field | Value |
 |---|---|
-| Title (EN / original) | |
-| Platform / model used | see `game.json` |
-| Release (region, year) | |
-| Developer / publisher | |
-| Genre | |
-| Players / save system | (battery save, password, none) |
+| Title (EN / original) | Shin Megami Tensei / 真・女神転生 (title screen shows both, plus "(C)2002 AEON GENESIS") |
+| Platform / model used | Super Famicom, `snes` / `ntsc` (see `game.json`); LoROM, 2 MiB ROM, 8 KiB battery RAM |
+| Release (region, year) | Japan, 30 October 1992 (source: Wikipedia). Never released in English on this console. |
+| Developer / publisher | Atlus / Atlus (source: Wikipedia; Atlus logo at boot verified) |
+| Version catalogued | Japanese cartridge + the Aeon Genesis English translation (2002) + its bug-fix patch, built by `tools/mkrom.py` (`game.json` "source"). All text seen so far is English (verified up to the town map). |
+| Genre | First-person dungeon RPG with demon negotiation and fusion |
+| Players / save system | 1 player; battery save, 2 files (verified: "FILE 1" / "FILE 2") |
 
 ## Boot sequence
-Power-on to the title and to first control. Put the result in `game.json` "macros" (e.g. `TITLE`, `NEWGAME`)
-and make `title` / `start` checkpoints from them.
-- Intake probe: `work/intake/shin-megami-tensei/sheet.png` (frame every 60 frames, no input).
-- Route to the title: `TITLE` = ...
-- Route to first gameplay: `NEWGAME` = ...
+- Intake probe: `work/intake/shin-megami-tensei/sheet.png` (no input: Atlus logo, magic circle, "199X Kichijoji,
+  Tokyo", then a 512x448 hi-res "terminal" text sequence from about frame 1900, with 256x224 scene cuts between).
+- Start skips the intro: one press during the Atlus logo jumps to the magic circle, a second one to the title
+  (verified). `TITLE` = `w300,start,w120,start,w240,settle`. The title settles (static).
+- Title menu: `START` / `CONTINUE`, Left/Right moves, A or Start confirms (verified).
+- New game: there is no file or name menu. `START` drops straight into a **dream**: the game walks by itself
+  through a red corridor (about 700 frames) to a talking door, then to three scenes. Buttons only advance text;
+  the three name entries and stat allocations happen here (verified):
+  1. the door asks the hero's name -> `ryz`, 18 stat points;
+  2. a crucified man (the Law hero) -> `condi`, 18 points;
+  3. a man held down by a demon (the Chaos hero) -> `ebo`, 18 points;
+  4. a woman bathing in a pond introduces herself as "Yuriko" (no name entry here);
+  then the hero wakes in his room, receives the Demon Summoning Program by mail (long text) and the first menu
+  appears: `Computer / Save / Go to sleep / Leave the room`.
+- `NEWGAME` = `DREAM,DREAM_RYZ,DREAM_CONDI,DREAM_EBO,WAKE` (from the title; about 80 s to replay, 20,000 frames).
+- The **heroine** is not named in the dream. Recalled: she is named later in the story (when she joins after the
+  Shinjuku events); use `cubi` there. Not reached by the scout.
+- Checkpoints: `title`, `dream` (door's first message), `start` (room menu), `apartment` (free movement),
+  `kichijoji` (town map), `lv23` (poked hero).
 
 ## Controls
 | Context | Button | Action | Status |
 |---|---|---|---|
-| Title | Start | | |
-| Field / gameplay | D-pad | | |
-| | A | | |
-| | B | | |
-| | Start | | |
-| | Select | | |
-| Menus | A / B | confirm / back | |
+| Intro | Start | skip to the next part / to the title | verified |
+| Title | Left / Right | START / CONTINUE | verified |
+| Title | A or Start | confirm | verified (`@title,start` and `@title,a`) |
+| Text boxes | A (also B, X, Y, Start) | next page; a press while the text is still typing is swallowed or lost | verified (mother's dialogue advanced with each of them) |
+| Name entry | D-pad | move over the letter grid (10 columns, 5 rows) | verified |
+| | A | type the letter | verified |
+| | B | delete the last letter | verified |
+| | X | switch upper / lower case | verified |
+| | Start | jump to `End`; then A confirms; then Yes/No | verified |
+| Stat allocation | Up / Down | choose STR INT MAG VIT SPD LUK | verified (needs a 4-frame hold, see Input timing) |
+| | Right or A / Left | add / take back a point | verified |
+| | A at 0 points left | "This okay?" Yes/No appears by itself when the last point is spent; A = Yes | verified |
+| Menus | Up / Down, A / B | move, confirm / back | verified |
+| 3D view (buildings, dungeons) | Up | step forward | verified |
+| | Left / Right | turn 90 degrees | verified |
+| | Down | turn around (180 degrees) | verified |
+| | L / R | turn left / right (same as Left / Right as far as seen) | verified once each; strafing not seen |
+| | A | command menu: `COMP / MAGIC / ITEM / STATUS` (yen and MAG shown while open) | verified |
+| | B | close the menu | verified |
+| | X, Y, Start, Select | nothing at the start of the game | verified (Y is the automap once a mapping spell or item exists: recalled) |
+| Town map (2D) | D-pad | move the blue marker along the streets | verified |
+| | A, X, Y | nothing seen at the start | verified |
+| Exit squares | Yes / No prompt ("There is an exit here. Will you leave?"), default **No** | Up then A | verified |
 
-Input timing: (does the game drop presses shorter than N frames? need `wN` between menu presses? hold-to-run?)
+Input timing (verified):
+- Default press (hold 8, wait 40) works for A/B and for Left/Right everywhere.
+- **Up/Down in vertical lists move two rows with an 8-frame hold** (stat allocation, room menu). Use the macro
+  `D` = `down:4,w30` (or `up:4,w30`). In the letter grid an 8-frame Up/Down moves one row.
+- Text is typed slowly. A press that arrives while a page is still being typed is not reliably counted, so
+  `a*10` or `mash` gives a different page count every time the spacing changes. Routes use `a,w150` per page
+  (`a,w90` for short pages): then one press is exactly one page.
+- A macro cannot be repeated (`A*3` with a macro `A` fails: "unknown token"); repeats work on plain tokens only.
+- Screens with a blinking "more" arrow or the moon window never settle (`screen still changing`): normal.
 
 ## Game structure
-Modes, menu tree, areas/levels/worlds in order, what unlocks what. Enough to plan a capture route.
+Verified so far:
+- **Dream** (automatic walk, naming) -> **hero's room** (menu: Computer = mail from STEVEN and the Demon
+  Summoning Program manual; Save; Go to sleep; Leave the room) -> **mother** (gives 10000 yen, asks for coffee
+  from the cafe in the mall; menu `Go to your room / Go outside`) -> **apartment corridor** (3D view) -> exit
+  prompt -> **Kichijoji town map** (2D overhead, blue marker, "MOON'S AGE" and "PLACE" windows). A policeman
+  blocks the edge of the district ("this area is currently off-limits").
+- Three view modes: 3D first-person (buildings and dungeons, with a window showing moon phase, floor and
+  facing), 2D town map, and full-screen menus (status, save/load).
+- The moon phase advances as you walk (NEW MOON -> 1/8 -> 2/8 -> 3/8 during the dream and after).
+- Command menu: `COMP` (Summon Minion / Return Minion / Dismiss Minion / Change Formation: the translation
+  calls allied demons "minions"), `MAGIC`, `ITEM`, `STATUS`.
+- Status screen: LVL, HP, MP, EXP, Next, Stat(us), equipment slots Swd / Gun / Ammo / Head / Body / Arm / Leg,
+  derived values Power / Accur (sword and gun columns) / Defense / Evade / M.Power / M.Effect, and six stat
+  bars STR INT MAG VIT SPD LUK.
+- Saving: in the hero's room at the start (verified). Recalled: later at the terminals found in most districts,
+  which also warp between each other once visited.
+
+Recalled outline of the critical path (not verified, order from memory; Wikipedia confirms the three acts):
+1. 199X Tokyo: Kichijoji (arcade/mall, Inokashira Park murder, hospital, the "Echo Building" terminal), then
+   Shinjuku, the three factions (Gotou's coup, the US ambassador Thorman, the resistance), ending with the
+   missile strike on Tokyo.
+2. Kongokai (the Diamond Realm) and return to a ruined Tokyo 30 years later: Shinjuku, Shibuya, Roppongi,
+   Ginza, Tokyo Tower, Shinagawa, Ueno, Ikebukuro; Law (Messians) against Chaos (Gaians); the flood.
+3. The Cathedral: upper floors (Law side) and basement (Chaos side); the final bosses depend on alignment;
+   three endings (Law, Neutral, Chaos) on the cathedral roof (source: Wikipedia).
+Systems to expect (source: Wikipedia, except where marked): demon negotiation (talk to recruit, or get items
+or money), fusion of two or three demons at the Cathedral of Shadows, alignment (Law / Neutral / Chaos) that
+changes which demons join and which areas open, Magnetite (MAG) consumed by summoned demons while walking,
+moon phases affecting negotiation (recalled: demons do not talk at full moon), guns with ammunition next to
+swords (verified on the status screen), shops, healing stations, the casino and the "rag's shop" (recalled).
 
 ## Shot plan
-What this game needs in the database (see `docs/capture-guide.md`): the systems and screens that make it
-distinctive. One line per planned shot id; the routes go into `shots.txt`.
-- [ ] `title_screen` - title
-- [ ] ...
+Target about 45 shots (large RPG). Ids and categories; routes for the reachable ones are in `shots.txt`.
+"Reach" says how. Both frame sizes are expected: 256x224 normally, 512x448 for the hi-res terminal intro.
+
+Reachable now (routes in `shots.txt`):
+- [ ] `boot_atlus` boot - Atlus logo
+- [ ] `intro_circle` cutscene - magic circle of the intro
+- [ ] `intro_199x` cutscene - "199X Kichijoji, Tokyo"
+- [ ] `intro_terminal` cutscene - hi-res terminal text (512x448)
+- [ ] `title_screen` title - title with START / CONTINUE
+- [ ] `dream_door` dialogue - the talking door asks who passes
+- [ ] `name_entry` system - letter grid with "ryz" typed
+- [ ] `stat_allocation` system - dividing 18 points among six stats
+- [ ] `dream_law_hero` cutscene - crucified man and the messenger
+- [ ] `dream_chaos_hero` cutscene - demon holding a man down
+- [ ] `dream_pond` cutscene - the woman at the pond
+- [ ] `room_menu` menu - hero's room: Computer / Save / Go to sleep / Leave the room
+- [ ] `room_mail` dialogue - STEVEN's mail with the Demon Summoning Program
+- [ ] `save_files` save - "Save which file?" with FILE 1 / FILE 2
+- [ ] `load_files` menu - CONTINUE: "Load which file?" with the file summary
+- [ ] `home_mother` dialogue - mother hands over the allowance
+- [ ] `apartment_corridor` gameplay - first free 3D movement (also the `hud`: moon, floor, facing, party table)
+- [ ] `menu_command` menu - COMP / MAGIC / ITEM / STATUS with yen and MAG
+- [ ] `menu_comp` system - COMP: Summon / Return / Dismiss Minion, Change Formation
+- [ ] `status_hero` inventory - status screen (use `@lv23` for a mid-game look, or the start for level 1)
+- [ ] `exit_prompt` gameplay - street view with the exit prompt
+- [ ] `map_kichijoji` map - Kichijoji town map
+- [ ] `kichijoji_police` dialogue - policemen blocking the district
+
+To be reached by the capture agent (play from `@kichijoji`; see Strategy):
+- [ ] `arcade_mall` gameplay - Kichijoji arcade (shops, cafe)
+- [ ] `shop_buy` shop - a shop's buy list with prices
+- [ ] `first_battle` battle - first demon encounter: command menu
+- [ ] `battle_attack` battle - sword / gun attack result
+- [ ] `battle_magic` battle - a spell being cast (needs the Law hero or a demon)
+- [ ] `demon_talk` system - TALK: Friendly / Threatening choice
+- [ ] `demon_talk_offer` system - a demon asking for yen / MAG / an item
+- [ ] `demon_joins` system - a demon becomes a minion
+- [ ] `comp_summon` system - summoning a minion (MAG cost shown)
+- [ ] `party_with_demons` hud - party table with humans and demons
+- [ ] `cathedral_shadows` system - Cathedral of Shadows: fusion menu
+- [ ] `fusion_result` system - fusion preview / result
+- [ ] `terminal_save` save - a terminal (save and warp list)
+- [ ] `automap` map - dungeon automap
+- [ ] `healing_station` shop - healing prices
+- [ ] `equipment` inventory - equipment screen with sword, gun, ammo, armour
+- [ ] `items` inventory - item list
+- [ ] `boss_first` boss - first story boss
+- [ ] `level_up` system - level-up with a stat point to place
+- [ ] `full_moon` system - full-moon window and a demon refusing to talk
+- [ ] `alignment_choice` dialogue - a Law / Chaos choice
+- [ ] `ruined_tokyo_map` map - Tokyo map after the 30-year jump (needs a late state: see Shortcuts)
+- [ ] `gameover` gameover - game-over sequence (lose the first fight on purpose)
+- [ ] `ending`, `credits` - only with a late save
 
 ## Strategy and walkthrough notes
-How to progress quickly and safely: the critical path, dangerous spots, boss patterns, grinding needs, what to
-buy. Keep it to what an agent needs to reach the shot targets.
+- From `@kichijoji`: the mother's errand (coffee from the cafe in the mall) is the first goal (verified text).
+  Recalled: the arcade is entered from the town map; events there and a night's sleep ("Go to sleep" in the
+  room) advance the story; the second dream gives the hero's first allies; the first demons appear after the
+  program is used and the Law and Chaos heroes join. None of this was played by the scout.
+- Never grind. Verified pokes that the game accepts and shows correctly: yen, MAG, hero level, the six stats,
+  HP and maximum HP (`POKE_LV23`). The derived values on the status screen (Defense, Evade, M.Power, M.Effect)
+  are **not** recalculated by a stat poke; "Next" is. Expect them to refresh at a level-up or equipment change
+  (not tested): for a clean status shot gain one level after poking, or poke the derived words too (RAM map).
+- With hero level 23 and 170 HP the early game cannot be lost by accident; for the `gameover` shot use the
+  unpoked `@kichijoji` state.
+- Negotiation outcomes depend on RNG, which follows frame timing: vary `wN` before the deciding press.
+- Text: one `a,w150` per page. Before any Yes/No or naming prompt stop and look (the heroine's name entry comes
+  unannounced after a dialogue).
 
 ## Naming
-Main character: **ryz** (owner's rule); further party members condi, ebo, cubi, deddo, mnz. Name-entry controls
-and the token route that types the name: ...
+Hero **ryz**; Law hero **condi**; Chaos hero **ebo** (order in which the game asks, per the owner's party
+order); heroine **cubi** when the game asks (not reached). Up to 8 characters; upper and lower case, digits and
+some symbols; an empty name is refused (verified: the grid stays open). The grid opens in upper case with the
+cursor on `A`; `x` switches to lower case and keeps the cursor.
+- `NAME_RYZ` = `x,down,right*7,a,down,left*3,a,right,a,start,a` (ends on the Yes/No prompt; then `OK3`).
+- `NAME_CONDI` = `x,right*2,a,down,right*2,a,left,a,up,a,right*5,a,start,a`
+- `NAME_EBO` = `x,right*4,a,left*3,a,down,right*3,a,start,a`
+- `OK3` = three pages (`Yes`, "has dormant power", "Divide 18 points") -> the stat screen.
+- Stats (all six start at 5, 18 points to place; HP and MP follow VIT and MAG/INT as you place them):
+
+| Character | STR | INT | MAG | VIT | SPD | LUK | HP | MP | Macro |
+|---|---|---|---|---|---|---|---|---|---|
+| ryz (hero, no magic) | 11 | 5 | 5 | 10 | 9 | 8 | 22 | - | `STATS_RYZ` |
+| condi (Law hero) | 7 | 10 | 11 | 7 | 7 | 6 | 20 | 14 | `STATS_CONDI` |
+| ebo (Chaos hero) | 10 | 6 | 8 | 9 | 8 | 7 | 22 | 9 | `STATS_EBO` |
 
 ## Shortcuts
-Cataloguing beats fair play: completed saves, passwords, GameShark (`gs:`) and Game Genie (`rom:` variant)
-codes, debug menus, level select, sound test, RAM pokes. Values that show on screen stay realistic.
 | What | How (tokens / prefix / code) | Source | Status |
 |---|---|---|---|
+| Skip the intro | `start` twice (`TITLE`) | found here | verified |
+| Own save at the start | `sav:01_start,TITLE,CONTINUE` -> apartment corridor, file "Home, ryz Lev:01" | made here | verified |
+| Yen | `set:7E0405=8973:4` | code list (address) + RAM search | verified (shown as 8973) |
+| Magnetite | `set:7E0409=311:4` | found here | verified (MAG 311) |
+| Mid-game hero | `POKE_LV23` (level 23, STR 19 INT 9 MAG 7 VIT 18 SPD 16 LUK 13, HP 167/178, 8973 yen); checkpoint `lv23` | found here | verified on the status screen; derived values stay at level-1 numbers |
+| Pro Action Replay codes | Almar's Guides lists per-character and per-demon codes (e.g. character 1 strength `7E1010xx`, character 2 level `7E106Axx`, money from `7E0405`), "no random battles", item codes | almarsguides.com (search result only: the host is not reachable from the container) | the three addresses seen in the search result match the layout found here; the rest unread. Ask the coordinator to allow the host or the owner to save the pages. |
+| Debug features | TCRF has a page for the game (the search result mentions a flag editor shared with the later games) | tcrf.net/Shin_Megami_Tensei_(SNES) | unavailable (403); not tried. Most valuable open lead for late-game states. |
+| Late-game save from the web | GameFAQs "Saves" section | gamefaqs.gamespot.com | unavailable (403); a save made for the Japanese ROM should load in the patched ROM if the translation keeps the save layout (untested) |
+| Late state by poking | story flags and location are not mapped yet | - | open: see Open questions |
 
 ### Saves (rom/saves/shin-megami-tensei/, never committed)
 | Name | Contents (progress, party, items) | URL | SHA-1 | Status |
 |---|---|---|---|---|
+| none downloaded | GameFAQs and other save hosts were not reachable (403 / not allowed) | - | - | - |
+
+Own saves (committed, `saves/README.md`): `01_start` (hero's room after the dream, File 1; `.sav` + `.state`).
 
 ## RAM map (for `game.json` "ram" watches and pokes)
+Work RAM, patched ROM. "poke" = written and seen on screen; "read" = value matched the screen, not written.
 | Address | Size | Meaning | How found |
 |---|---|---|---|
+| 7E0405 | 4, little-endian | yen | `find "new == 10000"` after the allowance; poke 8973 shown. A byte written to 7E0408 changed the yen display (that is why it is 4 bytes) |
+| 7E0409 | 4 (2 tested) | magnetite (MAG) | poke 0137 -> "MAG 311" |
+| 7E0410 | 8 | hero's name, `FF`-padded (letter codes: `a`=25 ... `z`=3E) | read ("ryz" = 36 3D 3E) |
+| 7E0418 | 8 | heroine's name (empty at the start) | inferred from the position |
+| 7E0420 | 8 | Law hero's name | read ("condi") |
+| 7E0428 | 8 | Chaos hero's name | read ("ebo") |
+| 7E1000 | 0x60 each | character records: +000 hero, +060 heroine (blank: all stats 5), +0C0 Law hero, +120 Chaos hero; demons follow (per the code list, unread) | read against the three stat sets |
+| record+0A | 2 | level | poke (hero 23) |
+| record+10 / 12 / 14 / 16 / 18 / 1A | 2 each | STR / INT / MAG / VIT / SPD / LUK | poke (hero), read (condi, ebo) |
+| record+26 / 28 / 2A / 2C | 2 each | Defense / Evade / M.Power / M.Effect as shown on the status screen | read (hero 10 / 12 / 6 / 6); not recalculated after a stat poke |
+| record+2E / 30 | 2 each | HP / maximum HP | poke (167 / 178) |
+| record+32 / 34 | 2 each | MP / maximum MP | read (condi 14 / 14, ebo 9 / 9) |
+| record+0C | ? | EXP (0 at the start) | inferred, unverified |
+| 7E09F3, 7E09F7, 7E0E00.. | 1 | change with every step in the 3D view (animation or step state, not coordinates) | `find`; **position, facing, floor and map id are not found yet** |
 
 ## Emulation notes
-Model choice (GB: DMG/CGB/SGB; NES and SNES: ntsc/pal) and why, RNG behaviour, lag, screens that never settle (animations), anything that
-broke a route.
+First SNES game here; Mesen-S libretro backend. What was seen (2026-11-17):
+- Colours, sizes and input are right: 256x224 for normal frames, 512x448 for the hi-res terminal intro (probe
+  sheet); no garbage, no half-width text. All twelve buttons register.
+- Deterministic: every checkpoint rebuilt from power-on with an empty cache gives the same frame as a cache hit
+  (`work/scout/shin-megami-tensei/verify.sh`).
+- Speed: about 250 frames per second (4x real time; the NES core runs about 520). `@start` from power-on takes
+  about 85 s because the dream is 20,000 frames of slow text. Use checkpoints.
+- `status` PC is almost always `0082f8` / `0081fc` (the frame-wait loop): useless as a hang detector here.
+- No hang, no garbage and no untranslated text met up to the town map. Two cosmetic oddities of the translation:
+  the facing word in the 3D window sometimes shows a trailing underscore (`EAST_`, `SOUTH_`) after moving, and
+  the Chaos hero's stat prompt reads "paramenters". Neither is an emulator problem (the same frames replay).
+- The dream walks by itself; there is nothing to steer until the room menu.
 
 ## Checkpoints
-Named states are in `checkpoints.txt` (built from routes, never committed as files). Describe the important ones
-here if their purpose is not obvious from the name.
+`title` (static), `dream` (door's first message; nothing named yet: start here to redo names or stats),
+`start` (room menu: the first free choice, and the place to save), `apartment` (first free movement, 10000
+yen), `kichijoji` (town map; its route contains the scout's control tests in the corridor, harmless),
+`lv23` (apartment with the poked hero for menu shots).
 
 ## Sources
 | Source | URL | Used for | Accessed |
 |---|---|---|---|
+| Wikipedia | https://en.wikipedia.org/wiki/Shin_Megami_Tensei_(video_game) | release date, developer, systems, three acts, endings, translation group and year | 2026-11-17 |
+| Almar's Guides, Pro Action Replay codes | https://almarsguides.com/retro/walkthroughs/snes/games/ShinMegamiTensei/ProActionReplay/ | three addresses visible in the search result (money 7E0405, character 1 strength 7E1010, character 2 level 7E106A) | 2026-11-17: host not reachable from the container (not on the allowed list) |
+| The Cutting Room Floor | https://tcrf.net/Shin_Megami_Tensei_(SNES) | debug features (not read) | 2026-11-17: 403 |
+| GameFAQs | https://gamefaqs.gamespot.com/snes/564888-shin-megami-tensei/faqs | walkthroughs, saves (not read) | 2026-11-17: 403 |
+| StrategyWiki | https://strategywiki.org/wiki/Shin_Megami_Tensei | controls, walkthrough (not read) | 2026-11-17: 403 |
+| Data Crystal | https://datacrystal.tcrf.net/ | no RAM map page for this game turned up in the search | 2026-11-17 |
+| The game itself | `@start`, `@apartment`, `@kichijoji` | everything marked verified | 2026-11-17 |
 
 ## Open questions
+- Position, facing, floor, map id and the story flags are not located: needed for warps and a real late-game
+  state. Try `find` on the town map (marker x/y) and when changing floors; the TCRF page may describe a flag
+  editor.
+- Are the derived status values refreshed by a level-up or by equipping? (For clean poked status screens.)
+- Party membership list (which records are in the active party) and the demon records: unread.
+- Does a save made on the Japanese ROM load in the patched ROM?
+- Where the heroine is named, and whether Y opens an automap from the start of the first dungeon.
+- The recalled walkthrough outline needs a readable source (owner: a saved copy of a FAQ would do).

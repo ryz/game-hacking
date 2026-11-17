@@ -3,4 +3,54 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/shin-megami-tensei/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Scout 2026-11-17: the lines below were replayed once with tools/emu.py (work/scout/shin-megami-tensei/plan/)
+# and looked at; they have not been through shoot.py. Vertical lists need 4-frame taps (macro D = down:4,w30).
+title_screen | title | Title screen: START / CONTINUE | @title
+dream_door | dialogue | Dream: a door with a face asks who dares to pass | @dream
+name_entry | system | Name entry: letter grid with "ryz" typed for the hero | @dream,a,w150,a,w150,a,w150,x,down,right*7,a,down,left*3,a,right,a
+stat_allocation | system | Dividing 18 points among STR INT MAG VIT SPD LUK for the hero | @dream,a,w150,a,w150,a,w150,NAME_RYZ,w150,OK3,right*6,D,D,D,right*5,D,right*4
+room_menu | menu | Hero's room: Computer / Save / Go to sleep / Leave the room | @start
+save_files | save | Save which file? FILE 1 / FILE 2 | @start,D,a,w90
+load_files | menu | CONTINUE: Load which file? FILE 1 "Home, ryz Lev:01" | sav:01_start,TITLE,right,w30,a,w120
+home_mother | dialogue | Mother: "Here's your allowance for this month" (the next page adds 10000 yen) | @start,D,D,D,a,w90,a,w90,a,w90,a,w90,a,w90
+apartment_corridor | hud | First free movement: apartment building in 3D with moon, floor, facing and the party table (faces a wall: turn with left for the corridor view) | @apartment
+menu_command | menu | Command menu COMP / MAGIC / ITEM / STATUS with yen and MAG | @apartment,a,w60
+menu_comp | system | COMP: Summon Minion / Return Minion / Dismiss Minion / Change Formation | @apartment,a,w60,a,w60
+status_hero | inventory | Status screen of ryz at level 1: stats, derived values, empty equipment | @apartment,a,w60,D,D,D,a,w60,a,w60
+map_kichijoji | map | Kichijoji town map with moon's age and place name | @kichijoji
+# --- plan lines without a verified route (frame or path still to be found by the capture agent) ---
+# boot_atlus | boot | Atlus logo | power-on, no input, around w450 (probe sheet), `!`
+# intro_circle | cutscene | Magic circle of the intro | power-on, no input, around w1000, `!`
+# intro_199x | cutscene | "199X Kichijoji, Tokyo" | power-on, no input, around w1600, `!`
+# intro_terminal | cutscene | Hi-res terminal typing program text (512x448) | power-on, no input, around w3300, `!`
+# dream_law_hero | cutscene | Dream: the crucified man and the messenger of God | inside DREAM_CONDI (after its 7th a,w150)
+# dream_chaos_hero | cutscene | Dream: a demon holding a man down | inside DREAM_EBO (after its 9th a,w150)
+# dream_pond | cutscene | Dream: the woman bathing in a pond | inside WAKE (after its 5th a,w150)
+# room_mail | dialogue | STEVEN's mail on DDS-NET | @start,a,w150,a,w150,a,w150 (Computer; 13 pages to return to the menu)
+# exit_prompt | gameplay | Street view: "There is an exit here. Will you leave?" | from @apartment walk to the exit square (the kichijoji checkpoint route passes it)
+# kichijoji_police | dialogue | Policemen: the area is off-limits | @kichijoji, move the marker up/right to the district edge
+# arcade_mall | gameplay | Kichijoji arcade | play from @kichijoji
+# shop_buy | shop | Shop buy list with prices | play
+# first_battle | battle | First demon encounter: command menu | play
+# battle_attack | battle | Sword or gun attack result | play
+# battle_magic | battle | A spell being cast | play (needs the Law hero or a demon)
+# demon_talk | system | TALK: Friendly / Threatening | play
+# demon_talk_offer | system | A demon asks for yen, MAG or an item | play
+# demon_joins | system | A demon becomes a minion | play
+# comp_summon | system | Summoning a minion with its MAG cost | play
+# party_with_demons | hud | Party table with humans and demons | play
+# cathedral_shadows | system | Cathedral of Shadows: fusion menu | play
+# fusion_result | system | Fusion preview or result | play
+# terminal_save | save | A terminal: save and warp list | play
+# automap | map | Dungeon automap | play
+# healing_station | shop | Healing prices | play
+# equipment | inventory | Equipment with sword, gun, ammo, armour | play (buy first)
+# items | inventory | Item list | play
+# level_up | system | Level-up with a stat point to place | play (or poke EXP once found)
+# boss_first | boss | First story boss | play; hero poked with POKE_LV23 makes it safe
+# full_moon | system | Full-moon window, demon refuses to talk | walk until the phase reaches full
+# alignment_choice | dialogue | A Law / Chaos choice | play
+# status_midgame | inventory | Status screen of a mid-game hero | @lv23 after one level-up or equipment change (derived values stale otherwise)
+# ruined_tokyo_map | map | Tokyo map after the 30-year jump | needs a late state (TCRF debug features or a downloaded save; see playbook Shortcuts)
+# gameover | gameover | Game over | lose the first fight from the unpoked state
+# ending / credits | ending | only with a late save |

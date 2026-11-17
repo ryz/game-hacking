@@ -23,17 +23,30 @@ the evidence: link them (`../shots/main/<id>.png`).
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Shin Megami Tensei is a first-person dungeon role-playing game set in Tokyo, first in "199X" and later in its
+ruins **(source: Wikipedia)**. The player walks grid-based 3D corridors and a 2D overhead town map, fights
+turn-based battles, and builds a party out of the demons he meets: demons can be talked to, recruited, summoned
+through a computer program and fused into stronger ones **(source: Wikipedia)**. Summoned demons cost
+Magnetite while walking, and the hero's choices move him between Law, Neutral and Chaos, which changes the
+demons that will join, the areas that open and the ending (three endings) **(source: Wikipedia)**. The game
+opens with a dream in which the player names the hero and two future companions and divides 18 points among
+six stats for each **(verified: checkpoints `dream` to `start`)**. Progress is kept in two battery save files,
+first written from the hero's room **(verified: save `01_start`)**. This is the Japanese Super Famicom
+release with the Aeon Genesis English translation; the on-screen names used here are that translation's.
 
 ## Documents
 | Document | Covers |
 |---|---|
+| [characters.md](characters.md) | character creation, the six stats, what the status screen shows |
+| [world.md](world.md) | view modes, the opening sequence, places seen so far, moon phase |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
-<!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
-     unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
-     enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
+
+Planned, to be started by the capture agent when the systems are seen: `combat.md` (battle commands, sword and
+gun, magic), `demons.md` (negotiation, summoning, Magnetite, fusion), `alignment.md`, `economy.md` (yen, shops,
+healing), `items.md`.
 
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Wikipedia | https://en.wikipedia.org/wiki/Shin_Megami_Tensei_(video_game) | genre, systems, structure, endings |
+| The game (checkpoints `dream`, `start`, `apartment`, `kichijoji`, `lv23`) | `../checkpoints.txt` | everything tagged verified or RAM |
