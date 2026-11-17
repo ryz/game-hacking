@@ -2,6 +2,22 @@
 
 Append-only, newest first.
 
+## 2026-11-17 - Shin Megami Tensei (Super Famicom, English patches): intake, scout, main set run 1
+- Owner supplied the Japanese dump and two IPS patches (translation, then its bug-fix). The patches expect
+  different layouts (smte1 with the 512-byte copier header, smte2 without): `games/shin-megami-tensei/tools/
+  mkrom.py` rebuilds and checks SHA-1s. SNES header checksum now handles sizes that are not a power of two.
+- game-scout: playbook, 6 checkpoints, RAM map (yen, magnetite, character records), save 01_start, shot plan.
+  Names: ryz (hero), condi (Law hero), ebo (Chaos hero); the heroine is named later (cubi).
+- game-capture run 1: 34 shots (boot, intro incl. one hi-res frame, dream, naming, stats, room, mail, save/load,
+  3D corridor, command menus, town map, clinic, arcade shops, cafe, roadblock, full moon), commits a6c6883,
+  9db24cd, be549c9. Found position, facing, moon/step counter and town-map tile; town-map warp at an exit
+  prompt. Partial: could not find the way back into the apartment, so the story does not advance (no battles,
+  negotiation, fusion, terminals, later districts).
+- Coordinator: full verify rerun 34/34; contact sheet reviewed.
+- Tool fixes from the two reports: `MACRO*N`; `prefix()` skips `pow` (sav: routes replay); `play.py export`
+  refuses an empty battery; `play.py unsnap` / `recaption`; contact sheets scale bigger frames to the common
+  cell (a 512x448 frame blew up every cell and detached the labels). 18 tests pass.
+
 ## 2026-11-17 - SNES / Super Famicom backend (Mesen-S); core options were not applied
 - Owner's request: an emulator for SNES/SFC games. Mesen-S as a libretro core (libretro/Mesen-S at 9e4fdeb),
   chosen to match the NES setup: same driver, same kind of debug patch (`tools/mesen-s-debug.patch`: peek/poke

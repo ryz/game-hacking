@@ -453,12 +453,18 @@ def ascii_label(s):
 
 
 def sheet(paths, out, cols=4, labels=None):
-    """Contact sheet at native size with an optional caption under each frame."""
+    """Contact sheet at native size with an optional caption under each frame. The cell is the most common
+    frame size; a bigger frame (SNES hi-res, 239-line overscan) is scaled down to fit, on the sheet only."""
     from PIL import Image, ImageDraw
+    from collections import Counter
     ims = [Image.open(p).convert("RGB") for p in paths]
     if not ims:
         return
-    w, h = max(i.width for i in ims), max(i.height for i in ims)
+    w, h = Counter(i.size for i in ims).most_common(1)[0][0]
+    for k, im in enumerate(ims):
+        if im.width > w or im.height > h:
+            f = min(w / im.width, h / im.height)
+            ims[k] = im.resize((max(1, int(im.width * f)), max(1, int(im.height * f))), Image.BOX)
     lh = 12 if labels else 0
     rows = (len(ims) + cols - 1) // cols
     s = Image.new("RGB", (w * cols, (h + lh) * rows), (32, 32, 32))
