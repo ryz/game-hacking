@@ -7,7 +7,9 @@ No window, no audio, no SDL. Used by the NES backend in platforms.py (Mesen core
 A libretro core keeps its state in globals, so one loaded library = one running game. A second Core in the same
 process loads a private copy of the .so (dlopen of the same path would share the globals).
 """
-import ctypes as C, io, os, shutil, tempfile
+import ctypes as C, io, os, shutil, struct, tempfile
+
+TRAILER = b"GAMEDB-FRAME-1"
 
 
 class GameInfo(C.Structure):
@@ -55,6 +57,7 @@ class Core:
         self._dirs = {ENV_GET_SYSTEM_DIRECTORY: (system_dir or tempfile.gettempdir()).encode(),
                       ENV_GET_SAVE_DIRECTORY: (save_dir or tempfile.gettempdir()).encode()}
         self.fmt, self.keys, self._held, self.frame, self.open = 0, set(), set(), None, False
+        self.size = None                        # (w, h) for the picture before the first frame
         self._cbs = (ENV(self._env), VIDEO(self._video), AUDIO(lambda l, r: None), AUDIO_BATCH(lambda d, n: n),
                      POLL(lambda: None), INPUT(self._input))       # keep references: ctypes callbacks
         L.retro_load_game.restype = C.c_bool
@@ -112,8 +115,8 @@ class Core:
 
     def image(self):
         from PIL import Image
-        if self.frame is None:
-            self.run(1)
+        if self.frame is None:                  # nothing drawn yet (power-on): black, never advance emulation
+            return Image.new("RGB", self.size or (256, 240))
         w, h, pitch, d = self.frame
         if self.fmt == FMT_XRGB8888:
             return Image.frombuffer("RGB", (w, h), d, "raw", "BGRX", pitch, 1)
@@ -128,16 +131,30 @@ class Core:
         self.image().save(path, "PNG")
 
     # ---- state and memory
+    # A savestate file is the core's own serialized state followed by a trailer with the frame on screen
+    # (frame bytes, then w, h, pitch, pixel format, frame length, magic). A core does not keep the picture in
+    # its state, so without the trailer a screenshot right after a load would need one more emulated frame and
+    # a route would differ by a frame between "just played" and "loaded from the cache".
     def serialize(self):
         n = self.L.retro_serialize_size()
         buf = C.create_string_buffer(n)
         if not self.L.retro_serialize(buf, C.c_size_t(n)):
             raise RuntimeError("savestate failed")
-        return buf.raw
+        if self.frame is None:
+            return buf.raw
+        w, h, pitch, d = self.frame
+        return buf.raw + d + struct.pack("<5I", w, h, pitch, self.fmt, len(d)) + TRAILER
 
     def unserialize(self, data):
+        frame = None
+        if data.endswith(TRAILER):
+            w, h, pitch, fmt, n = struct.unpack("<5I", data[-len(TRAILER) - 20:-len(TRAILER)])
+            end = len(data) - len(TRAILER) - 20
+            frame, self.fmt = (w, h, pitch, data[end - n:end]), fmt
+            data = data[:end - n]
         if not self.L.retro_unserialize(data, C.c_size_t(len(data))):
             raise RuntimeError("the core refused the savestate (made by another core version or ROM?)")
+        self.frame = frame
 
     def memory(self, kind):
         """A live ctypes view of a libretro memory region (MEM_SYSTEM_RAM, MEM_SAVE_RAM), or None."""

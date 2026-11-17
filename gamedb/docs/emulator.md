@@ -155,6 +155,12 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
   6-letter codes only for games without bank switching (PRG <= 32 KiB), otherwise the bank is unknown: find
   the 8-letter form or patch the file offset with `"bytes"`.
 - Exported `.sav` files are the raw battery RAM (8 KiB on most cartridges), the format every NES emulator uses.
+- A screenshot never advances emulation. Savestates are the core's own state plus a trailer holding the frame on
+  screen, so a cached checkpoint and a freshly built one give the same picture and the same timing (they
+  differed by one frame before 2026-11-17: rebuild any cache older than that).
+- Many NES games sit in one frame-wait loop, so `status` shows the same PC all the time; that is not a hang.
+- Password games (no battery): make a "save" by poking the state you want and asking the game for its
+  password; put the password and the tokens that type it into a macro (see `games/dragon-quest/tools/pw.py`).
 - Power-on RAM is all zeros (fixed, so routes reproduce). A few games seed their RNG from uninitialised RAM and
   behave the same on every boot here; that is intended.
 

@@ -305,6 +305,7 @@ class Nes(Backend):
                 raise SystemExit("this cartridge has no battery RAM; %s cannot be loaded" % sav)
             n = min(len(data), len(ram))
             ctypes.memmove(ram, data, n)
+        self.c.size = self.native_size
         self._search = None
         return self
 

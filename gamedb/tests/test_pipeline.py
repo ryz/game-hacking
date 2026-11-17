@@ -338,6 +338,26 @@ def test_nes_backend(nes_selftest, tmp_path):
     e.close()
 
 
+def test_nes_state_keeps_frame_and_timing(nes_selftest, tmp_path):
+    """A screenshot never advances emulation: played straight and loaded from a state give the same picture and
+    the same frame count (a cached checkpoint must equal a freshly built one)."""
+    st = str(tmp_path / "x.state")
+    a = platforms.Nes().open(str(nes_selftest))
+    assert a.peek(0x10, 1) == b"\x00" and a.screen() and a.peek(0x10, 1) == b"\x00"     # power-on picture: no frame run
+    a.input(["a"])
+    a.frames(40)
+    a.save_state(st)
+    shot, count = a.screen(), a.peek(0x10, 1)
+    b = platforms.Nes().open(str(nes_selftest))
+    b.load_state(st)
+    assert b.screen() == shot and b.peek(0x10, 1) == count          # red frame kept, nothing emulated
+    a.input([]); b.input([])
+    a.frames(10); b.frames(10)
+    assert a.screen() == b.screen() and a.peek(0x10, 1) == b.peek(0x10, 1)
+    a.close()
+    b.close()
+
+
 def test_nes_pipeline(nes_selftest):
     run("tools/intake.py", str(nes_selftest), "--slug", NES_SLUG, "--probe", "120")
     gj = os.path.join(ROOT, "games", NES_SLUG, "game.json")

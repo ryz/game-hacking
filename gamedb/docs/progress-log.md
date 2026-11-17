@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-17 - Dragon Quest (Famicom, English patch): intake, scout, NES frame fix
+- Owner supplied the Japanese dump and an English translation IPS; the patched ROM is registered as
+  `dragon-quest` (SHA-1s of dump, patch and result in game.json "source"; a `rom:jp` variant restores the
+  original). game-scout: playbook, 9 checkpoints (title, password_entry, start, late and five late_* places),
+  password helper `games/dragon-quest/tools/pw.py`, RAM map, 54-line shot plan. No battery: passwords only.
+- Bug found by the scout, fixed: `lrcore.Core.image()` emulated one frame when no frame had been drawn (after
+  loading a state into a new core), so cached and freshly built checkpoints differed by a frame. Screenshots
+  no longer emulate; savestates carry the frame in a trailer. Test added (13 pass). Checkpoints rebuilt.
+
 ## 2026-11-17 - NES / Famicom backend (Mesen)
 - Owner's request: an emulator for NES/Famicom games like the GB one. Checked FCEUmm and Mesen as libretro cores
   (both build headless here, deterministic, savestates round-trip); owner chose Mesen.
