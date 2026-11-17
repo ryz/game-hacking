@@ -14,7 +14,7 @@ except map exits. **(verified)** `@start` In battle a window of four commands ap
 | Items | Herb and Key with counts, then up to eight single items | **(verified)** `@late` |
 | Stairs | uses the staircase under the hero | **(verified)** throne room to the castle |
 | Check | searches the ground under the hero | **(source)** |
-| Door | opens a door beside the hero and uses up a Key; "No doors here!" otherwise | message **(verified)**, opening **(source)** |
+| Door | opens a door beside the hero (no direction asked, no message, the door tile disappears); "No doors here!" otherwise | **(verified)** `@start_door`; that it spends the Key **(source)** |
 | Take | takes what is in the chest under the hero: the first throne-room chest holds 120 Gold | **(verified)** `@start` |
 
 ## 2. Battle commands
@@ -26,5 +26,6 @@ Standing still for about a second shows name, LVL, HP, MP, G and E; it also stay
 open. **(verified)** `@start`
 
 ## Open questions
-- What Check finds and where; whether Door asks for a direction. Not tried.
+- What Check finds and where. Not tried.
+- Stairs on a tile without stairs: "No entry here." **(verified)**
 - Start and Select: no effect seen in the command window; not tried while walking.

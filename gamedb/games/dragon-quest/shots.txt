@@ -1,61 +1,76 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set (scout 2026-11-17). Lines with a route were tried by the scout; commented lines are
-# plan only: the capture agent finds the route (playbook: Shot plan, Shortcuts, Emulation notes).
-# play.py snap writes captured shots (with exact routes) to work/shots/dragon-quest/<set>/shots.txt; copy
-# finished lines back here so the plan stays replayable.
+# Captured 2026-11-17 (67 shots, all reproduce with shoot.py --verify). Routes exactly as play.py snap recorded them.
 boot_logo | boot | DRAGON QUEST logo alone, before the menu appears | pow,w300,!
-title_screen | title | Title: logo with the dragon, START / CONTINUE, MESSAGE SPEED, (C)1986 ENIX | @title
-password_entry | save | CONTINUE: "Enter a Return Spell!" with the 64-symbol grid | @password_entry
-throne_room_start | gameplay | Throne room: ryz before the king, three chests, status window (LVL 1, HP 15) | @start
-late_stats | inventory | STATUS sheet at level 21: Power 95, Speed 82, Loto's sword and armour, Mirror shield | @late,a,down,a,w30
-late_items | inventory | Items window: Herb 4, Key 3, Drop, Love, Mark, Scale, Wing, Torch | @late,a,right,down,a,w30
-late_spells | inventory | Spell window with all ten spells (Hoimi ... Begira) | @late,a,right,a,w30
-overworld_tantegel | map | Overworld south of Tantegel: castle, town and the Dragon King's castle across the water | @late_overworld
-charlock_entrance | gameplay | Inside the Dragon King's castle, entrance hall | @late_charlock
-# name_entry | menu | "Enter Name" grid with ryz typed | @title,FAST,start,w60,settle,down*4,right*5,a,down,left,a,right,a
-# password_typed | save | Return Spell entry with 19 symbols typed
-# king_intro | cutscene | The king: "Scion of Loto the Brave! I've awaited you!"
-# king_gifts | cutscene | The king: "Take the gifts I have for you beside me."
-# king_password | save | The king tells the Return Spell (20 symbols)
-# commands_window | menu | Commands: Talk, Spell, Stats, Items, Stairs, Check, Door, Take
-# talk_compass | system | Talk asks for a direction: N / W / E / S
-# npc_soldier | dialogue | A throne-room soldier's advice
-# throne_room_chest | system | Take on a chest: "ryz obtained 120 Gold!"
-# throne_room_door | system | Door command opens the throne-room door with the Key
-# stairs_command | system | Stairs command on the throne-room staircase
-# castle_1f | gameplay | Tantegel Castle ground floor
-# town_first | gameplay | The first town: street with the INN sign
-# shop_weapons | shop | Weapon shop price list in the first town
-# shop_tools | shop | Tool shop: Herb, Torch, Wing ...
-# inn_stay | system | Inn: price question and the night passing
-# town_kol | gameplay | Kol
-# town_rimuldar | gameplay | Rimuldar, the lake town
-# town_cantlin | gameplay | Cantlin, the walled town
-# ruins_hauksness | gameplay | The ruined desert town
-# cave_dark | system | Cave without light: only the hero's tile visible
-# cave_torch | system | Cave with a Torch lit
-# cave_remira | system | Cave lit wider by the Remira spell
-# swamp | gameplay | Poison swamp on the overworld
+title_screen | title | Title: logo with the dragon, START / CONTINUE, MESSAGE SPEED, (C)1986 ENIX | @title,settle,settle
+name_entry | menu | Enter Name: letter grid with ryz typed | @title,settle,settle,FAST,start,w60,settle,settle,down*4,right*5,a,down,left,a,right,a,settle
+king_intro | cutscene | The king: "Scion of Loto the Brave! I've awaited you!" | @title,FAST,start,w60,settle,NAME_RYZ,settle,a,w30,settle
+talk_compass | system | Talk asks for a direction: N / W / E / S (the hero never turns) | @title,FAST,start,w60,settle,NAME_RYZ,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle
+throne_room_start | gameplay | Throne room: ryz before the king, three chests, status window (LVL 1, HP 15) | @start,w1,!
+commands_window | menu | Commands: Talk, Spell, Stats, Items, Stairs, Check, Door, Take | @start,w1,a,settle
+throne_room_chest | system | Take on a chest: "ryz obtained 120 Gold!" | @start,w1,a,settle,b,right:16,settle,a,right,down*3,a,w30,settle
+npc_soldier | dialogue | A throne-room soldier asks "Know Princess Laura?" with a Yes / No choice | @start,w1,a,settle,b,right:16,settle,a,right,down*3,a,w30,settle,a,right:16,settle,a,right,down*3,a,w30,settle,a,up:16*3,right:16,settle,a,right,down*3,a,w30,settle,a,a,right,down,a,w30,settle,b,b,w20,right:16,up:16*3,settle,a,right,down*3,a,w30,settle,b,w20,settle,right:16*3,up:16*3,left:16*2,settle,a,right,down*3,a,w30,settle,a,w20,right:16*2,down:16*3,left:16*4,down:16*2,settle,a,a,w20,left,w30,settle,a,w30,settle,a,w30,settle,right:16*5,down:16*3,left:16*4,down:16*2,settle,a,a,w20,left,w30,settle,a,w30,settle
+door_command | system | Commands > Door at the locked throne-room door (uses up the Key) | @start_door,a,down*3,w26,!
+throne_room_door | gameplay | Throne room after the Door command: the door is gone, the way to the stairs is open | @start_door,a,down*3,w26,a,w40,settle
+stairs_command | system | Commands > Stairs: stairs are taken by command, not by walking onto them | @start_door,a,down*3,w26,a,w40,settle,down:16*2,right:16*4,settle,a,down*2,w26,!
+castle_1f | gameplay | Tantegel Castle ground floor: guards, townsfolk, the treasury behind a locked door | @start_door,a,down*3,w26,a,w40,settle,down:16*2,right:16*4,settle,a,down*2,w26,a,w60,settle,settle,left:16*2,down:16*2,w30,settle
+hud_status_popup | hud | Status window (name, LVL, HP, MP, G, E) pops up when the hero stands still | @start_overworld,settle,settle
+overworld_tantegel | map | Overworld outside Tantegel: castle, the first town and the Dragon King's castle across the water | @start_overworld,settle,settle,left:16,w20,right:16,w20,w30,!
+battle_slime | battle | First battle in the forest by Tantegel: "Slimess appeared! Command?" | @start_overworld,left:16*4,w30,settle,up:16*4,w30,settle,left:16*3,w30,settle,right:16*3,w30,settle,left:16*3,w30,settle,right:16*3,w30,settle,left:16*3,w30,settle,right:16*3,w30,settle,left:16*3,w30,settle
+battle_command | battle | Battle Commands (Fight / Spell / Flee / Items) after a round: "ryz receives 2 damage! Command?" | @start_battle,a,w20,w30,w30,w40,w40,w40,w40,w40,w30,settle
+battle_levelup | battle | Level up after the battle: LVL 2, "Max HP rose by 7!" | @start_battle,a,w20,w30,w30,w40,w40,w40,w40,w40,w30,settle,set:00BA=6:2,a,w120,settle,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle
+stats_sheet | inventory | Stats sheet at level 21: Power 95, Speed 82, Loto's sword and armour, Mirror shield | @late,a,down,a,w30,settle
+items_window | inventory | Items window: Herb 4, Key 3, Drop, Love, Mark, Scale, Wing, Torch | @late,a,down,a,w30,settle,b,w20,a,right,down,a,w30,settle
+spell_window | inventory | Spell window with all ten spells (Hoimi ... Begira) | @late,a,down,a,w30,settle,b,w20,a,right,down,a,w30,settle,b,b,w20,a,right,a,w30,settle
+spell_field | system | Casting Hoimi from the field Spell window: "ryz chanted Hoimi Spell!" (HP 97 to 108, 4 MP) | @late,a,down,a,w30,settle,b,w20,a,right,down,a,w30,settle,b,b,w20,a,right,a,w30,settle,set:00C5=97:1,a,w60,settle,a,w40,settle
+king_password | save | The king tells the Return Spell (20-symbol password): "Write it down." | @late,a,a,w20,up,w40,settle,a,w50,settle,a,w50,settle,a,w50,settle,a,w50,settle
+password_entry | save | CONTINUE: "Enter a Return Spell!" with the 64-symbol grid | @password_entry,settle,settle
+password_typed | save | Return Spell entry: 19 of 20 symbols typed, cursor on the last one | @password_entry,settle,settle,right,right,right,down,down,down,down,a,up,up,up,up,a,right,right,down,down,a,down,down,a,up,up,a,left,left,down,a,right,right,right,right,right,right,up,a,left,a,left,down,a,a,right,up,up,a,left,left,down,a,left,left,left,a,right,right,right,right,right,up,up,a,left,left,left,left,down,down,down,down,a,right,right,right,up,up,up,up,a,right,down,down,down,down,a,left,left,left,left,left,a,up,up,up,up,a,right,right,right,right,right,right,down,down,down,down,settle
+town_first | gameplay | The first town east of Tantegel: brick streets, townsfolk, the INN sign | @late_brecconary,settle,settle,right:16*6,down:16*3,w4,!
+inn_stay | shop | Traveler's Inn in the first town: "Stay for 6G?" Yes / No | @late_brecconary,settle,settle,right:16*6,down:16*3,w4,down:16*3,settle,set:00C5=83:1,set:00C6=64:1,a,a,w20,right,w50,settle,a,w50,settle
+inn_morning | system | After the night at the inn: "Good morning!" HP and MP restored, 6 G paid | @late_inn,a,w30,w40,w40,w40,w40,w40,w40,w40,w60,settle
+shop_weapons | shop | Weapon shop price list in the first town: Pole 10 ... Leather shield 90 | @late_weaponshop,a,w60,settle
+cave_dark | system | Loto's cave without light: only the hero's own tile is visible | @late_overworld,poke:003A=1B0C,poke:008E=1B0C,poke:0090=B001C000,right:16,w90,settle,settle
+cave_torch | system | Loto's cave with a Torch lit: the eight tiles around the hero are visible | @late_lotocave,a,right,down,a,w30,down*7,settle,a,w60,settle,a,w40,settle,b,w30,settle,down:16*3,right:16*2,w4,down:16*4,w4,w12,!
+cave_remira | system | The same cave lit by the Remira spell: a 7 x 7 tile view (3 MP) | @late_lotocave,a,right,down,a,w30,down*7,settle,a,w60,settle,a,w40,settle,b,w30,settle,down:16*3,right:16*2,w4,down:16*4,w4,w12,a,right,a,w30,down*3,settle,a,w60,settle,a,w40,settle,b,w30,settle,down:16,w20,!
+king_gifts | cutscene | The king: "Take the gifts I have for you beside me." | @title,FAST,start,w60,settle,NAME_RYZ,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle,a,w30,settle
+town_kol | gameplay | Kol, the forest village: sand paths, shops and a robed elder | @late_kol,up:16*6,w20,!
+town_rimuldar | gameplay | Rimuldar, the lake town: weapon shop sign, townsfolk, water around the walls | @late_rimuldar,left:16*6,w20,left:16*6,w20,up:16*6,w20,!
+cantlin_roof | system | Cantlin: stepping under a roof hides the town and shows the walled garden inside | @late_cantlin,down:16*6,w20,down:16*6,w20,left:16*6,w20,w60,settle,right:16*2,down:16*2,w20,!
+town_cantlin | gameplay | Cantlin, the walled town: shop counters along brick streets | @late_cantlin,down:16*6,w20,!
+ruins_hauksness | gameplay | The ruined desert town: broken walls, poison swamp patches, no townsfolk | @late_hauksness,right:16*6,w20,right:16*5,w20,!
+battle_archmage | battle | Ambush in the ruined town: "Archmage chanted Begira!" (20 damage) | @late_hauksness,right:16*6,w20,right:16*5,w20,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle,up:16*3,w30,settle,down:16*3,w30,settle
+battle_spell | battle | Battle Spell list vs an Archmage, cursor on Begira | @late_battle_archmage,right,a,w30,settle,down*9,settle
+battle_spell_cast | battle | Casting Begira in battle: the screen flashes grey ("ryz chanted Begira Spell!") | @late_battle_archmage,right,a,w30,settle,down*9,settle,a,w40,w25,!
+boss_golem | boss | Golem guards the way into Cantlin: "Golem appeared! Command?" | @late_cantlin,up:16,w90,settle,settle,up:16,w20,up:16,w90,settle,settle
+boss_green_dragon | boss | The Dragon guarding the princess in the swamp cave: "Dragon appeared! Command?" | @late_swampcave_lit,poke:003A=040F,poke:008E=040F,poke:0090=4000F000,up:16,w90,settle
+dragon_king_offer | cutscene | The Dragon King on his throne: "Be my ally and half the world is yours." | @late_lair_throne,a,a,w20,left,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle
+dragon_king_question | cutscene | The Dragon King asks "Will you be my ally?" Yes / No | @late_dk_question,settle,settle
+boss_dragon_king_1 | boss | Final battle, first form: "DrgnKing appeared! Command?" in his throne room | @late_dk_question,settle,settle,down,a,w60,settle
+boss_dragon_king_2 | boss | The Dragon King's true form strikes before ryz is ready: "DrgnKing attacks!" | @late_dragon_king_1,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,w120,settle
+ending_light_orb | ending | The Dragon King falls: ryz raises the Light Orb, "Light pours out!" | @late_dragon_king_2,freeze:00C5=57,a,w200,settle,freeze:00C5=57,a,w200,settle,freeze:00C5=57,a,w200,settle,freeze:00C5=57,a,w200,settle,freeze:00C5=57,a,w200,settle,freeze:00C5=57,a,w200,settle,freeze:00C5=57,a,w200,settle,freeze:00C5=57,a,w200,settle,w60,settle,poke:00E2=05,a,w200,settle,unfreeze,w120,settle,a,w120,settle,a,w120,settle
+ending_overworld | ending | Peace returns: ryz stands outside the Dragon King's castle, HP and MP restored | @late_dk_dead,a,w150,settle,a,w150,settle
+ending_courtyard | ending | Tantegel after the victory: the king and two rows of trumpeters wait in the courtyard | @late_ending_castle,down:16,right:16*2,w20,!
+ending_king | ending | The king: "O' Brave ryz! You've fulfilled the Legend!" | @late_ending_castle,down:16,right:16*2,w20,right:16,w90,settle
+ending_princess | ending | Princess Laura: "Can't I come, ryz?" Yes / No | @late_ending_castle,down:16,right:16*2,w20,right:16,w90,settle,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle
+ending_message | ending | Ending screen: "GREAT!! YOU REGAINED PEACE TO THE WORLD!" | @late_ending_princess,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,w120,settle
+ending_credits | credits | Staff roll: "MUSIC COMPOSED BY KOICHI SUGIYAMA" | @late_ending_princess,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,a,w120,settle,w120,settle,w600,settle,w900,settle,a,w300,settle
+ending_fanfare | ending | Ending: ryz carries Princess Laura as the trumpeters raise their horns | @late_ending_princess,a,w120,settle,a,w120,settle,a,w120,settle
+charlock_entrance | gameplay | Inside the Dragon King's castle: the entrance hall | @late_charlock,up:16*2,w20,!
+charlock_lair | gameplay | Bottom floor of the Dragon King's castle: ryz beside the Dragon King on his throne | @late_lair_throne,right:16,w10,left:16,w16,!
+lura_return | system | Casting Lulra in Kol: "ryz chanted Lulra Spell!" (the return spell to Tantegel, 8 MP) | @late_kol,a,right,a,w30,down*6,settle,a,w30,w30,w14,!
+rainbow_bridge_built | system | The rainbow bridge now spans the channel to the Dragon King's island | @late_rainbow_spot,a,right,down,a,w30,down*2,settle,a,w30,w30,w30,w30,w30,w30,w30,a,w20,w40,w40,w40,w40,w40,w40,w40,!
+rainbow_drop_use | system | Using the Rainbow Drop at the channel: "ryz raised the Rainbow Drop." | @late_rainbow_spot,a,right,down,a,w30,down*2,settle,a,w30,w30,w30,!
+rainbow_bridge | system | The Rainbow Drop at work: the sea flashes through the colours of the rainbow | @late_rainbow_spot,a,right,down,a,w30,down*2,settle,a,w30,w30,w30,a,w20,w40,!
+death_king | gameover | After dying: back before the king, "Oh ryz! How could you have died?" (half the gold is gone) | @late_golem,poke:00C5=03,a,w200,settle,w90,settle,a,w150,settle,a,w120,settle,a,w90,settle
+death_battle | gameover | Killed by the Golem: every window turns red, "You are dead." | @late_golem,poke:00C5=03,a,w200,settle,w90,settle,a,w150,settle
+battle_dragon | battle | A Dragon on the overworld north of Cantlin: "Dragon appeared! Command?" | @late_battle_dragon,settle,settle
+charlock_overworld | gameplay | The Dragon King's castle on its island, ringed by poison swamp and mountains | @late_brecconary,left:16*3,w14,poke:003A=2E30,poke:008E=2E30,poke:0090=E0020003,w90,settle,settle,right:16,w6,w6,w6,!
+jp_password_entry | extra | Original Japanese ROM: the kana grid of the password entry screen | rom:jp,w760,settle,down,start,w60,settle
+shop_tools | shop | Item shop in the first town (under a roof): Herb 24, Torch 8, Scale 20 | @late_toolshop,a,w60,settle
+# Plan lines not captured yet (see playbook Shot plan):
+# shop_keys | shop | Key shop
+# swamp | gameplay | Poison swamp damage (needs weaker armour than Loto's)
 # bridge | gameplay | Crossing a bridge: stronger enemies beyond
-# hud_status_popup | hud | Status window that appears when standing still (overworld)
-# spell_field | system | Casting Hoimi from the field Spell window
-# lura_return | system | Lulra / Wing: back to Tantegel
-# rainbow_bridge | system | The Rainbow Drop builds the bridge to the Dragon King's island
-# battle_slime | battle | First battle near Tantegel: a Slime appears
-# battle_command | battle | Battle Commands: Fight / Spell / Flee / Items
-# battle_spell | battle | Battle spell list
-# battle_levelup | battle | Level up message with the new stats
-# battle_late | battle | A strong enemy of the late areas
-# boss_golem | boss | Golem at the gate of Cantlin
-# boss_green_dragon | boss | Green dragon guarding the princess in the swamp cave
-# dragon_king_offer | cutscene | The Dragon King offers half the world: yes / no
-# boss_dragon_king_1 | boss | Dragon King, first form
-# boss_dragon_king_2 | boss | Dragon King, true form
-# charlock_lair | gameplay | Bottom floor of the Dragon King's castle
-# death_king | gameover | After dying: back before the king, half the gold gone
-# ending_king | ending | The king after the Dragon King's fall
-# ending_credits | credits | Staff roll
-# jp_title | extra | Original Japanese title menu (rom:jp)
-# jp_password_entry | extra | Original kana password grid (rom:jp) | rom:jp,w760,settle,down,start,w60,settle
+# check_command | system | Check finds something on the ground

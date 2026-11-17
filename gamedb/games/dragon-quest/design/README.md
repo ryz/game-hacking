@@ -42,10 +42,10 @@ shortcuts. **(source)**
 |---|---|
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 | [controls-and-commands.md](controls-and-commands.md) | the command windows, what each command does (started) |
-| progression.md (to write) | levels, experience table, spells by level, the critical path |
-| combat.md (to write) | battle commands, damage, fleeing, enemy list |
-| items-and-shops.md (to write) | equipment, tools, prices, inns, keys |
-| world.md (to write) | overworld, towns, caves, light, damage floors |
+| [combat.md](combat.md) | battle flow, enemies met, the Dragon King, death |
+| [items-and-shops.md](items-and-shops.md) | the king's gifts, shop and inn prices, spells seen in use, levels |
+| [world.md](world.md) | places and their overworld tiles, cave light, roofs, the rainbow bridge, the ending |
+| progression.md (to write) | experience table, spells by level, the critical path |
 | password.md (to write) | what the Return Spell stores and what it drops |
 
 ## Sources

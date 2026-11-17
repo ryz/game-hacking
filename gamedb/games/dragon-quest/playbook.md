@@ -4,9 +4,9 @@ Everything an agent needs to play this game efficiently: read it before playing,
 Status of each fact: **verified** (seen in the emulator, with the route) or **source** (manual/FAQ/wiki, not yet
 checked). Never delete a fact that turned out wrong: strike it and say what is true.
 
-Scouted 2026-11-17 (first NES game in the database). **Read "Emulation notes" before making routes:** a
-checkpoint loaded from the cache runs one frame more than the same checkpoint freshly built, and this game's
-NPC movement and encounters follow the frame count.
+Scouted 2026-11-17 (first NES game in the database); main set captured the same day (67 shots, title to staff
+roll). **Read "Shortcuts" before making routes:** every place, the three fixed bosses and the ending are a few
+tokens from `@late` (position warp, clean warp, map swap).
 
 ## Identity
 | Field | Value |
@@ -46,16 +46,17 @@ NPC movement and encounters follow the frame count.
 | Commands | Talk | opens a compass (N/W/E/S): press the direction of the person. The hero has no facing in this version | verified (king: `a,a,w20,up`) |
 | Commands | Stats | status sheet: Lvl, Power, Speed, Max HP, Max MP, AtkPwr, DefPwr, Wpn, Armr, Shld | verified |
 | Commands | Stairs | take the stairs the hero stands on (walking onto stairs does nothing) | verified (throne room (8,8) -> castle 1F) |
-| Commands | Door | open a door next to the hero with a Key | command verified ("No doors here!"); opening a locked door not tried |
+| Commands | Door | open a door next to the hero with a Key: no direction asked, no message, the door tile disappears | verified (`@start_door`, shot `throne_room_door`) |
 | Commands | Take | take the contents of the chest the hero stands on | verified (120 Gold at (4,4)) |
 | Commands | Check | search the ground under the hero | source (not tried) |
-| Commands | Spell / Items | lists (see Game structure) | windows verified, using one not tried |
+| Commands | Spell / Items | lists (see Game structure); A on an entry uses it | verified: Hoimi, Remira, Lulra, Begira (battle), Torch, Drop |
 | Dialogue | A (or B) | next page at the down arrow; closes the last page | verified |
 | Battle | D-pad, A | Fight / Spell / Flee / Items (2 x 2) | verified (Fight wins vs Slimess) |
 | Name / password entry | D-pad, A | move over the grid, type the symbol. `Del`/`Bck` = back one, `Frw` = forward, `End` = finish (name only: a 20-symbol password is checked as soon as the 20th symbol is typed) | verified (End, auto-accept); Del/Bck/Frw source |
 
 Input timing: the default press (hold 8, wait 40) works everywhere tried (title, name grid, menus, dialogue,
-battle). `down:16` inside a menu moved the cursor two entries (key repeat): use plain `down` in menus. The menu
+battle). After closing a window with A/B, walk in the next `do` (a step in the same token list right after the
+closing press is sometimes swallowed). `down:16` inside a menu moved the cursor two entries (key repeat): use plain `down` in menus. The menu
 cursor blinks, so a screenshot may show no cursor; that is not a missed press.
 
 ## Game structure
@@ -113,6 +114,16 @@ Special effort: the Dragon King (walk the castle floors with the stairs warp, th
 the princess (state flags, see RAM map, unverified bits); the rainbow bridge (needs the three relics or the
 Drop in the right spot at about (65,49), source).
 
+Captured 2026-11-17 (ticked = in `shots/main/`): all of boot/title/menu; cutscene/dialogue (`npc_talk` is
+`talk_compass`); gameplay S; towns, ruins, caves, `charlock_entrance`, `charlock_lair`; system except
+`check_command`; hud; inventory; `shop_weapons`; battles; all bosses and `dragon_king_offer`; `death_king`;
+the whole ending and `ending_credits`. Extra shots: `cantlin_roof`, `inn_morning`, `battle_archmage`,
+`battle_spell_cast`, `death_battle`, `dragon_king_question`, `rainbow_drop_use`, `rainbow_bridge_built`,
+`ending_*` (8), `charlock_overworld`, `battle_dragon`, `jp_password_entry` (`jp_title` dropped: the Japanese title
+screen is identical).
+**Not captured:** `shop_keys` (counter not found in the time; see Open questions), `swamp` damage
+(Loto's armour cancels it), `bridge` (an ordinary bridge crossing), `check_command`, a `seq-rainbow` clip set.
+
 ## Strategy and walkthrough notes
 - Do not play the early game for progress: `@late` (level 21, best equipment, 6135 G) plus the position warp
   reaches every map in a few tokens. Play from `@start` only for the opening shots (chests, door, first battle).
@@ -124,6 +135,21 @@ Drop in the right spot at about (65,49), source).
 - Random encounters and wandering NPCs depend on frame timing: add `wN` variations, and make a checkpoint as
   soon as a wanted encounter is on screen.
 - Message speed FAST is in all scout checkpoints except `title`.
+- **Finding a random battle:** loop `do "left:16*3,w30"` / `right:16*3,w30` and stop when the `ehp` watch is not
+  0 (it keeps its last value after a battle, so compare with the value before). The `enemy` watch (`00E0`) is
+  reused for other things outside battle (seen 4, 5, 7, 8, 9, 12 while walking): ignore it there.
+  Seen: Slimess after ~9 loops in the forest NW of Tantegel (`start_battle`), Archmage after 24 loops in the
+  ruined town (`late_battle_archmage`), Dragon after 6 loops north of Cantlin (`late_battle_dragon`).
+- **Fixed bosses** (all alive in the `late` state): Golem on overworld (73,100): leave Cantlin by the north gate
+  and walk up 2 (`late_golem`). Dragon at (4,14) of the swamp cave (`late_green_dragon`). Dragon King: Talk
+  west from (17,24) on the bottom floor, answer No (`late_dragon_king_1`); his true form follows by itself
+  (`late_dragon_king_2`): `freeze:00C5=57` holds HP at 87 while fighting it, `poke:00E2=05` shortens it.
+- **Ending:** after the true form falls the hero is put on the overworld at (48,48) with full HP. Enter Tantegel,
+  reach the throne-room stairs tile (7,7) of the ground floor (`late_ending_castle`), walk down 1 and right 3:
+  the scene starts by itself at (10,8). A at each page; Laura's Yes/No (`late_ending_princess`): Yes, then
+  about 600 frames to the text screen and the staff roll (runs on its own, more than 3000 frames).
+- **Death shot:** `@late_golem,poke:00C5=03,a,w200,w90,a,w150` = "You are dead." with red windows; two more A
+  presses = the king's speech, gold halved.
 
 ## Naming
 Main character: **ryz**. Name entry (verified): 4 symbols, grid of 10 columns:
@@ -139,10 +165,13 @@ Main character: **ryz**. Name entry (verified): 4 symbols, grid of 10 columns:
 | Late-game state, name ryz | `@late` (= `@title,LATE`). Password `R[axe]5g5 M98**36 HbSaj R[axe]k` = `Ru5g5 M98**36 HbSaj Ruk` in `tools/pw.py` notation: LVL 21, HP 149, MP 122, 6135 G, E 34218, Loto's sword and armour, Mirror shield, Herb 4, Key 3, Drop, Love, Mark, Scale, Wing, Torch, all ten spells | made here: pokes at `@start` (`set:00BA=34218:2,set:00BC=6135:2,poke:00BE=FF,poke:00BF=03,poke:00C0=04,poke:00C1=8E471300,poke:00DF=08`), then Talk to the king | verified |
 | Japanese-version passwords | They work unchanged: the patch keeps the kana grid cell for cell, only the glyphs differ. `python3 games/dragon-quest/tools/pw.py tokens "ふるいけや かわずとびこむ みずのおと ばしや"` gives the tokens to type one from `@password_entry`; `pw.py en KANA` / `pw.py jp EN` convert. The name comes out as patch-font symbols (here `4U[axe]J`): follow with `NAME_FIX` | the well-known "furuike ya" password | verified: LVL 10, HP 51, MP 40, 15143 G, E 2898 |
 | Make any password | Poke the state at a point where the king talks normally (`00DF` bit 3 set = "has left the throne room"), Talk to him: after the experience line he says the Return Spell. Read it off the screen (zoom: the icons are symbols of the grid too) | scout | verified |
-| Position warp | `poke:003A=XXYY,poke:008E=XXYY,poke:0090=<X*16 as 2 bytes low first><Y*16 the same>`, then walk one step: the game checks the tile it arrives on. Onto a town/cave tile of the overworld = enter it; off the edge of a town map = leave. The screen is wrong for that one step only | scout | verified: castle edge -> overworld; (47,41)+right -> first town; (47,48)+right -> Dragon King's castle |
-| Overworld coordinates | Tantegel (43,43) verified, first town (48,41) verified, Dragon King's castle (48,48) verified. Others from Dragon Warrior (source, check each): Garinham (2,2), Kol (104,10), Rimuldar (102,72), Cantlin (73,102), Hauksness (25,89), swamp cave (104,44)/(104,49), mountain cave (29,57), Loto's cave (28,12), rain shrine (81,1), sun shrine via Tantegel cellar, rainbow temple (108,109) | Dragon Warrior maps, from memory | source |
-| Stairs warp inside a map | The same poke onto a stairs tile, then Commands > Stairs | scout idea | not tried |
-| Hold values | `freeze:00C5=HH` (HP), `freeze:00C6=HH` (MP) | RAM map | addresses verified by watch, freeze not tried |
+| Position warp | `poke:003A=XXYY,poke:008E=XXYY,poke:0090=<X*16 as 2 bytes low first><Y*16 the same>`, then walk one step: the game checks the tile it arrives on. Onto a town/cave tile of the overworld = enter it; off the edge of a town map = leave. **The background stays that of the old place** (each step only draws the new row or column; sprites are right): fine for entering a place, wrong for a shot on the same map | scout; capture run | verified for every place in the next row |
+| Clean warp (same map kind, background redrawn) | Poke the position **during a map change**: the new map is then drawn around the poked position. Overworld: `@late_brecconary,left:16*3,w14,<position pokes for X,Y>,w90,settle` (leaving the first town; checkpoint `late_rainbow_spot` = (65,49)). Inside Tantegel: take the stairs up and down again | capture run | verified: (65,49), (70,95), (46,48) |
+| Map swap (reach a map without walking there) | Poke the map number 14 frames after the step that starts a map change, and the position 20 frames later: `@late_overworld,<pokes 47,48>,right:16,w14,poke:0045=06,w20,<pokes 17,24>,w90,settle` = bottom floor of the Dragon King's castle beside his throne (`late_lair_throne`). Poking the map number earlier (w1-w8) gives "No entry here." | capture run | verified for map 6; other floors (0F-14) not tried |
+| Overworld coordinates | All verified by warping to the tile west of it and stepping right: Tantegel (43,43), first town (48,41), Dragon King's castle (48,48), Garinham (2,2) -> map 9 at (0,14), Kol (104,10) -> map 7 at (19,23), Rimuldar (102,72) -> map 0B at (29,14), Cantlin (73,102) -> map 0A at (15,0), ruined town (25,89) -> map 3 at (0,10), swamp cave (104,44) -> map 15 at (0,0) and (104,49) -> (0,29), mountain cave (29,57) -> map 16 at (0,7), Loto's cave (28,12) -> map 1C at (0,0); Golem (73,100); rainbow bridge: stand on (65,49). **Not** entrances: (81,1) and (108,109) (the shrines are elsewhere) | capture run | verified |
+| Stairs warp inside a map | Position pokes to the tile next to a staircase, one step onto it, Commands > Stairs (`a,down*2,a,w90,settle`). The map is redrawn | capture run | verified: Tantegel 1F (6,7)+right -> (7,7) -> throne room (8,8) and back |
+| Fixed fights in the code | `CB80`: map 15, X 4, Y 0E, `00E4` bit 6 clear -> `LDA #$1E; JMP $E328` (the Dragon); next block: map 1, X 49, Y 64 (Golem). `D2C9`: `LDA #$26; JMP $E328` (Dragon King after No). `F1D4`: `LDA #$27; STA $E0` (true form). `JMP $E328` with A = enemy number starts any battle; poking `00E0` during a battle changes what the enemy turns into on death (26 -> true form), not its picture | ROM, read by the capture run | verified by play |
+| Hold values | `freeze:00C5=57` during the true-form fight: HP shows 87 after each hit | capture run | verified |
 | Game Genie | none found for the Japanese ROM; Dragon Warrior (U) codes address another PRG layout and will not apply | gamehacking.org not reachable from here (not tried further) | none found |
 | Debug menu / level select | none known for this game | TCRF page returned 403 | none found |
 
@@ -169,25 +198,21 @@ Zero page. The layout matches the Dragon Warrior (U) RAM map on Data Crystal whe
 | `00C8`-`00CD` | 6 | Power, Speed, Max HP, Max MP, AtkPwr, DefPwr | verified against the Stats sheet (95, 82, 149, 122, 135, 91) |
 | `00CE` | 1 | spells 1-8 learned, one bit each | `FF` at level 21 seen; bits source |
 | `00CF` | 1 | bits 0-1 spells 9-10; bit 2 hidden stairs found, 3 rainbow bridge built, 4 Scale worn, 5 ring worn, 6 belt, 7 necklace | `13` at `late`; bits source |
-| `00D0` | 1 | light radius in caves (1, 3, 5, 7) | source |
-| `00DF` | 1 | bit 0 carrying the princess, 1 princess returned, 2 death necklace found, 3 has left the throne room | bit 3 verified (king's dialogue changes); `0E` after the `late` password; rest source |
-| `00E0` | 1 | enemy id in battle | seen 01 for Slimess; source |
-| `00E2` | 1 | enemy HP | seen 04; source |
-| `00E4` | 1 | bit 1 Golem dead, 2 Dragon King dead, 6 green dragon dead | source |
+| `00D0` | 1 | light radius in caves | 01 seen in the dark and in towns; poking 07 alone did not light the cave correctly (cast Remira instead) |
+| `00DF` | 1 | bit 0 carrying the princess, 1 princess returned, 2 death necklace found, 3 has left the throne room | bit 3 verified (king's dialogue changes); `0E` after the `late` password (and still after the ending); rest source |
+| `00E0` | 1 | enemy number in battle (other uses outside battle) | verified: 01 Slimess, 18 Golem, 1E Dragon, 20 Archmage, 26 Dragon King, 27 his true form |
+| `00E2` | 1 | enemy HP | verified (falls by the damage shown; `poke` works) |
+| `00E4` | 1 | bit 1 Golem dead, 2 Dragon King dead, 6 green dragon dead | `00` after the `late` password (all three alive, verified by meeting them); `04` after the Dragon King fell (verified); bit 6 read in the code at `CB92`; bit 1 source |
 
 ## Emulation notes
 - Model `ntsc`. Colours and input fine; no crash, no hang seen. `status` PC is always `c77f` (the game's
   wait-for-frame loop), so the PC does not help to detect hangs here.
-- **Backend bug (reported to the coordinator, open): a checkpoint loaded from `work/cache/` is one frame ahead
-  of the same checkpoint when it has just been built.** `tools/lrcore.py` `Core.image()` runs one frame when no
-  frame has been drawn yet, which is the case right after a savestate is loaded into a new core, and right after
-  power-on when `emu.py` takes its `00_start` picture. Measured: `@start,w10` on a cache hit equals `@start,w9`
-  when built. In this game NPC steps and encounters follow the frame count, so the same route gives different
-  guard positions, and an encounter can come a step earlier or later, depending on whether the cache existed.
-  Fixed parts of a screen (hero, map, windows, numbers) are the same. Until it is fixed: do not rely on
-  `--verify` for shots with wandering NPCs or random encounters, and take such shots a short route after a
-  checkpoint made at the moment itself.
-- `late_battle` depends on that: both variants reach the Slimess battle (checked), on different steps.
+- Build-versus-cache: the one-frame difference the scout saw was fixed in the backend on 2026-11-17 and the
+  checkpoints were rebuilt. This capture run saw no difference: 67/67 shots reproduce with `--verify`, including
+  shots with wandering NPCs and random battles (`npc_soldier`, `battle_slime`, `battle_archmage`).
+- `play.py do!` can catch a frame in the middle of a scroll step (half a tile off): add `w12` or so after the
+  last walking token before a `!` capture.
+- Spell flashes (Begira, Lulra, the Rainbow Drop) alternate grey/colour frames: pick the frame with `do!` + `wN`.
 - After a map change the first settled frame can be black (`w60` was not enough for the town entry): use `w90`.
 - The status window appears on its own when idle; `settle` waits long enough for it most of the time. A shot
   without it needs `!` right after the last step.
@@ -199,6 +224,12 @@ Zero page. The layout matches the Dragon Warrior (U) RAM map on Data Crystal whe
 `late_charlock` (Dragon King's castle entrance), `late_battle` (Slimess). All nine rebuilt from power-on with
 an empty cache on 2026-11-17 and looked at (`work/scout/dragon-quest/checkpoints_build_vs_hit.png`: top row
 built, bottom row loaded from the cache).
+Added by the capture run (descriptions in `checkpoints.txt`): `start_door`, `start_castle`, `start_overworld`,
+`start_battle` (new game); `late_inn`, `late_weaponshop`, `late_lotocave`, `late_kol`, `late_rimuldar`,
+`late_cantlin`, `late_hauksness`, `late_toolshop`, `late_swampcave`, `late_swampcave_lit`, `late_rainbow_spot` (places);
+`late_battle_archmage`, `late_battle_dragon`, `late_golem`, `late_green_dragon`, `late_lair`,
+`late_lair_throne`, `late_dk_question`, `late_dragon_king_1`, `late_dragon_king_2` (battles);
+`late_dk_dead`, `late_ending_castle`, `late_ending_princess` (ending).
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -215,11 +246,14 @@ The critical path, overworld coordinates and the level table are written from th
 and are tagged source: nothing was fetched for them.
 
 ## Open questions
-- Flag bits in `00CF`, `00DF`, `00E4` in this ROM (Golem, green dragon, princess, bridge): which does a password
-  keep? The `late` password shows the princess in the throne room (Love in the inventory).
-- Does the stairs warp work, and what are the stairs coordinates down the Dragon King's castle?
-- Overworld coordinates of every place other than the three verified.
-- Opening a locked door (Door + Key), Check, shops and inns: not tried.
+- Key shop counter: not found. First town: weapon shop counter is reached from (5,6) talking north, inn from
+  (8,21) talking east, item shop from (23,25) talking east (roofed building in the south-east; a man stands
+  in its doorway at (22,23) and never moves: warp to (22,24) and step down, checkpoint `late_toolshop`).
+  Kol has two counters in the south-west building (entry not found), Rimuldar and Cantlin several.
+- Which flags a password keeps (`00E4` is 00 after the `late` password although the princess is back).
+- The floors between the entrance and the bottom of the Dragon King's castle (the map swap skips them); the
+  hidden stairs; where Loto's Sword lies.
+- The shrines' overworld tiles; Check; Flee and Items in battle; Yes to the Dragon King; No to Princess Laura.
 - Start/Select in the field; A on the title menu.
-- The patch's names for towns, the king and the princess; whether any text is left in Japanese.
-- Experience table (seen: level 11 at 2900; 34218 gives level 21).
+- The patch's names for the towns (no town name appeared on screen anywhere); the princess is Laura.
+- Experience table (seen: level 2 at 7, level 11 at 2900, level 22 at 37000).
