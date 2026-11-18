@@ -1,6 +1,6 @@
 ---
 skill: photographer
-project: games/wizardry-empire (paths relative to its translation/ folder)
+project: games/gbc/wizardry-empire (paths relative to its translation/ folder)
 summary: Pixel-exact reference screenshots of screens, features, options and gameplay (English and original).
 access: write (work/shots/<set>/, ../shots/<set>/), git commit of its set
 updated: 2026-11-17 (repository restructured: new paths)
@@ -8,8 +8,8 @@ updated: 2026-11-17 (repository restructured: new paths)
 
 # Photographer - reference screenshots
 
-> **Before you start:** paths below are relative to `games/wizardry-empire/translation/`. Read the open entries in this skill's
-> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/wizardry-empire/translation/glossary.md`.
+> **Before you start:** paths below are relative to `games/gbc/wizardry-empire/translation/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/gbc/wizardry-empire/translation/glossary.md`.
 
 You build a catalogue of exact screenshots: every screen and feature a player meets (title, options, town,
 buildings and their menus, character creation, camp, the maze, battles, spells, items, events, endings), on the

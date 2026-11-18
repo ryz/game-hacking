@@ -8,9 +8,9 @@ reverse-engineering notes. No game data is included: everything runs from your o
 
 | Game | Platform | What is here |
 |---|---|---|
-| [Wizardry Empire](games/wizardry-empire/README.md) | Game Boy Color (Starfish, 1999) | English translation (playable throughout, [status](games/wizardry-empire/translation/docs/status.md)) with a variable-width font engine; design and technical reference; all 30 dungeon floors mapped; reference screenshots, original next to translation |
-| [Pokémon Blue](games/pokemon-blue/playbook.md) | Game Boy | Screenshot sets ([main](games/pokemon-blue/shots/main/index.md), action sequences), design reference, milestone saves |
-| [Dragon Quest](games/dragon-quest/playbook.md) | Famicom, with an English translation patch | Screenshot set from the logo to the staff roll ([main](games/dragon-quest/shots/main/index.md)), design reference, password tools |
+| [Wizardry Empire](games/gbc/wizardry-empire/README.md) | Game Boy Color (Starfish, 1999) | English translation (playable throughout, [status](games/gbc/wizardry-empire/translation/docs/status.md)) with a variable-width font engine; design and technical reference; all 30 dungeon floors mapped; reference screenshots, original next to translation |
+| [Pokémon Blue](games/gb/pokemon-blue/playbook.md) | Game Boy | Screenshot sets ([main](games/gb/pokemon-blue/shots/main/index.md), action sequences), design reference, milestone saves |
+| [Dragon Quest](games/nes/dragon-quest/playbook.md) | Famicom, with an English translation patch | Screenshot set from the logo to the staff roll ([main](games/nes/dragon-quest/shots/main/index.md)), design reference, password tools |
 
 Platforms: Game Boy / Game Boy Color, NES / Famicom and SNES / Super Famicom cartridges. Another system is one backend class in
 `tools/platforms.py`. Current state of the tooling: [docs/status.md](docs/status.md).
@@ -19,7 +19,7 @@ Platforms: Game Boy / Game Boy Color, NES / Famicom and SNES / Super Famicom car
 
 | Path | What |
 |---|---|
-| `games/<slug>/` | Everything about one game: `game.json` (identity), `playbook.md` (controls, strategy, shortcuts, RAM), `checkpoints.txt`, `shots.txt` and `shots/<set>/` (screenshots), `design/` (design reference), `saves/`, `tools/` (game-specific helpers). A game with a translation or deeper reverse engineering adds `translation/` and `tech/`. |
+| `games/<platform>/<slug>/` | Everything about one game: `game.json` (identity), `playbook.md` (controls, strategy, shortcuts, RAM), `checkpoints.txt`, `shots.txt` and `shots/<set>/` (screenshots), `design/` (design reference), `saves/`, `tools/` (game-specific helpers). A game with a translation or deeper reverse engineering adds `translation/` and `tech/`. |
 | `games/_template/` | Starting files for a new game. |
 | `tools/` | Shared tooling for every game: register a ROM, drive the emulators, play, capture and verify screenshot sets. |
 | `tests/` | Tests for the shared tooling. |
@@ -32,10 +32,10 @@ Platforms: Game Boy / Game Boy Color, NES / Famicom and SNES / Super Famicom car
 ## How a game gets into the database
 
 ```
-ROM --tools/intake.py--> games/<slug>/ --scout--> playbook + checkpoints --capture--> shots/<set>/ --> commit
+ROM --tools/intake.py--> games/<platform>/<slug>/ --scout--> playbook + checkpoints --capture--> shots/<set>/ --> commit
 ```
 1. **Intake:** `python3 tools/intake.py /path/game.gbc` identifies the ROM (header, SHA-1, CRC32), copies it to
-   `rom/` (never committed), creates `games/<slug>/` and films the first seconds after power-on.
+   `rom/` (never committed), creates `games/<platform>/<slug>/` and films the first seconds after power-on.
 2. **Scout** (`skills/game-scout/`): researches the game, verifies boot route, controls, RAM and shortcuts in
    the emulator, writes the playbook and the shot plan.
 3. **Capture** (`skills/game-capture/`): plays toward the shot plan, snaps each target, verifies that every shot
@@ -49,7 +49,7 @@ category, caption, route, model, ROM SHA-1, date), `index.md`, `sheet.png` and t
 ## Quick start
 
 ```sh
-sh tools/setup_emu.sh                                   # builds both emulators into tools/ (once)
+sh tools/setup_emu.sh                                   # builds the emulators into tools/ (once)
 python3 tools/intake.py ~/roms/mygame.nes
 python3 tools/play.py start mygame
 python3 tools/play.py do "w300,start"
@@ -58,7 +58,7 @@ python3 tools/shoot.py mygame main --verify
 python3 -m pytest -q tests
 ```
 
-Building the Wizardry Empire translation: [games/wizardry-empire/translation/README.md](games/wizardry-empire/translation/README.md).
+Building the Wizardry Empire translation: [games/gbc/wizardry-empire/translation/README.md](games/gbc/wizardry-empire/translation/README.md).
 
 ## Rules in short
 - Never commit game data: ROMs, savestates, downloaded saves or patched builds (`.gitignore` covers them).

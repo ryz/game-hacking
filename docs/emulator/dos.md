@@ -1,0 +1,62 @@
+# DOS
+
+Platform notes for `dos` games (IBM PC, MS-DOS). The general rules (routes, tokens, the working loop) are in
+[README.md](README.md). Added 2026-11-18; tested with a generated test program only, no real game yet, so
+expect to extend this file with the first game.
+
+## Backend
+DOSBox Pure, built as a libretro core and run inside the Python process by `tools/lrcore.py`. Built by
+`sh tools/setup_emu.sh dos` at a pinned commit into `tools/dosbox-pure/` (from the libretro mirror on GitHub;
+the author's own GitHub repository only points to Codeberg). `tools/dosbox-pure-debug.patch` adds:
+- `retro_gamedb_set_time`: the emulated PC's date, BIOS tick counter and real-time clock follow a clock the
+  driver sets (power-on is always 1990-01-01 00:00:00 and time advances with the emulated frames), not the host.
+- `retro_gamedb_sync`: the core runs emulation on its own thread and lets it run ahead; the driver parks it at
+  the end of every frame, so key presses and memory reads land at the same emulated moment on every run.
+- `retro_gamedb_pc`: CS:IP for `status`.
+- a fix in the savestate loader (the frame in progress was dropped, so a loaded run was one frame ahead).
+
+With these the same route gives the same frames on every boot, and a run loaded from a state continues exactly
+like the run that made it (tests `test_dos_same_route_same_frames`, `test_dos_pipeline`). A machine that was
+just opened runs 4 frames before its first state load; with fewer than 2 the timing differs.
+
+## A game is a ZIP
+`python3 tools/intake.py GAME.zip [--slug S --title "T"]`: the ZIP of the game's folder is the dump (SHA-1 in
+`game.json`, copied to `rom/<slug>.zip`, never committed); the game lands in `games/dos/<slug>/`. The ZIP is mounted as `C:`. Power-on shows DOSBox
+Pure's start menu listing the programs in the ZIP; the boot route picks one (`w120,enter` for the first, `down`
+to move). CD images and installers are not set up yet.
+
+## Models
+`game.json` "model" is `MACHINE[-CYCLES]`: machine `svga` (default), `vga`, `ega`, `cga`, `tandy`, `pcjr` or
+`hercules`; cycles = emulated instructions per millisecond, fixed (default `7800`, about a 386DX-33; `315` =
+4.77 MHz 8088, `1320` = 286-6, `2750` = 286-12). Auto cycles are not offered: they follow host speed. A game
+from the early 1980s that runs too fast needs fewer cycles, not waits.
+
+## Screenshots
+The picture has the size of the video mode: text mode 640x400 (9-dot fonts 720x400), 320x200 games as 320x200,
+and so on; it can change during a route. No aspect correction (320x200 was shown 4:3 on a real monitor).
+The text cursor blinks, so text screens rarely `settle`; capture anyway.
+
+## Keys
+Keyboard keys by name: `a`-`z`, `0`-`9`, `f1`-`f12`, `enter esc space tab backspace delete insert home end
+pageup pagedown up down left right`, `shift ctrl alt` (left) and `rshift rctrl ralt`, `minus equals comma period
+slash semicolon quote leftbracket rightbracket backslash backquote`, keypad `kp0`-`kp9 kpplus kpminus kpmultiply
+kpdivide kpperiod kpenter`. Chords as on consoles: `shift+a`, `alt>f4`.
+- `w30` is still "wait 30 frames"; the W key is `w`, held longer `w:30`.
+- `type:Some Text` types a string (US layout, shift handled; no comma inside, `\n` = Enter).
+- Mouse: `mouse1 mouse2 mouse3` are buttons (tokens like keys), `mouse:DX:DY` moves the pointer relatively.
+
+## Memory
+The physical address space, address = segment * 16 + offset: `00000-9FFFF` conventional memory (interrupt
+vectors, BIOS data area at `00400`, DOS, then the game), extended memory from `100000`. Video memory
+(`A0000-BFFFF`) and ROM are not readable through `peek`. `find` covers `00500-9FFFF`. `status` shows CS:IP.
+A game's addresses depend on where DOS loads it, which is the same on every boot with the same ZIP and model.
+
+## Saves
+DOS games save to files on `C:`. DOSBox Pure keeps changed files in a separate save ZIP; the backend gives every
+power-on a private empty one, so each route starts from the pristine game.
+- Open: `play.py export` (no battery RAM; the save ZIP would be the equivalent) and `sav:NAME` are not wired up.
+- Open, to check with the first game: a savestate holds the machine, not the files on disk. A state made
+  after the game wrote its save file, loaded into a fresh power-on, sees the original files again.
+
+## Not supported yet
+CD-ROM images, installing a game inside the emulator, booting a real DOS or Windows, MIDI music devices, joystick.

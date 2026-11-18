@@ -593,7 +593,161 @@ class Snes(Libretro):
             "mesen-s_overclock": "None", "mesen-s_superfx_overclock": "100%"}, sav)
 
 
-PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes}
+# ------------------------------------------------------------------ DOS (DOSBox Pure libretro core)
+def _retrok():
+    k = {"backspace": 8, "tab": 9, "enter": 13, "esc": 27, "space": 32, "quote": 39, "comma": 44, "minus": 45,
+         "period": 46, "slash": 47, "semicolon": 59, "equals": 61, "leftbracket": 91, "backslash": 92,
+         "rightbracket": 93, "backquote": 96, "delete": 127, "kpperiod": 266, "kpdivide": 267, "kpmultiply": 268,
+         "kpminus": 269, "kpplus": 270, "kpenter": 271, "up": 273, "down": 274, "right": 275, "left": 276,
+         "insert": 277, "home": 278, "end": 279, "pageup": 280, "pagedown": 281, "rshift": 303, "shift": 304,
+         "rctrl": 305, "ctrl": 306, "ralt": 307, "alt": 308}
+    k.update({chr(c): c for c in range(ord("a"), ord("z") + 1)})
+    k.update({str(d): 48 + d for d in range(10)})
+    k.update({"kp%d" % d: 256 + d for d in range(10)})
+    k.update({"f%d" % d: 281 + d for d in range(1, 13)})
+    return k
+
+
+class Dos(Libretro):
+    """DOSBox Pure (libretro core, in-process through tools/lrcore.py, patched with tools/dosbox-pure-debug.patch:
+    settable clock, frame sync, program counter). A game is a ZIP of its DOS files (mounted as C:).
+    Model: MACHINE[-CYCLES], machine one of svga vga ega cga tandy pcjr hercules, cycles = instructions per
+    millisecond (fixed, so a route does not depend on the host); default svga-7800.
+    Keys are keyboard keys (KEYS) plus mouse1/mouse2/mouse3; the mouse moves with emu.mouse(dx, dy).
+    The emulated clock starts at EPOCH on every power-on and follows the emulated frames.
+    Memory is the physical address space (segment * 16 + offset): 00000-9FFFF conventional, 100000+ extended.
+    The size of the picture follows the video mode (text 640x400 or 720x400, 320x200 games as 320x200, ...)."""
+    KEYS = _retrok()
+    keys = set(KEYS) | {"mouse1", "mouse2", "mouse3"}
+    extensions = (".zip",)
+    native_size = (640, 400)
+    emulator = "DOSBox Pure libretro core"
+    SO = os.path.join(HERE, "dosbox-pure", "dosbox_pure_libretro.so")
+    MACHINES = ("svga", "vga", "ega", "cga", "tandy", "pcjr", "hercules")
+    EPOCH = 631152000           # 1990-01-01 00:00:00 UTC
+    FRAME_USEC = 16667          # virtual host time per emulated frame
+    PC_FORMAT = "%05x"
+    SEARCH = [(0x00500, 0x9FB00)]
+    SHIFTED = dict(zip('!@#$%^&*()_+{}|:"<>?~', "1234567890-=[]\\;',./`"))
+    NAMES = {" ": "space", "\n": "enter", "'": "quote", ",": "comma", "-": "minus", ".": "period", "/": "slash",
+             ";": "semicolon", "=": "equals", "[": "leftbracket", "\\": "backslash", "]": "rightbracket",
+             "`": "backquote"}
+
+    @staticmethod
+    def identify(data):
+        import io, zipfile
+        try:
+            names = zipfile.ZipFile(io.BytesIO(data)).namelist()
+        except zipfile.BadZipFile:
+            raise SystemExit("not a ZIP file: a DOS game is registered as a ZIP of its files")
+        exe = sorted(n for n in names if n.lower().endswith((".exe", ".com", ".bat")))
+        return {"platform": "dos", "model": "svga-7800", "files": len(names), "programs": exe[:40]}
+
+    def open(self, rom, model=None, seed=1, turbo=True, sav=None):
+        import ctypes, shutil, tempfile
+        import lrcore
+        if not os.path.exists(self.SO):
+            raise SystemExit("%s missing: run sh tools/setup_emu.sh dos" % self.emulator)
+        machine, _, cycles = (model or "svga-7800").partition("-")
+        if machine not in self.MACHINES or not (cycles or "7800").isdigit():
+            raise SystemExit("unknown DOS model %r (MACHINE[-CYCLES], machines: %s)" % (model, " ".join(self.MACHINES)))
+        # A private save directory: DOSBox Pure keeps the files a game writes in <content name>.pure.zip there.
+        self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
+        self.savezip = os.path.join(self.tmp, os.path.splitext(os.path.basename(rom))[0] + ".pure.zip")
+        if sav:
+            shutil.copyfile(sav, self.savezip)
+        options = {"dosbox_pure_machine": machine, "dosbox_pure_cycles": cycles or "7800",
+                   "dosbox_pure_savestate": "on", "dosbox_pure_conf": "false", "dosbox_pure_midi": "disabled"}
+        self.c = lrcore.Core(self.SO, os.path.abspath(rom), system_dir=self.tmp, save_dir=self.tmp, options=options,
+                             frame_usec=self.FRAME_USEC, epoch=self.EPOCH, private=True)
+        self.c.L.retro_gamedb_pc.restype = ctypes.c_uint32
+        self.c.size = self.native_size
+        self._search, self._down, self._ran = None, set(), 0
+        return self
+
+    def input(self, keys):
+        keys = set(keys)
+        for k in sorted(self._down - keys):
+            if k in self.KEYS:
+                self.c.key(self.KEYS[k], False)
+        for k in sorted(keys - self._down):
+            if k in self.KEYS:
+                self.c.key(self.KEYS[k], True)
+        self._down = keys
+        self.c.keys = {k for k in keys if k.startswith("mouse")}
+
+    def mouse(self, dx, dy):
+        """Relative mouse motion, reported to the game during the next frame."""
+        self.c.mouse = [dx, dy]
+
+    def type_text(self, text, hold=4, gap=4):
+        """Type text on the US keyboard (shift for capitals and symbols)."""
+        for ch in text:
+            shift = ch.isupper() or ch in self.SHIFTED
+            base = self.SHIFTED.get(ch, ch.lower())
+            key = self.NAMES.get(base, base)
+            if key not in self.KEYS:
+                raise ValueError("cannot type %r" % ch)
+            if shift:
+                self.input(["shift"])
+                self.frames(2)
+            self.input(["shift", key] if shift else [key])
+            self.frames(hold)
+            self.input([])
+            self.frames(gap)
+
+    WARMUP = 4                  # frames a just-opened machine runs before its first state load
+
+    def frames(self, n):
+        if n > 0:
+            self.c.run(n)
+            self._ran += n
+
+    def load_state(self, path):
+        # A state loaded into a machine that has run fewer than 2 frames continues with different timing than
+        # the run that made it (measured 2026-11-18: 0 and 1 frames differ, 2 and more are exact).
+        if self._ran < self.WARMUP:
+            self.frames(self.WARMUP - self._ran)
+        for k in sorted(self._down):
+            if k in self.KEYS:
+                self.c.key(self.KEYS[k], False)
+        self._down = set()
+        self.c.unserialize(open(os.path.abspath(path), "rb").read())
+
+    def _mem(self):
+        """(pointer to physical address 0, size): the core announces program memory first while DOS runs."""
+        maps = self.c.maps
+        if not maps:
+            raise SystemExit("the DOS machine has no memory yet (run a frame first)")
+        base = min(ptr for _, _, ptr in maps)
+        return base, sum(size for _, size, _ in maps)
+
+    def peek(self, addr, n, bank=None):
+        import ctypes
+        if bank is not None:
+            raise NotImplementedError("DOS memory has no banks: use the physical address (segment * 16 + offset)")
+        base, size = self._mem()
+        if addr < 0 or addr + n > size:
+            raise ValueError("address %x..%x outside the %d KiB of the machine" % (addr, addr + n, size // 1024))
+        return ctypes.string_at(base + addr, n)
+
+    def poke(self, addr, data):
+        import ctypes
+        base, size = self._mem()
+        data = bytes(data)
+        if addr < 0 or addr + len(data) > size:
+            raise ValueError("address %x outside the %d KiB of the machine" % (addr, size // 1024))
+        ctypes.memmove(base + addr, data, len(data))
+
+    def battery(self, size):
+        raise SystemExit("DOS games save to files on C:; exporting them is not set up yet (docs/emulator/dos.md)")
+
+    def regs(self):
+        v = self.c.L.retro_gamedb_pc()
+        return {"pc": "%04x:%04x" % (v >> 16, v & 0xFFFF)}
+
+
+PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "dos": Dos}
 
 
 def backend(platform):

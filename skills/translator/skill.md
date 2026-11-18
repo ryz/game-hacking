@@ -1,6 +1,6 @@
 ---
 skill: translator
-project: games/wizardry-empire (paths relative to its translation/ folder)
+project: games/gbc/wizardry-empire (paths relative to its translation/ folder)
 summary: Translate one batch (work/tl/<batch>.json) JP->EN.
 access: write
 updated: 2026-11-17 (repository restructured: new paths)
@@ -8,8 +8,8 @@ updated: 2026-11-17 (repository restructured: new paths)
 
 # Translator - Wizardry Empire (GBC, 1999)
 
-> **Before you start:** paths below are relative to `games/wizardry-empire/translation/`. Read the open entries in this skill's
-> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/wizardry-empire/translation/glossary.md`.
+> **Before you start:** paths below are relative to `games/gbc/wizardry-empire/translation/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/gbc/wizardry-empire/translation/glossary.md`.
 
 
 You translate one batch of the Japanese script into English for a fan patch. Wizardry Empire is a first-person

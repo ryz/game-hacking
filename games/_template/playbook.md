@@ -17,7 +17,7 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 ## Boot sequence
 Power-on to the title and to first control. Put the result in `game.json` "macros" (e.g. `TITLE`, `NEWGAME`)
 and make `title` / `start` checkpoints from them.
-- Intake probe: `work/intake/{{SLUG}}/sheet.png` (frame every 60 frames, no input).
+- Intake probe: `work/intake/{{PLATFORM}}/{{SLUG}}/sheet.png` (frame every 60 frames, no input).
 - Route to the title: `TITLE` = ...
 - Route to first gameplay: `NEWGAME` = ...
 

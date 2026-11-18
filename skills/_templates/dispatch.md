@@ -3,7 +3,7 @@
 Agents start cold: they see none of the conversation. Fill every field; leave none implicit.
 
 ```
-Skill: <name> (agent type <name>)      Project dir: games/wizardry-empire/translation/ | repo root (+ game slug)
+Skill: <name> (agent type <name>)      Project dir: games/gbc/wizardry-empire/translation/ | repo root (+ game slug)
 Goal: <one sentence: what "done" means>
 Inputs: <exact paths: batch file / state / ROM (+ commit) / sheets / question>
 Output: <exact path(s) it may write; "none (report only)" for read-only skills>
@@ -13,5 +13,5 @@ Stop when: <condition, e.g. "after 3 battles" or "once the hang is reproduced an
 Report: per skills/<name>/skill.md, ending with the ## Feedback block.
 ```
 
-Tracer notes go in `games/wizardry-empire/translation/work/re/<topic>.md` (scratch under `work/re/<topic>/`; "do not patch" still
+Tracer notes go in `games/gbc/wizardry-empire/translation/work/re/<topic>.md` (scratch under `work/re/<topic>/`; "do not patch" still
 allows scratch ROM copies there).

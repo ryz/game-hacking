@@ -1,13 +1,13 @@
 """Replay a shot list and build the database set: pixel-exact PNGs, 3x copies (in 3x/), catalogue, contact sheet.
 
-  python3 tools/shoot.py GAME [SET]                 replay work/shots/GAME/SET/shots.txt (default set: main;
-                                                    falls back to the plan games/GAME/shots.txt)
+  python3 tools/shoot.py GAME [SET]                 replay work/shots/PLATFORM/GAME/SET/shots.txt (default set: main;
+                                                    falls back to the plan games/PLATFORM/GAME/shots.txt)
   python3 tools/shoot.py GAME SET --list FILE       another shot list
   python3 tools/shoot.py GAME SET --only id,id      only these ids (merged into the existing index)
   python3 tools/shoot.py GAME SET --verify          replay into a temp dir and compare with the PNGs already in
                                                     the set (e.g. made with play.py snap): proves every route
                                                     reproduces its frame; exit 3 on a mismatch
-  python3 tools/shoot.py GAME SET --publish         replay the set, then copy it to games/GAME/shots/SET/ (committed)
+  python3 tools/shoot.py GAME SET --publish         replay the set, then copy it to games/PLATFORM/GAME/shots/SET/ (committed)
   python3 tools/shoot.py GAME SET --publish-only    copy without replaying (right after a passing --verify)
   (a passing full --verify also rebuilds index.md, sheet.png and a sequence's strip/steps from index.json)
   python3 tools/shoot.py GAME SET --model dmg       capture with another model (e.g. a DMG game also in CGB colours)
@@ -227,12 +227,12 @@ def main():
     ap.add_argument("--verify", action="store_true")
     ap.add_argument("--publish", action="store_true")
     ap.add_argument("--publish-only", action="store_true",
-                    help="copy the work set to games/GAME/shots/SET/ without replaying (after a passing --verify)")
+                    help="copy the work set to games/PLATFORM/GAME/shots/SET/ without replaying (after a passing --verify)")
     ap.add_argument("--model")
     a = ap.parse_args()
     game = E.Game(a.game)
     model = a.model or game.model
-    d = os.path.join(ROOT, "work", "shots", game.slug, a.set)
+    d = os.path.join(ROOT, "work", "shots", game.id, a.set)
     os.makedirs(d, exist_ok=True)
     pfx = prefix(a.set)
     lst = a.list or os.path.join(d, "shots.txt")

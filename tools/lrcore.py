@@ -7,7 +7,7 @@ No window, no audio, no SDL. Used by the NES backend in platforms.py (Mesen core
 A libretro core keeps its state in globals, so one loaded library = one running game. A second Core in the same
 process loads a private copy of the .so (dlopen of the same path would share the globals).
 """
-import ctypes as C, io, os, shutil, struct, tempfile
+import atexit, ctypes as C, io, os, shutil, struct, tempfile, weakref
 
 TRAILER = b"GAMEDB-FRAME-1"
 
@@ -32,18 +32,56 @@ JOYPAD = {"b": 0, "y": 1, "select": 2, "start": 3, "up": 4, "down": 5, "left": 6
           "l": 10, "r": 11}
 ENV_GET_SYSTEM_DIRECTORY, ENV_SET_PIXEL_FORMAT, ENV_GET_VARIABLE = 9, 10, 15
 ENV_GET_VARIABLE_UPDATE, ENV_GET_SAVE_DIRECTORY = 17, 31
+ENV_SET_KEYBOARD_CALLBACK, ENV_GET_PERF_INTERFACE, ENV_SET_MEMORY_MAPS, ENV_GET_THROTTLE_STATE = 12, 28, 36, 71
+DEVICE_JOYPAD, DEVICE_MOUSE, DEVICE_KEYBOARD = 1, 2, 3
+MOUSE_BUTTONS = {"mouse1": 2, "mouse2": 3, "mouse3": 6}      # RETRO_DEVICE_ID_MOUSE_LEFT / RIGHT / MIDDLE
+KEY_EVENT = C.CFUNCTYPE(None, C.c_bool, C.c_uint, C.c_uint32, C.c_uint16)
+TIME_USEC = C.CFUNCTYPE(C.c_int64)
+
+
+class MemDesc(C.Structure):
+    _fields_ = [("flags", C.c_uint64), ("ptr", C.c_void_p), ("offset", C.c_size_t), ("start", C.c_size_t),
+                ("select", C.c_size_t), ("disconnect", C.c_size_t), ("len", C.c_size_t), ("addrspace", C.c_char_p)]
+
+
+class MemMap(C.Structure):
+    _fields_ = [("descriptors", C.POINTER(MemDesc)), ("num", C.c_uint)]
+
+
+class Throttle(C.Structure):
+    _fields_ = [("mode", C.c_uint), ("rate", C.c_float)]
 MEM_SAVE_RAM, MEM_SYSTEM_RAM = 0, 2
 FMT_XRGB8888 = 1
 
 _in_use = set()          # .so paths (originals) with a live Core
 _copies = []             # temp dirs of private copies
+_live = weakref.WeakSet()
+
+
+@atexit.register
+def _close_all():
+    """A core with its own emulation thread (DOSBox Pure) blocks the interpreter's exit while a game is loaded:
+    unload whatever a failed script left open."""
+    for c in list(_live):
+        try:
+            c.close()
+        except Exception:
+            pass
 
 
 class Core:
-    def __init__(self, so, rom, options=None, system_dir=None, save_dir=None):
+    def __init__(self, so, rom, options=None, system_dir=None, save_dir=None, frame_usec=None, epoch=None,
+                 private=False):
+        """frame_usec: give the core a virtual clock that advances this many microseconds per run() frame
+        (computer cores read the host clock for pacing; with the virtual one a route does not depend on how
+        fast the host is). None = the core's own clock (consoles).
+        epoch: Unix time of power-on for cores built with retro_gamedb_set_time (tools/dosbox-pure-debug.patch):
+        the emulated machine's date and time start there and follow the virtual clock.
+        private: always load a private copy of the library (cores that cannot load a second game after
+        unloading the first: DOSBox Pure crashes on its first frame then)."""
         so = os.path.abspath(so)
         self.so = so
-        if so in _in_use:                       # second instance: private copy of the library
+        if private or so in _in_use:            # second instance: private copy of the library
             d = tempfile.mkdtemp(prefix="lrcore")
             _copies.append(d)
             path = shutil.copy(so, d)
@@ -57,7 +95,12 @@ class Core:
         self._dirs = {ENV_GET_SYSTEM_DIRECTORY: (system_dir or tempfile.gettempdir()).encode(),
                       ENV_GET_SAVE_DIRECTORY: (save_dir or tempfile.gettempdir()).encode()}
         self.fmt, self.keys, self._held, self.frame, self.open = 0, set(), set(), None, False
+        self._mheld, self._mouse, self._kheld = set(), [0, 0], set()
         self.size = None                        # (w, h) for the picture before the first frame
+        self.frame_usec, self.clock = frame_usec, 0
+        self._key_event, self.maps = None, []   # keyboard callback of the core; memory map [(start, len, ptr)]
+        self.mouse = [0, 0]                     # relative motion reported during the next frame
+        self._time = TIME_USEC(lambda: self.clock)
         self._cbs = (ENV(self._env), VIDEO(self._video), AUDIO(lambda l, r: None), AUDIO_BATCH(lambda d, n: n),
                      POLL(lambda: None), INPUT(self._input))       # keep references: ctypes callbacks
         L.retro_load_game.restype = C.c_bool
@@ -65,6 +108,11 @@ class Core:
         L.retro_serialize.restype = L.retro_unserialize.restype = C.c_bool
         L.retro_get_memory_data.restype = C.c_void_p
         L.retro_get_memory_size.restype = C.c_size_t
+        self.epoch = epoch
+        self._sync = getattr(L, "retro_gamedb_sync", None)
+        if epoch is not None:
+            L.retro_gamedb_set_time.argtypes = [C.c_int64]
+            L.retro_gamedb_set_time(epoch * 1000000)
         L.retro_set_environment(self._cbs[0])
         L.retro_init()
         L.retro_set_video_refresh(self._cbs[1])
@@ -78,6 +126,7 @@ class Core:
             self._release()
             raise RuntimeError("the core refused %s (unsupported mapper or bad dump?)" % rom)
         self.open = True
+        _live.add(self)
 
     # ---- callbacks
     def _env(self, cmd, data):
@@ -95,6 +144,21 @@ class Core:
                 return True
             v.value = None                      # the core keeps its default
             return False
+        if cmd == ENV_SET_KEYBOARD_CALLBACK:
+            self._key_event = KEY_EVENT(C.cast(data, C.POINTER(C.c_void_p))[0])
+            return True
+        if cmd == ENV_GET_PERF_INTERFACE and self.frame_usec:
+            C.memset(data, 0, 7 * C.sizeof(C.c_void_p))             # retro_perf_callback: only get_time_usec
+            C.cast(data, C.POINTER(C.c_void_p))[0] = C.cast(self._time, C.c_void_p).value
+            return True
+        if cmd == ENV_GET_THROTTLE_STATE and self.frame_usec:
+            t = C.cast(data, C.POINTER(Throttle))[0]
+            t.mode, t.rate = 0, 0.0             # RETRO_THROTTLE_NONE, rate unknown: the core never skips a frame
+            return True
+        if cmd == ENV_SET_MEMORY_MAPS:
+            m = C.cast(data, C.POINTER(MemMap))[0]
+            self.maps = [(d.start, d.len, d.ptr) for d in (m.descriptors[i] for i in range(m.num)) if d.ptr]
+            return True
         if cmd == ENV_GET_VARIABLE_UPDATE:
             C.cast(data, C.POINTER(C.c_bool))[0] = False
             return True
@@ -105,13 +169,51 @@ class Core:
             self.frame = (w, h, pitch, C.string_at(data, pitch * h))
 
     def _input(self, port, device, index, ident):
-        return 1 if port == 0 and device == 1 and ident in self._held else 0
+        if port:
+            return 0
+        if device == DEVICE_JOYPAD:
+            return 1 if ident in self._held else 0
+        if device == DEVICE_KEYBOARD:           # cores poll this to release keys that are no longer held
+            return 1 if ident in self._kheld else 0
+        if device == DEVICE_MOUSE:
+            return self._mouse[ident] if ident < 2 else (1 if ident in self._mheld else 0)
+        return 0
+
+    def key(self, code, down, char=0, mods=0):
+        """Keyboard event (RETROK_* code) for cores that registered a keyboard callback."""
+        if self._key_event is None:
+            raise RuntimeError("this core takes no keyboard events")
+        (self._kheld.add if down else self._kheld.discard)(code)
+        self._key_event(down, code, char, mods)
 
     # ---- running
     def run(self, n=1):
-        self._held = {JOYPAD[k] for k in self.keys}
+        self._held = {JOYPAD[k] for k in self.keys if k in JOYPAD}
+        self._mheld = {MOUSE_BUTTONS[k] for k in self.keys if k in MOUSE_BUTTONS}
+        self._mouse, self.mouse = self.mouse, [0, 0]
         for _ in range(n):
+            self.clock += self.frame_usec or 0
+            if self.epoch is not None:
+                self.L.retro_gamedb_set_time(self.epoch * 1000000 + self.clock)
             self.L.retro_run()
+            if self._sync:
+                self._sync()                    # threaded core: park the emulation thread at the frame end
+            self._mouse = [0, 0]                # motion is relative: report it for one frame only
+
+    def peek_map(self, addr, n):
+        """n bytes at addr of the address space the core announced (SET_MEMORY_MAPS); unmapped bytes read 0."""
+        out = bytearray(n)
+        for start, size, ptr in self.maps:
+            lo, hi = max(addr, start), min(addr + n, start + size)
+            if lo < hi:
+                out[lo - addr:hi - addr] = C.string_at(ptr + lo - start, hi - lo)
+        return bytes(out)
+
+    def poke_map(self, addr, data):
+        for start, size, ptr in self.maps:
+            lo, hi = max(addr, start), min(addr + len(data), start + size)
+            if lo < hi:
+                C.memmove(ptr + lo - start, bytes(data[lo - addr:hi - addr]), hi - lo)
 
     def image(self):
         from PIL import Image

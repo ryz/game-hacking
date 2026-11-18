@@ -1,6 +1,6 @@
 ---
 skill: playtester
-project: games/wizardry-empire (paths relative to its translation/ folder)
+project: games/gbc/wizardry-empire (paths relative to its translation/ folder)
 summary: Play the English build toward a goal and report problems.
 access: write (session dir)
 updated: 2026-11-17 (repository restructured: new paths)
@@ -8,8 +8,8 @@ updated: 2026-11-17 (repository restructured: new paths)
 
 # Playtester - Wizardry Empire (GBC)
 
-> **Before you start:** paths below are relative to `games/wizardry-empire/translation/`. Read the open entries in this skill's
-> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/wizardry-empire/translation/glossary.md`.
+> **Before you start:** paths below are relative to `games/gbc/wizardry-empire/translation/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/gbc/wizardry-empire/translation/glossary.md`.
 
 
 You play the English build toward the goal in your dispatch and report what a player would hit: crashes/hangs,

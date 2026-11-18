@@ -1,4 +1,4 @@
-"""Register a ROM as a game: identify it, copy it into rom/, create games/<slug>/ from the template, and film the
+"""Register a ROM as a game: identify it, copy it into rom/, create games/<platform>/<slug>/ from the template, and film the
 first seconds after power-on so the boot sequence is visible without playing.
 
   python3 tools/intake.py PATH/TO/ROM.gbc [--slug SLUG] [--title "Title"] [--model dmg|cgb|sgb] [--probe 1800]
@@ -8,14 +8,14 @@ first seconds after power-on so the boot sequence is visible without playing.
 patched ROM is what gets registered and played; the dump goes to rom/src/<slug>-base.<ext>, the patches to
 rom/patches/<slug>/, and game.json "source" records names, SHA-1s and layouts (rebuild: tools/patch.py).
 
-Writes (never overwrites existing files in games/<slug>/):
+Writes (never overwrites existing files in games/<platform>/<slug>/):
   rom/<slug>.<ext>                       the dump, or the patched ROM with --patch (gitignored)
-  games/<slug>/game.json                 identity (SHA-1, CRC32, header), platform, model, macros, ram, press/settle
-  games/<slug>/playbook.md               controls/structure/strategy, filled by the game-scout skill
-  games/<slug>/checkpoints.txt           named states as routes
-  games/<slug>/shots.txt                 the shot plan
-  games/<slug>/design/                   the design reference (README with notation, findings.md)
-  work/intake/<slug>/probe_NNNN.png + sheet.png    a frame every 60 frames from power-on, no input
+  games/<platform>/<slug>/game.json                 identity (SHA-1, CRC32, header), platform, model, macros, ram, press/settle
+  games/<platform>/<slug>/playbook.md               controls/structure/strategy, filled by the game-scout skill
+  games/<platform>/<slug>/checkpoints.txt           named states as routes
+  games/<platform>/<slug>/shots.txt                 the shot plan
+  games/<platform>/<slug>/design/                   the design reference (README with notation, findings.md)
+  work/intake/<platform>/<slug>/probe_NNNN.png + sheet.png    a frame every 60 frames from power-on, no input
 Then: python3 tools/emu.py SLUG --seq "pow,w300,start" --out work/x  to find the boot inputs.
 """
 import argparse, hashlib, json, os, re, shutil, sys
@@ -88,15 +88,15 @@ def main():
     elif os.path.abspath(a.rom) != os.path.abspath(dst):
         shutil.copyfile(a.rom, dst)
 
-    gdir = os.path.join(ROOT, "games", slug)
+    gdir = os.path.join(ROOT, "games", platform, slug)       # the folder is the platform in game.json
     os.makedirs(gdir, exist_ok=True)
     gj = os.path.join(gdir, "game.json")
     if os.path.exists(gj):
         meta = json.load(open(gj, encoding="utf-8"))
         sha = hashlib.sha1(data).hexdigest()
         if meta.get("sha1") != sha:
-            print("warning: games/%s/game.json has SHA-1 %s, this ROM is %s (another revision?)" % (
-                slug, meta.get("sha1"), sha))
+            print("warning: games/%s/%s/game.json has SHA-1 %s, this ROM is %s (another revision?)" % (
+                platform, slug, meta.get("sha1"), sha))
     else:
         meta = {
             "slug": slug,
@@ -124,7 +124,7 @@ def main():
             if not os.path.exists(p):
                 os.makedirs(os.path.dirname(p), exist_ok=True)
                 txt = open(src, encoding="utf-8").read()
-                txt = txt.replace("{{TITLE}}", meta["title"]).replace("{{SLUG}}", slug)
+                txt = txt.replace("{{TITLE}}", meta["title"]).replace("{{SLUG}}", slug).replace("{{PLATFORM}}", platform)
                 open(p, "w", encoding="utf-8").write(txt)
     print(json.dumps({k: meta[k] for k in ("slug", "title", "platform", "model", "sha1")}, indent=2))
     print("header:", json.dumps(meta["header"]))
@@ -132,8 +132,8 @@ def main():
     if a.probe:
         sys.path.insert(0, HERE)
         import emu
-        g = emu.Game(slug)
-        out = os.path.join(ROOT, "work", "intake", slug)
+        g = emu.Game(platform + "/" + slug)
+        out = os.path.join(ROOT, "work", "intake", platform, slug)
         os.makedirs(out, exist_ok=True)
         e = emu.open_game(g)
         paths = []

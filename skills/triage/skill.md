@@ -1,6 +1,6 @@
 ---
 skill: triage
-project: games/wizardry-empire (paths relative to its translation/ folder)
+project: games/gbc/wizardry-empire (paths relative to its translation/ folder)
 summary: Reproduce and diagnose one hang/crash report.
 access: write (case dir)
 updated: 2026-11-17 (repository restructured: new paths)
@@ -8,8 +8,8 @@ updated: 2026-11-17 (repository restructured: new paths)
 
 # Crash triage - Wizardry Empire (GBC)
 
-> **Before you start:** paths below are relative to `games/wizardry-empire/translation/`. Read the open entries in this skill's
-> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/wizardry-empire/translation/glossary.md`.
+> **Before you start:** paths below are relative to `games/gbc/wizardry-empire/translation/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/gbc/wizardry-empire/translation/glossary.md`.
 
 
 You get one hang or crash report (a description, usually a savestate and inputs). Reproduce it, find where and why

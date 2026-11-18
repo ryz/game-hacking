@@ -7,32 +7,33 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 ## Layout
 | Path | What |
 |---|---|
-| `games/<slug>/` | everything about one game: `game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt`, `shots/<set>/`, `design/`, `saves/`, `tools/` (game-specific helpers); optional `translation/` and `tech/` |
+| `games/<platform>/<slug>/` | everything about one game: `game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt`, `shots/<set>/`, `design/`, `saves/`, `tools/` (game-specific helpers); optional `translation/` and `tech/` |
+| `games/<platform>/` | one folder per platform, named like `game.json` "platform": `gb`, `gbc`, `nes` (NES and Famicom), `snes` (SNES and Super Famicom), `dos` |
 | `games/_template/` | starting files for a new game (used by `tools/intake.py`) |
 | `tools/`, `tests/` | shared tooling for all games (emulators, play, capture) and its tests |
 | `docs/` | shared tooling docs: `emulator/` (general rules + one file per platform), `capture-guide.md`, `status.md`, `progress-log.md` |
 | `skills/`, `.claude/agents/`, `agent-log/` | agent procedures, their wrappers, the run log |
-| `rom/`, `work/` (also inside `games/wizardry-empire/translation/`) | ROMs, downloads, states, caches, scratch: ignored by git |
+| `rom/`, `work/` (also inside `games/gbc/wizardry-empire/translation/`) | ROMs, downloads, states, caches, scratch: ignored by git |
 
 | Game | Platform | Work |
 |---|---|---|
-| `games/wizardry-empire/` | Game Boy Color | English translation (`translation/`: script, VWF engine, build chain, RE notes), design docs, tech docs, floor maps, reference screenshots |
-| `games/pokemon-blue/` | Game Boy | screenshot sets and sequences, design reference, saves |
-| `games/dragon-quest/` | Famicom (English translation patch) | screenshot set, design reference, password tools |
-| `games/shin-megami-tensei/` | Super Famicom (English translation patches) | screenshot set, design reference, saves |
-| `games/megami-tensei/` | Famicom (English translation patch) | screenshot set (88, to the ending), 35 floor maps, design reference, passwords |
-| `games/megami-tensei-2/` | Famicom (English translation patch) | screenshot set (67), overhead maps, design reference, saves |
-| `games/dungeon-magic/` | NES | screenshot set (41), floor maps of all 39 floors + overworld, design reference, saves |
-| `games/wizardry-nes/` | NES | screenshot set (71, to the ending), 10 floor maps with special squares, design reference, saves |
-| `games/wizardry-2-nes/` | NES | screenshot set (91, to the ending), 6 floor maps, design reference, roster tool, saves |
-| `games/might-and-magic/` | NES | screenshot set (93, to the ending), 55 area maps with terrain and exits, design reference, saves |
-| `games/deep-dungeon-3/` | Famicom (Japanese) | screenshot set (74, to the ending), 16 floor maps + towns, design reference, saves |
+| `games/gbc/wizardry-empire/` | Game Boy Color | English translation (`translation/`: script, VWF engine, build chain, RE notes), design docs, tech docs, floor maps, reference screenshots |
+| `games/gb/pokemon-blue/` | Game Boy | screenshot sets and sequences, design reference, saves |
+| `games/nes/dragon-quest/` | Famicom (English translation patch) | screenshot set, design reference, password tools |
+| `games/snes/shin-megami-tensei/` | Super Famicom (English translation patches) | screenshot set, design reference, saves |
+| `games/nes/megami-tensei/` | Famicom (English translation patch) | screenshot set (88, to the ending), 35 floor maps, design reference, passwords |
+| `games/nes/megami-tensei-2/` | Famicom (English translation patch) | screenshot set (67), overhead maps, design reference, saves |
+| `games/nes/dungeon-magic/` | NES | screenshot set (41), floor maps of all 39 floors + overworld, design reference, saves |
+| `games/nes/wizardry-nes/` | NES | screenshot set (71, to the ending), 10 floor maps with special squares, design reference, saves |
+| `games/nes/wizardry-2-nes/` | NES | screenshot set (91, to the ending), 6 floor maps, design reference, roster tool, saves |
+| `games/nes/might-and-magic/` | NES | screenshot set (93, to the ending), 55 area maps with terrain and exits, design reference, saves |
+| `games/nes/deep-dungeon-3/` | Famicom (Japanese) | screenshot set (74, to the ending), 16 floor maps + towns, design reference, saves |
 
 ## Rules (all work)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`, `*.sfc`, `*.smc`,
   `*.sav`, `*.state`, `rom/`, `build/`, `work/`). Original dumps are verified by SHA-1 (`game.json`, or
   `rom.sha1` for the Wizardry Empire translation). Exceptions (owner's decisions 2026-11-12 and 2026-11-15):
-  saves made by a game's own tools or by the capture agents while playing, in `games/<slug>/saves/`, each
+  saves made by a game's own tools or by the capture agents while playing, in `games/<platform>/<slug>/saves/`, each
   documented in its `README.md`. Downloaded saves are never committed.
 - Patches supplied by the owner (IPS, BPS, UPS: translations, bug fixes, restorations) are always used (owner's
   rule 2026-11-17): register the ROM with them applied, in the order given (`tools/intake.py ROM --patch P ...`),
@@ -40,14 +41,15 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
   by `tools/patch.py` (layouts, iNES 1.0 vs NES 2.0); a patch that still does not apply (wrong revision) is
   reported to the owner, never skipped silently. Patches and dumps
   stay uncommitted; `game.json` "source" records their names, SHA-1s and layouts.
-- Screenshots may be committed: sets go to `games/<slug>/shots/<set>/` (`shoot.py ... --publish`).
+- Screenshots may be committed: sets go to `games/<platform>/<slug>/shots/<set>/` (`shoot.py ... --publish`).
 - Document as you go. Shared tooling: `docs/status.md` (current snapshot) and `docs/progress-log.md` (history,
-  append-only, newest first). Wizardry Empire translation: `games/wizardry-empire/translation/docs/status.md`
+  append-only, newest first). Wizardry Empire translation: `games/gbc/wizardry-empire/translation/docs/status.md`
   and `progress-log.md`, reverse-engineering findings in its `docs/re/`; log every test ROM sent (commit hash).
   Update both files of the area you worked in at the end of every session.
 - History is not rewritten: progress logs, feedback logs and `agent-log/` keep the paths that were true when
   they were written. Before 2026-11-17 the layout was `wizardry-empire/` and `gamedb/` at the root (mapping in
-  `docs/progress-log.md`, entry "repository restructured").
+  `docs/progress-log.md`, entry "repository restructured"); from 2026-11-17 to 2026-11-18 games were
+  `games/<slug>/` without the platform folder (entry "games grouped by platform").
 - Agent work follows the skills in `skills/` (index: `skills/skill-index.md`) and its feedback loop (below).
 - Translations live in script files (Japanese kept next to the English for review). Edit those, not the ROM.
 - Commit messages: what changed and why; one topic per commit.
@@ -55,23 +57,26 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 
 ## Shared tooling quick reference
 Run from the repo root (how to drive any game: `docs/emulator/README.md`, then the platform file
-`docs/emulator/gb.md`, `nes.md` or `snes.md`; what to capture: `docs/capture-guide.md`):
-- Setup: `sh tools/setup_emu.sh [gb|nes|snes]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom
-  `.nes`, Mesen-S libretro core for SNES/Super Famicom `.sfc`/`.smc`).
-- Register a ROM: `python3 tools/intake.py ROM [--patch PATCH[:headered|unheadered] ...]` -> `games/<slug>/` +
+`docs/emulator/gb.md`, `nes.md`, `snes.md` or `dos.md`; what to capture: `docs/capture-guide.md`):
+- Setup: `sh tools/setup_emu.sh [gb|nes|snes|dos]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom
+  `.nes`, Mesen-S libretro core for SNES/Super Famicom `.sfc`/`.smc`, DOSBox Pure libretro core for DOS: a game
+  is a `.zip` of its files, keyboard tokens, see `docs/emulator/dos.md`).
+- Register a ROM: `python3 tools/intake.py ROM [--patch PATCH[:headered|unheadered] ...]` -> `games/<platform>/<slug>/` +
   `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`; 6502 code:
   `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]`.
+- SLUG is the game's folder name; write `PLATFORM/SLUG` (`dos/might-and-magic`) when two platforms have the
+  same slug. Work files follow the same shape: `work/shots/<platform>/<slug>/`, `work/cache/...`, `work/intake/...`.
 - Play: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
   `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `dump A` / `diff A [B]`, `sample "TOKS" N`, `stop`.
 - Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish]`. Tests: `python3 -m pytest -q tests`.
-- Per game: `games/<slug>/playbook.md` is read before playing and updated after; checkpoints are routes (cache
+- Per game: `games/<platform>/<slug>/playbook.md` is read before playing and updated after; checkpoints are routes (cache
   states are not committed). Milestone saves for the owner: save in the game, then `play.py export NAME "desc"`
-  -> `games/<slug>/saves/` (committed); password games record passwords in the playbook instead. Capture agents
+  -> `games/<platform>/<slug>/saves/` (committed); password games record passwords in the playbook instead. Capture agents
   commit + push their game folder at every major milestone.
 - Wizardry Empire is not registered with these tools yet; it uses its own in `translation/tools/` (below).
 
 ## Wizardry Empire quick reference
-Run from `games/wizardry-empire/translation/`:
+Run from `games/gbc/wizardry-empire/translation/`:
 - Setup emulator: `sh tools/setup_emu.sh` (calls the shared setup: gbemu-cli, a headless SameBoy with a JSON-lines
   API, built once into `tools/gbemu-cli` at the repo root; Python client in its `cli/py/gbemu.py`).
 - ROM: copy your dump of the Japanese **Rev 1** to `rom/wizardry_empire_j.gbc` (`rom.sha1`); v1.0 only as
@@ -112,7 +117,7 @@ Run from `games/wizardry-empire/translation/`:
   `python3 tools/designtables` (writes into `../design/`).
 - Read `docs/re/text.md` (text engines, control codes) and `docs/re/vwf.md` (VWF design) before touching `asm/`.
 
-## Text formats (Wizardry Empire translation, `games/wizardry-empire/translation/`)
+## Text formats (Wizardry Empire translation, `games/gbc/wizardry-empire/translation/`)
 | File | What | Notes |
 |---|---|---|
 | `script/rects.json` | fixed boxes `[w][h][tiles]` | `^` center, `>` right, `@N:` cell column N, `{x:N}` pixel x; `fixed: true` = 8 px ASCII in place |
@@ -127,7 +132,7 @@ Run from `games/wizardry-empire/translation/`:
 - Subagents are thin wrappers in `.claude/agents/<name>.md` that load `skills/<name>/skill.md`. Dispatch these
   types (translator, reviewer, editor, playtester, visual-qa, photographer, tracer, triage, maintenance, design-writer, game-scout, game-capture), not general-purpose
   agents, with exact paths filled in from `skills/_templates/dispatch.md`. Bug reports: `skills/_templates/bug-report.md`. The main session follows `skills/coordinator/skill.md`.
-- Binding terms: `games/wizardry-empire/translation/glossary.md`.
+- Binding terms: `games/gbc/wizardry-empire/translation/glossary.md`.
 
 ### Feedback loop
 - Every agent ends its report with a `## Feedback` block (Task, Worked, Friction, Proposed rule change).
@@ -143,4 +148,4 @@ Run from `games/wizardry-empire/translation/`:
 3. Agent-log line written.
 4. Build + tests + tour pass for code changes; commits pushed.
 5. the area's `status.md` and `progress-log.md` updated (shared tooling: `docs/`; Wizardry Empire translation:
-   `games/wizardry-empire/translation/docs/`); the user told plainly what changed and what remains open.
+   `games/gbc/wizardry-empire/translation/docs/`); the user told plainly what changed and what remains open.

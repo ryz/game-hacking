@@ -5,7 +5,50 @@ Append-only, newest first.
 ## 2026-11-18 - Wizardry I: maze SOLID vs LINE comparison set
 - Owner's request (asked for Might and Magic; the option is in Wizardry I/II, Might and Magic has none): set
   `compare-maze`, 9 shots (options with LINE, four views x SOLID/LINE), 9/9 verified from an empty cache; option
-  byte $7ABC found with `play.py diff`; side-by-side `games/wizardry-nes/design/maze-solid-vs-line.png`.
+  byte $7ABC found with `play.py diff`; side-by-side `games/nes/wizardry-nes/design/maze-solid-vs-line.png`.
+
+## 2026-11-18 - games grouped by platform
+- Owner's decision: `games/<slug>/` -> `games/<platform>/<slug>/`, so a game can exist on several platforms (the
+  DOS Might and Magic next to the NES one). The folder is the game.json "platform" value. Mapping:
+  `nes/`: deep-dungeon-3, dragon-quest, dungeon-magic, megami-tensei, megami-tensei-2, might-and-magic,
+  wizardry-2-nes, wizardry-nes; `gb/`: pokemon-blue; `gbc/`: wizardry-empire; `snes/`: shin-megami-tensei.
+  `games/_template/` stays. Entries below this one and all feedback/agent logs keep the old paths.
+- Tools: `emu.find_game` (GAME = `slug`, or `platform/slug` when the slug is not unique; an ambiguous slug is
+  an error that names the platforms), `Game.id` = `platform/slug` for `work/shots|cache|roms|intake/`;
+  `intake.py` creates `games/<platform>/<slug>/`; `dis6502.py` resolves through emu. `rom/<slug>.<ext>`,
+  `rom/saves/<slug>/` and `rom/patches/<slug>/` are unchanged (uncommitted; they collide only if two platforms
+  share a slug and a file extension).
+- Path depth fixed in game tools that find the repo root from their own location (dungeon-magic atlas/maps,
+  might-and-magic maps, wizardry-nes and wizardry-2-nes maps/roster, shin-megami-tensei mkrom, Wizardry Empire
+  `translation/tools/emu.py` and `setup_emu.sh`). Paths in docs, skills, agent wrappers, playbooks, game.json
+  and .gitignore rewritten; markdown link check before/after: no new broken links.
+- Checked: shared tests 29 passed, 2 skipped (SNES core not built here); Wizardry Empire tests 10 passed, 4
+  skipped (no ROM here). Not checked: anything that needs a ROM (no dumps in this container), so the map tools
+  and the Wizardry Empire build were only compiled/started, not run against data.
+- The slugs `wizardry-nes` and `wizardry-2-nes` still carry the platform in their name; not renamed.
+
+## 2026-11-18 - DOS backend (DOSBox Pure)
+- Owner asked for a DOS emulator, first game to be Might and Magic 1. Chosen: DOSBox Pure as a libretro core
+  (no SDL, no display, fits `tools/lrcore.py`, has savestates); DOSBox-X and DOSBox Staging would need SDL2,
+  Xvfb and a new driver, Staging has no savestates. Source from github.com/libretro/dosbox-pure (pinned
+  e39497e); schellingb/dosbox-pure on GitHub is now only a pointer to Codeberg.
+- `tools/lrcore.py`: keyboard callback and held-key polling (without the polling the core releases a key at
+  once: letters still arrive, Shift/Ctrl/Alt never do), mouse buttons and relative motion, a virtual host clock
+  (`frame_usec`), `epoch`, memory maps, private library copy per game (`private`; the core crashes when a second
+  game is loaded into the same library), all open cores closed at interpreter exit (a core with its own thread
+  otherwise blocks the exit of a failed script).
+- `tools/dosbox-pure-debug.patch`: settable clock (time, gettimeofday, clock_gettime, localtime wrapped at link
+  time), frame sync, CS:IP, and a savestate fix. What was wrong without each: the BIOS tick counter started from
+  the host time (two boots differed); the emulation thread ran ahead of the frontend (keys landed at
+  host-dependent moments, one RAM byte differed in 1 of 3 runs); a loaded state was one frame ahead of the run
+  that made it (the render reset on load dropped the frame in progress).
+- `tools/platforms.py` `Dos` backend, `tools/emu.py`: digits in key tokens (`1`, `f1`, `kp4`), `type:TEXT`,
+  `mouse:DX:DY`. `tools/setup_emu.sh dos`. Tests: `tests/make_dos_zip.py` (33-byte KEYS.COM that prints a
+  tick-derived letter before every key) + 4 tests incl. intake -> play -> snap -> `shoot.py --verify`.
+- Measured: 6 boots identical; 200 random key steps identical between straight play and play with a state
+  save+load every third step; a fresh machine needs 2+ frames before its first state load (backend runs 4).
+- Not done: no real DOS game run yet (no game files in the container); save export, `sav:`, disk files in
+  savestates, CD images.
 
 ## 2026-11-18 - Megami Tensei round 2: maps of all 35 floors, bosses, ending
 - game-capture round 2: 41 -> 88 shots (commits 5702a0b 1030de2): level-up (the "next level" counter at $0576, not

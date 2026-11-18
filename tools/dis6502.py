@@ -4,7 +4,7 @@
 
 BANK counts PRG banks of --bank-kib (default 16) after the iNES header; ADDR is the hex CPU address the bank is
 mapped at for this listing (e.g. C000 for the fixed last bank on MMC1, 8000 for a switchable one). The window base
-is ADDR rounded down to the bank size. Unknown opcodes print as .db. Promoted from games/dungeon-magic/tools/
+is ADDR rounded down to the bank size. Unknown opcodes print as .db. Promoted from games/nes/dungeon-magic/tools/
 (second ad-hoc copy after the Megami Tensei II capture, 2026-11-18).
 """
 import json, os, sys
@@ -44,7 +44,9 @@ def dis(b, addr, n, base):
 def prg(rom_arg):
     p = rom_arg
     if not os.path.exists(p):
-        p = os.path.join(ROOT, json.load(open(os.path.join(ROOT, "games", rom_arg, "game.json")))["rom"])
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import emu
+        p = emu.Game(rom_arg).rom
     d = open(p, "rb").read()
     h = 16 if d[:4] == b"NES\x1a" else 0
     if h and d[6] & 4:

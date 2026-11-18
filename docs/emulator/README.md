@@ -1,16 +1,16 @@
 # Emulator use - the general rules
 
 Platform specifics (models, memory layout, cheat formats, screenshot format, limits) are in one file per system:
-[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md) and [SNES / Super Famicom](snes.md). Read this file and the one for your game's
+[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md), [SNES / Super Famicom](snes.md) and [DOS](dos.md). Read this file and the one for your game's
 platform.
 
 How agents drive games here, for any game. Game-specific facts (controls, routes, RAM) go into
-`games/<slug>/playbook.md`, never into this file. Paths are relative to the repo root.
+`games/<platform>/<slug>/playbook.md`, never into this file. Paths are relative to the repo root.
 
 ## Setup (once per container)
 ```sh
-sh tools/setup_emu.sh                         # all emulators (~3 min); `gb`, `nes` or `snes` builds one
-python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<slug>/, rom/<slug>.gbc (or .gb, .nes)
+sh tools/setup_emu.sh                         # all emulators (~5 min); `gb`, `nes`, `snes` or `dos` builds one
+python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<platform>/<slug>/, rom/<slug>.gbc (or .gb, .nes)
 #   + --patch en.bps [--patch fix.ips:headered]  owner-supplied patches, always applied (tools/patch.py: IPS/BPS/UPS)
 ```
 Containers are wiped between sessions: ROMs (`rom/`), states and caches (`work/`) are gone next time, routes and
@@ -19,7 +19,7 @@ playbooks (committed) are not. That is why every state is defined by a route.
 ## The model: routes, not states
 - Emulation is **deterministic**: fixed seed (1), fixed boot ROM, turbo mode. The same route from power-on
   always gives the same frames. A route is the permanent record; a savestate is only a cache of it.
-- **Checkpoints** (`games/<slug>/checkpoints.txt`, `name | description | route`) name the important points
+- **Checkpoints** (`games/<platform>/<slug>/checkpoints.txt`, `name | description | route`) name the important points
   (title, first control, each world, each boss). Routes can start from another checkpoint (`@world2,...`).
   They are built on demand and cached per exact ROM in `work/cache/`.
 - Every capture keeps its full route, so `tools/shoot.py --verify` can prove it reproduces.
@@ -147,7 +147,7 @@ The owner wants to jump into a game at any milestone and take screenshots by han
 1. At every milestone (after naming, each town/badge/world, before the final boss, the end) **save in the game**
    (its own Save menu, or the save point) and check the "saved" message.
 2. `python3 tools/play.py export NAME "what it contains"` writes the battery save to
-   `games/<slug>/saves/NAME.sav` and adds a row (contents, route, SHA-1, date) to `saves/README.md`. Add
+   `games/<platform>/<slug>/saves/NAME.sav` and adds a row (contents, route, SHA-1, date) to `saves/README.md`. Add
    `--state` for an emulator savestate of that exact moment (useful where the game saves only at fixed points;
    it loads only in the emulator named in the platform file).
 3. Names say where you are: `01_start`, `02_pewter_badge1`, `08_before_elite_four` (sortable).
@@ -182,7 +182,7 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
 - A softlock or a lost fight: `undo`, or `goto` the last checkpoint. Never grind: poke, use a code or a save.
 - Battery saves live in the savestate (SRAM included). In-game save/load screens are worth a shot (`save`).
 - Games without a battery (passwords): make a "save" by poking the state you want and asking the game for its
-  password; put the password and the tokens that type it into a macro (example: `games/dragon-quest/tools/pw.py`).
+  password; put the password and the tokens that type it into a macro (example: `games/nes/dragon-quest/tools/pw.py`).
 
 ## Speed
 `do` ~0.5-2 s; a cached checkpoint loads instantly; `shoot.py` replays ~1-5 s per shot. Long routes: make

@@ -14,12 +14,12 @@ You check that the repo's instructions still match reality. Read-only: no edits,
 draft every fix as a concrete diff-like suggestion; the coordinator applies what the user approves.
 Run it after a big change (asm refactor, new tool, new skill) or every few sessions.
 
-## Checks (per project, currently `games/wizardry-empire/translation/`)
+## Checks (per project, currently `games/gbc/wizardry-empire/translation/`)
 1. **References:** every path, tool, script, symbol and command named in `AGENTS.md`, `skills/**/skill.md`,
-   `skills/skill-index.md`, `games/wizardry-empire/README.md` and `games/wizardry-empire/translation/docs/**` exists
+   `skills/skill-index.md`, `games/gbc/wizardry-empire/README.md` and `games/gbc/wizardry-empire/translation/docs/**` exists
    (`ls`, `grep`, the tool's module docstring; do not run `build.py`/`tour.py` or other tools with
    `--help`: some ignore it and run). Paths under `work/` named in skills are untracked: flag them. Asm symbols: assemble once with
-   `python3 -c "import sys;sys.path.insert(0,'games/wizardry-empire/translation/tools');import asm;print(sorted(asm.assemble('games/wizardry-empire/translation/asm/main.asm').sym))"`.
+   `python3 -c "import sys;sys.path.insert(0,'games/gbc/wizardry-empire/translation/tools');import asm;print(sorted(asm.assemble('games/gbc/wizardry-empire/translation/asm/main.asm').sym))"`.
 2. **Docs vs code:** claims in `docs/re/vwf.md`, `docs/re/text.md`, `docs/re/tasks.md` and the skills about
    RAM, banks, hook addresses and data layouts still match `asm/vwf.asm` and `tools/insert.py`
    (e.g. RAM ranges, stub areas, control codes). Flag any contradiction with both quotes. When the `vwf.asm`
@@ -29,7 +29,7 @@ Run it after a big change (asm refactor, new tool, new skill) or every few sessi
    entries `open` for more than two sessions, and lessons repeated in two or more entries but not promoted.
 4. **Status and log:** `docs/status.md` "Done/Next/Known issues" vs `docs/progress-log.md` and the git log
    (`git log --oneline -30`): done items still listed as next, fixed bugs still listed as known.
-5. **Script hygiene:** `python3 tools/lint.py` and `python3 tools/build.py` (from `games/wizardry-empire/translation/`) pass;
+5. **Script hygiene:** `python3 tools/lint.py` and `python3 tools/build.py` (from `games/gbc/wizardry-empire/translation/`) pass;
    note warnings that keep recurring.
 6. **Rules:** no game data tracked (`git ls-files | grep -iE '\.(gbc?|sav|state)$'` must be empty).
 

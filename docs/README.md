@@ -1,6 +1,6 @@
 # Documentation (shared tooling)
 
-How the database tooling is used. Documents about one game live in that game's folder (`games/<slug>/`).
+How the database tooling is used. Documents about one game live in that game's folder (`games/<platform>/<slug>/`).
 
 | File | What |
 |---|---|

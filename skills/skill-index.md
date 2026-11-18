@@ -27,7 +27,7 @@ to it. Every skill folder has a `feedback.md` - read its open entries before wor
 Typical chains: tracer -> (coordinator hooks it) -> translator -> reviewer -> build -> tour -> visual-qa;
 user bug report -> triage -> coordinator fix -> playtester repro;
 photographer set -> visual-qa (or reviewer with the compare images) for a screen-by-screen JP/EN check;
-tracer (design/rules question -> games/wizardry-empire/tech/) -> design-writer (games/wizardry-empire/design/) -> editor (readability);
+tracer (design/rules question -> games/gbc/wizardry-empire/tech/) -> design-writer (games/gbc/wizardry-empire/design/) -> editor (readability);
 new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coordinator review + commit.
 
 ## Skills
@@ -43,8 +43,8 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 ### translator
 - File: `skills/translator/skill.md`
 - Use when: a batch exists (`tools/batches.py split ...`) and needs English.
-- Main output: the filled `games/wizardry-empire/translation/work/tl/<batch>.json` (passes `batches.py check`).
-- Also load: `games/wizardry-empire/translation/glossary.md`.
+- Main output: the filled `games/gbc/wizardry-empire/translation/work/tl/<batch>.json` (passes `batches.py check`).
+- Also load: `games/gbc/wizardry-empire/translation/glossary.md`.
 - Do not use for: review, script-wide edits, hooking new text.
 - Guardrails: edits only its batch file; glossary names exactly; no subagents.
 
@@ -52,7 +52,7 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 - File: `skills/reviewer/skill.md`
 - Use when: a translated batch passed `check` and `pairs` was generated.
 - Main output: a ranked issue report (critical / important / minor) with suggested English.
-- Also load: `games/wizardry-empire/translation/glossary.md`.
+- Also load: `games/gbc/wizardry-empire/translation/glossary.md`.
 - Do not use for: mechanical checks (lint/check do those), editing files.
 - Guardrails: read-only.
 
@@ -60,7 +60,7 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 - File: `skills/editor/skill.md`
 - Use when: most of the script is translated; whole-script English pass.
 - Main output: must-fix / should-fix / polish report.
-- Also load: `games/wizardry-empire/translation/glossary.md`, lint output.
+- Also load: `games/gbc/wizardry-empire/translation/glossary.md`, lint output.
 - Do not use for: per-batch review, early in the project.
 - Guardrails: read-only; width limits are hard.
 
@@ -68,7 +68,7 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 - File: `skills/playtester/skill.md`
 - Use when: a build exists and a goal needs playing (e.g. "form a party, win a battle").
 - Main output: report with route, states and issues (screenshot paths, repro inputs).
-- Also load: `games/wizardry-empire/translation/tools/routes/tour.txt` (known routes).
+- Also load: `games/gbc/wizardry-empire/translation/tools/routes/tour.txt` (known routes).
 - Do not use for: diagnosing a hang (triage) or judging fixed sheets (visual-qa).
 - Guardrails: writes only its session dir; never edits the repo.
 
@@ -76,7 +76,7 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 - File: `skills/visual-qa/skill.md`
 - Use when: tour sheets or playtest sheets need a verdict.
 - Main output: verdict file `path<TAB>ok|issue<TAB>note` + summary.
-- Also load: `games/wizardry-empire/translation/glossary.md`; the `tour_jp` sheets for comparison.
+- Also load: `games/gbc/wizardry-empire/translation/glossary.md`; the `tour_jp` sheets for comparison.
 - Do not use for: playing the game.
 - Guardrails: writes only its verdict file.
 
@@ -85,7 +85,7 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 - Use when: where text lives / which routine prints it, how to reach a screen or state, coverage or buffer
   audits.
 - Main output: notes file with routines, data layout, evidence and a hook proposal.
-- Also load: `games/wizardry-empire/translation/docs/re/text.md`, `docs/re/vwf.md`, `docs/re/tasks.md`, `docs/re/rev1.md`.
+- Also load: `games/gbc/wizardry-empire/translation/docs/re/text.md`, `docs/re/vwf.md`, `docs/re/tasks.md`, `docs/re/rev1.md`.
 - Do not use for: patching; translation.
 - Guardrails: traces the original ROM; writes only its notes/scratch dir.
 
@@ -93,27 +93,27 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 - File: `skills/triage/skill.md`
 - Use when: a hang or crash is reported (with state/inputs if possible).
 - Main output: report with reproduction, stuck PC/loop, cause (patch or original) and suggested fix.
-- Also load: `games/wizardry-empire/translation/docs/re/vwf.md`, `docs/re/tasks.md`.
+- Also load: `games/gbc/wizardry-empire/translation/docs/re/vwf.md`, `docs/re/tasks.md`.
 - Do not use for: fixing; general RE questions (tracer).
 - Guardrails: diagnose only; writes only its case dir.
 
 ### design-writer
 - File: `skills/design-writer/skill.md`
-- Use when: a game system documented in `games/wizardry-empire/tech/` needs its designer-facing document in
-  `games/wizardry-empire/design/` (rules, formulas, data tables, quirks; no addresses).
+- Use when: a game system documented in `games/gbc/wizardry-empire/tech/` needs its designer-facing document in
+  `games/gbc/wizardry-empire/design/` (rules, formulas, data tables, quirks; no addresses).
 - Main output: the design file(s) + a sources list (claim -> tech section) + self-check results.
-- Also load: `games/wizardry-empire/DOCUMENTS.md` (document rules), `games/wizardry-empire/design/README.md`, the tech sections named
+- Also load: `games/gbc/wizardry-empire/DOCUMENTS.md` (document rules), `games/gbc/wizardry-empire/design/README.md`, the tech sections named
   in the dispatch, `glossary.md`.
-- Do not use for: finding new facts (tracer writes `games/wizardry-empire/tech/` first); translation.
+- Do not use for: finding new facts (tracer writes `games/gbc/wizardry-empire/tech/` first); translation.
 - Guardrails: writes only its design file(s) and `work/design/<topic>/`; never invents a number.
 
 ### photographer
 - File: `skills/photographer/skill.md`
 - Use when: we need exact reference images of screens/features/options/gameplay, JP vs EN (docs, review,
   regression comparison, the README).
-- Main output: `games/wizardry-empire/translation/work/shots/<set>/` (native + 3x + compare PNGs, `index.md`/`index.json`),
-  published and committed to `games/wizardry-empire/shots/<set>/`, and proposed `tools/routes/shots.txt` lines.
-- Also load: `games/wizardry-empire/translation/tools/routes/shots.txt`, `tools/routes/tour.txt`.
+- Main output: `games/gbc/wizardry-empire/translation/work/shots/<set>/` (native + 3x + compare PNGs, `index.md`/`index.json`),
+  published and committed to `games/gbc/wizardry-empire/shots/<set>/`, and proposed `tools/routes/shots.txt` lines.
+- Also load: `games/gbc/wizardry-empire/translation/tools/routes/shots.txt`, `tools/routes/tour.txt`.
 - Do not use for: judging the translation (visual-qa) or finding bugs on purpose (playtester).
 - Guardrails: writes `work/shots/<set>/` and `docs/shots/<set>/`; commits only its shot set (no ROM/state files); never pushes.
 
@@ -121,23 +121,23 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 - File: `skills/game-scout/skill.md`
 - Use when: a ROM was registered with `tools/intake.py` and has no filled playbook yet (or the playbook
   lacks controls, boot route or shot plan).
-- Main output: `games/<slug>/playbook.md` (controls, structure, shot plan, strategy, shortcuts: saves,
+- Main output: `games/<platform>/<slug>/playbook.md` (controls, structure, shot plan, strategy, shortcuts: saves,
   codes, debug menus, sources), `game.json` macros/RAM, checkpoints `title` and `start`, the start of
   `design/` (overview, systems from sources).
 - Also load: `docs/emulator/README.md`, `docs/capture-guide.md`.
 - Do not use for: capturing the set (game-capture); Wizardry Empire translation work.
-- Guardrails: writes only `games/<slug>/` (not `shots/`) and `work/scout/<slug>/`; marks facts verified/source;
+- Guardrails: writes only `games/<platform>/<slug>/` (not `shots/`) and `work/scout/<slug>/`; marks facts verified/source;
   no commits.
 
 ### game-capture
 - File: `skills/game-capture/skill.md`
 - Use when: a game has a playbook and needs (more) database screenshots.
-- Main output: `games/<slug>/shots/<set>/` (native PNGs, 3x copies in `3x/`, index.json/md, sheet.png, shots.txt),
+- Main output: `games/<platform>/<slug>/shots/<set>/` (native PNGs, 3x copies in `3x/`, index.json/md, sheet.png, shots.txt),
   verified with `shoot.py --verify`; playbook and `design/` reference (rules, numbers, findings) written while
-  playing; milestone saves in `games/<slug>/saves/` for the owner.
+  playing; milestone saves in `games/<platform>/<slug>/saves/` for the owner.
 - Also load: `docs/emulator/README.md`, `docs/capture-guide.md`, the game's playbook.
 - Do not use for: research from scratch (game-scout); Wizardry Empire JP/EN reference sets (photographer).
-- Guardrails: writes only `work/`, `rom/saves|patches/<slug>/` and `games/<slug>/`; cheat freely, but visible
+- Guardrails: writes only `work/`, `rom/saves|patches/<slug>/` and `games/<platform>/<slug>/`; cheat freely, but visible
   values stay realistic; main character "ryz"; commits only its game folder at major milestones (push to master).
 
 ### maintenance

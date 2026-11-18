@@ -71,7 +71,7 @@ Some actions are best shown as what happens, step by step (fishing, fast travel,
   (same place, same party) from start to end.
 
 ## Design reference
-Shots are evidence for `games/<slug>/design/`: when a shot shows a rule or a number (a shop price list, a level-up
+Shots are evidence for `games/<platform>/<slug>/design/`: when a shot shows a rule or a number (a shop price list, a level-up
 screen, a status screen), link it from the design document that states the rule.
 
 ## Sets
