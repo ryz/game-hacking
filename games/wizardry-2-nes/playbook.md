@@ -94,22 +94,32 @@ Decoded from the cell fetch (code: bank 13 $A8B7 maps PRG bank 9 at $8000; posit
   -> `design/maps/floors.txt` (done for all 6 floors).
 
 ## Shot plan
-`shots.txt` holds the routed shots (routes seen in play by the scout, not yet through `shoot.py`) and commented
-plans. Target ~45 shots (large RPG, sister set `wizardry-nes` has 70).
-- [ ] boot: ASCII logo, copyright page; title; options (Select switch)
-- [ ] castle menu, Edge of Town, Training Grounds, name keyboard, race/alignment/stats/class screens, tavern roster
-  (pre-made + playtest), character sheet (Inspect)
-- [ ] inn rooms, Boltac's (buy/sell), temple
-- [ ] maze: start, "Descending into the Ruins" text, stairs prompt, door view, darkness, camp, maze menu (Select),
-  full view (Start), LINE wall mode
-- [ ] battle: encounter text, command menu, spell, victory (E.P./gold), chest/trap; party wiped (game over)
-- [ ] story events (ROM text): Gnilda's apparition, "Officers only!", the wishing well, the sage, the key trader,
-  "One alone." passage, each Knight's regalia piece, the staff of Gnilda ending
-- [ ] Leave Game caution page (save)
+Captured 2026-11-18: 91 shots in `shots.txt` (game order), published in `shots/main/`.
+- [x] boot: ASCII logo, copyright page; title; options (Select switch)
+- [x] castle menu, Edge of Town, Training Grounds, name keyboard, race/alignment/stats/class screens, tavern roster
+  (pre-made + playtest), character sheet (Inspect), spell books
+- [x] inn rooms + level-up, Boltac's (buy, bought, stock), temple + cure
+- [x] maze: start, "Descending into the Ruins" text, stairs prompt, camp, maze menu (Select), full view (Start)
+- [x] battle: guardian, two groups, orders, spells (mage, cleric, enemy), melee, victory (E.P.), guardian item,
+  chest + inspect + trap + loot + gold, poisoned, member killed, party wiped (game over)
+- [x] story events: Gnilda's apparition, "Officers only!", wishing well, sage, key traders, "One alone.", barriers,
+  floor 5 rock, fountain, regalia, the staff of Gnilda ending, Knights, credits, Mark of Gnilda
+- [ ] not taken: LINE wall mode, Boltac's Sell/Identify, darkness square, spinner, Dispell, item use, level drain
 
 ## Strategy and walkthrough notes
-- Level 1 characters die fast: give the party levels/HP/gold with an **edited save** (`tools/roster.py edit`, see
-  Shortcuts), not with pokes (battery RAM is unreachable for `poke`, see Emulation notes).
+- Level 1 characters die fast: use the veteran party (`@veterans`: macro `VETERANS` from
+  `tools/veterans.py`, levels 11-13, gold, spells, equipment; poked before `ADDPARTY` so the castle list shows
+  it) or the save `02_veterans`. ~~Battery RAM is unreachable for `poke`~~: since 2026-11-18 pokes reach it.
+- Special squares: `work/capture/wizardry-2-nes/scan.py FLOOR` (scratch, see Emulation notes) warps next to every
+  record of a floor (special table poked into `$6E79`), steps in and logs texts + positions. Shot routes for
+  events are made the same way (`mk.py`): `@vstart,poke:00EC=F,poke:00EA=X,poke:00EB=Y,poke:00E9=D,
+  poke:6E79=<64-byte table of the floor>,left,w30,right,w30,settle,up` (`a` through a door).
+- Random fights: step from a corridor into a room square (flag $80) on floors 2/4 (`enc.py`); floor 2 (14,5) ->
+  (14,4) facing S meets 7 Women in Robes + 2 Men at Arms (`@robes`).
+- One-hit kills / deaths: battle HP low bytes at `$03BA + i` (0-5 party, 6-14 group 1, 15-23 group 2, ...);
+  poke party HP to 1 before the round for deaths and a wipe (`gameover`).
+- Ending: RYZ alone wearing ids 7D-81 equipped (`@knight`), floor 6 (1,1) facing N, A three times (doors) ->
+  floor 1 Gnilda's room, staff; stairs up at floor 1 (0,0) -> Congratulations.
 - Warp: `poke:00EC=FLOOR,poke:00EA=X,poke:00EB=Y,poke:00E9=DIR,left,w30,right,w30` (the turn redraws the view;
   verified on floor 1). Step onto the special square with Up (or A through a door) to trigger it.
 - A poke to a different floor keeps the old floor's special table in `$6E79` (copied at floor entry, code
@@ -139,12 +149,15 @@ Grounds Inspect lists all six with the right race/class).
 | Character stats at creation | `$004D-$0052` + bonus `$0040` on the stats screen | scout | verified |
 | Roster edits (gold, HP, level, E.P.) | `python3 games/wizardry-2-nes/tools/roster.py edit IN.sav OUT.sav SLOT:OFF=HEX,...` (fixes the check value) -> `sav:OUT` | scout | verified (gold 1873, HP 85 shown by Inspect) |
 | Pre-made characters | FIGHTER1 ... MAGE2 on a fresh battery | scout | verified |
+| Veteran party | `VETERANS` macro before `ADDPARTY` (`@veterans`), or `sav:02_veterans,CASTLE,ADDPARTY` | capture | verified |
+| Regalia / ending | `@knight` (RYZ alone with Hrathnir + KOD's helmet/shield/gauntlets/armor equipped) | capture | verified |
 | Game Genie / Action Replay codes | none looked up (time box); GameFAQs cheats page not tried | - | open |
 
 ### Saves (rom/saves/wizardry-2-nes/, never committed)
 | Name | Contents (progress, party, items) | URL | SHA-1 | Status |
 |---|---|---|---|---|
 | 01_party (made here, committed in `saves/`) | roster with the playtest party, level 1 | - | see `saves/README.md` | verified (`sav:01_party,CASTLE,ADDPARTY` -> party formed, Inspect) |
+| 02_veterans, 03_regalia, 04_ending (committed) | see `saves/README.md` | - | - | verified (all 12 characters reload) |
 | test_rich (scratch) | 01_party with RYZ at 1873 gold, 85/85 HP (`roster.py edit`) | - | - | verified, delete or replace |
 No downloadable saves looked for.
 
@@ -165,8 +178,15 @@ No downloadable saves looked for.
 | record `+$0B-$10` | 6 | STR IQ PIE VIT AGI LUC | dump (matches creation) |
 | record `+$11-$16` | 6 | **gold**, packed BCD big-endian | edited save + Inspect (verified) |
 | record `+$17-$1C` | 6 | E.P., packed BCD big-endian (tentative, 0 at level 1) | dump |
-| record `+$1D/$1E`, `+$1F/$20` | 2+2 | **HP now / max, little-endian** | edited save + Inspect (verified) |
-| record `+$22`, `+$26` | 1 each | level (01), AC (0A) (tentative) | dump |
+| record `+$1D/$1E`, `+$1F/$20` | 2+2 | **HP now / max, little-endian** (the castle party list is built when the party is formed: poke before `ADDPARTY`) | edited save + Inspect (verified) |
+| record `+$22`, `+$23`, `+$24`, `+$25`, `+$26` | 1 each | level, **status** (0 OK, 3 P-lyze, 5 dead, 6 ashed), age in years, ?, AC (signed; the maze recomputes it) | Inspect + Temple (verified) |
+| record `+$27-$2D`, `+$2E-$34` | 7 + 7 | mage / cleric spell points per level, high nibble now, low nibble max | Inspect (verified) |
+| record `+$35-$3B`, `+$3C-$42` | 7 + 7 | mage / cleric spells known, one byte per level, bit n = n-th spell of the level | Read Spell (verified) |
+| record `+$43-$4A`, `+$4B-$52`, `+$53` | 8, 8, 1 | item flags ($80 equipped, $20 unidentified), item ids, item count | Inspect (verified) |
+| record `+$58` bit 1 | | has won the regalia trial (type 13 sends the member to floor 6 (3,3) instead) | code bank 13 `$B84E` |
+| item ids | | 01 long sword ... 0E helm, 16 padded leather, 17 shiny chain, 18 sturdy plate, 19 iron shield, 1D sword of swishes, 22 helm of hardiness, 2F gloves of copper, 47 dagger of speed, 7C staff of Gnilda, 7D Hrathnir, 7E KOD's helmet, 7F KOD's shield, 80 KOD's gauntlets, 81 KOD's armor, 82 corroded key, 83 gory badge, 84 weird emblem, 85 key of ebony, 86 key of cloister, 87 mithril key, 88 master key, 89 demon's stone | Inspect (verified) |
+| `$7800 + slot*$60` | 96 | backup copy of each record (poke both when editing a castle record) | dump |
+| `$0390 + i`, `$03BA + i`, `$03E4 + i` | | battle tables: status?, HP low, HP high (i: 0-5 party, groups of 9 from 6) | dump + poke (verified: deaths) |
 | record `+$5E/$5F` | 2 | check value (CRC, `tools/roster.py`); a bad record is emptied at power-on (code `$8D42`) | code bank 4 `$8D8C` (port verified on 18 records) |
 | `$6B80`, `$6B81`, `$6B82-` | | roster count, party size, party slot numbers | dump |
 | `$6B88 + 65*(floor-1)` | 65 each | working special tables per floor | dump = ROM bank 4 `$84FB` tables |
@@ -174,11 +194,19 @@ No downloadable saves looked for.
 
 ## Emulation notes
 - NTSC, default press. Deterministic.
-- **Battery RAM (`$6000-$7FFF`) is not reachable with `play.py peek/poke/dump`**: the game keeps the MMC3 RAM
+- ~~**Battery RAM (`$6000-$7FFF`) is not reachable with `play.py peek/poke/dump`**~~ (fixed 2026-11-18: pokes
+  reach it; a poked record survives a power cycle only if the game saves it again, i.e. it is in the party at
+  Leave Game) - old note:: the game keeps the MMC3 RAM
   disabled except while it accesses it, so peeks return open bus (`$6E` at `$6Exx`) and pokes are dropped
   (verified: a gold poke in the castle did nothing). Read it with `play.py export` or a script calling the
   backend's `battery()` (`work/scout/wizardry-2-nes/sram.py ROUTE OUT.bin`); change it with `tools/roster.py edit`
   and `sav:NAME`.
+- **Inputs right after a menu closes are lost**: a route that ends on a menu that just opened/closed (e.g. `b,w60`
+  out of the tavern) may drop the first presses of the next `do`; end checkpoints with an extra `w30` or start
+  the next route with `w30` (the first `knight` route ended in the Tavern menu and sent MAZE into the Inn).
+- Routes recorded after `play.py undo` were not reliable here (ending shots re-made with explicit tokens).
+- Capture helpers (scratch, `work/capture/wizardry-2-nes/`): `steps.py` (session do-groups -> sheet), `add.py`
+  (shot line = another shot's route + tokens), `mk.py` (event shot by warp), `scan.py`, `enc.py`, `order.py`.
 - The party window is hidden after the floor-2 stairs prompt (checkpoint `f2`); Start shows it.
 - The title logo keeps animating (settle may stop at any phase); the `title` checkpoint replays identically.
 - play.py sessions used: `--name wiz2` (checkpoints), `wiz2b` (save tests), `wiz2c` (helper
@@ -191,7 +219,14 @@ No downloadable saves looked for.
 | `castle` | Castle menu, playtest party formed, level 1, no equipment |
 | `start` | floor 1 (0,0) facing north, first control in the maze |
 | `f2` | floor 2 (5,5) facing north after the stairs down from floor 1 (5,5) |
-All four rebuilt from an empty cache and compared with a cache hit: identical frames (2026-11-18).
+| `veterans` | Castle, veteran party (levels 11-13, `VETERANS`) formed |
+| `vstart` | floor 1 (0,0) with the veterans |
+| `kobold` | floor 1 (19,10): guardian Kobold King, RYZ's options |
+| `eyes` | floor 4 (1,4): 2 Evil Eyes (no Spell order) |
+| `robes` | floor 2 (14,4): 7 Women in Robes + 2 Men at Arms |
+| `knight` | Castle from save 02_veterans: RYZ alone wearing the five regalia pieces |
+| `finale` | Castle after the ending and credits, RYZ's Inspect with the Mark of Gnilda |
+The first four rebuilt from an empty cache and compared with a cache hit: identical frames (2026-11-18).
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -203,7 +238,9 @@ All four rebuilt from an empty cache and compared with a cache hit: identical fr
 | Wizardry I scout/capture | `games/wizardry-nes/playbook.md` | engine layout to port | 2026-11-18 |
 
 ## Open questions
-- Special types 03-16: meanings are a first reading of the handlers (marked "(code)" in `tools/maps.py`); check in
+- (2026-11-18 capture) answered: special types (see `design/maps.md`), status/level/spell/item offsets, regalia
+  ids, the ending. Still open: types 06/07 effects, floor 5 barrier item, what the well/sage give.
+- ~~Special types 03-16: meanings are a first reading of the handlers (marked "(code)" in `tools/maps.py`); check in
   play, especially type 04 (158 squares on floor 5: deadly rock or something else?) and 0C-0F/14/16.
 - Message numbers in the records (`b`) -> texts: the message table was not found (text is ASCII in banks 0-1;
   the printer starts at bank 13 `$A97B`).
