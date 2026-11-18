@@ -1,6 +1,6 @@
 # Might and Magic Book One: The Secret of the Inner Sanctum (DOS) - shots: main
 
-Platform dos, region na, model svga-1500, ROM SHA-1 `c1a9248dd101e924f5e2de7890258e1a768753ac`. 242 shots. Contact sheet: [might-and-magic_dos_na_set_sheet.png](might-and-magic_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model svga-1500, ROM SHA-1 `c1a9248dd101e924f5e2de7890258e1a768753ac`. 250 shots. Contact sheet: [might-and-magic_dos_na_set_sheet.png](might-and-magic_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -59,6 +59,9 @@ Platform dos, region na, model svga-1500, ROM SHA-1 `c1a9248dd101e924f5e2de78902
 | cast_done | system | First Aid cast on RYZ: done, DEDDO has 4 of 5 spell points left | yes | [png](might-and-magic_dos_na_system_cast_done.png) [3x](3x/might-and-magic_dos_na_system_cast_done.png) |
 | cast_healed | inventory | RYZ after First Aid: hit points 6 to 14 of 15 | yes | [png](might-and-magic_dos_na_inventory_cast_healed.png) [3x](3x/might-and-magic_dos_na_inventory_cast_healed.png) |
 | detect_magic | system | Detect Magic (Sorcerer 1-2): Magic Herbs and Might Potion are magic, 3 charges each | yes | [png](might-and-magic_dos_na_system_detect_magic.png) [3x](3x/might-and-magic_dos_na_system_detect_magic.png) |
+| vet_profile | inventory | MNZ at level 7: 38 spell points, spell level 4, 14 gems | yes | [png](might-and-magic_dos_na_inventory_vet_profile.png) [3x](3x/might-and-magic_dos_na_inventory_vet_profile.png) |
+| cast_create_food | system | Create Food (Cleric 3-1): 3 spell points and a gem, DEDDO's food 18 to 24 | yes | [png](might-and-magic_dos_na_system_cast_create_food.png) [3x](3x/might-and-magic_dos_na_system_cast_create_food.png) |
+| cast_spell_failed | system | Jump (Sorcerer 2-4) in a town corridor: spell failed | yes | [png](might-and-magic_dos_na_system_cast_spell_failed.png) [3x](3x/might-and-magic_dos_na_system_cast_spell_failed.png) |
 | protect_active | system | Protect: spells currently active, Leather Skin | yes | [png](might-and-magic_dos_na_system_protect_active.png) [3x](3x/might-and-magic_dos_na_system_protect_active.png) |
 | protect_three | system | Protect: Protection from Fear +21%, Light (1) and Leather Skin active | yes | [png](might-and-magic_dos_na_system_protect_three.png) [3x](3x/might-and-magic_dos_na_system_protect_three.png) |
 | location_spell | map | Location spell (Sorcerer 1-7): in town, map sector C-2, surface and inside coordinates, facing | yes | [png](might-and-magic_dos_na_map_location_spell.png) [3x](3x/might-and-magic_dos_na_map_location_spell.png) |
@@ -92,6 +95,10 @@ Platform dos, region na, model svga-1500, ROM SHA-1 `c1a9248dd101e924f5e2de78902
 | combat_bless | battle | DEDDO casts Bless (Cleric 1-2) in combat: done | yes | [png](might-and-magic_dos_na_battle_combat_bless.png) [3x](3x/might-and-magic_dos_na_battle_combat_bless.png) |
 | combat_sleep_immune | battle | MNZ casts Sleep (Sorcerer 1-8) at a Poltergeist: not affected | yes | [png](might-and-magic_dos_na_battle_combat_sleep_immune.png) [3x](3x/might-and-magic_dos_na_battle_combat_sleep_immune.png) |
 | combat_turn_undead | battle | DEDDO casts Turn Undead (Cleric 1-8) at Skeletons: some monsters were destroyed | yes | [png](might-and-magic_dos_na_battle_combat_turn_undead.png) [3x](3x/might-and-magic_dos_na_battle_combat_turn_undead.png) |
+| combat_sleep_goblins | battle | Sleep (Sorcerer 1-8) on five Goblins: two not affected, one is slept and marked (ASLEEP) | yes | [png](might-and-magic_dos_na_battle_combat_sleep_goblins.png) [3x](3x/might-and-magic_dos_na_battle_combat_sleep_goblins.png) |
+| combat_identify_monster | battle | Identify Monster (Sorcerer 2-3): a Poltergeist's hit points, armor class, speed, attacks, damage | yes | [png](might-and-magic_dos_na_battle_combat_identify_monster.png) [3x](3x/might-and-magic_dos_na_battle_combat_identify_monster.png) |
+| combat_lightning_bolt | battle | Lightning Bolt (Sorcerer 3-4) cast by MNZ at level 7: 30 points, the Poltergeist goes down | no | [png](might-and-magic_dos_na_battle_combat_lightning_bolt.png) [3x](3x/might-and-magic_dos_na_battle_combat_lightning_bolt.png) |
+| combat_fire_ball | battle | Fire Ball (Sorcerer 3-1) cast with monsters in hand-to-hand range: CONDI takes 18 points of damage | yes | [png](might-and-magic_dos_na_battle_combat_fire_ball.png) [3x](3x/might-and-magic_dos_na_battle_combat_fire_ball.png) |
 | combat_victory | battle | Victory: for defeating the monsters each survivor receives 100 experience points | yes | [png](might-and-magic_dos_na_battle_combat_victory.png) [3x](3x/might-and-magic_dos_na_battle_combat_victory.png) |
 | search_nothing | system | Searching the room after the fight: nothing | yes | [png](might-and-magic_dos_na_system_search_nothing.png) [3x](3x/might-and-magic_dos_na_system_search_nothing.png) |
 | unconscious_quickref | hud | After a fight: CONDI at 0 hit points, condition unconscious | yes | [png](might-and-magic_dos_na_hud_unconscious_quickref.png) [3x](3x/might-and-magic_dos_na_hud_unconscious_quickref.png) |
@@ -102,6 +109,7 @@ Platform dos, region na, model svga-1500, ROM SHA-1 `c1a9248dd101e924f5e2de78902
 | train_no_gold | system | Training without the 25 gold: not enough gold | no | [png](might-and-magic_dos_na_system_train_no_gold.png) [3x](3x/might-and-magic_dos_na_system_train_no_gold.png) |
 | train_levelup | system | Congratulations! You are now level 2, you gained 11 hit points | yes | [png](might-and-magic_dos_na_system_train_levelup.png) [3x](3x/might-and-magic_dos_na_system_train_levelup.png) |
 | train_level3_need | system | Training done: level 3 needs 1315 more experience points | yes | [png](might-and-magic_dos_na_system_train_level3_need.png) [3x](3x/might-and-magic_dos_na_system_train_level3_need.png) |
+| train_level8_need | system | Training at level 7 with 61480 experience: level 8 needs 34520 more | yes | [png](might-and-magic_dos_na_system_train_level8_need.png) [3x](3x/might-and-magic_dos_na_system_train_level8_need.png) |
 | profile_level2 | inventory | RYZ after training: level 2, age 19, 26 hit points, 1808 gold left | yes | [png](might-and-magic_dos_na_inventory_profile_level2.png) [3x](3x/might-and-magic_dos_na_inventory_profile_level2.png) |
 | temple_services | shop | Temple Moonshadow: restore health, uncurse items, restore align, make donation | yes | [png](might-and-magic_dos_na_shop_temple_services.png) [3x](3x/might-and-magic_dos_na_shop_temple_services.png) |
 | temple_price | shop | Temple with RYZ at 4 hit points: restore health costs 25 gold | yes | [png](might-and-magic_dos_na_shop_temple_price.png) [3x](3x/might-and-magic_dos_na_shop_temple_price.png) |

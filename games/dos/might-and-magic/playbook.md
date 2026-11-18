@@ -138,7 +138,7 @@ step or turn `w80` (`w60` is enough for turns), opening a list/profile `w100`-`w
   8 Sleep. Level 1 Cleric: 1 Awaken, 2 Bless, 3 Blind, 4 First Aid, 5 Light, 6 Power Cure, 7 Protection from Fear,
   8 Turn Undead (source; Flame Arrow verified).
 - **Levels**: experience from fights and quests, then pay for training in a town (verified: level 2 at 1500
-  experience for a Knight, 25 gold; level 3 at 3000). New spell levels every other level (manual).
+  experience for a Knight, 25 gold; level 3 at 3000; level 8 at 96000, so doubling). New spell levels every other level (manual).
 
 ## Shot plan
 The plan and the record is `shots.txt` (113 routed lines, all captured and verified 2026-11-18; open targets as
@@ -146,7 +146,7 @@ comments at its end). Done: [x] title and demo scenes, [x] menus and roster, [x]
 Sorpigal services, [x] exploration commands (order, protect, rest, unlock, cast, location), [x] combat from the
 encounter options to victory, spell, shooting, search, [x] level-up, [x] death and game over, [x] lit cavern
 with its events and monsters, [x] wilderness (C2, A1, E1), [x] towns 2-5, [x] castles Alamar, Doom, White Wolf,
-[x] Quivering Forest, [x] Astral Plane and the ending text. Round 2 (242 shots): [x] bash, unlock results, traps, [x] trade, share, gather, discard, use, remove, equip refused, [x] temple cure, donation, raise price,
+[x] Quivering Forest, [x] Astral Plane and the ending text. Round 2 (250 shots): [x] bash, unlock results, traps, [x] trade, share, gather, discard, use, remove, equip refused, [x] temple cure, donation, raise price,
 [x] tavern drink and rumor, market, training refused, selling, [x] all statues, trap door, leprechaun trip, [x] combat orders and spells, conditions,
 [x] 30 more groups incl. Demon Lord, Lich, Dark Rider, dragons, [x] every terrain and wall look, [x] all 55 areas surveyed.
 Open: [ ] a surprised party, [ ] Search finding treasure, [ ] rest interrupted, [ ] accepted surrender, [ ] item used in combat, [ ] the impostor.
@@ -373,7 +373,9 @@ route: use only for creation shots), `blacksmith` (shop prompt), `equipped` (aft
 - `shoot.py --verify` of all 242 as one background job was killed after ~190 shots (exit 137, cause not found);
   in the foreground 26 shots verify in 40 s. Renaming a shot or changing its category leaves the old PNG in the
   work set: `play.py unsnap OLDID --set main` (needs a running session).
-- Save `04_sorpigal_equipped` (signed in after shopping).
+- `VET` = `STRONG` + level 7 for all six, experience 57730-71344 (level 8 needs 96000: the trainer's own number), DEDDO 34 and
+  MNZ 38 spell points at spell level 4, 9 and 14 gems. Spells seen with it: playbook design/characters.md section 8.
+- Saves `04_sorpigal_equipped` (signed in after shopping) and `05_sorpigal_level7` (the `VET` party with gold, for the owner's own tests of higher spells).
 
 ## Open questions
 - ~~Current area number in RAM and a clean way to change area by poke~~: solved 2026-11-18, see `WARP` and the Areas table.

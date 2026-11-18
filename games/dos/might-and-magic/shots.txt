@@ -3,9 +3,9 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/dos/might-and-magic/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# Capture 2026-11-18: round 1 = 113 shots; round 2 (same day) added 129 (mechanics, battles, environments): 242, verified from an empty cache.
+# Capture 2026-11-18: round 1 = 113 shots; round 2 (same day) added 137 (mechanics, battles, environments, spells of a level 7 party): 250, verified from an empty cache.
 # Routes end in `!` (no settle: cursor/animation). Shots that depend on a memory edit: all that use WARP/AT (position),
-# LOWHP (death, game over), WORTHY (ending), set:16853 (training), set:16865 in @blacksmith (gold); round 2: STRONG (hit points
+# LOWHP (death, game over), WORTHY (ending), set:16853 (training), set:16865 in @blacksmith (gold); round 2: VET (level 7, spell points, gems), STRONG (hit points
 # 44-71 for fights against late monsters), set:1685F (RYZ wounded), poke:1686B.. (conditions), poke:16AF2 (Chain Mail in MNZ's pack), set:1685D (gems).
 title_screen | title | Title: New World Computing presents Might and Magic, ESC to start / SPACE for scenes | @title,!
 title_book_one | title | Title, second picture: New World Computing presents Book One - Secret of the Inner Sanctum | pow,BOOT,w280,!
@@ -62,6 +62,9 @@ cast_on_whom | system | DEDDO the Cleric casts First Aid (1-4): cast on which ch
 cast_done | system | First Aid cast on RYZ: *** DONE *** | @equipped,set:1685F=6:2,5,w100,c,w100,1,w100,4,w100,enter,w200,1,!
 cast_healed | inventory | RYZ after First Aid: hit points 6 to 14 of 15 | @equipped,set:1685F=6:2,5,w100,c,w100,1,w100,4,w100,enter,w200,1,w200,1,w150,!
 detect_magic | system | Detect Magic (Sorcerer 1-2): Magic Herbs and Might Potion are magic, 3 charges each | @equipped,AT:06:05:56,FN,left,w250,y,w150,6,w150,g,w150,c,w150,d,w150,e,w150,esc,w100,esc,w100,6,w100,c,w100,1,w100,2,w100,enter,w200,!
+vet_profile | inventory | MNZ at level 7: 38 spell points, spell level 4, 14 gems | @equipped,VET,6,w100,!
+cast_create_food | system | Create Food (Cleric 3-1): 3 spell points and a gem, DEDDO's food 18 to 24 | @equipped,VET,5,w100,c,w100,3,w100,1,w100,enter,w200,w100,!
+cast_spell_failed | system | Jump (Sorcerer 2-4) in a town corridor: spell failed | @equipped,VET,6,w100,c,w100,2,w100,4,w100,enter,!
 protect_active | system | Protect: spells currently active, Leather Skin | @equipped,CAST:6:1:5,esc,w100,p,w150,!
 protect_three | system | Protect: Protection from Fear +21%, Light (1) and Leather Skin active | @equipped,CAST:6:1:5,esc,w100,CAST:6:1:6,esc,w100,CAST:5:1:7,esc,w100,p,w150,!
 location_spell | map | Location spell (Sorcerer 1-7): in town, map sector C-2, surface and inside coordinates, facing | @equipped,CAST:6:1:7,!
@@ -95,6 +98,10 @@ combat_use | battle | Combat order Use: MNZ's items, use which? | @combat,a,w300
 combat_bless | battle | DEDDO casts Bless (Cleric 1-2) in combat: done | @combat,a,w300,b,w200,QA*3,c,w100,1,w100,2,w100,enter,!
 combat_sleep_immune | battle | MNZ casts Sleep (Sorcerer 1-8) at a Poltergeist: not affected | @combat,a,w300,c,w100,1,w100,8,w100,a,w20,!
 combat_turn_undead | battle | DEDDO casts Turn Undead (Cleric 1-8) at Skeletons: some monsters were destroyed | @cave1,AT:05:02:25,FE,left,w250,a,w300,QA*4,c,w100,1,w100,8,w100,enter,!
+combat_sleep_goblins | battle | Sleep (Sorcerer 1-8) on five Goblins: two not affected, one is slept and marked (ASLEEP) | @equipped,AT:03:07:73,FW,left,w80,u,w100,4,w200,w9,up,w250,VET,a,w300,c,w100,1,w100,8,w100,a,w20,w100,!
+combat_identify_monster | battle | Identify Monster (Sorcerer 2-3): a Poltergeist's hit points, armor class, speed, attacks, damage | @combat,VET,a,w300,c,w100,2,w100,3,w100,a,w20,!
+combat_lightning_bolt | battle | Lightning Bolt (Sorcerer 3-4) cast by MNZ at level 7: 30 points, the Poltergeist goes down | @combat,VET,a,w300,c,w100,3,w100,4,w100,a,w20,!
+combat_fire_ball | battle | Fire Ball (Sorcerer 3-1) cast with monsters in hand-to-hand range: CONDI takes 18 points of damage | @combat,VET,a,w300,c,w100,3,w100,1,w100,a,w20,!
 combat_victory | battle | Victory: for defeating the monsters each survivor receives 100 experience points | @combat,FLAME,w240,QA*14,!
 search_nothing | system | Searching the room after the fight: nothing | @combat,FLAME,w240,QA*14,space,w150,s,w200,!
 unconscious_quickref | hud | After a fight: CONDI at 0 hit points, condition unconscious | @combat,set:168DF=1:2,FLAME,w240,QA*14,space,w150,q,w150,!
@@ -105,6 +112,7 @@ train_level2 | system | Otto's Training: training for level 2 costs 25 gold | @e
 train_no_gold | system | Training without the 25 gold: not enough gold | @start,set:16853=1685:4,AT:0D:0B:BD,FE,left,w250,y,w300,a,w15,!
 train_levelup | system | Congratulations! You are now level 2, you gained 11 hit points | @equipped,set:16853=1685:4,AT:0D:0B:BD,FE,left,w250,y,w300,a,!
 train_level3_need | system | Training done: level 3 needs 1315 more experience points | @equipped,set:16853=1685:4,AT:0D:0B:BD,FE,left,w250,y,w300,a,w300,!
+train_level8_need | system | Training at level 7 with 61480 experience: level 8 needs 34520 more | @equipped,VET,AT:0D:0B:BD,FE,left,w250,y,w300,!
 profile_level2 | inventory | RYZ after training: level 2, age 19, 26 hit points, 1808 gold left | @equipped,set:16853=1685:4,AT:0D:0B:BD,FE,left,w250,y,w300,a,w300,esc,w100,1,w100,!
 temple_services | shop | Temple Moonshadow: restore health, uncurse items, restore align, make donation | @equipped,AT:04:01:14,FE,left,w250,y,w300,!
 temple_price | shop | Temple with RYZ at 4 hit points: restore health costs 25 gold | @equipped,set:1685F=4:2,AT:04:01:14,FE,left,w250,y,w300,!

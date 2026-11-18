@@ -14,7 +14,7 @@ play)**; everything with a shot is **(verified)**.
 | Environments | 55 areas of 16 x 16 squares: 5 towns, 9 caverns, 20 wilderness sectors, 21 castle and dungeon levels; about ten distinct looks | every look, 25 areas | [world.md](world.md) 1, 7 |
 | Opponents | 195 named monsters using 76 pictures | about 70 kinds in 45 groups, about 35 pictures | none yet (the table is in the program; `tools/survey.py` prints the groups per area) |
 | Items and equipment | 255: 60 hand weapons, 25 missile weapons, 35 two-handed weapons, 35 armors, 15 shields, 85 other items | 30 by name, in shop lists, profiles and finds | none yet; Sorpigal's prices in [sorpigal.md](sorpigal.md) 2 |
-| Spells | 94: 47 Cleric and 47 Sorcerer, 7 levels | 11 cast by the party, 4 cast by monsters | the manual, Appendix B |
+| Spells | 94: 47 Cleric and 47 Sorcerer, 7 levels | 17 cast by the party, 3 cast by monsters | the manual, Appendix B |
 | Characters and people | 6 classes, 5 races, 3 alignments; shopkeepers, trainers and innkeepers in 5 towns; lords, wizards and oddities on event squares | all classes and races; about 25 people | [characters.md](characters.md), [world.md](world.md) 2, 5 |
 | Statues, plaques and messages | 8 statues in Sorpigal alone; wall messages in caverns and castles | all 8 statues, 3 messages | [sorpigal.md](sorpigal.md) 7 |
 
@@ -105,18 +105,22 @@ A spread over types and tiers; the special ones marked.
 | Leather Skin (1-5), Light (1-6) | MNZ | 1 point each | party spells listed under Protect; Light shows dark areas | `cast_prompt`, `protect_active`, `protect_three`, `dungeon_lit` |
 | Location (1-7) | MNZ | 1 point | sector and coordinates | `location_spell` |
 | Detect Magic (1-2) | MNZ | 1 point | magic and charges of carried items | `detect_magic` |
-| Sleep (1-8) | MNZ | 1 point | no effect on a Poltergeist | `combat_sleep_immune` |
+| Sleep (1-8) | MNZ | 1 point | no effect on a Poltergeist; slept one Goblin of five | `combat_sleep_immune`, `combat_sleep_goblins` |
 | First Aid (Cleric 1-4) | DEDDO | 1 point | +8 hit points | `cast_on_whom`, `cast_done`, `cast_healed` |
 | Bless (1-2) | DEDDO | 1 point | "DONE" (effect not measured) | `combat_bless` |
 | Protection from Fear (1-7) | DEDDO | 1 point | "+ 21%" under Protect | `protect_three` |
 | Turn Undead (1-8) | DEDDO | 1 point | destroyed two of four Skeletons | `combat_turn_undead` |
+| Identify Monster (Sorcerer 2-3) | MNZ at level 7 | 2 points + 1 gem (manual) | lists a monster's statistics | `combat_identify_monster` |
+| Fire Ball (3-1), Lightning Bolt (3-4) | MNZ at level 7 | 1 point per level + 1 gem (manual) | 18 points (to the party, see findings), 30 points to each of three monsters | `combat_fire_ball`, `combat_lightning_bolt` |
+| Jump (2-4) | MNZ at level 7 | 2 points | failed in a town corridor | `cast_spell_failed` |
+| Create Food (Cleric 3-1) | DEDDO at level 7 | 3 points + 1 gem | food +6 | `cast_create_food` |
 | Unlock (Robber skill) | CUBI | - | opens a lock without the trap | `unlock_success` |
 | Monster spells: Lightning Bolt, Paralyze, Disintegration; breath and gaze | Magician, Naga, Lich, Red Dragon, Medusa | - | damage, paralysis, eradication, fire, stone | `combat_magicians`, `combat_paralyzed`, `boss_lich_eradicates`, `combat_dragon_breath`, `combat_stoned` |
 
 ## 6. Characters and people
 | Who | Role | Where | Shots |
 |---|---|---|---|
-| Knight, Paladin, Archer, Robber, Cleric, Sorcerer | the six classes (RYZ, CONDI, EBO, CUBI, DEDDO, MNZ) | the party | `roster_view_all`, `profile_ryz`, `quickref`, `gather_done`, `trade_food_done`, `equip_wrong_class`, `cast_done` |
+| Knight, Paladin, Archer, Robber, Cleric, Sorcerer | the six classes (RYZ, CONDI, EBO, CUBI, DEDDO, MNZ) | the party | `roster_view_all`, `profile_ryz`, `quickref`, `gather_done`, `trade_food_done`, `equip_wrong_class`, `cast_done`, `vet_profile`, `train_level8_need` |
 | Human, Elf, Dwarf, Gnome, Half-Orc | the five races | creation | `create_race` |
 | Innkeepers | save points with a face each: Lara, a half-orc, a ghost, a gnome | the five inns | `save_inn_prompt`, `portsmith_inn`, `algary_inn`, `dusk_inn`, `erliquin_inn` |
 | Blacksmiths | shops | Sorpigal, Portsmith | `shop_blacksmith_prompt`, `portsmith_blacksmith` |
@@ -138,4 +142,4 @@ A spread over types and tiers; the special ones marked.
   Pirate Captain, Winged Beast, Tyrannosaurus.
 - Magic weapons and armor (the table goes up to items such as Ultimate Sword and Holy Plate) were not seen in
   play; no chest besides the one in Dusk was opened.
-- Spells above level 1 need a higher-level party.
+- Spells above level 4 and the travel spells (Fly, Teleport, Town Portal, Surface) were not cast.

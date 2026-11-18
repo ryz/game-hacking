@@ -34,6 +34,10 @@ offered level 2 for 25 gold; training printed "CONGRATULATIONS! YOU ARE NOW LEVE
 (15 to 26), and the character's age went from 18 to 19; level 3 then needed 1315 more experience, so 3000 in
 all **(verified: `train_level2`, `train_levelup`, `profile_level2`, `train_level3_need`)**.
 
+A level 7 Knight with 61480 experience was told "TRAINING FOR LEVEL 8, NEED 34520 MORE EXPERIENCE POINTS":
+96000 in all, so with 1500 and 3000 for levels 2 and 3 the amount doubles with every level **(verified:
+`train_level8_need`; the doubling between levels 3 and 8 is computed; the level was set by memory edit)**.
+
 ## 5. Magic
 A spell is cast by its level and number, then Enter; outside combat from the caster's profile (`cast_prompt`).
 Seen: Leather Skin (Sorcerer 1-5, shows under Protect), Light (Sorcerer 1-6, makes a dark area visible:
@@ -75,6 +79,22 @@ arising in play: unconscious at 0 hit points after a fight (`unconscious_quickre
 (`combat_paralyzed`, `combat_conditions`), stone by a Medusa (`combat_stoned`), dead by a second dragon breath
 (`combat_dies`), eradicated by a Lich (`boss_lich_eradicates`) **(verified)**. Cures at a temple: see
 [sorpigal.md](sorpigal.md) section 6.
+
+## 8. Spells above level 1 (party set to level 7 by memory edit)
+- Create Food (Cleric 3-1): 3 spell points and 1 gem, the caster's food 18 to 24 (`cast_create_food`).
+- Cure Wounds (Cleric 2-1): 2 spell points, "DONE" **(verified in a test run, no shot)**.
+- Jump (Sorcerer 2-4) in a town corridor and Web (Sorcerer 3-8) in combat: "*** SPELL FAILED ***", the spell
+  points are spent anyway: 38 while the message shows (`cast_spell_failed`), 36 on the profile right after (test frame).
+- Identify Monster (Sorcerer 2-3): prints the target's hit points, armor class, speed, number of attacks,
+  maximum damage, bonus on touch, special ability and magic resistance: Poltergeist 7, 0, 16, 2, 2, yes, no, no
+  (`combat_identify_monster`).
+- Lightning Bolt (Sorcerer 3-4): 30 points to each of three Poltergeists, one cast (`combat_lightning_bolt`).
+- Fire Ball (Sorcerer 3-1) cast while the monsters stood in hand-to-hand range: RYZ, CONDI and EBO took 18
+  points each, the monsters none (`combat_fire_ball`; see [findings.md](findings.md)).
+- Sleep (Sorcerer 1-8) on five Goblins: "NOT AFFECTED" twice, "GOBLIN IS SLEPT" once; the list marks it
+  "(ASLEEP)" (`combat_sleep_goblins`).
+All **(verified)**. A level 7 Sorcerer here has 38 spell points and spell level 4 (`vet_profile`; set by memory
+edit, so not evidence for the growth rule).
 
 ## Open questions
 - Exact class requirements; what each race changes; experience needed beyond level 3; hit points gained per

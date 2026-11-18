@@ -57,3 +57,9 @@ Each entry: what the game does, what was probably intended, how sure we are, and
 **Intended:** yes (manual: food, gold and/or gems).
 **Confidence:** (verified)
 **Impact:** resting needs food; a cheap escape early, expensive far from a market.
+
+## Fire Ball burned the party
+**Behavior:** MNZ (set to level 7) cast Fire Ball (Sorcerer 3-1) at monster A in the first round against four Poltergeists standing in hand-to-hand range; the messages were "RYZ TAKES 18 POINTS OF DAMAGE!", then CONDI, then EBO; no monster was hurt (`combat_fire_ball`). Lightning Bolt from the same position hit the monsters (`combat_lightning_bolt`).
+**Intended:** unclear: either an area spell that includes whoever stands next to the target, or a fault in this version. The manual's entry was not compared.
+**Confidence:** (verified), one cast.
+**Impact:** an area spell in melee can cost more than it gains.
