@@ -37,7 +37,8 @@
     "WARP": "poke:055D={0},poke:0782={1},poke:0780={2}{3},poke:0490={4},left,w30,right,w30",
     "FREEZE": "freeze:04B5=1700,freeze:04C3=1500",
     "VET": "poke:04B4=18,poke:04B5=37013701,poke:04B9=110A0F0D0B,poke:04BE=AF5B00,poke:04C2=18,poke:04C3=B700B700,poke:04C7=3D3D,poke:04C9=0B140A0E0C,poke:04CE=E5007B80,poke:0576=0900",
-    "VFREEZE": "freeze:04B5=3701,freeze:04C3=B700"
+    "VFREEZE": "freeze:04B5=3701,freeze:04C3=B700",
+    "PW_LATE": "right,a,right*13,a,right*21,a,right*24,a,right*31,a,right*13,a,right*6,a,a,right*14,a,right*5,a,right*28,a,right*22,a,right*23,a,right*12,a,right*13,a,right*20,a,right*13,a,right*9,a,right*8,a,right*5,a,right,a,a,right*33,a,right*20,a,right*11,a,right*13,a,right*25,a,a,right*4,a,right*27,a,right*11,a,right*14,a"
   },
   "ram": {
     "floor": {

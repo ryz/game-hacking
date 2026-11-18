@@ -24,3 +24,27 @@ earned (shot `status_nakajima`, checkpoint `password_loaded`).
 **Intended:** unclear (the password may store levels only).
 **Confidence:** (verified) once.
 **Impact:** EXP toward the next level is lost on every password restart.
+
+## Events fire by position, whatever the floor
+**Behavior:** the party's position is one pair of coordinates for the whole labyrinth; an event square reacts to
+the position alone. With the floor shown as 8F, poking the party onto squares of other floors started their
+events (Minotaur, chests, elevators), while the walls of those squares read as solid.
+**Intended:** squares of other floors are unreachable in normal play, so this never shows.
+**Confidence:** verified (RAM, round 1 scan vs round 2 decoded maps).
+**Impact:** none in play; the round-1 "8F event map" mixed several floors (corrected in `maps.md`).
+
+## A beaten tyrant's fight is skipped everywhere
+**Behavior:** after beating Tyrant Minotaur, warping onto Tyrant Medusa's square gave no battle; from a state
+before the Minotaur the same warp starts the Medusa fight.
+**Intended:** probably one "boss beaten" mark per fixed-battle number, cleared when the party changes section
+by stairs.
+**Confidence:** verified (warp), cause inferred.
+**Impact:** none in normal play.
+
+## A password changes the level
+**Behavior:** a party at level 25 with 23489 EXP got a password from the sage; loading it gave level 28 and
+33309 EXP (HP maxima recomputed: Nakajima 380, Yumiko 223).
+**Intended:** unclear; the password keeps EXP above the level threshold in a short field, so the restored
+values are not the saved ones.
+**Confidence:** verified (checkpoint `password_late`); cause inferred from the password code.
+**Impact:** small gain for the player.

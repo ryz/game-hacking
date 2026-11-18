@@ -40,7 +40,8 @@ text)**. Progress is kept by passwords, given by the sage in Micom **(source: ga
 | characters.md (to write) | the two heroes, stat allocation (15 points over STR/WIS/ATT/AGI/LUK, base 5), levels, Yumiko's spells (Mappa 2 MP at level 1, verified) |
 | combat.md (to write) | Fight / Run / Order / Auto, per-hero actions (Fight/Comp/Guard, Fight/Magic/Guard), damage |
 | [demons.md](demons.md) | negotiation, Comp (Call / Bind / Order), fusion at the Heretic, moon phases |
-| [world.md](world.md) | Daedalus floors, Micom (8F), Bien (the moving town), shops, healing |
+| [world.md](world.md) | Micom (8F), shops, healing, tyrants, levels and magic, the ending |
+| [maps.md](maps.md) | all 35 floors of Daedalus (PNG per floor in `maps/`, special squares in `maps/grids.md`), the six sections and their tyrants |
 | passwords.md (to write) | the sage, the 40-character password, what it keeps (dead demons are lost: source) |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),

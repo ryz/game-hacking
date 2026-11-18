@@ -73,7 +73,7 @@ pages: one `a` plus `w150` per page (typewriter rule). A battle round with messa
   are dead when the password is taken are gone after restarting (source, unchecked).
 
 ## Shot plan
-Capture run 2026-11-18: 41 shots in `main` (see `shots.txt`); ticked below. Open: `levelup`, `battle_magic`, `battle` with a summoned demon, `later_floor`, `ending`.
+Capture run 2026-11-18: 41 shots in `main`; round 2 (same day): 88 shots, everything below ticked (see `shots.txt`, game order).
 - [x] `title_screen` - title - title screen (@title)
 - [x] `boot_dragon` - boot - the dragon on grey before the title (~f180)
 - [x] `intro_code` - cutscene - attract intro: the boy at the computer, assembler code (~f1400 without input)
@@ -91,7 +91,7 @@ Capture run 2026-11-18: 41 shots in `main` (see `shots.txt`); ticked below. Open
 - [x] `comp_menu` - system - Comp: Call / Bind / Order
 - [x] `battle_menu` - battle - Gnome x4, Fight / Run / Order / Auto (@battle_gnome)
 - [x] `battle_attack` - battle - "Nakajima attacks!" / damage message
-- [ ] `battle_magic` - battle - Yumiko casting in battle
+- [x] `battle_magic` (+ `magic_list`, `magic_damage`, `battle_orders`, `demon_attacks`) - battle - Yumiko casting in battle
 - [x] `negotiation` - system - a demon talking / joining (needs play: when a demon speaks first)
 - [x] `summon` - system - a demon called with Comp > Call, party list with demons
 - [x] `fusion` - system - the Heretic's fusion screen (needs two demons)
@@ -99,11 +99,11 @@ Capture run 2026-11-18: 41 shots in `main` (see `shots.txt`); ticked below. Open
 - [x] `shop` - shop - a shop in Micom or Bien
 - [x] `heal` (as `healer`) - system - healing ("health was restored")
 - [x] `password_screen` - save - password entry (@password_entry) and a filled one
-- [ ] `levelup` - battle - victory / EXP / level up
+- [x] `levelup` (+ `levelup_stat`, `levelup_spell`, `battle_mag`) - battle - victory / EXP / level up
 - [x] `boss_minotaur` - boss - Tyrant Minotaur (first boss, likely)
-- [ ] `later_floor` - gameplay - a deeper floor with a different wall set
+- [x] `later_floor` (+ `f_loki_b1`, `f_set_b2`, `f_hecate_5f`) - gameplay - a deeper floor with a different wall set
 - [x] `gameover` - gameover - GAME OVER skull and taunt (@gameover)
-- [ ] `ending` - ending - only via a late password (none known)
+- [x] `ending` - ending - Lucifer beaten: `lucifer_perished`, `ending_*`, `credits_namcot`, `the_end`; all six tyrants met and beaten (`boss_minotaur` ... `lion_shield`)
 How to reach: everything up to `battle_menu`, `mappa`, `gameover` and the password screen is a checkpoint
 here. Negotiation, summon, fusion, the sage, shops, level-up and bosses need play on 8F/7F with frozen HP
 (`freeze:04B5=1700,freeze:04C3=1500`) and, for bosses, a password or pokes once the password format is known.
@@ -128,7 +128,12 @@ allocation). Demons keep their names.
 | Teleport on the floor | `poke:0780=XXYY` (x, y) then one step: the step moves from the poked square, events of the target square fire, the 3D view redraws | RAM (capture run) | verified (guard, Heretic, sage, shop, healer, Minotaur) |
 | Money / MAG / Jewel | `set:0550=2471:2` (Makka), `set:0554=1386:2` (MAG), `poke:0553=02` (Jewel) | RAM (capture run) | verified on the Stats page; checkpoint `rich` |
 | Sage's password (Nekomata in the Comp, Makka 2385, MAG 1217, Jewel 2, level 1) | `MM962 VBMEM 2TSD7 MNLTK ARBVC GUPSK BW`; typed by macro `PW_SAGE1` on the password screen, then `start` | sage (capture run) | verified: `@password_entry,PW_SAGE1,start` loads it (checkpoint `password_loaded`) |
-| Floor display | `poke:055D=05` changes the panel to "5F" | RAM (here) | verified for the display only; whether the map follows (poke during the stairs transition) is untested |
+| Floor display | `poke:055D=05` changes the panel to "5F" | RAM (here) | ~~display only~~ round 2: floor + section + position together are a full warp (macro `WARP`, below) |
+| **Warp anywhere** | `WARP:FF:SS:XX:YY:D` = floor ($055D: 1-8, 09 = B1, 0A = B2), section ($0782, 0-5), x, y (hex), facing (1 N 2 E 3 S 4 W); it pokes and turns left/right so the 3D view redraws; then `up` steps into the square ahead. Coordinates for every floor: `design/maps/grids.md` | round 2 | verified on all six tyrants, 5F, B1, B2. The wall graphics (CHR) are not reloaded by a warp: every warped floor shows the 8F wall set |
+| **Veteran party** | `VET` (both heroes level 24, Nakajima HP 311 STR 17 WIS 10 ATT 15 AGI 13 LUK 11, EXP 23471; Yumiko HP 183 MP 61, battle+field spell set 8; 9 points to the next level) + `VFREEZE` (holds HP 311/183) | round 2 | verified; the status window redraws only after a Comp call/battle: checkpoint `veteran` summons Nekomata for that |
+| **One-hit fights** | `poke:061C=0300` = first enemy's HP (16-bit, $061C + 2n for enemy n) during the battle menu | round 2 | verified (Ghost, all six tyrants; Minotaur has 700 HP) |
+| **Key items** | bits at $0569-$056B (shown on Nakajima's Stats page): $0569 bit 0 Bull Key, 1 Tabasa Statue, 2 Garu's Shield, 3 Sky City Pass, 4 Calm Gem, 5 Loru's Charm, 6 Amethyst, 7 Ares Necklace; $056A bit 0 Orkish Horn, 1 Crude Gem, 2 Ratos Statue, 3 Silver Relief, 4 Surge Gem, 5 Izanami's Robe, 6 Roose's Bottle; $056B bit 0 White Dragon Orb, bit 1 Purski's Trumpet (more bits: not mapped) | round 2 | verified (Stats page, boss fights) |
+| **Late password** | `0D0QM 066LR K7W8M 7LV38 998U5 J99D6 HX` (macro `PW_LATE`): Nakajima/Yumiko level 28 (EXP 33309), Nekomata, Bull Key, Calm Gem, Crude Gem, Surge Gem, Makka 2358, MAG 1221 | sage, round 2 | verified: `@password_entry,PW_LATE,start` -> checkpoint `password_late`. Password alphabet (cursor order): blank, 0-9, A-H, J-N, P-Y (34) |
 | Passwords | the sage at (1,3) on 8F, reached facing N from (1,4): `left,w30,poke:0780=0104,up,w200` from `@start`-like states | capture run | verified (shot `sage_password`) |
 | Action Replay codes | almarsguides.com has an Action Replay page for this game ("enemies can be killed in one hit" etc.) | search result | host not allowed here: owner to fetch |
 | Debug menu / level select | none found (TCRF 403) | - | - |
@@ -157,6 +162,12 @@ None: password game, no battery. Record passwords here once the sage gives one.
 | 0553 | 1 | Jewel | poke shown on Stats; a Jewel adds the Jewel command to the field menu |
 | 0554 | 2 | MAG (magnetite) | poke shown on Stats; spent by negotiation |
 | 04BE | 2 | Nakajima EXP (Stats page "EXP n Pts.") | RAM diff after a battle (+10) |
+| 0576 / 0577 | 2 | points to the next level (shared by both heroes); a won battle subtracts the EXP gained; below 0 = both heroes level up (stat point screen, new spells) | round 2: level-up code in bank 13; `poke:0576=0900` + any won battle = level-up (shots `levelup*`) |
+| 04BE-04C0 | 3 | Nakajima EXP (24-bit) | round 2 |
+| 04CE-04D1 | 4 | Yumiko's spells: 04CE/04CF field list (Mappa Medi Patch Bottra Etna Swadona Marinka Clink / Hacke Medical Staruto Rekarm), 04D0/04D1 battle list; the game sets them from a 12-entry table by level ($EEDA) | round 2 |
+| 0569-056B | 3 | key items (bits, see Shortcuts) | round 2 |
+| 0782 | 1 | section (0-5): which tower of Daedalus; with 055D selects the floor in the 128x64 grid | round 2 |
+| 061C + 2n | 2 | enemy n HP in battle | round 2 |
 | 04D2 + 18n | 18 | Comp demon records (n = 0..6): class, demon id, ?, ?, HP, max HP, MP, max MP, STR WIS ATT AGI DEF, ... (Nekomata `10 28 06 01 3a00 3a00 16 16 0a 0b 08 0a 06 05 05 13`, Dryad `10 40 09 01 3000 3000 ...`) | RAM (capture run); byte 1 = demon (0x28 Nekomata, 0x40 Dryad, 0x3F Goblin, 0x13 Lakshmi); byte 2 = class shown at the Heretic (06 Feral, 09 Fairy, 04 Holy) |
 `play.py find` returned 0 candidates right after `find reset` in this game (twice); dumping RAM with `peek` and
 diffing worked (`work/scout/megami-tensei/ramdiff.py save NAME` / `diff A B C`).
@@ -172,6 +183,8 @@ diffing worked (`work/scout/megami-tensei/ramdiff.py save NAME` / `diff A B C`).
 All in `checkpoints.txt`; built from an empty cache and compared with a cache hit: identical frames
 (2026-11-17). `guard` -> `f7_arrival` (stairs) -> `battle_gnome` (first random battle) / `f7_mappa` (automap);
 `password_entry` from `title`; `gameover` from `battle_gnome` (Auto).
+Round 2: `password_loaded` -> `veteran` (VET, Nekomata summoned) -> `ghost_vet` (6F Ghost) -> `lv25` (after the level-up; start of every boss route) -> `minotaur_vet` -> `minotaur_won`; `medusa`, `loki`, `hecate`, `set_battle`, `lucifer` (battle menus, from `lv25` + WARP + item bits) -> `lucifer_won` (ending runs from here); `password_late` (from `password_entry` + `PW_LATE`).
+Battle timing used for every boss: orders `a,w60,a,w150,a,w150,a,w100`, confirm `a,w10`, then the round in `w60` steps (`play.py sample "w60" 18` to pick frames); poke the tyrant's HP to 3 at the battle menu (or, for Hecate/Set/Lucifer, right after the item message) so Nekomata's hit ends the fight.
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -181,6 +194,21 @@ All in `checkpoints.txt`; built from an empty cache and compared with a cache hi
 | Patched ROM text | `rom/megami-tensei.nes`, decoded | place names, sage/password, bosses | 2026-11-17 |
 | GameFAQs, StrategyWiki, TCRF, gamehacking.org | (game pages) | 403, unavailable | 2026-11-17 |
 | video-games-museum.com FAQ PDF, almarsguides.com Action Replay codes | https://www.video-games-museum.com/en/faqs/Nes/4287-Digital-Devil-Monogatari-Megami-Tensei.pdf, https://almarsguides.com/retro/walkthroughs/nes/games/digitaldevilstorymegamitensei/actionreplay/ | hosts not allowed: for the owner | - |
+
+## Maps (round 2, 2026-11-18)
+All 35 floors are drawn from the ROM by `tools/maps.py` into `design/maps/` (explained in `design/maps.md`,
+special squares with coordinates in `design/maps/grids.md`). Format: one 128x64 grid (PRG bank 10/11 at $8004,
+one byte per square, four 2-bit walls N E S W: 0 open, 1 wall, 3 door), a 16x8 block table at $CB7D in the fixed
+bank (floor << 4 | section per 8x8 block; 0E/0F split into 4x4 via $CBFD), and per-section lists in bank 9
+(pointer table $AAF5, 0x1C bytes per section): +08 stairs up, +0A down, +10 elevator, +12 locked doors, +14 fixed
+battles (id 0F = the tyrant), +16 events, +0C/+0E warps, +18 unknown 7-byte records.
+**The round-1 "8F event map" below is mostly other floors**: 8F is only the 8x8 block x 0-7, y 0-7; the scan
+poked positions on other floors' squares while the floor byte still said 8, and events fire by position.
+Tyrants: Minotaur (31,10) 1F s0, Medusa (43,12) 4F s1, Loki (79,11) 1F s2, Hecate (106,11) 3F s3 (needs the
+Ratos Statue), Set (27,52) 1F s4 (needs Purski's Trumpet), Lucifer (124,40) 8F s5 (needs the White Dragon Orb).
+A beaten tyrant's battle flag is shared: after beating the Minotaur, warping to Medusa's square gave no fight
+(start each boss route from `lv25`). Lucifer beaten -> the ending and credits play by themselves (~2 minutes,
+then END).
 
 ## Floor 8F event map (capture run 2026-11-18)
 Found by `work/capture/megami-tensei/scan.py` (poke the square before the target, step in, look for a text box), from
@@ -208,8 +236,8 @@ some squares are deterministic only for the frame timing of the scan.
 
 ## Open questions
 - ~~Where the sage is~~ (1,3), see the event map. The password format (32 characters for this state; could one be built from RAM?) is not decoded.
-- Levels: winning battles adds EXP (Nakajima "EXP n Pts.", Yumiko "Next Level n Pts.") but no level-up happened even with EXP poked to 2990 and another battle won: how Nakajima levels up is unknown (no `levelup` shot).
+- ~~Levels~~ (round 2): the level-up counts down $0576/$0577 ("Next Level"), not EXP; poking EXP alone does nothing.
 - The fusion level check: Nakajima level 7 refused Trent, 14 allowed it (poked level; stats were not raised).
-- Does a floor poke during the stairs transition load the other floor's map (warp)?
+- ~~Floor poke warp~~: yes with section + position (`WARP`); graphics stay those of the start floor. Stairs entered after a warp did not prompt (section 5, 2F (32,48)): unexplained.
 - ~~How negotiation starts~~: Fight -> Nakajima's Comp -> Talk.
 - Password screen: which button deletes a character / confirms (Down, B, Select, Start showed nothing).
