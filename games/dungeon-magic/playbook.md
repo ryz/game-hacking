@@ -41,8 +41,12 @@ one-liner in Emulation notes), not yet seen in play. **code** = read from the di
 | | A | talk to the person in front of you (NPCs wander in real time); open a closed door in front; otherwise the action of the active command icon | verified (talk, door) |
 | | B | nothing seen in the field; held B blocks turning | verified (no effect seen) |
 | | Start | **pause** (COND STOP); while paused Left/Right choose a command icon: Fight ("Weapons & Armor"), Item, Spell (rune slots), Use ("Use command: open the door & get box"), Camp (weight, food, water) | verified |
-| Paused | A / Start / B | resume with the chosen icon active | verified |
+| Paused | A / Start | resume with the chosen icon active | verified |
 | | Select | open the chosen icon's panel (Spell: the rune slots) | verified (Spell); code: Select sets the "panel open" mode for any icon |
+| Spell panel open | Left/Right | move the cursor over the runes | verified |
+| | B | add the highlighted rune to the spell (shown top left, up to 3) | verified |
+| | Start, then A | resume, then cast the spell (costs HP) | verified (`rune_cast`) |
+| Fight icon | A | swing at the monster in front | verified (`battle_win`) |
 | Shops / inn | A / B | YES / NO (the window says "B:NO A:YES") | verified |
 | Signs | face them | a sign's text shows while you face it ("WANTED: BRAVE WARRIORS..."); turn away to close | verified |
 
@@ -67,8 +71,9 @@ waits (deterministic, but a different `wN` puts the NPC elsewhere).
 - Town layout (verified, Granville = map 00): 16x16 walled square, gates in the middle of each side (exits to
   overworld sections), buildings entered by facing their door, A to open it, Up to walk in. Granville
   buildings: weapon & armour shop (door at square 73, stand on 74 facing west), inn (93, from 94 facing west),
-  item shop (B3, from B4 facing west); the doors at 6C (from 6B east), BC (from BB east), C6 (from C7 west) stayed
-  closed with an A press (verified; locked or need another command).
+  item shop (B3, from B4 facing west); ~~the doors at 6C, BC, C6 stayed closed~~ they are wizards' houses and open
+  normally (capture 2026-11-18): Earth 34 (from 44 facing north), Water 38 (from 48 north), Fire 6C (from 6B
+  east), Wind BC (from BB east), Fairies C6 (from C7 west) (verified).
 - Overworld (verified): leaving Granville's north gate puts you on map 25 (a 16x16 field section) at DE; two steps
   north is Granville Castle (map 89, green stone walls).
 
@@ -77,6 +82,18 @@ waits (deterministic, but a different `wN` puts the NPC elsewhere).
 - Town and dungeon cells: low nibble = walls (1 north, 2 east, 4 south, 8 west); bits `$10`, `$20`, `$40`, `$80` =
   features (in Granville: `$10` on the four gate squares, `$20` on building squares behind doors, `$80` on the
   street square in front of a door / the sign; `$40` meaning open) (verified for Granville).
+- **Decoded (capture 2026-11-18): floor XX is at PRG bank XX>>5, CPU `$A000 + (XX & $1F) * $100`** (the scout's
+  `>>4` was wrong for ids >= $80; `tools/maps.py` fixed). Real floors: towns 00-05, forests 40-48 (bank 2),
+  castle and dungeons 80-97 (bank 4). Exit tables at `$BA00` of the same bank (towns: 8 bytes per map = pointers
+  to door squares, door types 04 weapons/06 items/0A inn/08 wizard, exit squares, exit records; banks 2/4: 4
+  bytes per map = exit squares, exit records). Exit record = `[type, map, square, -, owlo, owhi, -, -]`, type 10
+  = to the overworld, 14/16/18 = stairs. Everything is drawn by `tools/atlas.py` -> `design/maps/` and indexed in
+  `design/maps.md` (with warp tokens per floor).
+- **Overworld (decoded):** one 64x96 map at bank 1 `$A000` (64 cells per row; rows 0-63 the continent, 64-95 the
+  lower world). `$98/$99` = pointer of the party's overworld cell (`$A000 + row*64 + col`); the "section" id `$95`
+  = `$20 + (row/16)*4 + col/16` on the continent, `(row/16)*4 + col/16` (`$10-$17`) in the lower world; `$8A`
+  = position inside the section. Cell high nibble = terrain (7 grass, E forest edge, F water, 0 lower ground);
+  `xF` = a place (1F town, 0F castle, others dungeon entrances). Which town is entered is decided by `$98/$99`.
 - Town and dungeon maps are stored **uncompressed in the ROM**: map 00 (Granville) at PRG offset `$2000` (bank 0
   `$A000`), map 89 (Granville Castle) at PRG `$12900` (bank 4 `$A900`) (verified by matching the RAM block).
   A wall-consistency scan finds map-shaped blocks at PRG `$2000-$25FF` (6 towns, ids 00-05) and `$12100-$137FF`
@@ -124,6 +141,10 @@ owner's name rule (ryz) does not apply.
 ## Shortcuts
 | What | How (tokens / prefix / code) | Source | Status |
 |---|---|---|---|
+| **Warp to any castle/dungeon floor** | `poke:0095=XX,poke:008A=SQ,poke:008F=SQ,poke:0098=LO,poke:0099=HI,poke:0011=00,poke:0003=TT,w240` (TT 16 for floors 80-97, 18 for forests 40-48; SQ/LO/HI from the floor's incoming stairs record; ready-made tokens per floor in `design/maps.md`) | capture (exit-table decode) | verified (all 33 floors) |
+| **Enter any town** | from `@field`: `poke:0095=SEC,poke:008A=SQ,poke:008F=SQ,poke:0098=LO,poke:0099=HI,right,w30,right,w30,up,w240` = stand on the square north of the town (its north-gate exit record) and step south; e.g. town 01 `SEC=25 SQ=29 LO=99 HI=A4`, 02 `24 74 C4 A5`, 03 `27 95 75 A6`, 04 `29 25 95 A8`, 05 `2E 2E AE AC` | capture | verified (01-05; 04 lost to a field monster on the way, freeze HP) |
+| Current HP | `$DC` (shown on the left scroll); `$4D` = maximum HP. Freeze in fights with `freeze:00DC=..` and `w10*N` waits | capture | verified |
+| Magic schools | `$46` bit mask (Fire = `$04`, row 3 of the panel); poking it is not enough for the panel - also poke the rune tiles of the panel buffer (Fire row: `poke:61CB=60,poke:61CC=67,poke:61CD=68,poke:61CE=69`), or apprentice for real | capture | verified (Fire) |
 | Warp inside the current map | `poke:008A=YX,poke:008F=YX` then turn/step (the view redraws on the next turn/step) | scout | verified (Granville, several squares) |
 | Gold | `set:0040=N:2` (16-bit, shown on the next redraw) | Action Replay `0040:FF` (source) + scout | verified |
 | Level | `poke:004A=N` | Action Replay `004A:09` "start at level 9" (source) | verified (LV display) |
@@ -147,7 +168,13 @@ No downloadable saves found (GameFAQs not reachable).
 | `$0040` | 2 (LE) | gold | Action Replay code + poke (verified) |
 | `$004A` | 1 | level (LV) | Action Replay code + poke (verified) |
 | `$004B` | 2 (LE) | EXP | poke (verified) |
-| `$004D` | 1 | HP (12 at start; the HP display does not redraw after a poke) | RAM dump (inferred, value matches) |
+| `$004D` | 1 | **maximum** HP (12 at start) | capture: the display follows `$DC` |
+| `$00DC` | 1 | current HP (left scroll) | capture (verified: freeze holds the display) |
+| `$0046` | 1 | magic schools learned, bit mask (Fire `$04`) | capture: RAM diff of an apprenticeship (verified) |
+| `$0043-$0044` | 2 | WEIGHT capacity x10 (`$01F0` = 49.6; minus 2.0 after an apprenticeship) | capture (RAM) |
+| `$0003` | 1 | pending transition type (10 overworld, 14/16/18 stairs); written by the exit code with `$95/$8A/$98/$99` | code + warp test (verified) |
+| `$0098-$0099` | 2 | overworld pointer of the party (see Map data) | capture (verified) |
+| `$0700-$07FF` | 256 | monster/object occupancy grid of the floor (cell = monster slot) | capture (RAM, partly understood) |
 | `$0080` | 1 | active command icon 0-4 (Fight, Item, Spell, Use, Camp) | code + watch (verified) |
 | `$0017` | 1 | icon * 2, +1 while its panel is open | code + watch (verified) |
 | `$007B` | 1 | 1 = paused | code |
@@ -155,7 +182,7 @@ No downloadable saves found (GameFAQs not reachable).
 | `$008B` | 1 | facing bitmask (1 north, 2 east?, 4, 8; with `$8C-$8E` the four directions rotated) | dump diff over turns (verified it rotates; exact mapping open) |
 | `$0095` | 1 | map id: `$00-$05` towns, `$2x` overworld sections (Granville north field = `$25`), `$89` Granville Castle | watch (verified) |
 | `$0600-$06FF` | 256 | current map (see Map data) | dump + ROM match (verified) |
-| `$00DB` | 1 | enemy HP | Action Replay (source) |
+| `$00DB` | 1 | enemy HP (right scroll) | Action Replay; verified (182 for the floor 92 guardian) |
 | `$0004` / `$0006` | 1 | joypad 1 newly pressed / held (A $80, B $40, Select $20, Start $10, Up 8, Down 4, Left 2, Right 1) | code |
 | `$6000-$60FF`, `$7F00-$7F0F` | - | battery save: a copy of the player block (`$6010` = gold ...), signature `55 AA 55 AA "NASTUME"` at `$7F00` | dump after the inn (verified) |
 Food and water counters not found yet (blank at the start).

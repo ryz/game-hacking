@@ -1,0 +1,1652 @@
+{
+ "00": {
+  "exits": [
+   {
+    "square": "08",
+    "type": "10",
+    "map": "25",
+    "to": "DE",
+    "ow": "A75E"
+   },
+   {
+    "square": "8F",
+    "type": "10",
+    "map": "25",
+    "to": "EF",
+    "ow": "A79F"
+   },
+   {
+    "square": "F8",
+    "type": "10",
+    "map": "25",
+    "to": "FE",
+    "ow": "A7DE"
+   },
+   {
+    "square": "80",
+    "type": "10",
+    "map": "25",
+    "to": "ED",
+    "ow": "A79D"
+   }
+  ],
+  "doors": [
+   {
+    "square": "73",
+    "kind": "W"
+   },
+   {
+    "square": "93",
+    "kind": "N"
+   },
+   {
+    "square": "B3",
+    "kind": "I"
+   },
+   {
+    "square": "34",
+    "kind": "M"
+   },
+   {
+    "square": "38",
+    "kind": "M"
+   },
+   {
+    "square": "6C",
+    "kind": "M"
+   },
+   {
+    "square": "BC",
+    "kind": "M"
+   },
+   {
+    "square": "C6",
+    "kind": "M"
+   }
+  ],
+  "overworld_cell": [
+   30,
+   30
+  ]
+ },
+ "01": {
+  "exits": [
+   {
+    "square": "08",
+    "type": "10",
+    "map": "25",
+    "to": "29",
+    "ow": "A499"
+   },
+   {
+    "square": "8F",
+    "type": "10",
+    "map": "25",
+    "to": "3A",
+    "ow": "A4DA"
+   },
+   {
+    "square": "F8",
+    "type": "10",
+    "map": "25",
+    "to": "49",
+    "ow": "A519"
+   },
+   {
+    "square": "80",
+    "type": "10",
+    "map": "25",
+    "to": "38",
+    "ow": "A4D8"
+   }
+  ],
+  "doors": [
+   {
+    "square": "44",
+    "kind": "N"
+   },
+   {
+    "square": "B4",
+    "kind": "M"
+   },
+   {
+    "square": "77",
+    "kind": "W"
+   },
+   {
+    "square": "BB",
+    "kind": "I"
+   }
+  ],
+  "overworld_cell": [
+   25,
+   19
+  ]
+ },
+ "02": {
+  "exits": [
+   {
+    "square": "08",
+    "type": "10",
+    "map": "24",
+    "to": "74",
+    "ow": "A5C4"
+   },
+   {
+    "square": "8F",
+    "type": "10",
+    "map": "24",
+    "to": "85",
+    "ow": "A605"
+   },
+   {
+    "square": "F8",
+    "type": "10",
+    "map": "24",
+    "to": "94",
+    "ow": "A644"
+   },
+   {
+    "square": "80",
+    "type": "10",
+    "map": "24",
+    "to": "83",
+    "ow": "A603"
+   }
+  ],
+  "doors": [
+   {
+    "square": "34",
+    "kind": "N"
+   },
+   {
+    "square": "3B",
+    "kind": "I"
+   },
+   {
+    "square": "C4",
+    "kind": "M"
+   },
+   {
+    "square": "CB",
+    "kind": "W"
+   }
+  ],
+  "overworld_cell": [
+   4,
+   24
+  ]
+ },
+ "03": {
+  "exits": [
+   {
+    "square": "08",
+    "type": "10",
+    "map": "27",
+    "to": "95",
+    "ow": "A675"
+   },
+   {
+    "square": "8F",
+    "type": "10",
+    "map": "27",
+    "to": "A6",
+    "ow": "A6B6"
+   },
+   {
+    "square": "F8",
+    "type": "10",
+    "map": "27",
+    "to": "B5",
+    "ow": "A6F5"
+   },
+   {
+    "square": "80",
+    "type": "10",
+    "map": "27",
+    "to": "A3",
+    "ow": "A6B4"
+   }
+  ],
+  "doors": [
+   {
+    "square": "2A",
+    "kind": "M"
+   },
+   {
+    "square": "52",
+    "kind": "W"
+   },
+   {
+    "square": "78",
+    "kind": "N"
+   },
+   {
+    "square": "A7",
+    "kind": "I"
+   }
+  ],
+  "overworld_cell": [
+   53,
+   26
+  ]
+ },
+ "04": {
+  "exits": [
+   {
+    "square": "08",
+    "type": "10",
+    "map": "29",
+    "to": "25",
+    "ow": "A895"
+   },
+   {
+    "square": "8F",
+    "type": "10",
+    "map": "29",
+    "to": "36",
+    "ow": "A8D6"
+   },
+   {
+    "square": "F8",
+    "type": "10",
+    "map": "29",
+    "to": "45",
+    "ow": "A915"
+   },
+   {
+    "square": "80",
+    "type": "10",
+    "map": "29",
+    "to": "34",
+    "ow": "A8D4"
+   }
+  ],
+  "doors": [
+   {
+    "square": "65",
+    "kind": "W"
+   },
+   {
+    "square": "7A",
+    "kind": "I"
+   },
+   {
+    "square": "85",
+    "kind": "N"
+   },
+   {
+    "square": "9A",
+    "kind": "M"
+   }
+  ],
+  "overworld_cell": [
+   21,
+   35
+  ]
+ },
+ "05": {
+  "exits": [
+   {
+    "square": "06",
+    "type": "10",
+    "map": "2E",
+    "to": "2E",
+    "ow": "ACAE"
+   },
+   {
+    "square": "9F",
+    "type": "10",
+    "map": "2E",
+    "to": "3F",
+    "ow": "ACEF"
+   },
+   {
+    "square": "F9",
+    "type": "10",
+    "map": "2E",
+    "to": "4E",
+    "ow": "AD2E"
+   },
+   {
+    "square": "60",
+    "type": "10",
+    "map": "2E",
+    "to": "3D",
+    "ow": "ACED"
+   }
+  ],
+  "doors": [
+   {
+    "square": "D3",
+    "kind": "M"
+   },
+   {
+    "square": "32",
+    "kind": "I"
+   },
+   {
+    "square": "CD",
+    "kind": "W"
+   },
+   {
+    "square": "2C",
+    "kind": "N"
+   }
+  ],
+  "overworld_cell": [
+   46,
+   51
+  ]
+ },
+ "40": {
+  "exits": [
+   {
+    "square": "08",
+    "type": "10",
+    "map": "2B",
+    "to": "39",
+    "ow": "A8F9"
+   },
+   {
+    "square": "F2",
+    "type": "18",
+    "map": "41",
+    "to": "12",
+    "ow": "A93A"
+   },
+   {
+    "square": "F4",
+    "type": "18",
+    "map": "41",
+    "to": "14",
+    "ow": "A979"
+   },
+   {
+    "square": "F6",
+    "type": "18",
+    "map": "41",
+    "to": "16",
+    "ow": "A938"
+   },
+   {
+    "square": "FD",
+    "type": "18",
+    "map": "41",
+    "to": "1D",
+    "ow": "A938"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   57,
+   36
+  ]
+ },
+ "41": {
+  "exits": [
+   {
+    "square": "60",
+    "type": "10",
+    "map": "2B",
+    "to": "48",
+    "ow": "A938"
+   },
+   {
+    "square": "02",
+    "type": "18",
+    "map": "40",
+    "to": "E2",
+    "ow": "A979"
+   },
+   {
+    "square": "04",
+    "type": "18",
+    "map": "40",
+    "to": "E4",
+    "ow": "A979"
+   },
+   {
+    "square": "06",
+    "type": "18",
+    "map": "40",
+    "to": "E6",
+    "ow": "A979"
+   },
+   {
+    "square": "0D",
+    "type": "18",
+    "map": "40",
+    "to": "ED",
+    "ow": "A979"
+   },
+   {
+    "square": "2F",
+    "type": "18",
+    "map": "42",
+    "to": "21",
+    "ow": "A979"
+   },
+   {
+    "square": "9F",
+    "type": "18",
+    "map": "42",
+    "to": "91",
+    "ow": "A979"
+   },
+   {
+    "square": "CF",
+    "type": "18",
+    "map": "42",
+    "to": "C1",
+    "ow": "A979"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   57,
+   36
+  ]
+ },
+ "42": {
+  "exits": [
+   {
+    "square": "5F",
+    "type": "10",
+    "map": "2B",
+    "to": "4A",
+    "ow": "A93A"
+   },
+   {
+    "square": "F8",
+    "type": "10",
+    "map": "2B",
+    "to": "59",
+    "ow": "A979"
+   },
+   {
+    "square": "20",
+    "type": "18",
+    "map": "41",
+    "to": "2E",
+    "ow": "A979"
+   },
+   {
+    "square": "90",
+    "type": "18",
+    "map": "41",
+    "to": "9E",
+    "ow": "A979"
+   },
+   {
+    "square": "C0",
+    "type": "18",
+    "map": "41",
+    "to": "CE",
+    "ow": "A979"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   57,
+   36
+  ]
+ },
+ "43": {
+  "exits": [
+   {
+    "square": "F6",
+    "type": "18",
+    "map": "44",
+    "to": "16",
+    "ow": "A9CC"
+   }
+  ],
+  "doors": []
+ },
+ "44": {
+  "exits": [
+   {
+    "square": "1C",
+    "type": "10",
+    "map": "28",
+    "to": "7C",
+    "ow": "A9CC"
+   },
+   {
+    "square": "9F",
+    "type": "10",
+    "map": "28",
+    "to": "8D",
+    "ow": "AA0D"
+   },
+   {
+    "square": "E4",
+    "type": "10",
+    "map": "28",
+    "to": "9C",
+    "ow": "AA4C"
+   },
+   {
+    "square": "50",
+    "type": "10",
+    "map": "28",
+    "to": "8B",
+    "ow": "AA0B"
+   },
+   {
+    "square": "F8",
+    "type": "18",
+    "map": "45",
+    "to": "18",
+    "ow": "A9CC"
+   },
+   {
+    "square": "06",
+    "type": "18",
+    "map": "43",
+    "to": "E6",
+    "ow": "A9CC"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   12,
+   40
+  ]
+ },
+ "45": {
+  "exits": [
+   {
+    "square": "08",
+    "type": "18",
+    "map": "44",
+    "to": "E8",
+    "ow": "A9CC"
+   }
+  ],
+  "doors": []
+ },
+ "46": {
+  "exits": [
+   {
+    "square": "0B",
+    "type": "10",
+    "map": "14",
+    "to": "88",
+    "ow": "B608"
+   },
+   {
+    "square": "A0",
+    "type": "10",
+    "map": "14",
+    "to": "97",
+    "ow": "B647"
+   },
+   {
+    "square": "5F",
+    "type": "18",
+    "map": "47",
+    "to": "51",
+    "ow": "A9CC"
+   },
+   {
+    "square": "DF",
+    "type": "18",
+    "map": "47",
+    "to": "D1",
+    "ow": "A9CC"
+   },
+   {
+    "square": "F3",
+    "type": "18",
+    "map": "48",
+    "to": "13",
+    "ow": "A9CC"
+   },
+   {
+    "square": "F8",
+    "type": "18",
+    "map": "48",
+    "to": "18",
+    "ow": "A9CC"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   8,
+   89
+  ]
+ },
+ "47": {
+  "exits": [
+   {
+    "square": "8F",
+    "type": "10",
+    "map": "14",
+    "to": "99",
+    "ow": "B649"
+   },
+   {
+    "square": "50",
+    "type": "18",
+    "map": "46",
+    "to": "5E",
+    "ow": "A9CC"
+   },
+   {
+    "square": "D0",
+    "type": "18",
+    "map": "46",
+    "to": "DE",
+    "ow": "A9CC"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   8,
+   89
+  ]
+ },
+ "48": {
+  "exits": [
+   {
+    "square": "FC",
+    "type": "10",
+    "map": "14",
+    "to": "A8",
+    "ow": "B688"
+   },
+   {
+    "square": "03",
+    "type": "18",
+    "map": "46",
+    "to": "E3",
+    "ow": "A9CC"
+   },
+   {
+    "square": "08",
+    "type": "18",
+    "map": "46",
+    "to": "E8",
+    "ow": "A9CC"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   8,
+   89
+  ]
+ },
+ "80": {
+  "exits": [
+   {
+    "square": "04",
+    "type": "10",
+    "map": "20",
+    "to": "6C",
+    "ow": "A18C"
+   },
+   {
+    "square": "4F",
+    "type": "10",
+    "map": "20",
+    "to": "7D",
+    "ow": "A1CD"
+   },
+   {
+    "square": "FB",
+    "type": "10",
+    "map": "20",
+    "to": "8C",
+    "ow": "A20C"
+   },
+   {
+    "square": "B0",
+    "type": "10",
+    "map": "20",
+    "to": "7B",
+    "ow": "A1CB"
+   },
+   {
+    "square": "88",
+    "type": "16",
+    "map": "81",
+    "to": "89",
+    "ow": "A18C"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   12,
+   7
+  ]
+ },
+ "81": {
+  "exits": [
+   {
+    "square": "88",
+    "type": "16",
+    "map": "80",
+    "to": "87",
+    "ow": "A18C"
+   },
+   {
+    "square": "58",
+    "type": "16",
+    "map": "82",
+    "to": "48",
+    "ow": "A18C"
+   },
+   {
+    "square": "5A",
+    "type": "16",
+    "map": "82",
+    "to": "4A",
+    "ow": "A18C"
+   },
+   {
+    "square": "B8",
+    "type": "16",
+    "map": "82",
+    "to": "C8",
+    "ow": "A18C"
+   },
+   {
+    "square": "BA",
+    "type": "16",
+    "map": "82",
+    "to": "CA",
+    "ow": "A18C"
+   },
+   {
+    "square": "4E",
+    "type": "16",
+    "map": "82",
+    "to": "4F",
+    "ow": "A18C"
+   },
+   {
+    "square": "C0",
+    "type": "16",
+    "map": "82",
+    "to": "B0",
+    "ow": "A18C"
+   },
+   {
+    "square": "9F",
+    "type": "16",
+    "map": "82",
+    "to": "8F",
+    "ow": "A18C"
+   }
+  ],
+  "doors": []
+ },
+ "82": {
+  "exits": [
+   {
+    "square": "4E",
+    "type": "16",
+    "map": "81",
+    "to": "4D",
+    "ow": "A18C"
+   },
+   {
+    "square": "58",
+    "type": "16",
+    "map": "81",
+    "to": "68",
+    "ow": "A18C"
+   },
+   {
+    "square": "5A",
+    "type": "16",
+    "map": "81",
+    "to": "6A",
+    "ow": "A18C"
+   },
+   {
+    "square": "B8",
+    "type": "16",
+    "map": "81",
+    "to": "A8",
+    "ow": "A18C"
+   },
+   {
+    "square": "BA",
+    "type": "16",
+    "map": "81",
+    "to": "AA",
+    "ow": "A18C"
+   },
+   {
+    "square": "C0",
+    "type": "16",
+    "map": "81",
+    "to": "D0",
+    "ow": "A18C"
+   },
+   {
+    "square": "9F",
+    "type": "16",
+    "map": "81",
+    "to": "AF",
+    "ow": "A18C"
+   }
+  ],
+  "doors": []
+ },
+ "83": {
+  "exits": [
+   {
+    "square": "09",
+    "type": "10",
+    "map": "22",
+    "to": "64",
+    "ow": "A1A4"
+   },
+   {
+    "square": "6F",
+    "type": "10",
+    "map": "22",
+    "to": "75",
+    "ow": "A1E5"
+   },
+   {
+    "square": "F6",
+    "type": "10",
+    "map": "22",
+    "to": "84",
+    "ow": "A224"
+   },
+   {
+    "square": "90",
+    "type": "10",
+    "map": "22",
+    "to": "73",
+    "ow": "A1E3"
+   },
+   {
+    "square": "88",
+    "type": "16",
+    "map": "84",
+    "to": "87",
+    "ow": "A1E4"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   36,
+   7
+  ]
+ },
+ "84": {
+  "exits": [
+   {
+    "square": "88",
+    "type": "16",
+    "map": "83",
+    "to": "89",
+    "ow": "A1E4"
+   },
+   {
+    "square": "21",
+    "type": "16",
+    "map": "85",
+    "to": "22",
+    "ow": "A1E4"
+   }
+  ],
+  "doors": []
+ },
+ "85": {
+  "exits": [
+   {
+    "square": "21",
+    "type": "16",
+    "map": "84",
+    "to": "20",
+    "ow": "A1E4"
+   }
+  ],
+  "doors": []
+ },
+ "86": {
+  "exits": [
+   {
+    "square": "0D",
+    "type": "10",
+    "map": "26",
+    "to": "5E",
+    "ow": "A56E"
+   },
+   {
+    "square": "DF",
+    "type": "10",
+    "map": "26",
+    "to": "6F",
+    "ow": "A5AF"
+   },
+   {
+    "square": "F2",
+    "type": "10",
+    "map": "26",
+    "to": "7E",
+    "ow": "A5EE"
+   },
+   {
+    "square": "20",
+    "type": "10",
+    "map": "26",
+    "to": "6D",
+    "ow": "A5AD"
+   },
+   {
+    "square": "22",
+    "type": "16",
+    "map": "87",
+    "to": "32",
+    "ow": "A5AD"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   46,
+   22
+  ]
+ },
+ "87": {
+  "exits": [
+   {
+    "square": "22",
+    "type": "16",
+    "map": "86",
+    "to": "12",
+    "ow": "A5AD"
+   },
+   {
+    "square": "41",
+    "type": "16",
+    "map": "88",
+    "to": "42",
+    "ow": "A5AD"
+   }
+  ],
+  "doors": []
+ },
+ "88": {
+  "exits": [
+   {
+    "square": "41",
+    "type": "16",
+    "map": "87",
+    "to": "40",
+    "ow": "A5AD"
+   },
+   {
+    "square": "DC",
+    "type": "16",
+    "map": "88",
+    "to": "1C",
+    "ow": "A5AD"
+   }
+  ],
+  "doors": []
+ },
+ "89": {
+  "exits": [
+   {
+    "square": "09",
+    "type": "10",
+    "map": "25",
+    "to": "AE",
+    "ow": "A69E"
+   },
+   {
+    "square": "7F",
+    "type": "10",
+    "map": "25",
+    "to": "BF",
+    "ow": "A6DF"
+   },
+   {
+    "square": "FB",
+    "type": "10",
+    "map": "25",
+    "to": "CE",
+    "ow": "A71E"
+   },
+   {
+    "square": "A0",
+    "type": "10",
+    "map": "25",
+    "to": "BD",
+    "ow": "A6DD"
+   },
+   {
+    "square": "79",
+    "type": "16",
+    "map": "8A",
+    "to": "89",
+    "ow": "A6DD"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   30,
+   27
+  ]
+ },
+ "8A": {
+  "exits": [
+   {
+    "square": "79",
+    "type": "14",
+    "map": "89",
+    "to": "69",
+    "ow": "A6DD"
+   },
+   {
+    "square": "AB",
+    "type": "16",
+    "map": "8B",
+    "to": "AA",
+    "ow": "A6DD"
+   }
+  ],
+  "doors": []
+ },
+ "8B": {
+  "exits": [
+   {
+    "square": "AB",
+    "type": "16",
+    "map": "8A",
+    "to": "AC",
+    "ow": "A6DD"
+   }
+  ],
+  "doors": []
+ },
+ "8C": {
+  "exits": [
+   {
+    "square": "07",
+    "type": "10",
+    "map": "2D",
+    "to": "17",
+    "ow": "AC57"
+   },
+   {
+    "square": "BF",
+    "type": "10",
+    "map": "2D",
+    "to": "28",
+    "ow": "AC98"
+   },
+   {
+    "square": "F4",
+    "type": "10",
+    "map": "2D",
+    "to": "37",
+    "ow": "ACD7"
+   },
+   {
+    "square": "90",
+    "type": "10",
+    "map": "2D",
+    "to": "26",
+    "ow": "AC96"
+   },
+   {
+    "square": "4E",
+    "type": "16",
+    "map": "8D",
+    "to": "4D",
+    "ow": "A5AD"
+   },
+   {
+    "square": "6E",
+    "type": "16",
+    "map": "8D",
+    "to": "6D",
+    "ow": "A5AD"
+   },
+   {
+    "square": "8E",
+    "type": "16",
+    "map": "8D",
+    "to": "8D",
+    "ow": "A5AD"
+   },
+   {
+    "square": "9A",
+    "type": "16",
+    "map": "8D",
+    "to": "99",
+    "ow": "A5AD"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   23,
+   50
+  ]
+ },
+ "8D": {
+  "exits": [
+   {
+    "square": "12",
+    "type": "16",
+    "map": "8E",
+    "to": "22",
+    "ow": "A5AD"
+   },
+   {
+    "square": "4E",
+    "type": "16",
+    "map": "8C",
+    "to": "4F",
+    "ow": "A5AD"
+   },
+   {
+    "square": "6E",
+    "type": "16",
+    "map": "8C",
+    "to": "6F",
+    "ow": "A5AD"
+   },
+   {
+    "square": "82",
+    "type": "16",
+    "map": "8E",
+    "to": "92",
+    "ow": "A5AD"
+   },
+   {
+    "square": "8E",
+    "type": "16",
+    "map": "8C",
+    "to": "8F",
+    "ow": "A5AD"
+   },
+   {
+    "square": "9A",
+    "type": "16",
+    "map": "8C",
+    "to": "9B",
+    "ow": "A5AD"
+   },
+   {
+    "square": "DA",
+    "type": "16",
+    "map": "8E",
+    "to": "DB",
+    "ow": "A5AD"
+   },
+   {
+    "square": "E2",
+    "type": "16",
+    "map": "8E",
+    "to": "E3",
+    "ow": "A5AD"
+   }
+  ],
+  "doors": []
+ },
+ "8E": {
+  "exits": [
+   {
+    "square": "12",
+    "type": "16",
+    "map": "8D",
+    "to": "02",
+    "ow": "A5AD"
+   },
+   {
+    "square": "82",
+    "type": "16",
+    "map": "8D",
+    "to": "72",
+    "ow": "A5AD"
+   },
+   {
+    "square": "DA",
+    "type": "16",
+    "map": "8D",
+    "to": "D9",
+    "ow": "A5AD"
+   },
+   {
+    "square": "E2",
+    "type": "16",
+    "map": "8D",
+    "to": "E1",
+    "ow": "A5AD"
+   }
+  ],
+  "doors": []
+ },
+ "8F": {
+  "exits": [
+   {
+    "square": "07",
+    "type": "10",
+    "map": "2E",
+    "to": "25",
+    "ow": "ACA5"
+   },
+   {
+    "square": "EF",
+    "type": "10",
+    "map": "2E",
+    "to": "36",
+    "ow": "ACE6"
+   },
+   {
+    "square": "F5",
+    "type": "10",
+    "map": "2E",
+    "to": "45",
+    "ow": "AD25"
+   },
+   {
+    "square": "A0",
+    "type": "10",
+    "map": "2E",
+    "to": "34",
+    "ow": "ACE4"
+   },
+   {
+    "square": "0D",
+    "type": "16",
+    "map": "90",
+    "to": "0C",
+    "ow": "ACE5"
+   },
+   {
+    "square": "CB",
+    "type": "16",
+    "map": "90",
+    "to": "BB",
+    "ow": "ACE5"
+   },
+   {
+    "square": "ED",
+    "type": "16",
+    "map": "90",
+    "to": "FD",
+    "ow": "ACE5"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   37,
+   51
+  ]
+ },
+ "90": {
+  "exits": [
+   {
+    "square": "0D",
+    "type": "16",
+    "map": "8F",
+    "to": "0E",
+    "ow": "A5AD"
+   },
+   {
+    "square": "20",
+    "type": "16",
+    "map": "91",
+    "to": "10",
+    "ow": "A5AD"
+   },
+   {
+    "square": "CB",
+    "type": "16",
+    "map": "8F",
+    "to": "DB",
+    "ow": "A5AD"
+   },
+   {
+    "square": "EB",
+    "type": "16",
+    "map": "91",
+    "to": "EA",
+    "ow": "A5AD"
+   },
+   {
+    "square": "ED",
+    "type": "16",
+    "map": "8F",
+    "to": "DD",
+    "ow": "A5AD"
+   },
+   {
+    "square": "E2",
+    "type": "16",
+    "map": "91",
+    "to": "E1",
+    "ow": "A5AD"
+   }
+  ],
+  "doors": []
+ },
+ "91": {
+  "exits": [
+   {
+    "square": "20",
+    "type": "16",
+    "map": "90",
+    "to": "30",
+    "ow": "A5AD"
+   },
+   {
+    "square": "EB",
+    "type": "16",
+    "map": "90",
+    "to": "EC",
+    "ow": "A5AD"
+   },
+   {
+    "square": "E2",
+    "type": "16",
+    "map": "90",
+    "to": "E3",
+    "ow": "A5AD"
+   }
+  ],
+  "doors": []
+ },
+ "92": {
+  "exits": [
+   {
+    "square": "09",
+    "type": "10",
+    "map": "11",
+    "to": "B7",
+    "ow": "B2D7"
+   },
+   {
+    "square": "9F",
+    "type": "10",
+    "map": "11",
+    "to": "C8",
+    "ow": "B318"
+   },
+   {
+    "square": "F6",
+    "type": "10",
+    "map": "11",
+    "to": "D7",
+    "ow": "B357"
+   },
+   {
+    "square": "50",
+    "type": "10",
+    "map": "11",
+    "to": "C6",
+    "ow": "B316"
+   },
+   {
+    "square": "77",
+    "type": "16",
+    "map": "93",
+    "to": "76",
+    "ow": "B356"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   23,
+   76
+  ]
+ },
+ "93": {
+  "exits": [
+   {
+    "square": "77",
+    "type": "16",
+    "map": "92",
+    "to": "78",
+    "ow": "B356"
+   },
+   {
+    "square": "29",
+    "type": "16",
+    "map": "94",
+    "to": "39",
+    "ow": "B356"
+   },
+   {
+    "square": "59",
+    "type": "16",
+    "map": "94",
+    "to": "69",
+    "ow": "B356"
+   },
+   {
+    "square": "55",
+    "type": "16",
+    "map": "94",
+    "to": "65",
+    "ow": "B356"
+   },
+   {
+    "square": "89",
+    "type": "16",
+    "map": "94",
+    "to": "99",
+    "ow": "B356"
+   },
+   {
+    "square": "B9",
+    "type": "16",
+    "map": "94",
+    "to": "C9",
+    "ow": "B356"
+   },
+   {
+    "square": "E9",
+    "type": "16",
+    "map": "94",
+    "to": "F9",
+    "ow": "B356"
+   },
+   {
+    "square": "A4",
+    "type": "16",
+    "map": "94",
+    "to": "A3",
+    "ow": "B356"
+   }
+  ],
+  "doors": []
+ },
+ "94": {
+  "exits": [
+   {
+    "square": "29",
+    "type": "16",
+    "map": "93",
+    "to": "19",
+    "ow": "B356"
+   },
+   {
+    "square": "59",
+    "type": "16",
+    "map": "93",
+    "to": "49",
+    "ow": "B356"
+   },
+   {
+    "square": "55",
+    "type": "16",
+    "map": "93",
+    "to": "45",
+    "ow": "B356"
+   },
+   {
+    "square": "89",
+    "type": "16",
+    "map": "93",
+    "to": "79",
+    "ow": "B356"
+   },
+   {
+    "square": "A4",
+    "type": "16",
+    "map": "93",
+    "to": "A5",
+    "ow": "B356"
+   },
+   {
+    "square": "B9",
+    "type": "16",
+    "map": "93",
+    "to": "A9",
+    "ow": "B356"
+   },
+   {
+    "square": "E9",
+    "type": "16",
+    "map": "93",
+    "to": "D9",
+    "ow": "B356"
+   }
+  ],
+  "doors": []
+ },
+ "95": {
+  "exits": [
+   {
+    "square": "96",
+    "type": "10",
+    "map": "14",
+    "to": "56",
+    "ow": "B546"
+   },
+   {
+    "square": "33",
+    "type": "10",
+    "map": "14",
+    "to": "67",
+    "ow": "B587"
+   },
+   {
+    "square": "69",
+    "type": "10",
+    "map": "14",
+    "to": "76",
+    "ow": "B5C6"
+   },
+   {
+    "square": "CC",
+    "type": "10",
+    "map": "14",
+    "to": "65",
+    "ow": "B585"
+   },
+   {
+    "square": "94",
+    "type": "16",
+    "map": "96",
+    "to": "93",
+    "ow": "B5C6"
+   },
+   {
+    "square": "4D",
+    "type": "16",
+    "map": "96",
+    "to": "4E",
+    "ow": "B5C6"
+   }
+  ],
+  "doors": [],
+  "overworld_cell": [
+   6,
+   86
+  ]
+ },
+ "96": {
+  "exits": [
+   {
+    "square": "94",
+    "type": "16",
+    "map": "95",
+    "to": "95",
+    "ow": "B5C6"
+   },
+   {
+    "square": "4D",
+    "type": "16",
+    "map": "95",
+    "to": "4C",
+    "ow": "B5C6"
+   },
+   {
+    "square": "47",
+    "type": "16",
+    "map": "97",
+    "to": "57",
+    "ow": "B5C6"
+   },
+   {
+    "square": "5A",
+    "type": "16",
+    "map": "97",
+    "to": "6A",
+    "ow": "B5C6"
+   },
+   {
+    "square": "7D",
+    "type": "16",
+    "map": "97",
+    "to": "8D",
+    "ow": "B5C6"
+   },
+   {
+    "square": "B9",
+    "type": "16",
+    "map": "97",
+    "to": "C9",
+    "ow": "B5C6"
+   }
+  ],
+  "doors": []
+ },
+ "97": {
+  "exits": [
+   {
+    "square": "47",
+    "type": "16",
+    "map": "96",
+    "to": "37",
+    "ow": "B5C6"
+   },
+   {
+    "square": "5A",
+    "type": "16",
+    "map": "96",
+    "to": "4A",
+    "ow": "B5C6"
+   },
+   {
+    "square": "7D",
+    "type": "16",
+    "map": "96",
+    "to": "6D",
+    "ow": "B5C6"
+   },
+   {
+    "square": "B9",
+    "type": "16",
+    "map": "96",
+    "to": "A9",
+    "ow": "B5C6"
+   }
+  ],
+  "doors": []
+ }
+}

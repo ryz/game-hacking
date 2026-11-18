@@ -44,10 +44,10 @@ the only way to change the active command **(verified)**.
 | Document | Covers |
 |---|---|
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
-| world.md (planned) | towns, field sections, dungeons, floor maps drawn from the map data (playbook "Map data") |
-| magic.md (planned) | the five schools, runes, apprenticeship, HP cost |
+| [maps.md](maps.md) | all 39 floors (towns, castle, forests, dungeons) and the overworld, drawn from the game data |
+| [magic.md](magic.md) | wizards, apprenticeship, the Spell panel, casting controls, HP cost |
+| [progression.md](progression.md) | levels from wizards, real-time combat, game over |
 | economy.md (planned) | shops, inn (2 gold a night **(verified)**), food and water |
-| progression.md (planned) | wise men and levels, the five swords |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
      enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
