@@ -1,6 +1,6 @@
 # Dungeon Magic: Sword of the Elements (NES, USA) - shots: main
 
-Platform nes, model ntsc, ROM SHA-1 `0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1`. 26 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
+Platform nes, model ntsc, ROM SHA-1 `0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1`. 37 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -30,5 +30,16 @@ Platform nes, model ntsc, ROM SHA-1 `0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1`. 
 | inn_welcome | save | Granville inn: "Welcome. Our rooms cost 2 gold." (a night at the inn saves the game) | yes | [png](inn_welcome.png) [3x](3x/inn_welcome.png) |
 | field_castle | gameplay | Outside Granville's north gate: the field, Granville Castle ahead | yes | [png](field_castle.png) [3x](3x/field_castle.png) |
 | castle_entrance | gameplay | Inside Granville Castle (green stone walls) | yes | [png](castle_entrance.png) [3x](3x/castle_entrance.png) |
+| dungeon_80 | gameplay | Dungeon 80-82 (north-west island, blue stone): stairs leading down, first floor | yes | [png](dungeon_80.png) [3x](3x/dungeon_80.png) |
+| dungeon_83 | gameplay | Dungeon 83-85 (north island, rose stone): a staircase up at the end of the corridor | yes | [png](dungeon_83.png) [3x](3x/dungeon_83.png) |
+| battle_skeleton | battle | Dungeon 86-88 (north-east, cyan stone): a skeleton attacks, its HP 32 on the right | yes | [png](battle_skeleton.png) [3x](3x/battle_skeleton.png) |
+| castle_cellar | gameplay | Below Granville Castle (floor 8A, olive stone): stairs in the cellar | yes | [png](castle_cellar.png) [3x](3x/castle_cellar.png) |
+| dungeon_8c | gameplay | Dungeon 8C-8E (south-west, green stone): a long corridor | yes | [png](dungeon_8c.png) [3x](3x/dungeon_8c.png) |
+| dungeon_8f | gameplay | Dungeon 8F-91 (south, granite): stairs at the end of the passage | yes | [png](dungeon_8f.png) [3x](3x/dungeon_8f.png) |
+| dungeon_95 | gameplay | Dungeon 95-97 (lower world, lime stone): a door ahead | yes | [png](dungeon_95.png) [3x](3x/dungeon_95.png) |
+| forest_43 | gameplay | Forest 43-45 (west): a tunnel through the trees | yes | [png](forest_43.png) [3x](3x/forest_43.png) |
+| forest_40 | gameplay | Forest 40-42 (east island): the path between the tree walls | yes | [png](forest_40.png) [3x](3x/forest_40.png) |
+| forest_46 | gameplay | Forest 46-48 (lower world): deep woods | yes | [png](forest_46.png) [3x](3x/forest_46.png) |
+| boss_guardian | boss | Guardian of floor 92 (lower world, white stone): 182 HP, it kills an unprotected hero at once | yes | [png](boss_guardian.png) [3x](3x/boss_guardian.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
