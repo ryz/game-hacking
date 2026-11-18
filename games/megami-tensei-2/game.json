@@ -83,5 +83,12 @@
         "layout_evidence": "IPS has no checksum: 10.3% of the bytes the patch writes equal the source at the headered offsets vs 4.1% unheadered; the intro text renders in English with headered (coordinator, 2026-11-18)"
       }
     ]
+  },
+  "rom_variants": {
+    "dbwarp": {
+      "bytes": {
+        "745D": "570cdb7f020015"
+      }
+    }
   }
 }

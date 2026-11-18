@@ -1,0 +1,32 @@
+title_screen | title | Title screen: Japanese logo, START, (c) 1987 1990 Namco | @title
+intro_skyline | cutscene | Attract intro: Tokyo skyline under a blue sky, a missile coming down | pow,w540,!
+intro_face | cutscene | Attract intro: a demon's face over the ruined skyline | pow,w700,!
+intro_blast | cutscene | Attract intro: nuclear blast, "199X- MANKIND... IS OVER....." | pow,w960,!
+caution | cutscene | "Caution for Devil Busters": the Devil Buster game's opening text | @title,start,w700
+naming_hero | menu | Name entry: "Your character is the young hero. Name him." (kana + A-Z grid) | @naming
+naming_ryz | menu | Name entry with RYZ typed, cursor on OK | @naming,right*12,down*4,a,up*4,right*7,a,left*4,down,a,down*3
+stats_alloc | menu | Stat allocation for RYZ: VIT 9 INT 6 STR 10 SPEED 7 LUK 8, CONFIRM Yes/No | @naming,NAME_RYZ,w300,NAME_CONDI,w300,NAME_EBO,w300,a*4,down,a,down,a*5,down,a*2,down,a*3,w100
+start_room | gameplay | First control: RYZ in the overhead Devil Buster maze | @start
+hud_cmd | hud | Field command screen: moon phase, Wealth (Makka, MAG), 3D view, CMD Comp/Magic/Item/Stats, party HP/MP | @start,a,w60
+stats_ryz | inventory | RYZ's status page: level, HP, EXP, MAG, Makka, gear slots, VIT INT STR SPEED LUK bars | @start,a,w60,down*3,a,w60,a,w60
+battle_menu | battle | Battle vs Willowisp x1: FIGHT / FLEE / CHAT / AUTO | @battle_willowisp
+battle_action | battle | RYZ's action: RUSH / COMP / ITEM / GUARD | @battle_willowisp,a,w60
+battle_chat | battle | CHAT: the Willowisp calls another Willowisp (negotiation) | @battle_willowisp,down*2,a,w60,w120,w120
+battle_victory | battle | Victory: 4 EXP, 20 Makka, 8 MAG | @battle_willowisp,poke:053C=08,poke:0548=01,a,w60,a,w60,a,w60,a,w300,w200,a,w200
+
+levelup | battle | Level up: CONDI reaches LV 2 and has 1 point to spend on VIT/INT/STR/SPEED/LUK | @won_willowisp,left:16*8,w20,settle,w120,settle,poke:0548=01,poke:0549=01,freeze:053C=08,freeze:053D=06,a,w60,a,w60,a,w60,a,w10*40,settle,w10*20,poke:0548=01,poke:0549=01,a,w60,a,w60,a,w60,a,w10*50,settle,a,w200,a,w200,a,w200,settle,a,w200,settle
+comp_menu | system | COMP program menu: CALL / STORE / LET GO / SORT / BATTLE MSG, 3D corridor view | @won_willowisp,left:16*8,w20,settle,w120,settle,poke:0548=01,poke:0549=01,freeze:053C=08,freeze:053D=06,a,w60,a,w60,a,w60,a,w10*40,settle,w10*20,poke:0548=01,poke:0549=01,a,w60,a,w60,a,w60,a,w10*50,settle,a,w200,a,w200,a,w200,settle,a,w200,settle,down,a,w100,a,w200,settle,right:16*4,w20,settle,down:16*3,w20,settle,down:16,w60,settle,poke:0548=01,poke:0549=01,poke:054A=01,up,a,w60,a,w60,a,w60,a,w10*50,settle,w10*20,poke:0548=01,poke:0549=01,poke:054A=01,a,w60,a,w60,a,w60,a,w10*50,settle,w10*20,poke:0548=01,poke:0549=01,poke:054A=01,a,w60,a,w60,a,w60,a,w10*50,settle
+error_screen | extra | Leftover debug screen: ERROR with map coordinates 5B 80 after walking off the map (warp poke) | @db_last,right:16,w20,down:16*5,w30,settle
+heal | shop | Healer: a hooded old man, "I CAN HEAL.", price per hero in Macca | @db_last,poke:0436=05,freeze:037A=FF,down:16,w24,down:16,w24,w30,settle,down:16,w24,w120,settle
+tokyo_overworld | gameplay | Overworld of ruined Tokyo: wasteland, hills, a settlement, a cave mouth below | @db_last,poke:0436=04,freeze:037A=FF,up:16,w24,w200,settle
+cmd_overworld | hud | Field command screen on the overworld: 2/8 moon, the view window shows the ruined landscape | @overworld,a,w60,settle
+dungeon_3d | gameplay | First-person 3D dungeon: cave corridor ahead, floor and facing (1F S), moon phase, party | @dungeon_1f,up:16,w30,settle
+magic_spells | system | MAGIC outside battle: CONDI's spell list, DIA for 2 MP (MP 13) | @dungeon_1f,up:16,w30,settle,a,w60,settle,a,w60,settle,b,w40,down,a,w60,settle,down,a,w60,settle,a,w60,settle
+battle_overworld | battle | Overworld battle: ST GOLEM x3 emerged, outdoor backdrop, FIGHT/FLEE/CHAT/AUTO | @dungeon_1f,up:16,w30,settle,a,w60,settle,a,w60,settle,b,w40,down,a,w60,settle,down,a,w60,settle,a,w60,settle,a,w60,a,w120,settle,unfreeze,freeze:053C=0B,freeze:053D=06,poke:037A=00,down:16,w30,down:16,w30,up:16,w30,up:16,w30,up:16,w30,up:16,w30,settle,up:16,w24,right:16,w24,right:16,w24,left:16,w24,left:16,w24,right:16,w24,right:16,w24,left:16,w24,left:16,w24,settle
+battle_magic | battle | Battle MAGIC: RYZ set to RUSH, CONDI picks a spell (DIA, 2 MP) | @battle_golem,a,w60,a,w60,down,a,w60,settle
+battle_dia | battle | CONDI casts DIA in battle: "RYZ HAS HEALED FOR 1 HEALTH." | @battle_golem,a,w60,a,w60,down,a,w60,settle,a,w60,a,w60,settle,a,w10*15,!
+gameover | gameover | GAME OVER: "THE WORLD WILL PERISH!" with a demon over the black screen | @golem_r2,down*2,a,w10*25,settle
+computer_room | cutscene | The real world: the computer room; "EBO WATCHED RYZ QUIT THE GAME AND SPOKE." | @golem_r2,down*2,a,w10*25,settle,a,w200,settle
+computer_menu | menu | Home computer: COMMAND? BOOT GAME / LEAVE / SAVE DATA | @computer_room,a,w300,settle,a,w300,settle,a,w300,settle
+save_slots | save | SAVE DATA: "-CHOOSE A SLOT-" DATA1 / DATA2 | @computer_menu,down*2,a,w150,settle
+shelter | gameplay | The shelter, B4: first-person corridor, RYZ and his friend EBO, 0 Macca after the game | @saved_data1,down,a,w300,settle
