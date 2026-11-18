@@ -1,3 +1,5 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title screen (START only, no save yet), settled | pow,w1600,settle,settle
+naming | Name entry for the hero ("Your character is the young hero. Name him."), kana + A-Z grid, empty name | @title,start,w700,a,w700,a,w400,settle
