@@ -110,8 +110,9 @@ Current snapshot; history in `progress-log.md`.
   more). The other games have none yet. Earlier note: Might and Magic 1
   (DOS) is the first, written in capture round 2. Breadth rule in the capture skill (same day).
 
-- Might and Magic 1 (DOS) round 2 (2026-11-18): 250 shots, 250/250 verified in one run from an empty cache by
-  the coordinator (after the memory leak fix in `tools/lrcore.py`). Open there: surprise message, search find,
+- Might and Magic 1 (DOS), state after the fix-up round (2026-11-18): 249 shots, 249/249 verified in one run
+  from an empty cache by the coordinator, no identical pictures, no caption over 80 characters. Round 2 before
+  it: 250 shots (after the memory leak fix in `tools/lrcore.py`). Open there: surprise message, search find,
   rest interrupted, surrender accepted, impostor, Eye of Goros, Astral door, wall sets decoded from WALLPIX.DTA,
   Fire Ball hitting the party (unexplained). Tool wishes open: `unsnap` without a session, old file dropped when
   a shot's id or category changes, contact sheet in pages above about 100 shots.

@@ -2,6 +2,11 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic 1 (DOS): 249/249 after the fix-up round
+- Coordinator: cache deleted, `shoot.py dos/might-and-magic main --verify` in one run: 249/249 reproduce, no
+  `check:` line (no identical pictures, no caption over 80 characters). Shared tests 35 passed, 8 skipped
+  (SNES and Apple II cores not built in this container). Merged to `master`.
+
 ## 2026-11-18 - Might and Magic 1 (DOS) fix-up round: 249 shots
 - game-capture (commit 8aedd0a): the three groups of identical pictures resolved (`encounter_retreat` dropped:
   Retreat at the encounter prints nothing, documented; `temple_poisoned` retaken as the clerics' prompt with the
