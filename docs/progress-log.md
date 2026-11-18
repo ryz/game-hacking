@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Wizardry II (NES) main set: complete through the ending
+- game-capture: 91 shots (commits 9bda454 a3cb2bd 498f4f3 20aa150; 498f4f3's publish failed on a stale id, fixed
+  by 20aa150): castle, combat, chests, story events on all six floors, "Rock!" (type 04 = party dies), the ending
+  via the regalia (Staff of Gnilda, Knights of the City, credits); every special type checked in play except
+  06/07; `design/story.md`, `castle.md`, `combat.md`, `maps.md`; saves 02-04. Coordinator: published folder
+  matches the index (91/91), 6/6 sample re-verified incl. the ending.
+
 ## 2026-11-18 - Wizardry II (NES) scouted; NES cartridge RAM reachable while disabled
 - `tools/platforms.py` Nes: peek/poke of 6000-7FFF use the core's battery-RAM buffer (8 KiB carts). Before, MMC3
   games with the RAM disabled read open bus and silently dropped pokes (Wizardry II scout, ~6 calls). Regression:

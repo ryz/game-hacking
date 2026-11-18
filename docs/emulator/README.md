@@ -52,6 +52,10 @@ Press timing is per game (`game.json` "press": hold/wait). Symptoms of wrong tim
 game polls slowly or ignores presses during a transition -> add `w30` before it or raise `hold`), two presses act
 as one (edge-triggered input -> keep the release wait), a menu skips an entry (key repeat -> shorter hold,
 e.g. `down:4,w30` in a macro).
+**Sets:** remove a shot with `play.py unsnap ID`, never by deleting its PNG (a stale id breaks `--publish-only`).
+End checkpoint routes that close a menu with a short wait (`w30`): some games drop the first presses after a menu
+change, and the next macro then lands in the wrong menu.
+
 **Routes and RNG:** the route `play.py` records (with its `settle` steps) is the reproducible one; the same keys
 typed into `emu.py` without those steps can meet a different encounter. Copy routes from `play.py route`.
 

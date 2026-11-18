@@ -9,6 +9,24 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Wizardry II (NES) main set
+- Task: main set (91/91 verified; commits 9bda454 a3cb2bd 498f4f3 20aa150), special types checked on all floors,
+  maps.md, castle/combat/story docs, ending via RAM edits, saves 02-04.
+- Worked: in-process scanner (warp next to every special record, step in, log new ASCII strings from 6000-7FFF)
+  checked all types in three runs; reading text from cart RAM beat screenshots; `add.py` (shot = another shot's
+  route + tokens) + `shoot.py --only` for long battle/ending chains; decoding the type 11/12/13 handlers (~6 calls).
+- Friction: first presses after a menu change dropped (checkpoint ended right after a menu); a route recorded
+  after `undo` replayed differently; `--publish-only` crashed on hand-deleted PNGs (a commit went through anyway
+  because of a pipe to `tail`); poked records vanish from exports unless the game re-saves them; tiling helper
+  sometimes dropped the last frame.
+- Proposed rule change: (1) emulator guide: `w30` after the last menu action in checkpoints; remove shots only
+  with `unsnap`; (2) `play.py` undo route warning/fix; (3) nes.md: veteran saves from a game-saved base; (4)
+  shared `tools/textscan.py`.
+- Corrected: (1) and (3) added to the docs; published folder checked (91 ids = 91 PNGs); 6/6 sample re-verified.
+  (2): the undo code restores state and tokens together; the replay difference is not reproduced yet.
+- Status: promoted 2026-11-18 ((1), (3)); open ((2) needs a repro, (4); auto-advancing text and "shot = route +
+  N steps" now asked for twice (see Wizardry I): candidate for `play.py snapafter`)
+
 ### 2026-11-18 - Wizardry I (NES) main set
 - Task: main set (71/71 verified; commits 69d7eaa 5805efa 41939b7), special squares decoded, maps.md, saves 02-03.
 - Worked: special-square jump table (~6 disassembly calls) explained squares and floor-entry fixed fights; the
