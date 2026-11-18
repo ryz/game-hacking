@@ -5,3 +5,4 @@ Made by the agents while playing (owner's rule 2026-11-15: committed so the owne
 | Save | Files | What it contains | Route at export | SHA-1 (.sav) | Date |
 |---|---|---|---|---|---|
 | 01_party | `01_party.sav` | Sorpigal inn: party of six at level 1 (RYZ Knight, CONDI Paladin, EBO Cleric, CUBI Robber, DEDDO Wizard, MNZ Archer), signed in at the Inn of Sorpigal | `@party` | `f7d9cbe3680b` | 2026-11-18 |
+| 02_veterans | `02_veterans.sav` | Party of six at level 9 (HP RYZ 97, CONDI 83, EBO 58, CUBI 66, DEDDO 41, MNZ 72; MP EBO 41, DEDDO 44, MNZ 12), 1689-3402 gold and 6-23 gems each, starting equipment; signed in at the Inn of Sorpigal (8,3) | `@vets` | `5b11e0cc0918` | 2026-11-18 |

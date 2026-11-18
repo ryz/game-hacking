@@ -1,10 +1,8 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set, in game order (scout 2026-11-18). Routed lines were built from the checkpoints and
-# frames looked at in play.py; the capture run snaps them (play.py snap) and replaces the routes with the
-# recorded ones. Commented lines are planned shots without a route yet (how to reach them: playbook Shot plan).
-# Checkpoints: @title @start @party @cavern (checkpoints.txt). Warp: poke $9D/$9F/$A0, then a,w60,b,w180.
+# The main set in game order (capture 2026-11-18, routes recorded by play.py snap). Checkpoints: checkpoints.txt
+# (@title @start @party @town @bought @fight @vets ...). Warp: poke $9D/$9F/$A0, then WARP_GO.
 boot_licence | boot | "Licensed by Nintendo" at power-on | pow,w120,settle
 boot_copyright | boot | Copyright page: American Sammy, New World Computing 1987, G-Amusements 1991 | pow,w360,settle
 title_screen | title | Title: Might and Magic, star field, Continue / New Game | @title,w1,!
@@ -21,20 +19,53 @@ inn_party | menu | Inn: the party of six RYZ KN, CONDI PA, EBO CL, CUBI RO, DEDD
 main_menu | menu | Exploration menu: Search Cast Open Use Row View Camp Prot Speed Cancel + party | @party,a,w60,settle
 automap | map | Select: the automap of Sorpigal (visited squares only) | @party,select,w90,settle
 cavern | gameplay | Sorpigal Cavern (C-SORPIGAL): blue cave walls | @cavern,w1,settle
-# view_character | inventory | View: character sheet (stats, HP/SP, level, items) | @party,a,w60,(VIEW),...
-# camp | system | Camp menu | @party,a,w60,(CAMP)
-# battle_menu | battle | Encounter: command menu Auto Fight Use Block Row View Prot Run (random fight in Sorpigal)
-# battle_attack | battle | Fight: hit messages
-# battle_victory | battle | Victory: experience and gold, treasure
-# shop_blacksmith | shop | B and B Blacksmiths: buy list
-# shop_food | shop | Eulard's Fine Foods
-# temple | shop | Temple: heal / uncurse / align
-# training | system | Training: level up
-# town_portsmith / town_algary / town_dusk / town_erliquin | gameplay | the four other towns (warp 02-05)
-# varn_outdoors | gameplay | VARN outdoors (map 0F-22, label "Barn : A1")
-# castle_doom / castle_whitewolf / castle_alamar / castle_blackridge | gameplay | castles (warp 23-27)
-# dragadune / enchanted_forest / quiv / ravens_wood | gameplay | dungeons (warp 28-31)
-# city_of_gold | gameplay | P-PEEK floors (warp 32-35); astral_plane (36); soul_maze (37)
-# boss_alamar | boss | the false King Alamar (Sheltem) at Castle Alamar
-# inner_sanctum | ending | Inner Sanctum message "Welcome to your Inner Sanctum..." (ROM text 0x14FCA)
-# gameover | gameover | party dead (all members' HP 0 in a fight)
+view_profile | inventory | View, page 1: RYZ, human Knight, age 17, level 1, good, experience, condition | @town,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,settle
+view_stats | inventory | View, page 2: the seven statistics (Intellect, Might, Personality...) and armour class | @town,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,settle,a,w90,settle
+view_vitals | inventory | View, page 3: EBO (Cleric) HP 5/5, magic points 10/10 at spell level 1, gems, gold, food | @town,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,settle,a,w90,settle,b,w60,settle,a,w60,settle,b,w60,settle,right,w20,down,w20,down,w20,a,w90,down,w20,down,w20,a,w120,a,w90,a,w90,settle
+blacksmith_greet | dialogue | B and B Blacksmiths: "A man speaks: Can I help you?" | @town,poke:00A2=03000102,up,w300,up,w300,settle
+blacksmith_weapons | shop | B and B Blacksmiths, Buy > Weapon: Dagger, Hand Axe, Short Sword, Sling, Crossbow, Staff | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle
+blacksmith_price | shop | Blacksmith: "It's 20 Gold. OK?" for a Short Sword | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle,down,w20,down,w20,a,w120,settle
+blacksmith_menu | shop | Blacksmith menu: Buy, Sell, View, Cancel, with the party list | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle,down,w20,down,w20,a,w120,settle,w200,up,w30,a,w150,settle,a,w150,settle
+blacksmith_armor | shop | Blacksmith, Buy > Armor: Small Shield, Padded, Leather, Scale Armor, Ring Mail, Chain Mail | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle,down,w20,down,w20,a,w120,settle,w200,up,w30,a,w150,settle,a,w150,settle,a,w120,down,w20,down,w20,a,w120,settle
+view_backpack | inventory | View, backpack: RYZ carries a Club, the new Short Sword and Scale Armor | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle,down,w20,down,w20,a,w120,settle,w200,up,w30,a,w150,settle,a,w150,settle,a,w120,down,w20,down,w20,a,w120,settle,down,w20,down,w20,down,w20,a,w200,settle,w100,up,w30,a,w150,a,w150,settle,down,w20,down,w20,a,w150,settle,a,w120,a,w90,a,w90,a,w90,a,w90,settle
+camp_rest | system | Camp: "Rest here?" (resting heals, costs food, may bring a night attack) | @bought,right,w60,settle,down,w20,down,w20,down,w20,a,w200,settle,a,w60,right,w20,down,w20,a,w90,settle,a,w120,settle,a,w120,settle,right,w90,settle,b,w60,settle,up,w60,settle,right,w20,down,w20,a,w90,a,w120,up,w60,settle,a,w120,down,w20,a,w150,settle,b,w60,settle,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,down,w20,a,w120,settle,b,w60,settle,b,w60,settle,a,w60,right,w20,down,w20,a,w90,a,w120,a,w120,a,w120,settle,b,w60,settle,b,w60,settle,b,w60,settle,a,w60,down,w20,down,w20,down,w20,a,w120,settle
+camp_items | menu | Camp, declining to rest: the item menu Equip, Remove, Trade, Drop, Share | @bought,right,w60,settle,down,w20,down,w20,down,w20,a,w200,settle,a,w60,right,w20,down,w20,a,w90,settle,a,w120,settle,a,w120,settle,right,w90,settle,b,w60,settle,up,w60,settle,right,w20,down,w20,a,w90,a,w120,up,w60,settle,a,w120,down,w20,a,w150,settle,b,w60,settle,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,down,w20,a,w120,settle,b,w60,settle,b,w60,settle,a,w60,right,w20,down,w20,a,w90,a,w120,a,w120,a,w120,settle,b,w60,settle,b,w60,settle,b,w60,settle,a,w60,down,w20,down,w20,down,w20,a,w120,settle,b,w60,settle,b,w60,settle,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,right,w60,settle,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,settle,a,w90,settle,b,w60,settle,b,w60,settle,b,w60,settle,a,w60,down,w20,down,w20,down,w20,a,w200,a,w120,settle
+view_equipped | inventory | View, equipped items: RYZ wields the Short Sword and wears the Scale Armor | @bought,right,w60,settle,down,w20,down,w20,down,w20,a,w200,settle,a,w60,right,w20,down,w20,a,w90,settle,a,w120,settle,a,w120,settle,right,w90,settle,b,w60,settle,up,w60,settle,right,w20,down,w20,a,w90,a,w120,up,w60,settle,a,w120,down,w20,a,w150,settle,b,w60,settle,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,down,w20,a,w120,settle,b,w60,settle,b,w60,settle,a,w60,right,w20,down,w20,a,w90,a,w120,a,w120,a,w120,settle,b,w60,settle,b,w60,settle,b,w60,settle,a,w60,down,w20,down,w20,down,w20,a,w120,settle,b,w60,settle,b,w60,settle,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,right,w60,settle,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,settle,a,w90,settle,b,w60,settle,b,w60,settle,b,w60,settle,a,w60,down,w20,down,w20,down,w20,a,w200,a,w120,settle,a,w90,a,w120,settle,down,w20,a,w150,settle,a,w150,settle,a,w90,a,w120,down,w20,down,w20,a,w150,down,w20,a,w150,settle,b,w60,settle,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,settle,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,settle
+food_shop | shop | Eulard's Fine Foods: "Would you like to buy some Food?" | @town,poke:009D=01,poke:009F=09,poke:00A0=05,poke:00A2=01020300,WARP_GO,up,w300,settle
+food_price | shop | Market (Eulard's Fine Foods): "Food price is 5 Gold. Will you pay?" | @town,poke:009D=01,poke:009F=09,poke:00A0=05,poke:00A2=01020300,WARP_GO,up,w300,settle,up,w30,a,w200,settle,a,w120,settle
+tavern | shop | Tavern of Sorpigal: Drink, Tip, Rumors, View, Cancel | @town,poke:009D=01,poke:009F=0A,poke:00A0=0E,poke:00A2=01020300,WARP_GO,up,w300,up,w30,a,w200,settle
+tavern_rumor | dialogue | Tavern rumour: "All Portals are connected." | @town,poke:009D=01,poke:009F=0A,poke:00A0=0E,poke:00A2=01020300,WARP_GO,up,w300,up,w30,a,w200,settle,down,w20,down,w20,a,w200,settle
+guild | menu | Guild of Sorpigal: the guild master offers Change, Rename, View | @town,poke:009D=01,poke:009F=01,poke:00A0=0D,poke:00A2=01020300,WARP_GO,up,w300,up,w30,a,w200,settle
+guild_change | dialogue | Guild, Change class: "You must abandon all your experience..." | @town,poke:009D=01,poke:009F=01,poke:00A0=0D,poke:00A2=01020300,WARP_GO,up,w300,up,w30,a,w200,settle,a,w150,settle,down,w20,a,w200,settle
+battle_encounter | battle | Encounter in Sorpigal: two Goblins and two Skeletons; Attack, Bribe, Run, Giveup | @town,poke:009D=01,poke:009F=05,poke:00A0=03,WARP_GO,w240,settle
+battle_orders | battle | RYZ's orders: Auto, Fight, Block, Row, Use, View, Prot, Run (Cast greyed for a Knight) | @fight,a,w150,settle
+battle_target | battle | Fight > Which?: targets with hit points (Goblin 9, Goblin 7, Skeleton 9, Skeleton 8) | @fight,a,w150,settle,down,w20,a,w120,settle
+battle_hit | battle | Combat message: Goblin attacks 1 time, hits 1 time, 1 point of damage | @fight,a,w150,settle,down,w20,a,w120,settle,a,w120,settle,down,w20,a,w120,down,w20,a,w120,settle
+battle_cast_level | battle | DEDDO casts: Mage Spell levels 1-7 | @fight,a,w150,settle,down,w20,a,w120,settle,a,w120,settle,down,w20,a,w120,down,w20,a,w120,settle,a,w90,settle,a,w90,settle,a,w90,settle,right,w20,a,w120,settle
+battle_mage_spells | battle | Mage spells, level 1: Awaken, Detect, Voice, Flame, Armor, Light, Locate, Sleep | @fight,a,w150,settle,down,w20,a,w120,settle,a,w120,settle,down,w20,a,w120,down,w20,a,w120,settle,a,w90,settle,a,w90,settle,a,w90,settle,right,w20,a,w120,settle,a,w120,settle
+temple_greet | dialogue | Temple of Sorpigal: "Do you seek our help?" | @town,poke:009D=01,poke:009F=04,poke:00A0=00,poke:00A2=00010203,WARP_GO,up,w300,settle
+temple | shop | Temple ("House"): Help (healing, uncurse), Donate, View | @town,poke:009D=01,poke:009F=04,poke:00A0=00,poke:00A2=00010203,WARP_GO,up,w300,settle,up,w30,a,w200,settle
+training_greet | dialogue | Otto's Training: "Do you require training?" | @town,poke:009D=01,poke:009F=0D,poke:00A0=0A,poke:00A2=00010203,WARP_GO,up,w300,up,w300,settle
+training_need | system | Training: "RYZ, you need 1500 Exp for next Level" | @town,poke:009D=01,poke:009F=0D,poke:00A0=0A,poke:00A2=00010203,WARP_GO,up,w300,up,w300,settle,w100,up,w30,a,w200,a,w120,a,w200,settle
+training_levelup | system | Training complete: "Welcome to Level 2!" (40 gold) | @town,poke:009D=01,poke:009F=0D,poke:00A0=0A,poke:00A2=00010203,WARP_GO,up,w300,up,w300,settle,poke:6F17=1A06,poke:6F7F=99,w100,up,w30,a,w200,a,w120,a,w200,settle,w100,up,w30,a,w150,settle
+leprechaun | dialogue | The leprechaun of Sorpigal: "Only 1 Gem you lose..." (teleport to another town) | @town,poke:009D=01,poke:009F=0C,poke:00A0=03,poke:00A2=03000102,WARP_GO,up,w300,settle
+town_portsmith | gameplay | Portsmith: red stone streets | @vets,poke:009D=02,poke:009F=09,poke:00A0=08,poke:00A2=00010203,WARP_GO,w60,settle
+town_algary | gameplay | Algary: green stone streets | @vets,poke:009D=03,poke:009F=07,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
+town_dusk | gameplay | Dusk: purple stone town | @vets,poke:009D=04,poke:009F=08,poke:00A0=08,poke:00A2=03000102,WARP_GO,w60,settle
+town_erliquin | gameplay | Erliquin: orange stone town | @vets,poke:009D=05,poke:009F=07,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
+varn_a2 | gameplay | VARN outdoors, sector A2: red mountains and forest | @vets,poke:009D=10,poke:009F=07,poke:00A0=06,poke:00A2=01020300,WARP_GO,w60,settle
+varn_b3 | gameplay | VARN sector B3: forest and a lake | @vets,poke:009D=15,poke:009F=0C,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
+varn_c4 | gameplay | VARN sector C4: yellow-leaved forest | @vets,poke:009D=1A,poke:009F=08,poke:00A0=03,poke:00A2=03000102,WARP_GO,w60,settle
+varn_d1 | gameplay | VARN sector D1: mountains in the orange desert | @vets,poke:009D=1B,poke:009F=08,poke:00A0=0B,poke:00A2=00010203,WARP_GO,w60,settle
+varn_e4 | gameplay | VARN sector E4: coast with sea and grey mountains | @vets,poke:009D=22,poke:009F=08,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
+cave_dusk | gameplay | Cave below Dusk (CAVE DUSK): blue rock tunnels | @vets,poke:009D=0A,poke:009F=07,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
+volcano | gameplay | Volcano: a stone hall with a blue floor | @vets,poke:009D=0C,poke:009F=07,poke:00A0=07,poke:00A2=02030001,WARP_GO,w60,settle
+castle_doom | gameplay | Castle Doom: golden halls | @vets,poke:009D=23,poke:009F=0A,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
+castle_whitewolf | gameplay | Castle White Wolf (CASTLE WW) | @vets,poke:009D=24,poke:009F=08,poke:00A0=07,poke:00A2=02030001,WARP_GO,w60,settle
+castle_alamar | gameplay | Castle Alamar: red-floored golden halls | @vets,poke:009D=25,poke:009F=08,poke:00A0=09,poke:00A2=01020300,WARP_GO,w60,settle
+castle_blackridge | gameplay | Castle Blackridge North (CASTLE BN) | @vets,poke:009D=26,poke:009F=07,poke:00A0=08,poke:00A2=00010203,WARP_GO,w60,settle
+dragadune | gameplay | Castle Dragadune: blue stone halls | @vets,poke:009D=28,poke:009F=08,poke:00A0=07,poke:00A2=01020300,WARP_GO,w60,settle
+enchanted_forest | gameplay | Enchanted Forest, first level (ENCHANT B1) | @vets,poke:009D=2C,poke:009F=08,poke:00A0=0A,poke:00A2=00010203,WARP_GO,w60,settle
+city_of_gold | gameplay | City of Gold, first level (P-PEEK1) | @vets,poke:009D=32,poke:009F=08,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
+soul_maze | gameplay | Soul Maze: the last labyrinth | @vets,poke:009D=37,poke:009F=07,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
+# planned: boss (Castle Alamar), Inner Sanctum ending text, game over, spells outside town
