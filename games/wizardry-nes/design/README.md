@@ -37,7 +37,10 @@ release (Nexoft 1990, by Game Studio) renames the Priest "Cleric" and the Bishop
 | Document | Covers |
 |---|---|
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
-| [maps/](maps/) | all ten floors drawn from the game data (`floor_NN.png`, `atlas.png`, `floors.txt`); legend in `../playbook.md` "Maze data"; a `maps.md` with the special squares explained is the capture run's job |
+| [castle.md](castle.md) | character creation, inn and levels, Boltac's prices, temple, spell books, saving |
+| [combat.md](combat.md) | encounters, orders, spells, chests, death |
+| [maps.md](maps.md) | the maze floor by floor: walls, secret doors, every special square with its meaning, connections, the ending |
+| [maps/](maps/) | all ten floors drawn from the game data (`floor_NN.png`, `atlas.png`, `floors.txt`) |
 | characters.md (planned) | races, classes and their requirements, creation, bonus points, levels |
 | combat.md (planned) | encounters, surprise, options, spells |
 | world.md (planned) | castle services, floors, elevators, special squares |

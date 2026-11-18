@@ -25,8 +25,32 @@ from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[3]
 ROM = ROOT / "rom" / "wizardry-nes.nes"
-TYPES = {0x00: "S", 0x02: "T", 0x04: "m", 0x06: "e", 0x08: "E", 0x0A: "i", 0x0C: "i", 0x0E: "P",
-         0x10: "R", 0x12: "C", 0x14: "F"}
+TYPES = {0x00: "S", 0x02: "T", 0x04: "m", 0x06: "x", 0x08: "E", 0x0A: "i", 0x0C: "f", 0x0E: "P",
+         0x10: "R", 0x12: "F", 0x14: "B", 0x16: "A", 0x18: "Z", 0x1A: "K", 0x1C: "C", 0x1E: "O", 0x20: "G",
+         0x22: "W", 0x24: "W"}
+# Meanings decoded from the handlers (jump table $D70E, fixed bank) and checked in play where noted
+# (capture run 2026-11-18). a, b, c = the record's three argument bytes.
+MEANING = {
+    0x00: "stairs to (a,b) on floor c (0 = castle); asks 'Take them?'",
+    0x02: "teleport to (a,b) on floor c (0 = castle), silent",
+    0x04: "message a (waits for a button)",
+    0x06: "message a, then the party is sent back to the castle",
+    0x08: "elevator: buttons for floors a..b",
+    0x0A: "message a (if the party lacks item b), 'Will you search?': finds item b",
+    0x0C: "message a, 'Will you search?': fight with monster b",
+    0x0E: "pit: members failing an agility roll take a d b damage",
+    0x10: "spinner: facing set at random, silent",
+    0x12: "fixed fight with monster a (+ random 0..b-1) while not yet beaten on this visit",
+    0x14: "barrier: without item b, message a and pushed back",
+    0x16: "alarm: message a, the next step brings a fight",
+    0x18: "anti-magic area: party spells fizzle until the next stairs/teleport",
+    0x1A: "solid rock: the whole party dies (lost), back to the castle",
+    0x1C: "chute: 'A chute!', then to (a,b) on floor c",
+    0x1E: "back to the castle at once",
+    0x20: "message a (if the party lacks item b), then gives item b",
+    0x22: "Werdna's sign: message a (another text once the amulet is held)",
+    0x24: "Werdna's fight (monster a, b once the amulet is held) while not yet beaten",
+}
 
 
 def load(floor):
@@ -57,7 +81,8 @@ def text(floor):
     for i in used:
         cells = [(k % 20, k // 20) for k in range(400) if flags[k] & 0x20 and flags[k] & 15 == i]
         out.append(f"  record {i:2d}: {' '.join('%02X' % b for b in recs[i])}  at {cells[0]}"
-                   + (f" and {len(cells) - 1} more" if len(cells) > 1 else ""))
+                   + (f" and {len(cells) - 1} more" if len(cells) > 1 else "")
+                   + "  " + MEANING.get(recs[i][0], "?"))
     return "\n".join(out)
 
 

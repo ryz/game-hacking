@@ -1,6 +1,6 @@
 Floor 1 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +--+DD+--+--+--+--+--+--+--+--+  +--+--+--+--+--+--+--+--+--
-19  |     | .|  | .|  | .  .  .|e4D##|  D .  .D .  .D .  .| .| .
+19  |     | .|  | .|  | .  .  .|x4D##|  D .  .D .  .D .  .| .| .
     +--+--+DD+--+DD+--+  +  +  +--+  +  +SS+SS+--+--+  +  +SS+SS
 18  |     S           D .  .  .|## ##|  | .|i8|     | .  .| .  .
     +DD+--+DD+  +--+--+  +  +  +  +  +  +--+--+--+SS+--+--+  +  
@@ -12,7 +12,7 @@ Floor 1 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +  +  +  +DD+  +  +  +  +  +  +  +  +  +  +  +  +--+--+SS+SS
 14  | .  .  .|  | .  .  .|  |  |## ##|  |  |  |  |  S     | .| .
     +--+--+--+  +SS+--+--+  +  +  +  +  +  +  +  +  +--+--+--+--
-13  |  |        |  |  |     |  |FA ##|  |  |  |  |  | .  .D .  .
+13  |  |        |  |  |     |  |BA ##|  |  |  |  |  | .  .D .  .
     +--+DD+--+  +--+  +--+--+  +  +--+  +  +  +  +  +DD+DD+  +  
 12  | .  .  .|     D  D .  .|  |m3   |  |  |  |  |  | .|  | .  .
     +  +  +  +  +  +  +  +  +DD+  +  +  +  +  +  +  +  +  +SS+SS
@@ -28,7 +28,7 @@ Floor 1 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +  +  +  +  +  +--+DD+--+  +  +  +  +SS+--+--+  +  +  +--+  
  6  |  |     |  |  | .  .  .|  |## ##|  |  |  |  |  |  |  |  |  
     +  +  +  +  +  +  +  +  +  +  +  +  +SS+--+DD+DD+  +  +  +  
- 5  |  |     |  |  | .  .  .|  |## ##|  |  |i6D     |  |  |  |  
+ 5  |  |     |  |  | .  .  .|  |## ##|  |  |f6D     |  |  |  |  
     +  +  +  +  +  +--+--+--+  +  +  +  +SS+--+  +  +  +  +  +  
  4  |  |     |  |              |## ##|  |  |T5D     S  |  |  |  
     +  +  +--+DD+--+  +  +  +  +  +  +  +SS+--+  +  +  +  +  +  
@@ -39,16 +39,16 @@ Floor 1 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
  1  |  |              | .  .  .|## ##|                       |  
     +  +--+--+--+--+--+--+DD+--+  +  +--+--+--+--+--+--+--+--+--
  0  |S1                        |## ##D## ## ## ## ## ## ## ## ##
-  record  1: 00 00 00 00  at (0, 0)
-  record  2: 00 0C 07 02  at (0, 10)
-  record  3: 04 00 00 00  at (9, 12)
-  record  4: 06 04 00 00  at (9, 19)
-  record  5: 02 0F 04 01  at (13, 4) and 1 more
-  record  6: 0C 01 4D 00  at (13, 5)
-  record  7: 0A 03 61 00  at (13, 3)
-  record  8: 0A 02 62 00  at (13, 18)
-  record  9: 08 01 04 00  at (10, 8)
-  record 10: 14 85 63 00  at (9, 13)
+  record  1: 00 00 00 00  at (0, 0)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  2: 00 0C 07 02  at (0, 10)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  3: 04 00 00 00  at (9, 12)  message a (waits for a button)
+  record  4: 06 04 00 00  at (9, 19)  message a, then the party is sent back to the castle
+  record  5: 02 0F 04 01  at (13, 4) and 1 more  teleport to (a,b) on floor c (0 = castle), silent
+  record  6: 0C 01 4D 00  at (13, 5)  message a, 'Will you search?': fight with monster b
+  record  7: 0A 03 61 00  at (13, 3)  message a (if the party lacks item b), 'Will you search?': finds item b
+  record  8: 0A 02 62 00  at (13, 18)  message a (if the party lacks item b), 'Will you search?': finds item b
+  record  9: 08 01 04 00  at (10, 8)  elevator: buttons for floors a..b
+  record 10: 14 85 63 00  at (9, 13)  barrier: without item b, message a and pushed back
 Floor 2 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--
 19  |                                      |                    
@@ -65,9 +65,9 @@ Floor 2 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +  +  +  +--+--+--+  +  +  +  +  +  +  +--+  +  +--+--+  +  
 13  |     |## ## ## ## ##|        |  |  |     |  |           |  
     +  +  +--+--+DD+--+--+  +--+--+DD+  +  +  +  +--+--+--+--+  
-12  |           |FF|        |F3      |  |     |                 
+12  |           |BF|        |B3      |  |     |                 
     +  +  +  +  +DD+  +  +  +DD+--+--+DD+--+--+--+--+--+--+--+--
-11  |           |FE|        |           |P8 m7 m6 m5            
+11  |           |BE|        |           |P8 m7 m6 m5            
     +--+--+--+--+DD+--+--+--+  +--+--+  +--+--+--+--+  +--+DD+--
 10                          D  | .D .|  |           |  |     |  
     +--+--+--+--+  +--+DD+--+  +--+  +  +  +  +  +  +  +--+--+  
@@ -75,7 +75,7 @@ Floor 2 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +  +--+  +  +  +  +  +  +  +--+DD+  +--+  +  +  +  +  +  +  
  8  |  |  D .  .|  |        |     |E9|     |        |  D .  .|  
     +  +  +--+DD+  +  +  +  +DD+--+--+  +  +  +  +  +  +--+--+  
- 7  |  |  |     |  |        |F2      |   S1|        |  | .  .D  
+ 7  |  |  |     |  |        |B2      |   S1|        |  | .  .D  
     +  +  +  +--+  +  +  +  +--+--+DD+DD+--+  +  +  +  +  +  +  
  6  |  |  |        |              | .|              |  | .  .|  
     +  +  +--+--+  +  +  +--+--+--+  +--+--+--+  +  +  +--+--+  
@@ -90,27 +90,27 @@ Floor 2 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
  1  |     |  |           | .  .| .  .  .| .  .| .  .|  | .  .S  
     +  +  +  +--+--+--+--+--+--+--+--+--+--+--+  +  +  +  +  +  
  0  |     |                                   D .  .|  S .  .|  
-  record  1: 00 00 0A 01  at (12, 7)
-  record  2: 14 0B 61 00  at (8, 7)
-  record  3: 14 0A 62 00  at (8, 12)
-  record  4: 00 0F 0B 03  at (16, 15)
-  record  5: 04 06 00 00  at (15, 11)
-  record  6: 04 07 00 00  at (14, 11)
-  record  7: 04 08 00 00  at (13, 11)
-  record  8: 0E 02 08 00  at (12, 11)
-  record  9: 08 01 04 00  at (10, 8)
-  record 11: 0A 03 63 00  at (4, 16)
-  record 12: 0A 09 5F 00  at (9, 18)
-  record 13: 0A 05 60 00  at (12, 4)
-  record 14: 14 0C 5F 00  at (4, 11)
-  record 15: 14 0C 60 00  at (4, 12)
+  record  1: 00 00 0A 01  at (12, 7)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  2: 14 0B 61 00  at (8, 7)  barrier: without item b, message a and pushed back
+  record  3: 14 0A 62 00  at (8, 12)  barrier: without item b, message a and pushed back
+  record  4: 00 0F 0B 03  at (16, 15)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  5: 04 06 00 00  at (15, 11)  message a (waits for a button)
+  record  6: 04 07 00 00  at (14, 11)  message a (waits for a button)
+  record  7: 04 08 00 00  at (13, 11)  message a (waits for a button)
+  record  8: 0E 02 08 00  at (12, 11)  pit: members failing an agility roll take a d b damage
+  record  9: 08 01 04 00  at (10, 8)  elevator: buttons for floors a..b
+  record 11: 0A 03 63 00  at (4, 16)  message a (if the party lacks item b), 'Will you search?': finds item b
+  record 12: 0A 09 5F 00  at (9, 18)  message a (if the party lacks item b), 'Will you search?': finds item b
+  record 13: 0A 05 60 00  at (12, 4)  message a (if the party lacks item b), 'Will you search?': finds item b
+  record 14: 14 0C 5F 00  at (4, 11)  barrier: without item b, message a and pushed back
+  record 15: 14 0C 60 00  at (4, 12)  barrier: without item b, message a and pushed back
 Floor 3 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +  +SS+--+--+--+  +SS+--+--+--+  +SS+--+--+--+  +SS+--+--+--
 19   R3             P4             R3             P4            
     +  +--+--+--+SS+  +--+--+--+SS+  +--+--+--+SS+  +--+--+--+SS
 18  |  | .  .| .  .|  | .  .| .  .|  | .  .| .  .|  | .  .| .  .
     +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  
-17  |  | .  .D .  .|  | .  .D .  .|  | .  .DC5  .|  | .  .D .  .
+17  |  | .  .D .  .|  | .  .D .  .|  | .  .DF5  .|  | .  .D .  .
     +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  
 16  |  | .  .| .  .|  | .  .| .  .|  | .  .| .  .|  | .  .| .  .
     +  +SS+--+--+--+  +SS+--+--+--+  +SS+--+--+--+  +SS+--+--+--
@@ -145,15 +145,15 @@ Floor 3 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
  1  |  | .  .D .  .|  | .  .D .  .|  | .  .D .  .|  | .  .D .  .
     +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  
  0  |  | .  .| .  .|  | .  .| .  .|  | .  .| .  .|  | .  .| .  .
-  record  1: 00 10 0F 02  at (15, 11)
-  record  2: 00 0A 12 04  at (1, 8)
-  record  3: 10 00 00 00  at (0, 3) and 3 more
-  record  4: 0E 03 08 00  at (0, 7) and 4 more
-  record  5: 12 28 04 05  at (13, 17)
-  record  7: 08 01 04 00  at (10, 8)
-  record  8: 04 10 00 00  at (10, 7) and 2 more
-  record  9: 04 0F 00 00  at (10, 3) and 2 more
-  record 10: 04 0E 00 00  at (5, 3) and 2 more
+  record  1: 00 10 0F 02  at (15, 11)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  2: 00 0A 12 04  at (1, 8)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  3: 10 00 00 00  at (0, 3) and 3 more  spinner: facing set at random, silent
+  record  4: 0E 03 08 00  at (0, 7) and 4 more  pit: members failing an agility roll take a d b damage
+  record  5: 12 28 04 05  at (13, 17)  fixed fight with monster a (+ random 0..b-1) while not yet beaten on this visit
+  record  7: 08 01 04 00  at (10, 8)  elevator: buttons for floors a..b
+  record  8: 04 10 00 00  at (10, 7) and 2 more  message a (waits for a button)
+  record  9: 04 0F 00 00  at (10, 3) and 2 more  message a (waits for a button)
+  record 10: 04 0E 00 00  at (5, 3) and 2 more  message a (waits for a button)
 Floor 4 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +  +  +  +  +  +  +  +  +  +  +--+  +  +  +  +  +  +  +  +  
 19                                                              
@@ -164,17 +164,17 @@ Floor 4 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +  +  +  +  +DD+--+SS+DD+--+  +--+  +  +  +  +  +  +  +  +  
 16           |  | .|     | .| .|  | .|                 |  |     
     +  +  +  +  +DD+  +  +DD+DD+--+DD+--+--+  +  +  +  +  +  +  
-15           |  | .|     | .|m4    ?3    m5|           |  |     
+15           |  | .|     | .|m4    A3    m5|           |  |     
     +  +  +  +  +DD+  +  +DD+--+--+DD+--+DD+  +  +  +  +  +  +  
-14           |  | .|     | .|     |m2|C6 C6|           |  |     
+14           |  | .|     | .|     |m2|F6 F6|           |  |     
     +  +  +  +  +DD+--+--+DD+  +  +  +  +  +--+  +  +  +  +  +  
-13           |              |     |  |C6 C6D .|        |  |     
+13           |              |     |  |F6 F6D .|        |  |     
     +  +  +  +  +--+--+--+DD+  +  +  +  +  +--+  +  +  +DD+  +  
-12           |  |                 |  |C6 C6|           |FD|     
+12           |  |                 |  |F6 F6|           |BD|     
     +  +  +  +  +  +  +  +  +  +  +  +--+--+  +  +  +  +  +  +  
 11           |  |                 |  |mB|              |  |     
     +  +  +  +DD+  +  +  +  +  +  +  +--+  +  +  +  +  +  +  +  
-10           |  |                 |  D?C|              |  |     
+10           |  |                 |  DGC|              |  |     
     +  +  +  +  +  +  +  +  +  +  +DD+--+  +  +  +  +  +  +  +  
  9           |  |                 |  |                 |  |     
     +  +  +  +  +  +  +  +  +  +  +DD+--+--+--+--+--+--+  +--+--
@@ -192,23 +192,23 @@ Floor 4 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +  +DD+--+--+--+DD+  +  +  +  +  +DD+--+--+--+--+--+--+--+DD
  2  |  | .D .D .D .D .|           |m9| .D .D .D .D .D .D .D .D .
     +  +--+--+--+--+--+  +  +  +  +DD+--+--+--+--+--+--+--+--+--
- 1                                |FA|                          
+ 1                                |BA|                          
     +  +  +  +  +  +  +  +  +  +  +DD+  +  +  +  +  +  +  +  +  
  0                                |E8|                          
-  record  1: 00 01 08 03  at (10, 18)
-  record  2: 04 15 00 00  at (10, 14)
-  record  3: 16 12 00 00  at (10, 15)
-  record  4: 04 13 00 00  at (8, 15)
-  record  5: 04 14 00 00  at (12, 15)
-  record  6: 12 64 00 FF  at (11, 12) and 5 more
-  record  7: 08 01 04 00  at (10, 8)
-  record  8: 08 04 09 00  at (10, 0)
-  record  9: 04 16 00 00  at (10, 2)
-  record 10: 14 17 64 00  at (10, 1)
-  record 11: 04 18 00 00  at (11, 11)
-  record 12: 20 19 64 FF  at (11, 10)
-  record 13: 14 11 5F 00  at (17, 12)
-  record 14: 00 00 00 05  at (17, 7)
+  record  1: 00 01 08 03  at (10, 18)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  2: 04 15 00 00  at (10, 14)  message a (waits for a button)
+  record  3: 16 12 00 00  at (10, 15)  alarm: message a, the next step brings a fight
+  record  4: 04 13 00 00  at (8, 15)  message a (waits for a button)
+  record  5: 04 14 00 00  at (12, 15)  message a (waits for a button)
+  record  6: 12 64 00 FF  at (11, 12) and 5 more  fixed fight with monster a (+ random 0..b-1) while not yet beaten on this visit
+  record  7: 08 01 04 00  at (10, 8)  elevator: buttons for floors a..b
+  record  8: 08 04 09 00  at (10, 0)  elevator: buttons for floors a..b
+  record  9: 04 16 00 00  at (10, 2)  message a (waits for a button)
+  record 10: 14 17 64 00  at (10, 1)  barrier: without item b, message a and pushed back
+  record 11: 04 18 00 00  at (11, 11)  message a (waits for a button)
+  record 12: 20 19 64 FF  at (11, 10)  message a (if the party lacks item b), then gives item b
+  record 13: 14 11 5F 00  at (17, 12)  barrier: without item b, message a and pushed back
+  record 14: 00 00 00 05  at (17, 7)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
 Floor 5 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--
 19                                                              
@@ -225,17 +225,17 @@ Floor 5 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +DD+--+--+--+--+--+--+--+--+--+--+  +--+--+--+--+--+--+--+DD
 13  |  |## ## ## ## ## ## ## ## ## ##                           
     +DD+--+--+--+--+  +--+--+--+--+--+--+--+--+--+--+--+  +--+--
-12  |     |     |  |##| .  .  .  .|?4 ?4 ?4 ?4 ?4 ?4 ?4|  | .  .
+12  |     |     |  |##| .  .  .  .|Z4 Z4 Z4 Z4 Z4 Z4 Z4|  | .  .
     +  +  +  +  +SS+  +SS+  +  +  +  +  +--+--+  +  +  +  +  +  
-11  |  |     |     |##D  | .  .  .S?4 ?4|     |?4 ?4 ?4|  D .  .
+11  |  |     |     |##D  | .  .  .SZ4 Z4|     |Z4 Z4 Z4|  D .  .
     +--+--+--+--+  +  +--+  +  +  +  +  +--+  +--+  +  +  +--+--
-10  |              |##| .  .  .  .|?4 ?4 ?4|     |?4 ?4|  | .  .
+10  |              |##| .  .  .  .|Z4 Z4 Z4|     |Z4 Z4|  | .  .
     +DD+--+--+--+--+  +--+--+--+--+  +  +  +  +--+  +  +  +  +  
- 9  | .|           |##|           |?4 ?4 ?4|  |?4 ?4 ?4|  D .  .
+ 9  | .|           |##|           |Z4 Z4 Z4|  |Z4 Z4 Z4|  D .  .
     +DD+DD+--+--+DD+  +  +--+--+  +  +--+  +--+  +--+  +  +--+--
- 8  |  | .  .| .  .|##|     |S2D  |?4|  |?4 ?4 ?4S  |?4|  | .  .
+ 8  |  | .  .| .  .|##|     |S2D  |Z4|  |Z4 Z4 Z4S  |Z4|  | .  .
     +  +  +  +  +  +  +--+  +--+  +  +--+  +  +  +--+  +  +  +  
- 7  |  | .  .| .  .D  | .|     |  |?4 ?4 ?4 ?4 ?4 ?4 ?4|  D .  .
+ 7  |  | .  .| .  .D  | .|     |  |Z4 Z4 Z4 Z4 Z4 Z4 Z4|  D .  .
     +  +--+  +--+--+  +  +--+  +  +--+--+--+DD+--+--+--+  +--+SS
  6  |  | .S .|     |  D .  .S  |  |                          |  
     +  +--+--+SS+--+  +--+--+--+SS+--+--+--+--+--+--+--+--+--+  
@@ -250,11 +250,11 @@ Floor 5 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
  1  |  |  |  D  | .|  | .| .| .|  | .  .D .  .|              |  
     +  +  +DD+  +DD+DD+DD+DD+DD+  +--+--+--+DD+  +--+--+--+--+  
  0  |S1S  D  |     |               E5         |  D              
-  record  1: 00 11 07 04  at (0, 0)
-  record  2: 00 13 13 06  at (8, 8)
-  record  3: 10 00 00 00  at (5, 5)
-  record  4: 18 00 00 00  at (10, 7) and 34 more
-  record  5: 08 04 09 00  at (10, 0)
+  record  1: 00 11 07 04  at (0, 0)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  2: 00 13 13 06  at (8, 8)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  3: 10 00 00 00  at (5, 5)  spinner: facing set at random, silent
+  record  4: 18 00 00 00  at (10, 7) and 34 more  anti-magic area: party spells fizzle until the next stairs/teleport
+  record  5: 08 04 09 00  at (10, 0)  elevator: buttons for floors a..b
 Floor 6 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--
 19  |                                                         S1
@@ -296,13 +296,13 @@ Floor 6 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
  1  |     D .  .|  | .|  |##|  |  |  | .| .|  |  | .D .  .  .|  
     +  +--+--+--+  +DD+  +  +  +DD+  +--+--+  +DD+--+  +  +  +  
  0  |              |      ##   | .DE3         | .| .D .  .  .D  
-  record  1: 00 08 08 05  at (19, 19)
-  record  2: 00 0A 0A 07  at (8, 16)
-  record  3: 08 04 09 00  at (10, 0)
-  record  4: 10 00 00 00  at (7, 7)
-  record  5: 0E 06 08 00  at (6, 16) and 1 more
-  record  6: 02 00 00 06  at (14, 11)
-  record  7: 02 02 13 06  at (19, 2)
+  record  1: 00 08 08 05  at (19, 19)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  2: 00 0A 0A 07  at (8, 16)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  3: 08 04 09 00  at (10, 0)  elevator: buttons for floors a..b
+  record  4: 10 00 00 00  at (7, 7)  spinner: facing set at random, silent
+  record  5: 0E 06 08 00  at (6, 16) and 1 more  pit: members failing an agility roll take a d b damage
+  record  6: 02 00 00 06  at (14, 11)  teleport to (a,b) on floor c (0 = castle), silent
+  record  7: 02 02 13 06  at (19, 2)  teleport to (a,b) on floor c (0 = castle), silent
 Floor 7 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +--+--+--+--+--+--+  +  +--+  +  +--+  +  +--+--+--+--+--+--
 19  |                 D     |##       ##|     D                 
@@ -344,33 +344,33 @@ Floor 7 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
  1  |  |        | .  .D  |   ##|     |##   |     D .  .D   ##|  
     +  +--+--+--+--+--+SS+--+  +--+--+  +--+SS+--+--+--+--+--+  
  0  |                 |     |##    E3 ##|     |                 
-  record  1: 00 08 10 06  at (10, 10)
-  record  2: 00 09 0B 08  at (18, 9)
-  record  3: 08 04 09 00  at (10, 0)
-  record  4: 0E 07 08 00  at (9, 4) and 7 more
-  record  5: 02 02 08 07  at (7, 12)
-  record  6: 02 12 02 07  at (9, 9)
+  record  1: 00 08 10 06  at (10, 10)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  2: 00 09 0B 08  at (18, 9)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  3: 08 04 09 00  at (10, 0)  elevator: buttons for floors a..b
+  record  4: 0E 07 08 00  at (9, 4) and 7 more  pit: members failing an agility roll take a d b damage
+  record  5: 02 02 08 07  at (7, 12)  teleport to (a,b) on floor c (0 = castle), silent
+  record  6: 02 12 02 07  at (9, 9)  teleport to (a,b) on floor c (0 = castle), silent
 Floor 8 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--
-19  | .  .|  D .  .|  D .  .|  D  | .  .|?2|?2D?2 ?2|?2 ?2D?2D?2
+19  | .  .|  D .  .|  D .  .|  D  | .  .|Z2|Z2DZ2 Z2|Z2 Z2DZ2DZ2
     +  +  +  +  +  +DD+  +  +  +  +--+DD+SS+  +  +  +  +  +DD+--
-18  | .  .|##| .  .|  | .  .|##|        |?2 ?2|?2 ?2D?2 ?2|?2 ?2
+18  | .  .|##| .  .|  | .  .|##|        |Z2 Z2|Z2 Z2DZ2 Z2|Z2 Z2
     +DD+--+  +--+--+  +--+--+  +--+--+--+--+DD+--+--+--+--+  +  
-17  |   ##    ##   |  D   ##    ##      |?2 ?2|?2 ?2 ?2 ?2|?2 ?2
+17  |   ##    ##   |  D   ##    ##      |Z2 Z2|Z2 Z2 Z2 Z2|Z2 Z2
     +--+--+  +--+DD+  +--+--+  +--+--+DD+  +  +  +--+--+  +--+DD
-16  | .  .|##| .  .|  D .  .|##| .  .  .|?2 ?2|?2|TA ?2 ?2|?2 ?2
+16  | .  .|##| .  .|  D .  .|##| .  .  .|Z2 Z2|Z2|TA Z2 Z2|Z2 Z2
     +  +  +  +  +  +  +  +--+  +  +  +  +DD+--+  +--+--+--+  +  
-15  | .  .D  | .  .|##| .DTFD  | . TD  .|?2 ?2|?2 ?2 ?2 ?2|?2 ?2
+15  | .  .D  | .  .|##| .DTFD  | . TD  .|Z2 Z2|Z2 Z2 Z2 Z2|Z2 Z2
     +DD+--+--+DD+--+  +--+--+--+DD+--+--+  +  +--+--+--+DD+DD+--
-14  |  D         ##    ##            D .|?2 ?2|?2 ?2D?2 ?2|?2 ?2
+14  |  D         ##    ##            D .|Z2 Z2|Z2 Z2DZ2 Z2|Z2 Z2
     +--+DD+--+DD+--+  +DD+--+--+--+--+--+--+DD+DD+--+--+--+  +  
-13  |TE  .D##| . TC|##D  |##|TB   D     |?2 ?2|?2 ?2D?2 ?2|?2 ?2
+13  |TE  .D##| . TC|##D  |##|TB   D     |Z2 Z2|Z2 Z2DZ2 Z2|Z2 Z2
     +--+--+  +--+--+  +--+  +--+--+--+SS+DD+--+--+--+--+DD+--+DD
-12  |   ##    ##   |  |##    ##         |?2|?2 ?2D?2 ?2|?2 ?2|?2
+12  |   ##    ##   |  |##    ##         |Z2|Z2 Z2DZ2 Z2|Z2 Z2|Z2
     +--+--+  +--+--+  +DD+  +--+--+--+--+  +  +  +  +  +  +  +  
-11  | .  .|##| .  .|  |TD|##|   S1      |?2D?2 ?2|?2 ?2D?2 ?2|?2
+11  | .  .|##| .  .|  |TD|##|   S1      |Z2DZ2 Z2|Z2 Z2DZ2 Z2|Z2
     +  +  +  +  +  +  +  +  +  +  +  +  +--+--+--+--+--+--+--+  
-10  | .  .D  D .  .S  D  |  |   T4|T5   |  D?2 ?2 ?2 ?2 ?2 ?2 ?2
+10  | .  .D  D .  .S  D  |  |   T4|T5   |  DZ2 Z2 Z2 Z2 Z2 Z2 Z2
     +--+--+--+--+--+--+--+--+  +--+--+  +--+--+--+--+--+--+--+--
  9  |     D .  .  .|  | .  .|   T6|T7   | .  .D     | .  .D     
     +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +--+  
@@ -391,21 +391,21 @@ Floor 8 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
  1  | .  .|  | .D .| .  .D  D .  .|  |##|## ## ##|##|  | .  .  .
     +DD+  +  +--+DD+  +  +  +  +  +DD+  +--+  +  +  +  +  +  +  
  0  |  D .D  | .D .| .  .|  | .  .|E3|## ## ##|##|     D .  .  .
-  record  1: 00 12 09 07  at (9, 11)
-  record  2: 18 00 00 00  at (13, 10) and 77 more
-  record  3: 08 04 09 00  at (10, 0)
-  record  4: 02 00 00 08  at (9, 10)
-  record  5: 02 05 0E 08  at (10, 10)
-  record  6: 02 0C 0A 08  at (9, 9)
-  record  7: 02 0A 04 08  at (10, 9)
-  record  8: 02 0B 08 08  at (1, 4)
-  record  9: 02 08 0B 08  at (10, 7)
-  record 10: 02 0B 0B 08  at (15, 16)
-  record 11: 02 08 08 08  at (8, 13)
-  record 12: 02 08 11 08  at (4, 13)
-  record 13: 02 02 0C 08  at (6, 11) and 1 more
-  record 14: 02 07 0C 08  at (0, 13)
-  record 15: 02 02 11 08  at (7, 15)
+  record  1: 00 12 09 07  at (9, 11)  stairs to (a,b) on floor c (0 = castle); asks 'Take them?'
+  record  2: 18 00 00 00  at (13, 10) and 77 more  anti-magic area: party spells fizzle until the next stairs/teleport
+  record  3: 08 04 09 00  at (10, 0)  elevator: buttons for floors a..b
+  record  4: 02 00 00 08  at (9, 10)  teleport to (a,b) on floor c (0 = castle), silent
+  record  5: 02 05 0E 08  at (10, 10)  teleport to (a,b) on floor c (0 = castle), silent
+  record  6: 02 0C 0A 08  at (9, 9)  teleport to (a,b) on floor c (0 = castle), silent
+  record  7: 02 0A 04 08  at (10, 9)  teleport to (a,b) on floor c (0 = castle), silent
+  record  8: 02 0B 08 08  at (1, 4)  teleport to (a,b) on floor c (0 = castle), silent
+  record  9: 02 08 0B 08  at (10, 7)  teleport to (a,b) on floor c (0 = castle), silent
+  record 10: 02 0B 0B 08  at (15, 16)  teleport to (a,b) on floor c (0 = castle), silent
+  record 11: 02 08 08 08  at (8, 13)  teleport to (a,b) on floor c (0 = castle), silent
+  record 12: 02 08 11 08  at (4, 13)  teleport to (a,b) on floor c (0 = castle), silent
+  record 13: 02 02 0C 08  at (6, 11) and 1 more  teleport to (a,b) on floor c (0 = castle), silent
+  record 14: 02 07 0C 08  at (0, 13)  teleport to (a,b) on floor c (0 = castle), silent
+  record 15: 02 02 11 08  at (7, 15)  teleport to (a,b) on floor c (0 = castle), silent
 Floor 9 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +  +  +  +  +  +  +  +  +  +  +--+  +  +  +  +  +  +  +  +  
 19   T3 T3 T3 T3 T3 T3|  |  |  |     |  |T3 T3 T3 T3 T3 T3 T3 T3
@@ -442,65 +442,65 @@ Floor 9 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  
  3   T3 T3|  |  |T3 T3 T3 T3 T3 T3 T3 T3 T3 T3 T3 T3| .  .|T3 T3
     +  +  +DD+  +--+--+--+--+--+--+--+--+--+--+--+--+DD+--+  +  
- 2   T3 T3|  |              |?2  .|           |           |T3 T3
+ 2   T3 T3|  |              |C2  .|           |           |T3 T3
     +  +  +  +--+--+--+--+  +  +  +  +--+  +  +  +--+  +  +  +  
  1   T3 T3|              |  D .  .D  D  |  |        |     |T3 T3
     +  +  +--+--+--+--+DD+--+DD+--+DD+  +--+--+--+--+--+--+  +  
  0   T3 T3 T3 T3 T3 T3|  |  |  |  |E1|   T3 T3 T3 T3 T3 T3 T3 T3
-  record  1: 08 04 09 00  at (10, 0)
-  record  2: 1C 00 00 0A  at (8, 2)
-  record  3: 02 00 05 01  at (0, 0) and 228 more
+  record  1: 08 04 09 00  at (10, 0)  elevator: buttons for floors a..b
+  record  2: 1C 00 00 0A  at (8, 2)  chute: 'A chute!', then to (a,b) on floor c
+  record  3: 02 00 05 01  at (0, 0) and 228 more  teleport to (a,b) on floor c (0 = castle), silent
 Floor 10 (x east 0-19, y north 0-19; '#' dark, '.' room, letters = specials)
     +--+--+  +  +--+--+--+--+  +--+--+--+  +  +  +  +  +  +  +--
-19  |T2 T7|?F ?F|           |?F| . T3  .|?F ?F ?F ?F ?F ?F ?F ?F
+19  |T2 T7|KF KF|           |KF| . T3  .|KF KF KF KF KF KF KF KF
     +  +  +--+  +--+--+--+  +  +  +  +  +  +  +--+--+--+  +  +  
-18  | .  .D  |?F ?F ?F ?F|  |?F| .  . T7|?F ?F|        |?F ?F ?F
+18  | .  .D  |KF KF KF KF|  |KF| .  . T7|KF KF|        |KF KF KF
     +  +  +  +  +--+--+--+  +  +--+DD+--+  +  +  +--+  +  +  +  
-17  | .  .|  |?F|           |?F ?F|  |?F ?F ?F|  |?F|  |?F ?F ?F
+17  | .  .|  |KF|           |KF KF|  |KF KF KF|  |KF|  |KF KF KF
     +--+--+  +  +  +--+--+--+--+--+  +  +  +  +--+  +  +  +  +  
-16  |        |?F|                    |?F ?F ?F ?F ?F|  |?F ?F ?F
+16  |        |KF|                    |KF KF KF KF KF|  |KF KF KF
     +  +--+--+  +--+--+--+--+--+--+--+  +  +--+--+--+  +  +--+--
-15  |  |?F ?F ?F ?F ?F ?F ?F ?F ?F ?F ?F ?F|           |?F| .  .
+15  |  |KF KF KF KF KF KF KF KF KF KF KF KF|           |KF| .  .
     +  +  +--+--+--+--+  +  +  +--+--+--+--+  +--+--+--+  +  +  
-14  |  |?F|   m9      |?F ?F ?F|              |?F ?F ?F ?F| .  .
+14  |  |KF|   m9      |KF KF KF|              |KF KF KF KF| .  .
     +  +  +--+--+--+  +  +  +  +  +--+--+--+--+  +--+--+--+  +  
-13  |  |?F ?F ?F ?F|  |?F ?F ?F|  |?F ?F ?F ?F ?F|        D . T5
+13  |  |KF KF KF KF|  |KF KF KF|  |KF KF KF KF KF|        D . T5
     +  +--+--+--+--+  +  +  +--+DD+--+--+  +--+--+  +--+--+  +--
-12  |                 |?F ?F|T7  .  .  .|?F|        |?F ?F|T7|?F
+12  |                 |KF KF|T7  .  .  .|KF|        |KF KF|T7|KF
     +--+--+--+--+--+--+  +  +--+  +  +  +  +  +--+--+--+  +--+  
-11   ?F ?F ?F ?F ?F ?F ?F ?F ?F| . T4  .|?F|  |T6  .  .|?F ?F ?F
+11   KF KF KF KF KF KF KF KF KF| . T4  .|KF|  |T6  .  .|KF KF KF
     +--+--+--+  +  +--+  +  +  +  +  +  +  +  +  +  +  +--+  +  
-10  |T1  .  .|?F ?F|  |?F ?F ?F| .  .  .|?F|  | .  .  . T7|?F ?F
+10  |T1  .  .|KF KF|  |KF KF KF| .  .  .|KF|  | .  .  . T7|KF KF
     +  +  +  +  +  +  +  +  +  +--+--+--+  +  +  +  +DD+--+--+  
- 9  | .  .  .|?F ?F|  |?F ?F ?F ?F ?F ?F ?F|  | .  .|  |?F|  |?F
+ 9  | .  .  .|KF KF|  |KF KF KF KF KF KF KF|  | .  .|  |KF|  |KF
     +  +  +  +  +  +  +--+--+  +--+--+--+--+  +--+--+  +  +  +  
- 8  | .  . T7|?F ?F|        |?F|              |?F ?F|  |?F|  |?F
+ 8  | .  . T7|KF KF|        |KF|              |KF KF|  |KF|  |KF
     +--+DD+--+  +  +--+--+  +  +  +--+--+--+--+  +  +  +  +  +  
- 7   ?F|  |?F ?F ?F ?F ?F|  |?F|  |?F ?F ?F ?F ?F ?F|  |?F|  |?F
+ 7   KF|  |KF KF KF KF KF|  |KF|  |KF KF KF KF KF KF|  |KF|  |KF
     +  +  +--+--+--+  +  +  +--+  +  +  +  +  +  +  +  +--+  +  
- 6   ?F|           |?F ?F|        |?F ?F ?F ?F ?F ?F|        |?F
+ 6   KF|           |KF KF|        |KF KF KF KF KF KF|        |KF
     +  +--+--+--+  +  +  +--+--+--+  +  +--+  +  +  +--+--+--+  
- 5   ?F ?F ?F ?F|  |?F ?F ?F ?F ?F ?F ?F|  |?F ?F ?F ?F ?F ?F ?F
+ 5   KF KF KF KF|  |KF KF KF KF KF KF KF|  |KF KF KF KF KF KF KF
     +  +  +  +  +  +  +  +  +  +  +  +  +  +  +  +--+--+--+  +  
- 4   ?F ?F ?F ?F|  |?F ?F ?F ?F ?F ?F ?F|  |?F ?F|      ?A|?F ?F
+ 4   KF KF KF KF|  |KF KF KF KF KF KF KF|  |KF KF|      WA|KF KF
     +--+--+--+--+  +  +  +--+--+--+--+--+  +  +  +  +--+DD+--+--
- 3  |              |?F ?F|                 |?F ?F|  |?F|?B  .  .
+ 3  |              |KF KF|                 |KF KF|  |KF|WB  .  .
     +  +--+--+--+--+  +  +  +--+--+--+--+--+  +  +  +  +  +  +  
- 2  |  |?F ?F ?F ?F ?F ?F|  |?F ?F ?F ?F ?F ?F ?F|  |?F| .  .  .
+ 2  |  |KF KF KF KF KF KF|  |KF KF KF KF KF KF KF|  |KF| .  .  .
     +  +  +  +  +  +  +  +  +--+--+--+--+--+--+--+  +  +  +  +  
- 1  |  |?F ?F ?F ?F ?F ?F|                          |?F| .  .  .
+ 1  |  |KF KF KF KF KF KF|                          |KF| .  .  .
     +  +--+  +  +  +  +  +--+--+--+--+--+--+--+--+--+  +--+--+--
- 0  |m8 ?C|?F ?F ?F ?F ?F ?F ?F ?F|T7|?F ?F ?F ?F ?F ?F ?F ?F|?C
-  record  1: 02 02 0E 0A  at (0, 10)
-  record  2: 02 04 13 0A  at (0, 19)
-  record  3: 02 0E 11 0A  at (10, 19)
-  record  4: 02 05 0A 0A  at (10, 11)
-  record  5: 02 12 09 0A  at (19, 13)
-  record  6: 02 0C 05 0A  at (14, 11)
-  record  7: 02 00 00 0A  at (10, 0) and 6 more
-  record  8: 04 1A 00 00  at (0, 0)
-  record  9: 04 1B 00 00  at (3, 14)
-  record 10: 22 1C 5E 00  at (17, 4)
-  record 11: 24 60 5E FF  at (17, 3)
-  record 12: 1E 00 00 00  at (1, 0) and 1 more
-  record 15: 1A 00 00 00  at (2, 0) and 217 more
+ 0  |m8 OC|KF KF KF KF KF KF KF KF|T7|KF KF KF KF KF KF KF KF|OC
+  record  1: 02 02 0E 0A  at (0, 10)  teleport to (a,b) on floor c (0 = castle), silent
+  record  2: 02 04 13 0A  at (0, 19)  teleport to (a,b) on floor c (0 = castle), silent
+  record  3: 02 0E 11 0A  at (10, 19)  teleport to (a,b) on floor c (0 = castle), silent
+  record  4: 02 05 0A 0A  at (10, 11)  teleport to (a,b) on floor c (0 = castle), silent
+  record  5: 02 12 09 0A  at (19, 13)  teleport to (a,b) on floor c (0 = castle), silent
+  record  6: 02 0C 05 0A  at (14, 11)  teleport to (a,b) on floor c (0 = castle), silent
+  record  7: 02 00 00 0A  at (10, 0) and 6 more  teleport to (a,b) on floor c (0 = castle), silent
+  record  8: 04 1A 00 00  at (0, 0)  message a (waits for a button)
+  record  9: 04 1B 00 00  at (3, 14)  message a (waits for a button)
+  record 10: 22 1C 5E 00  at (17, 4)  Werdna's sign: message a (another text once the amulet is held)
+  record 11: 24 60 5E FF  at (17, 3)  Werdna's fight (monster a, b once the amulet is held) while not yet beaten
+  record 12: 1E 00 00 00  at (1, 0) and 1 more  back to the castle at once
+  record 15: 1A 00 00 00  at (2, 0) and 217 more  solid rock: the whole party dies (lost), back to the castle
