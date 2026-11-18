@@ -9,6 +9,28 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Might and Magic Book One (DOS) fix-up round
+- Task: fix-up of the published `main` set (3 duplicate groups, long captions, corrected LOWHP/WORTHY macros):
+  249 shots verified and published.
+- Worked: the game's `tools/try.py` with `--frames K --peek` answered all five questions (retreat frames,
+  temple, trap-door map number, macro values, death timing) in one parallel run; a script looping
+  `play.py recaption` with a length assert; `shoot.py --only` plus a comparison sheet of old and new frames; one
+  background full verify.
+- Friction: the agent's edit script stopped on an assert after the recaptions and the following `shoot.py
+  --only` silently reshot the old routes (caught by looking at the pictures); the coordinator's count of long
+  captions (33, from the published index) differed from the work list (38); a checkpoint that contains a
+  superseded macro (`astral` with `WORTHY`) needs the same "new name" treatment as the macro; `lenses.py`
+  checks the published set, not the work set.
+- Proposed rule change: (1) a checkpoint whose route uses a superseded macro is superseded too: add a new
+  checkpoint and move the shots; (2) `lenses.py SLUG SET --work`; (3) emulator guide, RAM section: after
+  writing record pokes for a party, read all members on screen before using the macro in a shot.
+- Corrected: nothing wrong found. Coordinator audited the republished index (no identical pictures, no caption
+  over 80, no route with the old macros), looked at the six retaken shots, and re-verified the set (count in
+  the progress log). The old macros were worse than the audit said: `WORTHY` marked only the first member, so
+  the ending's performance total changed from 70122 to 399602 with the corrected macro.
+- Status: (3) promoted 2026-11-18 into `docs/emulator/README.md` (second report of the same error: the scout's
+  spacing and this round); (1) promoted into the same guide next to the macro rule; (2) open tool wish.
+
 ### 2026-11-18 - Might and Magic Book One (DOS) round 2
 - Task: round 2 of set `main`: 137 shots added (mechanics, battles, environments, level-7 spells), the first
   three lens documents (systems, interface, content), 250/250 verified in two halves.

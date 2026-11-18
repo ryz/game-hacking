@@ -2,6 +2,21 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic 1 (DOS) fix-up round: 249 shots
+- game-capture (commit 8aedd0a): the three groups of identical pictures resolved (`encounter_retreat` dropped:
+  Retreat at the encounter prints nothing, documented; `temple_poisoned` retaken as the clerics' prompt with the
+  star on the poisoned member, the temple menu being the same picture for poison and wounds; `trap_door_after`
+  retaken lit, map checked as CAVE1); 38 captions shortened to 80 characters; macros `LOWHP2`, `WORTHY2` and
+  checkpoint `astral2` with the right record spacing, checked on screen, and the death, game over, ending and
+  Astral shots retaken with them. The old `WORTHY` had marked only the first member: the ending's performance
+  total is now 399602 (was 70122). Old macros and checkpoint kept, marked superseded.
+- Coordinator: audit of the republished index (no identical pictures, no caption over 80, no route with the
+  old macros), six retaken shots looked at, `tools/lenses.py` clean (201 / 199 / 176 of 249, 217 in two or more),
+  the full re-verification from an empty cache was still running when this was written: result in the entry above this one.
+- Promoted into `docs/emulator/README.md` (RAM): check a record table's spacing on the second and last record
+  and read a record macro back on screen; a checkpoint built on a superseded macro is superseded too.
+- Lead, not tried: the Astral door's "Key Card rejected" was tested with the old WORTHY; it may open with WORTHY2.
+
 ## 2026-11-18 - environment: no setup script, emulators are built per session
 - Correction to the entry below: the setup script was removed again. Owner's decision: one session per
   platform, so building all five emulators at every session start (203 s) wastes most of the time; a session

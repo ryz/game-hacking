@@ -177,6 +177,12 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
   flag bits one at a time from a checkpoint (one `emu.py` run per bit) before exploring further. A flag set by a
   poke stays in the route and is noted in the playbook.
 - Pokes are part of the route and fine anywhere; values that show on screen follow the realistic-values rule.
+- A table of records (party members, inventory slots): check the spacing on the second and the last record,
+  not only the first, and after writing a macro that pokes every record read all of them back on screen
+  before a shot uses it (Might and Magic 1 DOS: records 0x80 apart were taken as 0x7F; the macros hit a
+  neighbouring value for members 2-6 through two capture rounds, seen only when the ending total changed).
+- A macro used by published shots is never edited (the routes would change silently): add the corrected one
+  under a new name and move the shots. The same goes for a checkpoint whose route uses the old macro.
 
 ## Hangs and dead ends
 - There is no generic hang detector. If several inputs change nothing: check `status` (PC moving?), wait 300

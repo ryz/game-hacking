@@ -123,7 +123,7 @@ Current snapshot; history in `progress-log.md`.
 
 ## Next
 - **DOS handoff (2026-11-18, from the session that built the backend; nothing below is started):**
-  1. Fix in the Might and Magic 1 (DOS) set: three pixel-identical pairs (`sorpigal_inn_sign`/`encounter_retreat`,
+  1. DONE 2026-11-18 (fix-up round, 249 shots). Was: three pixel-identical pairs (`sorpigal_inn_sign`/`encounter_retreat`,
      `temple_price`/`temple_poisoned`, `trap_door_after`/`dungeon_darkness`: retake the second of the first two,
      drop the third); 33 captions over 80 characters; macros `LOWHP` and `WORTHY` use the wrong record spacing
      (0x7F, real 0x80): correct them as new macro names and retake `death_party_down`, `gameover`, `ending_*`.
