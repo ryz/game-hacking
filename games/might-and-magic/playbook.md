@@ -102,7 +102,8 @@ Capture 2026-11-18: main set of ~90 shots in `shots.txt` (game order). Done: tow
 temple, training + level-up, guild, tavern + rumour, leprechaun, camp/items, view pages, automap), combat (orders,
 targets, both spell lists, hit/kill, Flame, victory, chest + trap + loot, deaths, game over), world (4 towns,
 5 VARN sectors + desert/water messages, Dusk cave, Volcano, 4 castles, Dragadune, Enchanted Forest, City of Gold,
-Soul Maze, cavern portal), ending (Inner Sanctum, 5 pages). Not done: the Castle Alamar boss (see Strategy).
+Soul Maze, cavern portal), boss (King Alamar unmasked, Soul Maze riddle, impostor voided), ending (Inner
+Sanctum, 5 pages). 93 shots.
 Scout's plan (kept for history): 16 routed shots in `shots.txt` (boot, title, owl intro, naming, first control, sign, inn sign-in/save/menu/
 fellows/party, exploration menu, automap, cavern); the rest are commented plan lines there:
 - [ ] inventory: View character sheet; camp menu; equipment
@@ -132,9 +133,13 @@ Reach: everything by warp (below) from `@party`; boss/ending need the event squa
   `poke:009D=36,poke:009F=06,poke:00A0=07,poke:00A2=03000102,WARP_GO,w300`, then `a,w300` per page.
 - **Facing in event scripts**: the script's facing code is not $A2: the Inner Sanctum code tests 0 and fires
   with $A2 = 3 (west); the "not worthy" square tests 1 and fires with $A2 = 2. Map exits by experiment.
-- Boss (not done): the impostor King Alamar is in Castle Alamar (ROM text "The omnipotent King Alamar speaks",
-  bank 3 near file 0x07642); the true king's message mentions the Eye of Goros. Event scan of Castle Alamar in
-  the capture run did not show the throne fight within budget.
+- **Boss** (done 2026-11-18): give RYZ the Eye of Goros (item id FE in backpack slot 2: from `@vets`
+  `poke:6F38=FE,poke:6F7F=C6`), warp `poke:009D=25,poke:009F=0C,poke:00A0=07,poke:00A2=02030001,WARP_GO,w60,up,w300`
+  (Castle Alamar throne, checkpoint `alamar_eye`), `a,w300` pages -> Soul Maze (`soulmaze`). Warp onto Soul Maze
+  (6,0), three `a,w300`, then type SHELTEM: `b,b,b,down,right*8,a,w20,up,right*9,a,w20,left*3,a,w20,down,left*13,
+  a,w20,right*8,a,w20,up,right*5,a,w20,down,left*12,a,w60` and `down,a,w300` (ENTER) -> "Imposter voided", Rank 1,
+  back in Sorpigal (`impostor`, save `03_impostor_voided`). Without the Eye the king only sends you to the Crypt of
+  Carmenca. Item ids = order of the item name table at file 0x1CDF9 (1 Club ... 7B Scale Armor ... FE Eye of Goros).
 - **Warp** (verified on 06, 0B, 0F, 23, 30): `poke:009D=ID,poke:009F=X,poke:00A0=Y,a,w60,b,w180` (macro
   `WARP_GO` = `a,w60,b,w180`). The A press opens the exploration menu, whose handler does not clear the
   pending area $9D; B closes it and the main loop loads area ID at (X,Y) (code bank 29 $A0A9/$A12A). Facing is
@@ -180,7 +185,8 @@ Reach: everything by warp (below) from `@party`; boss/ending need the event squa
 |---|---|---|---|---|
 | none downloaded | GameFAQs blocked (403) | - | - | - |
 Own exports: `saves/01_party.sav` (party of six, level 1, Sorpigal), `saves/02_veterans.sav` (level 9 party,
-gold and gems, Sorpigal inn; poked records survive the reload, checked 2026-11-18); see `saves/README.md`.
+gold and gems, Sorpigal inn; poked records survive the reload, checked 2026-11-18), `saves/03_impostor_voided.sav`
+(after the Soul Maze; reload checked: the Astral Plane now treats the party as worthy); see `saves/README.md`.
 Record pokes: `python3 games/might-and-magic/tools/rec.py DUMP.json SLOT field=value ...` prints poke tokens with
 the fixed check byte (dump with `play.py dump NAME`).
 
@@ -212,7 +218,7 @@ Text code: `0-9` = 00-09, `A-Z` = 0A-23, `a-z` = 40-59, space FE, line end FF, `
 ## Checkpoints
 - `title`, `start` (RYZ alone, Sorpigal (8,5) N), `party` (party of six, inn counter (8,3), saved),
   `cavern` (warp example: Sorpigal Cavern (1,14)); capture: `town`, `bought`, `fight`, `vets`, `cavefight`,
-  `cavefight2`, `chest`, `worthy`, `sanctum` (see Strategy).
+  `cavefight2`, `chest`, `worthy`, `sanctum`, `alamar`, `alamar_eye`, `soulmaze`, `impostor` (see Strategy).
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -226,7 +232,8 @@ Text code: `0-9` = 00-09, `A-Z` = 0A-23, `a-z` = 40-59, space FE, line end FF, `
 
 ## Open questions
 - ~~Outdoor terrain types and the VARN layout~~ (done 2026-11-18: maps.md sections 3-4).
-- Castle Alamar boss fight square and its condition; the "not worthy" square's test.
+- Where the "impostor voided" state is saved (hero bytes +$61..+$64 are not it); the walk from the Astral Plane
+  "worthy" square to the Inner Sanctum.
 - Map header fields after the label (encounters, music, palettes).
 - ~~Exits between areas~~ (coded warps tabled in maps.md; run-time exits such as stairs not tabled).
 - Does a bad record check byte get wiped at power-on? (poked records were fixed, so not needed yet)

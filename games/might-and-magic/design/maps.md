@@ -122,6 +122,17 @@ Shops and services use the same mechanism with codes from $80 up instead of an a
 | (5,8) | "Pit!!" |
 | most other red squares | a fight (the same group whenever the square is entered at the same moment) |
 
+### Story squares (verified by warping onto or stepping into them; facing as $A2: 0 N, 1 E, 2 S, 3 W)
+| Area | Square, facing | What |
+|---|---|---|
+| 25 Castle Alamar | warp to (C,7) facing south, press Up | throne: "The omnipotent King Alamar speaks"; with the Eye of Goros: into the Soul Maze |
+| 25 Castle Alamar | several squares (event scan) | "Boom! A fiery explosion." and "Singe! Acid trap." traps, "A loud scream from behind the door!", King's guards ("No King's Pass, no admittance!"), "THRONE ROOM" sign, "A passage leads outside", many fights |
+| 37 Soul Maze | (0,0) | sign "Soul Maze 0:0"; (6,0): the alien and the "Answer!" keyboard (SHELTEM) |
+| 36 Astral Plane | (4,6) (4,A) (7,E) (A,A) (A,6) | the five gates: "You've opened the First (Second, Third, Fourth, Fifth) gate!" |
+| 36 Astral Plane | (7,8) facing 2 | "You are not yet worthy for transfer" / after the Soul Maze "My dream leads me, your dream leads you." |
+| 36 Astral Plane | (7,A) | "There's a small slot in the door." |
+| 36 Astral Plane | (6,7) facing 3 | the Inner Sanctum ending |
+
 ## Open questions
 - Exits computed at run time (stairs, gates, the leprechaun) and the source square of each coded exit are not
   tabled; the arrival squares are.

@@ -37,15 +37,16 @@ levels, 4 City of Gold (P-Peek) levels, the Astral Plane and the Soul Maze: 55 m
 | Document | Covers |
 |---|---|
 | [maps.md](maps.md) | the 55 maps: list, ids, how walls/doors/specials are stored, how to read the renders in `maps/` |
+| [towns.md](towns.md) | inn, blacksmith, market, temple, training, guild, tavern, leprechaun, camp/equipment, character sheet |
+| [combat.md](combat.md) | orders, spells, messages, victory, treasure chests and traps, death and game over |
+| [story.md](story.md) | the impostor king, the Soul Maze riddle, the Astral Plane, the Inner Sanctum ending |
 | [findings.md](findings.md) | quirks and likely bugs |
 
-Planned (capture run): party and classes (six classes, stats, the fifteen fellows and their towns), combat,
-towns and services (inn, blacksmith, food, temple, training), magic, story.
+Still planned: party and classes (six classes, stats, the fifteen fellows), the full spell lists, items.
 
 ## Open questions
-- Outdoor sectors: the wall values there mean terrain (trees, water, mountains); which value is which is not
-  decoded yet (the renders show them as raw wall types).
-- Event squares: which script runs on each red square (stored as code per map, not as a table).
+- Outdoor terrain: decoded ([maps.md](maps.md) section 4). Event squares: decoded for Sorpigal, the Astral Plane,
+  Castle Alamar and the Soul Maze by stepping in; the other areas only through their coded exits.
 
 ## Sources
 See `../playbook.md` Sources.

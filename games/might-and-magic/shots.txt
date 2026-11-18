@@ -17,14 +17,14 @@ inn_menu | menu | Inn menu: Member, Rest, View, Cancel | @start,INN,SIGNIN,settl
 inn_fellows | menu | Inn > Member > Add: "Select your fellows", roster with class/race card | @start,NAMES,INN,SIGNIN,ADD,ADD,down*5,w60,settle
 inn_party | menu | Inn: the party of six RYZ KN, CONDI PA, EBO CL, CUBI RO, DEDDO WI, MNZ AR | @start,NAMES,INN,SIGNIN,FELLOWS,settle,b,w60,settle
 main_menu | menu | Exploration menu: Search Cast Open Use Row View Camp Prot Speed Cancel + party | @party,a,w60,settle
-cavern | gameplay | Sorpigal Cavern (C-SORPIGAL): blue cave walls | @cavern,w1,settle
+automap_explored | map | Automap (Select) of a well explored Sorpigal: walls, doors, shops; grey = not yet visited; arrow = party | @vets,poke:009D=01,poke:009F=08,poke:00A0=05,poke:00A2=00010203,WARP_GO,poke:6880=FFFFFFFFFFFFFFFFFFFFFFFFFFFF3FFFFFFF0FFF07FF03FF03FF01FF00FF00,select,w90,settle
 view_profile | inventory | View, page 1: RYZ, human Knight, age 17, level 1, good, experience, condition | @town,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,settle
 view_stats | inventory | View, page 2: the seven statistics (Intellect, Might, Personality...) and armour class | @town,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,settle,a,w90,settle
 view_vitals | inventory | View, page 3: EBO (Cleric) HP 5/5, magic points 10/10 at spell level 1, gems, gold, food | @town,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,settle,a,w90,settle,b,w60,settle,a,w60,settle,b,w60,settle,right,w20,down,w20,down,w20,a,w90,down,w20,down,w20,a,w120,a,w90,a,w90,settle
 blacksmith_greet | dialogue | B and B Blacksmiths: "A man speaks: Can I help you?" | @town,poke:00A2=03000102,up,w300,up,w300,settle
+blacksmith_menu | shop | Blacksmith menu: Buy, Sell, View, Cancel, with the party list | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle,down,w20,down,w20,a,w120,settle,w200,up,w30,a,w150,settle,a,w150,settle
 blacksmith_weapons | shop | B and B Blacksmiths, Buy > Weapon: Dagger, Hand Axe, Short Sword, Sling, Crossbow, Staff | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle
 blacksmith_price | shop | Blacksmith: "It's 20 Gold. OK?" for a Short Sword | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle,down,w20,down,w20,a,w120,settle
-blacksmith_menu | shop | Blacksmith menu: Buy, Sell, View, Cancel, with the party list | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle,down,w20,down,w20,a,w120,settle,w200,up,w30,a,w150,settle,a,w150,settle
 blacksmith_armor | shop | Blacksmith, Buy > Armor: Small Shield, Padded, Leather, Scale Armor, Ring Mail, Chain Mail | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle,down,w20,down,w20,a,w120,settle,w200,up,w30,a,w150,settle,a,w150,settle,a,w120,down,w20,down,w20,a,w120,settle
 view_backpack | inventory | View, backpack: RYZ carries a Club, the new Short Sword and Scale Armor | @town,poke:00A2=03000102,up,w300,up,w300,settle,up,w30,a,w200,settle,a,w120,settle,down,w20,a,w120,settle,down,w20,down,w20,a,w120,settle,w200,up,w30,a,w150,settle,a,w150,settle,a,w120,down,w20,down,w20,a,w120,settle,down,w20,down,w20,down,w20,a,w200,settle,w100,up,w30,a,w150,a,w150,settle,down,w20,down,w20,a,w150,settle,a,w120,a,w90,a,w90,a,w90,a,w90,settle
 camp_rest | system | Camp: "Rest here?" (resting heals, costs food, may bring a night attack) | @bought,right,w60,settle,down,w20,down,w20,down,w20,a,w200,settle,a,w60,right,w20,down,w20,a,w90,settle,a,w120,settle,a,w120,settle,right,w90,settle,b,w60,settle,up,w60,settle,right,w20,down,w20,a,w90,a,w120,up,w60,settle,a,w120,down,w20,a,w150,settle,b,w60,settle,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,down,w20,a,w120,settle,b,w60,settle,b,w60,settle,a,w60,right,w20,down,w20,a,w90,a,w120,a,w120,a,w120,settle,b,w60,settle,b,w60,settle,b,w60,settle,a,w60,down,w20,down,w20,down,w20,a,w120,settle
@@ -32,41 +32,23 @@ camp_items | menu | Camp, declining to rest: the item menu Equip, Remove, Trade,
 view_equipped | inventory | View, equipped items: RYZ wields the Short Sword and wears the Scale Armor | @bought,right,w60,settle,down,w20,down,w20,down,w20,a,w200,settle,a,w60,right,w20,down,w20,a,w90,settle,a,w120,settle,a,w120,settle,right,w90,settle,b,w60,settle,up,w60,settle,right,w20,down,w20,a,w90,a,w120,up,w60,settle,a,w120,down,w20,a,w150,settle,b,w60,settle,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,down,w20,a,w120,settle,b,w60,settle,b,w60,settle,a,w60,right,w20,down,w20,a,w90,a,w120,a,w120,a,w120,settle,b,w60,settle,b,w60,settle,b,w60,settle,a,w60,down,w20,down,w20,down,w20,a,w120,settle,b,w60,settle,b,w60,settle,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,right,w60,settle,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,a,w90,settle,a,w90,settle,b,w60,settle,b,w60,settle,b,w60,settle,a,w60,down,w20,down,w20,down,w20,a,w200,a,w120,settle,a,w90,a,w120,settle,down,w20,a,w150,settle,a,w150,settle,a,w90,a,w120,down,w20,down,w20,a,w150,down,w20,a,w150,settle,b,w60,settle,a,w60,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,settle,right,w20,down,w20,down,w20,a,w90,a,w120,a,w90,a,w90,a,w90,settle
 food_shop | shop | Eulard's Fine Foods: "Would you like to buy some Food?" | @town,poke:009D=01,poke:009F=09,poke:00A0=05,poke:00A2=01020300,WARP_GO,up,w300,settle
 food_price | shop | Market (Eulard's Fine Foods): "Food price is 5 Gold. Will you pay?" | @town,poke:009D=01,poke:009F=09,poke:00A0=05,poke:00A2=01020300,WARP_GO,up,w300,settle,up,w30,a,w200,settle,a,w120,settle
-tavern | shop | Tavern of Sorpigal: Drink, Tip, Rumors, View, Cancel | @town,poke:009D=01,poke:009F=0A,poke:00A0=0E,poke:00A2=01020300,WARP_GO,up,w300,up,w30,a,w200,settle
-tavern_rumor | dialogue | Tavern rumour: "All Portals are connected." | @town,poke:009D=01,poke:009F=0A,poke:00A0=0E,poke:00A2=01020300,WARP_GO,up,w300,up,w30,a,w200,settle,down,w20,down,w20,a,w200,settle
+temple_greet | dialogue | Temple of Sorpigal: "Do you seek our help?" | @town,poke:009D=01,poke:009F=04,poke:00A0=00,poke:00A2=00010203,WARP_GO,up,w300,settle
+temple | shop | Temple ("House"): Help (healing, uncurse), Donate, View | @town,poke:009D=01,poke:009F=04,poke:00A0=00,poke:00A2=00010203,WARP_GO,up,w300,settle,up,w30,a,w200,settle
+training_greet | dialogue | Otto's Training: "Do you require training?" | @town,poke:009D=01,poke:009F=0D,poke:00A0=0A,poke:00A2=00010203,WARP_GO,up,w300,up,w300,settle
+training_need | system | Training: "RYZ, you need 1500 Exp for next Level" | @town,poke:009D=01,poke:009F=0D,poke:00A0=0A,poke:00A2=00010203,WARP_GO,up,w300,up,w300,settle,w100,up,w30,a,w200,a,w120,a,w200,settle
+training_levelup | system | Training complete: "Welcome to Level 2!" (40 gold) | @town,poke:009D=01,poke:009F=0D,poke:00A0=0A,poke:00A2=00010203,WARP_GO,up,w300,up,w300,settle,poke:6F17=1A06,poke:6F7F=99,w100,up,w30,a,w200,a,w120,a,w200,settle,w100,up,w30,a,w150,settle
 guild | menu | Guild of Sorpigal: the guild master offers Change, Rename, View | @town,poke:009D=01,poke:009F=01,poke:00A0=0D,poke:00A2=01020300,WARP_GO,up,w300,up,w30,a,w200,settle
 guild_change | dialogue | Guild, Change class: "You must abandon all your experience..." | @town,poke:009D=01,poke:009F=01,poke:00A0=0D,poke:00A2=01020300,WARP_GO,up,w300,up,w30,a,w200,settle,a,w150,settle,down,w20,a,w200,settle
+tavern | shop | Tavern of Sorpigal: Drink, Tip, Rumors, View, Cancel | @town,poke:009D=01,poke:009F=0A,poke:00A0=0E,poke:00A2=01020300,WARP_GO,up,w300,up,w30,a,w200,settle
+tavern_rumor | dialogue | Tavern rumour: "All Portals are connected." | @town,poke:009D=01,poke:009F=0A,poke:00A0=0E,poke:00A2=01020300,WARP_GO,up,w300,up,w30,a,w200,settle,down,w20,down,w20,a,w200,settle
+leprechaun | dialogue | The leprechaun of Sorpigal: "Only 1 Gem you lose..." (teleport to another town) | @town,poke:009D=01,poke:009F=0C,poke:00A0=03,poke:00A2=03000102,WARP_GO,up,w300,settle
 battle_encounter | battle | Encounter in Sorpigal: two Goblins and two Skeletons; Attack, Bribe, Run, Giveup | @town,poke:009D=01,poke:009F=05,poke:00A0=03,WARP_GO,w240,settle
 battle_orders | battle | RYZ's orders: Auto, Fight, Block, Row, Use, View, Prot, Run (Cast greyed for a Knight) | @fight,a,w150,settle
 battle_target | battle | Fight > Which?: targets with hit points (Goblin 9, Goblin 7, Skeleton 9, Skeleton 8) | @fight,a,w150,settle,down,w20,a,w120,settle
 battle_hit | battle | Combat message: Goblin attacks 1 time, hits 1 time, 1 point of damage | @fight,a,w150,settle,down,w20,a,w120,settle,a,w120,settle,down,w20,a,w120,down,w20,a,w120,settle
 battle_cast_level | battle | DEDDO casts: Mage Spell levels 1-7 | @fight,a,w150,settle,down,w20,a,w120,settle,a,w120,settle,down,w20,a,w120,down,w20,a,w120,settle,a,w90,settle,a,w90,settle,a,w90,settle,right,w20,a,w120,settle
 battle_mage_spells | battle | Mage spells, level 1: Awaken, Detect, Voice, Flame, Armor, Light, Locate, Sleep | @fight,a,w150,settle,down,w20,a,w120,settle,a,w120,settle,down,w20,a,w120,down,w20,a,w120,settle,a,w90,settle,a,w90,settle,a,w90,settle,right,w20,a,w120,settle,a,w120,settle
-temple_greet | dialogue | Temple of Sorpigal: "Do you seek our help?" | @town,poke:009D=01,poke:009F=04,poke:00A0=00,poke:00A2=00010203,WARP_GO,up,w300,settle
-temple | shop | Temple ("House"): Help (healing, uncurse), Donate, View | @town,poke:009D=01,poke:009F=04,poke:00A0=00,poke:00A2=00010203,WARP_GO,up,w300,settle,up,w30,a,w200,settle
-training_greet | dialogue | Otto's Training: "Do you require training?" | @town,poke:009D=01,poke:009F=0D,poke:00A0=0A,poke:00A2=00010203,WARP_GO,up,w300,up,w300,settle
-training_need | system | Training: "RYZ, you need 1500 Exp for next Level" | @town,poke:009D=01,poke:009F=0D,poke:00A0=0A,poke:00A2=00010203,WARP_GO,up,w300,up,w300,settle,w100,up,w30,a,w200,a,w120,a,w200,settle
-training_levelup | system | Training complete: "Welcome to Level 2!" (40 gold) | @town,poke:009D=01,poke:009F=0D,poke:00A0=0A,poke:00A2=00010203,WARP_GO,up,w300,up,w300,settle,poke:6F17=1A06,poke:6F7F=99,w100,up,w30,a,w200,a,w120,a,w200,settle,w100,up,w30,a,w150,settle
-leprechaun | dialogue | The leprechaun of Sorpigal: "Only 1 Gem you lose..." (teleport to another town) | @town,poke:009D=01,poke:009F=0C,poke:00A0=03,poke:00A2=03000102,WARP_GO,up,w300,settle
-town_portsmith | gameplay | Portsmith: red stone streets | @vets,poke:009D=02,poke:009F=09,poke:00A0=08,poke:00A2=00010203,WARP_GO,w60,settle
-town_algary | gameplay | Algary: green stone streets | @vets,poke:009D=03,poke:009F=07,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
-town_dusk | gameplay | Dusk: purple stone town | @vets,poke:009D=04,poke:009F=08,poke:00A0=08,poke:00A2=03000102,WARP_GO,w60,settle
-town_erliquin | gameplay | Erliquin: orange stone town | @vets,poke:009D=05,poke:009F=07,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
-varn_a2 | gameplay | VARN outdoors, sector A2: red mountains and forest | @vets,poke:009D=10,poke:009F=07,poke:00A0=06,poke:00A2=01020300,WARP_GO,w60,settle
-varn_b3 | gameplay | VARN sector B3: forest and a lake | @vets,poke:009D=15,poke:009F=0C,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
-varn_c4 | gameplay | VARN sector C4: yellow-leaved forest | @vets,poke:009D=1A,poke:009F=08,poke:00A0=03,poke:00A2=03000102,WARP_GO,w60,settle
-varn_d1 | gameplay | VARN sector D1: mountains in the orange desert | @vets,poke:009D=1B,poke:009F=08,poke:00A0=0B,poke:00A2=00010203,WARP_GO,w60,settle
-varn_e4 | gameplay | VARN sector E4: coast with sea and grey mountains | @vets,poke:009D=22,poke:009F=08,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
-cave_dusk | gameplay | Cave below Dusk (CAVE DUSK): blue rock tunnels | @vets,poke:009D=0A,poke:009F=07,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
-volcano | gameplay | Volcano: a stone hall with a blue floor | @vets,poke:009D=0C,poke:009F=07,poke:00A0=07,poke:00A2=02030001,WARP_GO,w60,settle
-castle_doom | gameplay | Castle Doom: golden halls | @vets,poke:009D=23,poke:009F=0A,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
-castle_whitewolf | gameplay | Castle White Wolf (CASTLE WW) | @vets,poke:009D=24,poke:009F=08,poke:00A0=07,poke:00A2=02030001,WARP_GO,w60,settle
-castle_alamar | gameplay | Castle Alamar: red-floored golden halls | @vets,poke:009D=25,poke:009F=08,poke:00A0=09,poke:00A2=01020300,WARP_GO,w60,settle
-castle_blackridge | gameplay | Castle Blackridge North (CASTLE BN) | @vets,poke:009D=26,poke:009F=07,poke:00A0=08,poke:00A2=00010203,WARP_GO,w60,settle
-dragadune | gameplay | Castle Dragadune: blue stone halls | @vets,poke:009D=28,poke:009F=08,poke:00A0=07,poke:00A2=01020300,WARP_GO,w60,settle
-enchanted_forest | gameplay | Enchanted Forest, first level (ENCHANT B1) | @vets,poke:009D=2C,poke:009F=08,poke:00A0=0A,poke:00A2=00010203,WARP_GO,w60,settle
-city_of_gold | gameplay | City of Gold, first level (P-PEEK1) | @vets,poke:009D=32,poke:009F=08,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
-soul_maze | gameplay | Soul Maze: the last labyrinth | @vets,poke:009D=37,poke:009F=07,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
+cavern | gameplay | Sorpigal Cavern (C-SORPIGAL): blue cave walls | @cavern,w1,settle
 cavern_portal | dialogue | Sorpigal Cavern: "A shimmering blue and white Portal appears! Enter?" | @vets,poke:009D=06,poke:009F=0F,poke:00A0=00,WARP_GO,w240,settle
 battle_kill | battle | RYZ attacks a Wolverine: 3 times, hit 2 times, damaged 12 points, "Monster goes down" | @cavefight,a,w120,down,w20,a,w120,settle,a,w40,w25,w25,w25,w25,w20,w20,w20,w20,w20,w20,!
 battle_cleric_spells | battle | EBO's Cleric spells, level 1: Awaken, Aim, Blind, Cure1, Light1, Cure3, P-Fear, Bless1 | @cavefight,a,w120,down,w20,a,w120,settle,a,w40,w25,w25,w25,w25,w20,w20,w20,w20,w20,w20,w60,settle,down,w20,a,w120,a,w300,settle,right,w20,a,w120,a,w120,settle
@@ -79,12 +61,38 @@ chest_loot | system | Chest loot: "RYZ gets an item" (twice) | @chest,a,w120,set
 battle_death | battle | A member falls: "hit 2 times, damaged 20Pts, CONDI goes down" | @cavefight,poke:6F23=01,poke:6F7F=68,poke:76A3=01,poke:76FF=83,poke:71A3=01,poke:71FF=96,poke:7023=01,poke:707F=58,poke:6FA3=01,poke:6FFF=3D,poke:7223=01,poke:727F=EE,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle
 battle_dies | battle | "MNZ is paralyzed! MNZ dies!" - the last fighter falls | @cavefight,poke:6F23=01,poke:6F7F=68,poke:76A3=01,poke:76FF=83,poke:71A3=01,poke:71FF=96,poke:7023=01,poke:707F=58,poke:6FA3=01,poke:6FFF=3D,poke:7223=01,poke:727F=EE,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle
 gameover | gameover | Game over: "The Shadow of Death has fallen upon your Party!" | @cavefight,poke:6F23=01,poke:6F7F=68,poke:76A3=01,poke:76FF=83,poke:71A3=01,poke:71FF=96,poke:7023=01,poke:707F=58,poke:6FA3=01,poke:6FFF=3D,poke:7223=01,poke:727F=EE,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle,a,w150,settle
-automap_explored | map | Automap (Select) of a well explored Sorpigal: walls, doors, shops; grey = not yet visited; arrow = party | @vets,poke:009D=01,poke:009F=08,poke:00A0=05,poke:00A2=00010203,WARP_GO,poke:6880=FFFFFFFFFFFFFFFFFFFFFFFFFFFF3FFFFFFF0FFF07FF03FF03FF01FF00FF00,select,w90,settle
-varn_desert | gameplay | VARN D1 desert: "It's hot... You're lost!!!" | @vets,poke:009D=1B,poke:009F=04,poke:00A0=09,poke:00A2=01020300,WARP_GO,w60,up,w120,settle
+town_portsmith | gameplay | Portsmith: red stone streets | @vets,poke:009D=02,poke:009F=09,poke:00A0=08,poke:00A2=00010203,WARP_GO,w60,settle
+town_algary | gameplay | Algary: green stone streets | @vets,poke:009D=03,poke:009F=07,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
+town_dusk | gameplay | Dusk: purple stone town | @vets,poke:009D=04,poke:009F=08,poke:00A0=08,poke:00A2=03000102,WARP_GO,w60,settle
+town_erliquin | gameplay | Erliquin: orange stone town | @vets,poke:009D=05,poke:009F=07,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
+varn_a2 | gameplay | VARN outdoors, sector A2: red mountains and forest | @vets,poke:009D=10,poke:009F=07,poke:00A0=06,poke:00A2=01020300,WARP_GO,w60,settle
+varn_b3 | gameplay | VARN sector B3: forest and a lake | @vets,poke:009D=15,poke:009F=0C,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
 varn_water | gameplay | VARN B3 lake shore: "Cannot swim!" | @vets,poke:009D=15,poke:009F=05,poke:00A0=02,poke:00A2=01020300,WARP_GO,w60,up,w120,settle
+varn_c4 | gameplay | VARN sector C4: yellow-leaved forest | @vets,poke:009D=1A,poke:009F=08,poke:00A0=03,poke:00A2=03000102,WARP_GO,w60,settle
+varn_d1 | gameplay | VARN sector D1: mountains in the orange desert | @vets,poke:009D=1B,poke:009F=08,poke:00A0=0B,poke:00A2=00010203,WARP_GO,w60,settle
+varn_desert | gameplay | VARN D1 desert: "It's hot... You're lost!!!" | @vets,poke:009D=1B,poke:009F=04,poke:00A0=09,poke:00A2=01020300,WARP_GO,w60,up,w120,settle
+varn_e4 | gameplay | VARN sector E4: coast with sea and grey mountains | @vets,poke:009D=22,poke:009F=08,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
+cave_dusk | gameplay | Cave below Dusk (CAVE DUSK): blue rock tunnels | @vets,poke:009D=0A,poke:009F=07,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
+volcano | gameplay | Volcano: a stone hall with a blue floor | @vets,poke:009D=0C,poke:009F=07,poke:00A0=07,poke:00A2=02030001,WARP_GO,w60,settle
+castle_doom | gameplay | Castle Doom: golden halls | @vets,poke:009D=23,poke:009F=0A,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
+castle_whitewolf | gameplay | Castle White Wolf (CASTLE WW) | @vets,poke:009D=24,poke:009F=08,poke:00A0=07,poke:00A2=02030001,WARP_GO,w60,settle
+castle_blackridge | gameplay | Castle Blackridge North (CASTLE BN) | @vets,poke:009D=26,poke:009F=07,poke:00A0=08,poke:00A2=00010203,WARP_GO,w60,settle
+dragadune | gameplay | Castle Dragadune: blue stone halls | @vets,poke:009D=28,poke:009F=08,poke:00A0=07,poke:00A2=01020300,WARP_GO,w60,settle
+enchanted_forest | gameplay | Enchanted Forest, first level (ENCHANT B1) | @vets,poke:009D=2C,poke:009F=08,poke:00A0=0A,poke:00A2=00010203,WARP_GO,w60,settle
+city_of_gold | gameplay | City of Gold, first level (P-PEEK1) | @vets,poke:009D=32,poke:009F=08,poke:00A0=08,poke:00A2=01020300,WARP_GO,w60,settle
+castle_alamar | gameplay | Castle Alamar: red-floored golden halls | @vets,poke:009D=25,poke:009F=08,poke:00A0=09,poke:00A2=01020300,WARP_GO,w60,settle
+king_alamar | boss | Castle Alamar throne room: "The omnipotent King Alamar speaks:" | @vets,poke:009D=25,poke:009F=0C,poke:00A0=07,poke:00A2=02030001,WARP_GO,w60,up,w300,settle
+king_alamar_quest | dialogue | The false king: "Varnlings, I quest thee to find the Crypt of Carmenca. Away with you..." | @alamar,a,w300,settle
+boss_unmasked | boss | With the Eye of Goros: "You've discovered my true identity! Into the soul maze you go..." | @alamar_eye,a,w300,settle
+soul_maze_alien | boss | Soul Maze: "A strange alien being in a shimmering silver jumpsuit proclaims:" | @alamar_eye,a,w300,settle,a,w300,settle
+soul_maze_riddle | dialogue | "To escape, you must find your captor's name hidden within these walls." | @alamar_eye,a,w300,settle,a,w300,settle,a,w300,settle,a,w300,settle
+soul_maze | gameplay | Soul Maze: the last labyrinth | @vets,poke:009D=37,poke:009F=07,poke:00A0=08,poke:00A2=02030001,WARP_GO,w60,settle
+soul_maze_answer | system | Soul Maze answer: the captor's name SHELTEM typed on the letter row | @soulmaze,poke:009D=37,poke:009F=06,poke:00A0=00,WARP_GO,w300,a,w300,a,w300,a,w300,settle,b,b,b,down,right*8,a,w20,up,right*9,a,w20,left*3,a,w20,down,left*13,a,w20,right*8,a,w20,up,right*5,a,w20,down,left*12,a,w60,settle
+boss_voided | boss | Answer accepted: "Imposter xx21a7-3 voided!" | @soulmaze,poke:009D=37,poke:009F=06,poke:00A0=00,WARP_GO,w300,a,w300,a,w300,a,w300,settle,b,b,b,down,right*8,a,w20,up,right*9,a,w20,left*3,a,w20,down,left*13,a,w20,right*8,a,w20,up,right*5,a,w20,down,left*12,a,w60,settle,down,a,w300,settle
+rank1 | cutscene | "You are now Rank 1 and eligible for transfer." | @soulmaze,poke:009D=37,poke:009F=06,poke:00A0=00,WARP_GO,w300,a,w300,a,w300,a,w300,settle,b,b,b,down,right*8,a,w20,up,right*9,a,w20,left*3,a,w20,down,left*13,a,w20,right*8,a,w20,up,right*5,a,w20,down,left*12,a,w60,settle,down,a,w300,settle,a,w300,settle
+astral_dream | dialogue | Astral Plane, once the impostor is voided: "Message: My dream leads me, your dream leads you." | pow,sav:03_impostor_voided,CONTINUE,settle,poke:009D=36,poke:009F=07,poke:00A0=09,poke:00A2=02030001,WARP_GO,up,w300,settle
 ending_metallic_room | ending | Inner Sanctum: "The metallic room is dimly lit by a pulsating white glow!" | @sanctum,w1,settle
 ending_welcome | ending | The Data Keeper: "Welcome to your Inner Sanctum." | @sanctum,w1,settle,a,w300,settle,a,w300,settle
 ending_transfer | ending | "You are given the opportunity for transfer to another World." | @sanctum,w1,settle,a,w300,settle,a,w300,settle,a,w300,settle
 ending_exp | ending | "...+500,000 exp for your accomplishment!" | @sanctum,w1,settle,a,w300,settle,a,w300,settle,a,w300,settle,a,w300,settle,a,w300,settle,a,w300,settle
 ending_panel | ending | "A metallic panel slides open, revealing..." - then the party is back in Sorpigal | @sanctum,w1,settle,a,w300,settle,a,w300,settle,a,w300,settle,a,w300,settle,a,w300,settle,a,w300,settle,a,w300,settle
-# planned: boss fight with the impostor King Alamar (Castle Alamar), not reached in the capture run
