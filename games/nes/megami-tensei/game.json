@@ -2,6 +2,7 @@
   "slug": "megami-tensei",
   "title": "Digital Devil Story: Megami Tensei (Famicom, English translation patch)",
   "platform": "nes",
+  "region": "jp",
   "model": "ntsc",
   "rom": "rom/megami-tensei.nes",
   "sha1": "0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b",

@@ -2,6 +2,7 @@
   "slug": "shin-megami-tensei",
   "title": "Shin Megami Tensei (Super Famicom, English translation patch)",
   "platform": "snes",
+  "region": "jp",
   "model": "ntsc",
   "rom": "rom/shin-megami-tensei.sfc",
   "sha1": "3581a9a51354ad68662dca6a6856da2963f62562",

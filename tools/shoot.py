@@ -14,15 +14,21 @@
 
 Shot list lines: `id | category | caption | route` (route: tools/emu.py tokens; may start with @checkpoint).
 A route is played exactly, then `settle` is added unless it already ends with `settle` or `!`.
-Outputs per shot: <id>.png (native, framebuffer as is: no filter, no colour correction, no scaling),
-3x/<id>.png (nearest neighbour, same name in the 3x/ subfolder). Per set: index.json, index.md, sheet.png (all shots, captioned).
-Clips: a route ending in `rec:N[:K[:P]]` records N frames (every Kth kept) from the end of the route: <id>.gif and
-3x/<id>.gif at game speed, <id>.png (and 3x/) = the poster (kept frame P, default the first). --verify compares every clip frame.
+File names say what a file shows without its folder (docs/capture-guide.md, "File names"):
+  <game>_<platform>_<region>_<area>_<id>[.<set>].png      might-and-magic_nes_na_battle_battle_sprites.png
+game, platform, region = game.json "slug", "platform", "region"; area = the shot's category; id = the shot id (in
+a `seq-<action>` set: `seq-<action>_<id>`); `.<set>` for every set but `main` and `seq-*`. Below, NAME is that name.
+Outputs per shot: NAME.png (native, framebuffer as is: no filter, no colour correction, no scaling),
+3x/NAME.png (nearest neighbour, same name in the 3x/ subfolder). Per set: index.json, index.md and the contact
+sheet <game>_<platform>_<region>_set_sheet[.<set>].png (all shots, captioned; `set` in the area field = a file about the whole set).
+Clips: a route ending in `rec:N[:K[:P]]` records N frames (every Kth kept) from the end of the route: NAME.gif and
+3x/NAME.gif at game speed, NAME.png (and 3x/) = the poster (kept frame P, default the first). --verify compares every clip frame.
 Sequences: a set named `seq-<action>` is an ordered action (shots in list order = steps): it also gets
-strip.png (the steps left to right, numbered and captioned), steps.gif (and 3x/steps.gif) (one still per 1.5 s) and
-full.gif (and 3x/full.gif) (all steps stitched in order: stills held 1.5 s, clips played in full at game speed).
+..._set_seq-<action>_strip.png (the steps left to right, numbered and captioned), ..._steps.gif (and 3x/) (one still
+per 1.5 s) and ..._full.gif (and 3x/) (all steps stitched in order: stills held 1.5 s, clips played in full at game speed).
+A set made before a change of the scheme, of a category or of game.json is renamed to it on the next run.
 """
-import argparse, datetime, hashlib, json, os, shutil, sys, tempfile
+import argparse, datetime, hashlib, json, os, re, shutil, sys, tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, ".."))
@@ -34,10 +40,95 @@ CATEGORIES = ["boot", "title", "menu", "options", "cutscene", "gameplay", "hud",
               "dialogue", "shop", "battle", "boss", "minigame", "ending", "credits", "gameover", "save", "extra"]
 
 
+REGIONS = ["jp", "na", "eu"]     # game.json "region": where the registered dump was released (not its language)
+SET_FILES = ("sheet.png", "strip.png", "steps.gif", "full.gif")     # files about a whole set (area field `set`)
+SET_FILES_3X = ("steps.gif", "full.gif")
+
+
 def prefix(set_name):
-    """File-name prefix of a set: sequence sets name every media file after the set (seq-fishing_01_shore.png,
-    seq-fishing_full.gif) so files keep their context outside the folder; other sets: none."""
+    """Sequence sets put the set name in front of every id (seq-fishing_01_shore): the steps are one action."""
     return set_name + "_" if set_name.startswith("seq-") else ""
+
+
+def suffix(set_name):
+    """`.<set>` for sets that share ids with the main set (compare-maze); none for main and seq-* sets."""
+    return "" if set_name == "main" or set_name.startswith("seq-") else "." + set_name
+
+
+def head(g, set_name):
+    """<game>_<platform>_<region> from game.json (or the "game" block of an index.json). No field holds a `_`."""
+    if g.get("region") not in REGIONS:
+        raise SystemExit("games/%s/%s/game.json needs \"region\": one of %s (where the dump was released; "
+                         "a translated Japanese ROM is jp)" % (g["platform"], g["slug"], ", ".join(REGIONS)))
+    for what, v in (("slug", g["slug"]), ("platform", g["platform"]), ("set name", set_name)):
+        if not re.match(r"^[a-z0-9]+(-[a-z0-9]+)*$", v):
+            raise SystemExit("error: %s %r must be lowercase a-z0-9 words joined by `-` (it is part of the "
+                             "shot file names)" % (what, v))
+    return "%s_%s_%s" % (g["slug"], g["platform"], g["region"])
+
+
+def stem(g, set_name, category, sid):
+    """File name of a shot without the extension: <game>_<platform>_<region>_<area>_<id>[.<set>]."""
+    if not re.match(r"^[a-z]+$", category) or category == "set":
+        raise SystemExit("error: %s: category %r must be one lowercase word, not `set` (it is the area field of "
+                         "the file name)" % (sid, category))
+    return "%s_%s_%s%s%s" % (head(g, set_name), category, prefix(set_name), sid, suffix(set_name))
+
+
+def set_file(g, set_name, name):
+    """File name of a file about the whole set (name: sheet.png, strip.png, steps.gif, full.gif)."""
+    base, ext = os.path.splitext(name)
+    return "%s_set_%s%s%s%s" % (head(g, set_name), prefix(set_name), base, suffix(set_name), ext)
+
+
+def game_block(game):
+    return {k: game.meta.get(k) for k in ("slug", "title", "platform", "region", "model", "sha1", "crc32")}
+
+
+def files_of(s):
+    """Every file of an index entry, relative to the set folder."""
+    return [s[k] for k in ("file", "file_3x") if s.get(k)] + (
+        [s["clip"][k] for k in ("file", "file_3x") if s["clip"].get(k)] if s.get("clip") else [])
+
+
+def name_entry(g, set_name, s):
+    """Set the file names of an index entry to the scheme. Returns [(old, new)] for the names that changed."""
+    st = stem(g, set_name, s["category"], s["id"])
+    old = files_of(s)
+    s["file"], s["file_3x"] = st + ".png", E.X3 + "/" + st + ".png"
+    if s.get("clip"):
+        s["clip"]["file"], s["clip"]["file_3x"] = st + ".gif", E.X3 + "/" + st + ".gif"
+    return [(o, n) for o, n in zip(old, files_of(s)) if o != n] if len(old) == len(files_of(s)) else []
+
+
+def normalize(game, d, move=os.replace):
+    """Rename the files of the set in folder d to the scheme and write its index.json: sets made before the scheme,
+    a category changed by hand in index.json, a region or slug changed in game.json. Returns the number of renames."""
+    p = os.path.join(d, "index.json")
+    if not os.path.exists(p):
+        return 0
+    idx = json.load(open(p, encoding="utf-8"))
+    set_name, g = os.path.basename(d), game_block(game)
+    moves = [m for s in idx.get("shots", []) for m in name_entry(g, set_name, s)]
+    known = {f for s in idx.get("shots", []) for f in files_of(s)}
+    for sub, names in (("", SET_FILES), (E.X3 + "/", SET_FILES_3X)):
+        for f in names:
+            new = sub + set_file(g, set_name, f)
+            for f_old in os.listdir(os.path.join(d, sub)) if os.path.isdir(os.path.join(d, sub)) else []:
+                # an older name of the same set file: sheet.png, seq-x_sheet.png, <other head>_set_...sheet.png
+                if sub + f_old != new and sub + f_old not in known and (
+                        f_old == prefix(set_name) + f or f_old.endswith("_set_" + new.split("_set_", 1)[1])):
+                    moves.append((sub + f_old, new))
+    n = 0
+    for o, new in moves:
+        if os.path.exists(os.path.join(d, o)):
+            move(os.path.join(d, o), os.path.join(d, new))
+            n += 1
+    if n or idx.get("game") != g:
+        idx["game"] = g
+        json.dump(idx, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+        write_md(idx, d)
+    return n
 
 
 def list_order(game, idx):
@@ -56,13 +147,14 @@ def index_update(game, d, entry, rom_sha1=None):
     p = os.path.join(d, "index.json")
     idx = json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {}
     m = game.meta
-    idx["game"] = {k: m.get(k) for k in ("slug", "title", "platform", "model", "sha1", "crc32")}
+    idx["game"] = game_block(game)
     idx["set"] = os.path.basename(d)
     shots = {s["id"]: s for s in idx.get("shots", [])}
     entry = dict(entry)
-    pfx = prefix(os.path.basename(d))
-    entry.setdefault("file", pfx + entry["id"] + ".png")
-    entry.setdefault("file_3x", E.X3 + "/" + pfx + entry["id"] + ".png")
+    name_entry(idx["game"], idx["set"], entry)
+    for f in set(files_of(shots.get(entry["id"], {}))) - set(files_of(entry)):
+        if os.path.exists(os.path.join(d, f)):      # the id had another category (or no clip) before
+            os.remove(os.path.join(d, f))
     entry["rom_sha1"] = rom_sha1 or m.get("sha1")
     entry["captured"] = datetime.date.today().isoformat()
     shots[entry["id"]] = entry
@@ -76,7 +168,7 @@ def index_update(game, d, entry, rom_sha1=None):
     if os.path.basename(d).startswith("seq-"):
         sequence_files(idx, d)
     E.sheet([os.path.join(d, s["file"]) for s in idx["shots"] if os.path.exists(os.path.join(d, s["file"]))],
-            os.path.join(d, pfx + "sheet.png"), cols=5, labels=[s["id"] for s in idx["shots"]
+            os.path.join(d, set_file(idx["game"], idx["set"], "sheet.png")), cols=5, labels=[s["id"] for s in idx["shots"]
                                                           if os.path.exists(os.path.join(d, s["file"]))])
 
 
@@ -98,18 +190,18 @@ def sequence_files(idx, d):
         st.paste(im, (x, y))
         dr.text((x + 2, y + h + 1), ("%d. %s" % (i + 1, s["id"]))[:26], fill=(240, 240, 240))
         dr.text((x + 2, y + h + 12), E.ascii_label(s.get("caption", ""))[:26], fill=(180, 180, 180))
-    pfx = prefix(os.path.basename(d))
-    st.save(os.path.join(d, pfx + "strip.png"))
+    name = lambda f: os.path.join(d, set_file(idx["game"], idx["set"], f))  # noqa: E731
+    st.save(name("strip.png"))
     paths = [os.path.join(d, s["file"]) for s in shots]
-    E.write_gif(paths, os.path.join(d, pfx + "steps.gif"), hold_ms=1500)
-    E.write_gif(paths, E.x3(os.path.join(d, pfx + "steps.gif")), scale=3, hold_ms=1500)
-    full_gif(shots, d)
+    E.write_gif(paths, name("steps.gif"), hold_ms=1500)
+    E.write_gif(paths, E.x3(name("steps.gif")), scale=3, hold_ms=1500)
+    full_gif(shots, d, name("full.gif"))
 
 
 STILL_MS, FIRST_MS, LAST_MS = 1500, 2000, 3000   # stitched GIF: how long stills stay; the first/last a bit longer
 
 
-def full_gif(shots, d):
+def full_gif(shots, d, out):
     """full.gif / 3x/full.gif: every step stitched in order - stills held STILL_MS, clips played in full at
     game speed (their own frames and delays)."""
     from PIL import Image, ImageSequence
@@ -124,17 +216,19 @@ def full_gif(shots, d):
         else:
             frames.append(Image.open(os.path.join(d, s["file"])).convert("RGB"))
             durs.append(FIRST_MS if i == 0 else LAST_MS if i == len(shots) - 1 else STILL_MS)
-    pfx = prefix(os.path.basename(d))
-    E.write_gif(frames, os.path.join(d, pfx + "full.gif"), durations=durs)
-    E.write_gif(frames, E.x3(os.path.join(d, pfx + "full.gif")), scale=3, durations=durs)
+    E.write_gif(frames, out, durations=durs)
+    E.write_gif(frames, E.x3(out), scale=3, durations=durs)
 
 
 def write_md(idx, d):
     g = idx["game"]
+    sf = lambda f: set_file(g, idx["set"], f)  # noqa: E731
     out = ["# %s - shots: %s" % (g["title"], idx["set"]), "",
-           "Platform %s, model %s, ROM SHA-1 `%s`. %d shots. Contact sheet: [{p}sheet.png]({p}sheet.png). Originals "
-           "here, 3x nearest-neighbour copies with the same names in `3x/`.".format(p=prefix(idx["set"])) % (
-               g["platform"], g["model"], g["sha1"], len(idx["shots"])), "",
+           "Platform %s, region %s, model %s, ROM SHA-1 `%s`. %d shots. Contact sheet: [%s](%s). Originals "
+           "here, 3x nearest-neighbour copies with the same names in `3x/`. File names: "
+           "`<game>_<platform>_<region>_<category>_<id>%s.png`." % (
+               g["platform"], g["region"], g["model"], g["sha1"], len(idx["shots"]), sf("sheet.png"),
+               sf("sheet.png"), suffix(idx["set"])), "",
            "| id | category | caption | settled | image |", "|---|---|---|---|---|"]
     for s in idx["shots"]:
         clip = " [gif](%s) [gif 3x](%s)" % (s["clip"]["file"], s["clip"]["file_3x"]) if s.get("clip") else ""
@@ -142,15 +236,16 @@ def write_md(idx, d):
             s["id"], s["category"], s.get("caption", ""), "yes" if s.get("settled") else "clip" if clip else "no",
             s["file"], s["file_3x"], clip))
     if idx["set"].startswith("seq-"):
-        out += ["", ("Sequence: [{p}full.gif]({p}full.gif) ([3x]({x}/{p}full.gif)) = all steps stitched (stills "
-                     "held, clips played), [{p}strip.png]({p}strip.png), [{p}steps.gif]({p}steps.gif) "
-                     "([3x]({x}/{p}steps.gif)) = stills only.").format(p=prefix(idx["set"]), x=E.X3)]
+        out += ["", ("Sequence: [{f}]({f}) ([3x]({x}/{f})) = all steps stitched (stills held, clips played), "
+                     "[{s}]({s}), [{g}]({g}) ([3x]({x}/{g})) = stills only.").format(
+                         f=sf("full.gif"), s=sf("strip.png"), g=sf("steps.gif"), x=E.X3)]
     out += ["", "Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.", ""]
     open(os.path.join(d, "index.md"), "w", encoding="utf-8").write("\n".join(out))
 
 
-def shoot_one(game, s, d, model, pfx=""):
-    """Replay one shot (or clip). Returns settled (bool) for stills, the clip dict for clips."""
+def shoot_one(game, s, d, model, set_name="main"):
+    """Replay one shot (or clip) into d. Returns settled (bool) for stills, the clip dict for clips."""
+    st = stem(game.meta, set_name, s["category"], s["id"])
     route = s["route"]
     toks = E.split(route)
     rec = E.rec_token(toks[-1]) if toks else None
@@ -158,14 +253,14 @@ def shoot_one(game, s, d, model, pfx=""):
         e, rest, _ = E.start(game, ",".join(toks[:-1]), model)
         E.play(e, game, rest)
         n, every, poster = rec
-        clip = clip_files(game, e, pfx + s["id"], d, n, every, poster, close=True)
+        clip = clip_files(game, e, st, d, n, every, poster, close=True)
         clip.pop("_frames")
         return clip
     if not toks or toks[-1] not in ("settle", "!"):
         route += ",settle"
     e, rest, _ = E.start(game, route, model)
     E.play(e, game, rest)
-    native = os.path.join(d, pfx + s["id"] + ".png")
+    native = os.path.join(d, st + ".png")
     e.screen_png(native)
     a = e.screen()
     e.frames(game.settle_step)
@@ -176,8 +271,8 @@ def shoot_one(game, s, d, model, pfx=""):
 
 
 def clip_files(game, e, sid, d, n, every, poster=0, close=False):
-    """Record a clip from the emulator's current state into d: <id>.gif, 3x/<id>.gif, poster <id>.png and 3x/
-    (kept frame number `poster`; 0 = first, -1 = last)."""
+    """Record a clip from the emulator's current state into d: NAME.gif, 3x/NAME.gif, poster NAME.png and 3x/
+    (sid = NAME, see stem(); kept frame number `poster`; 0 = first, -1 = last)."""
     frames = E.record(e, game, n, every)
     if close:
         e.close()
@@ -206,15 +301,15 @@ def reindex(game, d):
     p = os.path.join(d, "index.json")
     if not os.path.exists(p):
         return
+    normalize(game, d)              # a category edited by hand changes the file name
     idx = json.load(open(p, encoding="utf-8"))
-    if game is not None:
-        list_order(game, idx)
-        json.dump(idx, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    list_order(game, idx)
+    json.dump(idx, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     write_md(idx, d)
     if os.path.basename(d).startswith("seq-"):
         sequence_files(idx, d)
     have = [s for s in idx["shots"] if os.path.exists(os.path.join(d, s["file"]))]
-    E.sheet([os.path.join(d, s["file"]) for s in have], os.path.join(d, prefix(os.path.basename(d)) + "sheet.png"), cols=5,
+    E.sheet([os.path.join(d, s["file"]) for s in have], os.path.join(d, set_file(idx["game"], idx["set"], "sheet.png")), cols=5,
             labels=[s["id"] for s in have])
 
 
@@ -234,7 +329,9 @@ def main():
     model = a.model or game.model
     d = os.path.join(ROOT, "work", "shots", game.id, a.set)
     os.makedirs(d, exist_ok=True)
-    pfx = prefix(a.set)
+    head(game.meta, a.set)              # fails early when game.json has no region or the set name does not fit
+    if normalize(game, d):
+        print("renamed the working set to the current file names")
     lst = a.list or os.path.join(d, "shots.txt")
     if not os.path.exists(lst):
         lst = os.path.join(game.dir, "shots.txt")
@@ -254,19 +351,19 @@ def main():
             print("warning: %s: category %r not in %s" % (s["id"], s["category"], ", ".join(CATEGORIES)))
         if a.verify:
             with tempfile.TemporaryDirectory() as t:
-                r = shoot_one(game, s, t, model, pfx)
-                stem = pfx + s["id"]
-                old = os.path.join(d, stem + ".png")
-                same = os.path.exists(old) and _pixels(old) == _pixels(os.path.join(t, stem + ".png"))
+                r = shoot_one(game, s, t, model, a.set)
+                st = stem(game.meta, a.set, s["category"], s["id"])
+                old = os.path.join(d, st + ".png")
+                same = os.path.exists(old) and _pixels(old) == _pixels(os.path.join(t, st + ".png"))
                 if same and isinstance(r, dict):
-                    g = os.path.join(d, stem + ".gif")
-                    same = os.path.exists(g) and _gif_frames(g) == _gif_frames(os.path.join(t, stem + ".gif"))
+                    g = os.path.join(d, st + ".gif")
+                    same = os.path.exists(g) and _gif_frames(g) == _gif_frames(os.path.join(t, st + ".gif"))
                 if not same:
-                    shutil.copyfile(os.path.join(t, stem + ".png"), os.path.join(d, stem + ".replay.png"))
+                    shutil.copyfile(os.path.join(t, st + ".png"), os.path.join(d, st + ".replay.png"))
                     bad += 1
-                print("%-24s %s" % (s["id"], "ok" if same else "MISMATCH (see %s.replay.png)" % s["id"]), flush=True)
+                print("%-24s %s" % (s["id"], "ok" if same else "MISMATCH (see %s.replay.png)" % st), flush=True)
             continue
-        r = shoot_one(game, s, d, model, pfx)
+        r = shoot_one(game, s, d, model, a.set)
         entry = {"id": s["id"], "category": s["category"], "caption": s["caption"], "route": s["route"],
                  "settled": r if isinstance(r, bool) else False, "model": model, "source": "shoot.py"}
         if isinstance(r, dict):
@@ -286,18 +383,16 @@ def main():
         os.makedirs(pub, exist_ok=True)
         idx = json.load(open(os.path.join(d, "index.json"), encoding="utf-8"))
         for s in idx["shots"]:
-            for f in (s["file"], s["file_3x"]) + ((s["clip"]["file"], s["clip"]["file_3x"]) if s.get("clip") else ()):
+            for f in files_of(s):
                 os.makedirs(os.path.dirname(os.path.join(pub, f)), exist_ok=True)
                 shutil.copyfile(os.path.join(d, f), os.path.join(pub, f))
-        for f in ["index.json", "index.md", "shots.txt"] + [pfx + f for f in (
-                "sheet.png", "strip.png", "steps.gif", "full.gif")] + [E.X3 + "/" + pfx + f for f in (
-                "steps.gif", "full.gif")]:
+        keep = {set_file(idx["game"], a.set, f) for f in SET_FILES}
+        keep |= {E.X3 + "/" + set_file(idx["game"], a.set, f) for f in SET_FILES_3X}
+        for f in ["index.json", "index.md", "shots.txt"] + sorted(keep):
             if os.path.exists(os.path.join(d, f)):
                 shutil.copyfile(os.path.join(d, f), os.path.join(pub, f))
-        keep = {pfx + f for f in ("sheet.png", "strip.png", "steps.gif", "full.gif")}
-        keep |= {E.X3 + "/" + pfx + f for f in ("steps.gif", "full.gif")}
         for s in idx["shots"]:
-            keep |= {s["file"], s["file_3x"]} | ({s["clip"]["file"], s["clip"]["file_3x"]} if s.get("clip") else set())
+            keep |= set(files_of(s))
         for sub in ("", E.X3):          # images of shots no longer in the index (unsnapped, renamed)
             folder = os.path.join(pub, sub)
             for f in (os.listdir(folder) if os.path.isdir(folder) else []):

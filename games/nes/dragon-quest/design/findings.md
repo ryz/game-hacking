@@ -29,7 +29,7 @@ outside normal play.
 
 ## The king tells a different Return Spell each time
 **Behavior:** asked twice in the same state (level 21, 34218 experience, 6135 Gold, same items), the king gave
-two different 20-symbol passwords. Shot: [king_password](../shots/main/king_password.png) against the password
+two different 20-symbol passwords. Shot: [king_password](../shots/main/dragon-quest_nes_jp_save_king_password.png) against the password
 in the playbook Shortcuts.
 **Intended:** the password seems to carry a changing part besides the progress, so that the same progress does
 not always look the same. Only the first of the two was entered again.

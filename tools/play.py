@@ -11,12 +11,13 @@ is reproducible from power-on (states are a cache, routes are the record).
   python3 tools/play.py snap ID CATEGORY "caption" [--set SET]
                                              capture the current frame for the database: native PNG (+ 3x copy in 3x/) into
                                              work/shots/PLATFORM/GAME/SET/ (default set: main), its line (with the full
-                                             route) appended to that set's shots.txt and index.json
+                                             route) appended to that set's shots.txt and index.json. File name:
+                                             <game>_<platform>_<region>_<CATEGORY>_<ID>[.<SET>].png (tools/shoot.py)
   python3 tools/play.py recaption ID "caption" [--set SET]    change a shot's caption (no replay)
   python3 tools/play.py unsnap ID [--set SET]                 remove a shot from the working set
   python3 tools/play.py record ID CATEGORY FRAMES "caption" [--every K] [--poster P] [--set SET]
                                              clip: record FRAMES frames from now (every Kth kept, default 2) as
-                                             <id>.gif (+ 3x/<id>.gif; poster <id>.png) into the set, route + `rec:N:K`
+                                             NAME.gif (+ 3x/NAME.gif; poster NAME.png; NAME as for snap) into the set, route + `rec:N:K`
                                              in its shots.txt; the session moves on by FRAMES frames; prints
                                              work/play/NAME/clip_ID.png (every kept frame, numbered) - pick a
                                              poster still with --poster P (kept frame number; -1 = last)
@@ -187,10 +188,9 @@ class Session:
         if cmd == "unsnap":
             idx["shots"] = [s for s in idx["shots"] if s["id"] != sid]
             lines = [l for l in lines if l.split("|")[0].strip() != sid]
-            for k in ("file", "file_3x", "clip", "clip_3x"):
-                f = shot.get(k) and os.path.join(d, shot[k])
-                if f and os.path.exists(f):
-                    os.remove(f)
+            for f in shoot.files_of(shot):
+                if os.path.exists(os.path.join(d, f)):
+                    os.remove(os.path.join(d, f))
         else:
             if not caption:
                 return 'usage: play.py recaption ID "new caption"'
@@ -221,8 +221,7 @@ class Session:
         d = os.path.join(ROOT, "work", "shots", self.game.id, set_)
         os.makedirs(d, exist_ok=True)
         import shoot
-        stem = shoot.prefix(set_) + sid
-        native = os.path.join(d, "%s.png" % stem)
+        native = os.path.join(d, shoot.stem(self.game.meta, set_, cat, sid) + ".png")
         before = open(native, "rb").read() if os.path.exists(native) else None
         self.emu.screen_png(native)
         unchanged = before is not None and _pixels(before) == _pixels(open(native, "rb").read())
@@ -261,7 +260,7 @@ class Session:
         self.undo_state, self.undo_toks = os.path.join(self.dir, "undo.state"), list(self.toks)
         self.undo_freezes = list(getattr(self.emu, "freezes", []))
         n, k, p = int(frames), int(every), int(poster)
-        clip = shoot.clip_files(self.game, self.emu, shoot.prefix(set_) + sid, d, n, k, p)
+        clip = shoot.clip_files(self.game, self.emu, shoot.stem(self.game.meta, set_, cat, sid), d, n, k, p)
         kept = clip.pop("_frames")
         tok = "rec:%d:%d" % (n, k) + (":%d" % p if p else "")
         route = self.route() + "," + tok

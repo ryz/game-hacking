@@ -2,6 +2,7 @@
   "slug": "dungeon-magic",
   "title": "Dungeon Magic: Sword of the Elements (NES, USA)",
   "platform": "nes",
+  "region": "na",
   "model": "ntsc",
   "rom": "rom/dungeon-magic.nes",
   "sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",

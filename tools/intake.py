@@ -1,8 +1,13 @@
 """Register a ROM as a game: identify it, copy it into rom/, create games/<platform>/<slug>/ from the template, and film the
 first seconds after power-on so the boot sequence is visible without playing.
 
-  python3 tools/intake.py PATH/TO/ROM.gbc [--slug SLUG] [--title "Title"] [--model dmg|cgb|sgb] [--probe 1800]
-                         [--patch PATCH[:auto|headered|unheadered] ...]
+  python3 tools/intake.py PATH/TO/ROM.gbc [--slug SLUG] [--title "Title"] [--region jp|na|eu] [--model dmg|cgb|sgb]
+                         [--probe 1800] [--patch PATCH[:auto|headered|unheadered] ...]
+
+--slug is the short normalized game name (lowercase words joined by `-`, no platform in it: might-and-magic-2);
+--region is where the dump was released (a translated Japanese ROM is jp). Both are part of every shot file name
+(tools/shoot.py). The region is read from the header where the header says it (Game Boy: Japan; SNES: country
+code; NES: PAL = eu); otherwise --region is required.
 
 --patch (repeatable, applied in order; IPS, BPS, UPS via tools/patch.py): ROM is then the unpatched dump. The
 patched ROM is what gets registered and played; the dump goes to rom/src/<slug>-base.<ext>, the patches to
@@ -34,11 +39,26 @@ def slugify(s):
     return s or "game"
 
 
+def region_of(info):
+    """jp / na / eu from a header's "region" where it is certain, else None (GB "Overseas" and NES "NTSC" are not)."""
+    r = info.get("region")
+    if r == "Japan":
+        return "jp"
+    if r in ("North America", "Canada"):
+        return "na"
+    if r in ("PAL", "Europe", "Sweden/Scandinavia", "Finland", "Denmark", "France", "Netherlands", "Spain",
+             "Germany", "Italy"):
+        return "eu"
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("rom")
     ap.add_argument("--slug")
     ap.add_argument("--title", help="display title (default: header title)")
+    ap.add_argument("--region", choices=["jp", "na", "eu"],
+                    help="where the dump was released (default: from the header, where it says so)")
     ap.add_argument("--model", help="capture model override (gb: dmg|cgb|sgb|agb)")
     ap.add_argument("--probe", type=int, default=1800, help="frames to film after power-on (0 = skip)")
     ap.add_argument("--patch", action="append", default=[], metavar="PATCH[:LAYOUT]",
@@ -59,6 +79,14 @@ def main():
     model = a.model or info.pop("model", None)
     info.pop("model", None)
     slug = a.slug or slugify(info.get("header_title") or os.path.splitext(os.path.basename(a.rom))[0])
+    if slug != slugify(slug):
+        raise SystemExit("error: slug %r must be lowercase a-z0-9 words joined by `-` (e.g. %s)" % (slug, slugify(slug)))
+    old = os.path.join(ROOT, "games", platform, slug, "game.json")
+    region = a.region or (json.load(open(old, encoding="utf-8")).get("region") if os.path.exists(old) else None) \
+        or region_of(info)
+    if not region:
+        raise SystemExit("error: the header does not say where this dump was released: add --region jp|na|eu "
+                         "(a translated Japanese ROM is jp)")
     ext = os.path.splitext(a.rom)[1].lower()
     rom_rel = "rom/%s%s" % (slug, ext)
     os.makedirs(os.path.join(ROOT, "rom"), exist_ok=True)
@@ -102,6 +130,7 @@ def main():
             "slug": slug,
             "title": a.title or info.get("header_title") or slug,
             "platform": platform,
+            "region": region,
             "model": model,
             "rom": rom_rel,
             "sha1": hashlib.sha1(data).hexdigest(),
@@ -126,7 +155,7 @@ def main():
                 txt = open(src, encoding="utf-8").read()
                 txt = txt.replace("{{TITLE}}", meta["title"]).replace("{{SLUG}}", slug).replace("{{PLATFORM}}", platform)
                 open(p, "w", encoding="utf-8").write(txt)
-    print(json.dumps({k: meta[k] for k in ("slug", "title", "platform", "model", "sha1")}, indent=2))
+    print(json.dumps({k: meta.get(k) for k in ("slug", "title", "platform", "region", "model", "sha1")}, indent=2))
     print("header:", json.dumps(meta["header"]))
 
     if a.probe:

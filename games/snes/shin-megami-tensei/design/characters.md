@@ -33,7 +33,7 @@ sword and gun, Defense, Evade, M.Power, M.Effect; six stat bars **(verified: `@a
 
 Equipping the Attack Knife on the level-1 hero (STR 11, SPD 9, LUK 8) changed sword Power from 0 to 17 and
 sword Accur from 0 to 15; Defense 10, Evade 12, M.Power 6 and M.Effect 6 stayed as they were **(verified:
-`../shots/main/status_hero.png` before, `../shots/main/equipment.png` after)**. The equipment slot shows the
+`../shots/main/shin-megami-tensei_snes_jp_inventory_status_hero.png` before, `../shots/main/shin-megami-tensei_snes_jp_inventory_equipment.png` after)**. The equipment slot shows the
 name cut to eight letters ("Attack K").
 
 ## Open questions

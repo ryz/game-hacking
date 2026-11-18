@@ -3,6 +3,7 @@
   "slug": "wizardry-2",
   "title": "Wizardry: Knight of Diamonds - The Second Scenario (NES, USA)",
   "platform": "nes",
+  "region": "na",
   "model": "ntsc",
   "sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
   "crc32": "10cd0310"
@@ -17,8 +18,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "options_line.png",
-   "file_3x": "3x/options_line.png",
+   "file": "wizardry-2_nes_na_options_options_line.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_options_options_line.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   },
@@ -30,8 +31,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "start_solid.png",
-   "file_3x": "3x/start_solid.png",
+   "file": "wizardry-2_nes_na_gameplay_start_solid.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_gameplay_start_solid.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   },
@@ -43,8 +44,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "start_line.png",
-   "file_3x": "3x/start_line.png",
+   "file": "wizardry-2_nes_na_gameplay_start_line.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_gameplay_start_line.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   },
@@ -56,8 +57,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "floor2_solid.png",
-   "file_3x": "3x/floor2_solid.png",
+   "file": "wizardry-2_nes_na_gameplay_floor2_solid.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_gameplay_floor2_solid.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   },
@@ -69,8 +70,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "floor2_line.png",
-   "file_3x": "3x/floor2_line.png",
+   "file": "wizardry-2_nes_na_gameplay_floor2_line.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_gameplay_floor2_line.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   },
@@ -82,8 +83,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "floor4_solid.png",
-   "file_3x": "3x/floor4_solid.png",
+   "file": "wizardry-2_nes_na_gameplay_floor4_solid.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_gameplay_floor4_solid.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   },
@@ -95,8 +96,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "floor4_line.png",
-   "file_3x": "3x/floor4_line.png",
+   "file": "wizardry-2_nes_na_gameplay_floor4_line.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_gameplay_floor4_line.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   },
@@ -108,8 +109,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "floor5_solid.png",
-   "file_3x": "3x/floor5_solid.png",
+   "file": "wizardry-2_nes_na_gameplay_floor5_solid.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_gameplay_floor5_solid.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   },
@@ -121,8 +122,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "floor5_line.png",
-   "file_3x": "3x/floor5_line.png",
+   "file": "wizardry-2_nes_na_gameplay_floor5_line.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_gameplay_floor5_line.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   },
@@ -134,8 +135,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "floor6_solid.png",
-   "file_3x": "3x/floor6_solid.png",
+   "file": "wizardry-2_nes_na_gameplay_floor6_solid.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_gameplay_floor6_solid.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   },
@@ -147,8 +148,8 @@
    "settled": true,
    "model": "ntsc",
    "source": "shoot.py",
-   "file": "floor6_line.png",
-   "file_3x": "3x/floor6_line.png",
+   "file": "wizardry-2_nes_na_gameplay_floor6_line.compare-maze.png",
+   "file_3x": "3x/wizardry-2_nes_na_gameplay_floor6_line.compare-maze.png",
    "rom_sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
    "captured": "2026-11-18"
   }

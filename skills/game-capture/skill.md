@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-17 (repository restructured: new paths)
+updated: 2026-11-18 (shot file names)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -59,8 +59,10 @@ edit anything outside the game's folder.
    snap per step and `play.py record` clips for the motion, published like any set.
 6. Add opportunistic shots of anything distinctive the plan missed (category `extra` or the right one).
 7. Finish: `python3 tools/shoot.py SLUG SET --verify` (every shot must reproduce; re-snap or fix the route of a
-   MISMATCH), then look at `work/shots/PLATFORM/SLUG/SET/sheet.png` as a whole: variety, duplicates, broken frames.
-   Then `python3 tools/shoot.py SLUG SET --publish` -> `games/PLATFORM/SLUG/shots/SET/`.
+   MISMATCH), then look at the contact sheet `work/shots/PLATFORM/SLUG/SET/<game>_<platform>_<region>_set_sheet.png` as a whole: variety, duplicates, broken frames.
+   Then `python3 tools/shoot.py SLUG SET --publish` -> `games/PLATFORM/SLUG/shots/SET/`. The tools name the files
+   (`<game>_<platform>_<region>_<category>_<id>.png`, `docs/capture-guide.md` "File names"): pick the category
+   with care, it is part of the name; link shots from `design/` by the file name in the set's `index.md`.
 8. **Update the playbook** (the next agent's head start): verified controls, new macros/checkpoints and what
    they are, strategy that worked, RAM found, timing quirks, dead ends. Copy the finished shot lines into
    `games/PLATFORM/SLUG/shots.txt` so the plan is replayable. Tick the Shot plan.

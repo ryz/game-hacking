@@ -42,15 +42,17 @@ ROM --tools/intake.py--> games/<platform>/<slug>/ --scout--> playbook + checkpoi
    replays from power-on, publishes the set, extends the design reference.
 4. **Review:** the coordinator reruns the verification, looks at the contact sheet and commits.
 
-A set is `<id>.png` (native resolution, raw framebuffer), `3x/<id>.png` (the same image enlarged 3x,
-nearest neighbour, same name in a subfolder), `index.json` (identity and per shot:
-category, caption, route, model, ROM SHA-1, date), `index.md`, `sheet.png` and the routes in `shots.txt`.
+A set is one PNG per shot (native resolution, raw framebuffer), the same image enlarged 3x in `3x/` (nearest
+neighbour, same name), `index.json` (identity and per shot: category, caption, route, model, ROM SHA-1, date),
+`index.md`, a contact sheet and the routes in `shots.txt`. File names carry their context
+(`docs/capture-guide.md`, "File names"): `<game>_<platform>_<region>_<category>_<id>.png`, e.g.
+`dragon-quest_nes_jp_battle_battle_slime.png`.
 
 ## Quick start
 
 ```sh
 sh tools/setup_emu.sh                                   # builds the emulators into tools/ (once)
-python3 tools/intake.py ~/roms/mygame.nes
+python3 tools/intake.py ~/roms/mygame.nes --region na  # region of the dump: jp, na or eu
 python3 tools/play.py start mygame
 python3 tools/play.py do "w300,start"
 python3 tools/play.py snap title_screen title "Title screen"

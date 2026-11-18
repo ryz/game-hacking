@@ -35,8 +35,8 @@ the status screen keep their old numbers while "Next" follows the new level (`@l
 ## Long item names collide with the user symbols on shop lists
 **Behavior:** on the knife shop's buy list the male/female symbols and the alignment letter are drawn at a
 fixed column on top of the item name, so names longer than about nine letters are cut: "Attack Kn..eA",
-"Replica S..rA", "Unnamed K.taA" (`../shots/main/shop_buy.png`). The equip list and the status screen cut the
-same weapon to "Attack K" (`../shots/main/equipment.png`).
+"Replica S..rA", "Unnamed K.taA" (`../shots/main/shin-megami-tensei_snes_jp_shop_shop_buy.png`). The equip list and the status screen cut the
+same weapon to "Attack K" (`../shots/main/shin-megami-tensei_snes_jp_inventory_equipment.png`).
 **Intended:** the Japanese names fit their fields; the English names are longer than the space the list gives.
 **Confidence:** (verified); belongs to the translation patch, the frames replay identically.
 **Impact:** two of five weapon names cannot be read in full in the shop; the purchase prompt shows the full

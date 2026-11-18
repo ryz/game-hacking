@@ -45,25 +45,57 @@ situations - every core system the playbook lists - one boss (if the game has bo
 - **Ids:** lowercase `area_thing` (`title_screen`, `w1_forest_start`, `battle_magic`, `boss_dragon`). Stable:
   they name the files.
 
+## File names (owner's rule 2026-11-18)
+Every image and GIF says what it shows without its folder, so a file keeps its context wherever it is copied:
+
+```
+<game>_<platform>_<region>_<area>_<id>[.<set>].<ext>
+```
+
+| Field | From | Characters | Example |
+|---|---|---|---|
+| `game` | `game.json` "slug": the short normalized game name, without the platform | `a-z0-9-` | `might-and-magic` |
+| `platform` | `game.json` "platform" (the folder under `games/`) | `a-z0-9` | `nes` |
+| `region` | `game.json` "region": where the registered dump was released | `jp`, `na`, `eu` | `na` |
+| `area` | the shot's category (table above) | `a-z` | `battle` |
+| `id` | the shot id, unchanged; in a `seq-<action>` set `seq-<action>_<id>` | `a-z0-9_-` | `battle_sprites` |
+| `.set` | the set name, for every set but `main` and `seq-*` | `a-z0-9-` | `.compare-maze` |
+
+- Examples: `might-and-magic_nes_na_inventory_view_profile.png`, `dragon-quest_nes_jp_battle_battle_slime.png`,
+  `wizardry_nes_na_gameplay_maze_f1.compare-maze.png`, `pokemon-blue_gb_na_gameplay_seq-fishing_07_cast_clip.gif`.
+- The first four fields never hold a `_`: `name.split("_", 4)` gives game, platform, region, area and the rest.
+- **Region is the release of the dump, not the language on screen:** a Japanese ROM with an English patch is
+  `jp`. `nes` covers NES and Famicom, `snes` SNES and Super Famicom: the region tells them apart. DOS games
+  take the region of the release (`na` for a US release). `tools/intake.py --region` sets it.
+- An id that starts with its category repeats it (`..._battle_battle_slime`): accepted, ids are not shortened.
+- The 3x copy has the same name in `3x/`.
+- Files about the whole set use the area `set`: `<game>_<platform>_<region>_set_sheet[.<set>].png`, in a
+  sequence `..._set_seq-<action>_strip.png`, `_steps.gif`, `_full.gif`. `index.json`, `index.md` and
+  `shots.txt` keep their names.
+- The tools build the names (`tools/shoot.py`: `stem()`, `set_file()`); nobody types them. Changing a shot's
+  category, or the slug or region in `game.json`, renames the files on the next `shoot.py` run.
+- Wizardry Empire (its own `translation/tools/shoot.py`) uses the same scheme with the set always written and
+  the ROM last: `wizardry-empire_gbc_jp_menu_camp.rev1-tour.en.png`.
+
 ## Action sequences and clips (owner's request 2026-11-15)
 Some actions are best shown as what happens, step by step (fishing, fast travel, a level-up, a transformation).
-- **File names:** every image and GIF of a sequence set starts with the set name (owner's rule 2026-11-15):
-  `seq-fishing_01_shore.png`, `seq-fishing_07_cast_clip.gif`, `seq-fishing_full.gif`, `seq-fishing_strip.png`,
-  so files keep their context outside the folder. The shot ids stay short (`01_shore`); the tools add the
-  prefix. `index.json`, `index.md` and `shots.txt` keep their names.
+- **File names:** in a sequence set the id part of every file name starts with the set name (owner's rule
+  2026-11-15, inside the scheme of "File names" since 2026-11-18): `pokemon-blue_gb_na_gameplay_seq-fishing_01_shore.png`,
+  `..._seq-fishing_07_cast_clip.gif`, `pokemon-blue_gb_na_set_seq-fishing_full.gif`, `..._set_seq-fishing_strip.png`.
+  The shot ids stay short (`01_shore`); the tools add the rest.
 - **Sequence set** `seq-<action>` (e.g. `seq-fishing`): one shot per step, in the order the player sees them,
   ids `01_<step>`, `02_<step>`, ... (the order of the shot list is the order of the steps). Start from the
   last normal gameplay frame before the action and end on the first normal frame after it. Every menu, prompt
   and text box of the action is a step; captions say what the player did ("Select SUPER ROD, USE").
-  shoot.py adds `strip.png` (all steps, numbered), `steps.gif` (stills only, 1.5 s each) and **`full.gif`**
+  shoot.py adds `..._strip.png` (all steps, numbered), `..._steps.gif` (stills only, 1.5 s each) and **`..._full.gif`**
   (owner's request: every step stitched in order - stills held 1.5 s, the first 2 s and the last 3 s, clips
   played in full at game speed), each also as a 3x copy in `3x/`. They are rebuilt on every snap/record, full --verify and publish.
 - **Clips** for the motion itself (an animation between two steps: casting, take-off, landing, a transition):
-  `play.py record ID CATEGORY FRAMES "caption" --every K --set seq-<action>` -> `<id>.gif` / `3x/<id>.gif` at game
-  speed (poster frame `<id>.png`). Keep clips short (1-6 s: FRAMES 60-360) and K=2 (30 fps) for smooth motion,
+  `play.py record ID CATEGORY FRAMES "caption" --every K --set seq-<action>` -> a `.gif` (and `3x/`) at game
+  speed (poster frame: the `.png` of the same name). Keep clips short (1-6 s: FRAMES 60-360) and K=2 (30 fps) for smooth motion,
   K=3-4 for slow scenes; a clip is part of the step order like any shot. A clip takes the category of what it
   shows (gameplay, battle, map); there is no `clip` category.
-- **Poster:** the clip's still (`<id>.png`, its picture in strip.png / steps.gif) is kept frame 0 unless chosen:
+- **Poster:** the clip's still (its `.png`, its picture in the strip and the steps GIF) is kept frame 0 unless chosen:
   `record` prints `work/play/NAME/clip_<id>.png` with every kept frame numbered; pick the frame that shows the
   action (not the frame of the step before, not a white fade) and re-record with `--poster N` after `undo`, or
   add `:N` to the clip's `rec:` token and reshoot it with `shoot.py --only`.
@@ -78,4 +110,4 @@ screen, a status screen), link it from the design document that states the rule.
 - `main` is the database set. Other sets for variants: `dmg` / `sgb` (another model), `jp` (another region/ROM
   revision, separate game slug).
 - A set is finished when `tools/shoot.py SLUG main --verify` reproduces every shot and the contact sheet
-  (`sheet.png`) has been looked at as a whole (variety, no duplicates, nothing broken).
+  (`<game>_<platform>_<region>_set_sheet.png`) has been looked at as a whole (variety, no duplicates, nothing broken).

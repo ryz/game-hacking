@@ -33,7 +33,7 @@ like the run that made it (tests `test_dos_same_route_same_frames`, `test_dos_pi
 just opened runs 4 frames before its first state load; with fewer than 2 the timing differs.
 
 ## A game is a ZIP
-`python3 tools/intake.py GAME.zip [--slug S --title "T"]`: the ZIP of the game's folder is the dump (SHA-1 in
+`python3 tools/intake.py GAME.zip --region na [--slug S --title "T"]` (the region of the release; a ZIP has no header that says it): the ZIP of the game's folder is the dump (SHA-1 in
 `game.json`, copied to `rom/<slug>.zip`, never committed); the game lands in `games/dos/<slug>/`. The ZIP is mounted as `C:`. Power-on shows DOSBox
 Pure's start menu listing the programs in the ZIP; the boot route picks one (`w120,enter` for the first, `down`
 to move). A ZIP with a single program starts it without the menu. The files may sit in a folder inside the ZIP

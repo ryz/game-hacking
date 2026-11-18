@@ -2,7 +2,7 @@
 
 How the game works, for game designers: rules, formulas, progression, data tables, and quirks, built up while
 the game is researched and played. No RAM/ROM addresses here (those live in `../playbook.md`). Screenshots are
-the evidence: link them (`../shots/main/<id>.png`).
+the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is in the set's `index.md`).
 
 ## Notation and style (binding for every document in this folder)
 - **Confidence tags** after the claim they cover:

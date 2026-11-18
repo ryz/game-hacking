@@ -3,7 +3,7 @@ skill: coordinator
 project: all
 summary: The main session: plan, dispatch subagents, verify and integrate their results, build and ship.
 access: write (repo)
-updated: 2026-11-17
+updated: 2026-11-18 (shot file names, intake --region)
 ---
 
 # Coordinator
@@ -65,7 +65,9 @@ never commit them. Say what is new and what is known to be broken.
 
 
 ## Database games (shared tools at the repo root, 2026-11-15)
-- New ROM: `sh tools/setup_emu.sh` (once per container), `python3 tools/intake.py ROM` (copies it to
+- New ROM: `sh tools/setup_emu.sh` (once per container), `python3 tools/intake.py ROM --slug NAME --region jp|na|eu` (slug = short game name
+  without the platform, region = where the dump was released, a translated Japanese ROM is jp: both are part of
+  every shot file name, `docs/capture-guide.md` "File names"; copies it to
   `rom/`, creates `games/<platform>/<slug>/`, films the boot), look at `work/intake/<platform>/<slug>/sheet.png`, then dispatch
   game-scout. ROMs are uploaded by the owner per session; containers forget them. Patches uploaded with a ROM
   (IPS/BPS/UPS) are always applied: `intake.py ROM --patch P1 --patch P2` in the owner's order; on a CRC
@@ -74,7 +76,7 @@ never commit them. Say what is new and what is known to be broken.
   `games/<platform>/<slug>/` (no shots yet), then dispatch game-capture with the set name and a time budget.
 - Capture agents commit and push their game folder at every major milestone (game-capture skill); in the
   dispatch give the attribution lines for commits. Review those commits too, not only the final state.
-- After the capture: rerun `python3 tools/shoot.py SLUG SET --verify` yourself, look at `sheet.png`, run
+- After the capture: rerun `python3 tools/shoot.py SLUG SET --verify` yourself, look at the contact sheet (`<game>_<platform>_<region>_set_sheet.png`), run
   `python3 -m pytest -q tests` (repo root) if tools changed, commit `games/<platform>/<slug>/` (one commit per game set).
 - Several games: one scout or capture agent per game in parallel (each uses `play.py --name <slug>`).
 - Tool or doc lessons from either skill that apply to every game go into `docs/emulator/README.md`.

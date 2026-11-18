@@ -2,6 +2,7 @@
   "slug": "dragon-quest",
   "title": "Dragon Quest (Famicom, English translation patch)",
   "platform": "nes",
+  "region": "jp",
   "model": "ntsc",
   "rom": "rom/dragon-quest.nes",
   "sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",

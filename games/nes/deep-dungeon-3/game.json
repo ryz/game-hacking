@@ -2,6 +2,7 @@
   "slug": "deep-dungeon-3",
   "title": "Deep Dungeon III: Yuushi e no Tabi",
   "platform": "nes",
+  "region": "jp",
   "model": "ntsc",
   "rom": "rom/deep-dungeon-3.nes",
   "sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",

@@ -2,6 +2,7 @@
   "slug": "megami-tensei-2",
   "title": "Digital Devil Monogatari: Megami Tensei II (Famicom, English translation patch)",
   "platform": "nes",
+  "region": "jp",
   "model": "ntsc",
   "rom": "rom/megami-tensei-2.nes",
   "sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",

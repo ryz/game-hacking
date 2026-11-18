@@ -2,6 +2,7 @@
   "slug": "might-and-magic",
   "title": "Might and Magic: Secret of the Inner Sanctum",
   "platform": "nes",
+  "region": "na",
   "model": "ntsc",
   "rom": "rom/might-and-magic.nes",
   "sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",

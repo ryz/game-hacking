@@ -11,6 +11,8 @@ How agents drive games here, for any game. Game-specific facts (controls, routes
 ```sh
 sh tools/setup_emu.sh                         # all emulators (~5 min); `gb`, `nes`, `snes` or `dos` builds one
 python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<platform>/<slug>/, rom/<slug>.gbc (or .gb, .nes)
+#   + --slug might-and-magic-2 --region jp|na|eu  short game name without the platform, and where the dump was
+#     released (a translated Japanese ROM is jp); both go into every shot file name (docs/capture-guide.md)
 #   + --patch en.bps [--patch fix.ips:headered]  owner-supplied patches, always applied (tools/patch.py: IPS/BPS/UPS)
 ```
 Containers are wiped between sessions: ROMs (`rom/`), states and caches (`work/`) are gone next time, routes and

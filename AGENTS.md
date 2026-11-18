@@ -62,7 +62,7 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
 - Setup: `sh tools/setup_emu.sh [gb|nes|snes|dos]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom
   `.nes`, Mesen-S libretro core for SNES/Super Famicom `.sfc`/`.smc`, DOSBox Pure libretro core for DOS: a game
   is a `.zip` of its files, keyboard tokens, see `docs/emulator/dos.md`).
-- Register a ROM: `python3 tools/intake.py ROM [--patch PATCH[:headered|unheadered] ...]` -> `games/<platform>/<slug>/` +
+- Register a ROM: `python3 tools/intake.py ROM [--slug NAME] [--region jp|na|eu] [--patch PATCH[:headered|unheadered] ...]` -> `games/<platform>/<slug>/` +
   `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`; 6502 code:
   `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]`.
 - SLUG is the game's folder name; write `PLATFORM/SLUG` (`dos/might-and-magic`) when two platforms have the
@@ -70,6 +70,11 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
 - Play: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
   `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `dump A` / `diff A [B]`, `sample "TOKS" N`, `stop`.
 - Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish]`. Tests: `python3 -m pytest -q tests`.
+- Shot file names (owner's rule 2026-11-18, `docs/capture-guide.md` "File names"):
+  `<game>_<platform>_<region>_<area>_<id>[.<set>].png` = `game.json` slug, platform, region (`jp`/`na`/`eu`: the
+  release of the dump, a translated Japanese ROM is `jp`), the shot's category, its id; `.<set>` for sets other
+  than `main` and `seq-*`. The slug is the short game name without the platform (`wizardry`, not `wizardry-nes`).
+  The tools build the names; link a shot by the file name in the set's `index.md`.
 - Per game: `games/<platform>/<slug>/playbook.md` is read before playing and updated after; checkpoints are routes (cache
   states are not committed). Milestone saves for the owner: save in the game, then `play.py export NAME "desc"`
   -> `games/<platform>/<slug>/saves/` (committed); password games record passwords in the playbook instead. Capture agents

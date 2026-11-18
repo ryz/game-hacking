@@ -2,6 +2,7 @@
   "slug": "might-and-magic",
   "title": "Might and Magic Book One: The Secret of the Inner Sanctum (DOS)",
   "platform": "dos",
+  "region": "na",
   "model": "svga-1500",
   "rom": "rom/might-and-magic.zip",
   "sha1": "c1a9248dd101e924f5e2de7890258e1a768753ac",
