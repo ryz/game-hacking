@@ -9,7 +9,7 @@ How agents drive games here, for any game. Game-specific facts (controls, routes
 
 ## Setup (once per container)
 ```sh
-sh tools/setup_emu.sh                         # all emulators (~5 min); `gb`, `nes`, `snes`, `dos` or `apple2` builds one
+sh tools/setup_emu.sh                         # all emulators (~3.5 min); one platform is enough: `gb` 9 s, `nes` 57 s, `snes` 53 s, `dos` 32 s, `apple2` 78 s
 python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<platform>/<slug>/, rom/<slug>.gbc (or .gb, .nes)
 #   + --slug might-and-magic-2 --region jp|na|eu  short game name without the platform, and where the dump was
 #     released (a translated Japanese ROM is jp); both go into every shot file name (docs/capture-guide.md)
