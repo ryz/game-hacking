@@ -19,6 +19,8 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | `games/wizardry-empire/` | Game Boy Color | English translation (`translation/`: script, VWF engine, build chain, RE notes), design docs, tech docs, floor maps, reference screenshots |
 | `games/pokemon-blue/` | Game Boy | screenshot sets and sequences, design reference, saves |
 | `games/dragon-quest/` | Famicom (English translation patch) | screenshot set, design reference, password tools |
+| `games/shin-megami-tensei/` | Super Famicom (English translation patches) | screenshot set, design reference, saves |
+| `games/megami-tensei/` | Famicom (English translation patch) | screenshot set (41 shots), design reference, password |
 
 ## Rules (all work)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`, `*.sfc`, `*.smc`,

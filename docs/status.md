@@ -13,6 +13,10 @@ Current snapshot; history in `progress-log.md`.
 - Owner-supplied patches (2026-11-17): `tools/patch.py` applies IPS, BPS and UPS (CRC checks, iNES/SNES copier
   header layout found from the CRC or given as `:headered`/`:unheadered`); `intake.py --patch` registers the
   patched ROM and records the source in game.json. Dragon Quest and SMT were patched before this by hand.
+- Megami Tensei (Famicom, English BPS), 2026-11-18: main set 41 shots (intro, stats, battle, negotiation, Comp
+  summon, fusion, sage password, shop, healer, status, Tyrant Minotaur encounter, game over), 41/41 verified.
+  Open there: level-up (EXP poke did not trigger one), battle magic, a deeper floor, the Minotaur fight, a
+  demon fighting, the ending (password format not decoded).
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).
 - `play.py`: persistent session with undo, snap (capture + route), checkpoint/goto, RAM search, RAM watches.
 - `shoot.py`: replay, `--verify` (pixel-exact reproduction), `--publish`; catalogue index.json/md + contact sheet.

@@ -9,6 +9,23 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Megami Tensei (Famicom) main set
+- Task: capture the `main` set: sage password, negotiation/summon/fusion, shop/healer/status, Minotaur (41/41
+  verified; commits 23a7460 b29aa51 e88f35c).
+- Worked: a scanner that warps the party in RAM to each square and steps in found every NPC/service on 8F in ~5
+  min per facing (hand exploration failed for ~25 calls); poking value ranges at a negotiation prompt found the
+  money bytes; `shoot.py --verify --only` made milestone checks cheap.
+- Friction: `freeze:` only re-applied between tokens, a long `wN` let HP reach 0 (two game overs); `play.py do`
+  ends with a `settle`, so RNG outcomes differed between session and `emu.py` replay; `undo` one level deep; a
+  full verify of ~40 shots exceeds the 120 s Bash timeout; position bytes found only via view-relative copies.
+- Proposed rule change: emulator guide: freeze timing and `w10*N`; "`do` ends with a settle; for timing-decided
+  outcomes keep the sequence in one `do`"; first-person dungeons: find position, then RAM-warp scan.
+- Corrected: freeze timing and the RAM-warp scan added to `docs/emulator/README.md` (code unchanged: per-frame
+  freezes would change existing verified replays). Milestone commits made as asked (dispatch listed them
+  explicitly). Budget 289 tool calls against ~250. 6/6 sample re-verified by the coordinator.
+- Status: promoted 2026-11-18 (freeze note, RAM-warp scan); open (`do` settle note, deeper undo, long verify
+  timeout)
+
 ### 2026-11-17 - Shin Megami Tensei main set, run 2
 - Task: extend the Shin Megami Tensei main set past run 1's apartment blocker; battles, negotiation, game over,
   automap (56/56 verified, one commit bd1607c).

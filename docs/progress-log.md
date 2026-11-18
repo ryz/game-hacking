@@ -2,6 +2,14 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Megami Tensei main set
+- game-capture: 41 shots, commits 23a7460 b29aa51 e88f35c (milestone commits made as asked). Sage password
+  recorded (macro `PW_SAGE1`), position/money/Comp RAM, 8F event map from a RAM-warp scanner, design `demons.md`
+  and `world.md`. Coordinator: 6-shot sample incl. fusion, password and Minotaur re-verified 6/6 from an empty
+  cache; sheet reviewed.
+- Emulator guide: `freeze:` is re-applied between tokens, not inside one `wN` (party died in long waits); RAM-warp
+  floor scan for first-person dungeons.
+
 ## 2026-11-17 - Megami Tensei scouted; NES/SNES RAM search fixed
 - `play.py find reset` on the libretro backends (NES, SNES) cleared the search without a snapshot, so the first
   `find` compared RAM with itself (`new == old + 1` always 0 candidates). Reset now snapshots; reported by the

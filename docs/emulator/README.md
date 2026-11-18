@@ -42,7 +42,7 @@ playbooks (committed) are not. That is why every state is defined by a route.
 | `poke:C0A2=09` | write RAM bytes once | shortcuts (recorded in the route) |
 | `set:C0B0=8973:2` | write a decimal value (N bytes; `:bcd`, `:be`) | money, score, EXP |
 | `gs:0109A2C0` | RAM cheat code, held for the rest of the route (GameShark on Game Boy, Pro Action Replay on SNES; not on NES) | infinite health/lives, codes from the web |
-| `freeze:C0A2=09` / `unfreeze` | hold a raw value / drop all held values | same, own addresses |
+| `freeze:C0A2=09` / `unfreeze` | hold a raw value / drop all held values (re-applied after each token and each `settle` step, not inside one `wN`: in fights use `w10*N`, never one long wait) | same, own addresses |
 | `rom:NAME` | route prefix: patched ROM (Game Genie, IPS, bytes) | level select, debug menu, invincibility |
 | `sav:NAME` | route prefix: power on with a battery save | late-game saves from the web |
 | `NAME`, `NAME*3` | macro from `game.json` "macros" (repeatable) | `TITLE`, `NEWGAME`, `MENU` |
@@ -103,6 +103,8 @@ ROM whenever it is faster than playing. Prefer, in this order, whatever reaches 
    `"rom_variants": {"gg": {"gg": ["ABC-DEF-GHI"]}}`), IPS hacks (e.g. a debug-menu patch) the same way
    (`"ips": ["rom/patches/x.ips"]`; patches are not committed either).
 3. **RAM:** stage/level number, position, items, flags (see below).
+   First-person dungeons: once the position bytes are known, scan the floor by poking the party next to each square
+   and stepping in (finds NPCs, shops, doors) before exploring by hand (Megami Tensei capture, 2026-11-18).
 4. **Playing** only for what cannot be reached otherwise, or where the play itself is the shot.
 
 **Realistic values.** Whatever is set by cheating must look like a plausible save, not like a cheat: below the cap
