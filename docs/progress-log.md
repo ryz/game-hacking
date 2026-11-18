@@ -2,6 +2,11 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Wizardry I: maze SOLID vs LINE comparison set
+- Owner's request (asked for Might and Magic; the option is in Wizardry I/II, Might and Magic has none): set
+  `compare-maze`, 9 shots (options with LINE, four views x SOLID/LINE), 9/9 verified from an empty cache; option
+  byte $7ABC found with `play.py diff`; side-by-side `games/wizardry-nes/design/maze-solid-vs-line.png`.
+
 ## 2026-11-18 - Megami Tensei round 2: maps of all 35 floors, bosses, ending
 - game-capture round 2: 41 -> 88 shots (commits 5702a0b 1030de2): level-up (the "next level" counter at $0576, not
   EXP), battle magic, a demon fighting, all six bosses beaten (each needs its item: Ratos Statue, Purski's Trumpet,

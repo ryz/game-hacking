@@ -172,9 +172,15 @@ refused while bonus points are left) (verified).
 | 01_party (made here) | copy of `games/wizardry-nes/saves/01_party.sav`: roster with the playtest party, level 1 | - | see `saves/README.md` | verified (`sav:01_party,CASTLE` -> Tavern Add lists them) |
 No downloadable saves looked for (GameFAQs not reachable from earlier scouts).
 
+## Extra sets
+- `compare-maze` (9 shots, list `games/wizardry-nes/shots-compare-maze.txt`, owner's request 2026-11-18): the
+  options screen with LINE and four maze views in SOLID and LINE; side by side in `design/maze-solid-vs-line.png`.
+  Rebuild: `python3 tools/shoot.py wizardry-nes compare-maze --list games/wizardry-nes/shots-compare-maze.txt --publish`.
+
 ## RAM map (for `game.json` "ram" watches and pokes)
 | Address | Size | Meaning | How found |
 |---|---|---|---|
+| `$7ABC` | 1 | Select Switch MAZE: 1 SOLID, 2 LINE (battery RAM); poke, then turn left/right to redraw | play.py diff over the option (verified, set `compare-maze`) |
 | `$003B` | 1 | x, 0-19 east | RAM watch + poke (verified) |
 | `$003C` | 1 | y, 0-19 north | watch over steps (verified) |
 | `$003D` | 1 | floor (0 in town, 1-10) | watch + poke warp (verified) |

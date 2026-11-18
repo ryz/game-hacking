@@ -1,0 +1,130 @@
+{
+ "game": {
+  "slug": "wizardry-nes",
+  "title": "Wizardry: Proving Grounds of the Mad Overlord (NES, USA)",
+  "platform": "nes",
+  "model": "ntsc",
+  "sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
+  "crc32": "e59540af"
+ },
+ "set": "compare-maze",
+ "shots": [
+  {
+   "id": "options_line",
+   "category": "options",
+   "caption": "Select Switch with MAZE set to LINE (the chosen value is drawn in white)",
+   "route": "@title,down,w30,start,w120,right,w30",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "options_line.png",
+   "file_3x": "3x/options_line.png",
+   "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "start_solid",
+   "category": "gameplay",
+   "caption": "Floor 1 entrance (0,0) facing north, MAZE SOLID (default)",
+   "route": "@start,left,w30,right,w30",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "start_solid.png",
+   "file_3x": "3x/start_solid.png",
+   "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "start_line",
+   "category": "gameplay",
+   "caption": "The same view with MAZE LINE: walls as outlines",
+   "route": "@start,poke:7ABC=02,left,w30,right,w30",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "start_line.png",
+   "file_3x": "3x/start_line.png",
+   "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "fullview_solid",
+   "category": "hud",
+   "caption": "Floor 1 entrance, party window hidden, SOLID",
+   "route": "@start,start,w30,left,w30,right,w30",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "fullview_solid.png",
+   "file_3x": "3x/fullview_solid.png",
+   "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "fullview_line",
+   "category": "hud",
+   "caption": "The same, LINE",
+   "route": "@start,start,w30,poke:7ABC=02,left,w30,right,w30",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "fullview_line.png",
+   "file_3x": "3x/fullview_line.png",
+   "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "floor04_solid",
+   "category": "gameplay",
+   "caption": "Floor 4 (1,2) facing north, door ahead, SOLID",
+   "route": "@vstart,poke:003D=04,poke:003B=01,poke:003C=02,poke:003E=00,left,w30,right,w30",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "floor04_solid.png",
+   "file_3x": "3x/floor04_solid.png",
+   "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "floor04_line",
+   "category": "gameplay",
+   "caption": "The same, LINE: the door as an outline in the far wall",
+   "route": "@vstart,poke:7ABC=02,poke:003D=04,poke:003B=01,poke:003C=02,poke:003E=00,left,w30,right,w30",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "floor04_line.png",
+   "file_3x": "3x/floor04_line.png",
+   "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "floor10_solid",
+   "category": "gameplay",
+   "caption": "Floor 10 (1,7) facing north, the stone walls of the last floor, SOLID",
+   "route": "@vstart,poke:003D=0A,poke:003B=01,poke:003C=07,poke:003E=00,left,w30,right,w30",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "floor10_solid.png",
+   "file_3x": "3x/floor10_solid.png",
+   "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "floor10_line",
+   "category": "gameplay",
+   "caption": "The same, LINE",
+   "route": "@vstart,poke:7ABC=02,poke:003D=0A,poke:003B=01,poke:003C=07,poke:003E=00,left,w30,right,w30",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "floor10_line.png",
+   "file_3x": "3x/floor10_line.png",
+   "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
+   "captured": "2026-11-18"
+  }
+ ]
+}

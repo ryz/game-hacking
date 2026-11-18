@@ -1,0 +1,12 @@
+# Set compare-maze: the Select Switch "MAZE SOLID/LINE" option, same views in both modes.
+# Line mode = byte 7ABC (1 SOLID, 2 LINE; battery RAM, the only non-display byte the option changes); poked, then a
+# turn left and right redraws the view. Format: id | category | caption | route
+options_line | options | Select Switch with MAZE set to LINE (the chosen value is drawn in white) | @title,down,w30,start,w120,right,w30
+start_solid | gameplay | Floor 1 entrance (0,0) facing north, MAZE SOLID (default) | @start,left,w30,right,w30
+start_line | gameplay | The same view with MAZE LINE: walls as outlines | @start,poke:7ABC=02,left,w30,right,w30
+fullview_solid | hud | Floor 1 entrance, party window hidden, SOLID | @start,start,w30,left,w30,right,w30
+fullview_line | hud | The same, LINE | @start,start,w30,poke:7ABC=02,left,w30,right,w30
+floor04_solid | gameplay | Floor 4 (1,2) facing north, door ahead, SOLID | @vstart,poke:003D=04,poke:003B=01,poke:003C=02,poke:003E=00,left,w30,right,w30
+floor04_line | gameplay | The same, LINE: the door as an outline in the far wall | @vstart,poke:7ABC=02,poke:003D=04,poke:003B=01,poke:003C=02,poke:003E=00,left,w30,right,w30
+floor10_solid | gameplay | Floor 10 (1,7) facing north, the stone walls of the last floor, SOLID | @vstart,poke:003D=0A,poke:003B=01,poke:003C=07,poke:003E=00,left,w30,right,w30
+floor10_line | gameplay | The same, LINE | @vstart,poke:7ABC=02,poke:003D=0A,poke:003B=01,poke:003C=07,poke:003E=00,left,w30,right,w30
