@@ -1,0 +1,32 @@
+{
+  "slug": "deep-dungeon-3",
+  "title": "Deep Dungeon III: Yuushi e no Tabi (Famicom, Japan)",
+  "platform": "nes",
+  "model": "ntsc",
+  "rom": "rom/deep-dungeon-3.nes",
+  "sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
+  "crc32": "3c6f7ff0",
+  "size": 262160,
+  "header": {
+    "format": "NES 2.0",
+    "mapper": 1,
+    "submapper": 0,
+    "prg_kib": 256,
+    "chr_kib": 0,
+    "battery": true,
+    "ram_kib": 8,
+    "mirroring": "horizontal",
+    "trainer": false,
+    "region": "NTSC"
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}

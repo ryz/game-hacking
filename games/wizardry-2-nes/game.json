@@ -1,0 +1,32 @@
+{
+  "slug": "wizardry-2-nes",
+  "title": "Wizardry II: Knight of Diamonds - The Second Scenario (NES, USA)",
+  "platform": "nes",
+  "model": "ntsc",
+  "rom": "rom/wizardry-2-nes.nes",
+  "sha1": "dc7d577131bb3148a672344bc95bb8a7b66d64d0",
+  "crc32": "10cd0310",
+  "size": 262160,
+  "header": {
+    "format": "NES 2.0",
+    "mapper": 4,
+    "submapper": 0,
+    "prg_kib": 128,
+    "chr_kib": 128,
+    "battery": true,
+    "ram_kib": 8,
+    "mirroring": "horizontal",
+    "trainer": false,
+    "region": "NTSC"
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
