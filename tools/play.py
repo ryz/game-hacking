@@ -508,13 +508,15 @@ def main(argv):
             if f in ("ready", "log.txt") or f.endswith(".png"):
                 os.remove(os.path.join(d, f))
         log = open(os.path.join(d, "server.log"), "w")
-        subprocess.Popen([sys.executable, __file__, "--name", name, "_serve", args[0], route, model],
-                         stdout=log, stderr=log, start_new_session=True)
+        srv = subprocess.Popen([sys.executable, __file__, "--name", name, "_serve", args[0], route, model],
+                               stdout=log, stderr=log, start_new_session=True)
         for _ in range(2400):
             if os.path.exists(os.path.join(d, "ready")):
                 print(call(name, "shot", []))
                 print(call(name, "status", []))
                 return 0
+            if srv.poll() is not None:      # the server gave up (unknown game, missing ROM): do not wait 10 minutes
+                break
             time.sleep(0.25)
         print("server did not start; see", rel(os.path.join(d, "server.log")))
         print(open(os.path.join(d, "server.log")).read()[-2000:])

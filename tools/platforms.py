@@ -658,12 +658,21 @@ class Dos(Libretro):
             shutil.copyfile(sav, self.savezip)
         options = {"dosbox_pure_machine": machine, "dosbox_pure_cycles": cycles or "7800",
                    "dosbox_pure_savestate": "on", "dosbox_pure_conf": "false", "dosbox_pure_midi": "disabled"}
-        self.c = lrcore.Core(self.SO, os.path.abspath(rom), system_dir=self.tmp, save_dir=self.tmp, options=options,
+        self._boot = (os.path.abspath(rom), options)
+        self._search = None
+        self._power_on()
+        return self
+
+    def _power_on(self):
+        import ctypes
+        import lrcore
+        rom, options = self._boot
+        self.c = lrcore.Core(self.SO, rom, system_dir=self.tmp, save_dir=self.tmp, options=options,
                              frame_usec=self.FRAME_USEC, epoch=self.EPOCH, private=True)
         self.c.L.retro_gamedb_pc.restype = ctypes.c_uint32
         self.c.size = self.native_size
-        self._search, self._down, self._ran = None, set(), 0
-        return self
+        # _log: everything done since power-on, kept until the core can make a real savestate (see save_state)
+        self._down, self._ran, self._log, self._launch = set(), 0, [], None
 
     def input(self, keys):
         keys = set(keys)
@@ -675,10 +684,14 @@ class Dos(Libretro):
                 self.c.key(self.KEYS[k], True)
         self._down = keys
         self.c.keys = {k for k in keys if k.startswith("mouse")}
+        if self._log is not None:
+            self._log.append(["i", sorted(keys)])
 
     def mouse(self, dx, dy):
         """Relative mouse motion, reported to the game during the next frame."""
         self.c.mouse = [dx, dy]
+        if self._log is not None:
+            self._log.append(["m", [dx, dy]])
 
     def type_text(self, text, hold=4, gap=4):
         """Type text on the US keyboard (shift for capitals and symbols)."""
@@ -702,8 +715,48 @@ class Dos(Libretro):
         if n > 0:
             self.c.run(n)
             self._ran += n
+            if self._log is not None:
+                self._log.append(["f", n])
+
+    BOOTLOG = b"GAMEDB-DOS-BOOTLOG-1\n"
+    STATE = b"GAMEDB-DOS-STATE-1\n"
+
+    def save_state(self, path):
+        """The core saves and loads states only while a DOS program runs, not in DOSBox Pure's start menu or at
+        the DOS prompt. Two file kinds follow from that:
+        - before the first real state (BOOTLOG): the list of inputs since power-on. Loading it powers the machine
+          on again and replays them (same route = same frames, so the result is the same).
+        - a real state (STATE): the inputs that got the program running, then the core's state. A machine in
+          which no program runs (just opened) replays those inputs first, then loads the state."""
+        import json
+        try:
+            raw = self.c.serialize()
+        except RuntimeError:
+            if self._log is None:
+                raise RuntimeError("no savestate here: no DOS program is running (start menu or DOS prompt)")
+            data = self.BOOTLOG + json.dumps(self._log).encode() + b"\n"
+        else:
+            if self._log is not None:
+                self._launch, self._log = self._log, None
+            data = self.STATE + json.dumps(self._launch).encode() + b"\n" + raw
+        open(os.path.abspath(path), "wb").write(data)
+
+    def _replay(self, log):
+        self.c.close()
+        self._power_on()
+        for kind, v in log:
+            {"i": self.input, "f": self.frames, "m": lambda m: self.mouse(*m)}[kind](v)
 
     def load_state(self, path):
+        import json
+        data = open(os.path.abspath(path), "rb").read()
+        if data.startswith(self.BOOTLOG):
+            self._replay(json.loads(data[len(self.BOOTLOG):].split(b"\n", 1)[0]))
+            return
+        if not data.startswith(self.STATE):
+            raise RuntimeError("not a DOS savestate of this tool: %s" % path)
+        head, raw = data[len(self.STATE):].split(b"\n", 1)
+        launch = json.loads(head)
         # A state loaded into a machine that has run fewer than 2 frames continues with different timing than
         # the run that made it (measured 2026-11-18: 0 and 1 frames differ, 2 and more are exact).
         if self._ran < self.WARMUP:
@@ -712,7 +765,12 @@ class Dos(Libretro):
             if k in self.KEYS:
                 self.c.key(self.KEYS[k], False)
         self._down = set()
-        self.c.unserialize(open(os.path.abspath(path), "rb").read())
+        try:
+            self.c.unserialize(raw)
+        except RuntimeError:                # no program running here: start it the way the saving run did
+            self._replay(launch)
+            self.c.unserialize(raw)
+        self._launch, self._log = launch, None
 
     def _mem(self):
         """(pointer to physical address 0, size): the core announces program memory first while DOS runs."""

@@ -1,8 +1,8 @@
 # DOS
 
 Platform notes for `dos` games (IBM PC, MS-DOS). The general rules (routes, tokens, the working loop) are in
-[README.md](README.md). Added 2026-11-18; tested with a generated test program only, no real game yet, so
-expect to extend this file with the first game.
+[README.md](README.md). Added 2026-11-18. First game: Might and Magic Book One (`games/dos/might-and-magic/`), played from the title
+into the first town; saving in the game has not been tried yet.
 
 ## Backend
 DOSBox Pure, built as a libretro core and run inside the Python process by `tools/lrcore.py`. Built by
@@ -15,7 +15,16 @@ the author's own GitHub repository only points to Codeberg). `tools/dosbox-pure-
 - `retro_gamedb_pc`: CS:IP for `status`.
 - a fix in the savestate loader (the frame in progress was dropped, so a loaded run was one frame ahead).
 
-With these the same route gives the same frames on every boot, and a run loaded from a state continues exactly
+## Savestates
+The core saves and loads a state only while a DOS program is running, not in its start menu or at the DOS
+prompt. The backend covers both cases (`Dos.save_state` in `tools/platforms.py`):
+- before a program runs, a "state" is the list of inputs since power-on; loading it powers on and replays them;
+- a real state also stores the inputs that started the program; a machine where nothing runs yet (a new
+  process loading a cached checkpoint) replays those, then loads the state.
+So `undo`, `checkpoint`, `goto` and the cache work from power-on like on the consoles. Only this tool reads
+these files.
+
+With the patch the same route gives the same frames on every boot, and a run loaded from a state continues exactly
 like the run that made it (tests `test_dos_same_route_same_frames`, `test_dos_pipeline`). A machine that was
 just opened runs 4 frames before its first state load; with fewer than 2 the timing differs.
 
@@ -23,7 +32,8 @@ just opened runs 4 frames before its first state load; with fewer than 2 the tim
 `python3 tools/intake.py GAME.zip [--slug S --title "T"]`: the ZIP of the game's folder is the dump (SHA-1 in
 `game.json`, copied to `rom/<slug>.zip`, never committed); the game lands in `games/dos/<slug>/`. The ZIP is mounted as `C:`. Power-on shows DOSBox
 Pure's start menu listing the programs in the ZIP; the boot route picks one (`w120,enter` for the first, `down`
-to move). CD images and installers are not set up yet.
+to move). A ZIP with a single program starts it without the menu. The files may sit in a folder inside the ZIP
+(a GOG install folder works as it is, without its DOSBOX subfolder). CD images and installers are not set up yet.
 
 ## Models
 `game.json` "model" is `MACHINE[-CYCLES]`: machine `svga` (default), `vga`, `ega`, `cga`, `tandy`, `pcjr` or
@@ -32,8 +42,8 @@ to move). CD images and installers are not set up yet.
 from the early 1980s that runs too fast needs fewer cycles, not waits.
 
 ## Screenshots
-The picture has the size of the video mode: text mode 640x400 (9-dot fonts 720x400), 320x200 games as 320x200,
-and so on; it can change during a route. No aspect correction (320x200 was shown 4:3 on a real monitor).
+The picture has the size the core outputs for the video mode: text mode 640x400, and a 320x200 game came out
+as 960x600 (Might and Magic 1: each pixel 3x3); it can change during a route. No aspect correction (320x200 was shown 4:3 on a real monitor).
 The text cursor blinks, so text screens rarely `settle`; capture anyway.
 
 ## Keys

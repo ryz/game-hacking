@@ -8,6 +8,21 @@ Append-only, newest first.
   `games/nes/wizardry-2-nes/design/maze-solid-vs-line.png`. A first floor 2 view met a random fight in LINE only
   (drawing time shifts the RNG); replaced by the `f2` checkpoint view.
 
+## 2026-11-18 - Might and Magic 1 (DOS) runs
+- Owner uploaded the GOG folder as a ZIP (97 files, SHA-1 c1a9248d...). Registered as `games/dos/might-and-magic/`
+  (same slug as the NES game, so commands need `dos/might-and-magic`), model `svga-1500` (GOG's own cycles).
+- Played: start menu -> MM.EXE -> title -> ESC -> Enter -> options -> town 1 -> inn, six stock characters added
+  with Ctrl+A..F -> Sorpigal, walking, character sheet. Macros BOOT, MENU, TOWN:n; checkpoint `sorpigal`.
+  Trap: Space at the title starts a slideshow of scenes that look like gameplay; an early ESC lands in it.
+- Found with the real game, fixed in `tools/platforms.py`: the core refuses to save a state in its start menu
+  and refuses to load one unless a program is running (the test program had hidden this: a ZIP with one program
+  starts it at once). States before a program runs are now input logs replayed from power-on; real states carry
+  the inputs that launched the program. Check: 2 shots recorded live, `shoot.py --verify` 2/2 from an empty
+  cache and 2/2 from the cache.
+- `tools/play.py start` returned only after 10 minutes when its server died at once (here: ambiguous slug);
+  it now stops waiting when the server process has exited.
+- Not done: scout/capture, character creation, combat, in-game saving and what a savestate does to ROSTER.DTA.
+
 ## 2026-11-18 - Wizardry I: maze SOLID vs LINE comparison set
 - Owner's request (asked for Might and Magic; the option is in Wizardry I/II, Might and Magic has none): set
   `compare-maze`, 9 shots (options with LINE, four views x SOLID/LINE), 9/9 verified from an empty cache; option

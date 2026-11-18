@@ -1,0 +1,4 @@
+# name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
+# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
+# title | Title screen, settled | TITLE,settle
+sorpigal | Sorpigal, outside the inn, default party of six | pow,BOOT,w300,settle,w300,settle,w300,settle,esc,w90,settle,enter,w200,settle,1,w150,settle,ctrl>a,ctrl>b,ctrl>c,ctrl>d,ctrl>e,ctrl>f,w30,settle,x,w150,settle
