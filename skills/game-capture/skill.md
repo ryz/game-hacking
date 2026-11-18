@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-18 (breadth rule; two lenses: systems.md and interface.md)
+updated: 2026-11-18 (breadth rule; three lenses: systems.md, interface.md, content.md)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -72,11 +72,12 @@ edit anything outside the game's folder.
      set, town, cave, dungeon, outdoors by terrain, castle, special places), not several of the same look.
    - Each of these goes into `design/` too (what the command does, what the enemy did), per step 5.
    Add opportunistic shots of anything else distinctive (category `extra` or the right one).
-   **Two lenses** (owner's request 2026-11-18, `docs/capture-guide.md` "Two lenses"): keep
-   `design/systems.md` (game design: one row per feature, system, mechanic) and `design/interface.md` (UI/UX:
-   one row per screen, menu, prompt, element; conventions; screen flow) up to date while capturing; copy the
-   templates from `games/_template/design/` if the game has none. Every shot belongs in at least one of them,
-   most in both. Before finishing run `python3 tools/lenses.py SLUG SET` and clear its list (add the row, or
+   **Three lenses** (owner's request 2026-11-18, `docs/capture-guide.md` "Three lenses"): keep
+   `design/systems.md` (game design: one row per feature, system, mechanic), `design/interface.md` (UI/UX:
+   one row per screen, menu, prompt, element; conventions; screen flow) and `design/content.md` (a reasonable
+   variety of environments, opponents, items, equipment, abilities, people: a sample that spans the range,
+   not a full set; the kinds depend on the game) up to date while capturing; copy the templates from
+   `games/_template/design/` if the game has none. Every shot belongs in at least one of them, most in two. Before finishing run `python3 tools/lenses.py SLUG SET` and clear its list (add the row, or
    say in the row why there is no shot).
 7. Finish: `python3 tools/shoot.py SLUG SET --verify` (every shot must reproduce; re-snap or fix the route of a
    MISMATCH), then look at the contact sheet `work/shots/PLATFORM/SLUG/SET/<game>_<platform>_<region>_set_sheet.png` as a whole: variety, duplicates, broken frames.

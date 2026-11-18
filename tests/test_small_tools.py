@@ -48,7 +48,7 @@ def test_shot_file_names():
 
 
 def test_lenses_check(tmp_path):
-    """tools/lenses.py: shots named in neither design lens and rows without a shot are listed."""
+    """tools/lenses.py: shots named in none of the three design lenses and rows without a shot are listed."""
     import json, types
     sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "tools"))
     import lenses
@@ -65,9 +65,11 @@ def test_lenses_check(tmp_path):
         "| Verbs | Trade | | open |\n| Chance | Hidden roll | none: no screen of its own | described |\n")
     (d / "design" / "interface.md").write_text(
         "| Screen | Shots |\n|---|---|\n| Bash prompt | `bash`, g_dos_na_system_title.png |\n")
+    assert lenses.check(game)[0] == 2                                   # content.md still missing
+    (d / "design" / "content.md").write_text("| Item | Shots |\n|---|---|\n| Club | `trade` |\n")
     code, out = lenses.check(game)
     text = "\n".join(out)
-    assert code == 1 and "systems.md uses 1, interface.md uses 2, both 1" in text
-    assert "in neither document: bash_wall" in text and "in neither document: trade" in text
-    assert "in neither document: bash (" not in text                   # `bash` does not count for bash_wall
+    assert code == 1 and "systems.md uses 1, interface.md uses 2, content.md uses 1; in two or more: 1" in text
+    assert "in no document: bash_wall" in text and "in no document: trade" not in text
+    assert "in no document: bash (" not in text                         # `bash` does not count for bash_wall
     assert "systems.md:4 row without a shot or a reason: Verbs" in text and "Hidden roll" not in text

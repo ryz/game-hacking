@@ -2,7 +2,8 @@
 
 Every screen, menu, prompt and on-screen element of the game, described as an interface: what it is for, what
 it shows, what it accepts, how it answers. Read it to study how the game talks to the player. The same shots
-also appear in [systems.md](systems.md), which looks at the rules; overlap is intended.
+also appear in [systems.md](systems.md), which looks at the rules, and in [content.md](content.md), which shows
+the variety of what fills the game; overlap is intended.
 Notation: [README.md](README.md). Check: `python3 tools/lenses.py PLATFORM/SLUG`.
 
 Facts carry a confidence tag as everywhere in this folder. A judgement (clear, slow, easy to miss) is written

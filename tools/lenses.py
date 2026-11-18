@@ -1,11 +1,11 @@
-"""Check a game's two design lenses against its published shot set.
+"""Check a game's three design lenses against its published shot set.
 
   python3 tools/lenses.py GAME [SET]      (GAME = slug or platform/slug; SET default main)
 
-design/systems.md (game design) and design/interface.md (UI/UX) are the two indexes over a game's shots
-(docs/capture-guide.md, "Two lenses"). This lists:
-  - shots mentioned in neither document (by id in backticks, or by file name),
-  - how many shots each document uses and how many both use,
+design/systems.md (game design), design/interface.md (UI/UX) and design/content.md (variety of content) are
+the three indexes over a game's shots (docs/capture-guide.md, "Three lenses"). This lists:
+  - shots mentioned in no document (by id in backticks, or by file name),
+  - how many shots each document uses and how many are used by two or more,
   - table rows whose Shots cell is empty and that give no reason (a row may say "none: <why>").
 Exit 0 = clean, 1 = something listed, 2 = a document or the set is missing.
 """
@@ -15,7 +15,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import emu  # noqa: E402
 
-DOCS = ("systems.md", "interface.md")
+DOCS = ("systems.md", "interface.md", "content.md")
 
 
 def mentioned(text, shot):
@@ -55,13 +55,13 @@ def check(game, set_="main"):
             return 2, ["missing: %s (template: games/_template/design/%s)" % (os.path.relpath(p, emu.ROOT), d)]
         texts[d] = open(p, encoding="utf-8").read()
     used = {d: {s["id"] for s in shots if mentioned(t, s)} for d, t in texts.items()}
-    both = used[DOCS[0]] & used[DOCS[1]]
-    lines.append("%d shots: systems.md uses %d, interface.md uses %d, both %d" % (
-        len(shots), len(used[DOCS[0]]), len(used[DOCS[1]]), len(both)))
-    unused = [s for s in shots if s["id"] not in used[DOCS[0]] | used[DOCS[1]]]
+    count = {s["id"]: sum(s["id"] in u for u in used.values()) for s in shots}
+    lines.append("%d shots: %s; in two or more: %d" % (
+        len(shots), ", ".join("%s uses %d" % (d, len(used[d])) for d in DOCS), sum(c > 1 for c in count.values())))
+    unused = [s for s in shots if not count[s["id"]]]
     bad = bool(unused)
     for s in unused:
-        lines.append("in neither document: %s (%s) %s" % (s["id"], s["category"], s["caption"][:70]))
+        lines.append("in no document: %s (%s) %s" % (s["id"], s["category"], s["caption"][:70]))
     for d, t in texts.items():
         for n, name in empty_rows(t):
             bad = True

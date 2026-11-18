@@ -110,9 +110,11 @@ Some actions are best shown as what happens, step by step (fishing, fast travel,
 Shots are evidence for `games/<platform>/<slug>/design/`: when a shot shows a rule or a number (a shop price list, a level-up
 screen, a status screen), link it from the design document that states the rule.
 
-## Two lenses: systems and interface (owner's request 2026-11-18)
-Every game is documented twice over the same shots, once for game design and once for UI/UX. Overlap is
-intended: a shop screen is evidence for the economy and an interface in its own right.
+## Three lenses: systems, interface, content (owner's request 2026-11-18)
+Every game is documented three times over the same shots: for game design, for UI/UX, and for the variety of
+its content. Overlap is intended: a shop screen is evidence for the economy, an interface in its own right,
+and shows items. In general the shots of a set should cover all three; how much of each depends on the game,
+its genre and structure.
 - **Systems** (`design/systems.md`): the index of every feature, system and mechanic, in fixed groups (player
   verbs, characters and progression, resources and economy, conflict, opponents, items, abilities, world and
   navigation, goals and gating, chance, failure and recovery, saving, pacing). One row each: the rule in one
@@ -122,12 +124,16 @@ intended: a shop screen is evidence for the economy and an interface in its own 
   then an inventory with one row per screen, menu, prompt, message type and permanent element (purpose, what it
   shows, what it accepts, how it answers, where it leads), the screen flow, and the main screens element by
   element. Judgements are marked **Observation:**.
-- Shots serve both: when choosing what to capture, ask "which rule does this show?" and "which screen or
-  element is this?". A prompt with nothing behind it is still an interface row; a rule with no screen of its
+- **Content** (`design/content.md`): what fills the game, as a reasonable variety, not a full set: the kinds of
+  content this game has (environments, opponents, items, equipment, abilities, people, and its own kinds:
+  vehicles, levels, puzzles ...), the total of each if known, and a sample that spans the range (early and late,
+  common and rare, one of each visual family). Complete tables live in their own documents and are linked.
+- Shots serve all three: when choosing what to capture, ask "which rule does this show?", "which screen or
+  element is this?" and "which piece of content does this add?". A prompt with nothing behind it is still an interface row; a rule with no screen of its
   own (a hidden roll) is still a systems row, status `described`.
-- `python3 tools/lenses.py SLUG [SET]` lists shots that neither document mentions and rows without a shot. A
+- `python3 tools/lenses.py SLUG [SET]` lists shots that no document mentions and rows without a shot. A
   set is not finished while a shot is unused or a row says neither which shot shows it nor why there is none.
-Templates: `games/_template/design/systems.md`, `interface.md`.
+Templates: `games/_template/design/systems.md`, `interface.md`, `content.md`.
 
 ## Sets
 - `main` is the database set. Other sets for variants: `dmg` / `sgb` (another model), `jp` (another region/ROM

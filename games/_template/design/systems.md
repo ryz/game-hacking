@@ -3,7 +3,8 @@
 The index of everything the game lets the player do and every rule that shapes play: one row per feature,
 system or mechanic, with the rule in one line, where the details live and which shots show it. Read it to see
 what the game is made of; follow the links for numbers. The same shots also appear in
-[interface.md](interface.md), which looks at the screens themselves; overlap is intended.
+[interface.md](interface.md), which looks at the screens themselves, and in [content.md](content.md), which
+shows the variety of what fills the game; overlap is intended.
 Notation: [README.md](README.md). Check: `python3 tools/lenses.py PLATFORM/SLUG`.
 
 Status: `shown` (a shot shows it at work), `described` (known, no shot: say why), `open` (not understood).

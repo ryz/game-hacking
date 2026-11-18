@@ -79,10 +79,11 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
   release of the dump, a translated Japanese ROM is `jp`), the shot's category, its id; `.<set>` for sets other
   than `main` and `seq-*`. The slug is the short game name without the platform (`wizardry`, not `wizardry-nes`).
   The tools build the names; link a shot by the file name in the set's `index.md`.
-- Two lenses per game (owner's request 2026-11-18, `docs/capture-guide.md` "Two lenses"): `design/systems.md`
-  (game design: every feature, system, mechanic) and `design/interface.md` (UI/UX: every screen, menu, prompt,
-  element, conventions, screen flow) index the same shots; `python3 tools/lenses.py SLUG [SET]` lists shots
-  used by neither and rows without a shot.
+- Three lenses per game (owner's request 2026-11-18, `docs/capture-guide.md` "Three lenses"): `design/systems.md`
+  (game design: every feature, system, mechanic), `design/interface.md` (UI/UX: every screen, menu, prompt,
+  element, conventions, screen flow) and `design/content.md` (a reasonable variety of environments, opponents,
+  items, equipment, abilities, people) index the same shots; `python3 tools/lenses.py SLUG [SET]` lists shots
+  used by none and rows without a shot.
 - Per game: `games/<platform>/<slug>/playbook.md` is read before playing and updated after; checkpoints are routes (cache
   states are not committed). Milestone saves for the owner: save in the game, then `play.py export NAME "desc"`
   -> `games/<platform>/<slug>/saves/` (committed); password games record passwords in the playbook instead. Capture agents

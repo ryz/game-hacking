@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - third lens: content
+- Owner: the third area is content: variety in environments, items, enemies, equipment and so on; not a full
+  set but a reasonable variety; in general shots should cover these areas, depending on game, genre and
+  structure. Added `design/content.md` (template: kinds of content with totals, then samples that span the
+  range per kind; kinds are adapted per game), the guide section is now "Three lenses", skill step 6 and
+  AGENTS.md follow, `tools/lenses.py` checks the three documents.
+
 ## 2026-11-18 - capture: breadth rule and two lenses (systems, interface)
 - Owner after the Might and Magic 1 (DOS) set: more battles with interesting enemies, the minor commands (bash,
   trade ...) to document mechanics, several visual environments; "rather document a few more
