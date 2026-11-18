@@ -28,6 +28,7 @@ Current snapshot; history in `progress-log.md`.
 - Wizardry I (NES), 2026-11-18: main set 71 shots through Werdna and the ending, 10 floor maps with all special
   squares decoded, saves 01-03. Open: Identify, spinner, teleport square; party_dead retake.
 - `play.py dump/diff` (2026-11-18).
+- Wizardry II (NES): scouted 2026-11-18 (6 floor maps, save 01_party, roster CRC tool); capture next.
 - Queue (registered 2026-11-18, not scouted): wizardry-2-nes, might-and-magic,
   deep-dungeon-3.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).

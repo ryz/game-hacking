@@ -1,3 +1,7 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title screen: The Knight of Diamonds, Start game / Select switch | pow,TITLE,settle
+castle | Castle menu (Llylgamyn), playtest party RYZ..MNZ formed, level 1, no equipment | pow,PARTY,settle
+start | Floor 1 (0,0) facing north under the stairs to the castle: first control in the maze | @castle,MAZE,settle
+f2 | Floor 2 (5,5) facing north after the floor 1 stairs down at (5,5) (warp to floor 1 (5,4), A through the door, Take them Yes, then No to the stairs up) | @start,poke:00EA=05,poke:00EB=04,poke:00E9=00,left,w30,right,w30,settle,a,w60,settle,a,w120,settle,down,a,w60,settle

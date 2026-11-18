@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Wizardry II (NES) scouted; NES cartridge RAM reachable while disabled
+- `tools/platforms.py` Nes: peek/poke of 6000-7FFF use the core's battery-RAM buffer (8 KiB carts). Before, MMC3
+  games with the RAM disabled read open bus and silently dropped pokes (Wizardry II scout, ~6 calls). Regression:
+  Wizardry I roster-poke shots 5/5 and Dungeon Magic rune shots (poke $61CB) 2/2 reproduce. `docs/emulator/nes.md`.
+- Wizardry II (NES): scout done (engine shared with Wizardry I; tools ported): party macro, save 01_party, roster
+  CRC tool `tools/roster.py`, 6 floors decoded and drawn; 10 routed shots verified 10/10 by the coordinator.
+
 ## 2026-11-18 - Wizardry I (NES) main set: complete through the ending
 - game-capture: 71 shots (commits 69d7eaa 5805efa 41939b7): creation, castle, shops, temple, spell books, combat
   and spells, chests and traps, Murphy's ghost, pit, chute, elevator, floors 4 and 10, Werdna, the ending and

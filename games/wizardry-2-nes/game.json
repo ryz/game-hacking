@@ -1,6 +1,6 @@
 {
   "slug": "wizardry-2-nes",
-  "title": "Wizardry II: Knight of Diamonds - The Second Scenario (NES, USA)",
+  "title": "Wizardry: Knight of Diamonds - The Second Scenario (NES, USA)",
   "platform": "nes",
   "model": "ntsc",
   "rom": "rom/wizardry-2-nes.nes",
@@ -27,6 +27,37 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w1000",
+    "CASTLE": "TITLE,start,w120",
+    "TRAINING": "b,w60,a,w60",
+    "PARTY": "CASTLE,TRAINING,PARTYMAKE,b,w60,b,w60,ADDPARTY",
+    "MAKE1": "a,w60,down*2,right*7,a,w20,down*1,left*3,a,w20,right*1,a,w20,right*6,a,w60,a,w60,a,w60,a,w60,poke:004D=10,poke:004E=07,poke:004F=04,poke:0050=0C,poke:0051=09,poke:0052=08,poke:0040=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,a,w60,a,w60",
+    "MAKE2": "a,w60,down*1,right*2,a,w20,down*1,right*2,a,w20,left*1,a,w20,up*1,a,w20,right*5,a,w20,down*2,right*3,a,w60,a,w60,down*2,a,w60,a,w60,poke:004D=0F,poke:004E=06,poke:004F=09,poke:0050=0E,poke:0051=06,poke:0052=05,poke:0040=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,a,w60,a,w60",
+    "MAKE3": "a,w60,down*1,right*4,a,w20,left*3,a,w20,down*1,right*3,a,w20,down*1,right*7,a,w60,a,w60,down*3,a,w60,a,w60,poke:004D=08,poke:004E=06,poke:004F=0F,poke:0050=09,poke:0051=0A,poke:0052=06,poke:0040=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,a,w60,a,w60",
+    "MAKE4": "a,w60,down*1,right*2,a,w20,down*2,left*2,a,w20,up*2,right*1,a,w20,right*7,a,w20,down*2,right*3,a,w60,a,w60,down*4,a,w60,down*1,a,w60,poke:004D=06,poke:004E=06,poke:004F=06,poke:0050=08,poke:0051=0F,poke:0052=0E,poke:0040=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,a,w60,a,w60",
+    "MAKE5": "a,w60,down*1,right*3,a,w20,right*1,a,w20,left*1,a,w20,a,w20,down*1,right*1,a,w20,down*1,right*7,a,w60,a,w60,down*1,a,w60,a,w60,poke:004D=06,poke:004E=10,poke:004F=09,poke:0050=07,poke:0051=0A,poke:0052=05,poke:0040=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,a,w60,a,w60",
+    "MAKE6": "a,w60,down*2,right*2,a,w20,right*1,a,w20,down*1,right*2,a,w20,right*6,a,w60,a,w60,down*1,a,w60,a,w60,poke:004D=06,poke:004E=0E,poke:004F=0D,poke:0050=06,poke:0051=09,poke:0052=05,poke:0040=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,down*2,a,w60,a,w60",
+    "PARTYMAKE": "MAKE1,MAKE2,MAKE3,MAKE4,MAKE5,MAKE6",
+    "ADDPARTY": "a,w60,a,w60,down*6,a,w60,down*6,a,w60,down*6,a,w60,down*6,a,w60,down*6,a,w60,down*6,a,w60,b,w30",
+    "MAZE": "down*4,a,w60,down,a,w120,a,w120,b,w60,down,a,w60"
+  },
+  "ram": {
+    "x": {
+      "addr": "00EA",
+      "size": 1
+    },
+    "y": {
+      "addr": "00EB",
+      "size": 1
+    },
+    "floor": {
+      "addr": "00EC",
+      "size": 1
+    },
+    "facing": {
+      "addr": "00E9",
+      "size": 1
+    }
+  }
 }

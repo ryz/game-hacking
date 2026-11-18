@@ -9,6 +9,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Wizardry II (NES)
+- Task: scout Wizardry: Knight of Diamonds (NES): playbook, party macros, title/castle/start/f2 checkpoints, RAM,
+  save handling with a check-value tool, 6 floor maps from ROM, shot plan.
+- Worked: porting the sister game's tools with changed addresses; Data Crystal position bytes -> cell fetch ->
+  floor table in ~5 calls; searching the ROM for the battery copy of a table found the originals; porting the
+  record CRC to Python and checking it on every record before editing a save.
+- Friction: peek/poke/dump of MMC3 battery RAM returned open bus and dropped writes (~6 calls); macro waits behave
+  differently split across `do` calls (twice landed with the pre-made party); a checkpoint on a stairs square sits
+  on the prompt; steps.py copies need a session name per game.
+- Proposed rule change: NES peek/poke of 6000-7FFF via the core's save RAM (+ test); nes.md note on disabled RAM
+  and record checks; skill step 3: run a ported macro once as a single `do` from power-on.
+- Corrected: shared fix in `tools/platforms.py` (direct save-RAM access), regression-checked on Wizardry I and
+  Dungeon Magic poke routes; nes.md section added; 10/10 routed shots verified by the coordinator.
+- Status: promoted 2026-11-18 (save-RAM access, nes.md); open (single-`do` macro check: first occurrence)
+
 ### 2026-11-18 - Wizardry I (NES)
 - Task: scout Wizardry (NES): playbook, macros, title/castle/start/battle checkpoints, RAM, maze data, party macro,
   01_party export, shot plan.

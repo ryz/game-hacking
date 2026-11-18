@@ -320,6 +320,30 @@ class Nes(Libretro):
     MODELS = {"ntsc": "NTSC", "pal": "PAL", "dendy": "Dendy"}
     SEARCH = [(0x0000, 0x0800), (0x6000, 0x2000)]
 
+    def _wram(self, addr, n):
+        """The core's battery RAM for 6000-7FFF (8 KiB carts), or None. Read/written directly so that peeks and
+        pokes work while the game keeps the cartridge RAM disabled (MMC3 does; the bus then reads open bus and
+        drops writes - found with Wizardry II, 2026-11-18)."""
+        if not (0x6000 <= addr and addr + n <= 0x8000):
+            return None
+        import lrcore
+        ram = self.c.memory(lrcore.MEM_SAVE_RAM)
+        return ram if ram is not None and len(ram) == 0x2000 else None
+
+    def peek(self, addr, n, bank=None):
+        ram = self._wram(addr, n) if bank is None else None
+        if ram is not None:
+            return bytes(ram[addr - 0x6000:addr - 0x6000 + n])
+        return Libretro.peek(self, addr, n, bank)
+
+    def poke(self, addr, data):
+        data = bytes(data)
+        ram = self._wram(addr, len(data))
+        if ram is None:
+            return Libretro.poke(self, addr, data)
+        for i, v in enumerate(data):
+            ram[addr - 0x6000 + i] = v
+
     @staticmethod
     def identify(data):
         if data[:4] != b"NES\x1a":

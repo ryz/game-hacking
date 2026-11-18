@@ -55,3 +55,9 @@ RAM, when the cartridge has it), `8000-FFFF` the PRG banks mapped at that moment
 
 ## Not supported
 Famicom Disk System images (they need the disk BIOS), a second controller, the Famicom microphone, the Zapper.
+
+## Cartridge RAM (6000-7FFF)
+`peek`, `poke`, `dump`, `find` and `freeze:` on 6000-7FFF go straight to the core's battery RAM (8 KiB carts), so
+they work while the game keeps the cartridge RAM disabled (MMC3 games often do: on the bus it reads open bus and
+drops writes). Games may keep a check value per record (Wizardry II: CRC at +$5E, records failing it are wiped at
+power-on): a poked record works until the next power-on unless the game itself saves it again. (2026-11-18)

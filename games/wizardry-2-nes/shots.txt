@@ -4,3 +4,28 @@
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/wizardry-2-nes/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # title_screen | title | Title screen | @title
+# Routed by the scout 2026-11-18 (each frame seen in play.py; not yet through shoot.py). Game order.
+# boot_ascii | boot | ASCII logo at power-on | w180,!            (plan: pick the frame, intake sheet f60-f240)
+# boot_copyright | boot | Copyright page: Andrew Greenberg / Sir-Tech, ASCII, Game Studio | w600   (plan)
+title_screen | title | Title: The Knight of Diamonds, Start game / Select switch | @title
+options | options | Select switch: maze SOLID/LINE, music, sound, return to title | @title,down,start,w60
+castle_menu | menu | Castle of Llylgamyn: Tavern, Inn, Boltac's, Temple, Edge of Town | @castle
+# tavern_roster | menu | Tavern Add list: pre-made characters and the playtest party | sav:01_party,CASTLE,a,w60,a,w60   (plan)
+edge_of_town | menu | Edge of Town: Training Grounds, Maze, Restart an "OUT" party, Leave Game | @castle,down*4,a,w60
+training_menu | menu | Training Grounds: Create, Inspect, Delete, Change Name, Change Class | @castle,TRAINING
+name_entry | menu | Name keyboard of the Training Grounds (Enter new name) | @castle,TRAINING,a,w60
+# race_select / alignment_select / stats_screen / class_select | menu | creation screens | MAKE1 split (plan)
+inspect_ryz | inventory | Character sheet of RYZ, level 1 Fighter: stats, H.P., spell points | @castle,a,w60,down*2,a,w60,a,w60
+# inn_rooms | shop | Adventurer's Inn rooms and prices | @castle,down,a,w60,...   (plan)
+# boltac_buy | shop | Boltac's Trading Post | plan
+# temple | menu | Temple of Cant | plan
+# maze_descend | gameplay | "Descending into the Ruins under the Temple of Gnilda" | @castle,down*4,a,w60,down,a,w60,! (plan: pick the frame)
+maze_start | gameplay | Floor 1 at the entrance, facing north, party window | @start
+stairs_down | gameplay | Floor 1 (5,5): "Stairs down --- Take them?" behind three doors | @start,poke:00EA=05,poke:00EB=04,poke:00E9=00,left,w30,right,w30,a,w60
+# camp | menu | Camp: Inspect, Reorder, Equip, Leave | @start,b,w60 (plan)
+# maze_menu | menu | maze menu (Select): Quit, Search, Set Timer, Leave | plan
+# battle_* | battle | encounter, command menu, spell, victory, chest | plan (walk/warp into a room square)
+# story events | dialogue | Gnilda's apparition, "Officers only!", wishing well, sage, key trader, "One alone." | plan (warp to the specials in design/maps.md)
+leave_game | save | Leave Game: "* CAUTION * Turn Power switch off while pressing Reset-switch" | @castle,down*4,a,w60,down*3,a,w120
+# gameover | gameover | party wiped | plan
+# ending | ending | the staff of Gnilda | plan (warp + regalia items)
