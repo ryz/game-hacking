@@ -1,0 +1,31 @@
+boot_ascii | boot | ASCII logo at power-on | pow,w180,settle
+boot_copyright | boot | Copyright page: Andrew Greenberg and Sir-Tech 1991, Game Studio, ASCII Entertainment | pow,w180,settle,w420,settle
+title_screen | title | Title: The Knight of Diamonds, Start game / Select switch | @title,w1,settle
+options | options | Select switch: maze SOLID/LINE, music ON/OFF, sound ON/OFF, return to title | @title,w1,settle,down,start,w60,settle
+training_menu | menu | Training Grounds: Create, Inspect, Delete, Change Name, Change Class, Leave | @title,start,w120,TRAINING,settle
+training_name | system | Training Grounds > Create: the name keyboard, R typed | @title,start,w120,TRAINING,settle,a,w60,down*2,right*7,a,w20,settle
+training_confirm | system | Name RYZ entered: Create this character? Yes / No | @title,start,w120,TRAINING,settle,a,w60,down*2,right*7,a,w20,settle,down*1,left*3,a,w20,right*1,a,w20,right*6,a,w60,settle
+training_race | system | Choose Race: Human, Elf, Dwarf, Gnome, Hobbit | @title,start,w120,TRAINING,settle,a,w60,down*2,right*7,a,w20,settle,down*1,left*3,a,w20,right*1,a,w20,right*6,a,w60,settle,a,w60,settle
+training_alignment | system | Choose Alignment: Good, Neutral, Evil | @title,start,w120,TRAINING,settle,a,w60,down*2,right*7,a,w20,settle,down*1,left*3,a,w20,right*1,a,w20,right*6,a,w60,settle,a,w60,settle,a,w60,settle
+training_bonus | system | Bonus points: Human base scores 8 8 5 8 8 9 and 7 bonus points to share | @title,start,w120,TRAINING,settle,a,w60,down*2,right*7,a,w20,settle,down*1,left*3,a,w20,right*1,a,w20,right*6,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle
+training_class | system | Select Class: Human with STR 15, IQ 11, VIT 14 may be Fighter, Mage or Samurai | @title,start,w120,TRAINING,settle,a,w60,down*2,right*7,a,w20,settle,down*1,left*3,a,w20,right*1,a,w20,right*6,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle,poke:004D=0E,poke:004E=0A,poke:004F=09,poke:0050=0D,poke:0051=09,poke:0052=08,poke:0040=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,settle
+castle_menu | menu | Castle of Llylgamyn: Tavern, Inn, Boltac's, Temple, Edge of Town; party of six below | @veterans,!
+shop_buy | shop | Boltac's: Purchase which? Long sword 25, Anointed flail 150, Buckler 20, Shield 40 G.P. | @veterans,down*2,a,w60,settle,a,w60,settle,a,w60,settle,w1,settle
+shop_bought | shop | Boltac's: Long sword bought for 25 G.P. - * Just what you needed * | @veterans,down*2,a,w60,settle,a,w60,settle,a,w60,settle,w1,settle,a,w60,settle
+shop_stock | shop | Boltac's stock further down: Rod of iron 3000 (#), scrolls, Padded leather to Body armor 1500 G.P. | @veterans,down*2,a,w60,settle,a,w60,settle,a,w60,settle,w1,settle,a,w60,settle,a,w60,settle,down*8,w20,settle,down*8,w20,settle,down*8,w20,settle
+inspect_mage | inventory | Inspect: DEDDO, level 13 Elf Mage, 482916 E.P., mage spell points 8/7/6/5/4/3/2 | @veterans,w1,settle,a,w60,down*2,a,w60,a,w60,settle,b,w60,a,w60,down*2,a,w60,down*4,a,w60,settle
+spellbook_mage | inventory | Read Spell > Mage: DEDDO's book, Halito to Tiltowait (with Tzalik and Ladalto) | @veterans,w1,settle,a,w60,down*2,a,w60,a,w60,settle,b,w60,a,w60,down*2,a,w60,down*4,a,w60,settle,down*3,a,w60,settle,a,w60,settle,right,w30,settle,b,w60,settle,a,w60,settle
+spellbook_cleric | inventory | Read Spell > Cleric: EBO's book, Kalki to Loktofeit (levels 1-6) | @veterans,w1,settle,a,w60,down*2,a,w60,a,w60,settle,b,w60,a,w60,down*2,a,w60,down*4,a,w60,settle,down*3,a,w60,settle,a,w60,settle,right,w30,settle,b,w60,settle,a,w60,settle,b,w60,b,w60,b,w60,settle,a,w60,down*2,a,w60,down*2,a,w60,settle,down*3,a,w60,down,a,w60,settle
+inspect_ryz | inventory | Inspect: RYZ, level 12 Human Fighter, 3412 G.P., AC 0, Sword of swishes and Sturdy plate equipped | @veterans,a,w60,down*2,a,w60,a,w60,settle
+tavern_menu | menu | Gilgamesh's Tavern: Add, Remove, Inspect, Divvy Gold, Leave; party of six below | @veterans,a,w60,settle
+tavern_roster | menu | Tavern > Add: the roster, six pre-made characters and the playtest party | sav:01_party,CASTLE,a,w60,a,w60,settle
+inn_rooms | shop | Adventurer's Inn: Stables (free), Cot 10, Economy 50, Merchant 200, Royal Suite 500 GP/week | @veterans,down,a,w60,settle,a,w60,settle
+inn_levelup | system | Inn: RYZ rests in a cot and makes level 13 - stat changes and 1 hit point | @veterans,down,a,w60,settle,a,w60,settle,down,a,w60,settle
+edge_of_town | menu | Edge of Town: Training Grounds, Maze, Restart an OUT party, Leave Game, Castle | @veterans,down*4,w20,a,w60,settle
+save_leave | save | Leave Game (the save point): * CAUTION * Turn Power switch off while pressing Reset-switch | @veterans,down*4,w20,a,w60,settle,down*3,a,w120,settle
+maze_start | gameplay | Floor 1 at the entrance stairs (0,0), facing north, party window | @vstart,!
+maze_fullview | hud | Maze view with the party window hidden (Start toggles it) | @vstart,start,w30,settle
+maze_menu | menu | Maze menu (Select): Quit, Search, Set Timer, Leave | @vstart,select,w60,settle
+camp_menu | menu | Camp (B): Inspect, Reorder, Equip, Leave | @vstart,b,w60,settle
+stairs_up | gameplay | Floor 1 (0,0) after leaving camp: Stairs up --- Take them? (back to the castle) | @vstart,b,w60,settle,b,w60,settle
+maze_descend | gameplay | Edge of Town > Maze: Descending into the Ruins under the Temple of Gnilda | @veterans,down*4,w20,a,w60,down,a,w60,!
