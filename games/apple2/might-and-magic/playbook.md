@@ -80,7 +80,7 @@ Checkpoints `roster` (roster view after the wipe and creation), `party` (Sorpiga
   blacksmith (6,5) W, market (10,5) E, temple (4,1) N, training (13,11) N, tavern (11,14) E, leprechaun (11,3) W,
   statue (7,1) N, jail sign (6,10) N, stairs (14,0) W, exit (12,0) S. Reach one with `AT:xx:yy:oo`, the facing
   one turn clockwise of the wanted one, `left` (shot routes in `shots/main/shots.txt`).
-- **verified** Unlike the DOS port, every service first asks a yes/no ("CAN I HELP YOU (Y/N)?", "STEP UP TO THE
+- **verified** ~~Unlike the DOS port~~ (wrong: the DOS port asks the same; its routes press `y` too) every service first asks a yes/no ("CAN I HELP YOU (Y/N)?", "STEP UP TO THE
   BAR (Y/N)?"): `y,w300` opens the menu. Blacksmith: A buy weapons, B buy armor, C buy misc, D sell item; prices
   as in the DOS notes (Dagger 5 ... Staff 30; Small Shield 10 ... Chain Mail 200; Torch 2 ... Scroll of Fire 300).
   Temple: restore health, uncurse items, restore align, make donation 100. Training: "TRAINING FOR LEVEL 2 NEED
@@ -124,6 +124,26 @@ Checkpoints `roster` (roster view after the wipe and creation), `party` (Sorpiga
   "IT'S HOT!" in the desert sectors, "ECTOPLASMIC SLIME SLUSHES BENEATH YOU!" (E4).
 - Services used in Sorpigal: training costs 3000 gold at level 20; a drink 1 gold; rumor "ALL PORTALS ARE
   CONNECTED!"; the leprechaun takes 1 gem and puts the party in the chosen town.
+
+## The DOS set replayed here (2026-11-18)
+The DOS version's 250 shot routes were translated and replayed on this version: `set:`/`poke:` addresses of the
+character records move from `1682C + 80*n` to `2C000 + 80*n`, waits are roughly doubled, a `w100` follows every
+key that had no wait, and the macros below take the DOS arguments. 231 of them are in the set under the DOS
+ids; the DOS documents' squares, events, shop lists, quests and monster groups all appeared as described.
+| Macro / checkpoint | What |
+|---|---|
+| `WARPX:xx:yy:lo:hi:ss` | area change with an arrival square: a 17-byte routine at `0110` (free stack space) sets x, y, map id and section and jumps to the loader, and Sorpigal's exit at `A719` is made to jump to it; then the exit is taken and `SEC01`/`SEC02`/`SEC03` answer the disk prompt (none, disk 3, disk 4) |
+| `DSTRONG`, `DVET` | the DOS set's hit-point boost and its level 7 veteran party (experience, spell points, spell levels, gems) |
+| `QA`, `BLK`, `FLAME` | `ctrl+a`, block, and the DOS Flame Arrow opening (kept for the routes; `ctrl+a` did nothing seen here) |
+| `blacksmith`, `equipped`, `combat` | RYZ with 1873 gold at the blacksmith; after buying Short Sword and Leather Armor; the fixed fight behind the door CUBI unlocks (three Orcs here) |
+| `cave1`, `portsmith`, `algary`, `dusk`, `erliquin`, `wild`, `areaa1`, `areae1`, `alamar`, `doom`, `whitewolf`, `qvl1`, `astral` | the DOS checkpoints of the same names (`wild` = DOS `outdoors`) |
+- Combat by hand: only members with a `+` are offered `a`; `f` asks "FIGHT WHICH 'A'-'B'?", `e` "EXCHANGE PLACES
+  WITH (1-6)?", `u` "USE WHICH", `c` level, number, `enter`, then "CAST ON: 'A'-'C'?". Messages last about 2 s:
+  to catch one, end the route on `do!` (no settle) about 150 frames after the key.
+- Seen here and not on DOS: Search after the won Orc fight found an Iron Chest ("IT OPENS! EACH SHARE IS WORTH 3
+  GOLD, RYZ FOUND LARGE SHIELD").
+- Routes that did not carry over (dropped, listed in `design/systems.md` "Apple II"): missile weapon, Sleep,
+  Identify Monster, Fire Ball, a dragon's breath, stoning, the paid bribe.
 
 ## Controls
 The screen lists its keys. Verified so far: arrows `up`/`down` step forward/back, `left`/`right` turn (also

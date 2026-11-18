@@ -2,6 +2,25 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic 1 (Apple II) brought up to the breadth and three-lens rules: 308 shots
+- Owner's request after the new capture rules. The DOS set already meets them and is the same game, so its 250
+  routes were translated (record addresses, waits, macros with the DOS arguments: `WARPX`, `DSTRONG`, `DVET`,
+  sixteen checkpoints of the same names) and replayed here. Every result was looked at on review sheets: about
+  200 matched their DOS captions as they were, 36 got a caption for what this version showed (Orcs where DOS
+  met Poltergeists, other numbers, traps going off), 31 were dropped (combat sequences that diverged) and the
+  main combat orders were re-taken by hand (options, Fight, Exchange, Use, cast with target, Lightning Bolt,
+  victory, the chest found by Search). 60 of the earlier Apple II shots that the port duplicates were removed.
+- Mistake found and fixed on the way: the DOS records are 128 bytes apart, not 127 as its playbook's LOWHP and
+  WORTHY macros suggest; the first translation garbled members two to six in 22 shots (rerun).
+- 306/308 reproduced from an empty cache; the two others were frames taken straight on a checkpoint and were
+  re-taken settled (2/2). Published.
+- `design/systems.md`, `interface.md`, `content.md` built from the DOS lenses, keeping only shots that exist
+  here, each with an "Apple II" section; `tools/lenses.py apple2/might-and-magic`: 308 shots, all used, 279
+  in two or more documents. The detail documents stay the DOS version's and are linked.
+- Corrected: the playbook's claim that only the Apple II asks a yes/no before a service (DOS does too).
+- Not done: detail documents of its own for this version; the rows' "numbers known" are the DOS run's except
+  where the Apple II section says otherwise; six DOS mechanics have no shot here (listed there).
+
 ## 2026-11-18 - Might and Magic 1 (DOS) round 2: 250 shots, first three-lens documents; lrcore leak fixed
 - game-capture round 2 (commits 916bb5b 6afca22): 113 -> 250 shots. Mechanics at work (bash and its trap,
   unlock, trade of item/gold/food, share, gather, discard, use, remove, equip refused, casting outside combat,

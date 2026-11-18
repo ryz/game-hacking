@@ -1,60 +1,15 @@
 sheet_ryz | system | Character sheet of RYZ, a new level 1 knight: no gold, 10 food, a club in the backpack | @party,1,w200,settle
-sorpigal_start | gameplay | First control in Sorpigal with the new party | @party,1,w200,settle,esc,w100,settle
-inn_sign_in | save | The Inn of Sorpigal asks to sign in: the game's only way to save | @party,1,w200,settle,esc,w100,settle,down,left,left,up,up,w100,settle
-inn_list | menu | Inn of Sorpigal after signing in: the six party members marked | @party,1,w200,settle,esc,w100,settle,down,left,left,up,up,w100,settle,y,w500,settle
-wilderness | gameplay | Wilderness outside Sorpigal, loaded from disk side C | @party,OUTSIDE,settle
 insert_disk_c | system | Leaving Sorpigal: the game asks for disk C | @party,AT:0C:00:0C,FW,left,w300,y,w900,settle
 title | title | Title picture: New World Computing presents Might and Magic (ESC starts the game, SPACE shows the second title picture and demo scenes) | @title,w10,settle
-options_menu | menu | Options menu: create characters, view all characters, go to town | @menu,w10,settle
 roster | menu | View all characters: the new roster | @roster,w10,settle
-market | shop | Eulards Fine Foods: the market offers a meal | @party,AT:0A:05:5A,FS,left,w300,settle
-temple | shop | Temple Moonshadow: services | @party,AT:04:01:14,FE,left,w300,settle
-training | shop | Otto's Training: what the next level needs | @party,AT:0D:0B:BD,FE,left,w300,settle
-tavern | shop | Ye Olde Hogge Tavern: drink, tip, rumors | @party,AT:0B:0E:EB,FS,left,w300,settle
-leprechaun | dialogue | A leprechaun offers travel to another town for a gem | @party,AT:0B:03:3B,FN,left,w300,settle
-statue | dialogue | A statue in Sorpigal | @party,AT:07:01:17,FE,left,w300,settle
-statue_text | dialogue | Searching the statue: a line of lore | @party,AT:07:01:17,FE,left,w300,y,w300,settle
 jail_sign | dialogue | Sign over a door in Sorpigal | @party,AT:06:0A:A6,FE,left,w300,settle
-stairs_prompt | gameplay | Stairs going down below Sorpigal | @party,AT:0E:00:0E,FN,left,w300,settle
-cavern_dark | gameplay | The cavern below Sorpigal without light: darkness | @party,AT:0E:00:0E,FN,left,w300,y,w600,settle
-quickref | hud | Quick reference: the party at a glance | @party,q,w200,settle
-order | system | Order: rearranging the marching order | @party,o,w200,settle
-protect | system | Protect: the party's active protections | @party,p,w200,settle
-rest | gameplay | Resting | @party,r,w300,settle
-search | gameplay | Searching a square with nothing in it | @party,s,w300,settle
-sheet_mnz | system | Character sheet of MNZ, a new sorcerer | @party,6,w200,settle
-sheet_cast | system | Cast: choosing a spell level and number | @party,6,w200,c,w200,settle
-fight_room | battle | The room behind the locked door at (3,6) | @party,AT:03:06:63,FN,left,w400,settle
-smith_weapons | shop | Blacksmith: weapons | @party,AT:06:05:56,FN,left,w300,y,w300,a,w300,settle
-smith_armor | shop | Blacksmith: armor | @party,AT:06:05:56,FN,left,w300,y,w300,b,w300,settle
-smith_misc | shop | Blacksmith: miscellaneous items | @party,AT:06:05:56,FN,left,w300,y,w300,c,w300,settle
-smith_services | shop | Blacksmith: what the shop offers | @party,AT:06:05:56,FN,left,w300,y,w300,settle
-market_price | shop | Market: the price of a meal | @party,AT:0A:05:5A,FS,left,w300,y,w300,settle
-temple_services | shop | Temple Moonshadow: services | @party,AT:04:01:14,FE,left,w300,y,w300,settle
-training_need | shop | Training: what the next level needs | @party,AT:0D:0B:BD,FE,left,w300,y,w300,settle
-tavern_menu | shop | Tavern: drink, tip, rumors | @party,AT:0B:0E:EB,FS,left,w300,y,w300,settle
-statue_text2 | dialogue | The statue's plaque | @party,AT:07:01:17,FE,left,w300,y,w600,settle
-rest_done | gameplay | After resting | @party,r,w300,y,w600,settle
-battle_attack | battle | Attack chosen: the combat screen | @party,AT:03:06:63,FN,left,w400,a,w400,settle
-battle_round | battle | Combat, a moment later | @party,AT:03:06:63,FN,left,w400,a,w400,a,w300,settle
-wild_north | gameplay | Wilderness: a few steps from Sorpigal | @party,OUTSIDE,up,w100,up,w100,up,w100,up,w100,settle
-wild_turn | gameplay | Wilderness: looking the other way | @party,OUTSIDE,up,w100,right,w100,settle
-wild_quickref | hud | Quick reference outdoors | @party,OUTSIDE,q,w200,settle
-create_roll | menu | Create new characters: rolled statistics and the classes they allow | @menu,c,w400,settle
-create_race | menu | Create: choosing a race | @menu,c,w400,6,w150,settle
-create_align | menu | Create: choosing an alignment | @menu,c,w400,6,w150,1,w150,settle
-create_name | menu | Create: naming the character | @menu,c,w400,6,w150,1,w150,1,w150,1,w150,type:RYZ,settle
 delete_sure | menu | Deleting a character from the roster | @menu,v,w300,a,w300,ctrl+d,w200,settle
 insert_disk_b | system | After ESC on the title: the game asks for disk B | @title,esc,w300,settle
-title_book | title | Second title picture: Book One, Secret of the Inner Sanctum | @title,space,w150,settle
 demo_inn | cutscene | Demo scene: an inn door (the stock party of the game) | @title,space,w600,settle
-demo_cavern | cutscene | Demo scene: a cavern | @title,space,w600,space,w600,settle
 demo_text1 | cutscene | Demo text: strongholds, lairs and treasure | @title,space,w600,space,w600,space,w600,settle
 demo_text2 | cutscene | Demo text: creatures and the combat system | @title,space,w600,space,w600,space,w600,space,w600,settle
 demo5 | cutscene | Demo scene: a wooden chest opens, gold shares and found items | @title,space,w600,space,w600,space,w600,space,w600,space,w600,settle
-battle_options | battle | Combat round 1 after an offered bribe: RYZ's options | @party,AT:03:06:63,FN,left,w400,b,w400,settle
 battle_r2 | battle | Combat round 1: a battle rat is wounded; DEDDO the cleric's options include Cast | @party,AT:03:06:63,FN,left,w400,b,w400,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,settle
-wild_walk | gameplay | Wilderness: further from Sorpigal | @party,OUTSIDE,up,w100*8,settle
 wild_walk2 | gameplay | Wilderness: mountains block the way (IMPASSABLE) | @party,OUTSIDE,up,w100*3,left,w100,up,w100*6,settle
 area01_portsmith | gameplay | Area 1: Portsmith (arrival by warp at square 10,10) | @strong,LIGHT,WARP:03:0C:01,left,w150,left,w150,settle
 area02_algary | gameplay | Area 2: Algary (arrival by warp at square 10,10) | @strong,LIGHT,WARP:03:02:01,left,w150,left,w150,settle
@@ -110,25 +65,244 @@ area51_pp2 | gameplay | Area 51: PP2 (arrival by warp at square 10,10) | @strong
 area52_pp3 | gameplay | Area 52: PP3 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:00:0E:03,DISK:4,left,w150,left,w150,left,w150,left,w150,settle
 area53_pp4 | gameplay | Area 53: PP4 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:01:02:03,DISK:4,left,w150,settle
 area54_astral | gameplay | Area 54: the Astral Plane (arrival by warp at square 6,6; square 10,10 sends the party back to Sorpigal) | @strong,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,left,w150,settle
-astral_end1 | ending | Astral Plane (6,7): a metallic panel slides open, revealing a mysterious man in a white coat | @strong,WORTHY,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,AT:06:07:76,FN,left,w500,settle
-astral_end2 | ending | Ending: the Inner Sanctum. The Data Keeper's speech, the party's performance total and 500,000 experience | @strong,WORTHY,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,AT:06:07:76,FN,left,w500,space,w500,settle
 astral_end3 | ending | After the ending: back to the Inn of Sorpigal, the game asks for disk B | @strong,WORTHY,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,AT:06:07:76,FN,left,w500,space,w500,space,w500,settle
 astral_unworthy | dialogue | Inner Sanctum without the marks of a finished quest: what the Data Keeper says | @strong,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,AT:06:07:76,FN,left,w500,space,w500,settle
 ending_inn | ending | After the ending and disk B: the party is back in Sorpigal | @strong,WORTHY,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,AT:06:07:76,FN,left,w500,space,w500,space,w500,DISK:2,w300,settle
-train_cost | shop | Training: enough experience, the cost of level 21 | @strong,set:2C027=9000000:4,AT:0D:0B:BD,FE,left,w300,y,w300,settle
-train_done | system | Training done: RYZ is level 21, the next level is offered | @strong,set:2C027=9000000:4,AT:0D:0B:BD,FE,left,w300,y,w300,a,w400,settle
-tavern_drink | shop | Tavern: having a drink | @strong,AT:0B:0E:EB,FS,left,w300,y,w300,a,w300,settle
 tavern_tip | shop | Tavern: tipping the bartender | @strong,AT:0B:0E:EB,FS,left,w300,y,w300,b,w300,settle
-tavern_rumor | dialogue | Tavern rumor: ALL PORTALS ARE CONNECTED! | @strong,AT:0B:0E:EB,FS,left,w300,y,w300,c,w300,settle
-temple_donate | shop | Temple: making a donation | @strong,AT:04:01:14,FE,left,w300,y,w300,d,w300,settle
-market_paid | shop | Market: the meal is paid | @strong,AT:0A:05:5A,FS,left,w300,y,w300,y,w400,settle
-smith_bought | shop | Blacksmith: a short sword bought | @strong,AT:06:05:56,FN,left,w300,y,w300,a,w300,c,w300,settle
-smith_sell | shop | Blacksmith: selling an item | @strong,AT:06:05:56,FN,left,w300,y,w300,d,w300,settle
 sheet_strong | system | RYZ after the POWER shortcut: statistics 40, level 20, club equipped | @strong,1,w200,settle
 lep_travel | dialogue | Leprechaun: town 2 chosen for one gem | @strong,AT:0B:03:3B,FN,left,w300,2,w700,settle
-spell_cast | system | MNZ casts Light: the cast prompt filled in | @strong,6,w200,c,w200,1,w150,6,w150,settle
-cave1_light | gameplay | Cavern below Sorpigal with Light cast | @strong,LIGHT,AT:0E:00:0E,FN,left,w300,y,w700,settle
-battle_meet | battle | Fixed encounter in Sorpigal met by the strengthened party | @strong,AT:03:06:63,FN,left,w400,settle
-battle_hit | battle | Combat: a message from the first rounds | @strong,AT:03:06:63,FN,left,w400,settle,a,w400,settle,a,w250,settle,a,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,w150,settle,w150,settle,w150,settle,w150,settle,w150,settle,a,w250,settle
 battle_won | battle | Victory: each survivor receives experience points | @strong,AT:03:06:63,FN,left,w400,settle,a,w400,settle,a,w250,settle,a,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,w150,settle,w150,settle,w150,settle,w150,settle,w150,settle,a,w250,settle,settle
-gameover | gameover | The whole party is down: the shadow of death, renew the quest from the last inn | @party,LOWHP,AT:03:06:63,FN,left,w400,a,w400,settle,w150,settle,w150,settle,w150,settle,w150,settle,w150,settle,b,w250,settle,w200,settle,w200,settle,w200,settle
+title_screen | title | Second title picture: Book One, Secret of the Inner Sanctum; ESC to start game, SPACE for scenes | @title,w1,!
+demo_stronghold | extra | Demo scene: a cavern, a strange moaning sound echoes ominously | @title,space,w440,space,w440,space,w440,!
+demo_treasure | extra | Demo scene: ice mountains, a sudden avalanche seals your retreat | @title,space,w440,space,w440,space,w440,space,w440,space,w440,!
+ready_prompt | menu | After ESC on the title this version asks for disk B (there is no 'are you ready' prompt) | @title,esc,w198,!
+menu_options | menu | Options: create new characters, view all characters, go to town | @menu,w1,!
+create_roll | system | Create new characters: seven statistics rolled, eligible classes, ENT to re-roll | @menu,c,w440,!
+start_inn_door | gameplay | First control: inside the Inn of Sorpigal facing its door, commands panel, party of six | @party,w1,!
+sorpigal_inn_sign | gameplay | Sorpigal: sign above the door reads THE INN OF SORPIGAL | @party,up,w176,up,w176,left,w132,left,w176,!
+save_inn_prompt | save | The innkeeper asks: would you like to sign in (Y/N)? | @party,left,w132,left,w330,!
+save_inn_list | save | Signed in: Inn of Sorpigal, available characters, party marked with @ | @party,left,w132,left,w330,y,w550,!
+shop_blacksmith_menu | shop | Blacksmith: buy weapons, buy armor, buy misc, sell item; RYZ's gold | @blacksmith,y,w330,!
+shop_weapons | shop | Blacksmith weapons: Dagger 5 ... Crossbow 50, Staff 30 | @blacksmith,y,w330,a,w330,!
+shop_armor | shop | Blacksmith armor: Small Shield 10 ... Chain Mail 200 | @blacksmith,y,w330,a,w330,c,w330,esc,w220,b,w330,!
+shop_misc | shop | Blacksmith misc: Torch 2, Rope & Hooks, Garlic, Magic Herbs, Might Potion, Scroll of Fire 300 | @blacksmith,y,w330,a,w330,c,w330,esc,w220,b,w330,c,w330,esc,w220,c,w330,!
+shop_sell | shop | Blacksmith, sell item: the Club is worth 0, the Short Sword bought for 20 sells for 10 | @blacksmith,y,w330,a,w330,c,w330,esc,w220,d,w330,!
+shop_cant_use | shop | Blacksmith with MNZ the Sorcerer shopping: weapons marked - cannot be used | @blacksmith,y,w330,6,w330,g,w330,a,w330,!
+profile_ryz | inventory | RYZ's profile: statistics, HP, AC, gold, Short Sword and Leather Armor equipped, commands | @equipped,1,w220,!
+equip_prompt | inventory | RYZ's profile: equip which item A-F? | @equipped,1,w220,e,w220,!
+share_prompt | system | Share all: gems, gold or food split evenly among the party | @equipped,1,w220,s,w220,!
+share_done | system | Share gold: 1833 gold split six ways, RYZ keeps 308 (305 each and the remainder) | @equipped,1,w220,s,w220,2,w330,!
+gather_prompt | system | Gather all: gems, gold or food onto CONDI | @equipped,2,w220,g,w330,!
+gather_done | system | Gather gold: CONDI now carries the party's 1833 gold | @equipped,2,w220,g,w330,2,w330,!
+trade_with | system | Trade: trade with which character 1-6? | @equipped,1,w220,t,w330,!
+trade_which | system | Trade which: gems, gold, food or an item | @equipped,1,w220,t,w330,2,w330,!
+trade_how_much | system | Trade gold: how much? 250 typed | @equipped,1,w220,t,w330,2,w330,2,w330,type:250,w132,!
+trade_gold_done | system | After the trade: CONDI's profile shows 250 gold | @equipped,1,w220,t,w330,2,w330,2,w330,type:250,w132,enter,w330,2,w330,!
+trade_item_done | system | Trade item: RYZ's Club is now in CONDI's backpack | @equipped,1,w220,t,w330,2,w330,4,w330,a,w330,2,w330,!
+trade_food_done | system | Trade food: EBO received 4 food from RYZ and holds 14 | @equipped,1,w220,t,w330,3,w330,3,w330,type:4,w132,enter,w330,3,w330,!
+discard_prompt | system | Discard which item A-F? | @equipped,1,w220,d,w330,!
+discard_done | system | Discarded: the Club is gone from RYZ's backpack | @equipped,1,w220,d,w330,a,w330,!
+use_prompt | system | Use which item A-F or 1-6? | @equipped,1,w220,u,w330,!
+use_no_power | system | Using the Short Sword: no special power | @equipped,1,w220,u,w330,1,w100,!
+use_might_potion | inventory | RYZ drank a Might Potion bought at the blacksmith: Might 12 to 17 | @equipped,AT:06:05:56,FN,left,w550,y,w330,c,w330,e,w330,esc,w220,esc,w220,1,w220,u,w330,b,w330,!
+use_herbs_target | system | Using Magic Herbs: cast on which character 1-6? | @equipped,set:2C033=6:2,AT:06:05:56,FN,left,w550,y,w330,c,w330,d,w330,esc,w220,esc,w220,1,w220,u,w330,b,w330,!
+use_herbs_done | inventory | Magic Herbs used on RYZ: hit points 6 to 14 | @equipped,set:2C033=6:2,AT:06:05:56,FN,left,w550,y,w330,c,w330,d,w330,esc,w220,esc,w220,1,w220,u,w330,b,w330,1,w330,!
+remove_prompt | inventory | Remove which item 1-6? | @equipped,1,w220,r,w330,!
+remove_done | inventory | Leather Armor removed into the backpack: armor class drops | @equipped,1,w220,r,w330,2,w330,!
+quickref | hud | Quick reference: hit points, spell points, armor class, food and condition of all six | @party,q,w220,!
+order_prompt | system | Order: re-order the party by typing the old positions in the new order | @party,o,w220,!
+order_done | system | Order typed 2 1 3 6 5 4: CONDI now leads, MNZ and CUBI swapped | @party,o,w220,2,w100,1,w100,3,w100,6,w100,5,w100,4,w330,!
+cast_prompt | system | Casting from a profile: MNZ enters level 1, number 5 (Leather Skin), Enter to cast | @equipped,6,w220,c,w220,1,w220,5,w220,!
+cast_on_whom | system | DEDDO the Cleric casts First Aid (1-4): cast on which character? | @equipped,set:2C033=6:2,5,w220,c,w220,1,w220,4,w220,enter,w440,!
+cast_done | system | After First Aid cast by DEDDO: his spell points are 3 of 4 | @equipped,set:2C033=6:2,5,w220,c,w220,1,w220,4,w220,enter,w440,1,w100,!
+cast_healed | inventory | RYZ after First Aid: hit points 14 of 14 | @equipped,set:2C033=6:2,5,w220,c,w220,1,w220,4,w220,enter,w440,1,w440,1,w330,!
+detect_magic | system | Detect Magic (Sorcerer 1-2): Magic Herbs and Might Potion are magic, 3 charges each | @equipped,AT:06:05:56,FN,left,w550,y,w330,6,w330,g,w330,c,w330,d,w330,e,w330,esc,w220,esc,w220,6,w220,c,w220,1,w220,2,w220,enter,w440,!
+protect_active | system | Protect: spells currently active, Leather Skin | @equipped,CAST:6:1:5,esc,w220,p,w330,!
+protect_three | system | Protect: Protection from Fear +21%, Light (1) and Leather Skin active | @equipped,CAST:6:1:5,esc,w220,CAST:6:1:6,esc,w220,CAST:5:1:7,esc,w220,p,w330,!
+location_spell | map | Location spell (Sorcerer 1-7): in town, map sector C-2, surface and inside coordinates, facing | @equipped,CAST:6:1:7,!
+rest_prompt | system | Rest here (Y/N)? | @party,r,w330,!
+rest_complete | system | Rest complete: no encounters! | @party,r,w330,y,w660,!
+door_locked | gameplay | Sorpigal: a locked door (LOCKED!) | @equipped,AT:03:07:73,FW,left,w176,up,w176,!
+unlock_who | system | Unlock: who will try 1-6? | @equipped,AT:03:07:73,FW,left,w176,u,w220,!
+unlock_success | system | Unlock tried by CUBI the Robber: boiling oil, the trap went off | @equipped,AT:03:07:73,FW,left,w176,u,w220,4,w140,!
+unlock_trap | system | Unlock tried by RYZ the Knight: streams of boiling oil cover the party | @equipped,AT:03:07:73,FW,left,w176,u,w220,1,w140,!
+trap_damage | hud | Quick reference after the oil trap: every member lost hit points | @equipped,AT:03:07:73,FW,left,w176,u,w220,1,w660,q,w330,!
+bash_trap | system | Bash on the locked door: fireball, a fiery explosion engulfs the area | @equipped,AT:03:07:73,FW,left,w176,b,w132,!
+bash_after | battle | Behind the bashed door: five Gremlins | @equipped,AT:03:07:73,FW,left,w176,b,w660,up,w330,!
+combat_round | battle | Combat round 1: formation, monster list, handicap, an Orc charges RYZ for 6 points | @combat,a,w440,!
+encounter_retreat | battle | Encounter option Retreat: the party escapes to the door of the inn | @combat,r,w132,!
+encounter_goblins | battle | Sorpigal, the same room at another moment: Gremlins and Sprites | @equipped,AT:03:07:73,FW,left,w176,u,w220,4,w440,w109,up,w550,!
+encounter_bribe_demand | battle | Bribe not accepted: combat begins with RYZ's options | @equipped,AT:03:07:73,FW,left,w176,u,w220,4,w440,w121,up,w550,b,w220,!
+combat_turn_undead | battle | DEDDO casts Turn Undead (Cleric 1-8) at Skeletons: some monsters were destroyed | @cave1,AT:05:02:25,FE,left,w550,a,w660,QA*4,c,w220,1,w220,8,w220,enter,w100,!
+gameover | gameover | The shadow of death has fallen upon your party: renew the quest from the last inn | @combat,LOWHP,a,w440,w440,BLK*24,!
+train_level2 | system | Otto's Training: training for level 2 costs 25 gold | @equipped,set:2C027=1685:4,AT:0D:0B:BD,FE,left,w550,y,w660,!
+train_no_gold | system | Training without the 25 gold: not enough gold | @party,set:2C027=1685:4,AT:0D:0B:BD,FE,left,w550,y,w660,a,w115,!
+train_levelup | system | Congratulations! You are now level 2, you gained 6 hit points | @equipped,set:2C027=1685:4,AT:0D:0B:BD,FE,left,w550,y,w660,a,w100,!
+train_level3_need | system | Training done: level 3 needs 1315 more experience points | @equipped,set:2C027=1685:4,AT:0D:0B:BD,FE,left,w550,y,w660,a,w660,!
+profile_level2 | inventory | RYZ after training: level 2, age 19, 20 hit points, 1808 gold left | @equipped,set:2C027=1685:4,AT:0D:0B:BD,FE,left,w550,y,w660,a,w660,esc,w220,1,w220,!
+temple_services | shop | Temple Moonshadow: restore health, uncurse items, restore align, make donation | @equipped,AT:04:01:14,FE,left,w550,y,w660,!
+temple_price | shop | Temple with RYZ at 4 hit points: restore health costs 25 gold | @equipped,set:2C033=4:2,AT:04:01:14,FE,left,w550,y,w660,!
+temple_cured | shop | Health restored: 25 gold paid, nothing left to restore | @equipped,set:2C033=4:2,AT:04:01:14,FE,left,w550,y,w660,a,w330,!
+temple_cured_profile | inventory | RYZ after the temple: hit points 14 of 14, 1808 gold left | @equipped,set:2C033=4:2,AT:04:01:14,FE,left,w550,y,w660,a,w330,esc,w330,1,w330,!
+temple_poisoned | shop | Temple with RYZ poisoned: restore health costs 25 gold | @equipped,poke:2C03F=10,AT:04:01:14,FE,left,w550,y,w660,!
+temple_donation | shop | Donation made: 100 gold paid | @equipped,AT:04:01:14,FE,left,w550,y,w660,d,w220,!
+market_food | shop | Eulards Fine Foods: all you can eat, 5 gold each, will you pay? | @equipped,AT:0A:05:5A,FS,left,w550,y,w660,!
+market_bought | shop | Eulards Fine Foods after paying: thank you, come again! | @equipped,AT:0A:05:5A,FS,left,w550,y,w660,y,w120,!
+market_food_after | hud | Quick reference after the meal: RYZ's food went from 10 to 40 | @equipped,AT:0A:05:5A,FS,left,w550,y,w660,y,w660,q,w330,!
+tavern_menu | shop | Ye Olde Hogge Tavern: have a drink, tip bartender, listen for rumors | @equipped,AT:0B:0E:EB,FS,left,w550,y,w660,!
+tavern_drink | shop | Tavern: a drink costs 1 gold | @equipped,AT:0B:0E:EB,FS,left,w550,y,w660,a,w120,!
+tavern_rumor | dialogue | Tavern rumor after two tips: Portsmith and men don't mix! | @equipped,AT:0B:0E:EB,FS,left,w550,y,w660,b,w440,b,w440,c,w120,!
+statue_lore | dialogue | A statue's inscription: in memory of a time long ago... | @equipped,AT:00:02:20,FN,left,w550,y,w660,!
+statue_archer | dialogue | Statue of a half-orc archer: in honor of Corak, for his mapping expedition | @equipped,AT:07:01:17,FE,left,w550,y,w660,!
+statue_cleric | dialogue | Statue of a human cleric: in honor of Gala and the savages of the volcanic isles | @equipped,AT:00:04:40,FN,left,w550,y,w660,!
+statue_knight | dialogue | Statue of a human knight: five towns you must travel | @equipped,AT:02:04:42,FS,left,w550,y,w660,!
+statue_minotaur | dialogue | Statue of a gray minotaur: this beast rules a great fortress in the Enchanted Forest | @equipped,AT:00:06:60,FN,left,w550,y,w660,!
+statue_wizard | dialogue | Statue of an elven wizard: seek the wizard Ranalou in his lair at the Korin Bluffs | @equipped,AT:00:09:90,FW,left,w550,y,w660,!
+statue_robber | dialogue | Statue of a gnome robber: one by water, one by land, one by air and one by sand | @equipped,AT:0A:0C:CA,FS,left,w550,y,w660,!
+statue_paladin | dialogue | Statue of a dwarf paladin: there are many dungeons like me, the idols will help | @equipped,AT:0E:0E:EE,FN,left,w550,y,w660,!
+statue_prompt | dialogue | A stone statue with a plaque: search it? | @equipped,AT:0E:0E:EE,FN,left,w550,!
+leprechaun | system | A tenacious leprechaun offers travel to a town for one gem | @party,AT:0B:03:3B,FN,left,w550,!
+trap_door | gameplay | Sorpigal (5,8): trap door! | @equipped,AT:05:08:85,FW,left,w550,!
+trap_door_after | gameplay | The trap door drops the party into darkness below the town | @equipped,AT:05:08:85,FW,left,w550,w660,left,w330,!
+stairs_prompt | gameplay | Sorpigal: stairs going down, take them (Y/N)? | @party,AT:0E:00:0E,FN,left,w550,!
+dungeon_darkness | gameplay | Below Sorpigal without light: DARKNESS | @equipped,AT:0E:00:0E,FN,left,w550,y,w880,!
+dungeon_lit | gameplay | Cavern below Sorpigal after MNZ cast Light: green rock walls, a portcullis and a door | @cave1,w1,!
+cave_courier | dialogue | Cavern below Sorpigal: an elderly man behind a desk needs a courier service | @cave1,AT:01:02:21,FN,left,w550,!
+cave_wall_message | gameplay | Cavern: scrawled on the wall, a message reads: the jail above has many cells | @cave1,AT:0D:03:3D,FN,left,w550,!
+cave_arena | dialogue | Cavern, the Arena: balconies filled with cheering peasants, will you participate? | @cave1,AT:01:0D:D1,FE,left,w550,!
+cave_arena_fight | battle | The Arena below Sorpigal: a Demon Dog and four Thieves, combat starts at once | @cave1,AT:01:0D:D1,FE,left,w550,y,w660,!
+cave_portal | gameplay | Cavern: a shimmering blue and white portal appears, enter? | @cave1,AT:0F:00:0F,FW,left,w550,!
+cave_skeletons | battle | Cavern encounter: four Skeletons | @cave1,AT:05:02:25,FE,left,w550,!
+cave_fire_ants | battle | Cavern encounter: four Fire Ants | @cave1,AT:04:02:24,FE,left,w550,!
+cave_snakes | battle | Cavern encounter: ten Snakes | @cave1,AT:0D:05:5D,FN,left,w550,!
+outdoors_forest | gameplay | Sector C-2, forest: a glowing white column, touch it? | @wild,AT:08:08:88,FN,left,w550,!
+outdoors_fountain | gameplay | Sector C-2, dense woods: a strange fountain, drink? | @wild,AT:04:07:74,FE,left,w550,!
+outdoors_statues | gameplay | Sector C-2: statues block the path, smash them? | @wild,AT:00:02:20,FN,left,w550,!
+outdoors_vines | battle | Wilderness encounter in the forest: nine Skeletons | @wild,w154,AT:05:0B:B5,FE,left,w550,!
+outdoors_gypsy | dialogue | Sector C-2: a toothless gypsy seer offers to read a character's sign | @wild,AT:09:0B:B9,FE,left,w550,!
+outdoors_cave | gameplay | Sector C-2, mountains: there's a cave here, enter? | @wild,AT:0F:0B:BF,FS,left,w550,!
+a1_dark_rider | dialogue | Sector A-1: surrounded by the Dark Rider and his men, he challenges you to a duel | @areaa1,AT:05:02:25,FE,left,w550,!
+boss_dark_rider | boss | Sector A-1, duel accepted: the Dark Rider and eleven Warriors | @areaa1,AT:05:02:25,FE,left,w550,y,w660,!
+a1_ice | gameplay | Sector A-1: carved on a block of ice, start at 15-7 and walk to Doom | @areaa1,AT:0E:05:5E,FE,left,w550,!
+a1_castle_doom | gameplay | Sector A-1: the fabled Castle Doom, will you enter? | @areaa1,AT:07:0F:F7,FE,left,w550,!
+e1_volcano | gameplay | Sector E-1, south edge: mountains beside a red expanse | @areae1,AT:04:00:04,FS,left,w550,!
+e1_dragadune | gameplay | Sector E-1, mountains: ruins of Castle Dragadune, enter? | @areae1,AT:0C:0C:CC,FW,left,w550,!
+portsmith_inn_sign | gameplay | Portsmith: a sign above the door reads Inn of Portsmith | @portsmith,AT:01:0C:C1,FS,left,w550,!
+portsmith_inn | dialogue | Inn of Portsmith: Lara, the innkeeper's daughter, asks if you will be spending the night | @portsmith,AT:03:0C:C3,FS,left,w550,!
+portsmith_signed_in | save | Signed in at town 2: Inn of Portsmith, the six characters now lodge here | @portsmith,AT:03:0C:C3,FS,left,w550,y,w660,!
+portsmith_blacksmith | dialogue | Portsmith, B. Smith's Workshop: a young girl forging a long sword | @portsmith,AT:0C:0D:DC,FW,left,w550,!
+portsmith_weapons | shop | B. Smith's Workshop, Portsmith: Spear 15, Mace 40, Scimitar 40, Short Bow 75, Glaive 80, Bardiche 80 | @portsmith,AT:0C:0D:DC,FW,left,w550,y,w330,a,w330,!
+portsmith_armor | shop | B. Smith's Workshop, Portsmith: shields, Padded to Ring Mail 100 | @portsmith,AT:0C:0D:DC,FW,left,w550,y,w330,b,w330,!
+portsmith_misc | shop | B. Smith's Workshop, Portsmith: 10 Foot Pole, Smelling Salt, Curing Potion 350, Antidote Brew 500 | @portsmith,AT:0C:0D:DC,FW,left,w550,y,w330,c,w330,!
+portsmith_zam | dialogue | Portsmith: Zam, astral brother of Zom: you're not the couriers! | @portsmith,AT:0C:02:2C,FE,left,w550,!
+portsmith_secret | dialogue | Portsmith: a sensuous female voice from an intoxicating mist; the men of the party are marked | @portsmith,AT:0B:08:8B,FE,left,w550,!
+algary_inn | dialogue | The Inn of Algary: a tall bearded half-orc behind a large desk | @algary,AT:0E:0D:DE,FS,left,w550,!
+algary_mystic | dialogue | Algary: Morango the Mystic asks whom to measure | @algary,AT:05:0E:E5,FN,left,w550,!
+algary_portal | gameplay | Algary: a magic portal, enter? | @algary,AT:09:00:09,FS,left,w550,!
+dusk_inn | dialogue | The Inn of Dusk: an eerie silence, a ghostly apparition asks to sign in | @dusk,AT:0B:08:8B,FN,left,w550,!
+dusk_training | dialogue | Dusk, Clearman's Training: several empty suits of armor approach | @dusk,AT:0B:02:2B,FN,left,w550,!
+dusk_chest | system | Dusk: a gold chest: open it, find/remove trap, detect magic/trap | @dusk,AT:00:0E:E0,FE,left,w550,!
+chest_who | system | Gold chest, open it: who will try 1-6? | @dusk,AT:00:0E:E0,FE,left,w550,1,w440,!
+chest_find_trap | system | Find/remove trap fails on the gold chest: gas, noxious fumes fill the air | @dusk,AT:00:0E:E0,FE,left,w550,2,w440,4,w120,!
+chest_detect | system | Detect magic/trap on the gold chest: magic yes, trap yes | @dusk,AT:00:0E:E0,FE,left,w550,3,w440,6,w120,!
+dusk_vampires | battle | Dusk encounter: nine Vampires | @dusk,AT:07:0D:D7,FE,left,w550,!
+dusk_banshees | battle | Dusk encounter: nine Banshees | @dusk,AT:03:0E:E3,FE,left,w550,!
+erliquin_agar | dialogue | Erliquin: the wizard Agar speaks: I have no business with you. Begone! | @erliquin,AT:04:03:34,FE,left,w550,!
+erliquin_inn | dialogue | The Inn of Erliquin: an elderly gnome adjusting his spectacles asks about signing in | @erliquin,AT:04:04:44,FW,left,w550,!
+erliquin_training | dialogue | Erliquin: three huge armor clad knights bark in unison, want a good workout? | @erliquin,AT:0B:09:9B,FE,left,w550,!
+alamar_guards | dialogue | Castle Alamar: castle guards exclaim, no merchants pass! Begone peasants | @alamar,AT:02:07:72,FS,left,w550,!
+alamar_prisoner | system | Castle Alamar: a fair maiden weeps in a steel cage: set free, torment or leave | @alamar,AT:02:02:22,FS,left,w550,!
+alamar_king | dialogue | Castle Alamar, the throne room: the king sends the party to find the Crypt of Carmenca | @alamar,AT:0C:07:7C,FE,left,w550,!
+doom_golden_door | gameplay | Castle Doom: a golden door repels you! | @doom,AT:07:07:77,FE,left,w550,!
+doom_true_king | dialogue | Castle Doom: the true King Alamar, held in a forcefield, tells of the impostor and the Eye of Goros | @doom,AT:07:08:87,FE,left,w550,!
+whitewolf_ironfist | dialogue | Castle White Wolf: Lord Ironfist speaks: your services are needed! Accept? | @whitewolf,AT:01:08:81,FE,left,w550,!
+whitewolf_quest | dialogue | Lord Ironfist's first quest: find the stronghold in Ravens Wood | @whitewolf,AT:01:08:81,FE,left,w550,y,w660,!
+whitewolf_button | gameplay | Castle White Wolf: a banner and a button on the wall, push it? | @whitewolf,AT:00:08:80,FN,left,w550,!
+qvl_okrim | boss | Quivering Forest: the wizard Okrim with three Wizards and a Brontasaurus | @qvl1,AT:0C:0C:CC,FE,left,w550,!
+boss_demon_lord | boss | Cavern 3: the Demon Lord with Greater, Lesser and Minor Demons | @equipped,LIGHT,WARPX:08:08:01:0C:01,AT:08:07:78,FE,left,w550,!
+boss_lich | boss | Sector B-2: five Mummies and a Lich | @equipped,LIGHT,WARPX:08:08:03:07:02,AT:02:01:12,FN,left,w550,!
+boss_gray_minotaur | boss | Enchanted Forest level 2: the Gray Minotaur with twelve Minotaurs | @equipped,LIGHT,WARPX:08:08:04:07:03,AT:08:0E:E8,FE,left,w550,!
+boss_evil_eyes | boss | Below Dragadune level 3: three Evil Eyes, two Lava Beasts and a Naga | @equipped,LIGHT,WARPX:08:08:05:07:03,AT:01:0E:E1,FE,left,w550,!
+qvl_hydras | battle | Quivering Forest encounter: Pyro Hydras, Man Eating Mares, 8 and 12 Headed Hydras | @qvl1,AT:05:0B:B5,FE,left,w550,!
+battle_caryatids | battle | Cavern 2: four Caryatid Guards | @equipped,LIGHT,WARPX:08:08:01:00:01,AT:0A:06:6A,FE,left,w550,!
+battle_cyclops | battle | Cavern 2: four Cyclops | @equipped,LIGHT,WARPX:08:08:01:00:01,AT:06:09:96,FE,left,w550,!
+battle_alien | battle | Cavern 6: four Aliens | @equipped,LIGHT,WARPX:08:08:1B:05:01,AT:01:0C:C1,FE,left,w550,!
+battle_medusas | battle | Cavern 9: Medusas, one slashes at EBO for 3 points | @equipped,LIGHT,WARPX:08:08:00:0A:01,AT:0F:04:4F,FE,left,w550,!
+battle_red_dragons | battle | Sector A-2: ten Red Dragons | @equipped,LIGHT,WARPX:08:08:02:05:02,AT:0A:04:4A,FE,left,w550,!
+battle_assassins | battle | Sector B-2: five Assassins led by a Black Knight | @equipped,LIGHT,WARPX:08:08:03:07:02,AT:00:0F:F0,FE,left,w550,!
+boss_scorpion | boss | Sector D-1: the Scorpion and eleven Giant Scorpions attack at once, no encounter options | @equipped,LIGHT,WARPX:08:08:05:05:02,AT:0A:05:5A,FE,left,w550,!
+battle_mummies | battle | Dusk: six Mummies | @dusk,AT:01:0E:E1,FE,left,w550,!
+battle_centaurs | battle | Quivering Forest: eight Centaurs, two Satyrs and a Celestial Stag | @qvl1,AT:0F:07:7F,FE,left,w550,!
+battle_dinobeetles | battle | Quivering Forest: eight Dinobeetles | @qvl1,AT:00:0B:B0,FE,left,w550,!
+battle_hippogriffs | battle | Quivering Forest level 2: ten Hippogriffs and two Harpies | @equipped,LIGHT,WARPX:08:08:03:07:03,AT:0B:06:6B,FE,left,w550,!
+battle_giants | battle | Raven's Wood level 2: Cave, Frost, Stone and Storm Giants | @equipped,LIGHT,WARPX:08:08:02:07:03,AT:02:0F:F2,FE,left,w550,!
+battle_cockatrices | battle | Enchanted Forest: Cockatrices, Pegasi and Strangling Vines | @equipped,LIGHT,WARPX:08:08:04:0F:03,AT:05:0E:E5,FE,left,w550,!
+battle_werewolves | battle | Enchanted Forest level 2: eight Werewolves and two Werebears | @equipped,LIGHT,WARPX:08:08:04:07:03,AT:0F:06:6F,FE,left,w550,!
+battle_lepers | battle | Below Dragadune: Rabid Lepers, Rotting Corpses, Zombies and a Cleric | @equipped,LIGHT,WARPX:08:08:05:0F:03,AT:00:0B:B0,FE,left,w550,!
+battle_elementals | battle | Below Dragadune level 3: four Earth and two Air Elementals | @equipped,LIGHT,WARPX:08:08:05:07:03,AT:03:0E:E3,FE,left,w550,!
+battle_white_dragons | battle | Below Dragadune level 3: two White Dragons, six Warriors and a Wizard | @equipped,LIGHT,WARPX:08:08:05:07:03,AT:0D:0E:ED,FE,left,w550,!
+battle_scorpions | battle | PP level 1: twelve Giant Scorpions | @equipped,LIGHT,WARPX:08:08:01:0F:03,AT:04:05:54,FE,left,w550,!
+battle_magicians | battle | PP level 1: thirteen Magicians | @equipped,LIGHT,WARPX:08:08:01:0F:03,AT:0A:07:7A,FE,left,w550,!
+qvl_floor_spins | gameplay | Quivering Forest: the floor spins! | @qvl1,AT:04:00:04,FE,left,w550,!
+env_cliffs_a1 | gameplay | Sector A-1: a path between striped rock walls | @areaa1,AT:08:08:88,FS,left,w264,!
+env_ice_a2 | gameplay | Sector A-2: ice mountains | @equipped,LIGHT,WARPX:08:08:02:05:02,AT:0C:08:8C,FS,left,w264,!
+env_sea_a3 | gameplay | Sector A-3: the sea, a beach and mountains | @equipped,LIGHT,WARPX:08:08:02:0B:02,AT:0D:08:8D,FE,left,w264,!
+env_beach_a4 | gameplay | Sector A-4: along the beach | @equipped,LIGHT,WARPX:08:08:03:01:02,AT:08:08:88,FW,left,w264,!
+env_glacier_b1 | gameplay | Sector B-1: frozen ground between ice mountains | @equipped,LIGHT,WARPX:08:08:00:0A:02,AT:08:08:88,FE,left,w264,!
+env_forest_c1 | gameplay | Sector C-1, forest path: deserted merchant wagons, search? | @equipped,LIGHT,WARPX:08:08:04:03:02,AT:09:08:89,FW,left,w264,!
+env_coast_c4 | gameplay | Sector C-4: forest meeting the coast | @equipped,LIGHT,WARPX:08:08:04:0F:02,AT:0C:09:9C,FS,left,w264,!
+env_road_d1 | gameplay | Sector D-1: a forest road | @equipped,LIGHT,WARPX:08:08:05:05:02,AT:0C:08:8C,FS,left,w264,!
+env_mountains_d3 | gameplay | Sector D-3: brown mountains | @equipped,LIGHT,WARPX:08:08:06:01:02,AT:08:08:88,FE,left,w264,!
+env_swamp_d4 | gameplay | Sector D-4: swamp reeds beside the forest | @equipped,LIGHT,WARPX:08:08:01:08:02,AT:08:08:88,FN,left,w264,!
+env_volcano_e1 | gameplay | Sector E-1: the volcano in a red lava field | @areae1,AT:08:08:88,FS,left,w264,!
+env_lava_e2 | gameplay | Sector E-2: lava across the forest road | @equipped,LIGHT,WARPX:08:08:06:07:02,AT:0B:08:8B,FE,left,w264,!
+env_cave6 | gameplay | Cavern 6: a long rock tunnel | @equipped,LIGHT,WARPX:08:08:1B:05:01,AT:08:08:88,FE,left,w264,!
+env_doom | gameplay | Castle Doom: brick corridors | @doom,AT:08:08:88,FW,left,w264,!
+env_blackridge_s | gameplay | Castle Blackridge South: doors under red banners | @equipped,LIGHT,WARPX:08:08:08:05:03,AT:08:08:88,FW,left,w264,!
+env_whitewolf | gameplay | Castle White Wolf: banner doors along a corridor | @whitewolf,AT:09:08:89,FS,left,w264,!
+env_alamar | gameplay | Castle Alamar: carved wooden doors | @alamar,AT:09:08:89,FW,left,w264,!
+env_qvl2 | gameplay | Quivering Forest level 2: a blue portcullis | @equipped,LIGHT,WARPX:08:08:03:07:03,AT:08:08:88,FS,left,w264,!
+env_udrag1 | gameplay | Below Castle Dragadune, level 1 | @equipped,LIGHT,WARPX:08:08:05:0F:03,AT:09:08:89,FE,left,w264,!
+env_demon | gameplay | The demon's stronghold | @equipped,LIGHT,WARPX:08:08:12:04:03,AT:08:08:88,FW,left,w264,!
+astral_door | gameplay | Astral Plane: there's a small slot in the door. No admittance! | @astral,AT:07:0A:A7,FW,left,w660,!
+astral_projector | gameplay | Astral Plane: astral projector # 1, zap! | @astral,AT:04:06:64,FE,left,w550,!
+astral_room | gameplay | Astral Plane: the metallic room is dimly lit by a pulsating white glow | @astral,AT:07:09:97,FW,left,w660,!
+ending_panel | ending | Inner Sanctum: a metallic panel slides open, a mysterious man in a white coat | @astral,AT:06:07:76,FN,left,w660,!
+ending_sanctum | ending | Inner Sanctum: the Data Keeper rates the party and sends it to the Gates to Another World | @astral,AT:06:07:76,FN,left,w660,space,w660,!
+equip_wrong_class | inventory | MNZ the Sorcerer tries to equip Chain Mail: wrong class | @equipped,poke:2C2C6=7D,6,w220,e,w220,a,w100,!
+vet_profile | inventory | MNZ at level 7: 38 spell points, spell level 4, 14 gems | @equipped,DVET,6,w220,!
+cast_create_food | system | Create Food (Cleric 3-1): DEDDO's food is 16 | @equipped,DVET,5,w220,c,w220,3,w220,1,w220,enter,w440,w220,!
+cast_spell_failed | system | Jump (Sorcerer 2-4) in a town corridor: spell failed | @equipped,DVET,6,w220,c,w220,2,w220,4,w220,enter,w100,!
+unconscious_quickref | hud | After a fight: CONDI at 0 hit points, condition unconscious | @combat,set:2C0B3=1:2,FLAME,w528,QA*14,space,w330,q,w330,!
+conditions_quickref | hud | Quick reference with conditions: poisoned, dead, asleep, paralyzed, stone, blinded | @equipped,poke:2C03F=10,poke:2C0BF=C0,set:2C0B3=0:2,poke:2C13F=01,poke:2C1BF=20,poke:2C23F=A0,poke:2C2BF=02,q,w330,!
+train_level8_need | system | Training at level 7 with 61480 experience: level 8 needs 34520 more | @equipped,DVET,AT:0D:0B:BD,FE,left,w550,y,w660,!
+temple_dead | shop | Temple with CONDI dead: restore health costs 200 gold | @equipped,poke:2C0BF=C0,set:2C0B3=0:2,AT:04:01:14,FE,left,w550,y,w660,2,w330,!
+boss_demon_drains | boss | The Demon Lord flails at CONDI: 2 hits for 82 points, CONDI is eradicated | @equipped,DSTRONG,LIGHT,WARPX:08:08:01:0C:01,AT:08:07:78,FE,left,w550,a,w132,w132,!
+boss_lich_eradicates | boss | Sector B-2, round 1 against six Mummies and a Lich: CUBI's options | @equipped,DSTRONG,LIGHT,WARPX:08:08:03:07:02,AT:02:01:12,FN,left,w550,a,w132,!
+combat_paralyzed | boss | A Naga casts Paralyze: DEDDO is not affected | @equipped,DSTRONG,LIGHT,WARPX:08:08:05:07:03,AT:01:0E:E1,FE,left,w550,a,w132,w132,w132,w132,w132,w132,b,w100,!
+combat_lava_beast | boss | Against Evil Eyes, Lava Beasts and a Naga: stars mark the members who are hurt | @equipped,DSTRONG,LIGHT,WARPX:08:08:05:07:03,AT:01:0E:E1,FE,left,w550,a,w132,w132,w132,w132,w132,w132,b,w132,w132,b,w132,w132,b,w132,w132,b,w132,w132,w132,!
+combat_magicians | battle | PP level 1: thirteen Magicians cast Lightning Bolt, CUBI takes 30 points | @equipped,DSTRONG,LIGHT,WARPX:08:08:01:0F:03,AT:0A:07:7A,FE,left,w550,a,w132,w132,w132,w132,w132,w132,b,w100,!
+combat_options | battle | Combat: RYZ's options (Attack, Fight, Exchange, Retreat, Use, Block) | @combat,a,w500,settle,w200,settle
+combat_fight_prompt | battle | Combat order Fight: RYZ chooses which monster in reach | @combat,a,w500,settle,w200,settle,f,w200,settle
+combat_exchange_prompt | battle | Combat order Exchange: CUBI, exchange places with whom | @combat,a,w500,settle,w200,settle,f,w200,settle,a,w300,settle,w100,settle,e,w200,settle
+combat_exchange_done | battle | After Exchange: CUBI and RYZ have swapped places in the formation | @combat,a,w500,settle,w200,settle,f,w200,settle,a,w300,settle,w100,settle,e,w200,settle,1,w300,settle
+combat_use | battle | Combat order Use: which of DEDDO's items | @combat,a,w500,settle,w200,settle,f,w200,settle,a,w300,settle,w100,settle,e,w200,settle,1,w300,settle,w100,settle,u,w200,settle
+combat_cast | battle | Combat: DEDDO the Cleric enters spell level 1, number 2 (Bless) | @combat,a,w500,settle,w200,settle,f,w200,settle,a,w300,settle,w100,settle,e,w200,settle,1,w300,settle,w100,settle,u,w200,settle,esc,w200,c,w200,1,w150,2,w150,settle
+combat_cast_target | battle | MNZ casts Flame Arrow (Sorcerer 1-4): cast on which monster | @combat,a,w500,settle,w200,settle,f,w200,settle,a,w300,settle,w100,settle,e,w200,settle,1,w300,settle,w100,settle,u,w200,settle,esc,w200,c,w200,1,w150,2,w150,settle,enter,w150,w250,settle,c,w200,1,w150,4,w150,enter,w200,settle
+combat_spell_hit | battle | MNZ's Flame Arrow has hit: the first Orc is marked (WOUNDED); the screen is caught while it redraws | @combat,a,w500,settle,w200,settle,f,w200,settle,a,w300,settle,w100,settle,e,w200,settle,1,w300,settle,w100,settle,u,w200,settle,esc,w200,c,w200,1,w150,2,w150,settle,enter,w150,w250,settle,c,w200,1,w150,4,w150,enter,w200,settle,a,w120,!
+after_fight | gameplay | After the fight with the Orcs: five of six members are down (stars), MNZ survived | @combat,a,w500,settle,w200,settle,f,w200,settle,a,w300,settle,w100,settle,e,w200,settle,1,w300,settle,w100,settle,u,w200,settle,esc,w200,c,w200,1,w150,2,w150,settle,enter,w150,w250,settle,c,w200,1,w150,4,w150,enter,w200,settle,a,w120,w300,settle,a,w250,settle,b,w250,settle,w150,settle,w150,settle,b,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,w150,settle,w150,settle,a,w250,settle,a,w250,settle,a,w250,settle,a,w250,settle,w150,settle,w150,settle,a,w250,settle,a,w250,settle,a,w250,settle,w150,settle,w150,settle,a,w250,settle,a,w250,settle,a,w250,settle,a,w250,settle,a,w250,settle,w150,settle,a,w250,settle,w150,settle,a,w250,settle,a,w250,settle,w150,settle,a,w250,settle,w150,settle
+search_after_fight | gameplay | Search after the fight: an iron chest, open it, find/remove trap, detect magic/trap | @combat,a,w500,settle,w200,settle,f,w200,settle,a,w300,settle,w100,settle,e,w200,settle,1,w300,settle,w100,settle,u,w200,settle,esc,w200,c,w200,1,w150,2,w150,settle,enter,w150,w250,settle,c,w200,1,w150,4,w150,enter,w200,settle,a,w120,w300,settle,a,w250,settle,b,w250,settle,w150,settle,w150,settle,b,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,w150,settle,w150,settle,a,w250,settle,a,w250,settle,a,w250,settle,a,w250,settle,w150,settle,w150,settle,a,w250,settle,a,w250,settle,a,w250,settle,w150,settle,w150,settle,a,w250,settle,a,w250,settle,a,w250,settle,a,w250,settle,a,w250,settle,w150,settle,a,w250,settle,w150,settle,a,w250,settle,a,w250,settle,w150,settle,a,w250,settle,w150,settle,s,w300,settle
+chest_opened | gameplay | The iron chest opens: each share is worth 3 gold, RYZ found a Large Shield | @combat,a,w500,settle,w200,settle,f,w200,settle,a,w300,settle,w100,settle,e,w200,settle,1,w300,settle,w100,settle,u,w200,settle,esc,w200,c,w200,1,w150,2,w150,settle,enter,w150,w250,settle,c,w200,1,w150,4,w150,enter,w200,settle,a,w120,w300,settle,a,w250,settle,b,w250,settle,w150,settle,w150,settle,b,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,w150,settle,w150,settle,a,w250,settle,a,w250,settle,a,w250,settle,a,w250,settle,w150,settle,w150,settle,a,w250,settle,a,w250,settle,a,w250,settle,w150,settle,w150,settle,a,w250,settle,a,w250,settle,a,w250,settle,a,w250,settle,a,w250,settle,w150,settle,a,w250,settle,w150,settle,a,w250,settle,a,w250,settle,w150,settle,a,w250,settle,w150,settle,s,w300,settle,1,w300,settle,6,w200,!
+combat_lightning_bolt | battle | Lightning Bolt (Sorcerer 3-4) cast by MNZ at level 7: an Orc takes 29 points and goes down | @combat,DVET,a,w500,settle,w150,settle,b,w250,settle,b,w250,settle,b,w250,settle,c,w200,3,w150,4,w150,enter,w250,settle,a,w150,!
+combat_victory | battle | Victory: for defeating the monsters each survivor receives experience points | @combat,DVET,a,w500,settle,w150,settle,b,w250,settle,b,w250,settle,b,w250,settle,c,w200,3,w150,4,w150,enter,w250,settle,a,w150,w60,w60,w60,w60,w60,w60,!
+encounter_bribe | battle | Encounter option Bribe: not accepted, the Orcs attack | @combat,b,w300,!
+encounter_surrender | battle | Encounter option Surrender: not accepted, the Orcs attack | @combat,s,w300,!
+outdoors_first | gameplay | Outside Sorpigal: mountains and forest (sector C-2) | @wild,left,w150,right,w150,!
+create_race | menu | Creation: class Robber chosen, select a race (Human, Elf, Dwarf, Gnome, Half-Orc) | @menu,c,w400,6,w150,!
+create_alignment | menu | Creation: select alignment (Good, Neut, Evil) | @menu,c,w400,6,w150,1,w150,!
+create_name | menu | Creation: Robber, Human, Good, Male, name RYZ typed | @menu,c,w400,6,w150,1,w150,1,w150,1,w150,type:RYZ,!
+create_save | menu | Creation: SAVE CHARACTER (Y/N)? | @menu,c,w400,6,w150,1,w150,1,w150,1,w150,type:RYZ,enter,w200,!
+profile_menu | menu | A profile opened from the roster: re-name and delete are offered | @roster,a,w300,!
+rename_prompt | menu | Re-name: the new name is typed | @roster,a,w300,ctrl+n,w300,!
+shop_blacksmith_prompt | dialogue | B and B Blacksmiths: a man wearing a leather apron speaks, can I help you (Y/N)? | @blacksmith,w40,settle
+encounter_poltergeists | battle | Encounter: three Orcs, picture, Attack / Bribe / Retreat / Surrender | @combat,w40,settle
