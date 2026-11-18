@@ -8,7 +8,8 @@
 #              tools/mesen-s-debug.patch adds retro_mesen_peek/poke/pc (24-bit address space).
 #   dosbox-pure  DOSBox Pure as a libretro core (same driver). Backend for dos (a game = a ZIP of its files).
 #              tools/dosbox-pure-debug.patch adds retro_gamedb_set_time (emulated clock set by the driver, not
-#              the host), retro_gamedb_sync (wait for the emulation thread at the frame end) and retro_gamedb_pc; it also makes a loaded savestate continue exactly like the run that made it.
+#              the host), retro_gamedb_sync (wait for the emulation thread at the frame end) and retro_gamedb_pc; it also makes a loaded savestate continue exactly like the run that made it,
+#              and adds retro_gamedb_flush (write the save ZIP of changed files now).
 #              Fetched from the libretro mirror: the author's GitHub repository is only a pointer to Codeberg.
 # sh tools/setup_emu.sh [gb|nes|snes|dos]   (default: all)
 set -e

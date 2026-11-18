@@ -32,8 +32,14 @@ and make `title` / `start` checkpoints from them.
 - **verified** In town: arrow keys move and turn, `1`-`6` open a character sheet, ESC goes back. The other
   commands are listed on screen (O order, P protect, R rest, S search, B bash, U unlock, Q quick reference).
 - Model `svga-1500`: 1500 cycles is the value in GOG's own DOSBox configuration for this game.
-- Not checked yet: creating characters, combat, saving (the game writes ROSTER.DTA when the party checks into an
-  inn; see "Saves" in `docs/emulator/dos.md` for what that means for savestates).
+- **verified 2026-11-18** Saving: the inn door is the square behind the start position (from `@sorpigal`:
+  `down`, turn around with `left,left`, `up,up`; the sign reads "THE INN OF SORPIGAL"). Stepping in asks "WOULD
+  YOU LIKE TO SIGN IN (Y/N)?"; `y` writes ROSTER.DTA and returns to the inn's character list, ESC from there is
+  the options menu. Checkpoint `after_save`, save `saves/01_signed_in.sav`; `sav:01_signed_in` powers on with it.
+  Savestates and checkpoints carry the written file (see "Saves" in `docs/emulator/dos.md`).
+- **verified** On a character sheet `R` + slot number unequips an item into the backpack; `D` discards only
+  from the backpack.
+- Not checked yet: creating characters, combat.
 
 ## Controls
 | Context | Button | Action | Status |

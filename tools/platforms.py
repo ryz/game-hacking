@@ -654,8 +654,7 @@ class Dos(Libretro):
         # A private save directory: DOSBox Pure keeps the files a game writes in <content name>.pure.zip there.
         self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
         self.savezip = os.path.join(self.tmp, os.path.splitext(os.path.basename(rom))[0] + ".pure.zip")
-        if sav:
-            shutil.copyfile(sav, self.savezip)
+        self._sav0 = open(sav, "rb").read() if sav else None       # the save ZIP this power-on starts with
         options = {"dosbox_pure_machine": machine, "dosbox_pure_cycles": cycles or "7800",
                    "dosbox_pure_savestate": "on", "dosbox_pure_conf": "false", "dosbox_pure_midi": "disabled"}
         self._boot = (os.path.abspath(rom), options)
@@ -663,10 +662,30 @@ class Dos(Libretro):
         self._power_on()
         return self
 
-    def _power_on(self):
+    @staticmethod
+    def _files(zipbytes):
+        """{name: content} of a save ZIP (None or empty = no files), for comparing two disks."""
+        import io, zipfile
+        if not zipbytes:
+            return {}
+        z = zipfile.ZipFile(io.BytesIO(zipbytes))
+        return {n: z.read(n) for n in z.namelist() if not n.endswith("/")}
+
+    def _disk(self):
+        """The files the game has written so far, as DOSBox Pure's save ZIP (None = nothing written)."""
+        self.c.L.retro_gamedb_flush()           # the core itself writes the ZIP only a second after a change
+        return open(self.savezip, "rb").read() if os.path.exists(self.savezip) else None
+
+    def _power_on(self, disk=None):
+        """Power on with `disk` as the save ZIP (None = the one this session was opened with)."""
         import ctypes
         import lrcore
         rom, options = self._boot
+        disk = self._sav0 if disk is None else disk
+        if disk:
+            open(self.savezip, "wb").write(disk)
+        elif os.path.exists(self.savezip):
+            os.remove(self.savezip)
         self.c = lrcore.Core(self.SO, rom, system_dir=self.tmp, save_dir=self.tmp, options=options,
                              frame_usec=self.FRAME_USEC, epoch=self.EPOCH, private=True)
         self.c.L.retro_gamedb_pc.restype = ctypes.c_uint32
@@ -719,16 +738,18 @@ class Dos(Libretro):
                 self._log.append(["f", n])
 
     BOOTLOG = b"GAMEDB-DOS-BOOTLOG-1\n"
-    STATE = b"GAMEDB-DOS-STATE-1\n"
+    STATE = b"GAMEDB-DOS-STATE-2\n"
 
     def save_state(self, path):
         """The core saves and loads states only while a DOS program runs, not in DOSBox Pure's start menu or at
-        the DOS prompt. Two file kinds follow from that:
+        the DOS prompt, and its state holds the machine but not the files the game wrote. Two file kinds:
         - before the first real state (BOOTLOG): the list of inputs since power-on. Loading it powers the machine
           on again and replays them (same route = same frames, so the result is the same).
-        - a real state (STATE): the inputs that got the program running, then the core's state. A machine in
-          which no program runs (just opened) replays those inputs first, then loads the state."""
-        import json
+        - a real state (STATE): the inputs that got the program running, the files written so far (DOSBox Pure's
+          save ZIP) and the core's state. Loading it into a machine where no program runs, or whose written
+          files differ, powers on with those files, replays the launch inputs and then loads the core's state.
+          So a state made after an in-game save still has that save on disk wherever it is loaded."""
+        import base64, json
         try:
             raw = self.c.serialize()
         except RuntimeError:
@@ -738,25 +759,28 @@ class Dos(Libretro):
         else:
             if self._log is not None:
                 self._launch, self._log = self._log, None
-            data = self.STATE + json.dumps(self._launch).encode() + b"\n" + raw
+            disk = self._disk()
+            head = {"launch": self._launch, "disk": base64.b64encode(disk).decode() if disk else None}
+            data = self.STATE + json.dumps(head).encode() + b"\n" + raw
         open(os.path.abspath(path), "wb").write(data)
 
-    def _replay(self, log):
+    def _replay(self, log, disk=None):
         self.c.close()
-        self._power_on()
+        self._power_on(disk)
         for kind, v in log:
             {"i": self.input, "f": self.frames, "m": lambda m: self.mouse(*m)}[kind](v)
 
     def load_state(self, path):
-        import json
+        import base64, json
         data = open(os.path.abspath(path), "rb").read()
         if data.startswith(self.BOOTLOG):
             self._replay(json.loads(data[len(self.BOOTLOG):].split(b"\n", 1)[0]))
             return
         if not data.startswith(self.STATE):
-            raise RuntimeError("not a DOS savestate of this tool: %s" % path)
+            raise RuntimeError("not a DOS savestate of this tool version (delete work/cache): %s" % path)
         head, raw = data[len(self.STATE):].split(b"\n", 1)
-        launch = json.loads(head)
+        head = json.loads(head)
+        launch, disk = head["launch"], base64.b64decode(head["disk"]) if head["disk"] else b""
         # A state loaded into a machine that has run fewer than 2 frames continues with different timing than
         # the run that made it (measured 2026-11-18: 0 and 1 frames differ, 2 and more are exact).
         if self._ran < self.WARMUP:
@@ -765,12 +789,24 @@ class Dos(Libretro):
             if k in self.KEYS:
                 self.c.key(self.KEYS[k], False)
         self._down = set()
+        same_disk = self._files(disk) == self._files(self._disk())
         try:
+            if not same_disk:
+                raise RuntimeError("other files on disk")
             self.c.unserialize(raw)
-        except RuntimeError:                # no program running here: start it the way the saving run did
-            self._replay(launch)
+        except RuntimeError:                # no program running here, or other files: start again the way the
+            self._replay(launch, disk or b"")       # saving run did, on the state's disk (b"" = no written files)
             self.c.unserialize(raw)
         self._launch, self._log = launch, None
+
+    FILE_SAVES = True
+    SAVE_HELP = ("`.sav` = the files the game has written, as a ZIP (DOSBox Pure's save format; folders have their "
+                 "DOS short names): unzip it and copy the files over the ones in your game folder (Might and Magic: "
+                 "`ROSTER.DTA`), or keep it as `<game zip name>.pure.zip` in DOSBox Pure's save folder.")
+
+    def battery(self, size):
+        """The files written by the game (save ZIP), b"" when it has written none."""
+        return self._disk() or b""
 
     def _mem(self):
         """(pointer to physical address 0, size): the core announces program memory first while DOS runs."""
@@ -796,9 +832,6 @@ class Dos(Libretro):
         if addr < 0 or addr + len(data) > size:
             raise ValueError("address %x outside the %d KiB of the machine" % (addr, size // 1024))
         ctypes.memmove(base + addr, data, len(data))
-
-    def battery(self, size):
-        raise SystemExit("DOS games save to files on C:; exporting them is not set up yet (docs/emulator/dos.md)")
 
     def regs(self):
         v = self.c.L.retro_gamedb_pc()

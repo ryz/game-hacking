@@ -652,6 +652,34 @@ def test_dos_same_route_same_frames(dos_selftest, tmp_path):
     c.close()
 
 
+def test_dos_state_carries_written_files(dos_selftest, tmp_path):
+    """A savestate holds the machine, not the disk: the backend stores the files the game wrote with the state
+    and puts them back on load (in the same machine and in a fresh one), and they export as the save."""
+    before, after = str(tmp_path / "before.state"), str(tmp_path / "after.state")
+    e = _dos_boot(dos_selftest)
+    e.save_state(before)
+    assert e.battery(0) == b""
+    e.input(["w"]); e.frames(6); e.input([]); e.frames(30)             # KEYS.COM creates S.DAT
+    assert list(platforms.Dos._files(e.battery(0))) == ["S.DAT"]
+    e.save_state(after)
+    shot = e.screen()
+    e.load_state(before)                                                # back to before the save: file gone
+    assert e.battery(0) == b""
+    e.load_state(after)
+    assert list(platforms.Dos._files(e.battery(0))) == ["S.DAT"] and e.screen() == shot
+    sav = tmp_path / "x.sav"
+    sav.write_bytes(e.battery(0))
+    e.close()
+    f = platforms.Dos().open(str(dos_selftest))                         # fresh machine, nothing written
+    f.load_state(after)
+    assert list(platforms.Dos._files(f.battery(0))) == ["S.DAT"] and f.screen() == shot
+    f.close()
+    g = platforms.Dos().open(str(dos_selftest), sav=str(sav))           # power on with the exported save
+    g.frames(30)
+    assert list(platforms.Dos._files(g.battery(0))) == ["S.DAT"]
+    g.close()
+
+
 def test_dos_pipeline(dos_selftest):
     run("tools/intake.py", str(dos_selftest), "--slug", DOS_SLUG, "--probe", "150")
     gj = os.path.join(ROOT, "games", "dos", DOS_SLUG, "game.json")

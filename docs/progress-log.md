@@ -2,6 +2,17 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - DOS: in-game saves, states carry the disk
+- Tested saving in Might and Magic 1: signing in at the inn writes ROSTER.DTA into DOSBox Pure's save ZIP. A
+  cached checkpoint made after the save, loaded in a new process, showed the saved roster on screen (the game
+  keeps it in memory) but the disk there was the original one: wrong as soon as the program restarts.
+- Fix: DOS states store the written files (save ZIP) and loading restores them (power-on with those files,
+  replay of the launch inputs, then the core state) whenever the machine's files differ. The core writes its
+  save ZIP one emulated second after a change, so the patch gained `retro_gamedb_flush`.
+- `play.py export` and `sav:NAME` work for DOS (the save is that ZIP); `games/dos/might-and-magic/saves/01_signed_in.sav`.
+- Test program KEYS.COM creates S.DAT on `w`; new test `test_dos_state_carries_written_files`. 30 passed, 2 skipped.
+  Might and Magic trial shots still 2/2 from an empty cache.
+
 ## 2026-11-18 - Might and Magic 1 (DOS) runs
 - Owner uploaded the GOG folder as a ZIP (97 files, SHA-1 c1a9248d...). Registered as `games/dos/might-and-magic/`
   (same slug as the NES game, so commands need `dos/might-and-magic`), model `svga-1500` (GOG's own cycles).

@@ -68,7 +68,8 @@ Current snapshot; history in `progress-log.md`.
   fixed cycles and a fixed emulated clock (same route = same frames), exact savestates, physical-memory
   peek/poke/find, CS:IP. First game: Might and Magic 1 (`games/dos/might-and-magic/`, GOG files), played from the title
   into Sorpigal with the stock party; 2 trial shots reproduce from an empty cache and from the cached checkpoint.
-  Open: scout and capture of that game; saving in the game untested; save export / `sav:`; files written to disk are not
+  In-game saving checked: written files travel with savestates, `play.py export` and `sav:` work (5 DOS tests).
+  Open: scout and capture of that game; files written to disk are not
   part of a savestate; CD images. Notes: `docs/emulator/dos.md`.
 
 - Games grouped by platform (2026-11-18): `games/<platform>/<slug>/`, folder = game.json "platform"; tools take

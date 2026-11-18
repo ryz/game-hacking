@@ -14,13 +14,15 @@ the author's own GitHub repository only points to Codeberg). `tools/dosbox-pure-
   the end of every frame, so key presses and memory reads land at the same emulated moment on every run.
 - `retro_gamedb_pc`: CS:IP for `status`.
 - a fix in the savestate loader (the frame in progress was dropped, so a loaded run was one frame ahead).
+- `retro_gamedb_flush`: write the save ZIP now (see Saves).
 
 ## Savestates
 The core saves and loads a state only while a DOS program is running, not in its start menu or at the DOS
 prompt. The backend covers both cases (`Dos.save_state` in `tools/platforms.py`):
 - before a program runs, a "state" is the list of inputs since power-on; loading it powers on and replays them;
-- a real state also stores the inputs that started the program; a machine where nothing runs yet (a new
-  process loading a cached checkpoint) replays those, then loads the state.
+- a real state also stores the inputs that started the program and the files written so far; a machine where
+  nothing runs yet (a new process loading a cached checkpoint), or whose written files differ, powers on with
+  those files, replays the launch inputs, then loads the state.
 So `undo`, `checkpoint`, `goto` and the cache work from power-on like on the consoles. Only this tool reads
 these files.
 
@@ -62,11 +64,18 @@ vectors, BIOS data area at `00400`, DOS, then the game), extended memory from `1
 A game's addresses depend on where DOS loads it, which is the same on every boot with the same ZIP and model.
 
 ## Saves
-DOS games save to files on `C:`. DOSBox Pure keeps changed files in a separate save ZIP; the backend gives every
-power-on a private empty one, so each route starts from the pristine game.
-- Open: `play.py export` (no battery RAM; the save ZIP would be the equivalent) and `sav:NAME` are not wired up.
-- Open, to check with the first game: a savestate holds the machine, not the files on disk. A state made
-  after the game wrote its save file, loaded into a fresh power-on, sees the original files again.
+DOS games save to files on `C:`. DOSBox Pure keeps the changed files in a save ZIP; the backend gives every
+power-on a private one, empty unless the route starts with `sav:NAME`, so each route starts from the pristine
+game. Checked 2026-11-18 with Might and Magic 1 (signing in at an inn writes ROSTER.DTA) and with the test
+program:
+- A savestate holds the machine, not the disk, so the backend stores the written files with every state and
+  puts them back on load (a state made before a save has no files, one made after it has them; `undo`,
+  `goto` and cached checkpoints in a new process all see the right disk). `retro_gamedb_flush` in the core
+  patch writes the save ZIP at once; the core alone writes it one emulated second after a change.
+- `play.py export NAME "desc"` writes that ZIP as `games/dos/<slug>/saves/NAME.sav`. For the owner: unzip it
+  and copy the files over the ones in the game folder (folders inside have DOS short names such as
+  `MIGHIC-1/`). `sav:NAME` powers on with it.
+- Might and Magic 1 keeps the roster in memory and reads ROSTER.DTA only when the program starts.
 
 ## Not supported yet
 CD-ROM images, installing a game inside the emulator, booting a real DOS or Windows, MIDI music devices, joystick.

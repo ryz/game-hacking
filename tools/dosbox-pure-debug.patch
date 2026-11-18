@@ -81,6 +81,50 @@ index 0000000..17a1e38
 +}
 +struct tm* __wrap_localtime(const time_t* t) { return gamedb_usec ? gmtime(t) : __real_localtime(t); }
 +}
+diff --git a/src/dos/drive_union.cpp b/src/dos/drive_union.cpp
+index 08ec043..993d441 100644
+--- a/src/dos/drive_union.cpp
++++ b/src/dos/drive_union.cpp
+@@ -142,6 +142,10 @@ public:
+ 	}
+ };
+ 
++// game-hacking (tools/dosbox-pure-debug.patch): live union drives, for retro_gamedb_flush below
++struct unionDriveImpl;
++static std::vector<unionDriveImpl*> gamedb_union_impls;
++
+ struct unionDriveImpl
+ {
+ 	memoryDrive* save_mem;
+@@ -162,6 +166,7 @@ struct unionDriveImpl
+ 		Bit16u bytes_sector; Bit8u sectors_cluster; Bit16u total_clusters; Bit16u free_clusters;
+ 		over->AllocationInfo(&bytes_sector, &sectors_cluster, &total_clusters, &free_clusters);
+ 		writable = (free_clusters > 0);
++		gamedb_union_impls.push_back(this);
+ 		if (save_mem)
+ 		{
+ 			under->AllocationInfo(&bytes_sector, &sectors_cluster, &total_clusters, &free_clusters);
+@@ -181,6 +186,7 @@ struct unionDriveImpl
+ 
+ 	~unionDriveImpl()
+ 	{
++		for (size_t i = gamedb_union_impls.size(); i--;) if (gamedb_union_impls[i] == this) gamedb_union_impls.erase(gamedb_union_impls.begin() + i);
+ 		if (dirty)
+ 			WriteSaveFile((Bitu)this);
+ 		if (dirty)
+@@ -1146,3 +1152,12 @@ Bits unionDrive::UnMount(void) { delete this; return 0;  }
+ 
+ #include <dbp_serialize.h>
+ DBP_SERIALIZE_SET_POINTER_LIST(PIC_EventHandler, unionDrive, unionDriveImpl::WriteSaveFile);
++
++// game-hacking (tools/dosbox-pure-debug.patch): write the save ZIP now. The core writes it one emulated second
++// (or more) after the game changed a file; a frontend that stores the written files with a savestate needs them
++// at the moment of the state. Call only while the emulation thread is parked (after retro_gamedb_sync).
++extern "C" __attribute__((visibility("default"))) void retro_gamedb_flush(void)
++{
++	for (unionDriveImpl* impl : gamedb_union_impls)
++		if (impl->dirty && !impl->save_file.empty()) unionDriveImpl::WriteSaveFile((Bitu)impl);
++}
 diff --git a/src/gui/render.cpp b/src/gui/render.cpp
 index ba60b45..1f1b334 100644
 --- a/src/gui/render.cpp

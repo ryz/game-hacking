@@ -310,12 +310,16 @@ class Session:
         if not re.match(r"^[a-z0-9_]+$", name):
             return "error: save name must be lowercase a-z0-9_"
         kib = self.game.meta.get("header", {}).get("ram_kib")
-        if not kib:
+        files_save = getattr(self.emu, "FILE_SAVES", False)        # computers: the save is the files written
+        if not kib and not files_save:
             return "error: this cartridge has no battery RAM (header ram_kib); use --state only via checkpoint"
         d = os.path.join(self.game.dir, "saves")
         os.makedirs(d, exist_ok=True)
-        data = self.emu.battery(kib * 1024)
-        if not data.strip(b"\x00") or not data.strip(b"\xff"):
+        data = self.emu.battery((kib or 0) * 1024)
+        if files_save and not data:
+            return ("error: the game has not written any file on this route. Save in the game first, then "
+                    "export; nothing written")
+        if not files_save and (not data.strip(b"\x00") or not data.strip(b"\xff")):
             return ("error: the battery RAM is empty (nothing was saved in the game on this route). Save in the "
                     "game first, then export; nothing written")
         p = os.path.join(d, name + ".sav")
@@ -327,18 +331,20 @@ class Session:
         import hashlib
         readme = os.path.join(d, "README.md")
         head = ("# %s - saves\n\nMade by the agents while playing (owner's rule 2026-11-15: committed so the owner can "
-                "jump in). `.sav` = the game's own battery save: copy it next to your ROM as `<rom name>.sav` in any "
-                "emulator, then Continue. `.state` = %s savestate of the exact moment (that emulator only). In routes: "
+                "jump in). %s `.state` = %s savestate of the exact moment (that emulator only). In routes: "
                 "`sav:NAME` prefix (power on with that save).\n\n| Save | Files | What it contains | Route at export | "
-                "SHA-1 (.sav) | Date |\n|---|---|---|---|---|---|\n" % (self.game.meta["title"], self.emu.emulator))
+                "SHA-1 (.sav) | Date |\n|---|---|---|---|---|---|\n" % (
+                    self.game.meta["title"],
+                    getattr(self.emu, "SAVE_HELP", "`.sav` = the game's own battery save: copy it next to your ROM "
+                            "as `<rom name>.sav` in any emulator, then Continue."), self.emu.emulator))
         lines = open(readme, encoding="utf-8").read().splitlines() if os.path.exists(readme) else head.splitlines()
         lines = [l for l in lines if not l.startswith("| %s |" % name)]
         import datetime
         lines.append("| %s | %s | %s | `%s` | `%s` | %s |" % (name, files, desc.replace("|", "/"), self.route(),
                      hashlib.sha1(data).hexdigest()[:12], datetime.date.today().isoformat()))
         open(readme, "w", encoding="utf-8").write("\n".join(lines) + "\n")
-        return "%s (%d KiB)%s - check the in-game save was made before exporting" % (
-            rel(p), kib, " + state" if state else "")
+        return "%s (%s)%s - check the in-game save was made before exporting" % (
+            rel(p), "%d KiB" % kib if kib else "%d bytes" % len(data), " + state" if state else "")
 
     def goto(self, name):
         self.emu.close()        # reopen: the checkpoint may use another ROM variant or save (start() uses the cache)
