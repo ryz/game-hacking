@@ -19,3 +19,9 @@ negotiation_join | system | After a second 84 MAG: "Nekomata suddenly joined the
 comp_menu | system | 8F: Comp menu: Call / Bind / Order (demon summoning program) | @neko_joined,a,w30,a,w60,settle,settle
 summon_select | system | Comp > Call: "Call which demon?" Nekomata 58/58, summon cost 86 Makka | @neko_joined,a,w30,a,w60,settle,settle,a,w60,settle,settle
 summon | system | 8F: Nekomata summoned: third party member in the status window (HP 58, MP 22) | @neko_joined,a,w30,a,w60,settle,settle,a,w60,settle,settle,a,w150,settle,settle
+negotiation_jewel | system | Talking with a Dryad: "Jewel? Should you try giving it that?" Yes / No | @neko_joined,left,w30,poke:0780=050D,up,w200,a,w60,down,a,w60,down,a,w60,settle,settle,a,w200,!
+fusion_select | system | The Heretic: "Fuse with which demon?" Feral Nekomata, Fairy Dryad, fusion chart 1-7 | @two_demons,right,w30,poke:0780=07FF,up,w200,a,w250,settle
+fusion_result | system | Fusion preview: Nekomata + Dryad = Astral Trent, "Its level is too high..." | @two_demons,right,w30,poke:0780=07FF,up,w200,a,w250,settle,a,w100,settle,settle,w150,settle,settle,down,a,w200,settle,settle
+fusion_confirm | system | Fusion: Trent H.P. 80 M.P. 32, spells Psycho and Hama, "Will you fuse it?" Yes/No | @two_demons,poke:04B4=0E,right,w30,poke:0780=07FF,up,w200,a,w250,a,w100,down,a,w200,settle,settle
+fusion_clip | system | Fusion at the Heretic: Nekomata and Dryad merge into Trent | @two_demons,poke:04B4=0E,right,w30,poke:0780=07FF,up,w200,a,w250,a,w100,down,a,w200,settle,settle,a,w300,settle,settle,rec:360:3
+fusion_done | system | Fusion result: "I'm Astral Trent and from now on, we are partners..." | @two_demons,poke:04B4=0E,right,w30,poke:0780=07FF,up,w200,a,w250,a,w100,down,a,w200,settle,settle,a,w300,settle,settle,rec:360:3,w600,settle,settle

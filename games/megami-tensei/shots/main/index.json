@@ -281,6 +281,93 @@
    "file_3x": "3x/summon.png",
    "rom_sha1": "0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b",
    "captured": "2026-11-18"
+  },
+  {
+   "id": "negotiation_jewel",
+   "category": "system",
+   "caption": "Talking with a Dryad: \"Jewel? Should you try giving it that?\" Yes / No",
+   "route": "@neko_joined,left,w30,poke:0780=050D,up,w200,a,w60,down,a,w60,down,a,w60,settle,settle,a,w200,!",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "negotiation_jewel.png",
+   "file_3x": "3x/negotiation_jewel.png",
+   "rom_sha1": "0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "fusion_select",
+   "category": "system",
+   "caption": "The Heretic: \"Fuse with which demon?\" Feral Nekomata, Fairy Dryad, fusion chart 1-7",
+   "route": "@two_demons,right,w30,poke:0780=07FF,up,w200,a,w250,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "fusion_select.png",
+   "file_3x": "3x/fusion_select.png",
+   "rom_sha1": "0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "fusion_result",
+   "category": "system",
+   "caption": "Fusion preview: Nekomata + Dryad = Astral Trent, \"Its level is too high...\"",
+   "route": "@two_demons,right,w30,poke:0780=07FF,up,w200,a,w250,settle,a,w100,settle,settle,w150,settle,settle,down,a,w200,settle,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "fusion_result.png",
+   "file_3x": "3x/fusion_result.png",
+   "rom_sha1": "0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "fusion_confirm",
+   "category": "system",
+   "caption": "Fusion: Trent H.P. 80 M.P. 32, spells Psycho and Hama, \"Will you fuse it?\" Yes/No",
+   "route": "@two_demons,poke:04B4=0E,right,w30,poke:0780=07FF,up,w200,a,w250,a,w100,down,a,w200,settle,settle",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "fusion_confirm.png",
+   "file_3x": "3x/fusion_confirm.png",
+   "rom_sha1": "0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "fusion_clip",
+   "category": "system",
+   "caption": "Fusion at the Heretic: Nekomata and Dryad merge into Trent",
+   "route": "@two_demons,poke:04B4=0E,right,w30,poke:0780=07FF,up,w200,a,w250,a,w100,down,a,w200,settle,settle,a,w300,settle,settle,rec:360:3",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "clip": {
+    "frames": 360,
+    "every": 3,
+    "kept": 121,
+    "poster": 0,
+    "seconds": 6.03,
+    "file": "fusion_clip.gif",
+    "file_3x": "3x/fusion_clip.gif"
+   },
+   "file": "fusion_clip.png",
+   "file_3x": "3x/fusion_clip.png",
+   "rom_sha1": "0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "fusion_done",
+   "category": "system",
+   "caption": "Fusion result: \"I'm Astral Trent and from now on, we are partners...\"",
+   "route": "@two_demons,poke:04B4=0E,right,w30,poke:0780=07FF,up,w200,a,w250,a,w100,down,a,w200,settle,settle,a,w300,settle,settle,rec:360:3,w600,settle,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "fusion_done.png",
+   "file_3x": "3x/fusion_done.png",
+   "rom_sha1": "0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b",
+   "captured": "2026-11-18"
   }
  ]
 }

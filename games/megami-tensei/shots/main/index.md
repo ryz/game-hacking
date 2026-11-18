@@ -1,6 +1,6 @@
 # Digital Devil Story: Megami Tensei (Famicom, English translation patch) - shots: main
 
-Platform nes, model ntsc, ROM SHA-1 `0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b`. 21 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
+Platform nes, model ntsc, ROM SHA-1 `0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b`. 27 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -25,5 +25,11 @@ Platform nes, model ntsc, ROM SHA-1 `0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b`. 
 | comp_menu | system | 8F: Comp menu: Call / Bind / Order (demon summoning program) | yes | [png](comp_menu.png) [3x](3x/comp_menu.png) |
 | summon_select | system | Comp > Call: "Call which demon?" Nekomata 58/58, summon cost 86 Makka | yes | [png](summon_select.png) [3x](3x/summon_select.png) |
 | summon | system | 8F: Nekomata summoned: third party member in the status window (HP 58, MP 22) | yes | [png](summon.png) [3x](3x/summon.png) |
+| negotiation_jewel | system | Talking with a Dryad: "Jewel? Should you try giving it that?" Yes / No | yes | [png](negotiation_jewel.png) [3x](3x/negotiation_jewel.png) |
+| fusion_select | system | The Heretic: "Fuse with which demon?" Feral Nekomata, Fairy Dryad, fusion chart 1-7 | yes | [png](fusion_select.png) [3x](3x/fusion_select.png) |
+| fusion_result | system | Fusion preview: Nekomata + Dryad = Astral Trent, "Its level is too high..." | yes | [png](fusion_result.png) [3x](3x/fusion_result.png) |
+| fusion_confirm | system | Fusion: Trent H.P. 80 M.P. 32, spells Psycho and Hama, "Will you fuse it?" Yes/No | no | [png](fusion_confirm.png) [3x](3x/fusion_confirm.png) |
+| fusion_clip | system | Fusion at the Heretic: Nekomata and Dryad merge into Trent | clip | [png](fusion_clip.png) [3x](3x/fusion_clip.png) [gif](fusion_clip.gif) [gif 3x](3x/fusion_clip.gif) |
+| fusion_done | system | Fusion result: "I'm Astral Trent and from now on, we are partners..." | yes | [png](fusion_done.png) [3x](3x/fusion_done.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
