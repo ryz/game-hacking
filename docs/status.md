@@ -25,7 +25,8 @@ Current snapshot; history in `progress-log.md`.
 - Dungeon Magic (NES), 2026-11-18: main set 41 shots, floor maps of all 39 floors + overworld, saves 01-02.
   Open: the King, camp, swords, bosses beaten, Darces, ending.
 - Sets are ordered by `shots.txt` (game order), 2026-11-18.
-- Wizardry I (NES): scouted 2026-11-18 (10 floor maps from ROM, save 01_party); capture next.
+- Wizardry I (NES), 2026-11-18: main set 71 shots through Werdna and the ending, 10 floor maps with all special
+  squares decoded, saves 01-03. Open: Identify, spinner, teleport square; party_dead retake.
 - `play.py dump/diff` (2026-11-18).
 - Queue (registered 2026-11-18, not scouted): wizardry-2-nes, might-and-magic,
   deep-dungeon-3.

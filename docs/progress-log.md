@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Wizardry I (NES) main set: complete through the ending
+- game-capture: 71 shots (commits 69d7eaa 5805efa 41939b7): creation, castle, shops, temple, spell books, combat
+  and spells, chests and traps, Murphy's ghost, pit, chute, elevator, floors 4 and 10, Werdna, the ending and
+  credits; all 19 special-square types decoded, `design/maps.md`, `castle.md`, `combat.md`; saves 02_veterans,
+  03_werdna_defeated. Coordinator: 6/6 sample re-verified (incl. Werdna and the ending), sheet reviewed.
+- `play.py start` clears the session folder's old frames and dumps (an agent read stale scout frames for ~10 calls).
+
 ## 2026-11-18 - Wizardry I (NES) scouted; play.py dump/diff
 - `play.py dump NAME` / `diff A [B]`: RAM snapshot and byte diff (NES/SNES search ranges; GB work/save RAM);
   third scout in a row had copied an ad-hoc ramdiff.py. Emulator guide: play.py routes are the reproducible ones.

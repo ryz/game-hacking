@@ -9,6 +9,19 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Wizardry I (NES) main set
+- Task: main set (71/71 verified; commits 69d7eaa 5805efa 41939b7), special squares decoded, maps.md, saves 02-03.
+- Worked: special-square jump table (~6 disassembly calls) explained squares and floor-entry fixed fights; the
+  roster-to-battle copy loop gave record offsets; monster HP poked to 1 for bosses/chests; auto-advancing battle
+  text: `do "a,w40"` loops + tiled image, then routes from `play.py route` + N `,a,w40,settle`, `shoot.py --only`.
+- Friction: `--name wiz` reused the scout's folder, stale numbered PNGs read for ~10 calls; remembered battle
+  cursors shifted orders; poking monster status to dead does not end a fight; no snap for "route + N more steps";
+  full verify of 70 needed a background run; ~300 tool calls (budget ~250).
+- Proposed rule change: (1) clear stale PNGs on `play.py start`; (2) emulator guide: fixed encounters may be set
+  up only on floor entry, warp onto stairs/elevator/chute; (3) `play.py snapafter ID N`.
+- Corrected: (1) done in `tools/play.py`; coordinator re-verified 6/6 incl. Werdna and the ending.
+- Status: promoted 2026-11-18 ((1)); open ((2) first occurrence, (3))
+
 ### 2026-11-18 - Dungeon Magic (NES) main set and floor maps
 - Task: main set (41/41 verified; commits 91cae5d 242b035 1e9c2b0 9171d1e), floor maps of every town and dungeon,
   milestone saves.
