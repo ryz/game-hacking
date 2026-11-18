@@ -17,7 +17,7 @@ def events(name):
     data = 12 + (d[4] | d[5] << 8); dbase = d[6] | d[7] << 8
     code = d[12:data]
     i = code.find(b"\x3a\x87"); j = code.find(b"\x3a\x1e", i); k = code.find(b"\x22\x87", j)
-    if min(i, j, k) < 0 or k > 80: return {}
+    if min(i, j, k) < 0 or k > 130: return {}
     f = lambda o: data + (code[o + 2] | code[o + 3] << 8) - dbase
     offs, cnt, masks = f(i), f(j), f(k)
     n = d[cnt]

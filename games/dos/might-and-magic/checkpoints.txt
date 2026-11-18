@@ -9,3 +9,8 @@ created | Same place and party as start, but built from power-on by creating RYZ
 blacksmith | Sorpigal (6,5): B and B Blacksmiths, 'CAN I HELP YOU (Y/N)?' prompt; RYZ carries 1873 gold | @start,set:16865=1873:3,up,w80,up,w80,left,w60,up,w80,up,w150
 equipped | Sorpigal (6,5) after shopping, map view: RYZ wears Short Sword + Leather Armor, 1833 gold | @blacksmith,y,w150,a,w150,c,w150,esc,w100,b,w150,c,w150,esc,w100,esc,w100,1,w100,e,w100,b,w100,e,w100,b,w100,esc,w100
 combat | Sorpigal (3,6): encounter behind the locked door (unlocked by CUBI): 4 Poltergeists with picture, options Attack / Bribe / Retreat / Surrender | @equipped,AT:03:07:73,FW,left,w80,u,w100,4,w200,up,w250
+cave1 | Cavern below Sorpigal (CAVE1) at (14,0), lit: MNZ cast Light (Sorcerer 1-6) in town, then the stairs at Sorpigal (14,0) | @equipped,CAST:6:1:6,AT:0E:00:0E,FN,left,w250,y,w400
+portsmith | Town 2 Portsmith at (1,12), reached with the WARP macro (the leprechaun's own destination); party as in equipped | @equipped,WARP:01:0C:03:0C:01
+algary | Town 3 Algary at (11,13), WARP macro (leprechaun destination) | @equipped,WARP:0B:0D:03:02:01
+dusk | Town 4 Dusk at (12,8), WARP macro (leprechaun destination) | @equipped,WARP:0C:08:02:08:01
+erliquin | Town 5 Erliquin at (4,6), WARP macro (leprechaun destination) | @equipped,WARP:04:06:1A:0B:01

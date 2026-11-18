@@ -6,3 +6,4 @@ Made by the agents while playing (owner's rule 2026-11-15: committed so the owne
 |---|---|---|---|---|---|
 | 01_signed_in | `01_signed_in.sav` | stock party signed in at the inn of Sorpigal; Crag's club is in his backpack | `@after_save` | `99884aa59c67` | 2026-11-18 |
 | 02_ryz_party | `02_ryz_party.sav` | new roster, signed in at the inn of Sorpigal: RYZ (Knight created here, slot G) and the five other stock characters renamed CONDI, EBO, CUBI, DEDDO, MNZ; Crag the Hack untouched; nothing bought yet | `pow,PARTY,left,w60,left,w150,y,w250,esc,w150` | `df1be819de99` | 2026-11-18 |
+| 03_portsmith_inn | `03_portsmith_inn.sav` | Signed in at the Inn of Portsmith (town 2): RYZ (Knight, Short Sword, Leather Armor, 1833 gold), CONDI, EBO, CUBI, DEDDO, MNZ, all level 1; Crag the Hack stays in Sorpigal. Reached with the WARP macro. | `@portsmith,AT:03:0C:C3,FS,left,w250,y,w300` | `c99528304b1e` | 2026-11-18 |

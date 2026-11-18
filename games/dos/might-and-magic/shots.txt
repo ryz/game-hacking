@@ -6,12 +6,19 @@
 # Scout 2026-11-18: the routed lines below were run with emu.py and the frames looked at (not through shoot.py:
 # the scout may not write work/shots). All end in `!` (no settle: cursor/animation). Commented lines are targets.
 title_screen | title | Title: New World Computing presents Might and Magic, ESC to start / SPACE for scenes | @title,!
+title_book_one | title | Title, second picture: New World Computing presents Book One - Secret of the Inner Sanctum | pow,BOOT,w280,!
+demo_stronghold | extra | Demo scene (SPACE on the title): discover a warrior's stronghold or a wizard's lair | @title,space,w200,space,w200,space,w200,!
+demo_treasure | extra | Demo scene: an iron box opens, each share worth 38 gold, 10 gems found | @title,space,w200,space,w200,space,w200,space,w200,space,w200,!
+ready_prompt | menu | After ESC on the title: are you ready? Then press Enter! | @title,esc,w90,!
 menu_options | menu | Options: create new characters, view all characters, go to town | @menu,!
 create_roll | system | Create new characters: seven statistics rolled, eligible classes, ENT to re-roll | @menu,c,w200,!
 create_race | system | Creation: class Knight chosen, select a race (Human, Elf, Dwarf, Gnome, Half-Orc) | @menu,c,w200,enter,w60,enter,w60,enter,w60,enter,w60,enter,w60,1,w100,!
 create_alignment | system | Creation: select alignment (Good, Neut, Evil) | @menu,c,w200,enter,w60,enter,w60,enter,w60,enter,w60,enter,w60,1,w100,1,w100,!
 create_name | system | Creation: Knight, Human, Good, Male, name RYZ typed | @menu,c,w200,enter,w60,enter,w60,enter,w60,enter,w60,enter,w60,1,w100,1,w100,1,w100,1,w100,type:ryz,w60,!
 create_save | system | Creation: SAVE CHARACTER (Y/N)? | @menu,c,w200,enter,w60,enter,w60,enter,w60,enter,w60,enter,w60,1,w100,1,w100,1,w100,1,w100,type:ryz,w60,enter,w100,!
+roster_view_all | menu | View all characters: letter, name, town, level and class of the seven in the roster | pow,sav:02_ryz_party,MENU,v,w150,!
+profile_menu | inventory | Profile opened from the roster: new Knight RYZ with a Club, Ctrl-N re-name, Ctrl-D delete | pow,sav:02_ryz_party,MENU,v,w150,g,w150,!
+rename_prompt | system | Re-naming a character: NAME prompt under CONDI's profile | pow,sav:02_ryz_party,MENU,v,w150,b,w150,ctrl>n,w100,!
 start_inn_door | gameplay | First control: inside the Inn of Sorpigal facing its door, commands panel, party of six | @start,!
 sorpigal_inn_sign | gameplay | Sorpigal: sign above the door reads THE INN OF SORPIGAL | @start,up,w80,up,w80,left,w60,left,w80,!
 save_inn_prompt | save | The innkeeper asks: would you like to sign in (Y/N)? | @start,left,w60,left,w150,!
@@ -22,13 +29,33 @@ shop_weapons | shop | Blacksmith weapons: Dagger 5 ... Crossbow 50, Staff 30 | @
 shop_armor | shop | Blacksmith armor: Small Shield 10 ... Chain Mail 200 | @blacksmith,y,w150,a,w150,c,w150,esc,w100,b,w150,!
 shop_misc | shop | Blacksmith misc: Torch 2, Rope & Hooks, Garlic, Magic Herbs, Might Potion, Scroll of Fire 300 | @blacksmith,y,w150,a,w150,c,w150,esc,w100,b,w150,c,w150,esc,w100,c,w150,!
 profile_ryz | inventory | RYZ's profile: statistics, HP, AC, gold, Short Sword and Leather Armor equipped, commands | @equipped,1,w100,!
+equip_prompt | inventory | RYZ's profile: equip which item A-F? | @equipped,1,w100,e,w100,!
+share_prompt | system | Share all: gems, gold or food split evenly among the party | @equipped,1,w100,s,w100,!
 quickref | hud | Quick reference: hit points, spell points, armor class, food and condition of all six | @start,q,w100,!
+order_prompt | system | Order: re-order the party by typing the old positions in the new order | @start,o,w100,!
+cast_prompt | system | Casting from a profile: MNZ enters level 1, number 5 (Leather Skin), Enter to cast | @equipped,6,w100,c,w100,1,w100,5,w100,!
+protect_active | system | Protect: spells currently active, Leather Skin | @equipped,CAST:6:1:5,esc,w100,p,w150,!
+location_spell | map | Location spell (Sorcerer 1-7): in town, map sector C-2, surface and inside coordinates, facing | @equipped,CAST:6:1:7,!
+rest_prompt | system | Rest here (Y/N)? | @start,r,w150,!
+rest_complete | system | Rest complete: no encounters! | @start,r,w150,y,w300,!
 door_locked | gameplay | Sorpigal: a locked door (LOCKED!) | @equipped,AT:03:07:73,FW,left,w80,up,w80,!
 unlock_who | system | Unlock: who will try 1-6? | @equipped,AT:03:07:73,FW,left,w80,u,w100,!
 encounter_poltergeists | battle | Encounter: four Poltergeists, picture, Attack / Bribe / Retreat / Surrender | @combat,!
 combat_round | battle | Combat round 1: formation, monster list, handicap, a Poltergeist hacks at CONDI | @combat,a,w200,!
+encounter_bribe | battle | Encounter option Bribe: no response | @combat,b,!
+encounter_surrender | battle | Encounter option Surrender: the monsters don't take prisoners! | @combat,s,!
+combat_options | battle | Combat: options for MNZ the Sorcerer (Exchange, Retreat, Cast, Use, Block) | @combat,a,w200,w100,!
+combat_cast | battle | Combat: MNZ casts spell level 1, number 4 (Flame Arrow) | @combat,a,w200,w100,c,w100,1,w100,4,w100,!
+combat_spell_hit | battle | MNZ casts a spell: Poltergeist takes 5 points of damage | @combat,FLAME,!
+combat_shoot | battle | EBO shoots a Poltergeist with the sling: hit for 7 points, Poltergeist goes down | @combat,FLAME,w240,ctrl>a,!
+combat_victory | battle | Victory: for defeating the monsters each survivor receives 100 experience points | @combat,FLAME,w240,QA*14,!
+search_nothing | system | Searching the room after the fight: nothing | @combat,FLAME,w240,QA*14,space,w150,s,w200,!
+death_party_down | battle | A party at 1 hit point each: CUBI goes down, the last of the six | @combat,LOWHP,a,w200,w200,BLK*23,!
+gameover | gameover | The shadow of death has fallen upon your party: renew the quest from the last inn | @combat,LOWHP,a,w200,w200,BLK*24,!
 train_level2 | system | Otto's Training: training for level 2 costs 25 gold | @equipped,set:16853=1685:4,AT:0D:0B:BD,FE,left,w250,y,w300,!
+train_levelup | system | Congratulations! You are now level 2, you gained 11 hit points | @equipped,set:16853=1685:4,AT:0D:0B:BD,FE,left,w250,y,w300,a,!
 train_level3_need | system | Training done: level 3 needs 1315 more experience points | @equipped,set:16853=1685:4,AT:0D:0B:BD,FE,left,w250,y,w300,a,w300,!
+profile_level2 | inventory | RYZ after training: level 2, age 19, 26 hit points, 1808 gold left | @equipped,set:16853=1685:4,AT:0D:0B:BD,FE,left,w250,y,w300,a,w300,esc,w100,1,w100,!
 temple_services | shop | Temple Moonshadow: restore health, uncurse items, restore align, make donation | @equipped,AT:04:01:14,FE,left,w250,y,w300,!
 market_food | shop | Eulards Fine Foods: all you can eat, 5 gold each, will you pay? | @equipped,AT:0A:05:5A,FS,left,w250,y,w300,!
 tavern_menu | shop | Ye Olde Hogge Tavern: have a drink, tip bartender, listen for rumors | @equipped,AT:0B:0E:EB,FS,left,w250,y,w300,!
@@ -36,7 +63,29 @@ statue_lore | dialogue | A statue's inscription: in memory of a time long ago...
 leprechaun | system | A tenacious leprechaun offers travel to a town for one gem | @start,AT:0B:03:3B,FN,left,w250,!
 stairs_prompt | gameplay | Sorpigal: stairs going down, take them (Y/N)? | @start,AT:0E:00:0E,FN,left,w250,!
 dungeon_darkness | gameplay | Below Sorpigal without light: DARKNESS | @equipped,AT:0E:00:0E,FN,left,w250,y,w400,!
+dungeon_lit | gameplay | Cavern below Sorpigal after MNZ cast Light: green rock walls, a portcullis and a door | @cave1,!
+cave_courier | dialogue | Cavern below Sorpigal: an elderly man behind a desk needs a courier service | @cave1,AT:01:02:21,FN,left,w250,!
+cave_wall_message | gameplay | Cavern: scrawled on the wall, a message reads: the jail above has many cells | @cave1,AT:0D:03:3D,FN,left,w250,!
+cave_arena | dialogue | Cavern, the Arena: balconies filled with cheering peasants, will you participate? | @cave1,AT:01:0D:D1,FE,left,w250,!
+cave_portal | gameplay | Cavern: a shimmering blue and white portal appears, enter? | @cave1,AT:0F:00:0F,FW,left,w250,!
+cave_skeletons | battle | Cavern encounter: five Skeletons | @cave1,AT:05:02:25,FE,left,w250,!
+cave_fire_ants | battle | Cavern encounter: five Fire Ants | @cave1,AT:04:02:24,FE,left,w250,!
+cave_snakes | battle | Cavern encounter: ten Snakes | @cave1,AT:0D:05:5D,FN,left,w250,!
 outdoors_first | gameplay | Outside Sorpigal: mountains and forest | @equipped,AT:0C:00:0C,FW,left,w250,y,w400,!
+portsmith_inn_sign | gameplay | Portsmith: a sign above the door reads Inn of Portsmith | @portsmith,AT:01:0C:C1,FS,left,w250,!
+portsmith_inn | dialogue | Inn of Portsmith: Lara, the innkeeper's daughter, asks if you will be spending the night | @portsmith,AT:03:0C:C3,FS,left,w250,!
+portsmith_signed_in | save | Signed in at town 2: Inn of Portsmith, the six characters now lodge here | @portsmith,AT:03:0C:C3,FS,left,w250,y,w300,!
+portsmith_blacksmith | dialogue | Portsmith, B. Smith's Workshop: a young girl forging a long sword | @portsmith,AT:0C:0D:DC,FW,left,w250,!
+portsmith_zam | dialogue | Portsmith: Zam, astral brother of Zom: you're not the couriers! | @portsmith,AT:0C:02:2C,FE,left,w250,!
+portsmith_secret | dialogue | Portsmith: a sensuous female voice from an intoxicating mist; the men of the party are marked | @portsmith,AT:0B:08:8B,FE,left,w250,!
+algary_inn | dialogue | The Inn of Algary: a tall bearded half-orc behind a large desk | @algary,AT:0E:0D:DE,FS,left,w250,!
+algary_mystic | dialogue | Algary: Morango the Mystic asks whom to measure | @algary,AT:05:0E:E5,FN,left,w250,!
+algary_portal | gameplay | Algary: a magic portal, enter? | @algary,AT:09:00:09,FS,left,w250,!
+dusk_inn | dialogue | The Inn of Dusk: an eerie silence, a ghostly apparition asks to sign in | @dusk,AT:0B:08:8B,FN,left,w250,!
+dusk_training | dialogue | Dusk, Clearman's Training: several empty suits of armor approach | @dusk,AT:0B:02:2B,FN,left,w250,!
+dusk_chest | system | Dusk: a gold chest: open it, find/remove trap, detect magic/trap | @dusk,AT:00:0E:E0,FE,left,w250,!
+dusk_vampires | battle | Dusk encounter: ten Vampires | @dusk,AT:07:0D:D7,FE,left,w250,!
+dusk_banshees | battle | Dusk encounter: ten Banshees | @dusk,AT:03:0E:E3,FE,left,w250,!
 #
 # --- targets not routed yet (method) ---
 # title_book_one | title | second title picture "Book One - Secret of the Inner Sanctum" | @title + sample "w20" to find the frame

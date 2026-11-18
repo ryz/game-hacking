@@ -1,6 +1,6 @@
 # Might and Magic Book One: The Secret of the Inner Sanctum (DOS) - shots: main
 
-Platform dos, region na, model svga-1500, ROM SHA-1 `c1a9248dd101e924f5e2de7890258e1a768753ac`. 32 shots. Contact sheet: [might-and-magic_dos_na_set_sheet.png](might-and-magic_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model svga-1500, ROM SHA-1 `c1a9248dd101e924f5e2de7890258e1a768753ac`. 81 shots. Contact sheet: [might-and-magic_dos_na_set_sheet.png](might-and-magic_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -36,5 +36,54 @@ Platform dos, region na, model svga-1500, ROM SHA-1 `c1a9248dd101e924f5e2de78902
 | stairs_prompt | gameplay | Sorpigal: stairs going down, take them (Y/N)? | yes | [png](might-and-magic_dos_na_gameplay_stairs_prompt.png) [3x](3x/might-and-magic_dos_na_gameplay_stairs_prompt.png) |
 | dungeon_darkness | gameplay | Below Sorpigal without light: DARKNESS | yes | [png](might-and-magic_dos_na_gameplay_dungeon_darkness.png) [3x](3x/might-and-magic_dos_na_gameplay_dungeon_darkness.png) |
 | outdoors_first | gameplay | Outside Sorpigal: mountains and forest | yes | [png](might-and-magic_dos_na_gameplay_outdoors_first.png) [3x](3x/might-and-magic_dos_na_gameplay_outdoors_first.png) |
+| title_book_one | title | Title, second picture: New World Computing presents Book One - Secret of the Inner Sanctum | no | [png](might-and-magic_dos_na_title_title_book_one.png) [3x](3x/might-and-magic_dos_na_title_title_book_one.png) |
+| demo_stronghold | extra | Demo scene (SPACE on the title): discover a warrior's stronghold or a wizard's lair | no | [png](might-and-magic_dos_na_extra_demo_stronghold.png) [3x](3x/might-and-magic_dos_na_extra_demo_stronghold.png) |
+| demo_treasure | extra | Demo scene: an iron box opens, each share worth 38 gold, 10 gems found | no | [png](might-and-magic_dos_na_extra_demo_treasure.png) [3x](3x/might-and-magic_dos_na_extra_demo_treasure.png) |
+| ready_prompt | menu | After ESC on the title: are you ready? Then press Enter! | yes | [png](might-and-magic_dos_na_menu_ready_prompt.png) [3x](3x/might-and-magic_dos_na_menu_ready_prompt.png) |
+| roster_view_all | menu | View all characters: letter, name, town, level and class of the seven in the roster | yes | [png](might-and-magic_dos_na_menu_roster_view_all.png) [3x](3x/might-and-magic_dos_na_menu_roster_view_all.png) |
+| profile_menu | inventory | Profile opened from the roster: new Knight RYZ with a Club, Ctrl-N re-name, Ctrl-D delete | yes | [png](might-and-magic_dos_na_inventory_profile_menu.png) [3x](3x/might-and-magic_dos_na_inventory_profile_menu.png) |
+| rename_prompt | system | Re-naming a character: NAME prompt under CONDI's profile | yes | [png](might-and-magic_dos_na_system_rename_prompt.png) [3x](3x/might-and-magic_dos_na_system_rename_prompt.png) |
+| order_prompt | system | Order: re-order the party by typing the old positions in the new order | yes | [png](might-and-magic_dos_na_system_order_prompt.png) [3x](3x/might-and-magic_dos_na_system_order_prompt.png) |
+| cast_prompt | system | Casting from a profile: MNZ enters level 1, number 5 (Leather Skin), Enter to cast | yes | [png](might-and-magic_dos_na_system_cast_prompt.png) [3x](3x/might-and-magic_dos_na_system_cast_prompt.png) |
+| protect_active | system | Protect: spells currently active, Leather Skin | yes | [png](might-and-magic_dos_na_system_protect_active.png) [3x](3x/might-and-magic_dos_na_system_protect_active.png) |
+| location_spell | map | Location spell (Sorcerer 1-7): in town, map sector C-2, surface and inside coordinates, facing | yes | [png](might-and-magic_dos_na_map_location_spell.png) [3x](3x/might-and-magic_dos_na_map_location_spell.png) |
+| rest_prompt | system | Rest here (Y/N)? | yes | [png](might-and-magic_dos_na_system_rest_prompt.png) [3x](3x/might-and-magic_dos_na_system_rest_prompt.png) |
+| rest_complete | system | Rest complete: no encounters! | yes | [png](might-and-magic_dos_na_system_rest_complete.png) [3x](3x/might-and-magic_dos_na_system_rest_complete.png) |
+| encounter_bribe | battle | Encounter option Bribe: no response | yes | [png](might-and-magic_dos_na_battle_encounter_bribe.png) [3x](3x/might-and-magic_dos_na_battle_encounter_bribe.png) |
+| encounter_surrender | battle | Encounter option Surrender: the monsters don't take prisoners! | yes | [png](might-and-magic_dos_na_battle_encounter_surrender.png) [3x](3x/might-and-magic_dos_na_battle_encounter_surrender.png) |
+| combat_options | battle | Combat: options for MNZ the Sorcerer (Exchange, Retreat, Cast, Use, Block) | yes | [png](might-and-magic_dos_na_battle_combat_options.png) [3x](3x/might-and-magic_dos_na_battle_combat_options.png) |
+| combat_cast | battle | Combat: MNZ casts spell level 1, number 4 (Flame Arrow) | yes | [png](might-and-magic_dos_na_battle_combat_cast.png) [3x](3x/might-and-magic_dos_na_battle_combat_cast.png) |
+| combat_spell_hit | battle | MNZ casts a spell: Poltergeist takes 5 points of damage | yes | [png](might-and-magic_dos_na_battle_combat_spell_hit.png) [3x](3x/might-and-magic_dos_na_battle_combat_spell_hit.png) |
+| combat_shoot | battle | EBO shoots a Poltergeist with the sling: hit for 7 points, Poltergeist goes down | yes | [png](might-and-magic_dos_na_battle_combat_shoot.png) [3x](3x/might-and-magic_dos_na_battle_combat_shoot.png) |
+| combat_victory | battle | Victory: for defeating the monsters each survivor receives 100 experience points | yes | [png](might-and-magic_dos_na_battle_combat_victory.png) [3x](3x/might-and-magic_dos_na_battle_combat_victory.png) |
+| death_party_down | battle | A party at 1 hit point each: CUBI goes down, the last of the six | yes | [png](might-and-magic_dos_na_battle_death_party_down.png) [3x](3x/might-and-magic_dos_na_battle_death_party_down.png) |
+| gameover | gameover | The shadow of death has fallen upon your party: renew the quest from the last inn | yes | [png](might-and-magic_dos_na_gameover_gameover.png) [3x](3x/might-and-magic_dos_na_gameover_gameover.png) |
+| dungeon_lit | gameplay | Cavern below Sorpigal after MNZ cast Light: green rock walls, a portcullis and a door | yes | [png](might-and-magic_dos_na_gameplay_dungeon_lit.png) [3x](3x/might-and-magic_dos_na_gameplay_dungeon_lit.png) |
+| equip_prompt | inventory | RYZ's profile: equip which item A-F? | yes | [png](might-and-magic_dos_na_inventory_equip_prompt.png) [3x](3x/might-and-magic_dos_na_inventory_equip_prompt.png) |
+| share_prompt | system | Share all: gems, gold or food split evenly among the party | yes | [png](might-and-magic_dos_na_system_share_prompt.png) [3x](3x/might-and-magic_dos_na_system_share_prompt.png) |
+| search_nothing | system | Searching the room after the fight: nothing | yes | [png](might-and-magic_dos_na_system_search_nothing.png) [3x](3x/might-and-magic_dos_na_system_search_nothing.png) |
+| train_levelup | system | Congratulations! You are now level 2, you gained 11 hit points | yes | [png](might-and-magic_dos_na_system_train_levelup.png) [3x](3x/might-and-magic_dos_na_system_train_levelup.png) |
+| profile_level2 | inventory | RYZ after training: level 2, age 19, 26 hit points, 1808 gold left | yes | [png](might-and-magic_dos_na_inventory_profile_level2.png) [3x](3x/might-and-magic_dos_na_inventory_profile_level2.png) |
+| cave_courier | dialogue | Cavern below Sorpigal: an elderly man behind a desk needs a courier service | yes | [png](might-and-magic_dos_na_dialogue_cave_courier.png) [3x](3x/might-and-magic_dos_na_dialogue_cave_courier.png) |
+| cave_wall_message | gameplay | Cavern: scrawled on the wall, a message reads: the jail above has many cells | yes | [png](might-and-magic_dos_na_gameplay_cave_wall_message.png) [3x](3x/might-and-magic_dos_na_gameplay_cave_wall_message.png) |
+| cave_arena | dialogue | Cavern, the Arena: balconies filled with cheering peasants, will you participate? | yes | [png](might-and-magic_dos_na_dialogue_cave_arena.png) [3x](3x/might-and-magic_dos_na_dialogue_cave_arena.png) |
+| cave_portal | gameplay | Cavern: a shimmering blue and white portal appears, enter? | yes | [png](might-and-magic_dos_na_gameplay_cave_portal.png) [3x](3x/might-and-magic_dos_na_gameplay_cave_portal.png) |
+| cave_skeletons | battle | Cavern encounter: five Skeletons | yes | [png](might-and-magic_dos_na_battle_cave_skeletons.png) [3x](3x/might-and-magic_dos_na_battle_cave_skeletons.png) |
+| cave_fire_ants | battle | Cavern encounter: five Fire Ants | yes | [png](might-and-magic_dos_na_battle_cave_fire_ants.png) [3x](3x/might-and-magic_dos_na_battle_cave_fire_ants.png) |
+| cave_snakes | battle | Cavern encounter: ten Snakes | yes | [png](might-and-magic_dos_na_battle_cave_snakes.png) [3x](3x/might-and-magic_dos_na_battle_cave_snakes.png) |
+| portsmith_inn_sign | gameplay | Portsmith: a sign above the door reads Inn of Portsmith | yes | [png](might-and-magic_dos_na_gameplay_portsmith_inn_sign.png) [3x](3x/might-and-magic_dos_na_gameplay_portsmith_inn_sign.png) |
+| portsmith_inn | dialogue | Inn of Portsmith: Lara, the innkeeper's daughter, asks if you will be spending the night | yes | [png](might-and-magic_dos_na_dialogue_portsmith_inn.png) [3x](3x/might-and-magic_dos_na_dialogue_portsmith_inn.png) |
+| portsmith_blacksmith | dialogue | Portsmith, B. Smith's Workshop: a young girl forging a long sword | yes | [png](might-and-magic_dos_na_dialogue_portsmith_blacksmith.png) [3x](3x/might-and-magic_dos_na_dialogue_portsmith_blacksmith.png) |
+| portsmith_zam | dialogue | Portsmith: Zam, astral brother of Zom: you're not the couriers! | yes | [png](might-and-magic_dos_na_dialogue_portsmith_zam.png) [3x](3x/might-and-magic_dos_na_dialogue_portsmith_zam.png) |
+| portsmith_secret | dialogue | Portsmith: a sensuous female voice from an intoxicating mist; the men of the party are marked | yes | [png](might-and-magic_dos_na_dialogue_portsmith_secret.png) [3x](3x/might-and-magic_dos_na_dialogue_portsmith_secret.png) |
+| algary_inn | dialogue | The Inn of Algary: a tall bearded half-orc behind a large desk | yes | [png](might-and-magic_dos_na_dialogue_algary_inn.png) [3x](3x/might-and-magic_dos_na_dialogue_algary_inn.png) |
+| algary_mystic | dialogue | Algary: Morango the Mystic asks whom to measure | yes | [png](might-and-magic_dos_na_dialogue_algary_mystic.png) [3x](3x/might-and-magic_dos_na_dialogue_algary_mystic.png) |
+| algary_portal | gameplay | Algary: a magic portal, enter? | yes | [png](might-and-magic_dos_na_gameplay_algary_portal.png) [3x](3x/might-and-magic_dos_na_gameplay_algary_portal.png) |
+| dusk_inn | dialogue | The Inn of Dusk: an eerie silence, a ghostly apparition asks to sign in | yes | [png](might-and-magic_dos_na_dialogue_dusk_inn.png) [3x](3x/might-and-magic_dos_na_dialogue_dusk_inn.png) |
+| dusk_training | dialogue | Dusk, Clearman's Training: several empty suits of armor approach | yes | [png](might-and-magic_dos_na_dialogue_dusk_training.png) [3x](3x/might-and-magic_dos_na_dialogue_dusk_training.png) |
+| dusk_chest | system | Dusk: a gold chest: open it, find/remove trap, detect magic/trap | yes | [png](might-and-magic_dos_na_system_dusk_chest.png) [3x](3x/might-and-magic_dos_na_system_dusk_chest.png) |
+| dusk_vampires | battle | Dusk encounter: ten Vampires | yes | [png](might-and-magic_dos_na_battle_dusk_vampires.png) [3x](3x/might-and-magic_dos_na_battle_dusk_vampires.png) |
+| dusk_banshees | battle | Dusk encounter: ten Banshees | yes | [png](might-and-magic_dos_na_battle_dusk_banshees.png) [3x](3x/might-and-magic_dos_na_battle_dusk_banshees.png) |
+| portsmith_signed_in | save | Signed in at town 2: Inn of Portsmith, the six characters now lodge here | yes | [png](might-and-magic_dos_na_save_portsmith_signed_in.png) [3x](3x/might-and-magic_dos_na_save_portsmith_signed_in.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

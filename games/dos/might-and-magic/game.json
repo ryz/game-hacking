@@ -40,7 +40,11 @@
     "FW": "poke:15E6D=030CC030FFF01001",
     "QA": "ctrl>a,w200",
     "JOIN": "1,w150,ctrl>g,ctrl>b,ctrl>c,ctrl>d,ctrl>e,ctrl>f,w30,x,w150",
-    "WARP": "poke:11017={0},poke:1101C={1},poke:1101E={2},poke:11020={3},poke:11023={4},AT:0C:00:0C,FW,left,w250,y,w400"
+    "WARP": "poke:11017={0},poke:1101C={1},poke:1101E={2},poke:11020={3},poke:11023={4},AT:0C:00:0C,FW,left,w250,y,w400",
+    "BLK": "b,w150",
+    "LOWHP": "set:1685F=1:2,set:168DE=1:2,set:1695D=1:2,set:169DC=1:2,set:16A5B=1:2,set:16ADA=1:2",
+    "CAST": "{0},w100,c,w100,{1},w100,{2},w100,enter,w200",
+    "FLAME": "a,w200,w100,c,w100,1,w100,4,w100,a"
   },
   "ram": {
     "x": {
