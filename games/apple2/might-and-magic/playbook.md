@@ -22,7 +22,7 @@ order; `game.json` "header" lists their SHA-1s. Owner's uploads 2026-11-18 (TOSE
 | 1 | Disk A (boot) | `Disk 1 (cracked).nib` | `...[cr](Disk 1 of 4)[nib]` | boot, title, demo scenes |
 | 2 | Disk B | `Disk 2.dsk` | `...[b](Disk 2 of 4)` | options menu, roster (the save), the five towns, the cavern below Sorpigal |
 | 3 | Disk C | `Disk 3.dsk` | `...[b](Disk 3 of 4)` | the wilderness (verified: outside Sorpigal) |
-| 4 | Disk D | `Disk 4.dsk` | `...[b](Disk 4 of 4)` | castles, deeper dungeons, Astral Plane (read from the text on the image; **not played yet**) |
+| 4 | Disk D | `Disk 4.dsk` | `...[b](Disk 4 of 4)` | castles, dungeons and the Astral Plane (verified: every section-3 area loads from it) |
 - **verified** The uploaded `[b](Disk 1 of 4).dsk` (SHA-1 1559b116...) does not work: it shows the first title
   picture and then re-reads track $0E, sectors $0C-$0F, forever (watched for 3 minutes of game time; no key
   helps). The `[cr]` nibble image of the same side boots, so that one is disk 1. It opens with a crack screen
@@ -94,11 +94,36 @@ Checkpoints `roster` (roster view after the wipe and creation), `party` (Sorpiga
   `a` attack, `b` bribe, `r` retreat, `s` surrender. Each of them led into combat on this route. Combat screen:
   round number, monsters A-F (`+` = in melee), party positions, handicap, then "OPTIONS FOR: name" (`a` attack,
   `f` fight, `e` exchange, `r` retreat, `u` use, `b` block; casters also `c` cast; `d` delay, `p` protect).
-- **open** Combat stops at CUBI's turn (fourth member): `a`, and `ctrl+a` repeated 80 times, did not move on,
-  while RYZ, CONDI and EBO took `a`. Not understood; no fight has been finished on this version yet.
+- ~~Combat stops at CUBI's turn~~ **verified**: it was the turn of the back rank. Only members marked `+` (in
+  melee) are offered `a` attack; the others must `b` block (or cast, use, exchange). A fight runs to its end
+  with "attack where offered, else block". `ctrl+a` is not a quick-fight key here.
+- **verified** Winning: "FOR DEFEATING THE MONSTERS EACH SURVIVOR RECEIVES n EXPERIENCE POINTS" (shot
+  `battle_won`). Monsters often run away from a level 20 party, and the fixed fight's monsters depend on the
+  party (Battle Rats for level 1, Slither Beasts and Mutant Larvae for the strengthened one).
+- **verified** Losing: "name GOES DOWN!!!", then "THE SHADOW OF DEATH HAS FALLEN UPON YOUR PARTY! ... RENEW YOUR
+  QUEST FROM THE LAST INN IN WHICH YOU STAYED BY PRESSING 'RETURN'" (shot `gameover`: `@party,LOWHP`, the fight,
+  everyone blocks).
 - **verified** Title: `space` shows "Book One - Secret of the Inner Sanctum" for a few seconds, then demo scenes
   on each `space`: inn door, cavern, two text pages, a treasure chest, then the first title picture again.
 - **verified** Wilderness: "IMPASSABLE" over mountains that block the way.
+
+## Shortcuts for cataloguing (tour 2026-11-18)
+| What | How | Status |
+|---|---|---|
+| Character records | main memory store `2C000 + 80*n` (language card RAM, not mapped while the game waits for a key: use the `2xxxx` addresses). Layout as in the DOS notes: name 0-0F, statistics 15-22 (current/maximum pairs: INT MGT PER END SPD ACY LUC), level 23-24, age 25, experience 27 (4 bytes), spell points 2B and 2D, spell level 2F-30, gems 31, hit points 33/35/37, gold 39 (3 bytes), food 3E, equipped 40-45, backpack 46-4B, quest marks 7D | verified |
+| Strong party | `POWER`: statistics 40, level 20, 900 hit points, 300 spell points, spell level 7, 50 gems, 20,000 gold, 40 food for all six. `EQUIP:n` equips backpack item A. Checkpoint `strong` = `@party,POWER`, clubs equipped | verified |
+| Gold, experience | `set:2C039=5000:3`, `set:2C027=1600:4` (RYZ; next member +80) | verified |
+| Light | `LIGHT` = MNZ casts sorcerer spell 1-6 (`CAST:member:level:number`); cast it before a warp into a cavern, castle or dungeon | verified |
+| Change area | `WARP:lo:hi:ss` from anywhere in Sorpigal: rewrites the map id and section of Sorpigal's "passage outside" event (code at `A719`: `LDA #10, STA 80, STA 81, LDA #lo, LDX #hi, LDY #sec, JMP 0878`) and takes it. Ids and sections are those of the DOS port's area table (all 54 tried). Arrival square is (10,10); `poke:A71A=nn` before the warp arrives at (nn,nn) instead. Then `DISK:n` if the game asks | verified |
+| Disk after a warp | section 1 (towns, caverns): none, they are on disk B; section 2 (wilderness A1-E4): `DISK:3`; section 3 (castles, dungeons, Astral Plane): `DISK:4` | verified |
+| 1 hit point each | `LOWHP` | verified |
+| Ending | `WORTHY` (quest marks: record +7D = 5F for all), `LIGHT`, `poke:A71A=06,WARP:1A:0B:03,DISK:4`, `AT:06:07:76,FN,left,w500`: the man in the white coat; `space`: the Inner Sanctum text with the performance total and 500,000 experience; `space`: "INSERT DISK B", back to Sorpigal. Without `WORTHY`: "YOU ARE NOT YET WORTHY FOR TRANSFER. RETURN AFTER DEFEATING THE IMPOSTER." | verified |
+- Astral Plane: arriving on (10,10) sends the party back to Sorpigal at once (the game asks for disk D, then B).
+- Seen on arrival by warp: encounters with a monster picture (CAVE4: Demon Dogs, Wolverines, Fire Beetles; D3:
+  Minor Demons, Killer Bees, a 5 Headed Hydra, Dung Beetles), "A GLOWING POLYHEDRON IS SET ON SIDE 11" (CAVE8),
+  "IT'S HOT!" in the desert sectors, "ECTOPLASMIC SLIME SLUSHES BENEATH YOU!" (E4).
+- Services used in Sorpigal: training costs 3000 gold at level 20; a drink 1 gold; rumor "ALL PORTALS ARE
+  CONNECTED!"; the leprechaun takes 1 gem and puts the party in the chosen town.
 
 ## Controls
 The screen lists its keys. Verified so far: arrows `up`/`down` step forward/back, `left`/`right` turn (also

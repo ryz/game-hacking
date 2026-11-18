@@ -807,6 +807,12 @@ def test_apple2_backend(a2_selftest, tmp_path):
         e.poke(0xF800, b"\x00")                                          # ROM
     e.poke(0x10300, b"\x77")                                             # auxiliary memory
     assert e.peek(0x10300, 1) == b"\x77" and e.peek(0x300, 1, bank=1) == b"\x77" and e.peek(0x300, 1) == b"\x5a"
+    e.poke(0x2C010, b"\x42")                                             # language card RAM behind the ROM
+    assert e.peek(0x2C010, 1) == b"\x42" and e.peek(0xD010, 1) != b"\x42" and e.peek(0x20300, 2) == b"\x5a\xa5"
+    e.poke(0x20301, b"\x11")                                             # main store, page mapped right now
+    assert e.peek(0x300, 2) == b"\x5a\x11"
+    e.frames(2)
+    assert e.peek(0x300, 2) == b"\x5a\x11" and e.peek(0x2C010, 1) == b"\x42"
     e.load_state(st)
     assert e.screen() == typed and e.peek(0x300, 2) != b"\x5a\xa5"
     assert e.ram_search("new == old")["count"] == 0xC000

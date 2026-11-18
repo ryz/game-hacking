@@ -56,3 +56,79 @@ battle_options | battle | Combat round 1 after an offered bribe: RYZ's options |
 battle_r2 | battle | Combat round 1: a battle rat is wounded; DEDDO the cleric's options include Cast | @party,AT:03:06:63,FN,left,w400,b,w400,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,settle
 wild_walk | gameplay | Wilderness: further from Sorpigal | @party,OUTSIDE,up,w100*8,settle
 wild_walk2 | gameplay | Wilderness: mountains block the way (IMPASSABLE) | @party,OUTSIDE,up,w100*3,left,w100,up,w100*6,settle
+area01_portsmith | gameplay | Area 1: Portsmith (arrival by warp at square 10,10) | @strong,LIGHT,WARP:03:0C:01,left,w150,left,w150,settle
+area02_algary | gameplay | Area 2: Algary (arrival by warp at square 10,10) | @strong,LIGHT,WARP:03:02:01,left,w150,left,w150,settle
+area03_dusk | gameplay | Area 3: Dusk (arrival by warp at square 10,10) | @strong,LIGHT,WARP:02:08:01,left,w150,settle
+area04_erliquin | gameplay | Area 4: Erliquin (arrival by warp at square 10,10) | @strong,LIGHT,WARP:1A:0B:01,left,w150,left,w150,left,w150,left,w150,settle
+area05_cave1 | gameplay | Area 5: CAVE1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:11:0A:01,left,w150,left,w150,settle
+area06_cave2 | gameplay | Area 6: CAVE2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:01:00:01,left,w150,left,w150,left,w150,left,w150,settle
+area07_cave3 | gameplay | Area 7: CAVE3 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:01:0C:01,left,w150,settle
+area08_cave4 | gameplay | Area 8: CAVE4 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:02:02:01,left,w150,left,w150,settle
+area09_cave5 | gameplay | Area 9: CAVE5 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:05:00:01,left,w150,left,w150,settle
+area10_cave6 | gameplay | Area 10: CAVE6 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:1B:05:01,left,w150,left,w150,settle
+area11_cave7 | gameplay | Area 11: CAVE7 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:12:02:01,left,w150,left,w150,left,w150,settle
+area12_cave8 | gameplay | Area 12: CAVE8 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:01:06:01,left,w150,left,w150,settle
+area13_cave9 | gameplay | Area 13: CAVE9 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:00:0A:01,left,w150,left,w150,settle
+area14_a1 | gameplay | Area 14: A1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:01:0F:02,DISK:3,left,w150,left,w150,left,w150,settle
+area15_a2 | gameplay | Area 15: A2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:02:05:02,DISK:3,left,w150,left,w150,left,w150,left,w150,settle
+area16_a3 | gameplay | Area 16: A3 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:02:0B:02,DISK:3,left,w150,settle
+area17_a4 | gameplay | Area 17: A4 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:03:01:02,DISK:3,left,w150,settle
+area18_b1 | gameplay | Area 18: B1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:00:0A:02,DISK:3,left,w150,left,w150,left,w150,left,w150,settle
+area19_b2 | gameplay | Area 19: B2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:03:07:02,DISK:3,left,w150,left,w150,left,w150,settle
+area20_b3 | gameplay | Area 20: B3 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:01:01:02,DISK:3,left,w150,settle
+area21_b4 | gameplay | Area 21: B4 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:03:0D:02,DISK:3,left,w150,settle
+area22_c1 | gameplay | Area 22: C1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:04:03:02,DISK:3,left,w150,left,w150,settle
+area23_c2 | gameplay | Area 23: C2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:11:0A:02,DISK:3,left,w150,left,w150,settle
+area24_c3 | gameplay | Area 24: C3 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:04:09:02,DISK:3,left,w150,left,w150,left,w150,left,w150,settle
+area25_c4 | gameplay | Area 25: C4 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:04:0F:02,DISK:3,left,w150,settle
+area26_d1 | gameplay | Area 26: D1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:05:05:02,DISK:3,left,w150,settle
+area27_d2 | gameplay | Area 27: D2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:05:0B:02,DISK:3,left,w150,left,w150,left,w150,left,w150,settle
+area28_d3 | gameplay | Area 28: D3 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:06:01:02,DISK:3,left,w150,left,w150,left,w150,settle
+area29_d4 | gameplay | Area 29: D4 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:01:08:02,DISK:3,left,w150,settle
+area30_e1 | gameplay | Area 30: E1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:12:01:02,DISK:3,left,w150,left,w150,settle
+area31_e2 | gameplay | Area 31: E2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:06:07:02,DISK:3,left,w150,left,w150,left,w150,settle
+area32_e3 | gameplay | Area 32: E3 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:1A:0B:02,DISK:3,left,w150,settle
+area33_e4 | gameplay | Area 33: E4 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:1B:01:02,DISK:3,left,w150,settle
+area34_doom | gameplay | Area 34: Doom (arrival by warp at square 10,10) | @strong,LIGHT,WARP:06:07:03,DISK:4,left,w150,settle
+area35_blackridgen | gameplay | Area 35: BlackridgeN (arrival by warp at square 10,10) | @strong,LIGHT,WARP:08:0F:03,DISK:4,left,w150,left,w150,settle
+area36_blackridges | gameplay | Area 36: BlackridgeS (arrival by warp at square 10,10) | @strong,LIGHT,WARP:08:05:03,DISK:4,left,w150,left,w150,left,w150,left,w150,settle
+area37_qvl1 | gameplay | Area 37: QVL1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:03:0F:03,DISK:4,left,w150,left,w150,settle
+area38_qvl2 | gameplay | Area 38: QVL2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:03:07:03,DISK:4,left,w150,left,w150,settle
+area39_rwl1 | gameplay | Area 39: RWL1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:02:0F:03,DISK:4,left,w150,left,w150,left,w150,left,w150,settle
+area40_rwl2 | gameplay | Area 40: RWL2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:02:07:03,DISK:4,left,w150,left,w150,left,w150,settle
+area41_enf1 | gameplay | Area 41: ENF1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:04:0F:03,DISK:4,left,w150,left,w150,left,w150,left,w150,settle
+area42_enf2 | gameplay | Area 42: ENF2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:04:07:03,DISK:4,left,w150,left,w150,left,w150,left,w150,settle
+area43_whitewolf | gameplay | Area 43: WhiteWolf (arrival by warp at square 10,10) | @strong,LIGHT,WARP:11:0A:03,DISK:4,left,w150,left,w150,left,w150,settle
+area44_dragadune | gameplay | Area 44: Dragadune (arrival by warp at square 10,10) | @strong,LIGHT,WARP:07:01:03,DISK:4,left,w150,left,w150,left,w150,left,w150,settle
+area45_udrag1 | gameplay | Area 45: UDRAG1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:05:0F:03,DISK:4,left,w150,left,w150,settle
+area46_udrag2 | gameplay | Area 46: UDRAG2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:00:0A:03,DISK:4,left,w150,settle
+area47_udrag3 | gameplay | Area 47: UDRAG3 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:05:07:03,DISK:4,left,w150,left,w150,left,w150,left,w150,settle
+area48_demon | gameplay | Area 48: DEMON (arrival by warp at square 10,10) | @strong,LIGHT,WARP:12:04:03,DISK:4,left,w150,left,w150,settle
+area49_alamar | gameplay | Area 49: Alamar (arrival by warp at square 10,10) | @strong,LIGHT,WARP:07:0B:03,DISK:4,left,w150,left,w150,left,w150,settle
+area50_pp1 | gameplay | Area 50: PP1 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:01:0F:03,DISK:4,left,w150,left,w150,settle
+area51_pp2 | gameplay | Area 51: PP2 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:01:07:03,DISK:4,left,w150,left,w150,left,w150,left,w150,settle
+area52_pp3 | gameplay | Area 52: PP3 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:00:0E:03,DISK:4,left,w150,left,w150,left,w150,left,w150,settle
+area53_pp4 | gameplay | Area 53: PP4 (arrival by warp at square 10,10) | @strong,LIGHT,WARP:01:02:03,DISK:4,left,w150,settle
+area54_astral | gameplay | Area 54: the Astral Plane (arrival by warp at square 6,6; square 10,10 sends the party back to Sorpigal) | @strong,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,left,w150,settle
+astral_end1 | ending | Astral Plane (6,7): a metallic panel slides open, revealing a mysterious man in a white coat | @strong,WORTHY,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,AT:06:07:76,FN,left,w500,settle
+astral_end2 | ending | Ending: the Inner Sanctum. The Data Keeper's speech, the party's performance total and 500,000 experience | @strong,WORTHY,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,AT:06:07:76,FN,left,w500,space,w500,settle
+astral_end3 | ending | After the ending: back to the Inn of Sorpigal, the game asks for disk B | @strong,WORTHY,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,AT:06:07:76,FN,left,w500,space,w500,space,w500,settle
+astral_unworthy | dialogue | Inner Sanctum without the marks of a finished quest: what the Data Keeper says | @strong,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,AT:06:07:76,FN,left,w500,space,w500,settle
+ending_inn | ending | After the ending and disk B: the party is back in Sorpigal | @strong,WORTHY,LIGHT,poke:A71A=06,WARP:1A:0B:03,DISK:4,AT:06:07:76,FN,left,w500,space,w500,space,w500,DISK:2,w300,settle
+train_cost | shop | Training: enough experience, the cost of level 21 | @strong,set:2C027=9000000:4,AT:0D:0B:BD,FE,left,w300,y,w300,settle
+train_done | system | Training done: RYZ is level 21, the next level is offered | @strong,set:2C027=9000000:4,AT:0D:0B:BD,FE,left,w300,y,w300,a,w400,settle
+tavern_drink | shop | Tavern: having a drink | @strong,AT:0B:0E:EB,FS,left,w300,y,w300,a,w300,settle
+tavern_tip | shop | Tavern: tipping the bartender | @strong,AT:0B:0E:EB,FS,left,w300,y,w300,b,w300,settle
+tavern_rumor | dialogue | Tavern rumor: ALL PORTALS ARE CONNECTED! | @strong,AT:0B:0E:EB,FS,left,w300,y,w300,c,w300,settle
+temple_donate | shop | Temple: making a donation | @strong,AT:04:01:14,FE,left,w300,y,w300,d,w300,settle
+market_paid | shop | Market: the meal is paid | @strong,AT:0A:05:5A,FS,left,w300,y,w300,y,w400,settle
+smith_bought | shop | Blacksmith: a short sword bought | @strong,AT:06:05:56,FN,left,w300,y,w300,a,w300,c,w300,settle
+smith_sell | shop | Blacksmith: selling an item | @strong,AT:06:05:56,FN,left,w300,y,w300,d,w300,settle
+sheet_strong | system | RYZ after the POWER shortcut: statistics 40, level 20, club equipped | @strong,1,w200,settle
+lep_travel | dialogue | Leprechaun: town 2 chosen for one gem | @strong,AT:0B:03:3B,FN,left,w300,2,w700,settle
+spell_cast | system | MNZ casts Light: the cast prompt filled in | @strong,6,w200,c,w200,1,w150,6,w150,settle
+cave1_light | gameplay | Cavern below Sorpigal with Light cast | @strong,LIGHT,AT:0E:00:0E,FN,left,w300,y,w700,settle
+battle_meet | battle | Fixed encounter in Sorpigal met by the strengthened party | @strong,AT:03:06:63,FN,left,w400,settle
+battle_hit | battle | Combat: a message from the first rounds | @strong,AT:03:06:63,FN,left,w400,settle,a,w400,settle,a,w250,settle,a,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,w150,settle,w150,settle,w150,settle,w150,settle,w150,settle,a,w250,settle
+battle_won | battle | Victory: each survivor receives experience points | @strong,AT:03:06:63,FN,left,w400,settle,a,w400,settle,a,w250,settle,a,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,b,w250,settle,w150,settle,w150,settle,w150,settle,w150,settle,w150,settle,a,w250,settle,settle
+gameover | gameover | The whole party is down: the shadow of death, renew the quest from the last inn | @party,LOWHP,AT:03:06:63,FN,left,w400,a,w400,settle,w150,settle,w150,settle,w150,settle,w150,settle,w150,settle,b,w250,settle,w200,settle,w200,settle,w200,settle

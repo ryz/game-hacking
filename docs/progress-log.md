@@ -43,6 +43,20 @@ Append-only, newest first.
 - Not done: no shot tags in shots.txt or the index (the documents are the mapping); existing games have no
   systems.md/interface.md yet. Might and Magic 1 (DOS) round 2 is running and writes the first pair.
 
+## 2026-11-18 - Might and Magic 1 (Apple II): full tour, 134 shots to the ending
+- Owner's request: a full tour. Solved first: combat (the back rank must block, attack is only offered in
+  melee), the character records (language card RAM), an area warp (Sorpigal's exit event at A719 carries the
+  same map ids and sections as the DOS port's table) and the ending square on the Astral Plane.
+- Emulator: memory range `20000-2FFFF` = the main 64K as stored, for RAM that is not mapped while the game
+  waits (`retro_gamedb_poke_main` in `tools/applewin-debug.patch`, backend, test, `docs/emulator/apple2.md`).
+- Set `main`: +76 shots = one view of each of the other 54 areas (best of four facings chosen by a script),
+  services in use, level-up, leprechaun travel, a won fight, game over, the Inner Sanctum ending and what an
+  unworthy party is told. 134/134 reproduce from an empty cache; published. Side 4 is confirmed (all
+  section-3 areas load from it).
+- Macros POWER, EQUIP, CAST, LIGHT, WARP, DISK, WORTHY, LOWHP; checkpoint `strong`.
+- Not done: a scout pass (manual, FAQ), maps, treasure and spell screens in combat, the towns' own services,
+  design reference; area shots are arrival views, not chosen landmarks.
+
 ## 2026-11-18 - Might and Magic 1 (Apple II): set `main` grown to 58 shots
 - Owner's request: more shots. From `@party`, `@menu` and `@title` with the `AT` move macro and the DOS port's
   table of Sorpigal's event squares (it matched square for square): blacksmith with its three price lists,
