@@ -1,0 +1,131 @@
+{
+ "game": {
+  "slug": "might-and-magic",
+  "title": "Might and Magic Book One: The Secret of the Inner Sanctum",
+  "platform": "apple2",
+  "region": "na",
+  "model": "iie",
+  "sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
+  "crc32": "30320933"
+ },
+ "set": "main",
+ "shots": [
+  {
+   "id": "sheet_ryz",
+   "category": "system",
+   "caption": "Character sheet of RYZ, a new level 1 knight: no gold, 10 food, a club in the backpack",
+   "route": "@party,1,w200,settle",
+   "settled": true,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic_apple2_na_system_sheet_ryz.png",
+   "file_3x": "3x/might-and-magic_apple2_na_system_sheet_ryz.png",
+   "rom_sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "sorpigal_start",
+   "category": "gameplay",
+   "caption": "First control in Sorpigal with the new party",
+   "route": "@party,1,w200,settle,esc,w100,settle",
+   "settled": true,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic_apple2_na_gameplay_sorpigal_start.png",
+   "file_3x": "3x/might-and-magic_apple2_na_gameplay_sorpigal_start.png",
+   "rom_sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "inn_sign_in",
+   "category": "save",
+   "caption": "The Inn of Sorpigal asks to sign in: the game's only way to save",
+   "route": "@party,1,w200,settle,esc,w100,settle,down,left,left,up,up,w100,settle",
+   "settled": true,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic_apple2_na_save_inn_sign_in.png",
+   "file_3x": "3x/might-and-magic_apple2_na_save_inn_sign_in.png",
+   "rom_sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "inn_list",
+   "category": "menu",
+   "caption": "Inn of Sorpigal after signing in: the six party members marked",
+   "route": "@party,1,w200,settle,esc,w100,settle,down,left,left,up,up,w100,settle,y,w500,settle",
+   "settled": true,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic_apple2_na_menu_inn_list.png",
+   "file_3x": "3x/might-and-magic_apple2_na_menu_inn_list.png",
+   "rom_sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "wilderness",
+   "category": "gameplay",
+   "caption": "Wilderness outside Sorpigal, loaded from disk side C",
+   "route": "@party,OUTSIDE,settle",
+   "settled": true,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic_apple2_na_gameplay_wilderness.png",
+   "file_3x": "3x/might-and-magic_apple2_na_gameplay_wilderness.png",
+   "rom_sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "insert_disk_c",
+   "category": "system",
+   "caption": "Leaving Sorpigal: the game asks for disk C",
+   "route": "@party,AT:0C:00:0C,FW,left,w300,y,w900,settle",
+   "settled": true,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic_apple2_na_system_insert_disk_c.png",
+   "file_3x": "3x/might-and-magic_apple2_na_system_insert_disk_c.png",
+   "rom_sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "title",
+   "category": "title",
+   "caption": "Title picture: New World Computing presents Might and Magic (ESC starts the game, SPACE shows the second title picture and demo scenes)",
+   "route": "@title,w10,settle",
+   "settled": false,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic_apple2_na_title_title.png",
+   "file_3x": "3x/might-and-magic_apple2_na_title_title.png",
+   "rom_sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "options_menu",
+   "category": "menu",
+   "caption": "Options menu: create characters, view all characters, go to town",
+   "route": "@menu,w10,settle",
+   "settled": true,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic_apple2_na_menu_options_menu.png",
+   "file_3x": "3x/might-and-magic_apple2_na_menu_options_menu.png",
+   "rom_sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "roster",
+   "category": "menu",
+   "caption": "View all characters: the new roster",
+   "route": "@roster,w10,settle",
+   "settled": true,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic_apple2_na_menu_roster.png",
+   "file_3x": "3x/might-and-magic_apple2_na_menu_roster.png",
+   "rom_sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
+   "captured": "2026-11-18"
+  }
+ ]
+}

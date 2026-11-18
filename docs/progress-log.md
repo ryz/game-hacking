@@ -2,6 +2,17 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic 1 (Apple II): new party, first shot set
+- Owner's request: wipe the party, make a new one, do the shot roundtrip. From `@menu`: the six inherited
+  characters deleted (view all, A, Ctrl-D, Y, six times), six created with re-rolls until the wanted class was
+  offered: RYZ knight, CONDI paladin, EBO archer, CUBI robber, DEDDO cleric, MNZ sorcerer. Checkpoints `roster`,
+  `party`, `signed_in`; save `02_ryz_party` kept in `rom/saves/` (a whole disk side, not committed).
+- Roundtrip: 9 shots snapped (title, options menu, roster, character sheet, Sorpigal, inn sign-in, inn list,
+  "INSERT DISK C", wilderness), `shoot.py --verify` 9/9 from an empty cache (the route replays the wipe, the
+  creation with its re-rolls and both disk changes) and 9/9 from the cache, published to
+  `games/apple2/might-and-magic/shots/main/`.
+- Corrected in the playbook: the title picture waits for a key; the "ESC to start" screen comes after Space.
+
 ## 2026-11-18 - Might and Magic 1 (Apple II) runs across its disk sides
 - Owner uploaded five ZIPs: sides 1-4 as `.dsk` (TOSEC `[b]`) and a cracked side 1 as `.nib`. Registered as
   `games/apple2/might-and-magic/` with the `.nib` as disk 1 and the `.dsk` sides 2-4 (region na). The `[b]`

@@ -36,9 +36,11 @@ order; `game.json` "header" lists their SHA-1s. Owner's uploads 2026-11-18 (TOSE
 ## Boot sequence
 Macros (`game.json`): `TITLE`, `MENU`, `TOWN:n`, `AT:xx:yy:oo` + `FN FE FS FW`, `OUTSIDE`. Checkpoints `title`,
 `menu`, `sorpigal`, `outdoors`, `after_save`.
-- **verified** Power-on: crack screen after about 5 s; any key (`space`) continues to the animated title, which
-  ends on "'ESC' TO START GAME / 'SPACE' FOR SCENES" about 25 s later. `TITLE` = `w600,space,w1800`.
-  Space there steps through demo pictures that look like gameplay.
+- **verified** Power-on: crack screen after about 5 s; any key (`space`) continues to the title picture ("New
+  World Computing, Inc. presents Might and Magic"), which stays until a key. `TITLE` = `w600,space,w1800`.
+  `esc` there starts the game; `space` shows the second picture ("Book One - Secret of the Inner Sanctum",
+  "'ESC' TO START GAME / 'SPACE' FOR SCENES") and then demo pictures that look like gameplay.
+  ~~The title ends on the "ESC to start" screen by itself after 25 s~~: it does not, that screen needs `space`.
 - **verified** `esc` -> "INSERT DISK B": `MENU` = `TITLE,esc,w300,disk:2,enter,w1200` -> options menu
   (`C` create new characters, `V` view all characters, `#` go to town 1-5).
 - **verified** Town number -> the inn's list; `ctrl+a`..`ctrl+f` add or remove a character (`@` marks members,
@@ -52,6 +54,26 @@ Macros (`game.json`): `TITLE`, `MENU`, `TOWN:n`, `AT:xx:yy:oo` + `FN FE FS FW`, 
   is game data: keep such saves in `rom/saves/might-and-magic/` (uncommitted), not in `saves/`.
   `sav:01_signed_in` powers on with it (made 2026-11-18: gold 48 -> 43, food 5 -> 40 on Murkler's sheet).
 - Returning to a town from the wilderness will ask for disk B again (not tried).
+
+## The party (2026-11-18, owner's request: wipe the inherited roster, make a new one)
+Checkpoints `roster` (roster view after the wipe and creation), `party` (Sorpigal, first control), `signed_in`
+(inn list after saving). Save `rom/saves/might-and-magic/02_ryz_party.sav` (uncommitted): `sav:02_ryz_party`.
+- **verified** Delete: options menu `v`, then per character `a,w300,ctrl+d,w200,y,w400` ("ARE YOU SURE (Y/N)?");
+  the list closes up, so deleting A six times empties the roster ("NO AVAILABLE CHARACTERS"). `ctrl+n` on the
+  same profile re-names.
+- **verified** Create: options menu `c`. The screen (40-column text, readable at `0400`) shows seven rolled
+  statistics and the classes they allow (1 Knight, 2 Paladin, 3 Archer, 4 Cleric, 5 Sorcerer, 6 Robber);
+  `enter` re-rolls. Then class digit, race `1`-`5` (Human, Elf, Dwarf, Gnome, Half-Orc), alignment `1`-`3`
+  (Good, Neut, Evil), sex `1`-`2`, `type:NAME,enter`, "SAVE CHARACTER (Y/N)?" `y` (written to disk B at once),
+  and the next roll appears; `esc` goes back to the menu.
+- **verified** The party made here, in roster order (re-rolls needed on this route in brackets): RYZ human
+  knight (1), CONDI dwarf paladin (4), EBO half-orc archer (17), CUBI gnome robber (0), DEDDO human cleric (0),
+  MNZ elf sorcerer (7); all good, male. A new character: level 1, age 18, no gold, 10 food, a Club in the
+  backpack (RYZ: INT 9 MGT 12 PER 13 END 16 SPD 11 ACY 10 LUC 8, HP 14).
+- The rolls follow frame timing: the route in `checkpoints.txt` (`roster`) is the record; any change before a
+  roll changes the statistics. Unlike the DOS port's notes, a checkpoint built on the creation route reloads
+  cleanly here (9 shots verified from an empty cache and from the cache).
+- `sorpigal`, `outdoors`, `after_save` still use the six characters found on the disk (the dump is unchanged).
 
 ## Controls
 The screen lists its keys. Verified so far: arrows `up`/`down` step forward/back, `left`/`right` turn (also

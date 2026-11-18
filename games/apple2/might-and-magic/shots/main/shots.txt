@@ -1,0 +1,9 @@
+sheet_ryz | system | Character sheet of RYZ, a new level 1 knight: no gold, 10 food, a club in the backpack | @party,1,w200,settle
+sorpigal_start | gameplay | First control in Sorpigal with the new party | @party,1,w200,settle,esc,w100,settle
+inn_sign_in | save | The Inn of Sorpigal asks to sign in: the game's only way to save | @party,1,w200,settle,esc,w100,settle,down,left,left,up,up,w100,settle
+inn_list | menu | Inn of Sorpigal after signing in: the six party members marked | @party,1,w200,settle,esc,w100,settle,down,left,left,up,up,w100,settle,y,w500,settle
+wilderness | gameplay | Wilderness outside Sorpigal, loaded from disk side C | @party,OUTSIDE,settle
+insert_disk_c | system | Leaving Sorpigal: the game asks for disk C | @party,AT:0C:00:0C,FW,left,w300,y,w900,settle
+title | title | Title picture: New World Computing presents Might and Magic (ESC starts the game, SPACE shows the second title picture and demo scenes) | @title,w10,settle
+options_menu | menu | Options menu: create characters, view all characters, go to town | @menu,w10,settle
+roster | menu | View all characters: the new roster | @roster,w10,settle
