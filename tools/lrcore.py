@@ -85,6 +85,7 @@ class Core:
         if private or so in _in_use:            # second instance: private copy of the library
             d = tempfile.mkdtemp(prefix="lrcore")
             _copies.append(d)
+            self._private_dir = d
             path = shutil.copy(so, d)
             self._shared = False
         else:
@@ -273,6 +274,19 @@ class Core:
         self.L.retro_deinit()
         if self._shared:
             _in_use.discard(self.so)
+        else:
+            # A private copy is never used again: unload it and delete the file. Without this every game
+            # opened kept its whole machine in memory (DOSBox Pure: about 40 MB each; a 250-shot verify was
+            # killed for lack of memory, 2026-11-18).
+            import _ctypes
+            handle = self.L._handle
+            try:
+                _ctypes.dlclose(handle)
+            except OSError:
+                pass
+            shutil.rmtree(self._private_dir, ignore_errors=True)
+            if self._private_dir in _copies:
+                _copies.remove(self._private_dir)
 
     def close(self):
         if self.open:

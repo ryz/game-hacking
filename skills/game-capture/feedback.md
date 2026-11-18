@@ -9,6 +9,30 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Might and Magic Book One (DOS) round 2
+- Task: round 2 of set `main`: 137 shots added (mechanics, battles, environments, level-7 spells), the first
+  three lens documents (systems, interface, content), 250/250 verified in two halves.
+- Worked: an in-process survey of all 55 areas that reads the encounter list from memory (text instead of 55
+  sheets to read); a parallel tester that tiles the last K frames of many candidate routes, with a crop for the
+  combat message lines; generating the shot list from a script with anchors so new shots land in game order;
+  setting the level and asking the trainer to confirm the experience value.
+- Friction: a full `--verify` of 250 DOS shots was killed for lack of memory; `unsnap` needs a session; an
+  off-by-one in the agent's own frame tester cost a reshoot of ten fights; the first survey read half of the
+  monster number; a 400-line debug print wasted context; the contact sheet at 250 shots cannot be read as one
+  image.
+- Proposed rule change: (1) `shoot.py --verify` should free the emulator per shot or chunk itself; (2)
+  `shoot.py` should drop the old file when a shot's id or category changes; (3) contact sheets over ~100 shots
+  in pages; (4) promote a per-game survey (event squares + memory read of the encounter) into the skill for
+  first-person RPGs.
+- Corrected: (1) was a leak in `tools/lrcore.py`, not in shoot.py: a private copy of the core stayed loaded
+  after close, about 40 MB per machine opened (measured 1232 MB after 30 opens, 120 MB after the fix). Fixed
+  by the coordinator; the full verify in one run is in the progress log. The agent found that the scout's party
+  record spacing was wrong (0x80, not 0x7F), so round 1's LOWHP and WORTHY macros hit a neighbouring byte for
+  members 2-6; the macros were left as they are so round-1 routes reproduce, and the playbook says so.
+  Coordinator looked at sixteen new shots and the captions of three that looked odd; nothing wrong found.
+- Status: (1) done; (2), (3) open tool wishes (second request for unsnap/cleanup: see the entry below);
+  (4) open, first request.
+
 ### 2026-11-18 - owner's rule: breadth
 - Task: after the Might and Magic 1 (DOS) main set (113 shots) the owner asked for more battles with interesting
   enemies, the minor commands (bash, trade ...) to document mechanics, and several visual environments, and
