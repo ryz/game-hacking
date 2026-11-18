@@ -102,6 +102,10 @@ Current snapshot; history in `progress-log.md`.
 - Open: `shoot.py SLUG SET --verify` of the renamed sets has not been run (no dumps in the session that renamed
   them); working sets in `work/shots/` are renamed by the next `shoot.py` run.
 
+- Two lenses (2026-11-18): templates `design/systems.md` (game design) and `design/interface.md` (UI/UX),
+  `tools/lenses.py` coverage check, capture skill step 6. No game has the two documents yet; Might and Magic 1
+  (DOS) is the first, written in capture round 2. Breadth rule in the capture skill (same day).
+
 ## Games
 | Slug | Title | Playbook | Sets |
 |---|---|---|---|

@@ -110,6 +110,25 @@ Some actions are best shown as what happens, step by step (fishing, fast travel,
 Shots are evidence for `games/<platform>/<slug>/design/`: when a shot shows a rule or a number (a shop price list, a level-up
 screen, a status screen), link it from the design document that states the rule.
 
+## Two lenses: systems and interface (owner's request 2026-11-18)
+Every game is documented twice over the same shots, once for game design and once for UI/UX. Overlap is
+intended: a shop screen is evidence for the economy and an interface in its own right.
+- **Systems** (`design/systems.md`): the index of every feature, system and mechanic, in fixed groups (player
+  verbs, characters and progression, resources and economy, conflict, opponents, items, abilities, world and
+  navigation, goals and gating, chance, failure and recovery, saving, pacing). One row each: the rule in one
+  line, the player's inputs, the numbers known, the document with the details, the shots, a status. A group
+  the game does not have says "none".
+- **Interface** (`design/interface.md`): conventions (input, layout, text, feedback, state visibility, help),
+  then an inventory with one row per screen, menu, prompt, message type and permanent element (purpose, what it
+  shows, what it accepts, how it answers, where it leads), the screen flow, and the main screens element by
+  element. Judgements are marked **Observation:**.
+- Shots serve both: when choosing what to capture, ask "which rule does this show?" and "which screen or
+  element is this?". A prompt with nothing behind it is still an interface row; a rule with no screen of its
+  own (a hidden roll) is still a systems row, status `described`.
+- `python3 tools/lenses.py SLUG [SET]` lists shots that neither document mentions and rows without a shot. A
+  set is not finished while a shot is unused or a row says neither which shot shows it nor why there is none.
+Templates: `games/_template/design/systems.md`, `interface.md`.
+
 ## Sets
 - `main` is the database set. Other sets for variants: `dmg` / `sgb` (another model), `jp` (another region/ROM
   revision, separate game slug).

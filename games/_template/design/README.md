@@ -29,6 +29,8 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Documents
 | Document | Covers |
 |---|---|
+| [systems.md](systems.md) | game-design lens: index of every feature, system and mechanic, with rule, details and shots |
+| [interface.md](interface.md) | UI/UX lens: conventions, inventory of every screen, menu, prompt and element, screen flow |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),

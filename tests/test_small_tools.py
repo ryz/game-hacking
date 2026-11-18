@@ -45,3 +45,29 @@ def test_shot_file_names():
         shoot.stem(g, "main", "set", "x")                   # reserved for set files
     assert intake.region_of({"region": "Japan"}) == "jp" and intake.region_of({"region": "PAL"}) == "eu"
     assert intake.region_of({"region": "NTSC"}) is None and intake.region_of({"region": "Overseas"}) is None
+
+
+def test_lenses_check(tmp_path):
+    """tools/lenses.py: shots named in neither design lens and rows without a shot are listed."""
+    import json, types
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "tools"))
+    import lenses
+    d = tmp_path / "g"
+    (d / "shots" / "main").mkdir(parents=True)
+    (d / "design").mkdir()
+    shots = [{"id": i, "category": "system", "caption": i, "file": "g_dos_na_system_%s.png" % i}
+             for i in ("bash", "bash_wall", "trade", "title")]
+    (d / "shots" / "main" / "index.json").write_text(json.dumps({"shots": shots}))
+    game = types.SimpleNamespace(dir=str(d))
+    assert lenses.check(game)[0] == 2                                   # documents missing
+    (d / "design" / "systems.md").write_text(
+        "| Group | System | Shots | Status |\n|---|---|---|---|\n| Verbs | Bash | `bash` | shown |\n"
+        "| Verbs | Trade | | open |\n| Chance | Hidden roll | none: no screen of its own | described |\n")
+    (d / "design" / "interface.md").write_text(
+        "| Screen | Shots |\n|---|---|\n| Bash prompt | `bash`, g_dos_na_system_title.png |\n")
+    code, out = lenses.check(game)
+    text = "\n".join(out)
+    assert code == 1 and "systems.md uses 1, interface.md uses 2, both 1" in text
+    assert "in neither document: bash_wall" in text and "in neither document: trade" in text
+    assert "in neither document: bash (" not in text                   # `bash` does not count for bash_wall
+    assert "systems.md:4 row without a shot or a reason: Verbs" in text and "Hidden roll" not in text

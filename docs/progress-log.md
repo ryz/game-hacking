@@ -2,6 +2,21 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - capture: breadth rule and two lenses (systems, interface)
+- Owner after the Might and Magic 1 (DOS) set: more battles with interesting enemies, the minor commands (bash,
+  trade ...) to document mechanics, several visual environments; "rather document a few more
+  features/mechanics/systems and shots than less". Promoted into `skills/game-capture/skill.md` step 6 and the
+  capture guide's must-have list.
+- Owner: a structured approach for features/systems/mechanics (game design) and for screens, system menus and
+  interface elements (UI/UX analysis); overlap is expected. Built as two index documents over the same shots:
+  `design/systems.md` (fixed groups from player verbs to pacing; rule, inputs, numbers, details, shots, status)
+  and `design/interface.md` (conventions, inventory of every screen/menu/prompt/element, screen flow, main
+  screens element by element; judgements marked Observation). Templates in `games/_template/design/`,
+  `docs/capture-guide.md` "Two lenses", `tools/lenses.py` (shots in neither document, rows without a shot or a
+  reason) with a test.
+- Not done: no shot tags in shots.txt or the index (the documents are the mapping); existing games have no
+  systems.md/interface.md yet. Might and Magic 1 (DOS) round 2 is running and writes the first pair.
+
 ## 2026-11-18 - Might and Magic 1 (Apple II): set `main` grown to 58 shots
 - Owner's request: more shots. From `@party`, `@menu` and `@title` with the `AT` move macro and the DOS port's
   table of Sorpigal's event squares (it matched square for square): blacksmith with its three price lists,
