@@ -141,12 +141,15 @@ step or turn `w80` (`w60` is enough for turns), opening a list/profile `w100`-`w
   experience for a Knight, 25 gold; level 3 at 3000). New spell levels every other level (manual).
 
 ## Shot plan
-The plan is `shots.txt`: routed lines are routes that were run during the scout (frames looked at), commented
-lines are targets with the method. By category: title 2, menu 3, system 10 (creation, roster, unlock, rest,
-training/level-up, leprechaun, statue), gameplay 8 (Sorpigal views, signs, darkness, outdoors, other towns),
-shop 5 (blacksmith lists, market, temple, tavern), inventory 3, hud 1, dialogue 2, battle 7, map 1, save 2,
-gameover 1, extra 2. Distinctive for this version: the text-and-wireframe look in four colours, creation by
-re-rolling, everything driven by letter keys, the encounter options (bribe, surrender), handicap line.
+The plan and the record is `shots.txt` (113 routed lines, all captured and verified 2026-11-18; open targets as
+comments at its end). Done: [x] title and demo scenes, [x] menus and roster, [x] creation steps, [x] all
+Sorpigal services, [x] exploration commands (order, protect, rest, unlock, cast, location), [x] combat from the
+encounter options to victory, spell, shooting, search, [x] level-up, [x] death and game over, [x] lit cavern
+with its events and monsters, [x] wilderness (C2, A1, E1), [x] towns 2-5, [x] castles Alamar, Doom, White Wolf,
+[x] Quivering Forest, [x] Astral Plane and the ending text. Open: [ ] surprised party, [ ] bash/trade, [ ]
+temple cure, [ ] tavern rumors, [ ] the areas not scanned, [ ] the impostor.
+Distinctive for this version: the text-and-wireframe look in four colours, creation by re-rolling, everything
+driven by letter keys, the encounter options (bribe, surrender), handicap line.
 
 ## Strategy and walkthrough notes
 - Use `@start` (custom party, nothing bought), `@equipped` (RYZ with sword and armor, 1833 gold) or `@combat`.
@@ -192,8 +195,44 @@ Main character **RYZ**, then CONDI, EBO, CUBI, DEDDO, MNZ (the game shows names 
 | Experience / level-up | `set:16853=1685:4`, then training | RAM | verified |
 | Fast fights | `QA` = `ctrl>a,w200` (game's own quick-fight key) | manual | verified |
 | Leave a town | Sorpigal (12,0) facing S, `y` | scan | verified (outdoor view) |
-| Change area by poke | not found: the current area number and the game's pending-transition variables are not located | - | open |
+| Change area (any of the 55) | `WARP:xx:yy:lo:hi:ss` **from anywhere in Sorpigal**: rewrites the operands of Sorpigal's own "passage outside" event (x, y, map id low, map id high, section) and takes that exit, so the game's map loader does the change. Ids and sections: table "Areas" below. Example `WARP:01:0C:03:0C:01` = Portsmith (1,12) | code of SORPIGAL.OVR | verified (17 areas) |
+| Light | `CAST:6:1:6` (MNZ casts Light; `CAST:member:level:number`). Needed in caverns and, after a WARP, in sectors A-1 and E-1 and the castles (they showed DARKNESS without it) | manual | verified |
+| Event squares of an area | `python3 games/dos/might-and-magic/tools/scan.py N "@equipped,CAST:6:1:6,WARP:..."` -> `work/scout/dos/might-and-magic/scan_N.png` | tools | verified (0-5, 14, 23, 30, 34, 37, 43, 44, 49, 50, 54) |
+| Whole party at 1 HP | `LOWHP` (then `BLK*24` in `@combat` = game over) | RAM | verified |
+| Ending | `@astral` (Astral Plane, `WORTHY` = every member's record +7D set to 5F: bit 40 "impostor defeated", bits 1F projectors), then `AT:06:07:76,FN,left,w300` | code of ASTRAL.OVR | verified |
+| Combat spell / to victory | `FLAME` (attack, MNZ casts Flame Arrow at A); `@combat,FLAME,w240,QA*14` = victory screen | play | verified |
 | Debug features, cheat codes | none found (manual has none; TCRF and StrategyWiki refused the fetch) | - | - |
+
+### Areas (map loader table in the program, verified 2026-11-18)
+The loader takes a 16-bit map id and a section; it searches the id table from the section's first entry
+(section 0 or 1: entry 0; section 2: entry 14; section 3: entry 34), so the same id can name different maps.
+Entry number = map number in `MAZEDATA.DTA` = `maps.py`/`scan.py` index (the order the scout assumed is right).
+`WARP` wants low byte, high byte, section.
+| # | Area | id | sec | # | Area | id | sec | # | Area | id | sec |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 0 | Sorpigal | 0604 | 1 | 19 | B2 | 0703 | 2 | 38 | QVL2 | 0703 | 3 |
+| 1 | Portsmith | 0C03 | 1 | 20 | B3 | 0101 | 2 | 39 | RWL1 | 0F02 | 3 |
+| 2 | Algary | 0203 | 1 | 21 | B4 | 0D03 | 2 | 40 | RWL2 | 0702 | 3 |
+| 3 | Dusk | 0802 | 1 | 22 | C1 | 0304 | 2 | 41 | ENF1 | 0F04 | 3 |
+| 4 | Erliquin | 0B1A | 1 | 23 | C2 | 0A11 | 2 | 42 | ENF2 | 0704 | 3 |
+| 5 | CAVE1 | 0A11 | 1 | 24 | C3 | 0904 | 2 | 43 | White Wolf | 0A11 | 3 |
+| 6 | CAVE2 | 0001 | 1 | 25 | C4 | 0F04 | 2 | 44 | Dragadune | 0107 | 3 |
+| 7 | CAVE3 | 0C01 | 1 | 26 | D1 | 0505 | 2 | 45 | UDRAG1 | 0F05 | 3 |
+| 8 | CAVE4 | 0202 | 1 | 27 | D2 | 0B05 | 2 | 46 | UDRAG2 | 0A00 | 3 |
+| 9 | CAVE5 | 0005 | 1 | 28 | D3 | 0106 | 2 | 47 | UDRAG3 | 0705 | 3 |
+| 10 | CAVE6 | 051B | 1 | 29 | D4 | 0801 | 2 | 48 | DEMON | 0412 | 3 |
+| 11 | CAVE7 | 0212 | 1 | 30 | E1 | 0112 | 2 | 49 | Alamar | 0B07 | 3 |
+| 12 | CAVE8 | 0601 | 1 | 31 | E2 | 0706 | 2 | 50 | PP1 | 0F01 | 3 |
+| 13 | CAVE9 | 0A00 | 1 | 32 | E3 | 0B1A | 2 | 51 | PP2 | 0701 | 3 |
+| 14 | A1 | 0F01 | 2 | 33 | E4 | 011B | 2 | 52 | PP3 | 0E00 | 3 |
+| 15 | A2 | 0502 | 2 | 34 | Doom | 0706 | 3 | 53 | PP4 | 0201 | 3 |
+| 16 | A3 | 0B02 | 2 | 35 | Blackridge N | 0F08 | 3 | 54 | Astral | 0B1A | 3 |
+| 17 | A4 | 0103 | 2 | 36 | Blackridge S | 0508 | 3 | | | | |
+| 18 | B1 | 0A00 | 2 | 37 | QVL1 | 0F03 | 3 | | | | |
+The leprechaun's destinations (its own table): Sorpigal (8,5), Portsmith (1,12), Algary (11,13), Dusk (12,8),
+Erliquin (4,6), all section 1. Sorpigal's stairs lead to id 0A11 section 1 (CAVE1) at the same x, y; its
+passage outside to 0A11 section 2 (C2) at (10,10). A WARP to a square that is not an entrance works, but the
+view can be dark (cast Light first) and the party may stand in a wall cell.
 
 ### Saves (rom/saves/might-and-magic/, never committed)
 None downloaded: GameFAQs/StrategyWiki not reachable; a `ROSTER.DTA` from the web could be zipped as a `.sav`
@@ -230,7 +269,15 @@ Physical addresses; valid for this ZIP and model `svga-1500` (the load address d
 | +40..+45 / +46..+4B | 6 / 6 | equipped items / backpack items (item numbers: 01 Club) | read |
 | +7E | 1 | roster slot of this member (0 = A) | read |
 | 16224 | 127 | one-record buffer for roster reads (the roster itself stays on disk) | search |
-Watches in `game.json`: `x`, `y`, `hp1`, `gold1`, `food1` (RYZ). Monster hit points in combat: not located.
+| +7D | 1 | quest marks: bits 01-10 astral projectors 1-5 used, bit 40 impostor defeated, bit 80 (FF) ending already awarded | code of ASTRAL.OVR; ending verified with 5F |
+| 12368 | 2 | current map number * 512 (offset of the map in MAZEDATA.DTA); 12369 = map number * 2 (watch `map`) | loader code; read in 6 areas |
+| 12362 / 12364 | 2 / 2 | the loaded area's data address (C940) and its event entry (F4A1) | loader code |
+| 11013-11024 | - | Sorpigal's "passage outside" handler while Sorpigal is loaded: x at 11017, y at 1101C, id low 1101E, id high 11020, section 11023 (what `WARP` pokes) | disassembly |
+Segments (this ZIP, `svga-1500`): program code at 01A80 (the area overlay's code at offset F48F = physical
+10F0F), data at 12230 (x = offset 3C38; the overlay's data at offset C940 = physical 1EB70). An `.OVR` file is a
+14-byte header (code address, code length, data address, data length), code, data; the data starts with the
+event tables: count at C972, square indexes at C973, then facing masks, then handler addresses.
+Watches in `game.json`: `x`, `y`, `hp1`, `gold1`, `food1` (RYZ), `map`. Monster hit points in combat: not located.
 
 ## Emulation notes
 - Model `svga-1500` (GOG's own cycle count). About 70 frames per second; `play.py` runs ~1500 frames per second
@@ -254,6 +301,9 @@ Watches in `game.json`: `x`, `y`, `hp1`, `gold1`, `food1` (RYZ). Monster hit poi
 - Screenshots are 960x600 from `play.py`, 320x200 from `emu.py --out` frames.
 
 ## Checkpoints
+Capture run 2026-11-18 added: `cave1` (lit cavern below Sorpigal), `portsmith`, `algary`, `dusk`, `erliquin`,
+`outdoors` (C2), `areaa1`, `areae1`, `alamar`, `doom`, `whitewolf`, `qvl1`, `astral` (all through `WARP`, the
+dark ones with Light cast first). Save `03_portsmith_inn` (signed in at town 2).
 `title`, `menu`, `start` (custom party from `sav:02_ryz_party`), `created` (same party built by the creation
 route: use only for creation shots), `blacksmith` (shop prompt), `equipped` (after buying and equipping),
 `combat` (encounter screen at (3,6)); the first scout's `sorpigal` (stock party) and `after_save`.
@@ -270,13 +320,31 @@ route: use only for creation shots), `blacksmith` (shop prompt), `equipped` (aft
 | StrategyWiki | https://strategywiki.org/wiki/Might_and_Magic_Book_One:_The_Secret_of_the_Inner_Sanctum | not reachable (HTTP 403) | 2026-11-18 |
 | GameFAQs, Data Crystal, gamehacking.org | - | not tried (time box) | - |
 
+## Capture run 2026-11-18 (what was learned)
+- The set was built by writing shot lines (`id | category | caption | route`) into the work set's `shots.txt` and
+  running `shoot.py dos/might-and-magic main --only ids` (a 20-shot batch takes ~15 s), exploring first with
+  parallel `emu.py --seq ... --out work/x/NAME` runs (one frame per token). `play.py` was only needed for
+  `unsnap` and `export`.
+- **`tools/maps.py` read the event tables two bytes early until this run** (header is 14 bytes, not 12): every
+  list had two bogus first squares and lacked the last two. Fixed; the scans of areas 1-5, 14, 23, 30, 34, 37,
+  43, 44, 49, 50 made before the fix miss two squares each (Astral was re-read by hand: the ending square).
+- Frames that work: spell result right after the target letter (`...,a,!`); Ctrl-A's message right after the
+  key (`ctrl>a,!`); training result right after `a`; chest result `1,w200,4,w150`; title second picture
+  `pow,BOOT,w280`. `shoot.py` and `emu.py --out` frames can differ by a few frames on animated screens (title):
+  pick such frames with `shoot.py --only` variants.
+- Casting outside combat: profile, `c`, level, number, **Enter**. Chest options ask "WHO WILL TRY 1-6?".
+- Encounter groups depend on timing (`@outdoors,w70,...` gave Strangling Vines, without the wait Snakes).
+- Level-1 characters at 1 HP "go down" one by one; the sixth gives the game-over text (`BLK*24`).
+- Dead ends: a Key Card (item FD placed in RYZ's backpack, `poke:16873=FD`) with marks 5F was still "REJECTED"
+  at the Astral door; not understood (the ending square was reached by position poke instead).
+- Not done: surprised party, bash, trade, temple cure of a wounded character, tavern rumor text, statues other
+  than one, the 34 areas not scanned, walking between areas.
+
 ## Open questions
-- Current area number in RAM and a clean way to change area by poke (the NES port's pending-area trick has no
-  known DOS equivalent yet); until then other areas are reached through exits, stairs and the leprechaun.
+- ~~Current area number in RAM and a clean way to change area by poke~~: solved 2026-11-18, see `WARP` and the Areas table.
 - Monster hit points in RAM (to end fights at once); death and the game-over screen.
-- Whether the order of the 55 maps in `MAZEDATA.DTA` is the one `maps.py` assumes (only Sorpigal is confirmed).
-- Sorpigal (1,0) and (8,1) have event entries that showed nothing in the scan (other facings or conditions?).
-- The leprechaun was only seen up to its prompt; pressing `2` without a gem ended at a blacksmith sign view,
-  not understood.
+- ~~Whether the order of the 55 maps in `MAZEDATA.DTA` is the one `maps.py` assumes~~: yes (the loader's own table).
+- ~~Sorpigal (1,0) and (8,1) have event entries that showed nothing~~: not events (maps.py offset error); the real extra squares are (5,8) and (5,15), not visited.
+- ~~The leprechaun without a gem ended at a blacksmith sign view~~: its code moves a party without gems to Sorpigal (8,5).
 - Exact class requirements and what each race changes; item number list; experience table beyond level 3.
 - Quest route on DOS (everything about the main quest here comes from Wikipedia or the NES port).

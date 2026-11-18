@@ -39,10 +39,12 @@ the Inner Sanctum **(source: Wikipedia)**.
 | Document | Covers |
 |---|---|
 | [sorpigal.md](sorpigal.md) | the first town: services, prices, what a new party owns |
+| [characters.md](characters.md) | creation, the profile, party commands, levels, magic seen |
+| [combat.md](combat.md) | encounter options, the combat screen, numbers measured, going down, treasure |
+| [world.md](world.md) | the 55 areas, the five towns, cavern, wilderness, castles, the Astral Plane and the ending |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 
-Planned (capture run): characters (classes, races, statistics), combat (encounter options, handicap, messages),
-magic (the 94 spells from the manual, with what was seen), items and prices, world (areas and how they connect).
+Still planned: the 94 spells with what was seen of each, items and prices beyond Sorpigal, how the areas connect.
 
 ## Sources
 | Source | URL | Used for |

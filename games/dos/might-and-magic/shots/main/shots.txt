@@ -3,8 +3,9 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/dos/might-and-magic/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# Scout 2026-11-18: the routed lines below were run with emu.py and the frames looked at (not through shoot.py:
-# the scout may not write work/shots). All end in `!` (no settle: cursor/animation). Commented lines are targets.
+# Capture 2026-11-18: every line below was shot with shoot.py and verified from an empty cache (113/113).
+# Routes end in `!` (no settle: cursor/animation). Shots that depend on a memory edit: all that use WARP/AT (position),
+# LOWHP (death, game over), WORTHY (ending), set:16853 (training), set:16865 in @blacksmith (gold).
 title_screen | title | Title: New World Computing presents Might and Magic, ESC to start / SPACE for scenes | @title,!
 title_book_one | title | Title, second picture: New World Computing presents Book One - Secret of the Inner Sanctum | pow,BOOT,w280,!
 demo_stronghold | extra | Demo scene (SPACE on the title): discover a warrior's stronghold or a wizard's lair | @title,space,w200,space,w200,space,w200,!
@@ -72,6 +73,17 @@ cave_skeletons | battle | Cavern encounter: five Skeletons | @cave1,AT:05:02:25,
 cave_fire_ants | battle | Cavern encounter: five Fire Ants | @cave1,AT:04:02:24,FE,left,w250,!
 cave_snakes | battle | Cavern encounter: ten Snakes | @cave1,AT:0D:05:5D,FN,left,w250,!
 outdoors_first | gameplay | Outside Sorpigal: mountains and forest | @equipped,AT:0C:00:0C,FW,left,w250,y,w400,!
+outdoors_forest | gameplay | Sector C-2, forest: a glowing white column, touch it? | @outdoors,AT:08:08:88,FN,left,w250,!
+outdoors_fountain | gameplay | Sector C-2, dense woods: a strange fountain, drink? | @outdoors,AT:04:07:74,FE,left,w250,!
+outdoors_statues | gameplay | Sector C-2: statues block the path, smash them? | @outdoors,AT:00:02:20,FN,left,w250,!
+outdoors_vines | battle | Wilderness encounter in the forest: nine Strangling Vines | @outdoors,w70,AT:05:0B:B5,FE,left,w250,!
+outdoors_gypsy | dialogue | Sector C-2: a toothless gypsy seer offers to read a character's sign | @outdoors,AT:09:0B:B9,FE,left,w250,!
+outdoors_cave | gameplay | Sector C-2, mountains: there's a cave here, enter? | @outdoors,AT:0F:0B:BF,FS,left,w250,!
+a1_dark_rider | dialogue | Sector A-1: surrounded by the Dark Rider and his men, he challenges you to a duel | @areaa1,AT:05:02:25,FE,left,w250,!
+a1_ice | gameplay | Sector A-1: carved on a block of ice, start at 15-7 and walk to Doom | @areaa1,AT:0E:05:5E,FE,left,w250,!
+a1_castle_doom | gameplay | Sector A-1: the fabled Castle Doom, will you enter? | @areaa1,AT:07:0F:F7,FE,left,w250,!
+e1_volcano | gameplay | Sector E-1, south edge: mountains beside a red expanse | @areae1,AT:04:00:04,FS,left,w250,!
+e1_dragadune | gameplay | Sector E-1, mountains: ruins of Castle Dragadune, enter? | @areae1,AT:0C:0C:CC,FW,left,w250,!
 portsmith_inn_sign | gameplay | Portsmith: a sign above the door reads Inn of Portsmith | @portsmith,AT:01:0C:C1,FS,left,w250,!
 portsmith_inn | dialogue | Inn of Portsmith: Lara, the innkeeper's daughter, asks if you will be spending the night | @portsmith,AT:03:0C:C3,FS,left,w250,!
 portsmith_signed_in | save | Signed in at town 2: Inn of Portsmith, the six characters now lodge here | @portsmith,AT:03:0C:C3,FS,left,w250,y,w300,!
@@ -84,34 +96,38 @@ algary_portal | gameplay | Algary: a magic portal, enter? | @algary,AT:09:00:09,
 dusk_inn | dialogue | The Inn of Dusk: an eerie silence, a ghostly apparition asks to sign in | @dusk,AT:0B:08:8B,FN,left,w250,!
 dusk_training | dialogue | Dusk, Clearman's Training: several empty suits of armor approach | @dusk,AT:0B:02:2B,FN,left,w250,!
 dusk_chest | system | Dusk: a gold chest: open it, find/remove trap, detect magic/trap | @dusk,AT:00:0E:E0,FE,left,w250,!
+chest_who | system | Gold chest, open it: who will try 1-6? | @dusk,AT:00:0E:E0,FE,left,w250,1,w200,!
+chest_opened | system | The chest opens for CUBI the Robber: 200 gems and an Undead Amulet found | @dusk,AT:00:0E:E0,FE,left,w250,1,w200,4,w150,!
 dusk_vampires | battle | Dusk encounter: ten Vampires | @dusk,AT:07:0D:D7,FE,left,w250,!
 dusk_banshees | battle | Dusk encounter: ten Banshees | @dusk,AT:03:0E:E3,FE,left,w250,!
+erliquin_agar | dialogue | Erliquin: the wizard Agar speaks: I have no business with you. Begone! | @erliquin,AT:04:03:34,FE,left,w250,!
+erliquin_inn | dialogue | The Inn of Erliquin: an elderly gnome adjusting his spectacles asks about signing in | @erliquin,AT:04:04:44,FW,left,w250,!
+erliquin_training | dialogue | Erliquin: three huge armor clad knights bark in unison, want a good workout? | @erliquin,AT:0B:09:9B,FE,left,w250,!
+alamar_guards | dialogue | Castle Alamar: castle guards exclaim, no merchants pass! Begone peasants | @alamar,AT:02:07:72,FS,left,w250,!
+alamar_prisoner | system | Castle Alamar: a fair maiden weeps in a steel cage: set free, torment or leave | @alamar,AT:02:02:22,FS,left,w250,!
+alamar_king | dialogue | Castle Alamar, the throne room: the king sends the party to find the Crypt of Carmenca | @alamar,AT:0C:07:7C,FE,left,w250,!
+doom_golden_door | gameplay | Castle Doom: a golden door repels you! | @doom,AT:07:07:77,FE,left,w250,!
+doom_true_king | dialogue | Castle Doom: the true King Alamar, held in a forcefield, tells of the impostor and the Eye of Goros | @doom,AT:07:08:87,FE,left,w250,!
+whitewolf_ironfist | dialogue | Castle White Wolf: Lord Ironfist speaks: your services are needed! Accept? | @whitewolf,AT:01:08:81,FE,left,w250,!
+whitewolf_quest | dialogue | Lord Ironfist's first quest: find the stronghold in Ravens Wood | @whitewolf,AT:01:08:81,FE,left,w250,y,w300,!
+whitewolf_button | gameplay | Castle White Wolf: a banner and a button on the wall, push it? | @whitewolf,AT:00:08:80,FN,left,w250,!
+qvl_okrim | boss | Quivering Forest: the wizard Okrim with three Wizards and a Brontasaurus | @qvl1,AT:0C:0C:CC,FE,left,w250,!
+qvl_hydras | battle | Quivering Forest encounter: Pyro Hydras, Man Eating Mares, 8 and 12 Headed Hydras | @qvl1,AT:05:0B:B5,FE,left,w250,!
+qvl_floor_spins | gameplay | Quivering Forest: the floor spins! | @qvl1,AT:04:00:04,FE,left,w250,!
+astral_door | gameplay | Astral Plane: there's a small slot in the door. No admittance! | @astral,AT:07:0A:A7,FW,left,w300,!
+astral_projector | gameplay | Astral Plane: astral projector # 1, zap! | @astral,AT:04:06:64,FE,left,w250,!
+astral_room | gameplay | Astral Plane: the metallic room is dimly lit by a pulsating white glow | @astral,AT:07:09:97,FW,left,w300,!
+ending_panel | ending | Inner Sanctum: a metallic panel slides open, a mysterious man in a white coat | @astral,AT:06:07:76,FN,left,w300,!
+ending_sanctum | ending | Inner Sanctum: the Data Keeper rates the party and sends it to the Gates to Another World | @astral,AT:06:07:76,FN,left,w300,space,w300,!
 #
-# --- targets not routed yet (method) ---
-# title_book_one | title | second title picture "Book One - Secret of the Inner Sanctum" | @title + sample "w20" to find the frame
-# demo_scene | extra | one of the SPACE demo pictures | @title,space,w200 (sample)
-# roster_view_all | menu | View all characters: letter, name, town, level, class | sav:02_ryz_party,MENU,v,w150
-# profile_menu | inventory | profile from the menu with Ctrl-N re-name / Ctrl-D delete | ...,v,w150,g,w150
-# rename_prompt | system | NAME: prompt while re-naming | ...,v,w150,b,w150,ctrl>n,w100
-# inn_party_full | menu | inn list with *** PARTY IS FULL *** and X exit inn | sav:02_ryz_party,MENU,1,w150,ctrl>g,...,ctrl>f,w30
-# protect | system | Protect: spells currently active (cast Leather Skin 1-5 with MNZ first) | 6,c,1,5 then p
-# order | system | Re-order party prompt | @start,o,w100
-# rest | system | Rest prompt and the morning after (HP/SP restored, food -1) | after a fight: r,y
-# cast_noncombat | system | casting from the profile: First Aid (DEDDO 5,c,1,4) or Light | profile, c
-# equip / trade / share prompts | inventory | "EQUIP WHICH ITEM" etc. | profile e / t / s
-# combat_options | battle | "OPTIONS FOR" a caster (Attack, Fight, Exchange, Retreat, Cast, Use, Block) | @combat,a + wait for MNZ/DEDDO
-# combat_cast | battle | CAST SPELL: LEVEL= NUMBER= / CAST ON | on MNZ's turn c,1,4
-# combat_spell_hit | battle | Flame Arrow result message | sample after the target letter
-# combat_shoot | battle | EBO shoots (sling) | on EBO's turn s
-# combat_victory | battle | "FOR DEFEATING THE MONSTERS EACH SURVIVOR RECEIVES n EXPERIENCE POINTS" | QA until it shows; sample "w20"
-# search_treasure | system | Search after a fight that leaves treasure (chest, trap, loot) | a fight outside town or in the dungeon, then s
-# surprised | battle | the party is surprised (no options) | other timing into (3,6)
-# bribe / surrender | battle | encounter options B and S | @combat,b / s
-# death | gameover | a dead character / the whole party dead | @combat with HP pokes (record +33 = 1), block
-# dungeon_lit | gameplay | dungeon below Sorpigal with light (Torch or Light spell first) | buy Torch (misc A), use it, stairs
-# dungeon_fight / trap / message | gameplay, battle | CAVE1 events | tools/scan.py CAVE1 from a checkpoint in the dungeon
-# outdoors (2-3) | gameplay | forest, mountains, water, desert sectors; "IMPASSABLE" style messages | walk from the Sorpigal exit; scan.py per sector
-# map | map | no automap in this version; the Location spell (Sorcerer 1-7) prints the coordinates | 6,c,1,7
-# towns 2-5 | gameplay, shop | Portsmith, Algary, Dusk, Erliquin: inn sign, one service each | leprechaun with a gem (record +31), then scan.py
-# castle / quest giver | dialogue | a lord offering a quest | outdoors, not located on DOS
-# ending | ending | Inner Sanctum | not reachable by a known shortcut yet (area poke not found)
+# --- targets still open (method) ---
+# surprised | battle | the party is surprised (no options) | other timing into a fight square
+# bash / trade | system | "BASH" a door, trade an item between characters | b at a locked door; profile t, member
+# temple_cure | shop | temple prices for a wounded character | LOWHP, then @equipped temple, a
+# tavern_rumor | dialogue | rumor text (vanished before the sampled frames) | tavern c + sample "w10"
+# statues 2-8 | dialogue | the other seven statues of Sorpigal | AT + FN/FE.., left, y
+# sorpigal (5,8), (5,15) | ? | two event squares the first scan missed | AT:05:08:85 / AT:05:0F:F5, all facings
+# astral_door_open | gameplay | KEY CARD IS ACCEPTED | item FD + marks were rejected; find the real condition
+# towns/areas not scanned | gameplay | caverns 2-9, sectors other than A1 C2 E1, Blackridge N/S, RWL, ENF, UDRAG, DEMON, PP | scan.py N "@equipped,CAST:6:1:6,WARP:.." (playbook Areas)
+# impostor fight / Eye of Goros | boss | the false king unmasked | not located
+

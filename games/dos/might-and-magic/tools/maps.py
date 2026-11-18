@@ -8,14 +8,15 @@ def rd(n):
 maze = rd("MAZEDATA.DTA")
 NAMES = "SORPIGAL PORTSMIT ALGARY DUSK ERLIQUIN CAVE1 CAVE2 CAVE3 CAVE4 CAVE5 CAVE6 CAVE7 CAVE8 CAVE9 AREAA1 AREAA2 AREAA3 AREAA4 AREAB1 AREAB2 AREAB3 AREAB4 AREAC1 AREAC2 AREAC3 AREAC4 AREAD1 AREAD2 AREAD3 AREAD4 AREAE1 AREAE2 AREAE3 AREAE4 DOOM BLACKRN BLACKRS QVL1 QVL2 RWL1 RWL2 ENF1 ENF2 WHITEW DRAGAD UDRAG1 UDRAG2 UDRAG3 DEMON ALAMAR PP1 PP2 PP3 PP4 ASTRAL".split()
 def events(name):
-    """OVR = 12-byte header (word 2 code address, word 4 code length, word 6 data address, word 8 data length), 8086 code, data.
+    """OVR = 14-byte header (bytes 2-3 code address F48F, 4-5 code length, 6-7 data address C940, 8-9 data length), 8086 code, data.
+    (Until 2026-11-18 this read the tables two bytes early: two bogus first entries, the last two events missing.)
     The code starts with the event lookup: cmp al,[bx+OFFSETS] ... cmp bl,[COUNT] ... and al,[bx+MASKS]; the three
     addresses are read from those instructions (Sorpigal: count 25 at data+50, offsets data+51, masks data+75: the
     last offset doubles as the first mask)."""
     d = rd(name + ".OVR")
     if not d: return {}
-    data = 12 + (d[4] | d[5] << 8); dbase = d[6] | d[7] << 8
-    code = d[12:data]
+    data = 14 + (d[4] | d[5] << 8); dbase = d[6] | d[7] << 8
+    code = d[14:data]
     i = code.find(b"\x3a\x87"); j = code.find(b"\x3a\x1e", i); k = code.find(b"\x22\x87", j)
     if min(i, j, k) < 0 or k > 130: return {}
     f = lambda o: data + (code[o + 2] | code[o + 3] << 8) - dbase

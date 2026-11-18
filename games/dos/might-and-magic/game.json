@@ -44,7 +44,8 @@
     "BLK": "b,w150",
     "LOWHP": "set:1685F=1:2,set:168DE=1:2,set:1695D=1:2,set:169DC=1:2,set:16A5B=1:2,set:16ADA=1:2",
     "CAST": "{0},w100,c,w100,{1},w100,{2},w100,enter,w200",
-    "FLAME": "a,w200,w100,c,w100,1,w100,4,w100,a"
+    "FLAME": "a,w200,w100,c,w100,1,w100,4,w100,a",
+    "WORTHY": "poke:168A9=5F,poke:16928=5F,poke:169A7=5F,poke:16A26=5F,poke:16AA5=5F,poke:16B24=5F"
   },
   "ram": {
     "x": {

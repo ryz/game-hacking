@@ -14,3 +14,11 @@ portsmith | Town 2 Portsmith at (1,12), reached with the WARP macro (the leprech
 algary | Town 3 Algary at (11,13), WARP macro (leprechaun destination) | @equipped,WARP:0B:0D:03:02:01
 dusk | Town 4 Dusk at (12,8), WARP macro (leprechaun destination) | @equipped,WARP:0C:08:02:08:01
 erliquin | Town 5 Erliquin at (4,6), WARP macro (leprechaun destination) | @equipped,WARP:04:06:1A:0B:01
+outdoors | Wilderness sector C-2 at (10,10), just outside Sorpigal (the town's own exit at (12,0)) | @equipped,AT:0C:00:0C,FW,left,w250,y,w400
+areaa1 | Wilderness sector A-1 at (8,8), WARP macro (Castle Doom is entered from (7,15)), Light cast first (without it the warped-to sector shows DARKNESS) | @equipped,CAST:6:1:6,WARP:08:08:01:0F:02
+areae1 | Wilderness sector E-1 at (8,8), WARP macro (passage to Dusk, ruins of Castle Dragadune), Light cast first | @equipped,CAST:6:1:6,WARP:08:08:12:01:02
+alamar | Castle Alamar at (8,8), Light cast first, WARP macro (not the castle's entrance square) | @equipped,CAST:6:1:6,WARP:08:08:07:0B:03
+doom | Castle Doom at (8,8), Light cast first, WARP macro (not the castle's entrance square) | @equipped,CAST:6:1:6,WARP:08:08:06:07:03
+whitewolf | Castle White Wolf at (8,8), Light cast first, WARP macro (not the entrance square) | @equipped,CAST:6:1:6,WARP:08:08:11:0A:03
+qvl1 | Quivering Forest level 1 (QVL1) at (8,8), Light cast first, WARP macro | @equipped,CAST:6:1:6,WARP:08:08:03:0F:03
+astral | Astral Plane at (7,8), Light cast first, WARP macro; WORTHY sets every member's quest marks so the Data Keeper accepts the party | @equipped,CAST:6:1:6,WARP:07:08:1A:0B:03,WORTHY
