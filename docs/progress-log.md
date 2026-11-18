@@ -2,6 +2,12 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Wizardry II: maze SOLID vs LINE comparison set
+- Owner's request: set `compare-maze`, 11 shots (options with LINE, floors 1/2/4/5/6 x SOLID/LINE), 11/11 verified
+  from an empty cache; option byte $6DA3 (1 SOLID, 0 LINE) found with `play.py diff`; side by side in
+  `games/nes/wizardry-2-nes/design/maze-solid-vs-line.png`. A first floor 2 view met a random fight in LINE only
+  (drawing time shifts the RNG); replaced by the `f2` checkpoint view.
+
 ## 2026-11-18 - Wizardry I: maze SOLID vs LINE comparison set
 - Owner's request (asked for Might and Magic; the option is in Wizardry I/II, Might and Magic has none): set
   `compare-maze`, 9 shots (options with LINE, four views x SOLID/LINE), 9/9 verified from an empty cache; option
