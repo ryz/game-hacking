@@ -33,7 +33,11 @@
     "STATS_YUMIKO": "a*3,down,a*5,down,a*2,down,a*3,down,a*2,w60,settle,a,w60,settle",
     "NEWGAME": "start,w60,settle,STATS_NAKAJIMA,STATS_YUMIKO,w200,settle",
     "PW_SAGE1": "right*22,a,a,right*22,a,right*31,a,right*30,a,right*27,a,right*16,a,right*10,a,right*27,a,right*7,a,right*15,a,right*25,a,right*33,a,right*21,a,right*28,a,right*14,a,right,a,right*32,a,right*7,a,right*26,a,right*25,a,right*15,a,right*20,a,right*18,a,right*17,a,right*4,a,right*12,a,right*29,a,right*3,a,right*27,a,right*26,a,right*19,a",
-    "TALK": "a,w60,down,a,w60,down,a,w60,settle"
+    "TALK": "a,w60,down,a,w60,down,a,w60,settle",
+    "WARP": "poke:055D={0},poke:0782={1},poke:0780={2}{3},poke:0490={4},left,w30,right,w30",
+    "FREEZE": "freeze:04B5=1700,freeze:04C3=1500",
+    "VET": "poke:04B4=18,poke:04B5=37013701,poke:04B9=110A0F0D0B,poke:04BE=AF5B00,poke:04C2=18,poke:04C3=B700B700,poke:04C7=3D3D,poke:04C9=0B140A0E0C,poke:04CE=E5007B80,poke:0576=0900",
+    "VFREEZE": "freeze:04B5=3701,freeze:04C3=B700"
   },
   "ram": {
     "floor": {
@@ -73,6 +77,11 @@
     "mag": {
       "addr": "0554",
       "size": 2
+    },
+    "section": {
+      "addr": "0782",
+      "size": 1,
+      "fmt": "hex"
     }
   },
   "source": {
