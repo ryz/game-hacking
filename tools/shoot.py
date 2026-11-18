@@ -294,6 +294,17 @@ def main():
                 "steps.gif", "full.gif")]:
             if os.path.exists(os.path.join(d, f)):
                 shutil.copyfile(os.path.join(d, f), os.path.join(pub, f))
+        keep = {pfx + f for f in ("sheet.png", "strip.png", "steps.gif", "full.gif")}
+        keep |= {E.X3 + "/" + pfx + f for f in ("steps.gif", "full.gif")}
+        for s in idx["shots"]:
+            keep |= {s["file"], s["file_3x"]} | ({s["clip"]["file"], s["clip"]["file_3x"]} if s.get("clip") else set())
+        for sub in ("", E.X3):          # images of shots no longer in the index (unsnapped, renamed)
+            folder = os.path.join(pub, sub)
+            for f in (os.listdir(folder) if os.path.isdir(folder) else []):
+                rel_f = (sub + "/" + f) if sub else f
+                if f.endswith((".png", ".gif")) and rel_f not in keep:
+                    os.remove(os.path.join(folder, f))
+                    print("removed stale %s" % rel_f)
         print("published: %s (%d shots)" % (os.path.relpath(pub, ROOT), len(idx["shots"])))
     return 0
 

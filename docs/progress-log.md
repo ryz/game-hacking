@@ -2,6 +2,14 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic (NES) main set: complete through the ending
+- game-capture: 93 shots (commits 63279a4 5d0785b 3a6af15): town services, character sheets, camp, combat,
+  chests, game over, all five towns, VARN sectors, caves, castles, the impostor King Alamar, the Soul Maze and
+  the Inner Sanctum ending; maps with legend, terrain (checked by walking) and decoded exits, `towns.md`,
+  `combat.md`, `story.md`; saves 02-03. Coordinator: folder = index (93), 6/6 sample re-verified.
+- `shoot.py --publish`/`--publish-only` remove published images whose id left the index (second report, after
+  Wizardry II); checked with a planted stale file. Emulator guide: event-script facing may differ from RAM facing.
+
 ## 2026-11-18 - Might and Magic (NES) scouted
 - Scout: hero RYZ + five inn fellows renamed CONDI/EBO/CUBI/DEDDO/MNZ by poking the name table (the game names
   only the hero; record check byte fixed), save 01_party, warp via the pending-area byte $9D, all 55 areas decoded

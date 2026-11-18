@@ -28,7 +28,8 @@ Current snapshot; history in `progress-log.md`.
 - Wizardry I (NES), 2026-11-18: main set 71 shots through Werdna and the ending, 10 floor maps with all special
   squares decoded, saves 01-03. Open: Identify, spinner, teleport square; party_dead retake.
 - `play.py dump/diff` (2026-11-18).
-- Might and Magic (NES): scouted 2026-11-18 (55 maps drawn, save 01_party); capture next.
+- Might and Magic (NES), 2026-11-18: main set 93 shots through the ending, 55 maps with terrain and exits, saves
+  01-03. Open: services in the other towns, spells above level 1, Bribe/Giveup.
 - Wizardry II (NES), 2026-11-18: main set 91 shots through the ending, 6 floor maps with special types checked
   in play, saves 01-04. Open: Sell/Identify, darkness, spinner, level drain, floor 4 room fight.
 - Queue (registered 2026-11-18, not scouted): wizardry-2-nes, might-and-magic,

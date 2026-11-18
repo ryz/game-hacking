@@ -9,6 +9,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Might and Magic (NES) main set
+- Task: main set (93/93; commits 63279a4 5d0785b 3a6af15), maps (legend, terrain, exits), boss and ending, saves.
+- Worked: stepping into every event square from each open side (warp, face, Up) found shops, the Soul Maze answer
+  and the ending; per-area script table in ~5 disassembly calls gave exits and the ending square; the item-name
+  table made the boss a poke (Eye of Goros); reloading the save proved the story state persisted.
+- Friction: event-script facing differs from $A2 (~6 calls); typewriter battle text needed `do!` sampling (third
+  report); a late snap fixed by unsnap + replay; full verify ~25 min; publish-only left a stale PNG; ~376 calls
+  (budget ~250).
+- Proposed rule change: (1) shared `tools/eventscan.py` (third hand-written copy); (2) publish removes stale PNGs;
+  (3) emulator guide: test all four facings before calling an event gated.
+- Corrected: (2) done in `tools/shoot.py` (second report), (3) added to the emulator guide; set folder checked
+  (93 = index); 6/6 re-verified. (1) not built yet: hooks differ per game (position, facing, pending map).
+- Status: promoted 2026-11-18 ((2), (3)); open ((1) eventscan, `snapafter` for typewriter text: third report;
+  budget overrun 376/250)
+
 ### 2026-11-18 - Wizardry II (NES) main set
 - Task: main set (91/91 verified; commits 9bda454 a3cb2bd 498f4f3 20aa150), special types checked on all floors,
   maps.md, castle/combat/story docs, ending via RAM edits, saves 02-04.
