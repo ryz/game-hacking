@@ -13,6 +13,12 @@ Append-only, newest first.
 - Test program KEYS.COM creates S.DAT on `w`; new test `test_dos_state_carries_written_files`. 30 passed, 2 skipped.
   Might and Magic trial shots still 2/2 from an empty cache.
 
+## 2026-11-18 - Wizardry II: maze SOLID vs LINE comparison set
+- Owner's request: set `compare-maze`, 11 shots (options with LINE, floors 1/2/4/5/6 x SOLID/LINE), 11/11 verified
+  from an empty cache; option byte $6DA3 (1 SOLID, 0 LINE) found with `play.py diff`; side by side in
+  `games/nes/wizardry-2-nes/design/maze-solid-vs-line.png`. A first floor 2 view met a random fight in LINE only
+  (drawing time shifts the RNG); replaced by the `f2` checkpoint view.
+
 ## 2026-11-18 - Might and Magic 1 (DOS) runs
 - Owner uploaded the GOG folder as a ZIP (97 files, SHA-1 c1a9248d...). Registered as `games/dos/might-and-magic/`
   (same slug as the NES game, so commands need `dos/might-and-magic`), model `svga-1500` (GOG's own cycles).

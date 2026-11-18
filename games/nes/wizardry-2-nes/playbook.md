@@ -161,9 +161,18 @@ Grounds Inspect lists all six with the right race/class).
 | test_rich (scratch) | 01_party with RYZ at 1873 gold, 85/85 HP (`roster.py edit`) | - | - | verified, delete or replace |
 No downloadable saves looked for.
 
+## Extra sets
+- `compare-maze` (11 shots, list `games/nes/wizardry-2-nes/shots-compare-maze.txt`, owner's request 2026-11-18): the
+  options screen with LINE and five maze views (floors 1, 2, 4, 5, 6) in SOLID and LINE; side by side in
+  `design/maze-solid-vs-line.png`. LINE draws thin white outlines (Wizardry I: brown bricks outlined). The LINE
+  drawing takes different CPU time, so a view next to a random fight can meet it in one mode only: floor 2 uses
+  the `f2` checkpoint for that reason. Rebuild: `python3 tools/shoot.py wizardry-2-nes compare-maze --list
+  games/nes/wizardry-2-nes/shots-compare-maze.txt --publish`.
+
 ## RAM map (for `game.json` "ram" watches and pokes)
 | Address | Size | Meaning | How found |
 |---|---|---|---|
+| `$6DA3` | 1 | Select switch MAZE: 1 SOLID, 0 LINE (battery RAM; Wizardry I uses $7ABC, 1/2); poke, then turn left/right to redraw | play.py diff over the option (verified, set `compare-maze`) |
 | `$00EA` | 1 | x, 0-19 east | step diff + code `$A6FB` + Data Crystal (verified) |
 | `$00EB` | 1 | y, 0-19 north | same (verified) |
 | `$00EC` | 1 | floor (0 castle, 1-6) | same (verified: 2 after the stairs) |
