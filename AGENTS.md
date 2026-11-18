@@ -21,6 +21,12 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | `games/dragon-quest/` | Famicom (English translation patch) | screenshot set, design reference, password tools |
 | `games/shin-megami-tensei/` | Super Famicom (English translation patches) | screenshot set, design reference, saves |
 | `games/megami-tensei/` | Famicom (English translation patch) | screenshot set (41 shots), design reference, password |
+| `games/megami-tensei-2/` | Famicom (English translation patch) | screenshot set (36 shots), design reference, save |
+| `games/dungeon-magic/` | NES | screenshot set (41), floor maps of all 39 floors + overworld, design reference, saves |
+| `games/wizardry-nes/` | NES | screenshot set (71, to the ending), 10 floor maps with special squares, design reference, saves |
+| `games/wizardry-2-nes/` | NES | screenshot set (91, to the ending), 6 floor maps, design reference, roster tool, saves |
+| `games/might-and-magic/` | NES | screenshot set (93, to the ending), 55 area maps with terrain and exits, design reference, saves |
+| `games/deep-dungeon-3/` | Famicom (Japanese) | screenshot set (74, to the ending), 16 floor maps + towns, design reference, saves |
 
 ## Rules (all work)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`, `*.sfc`, `*.smc`,

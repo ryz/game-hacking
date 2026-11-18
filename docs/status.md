@@ -37,8 +37,6 @@ Current snapshot; history in `progress-log.md`.
   in play, saves 01-04. Open: Sell/Identify, darkness, spinner, level drain, floor 4 room fight.
 - Queue: none (all registered games have a first pass). Earlier gaps: Megami Tensei II (demons, fusion, bosses,
   game order), Megami Tensei (ending, boss fight).
-- (old line) Queue (registered 2026-11-18, not scouted): wizardry-2-nes, might-and-magic,
-  deep-dungeon-3.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).
 - `play.py`: persistent session with undo, snap (capture + route), checkpoint/goto, RAM search, RAM watches.
 - `shoot.py`: replay, `--verify` (pixel-exact reproduction), `--publish`; catalogue index.json/md + contact sheet.
