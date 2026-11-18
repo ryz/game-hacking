@@ -124,6 +124,8 @@ ROM whenever it is faster than playing. Prefer, in this order, whatever reaches 
    Put the game's warp recipe into game.json as a macro with arguments (`"WARP": "poke:...={0},..."`, token
    `WARP:04:0A:08`) so every event or floor shot is one token; five capture runs hand-built a helper for this.
    After leaving a shop or building, start a new `do` before poking the position (the exit can overwrite it).
+   Decode which floor/section owns a square before trusting a position scan: events can fire by position on squares
+   of other floors (Megami Tensei: the round-1 "8F map" mixed floors).
    Event scripts may encode facing differently from the RAM facing byte: try all four approaches to an event square
    before calling it gated (Might and Magic). Once the position bytes are known, scan the floor by poking the party next to each square
    and stepping in (finds NPCs, shops, doors) before exploring by hand (Megami Tensei capture, 2026-11-18).

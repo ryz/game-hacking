@@ -17,6 +17,8 @@ Current snapshot; history in `progress-log.md`.
   summon, fusion, sage password, shop, healer, status, Tyrant Minotaur encounter, game over), 41/41 verified.
   Open there: level-up (EXP poke did not trigger one), battle magic, a deeper floor, the Minotaur fight, a
   demon fighting, the ending (password format not decoded).
+- Megami Tensei round 2 (2026-11-18): 88 shots through the ending, 35 floor maps, late password. Open: other
+  sections' wall graphics after a warp, stairs prompt shot.
 - Megami Tensei II round 2 (2026-11-18): 67 shots in game order, Pazuzu, fusion, shop, totem save, overhead maps.
   Still open: a CHAT join, automap, Nebro and later bosses, first-person maze maps.
 - (round 1) Megami Tensei II (Famicom, English IPS), 2026-11-18: main set 36 shots (intro, naming, Devil Buster, battles,
@@ -37,8 +39,7 @@ Current snapshot; history in `progress-log.md`.
   01-03. Open: services in the other towns, spells above level 1, Bribe/Giveup.
 - Wizardry II (NES), 2026-11-18: main set 91 shots through the ending, 6 floor maps with special types checked
   in play, saves 01-04. Open: Sell/Identify, darkness, spinner, level drain, floor 4 room fight.
-- Queue: none (all registered games have a first pass). Earlier gaps: Megami Tensei II (demons, fusion, bosses,
-  game order), Megami Tensei (ending, boss fight).
+- Queue: none. Every registered game has a set and maps; open items per game are in its status line above.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).
 - `play.py`: persistent session with undo, snap (capture + route), checkpoint/goto, RAM search, RAM watches.
 - `shoot.py`: replay, `--verify` (pixel-exact reproduction), `--publish`; catalogue index.json/md + contact sheet.

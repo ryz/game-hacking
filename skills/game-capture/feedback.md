@@ -9,6 +9,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Megami Tensei round 2
+- Task: ROM maps of all 35 floors, level-up, battle magic, demon in battle, six bosses, ending, late password (41 ->
+  88 shots; commits 5702a0b 1030de2).
+- Worked: following the map-read routine from the position bytes decoded the format in ~20 calls; `play.py sample`
+  picked every battle and typing frame; searching boss code by enemy id found each boss's required item; reading
+  the level-up code showed the "next level" counter matters, not EXP.
+- Friction: a warp does not reload a section's wall graphics; status window not redrawn after HP pokes; snap right
+  after goto failed as stale (shot lost until a retake); battle cursors need longer waits; shared boss battle
+  flags forced all boss routes from one checkpoint. ~260 calls (budget ~250).
+- Proposed rule change: emulator guide: decode floor ownership before trusting a position scan; skill: `do settle`
+  after `goto` before `snap`.
+- Corrected: floor-ownership note added to the emulator guide; set and game.json checked, 6/6 re-verified.
+- Status: promoted 2026-11-18 (floor ownership); logged (settle after goto: play.py already refuses a stale snap)
+
 ### 2026-11-18 - Megami Tensei II round 2
 - Task: game order, start_room retake, Pazuzu, demons and fusion, shop and save point, maps (67/67; commits 9e8c146
   6d009b8).

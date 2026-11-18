@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Megami Tensei round 2: maps of all 35 floors, bosses, ending
+- game-capture round 2: 41 -> 88 shots (commits 5702a0b 1030de2): level-up (the "next level" counter at $0576, not
+  EXP), battle magic, a demon fighting, all six bosses beaten (each needs its item: Ratos Statue, Purski's Trumpet,
+  White Dragon Orb ...), the ending and credits; all 35 floors decoded from ROM (one 128x64 grid + block table)
+  into design/maps/ + maps.md; late password recorded; WARP macro. Coordinator: folder = index (88), game.json
+  changes are additions only, 6/6 re-verified (3 old, 3 new incl. the ending).
+
 ## 2026-11-18 - Megami Tensei II round 2; play.py sample
 - game-capture round 2: 67 shots (commits 9e8c146 6d009b8), set in game order, start_room retaken; Devil Buster
   finished as intended (Taurus -> S.ORB -> god statue -> Pazuzu), found by stepping onto every entry of the ROM's
