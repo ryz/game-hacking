@@ -1,3 +1,7 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title menu: BEGIN A NEW ADVENTURE (after skipping the storm intro with Start) | pow,TITLE
+start | First control: Granville start room facing the plaque; LV 0, HP 12, no gold/food/water, Camp icon active | @title,start,w600,settle
+castle | Granville Castle entrance (map 89), reached by the north gate of Granville and the field (map 25) | @start,poke:008A=18,poke:008F=18,w10,up,w200,settle,w200,up,w200,up,w200
+field | Outside Granville's north gate (overworld section, map 25), Granville Castle ahead | @start,poke:008A=18,poke:008F=18,w10,up,w200,settle

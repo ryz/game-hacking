@@ -9,6 +9,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Dungeon Magic (NES)
+- Task: scout Dungeon Magic: playbook, macros, title/start/field/castle checkpoints, RAM and map-data location,
+  inn save export, shot plan.
+- Worked: disassembling the joypad handler found the pause-then-icon command scheme in 3 calls after ~8 blind
+  tries; RAM dump before/after a step found position and the map at $0600, matched against the ROM to locate the
+  stored maps; wall-consistency scan + PNG renderer for an atlas; parallel poke-warps next to doors found the inn
+  and shops in one call; the step-and-tile helper.
+- Friction: no shared 6502 disassembler or RAM dump/diff; web sources mostly blocked (search snippets and ROM text
+  instead); ~10 calls on the pause scheme before going to the code; scout cannot run `shoot.py --verify`.
+- Proposed rule change: skill step 3: joypad read before guessing controls; shared `tools/dis6502.py` and `play.py
+  dump/diff`; emulator guide: dump the RAM floor block and search the ROM for stored maps.
+- Corrected: coordinator verified 12/12 from an empty cache; `tools/dis6502.py` made shared (second occurrence)
+  with a test, game copy removed and playbook updated; joypad and map-block hints in `docs/emulator/README.md`.
+- Status: promoted 2026-11-18 (disassembler, hints); open (`play.py dump/diff`, scout running shoot.py)
+
 ### 2026-11-18 - Megami Tensei II (Famicom, English IPS)
 - Task: scout Megami Tensei II: playbook, macros, title/start and later checkpoints, RAM, save handling, shot plan.
 - Worked: step-and-tile helper (`work/scout/megami-tensei-2/steps.py`); `emu.py` sheets to time typing text;

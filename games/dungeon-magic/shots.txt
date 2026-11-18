@@ -3,4 +3,34 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/dungeon-magic/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Routed lines below were replayed by the scout with tools/emu.py (2026-11-18), not yet through shoot.py.
+boot_credits | boot | Boot: Dungeon Magic logo, (c) Taito 1989, "Game created & programmed by Natsume" | pow,w200
+intro_storm | cutscene | Attract intro: a tree in the storm, "The calm night is shattered... Darces has returned" | pow,w1300
+title_screen | title | Title menu: BEGIN A NEW ADVENTURE | @title
+title_continue | menu | Title menu with a battery save: BEGIN A NEW ADVENTURE / CONTINUE YOUR ADVENTURE | sav:01_start,TITLE,w30,down,w30
+start_granville | gameplay | Granville: first control, first-person street view, status panel LV 0, HP 12 | @start
+hud_pause | hud | Paused (COND STOP): command icons Fight / Item / Spell / Use / Camp, Camp panel | @start,start,w20
+spell_panel | system | Spell icon selected: the rune slots (no runes learned yet) | @start,start,w20,left,w20,left,w20,select,w60
+shop_weapons | shop | Granville weapon and armour shop: "Do you need a weapon or some armor?" | @start,poke:008A=74,poke:008F=74,left,w30,a,w60,up,w300
+shop_items | shop | Granville item shop (food, water, potions): "Do you wish to buy anything?" | @start,set:0040=100:2,poke:008A=B4,poke:008F=B4,left,w30,a,w60,up,w300
+inn_welcome | save | Granville inn: "Welcome. Our rooms cost 2 gold." (a night at the inn saves the game) | @start,set:0040=100:2,poke:008A=94,poke:008F=94,left,w30,a,w60,up,w300
+field_castle | gameplay | Outside Granville's north gate: the field, Granville Castle ahead | @field
+castle_entrance | gameplay | Inside Granville Castle (green stone walls) | @castle
+# --- planned, not routed yet (how to reach: playbook "Shot plan") ---
+# dialogue_compass | dialogue | Old man in Granville: "Take this compass with you..." | @start + face the wandering old man, A
+# sign_wanted | dialogue | Granville plaque: "WANTED: brave warriors in search of fame and fortune." | @start,up (blue text window)
+# king_quest | dialogue | The King: 100 gold and a short sword, "Find Tores as soon as possible" | @castle + walk to the king
+# inventory_items | inventory | Item icon: the item list | play after buying food/water
+# camp_rest | system | Camp: rest outside a town, food and water used | @field + Camp icon, A
+# compass_view | hud | Compass shown in the status panel window | after dialogue_compass
+# wise_man_level | system | Wise man: "Have your journeys made you wiser?" level up | town wise man with EXP poked
+# wizard_apprentice | system | Wizard: "Will you be apprenticed in the magic art?" Earth/Water/Fire/Wind/Fairies | wizard's house
+# rune_cast | system | Casting a spell: runes combined | after apprenticeship
+# battle_first | battle | First real-time battle in a dungeon: monster in view, HP falling | first dungeon west of Granville / field
+# battle_win | battle | Monster defeated, EXP and gold | same
+# dungeon_* | gameplay | One shot per dungeon (Dungeon of Doom, sky cavern, ice forest, sea, tomb ...) | map-id warps ($95) or play
+# town_* | gameplay | Zandor, Deirus, Sull, Selle, Gran: entrances | maps 01-05, warp via $95 + transition (see playbook)
+# map_spell | map | Map-revealing spell / automap if any | magic
+# boss_* | boss | Element guardians / sword bosses, Darces | late game
+# gameover | gameover | Death screen | freeze HP to 0 in a fight
+# ending | ending | "By the depth of your wisdom ... Darces was driven back to the darkness" | late game

@@ -23,13 +23,31 @@ the evidence: link them (`../shots/main/<id>.png`).
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Dungeon Magic: Sword of the Elements is a single-character, real-time, first-person role-playing game: the hero
+walks a grid one square at a time, turning in 90-degree steps, while people in towns and monsters in the field
+move on their own **(verified)** (movement and wandering townsfolk seen at checkpoint `start`). Towns, the
+castle and dungeons are 16 by 16 square maps with walls between squares; the outdoors is made of 16 by 16
+field sections joined at their edges **(verified)** (Granville, its north field and Granville Castle). The quest
+is to find five elemental swords (Earth, Water, Fire, Wind/Sky, Fairy) and join them to defeat the dark
+overlord Darces **(source)** (Wikipedia; in-game text). Magic is built from runes learned by becoming the
+apprentice of a wizard of each element; one to three runes make a spell and spells cost hit points, not magic
+points **(source)** (Wikipedia). Levels are granted by wise men once enough experience is earned, food and
+water run down at camp and inns, and a night at an inn is the only way to save **(source)** (Wikipedia; inn save
+**(verified)**: the title offers "Continue your adventure" afterwards).
+
+The screen is split into a first-person view (with HP) and a status panel: portrait, condition, experience,
+level, gold, and five command icons - Fight (weapons and armour), Item, Spell (rune slots), Use (open doors, take
+boxes) and Camp (weight, food, water) **(verified)** (`hud_pause`, `spell_panel`). Start pauses the game and is
+the only way to change the active command **(verified)**.
 
 ## Documents
 | Document | Covers |
 |---|---|
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
+| world.md (planned) | towns, field sections, dungeons, floor maps drawn from the map data (playbook "Map data") |
+| magic.md (planned) | the five schools, runes, apprenticeship, HP cost |
+| economy.md (planned) | shops, inn (2 gold a night **(verified)**), food and water |
+| progression.md (planned) | wise men and levels, the five swords |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
      enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
@@ -37,3 +55,5 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Wikipedia | https://en.wikipedia.org/wiki/Dungeon_Magic:_Sword_of_the_Elements | release, story, magic system, saving |
+| In-game text (ROM) | `../playbook.md` (ROM text) | place names, quest |

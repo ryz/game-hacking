@@ -21,7 +21,9 @@ Current snapshot; history in `progress-log.md`.
   level-up, healer, Tokyo overworld, 3D cave, magic, computer room, save slots, shelter, game over), save
   01_computer_room. Open: Pazuzu, automap, a demon joining, summoning, fusion, shop, bosses; shots.txt not in game
   order; start_room retake. Some lines are untranslated by the patch (checked, not a layout error).
-- Queue (registered 2026-11-18, not scouted): dungeon-magic, wizardry-nes, wizardry-2-nes, might-and-magic,
+- `tools/dis6502.py` shared 6502 disassembler (2026-11-18).
+- Dungeon Magic (NES): scouted 2026-11-18 (maps located in RAM/ROM, save 01_start); capture next.
+- Queue (registered 2026-11-18, not scouted): wizardry-nes, wizardry-2-nes, might-and-magic,
   deep-dungeon-3.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).
 - `play.py`: persistent session with undo, snap (capture + route), checkpoint/goto, RAM search, RAM watches.

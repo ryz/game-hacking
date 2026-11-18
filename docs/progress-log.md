@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Dungeon Magic scouted; shared 6502 disassembler
+- `tools/dis6502.py` (any registered NES game or ROM path, bank size option, truncated operands as .db; test
+  `tests/test_dis6502.py`), promoted from the Dungeon Magic scout's game copy (second ad-hoc disassembler after the
+  Megami Tensei II capture). Emulator guide: map block in RAM -> stored maps in ROM; joypad read before guessing.
+- Dungeon Magic: scout done, 4 checkpoints, save 01_start, maps located (RAM $0600, ROM towns/dungeons), renderer
+  `games/dungeon-magic/tools/maps.py`; 12 routed shots verified 12/12 from an empty cache by the coordinator.
+
 ## 2026-11-18 - Megami Tensei II main set; five more games registered
 - Megami Tensei II (Famicom, English IPS, headered layout): scout (3cb9dea, 15 routed shots, 15/15 verified) and
   capture (fa9a47d, e2d1b8b): 36 shots, save `01_computer_room.sav`, design `world.md` and `combat.md`. Devil Buster

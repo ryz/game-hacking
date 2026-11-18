@@ -27,6 +27,42 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w600,start,w60,settle",
+    "NEWGAME": "TITLE,start,w600,settle",
+    "CONTINUE": "TITLE,down,start,w300,settle"
+  },
+  "ram": {
+    "map": {
+      "addr": "0095",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "pos_yx": {
+      "addr": "008A",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "facing": {
+      "addr": "008B",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "hp": {
+      "addr": "004D",
+      "size": 1
+    },
+    "level": {
+      "addr": "004A",
+      "size": 1
+    },
+    "gold": {
+      "addr": "0040",
+      "size": 2
+    },
+    "exp": {
+      "addr": "004B",
+      "size": 2
+    }
+  }
 }

@@ -105,7 +105,10 @@ ROM whenever it is faster than playing. Prefer, in this order, whatever reaches 
    `"rom_variants": {"gg": {"gg": ["ABC-DEF-GHI"]}}`), IPS hacks (e.g. a debug-menu patch) the same way
    (`"ips": ["rom/patches/x.ips"]`; patches are not committed either).
 3. **RAM:** stage/level number, position, items, flags (see below).
-   First-person dungeons: once the position bytes are known, scan the floor by poking the party next to each square
+   First-person dungeons: the current floor is often a plain 16x16 or 32x32 block in RAM; dump it and search the ROM
+   for it to find the stored maps (floor maps for design/). Controls not obvious after a few tries: find the joypad
+   read (`LDA $4016` on NES) with `tools/dis6502.py SLUG BANK ADDR` before guessing combinations.
+   Once the position bytes are known, scan the floor by poking the party next to each square
    and stepping in (finds NPCs, shops, doors) before exploring by hand (Megami Tensei capture, 2026-11-18).
 4. **Playing** only for what cannot be reached otherwise, or where the play itself is the shot.
 
