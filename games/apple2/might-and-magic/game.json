@@ -57,7 +57,16 @@
     "CAST": "{0},w200,c,w200,{1},w150,{2},w150,enter,w300",
     "LIGHT": "CAST:6:1:6,esc,w150",
     "WORTHY": "poke:2C07D=5F,poke:2C0FD=5F,poke:2C17D=5F,poke:2C1FD=5F,poke:2C27D=5F,poke:2C2FD=5F",
-    "LOWHP": "poke:2C033=0100,poke:2C0B3=0100,poke:2C133=0100,poke:2C1B3=0100,poke:2C233=0100,poke:2C2B3=0100"
+    "LOWHP": "poke:2C033=0100,poke:2C0B3=0100,poke:2C133=0100,poke:2C1B3=0100,poke:2C233=0100,poke:2C2B3=0100",
+    "WARPX": "poke:0110=A9{0}8580A9{1}8581A9{2}A2{3}A0{4}4C7808,poke:A719=4C1001,AT:0C:00:0C,FW,left,w300,y,w900,SEC{4}",
+    "SEC01": "w1",
+    "SEC02": "disk:3,enter,w700",
+    "SEC03": "disk:4,enter,w700",
+    "DSTRONG": "set:2C033=64:2,set:2C035=64:2,set:2C037=64:2,set:2C0B4=71:2,set:2C0B6=71:2,set:2C0B8=71:2,set:2C135=58:2,set:2C137=58:2,set:2C139=58:2,set:2C1B6=49:2,set:2C1B8=49:2,set:2C1BA=49:2,set:2C237=53:2,set:2C239=53:2,set:2C23B=53:2,set:2C2B8=44:2,set:2C2BA=44:2,set:2C2BC=44:2",
+    "DVET": "set:2C033=64:2,set:2C035=64:2,set:2C037=64:2,set:2C0B4=71:2,set:2C0B6=71:2,set:2C0B8=71:2,set:2C135=58:2,set:2C137=58:2,set:2C139=58:2,set:2C1B6=49:2,set:2C1B8=49:2,set:2C1BA=49:2,set:2C237=53:2,set:2C239=53:2,set:2C23B=53:2,set:2C2B8=44:2,set:2C2BA=44:2,set:2C2BC=44:2,poke:2C023=0707,set:2C027=61480:4,poke:2C0A4=0707,set:2C0A8=58215:4,poke:2C125=0707,set:2C129=66902:4,poke:2C1A6=0707,set:2C1AA=71344:4,poke:2C227=0707,set:2C22B=57730:4,poke:2C2A8=0707,set:2C2AC=63051:4,set:2C22F=34:2,set:2C231=34:2,poke:2C233=0404,set:2C235=9:2,set:2C2B0=38:2,set:2C2B2=38:2,poke:2C2B4=0404,set:2C2B6=14:2",
+    "QA": "ctrl+a,w400",
+    "BLK": "b,w300",
+    "FLAME": "a,w440,w220,c,w220,1,w220,4,w220,a,w100"
   },
   "ram": {
     "x": {

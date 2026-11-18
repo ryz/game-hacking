@@ -9,3 +9,19 @@ roster | roster view: the six inherited characters deleted, RYZ CONDI EBO CUBI D
 party | Sorpigal, first control with the new party (RYZ first) | @roster,esc,w300,1,w400,ctrl+a,ctrl+b,ctrl+c,ctrl+d,ctrl+e,ctrl+f,x,w500,settle
 signed_in | inn list after signing in with the new party (roster on side 2) | @party,1,w200,settle,esc,w100,settle,down,left,left,up,up,w100,settle,y,w500,settle
 strong | Sorpigal start square, party strengthened by poke (POWER) with clubs equipped | @party,POWER,EQUIP:1,EQUIP:2,EQUIP:3,EQUIP:4,EQUIP:5,EQUIP:6,settle,w30,settle
+blacksmith | Sorpigal (6,5): B and B Blacksmiths' prompt; RYZ carries 1873 gold | @party,set:2C039=1873:3,up,w176,up,w176,left,w132,up,w176,up,w330,settle
+equipped | Sorpigal (6,5) after shopping: RYZ wears Short Sword and Leather Armor | @blacksmith,y,w330,a,w330,c,w330,esc,w220,b,w330,c,w330,esc,w220,esc,w220,1,w220,e,w220,b,w220,e,w220,b,w220,esc,w220,settle
+combat | Sorpigal (3,6): encounter behind the locked door, unlocked by CUBI | @equipped,AT:03:07:73,FW,left,w176,u,w220,4,w440,up,w550,settle
+cave1 | Cavern below Sorpigal at (14,0), lit | @equipped,LIGHT,AT:0E:00:0E,FN,left,w550,y,w880,settle
+portsmith | Portsmith at (1,12) by warp | @equipped,WARPX:01:0C:03:0C:01,settle
+algary | Algary at (11,13) by warp | @equipped,WARPX:0B:0D:03:02:01,settle
+dusk | Dusk at (12,8) by warp | @equipped,WARPX:0C:08:02:08:01,settle
+erliquin | Erliquin at (4,6) by warp | @equipped,WARPX:04:06:1A:0B:01,settle
+wild | Wilderness C-2 at (10,10) through Sorpigal's exit | @equipped,AT:0C:00:0C,FW,left,w550,y,w880,disk:3,enter,w700,settle
+areaa1 | Wilderness A-1 at (8,8) by warp | @equipped,LIGHT,WARPX:08:08:01:0F:02,settle
+areae1 | Wilderness E-1 at (8,8) by warp | @equipped,LIGHT,WARPX:08:08:12:01:02,settle
+alamar | Castle Alamar at (8,8) by warp | @equipped,LIGHT,WARPX:08:08:07:0B:03,settle
+doom | Castle Doom at (8,8) by warp | @equipped,LIGHT,WARPX:08:08:06:07:03,settle
+whitewolf | Castle White Wolf at (8,8) by warp | @equipped,LIGHT,WARPX:08:08:11:0A:03,settle
+qvl1 | Quivering Forest level 1 at (8,8) by warp | @equipped,LIGHT,WARPX:08:08:03:0F:03,settle
+astral | Astral Plane at (7,8) by warp, quest marks set | @equipped,LIGHT,WARPX:07:08:1A:0B:03,WORTHY,settle
