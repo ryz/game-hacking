@@ -9,6 +9,29 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Might and Magic Book One (DOS, first DOS game)
+- Task: main set for Might and Magic 1 (DOS): 113/113 verified and published, three commits, area warp found,
+  design reference and playbook extended.
+- Worked: reading the Sorpigal overlay's exit handler gave the map loader and its id table in about six calls,
+  and poking that handler's operands made every area one macro (WARP). Writing shot lines straight into the work
+  `shots.txt` and running `shoot.py --only` (about 15 s per 20 shots) was faster than `play.py snap`. Parallel
+  `emu.py --out` runs with one frame per token found every combat and ending frame. `scan.py` per area gave
+  ready-made shot candidates.
+- Friction: the scout's `maps.py` read event tables two bytes early (14-byte OVR header, not 12), which hid two
+  event squares per area including the ending square, until the overlay was disassembled. `--publish-only`
+  orders the index by the game folder's `shots.txt`, not the work set's. `unsnap` needs a running session.
+  `emu.py` and `shoot.py` frames differ by a few frames on the animated title. The container clock barely
+  advanced, so the time budget could not be measured. The contact sheet at 113 shots is too tall for one view.
+- Proposed rule change: (1) skill.md: allow "write lines into the work `shots.txt` + `shoot.py --only`" as an
+  alternative to `snap` for known routes, and copy the list to the game folder before `--publish-only`;
+  (2) dos.md: an area overlay's exit handler holds the loader call, poke its operands for a warp; the 14-byte
+  OVR header; (3) `play.py unsnap` without a session; (4) dispatches state the budget in tool calls too.
+- Corrected: nothing found wrong. Coordinator re-verified the set from an empty cache (see the progress log for
+  the count) and looked at twelve shots across the set (title, creation, shop, spell hit, victory, game over,
+  lit cavern, forest, Okrim, Ironfist, both ending shots). The ending was reached by position poke with quest
+  marks set on a level-1 party, as the agent states; captions say so.
+- Status: open ((1) and (4) first asked here; (2) is game-specific and stays in the playbook; (3) tool wish).
+
 ### 2026-11-18 - Megami Tensei round 2
 - Task: ROM maps of all 35 floors, level-up, battle magic, demon in battle, six bosses, ending, late password (41 ->
   88 shots; commits 5702a0b 1030de2).
