@@ -2,6 +2,16 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Deep Dungeon III main set; macros with arguments; batch of five done
+- game-capture: 74 shots (commits fb6c8ee c3b8e42 4294138): towns and shops of three towns, temple, magic hall,
+  combat, level-up, companion joining/dying, events on all floors, masters Zosem and Barzas, the ending (area 6)
+  and credits; maps: three towns identified, building kinds, event squares per floor, warp tokens; design docs;
+  save 02_veterans. Coordinator: folder = index (74), 6/6 sample re-verified incl. the ending.
+- `tools/emu.py`: macros take arguments (`NAME:a:b` fills `{0}` `{1}`), for one-token warps; test in
+  `tests/test_small_tools.py` (renamed from test_dis6502.py). A warp/event helper had been hand-built in five runs.
+- The owner's batch of 2026-11-18 (Dungeon Magic, Wizardry I and II, Might and Magic, Deep Dungeon III) has a full
+  first pass: sets, floor maps, saves, design docs.
+
 ## 2026-11-18 - Deep Dungeon III scouted; NES docs: PRG ROM pokes have no effect
 - Scout: Japanese only (no patch supplied); party りず/こんでい/えぼ/きゅび (hiragana-only keyboard, four members),
   save 01_start, warp via the cave's stairs reload, 16 floors + town grid decoded and drawn; 14 routed shots

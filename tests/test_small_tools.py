@@ -12,3 +12,14 @@ def test_modes_branch_and_truncation():
     assert out[2].endswith("BNE $C005")       # branch to itself
     assert out[3].endswith(".db $02")         # illegal opcode
     assert out[4].endswith(".db $4C")         # JMP cut off at the bank end
+
+
+def test_macro_arguments():
+    import emu, pytest
+
+    class G:
+        macros = {"WARP": "poke:003D={0},poke:003B={1},left,w30", "GO": "WARP:02:05,up"}
+    assert emu.expand(G, emu.split("GO")) == ["poke:003D=02", "poke:003B=05", "left", "w30", "up"]
+    assert emu.expand(G, emu.split("set:0040=100:2")) == ["set:0040=100:2"]
+    with pytest.raises(ValueError):
+        emu.expand(G, emu.split("WARP:02"))

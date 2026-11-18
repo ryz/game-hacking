@@ -25,6 +25,9 @@ Routes are comma-separated tokens:
                                         P = kept frame used as the poster still (default 0 = first; -1 = last)
   pow, shot                             no-ops (power-on marker, extra screenshot)
   NAME                                  macro from game.json "macros" (UPPERCASE), expanded recursively
+  NAME:a:b:...                          macro with arguments: {0}, {1}, ... in its text are replaced, e.g.
+                                        "WARP": "poke:003D={0},poke:003B={1},poke:003C={2},left,w30,right,w30"
+                                        and the token WARP:04:0A:08 (values as written: hex for poke)
   @checkpoint                           first token only: start from that checkpoint (games/<slug>/checkpoints.txt)
 Shortcuts (cataloguing, not a fair playthrough: use them freely, with realistic values; docs/emulator/README.md):
   set:ADDR=DEC[:N[:bcd|be]]             write a decimal value in N bytes (default 1; little-endian binary,
@@ -174,8 +177,16 @@ def expand(game, toks, depth=0):
     out = []
     for t in toks:
         name, _, rep = t.partition("*")
+        head, _, args = t.partition(":")
         if t in game.macros:
             out += expand(game, split(game.macros[t]), depth + 1)
+        elif args and head in game.macros:                    # MACRO:a:b -> {0} {1} filled in
+            body = game.macros[head]
+            for i, v in enumerate(args.split(":")):
+                body = body.replace("{%d}" % i, v)
+            if re.search(r"\{\d+\}", body):
+                raise ValueError("macro %s needs more arguments than %r" % (head, t))
+            out += expand(game, split(body), depth + 1)
         elif name in game.macros and rep.isdigit():         # MACRO*N
             out += expand(game, split(game.macros[name]), depth + 1) * int(rep)
         else:

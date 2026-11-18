@@ -9,6 +9,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Deep Dungeon III (Famicom, Japanese) main set
+- Task: main set (74/74; commits fb6c8ee c3b8e42 4294138), event squares and towns decoded, ending found, saves.
+- Worked: in-process event scanner over all 16 floors in one parallel call (~3 min), tiled sheets readable enough to
+  caption; `w.sh` (goto + warp tokens + snap) made each dungeon shot one call; poking status-page bytes in turn found
+  level/EX in ~4 calls; warping to area 6 gave the ending.
+- Friction: freeze cannot save a character whose death check falls inside one `w60`; leaving a shop overwrote
+  position pokes in the same `do`; a town stairs prompt blocked input after arrival (~4 calls); typewriter text
+  again needed `do!` sampling. ~205 calls (within budget).
+- Proposed rule change: (1) emulator guide: new `do` after a building exit before poking position; (2) shared
+  warp-shot helper with a per-game warp template in game.json.
+- Corrected: (1) added to the emulator guide; (2) built as macros with arguments in `tools/emu.py` (`WARP:a:b:c`,
+  fifth hand-built warp helper) with a test; 6/6 sample re-verified; set folder = index.
+- Status: promoted 2026-11-18 ((1), (2)); open: typewriter-text sampling (`snapafter`), now reported four times
+
 ### 2026-11-18 - Might and Magic (NES) main set
 - Task: main set (93/93; commits 63279a4 5d0785b 3a6af15), maps (legend, terrain, exits), boss and ending, saves.
 - Worked: stepping into every event square from each open side (warp, face, Up) found shops, the Soul Maze answer

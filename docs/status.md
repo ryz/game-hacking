@@ -28,12 +28,16 @@ Current snapshot; history in `progress-log.md`.
 - Wizardry I (NES), 2026-11-18: main set 71 shots through Werdna and the ending, 10 floor maps with all special
   squares decoded, saves 01-03. Open: Identify, spinner, teleport square; party_dead retake.
 - `play.py dump/diff` (2026-11-18).
-- Deep Dungeon III (Famicom, Japanese): scouted 2026-11-18 (16 floors + towns drawn, save 01_start); capture next.
+- Deep Dungeon III (Famicom, Japanese), 2026-11-18: main set 74 shots through the ending, 16 floors + 3 towns mapped
+  with event squares, saves 01-02. Open: castle master, other towns' item shops/temples, lit cave.
+- Macros with arguments (`WARP:a:b:c`), 2026-11-18.
 - Might and Magic (NES), 2026-11-18: main set 93 shots through the ending, 55 maps with terrain and exits, saves
   01-03. Open: services in the other towns, spells above level 1, Bribe/Giveup.
 - Wizardry II (NES), 2026-11-18: main set 91 shots through the ending, 6 floor maps with special types checked
   in play, saves 01-04. Open: Sell/Identify, darkness, spinner, level drain, floor 4 room fight.
-- Queue (registered 2026-11-18, not scouted): wizardry-2-nes, might-and-magic,
+- Queue: none (all registered games have a first pass). Earlier gaps: Megami Tensei II (demons, fusion, bosses,
+  game order), Megami Tensei (ending, boss fight).
+- (old line) Queue (registered 2026-11-18, not scouted): wizardry-2-nes, might-and-magic,
   deep-dungeon-3.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).
 - `play.py`: persistent session with undo, snap (capture + route), checkpoint/goto, RAM search, RAM watches.
