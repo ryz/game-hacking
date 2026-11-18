@@ -3,4 +3,66 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/dos/might-and-magic/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Scout 2026-11-18: the routed lines below were run with emu.py and the frames looked at (not through shoot.py:
+# the scout may not write work/shots). All end in `!` (no settle: cursor/animation). Commented lines are targets.
+title_screen | title | Title: New World Computing presents Might and Magic, ESC to start / SPACE for scenes | @title,!
+menu_options | menu | Options: create new characters, view all characters, go to town | @menu,!
+create_roll | system | Create new characters: seven statistics rolled, eligible classes, ENT to re-roll | @menu,c,w200,!
+create_race | system | Creation: class Knight chosen, select a race (Human, Elf, Dwarf, Gnome, Half-Orc) | @menu,c,w200,enter,w60,enter,w60,enter,w60,enter,w60,enter,w60,1,w100,!
+create_alignment | system | Creation: select alignment (Good, Neut, Evil) | @menu,c,w200,enter,w60,enter,w60,enter,w60,enter,w60,enter,w60,1,w100,1,w100,!
+create_name | system | Creation: Knight, Human, Good, Male, name RYZ typed | @menu,c,w200,enter,w60,enter,w60,enter,w60,enter,w60,enter,w60,1,w100,1,w100,1,w100,1,w100,type:ryz,w60,!
+create_save | system | Creation: SAVE CHARACTER (Y/N)? | @menu,c,w200,enter,w60,enter,w60,enter,w60,enter,w60,enter,w60,1,w100,1,w100,1,w100,1,w100,type:ryz,w60,enter,w100,!
+start_inn_door | gameplay | First control: inside the Inn of Sorpigal facing its door, commands panel, party of six | @start,!
+sorpigal_inn_sign | gameplay | Sorpigal: sign above the door reads THE INN OF SORPIGAL | @start,up,w80,up,w80,left,w60,left,w80,!
+save_inn_prompt | save | The innkeeper asks: would you like to sign in (Y/N)? | @start,left,w60,left,w150,!
+save_inn_list | save | Signed in: Inn of Sorpigal, available characters, party marked with @ | @start,left,w60,left,w150,y,w250,!
+shop_blacksmith_prompt | dialogue | B and B Blacksmiths: a man wearing a leather apron speaks | @blacksmith,!
+shop_blacksmith_menu | shop | Blacksmith: buy weapons, buy armor, buy misc, sell item; RYZ's gold | @blacksmith,y,w150,!
+shop_weapons | shop | Blacksmith weapons: Dagger 5 ... Crossbow 50, Staff 30 | @blacksmith,y,w150,a,w150,!
+shop_armor | shop | Blacksmith armor: Small Shield 10 ... Chain Mail 200 | @blacksmith,y,w150,a,w150,c,w150,esc,w100,b,w150,!
+shop_misc | shop | Blacksmith misc: Torch 2, Rope & Hooks, Garlic, Magic Herbs, Might Potion, Scroll of Fire 300 | @blacksmith,y,w150,a,w150,c,w150,esc,w100,b,w150,c,w150,esc,w100,c,w150,!
+profile_ryz | inventory | RYZ's profile: statistics, HP, AC, gold, Short Sword and Leather Armor equipped, commands | @equipped,1,w100,!
+quickref | hud | Quick reference: hit points, spell points, armor class, food and condition of all six | @start,q,w100,!
+door_locked | gameplay | Sorpigal: a locked door (LOCKED!) | @equipped,AT:03:07:73,FW,left,w80,up,w80,!
+unlock_who | system | Unlock: who will try 1-6? | @equipped,AT:03:07:73,FW,left,w80,u,w100,!
+encounter_poltergeists | battle | Encounter: four Poltergeists, picture, Attack / Bribe / Retreat / Surrender | @combat,!
+combat_round | battle | Combat round 1: formation, monster list, handicap, a Poltergeist hacks at CONDI | @combat,a,w200,!
+train_level2 | system | Otto's Training: training for level 2 costs 25 gold | @equipped,set:16853=1685:4,AT:0D:0B:BD,FE,left,w250,y,w300,!
+train_level3_need | system | Training done: level 3 needs 1315 more experience points | @equipped,set:16853=1685:4,AT:0D:0B:BD,FE,left,w250,y,w300,a,w300,!
+temple_services | shop | Temple Moonshadow: restore health, uncurse items, restore align, make donation | @equipped,AT:04:01:14,FE,left,w250,y,w300,!
+market_food | shop | Eulards Fine Foods: all you can eat, 5 gold each, will you pay? | @equipped,AT:0A:05:5A,FS,left,w250,y,w300,!
+tavern_menu | shop | Ye Olde Hogge Tavern: have a drink, tip bartender, listen for rumors | @equipped,AT:0B:0E:EB,FS,left,w250,y,w300,!
+statue_lore | dialogue | A statue's inscription: in memory of a time long ago... | @equipped,AT:00:02:20,FN,left,w250,y,w300,!
+leprechaun | system | A tenacious leprechaun offers travel to a town for one gem | @start,AT:0B:03:3B,FN,left,w250,!
+stairs_prompt | gameplay | Sorpigal: stairs going down, take them (Y/N)? | @start,AT:0E:00:0E,FN,left,w250,!
+dungeon_darkness | gameplay | Below Sorpigal without light: DARKNESS | @equipped,AT:0E:00:0E,FN,left,w250,y,w400,!
+outdoors_first | gameplay | Outside Sorpigal: mountains and forest | @equipped,AT:0C:00:0C,FW,left,w250,y,w400,!
+#
+# --- targets not routed yet (method) ---
+# title_book_one | title | second title picture "Book One - Secret of the Inner Sanctum" | @title + sample "w20" to find the frame
+# demo_scene | extra | one of the SPACE demo pictures | @title,space,w200 (sample)
+# roster_view_all | menu | View all characters: letter, name, town, level, class | sav:02_ryz_party,MENU,v,w150
+# profile_menu | inventory | profile from the menu with Ctrl-N re-name / Ctrl-D delete | ...,v,w150,g,w150
+# rename_prompt | system | NAME: prompt while re-naming | ...,v,w150,b,w150,ctrl>n,w100
+# inn_party_full | menu | inn list with *** PARTY IS FULL *** and X exit inn | sav:02_ryz_party,MENU,1,w150,ctrl>g,...,ctrl>f,w30
+# protect | system | Protect: spells currently active (cast Leather Skin 1-5 with MNZ first) | 6,c,1,5 then p
+# order | system | Re-order party prompt | @start,o,w100
+# rest | system | Rest prompt and the morning after (HP/SP restored, food -1) | after a fight: r,y
+# cast_noncombat | system | casting from the profile: First Aid (DEDDO 5,c,1,4) or Light | profile, c
+# equip / trade / share prompts | inventory | "EQUIP WHICH ITEM" etc. | profile e / t / s
+# combat_options | battle | "OPTIONS FOR" a caster (Attack, Fight, Exchange, Retreat, Cast, Use, Block) | @combat,a + wait for MNZ/DEDDO
+# combat_cast | battle | CAST SPELL: LEVEL= NUMBER= / CAST ON | on MNZ's turn c,1,4
+# combat_spell_hit | battle | Flame Arrow result message | sample after the target letter
+# combat_shoot | battle | EBO shoots (sling) | on EBO's turn s
+# combat_victory | battle | "FOR DEFEATING THE MONSTERS EACH SURVIVOR RECEIVES n EXPERIENCE POINTS" | QA until it shows; sample "w20"
+# search_treasure | system | Search after a fight that leaves treasure (chest, trap, loot) | a fight outside town or in the dungeon, then s
+# surprised | battle | the party is surprised (no options) | other timing into (3,6)
+# bribe / surrender | battle | encounter options B and S | @combat,b / s
+# death | gameover | a dead character / the whole party dead | @combat with HP pokes (record +33 = 1), block
+# dungeon_lit | gameplay | dungeon below Sorpigal with light (Torch or Light spell first) | buy Torch (misc A), use it, stairs
+# dungeon_fight / trap / message | gameplay, battle | CAVE1 events | tools/scan.py CAVE1 from a checkpoint in the dungeon
+# outdoors (2-3) | gameplay | forest, mountains, water, desert sectors; "IMPASSABLE" style messages | walk from the Sorpigal exit; scan.py per sector
+# map | map | no automap in this version; the Location spell (Sorcerer 1-7) prints the coordinates | 6,c,1,7
+# towns 2-5 | gameplay, shop | Portsmith, Algary, Dusk, Erliquin: inn sign, one service each | leprechaun with a gem (record +31), then scan.py
+# castle / quest giver | dialogue | a lord offering a quest | outdoors, not located on DOS
+# ending | ending | Inner Sanctum | not reachable by a known shortcut yet (area poke not found)

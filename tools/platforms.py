@@ -731,14 +731,24 @@ class Dos(Libretro):
     WARMUP = 4                  # frames a just-opened machine runs before its first state load
 
     def frames(self, n):
+        # Until a program runs, everything is logged (_log) and run in steps of at most 10 frames: the log
+        # stops at the first step that ends with a program running. From then on it is the "launch" stored
+        # with every state. It must end there and not later: replaying more than the launch on load would
+        # repeat what the route did to the disk (found 2026-11-18: a second copy of a created character).
+        while n > 0 and self._log is not None:
+            step = min(n, 10)
+            self.c.run(step)
+            self._ran += step
+            self._log.append(["f", step])
+            n -= step
+            if self.c.L.retro_gamedb_running():
+                self._launch, self._log = self._log, None
         if n > 0:
             self.c.run(n)
             self._ran += n
-            if self._log is not None:
-                self._log.append(["f", n])
 
     BOOTLOG = b"GAMEDB-DOS-BOOTLOG-1\n"
-    STATE = b"GAMEDB-DOS-STATE-2\n"
+    STATE = b"GAMEDB-DOS-STATE-3\n"
 
     def save_state(self, path):
         """The core saves and loads states only while a DOS program runs, not in DOSBox Pure's start menu or at
@@ -750,15 +760,13 @@ class Dos(Libretro):
           files differ, powers on with those files, replays the launch inputs and then loads the core's state.
           So a state made after an in-game save still has that save on disk wherever it is loaded."""
         import base64, json
-        try:
-            raw = self.c.serialize()
-        except RuntimeError:
-            if self._log is None:
-                raise RuntimeError("no savestate here: no DOS program is running (start menu or DOS prompt)")
+        if self._log is not None:
             data = self.BOOTLOG + json.dumps(self._log).encode() + b"\n"
         else:
-            if self._log is not None:
-                self._launch, self._log = self._log, None
+            try:
+                raw = self.c.serialize()
+            except RuntimeError:
+                raise RuntimeError("no savestate here: the DOS program has ended (DOS prompt or start menu)")
             disk = self._disk()
             head = {"launch": self._launch, "disk": base64.b64encode(disk).decode() if disk else None}
             data = self.STATE + json.dumps(head).encode() + b"\n" + raw
@@ -796,7 +804,11 @@ class Dos(Libretro):
             self.c.unserialize(raw)
         except RuntimeError:                # no program running here, or other files: start again the way the
             self._replay(launch, disk or b"")       # saving run did, on the state's disk (b"" = no written files)
+            if self._log is not None:
+                raise RuntimeError("the state's launch inputs did not start a program")
             self.c.unserialize(raw)
+            if self._files(self._disk()) != self._files(disk):
+                raise RuntimeError("the launch inputs changed the files on disk; state not usable")
         self._launch, self._log = launch, None
 
     FILE_SAVES = True

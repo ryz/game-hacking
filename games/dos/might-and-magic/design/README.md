@@ -23,17 +23,30 @@ the evidence: link them (`../shots/main/<id>.png`).
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+A first-person party role-playing game in which up to six characters, picked from a roster of up to eighteen,
+explore towns, caverns, wilderness and castles built from maps of 16 by 16 squares, and fight groups of monsters
+in turn-based text combat **(verified: Sorpigal, routes in `../playbook.md`)**. Characters are made by rolling
+seven statistics from 3 to 18 until the wanted class becomes eligible, then choosing race, alignment, sex and
+name **(verified)**; six classes (Knight, Paladin, Archer, Cleric, Sorcerer, Robber) and five races **(verified
+on the creation screens)**. Everything is done with letter keys printed on the screen; there is no automap
+**(source: manual, "Tips on Mapping")**. Progress is kept only by signing in at the inn of one of the five towns
+**(verified)**. Experience comes from fights and quests, but a level is gained only by paying for training in a
+town **(verified: level 2 at 1500 experience for a Knight, 25 gold)**. Magic: 47 Cleric and 47 Sorcerer spells
+in seven levels, paid with spell points and, for stronger spells, gems **(source: manual)**. The goal is to find
+the Inner Sanctum **(source: Wikipedia)**.
 
 ## Documents
 | Document | Covers |
 |---|---|
+| [sorpigal.md](sorpigal.md) | the first town: services, prices, what a new party owns |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
-<!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
-     unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
-     enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
+
+Planned (capture run): characters (classes, races, statistics), combat (encounter options, handicap, messages),
+magic (the 94 spells from the manual, with what was seen), items and prices, world (areas and how they connect).
 
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Game manual, second edition (c)1987, in the owner's game folder | - | commands, classes, races, spells, save rule |
+| Wikipedia | https://en.wikipedia.org/wiki/Might_and_Magic_Book_One:_The_Secret_of_the_Inner_Sanctum | release, plot outline |
+| Play in the emulator, 2026-11-18 | `../playbook.md` routes and checkpoints | everything tagged verified |
