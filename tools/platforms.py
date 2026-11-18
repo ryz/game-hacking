@@ -861,7 +861,9 @@ class Apple2(Libretro):
     Keys are keyboard keys (KEYS; letters arrive as capitals, shift+letter as lowercase), openapple/solidapple
     (= joystick buttons 0/1, also button0/button1) and joyleft/joyright/joyup/joydown.
     Memory: 0000-FFFF is what the program reads right now (banking followed, ROM included, soft switches read
-    0); 10000-1FFFF is the auxiliary 64K of a //e. peek has no side effects; poke writes RAM only."""
+    0); 10000-1FFFF is the auxiliary 64K of a //e; 20000-2FFFF is the main 64K as stored, whatever is mapped
+    (2C000-2CFFF = language card bank 1 of D000-DFFF, 2D000-2FFFF = bank 2 and E000-FFFF RAM): games keep data
+    there while ROM is mapped. peek has no side effects; poke writes RAM only."""
     KEYS = {k: v for k, v in _retrok().items() if not k.startswith(("kp", "f")) and k not in (
         "insert", "home", "end", "pageup", "pagedown", "rshift", "rctrl", "alt", "ralt", "backquote")}
     KEYS.update({"f": 102, "openapple": 308, "solidapple": 307, "button0": 308, "button1": 307})
@@ -1118,6 +1120,8 @@ class Apple2(Libretro):
             if bank not in (0, 1) or addr + n > 0x10000:
                 raise ValueError("bank 0 = main 64K, 1 = auxiliary 64K")
             return self.c.peek_map(bank * 0x10000 + addr, n)
+        if addr >= 0x20000:
+            return self.c.peek_map(addr - 0x20000, n)
         if addr >= 0x10000:
             return self.c.peek_map(addr, n)
         f = self.c.L.retro_gamedb_peek
@@ -1125,6 +1129,10 @@ class Apple2(Libretro):
 
     def poke(self, addr, data):
         data = bytes(data)
+        if addr >= 0x20000:
+            for i, b in enumerate(data):
+                self.c.L.retro_gamedb_poke_main((addr + i) & 0xFFFF, b)
+            return
         if addr >= 0x10000:
             return self.c.poke_map(addr, data)
         for i, b in enumerate(data):

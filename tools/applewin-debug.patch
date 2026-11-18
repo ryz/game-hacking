@@ -107,7 +107,7 @@ index 1d94816..ab0ccaf 100644
  }
  
 diff --git a/source/Memory.cpp b/source/Memory.cpp
-index 43e1215..916399c 100644
+index 43e1215..eb30dc5 100644
 --- a/source/Memory.cpp
 +++ b/source/Memory.cpp
 @@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -118,7 +118,7 @@ index 43e1215..916399c 100644
  
  #include "Memory.h"
  #include "Interface.h"
-@@ -490,6 +491,34 @@ uint8_t ReadByteFromMemory(uint16_t addr)
+@@ -490,6 +491,47 @@ uint8_t ReadByteFromMemory(uint16_t addr)
  	return 0;
  }
  
@@ -150,10 +150,23 @@ index 43e1215..916399c 100644
 +	return true;
 +}
 +
++// game database: write the main 64K store at offset (C000-CFFF there = language card bank 1 of D000), wherever
++// or whether it is mapped right now; a page of the CPU cache that shows it is updated too.
++void GamedbPokeMain(uint16_t offset, uint8_t data)
++{
++	LPBYTE base = MemGetBankPtr(0, true);	// writes the cache back first
++	base[offset] = data;
++	if (!GetIsMemCacheValid())
++		return;
++	for (UINT page = 0; page < 256; page++)
++		if (memshadow[page] == base + (offset & 0xFF00))
++			mem[(page << 8) | (offset & 0xFF)] = data;
++}
++
  uint16_t ReadWordFromMemory(uint16_t addr)
  {
  	return ReadByteFromMemory(addr) | (ReadByteFromMemory(addr + 1) << 8);
-@@ -2280,9 +2309,14 @@ void MemInitializeFromSnapshot()
+@@ -2280,9 +2322,14 @@ void MemInitializeFromSnapshot()
  	}
  }
  
@@ -169,7 +182,7 @@ index 43e1215..916399c 100644
  }
  
  //===========================================================================
-@@ -2323,6 +2357,7 @@ void MemReset()
+@@ -2323,6 +2370,7 @@ void MemReset()
  	//   F2. Ctrl-F2. CALL-151, C050 C053 C057
  	// OR
  	//   F2, Ctrl-F2, F7, HGR
@@ -291,10 +304,10 @@ index 3b2bbeb..4167ebf 100644
          va_start(va, fmt);
          vfprintf(stderr, fmt, va);
 diff --git a/source/frontends/libretro/libretro.cpp b/source/frontends/libretro/libretro.cpp
-index 4103427..32bdba0 100644
+index 4103427..e59e2db 100644
 --- a/source/frontends/libretro/libretro.cpp
 +++ b/source/frontends/libretro/libretro.cpp
-@@ -496,3 +496,80 @@ size_t retro_get_memory_size(unsigned id)
+@@ -496,3 +496,87 @@ size_t retro_get_memory_size(unsigned id)
          return 0;
      };
  }
@@ -309,6 +322,7 @@ index 4103427..32bdba0 100644
 +
 +uint8_t GamedbPeek(uint16_t addr);
 +bool GamedbPoke(uint16_t addr, uint8_t data);
++void GamedbPokeMain(uint16_t offset, uint8_t data);
 +
 +#define GAMEDB_API extern "C" __attribute__((visibility("default")))
 +
@@ -327,6 +341,12 @@ index 4103427..32bdba0 100644
 +GAMEDB_API int retro_gamedb_poke(unsigned addr, unsigned value)
 +{
 +    return GamedbPoke(addr & 0xFFFF, value & 0xFF) ? 1 : 0;
++}
++
++// Write the main 64K store (not the CPU view): reaches language card RAM while ROM is mapped.
++GAMEDB_API void retro_gamedb_poke_main(unsigned offset, unsigned value)
++{
++    GamedbPokeMain(offset & 0xFFFF, value & 0xFF);
 +}
 +
 +// Put an image into a drive: 0, 1 = floppy drives 1, 2 (slot 6); 2, 3 = hard disks 1, 2 (slot 7).
