@@ -25,8 +25,41 @@
   },
   "macros": {
     "BOOT": "w120,down,enter,w300",
-    "MENU": "BOOT,w900,esc,w90,enter,w200",
-    "TOWN": "MENU,{0},w150,ctrl>a,ctrl>b,ctrl>c,ctrl>d,ctrl>e,ctrl>f,w30,x,w150"
+    "TITLE": "BOOT,w900",
+    "MENU": "TITLE,esc,w90,enter,w200",
+    "TOWN": "MENU,{0},w150,ctrl>a,ctrl>b,ctrl>c,ctrl>d,ctrl>e,ctrl>f,w30,x,w150",
+    "RYZ": "c,w200,enter,w60,enter,w60,enter,w60,enter,w60,enter,w60,1,w100,1,w100,1,w100,1,w100,type:ryz,w60,enter,w100,y,w200,esc,w150",
+    "RENAME": "{0},w150,ctrl>n,w100,type:{1},w60,enter,w150,esc,w100",
+    "NAMES": "v,w150,RENAME:b:condi,RENAME:c:ebo,RENAME:d:cubi,RENAME:e:deddo,RENAME:f:mnz,esc,w100",
+    "PARTY": "MENU,RYZ,NAMES,JOIN",
+    "AT": "poke:15E68={0}{1}{2}",
+    "FN": "poke:15E6D=C003300C10FF01F0",
+    "FE": "poke:15E6D=30C00C030110F0FF",
+    "FS": "poke:15E6D=0C3003C0F001FF10",
+    "FW": "poke:15E6D=030CC030FFF01001",
+    "QA": "ctrl>a,w200",
+    "JOIN": "1,w150,ctrl>g,ctrl>b,ctrl>c,ctrl>d,ctrl>e,ctrl>f,w30,x,w150"
   },
-  "ram": {}
+  "ram": {
+    "x": {
+      "addr": "15E68",
+      "size": 1
+    },
+    "y": {
+      "addr": "15E69",
+      "size": 1
+    },
+    "hp1": {
+      "addr": "1685F",
+      "size": 2
+    },
+    "gold1": {
+      "addr": "16865",
+      "size": 3
+    },
+    "food1": {
+      "addr": "1686A",
+      "size": 1
+    }
+  }
 }

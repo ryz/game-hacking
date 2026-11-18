@@ -1,5 +1,11 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
 sorpigal | Sorpigal, outside the inn, default party of six | pow,BOOT,w300,settle,w300,settle,w300,settle,esc,w90,settle,enter,w200,settle,1,w150,settle,ctrl>a,ctrl>b,ctrl>c,ctrl>d,ctrl>e,ctrl>f,w30,settle,x,w150,settle
 after_save | options menu after signing in at the inn of Sorpigal (Crag's club moved to the backpack) | @sorpigal,1,w60,r,w40,1,w60,esc,w60,down,w60,left,w40,left,w40,up,w60,up,w60,y,w200,esc,w120,settle
+title | Title screen with the ESC / SPACE prompt (animated, never settles) | pow,TITLE
+menu | Main options menu: C create, V view all characters, 1-5 go to town | @title,esc,w90,enter,w200
+start | First control: Sorpigal (8,3), inside the inn facing its door (north); party RYZ, CONDI, EBO, CUBI, DEDDO, MNZ from save 02_ryz_party | pow,sav:02_ryz_party,MENU,JOIN
+created | Same place and party as start, but built from power-on by creating RYZ and renaming the stock characters (PARTY macro); see playbook: states built on it grow duplicate RYZ entries when loaded from the cache | pow,PARTY
+blacksmith | Sorpigal (6,5): B and B Blacksmiths, 'CAN I HELP YOU (Y/N)?' prompt; RYZ carries 1873 gold | @start,set:16865=1873:3,up,w80,up,w80,left,w60,up,w80,up,w150
+equipped | Sorpigal (6,5) after shopping, map view: RYZ wears Short Sword + Leather Armor, 1833 gold | @blacksmith,y,w150,a,w150,c,w150,esc,w100,b,w150,c,w150,esc,w100,esc,w100,1,w100,e,w100,b,w100,e,w100,b,w100,esc,w100
+combat | Sorpigal (3,6): encounter behind the locked door (unlocked by CUBI): 4 Poltergeists with picture, options Attack / Bribe / Retreat / Surrender | @equipped,AT:03:07:73,FW,left,w80,u,w100,4,w200,up,w250
