@@ -1,6 +1,6 @@
 # Digital Devil Monogatari: Megami Tensei II (Famicom, English translation patch) - shots: main
 
-Platform nes, model ntsc, ROM SHA-1 `59641a60e019e4fc7d16b606b0bf2df0abd68595`. 31 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
+Platform nes, model ntsc, ROM SHA-1 `59641a60e019e4fc7d16b606b0bf2df0abd68595`. 36 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -35,5 +35,10 @@ Platform nes, model ntsc, ROM SHA-1 `59641a60e019e4fc7d16b606b0bf2df0abd68595`. 
 | computer_menu | menu | Home computer: COMMAND? BOOT GAME / LEAVE / SAVE DATA | yes | [png](computer_menu.png) [3x](3x/computer_menu.png) |
 | save_slots | save | SAVE DATA: "-CHOOSE A SLOT-" DATA1 / DATA2 | yes | [png](save_slots.png) [3x](3x/save_slots.png) |
 | shelter | gameplay | The shelter, B4: first-person corridor, RYZ and his friend EBO, 0 Macca after the game | yes | [png](shelter.png) [3x](3x/shelter.png) |
+| shelter_soldier | dialogue | Shelter B4: a soldier, "REAL LIFE IS NOT A GAME." | yes | [png](shelter_soldier.png) [3x](3x/shelter_soldier.png) |
+| shelter_gate_guard | dialogue | Shelter gate: a guard at the DANGER fence, "READ THE SIGN KID! ... SCRAM!" | yes | [png](shelter_gate_guard.png) [3x](3x/shelter_gate_guard.png) |
+| battle_chat_golem | battle | CHAT with a ST GOLEM: the demon asks a YES/NO question (this line shows untranslated text) | no | [png](battle_chat_golem.png) [3x](3x/battle_chat_golem.png) |
+| comp_call | system | COMP > CALL with no demons in stock: "NO DEMON TO SUMMON." (overworld view picture) | yes | [png](comp_call.png) [3x](3x/comp_call.png) |
+| battle_item | battle | Battle ITEM for RYZ with an empty bag: "NO ITEMS TO USE." | no | [png](battle_item.png) [3x](3x/battle_item.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

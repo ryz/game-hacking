@@ -81,26 +81,29 @@ Round macro idea: `a,w60,a,w60,a,w60,a,w400` = FIGHT, RYZ RUSH, CONDI RUSH, YES.
   20 Makka, 8 MAG).
 
 ## Shot plan
-Routed lines are in `shots.txt` (15 shots, frames checked by the scout). Must-haves from the capture guide:
-- [ ] `title_screen` - title; `intro_skyline`, `intro_face`, `intro_blast` - cutscene (attract intro)
-- [ ] `caution` - cutscene - Devil Buster's opening text
-- [ ] `naming_hero`, `naming_ryz`, `stats_alloc` - menu
-- [ ] `start_room` - gameplay - first control in the Devil Buster maze
-- [ ] `hud_cmd` - hud - field command screen
-- [ ] `stats_ryz` - inventory - status page
-- [ ] `battle_menu`, `battle_action`, `battle_chat`, `battle_victory` - battle
+Capture run 2026-11-18: 36 shots in `main` (`shots.txt`, published to `shots/main/`). Ticked = captured (other id in
+brackets). Must-haves from the capture guide:
+- [x] `title_screen` - title; `intro_skyline`, `intro_face`, `intro_blast` - cutscene (attract intro)
+- [x] `caution` - cutscene - Devil Buster's opening text
+- [x] `naming_hero`, `naming_ryz`, `stats_alloc` - menu
+- [x] `start_room` - gameplay - first control in the Devil Buster maze
+- [x] `hud_cmd` (+ `cmd_overworld`) - hud - field command screen
+- [x] `stats_ryz` - inventory - status page
+- [x] `battle_menu`, `battle_action`, `battle_chat`, `battle_victory` - battle
 - [ ] `pazuzu` - cutscene/dialogue - Pazuzu after Devil Buster (needs Devil Buster finished)
-- [ ] `shelter` - gameplay - the shelter (real world, first town)
-- [ ] `save_slots` - save - the computer's SAVE DATA / "Choose a slot" screen
-- [ ] `tokyo_overworld` - map/gameplay - ruined Tokyo overhead
-- [ ] `dungeon_3d` - gameplay - first-person view in a dungeon (if dungeons switch to full 3D)
+- [x] `shelter` (+ `shelter_soldier`, `shelter_gate_guard`) - gameplay - the shelter (real world, first town)
+- [x] `save_slots` (+ `computer_menu`, `computer_room`) - save - the computer's SAVE DATA / "Choose a slot" screen
+- [x] `tokyo_overworld` - map/gameplay - ruined Tokyo overhead
+- [x] `dungeon_3d` - gameplay - first-person view in a dungeon (if dungeons switch to full 3D)
 - [ ] `automap` - map - the auto-mapping program
-- [ ] `comp_summon`, `demon_joined` - system - a demon recruited by CHAT and summoned
+- [ ] `comp_summon`, `demon_joined` (no demon joined; captured `comp_menu`, `comp_call`, `magic_spells`) - system - a demon recruited by CHAT and summoned
 - [ ] `fusion` - system - fusing two demons
-- [ ] `shop`, `heal` - shop/system
-- [ ] `levelup` - battle; `boss_nebro` - boss (B8); `tokyo_tower_witch` - dialogue
-- [ ] `gameover` - gameover
-How to reach: everything up to `battle_victory` is a checkpoint here. The rest needs Devil Buster finished
+- [ ] `shop` (not found), [x] `heal` - shop/system
+- [x] `levelup` - battle (+ `battle_magic`, `battle_dia`, `battle_item`, `battle_overworld`, `battle_chat_golem`); [ ] `boss_nebro` - boss (B8); `tokyo_tower_witch` - dialogue
+- [x] `gameover` - gameover
+Extra: `error_screen` (leftover debug screen). Not captured: `pazuzu`, `automap`, `fusion`, `shop`, `boss_nebro`,
+`tokyo_tower_witch`, a joined/summoned demon (see Strategy, capture run).
+How to reach (scout): everything up to `battle_victory` is a checkpoint here. The rest needs Devil Buster finished
 (play: floors via stairs, HP frozen, enemies' HP poked to 1), then the shelter (save there, export `01_start`).
 
 ## Strategy and walkthrough notes
@@ -113,6 +116,35 @@ How to reach: everything up to `battle_victory` is a checkpoint here. The rest n
   `down:16,w30` that changes x/y to 6F/0C) and a blue orb tile in an enclosure (not tried).
 - The goal of Devil Buster is not known yet (ROM: Pazuzu speaks after it); find the way down/the exit floor by floor
   and checkpoint every floor.
+
+### Capture run 2026-11-18: what worked
+- **The real world without finishing Devil Buster:** lose every hero inside Devil Buster (any battle; HP freezes do
+  not hold inside one token, a ST GOLEM x3 fight with `down*2,a,w10*25` killed the party). GAME OVER ("THE WORLD WILL
+  PERISH!") is followed by the computer room (EBO: "...QUIT THE GAME AND SPOKE."), then the computer menu BOOT GAME /
+  LEAVE / SAVE DATA (checkpoints `computer_room`, `computer_menu`). SAVE DATA > DATA1 saves (export `01_computer_room`);
+  LEAVE puts RYZ + EBO into the shelter B4 (checkpoint `shelter_b4`). Macca and MAG drop to 0. Whether the Pazuzu scene
+  (COMP summoning, auto-mapping, CONDI's magic) still comes later on this path is not known.
+- **No random encounters:** `freeze:037A=FF` (TCRF cheat list via web search; verified in Devil Buster, the overworld
+  and caves). TCRF also lists `04C5=FF` (alternative), `040C=01` (overworld wall walk), `DB04=FF` / `C091=FF` (wall walk),
+  and a controller-2 B debug toggle (no controller 2 here).
+- **Warps on overhead maps:** a position poke alone does not move collision. Poke `0431/0432` **8 frames into a stairs
+  transition** (step onto stairs, `w8`, poke, `w120`): the new map is drawn and walkable (frames 4-30 work). The area
+  byte `0436` decides which map and events apply at a position: the grey temple at 5B,7F is the healer's temple with
+  `0436=05`, and with `0436=04` its door (5B,7E) leads out to the Tokyo overworld at 11,2B (checkpoints `db_last`,
+  `overworld`).
+- **Event scan in first-person mazes:** poke `042F/0430` (and the copies `0433/0434`) to the square before the target
+  facing S, then `up:16,w24,w200`: the event of the target square fires. A 16x16 contact sheet of all squares finds
+  NPCs and stairs in one run (script idea from Megami Tensei I; shelter B4 events: soldier 04,05; DANGER-gate guards
+  05,07 0A,07 05,0F 0A,0F; stairs 00,02 0F,07 0F,0F). The floor below the B4 stairs (00,02) showed the same event
+  squares, so events seem to be per area, not per floor (`0436=01` in the shelter).
+- **Overhead explorer:** a breadth-first search over savestates (press each direction, keep new squares, log jumps as
+  stairs) mapped Devil Buster floor 8 and the overworld near 11,2B (the cave holes at 0E,2F and 1C,2B are cave
+  entrances). Moves are only reliable with `settle` between direction changes (`right:16,w24` per step).
+- Negotiation: answers change with the frame of the CHAT press (`wN` before it); 60 variations against a Willowisp
+  gave only "calls a Willowisp" / "THEY WILL NOT TALK!". ST GOLEMs asked YES/NO questions in untranslated text.
+- Dead ends: decoding how Devil Buster ends (floor-8 exit stairs inside a wall; the area-2 event table is empty) took
+  ~60 tool calls without an answer; the warp-table rom variant (`bytes` patch of the floor-1 stairs target) reproduced
+  the poke result exactly and was removed again.
 
 ## Naming
 Hero **RYZ**, girlfriend **CONDI**, best friend **EBO** (owner's rule; upper case is all the grid offers).
@@ -129,8 +161,9 @@ col 15 of rows 2/3/4. Cursor starts on ア (0,0) for every name. Macros `NAME_RY
 | Debug scenario list | 50 story points listed at ROM 0x16FB3 (see Game structure) | ROM text | how to open it unknown |
 | Saves from the web, codes | none found: TCRF, the manual PDF host (yojimbo.eludevisibility.org) are not reachable from here | - | - |
 
-### Saves (rom/saves/megami-tensei-2/, never committed)
-None downloaded. No in-game save before the shelter: the battery RAM at `start` holds no slot, so no `01_start`
+### Saves
+Exported: `games/megami-tensei-2/saves/01_computer_room.sav` (slot DATA1, RYZ/CONDI LV 2 at the home computer after
+the Devil Buster game over; see `saves/README.md`). None downloaded (rom/saves/megami-tensei-2/ is empty). No in-game save before the shelter: the battery RAM at `start` holds no slot, so no `01_start`
 export was made (the first export belongs after Devil Buster, at the computer's SAVE DATA).
 
 ## RAM map (for `game.json` "ram" watches and pokes)
@@ -145,6 +178,17 @@ export was made (the first export belongs after Devil Buster, at the computer's 
 | 050C / 050D | 1+1 | level RYZ / CONDI | peek (01 01) |
 | 053C + n | 1 | HP (low byte) of battle slot n: 0 RYZ, 1 CONDI, 12 (0548) first enemy; max HP at 0578 + n (enemy 0584); high bytes probably 0554 + n / 0590 + n | poke verified on screen |
 | 0564 + n | 1 | MP of slot n (0565 CONDI); max MP 05A0 + n | poke verified (MP 9) |
+| 037A | 1 | encounter control: `FF` held = no random battles | TCRF cheat (web search); verified |
+| 042F / 0430 | 1+1 | position in a first-person maze (x, y; S = y+1); copies at 0433/0434; on the overworld the world position | RAM diff; poke + step fires the target square's event (verified) |
+| 0436 | 1 | area: 03 Devil Buster floor 1, 02 other Devil Buster floors, 04 overworld, 05 building interiors, 01 shelter | peek after warps; set from the warp's target byte through a table at $D82F |
+| 0438 | 1 | area number of the last warp (byte 4 of a warp entry) | code at $DD08 |
+| 04AA / 04AB | 1+1 | event/script id set by a warp or an event square | code at $DAE4/$DD1E |
+| 0440 / 0441 | 1+1 | overhead camera top-left (player - 8, - 7) | peek |
+| 040C | 1 | map mode nibble shown on the ERROR screen; TCRF: `01` = overworld wall walk | code at $EC14 |
+
+ROM (file offsets without the 16-byte header): warp tables are 7-byte entries `x y tx|80 ty area ev1 ev2` in PRG bank
+3 (e.g. Devil Buster from 0x744D: 57,0C -> 6F,0C ...; real-world doors from ~0x7407); the event-square table per area
+is at bank 3 $ABAE (4-byte entries `x y id-lo id-hi`); warp search code at $DC97, ERROR printer at $EB5A.
 
 ## Emulation notes
 - NTSC, defaults fine. Mapper 19 (Namco 163) runs in Mesen without trouble; the patched text renders cleanly
@@ -161,6 +205,10 @@ export was made (the first export belongs after Devil Buster, at the computer's 
 All in `checkpoints.txt`; built from an empty cache and compared with a cache hit: identical frames
 (2026-11-18) for `title`, `naming`, `start`, `battle_willowisp`, `won_willowisp`. `battle_willowisp` has a long
 route (menu tests and walking on two floors) because the encounter depends on its exact frame timing: do not tidy it.
+Capture run 2026-11-18 added: `db_f1_back` (floor 1 again, LV 2, 120 Macca) -> `db_last` (warp poke to 5B,7F) ->
+`overworld` (11,2B) -> `dungeon_1f` (cave) / `battle_golem` -> `golem_r2` -> `computer_room` (game over) ->
+`computer_menu` -> `saved_data1` (DATA1 saved) ; `computer_menu` -> `shelter_b4` (LEAVE) -> `shelter_stairs1`.
+All routes are deterministic; every shot built on them passed `--verify`.
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -170,6 +218,11 @@ route (menu tests and walking on two floors) because the encounter depends on it
 | TCRF, manual PDF (yojimbo.eludevisibility.org), almarsguides walkthrough | https://www.tcrf.net/Digital_Devil_Story:_Megami_Tensei_II , https://yojimbo.eludevisibility.org/Stardust_Crusaders_Files/complete/NES/mt2files/Digital%20Devil%20Story%20Megami%20Tensei%202%20Manual.pdf , https://almarsguides.com/retro/walkthroughs/nes/Games/DigitalDevilStoryMegamiTenseiII/ | hosts not resolvable from this session (outside the allowed network); for the owner / an allowed session | 2026-11-18 |
 
 ## Open questions
+- (capture run) How Devil Buster is meant to end and how the Pazuzu scene is triggered; whether it still happens after
+  quitting Devil Buster by a game over. Next idea: from `shelter_b4`, play the shelter (gates, other floors) and watch
+  for Pazuzu at the computer (BOOT GAME); or find the script that prints "BORN FROM FIRE AND STORM" (bank 12, file
+  0x183E8) and the event id that starts it, then poke `04AA/04AB`.
+- (capture run) Where demons join (no join in ~80 CHAT tries) and where the first shop is.
 - How Devil Buster ends (which floor, a boss?) and where the first save point is (the home computer?).
 - Does the title get a CONTINUE entry once a slot is saved? Load route for `sav:` saves.
 - The 50-entry story-point list: a debug menu? Which code reads the pointer table (PRG bank 11, $CF00 area)?

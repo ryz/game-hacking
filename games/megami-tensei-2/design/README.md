@@ -40,6 +40,8 @@ girlfriend starts with MP 11 **(verified)**.
 ## Documents
 | Document | Covers |
 |---|---|
+| [world.md](world.md) | Devil Buster floors, the computer room, the shelter, the overworld, saving |
+| [combat.md](combat.md) | battle commands, magic, negotiation, rewards, level up, healing, game over |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 <!-- Planned: controls-and-feel.md, characters.md (stats, levels), combat.md, demons.md (negotiation, fusion, moon), world.md (Devil Buster floors, Tokyo areas), economy.md -->
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,

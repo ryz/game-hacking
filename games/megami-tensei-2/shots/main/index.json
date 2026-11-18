@@ -411,6 +411,71 @@
    "file_3x": "3x/shelter.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
    "captured": "2026-11-18"
+  },
+  {
+   "id": "shelter_soldier",
+   "category": "dialogue",
+   "caption": "Shelter B4: a soldier, \"REAL LIFE IS NOT A GAME.\"",
+   "route": "@shelter_b4,poke:042F=04,poke:0430=04,poke:0433=04,poke:0434=04,poke:037A=FF,up:16,w24,w200,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "shelter_soldier.png",
+   "file_3x": "3x/shelter_soldier.png",
+   "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "shelter_gate_guard",
+   "category": "dialogue",
+   "caption": "Shelter gate: a guard at the DANGER fence, \"READ THE SIGN KID! ... SCRAM!\"",
+   "route": "@shelter_b4,poke:042F=05,poke:0430=06,poke:0433=05,poke:0434=06,poke:037A=FF,up:16,w24,w200,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "shelter_gate_guard.png",
+   "file_3x": "3x/shelter_gate_guard.png",
+   "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "battle_chat_golem",
+   "category": "battle",
+   "caption": "CHAT with a ST GOLEM: the demon asks a YES/NO question (this line shows untranslated text)",
+   "route": "@battle_golem,w4,down*2,a,w10*30,settle",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "battle_chat_golem.png",
+   "file_3x": "3x/battle_chat_golem.png",
+   "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "comp_call",
+   "category": "system",
+   "caption": "COMP > CALL with no demons in stock: \"NO DEMON TO SUMMON.\" (overworld view picture)",
+   "route": "@battle_golem,w4,down*2,a,w10*30,settle,a,w10*30,settle,a,w10*30,settle,a,w10*30,settle,a,w60,a,w60,a,w60,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "comp_call.png",
+   "file_3x": "3x/comp_call.png",
+   "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "battle_item",
+   "category": "battle",
+   "caption": "Battle ITEM for RYZ with an empty bag: \"NO ITEMS TO USE.\"",
+   "route": "@battle_golem,a,w60,down*2,a,w60,settle",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "battle_item.png",
+   "file_3x": "3x/battle_item.png",
+   "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
+   "captured": "2026-11-18"
   }
  ]
 }

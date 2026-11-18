@@ -30,3 +30,8 @@ computer_room | cutscene | The real world: the computer room; "EBO WATCHED RYZ Q
 computer_menu | menu | Home computer: COMMAND? BOOT GAME / LEAVE / SAVE DATA | @computer_room,a,w300,settle,a,w300,settle,a,w300,settle
 save_slots | save | SAVE DATA: "-CHOOSE A SLOT-" DATA1 / DATA2 | @computer_menu,down*2,a,w150,settle
 shelter | gameplay | The shelter, B4: first-person corridor, RYZ and his friend EBO, 0 Macca after the game | @saved_data1,down,a,w300,settle
+shelter_soldier | dialogue | Shelter B4: a soldier, "REAL LIFE IS NOT A GAME." | @shelter_b4,poke:042F=04,poke:0430=04,poke:0433=04,poke:0434=04,poke:037A=FF,up:16,w24,w200,settle
+shelter_gate_guard | dialogue | Shelter gate: a guard at the DANGER fence, "READ THE SIGN KID! ... SCRAM!" | @shelter_b4,poke:042F=05,poke:0430=06,poke:0433=05,poke:0434=06,poke:037A=FF,up:16,w24,w200,settle
+battle_chat_golem | battle | CHAT with a ST GOLEM: the demon asks a YES/NO question (this line shows untranslated text) | @battle_golem,w4,down*2,a,w10*30,settle
+comp_call | system | COMP > CALL with no demons in stock: "NO DEMON TO SUMMON." (overworld view picture) | @battle_golem,w4,down*2,a,w10*30,settle,a,w10*30,settle,a,w10*30,settle,a,w10*30,settle,a,w60,a,w60,a,w60,settle
+battle_item | battle | Battle ITEM for RYZ with an empty bag: "NO ITEMS TO USE." | @battle_golem,a,w60,down*2,a,w60,settle
