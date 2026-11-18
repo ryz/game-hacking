@@ -45,12 +45,15 @@ fixed roster of fifteen at the inns (Member > Add), each living in one town (ver
 | | Down | step back (not through doors) | verified |
 | | Left / Right | turn 90 degrees | verified |
 | | B | step forward (same as Up) | verified ((8,5) -> (8,4)) |
-| | A | menu: Search, Open, Row, Camp, Speed, Cast, Use, View, Prot, Cancel | verified |
+| | A | menu: Search, Open, Row, Camp, Speed, Cast, Use, View, Prot, Cancel (two columns: left Search..Speed, right Cast..Cancel; cursor starts on Search every time) | verified |
+| | Camp | "Rest here?" - **No opens the item menu** Equip, Remove, Trade, Drop, Share (Equip: Who? -> item -> WHERE? slot) | verified (capture; handler bank 22 $853A) |
+| | View | five pages per member (A pages on, B back): profile, stats, HP/MP/gems/gold/food, equipped, backpack | verified |
 | | Select | automap (visited squares; "Darkness..." in dark areas) | verified |
 | | Start | redraw the view / close messages | verified (code bank 29 $A4AC) |
 | Inn | Up, A | sign-in prompt: Up toggles No -> Yes | verified |
 | | A / B | menus Member (Add, Remove, View, Quit), Rest, View, Cancel / back | verified |
-| Battle | A, D-pad | Attack, Bribe, Run, Giveup; then per member Auto, Fight, Block, Row, Use, View, Prot, Run | seen (Rabid Jackal, not played) |
+| Battle | A, D-pad | Attack, Bribe, Run, Giveup; then per member Auto, Fight, (Cast or Shoot), Block, Row, Use, View, Prot, Run; each member acts right after its order | verified (capture) |
+| Shops | Up, A | prompt Yes/No ("Can I help you?"), then the service menu; B leaves sub-menus | verified |
 Joypad dispatch in exploration: bank 29 $A304 (bit order Right, Left, Down, Up, Start, Select, B, A) (code).
 
 Input timing: input waits for a change of the pad state, so the default press works, but **a press that comes
@@ -85,12 +88,22 @@ presses (padding Bs). Use one action per `do` while exploring, or long waits in 
   01 blocked W (flag names Data Crystal, bit positions checked: blocked bits match wall type 1 in caves 100%).
 - Map headers: 78 bytes per area from `0x38E7E` (area label, then palettes/music/encounter data, not decoded).
 - Exits are code, not data: each area's event script compares $A1 (y*16+x) and sets $9D (target), $9F/$A0
-  (banks 0-10, pattern `LDA #map STA $9D LDA #x STA $9F LDA #y STA $A0 JSR $F817`).
+  (banks 0-10, pattern `LDA #map STA $9D LDA #x STA $9F LDA #y STA $A0 JSR $F817`). Script of area N = entry E
+  (JMP table at $8000) of PRG bank B, with (B, E) pairs at bank 29 $A1B7 + 2*(N-1) (decoded 2026-11-18;
+  `maps.py exits()`; table in `design/maps.md` section 5). $9D codes $80+ open services (80 inn, 81 blacksmith,
+  82 market, 83 tavern, 84 temple, 85 training, 8C guild).
+- Outdoor terrain: side value 1 forest, 2 mountains, 3 water (desert in D1 D2 E1 E2); the blocked bits decide
+  passing (`design/maps.md` section 4, verified).
 - Renderer: `python3 games/might-and-magic/tools/maps.py --text` -> `design/maps/NN_name.png` (55),
   `varn_atlas.png`, `maps.txt` (done).
 
 ## Shot plan
-16 routed shots in `shots.txt` (boot, title, owl intro, naming, first control, sign, inn sign-in/save/menu/
+Capture 2026-11-18: main set of ~90 shots in `shots.txt` (game order). Done: town life (inn, blacksmith, market,
+temple, training + level-up, guild, tavern + rumour, leprechaun, camp/items, view pages, automap), combat (orders,
+targets, both spell lists, hit/kill, Flame, victory, chest + trap + loot, deaths, game over), world (4 towns,
+5 VARN sectors + desert/water messages, Dusk cave, Volcano, 4 castles, Dragadune, Enchanted Forest, City of Gold,
+Soul Maze, cavern portal), ending (Inner Sanctum, 5 pages). Not done: the Castle Alamar boss (see Strategy).
+Scout's plan (kept for history): 16 routed shots in `shots.txt` (boot, title, owl intro, naming, first control, sign, inn sign-in/save/menu/
 fellows/party, exploration menu, automap, cavern); the rest are commented plan lines there:
 - [ ] inventory: View character sheet; camp menu; equipment
 - [ ] battle (3-5): command menu, member orders, attack messages, victory with gold/experience, treasure chest;
@@ -103,6 +116,25 @@ fellows/party, exploration menu, automap, cavern); the rest are commented plan l
 Reach: everything by warp (below) from `@party`; boss/ending need the event squares found with the maps.
 
 ## Strategy and walkthrough notes
+- **Capture checkpoints** (2026-11-18): `town` (street, pocket gold), `bought` (blacksmith, RYZ with Short Sword +
+  Scale Armor), `fight` (level-1 fight in Sorpigal), `vets` (level 9 party saved at the inn = `saves/02_veterans`),
+  `cavefight` / `cavefight2` / `chest` (cavern fight and its chest), `worthy`, `sanctum` (ending start).
+- **Event scan** (the fastest way to learn an area): warp next to every event square facing it, step in,
+  screenshot (`work/mm/scan4.py AREA @base "up,w300"` in the capture run; rebuild from this description: four
+  approaches per square, facing poke `poke:00A2=`, `WARP_GO`, `up,w300`). Many events need a given facing.
+- **Fights on demand**: warp onto a fight square, e.g. Sorpigal (5,3) (goblins + skeletons) or Sorpigal Cavern
+  (1,1) (Wolverines + Savage Shrews: `@cavefight`). Monster HP are bytes at $03F0.. (one per list slot); poke them to
+  1 each turn (`poke:03F0=010101010101,a,w150` loops) to end fights quickly. Party HP to 1 (record +$23) gives a
+  game over in ~19 such loops.
+- Battle and story messages type out: catch the frame with `do! "w20"` steps and snap; menus that close fast
+  ("RYZ gets an item") need `a,w120` exactly.
+- **Ending**: from any checkpoint warp onto Astral Plane (6,7) facing west:
+  `poke:009D=36,poke:009F=06,poke:00A0=07,poke:00A2=03000102,WARP_GO,w300`, then `a,w300` per page.
+- **Facing in event scripts**: the script's facing code is not $A2: the Inner Sanctum code tests 0 and fires
+  with $A2 = 3 (west); the "not worthy" square tests 1 and fires with $A2 = 2. Map exits by experiment.
+- Boss (not done): the impostor King Alamar is in Castle Alamar (ROM text "The omnipotent King Alamar speaks",
+  bank 3 near file 0x07642); the true king's message mentions the Eye of Goros. Event scan of Castle Alamar in
+  the capture run did not show the throne fight within budget.
 - **Warp** (verified on 06, 0B, 0F, 23, 30): `poke:009D=ID,poke:009F=X,poke:00A0=Y,a,w60,b,w180` (macro
   `WARP_GO` = `a,w60,b,w180`). The A press opens the exploration menu, whose handler does not clear the
   pending area $9D; B closes it and the main loop loads area ID at (X,Y) (code bank 29 $A0A9/$A12A). Facing is
@@ -147,7 +179,10 @@ Reach: everything by warp (below) from `@party`; boss/ending need the event squa
 | Name | Contents (progress, party, items) | URL | SHA-1 | Status |
 |---|---|---|---|---|
 | none downloaded | GameFAQs blocked (403) | - | - | - |
-Own exports: `saves/01_party.sav` (party of six, level 1, Sorpigal; see `saves/README.md`).
+Own exports: `saves/01_party.sav` (party of six, level 1, Sorpigal), `saves/02_veterans.sav` (level 9 party,
+gold and gems, Sorpigal inn; poked records survive the reload, checked 2026-11-18); see `saves/README.md`.
+Record pokes: `python3 games/might-and-magic/tools/rec.py DUMP.json SLOT field=value ...` prints poke tokens with
+the fixed check byte (dump with `play.py dump NAME`).
 
 ## RAM map (for `game.json` "ram" watches and pokes)
 | Address | Size | Meaning | How found |
@@ -161,6 +196,8 @@ Own exports: `saves/01_party.sav` (party of six, level 1, Sorpigal; see `saves/R
 | $028F-$0294, $028C | 6+1 | name entry buffer, length; $02A4 column, $028B row | code, verified |
 | $6200 / $6300 | 256 each | current area walls / properties | Data Crystal, verified |
 | $6880 + $20*(id-1) | 32 each | automap (visited squares) per area | Data Crystal |
+| $03F0-$03F5 | 6 | monster hit points in battle (list order; poke 01 to end a fight) | find + verified |
+| $6F00 + $80*slot (more) | | +$15 age, +$17..+$19 experience (3 bytes LE), +$1B/+$1C MP current, +$1D/+$1E MP max, +$1F/+$20 spell level, +$21/+$22 gems, +$23/+$24 HP current, +$25/+$26 HP max, +$27/+$28 HP base, +$29..+$2B gold (3 bytes LE), +$2F food, +$31..+$36 equipped item ids, +$37..+$3C backpack item ids, +$43.. backpack charges; hero only: +$61..+$64 quest bytes (copied to $75..$78 when a script loads the hero), +$72..+$77 party roster/size | View pages + pokes (verified); item ids: 01 Club, 05 Short Sword, 7B Scale Armor |
 | $6F00 + $80*slot | 128 | character records (slot 0 hero, 1-15 fellows): +0 sex (1 M, 2 F), +1/+2 alignment (1 good, 2 neutral, 3 evil), +3 race, +4 class (1 KN, 2 PA, 3 AR, 4 CL, 5 WI, 6 RO), +5..+$12 seven stats as current/max pairs (Intellect, Might, Personality, Endurance, Speed, Accuracy, Luck), +$13/$14 level, +$6F home town, +$7F check byte = sum(+0..+$7E) mod 256 | RAM + Data Crystal; check byte verified on 16 records |
 | $7F00 + $10*slot | 16 | names (text code, $FF end) | verified |
 Text code: `0-9` = 00-09, `A-Z` = 0A-23, `a-z` = 40-59, space FE, line end FF, `-` 26, `.` 24, `,` 25, `"` 7A/7B.
@@ -174,7 +211,8 @@ Text code: `0-9` = 00-09, `A-Z` = 0A-23, `a-z` = 40-59, space FE, line end FF, `
 
 ## Checkpoints
 - `title`, `start` (RYZ alone, Sorpigal (8,5) N), `party` (party of six, inn counter (8,3), saved),
-  `cavern` (warp example: Sorpigal Cavern (1,14)).
+  `cavern` (warp example: Sorpigal Cavern (1,14)); capture: `town`, `bought`, `fight`, `vets`, `cavefight`,
+  `cavefight2`, `chest`, `worthy`, `sanctum` (see Strategy).
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -187,9 +225,9 @@ Text code: `0-9` = 00-09, `A-Z` = 0A-23, `a-z` = 40-59, space FE, line end FF, `
 | ROM text and code | this ROM | controls, menus, names, warp, save | 2026-11-18 |
 
 ## Open questions
-- Outdoor terrain types (wall type 3 / blocked bits outdoors) and the VARN layout by walking (data says letters
-  = columns west->east).
+- ~~Outdoor terrain types and the VARN layout~~ (done 2026-11-18: maps.md sections 3-4).
+- Castle Alamar boss fight square and its condition; the "not worthy" square's test.
 - Map header fields after the label (encounters, music, palettes).
-- Exits between areas: decode per-area event scripts (banks 0-10) into a door/stairs table.
+- ~~Exits between areas~~ (coded warps tabled in maps.md; run-time exits such as stairs not tabled).
 - Does a bad record check byte get wiped at power-on? (poked records were fixed, so not needed yet)
 - B in exploration also steps forward: is it really "forward" or "forward ignoring something"? (code $A4CF not read)

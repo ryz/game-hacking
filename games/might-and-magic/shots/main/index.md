@@ -1,6 +1,6 @@
 # Might and Magic: Secret of the Inner Sanctum - shots: main
 
-Platform nes, model ntsc, ROM SHA-1 `f03848e1ec1e5d77b958551d6be74fe3fed40a5f`. 65 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
+Platform nes, model ntsc, ROM SHA-1 `f03848e1ec1e5d77b958551d6be74fe3fed40a5f`. 84 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -18,7 +18,6 @@ Platform nes, model ntsc, ROM SHA-1 `f03848e1ec1e5d77b958551d6be74fe3fed40a5f`. 
 | inn_fellows | menu | Inn > Member > Add: "Select your fellows", roster with class/race card | no | [png](inn_fellows.png) [3x](3x/inn_fellows.png) |
 | inn_party | menu | Inn: the party of six RYZ KN, CONDI PA, EBO CL, CUBI RO, DEDDO WI, MNZ AR | no | [png](inn_party.png) [3x](3x/inn_party.png) |
 | main_menu | menu | Exploration menu: Search Cast Open Use Row View Camp Prot Speed Cancel + party | no | [png](main_menu.png) [3x](3x/main_menu.png) |
-| automap | map | Select: the automap of Sorpigal (visited squares only) | yes | [png](automap.png) [3x](3x/automap.png) |
 | cavern | gameplay | Sorpigal Cavern (C-SORPIGAL): blue cave walls | no | [png](cavern.png) [3x](3x/cavern.png) |
 | view_profile | inventory | View, page 1: RYZ, human Knight, age 17, level 1, good, experience, condition | no | [png](view_profile.png) [3x](3x/view_profile.png) |
 | view_stats | inventory | View, page 2: the seven statistics (Intellect, Might, Personality...) and armour class | no | [png](view_stats.png) [3x](3x/view_stats.png) |
@@ -69,5 +68,25 @@ Platform nes, model ntsc, ROM SHA-1 `f03848e1ec1e5d77b958551d6be74fe3fed40a5f`. 
 | enchanted_forest | gameplay | Enchanted Forest, first level (ENCHANT B1) | no | [png](enchanted_forest.png) [3x](3x/enchanted_forest.png) |
 | city_of_gold | gameplay | City of Gold, first level (P-PEEK1) | no | [png](city_of_gold.png) [3x](3x/city_of_gold.png) |
 | soul_maze | gameplay | Soul Maze: the last labyrinth | no | [png](soul_maze.png) [3x](3x/soul_maze.png) |
+| cavern_portal | dialogue | Sorpigal Cavern: "A shimmering blue and white Portal appears! Enter?" | no | [png](cavern_portal.png) [3x](3x/cavern_portal.png) |
+| battle_kill | battle | RYZ attacks a Wolverine: 3 times, hit 2 times, damaged 12 points, "Monster goes down" | no | [png](battle_kill.png) [3x](3x/battle_kill.png) |
+| battle_cleric_spells | battle | EBO's Cleric spells, level 1: Awaken, Aim, Blind, Cure1, Light1, Cure3, P-Fear, Bless1 | no | [png](battle_cleric_spells.png) [3x](3x/battle_cleric_spells.png) |
+| battle_spell_flame | battle | DEDDO casts Flame: "Savage Shrew damaged 3Pts" (spells work in the cavern) | no | [png](battle_spell_flame.png) [3x](3x/battle_spell_flame.png) |
+| battle_victory | battle | Victory in the Sorpigal Cavern: "Each survivor receives 300 EXP" | no | [png](battle_victory.png) [3x](3x/battle_victory.png) |
+| chest_found | system | After the fight, Search: "Member found a chest" | no | [png](chest_found.png) [3x](3x/chest_found.png) |
+| chest_menu | system | Treasure chest: Open, Untrap, Detect, Cancel | no | [png](chest_menu.png) [3x](3x/chest_menu.png) |
+| chest_blades | system | Chest trap: "BLADES!! Sharp blades slice through the party!" | no | [png](chest_blades.png) [3x](3x/chest_blades.png) |
+| chest_loot | system | Chest loot: "RYZ gets an item" (twice) | no | [png](chest_loot.png) [3x](3x/chest_loot.png) |
+| battle_death | battle | A member falls: "hit 2 times, damaged 20Pts, CONDI goes down" | no | [png](battle_death.png) [3x](3x/battle_death.png) |
+| battle_dies | battle | "MNZ is paralyzed! MNZ dies!" - the last fighter falls | no | [png](battle_dies.png) [3x](3x/battle_dies.png) |
+| gameover | gameover | Game over: "The Shadow of Death has fallen upon your Party!" | no | [png](gameover.png) [3x](3x/gameover.png) |
+| automap_explored | map | Automap (Select) of a well explored Sorpigal: walls, doors, shops; grey = not yet visited; arrow = party | yes | [png](automap_explored.png) [3x](3x/automap_explored.png) |
+| varn_desert | gameplay | VARN D1 desert: "It's hot... You're lost!!!" | no | [png](varn_desert.png) [3x](3x/varn_desert.png) |
+| varn_water | gameplay | VARN B3 lake shore: "Cannot swim!" | no | [png](varn_water.png) [3x](3x/varn_water.png) |
+| ending_metallic_room | ending | Inner Sanctum: "The metallic room is dimly lit by a pulsating white glow!" | no | [png](ending_metallic_room.png) [3x](3x/ending_metallic_room.png) |
+| ending_welcome | ending | The Data Keeper: "Welcome to your Inner Sanctum." | no | [png](ending_welcome.png) [3x](3x/ending_welcome.png) |
+| ending_transfer | ending | "You are given the opportunity for transfer to another World." | no | [png](ending_transfer.png) [3x](3x/ending_transfer.png) |
+| ending_exp | ending | "...+500,000 exp for your accomplishment!" | no | [png](ending_exp.png) [3x](3x/ending_exp.png) |
+| ending_panel | ending | "A metallic panel slides open, revealing..." - then the party is back in Sorpigal | no | [png](ending_panel.png) [3x](3x/ending_panel.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
