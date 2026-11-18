@@ -107,18 +107,14 @@ waits (deterministic, but a different `wN` puts the NPC elsewhere).
   of `$0600`), `--pos YX` marks the party. Example atlas of maps 00-05, 41-43: `work/scout/dungeon-magic/maps/atlas.png`.
 
 ## Shot plan
-Routed lines are in `shots.txt` (12 routed, replayed with `emu.py`); the rest are comments there with the method.
-- [x] `boot_credits` (boot), `intro_storm` (cutscene), `title_screen` (title), `title_continue` (menu)
-- [x] `start_granville` (gameplay), `hud_pause` (hud), `spell_panel` (system)
-- [x] `shop_weapons`, `shop_items` (shop), `inn_welcome` (save)
-- [x] `field_castle`, `castle_entrance` (gameplay)
-- [ ] `sign_wanted`, `dialogue_compass`, `king_quest` (dialogue): play from `@start` / `@castle`
-- [ ] `inventory_items`, `compass_view`, `camp_rest` (inventory / hud / system): buy food and water first
-- [ ] `wise_man_level`, `wizard_apprentice`, `rune_cast` (system): EXP poke (`set:004B=...:2`) then a wise man;
-      wizards' houses in towns (doors via the map renderer)
-- [ ] `battle_first`, `battle_win` (battle): overworld/dungeon monsters; enemy HP `$DB` (source: `00DB:00` kills)
-- [ ] one `gameplay` shot per dungeon and town (6 towns, ~20 dungeon maps): warp by map id (Open questions) or play
-- [ ] `boss_*`, `gameover`, `ending`: late; HP freeze for safety, `$DB` for bosses
+`shots.txt` holds 41 routed shots in game order (set `main`, 41/41 verified 2026-11-18); planned lines are comments.
+- [x] boot, intro, title, continue menu, first control, HUD, plaque, old man's compass, Spell panel
+- [x] shops (weapons, items, buying), Item panel, inn welcome and morning (save)
+- [x] wizard apprenticeship, "you can use the magic", wise man question, level up
+- [x] field and castle, castle cellar, towns 02 and 05, one shot per dungeon (80, 83, 86, 8C, 8F, 95) and forest (40, 43, 46)
+- [x] battles: dungeon monster, Fire spell (runes entered, cast), victory, skeleton, field serpent; guardian of 92; game over
+- [ ] King (castle doors stay closed), Camp (needs food/water), elemental swords, Darces, ending
+- [ ] towns 01, 03, 04 (look like 00/02/05; routes in `design/maps.md`)
 
 ## Strategy and walkthrough notes
 - Start: talk to the old man (compass), visit the King in Granville Castle (north gate, 2 steps north; 100 gold
@@ -160,6 +156,7 @@ owner's name rule (ryz) does not apply.
 | Name | Contents (progress, party, items) | URL | SHA-1 | Status |
 |---|---|---|---|---|
 | 01_start (made here) | copy of `games/dungeon-magic/saves/01_start.sav`: Granville inn, LV 0, HP 12, 98 gold | - | see `saves/README.md` | verified (`sav:01_start,CONTINUE`) |
+| 02_granville_fire_lv1 (made here) | copy of `games/dungeon-magic/saves/02_granville_fire_lv1.sav`: Granville inn, Fire apprentice, LV 1, HP 15, 397 EXP, 212 gold | - | see `saves/README.md` | verified (`sav:02_granville_fire_lv1,CONTINUE` -> inn morning) |
 No downloadable saves found (GameFAQs not reachable).
 
 ## RAM map (for `game.json` "ram" watches and pokes)
@@ -204,6 +201,11 @@ Food and water counters not found yet (blank at the start).
 | `start` | first control in Granville (square A7, facing north toward the plaque at 87) |
 | `field` | overworld section 25 outside Granville's north gate, castle ahead (warp to 18 + one step) |
 | `castle` | Granville Castle entrance (map 89) |
+| `d83` | floor 83 after a warp, LV 6 hero, HP frozen |
+| `d81_monster` | floor 81: monster in front, Fight active (battle shots start here) |
+| `spellpanel` | Granville start, `$46=1F`, Spell panel open, old man in front (compass dialogue) |
+| `fire_field` | real Fire apprenticeship, outside the north gate, Spell panel open on the Fire runes |
+| `boss92` | floor 92 guardian in front, LV 11 hero with HP frozen |
 All four rebuilt from an empty cache and compared with a cache hit: identical frames (2026-11-18).
 
 ## Sources
@@ -218,6 +220,13 @@ All four rebuilt from an empty cache and compared with a cache hit: identical fr
 | ROM text | `work/scout/dungeon-magic/strings.txt` | places, story, shop and inn text | 2026-11-18 |
 
 ## Open questions
+- (capture) Castle doors (5C, 64, 8C, A4, BC; north 45/47) stay shut with A and with the Use icon; the King was
+  not reached. The cellar stairs (floor 8A) are in the walled centre room 79.
+- (capture) Only one apprenticeship at a time: after Earth, the Water wizard's door did not open; the ROM has
+  "I'm sorry, you have already been apprenticed". Further ones come with the swords (source: StrategyWiki summary).
+- (capture) Item shop: A buys the highlighted shelf item (a jug, 56 gold) repeatedly; moving along the shelf not
+  found. Camp with A did nothing (no food/water bought).
+- (capture) The floor 92 guardian takes no damage from a blow (see design/findings.md).
 - Map id -> PRG bank table (jump table at `$E552` indexed by `id >> 5`): decode it so every map id can be rendered
   from ROM and warped to; how a map-id warp (`$95` + reload) is triggered cleanly (try poking `$95` and `$8A` just
   before stepping through a gate).

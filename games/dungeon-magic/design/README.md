@@ -47,7 +47,7 @@ the only way to change the active command **(verified)**.
 | [maps.md](maps.md) | all 39 floors (towns, castle, forests, dungeons) and the overworld, drawn from the game data |
 | [magic.md](magic.md) | wizards, apprenticeship, the Spell panel, casting controls, HP cost |
 | [progression.md](progression.md) | levels from wizards, real-time combat, game over |
-| economy.md (planned) | shops, inn (2 gold a night **(verified)**), food and water |
+| economy.md (planned) | shops, inn (2 gold a night **(verified)**, `inn_morning`: 214 to 212), item shop jug 56 gold each **(verified)** (`shop_buying`), food and water |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
      enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
