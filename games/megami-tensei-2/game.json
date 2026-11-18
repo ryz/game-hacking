@@ -1,0 +1,48 @@
+{
+  "slug": "megami-tensei-2",
+  "title": "Digital Devil Monogatari: Megami Tensei II (Famicom, English translation patch)",
+  "platform": "nes",
+  "model": "ntsc",
+  "rom": "rom/megami-tensei-2.nes",
+  "sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
+  "crc32": "171cc4a3",
+  "size": 524304,
+  "header": {
+    "format": "NES 2.0",
+    "mapper": 19,
+    "submapper": 3,
+    "prg_kib": 256,
+    "chr_kib": 256,
+    "battery": true,
+    "ram_kib": 8,
+    "mirroring": "horizontal",
+    "trainer": false,
+    "region": "NTSC"
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {},
+  "source": {
+    "note": "rom/megami-tensei-2.nes is the dump with the patches below applied in order. Rebuild: python3 tools/patch.py rom/src/megami-tensei-2-base.nes rom/megami-tensei-2.nes rom/patches/megami-tensei-2/Digital_Devil_Monogatari_Megami_Tensei_II_NES_J.ips:headered. Nothing of this is committed.",
+    "base_sha1": "c466f4d78f384d32265b686e3e7ec5ba8c2df100",
+    "base_name": "Digital_Devil_Monogatari_Megami_Tensei_II_NES_J.nes",
+    "base_copy": "rom/src/megami-tensei-2-base.nes",
+    "patches": [
+      {
+        "name": "Digital_Devil_Monogatari_Megami_Tensei_II_NES_J.ips",
+        "format": "ips",
+        "sha1": "410d64fea5eb6421e298e9ed44130d8202caee02",
+        "copy": "rom/patches/megami-tensei-2/Digital_Devil_Monogatari_Megami_Tensei_II_NES_J.ips",
+        "layout": "headered",
+        "layout_evidence": "IPS has no checksum: 10.3% of the bytes the patch writes equal the source at the headered offsets vs 4.1% unheadered; the intro text renders in English with headered (coordinator, 2026-11-18)"
+      }
+    ]
+  }
+}
