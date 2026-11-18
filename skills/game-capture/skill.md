@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-18 (shot file names)
+updated: 2026-11-18 (breadth rule: more mechanics, enemies and environments)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -58,7 +58,20 @@ edit anything outside the game's folder.
    hit over several hits. Write as you go (the next agent starts from it), not at the end.
    Action sequences (`docs/capture-guide.md`, "Action sequences and clips"): a `seq-<action>` set per action, a
    snap per step and `play.py record` clips for the motion, published like any set.
-6. Add opportunistic shots of anything distinctive the plan missed (category `extra` or the right one).
+6. **Breadth: more rather than fewer** (owner's rule 2026-11-18). The set documents how the game works, so when
+   in doubt take the shot and write the mechanic down. Beyond the plan, cover:
+   - **Every command and mechanic the game offers**, one shot each showing it at work (its prompt and its
+     result): each entry of every command list, menu and prompt the playbook or the manual names, also the
+     minor ones (in a party RPG: bash, trade, share, gather, discard, use, rest, protect, bribe, retreat,
+     surrender, exchange, block, shoot, cure at a temple, rumours ...). A command not tried is listed in the
+     report with the reason.
+   - **Battles with interesting enemies**: not only the first group met. Several fights that differ in enemy
+     picture, group size or behaviour (special attacks, status effects, spells cast at the party), and the
+     strongest or strangest ones reachable.
+   - **Different visual environments**: at least one shot of each distinct look the game has (each wall or tile
+     set, town, cave, dungeon, outdoors by terrain, castle, special places), not several of the same look.
+   - Each of these goes into `design/` too (what the command does, what the enemy did), per step 5.
+   Add opportunistic shots of anything else distinctive (category `extra` or the right one).
 7. Finish: `python3 tools/shoot.py SLUG SET --verify` (every shot must reproduce; re-snap or fix the route of a
    MISMATCH), then look at the contact sheet `work/shots/PLATFORM/SLUG/SET/<game>_<platform>_<region>_set_sheet.png` as a whole: variety, duplicates, broken frames.
    Then `python3 tools/shoot.py SLUG SET --publish` -> `games/PLATFORM/SLUG/shots/SET/`. The tools name the files

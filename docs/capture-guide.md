@@ -31,6 +31,10 @@ for small arcade games. Quality beats count.
 title - main menu - first moment of control - HUD - at least 5 gameplay shots from different areas or
 situations - every core system the playbook lists - one boss (if the game has bosses) - game over (if any).
 
+Breadth (owner's rule 2026-11-18): rather more features, mechanics, systems and shots than fewer. Every command
+the game offers gets a shot of it at work, minor ones included; several battles with different, interesting
+enemies; each distinct visual environment once. Details: `skills/game-capture/skill.md`, step 6.
+
 ## Quality rules
 - **Settled and complete:** text fully typed, no fade, no transition half-drawn. `settled: no` is acceptable only
   for genuinely animated screens; then pick the frame by eye (`do!` + `wN`) so nothing is cut off.

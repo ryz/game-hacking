@@ -9,6 +9,12 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - owner's rule: breadth
+- Task: after the Might and Magic 1 (DOS) main set (113 shots) the owner asked for more battles with interesting
+  enemies, the minor commands (bash, trade ...) to document mechanics, and several visual environments, and
+  said to make this part of the skill: rather more features/mechanics/systems and shots than fewer.
+- Status: promoted 2026-11-18 (skill.md step 6, `docs/capture-guide.md` must-have list).
+
 ### 2026-11-18 - Might and Magic Book One (DOS, first DOS game)
 - Task: main set for Might and Magic 1 (DOS): 113/113 verified and published, three commits, area warp found,
   design reference and playbook extended.
