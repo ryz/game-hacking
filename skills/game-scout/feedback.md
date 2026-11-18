@@ -9,6 +9,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Megami Tensei II (Famicom, English IPS)
+- Task: scout Megami Tensei II: playbook, macros, title/start and later checkpoints, RAM, save handling, shot plan.
+- Worked: step-and-tile helper (`work/scout/megami-tensei-2/steps.py`); `emu.py` sheets to time typing text;
+  ROM script decoding by relative search (two encodings): save prompts, places, an original story-point list;
+  RAM block dumps for HP/MP/stats; `find "new == 20"` after a victory found money; empty-cache vs cache-hit check.
+- Friction: `settle` stopped on a typewriter pause, a checkpoint was a page behind (~8 calls); `peek` length is
+  decimal; TCRF and the manual host outside the network; `01_start` export impossible before Devil Buster ends.
+- Proposed rule change: typewriter note on checking before checkpoint; hex `peek` length or document it; shared
+  `play.py steps`; skill step 4: export at the first save point when none exists at start.
+- Corrected: coordinator verified 15/15 routed shots from an empty cache. Typewriter/checkpoint and peek notes in
+  `docs/emulator/README.md`; step-and-tile helper (second occurrence, see Shin Megami Tensei) and ROM-script
+  decoding (second occurrence, see Megami Tensei) promoted into skill.md step 3; export exception in step 4.
+  Shared `play.py steps` not built. Network hosts are the owner's environment decision.
+- Status: promoted 2026-11-18 (helper, ROM script, export exception); open (`play.py steps`)
+
 ### 2026-11-17 - Megami Tensei (Famicom, English BPS patch)
 - Task: scout Digital Devil Story: Megami Tensei (Famicom, English patch): playbook, macros, title/start and
   later checkpoints, RAM, password handling, shot plan.

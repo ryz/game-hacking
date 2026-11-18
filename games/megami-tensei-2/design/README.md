@@ -23,13 +23,25 @@ the evidence: link them (`../shots/main/<id>.png`).
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Megami Tensei II is a role-playing game in which two teenagers, the hero and his girlfriend, are drawn out of a
+computer game called Devil Buster into a Tokyo ruined by nuclear war and overrun by demons **(source)**. It begins
+inside Devil Buster itself: an overhead maze with stairs between floors and random battles **(verified)**. Exploration
+mixes an overhead map with a small first-person view of the corridor ahead **(verified)**. Battles are turn-based
+from a first-person view: each round the player chooses FIGHT, FLEE, CHAT (talk to the demon) or AUTO, then a
+command per hero **(verified)**. Demons are recruited by talking, summoned from a computer program and fused into
+new demons **(source)**. The moon's phase changes as you walk and affects demons **(verified for the change,
+source for the effect)**. Battles give experience, money (Makka) and magnetite (MAG) **(verified)**. Choices set an
+alignment that decides the ending **(source)**. Progress is kept in battery-backed save slots **(source: ROM text)**.
+
+Creating the party: the player names the hero, the girlfriend and a best friend, then spends 15 points per hero
+over five stats (VIT, INT, STR, SPEED, LUK), each starting at 5 **(verified)**. The hero has no magic; the
+girlfriend starts with MP 11 **(verified)**.
 
 ## Documents
 | Document | Covers |
 |---|---|
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
+<!-- Planned: controls-and-feel.md, characters.md (stats, levels), combat.md, demons.md (negotiation, fusion, moon), world.md (Devil Buster floors, Tokyo areas), economy.md -->
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
      enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
@@ -37,3 +49,5 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Wikipedia | https://en.wikipedia.org/wiki/Digital_Devil_Story:_Megami_Tensei_II | story outline, systems, release |
+| Patched ROM text | `rom/megami-tensei-2.nes` (decoded) | save prompts, place names |

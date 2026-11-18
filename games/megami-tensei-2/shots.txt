@@ -4,3 +4,22 @@
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/megami-tensei-2/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # title_screen | title | Title screen | @title
+# Routed by the scout 2026-11-18 (not yet captured; check each frame when snapping):
+title_screen | title | Title screen: Japanese logo, START, (c) 1987 1990 Namco | @title
+intro_skyline | cutscene | Attract intro: Tokyo skyline under a blue sky, a missile coming down | pow,w540,!
+intro_face | cutscene | Attract intro: a demon's face over the ruined skyline | pow,w700,!
+intro_blast | cutscene | Attract intro: nuclear blast, "199X- MANKIND... IS OVER....." | pow,w960,!
+caution | cutscene | "Caution for Devil Busters": the Devil Buster game's opening text | @title,start,w700
+naming_hero | menu | Name entry: "Your character is the young hero. Name him." (kana + A-Z grid) | @naming
+naming_ryz | menu | Name entry with RYZ typed, cursor on OK | @naming,right*12,down*4,a,up*4,right*7,a,left*4,down,a,down*3
+stats_alloc | menu | Stat allocation for RYZ: VIT 9 INT 6 STR 10 SPEED 7 LUK 8, CONFIRM Yes/No | @naming,NAME_RYZ,w300,NAME_CONDI,w300,NAME_EBO,w300,a*4,down,a,down,a*5,down,a*2,down,a*3,w100
+start_room | gameplay | First control: RYZ in the overhead Devil Buster maze | @start
+hud_cmd | hud | Field command screen: moon phase, Wealth (Makka, MAG), 3D view, CMD Comp/Magic/Item/Stats, party HP/MP | @start,a,w60
+stats_ryz | inventory | RYZ's status page: level, HP, EXP, MAG, Makka, gear slots, VIT INT STR SPEED LUK bars | @start,a,w60,down*3,a,w60,a,w60
+battle_menu | battle | Battle vs Willowisp x1: FIGHT / FLEE / CHAT / AUTO | @battle_willowisp
+battle_action | battle | RYZ's action: RUSH / COMP / ITEM / GUARD | @battle_willowisp,a,w60
+battle_chat | battle | CHAT: the Willowisp calls another Willowisp (negotiation) | @battle_willowisp,down*2,a,w60,w120,w120
+battle_victory | battle | Victory: 4 EXP, 20 Makka, 8 MAG | @battle_willowisp,poke:053C=08,poke:0548=01,a,w60,a,w60,a,w60,a,w300,w200,a,w200
+# Planned, not routed (need play past Devil Buster; see playbook Shot plan):
+# shelter, home_computer_save, pazuzu, tokyo_overworld, shop, hospital/heal, fusion, comp_summon, demon_joined,
+# levelup, boss_nebro, tokyo_tower_witch, map (auto-mapping), gameover, later dungeons

@@ -3,7 +3,7 @@ skill: game-scout
 project: all games (shared tools at the repo root)
 summary: Research a newly registered game (controls, structure, strategy, shortcuts) into its playbook and verify the basics in the emulator.
 access: write (games/<slug>/ except shots/, work/scout/<slug>/)
-updated: 2026-11-17 (repository restructured: new paths)
+updated: 2026-11-18
 ---
 
 # Game scout - research a game before anyone plays it
@@ -52,13 +52,18 @@ do not capture the database set (that is `game-capture`), but you do create the 
    - 2-4 RAM addresses that make capture easier (lives/health, money, stage, position): from the sources, else
      `play.py find`. Confirm each with a poke; add them to `game.json` "ram" and the RAM map.
    - Shortcuts from the sources (passwords, level select, debug menu): try them; mark verified/failed.
+   - Look cheaply: a small helper in `work/scout/<slug>/` that runs several token groups and tiles the
+     screenshots into one image saves a look per step (used by two scouts, 2026-11-17/18).
+   - Blocked web sources and a translated game: decode the ROM script (relative search for a known word) for
+     names, save mechanics, places and bosses; tag those facts "ROM text".
    - Rebuild every checkpoint once with an empty cache (`work/cache/<slug>`) and compare with a cache hit: the
      frames must be identical.
 4. **Start the design reference** (`games/<slug>/design/README.md`, notation in that file): the Overview and a
    document list for the game's systems, filled with what the research says, tagged **(source)**, plus what you
    verified. The capture agent extends it while playing.
    Once the `start` checkpoint exists, save in the game if it allows it that early and
-   `play.py export 01_start "contents"` (`docs/emulator/README.md`, "Saves for the owner").
+   `play.py export 01_start "contents"` (if the game cannot save before a long prologue, say so in the playbook and
+   leave the export to the capture run's first save point) (`docs/emulator/README.md`, "Saves for the owner").
 5. **Plan the shots.** From the structure and `docs/capture-guide.md`: the playbook Shot plan (ids, category,
    what and where), with the systems that make this game distinctive. For each area the plan needs, say how to
    reach it (save, password, code, poke, debug menu, play) and pick the fastest.

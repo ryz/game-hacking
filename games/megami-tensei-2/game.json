@@ -36,7 +36,38 @@
     "STATS_CONDI": "a*2,down,a*5,down,a,down,a*3,down,a*4,w100,a,w100",
     "NEWGAME": "start,w700,a,w700,a,w400,NAME_RYZ,w300,NAME_CONDI,w300,NAME_EBO,w300,STATS_RYZ,STATS_CONDI,w600,settle"
   },
-  "ram": {},
+  "ram": {
+    "x": {
+      "addr": "0431",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "y": {
+      "addr": "0432",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "hp_ryz": {
+      "addr": "053C",
+      "size": 1
+    },
+    "hp_condi": {
+      "addr": "053D",
+      "size": 1
+    },
+    "mp_condi": {
+      "addr": "0565",
+      "size": 1
+    },
+    "makka": {
+      "addr": "0404",
+      "size": 3
+    },
+    "mag": {
+      "addr": "0407",
+      "size": 2
+    }
+  },
   "source": {
     "note": "rom/megami-tensei-2.nes is the dump with the patches below applied in order. Rebuild: python3 tools/patch.py rom/src/megami-tensei-2-base.nes rom/megami-tensei-2.nes rom/patches/megami-tensei-2/Digital_Devil_Monogatari_Megami_Tensei_II_NES_J.ips:headered. Nothing of this is committed.",
     "base_sha1": "c466f4d78f384d32265b686e3e7ec5ba8c2df100",

@@ -54,7 +54,9 @@ as one (edge-triggered input -> keep the release wait), a menu skips an entry (k
 e.g. `down:4,w30` in a macro).
 **Typewriter text:** a press while a page is still typing is not reliably counted. Use one press per page with a
 fixed wait long enough for the page to finish (`a,w150`), not `a*N` or `mash`, wherever the count matters (naming
-routes, choices after dialogue), and prefer fixed waits to `settle` there.
+routes, choices after dialogue), and prefer fixed waits to `settle` there. `settle` can stop on a pause mid-page:
+look at the screenshot before `play.py checkpoint`, or the state may be a page behind. `play.py peek ADDR LEN`
+takes LEN in decimal (or `0x800`).
 
 ## The working loop (play.py)
 ```sh
