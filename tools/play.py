@@ -14,7 +14,9 @@ is reproducible from power-on (states are a cache, routes are the record).
                                              route) appended to that set's shots.txt and index.json. File name:
                                              <game>_<platform>_<region>_<CATEGORY>_<ID>[.<SET>].png (tools/shoot.py)
   python3 tools/play.py recaption ID "caption" [--set SET]    change a shot's caption (no replay)
-  python3 tools/play.py unsnap ID [--set SET]                 remove a shot from the working set
+  python3 tools/play.py unsnap ID [--set SET] [--game GAME]   remove a shot from the working set (with --game:
+                                                              no running session needed; also for recaption)
+  python3 tools/play.py text                                  the text-mode screen as text (DOS text modes)
   python3 tools/play.py record ID CATEGORY FRAMES "caption" [--every K] [--poster P] [--set SET]
                                              clip: record FRAMES frames from now (every Kth kept, default 2) as
                                              NAME.gif (+ 3x/NAME.gif; poster NAME.png; NAME as for snap) into the set, route + `rec:N:K`
@@ -368,6 +370,11 @@ class Session:
             return "%s (frame not redrawn yet: `do settle` before a snap)\n%s" % (rel(self.shot()), self.watch())
         if cmd == "shot":
             return rel(self.shot(args[0] if args else None))
+        if cmd == "text":
+            if not hasattr(e, "text"):
+                return "error: this platform has no text screen to read"
+            t = e.text()
+            return "error: the screen is in a graphics mode (no text to read)" if t is None else "\n".join(t)
         if cmd in ("unsnap", "recaption"):
             set_ = "main"
             if "--set" in args:
@@ -526,10 +533,25 @@ def main(argv):
         print("server did not start; see", rel(os.path.join(d, "server.log")))
         print(open(os.path.join(d, "server.log")).read()[-2000:])
         return 1
+    game = opt(args, "--game") if cmd in ("unsnap", "recaption") else None
     try:
+        if game:            # file edits only: no session needed
+            raise OSError
         out = call(name, cmd, args)
     except OSError:
-        print("no session %r running: python3 tools/play.py start GAME" % name)
+        if cmd in ("unsnap", "recaption") and game:
+            import types
+            import emu
+            set_ = opt(args, "--set", "main")
+            if not args:
+                print("usage: play.py %s ID [\"caption\"] [--set SET] --game GAME" % cmd)
+                return 2
+            out = Session.edit_shot(types.SimpleNamespace(game=emu.Game(game)), cmd, args[0],
+                                    args[1] if len(args) > 1 else None, set_)
+            print(out)
+            return 1 if out.startswith("error") else 0
+        print("no session %r running: python3 tools/play.py start GAME%s" % (
+            name, " (unsnap and recaption also work without one: add --game GAME)" if cmd in ("unsnap", "recaption") else ""))
         return 1
     print(out)
     return 1 if isinstance(out, str) and out.startswith("error") else 0

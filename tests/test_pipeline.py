@@ -707,6 +707,62 @@ def test_dos_state_carries_written_files(dos_selftest, tmp_path):
     g.close()
 
 
+def test_dos_start_menu_states(tmp_path):
+    """Two programs in the ZIP: the core shows its start menu and makes no states there. A state taken in the
+    menu is an input log; one taken in the program loads into a machine that is still in the menu (a new
+    process loading a cached checkpoint) and continues exactly like the run that made it."""
+    if not os.path.exists(platforms.Dos.SO):
+        pytest.skip("DOSBox Pure core not built (sh tools/setup_emu.sh dos)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_dos_zip
+    rom = tmp_path / "menu.zip"
+    rom.write_bytes(make_dos_zip.build(menu=True))
+    menu, prog = str(tmp_path / "menu.state"), str(tmp_path / "prog.state")
+
+    def play(e):
+        e.type_text("abc")
+        e.frames(33)
+        return e.screen(), e.peek(0x46C, 4)
+
+    a = platforms.Dos().open(str(rom))
+    a.frames(120)
+    assert not a.c.L.retro_gamedb_running()                             # start menu: EXIT.COM, KEYS.COM
+    a.save_state(menu)
+    assert open(menu, "rb").read().startswith(platforms.Dos.BOOTLOG)
+    a.input(["down"]); a.frames(8); a.input([]); a.frames(40)
+    a.input(["enter"]); a.frames(8); a.input([]); a.frames(100)
+    assert a.c.L.retro_gamedb_running() and a._log is None
+    a.save_state(prog)
+    assert open(prog, "rb").read().startswith(platforms.Dos.STATE)
+    shot, want = a.screen(), play(a)
+    for pre in (0, 3, 50):                                              # fresh, warming up, sitting in the menu
+        b = platforms.Dos().open(str(rom))
+        b.frames(pre)
+        b.load_state(prog)
+        assert b.screen() == shot and play(b) == want, pre
+        b.close()
+    a.load_state(menu)                                                  # back to the menu by replay
+    assert not a.c.L.retro_gamedb_running() and a._ran == 120
+    a.input(["down"]); a.frames(8); a.input([]); a.frames(40)
+    a.input(["enter"]); a.frames(8); a.input([]); a.frames(100)
+    assert a.screen() == shot and play(a) == want
+    a.close()
+
+
+def test_dos_text_screen_and_change_token(dos_selftest):
+    e = _dos_boot(dos_selftest)
+    e.type_text("Hi")
+    lines = e.text()
+    assert len(lines) == 25 and "H" in lines[0] and "i" in lines[0] and lines[0] == lines[0].rstrip()
+    g = type("G", (), {"settle_limit": 300})()
+    e.freezes = []
+    e.input(["x"])
+    ran = emu.changed(e, g, after=5)                                    # the key shows up: the picture changes
+    e.input([])
+    assert 5 < ran < 60 and "x" in e.text()[0]
+    e.close()
+
+
 def test_dos_pipeline(dos_selftest):
     run("tools/intake.py", str(dos_selftest), "--slug", DOS_SLUG, "--region", "na", "--probe", "150")
     gj = os.path.join(ROOT, "games", "dos", DOS_SLUG, "game.json")
@@ -722,9 +778,24 @@ def test_dos_pipeline(dos_selftest):
     run(*P, "do", "type:Go 1,f,1,w20")
     assert "shift=0" in run(*P, "status")
     run(*P, "snap", "typed", "gameplay", "keys typed, tick letters between them")
+    assert "G" in run(*P, "text").splitlines()[0]                       # the screen as text
+    run(*P, "snap", "typed_again", "gameplay", "the same frame a second time")
+    run(*P, "snap", "typed_third", "gameplay", "x" * 90)
     run(*P, "stop")
-    assert "1/1 reproduce" in run("tools/shoot.py", DOS_SLUG, "main", "--verify")
-    run("tools/shoot.py", DOS_SLUG, "main", "--publish-only")
+    out = run("tools/shoot.py", DOS_SLUG, "main", "--verify")
+    assert "3/3 reproduce" in out and "check: identical pictures: typed, typed_again, typed_third" in out
+    assert "check: caption has 90 characters (limit 80): typed_third" in out
+    r = subprocess.run([sys.executable, "tools/shoot.py", DOS_SLUG, "main", "--publish-only"], cwd=ROOT,
+                       capture_output=True, text=True)
+    assert r.returncode == 4 and "not published" in r.stdout            # identical pictures are refused
+    assert "removed typed_third" in run("tools/play.py", "unsnap", "typed_third", "--game", "dos/" + DOS_SLUG)
+    work = os.path.join(ROOT, "work", "shots", "dos", DOS_SLUG, "main")
+    lines = [l for l in open(os.path.join(work, "shots.txt")).read().splitlines() if not l.startswith("typed_again")]
+    open(os.path.join(work, "shots.txt"), "w").write("\n".join(lines) + "\n")
+    assert "pruned 1: typed_again" in run("tools/shoot.py", DOS_SLUG, "main", "--prune")
+    assert not [f for f in os.listdir(work) if "typed_again" in f or "typed_third" in f]
+    out = run("tools/shoot.py", DOS_SLUG, "main", "--publish-only")
+    assert "published" in out and "lenses: 1 shots: systems.md uses 0" in out    # the template documents
     from PIL import Image
     im = Image.open(os.path.join(ROOT, "games", "dos", DOS_SLUG, "shots", "main",
                                  "zz-selftest-dos_dos_na_gameplay_typed.png")).convert("RGB")

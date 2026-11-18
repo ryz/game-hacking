@@ -689,6 +689,7 @@ class Dos(Libretro):
         self.c = lrcore.Core(self.SO, rom, system_dir=self.tmp, save_dir=self.tmp, options=options,
                              frame_usec=self.FRAME_USEC, epoch=self.EPOCH, private=True)
         self.c.L.retro_gamedb_pc.restype = ctypes.c_uint32
+        self.c.L.retro_gamedb_readb.restype, self.c.L.retro_gamedb_readb.argtypes = ctypes.c_uint8, [ctypes.c_uint32]
         self.c.size = self.native_size
         # _log: everything done since power-on, kept until the core can make a real savestate (see save_state)
         self._down, self._ran, self._log, self._launch = set(), 0, [], None
@@ -801,6 +802,15 @@ class Dos(Libretro):
         try:
             if not same_disk:
                 raise RuntimeError("other files on disk")
+            if (self._log == [["f", self.WARMUP]] and launch and launch[0][0] == "f"
+                    and launch[0][1] >= self.WARMUP):
+                # a machine that was only just opened (nothing but the warm-up, no program yet): play the
+                # launch on it instead of powering on a second time; same timing as a power-on replay
+                for n, (kind, v) in enumerate(launch):
+                    v = v - self.WARMUP if n == 0 else v
+                    {"i": self.input, "f": self.frames, "m": lambda m: self.mouse(*m)}[kind](v)
+                if self._log is not None:
+                    raise RuntimeError("the state's launch inputs did not start a program")
             self.c.unserialize(raw)
         except RuntimeError:                # no program running here, or other files: start again the way the
             self._replay(launch, disk or b"")       # saving run did, on the state's disk (b"" = no written files)
@@ -815,6 +825,21 @@ class Dos(Libretro):
     SAVE_HELP = ("`.sav` = the files the game has written, as a ZIP (DOSBox Pure's save format; folders have their "
                  "DOS short names): unzip it and copy the files over the ones in your game folder (Might and Magic: "
                  "`ROSTER.DTA`), or keep it as `<game zip name>.pure.zip` in DOSBox Pure's save folder.")
+
+    def text(self):
+        """The text-mode screen as a list of lines (characters only), or None in a graphics mode. Read from
+        video memory through the core (retro_gamedb_readb); peek does not reach it."""
+        mode = self.peek(0x449, 1)[0]
+        if mode not in (0, 1, 2, 3, 7):
+            return None
+        cols, rows = self.peek(0x44A, 1)[0] or 80, (self.peek(0x484, 1)[0] or 24) + 1
+        base = 0xB0000 if mode == 7 else 0xB8000
+        rd = self.c.L.retro_gamedb_readb
+        out = []
+        for r in range(rows):
+            raw = bytes(rd(base + (r * cols + c) * 2) for c in range(cols))
+            out.append("".join(chr(b) if 32 <= b < 127 else " " if b in (0, 255) else "?" for b in raw).rstrip())
+        return out
 
     def battery(self, size):
         """The files written by the game (save ZIP), b"" when it has written none."""

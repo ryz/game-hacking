@@ -2,6 +2,30 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - DOS follow-ups: shot checks, prune, paged sheets, change token, text screen, menu test, setup script
+- Owner: do all the points of the DOS handoff list, and a setup script for the environment.
+- `tools/shoot.py`: `--verify` lists still shots with identical pixels (not in seq-* sets, not clips) and
+  captions over 80 characters; `--publish` refuses identical pictures (exit 4, `--allow-duplicates`); `--prune`
+  drops shots the work shots.txt no longer lists; contact sheets hold 100 shots (sheet.png, sheet2.png ...);
+  after publishing `main` the lens check is printed. `tools/play.py`: `unsnap`/`recaption --game GAME` without
+  a session; `text` prints a text-mode screen.
+- `tools/emu.py`: token `change[:N]` (run until the picture differs from the start of the token, then N frames;
+  an error if nothing changes within 4x the settle limit).
+- DOS backend: `Dos.text()` through `retro_gamedb_readb` (core patch); a machine that was only just opened plays
+  a state's launch itself instead of powering on a second time. Measured on Might and Magic 1: a shot costs
+  0.5-2 s, the launch replay about 0.3 s, so the planned start without the menu was not built.
+- Tests: `make_dos_zip.build(menu=True)` (two programs, so the core shows its start menu),
+  `test_dos_start_menu_states`, `test_dos_text_screen_and_change_token`, checks/prune/unsnap in
+  `test_dos_pipeline`. 35 passed, 8 skipped here; ten Might and Magic shots re-verified after the load change.
+- `tools/lrcore.py`: one test run crashed (fatal error in the interpreter, not reproduced in nine further runs;
+  an emulator build was running at the same time). Suspected, not proven: the private core copy was unloaded
+  while its emulation thread was still exiting. The unload now happens one close later; memory stays bounded
+  (30 opens: 151 MB).
+- Cloud environment `game-hacking`: setup script added (owner approved): `sh tools/setup_emu.sh` in the repo, a
+  failed build does not stop the session. Checked in a clean clone: all five emulators in 203 s (gb 9, nes 57,
+  snes 53, dos 32, the rest apple2), shared tests 41 passed with nothing skipped. Unproven until a fresh
+  session starts on the environment.
+
 ## 2026-11-18 - Might and Magic 1 (Apple II) brought up to the breadth and three-lens rules: 308 shots
 - Owner's request after the new capture rules. The DOS set already meets them and is the same game, so its 250
   routes were translated (record addresses, waits, macros with the DOS arguments: `WARPX`, `DSTRONG`, `DVET`,

@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-18 (breadth rule; three lenses: systems.md, interface.md, content.md)
+updated: 2026-11-18 (breadth rule; three lenses; shoot.py checks, --prune, change token)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -80,7 +80,12 @@ edit anything outside the game's folder.
    `games/_template/design/` if the game has none. Every shot belongs in at least one of them, most in two. Before finishing run `python3 tools/lenses.py SLUG SET` and clear its list (add the row, or
    say in the row why there is no shot).
 7. Finish: `python3 tools/shoot.py SLUG SET --verify` (every shot must reproduce; re-snap or fix the route of a
-   MISMATCH), then look at the contact sheet `work/shots/PLATFORM/SLUG/SET/<game>_<platform>_<region>_set_sheet.png` as a whole: variety, duplicates, broken frames.
+   MISMATCH; it also lists `check:` lines: shots with identical pictures, which `--publish` refuses, and
+   captions over 80 characters: retake, drop or shorten). Removing or renaming a shot: `play.py unsnap ID
+   --game SLUG` (no session needed), or edit the work `shots.txt` and run `shoot.py SLUG SET --prune`.
+   Known routes can be written straight into the work `shots.txt` and shot with `shoot.py SLUG SET --only
+   id,id` instead of `snap`; copy the list to `games/PLATFORM/SLUG/shots.txt` before publishing (it gives the
+   order). Then then look at the contact sheet `work/shots/PLATFORM/SLUG/SET/<game>_<platform>_<region>_set_sheet.png` as a whole: variety, duplicates, broken frames.
    Then `python3 tools/shoot.py SLUG SET --publish` -> `games/PLATFORM/SLUG/shots/SET/`. The tools name the files
    (`<game>_<platform>_<region>_<category>_<id>.png`, `docs/capture-guide.md` "File names"): pick the category
    with care, it is part of the name; link shots from `design/` by the file name in the set's `index.md`.

@@ -56,6 +56,20 @@ FMT_XRGB8888 = 1
 _in_use = set()          # .so paths (originals) with a live Core
 _copies = []             # temp dirs of private copies
 _live = weakref.WeakSet()
+_pending = []            # (library handle, temp dir) of the last private copy closed, unloaded one close later
+
+
+def _unload_pending():
+    import _ctypes
+    while _pending:
+        handle, d = _pending.pop()
+        try:
+            _ctypes.dlclose(handle)
+        except OSError:
+            pass
+        shutil.rmtree(d, ignore_errors=True)
+        if d in _copies:
+            _copies.remove(d)
 
 
 @atexit.register
@@ -277,16 +291,11 @@ class Core:
         else:
             # A private copy is never used again: unload it and delete the file. Without this every game
             # opened kept its whole machine in memory (DOSBox Pure: about 40 MB each; a 250-shot verify was
-            # killed for lack of memory, 2026-11-18).
-            import _ctypes
-            handle = self.L._handle
-            try:
-                _ctypes.dlclose(handle)
-            except OSError:
-                pass
-            shutil.rmtree(self._private_dir, ignore_errors=True)
-            if self._private_dir in _copies:
-                _copies.remove(self._private_dir)
+            # killed for lack of memory, 2026-11-18). Not at once: a core with its own emulation thread may
+            # still be leaving that thread when unload returns, and unmapping its code then crashes (seen as
+            # a rare segfault in the tests). The copy closed before this one is unloaded now; this one waits.
+            _unload_pending()
+            _pending.append((self.L._handle, self._private_dir))
 
     def close(self):
         if self.open:

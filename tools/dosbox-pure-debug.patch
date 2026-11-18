@@ -43,10 +43,10 @@ index ea24d45..05230ac 100644
 +}
 diff --git a/gamedb_debug.cpp b/gamedb_debug.cpp
 new file mode 100644
-index 0000000..17a1e38
+index 0000000..ca9e28a
 --- /dev/null
 +++ b/gamedb_debug.cpp
-@@ -0,0 +1,41 @@
+@@ -0,0 +1,51 @@
 +// Added by game-hacking (tools/dosbox-pure-debug.patch): a clock the frontend sets, and the program counter.
 +// The linker wraps time/gettimeofday/clock_gettime/localtime (-Wl,--wrap), so the emulated PC's date, BIOS
 +// tick counter and RTC follow retro_gamedb_set_time instead of the host: the same route gives the same game.
@@ -55,6 +55,7 @@ index 0000000..17a1e38
 +#include <stdint.h>
 +#include "include/dosbox.h"
 +#include "include/regs.h"
++#include "include/paging.h"
 +
 +static int64_t gamedb_usec; // 0 = host clock
 +
@@ -65,6 +66,15 @@ index 0000000..17a1e38
 +struct tm* __real_localtime(const time_t*);
 +
 +__attribute__((visibility("default"))) void retro_gamedb_set_time(int64_t usec) { gamedb_usec = usec; }
++// One byte of the physical address space through the machine's page handlers, so that video memory
++// (A0000-BFFFF) and ROM are readable too. Meant for text modes (B8000): reads of planar graphics memory
++// go through the VGA read latches, which the game can see.
++__attribute__((visibility("default"))) uint8_t retro_gamedb_readb(uint32_t phys)
++{
++	PageHandler* h = MEM_GetPageHandler(phys >> 12);
++	if (h->flags & PFLAG_READABLE) return h->GetHostReadPt(phys >> 12)[phys & 0xFFF];
++	return (uint8_t)h->readb(phys);
++}
 +__attribute__((visibility("default"))) uint32_t retro_gamedb_pc(void) { return ((uint32_t)SegValue(cs) << 16) | (reg_eip & 0xFFFF); }
 +
 +time_t __wrap_time(time_t* t)

@@ -15,6 +15,8 @@ the author's own GitHub repository only points to Codeberg). `tools/dosbox-pure-
 - `retro_gamedb_pc`: CS:IP for `status`.
 - a fix in the savestate loader (the frame in progress was dropped, so a loaded run was one frame ahead).
 - `retro_gamedb_flush`: write the save ZIP now (see Saves).
+- `retro_gamedb_running`: whether a program runs (the launch log ends there); `retro_gamedb_readb`: one byte
+  through the page handlers, for the text screen.
 
 ## Savestates
 The core saves and loads a state only while a DOS program is running, not in its start menu or at the DOS
@@ -25,7 +27,9 @@ prompt. The backend covers both cases (`Dos.save_state` in `tools/platforms.py`)
   found by the Might and Magic scout as a duplicated character) and the files written so far; a machine where
   nothing runs yet (a new process loading a cached checkpoint), or whose written files differ, powers on with
   those files, replays the launch inputs, then loads the state.
-So `undo`, `checkpoint`, `goto` and the cache work from power-on like on the consoles. Only this tool reads
+So `undo`, `checkpoint`, `goto` and the cache work from power-on like on the consoles. A shot costs about a
+second (measured on Might and Magic 1: 0.5-2 s; the launch replay is about 0.3 s of it; a machine that was
+just opened plays the launch itself instead of powering on a second time). Only this tool reads
 these files.
 
 With the patch the same route gives the same frames on every boot, and a run loaded from a state continues exactly
@@ -58,6 +62,16 @@ kpdivide kpperiod kpenter`. Chords as on consoles: `shift+a`, `alt>f4`.
 - `w30` is still "wait 30 frames"; the W key is `w`, held longer `w:30`.
 - `type:Some Text` types a string (US layout, shift handled; no comma inside, `\n` = Enter).
 - Mouse: `mouse1 mouse2 mouse3` are buttons (tokens like keys), `mouse:DX:DY` moves the pointer relatively.
+
+## Reading the screen as text
+In a text mode `python3 tools/play.py text` prints the screen as text (in scripts: `emu.text()`, a list of
+lines; None in a graphics mode). Use it instead of looking at a screenshot for DOS prompts, installers,
+text-mode games. It reads video memory through the core (`retro_gamedb_readb`); `peek` still does not reach
+`A0000-BFFFF`. Graphics-mode games draw their own letters (Might and Magic 1): no text to read there.
+
+## Waiting
+Cursor and animated screens never `settle`, and games buffer keys typed too early. Use `change` (emulator
+guide, Tokens): `1,change:20` waits until the game has answered the key, however long that takes.
 
 ## Memory
 The physical address space, address = segment * 16 + offset: `00000-9FFFF` conventional memory (interrupt

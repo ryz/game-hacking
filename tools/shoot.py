@@ -10,6 +10,11 @@
   python3 tools/shoot.py GAME SET --publish         replay the set, then copy it to games/PLATFORM/GAME/shots/SET/ (committed)
   python3 tools/shoot.py GAME SET --publish-only    copy without replaying (right after a passing --verify)
   (a passing full --verify also rebuilds index.md, sheet.png and a sequence's strip/steps from index.json)
+  python3 tools/shoot.py GAME SET --prune           drop shots the work set's shots.txt no longer lists (after
+                                                    deleting a line or renaming an id by hand): entries and files
+Checks a replay cannot make (--verify lists them, --publish refuses identical pictures, exit 4, unless
+--allow-duplicates): still shots with identical pixels (not in seq-* sets), captions over 80 characters. After publishing `main` the
+three design lenses are checked (tools/lenses.py). Contact sheets hold 100 shots: sheet.png, sheet2.png ...
   python3 tools/shoot.py GAME SET --model dmg       capture with another model (e.g. a DMG game also in CGB colours)
 
 Shot list lines: `id | category | caption | route` (route: tools/emu.py tokens; may start with @checkpoint).
@@ -41,7 +46,10 @@ CATEGORIES = ["boot", "title", "menu", "options", "cutscene", "gameplay", "hud",
 
 
 REGIONS = ["jp", "na", "eu"]     # game.json "region": where the registered dump was released (not its language)
-SET_FILES = ("sheet.png", "strip.png", "steps.gif", "full.gif")     # files about a whole set (area field `set`)
+SHEET_PAGE = 100                 # shots per contact sheet; a bigger set gets sheet2.png, sheet3.png ...
+SET_FILES = ("sheet.png", "strip.png", "steps.gif", "full.gif") + tuple(     # files about a whole set (area `set`)
+    "sheet%d.png" % n for n in range(2, 21))
+CAPTION_MAX = 80                 # docs/capture-guide.md, Quality rules
 SET_FILES_3X = ("steps.gif", "full.gif")
 
 
@@ -167,9 +175,7 @@ def index_update(game, d, entry, rom_sha1=None):
     write_md(idx, d)
     if os.path.basename(d).startswith("seq-"):
         sequence_files(idx, d)
-    E.sheet([os.path.join(d, s["file"]) for s in idx["shots"] if os.path.exists(os.path.join(d, s["file"]))],
-            os.path.join(d, set_file(idx["game"], idx["set"], "sheet.png")), cols=5, labels=[s["id"] for s in idx["shots"]
-                                                          if os.path.exists(os.path.join(d, s["file"]))])
+    sheets(idx, d)
 
 
 def sequence_files(idx, d):
@@ -296,6 +302,55 @@ def check_category(cat):
     return None
 
 
+def sheets(idx, d):
+    """Contact sheet(s) of the set: sheet.png holds the first SHEET_PAGE shots, sheet2.png the next ... (a
+    sheet of several hundred shots is too tall to look at). Pages no longer needed are deleted."""
+    have = [s for s in idx["shots"] if os.path.exists(os.path.join(d, s["file"]))]
+    pages = [have[i:i + SHEET_PAGE] for i in range(0, len(have), SHEET_PAGE)] or [[]]
+    for n in range(1, 21):
+        out = os.path.join(d, set_file(idx["game"], idx["set"], "sheet.png" if n == 1 else "sheet%d.png" % n))
+        if n <= len(pages) and pages[n - 1]:
+            E.sheet([os.path.join(d, s["file"]) for s in pages[n - 1]], out, cols=5,
+                    labels=[s["id"] for s in pages[n - 1]])
+        elif n > 1 and os.path.exists(out):
+            os.remove(out)
+
+
+def quality(idx, d):
+    """Problems a replay cannot see (docs/capture-guide.md, Quality rules): shots with identical pixels, and
+    captions over CAPTION_MAX characters. Returns (duplicate groups, long captions) as lists of text lines."""
+    same = {}
+    for s in idx["shots"]:
+        p = os.path.join(d, s["file"])
+        # a sequence repeats frames on purpose (a clip's poster is the step before or after it)
+        if os.path.exists(p) and "clip" not in s and not str(idx.get("set", "")).startswith("seq-"):
+            same.setdefault(hashlib.sha1(_pixels(p)).hexdigest(), []).append(s["id"])
+    dup = ["identical pictures: " + ", ".join(ids) for ids in same.values() if len(ids) > 1]
+    long_ = ["caption has %d characters (limit %d): %s" % (len(s["caption"]), CAPTION_MAX, s["id"])
+             for s in idx["shots"] if len(s["caption"]) > CAPTION_MAX]
+    return dup, long_
+
+
+def prune(game, d):
+    """Drop shots from the working set that its shots.txt no longer lists (a line deleted or an id renamed by
+    hand): index entry and files. Returns the ids removed."""
+    p, lst = os.path.join(d, "index.json"), os.path.join(d, "shots.txt")
+    if not (os.path.exists(p) and os.path.exists(lst)):
+        return []
+    listed = {r["id"] for r in E.read_table(lst, ("id", "category", "caption", "route"))}
+    idx = json.load(open(p, encoding="utf-8"))
+    gone = [s for s in idx["shots"] if s["id"] not in listed]
+    for s in gone:
+        for f in files_of(s):
+            if os.path.exists(os.path.join(d, f)):
+                os.remove(os.path.join(d, f))
+    if gone:
+        idx["shots"] = [s for s in idx["shots"] if s["id"] in listed]
+        json.dump(idx, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+        reindex(game, d)
+    return [s["id"] for s in gone]
+
+
 def reindex(game, d):
     """Rebuild index.md, sheet.png and (seq-*) strip/steps GIFs from index.json (after hand edits)."""
     p = os.path.join(d, "index.json")
@@ -308,9 +363,7 @@ def reindex(game, d):
     write_md(idx, d)
     if os.path.basename(d).startswith("seq-"):
         sequence_files(idx, d)
-    have = [s for s in idx["shots"] if os.path.exists(os.path.join(d, s["file"]))]
-    E.sheet([os.path.join(d, s["file"]) for s in have], os.path.join(d, set_file(idx["game"], idx["set"], "sheet.png")), cols=5,
-            labels=[s["id"] for s in have])
+    sheets(idx, d)
 
 
 def main():
@@ -323,6 +376,10 @@ def main():
     ap.add_argument("--publish", action="store_true")
     ap.add_argument("--publish-only", action="store_true",
                     help="copy the work set to games/PLATFORM/GAME/shots/SET/ without replaying (after a passing --verify)")
+    ap.add_argument("--prune", action="store_true",
+                    help="remove shots the work set's shots.txt no longer lists (index entries and files), then stop")
+    ap.add_argument("--allow-duplicates", action="store_true",
+                    help="publish although some shots have identical pixels (say why in the report)")
     ap.add_argument("--model")
     a = ap.parse_args()
     game = E.Game(a.game)
@@ -332,6 +389,10 @@ def main():
     head(game.meta, a.set)              # fails early when game.json has no region or the set name does not fit
     if normalize(game, d):
         print("renamed the working set to the current file names")
+    if a.prune:
+        gone = prune(game, d)
+        print("pruned %d: %s" % (len(gone), " ".join(gone)) if gone else "nothing to prune")
+        return 0
     lst = a.list or os.path.join(d, "shots.txt")
     if not os.path.exists(lst):
         lst = os.path.join(game.dir, "shots.txt")
@@ -375,13 +436,26 @@ def main():
         print("%d/%d reproduce" % (len(shots) - bad, len(shots)))
         if not bad and not a.only:
             reindex(game, d)        # pick up hand edits of captions/categories in index.json
+        if not a.only and os.path.exists(os.path.join(d, "index.json")):
+            dup, long_ = quality(json.load(open(os.path.join(d, "index.json"), encoding="utf-8")), d)
+            for line in dup + long_:
+                print("check: " + line)
+            if dup:
+                print("check: %d group(s) of identical pictures: retake or drop before publishing" % len(dup))
         return 3 if bad else 0
     print("set: %s" % os.path.relpath(d, ROOT))
     if a.publish:
         reindex(game, d)                # game order from shots.txt; seq-: strip, steps, full GIF
         pub = os.path.join(game.dir, "shots", a.set)
-        os.makedirs(pub, exist_ok=True)
         idx = json.load(open(os.path.join(d, "index.json"), encoding="utf-8"))
+        dup, long_ = quality(idx, d)
+        for line in dup + long_:
+            print("check: " + line)
+        if dup and not a.allow_duplicates:
+            print("not published: %d group(s) of identical pictures (retake or drop one of each, or "
+                  "--allow-duplicates)" % len(dup))
+            return 4
+        os.makedirs(pub, exist_ok=True)
         for s in idx["shots"]:
             for f in files_of(s):
                 os.makedirs(os.path.dirname(os.path.join(pub, f)), exist_ok=True)
@@ -401,6 +475,11 @@ def main():
                     os.remove(os.path.join(folder, f))
                     print("removed stale %s" % rel_f)
         print("published: %s (%d shots)" % (os.path.relpath(pub, ROOT), len(idx["shots"])))
+        if a.set == "main":             # the three lenses index the published main set
+            import lenses
+            code, lines = lenses.check(game, a.set)
+            print("lenses: " + ("\nlenses: ".join(lines[:12]) + ("\nlenses: ... %d more lines" % (len(lines) - 12)
+                                                                  if len(lines) > 12 else "")))
     return 0
 
 

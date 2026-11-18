@@ -20,9 +20,15 @@ COM = bytes.fromhex(
     "532E44415400")     # 0136 "S.DAT",0
 
 
-def build():
+EXIT = bytes.fromhex("B8004CCD21")      # a second program (exits at once): with two programs DOSBox Pure
+                                           # shows its start menu instead of starting the only one
+
+
+def build(menu=False):
     b = io.BytesIO()
     with zipfile.ZipFile(b, "w") as z:
+        if menu:
+            z.writestr(zipfile.ZipInfo("EXIT.COM", (1990, 1, 1, 0, 0, 0)), EXIT)
         z.writestr(zipfile.ZipInfo("KEYS.COM", (1990, 1, 1, 0, 0, 0)), COM)
     return b.getvalue()
 

@@ -303,6 +303,8 @@ def step(emu, game, tok):
             settle(emu, game)
         elif re.match(r"^w\d+$", base):
             emu.frames(int(base[1:]))
+        elif re.match(r"^change(:\d+)?$", base):
+            changed(emu, game, int(base[7:]) if ":" in base else 0)
         elif re.match(r"^rec:\d+(:\d+)?(:-?\d+)?$", base):
             emu.frames(int(base.split(":")[1]))
         elif base.startswith("poke:"):
@@ -358,6 +360,24 @@ def play(emu, game, toks):
     for t in toks:
         if not step(emu, game, t):
             raise ValueError("unknown token %r (keys: %s)" % (t, " ".join(sorted(game.keys))))
+
+
+def changed(emu, game, after=0, step_=2, limit=None):
+    """Token `change[:N]`: run until the picture differs from the one at the start of the token (the game has
+    answered the last key), then N more frames. For screens that never settle (blinking cursor, animation)
+    and for games that buffer keys: `key,change:20,key` instead of a guessed wait. Checked every 2 frames; a
+    picture that does not change within the limit (4 x the settle limit) is an error, not a silent wait.
+    Returns the frames run."""
+    limit = limit or game.settle_limit * 4
+    first, ran = emu.screen(), 0
+    while emu.screen() == first:
+        if ran >= limit:
+            raise ValueError("change: the picture did not change within %d frames" % limit)
+        emu.frames(step_)
+        apply_freezes(emu)
+        ran += step_
+    emu.frames(after)
+    return ran + after
 
 
 def settle(emu, game, step_=None, limit=None):
