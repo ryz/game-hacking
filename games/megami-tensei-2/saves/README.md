@@ -5,3 +5,4 @@ Made by the agents while playing (owner's rule 2026-11-15: committed so the owne
 | Save | Files | What it contains | Route at export | SHA-1 (.sav) | Date |
 |---|---|---|---|---|---|
 | 01_computer_room | `01_computer_room.sav` | Slot DATA1: RYZ/CONDI LV 2 at the home computer after quitting Devil Buster (game over inside the game), 0 Macca | `@computer_menu,down*2,a,w150,settle,a,w200,settle,a,w200,settle` | `a82e66eeb7c0` | 2026-11-18 |
+| 02_village_totem | `02_village_totem.sav` | Slot DATA2: RYZ/CONDI LV 2 in the village save house (totem), PIXIE and KOBOL summoned, GOBLIN in the COMP, IRON SUIT bought, 545 Macca, 1380 MAG; slot DATA1 = the computer room save | `@totem,down*2,a,w100,settle,b,w60,settle,w20,down,a,w100,settle,down,a,w150,settle` | `d1d4e6fe6a1f` | 2026-11-18 |

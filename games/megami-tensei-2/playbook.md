@@ -146,6 +146,41 @@ How to reach (scout): everything up to `battle_victory` is a checkpoint here. Th
   ~60 tool calls without an answer; the warp-table rom variant (`bytes` patch of the floor-1 stairs target) reproduced
   the poke result exactly and was removed again.
 
+### Capture run 2 (2026-11-18, round 2): what worked
+- **Devil Buster is finished by its own event squares, not by stairs.** The overhead event table (ROM file 0x7DAB-0x7F40,
+  3-byte entries `x y id`, one list for all overhead maps) holds Devil Buster's events: 5E,08 fusion master (id 8F),
+  59,0C healer (8E), 53,0E Micon's elder (15: "QUIT THIS GAME"), 53,11 treasure (16), 58,11 weapon/armour shop (04),
+  52,2C the fallen **god statue** (25), 76,23 **Taurus** (24: "HEY BRATS! DIE!" then the boss battle), 5D,2C hint "OFFER
+  THE S.ORB TO THE FALLEN GOD STATUE" (20), 72,14 "TAURUS HOLDS THE S.ORB" (1E), jammed elevators (23, eight squares),
+  NPC hints (17-1F, 21), 6B,5C / 72,52 a trap back to the start 51,08 (7D), floor-8 squares 6A,67 (97), 76,6A (98,
+  Cerberus, untranslated), 6A,6A (37, a door). Story: kill Taurus (`poke:0548=01` before the round) -> "GOT S.ORB" ->
+  offer it at the god statue -> Pazuzu's speech -> computer room (Demon Summoning Program, auto-mapping program, EBO
+  gets magic) -> shelter B4 (checkpoints `boss_taurus`, `taurus_won`, `taurus_done`, `statue_offer`, `pazuzu_tale`,
+  `real_world`). The floor-8 stairs in the wall are not needed.
+- **Event warps:** macro `DBEV:x:y` from `@db_f1_back` (Devil Buster) and `TOWNEV:x:y` from `@overworld_demons` (towns)
+  poke 0431/0432 to the square **below** the event 8 frames into a transition, then step up. Inside Devil Buster a plain
+  `poke:0431=..,poke:0432=..` + step also fires an event once the map is loaded (used for the god statue).
+- **Demons by poke:** the COMP stock is party slots 2-11 of the battle-slot arrays (stride 0x14): flag `0516+i` = 80
+  (bit 7 = owned, bits 5-6 clear = in the COMP), HP `053E+i`, max HP `057A+i`, demon id `05B6+i` (code bank 19 $A103).
+  Macro `DEMONS3` = PIXIE (8D) 17/19, GOBLIN (8B) 21/24, KOBOL (96) 25/25. CALL lists them with the Macca cost
+  (PIXIE 47, GOBLIN 175, KOBOL 79); summoning costs Macca (untranslated "not enough Macca" line when short), then
+  every step costs MAG. Ids near these: ST GOLEM 53, STONK AD, MEZU 9B, MEPHI 99, JINN 9C, CHORON 97.
+- **Fusion** works inside Devil Buster at the fusion master (5E,08) with poked demons: FUSE TWO -> chart -> PIXIE + KOBOL
+  = CARBUNK (BRT, LV 4, ZIO). Menu input there needs held presses (`down:12,w60,a:12`).
+- **Encounters on demand:** 037A is a step countdown (FF frozen = none); `poke:037A=01` (macro `ENCOUNTER`) and one step
+  starts a battle.
+- **Towns:** the settlement north of 11,2B (inside 5B,7E, area 05) has a shop (armour, Jamaican-patois clerk), a save
+  **totem** (house 59,7F: LEAVE / SAVE / Teleport; SAVE -> DATA1/DATA2 -> "RECORDED."), houses. A scan of the town
+  event table found: registry man "REGISTER / LISTEN" (55,C3 id 4B), "NEED HELP?" (51,C7 4C), slots (55,C7 4D), Mr. Nandi
+  gambling (59,C7 4E), Dream Drugstore (59,BF 4F), bar (55,BF 28), gun shop "FOR WHOM?" (59,6F 08), weapon shop (2B,BF 5A),
+  totems (46, 47, 49, 4A). Sheets: `work/capture/mt2/scan1/`, Devil Buster `work/capture/mt2/dbs_dn/`.
+- **Dead ends:** the story-point list at bank 11 $CF3F has no caller; $CF07 maps a value to an index by thresholds
+  (not a scenario jump). Flags 0480-049F are battle data, not story flags. No auto-map button found (Select, Start, B
+  in the shelter do nothing). CHAT with golems ends with them leaving; no join seen.
+- **Who is who:** after Pazuzu the second messiah is called EBO and the real-world party is RYZ + EBO (the hero named
+  second, CONDI, is the Devil Buster partner on screen). The name prompts' order may not match the roles assumed in
+  round 1; check before naming captions.
+
 ## Naming
 Hero **RYZ**, girlfriend **CONDI**, best friend **EBO** (owner's rule; upper case is all the grid offers).
 Grid: 5 rows x 20 columns: kana (cols 0-9), `" ° ! -` (cols 10-14 of row 0), `UVWXY` (row 0 cols 15-19), `ABCDE`

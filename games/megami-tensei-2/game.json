@@ -34,7 +34,11 @@
     "NAME_EBO": "right*14,down,a,left*3,a,right*3,down*2,a,right,down,a,w60",
     "STATS_RYZ": "a*4,down,a,down,a*5,down,a*2,down,a*3,w100,a,w100",
     "STATS_CONDI": "a*2,down,a*5,down,a,down,a*3,down,a*4,w100,a,w100",
-    "NEWGAME": "start,w700,a,w700,a,w400,NAME_RYZ,w300,NAME_CONDI,w300,NAME_EBO,w300,STATS_RYZ,STATS_CONDI,w600,settle"
+    "NEWGAME": "start,w700,a,w700,a,w400,NAME_RYZ,w300,NAME_CONDI,w300,NAME_EBO,w300,STATS_RYZ,STATS_CONDI,w600,settle",
+    "DBEV": "up:16,w30,down:16,w8,poke:0431={0},poke:0432={1},w120,settle,up:16,w24,w150,settle",
+    "TOWNEV": "down:16,w24,down:16,w8,poke:0431={0},poke:0432={1},w120,settle,up:16,w24,w150,settle",
+    "DEMONS3": "poke:0516=808080,poke:053E=111519,poke:057A=131819,poke:05B6=8D8B96",
+    "ENCOUNTER": "poke:037A=01"
   },
   "ram": {
     "x": {
@@ -81,6 +85,10 @@
       "addr": "0436",
       "size": 1,
       "fmt": "hex"
+    },
+    "encounter": {
+      "addr": "037A",
+      "size": 1
     }
   },
   "source": {
