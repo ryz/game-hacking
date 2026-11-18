@@ -39,7 +39,8 @@
     "FS": "poke:15E6D=0C3003C0F001FF10",
     "FW": "poke:15E6D=030CC030FFF01001",
     "QA": "ctrl>a,w200",
-    "JOIN": "1,w150,ctrl>g,ctrl>b,ctrl>c,ctrl>d,ctrl>e,ctrl>f,w30,x,w150"
+    "JOIN": "1,w150,ctrl>g,ctrl>b,ctrl>c,ctrl>d,ctrl>e,ctrl>f,w30,x,w150",
+    "WARP": "poke:11017={0},poke:1101C={1},poke:1101E={2},poke:11020={3},poke:11023={4},AT:0C:00:0C,FW,left,w250,y,w400"
   },
   "ram": {
     "x": {
@@ -61,6 +62,11 @@
     "food1": {
       "addr": "1686A",
       "size": 1
+    },
+    "map": {
+      "addr": "12369",
+      "size": 1,
+      "fmt": "hex"
     }
   }
 }
