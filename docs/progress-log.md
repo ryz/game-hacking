@@ -2,6 +2,25 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic 1 (DOS) round 2: 250 shots, first three-lens documents; lrcore leak fixed
+- game-capture round 2 (commits 916bb5b 6afca22): 113 -> 250 shots. Mechanics at work (bash and its trap,
+  unlock, trade of item/gold/food, share, gather, discard, use, remove, equip refused, casting outside combat,
+  bribe/retreat outcomes, exchange, bless, sleep, turn undead, temple cure and raise price, tavern, selling,
+  chest trap), 30 more monster groups incl. Demon Lord, Lich, Gray Minotaur, Evil Eyes, Scorpion, Dark Rider and
+  monsters acting (dragon breath, stoning, drain, paralysis), 20 environments. `design/systems.md`,
+  `interface.md`, `content.md` written (`tools/lenses.py`: 202 / 201 / 177 of 250 used, 219 in two or more,
+  nothing unused, no empty row). `tools/survey.py` surveyed all 55 areas; saves 04 and 05.
+- Correction to the scout's RAM map: party records are 0x80 apart, not 0x7F; round 1's LOWHP and WORTHY macros
+  hit the neighbouring byte for members 2-6 and were left unchanged so round-1 routes reproduce (playbook).
+- Tool fix (coordinator): a private copy of a libretro core stayed loaded after close, about 40 MB per DOS
+  machine opened (30 opens: 1232 MB, after the fix 120 MB); the agent's full verify had been killed for lack of
+  memory and was run in two halves. `tools/lrcore.py` now unloads the copy and deletes its file.
+- Coordinator: cache deleted, `shoot.py dos/might-and-magic main --verify` in one run: 250/250; sixteen new
+  shots and three captions looked at; no game data in the commits. Shared tests 33 passed, 8 skipped.
+- Not captured (tried): surprise message, search finding something, rest interrupted, surrender accepted;
+  no screen change: retreat and block in combat, bash on a wall; not attempted: impostor, Eye of Goros, Astral
+  door; wall sets per area are by eye, WALLPIX.DTA not decoded.
+
 ## 2026-11-18 - third lens: content
 - Owner: the third area is content: variety in environments, items, enemies, equipment and so on; not a full
   set but a reasonable variety; in general shots should cover these areas, depending on game, genre and
