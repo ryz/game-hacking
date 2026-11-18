@@ -1,7 +1,8 @@
 """Shared tooling tests: tokens, routes, header identification (no emulator), and the whole pipeline on gbemu's generated
 test ROM (skipped when tools/gbemu-cli is not built) and on a generated NES test ROM (skipped when the Mesen
-core is not built), a generated SNES test ROM (skipped when the Mesen-S core is not built) and a generated DOS
-test program (skipped when the DOSBox Pure core is not built)."""
+core is not built), a generated SNES test ROM (skipped when the Mesen-S core is not built), a generated DOS
+test program (skipped when the DOSBox Pure core is not built) and a generated Apple II test disk (skipped when
+the AppleWin core is not built)."""
 import json, os, shutil, subprocess, sys
 
 import pytest
@@ -728,3 +729,217 @@ def test_dos_pipeline(dos_selftest):
     im = Image.open(os.path.join(ROOT, "games", "dos", DOS_SLUG, "shots", "main",
                                  "zz-selftest-dos_dos_na_gameplay_typed.png")).convert("RGB")
     assert im.size == (640, 400) and im.crop((0, 0, 200, 16)).getextrema()[0][1] > 100
+
+
+# ------------------------------------------------------------------ Apple II (AppleWin libretro core)
+A2_SLUG = "zz-selftest-apple2"
+A2_DOS33 = os.path.join(ROOT, "tools", "applewin", "bin", "DOS 3.3 System Master - 680-0210-A.dsk")
+
+
+def _a2_zip(path):
+    """Two sides: an empty disk first (does not boot), the test program second."""
+    import zipfile
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_apple2_disk
+    with zipfile.ZipFile(path, "w") as z:
+        z.writestr("Side A.dsk", bytes(143360))
+        z.writestr("Side B.dsk", make_apple2_disk.build())
+    return path
+
+
+@pytest.fixture
+def a2_selftest(tmp_path):
+    if not os.path.exists(platforms.Apple2.SO):
+        pytest.skip("AppleWin core not built (sh tools/setup_emu.sh apple2)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_apple2_disk
+    rom = tmp_path / "t.dsk"
+    rom.write_bytes(make_apple2_disk.build())
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", A2_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games/apple2", "work/shots/apple2", "work/cache/apple2", "work/intake/apple2", "work/play"):
+        shutil.rmtree(os.path.join(ROOT, sub, A2_SLUG), ignore_errors=True)
+    if os.path.exists(os.path.join(ROOT, "rom", A2_SLUG + ".zip")):
+        os.remove(os.path.join(ROOT, "rom", A2_SLUG + ".zip"))
+
+
+def _a2_row(e, row=0):
+    """A text row as ASCII (screen codes: high bit set = normal video)."""
+    return bytes(c & 0x7F for c in e.peek(0x400 + (row % 8) * 0x80 + (row // 8) * 0x28, 40)).decode().rstrip()
+
+
+def test_apple2_identify(tmp_path):
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_apple2_disk, make_dos_zip
+    h = platforms.Apple2.identify(make_apple2_disk.build())
+    assert h["platform"] == "apple2" and h["model"] == "iie" and "140 KiB" in h["disks"][0]["kind"]
+    z = _a2_zip(str(tmp_path / "two.zip"))
+    h = platforms.Apple2.identify(open(z, "rb").read())
+    assert [d["name"] for d in h["disks"]] == ["Side A.dsk", "Side B.dsk"] and len(h["disks"][1]["sha1"]) == 40
+    assert platforms.by_extension(z)[0] == "apple2"                      # a ZIP of disk images
+    d = tmp_path / "dos.zip"
+    d.write_bytes(make_dos_zip.build())
+    assert platforms.by_extension(str(d))[0] == "dos"                    # any other ZIP
+    assert platforms.by_extension("x/GAME.WOZ")[0] == "apple2" and platforms.by_extension("x/g.po")[0] == "apple2"
+    assert {"a", "1", "enter", "esc", "left", "ctrl", "shift", "openapple", "joyup", "f"} <= platforms.Apple2.keys
+    assert "f1" not in platforms.Apple2.keys
+
+
+def test_apple2_backend(a2_selftest, tmp_path):
+    e = platforms.Apple2().open(str(a2_selftest))
+    e.frames(120)
+    assert e.image().size == (560, 384) and _a2_row(e) == "" and e.regs()["pc"].startswith("08")
+    assert e.peek(0xFBB3, 1) == b"\x06" and e.peek(0xFBC0, 1) == b"\xe0"    # machine ID bytes in ROM: enhanced //e
+    for keys in (["h"], ["shift", "i"], ["1"], ["shift", "1"]):
+        e.input(keys); e.frames(8); e.input([]); e.frames(20)
+    assert _a2_row(e)[1::2] == "Hi1!"                                    # every second character is a timing letter
+    e.type_text("Ab, 2+2=4")
+    assert _a2_row(e)[1::2] == "Hi1!Ab, 2+2=4"
+    typed = e.screen()
+    st = str(tmp_path / "x.state")
+    e.save_state(st)
+    e.input(["x"]); e.frames(8); e.input([]); e.frames(20)
+    assert e.screen() != typed
+    e.poke(0x300, b"\x5a\xa5")
+    assert e.peek(0x300, 2) == b"\x5a\xa5" and e.peek(0x300, 2, bank=0) == b"\x5a\xa5"
+    with pytest.raises(ValueError):
+        e.poke(0xF800, b"\x00")                                          # ROM
+    e.poke(0x10300, b"\x77")                                             # auxiliary memory
+    assert e.peek(0x10300, 1) == b"\x77" and e.peek(0x300, 1, bank=1) == b"\x77" and e.peek(0x300, 1) == b"\x5a"
+    e.load_state(st)
+    assert e.screen() == typed and e.peek(0x300, 2) != b"\x5a\xa5"
+    assert e.ram_search("new == old")["count"] == 0xC000
+    e.close()
+    with pytest.raises(SystemExit, match="unknown Apple II model"):
+        platforms.Apple2().open(str(a2_selftest), model="iigs")
+    m = platforms.Apple2().open(str(a2_selftest), model="iiplus-green-joy")
+    m.frames(120)
+    assert m.peek(0xFBB3, 1) == b"\xea"                                  # machine ID byte: II Plus
+    m.close()
+
+
+def test_apple2_same_route_same_frames(a2_selftest, tmp_path):
+    """Nothing depends on the host: two power-ons give the same pictures and memory, and a run continued after
+    save_state equals one loaded from that state into a machine that has not run yet (the test program prints a
+    letter that depends on the exact cycle a key arrives)."""
+    st = str(tmp_path / "x.state")
+
+    def boot():
+        e = platforms.Apple2().open(str(a2_selftest))
+        e.frames(120)
+        return e
+
+    def play(e):
+        for k, w in zip("gamedb", (3, 17, 5, 29, 11, 7)):
+            e.input([k]); e.frames(3); e.input([]); e.frames(w)
+        return e.screen(), e.peek(0, 0xC000)
+
+    a, b = boot(), boot()
+    assert a.screen() == b.screen() and a.peek(0, 0xC000) == b.peek(0, 0xC000)
+    assert play(a) == play(b)
+    a.save_state(st)
+    b.close()
+    c = platforms.Apple2().open(str(a2_selftest))
+    c.load_state(st)
+    assert c.screen() == a.screen()
+    assert play(a) == play(c)
+    a.close()
+    c.close()
+
+
+def test_apple2_disk_swap(a2_selftest, tmp_path):
+    z = _a2_zip(str(tmp_path / "two.zip"))
+    e = platforms.Apple2().open(z)
+    assert e.disks == ["Side A.dsk", "Side B.dsk"] and e.drives[:2] == ["Side A.dsk", None]
+    e.frames(200)
+    assert not e.regs()["pc"].startswith("08") and _a2_row(e, 2)[:1] == "*"     # no boot code: the monitor
+    st = str(tmp_path / "a.state")
+    e.save_state(st)
+    e.disk(2)
+    e.type_text("6")                                                     # monitor prompt: 6 Ctrl-P = boot slot 6
+    e.input(["ctrl", "p"]); e.frames(8); e.input([]); e.frames(8)
+    e.type_text("\n")
+    e.frames(200)
+    assert e.drives[:2] == ["Side B.dsk", None] and e.regs()["pc"].startswith("08")
+    e.disk(1, drive=2)
+    assert e.drives[:2] == ["Side B.dsk", "Side A.dsk"]
+    e.disk(1)                                                            # a disk is in one drive at a time
+    assert e.drives[:2] == ["Side A.dsk", None]
+    with pytest.raises(ValueError):
+        e.disk(3)
+    e.load_state(st)                                                     # the state knows which disk was in
+    assert e.drives[:2] == ["Side A.dsk", None]
+    e.frames(200)
+    assert not e.regs()["pc"].startswith("08")
+    e.close()
+
+
+def test_apple2_state_carries_disk_writes(tmp_path):
+    """Apple II games save by writing to the floppy. A savestate keeps the machine; the backend stores the
+    changed parts of the disk images with it and puts them back on load. Uses the DOS 3.3 master that comes
+    with the AppleWin source (never committed)."""
+    if not os.path.exists(platforms.Apple2.SO) or not os.path.exists(A2_DOS33):
+        pytest.skip("AppleWin core not built (sh tools/setup_emu.sh apple2)")
+    import io, zipfile
+    before, after = str(tmp_path / "before.state"), str(tmp_path / "after.state")
+
+    def catalog(e):
+        e.type_text("CATALOG\n")
+        out = ""
+        for _ in range(3):
+            e.frames(200)
+            out += "\n".join(_a2_row(e, r) for r in range(24))
+            e.type_text(" ")                                             # next page
+        e.frames(200)
+        return out
+
+    e = platforms.Apple2().open(A2_DOS33)
+    e.frames(600)
+    e.save_state(before)
+    assert e.battery(0) == b""
+    e.type_text('10 PRINT "HI"\nSAVE GAMEDB\n')
+    e.frames(400)
+    sav = e.battery(0)
+    assert zipfile.ZipFile(io.BytesIO(sav)).namelist() == ["disk.dsk"]
+    e.save_state(after)
+    assert os.path.getsize(after) < 200000                              # changed blocks only, not the image
+    assert "GAMEDB" in catalog(e)
+    e.load_state(before)                                                # back to before the save
+    assert e.battery(0) == b"" and "GAMEDB" not in catalog(e)
+    e.close()
+    f = platforms.Apple2().open(A2_DOS33)                               # fresh machine, pristine disk
+    f.load_state(after)
+    assert f.battery(0) == sav and "GAMEDB" in catalog(f)
+    f.close()
+    (tmp_path / "x.sav").write_bytes(sav)
+    g = platforms.Apple2().open(A2_DOS33, sav=str(tmp_path / "x.sav"))  # power on with the exported save
+    g.frames(600)
+    assert "GAMEDB" in catalog(g)
+    g.close()
+
+
+def test_apple2_pipeline(a2_selftest, tmp_path):
+    z = _a2_zip(str(tmp_path / (A2_SLUG + ".zip")))
+    run("tools/intake.py", z, "--slug", A2_SLUG, "--region", "na", "--probe", "120")
+    gj = os.path.join(ROOT, "games", "apple2", A2_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "apple2" and meta["model"] == "iie" and meta["rom"].endswith(".zip")
+    assert [d["name"] for d in meta["header"]["disks"]] == ["Side A.dsk", "Side B.dsk"]
+    meta["macros"] = {"BOOT": "w200,disk:2,6,ctrl+p,enter,w200"}
+    meta["ram"] = {"cursor": {"addr": "0024", "size": 1}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", A2_SLUG]
+    run(*P, "start", A2_SLUG)
+    run(*P, "do", "BOOT")
+    assert "saved" in run(*P, "checkpoint", "ready", "test program waiting for a key")
+    run(*P, "do", "type:GO 1,f,shift+1,w20")
+    assert "cursor=12" in run(*P, "status")                             # six keys, two characters each
+    run(*P, "snap", "typed", "gameplay", "keys typed, timing letters between them")
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", A2_SLUG, "main", "--verify")
+    run("tools/shoot.py", A2_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", "apple2", A2_SLUG, "shots", "main",
+                                 "zz-selftest-apple2_apple2_na_gameplay_typed.png")).convert("RGB")
+    assert im.size == (560, 384) and im.crop((0, 0, 200, 16)).getextrema()[0][1] > 100
