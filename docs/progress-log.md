@@ -2,6 +2,26 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - games grouped by platform
+- Owner's decision: `games/<slug>/` -> `games/<platform>/<slug>/`, so a game can exist on several platforms (the
+  DOS Might and Magic next to the NES one). The folder is the game.json "platform" value. Mapping:
+  `nes/`: deep-dungeon-3, dragon-quest, dungeon-magic, megami-tensei, megami-tensei-2, might-and-magic,
+  wizardry-2-nes, wizardry-nes; `gb/`: pokemon-blue; `gbc/`: wizardry-empire; `snes/`: shin-megami-tensei.
+  `games/_template/` stays. Entries below this one and all feedback/agent logs keep the old paths.
+- Tools: `emu.find_game` (GAME = `slug`, or `platform/slug` when the slug is not unique; an ambiguous slug is
+  an error that names the platforms), `Game.id` = `platform/slug` for `work/shots|cache|roms|intake/`;
+  `intake.py` creates `games/<platform>/<slug>/`; `dis6502.py` resolves through emu. `rom/<slug>.<ext>`,
+  `rom/saves/<slug>/` and `rom/patches/<slug>/` are unchanged (uncommitted; they collide only if two platforms
+  share a slug and a file extension).
+- Path depth fixed in game tools that find the repo root from their own location (dungeon-magic atlas/maps,
+  might-and-magic maps, wizardry-nes and wizardry-2-nes maps/roster, shin-megami-tensei mkrom, Wizardry Empire
+  `translation/tools/emu.py` and `setup_emu.sh`). Paths in docs, skills, agent wrappers, playbooks, game.json
+  and .gitignore rewritten; markdown link check before/after: no new broken links.
+- Checked: shared tests 29 passed, 2 skipped (SNES core not built here); Wizardry Empire tests 10 passed, 4
+  skipped (no ROM here). Not checked: anything that needs a ROM (no dumps in this container), so the map tools
+  and the Wizardry Empire build were only compiled/started, not run against data.
+- The slugs `wizardry-nes` and `wizardry-2-nes` still carry the platform in their name; not renamed.
+
 ## 2026-11-18 - DOS backend (DOSBox Pure)
 - Owner asked for a DOS emulator, first game to be Might and Magic 1. Chosen: DOSBox Pure as a libretro core
   (no SDL, no display, fits `tools/lrcore.py`, has savestates); DOSBox-X and DOSBox Staging would need SDL2,

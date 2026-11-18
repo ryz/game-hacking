@@ -2,7 +2,7 @@
 skill: game-scout
 project: all games (shared tools at the repo root)
 summary: Research a newly registered game (controls, structure, strategy, shortcuts) into its playbook and verify the basics in the emulator.
-access: write (games/<slug>/ except shots/, work/scout/<slug>/)
+access: write (games/<platform>/<slug>/ except shots/, work/scout/<slug>/)
 updated: 2026-11-18 (macro testing)
 ---
 
@@ -20,11 +20,11 @@ controls and boot route, the game's structure, a shot plan, strategy notes and s
 do not capture the database set (that is `game-capture`), but you do create the first checkpoints.
 
 ## Inputs (from the dispatch)
-- Game slug (`games/<slug>/game.json` exists: `tools/intake.py` ran) and the ROM in `rom/`.
+- Game slug (`games/<platform>/<slug>/game.json` exists: `tools/intake.py` ran) and the ROM in `rom/`.
 - Optional: what the owner wants emphasised.
 
 ## Steps
-1. **Identify.** `game.json` (header title, region, revision, SHA-1/CRC32) + `work/intake/<slug>/sheet.png`
+1. **Identify.** `game.json` (header title, region, revision, SHA-1/CRC32) + `work/intake/<platform>/<slug>/sheet.png`
    (first 30 s, no input). Pin down the exact game and release: the header title is often abbreviated; match the
    CRC32/SHA-1 against No-Intro naming if a source lists it. Fill the playbook Identity table; set
    `game.json` "title" to the official English title (or the romanised original).
@@ -62,9 +62,9 @@ do not capture the database set (that is `game-capture`), but you do create the 
      screenshots into one image saves a look per step (used by two scouts, 2026-11-17/18).
    - Blocked web sources and a translated game: decode the ROM script (relative search for a known word) for
      names, save mechanics, places and bosses; tag those facts "ROM text".
-   - Rebuild every checkpoint once with an empty cache (`work/cache/<slug>`) and compare with a cache hit: the
+   - Rebuild every checkpoint once with an empty cache (`work/cache/<platform>/<slug>`) and compare with a cache hit: the
      frames must be identical.
-4. **Start the design reference** (`games/<slug>/design/README.md`, notation in that file): the Overview and a
+4. **Start the design reference** (`games/<platform>/<slug>/design/README.md`, notation in that file): the Overview and a
    document list for the game's systems, filled with what the research says, tagged **(source)**, plus what you
    verified. The capture agent extends it while playing.
    Once the `start` checkpoint exists, save in the game if it allows it that early and
@@ -79,10 +79,10 @@ do not capture the database set (that is `game-capture`), but you do create the 
    whatever you could not settle.
 
 ## Guardrails
-- Write only `games/<slug>/game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt` (plan lines without routes
+- Write only `games/<platform>/<slug>/game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt` (plan lines without routes
   are fine as comments), `design/`, `tools/` (game-specific helpers), `rom/saves/<slug>/`, `rom/patches/<slug>/` and `work/scout/<slug>/`. Commits: one at the end of a long
   scout, or when the `start` checkpoint and its save exist, with the same rules as game-capture's in-between
-  commits (only `games/<slug>/`, pull --rebase, push to master); the coordinator makes the final commit.
+  commits (only `games/<platform>/<slug>/`, pull --rebase, push to master); the coordinator makes the final commit.
 - Never commit or upload the ROM; never send ROM data, hashes of private dumps or the user's details to web
   services (searching for a public CRC32 of a retail game is fine).
 - Mark every fact verified or source. A control or code you could not confirm stays "source".

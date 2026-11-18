@@ -10,7 +10,7 @@ is reproducible from power-on (states are a cache, routes are the record).
   python3 tools/play.py shot [PATH]          screenshot only (default work/play/NAME/last.png, 3x)
   python3 tools/play.py snap ID CATEGORY "caption" [--set SET]
                                              capture the current frame for the database: native PNG (+ 3x copy in 3x/) into
-                                             work/shots/GAME/SET/ (default set: main), its line (with the full
+                                             work/shots/PLATFORM/GAME/SET/ (default set: main), its line (with the full
                                              route) appended to that set's shots.txt and index.json
   python3 tools/play.py recaption ID "caption" [--set SET]    change a shot's caption (no replay)
   python3 tools/play.py unsnap ID [--set SET]                 remove a shot from the working set
@@ -22,12 +22,12 @@ is reproducible from power-on (states are a cache, routes are the record).
                                              poster still with --poster P (kept frame number; -1 = last)
   python3 tools/play.py checkpoint NAME "description"
                                              save a state and add `NAME | description | route` to
-                                             games/GAME/checkpoints.txt (replaces a line of the same name)
+                                             games/PLATFORM/GAME/checkpoints.txt (replaces a line of the same name)
   python3 tools/play.py export NAME "description" [--state]
                                              after saving IN THE GAME: write the battery save to
-                                             games/GAME/saves/NAME.sav (committed; loads in any emulator as
+                                             games/PLATFORM/GAME/saves/NAME.sav (committed; loads in any emulator as
                                              <rom name>.sav, and in routes as sav:NAME) and document it in
-                                             games/GAME/saves/README.md; --state also writes NAME.state
+                                             games/PLATFORM/GAME/saves/README.md; --state also writes NAME.state
                                              (SameBoy savestate of this exact moment, SameBoy only)
   python3 tools/play.py goto NAME            jump to a checkpoint (built from its route if not cached)
   python3 tools/play.py route                the current route (replay it with emu.py or a shots.txt line)
@@ -98,7 +98,7 @@ class Session:
         """Pick up game.json edits (new macros, RAM watches) without restarting the session."""
         p = os.path.join(self.game.dir, "game.json")
         if os.path.getmtime(p) != self.meta_mtime:
-            self.game = self.E.Game(self.game.slug)
+            self.game = self.E.Game(self.game.id)
             self.meta_mtime = os.path.getmtime(p)
 
     def route(self):
@@ -175,7 +175,7 @@ class Session:
         """unsnap: remove a shot from the working set (shots.txt, index.json, its images). recaption: change its
         caption in both files. No replay; index.md and the sheet are rebuilt."""
         import shoot
-        d = os.path.join(ROOT, "work", "shots", self.game.slug, set_)
+        d = os.path.join(ROOT, "work", "shots", self.game.id, set_)
         lst, ip = os.path.join(d, "shots.txt"), os.path.join(d, "index.json")
         if not (os.path.exists(lst) and os.path.exists(ip)):
             return "error: no working set %s" % os.path.relpath(d, ROOT)
@@ -207,7 +207,7 @@ class Session:
         json.dump(idx, open(ip, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
         shoot.reindex(self.game, d)
         return "%s %s (%d shots in %s); publish again to update games/%s/shots/%s/" % (
-            "removed" if cmd == "unsnap" else "recaptioned", sid, len(idx["shots"]), set_, self.game.slug, set_)
+            "removed" if cmd == "unsnap" else "recaptioned", sid, len(idx["shots"]), set_, self.game.id, set_)
 
     def snap(self, sid, cat, caption, set_="main"):
         if not re.match(r"^[a-z0-9_]+$", sid):
@@ -218,7 +218,7 @@ class Session:
         if self.stale:
             return ("error: the screen is stale after goto/undo/start at a checkpoint (the frame shown is not this "
                     "state's); run `do settle` (or `do! w1`) first, then snap")
-        d = os.path.join(ROOT, "work", "shots", self.game.slug, set_)
+        d = os.path.join(ROOT, "work", "shots", self.game.id, set_)
         os.makedirs(d, exist_ok=True)
         import shoot
         stem = shoot.prefix(set_) + sid
@@ -255,7 +255,7 @@ class Session:
         if self.stale:
             return "error: the screen is stale after goto/undo; run `do settle` (or `do! w1`) first"
         import shoot
-        d = os.path.join(ROOT, "work", "shots", self.game.slug, set_)
+        d = os.path.join(ROOT, "work", "shots", self.game.id, set_)
         os.makedirs(d, exist_ok=True)
         self.emu.save_state(os.path.join(self.dir, "undo.state"))
         self.undo_state, self.undo_toks = os.path.join(self.dir, "undo.state"), list(self.toks)

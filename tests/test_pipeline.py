@@ -33,7 +33,7 @@ class FakeGame:
     keys = platforms.GameBoy.keys
     hold, wait = 8, 40
     macros = {"TITLE": "w100,start", "NEWGAME": "TITLE,a"}
-    slug = "fake"
+    slug, id = "fake", "gb/fake"
 
     def checkpoints(self):
         return [{"name": "title", "description": "", "route": "TITLE,settle"},
@@ -81,6 +81,22 @@ def test_macros_and_checkpoints_resolve():
         emu.resolve(g, "@nope")
 
 
+def test_find_game_by_slug_or_platform_slug():
+    assert emu.find_game("pokemon-blue") == ("gb", "pokemon-blue")
+    assert emu.find_game("nes/might-and-magic") == ("nes", "might-and-magic")
+    g = emu.Game("might-and-magic")
+    assert g.id == "nes/might-and-magic" and g.platform == "nes" and g.dir.endswith("games/nes/might-and-magic")
+    with pytest.raises(SystemExit):
+        emu.find_game("no-such-game")
+    with pytest.raises(SystemExit):
+        emu.find_game("snes/might-and-magic")
+    for folder in sorted(os.listdir(os.path.join(ROOT, "games"))):         # the folder is the platform
+        for slug in sorted(os.listdir(os.path.join(ROOT, "games", folder))):
+            gj = os.path.join(ROOT, "games", folder, slug, "game.json")
+            if folder != "_template" and os.path.exists(gj):
+                assert json.load(open(gj))["platform"] == folder, gj
+
+
 def test_gb_header():
     rom = bytearray(0x8000)
     rom[0x134:0x134 + 5] = b"HELLO"
@@ -109,8 +125,8 @@ def selftest(tmp_path):
     yield rom
     subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", SLUG, "stop"],
                    capture_output=True)
-    for p in (os.path.join(ROOT, "games", SLUG), os.path.join(ROOT, "work", "shots", SLUG),
-              os.path.join(ROOT, "work", "cache", SLUG), os.path.join(ROOT, "work", "intake", SLUG),
+    for p in (os.path.join(ROOT, "games", "gb", SLUG), os.path.join(ROOT, "work", "shots", "gb", SLUG),
+              os.path.join(ROOT, "work", "cache", "gb", SLUG), os.path.join(ROOT, "work", "intake", "gb", SLUG),
               os.path.join(ROOT, "work", "play", SLUG)):
         shutil.rmtree(p, ignore_errors=True)
     if os.path.exists(os.path.join(ROOT, "rom", SLUG + ".gb")):
@@ -131,7 +147,7 @@ def nes_selftest(tmp_path):
     yield rom
     subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", NES_SLUG, "stop"],
                    capture_output=True)
-    for sub in ("games", "work/shots", "work/cache", "work/intake", "work/play"):
+    for sub in ("games/nes", "work/shots/nes", "work/cache/nes", "work/intake/nes", "work/play"):
         shutil.rmtree(os.path.join(ROOT, sub, NES_SLUG), ignore_errors=True)
     if os.path.exists(os.path.join(ROOT, "rom", NES_SLUG + ".nes")):
         os.remove(os.path.join(ROOT, "rom", NES_SLUG + ".nes"))
@@ -145,7 +161,7 @@ def run(*args):
 
 def test_pipeline(selftest):
     run("tools/intake.py", str(selftest), "--slug", SLUG, "--probe", "120")
-    gj = os.path.join(ROOT, "games", SLUG, "game.json")
+    gj = os.path.join(ROOT, "games", "gb", SLUG, "game.json")
     meta = json.load(open(gj))
     assert meta["platform"] == "gb" and meta["model"] == "dmg"
     meta["macros"] = {"TITLE": "w120"}
@@ -162,7 +178,7 @@ def test_pipeline(selftest):
     assert "candidates" in run(*P, "find", "new == old")
     run(*P, "snap", "oops", "gameplay", "wrong caption")
     assert "recaptioned" in run(*P, "recaption", "oops", "right caption")
-    d = os.path.join(ROOT, "work", "shots", SLUG, "main")
+    d = os.path.join(ROOT, "work", "shots", "gb", SLUG, "main")
     assert "| right caption |" in open(os.path.join(d, "shots.txt")).read()
     assert "right caption" in open(os.path.join(d, "index.md")).read()
     assert "removed" in run(*P, "unsnap", "oops")
@@ -171,11 +187,11 @@ def test_pipeline(selftest):
     out = run("tools/shoot.py", SLUG, "main", "--verify")
     assert "1/1 reproduce" in out
     run("tools/shoot.py", SLUG, "main", "--publish-only")
-    idx = json.load(open(os.path.join(ROOT, "games", SLUG, "shots", "main", "index.json")))
+    idx = json.load(open(os.path.join(ROOT, "games", "gb", SLUG, "shots", "main", "index.json")))
     s = idx["shots"][0]
     assert s["id"] == "a_shot" and s["route"] == "@title,right:20,a,settle" and s["rom_sha1"] == meta["sha1"]
     from PIL import Image
-    pub = os.path.join(ROOT, "games", SLUG, "shots", "main")
+    pub = os.path.join(ROOT, "games", "gb", SLUG, "shots", "main")
     assert Image.open(os.path.join(pub, "a_shot.png")).size == (160, 144)
     assert Image.open(os.path.join(pub, "3x", "a_shot.png")).size == (480, 432)    # same name, 3x/ subfolder
     assert s["file_3x"] == "3x/a_shot.png" and not [f for f in os.listdir(pub) if "@3x" in f]
@@ -230,7 +246,7 @@ def test_values_ips_prefix_freezes():
 
 def test_rom_variant_and_set(selftest):
     run("tools/intake.py", str(selftest), "--slug", SLUG, "--probe", "0")
-    gj = os.path.join(ROOT, "games", SLUG, "game.json")
+    gj = os.path.join(ROOT, "games", "gb", SLUG, "game.json")
     meta = json.load(open(gj))
     meta["rom_variants"] = {"patched": {"bytes": {"7FF0": "AB"}}}
     json.dump(meta, open(gj, "w"))
@@ -258,12 +274,12 @@ def test_export_save(selftest):
     r = subprocess.run([sys.executable, *P, "export", "early", "nothing saved"], cwd=ROOT, capture_output=True,
                        text=True)
     assert r.returncode != 0 and "battery RAM is empty" in r.stdout        # refused: nothing was saved
-    assert not os.path.exists(os.path.join(ROOT, "games", SLUG, "saves", "early.sav"))
+    assert not os.path.exists(os.path.join(ROOT, "games", "gb", SLUG, "saves", "early.sav"))
     run(*P, "do", "gs:802A00A0,w2")                                 # writes cartridge RAM bank 0
     out = run(*P, "export", "early", "After power-on, one byte written", "--state")
     assert "early.sav" in out
     run(*P, "stop")
-    d = os.path.join(ROOT, "games", SLUG, "saves")
+    d = os.path.join(ROOT, "games", "gb", SLUG, "saves")
     assert os.path.getsize(os.path.join(d, "early.sav")) == 8192
     assert os.path.exists(os.path.join(d, "early.state"))
     assert "| early | `early.sav`, `early.state` |" in open(os.path.join(d, "README.md")).read()
@@ -287,11 +303,11 @@ def test_clip_and_sequence(selftest):
     run(*P, "do", "a")
     run(*P, "snap", "s03_after", "gameplay", "After A", "--set", "seq-test")
     run(*P, "stop")
-    d = os.path.join(ROOT, "work", "shots", SLUG, "seq-test")
+    d = os.path.join(ROOT, "work", "shots", "gb", SLUG, "seq-test")
     assert open(os.path.join(d, "shots.txt")).read().count("rec:60:3:-1") == 2  # the clip, and the step after it
     assert "3/3 reproduce" in run("tools/shoot.py", SLUG, "seq-test", "--verify")
     run("tools/shoot.py", SLUG, "seq-test", "--publish-only")
-    pub = os.path.join(ROOT, "games", SLUG, "shots", "seq-test")
+    pub = os.path.join(ROOT, "games", "gb", SLUG, "shots", "seq-test")
     for f in ("s01_start.png", "s02_clip.gif", "3x/s02_clip.gif", "s02_clip.png", "3x/s03_after.png", "strip.png",
               "steps.gif", "3x/steps.gif", "full.gif", "3x/full.gif", "sheet.png"):
         sub, name = os.path.split(f)                                        # 3x copies in the 3x/ subfolder
@@ -388,7 +404,7 @@ def test_nes_state_keeps_frame_and_timing(nes_selftest, tmp_path):
 
 def test_nes_pipeline(nes_selftest):
     run("tools/intake.py", str(nes_selftest), "--slug", NES_SLUG, "--probe", "120")
-    gj = os.path.join(ROOT, "games", NES_SLUG, "game.json")
+    gj = os.path.join(ROOT, "games", "nes", NES_SLUG, "game.json")
     meta = json.load(open(gj))
     assert meta["platform"] == "nes" and meta["model"] == "ntsc"
     meta["macros"] = {"TITLE": "w60"}
@@ -407,9 +423,9 @@ def test_nes_pipeline(nes_selftest):
     assert "1/1 reproduce" in run("tools/shoot.py", NES_SLUG, "main", "--verify")
     run("tools/shoot.py", NES_SLUG, "main", "--publish-only")
     from PIL import Image
-    im = Image.open(os.path.join(ROOT, "games", NES_SLUG, "shots", "main", "held_a.png")).convert("RGB")
+    im = Image.open(os.path.join(ROOT, "games", "nes", NES_SLUG, "shots", "main", "held_a.png")).convert("RGB")
     assert im.size == (256, 240) and im.getpixel((10, 10))[2] > 200
-    d = os.path.join(ROOT, "games", NES_SLUG, "saves")
+    d = os.path.join(ROOT, "games", "nes", NES_SLUG, "saves")
     assert os.path.getsize(os.path.join(d, "early.sav")) == 8192
     assert "Mesen" in open(os.path.join(d, "README.md")).read()
     g = emu.Game(NES_SLUG)
@@ -433,7 +449,7 @@ def snes_selftest(tmp_path):
     yield rom
     subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", SNES_SLUG, "stop"],
                    capture_output=True)
-    for sub in ("games", "work/shots", "work/cache", "work/intake", "work/play"):
+    for sub in ("games/snes", "work/shots/snes", "work/cache/snes", "work/intake/snes", "work/play"):
         shutil.rmtree(os.path.join(ROOT, sub, SNES_SLUG), ignore_errors=True)
     if os.path.exists(os.path.join(ROOT, "rom", SNES_SLUG + ".sfc")):
         os.remove(os.path.join(ROOT, "rom", SNES_SLUG + ".sfc"))
@@ -517,7 +533,7 @@ def test_snes_backend(snes_selftest, tmp_path):
 
 def test_snes_pipeline(snes_selftest):
     run("tools/intake.py", str(snes_selftest), "--slug", SNES_SLUG, "--probe", "120")
-    gj = os.path.join(ROOT, "games", SNES_SLUG, "game.json")
+    gj = os.path.join(ROOT, "games", "snes", SNES_SLUG, "game.json")
     meta = json.load(open(gj))
     assert meta["platform"] == "snes" and meta["model"] == "ntsc" and meta["title"] == "GAMEDB SELFTEST"
     meta["macros"] = {"TITLE": "w60"}
@@ -537,9 +553,9 @@ def test_snes_pipeline(snes_selftest):
     assert "1/1 reproduce" in run("tools/shoot.py", SNES_SLUG, "main", "--verify")
     run("tools/shoot.py", SNES_SLUG, "main", "--publish-only")
     from PIL import Image
-    im = Image.open(os.path.join(ROOT, "games", SNES_SLUG, "shots", "main", "held_a.png")).convert("RGB")
+    im = Image.open(os.path.join(ROOT, "games", "snes", SNES_SLUG, "shots", "main", "held_a.png")).convert("RGB")
     assert im.size == (256, 224) and im.getpixel((10, 10)) == (0, 0, 255)
-    d = os.path.join(ROOT, "games", SNES_SLUG, "saves")
+    d = os.path.join(ROOT, "games", "snes", SNES_SLUG, "saves")
     assert os.path.getsize(os.path.join(d, "early.sav")) == 8192
     assert "Mesen-S" in open(os.path.join(d, "README.md")).read()
     g = emu.Game(SNES_SLUG)
@@ -564,7 +580,7 @@ def dos_selftest(tmp_path):
     yield rom
     subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", DOS_SLUG, "stop"],
                    capture_output=True)
-    for sub in ("games", "work/shots", "work/cache", "work/intake", "work/play"):
+    for sub in ("games/dos", "work/shots/dos", "work/cache/dos", "work/intake/dos", "work/play"):
         shutil.rmtree(os.path.join(ROOT, sub, DOS_SLUG), ignore_errors=True)
     if os.path.exists(os.path.join(ROOT, "rom", DOS_SLUG + ".zip")):
         os.remove(os.path.join(ROOT, "rom", DOS_SLUG + ".zip"))
@@ -636,7 +652,7 @@ def test_dos_same_route_same_frames(dos_selftest, tmp_path):
 
 def test_dos_pipeline(dos_selftest):
     run("tools/intake.py", str(dos_selftest), "--slug", DOS_SLUG, "--probe", "150")
-    gj = os.path.join(ROOT, "games", DOS_SLUG, "game.json")
+    gj = os.path.join(ROOT, "games", "dos", DOS_SLUG, "game.json")
     meta = json.load(open(gj))
     assert meta["platform"] == "dos" and meta["model"] == "svga-7800" and meta["rom"].endswith(".zip")
     meta["macros"] = {"BOOT": DOS_BOOT}
@@ -653,5 +669,5 @@ def test_dos_pipeline(dos_selftest):
     assert "1/1 reproduce" in run("tools/shoot.py", DOS_SLUG, "main", "--verify")
     run("tools/shoot.py", DOS_SLUG, "main", "--publish-only")
     from PIL import Image
-    im = Image.open(os.path.join(ROOT, "games", DOS_SLUG, "shots", "main", "typed.png")).convert("RGB")
+    im = Image.open(os.path.join(ROOT, "games", "dos", DOS_SLUG, "shots", "main", "typed.png")).convert("RGB")
     assert im.size == (640, 400) and im.crop((0, 0, 200, 16)).getextrema()[0][1] > 100

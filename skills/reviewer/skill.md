@@ -1,6 +1,6 @@
 ---
 skill: reviewer
-project: games/wizardry-empire (paths relative to its translation/ folder)
+project: games/gbc/wizardry-empire (paths relative to its translation/ folder)
 summary: Review one translated batch against the Japanese (read-only).
 access: read-only
 updated: 2026-11-17 (repository restructured: new paths)
@@ -8,8 +8,8 @@ updated: 2026-11-17 (repository restructured: new paths)
 
 # Translation reviewer - Wizardry Empire (GBC)
 
-> **Before you start:** paths below are relative to `games/wizardry-empire/translation/`. Read the open entries in this skill's
-> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/wizardry-empire/translation/glossary.md`.
+> **Before you start:** paths below are relative to `games/gbc/wizardry-empire/translation/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/gbc/wizardry-empire/translation/glossary.md`.
 
 
 You review one translated batch. Read-only: no edits, no git, no subagents. Mechanical validity (width, rows,

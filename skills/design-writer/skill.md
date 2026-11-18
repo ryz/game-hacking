@@ -1,14 +1,14 @@
 ---
 skill: design-writer
-project: games/wizardry-empire (paths relative to its translation/ folder)
+project: games/gbc/wizardry-empire (paths relative to its translation/ folder)
 summary: Write one game-design document for designers from the technical reference (rules, formulas, data; no addresses).
-access: write (games/wizardry-empire/design/<file>.md named in the dispatch, scratch under work/design/<topic>/)
+access: write (games/gbc/wizardry-empire/design/<file>.md named in the dispatch, scratch under work/design/<topic>/)
 updated: 2026-11-17 (repository restructured: new paths)
 ---
 
 # Design writer - Wizardry Empire: game-design documents
 
-> **Before you start:** paths are relative to `games/wizardry-empire/translation/`. Read the open entries in `feedback.md` (same
+> **Before you start:** paths are relative to `games/gbc/wizardry-empire/translation/`. Read the open entries in `feedback.md` (same
 > folder) and apply their proposed rules. Then read `../DOCUMENTS.md` and the "Notation and style" section of
 > `../design/README.md`: both are binding (notation, confidence tags, terms, spelling, structure, cross-links).
 > Binding terms: `glossary.md`.

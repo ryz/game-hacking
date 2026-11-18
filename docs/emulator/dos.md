@@ -21,7 +21,7 @@ just opened runs 4 frames before its first state load; with fewer than 2 the tim
 
 ## A game is a ZIP
 `python3 tools/intake.py GAME.zip [--slug S --title "T"]`: the ZIP of the game's folder is the dump (SHA-1 in
-`game.json`, copied to `rom/<slug>.zip`, never committed). The ZIP is mounted as `C:`. Power-on shows DOSBox
+`game.json`, copied to `rom/<slug>.zip`, never committed); the game lands in `games/dos/<slug>/`. The ZIP is mounted as `C:`. Power-on shows DOSBox
 Pure's start menu listing the programs in the ZIP; the boot route picks one (`w120,enter` for the first, `down`
 to move). CD images and installers are not set up yet.
 

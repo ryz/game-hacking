@@ -50,14 +50,14 @@ Current snapshot; history in `progress-log.md`.
   second dream, battles, level-up, game over, negotiation, automap; one hi-res frame), verified. Open there: no
   demon has joined (negotiation needs a Bead; item list not found in RAM), so no summoning, fusion or
   terminals; the second dream needs a flag poke (real trigger unknown). Special-chip games untested.
-- Layout (2026-11-17): every game under `games/<slug>/`, shared tools/tests/docs at the repo root; emulator
+- Layout (2026-11-17): every game under `games/<platform>/<slug>/`, shared tools/tests/docs at the repo root; emulator
   guide split into general rules and one file per platform.
 - Skills game-scout and game-capture with agent wrappers; docs `emulator/` and `capture-guide.md`.
 - Shortcuts: `set:` (decimal/BCD values), `gs:` GameShark codes held like the device, `freeze:`, ROM variants
   (`rom:` with Game Genie / IPS / bytes, built in work/roms/), downloaded saves (`sav:` from rom/saves/).
 - Action sequences (`seq-<action>` sets: strip.png, steps.gif) and GIF clips (`rec:N:K:P`, `play.py record`
   with poster choice).
-- Per-game design reference (`games/<slug>/design/`, written by scout and capture agents).
+- Per-game design reference (`games/<platform>/<slug>/design/`, written by scout and capture agents).
 - Network: research hosts allowed in the environment (GameFAQs, TCRF, Data Crystal, StrategyWiki, Wikipedia,
   gamehacking.org, Kodewerx, archive.org). curl reached them from this session; WebFetch did not yet (may need a
   new session). GameFAQs/TCRF answer curl with 403 (bot protection): agents skip refusing sites.
@@ -69,6 +69,10 @@ Current snapshot; history in `progress-log.md`.
   peek/poke/find, CS:IP. Tested with a generated test program only (4 tests). Open: no real game registered yet
   (Might and Magic 1 DOS is waiting for the owner's files); save export / `sav:`; files written to disk are not
   part of a savestate; CD images. Notes: `docs/emulator/dos.md`.
+
+- Games grouped by platform (2026-11-18): `games/<platform>/<slug>/`, folder = game.json "platform"; tools take
+  `slug` or `platform/slug`; work directories are `work/<kind>/<platform>/<slug>/`. The same slug may exist on two
+  platforms (`nes/might-and-magic`, later `dos/might-and-magic`).
 
 ## Games
 | Slug | Title | Playbook | Sets |

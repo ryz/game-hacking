@@ -1,6 +1,6 @@
 ---
 skill: tracer
-project: games/wizardry-empire (paths relative to its translation/ folder)
+project: games/gbc/wizardry-empire (paths relative to its translation/ folder)
 summary: Answer one reverse-engineering question about where/how text is printed.
 access: write (notes file)
 updated: 2026-11-17 (repository restructured: new paths)
@@ -8,8 +8,8 @@ updated: 2026-11-17 (repository restructured: new paths)
 
 # Tracer - Wizardry Empire (GBC): reverse-engineering questions
 
-> **Before you start:** paths below are relative to `games/wizardry-empire/translation/`. Read the open entries in this skill's
-> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/wizardry-empire/translation/glossary.md`.
+> **Before you start:** paths below are relative to `games/gbc/wizardry-empire/translation/`. Read the open entries in this skill's
+> `feedback.md` (same folder) and apply their proposed rules. Binding terms: `games/gbc/wizardry-empire/translation/glossary.md`.
 
 
 You answer one reverse-engineering question from your dispatch, e.g. "where do the status values on the character
@@ -106,7 +106,7 @@ breakpoint on the dispatcher. To run one routine: stop at 0:07C5 first (HALT/IME
 - 'No direct call' is not 'dead code': routines are also reached through jump tables (0:37FC, the heal box).
 
 ## Design / rules questions (2026-11-12, owner asked for ../design/)
-- Output is the technical reference in `games/wizardry-empire/tech/<topic>.md` (rules in `../DOCUMENTS.md`); the
+- Output is the technical reference in `games/gbc/wizardry-empire/tech/<topic>.md` (rules in `../DOCUMENTS.md`); the
   design-writer skill turns it into the designer document in `../design/`. Start with a two-minute Overview, then
   tables. Tag every number with its source and kind: `(code BB:AAAA)`, `(data BB:AAAA)`, `(display)` (museum or
   menu text only), `(emulator)` or `(inferred)`.

@@ -3,7 +3,8 @@
   python3 tools/emu.py GAME --seq "@title,start,w60,a" --out work/x [--save S] [--model M]
       one-shot run: a screenshot per token (NN_token.png), sheet.png, log.txt (token, frame, PC)
 
-GAME is a slug under games/ (games/<slug>/game.json; see tools/intake.py). Paths are relative to the repo root.
+GAME is a slug (games/<platform>/<slug>/game.json; see tools/intake.py), or platform/slug when two platforms
+have the same slug. Paths are relative to the repo root.
 
 Routes are comma-separated tokens:
   a b start select up down left right   press: hold `press.hold` frames, then wait `press.wait` (game.json,
@@ -28,7 +29,7 @@ Routes are comma-separated tokens:
   NAME:a:b:...                          macro with arguments: {0}, {1}, ... in its text are replaced, e.g.
                                         "WARP": "poke:003D={0},poke:003B={1},poke:003C={2},left,w30,right,w30"
                                         and the token WARP:04:0A:08 (values as written: hex for poke)
-  @checkpoint                           first token only: start from that checkpoint (games/<slug>/checkpoints.txt)
+  @checkpoint                           first token only: start from that checkpoint (games/<platform>/<slug>/checkpoints.txt)
 Shortcuts (cataloguing, not a fair playthrough: use them freely, with realistic values; docs/emulator/README.md):
   set:ADDR=DEC[:N[:bcd|be]]             write a decimal value in N bytes (default 1; little-endian binary,
                                         `bcd` = packed BCD low byte first, `be` = big-endian): set:C0B0=8973:2
@@ -42,7 +43,7 @@ Route prefixes (start of a route or a checkpoint route only; a route from @check
                                         made; never committed; record its source and SHA-1 in the playbook)
 
 Checkpoints (`name | description | route`) are built on demand by replaying their route from power-on and cached
-per exact ROM and route in work/cache/<slug>/ (savestates are never committed; the route is the source of truth).
+per exact ROM and route in work/cache/<platform>/<slug>/ (savestates are never committed; the route is the source of truth).
 Everything is deterministic (fixed seed, fixed boot ROM), so a route always gives the same frames.
 """
 import argparse, hashlib, io, json, os, re, sys
@@ -57,13 +58,27 @@ WORK = os.path.join(ROOT, "work")
 
 
 # ------------------------------------------------------------------ games
+def find_game(name):
+    """(platform, slug) for GAME: `slug` when one platform has it, else `platform/slug` (games/<platform>/<slug>/)."""
+    if "/" in name:
+        plat, slug = name.strip("/").split("/", 1)
+        if os.path.exists(os.path.join(GAMES, plat, slug, "game.json")):
+            return plat, slug
+        raise SystemExit("no game %r (games/%s/%s/game.json); run tools/intake.py ROM first" % (name, plat, slug))
+    found = sorted(p for p in os.listdir(GAMES) if os.path.exists(os.path.join(GAMES, p, name, "game.json")))
+    if not found:
+        raise SystemExit("no game %r (games/<platform>/%s/game.json); run tools/intake.py ROM first" % (name, name))
+    if len(found) > 1:
+        raise SystemExit("game %r exists on %s: say which, e.g. %s/%s" % (name, ", ".join(found), found[0], name))
+    return found[0], name
+
+
 class Game:
-    def __init__(self, slug):
-        self.slug = slug
-        self.dir = os.path.join(GAMES, slug)
+    def __init__(self, name):
+        folder, self.slug = find_game(name)
+        self.id = folder + "/" + self.slug          # games/<id>/, work/<kind>/<id>/
+        self.dir = os.path.join(GAMES, folder, self.slug)
         p = os.path.join(self.dir, "game.json")
-        if not os.path.exists(p):
-            raise SystemExit("no game %r (games/%s/game.json); run tools/intake.py ROM first" % (slug, slug))
         self.meta = json.load(open(p, encoding="utf-8"))
         self.platform = self.meta["platform"]
         self.model = self.meta.get("model")
@@ -103,14 +118,14 @@ class Game:
             if not backend.apply_game_genie(data, code):
                 print("warning: Game Genie %s patched nothing (compare byte differs: other ROM revision?)" % code,
                       file=sys.stderr)
-        out = os.path.join(WORK, "roms", self.slug, variant + os.path.splitext(self.rom)[1])
+        out = os.path.join(WORK, "roms", self.id, variant + os.path.splitext(self.rom)[1])
         os.makedirs(os.path.dirname(out), exist_ok=True)
         if not os.path.exists(out) or open(out, "rb").read() != data:
             open(out, "wb").write(data)
         return out
 
     def sav_file(self, name):
-        """Battery save NAME: games/<slug>/saves/ (made here, committed) first, then rom/saves/<slug>/ (downloaded)."""
+        """Battery save NAME: games/<platform>/<slug>/saves/ (made here, committed) first, then rom/saves/<slug>/ (downloaded)."""
         p = os.path.join(self.dir, "saves", name + ".sav")
         if not os.path.exists(p):
             p = os.path.join(ROOT, "rom", "saves", self.slug, name + ".sav")
@@ -203,7 +218,7 @@ def resolve(game, route, seen=()):
             raise ValueError("checkpoint loop: %s" % " -> ".join(seen + (name,)))
         cps = {c["name"]: c for c in game.checkpoints()}
         if name not in cps:
-            raise ValueError("unknown checkpoint @%s (games/%s/checkpoints.txt)" % (name, game.slug))
+            raise ValueError("unknown checkpoint @%s (games/%s/checkpoints.txt)" % (name, game.id))
         return resolve(game, cps[name]["route"], seen + (name,)) + toks[1:]
     return toks
 
@@ -377,7 +392,7 @@ def cache_path(game, toks, model):
     if opts.get("sav"):
         h.update(open(game.sav_file(opts["sav"]), "rb").read())
     key = hashlib.sha1((h.hexdigest() + "|" + model + "|" + ",".join(toks)).encode()).hexdigest()[:16]
-    return os.path.join(WORK, "cache", game.slug, key + ".state")
+    return os.path.join(WORK, "cache", game.id, key + ".state")
 
 
 def start(game, route, model=None, cache=True):

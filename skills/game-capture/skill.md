@@ -2,14 +2,14 @@
 skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
-access: write (work/, games/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
+access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
 updated: 2026-11-17 (repository restructured: new paths)
 ---
 
 # Game capture - play and photograph a game for the database
 
 > **Before you start:** paths are relative to the repo root. Read `docs/emulator/README.md` and the file for the game's platform (`docs/emulator/gb.md`, `nes.md`, `snes.md` or `dos.md`), `docs/capture-guide.md`, the
-> game's `games/<slug>/playbook.md` (all of it: controls, strategy, shortcuts) and the open entries in this
+> game's `games/<platform>/<slug>/playbook.md` (all of it: controls, strategy, shortcuts) and the open entries in this
 > skill's `feedback.md`. The playbook exists so you do not rediscover the game: use its macros, checkpoints and
 > RAM before experimenting.
 
@@ -39,18 +39,18 @@ edit anything outside the game's folder.
    badge/world, late game reached, end): save in the game + `export`, `shoot.py SLUG SET --verify` (fix
    mismatches first), `shoot.py SLUG SET --publish`, then commit and push only the game folder:
    ```sh
-   git add games/SLUG
+   git add games/PLATFORM/SLUG
    git commit -m "SLUG: capture - <milestone> (<n> shots)"   # + the attribution lines from the dispatch
    git pull --rebase origin master && git push origin master        # retry up to 4 times on a network error
    ```
-   Never `git add` anything outside `games/SLUG/`, never force-push, never commit `work/` or `rom/`.
+   Never `git add` anything outside `games/PLATFORM/SLUG/`, never force-push, never commit `work/` or `rom/`.
    A failing rebase (someone changed the same files): stop committing, report it.
    Before snapping screens that show RAM-recipe values (summary, EXP, trainer card, Pokédex counts), check them
    on screen against the game's own rules (EXP inside the level's range, stats plausible for the level) and fix
    the recipe first.
 4. Stuck for more than ~10 steps: re-read the playbook strategy and shortcuts, `undo`/`goto`, look up the
    specific problem (a FAQ section, a code list), or poke/code past it. Never grind.
-5. **Document the game as you play** in `games/SLUG/design/` (notation in its README): every rule, number and
+5. **Document the game as you play** in `games/PLATFORM/SLUG/design/` (notation in its README): every rule, number and
    system you observe (prices, damage, timers, unlock conditions, enemy behaviour, menus and what they do),
    tagged (verified) with the shot id or checkpoint that shows it, or (RAM) when measured through memory;
    quirks and likely bugs in `design/findings.md`. Measure instead of guessing: e.g. note HP before and after a
@@ -59,14 +59,14 @@ edit anything outside the game's folder.
    snap per step and `play.py record` clips for the motion, published like any set.
 6. Add opportunistic shots of anything distinctive the plan missed (category `extra` or the right one).
 7. Finish: `python3 tools/shoot.py SLUG SET --verify` (every shot must reproduce; re-snap or fix the route of a
-   MISMATCH), then look at `work/shots/SLUG/SET/sheet.png` as a whole: variety, duplicates, broken frames.
-   Then `python3 tools/shoot.py SLUG SET --publish` -> `games/SLUG/shots/SET/`.
+   MISMATCH), then look at `work/shots/PLATFORM/SLUG/SET/sheet.png` as a whole: variety, duplicates, broken frames.
+   Then `python3 tools/shoot.py SLUG SET --publish` -> `games/PLATFORM/SLUG/shots/SET/`.
 8. **Update the playbook** (the next agent's head start): verified controls, new macros/checkpoints and what
    they are, strategy that worked, RAM found, timing quirks, dead ends. Copy the finished shot lines into
-   `games/SLUG/shots.txt` so the plan is replayable. Tick the Shot plan.
+   `games/PLATFORM/SLUG/shots.txt` so the plan is replayable. Tick the Shot plan.
 
 ## Guardrails
-- Write only `work/`, `rom/saves/SLUG/`, `rom/patches/SLUG/` and `games/SLUG/` (playbook.md, design/, saves/,
+- Write only `work/`, `rom/saves/SLUG/`, `rom/patches/SLUG/` and `games/PLATFORM/SLUG/` (playbook.md, design/, saves/,
   game.json macros/ram/press/rom_variants, checkpoints.txt, shots.txt, shots/SET/ via --publish). Commits:
   only the in-between commits above (game folder only, to master); the coordinator reviews and makes the final
   commit.

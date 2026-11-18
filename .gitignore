@@ -18,7 +18,7 @@ __pycache__/
 *.bps
 *.ips
 # Exception (owner's decision 2026-11-12): test saves made by a game's own tools, and (2026-11-15) saves the
-# capture agents made while playing; both in games/<slug>/saves/, documented in its README.md. Downloaded saves
+# capture agents made while playing; both in games/<platform>/<slug>/saves/, documented in its README.md. Downloaded saves
 # stay in rom/saves/ (ignored).
-!games/*/saves/*.sav
-!games/*/saves/*.state
+!games/*/*/saves/*.sav
+!games/*/*/saves/*.state
