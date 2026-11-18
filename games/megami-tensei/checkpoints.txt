@@ -8,3 +8,11 @@ battle_gnome | 7F: battle vs Gnome x4 (first random encounter), Fight / Run / Or
 f7_mappa | 7F: Yumiko cast Mappa (MP 13 -> 11), automap shown in the info panel | @f7_arrival,b,w30,a,w30,down*2,a,w120,a,w120,a,w120,a,w200,settle
 password_entry | Title -> PASSWORD: empty 40-character password entry screen | @title,down,w30,start,w90,settle
 gameover | GAME OVER screen (party wiped by Gnome x4 after choosing Auto) | @battle_gnome,up,a,w1200,settle
+start_mappa | 8F start, Yumiko cast Mappa (MP 11), info panel with automap open, facing E | @start,a,w30,down*2,a,w120,a,w120,a,w120,a,w200,settle,settle
+heretic | 8F: the Heretic's room (position poke to 7,0 stepping S), first page with no demons | @start,right,poke:0780=07FF,up,w200,settle
+nekomata | 8F: battle vs Nekomata x1 (position poke to 23,10 stepping S, HP frozen) | @start,freeze:04B5=1700,freeze:04C3=1500,right,poke:0780=1709,up,w200,settle
+neko_talk | 8F: talking with Nekomata (first page) | @nekomata,a,w60,down,a,w60,settle,settle,down,a,w60,settle,settle
+gnome_won | 7F: after winning vs Gnome x4 on Auto with HP frozen in w10 steps: 10 EXP, 53 Makka | @battle_gnome,freeze:04B5=1700,freeze:04C3=1500,up,a,w10*720,settle,a,w200,settle,a,w200,settle
+rich | 8F start with MAG 1386, Jewel 2, Makka 2471 poked (0554/0553/0550) | @start,set:0554=1386:2,set:0550=2471:2,poke:0553=02,w1,settle
+neko_joined | 8F (23,10): Nekomata joined the Comp after 2x84 MAG (from @rich) | @rich,right,poke:0780=1709,up,w200,a,w60,down,a,w60,down,a,w60,settle,a,w200,a,w200,settle,a,w200,settle,a,w60*16,a,w200,settle,a,w250,settle,a,w200,settle
+neko_summoned | 8F (23,10): Nekomata called from the Comp, in the party | @neko_joined,a,w30,a,w60,settle,settle,a,w60,settle,settle,a,w150,settle,settle
