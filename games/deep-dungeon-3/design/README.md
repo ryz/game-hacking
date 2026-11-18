@@ -36,6 +36,9 @@ Progress is saved at an inn into one of three party slots **(verified)**.
 | Document | Covers |
 |---|---|
 | [maps.md](maps.md) | towns and dungeon floors: square types, stairs, drawn maps in [maps/](maps/) |
+| [towns-and-shops.md](towns-and-shops.md) | inn, shops and prices, temple, magic hall, information seller |
+| [combat-and-characters.md](combat-and-characters.md) | battle flow, damage samples, stats, levels, companions, game over |
+| [story.md](story.md) | story threads, masters, ending |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
