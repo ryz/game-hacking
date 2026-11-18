@@ -1,0 +1,7 @@
+# name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
+# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
+title | "ESC to start game" screen (after the crack intro and the animated title) | TITLE,settle
+menu | options menu, side 2 in the drive | MENU,settle
+sorpigal | Sorpigal, six roster characters, first control | pow,w600,space,w1800,esc,w300,settle,disk:2,enter,w600,settle,w600,settle,1,w400,settle,ctrl+a,ctrl+b,ctrl+c,ctrl+d,ctrl+e,ctrl+f,settle,x,w500,settle
+outdoors | wilderness outside Sorpigal (side 3 in the drive), three steps in | @sorpigal,poke:0080=0C000C,poke:0085=030CC030FFF01001,left,w300,settle,y,w600,settle,w300,settle,disk:3,enter,w600,settle,up,w100,settle,up,w100,up,w100,settle
+after_save | inn list after a meal and signing in (roster written to side 2) | @sorpigal,poke:0080=0A055A,poke:0085=0C3003C0F001FF10,left,w300,y,w300,y,w400,settle,poke:0080=080338,poke:0085=C003300C10FF01F0,right,w200,left,w200,settle,down,left,left,up,up,w100,settle,y,w500,settle

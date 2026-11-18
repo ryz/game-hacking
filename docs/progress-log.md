@@ -2,6 +2,22 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic 1 (Apple II) runs across its disk sides
+- Owner uploaded five ZIPs: sides 1-4 as `.dsk` (TOSEC `[b]`) and a cracked side 1 as `.nib`. Registered as
+  `games/apple2/might-and-magic/` with the `.nib` as disk 1 and the `.dsk` sides 2-4 (region na). The `[b]`
+  side 1 hangs on the first title picture re-reading track $0E forever; reported in the playbook, not used.
+- Played: crack screen -> title -> ESC -> "INSERT DISK B" -> `disk:2,enter` -> options menu -> Sorpigal with
+  the six characters found on the disk -> passage outside -> "INSERT DISK C" -> `disk:3,enter` -> wilderness.
+  Meal at the market, sign-in at the inn: the roster is written to side 2; `sav:` power-on shows gold 43,
+  food 40. Position and facing found in zero page (0080-008C); macros TITLE, MENU, TOWN:n, AT, FN/FE/FS/FW,
+  OUTSIDE; checkpoints title, menu, sorpigal, outdoors, after_save, all replayed from an empty cache.
+- Bug found by this game and fixed in `tools/applewin-debug.patch`: frames drawn after loading a cached state
+  differed from straight play in 621 pixels by 1 (the core's colour tables, rebuilt on load with leftover
+  filter memory). New test `test_apple2_colour_after_state_load`; the earlier tests only had text screens.
+- An exported save is a ZIP of the whole changed side 2: game data, so it stays in `rom/saves/` (not committed).
+- Not done: side 4 (castles, deeper dungeons: seen only as text on the image), going back into a town from
+  the wilderness, combat, character creation, scout and capture.
+
 ## 2026-11-18 - Might and Magic 1 (DOS) main set: 113 shots to the ending
 - game-capture (commits a5a6a46 fd0cd53 8e2f286): the 32 scouted routes, then creation steps, all Sorpigal
   services, one fight from encounter to victory, game over, the cavern dark and lit, wilderness sectors, towns

@@ -177,6 +177,69 @@ index 43e1215..916399c 100644
  	uint32_t randTime = getRandomTime();
  	MemoryInitPattern_e eMemoryInitPattern = static_cast<MemoryInitPattern_e>(g_nMemoryClearType);
  
+diff --git a/source/NTSC.cpp b/source/NTSC.cpp
+index f8c2e27..2ed78d4 100644
+--- a/source/NTSC.cpp
++++ b/source/NTSC.cpp
+@@ -916,8 +916,18 @@ INLINE uint16_t getVideoScannerAddressSHR()
+ // Build the 4 phase chroma lookup table
+ // The YI'Q' colors are hard-coded
+ //===========================================================================
++// game database: the filters' memory, cleared before every table build. It used to live in the functions and
++// carry over, so tables rebuilt later (video mode change, savestate load) differed by 1 in some colours.
++static real gamedbFilterXC[CHROMA_ZEROS + 1], gamedbFilterYC[CHROMA_POLES + 1];
++static real gamedbFilterXL0[LUMA_ZEROS + 1], gamedbFilterYL0[LUMA_POLES + 1];
++static real gamedbFilterXL1[LUMA_ZEROS + 1], gamedbFilterYL1[LUMA_POLES + 1];
++static real gamedbFilterXS[SIGNAL_ZEROS + 1], gamedbFilterYS[SIGNAL_POLES + 1];
+ static void initChromaPhaseTables ()
+ {
++	memset(gamedbFilterXC, 0, sizeof(gamedbFilterXC)); memset(gamedbFilterYC, 0, sizeof(gamedbFilterYC));
++	memset(gamedbFilterXL0, 0, sizeof(gamedbFilterXL0)); memset(gamedbFilterYL0, 0, sizeof(gamedbFilterYL0));
++	memset(gamedbFilterXL1, 0, sizeof(gamedbFilterXL1)); memset(gamedbFilterYL1, 0, sizeof(gamedbFilterYL1));
++	memset(gamedbFilterXS, 0, sizeof(gamedbFilterXS)); memset(gamedbFilterYS, 0, sizeof(gamedbFilterYS));
+ 	int phase,s,t,n;
+ 	real z,y0,y1,c,i,q;
+ 	real phi,zz;
+@@ -1110,8 +1120,7 @@ double ButterworthLowPass2( double a, double b, double g, double z )
+ //===========================================================================
+ static real initFilterChroma (real z)
+ {
+-	static real x[CHROMA_ZEROS + 1] = {0,0,0};
+-	static real y[CHROMA_POLES + 1] = {0,0,0};
++	real *x = gamedbFilterXC, *y = gamedbFilterYC;
+ 
+ 	x[0] = x[1];   x[1] = x[2];   x[2] = z / CHROMA_GAIN;
+ 	y[0] = y[1];   y[1] = y[2];   y[2] = -x[0] + x[2] + (CHROMA_0*y[0]) + (CHROMA_1*y[1]); // inverted x[0]
+@@ -1124,8 +1133,7 @@ static real initFilterChroma (real z)
+ //===========================================================================
+ static real initFilterLuma0 (real z)
+ {
+-	static real x[LUMA_ZEROS + 1] = { 0,0,0 };
+-	static real y[LUMA_POLES + 1] = { 0,0,0 };
++	real *x = gamedbFilterXL0, *y = gamedbFilterYL0;
+ 
+ 	x[0] = x[1];   x[1] = x[2];   x[2] = z / LUMA_GAIN;
+ 	y[0] = y[1];   y[1] = y[2];   y[2] = x[0] + x[2] + (2.f*x[1]) + (LUMA_0*y[0]) + (LUMA_1*y[1]);
+@@ -1138,8 +1146,7 @@ static real initFilterLuma0 (real z)
+ //===========================================================================
+ static real initFilterLuma1 (real z)
+ {
+-	static real x[LUMA_ZEROS + 1] = { 0,0,0};
+-	static real y[LUMA_POLES + 1] = { 0,0,0};
++	real *x = gamedbFilterXL1, *y = gamedbFilterYL1;
+ 
+ 	x[0] = x[1];   x[1] = x[2];   x[2] = z / LUMA_GAIN;
+ 	y[0] = y[1];   y[1] = y[2];   y[2] = x[0] + x[2] + (2.f*x[1]) + (LUMA_0*y[0]) + (LUMA_1*y[1]);
+@@ -1152,8 +1159,7 @@ static real initFilterLuma1 (real z)
+ //===========================================================================
+ static real initFilterSignal (real z)
+ {
+-	static real x[SIGNAL_ZEROS + 1] = { 0,0,0 };
+-	static real y[SIGNAL_POLES + 1] = { 0,0,0 };
++	real *x = gamedbFilterXS, *y = gamedbFilterYS;
+ 
+ 	x[0] = x[1];   x[1] = x[2];   x[2] = z / SIGNAL_GAIN;
+ 	y[0] = y[1];   y[1] = y[2];   y[2] = x[0] + x[2] + (2.f*x[1]) + (SIGNAL_0*y[0]) + (SIGNAL_1*y[1]);
 diff --git a/source/frontends/common2/speed.cpp b/source/frontends/common2/speed.cpp
 index 89b5273..fd0dbe4 100644
 --- a/source/frontends/common2/speed.cpp

@@ -919,6 +919,28 @@ def test_apple2_state_carries_disk_writes(tmp_path):
     g.close()
 
 
+def test_apple2_colour_after_state_load(tmp_path):
+    """Colour pictures drawn after a state load equal those of the run that made the state (the core rebuilt
+    its colour tables on a load with leftover filter memory: some colours were off by 1; found with Might and
+    Magic, 2026-11-18)."""
+    if not os.path.exists(platforms.Apple2.SO) or not os.path.exists(A2_DOS33):
+        pytest.skip("AppleWin core not built (sh tools/setup_emu.sh apple2)")
+    st = str(tmp_path / "x.state")
+    a = platforms.Apple2().open(A2_DOS33)
+    a.frames(600)
+    a.save_state(st)
+    b = platforms.Apple2().open(A2_DOS33)
+    b.load_state(st)
+    for e in (a, b):
+        e.type_text("HGR:FOR C=1 TO 7:HCOLOR=C:HPLOT C*30,0 TO C*30+60,150:NEXT\n")
+        e.frames(200)
+    im = a.image().convert("RGB")
+    assert len(im.getcolors(100000)) > 4                                # a colour picture
+    assert a.screen() == b.screen()
+    a.close()
+    b.close()
+
+
 def test_apple2_pipeline(a2_selftest, tmp_path):
     z = _a2_zip(str(tmp_path / (A2_SLUG + ".zip")))
     run("tools/intake.py", z, "--slug", A2_SLUG, "--region", "na", "--probe", "120")

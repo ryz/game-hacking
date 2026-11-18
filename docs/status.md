@@ -81,8 +81,9 @@ Current snapshot; history in `progress-log.md`.
   disk images (`intake.py`; `games/apple2/<slug>/`), `disk:N` / `disk2:N` change disks, keyboard tokens and
   `type:`, models `MACHINE[-VIDEO][-joy]` (default enhanced //e, colour TV), 560x384 pictures, peek/poke/find
   on the 64K the program sees, exact savestates that carry what the game wrote to its disks, `play.py export`
-  and `sav:` (6 tests). No game registered yet; checked with the DOS 3.3 and ProDOS disks from the AppleWin
-  source. Open: reset keys, write-protected disks, hard disk images with a real game, held keys/auto-repeat.
+  and `sav:` (7 tests). First game: Might and Magic Book One (`games/apple2/might-and-magic/`, four sides in one
+  ZIP): title, options menu (side 2), Sorpigal, wilderness (side 3), inn save; macros, 5 checkpoints, position RAM;
+  not scouted or captured, side 4 not reached. Open: reset keys, write-protected disks, hard disk images with a real game, held keys/auto-repeat.
   Notes: `docs/emulator/apple2.md`.
 
 - Games grouped by platform (2026-11-18): `games/<platform>/<slug>/`, folder = game.json "platform"; tools take

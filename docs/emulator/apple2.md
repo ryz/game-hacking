@@ -1,8 +1,9 @@
 # Apple II
 
 Platform notes for `apple2` games (Apple II, II Plus, //e). The general rules (routes, tokens, the working loop)
-are in [README.md](README.md). Added 2026-11-18. No game registered yet: everything below was checked with the
-DOS 3.3 and ProDOS system disks that come with the emulator's source and with a generated test disk.
+are in [README.md](README.md). Added 2026-11-18. First game: Might and Magic Book One
+(`games/apple2/might-and-magic/`, four disk sides), played from power-on through two disk changes into the
+wilderness, with an in-game save.
 
 ## Backend
 AppleWin (the Linux port by audetto), built as a libretro core and run inside the Python process by
@@ -15,6 +16,9 @@ cmake; the firmware ROMs are part of the AppleWin source, nothing else to supply
 - One call runs exactly one video frame, counted on the cycle counter that a savestate keeps. Before, the length
   of a frame followed the host's sound buffer, and a run loaded from a state drifted from the run that made it.
 - The keyboard is the real one-key latch (below).
+- The colour tables are built from cleared filters every time. Before, a state load rebuilt them with leftover
+  filter memory and some colours came out 1 off: a run from a cached checkpoint drew other pixels than the run
+  that made it (found with Might and Magic's wilderness, test `test_apple2_colour_after_state_load`).
 - `retro_gamedb_insert` (put an image into a drive or take it out), `retro_gamedb_flush` (write the track in
   memory to the image), `retro_gamedb_peek/poke/pc`, `retro_gamedb_set_time`; the core's log is silent unless
   `GAMEDB_CORE_LOG` is set.
@@ -34,6 +38,11 @@ their SHA-1s. Name the files so that they sort in play order (`1 Boot.dsk`, `2 S
   which boots before the floppy. Not tried with a real game yet.
 - The emulator works on private copies: the game can write to every disk, the registered dump never changes.
   Write protection is not offered yet (a game that wants a write-protected master would complain).
+- A game asks for a side by letter ("INSERT DISK B AND PRESS 'RETURN'"): answer `disk:2,enter` and give it
+  `w600` to load. Checked with Might and Magic: sides 2 and 3 swapped in mid-game, checkpoints after a swap
+  rebuild and reload exactly.
+- A sector image (`.dsk`) of a copy-protected original may hang at boot re-reading one track (Might and
+  Magic's side 1, marked `[b]`); a `.nib` or `.woz` of the same side, or a cracked copy, is needed then.
 - No reset key yet (Ctrl-Reset, Ctrl-Open Apple-Reset). A boot that ends in the monitor (`*`) continues with
   `6,ctrl+p,enter`; from BASIC (`]`) with `type:PR#6\n`.
 
@@ -79,6 +88,9 @@ process and in a new one (`test_apple2_state_carries_disk_writes`, with DOS 3.3 
 - `play.py export NAME "desc"` writes `games/apple2/<slug>/saves/NAME.sav`: a ZIP of the whole images the game
   has written to, under their names from the game's ZIP (`disk.<ext>` for a single-image game). For the owner:
   unzip and use those images in place of the originals in any Apple II emulator. `sav:NAME` powers on with them.
+- An exported `.sav` holds whole disk images, so it is game data (program and maps, not only the save):
+  keep it in `rom/saves/<slug>/` (uncommitted), never in `games/apple2/<slug>/saves/`. Open: an export that
+  holds only the changed blocks.
 - Only this tool reads the `.state` files.
 
 ## Not supported yet
