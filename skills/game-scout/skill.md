@@ -82,7 +82,7 @@ do not capture the database set (that is `game-capture`), but you do create the 
 - Write only `games/<platform>/<slug>/game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt` (plan lines without routes
   are fine as comments), `design/`, `tools/` (game-specific helpers), `rom/saves/<slug>/`, `rom/patches/<slug>/` and `work/scout/<slug>/`. Commits: one at the end of a long
   scout, or when the `start` checkpoint and its save exist, with the same rules as game-capture's in-between
-  commits (only `games/<platform>/<slug>/`, pull --rebase, push to master); the coordinator makes the final commit.
+  commits (only `games/<platform>/<slug>/`, pull --rebase, push to the branch named in the dispatch); the coordinator makes the final commit.
 - Never commit or upload the ROM; never send ROM data, hashes of private dumps or the user's details to web
   services (searching for a public CRC32 of a retail game is fine).
 - Mark every fact verified or source. A control or code you could not confirm stays "source".

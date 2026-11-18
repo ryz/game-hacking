@@ -138,7 +138,7 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 - Also load: `docs/emulator/README.md`, `docs/capture-guide.md`, the game's playbook.
 - Do not use for: research from scratch (game-scout); Wizardry Empire JP/EN reference sets (photographer).
 - Guardrails: writes only `work/`, `rom/saves|patches/<slug>/` and `games/<platform>/<slug>/`; cheat freely, but visible
-  values stay realistic; main character "ryz"; commits only its game folder at major milestones (push to master).
+  values stay realistic; main character "ryz"; commits only its game folder at major milestones (push to the session's branch).
 
 ### maintenance
 - File: `skills/maintenance/skill.md`

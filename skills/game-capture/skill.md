@@ -41,9 +41,10 @@ edit anything outside the game's folder.
    ```sh
    git add games/PLATFORM/SLUG
    git commit -m "SLUG: capture - <milestone> (<n> shots)"   # + the attribution lines from the dispatch
-   git pull --rebase origin master && git push origin master        # retry up to 4 times on a network error
+   git pull --rebase origin BRANCH && git push origin BRANCH        # BRANCH = the branch named in the dispatch;
+                                                                    # retry up to 4 times on a network error
    ```
-   Never `git add` anything outside `games/PLATFORM/SLUG/`, never force-push, never commit `work/` or `rom/`.
+   The coordinator merges the branch into `master` (AGENTS.md, Branch). Never `git add` anything outside `games/PLATFORM/SLUG/`, never force-push, never commit `work/` or `rom/`.
    A failing rebase (someone changed the same files): stop committing, report it.
    Before snapping screens that show RAM-recipe values (summary, EXP, trainer card, Pokédex counts), check them
    on screen against the game's own rules (EXP inside the level's range, stats plausible for the level) and fix
