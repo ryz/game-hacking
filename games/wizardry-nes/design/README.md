@@ -23,13 +23,24 @@ the evidence: link them (`../shots/main/<id>.png`).
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+A first-person party dungeon game: the player creates up to twenty adventurers in the Training Grounds (name,
+race, alignment, bonus points, class) **(verified)**, forms a party of six in Gilgamesh's Tavern **(verified)**
+and explores a maze of ten floors, each a grid of 20 by 20 squares that wraps at its edges **(verified, maze
+data)**, fighting groups of monsters that are shown unidentified at first ("5 Small humanoids") **(verified)**.
+Between trips the castle offers an inn, a shop (Boltac's Trading Post) and a temple **(verified menus)**. The
+floors contain doors, darkness, stairs, teleporters, elevators, pits and spinners **(inferred from the maze data,
+partly verified)**; the goal is Werdna on floor 10 **(source: series)**. The game saves to the cartridge: the
+roster is kept in battery memory and Edge of Town > Leave Game is the save point **(verified)**. This US NES
+release (Nexoft 1990, by Game Studio) renames the Priest "Cleric" and the Bishop "Wizard" **(verified on screen)**.
 
 ## Documents
 | Document | Covers |
 |---|---|
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
+| [maps/](maps/) | all ten floors drawn from the game data (`floor_NN.png`, `atlas.png`, `floors.txt`); legend in `../playbook.md` "Maze data"; a `maps.md` with the special squares explained is the capture run's job |
+| characters.md (planned) | races, classes and their requirements, creation, bonus points, levels |
+| combat.md (planned) | encounters, surprise, options, spells |
+| world.md (planned) | castle services, floors, elevators, special squares |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
      enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
@@ -37,3 +48,4 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Wikipedia | https://en.wikipedia.org/wiki/Wizardry:_Proving_Grounds_of_the_Mad_Overlord | release facts |

@@ -27,6 +27,37 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w300",
+    "CASTLE": "TITLE,start,w60,start,w60",
+    "TRAINING": "b,w30,a,w60",
+    "PARTY": "CASTLE,TRAINING,PARTYMAKE,b,w30,ADDPARTY",
+    "MAZE": "b,w30,down,a,w120,a,w120,b,w60,down,a,w60",
+    "ADDPARTY": "a,w60,a,w60,down*6,a,w60,down*6,a,w60,down*6,a,w60,down*6,a,w60,down*6,a,w60,down*6,a,w60,b,w30",
+    "PARTYMAKE": "MAKE1,MAKE2,MAKE3,MAKE4,MAKE5,MAKE6",
+    "MAKE1": "a,w60,select,w20,down*1,right*3,a,w20,right*2,a,w20,down*2,left*5,a,w20,up*2,right*12,a,w60,a,w60,a,w60,a,w60,poke:0254=10,poke:0255=07,poke:0256=04,poke:0257=0C,poke:0258=09,poke:0259=08,poke:025B=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,a,w60,a,w60",
+    "MAKE2": "a,w60,down*3,right*2,a,w20,up*2,right*6,a,w20,down*2,left*3,a,w20,up*1,left*3,a,w20,up*1,right*5,a,w20,right*5,a,w60,a,w60,down*2,a,w60,a,w60,poke:0254=0F,poke:0255=06,poke:0256=09,poke:0257=0E,poke:0258=06,poke:0259=05,poke:025B=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,a,w60,a,w60",
+    "MAKE3": "a,w60,down*1,right*2,a,w20,down*2,right*2,a,w20,up*2,right*4,a,w20,right*4,a,w60,a,w60,down*3,a,w60,a,w60,poke:0254=08,poke:0255=06,poke:0256=0F,poke:0257=09,poke:0258=0A,poke:0259=06,poke:025B=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,a,w60,a,w60",
+    "MAKE4": "a,w60,down*3,right*2,a,w20,up*2,right*4,a,w20,down*2,left*2,a,w20,up*2,right*3,a,w20,right*5,a,w60,a,w60,down*4,a,w60,down*1,a,w60,poke:0254=06,poke:0255=06,poke:0256=06,poke:0257=08,poke:0258=0F,poke:0259=0E,poke:025B=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,a,w60,a,w60",
+    "MAKE5": "a,w60,down*2,right*2,a,w20,up*1,a,w20,down*1,a,w20,a,w20,up*1,right*6,a,w20,right*4,a,w60,a,w60,down*1,a,w60,a,w60,poke:0254=06,poke:0255=10,poke:0256=09,poke:0257=07,poke:0258=0A,poke:0259=05,poke:025B=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,a,w60,a,w60",
+    "MAKE6": "a,w60,down*3,right*6,a,w20,left*1,a,w20,left*5,a,w20,up*2,right*12,a,w60,a,w60,down*1,a,w60,a,w60,poke:0254=06,poke:0255=0E,poke:0256=0D,poke:0257=06,poke:0258=09,poke:0259=05,poke:025B=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,down*2,a,w60,a,w60"
+  },
+  "ram": {
+    "floor": {
+      "addr": "003D",
+      "size": 1
+    },
+    "x": {
+      "addr": "003B",
+      "size": 1
+    },
+    "y": {
+      "addr": "003C",
+      "size": 1
+    },
+    "facing": {
+      "addr": "003E",
+      "size": 1
+    }
+  }
 }

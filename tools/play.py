@@ -36,6 +36,9 @@ is reproducible from power-on (states are a cache, routes are the record).
   python3 tools/play.py find "EXPR" | find reset
                                              RAM search (cheat-search style, narrows each call): e.g. lose a
                                              life, `find "new == old - 1"`; repeat until a few addresses remain
+  python3 tools/play.py dump NAME           save work/save RAM to work/play/<session>/dump_NAME.json
+  python3 tools/play.py diff A [B]           bytes that differ between dumps A and B (B omitted: RAM now);
+                                             e.g. dump before a step, step, `diff before`
   python3 tools/play.py stop
 
 --name N on any command runs a parallel session (default 'main'). Log: work/play/NAME/log.txt.
@@ -368,6 +371,22 @@ class Session:
             return self.route()
         if cmd == "status":
             return self.watch()
+        if cmd in ("dump", "diff"):
+            ranges = getattr(e, "SEARCH", None) or [(0xC000, 0x2000), (0xA000, 0x2000), (0xFF80, 0x7F)]
+
+            def snap():
+                return {base + i: v for base, size in ranges for i, v in enumerate(e.peek(base, size))}
+
+            def path(n):
+                return os.path.join(sdir(self.name), "dump_%s.json" % n)
+            if cmd == "dump":
+                json.dump({"%X" % a: v for a, v in snap().items()}, open(path(args[0]), "w"))
+                return "dumped %d bytes -> %s" % (sum(n for _, n in ranges), os.path.relpath(path(args[0]), ROOT))
+            a = {int(k, 16): v for k, v in json.load(open(path(args[0]))).items()}
+            b = {int(k, 16): v for k, v in json.load(open(path(args[1]))).items()} if len(args) > 1 else snap()
+            ch = [(k, a[k], b[k]) for k in sorted(a) if k in b and a[k] != b[k]]
+            rows = ["%04X  %02X -> %02X  (%d -> %d)" % (k, x, y, x, y) for k, x, y in ch[:80]]
+            return "%d bytes differ%s\n%s" % (len(ch), " (first 80)" if len(ch) > 80 else "", "\n".join(rows))
         if cmd == "peek":
             a, n = int(args[0], 16), int(args[1], 0) if len(args) > 1 else 16
             data = e.peek(a, n)

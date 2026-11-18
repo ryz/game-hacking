@@ -1,3 +1,7 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title menu: Start Game / Select Switch, cursor on Start Game | pow,TITLE,settle
+castle | Castle menu, party of six (RYZ CONDI EBO CUBI DEDDO MNZ) in the party, level 1, no equipment | @title,start,w60,start,w60,TRAINING,PARTYMAKE,b,w30,ADDPARTY,settle
+start | Maze floor 1 at the stairs (0,0) facing north, party of six, first control | @castle,MAZE,settle
+battle | Floor 1 (0,3): 5 Small humanoids (unidentified), party surprised them, RYZ's options Fight/Parry/Run/Take back | @start,up,up,up,w60,settle,a,w90,settle

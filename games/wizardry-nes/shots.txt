@@ -4,3 +4,33 @@
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/wizardry-nes/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # title_screen | title | Title screen | @title
+boot_nexoft | boot | Boot: NEXOFT Corporation logo | pow,w90
+title_screen | title | Title: Wizardry - Proving Grounds of the Mad Overlord, Start Game / Select Switch | @title
+options_switch | options | Select Switch: maze SOLID/LINE, music ON/OFF, sound ON/OFF, Return to title | @title,down,w30,start,w120
+boot_copyright | boot | Copyright page: Andrew Greenberg and Sir-Tech 1990, Game Studio, Nexoft | @title,start,w60
+castle_menu | menu | Castle: Gilgamesh's Tavern, Adventurer's Inn, Boltac's Trading Post, Temple of Cant, Edge of Town | @castle
+edge_of_town | menu | Edge of Town: Training Grounds, Maze, Restart an "Out" party, Leave Game, Castle | @castle,b,w30
+training_name | system | Training Grounds > Create: the name keyboard, "R" typed | @castle,b,w30,a,w60,a,w60,down,right*3,a,w20
+# training_race | system | Choose Race: Human Elf Dwarf Gnome Hobbit | (route: name, ret, Yes - see MAKE1 tokens up to the race menu)
+# training_stats | system | Bonus points screen with the eligible classes list | (MAKE1 up to the stats screen, before the final Right)
+# training_class | system | Select Class with several choices (MNZ: Mage / Cleric / Wizard) | (MAKE6 up to the class menu)
+tavern_roster | menu | Gilgamesh's Tavern > Add: the roster, six pre-made characters and the playtest party | sav:01_party,CASTLE,a,w60,a,w60
+inspect_sheet | inventory | Inspect: RYZ, Human Fighter, level 1, stats, gold, HP, spell points | @castle,a,w60,down*2,a,w60,a,w60
+# shop_boltac | shop | Boltac's Trading Post buy list | @castle,down*2,a,w60,... (not explored)
+# inn_rooms | menu | Adventurer's Inn: room choice (stables ... royal suite) | @castle,down,a,w60,...
+# temple_cant | menu | Temple of Cant | @castle,down*3,a,w60,...
+maze_start | gameplay | Maze floor 1 at the entrance stairs (0,0), party window | @start
+maze_fullview | hud | Maze view with the party window hidden (Start toggles it) | @start,start,w30
+maze_menu | menu | Maze menu (Select): Quit / Search / Set Timer / Leave | @start,select,w60
+camp_menu | menu | Camp (B): Inspect / Reorder / Equip / Leave | @start,b,w60
+elevator | system | Elevator on floor 4: "There are buttons here, press one" A-D | @start,poke:003D=04,poke:003B=0A,poke:003C=07,left,w30,right,w30,up,w60
+battle_options | battle | Battle: 5 Small humanoids (unidentified), RYZ's options Fight/Parry/Run/Take back | @battle
+# battle_spell | battle | Mage casting (needs a non-surprise round: vary the wN before the encounter) |
+# battle_result | battle | Victory: experience and gold | (fight out @battle: a for each member, then w10*N)
+# dumapic / map | map | Location display (DUMAPIC / message $9C, bank 2 $A7A1) | cast DUMAPIC from camp
+# dark_zone | gameplay | Darkness: floor 1 dark corridor x 9-10 | @start,poke:003B=09,poke:003C=05,...
+# spinner_pit | system | pit/spinner squares (floor 3 (0,7) pit, (0,3) spinner) | warp tokens in the playbook
+# murphy | boss | Murphy's ghost, fixed encounter floor 1 (9,13) |
+# werdna | boss | Werdna, floor 10 (17,4) | warp + high-level party
+# gameover | gameover | party wiped |
+# save_leave | save | Leave Game caution page (the save point) | @castle,b,w30,down*3,a,w60,w120

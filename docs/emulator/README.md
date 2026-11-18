@@ -52,6 +52,9 @@ Press timing is per game (`game.json` "press": hold/wait). Symptoms of wrong tim
 game polls slowly or ignores presses during a transition -> add `w30` before it or raise `hold`), two presses act
 as one (edge-triggered input -> keep the release wait), a menu skips an entry (key repeat -> shorter hold,
 e.g. `down:4,w30` in a macro).
+**Routes and RNG:** the route `play.py` records (with its `settle` steps) is the reproducible one; the same keys
+typed into `emu.py` without those steps can meet a different encounter. Copy routes from `play.py route`.
+
 **Typewriter text:** a press while a page is still typing is not reliably counted. Use one press per page with a
 fixed wait long enough for the page to finish (`a,w150`), not `a*N` or `mash`, wherever the count matters (naming
 routes, choices after dialogue), and prefer fixed waits to `settle` there. `settle` can stop on a pause mid-page:

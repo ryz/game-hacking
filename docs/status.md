@@ -25,7 +25,9 @@ Current snapshot; history in `progress-log.md`.
 - Dungeon Magic (NES), 2026-11-18: main set 41 shots, floor maps of all 39 floors + overworld, saves 01-02.
   Open: the King, camp, swords, bosses beaten, Darces, ending.
 - Sets are ordered by `shots.txt` (game order), 2026-11-18.
-- Queue (registered 2026-11-18, not scouted): wizardry-nes, wizardry-2-nes, might-and-magic,
+- Wizardry I (NES): scouted 2026-11-18 (10 floor maps from ROM, save 01_party); capture next.
+- `play.py dump/diff` (2026-11-18).
+- Queue (registered 2026-11-18, not scouted): wizardry-2-nes, might-and-magic,
   deep-dungeon-3.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).
 - `play.py`: persistent session with undo, snap (capture + route), checkpoint/goto, RAM search, RAM watches.

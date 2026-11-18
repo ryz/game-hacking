@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Wizardry I (NES) scouted; play.py dump/diff
+- `play.py dump NAME` / `diff A [B]`: RAM snapshot and byte diff (NES/SNES search ranges; GB work/save RAM);
+  third scout in a row had copied an ad-hoc ramdiff.py. Emulator guide: play.py routes are the reproducible ones.
+- Wizardry I (NES): scout done; party RYZ/CONDI/EBO/CUBI/DEDDO/MNZ by macro, save 01_party, all 10 floors decoded
+  from ROM and drawn (`games/wizardry-nes/design/maps/`), warp by position pokes; 15 routed shots verified 15/15
+  from an empty cache by the coordinator.
+
 ## 2026-11-18 - Dungeon Magic main set and floor maps; sets published in game order
 - game-capture: 41 shots (commits 91cae5d 242b035 1e9c2b0 9171d1e), all 39 floors + overworld mapped into
   `games/dungeon-magic/design/maps/` (`maps.md` index, warp tokens per floor), design `magic.md`,
