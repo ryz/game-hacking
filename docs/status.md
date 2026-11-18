@@ -72,6 +72,15 @@ Current snapshot; history in `progress-log.md`.
   Open: scout and capture of that game; files written to disk are not
   part of a savestate; CD images. Notes: `docs/emulator/dos.md`.
 
+- Apple II backend (2026-11-18): AppleWin libretro core (audetto's Linux port) at a pinned commit
+  (`sh tools/setup_emu.sh apple2`, needs cmake), driven by `tools/lrcore.py`; a game is a disk image or a ZIP of
+  disk images (`intake.py`; `games/apple2/<slug>/`), `disk:N` / `disk2:N` change disks, keyboard tokens and
+  `type:`, models `MACHINE[-VIDEO][-joy]` (default enhanced //e, colour TV), 560x384 pictures, peek/poke/find
+  on the 64K the program sees, exact savestates that carry what the game wrote to its disks, `play.py export`
+  and `sav:` (6 tests). No game registered yet; checked with the DOS 3.3 and ProDOS disks from the AppleWin
+  source. Open: reset keys, write-protected disks, hard disk images with a real game, held keys/auto-repeat.
+  Notes: `docs/emulator/apple2.md`.
+
 - Games grouped by platform (2026-11-18): `games/<platform>/<slug>/`, folder = game.json "platform"; tools take
   `slug` or `platform/slug`; work directories are `work/<kind>/<platform>/<slug>/`. The same slug may exist on two
   platforms (`nes/might-and-magic`, later `dos/might-and-magic`).

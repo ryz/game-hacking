@@ -16,6 +16,8 @@ Routes are comma-separated tokens:
   wN                                    wait N frames
   mash:KEY:N                            tap KEY every 8 frames for N frames (skip text, mash through intros)
   poke:ADDR=HEX                         write bytes (poke:C0A2=09)
+  type:TEXT   mouse:DX:DY               computers: type a string (no comma inside; \\n = Enter); move the mouse
+  disk:N   disk2:N                      Apple II: put disk N of the game into drive 1 / drive 2 (0 = none)
   settle                                run until the screen is stable (two identical frames `settle.step`
                                         apart, at most `settle.limit` frames); deterministic like any token
   !                                     last token only (shoot.py): take the frame as is, no final settle
@@ -308,6 +310,9 @@ def step(emu, game, tok):
             emu.poke(int(addr, 16), bytes.fromhex(data))
         elif base.startswith("type:") and hasattr(emu, "type_text"):
             emu.type_text(base[5:].replace("\\n", "\n"))      # computers: type text (no comma; \n = Enter)
+            emu.frames(game.wait)
+        elif re.match(r"^disk2?:\d+$", base) and hasattr(emu, "disk"):
+            emu.disk(int(base.split(":")[1]), 2 if base.startswith("disk2") else 1)   # disk N into drive 1 / 2
             emu.frames(game.wait)
         elif re.match(r"^mouse:-?\d+:-?\d+$", base) and hasattr(emu, "mouse"):
             _, dx, dy = base.split(":")

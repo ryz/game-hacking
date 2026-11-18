@@ -1,5 +1,5 @@
 """Minimal headless libretro frontend (ctypes): loads one core, feeds it a ROM and joypad input, collects frames.
-No window, no audio, no SDL. Used by the NES backend in platforms.py (Mesen core, built by tools/setup_emu.sh).
+No window, no audio, no SDL. Used by the NES, SNES, DOS and Apple II backends in platforms.py (cores built by tools/setup_emu.sh).
 
   c = Core("tools/mesen/Libretro/mesen_libretro.so", "rom/game.nes", options={"mesen_region": "NTSC"})
   c.keys = {"a", "right"}; c.run(60); c.png("x.png"); s = c.serialize(); c.unserialize(s); c.close()
@@ -78,7 +78,8 @@ class Core:
         epoch: Unix time of power-on for cores built with retro_gamedb_set_time (tools/dosbox-pure-debug.patch):
         the emulated machine's date and time start there and follow the virtual clock.
         private: always load a private copy of the library (cores that cannot load a second game after
-        unloading the first: DOSBox Pure crashes on its first frame then)."""
+        unloading the first: DOSBox Pure crashes on its first frame then; AppleWin keeps its cycle counter).
+        rom None: start the core without content."""
         so = os.path.abspath(so)
         self.so = so
         if private or so in _in_use:            # second instance: private copy of the library
@@ -120,9 +121,14 @@ class Core:
         L.retro_set_audio_sample_batch(self._cbs[3])
         L.retro_set_input_poll(self._cbs[4])
         L.retro_set_input_state(self._cbs[5])
-        self._rom = open(rom, "rb").read()
-        gi = GameInfo(os.path.abspath(rom).encode(), C.cast(C.c_char_p(self._rom), C.c_void_p), len(self._rom), None)
-        if not L.retro_load_game(C.byref(gi)):
+        if rom is None:                         # cores that start without content (the backend inserts disks)
+            ok = L.retro_load_game(None)
+        else:
+            self._rom = open(rom, "rb").read()
+            gi = GameInfo(os.path.abspath(rom).encode(), C.cast(C.c_char_p(self._rom), C.c_void_p), len(self._rom),
+                          None)
+            ok = L.retro_load_game(C.byref(gi))
+        if not ok:
             self._release()
             raise RuntimeError("the core refused %s (unsupported mapper or bad dump?)" % rom)
         self.open = True
@@ -273,3 +279,11 @@ class Core:
             self.open = False
             self.L.retro_unload_game()
             self._release()
+
+    def __del__(self):
+        """A core dropped without close() must not stay loaded until the process ends: AppleWin's own exit
+        handlers then use freed memory (seen as a random abort at interpreter exit, 2026-11-18)."""
+        try:
+            self.close()
+        except Exception:
+            pass

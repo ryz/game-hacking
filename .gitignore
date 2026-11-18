@@ -5,6 +5,13 @@
 *.sfc
 *.smc
 *.fds
+*.dsk
+*.do
+*.po
+*.nib
+*.woz
+*.2mg
+*.hdv
 *.sav
 *.state
 rom/
@@ -14,6 +21,7 @@ work/
 **/tools/mesen/
 **/tools/mesen-s/
 **/tools/dosbox-pure/
+**/tools/applewin/
 __pycache__/
 *.bps
 *.ips

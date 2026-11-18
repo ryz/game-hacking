@@ -1,0 +1,467 @@
+diff --git a/resource/CMakeLists.txt b/resource/CMakeLists.txt
+index 5b2050c..124052e 100644
+--- a/resource/CMakeLists.txt
++++ b/resource/CMakeLists.txt
+@@ -38,7 +38,6 @@ add_resources(source_files apple2roms
+   IDC_APPLEWIN_ICON                   "APPLEWIN.ICO"
+ 
+   IDB_DEBUG_FONT_7_by_8               "debug6502.ttf"
+-  IDB_IMGUI_FONT_COUSINE              "Cousine-Regular.ttf"
+   )
+ 
+ add_library(apple2roms STATIC
+diff --git a/source/CPU.cpp b/source/CPU.cpp
+index 587c649..249702a 100644
+--- a/source/CPU.cpp
++++ b/source/CPU.cpp
+@@ -85,6 +85,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ 
+ 
+ #include "StdAfx.h"
++#include "linux/gamedb.h"
+ 
+ #include "CPU.h"
+ #include "Core.h"
+@@ -120,6 +121,14 @@ static BYTE benchopcode[BENCHOPCODES] = {
+ regsrec regs;
+ unsigned __int64 g_nCumulativeCycles = 0;
+ 
++int gamedb_rand(uint64_t salt)
++{
++	uint64_t z = g_nCumulativeCycles * 0x9E3779B97F4A7C15ull + (salt + 1) * 0xD1B54A32D192ED03ull;
++	z = (z ^ (z >> 30)) * 0xBF58476D1CE4E5B9ull;
++	z = (z ^ (z >> 27)) * 0x94D049BB133111EBull;
++	return (int)((z ^ (z >> 31)) & RAND_MAX);
++}
++
+ static ULONG g_nCyclesExecuted;	// # of cycles executed up to last IO access
+ //static signed long g_uInternalExecutedCycles;
+ 
+diff --git a/source/Disk.cpp b/source/Disk.cpp
+index ed1c046..b5875fe 100644
+--- a/source/Disk.cpp
++++ b/source/Disk.cpp
+@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+ 
+ #include "StdAfx.h"
++#include "linux/gamedb.h"
+ 
+ #include "Disk.h"
+ 
+@@ -1066,7 +1067,7 @@ void Disk2InterfaceCard::UpdateLatchForEmptyDrive(FloppyDrive* pDrive)
+ 	if ((g_nCumulativeCycles - pDrive->m_motorOnCycle) < MOTOR_ON_UNTIL_LSS_STABLE_CYCLES)
+ 		m_floppyLatch = 0x80;	// GH#864
+ 	else
+-		m_floppyLatch = rand() & 0xFF;	// GH#748
++		m_floppyLatch = gamedb_rand() & 0xFF;	// GH#748
+ }
+ 
+ void __stdcall Disk2InterfaceCard::ReadWrite(WORD pc, WORD addr, BYTE bWrite, BYTE d, ULONG uExecutedCycles)
+@@ -1297,7 +1298,7 @@ void Disk2InterfaceCard::AddJitter(int phase, FloppyDisk& floppy)
+ {
+ 	if (phase == 0 && m_foundT00S00Pattern)
+ 	{
+-		if (rand() < RAND_THRESHOLD(1, 10))
++		if (gamedb_rand(floppy.m_bitOffset) < RAND_THRESHOLD(1, 10))
+ 		{
+ 			LogOutput("Disk: T$00 jitter - slip 1 bitcell (PC=%04X)\n", regs.pc);
+ 			IncBitStream(floppy);
+@@ -1322,7 +1323,7 @@ void Disk2InterfaceCard::AddTrackSeamJitter(float phasePrecise, FloppyDisk& flop
+ 	{
+ 		if (floppy.m_bitOffset == floppy.m_longestSyncFFBitOffsetStart)
+ 		{
+-			if (rand() < RAND_THRESHOLD(5, 10))
++			if (gamedb_rand(floppy.m_bitOffset) < RAND_THRESHOLD(5, 10))
+ 			{
+ 				LogOutput("Disk: T%05.2f jitter - slip 1 bitcell  (revs=%d) (PC=%04X)\n", phasePrecise / 2, floppy.m_revs, regs.pc);
+ 				IncBitStream(floppy);
+@@ -1437,7 +1438,7 @@ void Disk2InterfaceCard::DataLatchReadWOZ(WORD pc, WORD addr, UINT bitCellRemain
+ 		drive.m_headWindow <<= 1;
+ 		drive.m_headWindow |= (n & floppy.m_bitMask) ? 1 : 0;
+ 		BYTE outputBit = (drive.m_headWindow & 0xf)	? (drive.m_headWindow >> 1) & 1
+-													: (rand() < RAND_THRESHOLD(3, 10)) ? 1 : 0;	// ~30% chance of a 1 bit (Ref: WOZ-2.0)
++													: (gamedb_rand(floppy.m_bitOffset) < RAND_THRESHOLD(3, 10)) ? 1 : 0;	// ~30% chance of a 1 bit (Ref: WOZ-2.0)
+ 
+ 		IncBitStream(floppy);
+ 
+diff --git a/source/DiskImage.cpp b/source/DiskImage.cpp
+index 1d94816..ab0ccaf 100644
+--- a/source/DiskImage.cpp
++++ b/source/DiskImage.cpp
+@@ -27,6 +27,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+ 
+ #include "StdAfx.h"
++#include "linux/gamedb.h"
+ 
+ #include "DiskImage.h"
+ #include "Common.h"
+@@ -143,7 +144,7 @@ void ImageReadTrack(	ImageInfo* const pImageInfo,
+ 	{
+ 		*pNibbles = (int) ImageGetMaxNibblesPerTrack(pImageInfo);
+ 		for (int i = 0; i < *pNibbles; i++)
+-			pTrackImageBuffer[i] = (BYTE)(rand() & 0xFF);
++			pTrackImageBuffer[i] = (BYTE)(gamedb_rand(i) & 0xFF);
+ 	}
+ }
+ 
+diff --git a/source/Memory.cpp b/source/Memory.cpp
+index 43e1215..916399c 100644
+--- a/source/Memory.cpp
++++ b/source/Memory.cpp
+@@ -29,6 +29,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+  */
+ 
+ #include "StdAfx.h"
++#include "linux/gamedb.h"
+ 
+ #include "Memory.h"
+ #include "Interface.h"
+@@ -490,6 +491,34 @@ uint8_t ReadByteFromMemory(uint16_t addr)
+ 	return 0;
+ }
+ 
++// game database: what the CPU would read at addr right now, without side effects (soft switches read 0).
++uint8_t GamedbPeek(uint16_t addr)
++{
++	if (addr >= 0xC000 && addr < 0xC100)
++		return 0;
++	if (GetIsMemCacheValid())
++		return mem[addr];
++	if (memreadPageType[addr >> 8] == MEM_FloatingBus || memshadow[addr >> 8] == NULL)
++		return 0;
++	return *(memshadow[addr >> 8] + (addr & 0xff));
++}
++
++// game database: write the RAM behind addr as it is mapped for reading right now. false = not RAM (ROM, I/O).
++bool GamedbPoke(uint16_t addr, uint8_t data)
++{
++	const LPBYTE p = memshadow[addr >> 8];
++	if (p == NULL || (addr >= 0xC000 && addr < 0xD000))
++		return false;
++	const bool inMain = p >= memmain && p < memmain + 0x10000;
++	const bool inAux = p >= memaux && p < memaux + 0x10000;
++	if (!inMain && !inAux)
++		return false;
++	*(p + (addr & 0xff)) = data;
++	if (GetIsMemCacheValid())
++		mem[addr] = data;
++	return true;
++}
++
+ uint16_t ReadWordFromMemory(uint16_t addr)
+ {
+ 	return ReadByteFromMemory(addr) | (ReadByteFromMemory(addr + 1) << 8);
+@@ -2280,9 +2309,14 @@ void MemInitializeFromSnapshot()
+ 	}
+ }
+ 
++static uint32_t g_gamedbResetSalt = 0;
++
+ inline uint32_t getRandomTime()
+ {
+-	return rand() ^ timeGetTime(); // We can't use g_nCumulativeCycles as it will be zero on a fresh execution.
++	uint64_t z = (uint64_t)(++g_gamedbResetSalt) * 0x9E3779B97F4A7C15ull;	// game database: fixed sequence per power-on
++	z = (z ^ (z >> 30)) * 0xBF58476D1CE4E5B9ull;
++	z = (z ^ (z >> 27)) * 0x94D049BB133111EBull;
++	return (uint32_t)(z ^ (z >> 31));
+ }
+ 
+ //===========================================================================
+@@ -2323,6 +2357,7 @@ void MemReset()
+ 	//   F2. Ctrl-F2. CALL-151, C050 C053 C057
+ 	// OR
+ 	//   F2, Ctrl-F2, F7, HGR
++	g_gamedbResetSalt = 0;
+ 	uint32_t randTime = getRandomTime();
+ 	MemoryInitPattern_e eMemoryInitPattern = static_cast<MemoryInitPattern_e>(g_nMemoryClearType);
+ 
+diff --git a/source/frontends/common2/speed.cpp b/source/frontends/common2/speed.cpp
+index 89b5273..fd0dbe4 100644
+--- a/source/frontends/common2/speed.cpp
++++ b/source/frontends/common2/speed.cpp
+@@ -4,6 +4,7 @@
+ #include "CPU.h"
+ #include "Core.h"
+ #include "Speaker.h"
++#include "NTSC.h"
+ 
+ namespace
+ {
+@@ -43,8 +44,11 @@ namespace common2
+ 
+     uint32_t Speed::getCyclesAtFixedSpeed(const int64_t microseconds) const
+     {
+-        const int64_t cycles = static_cast<int64_t>(microseconds * myAudioSpeed * 1.0e-6) + g_nCpuCyclesFeedback;
+-        return checkAndReturn(cycles);
++        // game database: one video frame per call, counted on the cycle counter that savestates keep (the
++        // audio feedback used here before depends on the host's sound buffer and is not part of a state)
++        (void)microseconds;
++        const uint64_t perFrame = NTSC_GetCyclesPerFrame();
++        return checkAndReturn(perFrame - (g_nCumulativeCycles % perFrame));
+     }
+ 
+     uint32_t Speed::getCyclesTillNext(const int64_t microseconds)
+diff --git a/source/frontends/libretro/environment.cpp b/source/frontends/libretro/environment.cpp
+index 3b2bbeb..4167ebf 100644
+--- a/source/frontends/libretro/environment.cpp
++++ b/source/frontends/libretro/environment.cpp
+@@ -1,6 +1,7 @@
+ #include "frontends/libretro/environment.h"
+ 
+ #include <cstdarg>
++#include <cstdlib>
+ 
+ namespace ra2
+ {
+@@ -9,8 +10,10 @@ namespace ra2
+ 
+     void fallback_log(enum retro_log_level level, const char *fmt, ...)
+     {
+-        // TODO: this should be a no-op
++        // game database: quiet unless GAMEDB_CORE_LOG is set
+         (void)level;
++        if (!getenv("GAMEDB_CORE_LOG"))
++            return;
+         va_list va;
+         va_start(va, fmt);
+         vfprintf(stderr, fmt, va);
+diff --git a/source/frontends/libretro/libretro.cpp b/source/frontends/libretro/libretro.cpp
+index 4103427..32bdba0 100644
+--- a/source/frontends/libretro/libretro.cpp
++++ b/source/frontends/libretro/libretro.cpp
+@@ -496,3 +496,80 @@ size_t retro_get_memory_size(unsigned id)
+         return 0;
+     };
+ }
++
++// ---------------------------------------------------------------------------------------------------------
++// game database hooks (tools/applewin-debug.patch)
++#include "CPU.h"
++#include "CardManager.h"
++#include "Disk.h"
++#include "Harddisk.h"
++#include <filesystem>
++
++uint8_t GamedbPeek(uint16_t addr);
++bool GamedbPoke(uint16_t addr, uint8_t data);
++
++#define GAMEDB_API extern "C" __attribute__((visibility("default")))
++
++GAMEDB_API unsigned retro_gamedb_pc(void)
++{
++    return regs.pc;
++}
++
++// The byte the CPU would read at addr (current banking, ROM included), without side effects.
++GAMEDB_API unsigned retro_gamedb_peek(unsigned addr)
++{
++    return GamedbPeek(addr & 0xFFFF);
++}
++
++// Write RAM at addr as mapped for reading now; 0 = that address is not RAM.
++GAMEDB_API int retro_gamedb_poke(unsigned addr, unsigned value)
++{
++    return GamedbPoke(addr & 0xFFFF, value & 0xFF) ? 1 : 0;
++}
++
++// Put an image into a drive: 0, 1 = floppy drives 1, 2 (slot 6); 2, 3 = hard disks 1, 2 (slot 7).
++// path NULL or "" = take the disk out. Returns 1 on success.
++GAMEDB_API int retro_gamedb_insert(int drive, const char *path, int writeProtected)
++{
++    const common2::RestoreCurrentDirectory restoreChDir;
++    CardManager &cardManager = GetCardMgr();
++    const bool eject = !path || !*path;
++    if (!eject)
++    {
++        ra2::gamedbDiskFolder = std::filesystem::path(path).parent_path().string();
++    }
++    if (drive == DRIVE_1 || drive == DRIVE_2)
++    {
++        Disk2InterfaceCard *card = dynamic_cast<Disk2InterfaceCard *>(cardManager.GetObj(SLOT6));
++        if (!card)
++            return 0;
++        if (eject)
++        {
++            card->EjectDisk(drive);
++            return 1;
++        }
++        return card->InsertDisk(drive, path, writeProtected ? IMAGE_FORCE_WRITE_PROTECTED
++                                                              : IMAGE_USE_FILES_WRITE_PROTECT_STATUS,
++                                IMAGE_DONT_CREATE) == eIMAGE_ERROR_NONE;
++    }
++    HarddiskInterfaceCard *card = dynamic_cast<HarddiskInterfaceCard *>(cardManager.GetObj(SLOT7));
++    if (!card || drive > 3)
++        return 0;
++    if (eject)
++    {
++        card->Unplug(drive - 2);
++        return 1;
++    }
++    return card->Insert(drive - 2, path) ? 1 : 0;
++}
++
++// Write the floppy tracks still held in memory to their image files.
++GAMEDB_API void retro_gamedb_flush(void)
++{
++    Disk2InterfaceCard *card = dynamic_cast<Disk2InterfaceCard *>(GetCardMgr().GetObj(SLOT6));
++    if (card)
++    {
++        card->FlushCurrentTrack(DRIVE_1);
++        card->FlushCurrentTrack(DRIVE_2);
++    }
++}
+diff --git a/source/frontends/libretro/serialisation.cpp b/source/frontends/libretro/serialisation.cpp
+index 1ffdda7..68cd9e3 100644
+--- a/source/frontends/libretro/serialisation.cpp
++++ b/source/frontends/libretro/serialisation.cpp
+@@ -57,6 +57,8 @@ namespace
+ namespace ra2
+ {
+ 
++    std::string gamedbDiskFolder; // game database: where retro_gamedb_insert took the last image from
++
+     size_t RetroSerialisation::getSize()
+     {
+         AutoFile autoFile;
+@@ -111,7 +113,7 @@ namespace ra2
+         }
+ 
+         // bit of a workaround, since the state files do not have full disk paths
+-        SetCurrentDirectory(diskControl.getCurrentDiskFolder().c_str());
++        SetCurrentDirectory(gamedbDiskFolder.empty() ? diskControl.getCurrentDiskFolder().c_str() : gamedbDiskFolder.c_str());
+         Snapshot_SetFilename(filename);
+         Snapshot_LoadState();
+     }
+diff --git a/source/frontends/libretro/serialisation.h b/source/frontends/libretro/serialisation.h
+index 16cefce..6bf44cf 100644
+--- a/source/frontends/libretro/serialisation.h
++++ b/source/frontends/libretro/serialisation.h
+@@ -1,8 +1,12 @@
+ #include <cstddef>
+ 
++#include <string>
++
+ namespace ra2
+ {
+ 
++    extern std::string gamedbDiskFolder;
++
+     class DiskControl;
+ 
+     class RetroSerialisation
+diff --git a/source/linux/duplicates/Keyboard.cpp b/source/linux/duplicates/Keyboard.cpp
+index 5b4db86..5181ef1 100644
+--- a/source/linux/duplicates/Keyboard.cpp
++++ b/source/linux/duplicates/Keyboard.cpp
+@@ -17,11 +17,8 @@ void addKeyToBuffer(BYTE key)
+ {
+     // If the previous key was read by the CPU but not cleared (ignored),
+     // we overwrite it (pop it) to prevent blocking the queue.
+-    if (bKeyWasRead && !keys.empty())
+-    {
+-        keys.pop();
+-        bKeyWasRead = false;
+-    }
++    std::queue<BYTE>().swap(keys); // game database: no type-ahead queue
++    bKeyWasRead = false;
+     keys.push(key);
+ }
+ 
+diff --git a/source/linux/gamedb.h b/source/linux/gamedb.h
+new file mode 100644
+index 0000000..84d491d
+--- /dev/null
++++ b/source/linux/gamedb.h
+@@ -0,0 +1,11 @@
++#pragma once
++// game database hooks (tools/applewin-debug.patch): nothing in the emulated machine may depend on the host.
++#include <cstdint>
++
++// Emulated wall clock in microseconds since the Unix epoch, set by the frontend before every frame
++// (retro_gamedb_set_time); negative = not set, the host clock is used.
++int64_t gamedb_time_usec();
++
++// Replacement for rand(): a hash of the emulated cycle counter (which savestates keep) and a salt, so a run
++// continued from a savestate draws the same numbers as the run that made it.
++int gamedb_rand(uint64_t salt = 0);
+diff --git a/source/linux/libwindows/timeapi.cpp b/source/linux/libwindows/timeapi.cpp
+index cf4152b..c79c5e6 100644
+--- a/source/linux/libwindows/timeapi.cpp
++++ b/source/linux/libwindows/timeapi.cpp
+@@ -1,4 +1,20 @@
+ #include "timeapi.h"
++#include <cstdint>
++
++namespace
++{
++    int64_t gamedbTime = -1;
++}
++
++int64_t gamedb_time_usec()
++{
++    return gamedbTime;
++}
++
++extern "C" __attribute__((visibility("default"))) void retro_gamedb_set_time(int64_t usec)
++{
++    gamedbTime = usec;
++}
+ 
+ #include <sys/time.h>
+ #include <iomanip>
+@@ -14,6 +30,8 @@ errno_t ctime_s(char *buf, size_t size, const time_t *time)
+ 
+ DWORD timeGetTime()
+ {
++    if (gamedbTime >= 0)
++        return (gamedbTime / 1000) % 1000;
+     struct timeval now;
+     gettimeofday(&now, NULL);
+     return now.tv_usec / 1000;
+@@ -22,6 +40,8 @@ DWORD timeGetTime()
+ /// Returns the number of ticks since an undefined time (usually system startup).
+ DWORD GetTickCount()
+ {
++    if (gamedbTime >= 0)
++        return gamedbTime / 1000;
+     struct timespec ts;
+     clock_gettime(CLOCK_MONOTONIC, &ts);
+     const uint64_t ticks = (uint64_t)(ts.tv_nsec / 1000000) + ((uint64_t)ts.tv_sec * 1000ull);
+@@ -37,7 +57,15 @@ void GetLocalTime(SYSTEMTIME *t)
+ 
+     t->wMilliseconds = ts.tv_nsec / 1000000;
+ 
+-    tm *local = localtime(&tim);
++    tm *local;
++    if (gamedbTime >= 0)
++    {
++        tim = gamedbTime / 1000000;
++        t->wMilliseconds = (gamedbTime / 1000) % 1000;
++        local = gmtime(&tim);
++    }
++    else
++        local = localtime(&tim);
+ 
+     t->wSecond = local->tm_sec;
+     t->wMinute = local->tm_min;
+diff --git a/source/linux/libwindows/winbase.cpp b/source/linux/libwindows/winbase.cpp
+index de10849..291c4bf 100644
+--- a/source/linux/libwindows/winbase.cpp
++++ b/source/linux/libwindows/winbase.cpp
+@@ -1,3 +1,4 @@
++#include <cstdlib>
+ #include "winbase.h"
+ 
+ #include <errno.h>
+@@ -36,7 +37,8 @@ BOOL SetCurrentDirectory(LPCSTR path)
+ 
+ void OutputDebugString(const char *str)
+ {
+-    std::cerr << str;
++    if (getenv("GAMEDB_CORE_LOG")) // game database: quiet unless asked
++        std::cerr << str;
+ }
+ 
+ void ExitProcess(int status)

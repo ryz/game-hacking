@@ -2,6 +2,32 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Apple II backend (AppleWin)
+- Owner asked for an Apple II emulator. Chosen: AppleWin in audetto's Linux port, which has a libretro core (fits
+  `tools/lrcore.py`, no SDL, savestates, firmware ROMs in its source, DSK/DO/PO/NIB/WOZ/2MG/HDV). MAME would
+  be a far bigger build; the other Apple II emulators have no libretro core. Pinned e9ebeb7.
+- `tools/applewin-debug.patch`, each part for something measured: power-on RAM held bytes of the host time; the
+  emulator's rand() (disk noise, copy-protection jitter) is not part of a state; a frame's length followed the
+  host's sound buffer, so the same state loaded into machines of different age continued four different ways
+  (now one video frame per call on the saved cycle counter: all equal); the keyboard was a type-ahead queue of
+  which a state kept one key (now the real one-key latch). Added: disk insert/eject, flush, peek/poke, PC, a
+  settable clock, a silent log. The build wants `xxd` (not installed here, no apt package reachable):
+  `tools/xxd_i.py` stands in; a font resource from a git submodule (SDL frontend only) is dropped.
+- `tools/platforms.py` `Apple2`: a game is one image or a ZIP of images (a ZIP of only disk images is Apple II,
+  any other ZIP stays DOS); private copies of the disks, the dump is never written; states store the changed
+  4 KiB blocks of the images and restore them on load; `play.py export` = ZIP of the changed images, `sav:`
+  powers on with them. `tools/emu.py`: `disk:N`, `disk2:N`. `tools/lrcore.py`: start without content; a core
+  dropped without close() is closed when collected (AppleWin's exit handlers otherwise used freed memory: a
+  random abort at interpreter exit, about 1 run in 6 after a failed test; found with valgrind).
+- Tests: `tests/make_apple2_disk.py` (boot sector that echoes keys with a cycle-exact timing letter) + 6 tests:
+  identify, backend, same route same frames, disk swap, state carries disk writes (DOS 3.3 `SAVE` on the master
+  disk from the AppleWin source), intake -> play -> snap -> `shoot.py --verify`.
+- Seen working by hand: DOS 3.3 master, ProDOS 2.4.3 (`.po`), hi-res colour in four video modes, II Plus and
+  unenhanced //e ROMs, states taken while the drive reads. `sh tools/setup_emu.sh apple2` built from an empty
+  folder.
+- Not done: no Apple II game registered or played; reset keys; write-protected disks; hard disk images with a
+  real game; `dis6502.py` for Apple II memory.
+
 ## 2026-11-18 - DOS: in-game saves, states carry the disk
 - Tested saving in Might and Magic 1: signing in at the inn writes ROSTER.DTA into DOSBox Pure's save ZIP. A
   cached checkpoint made after the save, loaded in a new process, showed the saved roster on screen (the game

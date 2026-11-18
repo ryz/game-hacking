@@ -838,7 +838,292 @@ class Dos(Libretro):
         return {"pc": "%04x:%04x" % (v >> 16, v & 0xFFFF)}
 
 
-PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "dos": Dos}
+# ------------------------------------------------------------------ Apple II (AppleWin libretro core)
+class Apple2(Libretro):
+    """AppleWin (Linux port by audetto, libretro core, in-process through tools/lrcore.py, patched with
+    tools/applewin-debug.patch: fixed power-on RAM and clock, deterministic random numbers, one-key keyboard
+    latch, disk insert/eject, peek/poke, program counter). A game is one disk image or a ZIP of its disk images
+    (the sides in name order); disk 1 is in drive 1 at power-on, emu.disk(n, drive) changes disks.
+    Model: MACHINE[-VIDEO][-joy]. Machines: iie (enhanced //e, 128K, default), iieorig, iiplus, ii, iijplus.
+    Video: tv (default), monitor, idealized, rgb, bwtv, mono, green, amber. joy = a joystick is plugged in.
+    Keys are keyboard keys (KEYS; letters arrive as capitals, shift+letter as lowercase), openapple/solidapple
+    (= joystick buttons 0/1, also button0/button1) and joyleft/joyright/joyup/joydown.
+    Memory: 0000-FFFF is what the program reads right now (banking followed, ROM included, soft switches read
+    0); 10000-1FFFF is the auxiliary 64K of a //e. peek has no side effects; poke writes RAM only."""
+    KEYS = {k: v for k, v in _retrok().items() if not k.startswith(("kp", "f")) and k not in (
+        "insert", "home", "end", "pageup", "pagedown", "rshift", "rctrl", "alt", "ralt", "backquote")}
+    KEYS.update({"f": 102, "openapple": 308, "solidapple": 307, "button0": 308, "button1": 307})
+    JOY = {"joyup": "up", "joydown": "down", "joyleft": "left", "joyright": "right"}
+    keys = set(KEYS) | set(JOY)
+    extensions = (".dsk", ".do", ".po", ".nib", ".woz", ".2mg", ".hdv")
+    native_size = (560, 384)
+    emulator = "AppleWin libretro core"
+    SO = os.path.join(HERE, "applewin", "build", "source", "frontends", "libretro", "applewin_libretro.so")
+    MACHINES = {"iie": "Apple //e (enhanced)", "iieorig": "Apple //e (original)", "iiplus": "Apple II Plus",
+                "ii": "Apple II (original)", "iijplus": "Apple II J-Plus"}
+    VIDEO = {"tv": "Color TV", "monitor": "Color (Composite Monitor)", "idealized": "Color (Composite Idealized)",
+             "rgb": "Color (RGB Card/Monitor)", "bwtv": "B&W TV", "mono": "Monochrome (White)",
+             "green": "Monochrome (Green)", "amber": "Monochrome (Amber)"}
+    EPOCH = 504921600           # 1986-01-01 00:00:00 UTC (clock cards)
+    FRAME_USEC = 16667
+    SEARCH = [(0x0000, 0xC000)]
+    SHIFTED = Dos.SHIFTED
+    NAMES = Dos.NAMES
+    BLOCK = 4096                # changed parts of a disk image are kept in blocks of this size
+    STATE = b"GAMEDB-APPLE2-STATE-1\n"
+    FILE_SAVES = True
+    SAVE_HELP = ("`.sav` = a ZIP of the disk images the game has written to (whole images, same names as in the "
+                 "game's ZIP): unzip it and use those images in place of the originals in any Apple II emulator.")
+
+    @staticmethod
+    def zip_disks(data):
+        """Names of the disk images in a ZIP, in play order (sorted by name, case ignored); [] if it is not a
+        ZIP of disk images (any other kind of file inside = not ours, e.g. a DOS game)."""
+        import io, zipfile
+        try:
+            names = [n for n in zipfile.ZipFile(io.BytesIO(data)).namelist() if not n.endswith("/")]
+        except zipfile.BadZipFile:
+            return []
+        if not names or not all(os.path.splitext(n)[1].lower() in Apple2.extensions for n in names):
+            return []
+        if len({os.path.basename(n).lower() for n in names}) != len(names):
+            raise SystemExit("two disk images in the ZIP have the same file name")
+        return sorted(names, key=lambda n: os.path.basename(n).lower())
+
+    @staticmethod
+    def image_kind(data):
+        if data[:4] in (b"WOZ1", b"WOZ2"):
+            return "%s flux-level floppy image" % data[:4].decode()
+        if data[:4] == b"2IMG":
+            return "2IMG container, %d KiB" % (len(data) // 1024)
+        return {143360: "5.25 inch floppy, 140 KiB sector image", 232960: "5.25 inch floppy, nibble image",
+                819200: "3.5 inch disk / hard disk volume, 800 KiB"}.get(
+                    len(data), "hard disk volume, %d KiB" % (len(data) // 1024))
+
+    @classmethod
+    def identify(cls, data):
+        import io, zipfile
+        names = cls.zip_disks(data)
+        if names:
+            z = zipfile.ZipFile(io.BytesIO(data))
+            disks = [{"name": os.path.basename(n), "kind": cls.image_kind(z.read(n)),
+                      "sha1": __import__("hashlib").sha1(z.read(n)).hexdigest()} for n in names]
+        elif data[:2] == b"PK":
+            raise SystemExit("this ZIP is not a set of Apple II disk images (%s)" % " ".join(cls.extensions))
+        else:
+            disks = [{"kind": cls.image_kind(data)}]
+        return {"platform": "apple2", "model": "iie", "disks": disks}
+
+    def open(self, rom, model=None, seed=1, turbo=True, sav=None):
+        import ctypes, io, tempfile, zipfile
+        import lrcore
+        if not os.path.exists(self.SO):
+            raise SystemExit("%s missing: run sh tools/setup_emu.sh apple2" % self.emulator)
+        parts = (model or "iie").split("-")
+        machine, video, joy = parts[0], "tv", False
+        for p in parts[1:]:
+            if p == "joy":
+                joy = True
+            elif p in self.VIDEO:
+                video = p
+            else:
+                machine = None
+        if machine not in self.MACHINES:
+            raise SystemExit("unknown Apple II model %r (MACHINE[-VIDEO][-joy]; machines: %s; video: %s)" % (
+                model, " ".join(self.MACHINES), " ".join(self.VIDEO)))
+        # Private copies of the disk images: the game writes to them, the registered dump is never touched.
+        self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
+        self.dir = os.path.join(self.tmp, "disks")
+        os.makedirs(self.dir)
+        data = open(rom, "rb").read()
+        names = self.zip_disks(data)
+        if names:
+            z = zipfile.ZipFile(io.BytesIO(data))
+            self._orig = {os.path.basename(n): z.read(n) for n in names}
+            self.disks = [os.path.basename(n) for n in names]
+        else:
+            self.disks = ["disk" + os.path.splitext(rom)[1].lower()]
+            self._orig = {self.disks[0]: data}
+        start = dict(self._orig)
+        if sav:                                             # a save = ZIP of whole changed images
+            z = zipfile.ZipFile(sav)
+            for n in z.namelist():
+                if n not in start:
+                    raise SystemExit("%s holds %s, which is not a disk of this game (%s)" % (
+                        sav, n, ", ".join(self.disks)))
+                start[n] = z.read(n)
+        for n, d in start.items():
+            open(os.path.join(self.dir, n), "wb").write(d)
+        self.c = lrcore.Core(self.SO, None, system_dir=self.tmp, save_dir=self.tmp, options={
+            "applewin_machine": self.MACHINES[machine], "applewin_video_mode": self.VIDEO[video],
+            "applewin_video_style": "560 x 192"}, frame_usec=self.FRAME_USEC, epoch=self.EPOCH, private=True)
+        L = self.c.L
+        L.retro_gamedb_pc.restype = ctypes.c_uint
+        L.retro_gamedb_peek.restype, L.retro_gamedb_peek.argtypes = ctypes.c_uint, [ctypes.c_uint]
+        L.retro_gamedb_poke.restype, L.retro_gamedb_poke.argtypes = ctypes.c_int, [ctypes.c_uint, ctypes.c_uint]
+        L.retro_gamedb_insert.restype = ctypes.c_int
+        L.retro_gamedb_insert.argtypes = [ctypes.c_int, ctypes.c_char_p, ctypes.c_int]
+        if joy:
+            L.retro_set_controller_port_device(0, lrcore.DEVICE_JOYPAD)
+        self.c.size = self.native_size
+        self.drives = [None, None, None]                    # floppy drive 1, floppy drive 2, hard disk 1
+        self._down, self._search = set(), None
+        self.disk(1)
+        return self
+
+    # ---- disks
+    def _put(self, slot, name):
+        path = os.path.join(self.dir, name).encode() if name else None
+        if not self.c.L.retro_gamedb_insert(slot, path, 0):
+            return False
+        self.drives[slot] = name
+        return True
+
+    def disk(self, n, drive=1):
+        """Put disk n (1 = first image of the game; 0 = none) into floppy drive 1 or 2. An image that is not a
+        floppy (hard disk volume) goes to the hard disk in slot 7 instead; only as drive 1."""
+        if drive not in (1, 2) or not 0 <= n <= len(self.disks):
+            raise ValueError("disk:%d in drive %d: this game has disks 1-%d (%s), drives 1-2" % (
+                n, drive, len(self.disks), ", ".join(self.disks)))
+        name = self.disks[n - 1] if n else None
+        for slot in range(3):                               # a disk is in one drive at a time
+            if name and self.drives[slot] == name and slot != drive - 1:
+                self._put(slot, None)
+        if self._put(drive - 1, name):
+            return
+        if drive == 1 and self._put(2, name):
+            return
+        raise ValueError("the emulator refused the disk image %s" % name)
+
+    def _changed(self):
+        """{name: {"size": n, "blocks": [offsets]}}, payload: the parts of the images that differ from the dump."""
+        head, blob = {}, []
+        for n in self.disks:
+            cur, orig = open(os.path.join(self.dir, n), "rb").read(), self._orig[n]
+            if cur == orig:
+                continue
+            offs = [o for o in range(0, len(cur), self.BLOCK) if cur[o:o + self.BLOCK] != orig[o:o + self.BLOCK]]
+            head[n] = {"size": len(cur), "blocks": offs}
+            blob += [cur[o:o + self.BLOCK] for o in offs]
+        return head, b"".join(blob)
+
+    def save_state(self, path):
+        """The core's state names the disk images in the drives and keeps the track under the head; what the
+        game wrote to the images so far is stored next to it (the changed blocks), so a state made after an
+        in-game save still has that save on disk wherever it is loaded."""
+        import json
+        raw = zlib.compress(self.c.serialize(), 1)
+        head, blob = self._changed()
+        head = json.dumps({"drives": self.drives, "disks": head, "blob": len(blob)}).encode()
+        open(os.path.abspath(path), "wb").write(self.STATE + head + b"\n" + blob + raw)
+
+    def load_state(self, path):
+        import json
+        data = open(os.path.abspath(path), "rb").read()
+        if not data.startswith(self.STATE):
+            raise RuntimeError("not an Apple II savestate of this tool version (delete work/cache): %s" % path)
+        head, rest = data[len(self.STATE):].split(b"\n", 1)
+        head = json.loads(head)
+        blob, raw = rest[:head["blob"]], rest[head["blob"]:]
+        for slot in range(3):                   # empty the drives first: taking a disk out writes its last
+            if self.drives[slot]:               # track to the image, which must not hit the restored files
+                self._put(slot, None)
+        pos = 0
+        for n in self.disks:
+            img = bytearray(self._orig[n])
+            if n in head["disks"]:
+                d = head["disks"][n]
+                img = img[:d["size"]] + bytes(max(0, d["size"] - len(img)))
+                for o in d["blocks"]:
+                    k = min(self.BLOCK, d["size"] - o)
+                    img[o:o + k] = blob[pos:pos + k]
+                    pos += k
+            p = os.path.join(self.dir, n)
+            if open(p, "rb").read() != img:
+                open(p, "wb").write(img)
+        self.c.L.retro_gamedb_insert(0, os.path.join(self.dir, self.disks[0]).encode(), 0)   # names the folder
+        self.c.L.retro_gamedb_insert(0, None, 0)
+        self.c.unserialize(zlib.decompress(raw))
+        self.drives = head["drives"]
+
+    def battery(self, size):
+        """The disk images the game has written to, whole, as a ZIP (b"" when it has written nothing)."""
+        import io, zipfile
+        self.c.L.retro_gamedb_flush()
+        out = io.BytesIO()
+        with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
+            for n in self.disks:
+                cur = open(os.path.join(self.dir, n), "rb").read()
+                if cur != self._orig[n]:
+                    info = zipfile.ZipInfo(n, (1986, 1, 1, 0, 0, 0))
+                    info.compress_type = zipfile.ZIP_DEFLATED
+                    z.writestr(info, cur)
+            count = len(z.namelist())
+        return out.getvalue() if count else b""
+
+    # ---- keyboard
+    def _event(self, key, down, mods):
+        code = self.KEYS[key]
+        char = 0
+        if len(key) == 1 and not key.isalpha() or key in self.NAMES.values():
+            base = key if len(key) == 1 else {v: k for k, v in self.NAMES.items()}[key]
+            if base != "\n" and not mods & 2:                # ctrl: the core's own table by key code
+                shifted = {v: k for k, v in self.SHIFTED.items()}
+                char = ord(shifted.get(base, base) if mods & 1 else base)
+        self.c.key(code, down, char, mods)
+
+    def input(self, keys):
+        keys = set(keys)
+        mods = (1 if "shift" in keys else 0) | (2 if "ctrl" in keys else 0)
+        for k in sorted(self._down - keys):
+            if k in self.KEYS and k not in ("shift", "ctrl"):
+                self._event(k, False, mods)
+        for k in sorted(keys - self._down):
+            if k in self.KEYS and k not in ("shift", "ctrl"):
+                self._event(k, True, mods)
+        self._down = keys
+        self.c.keys = {self.JOY[k] for k in keys if k in self.JOY}
+
+    def type_text(self, text, hold=4, gap=4):
+        """Type text as written: capitals are the plain letter keys, small letters need a //e."""
+        for ch in text:
+            if ch == "\n":
+                code, char, mods = 13, 0, 0
+            elif ch.isalpha() and ch.isascii():
+                code, char, mods = ord(ch.lower()), 0, 0 if ch.isupper() else 1
+            elif 0x20 <= ord(ch) < 0x7F:
+                code, char, mods = 0, ord(ch), 0
+            else:
+                raise ValueError("cannot type %r" % ch)
+            self.c.key(code, True, char, mods)
+            self.frames(hold)
+            self.c.key(code, False, char, mods)
+            self.frames(gap)
+
+    # ---- memory
+    def peek(self, addr, n, bank=None):
+        if bank is not None:                                # the 64K behind the banking: 0 main, 1 auxiliary
+            if bank not in (0, 1) or addr + n > 0x10000:
+                raise ValueError("bank 0 = main 64K, 1 = auxiliary 64K")
+            return self.c.peek_map(bank * 0x10000 + addr, n)
+        if addr >= 0x10000:
+            return self.c.peek_map(addr, n)
+        f = self.c.L.retro_gamedb_peek
+        return bytes(f((addr + i) & 0xFFFF) for i in range(n))
+
+    def poke(self, addr, data):
+        data = bytes(data)
+        if addr >= 0x10000:
+            return self.c.poke_map(addr, data)
+        for i, b in enumerate(data):
+            if not self.c.L.retro_gamedb_poke((addr + i) & 0xFFFF, b):
+                raise ValueError("%04X is not RAM right now (ROM or I/O)" % ((addr + i) & 0xFFFF))
+
+    def regs(self):
+        return {"pc": "%04x" % self.c.L.retro_gamedb_pc()}
+
+
+PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "dos": Dos, "apple2": Apple2}
 
 
 def backend(platform):
@@ -849,6 +1134,8 @@ def backend(platform):
 
 def by_extension(path):
     ext = os.path.splitext(path)[1].lower()
+    if ext == ".zip" and os.path.exists(path) and Apple2.zip_disks(open(path, "rb").read()):
+        return "apple2", Apple2                 # a ZIP of disk images; any other ZIP is a DOS game
     for name, cls in PLATFORMS.items():
         if ext in cls.extensions:
             return name, cls
