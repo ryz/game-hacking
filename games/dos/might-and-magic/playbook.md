@@ -239,7 +239,11 @@ Watches in `game.json`: `x`, `y`, `hp1`, `gold1`, `food1` (RYZ). Monster hit poi
   fixed waits everywhere: no route in this playbook uses `settle`.
 - RNG follows frame timing: the creation rolls, the encounter at (3,6) and whether the party is surprised all
   change with any earlier wait.
-- **Checkpoints built on a route that creates a character corrupt the roster on a cache hit** (tool problem,
+- **Fixed in the backend 2026-11-18 (coordinator):** the note below was true for the scout run. A cached state
+  replayed the whole route (not only the program launch) on the saved disk, so the creation ran twice. The
+  launch log now ends where MM.EXE starts; the scout's reproduction gives A-G on a cache miss and on a cache
+  hit, identical frames. `created` can be built on again; `start` keeps its `sav:` route.
+- ~~**Checkpoints built on a route that creates a character corrupt the roster on a cache hit**~~ (tool problem,
   reported 2026-11-18): `python3 tools/emu.py dos/might-and-magic --seq "@created,left,w60,left,w150,y,w250"`
   from a cached `created` shows A-G plus `H) RYZ` at the inn (a second, fresh RYZ); the same keys from power-on
   (`PARTY,left,...`) show A-G only; a checkpoint two levels deep showed H and I. Loading a cached state seems

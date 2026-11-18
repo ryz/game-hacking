@@ -9,6 +9,27 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Might and Magic Book One (DOS, first DOS game)
+- Task: scout Might and Magic Book One (DOS): playbook, party macros, title/menu/start and four more checkpoints,
+  RAM map, move-by-poke, event scan, save export, shot plan, design start.
+- Worked: the manual in the ZIP as primary source; RAM dump/diff over a step and a turn gave position and facing
+  in one call; searching the dump for a character name gave the party records; reading the event-table addresses
+  out of each `.OVR`, then a parallel `emu.py` scan of every event square, mapped all of Sorpigal's services in
+  about 20 s; the single-run macro test from power-on; the empty-cache versus cache-hit comparison extended to
+  the disk (sign in and look at the roster), which exposed a backend bug.
+- Friction: cached checkpoints replaying character creation (about 10 calls to isolate; `start` moved to a `sav:`
+  route); TCRF and StrategyWiki 403; no way for the scout to run `shoot.py`; `emu.py` and `play.py` frame sizes
+  differ.
+- Proposed rule change: (1) backend: replay only up to program launch on a cache hit, with a test; (2) dos.md:
+  until fixed, routes that append to a save file must not be the base of checkpoints; (3) skill step 3: for
+  games that save to disk, extend the empty-cache check to the disk by saving after a cache hit and comparing;
+  (4) dos.md: note the 320x200 `emu.py` frames.
+- Corrected: the cause was confirmed in `tools/platforms.py` (the launch log ran to the first save_state, i.e.
+  the whole checkpoint route) and fixed the same day; the scout's reproduction now gives the same roster on a
+  cache miss and a cache hit. (2) is therefore not needed. The agent wrote "about 25 rolls" for class
+  requirements as an inference: marked as such in the playbook, not checked by the coordinator.
+- Status: (1) done, (4) done in dos.md; (3) open (first entry asking for a disk check).
+
 ### 2026-11-18 - Deep Dungeon III (Famicom, Japanese)
 - Task: scout Deep Dungeon III: playbook, naming macros, six checkpoints, RAM, 01_start, 16 floors + town grid
   decoded and drawn, warp, shot plan.

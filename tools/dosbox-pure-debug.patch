@@ -19,10 +19,10 @@ index 5e10063..81a8f83 100644
  
  .PHONY: all clean
 diff --git a/dosbox_pure_libretro.cpp b/dosbox_pure_libretro.cpp
-index ea24d45..925f8da 100644
+index ea24d45..05230ac 100644
 --- a/dosbox_pure_libretro.cpp
 +++ b/dosbox_pure_libretro.cpp
-@@ -4139,3 +4139,11 @@ unsigned DBP_Build_GL_Program(int vertex_shader_srcs_count, const char** vertex_
+@@ -4139,3 +4139,18 @@ unsigned DBP_Build_GL_Program(int vertex_shader_srcs_count, const char** vertex_
  	}
  	return prog;
  }
@@ -33,6 +33,13 @@ index ea24d45..925f8da 100644
 +extern "C" __attribute__((visibility("default"))) void retro_gamedb_sync(void)
 +{
 +	if (dbp_state == DBPSTATE_FIRST_FRAME || dbp_state == DBPSTATE_RUNNING) DBP_ThreadControl(TCM_FINISH_FRAME);
++}
++
++// Added by game-hacking (tools/dosbox-pure-debug.patch): 1 while a DOS program runs (the only time the core
++// saves and loads states), 0 in the start menu and at the DOS prompt.
++extern "C" __attribute__((visibility("default"))) int retro_gamedb_running(void)
++{
++	return ((dbp_state == DBPSTATE_FIRST_FRAME || dbp_state == DBPSTATE_RUNNING) && dbp_game_running) ? 1 : 0;
 +}
 diff --git a/gamedb_debug.cpp b/gamedb_debug.cpp
 new file mode 100644

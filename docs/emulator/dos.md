@@ -20,7 +20,9 @@ the author's own GitHub repository only points to Codeberg). `tools/dosbox-pure-
 The core saves and loads a state only while a DOS program is running, not in its start menu or at the DOS
 prompt. The backend covers both cases (`Dos.save_state` in `tools/platforms.py`):
 - before a program runs, a "state" is the list of inputs since power-on; loading it powers on and replays them;
-- a real state also stores the inputs that started the program and the files written so far; a machine where
+- a real state also stores the launch (the inputs from power-on to the first 10-frame step that ends with a
+  program running, `retro_gamedb_running`; nothing later, or a load would repeat what the route wrote to disk:
+  found by the Might and Magic scout as a duplicated character) and the files written so far; a machine where
   nothing runs yet (a new process loading a cached checkpoint), or whose written files differ, powers on with
   those files, replays the launch inputs, then loads the state.
 So `undo`, `checkpoint`, `goto` and the cache work from power-on like on the consoles. Only this tool reads
@@ -44,8 +46,8 @@ to move). A ZIP with a single program starts it without the menu. The files may 
 from the early 1980s that runs too fast needs fewer cycles, not waits.
 
 ## Screenshots
-The picture has the size the core outputs for the video mode: text mode 640x400, and a 320x200 game came out
-as 960x600 (Might and Magic 1: each pixel 3x3); it can change during a route. No aspect correction (320x200 was shown 4:3 on a real monitor).
+The picture has the size of the video mode: text mode 640x400, a 320x200 game 320x200 (that is what `emu.py`
+and `shoot.py` write; `play.py` shows 3x copies, 960x600); it can change during a route. No aspect correction (320x200 was shown 4:3 on a real monitor).
 The text cursor blinks, so text screens rarely `settle`; capture anyway.
 
 ## Keys

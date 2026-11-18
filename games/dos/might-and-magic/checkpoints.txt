@@ -5,7 +5,7 @@ after_save | options menu after signing in at the inn of Sorpigal (Crag's club m
 title | Title screen with the ESC / SPACE prompt (animated, never settles) | pow,TITLE
 menu | Main options menu: C create, V view all characters, 1-5 go to town | @title,esc,w90,enter,w200
 start | First control: Sorpigal (8,3), inside the inn facing its door (north); party RYZ, CONDI, EBO, CUBI, DEDDO, MNZ from save 02_ryz_party | pow,sav:02_ryz_party,MENU,JOIN
-created | Same place and party as start, but built from power-on by creating RYZ and renaming the stock characters (PARTY macro); see playbook: states built on it grow duplicate RYZ entries when loaded from the cache | pow,PARTY
+created | Same place and party as start, but built from power-on by creating RYZ and renaming the stock characters (PARTY macro); the duplicate-RYZ problem of cached states built on it was fixed in the backend 2026-11-18, see playbook | pow,PARTY
 blacksmith | Sorpigal (6,5): B and B Blacksmiths, 'CAN I HELP YOU (Y/N)?' prompt; RYZ carries 1873 gold | @start,set:16865=1873:3,up,w80,up,w80,left,w60,up,w80,up,w150
 equipped | Sorpigal (6,5) after shopping, map view: RYZ wears Short Sword + Leather Armor, 1833 gold | @blacksmith,y,w150,a,w150,c,w150,esc,w100,b,w150,c,w150,esc,w100,esc,w100,1,w100,e,w100,b,w100,e,w100,b,w100,esc,w100
 combat | Sorpigal (3,6): encounter behind the locked door (unlocked by CUBI): 4 Poltergeists with picture, options Attack / Bribe / Retreat / Surrender | @equipped,AT:03:07:73,FW,left,w80,u,w100,4,w200,up,w250

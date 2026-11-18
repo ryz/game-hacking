@@ -2,6 +2,20 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic 1 (DOS) scouted; launch log bug fixed
+- game-scout (commit 4550427): playbook filled (about 30 controls verified, rest from the manual in the ZIP),
+  macros for creating RYZ and renaming the stock party, checkpoints title/menu/start/created/blacksmith/
+  equipped/combat, RAM (position 15E68.., party records 1682C + 7F*n, gold, experience), move-by-poke macro AT,
+  tools/maps.py and scan.py, save 02_ryz_party, shot plan with 32 routed lines, design/sorpigal.md.
+  Coordinator: title/menu/start/combat replayed from an empty cache; combat frame looked at.
+- Bug found by the scout: a cached checkpoint whose route created a character showed the character twice after
+  the next sign-in. Cause: the "launch" stored with a DOS state ran to the first save_state (the end of the
+  checkpoint route), so loading replayed the creation on a disk that already had it. Fix: the launch ends at
+  the first 10-frame step after which a program runs (`retro_gamedb_running` in the core patch); a load now
+  fails loudly if the launch does not start a program or changes the disk. The scout's reproduction: same
+  frames and roster A-G on cache miss and hit. Test extended. 30 passed, 2 skipped.
+- dos.md corrected: 320x200 games are 320x200 in `emu.py`/`shoot.py` output (960x600 is play.py's 3x view).
+
 ## 2026-11-18 - DOS: in-game saves, states carry the disk
 - Tested saving in Might and Magic 1: signing in at the inn writes ROSTER.DTA into DOSBox Pure's save ZIP. A
   cached checkpoint made after the save, loaded in a new process, showed the saved roster on screen (the game

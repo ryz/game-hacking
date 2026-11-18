@@ -663,6 +663,8 @@ def test_dos_state_carries_written_files(dos_selftest, tmp_path):
     assert list(platforms.Dos._files(e.battery(0))) == ["S.DAT"]
     e.save_state(after)
     shot = e.screen()
+    # the launch stored with a state ends where the program started: it must not repeat the route's writes
+    assert e._log is None and not any(k == "i" and "w" in v for k, v in e._launch)
     e.load_state(before)                                                # back to before the save: file gone
     assert e.battery(0) == b""
     e.load_state(after)
