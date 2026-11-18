@@ -39,9 +39,10 @@ to hold here too **(inferred)**.
 | Document | Covers |
 |---|---|
 | [maps.md](maps.md) | the six floors drawn from the game data, special squares, connections between floors |
+| [castle.md](castle.md) | Training Grounds, inn, Boltac's stock and prices, temple, saving |
+| [combat.md](combat.md) | orders, spells in battle, damage messages, rewards, chests and traps, death |
+| [story.md](story.md) | Gnilda's quest, the five regalia pieces, the key chain, the ending |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
-<!-- To add while playing: castle.md (tavern, inn, shops, temple, training), combat.md, characters.md (races,
-     classes, stats), items.md (the Knight's regalia), enemies.md. -->
 
 ## Sources
 | Source | URL | Used for |
