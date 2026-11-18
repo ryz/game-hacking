@@ -122,6 +122,35 @@ Current snapshot; history in `progress-log.md`.
 | pokemon-blue | Pokémon Blue Version (USA, Europe) | scouted + first capture 2026-11-15; design docs battle, pokemon, progression, world, economy, findings | main: 92 shots (verified 92/92); sequences seq-fishing (15), seq-fly (9) with GIF clips; saves 01-06 (start, late test, starter lab, Boulder Badge, Lorelei, Hall of Fame) |
 
 ## Next
+- **DOS handoff (2026-11-18, from the session that built the backend; nothing below is started):**
+  1. Fix in the Might and Magic 1 (DOS) set: three pixel-identical pairs (`sorpigal_inn_sign`/`encounter_retreat`,
+     `temple_price`/`temple_poisoned`, `trap_door_after`/`dungeon_darkness`: retake the second of the first two,
+     drop the third); 33 captions over 80 characters; macros `LOWHP` and `WORTHY` use the wrong record spacing
+     (0x7F, real 0x80): correct them as new macro names and retake `death_party_down`, `gameover`, `ending_*`.
+  2. Tools, each asked for by a run: `shoot.py` should refuse or list pixel-identical shots and captions over
+     the limit at `--verify`/`--publish` (would have caught 1.); drop the old file when an id or category
+     changes; `play.py unsnap` without a session; contact sheet in pages above about 100 shots; run
+     `tools/lenses.py` at `--publish`.
+  3. Speed: every shot powers a machine on, replays the launch through DOSBox Pure's start menu (about 420
+     frames) and loads a state. Options: start the program without the menu (a `run` key in game.json written
+     into the save ZIP as the core's auto-start, to be tried), or let `shoot.py` keep one machine for a whole set.
+  4. Test gap: the test ZIP has one program, which the core starts without its menu; both state bugs found
+     with the real game sat on the menu path. Add a second program to `tests/make_dos_zip.py` and a test that
+     boots through the menu, saves before and after launch, and loads in a fresh process.
+  5. Waiting: routes use fixed waits because cursor and animated screens never settle. A token that waits
+     until the picture changes and then holds still for N frames would shorten routes and remove the
+     key-buffer trap.
+  6. Reading text: `peek` does not reach video memory (A0000-BFFFF). For text-mode games a text dump of the
+     screen would let agents read instead of look.
+  7. Untested on DOS: mouse tokens, a game with CD image or installer, machines other than `svga`, cycles other
+     than 1500, a game that needs a sound card choice. Expect work with the first game that needs each.
+  8. Scout rules worth promoting once seen a second time (open in `skills/game-scout/feedback.md`): check a
+     record table's spacing on the second and the last entry, not only the first; extend the empty-cache
+     check to the disk for games that save to files.
+  9. The environment has no setup script: each new container builds the emulators (minutes) and has no dumps.
+     A setup script running `sh tools/setup_emu.sh` would remove the build; the dumps still need the owner.
+  10. Content: the other ten games have no systems/interface/content documents; Might and Magic 1 now exists
+      on NES, DOS and Apple II, a comparison of the three versions is possible from the existing sets.
 - Pokémon Blue leftovers (optional): trainer "!" spotting, a PC box with Pokémon, Safari BAIT, stone evolution,
   Rocket Hideout; the MID recipe has never been shown on screen.
 - `--model sgb` hangs on the SGB transfer screen (Pokémon Blue, pc=20b4): gbemu-cli SGB handshake; until fixed,
