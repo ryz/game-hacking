@@ -5,3 +5,8 @@ title | Title menu: Start Game / Select Switch, cursor on Start Game | pow,TITLE
 castle | Castle menu, party of six (RYZ CONDI EBO CUBI DEDDO MNZ) in the party, level 1, no equipment | @title,start,w60,start,w60,TRAINING,PARTYMAKE,b,w30,ADDPARTY,settle
 start | Maze floor 1 at the stairs (0,0) facing north, party of six, first control | @castle,MAZE,settle
 battle | Floor 1 (0,3): 5 Small humanoids (unidentified), party surprised them, RYZ's options Fight/Parry/Run/Take back | @start,up,up,up,w60,settle,a,w90,settle
+veterans | Castle menu, battery save 01_party with the playtest party poked to a veteran party (levels 10-13, spells, gold; macro VETERANS) and formed | sav:01_party,CASTLE,VETERANS,ADDPARTY,settle
+vstart | Floor 1 (0,0) facing north with the veteran party | @veterans,MAZE,settle
+f4elev | Floor 4 elevator (10,8) reached by the floor 1 elevator (button D): floor 4 initialised (fixed fights armed), veterans | @vstart,poke:003D=01,poke:003B=0A,poke:003C=07,poke:003E=00,left,w30,right,w30,up,w60,settle,down*3,a,w90,settle
+f4 | Floor 4 (10,8) on the elevator after leaving its menu (floor initialised via the floor 1 elevator, button D), veterans | @f4elev,b,w30,settle
+f4fight | Floor 4 (12,13): fixed fight (Lvl 7 Fighters/Mages, High Clerics, Man in kimono), RYZ's options, veterans | @f4,poke:003B=0D,poke:003C=0D,poke:003E=03,left,w30,right,w30,a,w90,settle,w90,settle

@@ -1,36 +1,47 @@
-# id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/wizardry-nes/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
 boot_nexoft | boot | Boot: NEXOFT Corporation logo | pow,w90
 title_screen | title | Title: Wizardry - Proving Grounds of the Mad Overlord, Start Game / Select Switch | @title
 options_switch | options | Select Switch: maze SOLID/LINE, music ON/OFF, sound ON/OFF, Return to title | @title,down,w30,start,w120
 boot_copyright | boot | Copyright page: Andrew Greenberg and Sir-Tech 1990, Game Studio, Nexoft | @title,start,w60
 castle_menu | menu | Castle: Gilgamesh's Tavern, Adventurer's Inn, Boltac's Trading Post, Temple of Cant, Edge of Town | @castle
 edge_of_town | menu | Edge of Town: Training Grounds, Maze, Restart an "Out" party, Leave Game, Castle | @castle,b,w30
+training_menu | menu | Training Grounds: Create, Inspect, Delete, Change Name, Change Class, Leave | @castle,down*2,a,w60,settle,b,w30,up,a,w60,a,w60,settle
 training_name | system | Training Grounds > Create: the name keyboard, "R" typed | @castle,b,w30,a,w60,a,w60,down,right*3,a,w20
-# training_race | system | Choose Race: Human Elf Dwarf Gnome Hobbit | (route: name, ret, Yes - see MAKE1 tokens up to the race menu)
-# training_stats | system | Bonus points screen with the eligible classes list | (MAKE1 up to the stats screen, before the final Right)
-# training_class | system | Select Class with several choices (MNZ: Mage / Cleric / Wizard) | (MAKE6 up to the class menu)
+training_confirm | system | Training Grounds: name RYZ typed, Create this Character? Yes/No | @title,start,w60,start,w60,TRAINING,a,w60,select,w20,down*1,right*3,a,w20,right*2,a,w20,down*2,left*5,a,w20,up*2,right*12,a,w60,settle
+training_race | system | Training Grounds: Choose Race - Human, Elf, Dwarf, Gnome, Hobbit | @title,start,w60,start,w60,TRAINING,a,w60,select,w20,down*1,right*3,a,w20,right*2,a,w20,down*2,left*5,a,w20,up*2,right*12,a,w60,settle,a,w60,settle
+training_alignment | system | Training Grounds: Choose Alignment - Good, Neutral, Evil | @title,start,w60,start,w60,TRAINING,a,w60,select,w20,down*1,right*3,a,w20,right*2,a,w20,down*2,left*5,a,w20,up*2,right*12,a,w60,settle,a,w60,settle,a,w60,settle
+training_bonus | system | Bonus points: Human base scores (8 8 5 8 8 9) and 7 bonus points to share | @title,start,w60,start,w60,TRAINING,a,w60,select,w20,down*1,right*3,a,w20,right*2,a,w20,down*2,left*5,a,w20,up*2,right*12,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle
+training_stats | system | Bonus points spent: Strength 17, Vitality 13; eligible class list shows Fighter | @title,start,w60,start,w60,TRAINING,a,w60,select,w20,down*1,right*3,a,w20,right*2,a,w20,down*2,left*5,a,w20,up*2,right*12,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle,poke:0254=10,poke:0255=07,poke:0256=04,poke:0257=0C,poke:0258=09,poke:0259=08,poke:025B=06,right,down,right,down,right,down,right,down,right,down,right,settle
+training_class | system | Select Class for MNZ (Elf, IQ 15, Piety 14): Mage, Cleric or Wizard (Bishop) | @title,start,w60,start,w60,TRAINING,a,w60,select,w20,down*1,right*3,a,w20,right*2,a,w20,down*2,left*5,a,w20,up*2,right*12,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle,poke:0254=10,poke:0255=07,poke:0256=04,poke:0257=0C,poke:0258=09,poke:0259=08,poke:025B=06,right,down,right,down,right,down,right,down,right,down,right,settle,a,w60,settle,a,w60,settle,a,w60,MAKE2,MAKE3,MAKE4,MAKE5,a,w60,down*3,right*6,a,w20,left*1,a,w20,left*5,a,w20,up*2,right*12,a,w60,a,w60,down*1,a,w60,a,w60,poke:0254=06,poke:0255=0E,poke:0256=0D,poke:0257=06,poke:0258=09,poke:0259=05,poke:025B=06,right,down,right,down,right,down,right,down,right,down,right,a,w60,down,settle
 tavern_roster | menu | Gilgamesh's Tavern > Add: the roster, six pre-made characters and the playtest party | sav:01_party,CASTLE,a,w60,a,w60
+tavern_menu | menu | Gilgamesh's Tavern: Add, Remove, Inspect, Divvy Gold; veteran party of six below | @veterans,a,w60,down*2,a,w60,down*4,a,w60,settle,down*3,a,w60,settle,a,w60,settle,b,w60,b,w60,b,w60,settle
 inspect_sheet | inventory | Inspect: RYZ, Human Fighter, level 1, stats, gold, HP, spell points | @castle,a,w60,down*2,a,w60,a,w60
-# shop_boltac | shop | Boltac's Trading Post buy list | @castle,down*2,a,w60,... (not explored)
-# inn_rooms | menu | Adventurer's Inn: room choice (stables ... royal suite) | @castle,down,a,w60,...
-# temple_cant | menu | Temple of Cant | @castle,down*3,a,w60,...
+inspect_mage | inventory | Inspect: DEDDO, level 13 Elf Mage, 458301 E.P., mage spell points 9/8/6/4/3/2/1 | @veterans,a,w60,down*2,a,w60,down*4,a,w60,settle
+spellbook_mage | inventory | Read Spell > Mage: DEDDO's spell book, all 21 mage spells Halito to Tiltowait | @veterans,a,w60,down*2,a,w60,down*4,a,w60,settle,down*3,a,w60,settle,a,w60,settle
+spellbook_cleric | inventory | Read Spell > Cleric: EBO's book, 29 cleric spells Kalki to Kadorto | @veterans,a,w60,down*2,a,w60,down*4,a,w60,settle,down*3,a,w60,settle,a,w60,settle,b,w60,b,w60,b,w60,settle,down*2,a,w60,down*2,a,w60,down*3,a,w60,down,a,w60,settle
+inn_rooms | menu | Adventurer's Inn: Stables (free), Cot 10, Economy 50, Merchant 200, Royal suite 500 gp/week | @castle,poke:661D=10,poke:661E=83,down,a,w60,a,w60,settle
+inn_levelup | system | Inn: RYZ rests in a cot and makes the next level - stat changes and hit points | @castle,poke:661D=10,poke:661E=83,down,a,w60,a,w60,settle,down,a,w60,settle
+shop_boltac | shop | Boltac's Trading Post: Buy, Sell, Uncurse, Identify, Pool Gold - RYZ has 1873 G.P. | @castle,poke:661D=10,poke:661E=83,down,a,w60,a,w60,settle,down,a,w60,settle,a,w60,settle,b,w30,b,w60,settle,poke:6617=18,poke:6618=73,down*2,a,w60,a,w60,settle
+shop_buy | shop | Boltac's: Purchase which? Long sword 25, Anointed flail 150, shields 20 and 40 G.P. | @castle,poke:661D=10,poke:661E=83,down,a,w60,a,w60,settle,down,a,w60,settle,a,w60,settle,b,w30,b,w60,settle,poke:6617=18,poke:6618=73,down*2,a,w60,a,w60,settle,a,w60,settle,a,w60,settle
+shop_bought | shop | Boltac's: Long sword bought - "* Just want you needed *" (the game's own typo) | @castle,poke:661D=10,poke:661E=83,down,a,w60,a,w60,settle,down,a,w60,settle,a,w60,settle,b,w30,b,w60,settle,poke:6617=18,poke:6618=73,down*2,a,w60,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle
+shop_armor | shop | Boltac's stock scrolled: armor from Robes 15 to Plate mail 750, Helm, potion of Curing | @castle,poke:661D=10,poke:661E=83,down,a,w60,a,w60,settle,down,a,w60,settle,a,w60,settle,b,w30,b,w60,settle,poke:6617=18,poke:6618=73,down*2,a,w60,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,down*7,a,w60,a,w60,down,w30,settle
+shop_sell | shop | Boltac's: Sell which? Long sword 12, Large shield 20 - half the price | @castle,poke:661D=10,poke:661E=83,down,a,w60,a,w60,settle,down,a,w60,settle,a,w60,settle,b,w30,b,w60,settle,poke:6617=18,poke:6618=73,down*2,a,w60,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,settle,a,w60,down*7,a,w60,a,w60,down,w30,settle,b,w60,down,a,w60,settle
+temple_cant | shop | Temple of Cant: who shall we help? Dead 250, paralyzed 100, ashed 500 gold (level 1) | @castle,poke:6125=05,poke:6120=00,poke:6325=03,poke:6425=06,poke:6420=00,down*3,a,w60,settle
+temple_cured | shop | Temple: MURMUR - CHANT - PRAY - INVOKE, FIGHTER2 has been cured | @castle,poke:6125=05,poke:6120=00,poke:6325=03,poke:6425=06,poke:6420=00,down*3,a,w60,settle,a,w60,settle,poke:6617=18,poke:6618=73,a,w60,settle,w180,settle
+save_leave | save | Leave Game: *Caution* Turn Power switch off while pressing Reset switch (the save point) | @veterans,b,w30,down*3,a,w60,w120,settle
 maze_start | gameplay | Maze floor 1 at the entrance stairs (0,0), party window | @start
 maze_fullview | hud | Maze view with the party window hidden (Start toggles it) | @start,start,w30
 maze_menu | menu | Maze menu (Select): Quit / Search / Set Timer / Leave | @start,select,w60
 camp_menu | menu | Camp (B): Inspect / Reorder / Equip / Leave | @start,b,w60
 elevator | system | Elevator on floor 4: "There are buttons here, press one" A-D | @start,poke:003D=04,poke:003B=0A,poke:003C=07,left,w30,right,w30,up,w60
 battle_options | battle | Battle: 5 Small humanoids (unidentified), RYZ's options Fight/Parry/Run/Take back | @battle
-# battle_spell | battle | Mage casting (needs a non-surprise round: vary the wN before the encounter) |
-# battle_result | battle | Victory: experience and gold | (fight out @battle: a for each member, then w10*N)
-# dumapic / map | map | Location display (DUMAPIC / message $9C, bank 2 $A7A1) | cast DUMAPIC from camp
-# dark_zone | gameplay | Darkness: floor 1 dark corridor x 9-10 | @start,poke:003B=09,poke:003C=05,...
-# spinner_pit | system | pit/spinner squares (floor 3 (0,7) pit, (0,3) spinner) | warp tokens in the playbook
-# murphy | boss | Murphy's ghost, fixed encounter floor 1 (9,13) |
-# werdna | boss | Werdna, floor 10 (17,4) | warp + high-level party
-# gameover | gameover | party wiped |
-# save_leave | save | Leave Game caution page (the save point) | @castle,b,w30,down*3,a,w60,w120
+battle_fixed | battle | Floor 4 guarded room: Lvl 7 Fighters, Lvl 7 Mages, High Clerics, Man in kimono | @f4,poke:003B=0D,poke:003C=0D,poke:003E=03,left,w30,right,w30,a,w90,settle,w90,settle
+battle_cleric_options | battle | EBO's options: Fight, Parry, Spell, Dispell, Run, Take back; RYZ and CONDI set to Fight | @f4fight,a,w30,settle,a,w30,a,w30,a,w30,settle
+battle_spell_menu | battle | Cast what Spell? Cleric Spell L5 (3 left): Dialma, Badialma, Litokan, Badi | @f4fight,a,w30,settle,a,w30,a,w30,a,w30,settle,down*2,a,w30,settle,right*4,w20,settle,down,w20,settle,down*3,w20,settle
+battle_orders | battle | Orders for the round: Fight, Fight, Litokan, Parry, Mahalito; MNZ (Wizard) has no Fight | @f4fight,a,w30,settle,a,w30,a,w30,a,w30,settle,down*2,a,w30,settle,right*4,w20,settle,down,w20,settle,down*3,w20,settle,a,w20,settle,down*2,a,w30,settle,down,a,w30,a,w30,down,a,w30,down*2,a,w30,settle,a,w30,down*2,a,w30,settle
+battle_cast_cleric | battle | EBO (Cleric) casts a Litokan: a Lvl 7 Mage takes 17 damage | @f4fight,a,w30,settle,a,w30,a,w30,a,w30,settle,down*2,a,w30,settle,right*4,w20,settle,down,w20,settle,down*3,w20,settle,a,w20,settle,down*2,a,w30,settle,down,a,w30,a,w30,down,a,w30,down*2,a,w30,settle,a,w30,down*2,a,w30,settle,a,w60,a,w30,w30,w30,w30,w30,w30,w30,w30,w30,w30,w30,w30,settle,settle,a,w40,settle
+battle_cast_mage | battle | DEDDO (Mage) casts a Mahalito: a High Cleric takes 16 damage | @f4fight,a,w30,settle,a,w30,a,w30,a,w30,settle,down*2,a,w30,settle,right*4,w20,settle,down,w20,settle,down*3,w20,settle,a,w20,settle,down*2,a,w30,settle,down,a,w30,a,w30,down,a,w30,down*2,a,w30,settle,a,w30,down*2,a,w30,settle,a,w60,a,w30,w30,w30,w30,w30,w30,w30,w30,w30,w30,w30,w30,settle,settle,a,w40,settle,a,w40,settle,a,w40,settle,a,w40,settle
+battle_melee | battle | CONDI attempts to slice a Lvl 7 Fighter and hits once for 6 damage | @f4fight,a,w30,settle,a,w30,a,w30,a,w30,settle,down*2,a,w30,settle,right*4,w20,settle,down,w20,settle,down*3,w20,settle,a,w20,settle,down*2,a,w30,settle,down,a,w30,a,w30,down,a,w30,down*2,a,w30,settle,a,w30,down*2,a,w30,settle,a,w60,a,w30,w30,w30,w30,w30,w30,w30,w30,w30,w30,w30,w30,settle,settle,a,w40,settle,a,w40,settle,a,w40,settle,a,w40,settle,a,w40,settle,a,w40,settle,a,w40,settle,a,w40,settle,a,w40,settle
