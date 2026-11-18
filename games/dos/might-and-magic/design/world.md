@@ -78,6 +78,50 @@ seen on screen)**. The door wants a Key Card and all five projectors used by eve
 reading; with a Key Card placed in a backpack the door still said "KEY CARD IS REJECTED!": verified, cause
 not found)**.
 
+## 7. How each area looks (round 2 survey)
+One view down a free corridor of each of the 55 areas was taken with `tools/survey.py` **(verified by those
+frames; which picture data each area loads was not decoded: the file with the wall pictures has 17 blocks)**.
+| Look | Areas | Shots |
+|---|---|---|
+| Town: large white bricks, wooden doors between torches, shop signs | Sorpigal, Portsmith, Algary, Dusk, Erliquin | `start_inn_door`, `door_locked`, `portsmith_inn_sign` |
+| Cavern: grey-green rock, portcullises | caverns 1-9 | `dungeon_lit`, `env_cave6`; unlit: `dungeon_darkness` |
+| Castle and dungeon: smaller white bricks; doors differ by place | Doom (plain), Blackridge North and South and White Wolf (cyan doors under red banners), Alamar (carved wooden doors), Quivering Forest 2 (blue portcullis), Raven's Wood, Enchanted Forest, Dragadune and below, the demon's stronghold, PP 1-4, Astral Plane (plain) | `env_doom`, `env_blackridge_s`, `env_whitewolf`, `env_alamar`, `env_qvl2`, `env_udrag1`, `env_demon`, `astral_room` |
+| Wilderness: forest | C-1, C-2, C-4, D-1, D-4, E-1, E-2, E-3 | `env_forest_c1`, `outdoors_first`, `env_road_d1` |
+| Wilderness: brown mountains | A-3, B-3, C-2, C-3, D-2, D-3, E-4 | `env_mountains_d3` |
+| Wilderness: striped rock walls | A-1, A-4, B-2 | `env_cliffs_a1` |
+| Wilderness: ice mountains and frozen ground | A-2, B-1, B-2 | `env_ice_a2`, `env_glacier_b1` |
+| Wilderness: sea and beach | A-3, A-4, B-4, C-4 | `env_sea_a3`, `env_beach_a4`, `env_coast_c4` |
+| Wilderness: swamp reeds | D-4, E-4 | `env_swamp_d4` |
+| Wilderness: volcano and lava (red) | E-1, E-2 | `env_volcano_e1`, `env_lava_e2`, `e1_volcano` |
+In the wilderness the terrain belongs to the square, so one sector mixes several of these.
+
+## 8. Fixed fights found by the survey
+`tools/survey.py` stepped onto every event square of all 55 areas and read the monster list **(RAM; the groups
+with a shot are verified on screen)**. A selection; the full lists are written to
+`work/scout/dos/might-and-magic/survey/` when the tool is run.
+| Area | Square | Group |
+|---|---|---|
+| Dusk | north wall (0,12) to (7,13) | Ghouls, Mummies (`battle_mummies`), Specters, Banshees, Phantoms, Wights, Gargoyles, Vampires |
+| Cavern 2 | fifteen squares | four of a kind each: Centaurs, Barbarians, Dinolizards, Militiamen, Druids, Giant Spiders, Caryatid Guards (`battle_caryatids`), Gargantuan Ants, Wild Boars, Cyclops (`battle_cyclops`), Ogres, Acidic Blobs, Fire Beetles |
+| Cavern 3 | (8,7) | Demon Lord, Greater, Lesser and Minor Demons (`boss_demon_lord`); elsewhere Orc war bands with Chieftains and Ogres |
+| Cavern 6 | (1,12), (0,15) | four Aliens (`battle_alien`), four Invisible Things |
+| Cavern 9 | (15,4), (13,5), (14,6) | Medusas (`battle_medusas`), Basilisks |
+| Sector A-1 | (5,2) after accepting | Dark Rider and eleven Warriors (`boss_dark_rider`) |
+| Sector A-2 | (10,4), (14,2), (11,3) | ten, five, one Red Dragons (`battle_red_dragons`) |
+| Sector B-2 | (2,1), (0,15) | five Mummies and a Lich (`boss_lich`); five Assassins and a Black Knight (`battle_assassins`) |
+| Sector D-1 | (10,5) | the Scorpion and eleven Giant Scorpions (`boss_scorpion`) |
+| Quivering Forest 1 | eleven squares | Okrim (`qvl_okrim`), hydras (`qvl_hydras`), Centaurs (`battle_centaurs`), Dinobeetles (`battle_dinobeetles`), Cave Giants with a Warlock, Fire Lizards with Trolls |
+| Quivering Forest 2 | ten squares | Hippogriffs and Harpies (`battle_hippogriffs`), Minotaurs, Magicians, Druids and Clerics |
+| Raven's Wood 2 | ten squares | Giants of four kinds (`battle_giants`), dragons with a Mummy, hydras, Assassins with a Chaotic Knight |
+| Enchanted Forest 1 / 2 | ten / eleven squares | Cockatrices and Pegasi (`battle_cockatrices`); Werewolves (`battle_werewolves`), the Gray Minotaur with twelve Minotaurs (`boss_gray_minotaur`) |
+| Below Dragadune 1 / 3 | eleven / thirteen squares | Lepers, Rotting Corpses, Zombies (`battle_lepers`); Elementals (`battle_elementals`), Evil Eyes (`boss_evil_eyes`), White Dragons (`battle_white_dragons`), Arch Mage, High Clerics, Ghosts, Steel Golems |
+| PP 1 | eleven squares | Giant Scorpions (`battle_scorpions`), Magicians (`battle_magicians`), Silver Dragons, Gargoyles, Stone Golems |
+| Cavern 1 | the Arena (1,13) | two Unicorns (`cave_arena_fight`) |
+Other things the survey showed: sector C-1 has deserted merchant wagons to search (`env_forest_c1`); Portsmith's
+blacksmith sells Spear 15, Mace 40, Scimitar 40, Short Bow 75, Glaive 80, Bardiche 80; Large Shield 50; 10
+Foot Pole 10, Smelling Salt 50, Curing Potion 350, Antidote Brew 500 (`portsmith_weapons`, `portsmith_armor`,
+`portsmith_misc`) **(verified)**.
+
 ## Open questions
 - How the areas connect on foot (exits, stairs, portals) beyond Sorpigal and C-2.
 - The quest chains of Lord Ironfist, the king and the other lords; where the Key Card and the Eye of Goros are.

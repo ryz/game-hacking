@@ -43,6 +43,9 @@ the Inner Sanctum **(source: Wikipedia)**.
 | [combat.md](combat.md) | encounter options, the combat screen, numbers measured, going down, treasure |
 | [world.md](world.md) | the 55 areas, the five towns, cavern, wilderness, castles, the Astral Plane and the ending |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
+| [systems.md](systems.md) | game-design lens: every feature, system and mechanic in one table, with shots |
+| [interface.md](interface.md) | UI/UX lens: conventions, every screen, menu, prompt and message, the screen flow |
+| [content.md](content.md) | variety lens: environments, opponents, items, spells, people, as samples with totals |
 
 Still planned: the 94 spells with what was seen of each, items and prices beyond Sorpigal, how the areas connect.
 

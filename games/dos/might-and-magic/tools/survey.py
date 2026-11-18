@@ -10,7 +10,8 @@ square and reads the encounter list from memory, so the result is text:
   work/scout/dos/might-and-magic/survey/NN_NAME_view.png   a plain view down a free corridor (the area's wall set)
 Squares: the event squares of the area's .OVR (facing from its mask) and the squares whose property byte has
 bit 80 without an event entry (random fight squares, entered facing north).
-Base route: @equipped, Light (MNZ), WARP to (8,8) of the area. Memory: encounter count 15E80, monster ids 15E88..
+Base route: @equipped, Light (MNZ), WARP to (8,8) of the area. Memory: the encounter list is two arrays of 15: 15E88 number within a group of 16, 15E59 group (1-based);
+monster number = (group - 1) * 16 + number (Vampire 124 = group 8, number 12; Okrim 195 = group 12, number 19).
 """
 import os, sys, zipfile, tempfile
 from multiprocessing import Pool
@@ -63,16 +64,18 @@ def survey(idx):
     def visit(o, f, wait=250):
         m.load_state(st)
         m.poke(0x15E68, bytes([o & 15, o >> 4, o])); m.poke(0x15E6D, bytes.fromhex(FACE[CW[f]]))
-        m.poke(0x15E80, bytes(24))
+        m.poke(0x15E80, bytes(24)); m.poke(0x15E59, bytes(15))
         E.step(m, g, "left"); E.step(m, g, "w%d" % wait)
         return m.image().convert("RGB").copy()
     for o, f, kind in jobs:
         im = visit(o, f)
-        n = m.peek(0x15E80, 1)[0]; ids = bytes(m.peek(0x15E88, 15))
+        tier = bytes(m.peek(0x15E59, 15)); low = bytes(m.peek(0x15E88, 15))
+        ids = [(b + 16 * (t - 1) if t else b) if b else 0 for b, t in zip(low, tier)]
         txt = ""
-        if n and ids[0]:
+        if ids[0]:
             c = {}
-            for b in ids[:n]: c[b] = c.get(b, 0) + 1
+            for b in ids:
+                if b: c[b] = c.get(b, 0) + 1
             txt = " -> " + ", ".join("%d %s (pic %02X)" % (k, mon.get(b, ("?%02X" % b, 0))[0], mon.get(b, ("", 0))[1]) for b, k in c.items())
         lines.append("%2d,%2d %s %s%s" % (o & 15, o >> 4, f, kind, txt)); tiles.append(("%d,%d %s %s" % (o & 15, o >> 4, f, kind), im))
     # a plain view: a square with two free squares ahead, no events

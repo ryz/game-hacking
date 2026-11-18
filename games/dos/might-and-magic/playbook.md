@@ -63,19 +63,19 @@ Every screen prints its own keys; all input is single keystrokes (no Enter neede
 | | `p` | protect: active party spells | verified |
 | | `r` | rest (uses 1 food each, restores HP/SP) | prompt verified, resting source |
 | | `s` | search the square (after a fight: treasure) | verified ("SEARCH: NOTHING") |
-| | `b` | bash a locked door | source (manual) |
+| | `b` | bash a locked door | verified (gas trap, door gave way: `bash_trap`) |
 | | `u`, then `1`-`6` | unlock: that character picks the lock (Robber) | verified (CUBI, Sorpigal (3,7) south door) |
 | | `q` | quick reference: HP, SP, AC, food, condition of all six; `1`-`6` opens a profile | verified |
 | | `1`-`6` | character profile | verified |
 | | `v` | sound on/off (not on the list) | source (manual) |
-| Profile (in play) | `c` cast (level, number), `d` discard, `e` equip (`a`-`f`), `g` gather, `r` remove (`1`-`6`), `s` share, `t` trade, `u` use, `q` quick ref, `esc` | equip, remove verified; the rest source (manual) |
+| Profile (in play) | `c` cast (level, number), `d` discard, `e` equip (`a`-`f`), `g` gather, `r` remove (`1`-`6`), `s` share, `t` trade, `u` use, `q` quick ref, `esc` | all verified (round 2) |
 | Prompts (shops, stairs, statues, inn) | `y` / `n` | answer | verified |
 | Shop menus | `a`-`f` | pick the entry / buy that item | verified (blacksmith) |
 | | `g` / `1`-`6` / `esc` | gather the party's gold on the shopper / other character / back | listed on screen, not pressed |
-| Encounter | `a` attack, `b` bribe, `r` retreat, `s` surrender | (only when the party is not surprised) | attack verified, rest source |
+| Encounter | `a` attack, `b` bribe, `r` retreat, `s` surrender | (only when the party is not surprised) | all verified; bribe accepted once, surrender never |
 | Combat | `a` | attack monster A | source (manual); listed on screen |
 | | `ctrl>a` | quick fight: attack / shoot / block, whichever applies | verified (macro `QA`) |
-| | `f` fight (pick the monster), `s` shoot, `b` block, `e` exchange places, `r` retreat, `u` use | | listed on screen, not pressed |
+| | `f` fight (pick the monster), `s` shoot (no target prompt), `b` block, `e` exchange places, `r` retreat, `u` use | | all pressed (round 2); block and retreat print nothing |
 | | `c`, level digit, number digit, target letter | cast a combat spell | verified (MNZ: `c,1,4,a` Flame Arrow) |
 | | `d` + `0`-`9` | message delay (5 default) | source (manual) |
 | | `p`, `q`, `1`-`6` | protect, quick ref, profile (do not use the turn) | listed on screen |
@@ -146,8 +146,10 @@ comments at its end). Done: [x] title and demo scenes, [x] menus and roster, [x]
 Sorpigal services, [x] exploration commands (order, protect, rest, unlock, cast, location), [x] combat from the
 encounter options to victory, spell, shooting, search, [x] level-up, [x] death and game over, [x] lit cavern
 with its events and monsters, [x] wilderness (C2, A1, E1), [x] towns 2-5, [x] castles Alamar, Doom, White Wolf,
-[x] Quivering Forest, [x] Astral Plane and the ending text. Open: [ ] surprised party, [ ] bash/trade, [ ]
-temple cure, [ ] tavern rumors, [ ] the areas not scanned, [ ] the impostor.
+[x] Quivering Forest, [x] Astral Plane and the ending text. Round 2 (242 shots): [x] bash, unlock results, traps, [x] trade, share, gather, discard, use, remove, equip refused, [x] temple cure, donation, raise price,
+[x] tavern drink and rumor, market, training refused, selling, [x] all statues, trap door, leprechaun trip, [x] combat orders and spells, conditions,
+[x] 30 more groups incl. Demon Lord, Lich, Dark Rider, dragons, [x] every terrain and wall look, [x] all 55 areas surveyed.
+Open: [ ] a surprised party, [ ] Search finding treasure, [ ] rest interrupted, [ ] accepted surrender, [ ] item used in combat, [ ] the impostor.
 Distinctive for this version: the text-and-wireframe look in four colours, creation by re-rolling, everything
 driven by letter keys, the encounter options (bribe, surrender), handicap line.
 
@@ -251,7 +253,7 @@ Physical addresses; valid for this ZIP and model `svga-1500` (the load address d
 | 15E6C | 1 | wall byte of the current square | read (44 in an east-west corridor) |
 | 15E6D-15E70 | 4 | wall masks for forward, left, right, back (N C0, E 30, S 0C, W 03) | diff over turns |
 | 15E71-15E74 | 4 | square-index steps for forward, left, right, back (N 10, E 01, S F0, W FF) | same; facing poke = all 8 bytes, verified |
-| 1682C + 7F*n | 127 | party member n (0-5) record, same layout as a `ROSTER.DTA` record | search for the name |
+| 1682C + 80*n | 128 | party member n (0-5): ~~1682C + 7F*n, 127 bytes~~ the records in memory are 0x80 apart (names at 1682C, 168AC, 1692C, 169AC, 16A2C, 16AAC: read 2026-11-18 round 2); the 127-byte layout below is right inside each | search for the name |
 | record +00 | 16 | name (capitals, zero padded) | read |
 | +10..+14 | 5 | sex (1 male, 2 female), alignment at creation, alignment (1 good, 2 neutral, 3 evil), race (1 human, 2 elf, 3 dwarf, 4 gnome, 5 half-orc), class (1 knight, 2 paladin, 3 archer, 4 cleric, 5 sorcerer, 6 robber) | read against the profiles of six characters |
 | +15..+22 | 14 | seven statistics, two bytes each (base, current): Int, Mgt, Per, End, Spd, Acy, Luc | read |
@@ -265,7 +267,7 @@ Physical addresses; valid for this ZIP and model `svga-1500` (the load address d
 | +39 | 3 | gold | poke verified (RYZ 16865) |
 | +3D | 1 | armor class shown | read |
 | +3E | 1 | food | read |
-| +3F | 1 | condition (0 good) | read |
+| +3F | 1 | condition bits: 01 asleep, 02 blinded, 04 silenced, 08 diseased, 10 poisoned, 20 paralyzed, 40 unconscious; with 80 set: C0 dead, A0 stone, E0 dead and stone, FF eradicated (80 alone shows nothing) | poked, read off the quick reference (round 2) |
 | +40..+45 / +46..+4B | 6 / 6 | equipped items / backpack items (item numbers: 01 Club) | read |
 | +7E | 1 | roster slot of this member (0 = A) | read |
 | 16224 | 127 | one-record buffer for roster reads (the roster itself stays on disk) | search |
@@ -277,7 +279,9 @@ Segments (this ZIP, `svga-1500`): program code at 01A80 (the area overlay's code
 10F0F), data at 12230 (x = offset 3C38; the overlay's data at offset C940 = physical 1EB70). An `.OVR` file is a
 14-byte header (code address, code length, data address, data length), code, data; the data starts with the
 event tables: count at C972, square indexes at C973, then facing masks, then handler addresses.
-Watches in `game.json`: `x`, `y`, `hp1`, `gold1`, `food1` (RYZ), `map`. Monster hit points in combat: not located.
+| 15E88 / 15E59 | 15 / 15 | encounter list while the encounter screen shows: number within a group of 16 / group (1-based); monster number = (group - 1) * 16 + number (Poltergeist 11 = group 1 number 11, Vampire 124 = 8/12, Okrim 195 = 12/19). In combat 15E88.. holds pointers to 32-byte monster records instead (2E80, 2EA0, ... in the data segment) | dumps at known groups (round 2) |
+Watches in `game.json`: `x`, `y`, `hp1`, `gold1`, `food1` (RYZ), `map`. Monster hit points in combat: not located (the 32-byte records at data offset 2E80 are the place to look).
+Program tables in MM.EXE (file offsets): monsters 195 x 32 bytes from the name "FLESH EATER" (name 15, then statistics; bytes 22-23 experience, last byte picture number 00-4B); items 255 x 24 bytes from 19B2A (name 14, flags, ..., price big-endian in bytes 20-21); `MM.RSM` is a symbol list of the program's routines (encounter, bash, trade, monhp ...).
 
 ## Emulation notes
 - Model `svga-1500` (GOG's own cycle count). About 70 frames per second; `play.py` runs ~1500 frames per second
@@ -339,6 +343,37 @@ route: use only for creation shots), `blacksmith` (shop prompt), `equipped` (aft
   at the Astral door; not understood (the ending square was reached by position poke instead).
 - Not done: surprised party, bash, trade, temple cure of a wounded character, tavern rumor text, statues other
   than one, the 34 areas not scanned, walking between areas.
+
+## Capture run 2026-11-18, round 2 (what was learned)
+- **Tools** (in `tools/` of this game): `survey.py N.. | all` keeps one emulator per area, steps onto every event
+  and fight square and writes the monster groups as text plus a labelled sheet and one plain view per area to
+  `work/scout/dos/might-and-magic/survey/` (all 55 areas: ~10 minutes); `try.py FILE --frames K [--crop ..]
+  [--peek A:N]` plays a file of `name | route` lines in parallel and tiles the last K frames (crop
+  `0,172,320,200` = the combat message lines: 27 frames of ten fights fit one sheet). Frame `#k` of a try sheet
+  is the frame after the k-th of the last K tokens: count the tokens before copying a route (an off-by-one
+  cost a reshoot here).
+- **Macros**: `STRONG` (hit points 64, 71, 58, 49, 53, 44, all three copies, right addresses), `GO:lo:hi:ss` (Light
+  + WARP to (8,8) of an area). `LOWHP` and `WORTHY` were written for 127-byte spacing: for members 2-6 they hit
+  the byte before the intended one (`LOWHP` sets hit points to 0 and gems to 256, not hit points to 1; the shots
+  made with them still reproduce and say what they show). Not changed, so the round-1 routes stay as they were.
+- **Mechanics routes that work** (all from `@equipped` unless said): locked door `AT:03:07:73,FW,left,w80` then
+  `b` (gas trap, door opens), `u,w100,4` (Robber: success), `u,w100,1` (Knight: blade trap); trade
+  `1,w100,t,w150,2,w150,2,w150,type:250,w60,enter`; share/gather `s`/`g` + `1`-`3`; use `u` + letter (+ target);
+  herbs/potion: buy at `AT:06:05:56,FN,left,w250,y,w150,c,w150,d|e`; First Aid `5,c,1,4,enter,1`; temple with a
+  wounded shopper `set:1685F=4:2`; rumor = tip twice, then `c`; bribe that is accepted:
+  `...u,w100,4,w200,w21,up,w250,b` (Guardsmen + Gnomes).
+- **Combat frames**: `@combat,a,w300` = MNZ's options; order per round MNZ, EBO, RYZ, CUBI, monsters, DEDDO,
+  CONDI. Cast result right after the last key (`enter,!` / target letter + `w20`). Monster actions: `a` then
+  `w60` steps; give `b` (block) to pass a character's prompt.
+- **Encounter timing**: the room at Sorpigal (3,6) gives another group for every extra wait before `up`
+  (w9 Goblins, w21 Guardsmen + Gnomes, ...); none of 40 waits gave a surprised party.
+- **Dead ends**: Search after two won fights found nothing; 7 rests were never interrupted; selling an item
+  (letter at the sell list) changed nothing on screen in two tries; Scroll of Fire in combat ran out of sync;
+  Sorpigal (5,15) is silent from all four sides.
+- `shoot.py --verify` of all 242 as one background job was killed after ~190 shots (exit 137, cause not found);
+  in the foreground 26 shots verify in 40 s. Renaming a shot or changing its category leaves the old PNG in the
+  work set: `play.py unsnap OLDID --set main` (needs a running session).
+- Save `04_sorpigal_equipped` (signed in after shopping).
 
 ## Open questions
 - ~~Current area number in RAM and a clean way to change area by poke~~: solved 2026-11-18, see `WARP` and the Areas table.

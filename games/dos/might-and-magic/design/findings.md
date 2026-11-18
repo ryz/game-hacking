@@ -33,3 +33,27 @@ Each entry: what the game does, what was probably intended, how sure we are, and
 **Intended:** the door with the Key Card slot is the real gate; the square itself trusts it.
 **Confidence:** (verified) with a memory edit, (RAM) for the condition.
 **Impact:** none in normal play.
+
+## A failed trap removal can end the game for a new party
+**Behavior:** "Find/remove trap" by the level 1 Robber on the gold chest in Dusk set off the blade trap; all six characters went down and the game-over text followed (`chest_find_trap`). "Open it" on the same chest by the same Robber, or by the Knight, just opened it (`chest_opened`).
+**Intended:** unclear; the manual says only the Robber has a real chance with traps.
+**Confidence:** (verified), one try each.
+**Impact:** on this chest, opening blindly was safer than trying to disarm.
+
+## The shop sells what the shopper cannot use
+**Behavior:** the blacksmith marks items the shopper's class cannot use with "-" but still sells them (Sorcerer, Short Sword, 20 gold); Equip then says "WRONG CLASS" (`shop_cant_use`, `equip_wrong_class`).
+**Intended:** probably (buying for another character).
+**Confidence:** (verified)
+**Impact:** none; trade the item on.
+
+## Rumors need tips
+**Behavior:** "listen for rumors" at the Sorpigal tavern prints nothing until the bartender has been tipped twice (`tavern_rumor`).
+**Intended:** yes.
+**Confidence:** (verified), counts of one and two tips tried.
+**Impact:** 2 gold per rumor.
+
+## A bribe can cost every character's food
+**Behavior:** Guardsmen with Gnomes took the bribe for "all your food": all six characters at 0 food afterwards (`encounter_bribe_food`).
+**Intended:** yes (manual: food, gold and/or gems).
+**Confidence:** (verified)
+**Impact:** resting needs food; a cheap escape early, expensive far from a market.
