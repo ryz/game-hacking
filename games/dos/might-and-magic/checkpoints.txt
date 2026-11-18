@@ -22,3 +22,4 @@ doom | Castle Doom at (8,8), Light cast first, WARP macro (not the castle's entr
 whitewolf | Castle White Wolf at (8,8), Light cast first, WARP macro (not the entrance square) | @equipped,CAST:6:1:6,WARP:08:08:11:0A:03
 qvl1 | Quivering Forest level 1 (QVL1) at (8,8), Light cast first, WARP macro | @equipped,CAST:6:1:6,WARP:08:08:03:0F:03
 astral | Astral Plane at (7,8), Light cast first, WARP macro; WORTHY sets every member's quest marks so the Data Keeper accepts the party | @equipped,CAST:6:1:6,WARP:07:08:1A:0B:03,WORTHY
+astral2 | Astral Plane at (7,8), Light cast first, WARP macro; WORTHY2 sets every member's quest marks (record +7D = 5F, records 0x80 apart) so the Data Keeper accepts the party; replaces astral | @equipped,CAST:6:1:6,WARP:07:08:1A:0B:03,WORTHY2

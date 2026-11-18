@@ -149,6 +149,7 @@ with its events and monsters, [x] wilderness (C2, A1, E1), [x] towns 2-5, [x] ca
 [x] Quivering Forest, [x] Astral Plane and the ending text. Round 2 (250 shots): [x] bash, unlock results, traps, [x] trade, share, gather, discard, use, remove, equip refused, [x] temple cure, donation, raise price,
 [x] tavern drink and rumor, market, training refused, selling, [x] all statues, trap door, leprechaun trip, [x] combat orders and spells, conditions,
 [x] 30 more groups incl. Demon Lord, Lich, Dark Rider, dragons, [x] every terrain and wall look, [x] all 55 areas surveyed.
+Fix-up round (249 shots): [x] duplicates removed, captions at most 80 characters, death and ending retaken with `LOWHP2` / `WORTHY2`.
 Open: [ ] a surprised party, [ ] Search finding treasure, [ ] rest interrupted, [ ] accepted surrender, [ ] item used in combat, [ ] the impostor.
 Distinctive for this version: the text-and-wireframe look in four colours, creation by re-rolling, everything
 driven by letter keys, the encounter options (bribe, surrender), handicap line.
@@ -200,8 +201,8 @@ Main character **RYZ**, then CONDI, EBO, CUBI, DEDDO, MNZ (the game shows names 
 | Change area (any of the 55) | `WARP:xx:yy:lo:hi:ss` **from anywhere in Sorpigal**: rewrites the operands of Sorpigal's own "passage outside" event (x, y, map id low, map id high, section) and takes that exit, so the game's map loader does the change. Ids and sections: table "Areas" below. Example `WARP:01:0C:03:0C:01` = Portsmith (1,12) | code of SORPIGAL.OVR | verified (17 areas) |
 | Light | `CAST:6:1:6` (MNZ casts Light; `CAST:member:level:number`). Needed in caverns and, after a WARP, in sectors A-1 and E-1 and the castles (they showed DARKNESS without it) | manual | verified |
 | Event squares of an area | `python3 games/dos/might-and-magic/tools/scan.py N "@equipped,CAST:6:1:6,WARP:..."` -> `work/scout/dos/might-and-magic/scan_N.png` | tools | verified (0-5, 14, 23, 30, 34, 37, 43, 44, 49, 50, 54) |
-| Whole party at 1 HP | `LOWHP` (then `BLK*24` in `@combat` = game over) | RAM | verified |
-| Ending | `@astral` (Astral Plane, `WORTHY` = every member's record +7D set to 5F: bit 40 "impostor defeated", bits 1F projectors), then `AT:06:07:76,FN,left,w300` | code of ASTRAL.OVR | verified |
+| Whole party at 1 HP | `LOWHP2` (then `BLK*5,b` in `@combat` = the sixth goes down, `BLK*7` = game over). ~~`LOWHP`~~ is superseded: wrong record spacing, kept in `game.json` only because old routes name it | RAM | verified (quick reference: 1/15, 1/12, 1/12, 1/9, 1/9, 1/7; gems 0) |
+| Ending | `@astral2` (Astral Plane, `WORTHY2` = every member's record +7D set to 5F: bit 40 "impostor defeated", bits 1F projectors), then `AT:06:07:76,FN,left,w300`. ~~`@astral` / `WORTHY`~~ are superseded (they marked RYZ only), kept but unused | code of ASTRAL.OVR | verified |
 | Combat spell / to victory | `FLAME` (attack, MNZ casts Flame Arrow at A); `@combat,FLAME,w240,QA*14` = victory screen | play | verified |
 | Debug features, cheat codes | none found (manual has none; TCRF and StrategyWiki refused the fetch) | - | - |
 
@@ -271,7 +272,7 @@ Physical addresses; valid for this ZIP and model `svga-1500` (the load address d
 | +40..+45 / +46..+4B | 6 / 6 | equipped items / backpack items (item numbers: 01 Club) | read |
 | +7E | 1 | roster slot of this member (0 = A) | read |
 | 16224 | 127 | one-record buffer for roster reads (the roster itself stays on disk) | search |
-| +7D | 1 | quest marks: bits 01-10 astral projectors 1-5 used, bit 40 impostor defeated, bit 80 (FF) ending already awarded | code of ASTRAL.OVR; ending verified with 5F |
+| +7D | 1 | quest marks: bits 01-10 astral projectors 1-5 used, bit 40 impostor defeated, bit 80 (FF) ending already awarded | code of ASTRAL.OVR; ending verified with 5F on all six (`WORTHY2`: 168A9 + 80*n) |
 | 12368 | 2 | current map number * 512 (offset of the map in MAZEDATA.DTA); 12369 = map number * 2 (watch `map`) | loader code; read in 6 areas |
 | 12362 / 12364 | 2 / 2 | the loaded area's data address (C940) and its event entry (F4A1) | loader code |
 | 11013-11024 | - | Sorpigal's "passage outside" handler while Sorpigal is loaded: x at 11017, y at 1101C, id low 1101E, id high 11020, section 11023 (what `WARP` pokes) | disassembly |
@@ -306,7 +307,7 @@ Program tables in MM.EXE (file offsets): monsters 195 x 32 bytes from the name "
 
 ## Checkpoints
 Capture run 2026-11-18 added: `cave1` (lit cavern below Sorpigal), `portsmith`, `algary`, `dusk`, `erliquin`,
-`outdoors` (C2), `areaa1`, `areae1`, `alamar`, `doom`, `whitewolf`, `qvl1`, `astral` (all through `WARP`, the
+`outdoors` (C2), `areaa1`, `areae1`, `alamar`, `doom`, `whitewolf`, `qvl1`, `astral` (superseded by `astral2`, fix-up round) (all through `WARP`, the
 dark ones with Light cast first). Save `03_portsmith_inn` (signed in at town 2).
 `title`, `menu`, `start` (custom party from `sav:02_ryz_party`), `created` (same party built by the creation
 route: use only for creation shots), `blacksmith` (shop prompt), `equipped` (after buying and equipping),
@@ -353,7 +354,7 @@ route: use only for creation shots), `blacksmith` (shop prompt), `equipped` (aft
   is the frame after the k-th of the last K tokens: count the tokens before copying a route (an off-by-one
   cost a reshoot here).
 - **Macros**: `STRONG` (hit points 64, 71, 58, 49, 53, 44, all three copies, right addresses), `GO:lo:hi:ss` (Light
-  + WARP to (8,8) of an area). `LOWHP` and `WORTHY` were written for 127-byte spacing: for members 2-6 they hit
+  + WARP to (8,8) of an area). `LOWHP` and `WORTHY` (superseded by `LOWHP2` / `WORTHY2`, see the fix-up round) were written for 127-byte spacing: for members 2-6 they hit
   the byte before the intended one (`LOWHP` sets hit points to 0 and gems to 256, not hit points to 1; the shots
   made with them still reproduce and say what they show). Not changed, so the round-1 routes stay as they were.
 - **Mechanics routes that work** (all from `@equipped` unless said): locked door `AT:03:07:73,FW,left,w80` then
@@ -376,6 +377,28 @@ route: use only for creation shots), `blacksmith` (shop prompt), `equipped` (aft
 - `VET` = `STRONG` + level 7 for all six, experience 57730-71344 (level 8 needs 96000: the trainer's own number), DEDDO 34 and
   MNZ 38 spell points at spell level 4, 9 and 14 gems. Spells seen with it: playbook design/characters.md section 8.
 - Saves `04_sorpigal_equipped` (signed in after shopping) and `05_sorpigal_level7` (the `VET` party with gold, for the owner's own tests of higher spells).
+
+## Fix-up round 2026-11-18 (what was learned)
+- **Macros `LOWHP2` and `WORTHY2`** use the real record spacing (0x80): `LOWHP2` = hit points 1 at 1685F, 168DF,
+  1695F, 169DF, 16A5F, 16ADF; `WORTHY2` = 5F at 168A9, 16929, 169A9, 16A29, 16AA9, 16B29. Checked on screen
+  (`@equipped,LOWHP2,q` shows 1/15, 1/12, 1/12, 1/9, 1/9, 1/7; CONDI's profile HP=1/12, GEMS=0) and in memory.
+  The old `LOWHP` gave 1, 0, 12, 9, 9, 7 hit points, 256 gems for CONDI and 261 maximum spell points for MNZ;
+  the old `WORTHY` marked RYZ only. **Both old macros and the checkpoint `astral` are superseded**: they stay in
+  `game.json` / `checkpoints.txt` (rule: a macro used by published shots is not edited) but no shot uses them.
+  New checkpoint `astral2` (= `astral` with `WORTHY2`); all five Astral shots start from it.
+- With six members at 1 hit point the Poltergeists need two rounds: `@combat,LOWHP2,a,w200,w200,BLK*5,b,!` is
+  "MNZ GOES DOWN!!!" (stars on the other five), `BLK*7,!` the game-over text.
+- Ending with all six marked: "PERFORMANCE TOTAL=399602" (it was 70122 with RYZ alone marked).
+- **Retreat** at the encounter options prints nothing; the next frame is the inn door with its sign (shot
+  dropped). **Temple**: a poisoned and a wounded character get the same menu (25 gold); the party list puts a
+  star before a member whose condition is not good, but only once the list is redrawn (open and close a
+  profile after the poke: `poke:1686B=10,1,w150,esc,w100`).
+- **Trap door** Sorpigal (5,8): "TRAP DOOR!" stays until a key; then "PLEASE WAIT" and CAVE1 (5,8) (watch `map`
+  = 0A). With `CAST:6:1:6` first the cavern is lit.
+- Lead, not tried: the Key Card at the Astral door was "REJECTED" in round 1 with the old `WORTHY`, which left
+  members 2-6 unmarked; the door's code wants the projector marks of every member, so try item FD with `@astral2`.
+- A `shoot.py --only` reshoot before the route edit is silent about it: look at the picture of every retake
+  (the first reshoot here ran with the old routes because the edit script had stopped on an assert).
 
 ## Open questions
 - ~~Current area number in RAM and a clean way to change area by poke~~: solved 2026-11-18, see `WARP` and the Areas table.

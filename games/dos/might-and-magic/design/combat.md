@@ -67,7 +67,9 @@ each asks which character tries. Opened by the Robber, the gold chest in Dusk ga
 
 ## 6. Encounter options, more results (round 2)
 - **Retreat** worked on both tries (four Poltergeists, four Mutant Larvae): the party stands in front of the inn
-  door, no fight (`encounter_retreat`) **(verified)**.
+  door, no fight **(verified)**. Retreat prints no message: the first frame after `R` is already the map view at
+  the inn door with its sign, pixel for pixel the picture `sorpigal_inn_sign`, so it has no shot of its own
+  (fix-up round 2026-11-18: 15 frames sampled from the key press on; the shot `encounter_retreat` was dropped).
 - **Bribe**: two Guardsmen with three Gnomes answered "GIVE UP ALL YOUR FOOD (Y/N)?"; after Y the fight was
   off, the party was back on the map and every character's food was 0 (`encounter_bribe_demand`,
   `encounter_bribe_paid`, `encounter_bribe_food`). Goblins, Guardsmen alone, Mutant Larvae and Poltergeists

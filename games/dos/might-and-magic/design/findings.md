@@ -63,3 +63,11 @@ Each entry: what the game does, what was probably intended, how sure we are, and
 **Intended:** unclear: either an area spell that includes whoever stands next to the target, or a fault in this version. The manual's entry was not compared.
 **Confidence:** (verified), one cast.
 **Impact:** an area spell in melee can cost more than it gains.
+- **The performance total of the ending depends on how many members carry the quest marks** (fix-up round
+  2026-11-18). With only RYZ marked (record +7D = 5F; what the old `WORTHY` macro did by mistake) the Data
+  Keeper said "PERFORMANCE TOTAL=70122"; with all six marked (`WORTHY2`) the same level-1 party gets
+  "PERFORMANCE TOTAL=399602" (`ending_sanctum`). After the ending the mark byte of every marked member reads FF
+  **(RAM)**. Both runs got the "excellent rating" text and +500,000 experience. What else enters the total was
+  not measured.
+- **Retreat at the encounter options has no message**, and a poisoned and a wounded character get the same
+  temple menu: see [combat.md](combat.md) 6 and [sorpigal.md](sorpigal.md).

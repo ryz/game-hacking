@@ -26,7 +26,7 @@ One row per distinct look or place type, not per map.
 | Town corridors | the five towns | large white bricks, wooden doors between torches, signs over service doors | `start_inn_door`, `sorpigal_inn_sign`, `door_locked`, `portsmith_inn_sign`, `leprechaun_algary` |
 | Service rooms | every town | the view stays a wall; the room is its menu and the name on the lower edge | `shop_blacksmith_menu`, `temple_services`, `tavern_menu`, `train_level2` |
 | Cavern, lit | caverns 1-9 | grey-green rock walls, white portcullises | `dungeon_lit`, `env_cave6`, `cave_wall_message` |
-| Darkness | any cavern or dungeon without light | only the word "DARKNESS" | `dungeon_darkness`, `trap_door_after` |
+| Darkness | any cavern or dungeon without light | only the word "DARKNESS" | `dungeon_darkness` |
 | Castle, plain | Castle Doom, the demon's stronghold, below Dragadune | smaller white bricks, long empty corridors | `env_doom`, `env_demon`, `env_udrag1`, `doom_golden_door` |
 | Castle with banner doors | Blackridge South, White Wolf | cyan doors under red banners | `env_blackridge_s`, `env_whitewolf`, `whitewolf_button` |
 | Castle with carved doors | Alamar | brown wooden doors with faces | `env_alamar`, `alamar_guards` |

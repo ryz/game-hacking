@@ -13,7 +13,7 @@
   {
    "id": "title_screen",
    "category": "title",
-   "caption": "Title: New World Computing presents Might and Magic, ESC to start / SPACE for scenes",
+   "caption": "Title: New World Computing presents Might and Magic; ESC starts, SPACE scenes",
    "route": "@title,!",
    "settled": false,
    "model": "svga-1500",
@@ -26,7 +26,7 @@
   {
    "id": "title_book_one",
    "category": "title",
-   "caption": "Title, second picture: New World Computing presents Book One - Secret of the Inner Sanctum",
+   "caption": "Title, second picture: Book One - Secret of the Inner Sanctum",
    "route": "pow,BOOT,w280,!",
    "settled": false,
    "model": "svga-1500",
@@ -39,7 +39,7 @@
   {
    "id": "demo_stronghold",
    "category": "extra",
-   "caption": "Demo scene (SPACE on the title): discover a warrior's stronghold or a wizard's lair",
+   "caption": "Demo scene (SPACE on the title): a warrior's stronghold or a wizard's lair",
    "route": "@title,space,w200,space,w200,space,w200,!",
    "settled": false,
    "model": "svga-1500",
@@ -104,7 +104,7 @@
   {
    "id": "create_race",
    "category": "system",
-   "caption": "Creation: class Knight chosen, select a race (Human, Elf, Dwarf, Gnome, Half-Orc)",
+   "caption": "Creation: Knight chosen, select a race: Human, Elf, Dwarf, Gnome, Half-Orc",
    "route": "@menu,c,w200,enter,w60,enter,w60,enter,w60,enter,w60,enter,w60,1,w100,!",
    "settled": true,
    "model": "svga-1500",
@@ -156,7 +156,7 @@
   {
    "id": "roster_view_all",
    "category": "menu",
-   "caption": "View all characters: letter, name, town, level and class of the seven in the roster",
+   "caption": "View all characters: letter, name, town, level and class of the seven listed",
    "route": "pow,sav:02_ryz_party,MENU,v,w150,!",
    "settled": true,
    "model": "svga-1500",
@@ -169,7 +169,7 @@
   {
    "id": "profile_menu",
    "category": "inventory",
-   "caption": "Profile opened from the roster: new Knight RYZ with a Club, Ctrl-N re-name, Ctrl-D delete",
+   "caption": "Roster profile: new Knight RYZ with a Club; Ctrl-N re-name, Ctrl-D delete",
    "route": "pow,sav:02_ryz_party,MENU,v,w150,g,w150,!",
    "settled": true,
    "model": "svga-1500",
@@ -195,7 +195,7 @@
   {
    "id": "start_inn_door",
    "category": "gameplay",
-   "caption": "First control: inside the Inn of Sorpigal facing its door, commands panel, party of six",
+   "caption": "First control: in the Inn of Sorpigal facing its door; commands, party of six",
    "route": "@start,!",
    "settled": true,
    "model": "svga-1500",
@@ -299,7 +299,7 @@
   {
    "id": "shop_misc",
    "category": "shop",
-   "caption": "Blacksmith misc: Torch 2, Rope & Hooks, Garlic, Magic Herbs, Might Potion, Scroll of Fire 300",
+   "caption": "Blacksmith misc: Torch 2, Rope & Hooks, Garlic, Magic Herbs, Scroll of Fire 300",
    "route": "@blacksmith,y,w150,a,w150,c,w150,esc,w100,b,w150,c,w150,esc,w100,c,w150,!",
    "settled": true,
    "model": "svga-1500",
@@ -312,7 +312,7 @@
   {
    "id": "shop_sell",
    "category": "shop",
-   "caption": "Blacksmith, sell item: the Short Sword bought for 20 sells for 10",
+   "caption": "Blacksmith, sell item: Club worth 0, the Short Sword bought for 20 sells for 10",
    "route": "@blacksmith,y,w150,a,w150,c,w150,esc,w100,d,w150,!",
    "settled": true,
    "model": "svga-1500",
@@ -338,7 +338,7 @@
   {
    "id": "profile_ryz",
    "category": "inventory",
-   "caption": "RYZ's profile: statistics, HP, AC, gold, Short Sword and Leather Armor equipped, commands",
+   "caption": "RYZ's profile: statistics, HP, AC, gold, Short Sword and Leather Armor equipped",
    "route": "@equipped,1,w100,!",
    "settled": true,
    "model": "svga-1500",
@@ -624,7 +624,7 @@
   {
    "id": "quickref",
    "category": "hud",
-   "caption": "Quick reference: hit points, spell points, armor class, food and condition of all six",
+   "caption": "Quick reference: hit points, spell points, AC, food and condition of all six",
    "route": "@start,q,w100,!",
    "settled": true,
    "model": "svga-1500",
@@ -663,7 +663,7 @@
   {
    "id": "cast_prompt",
    "category": "system",
-   "caption": "Casting from a profile: MNZ enters level 1, number 5 (Leather Skin), Enter to cast",
+   "caption": "Casting from a profile: MNZ enters level 1, number 5 (Leather Skin), then Enter",
    "route": "@equipped,6,w100,c,w100,1,w100,5,w100,!",
    "settled": true,
    "model": "svga-1500",
@@ -715,7 +715,7 @@
   {
    "id": "detect_magic",
    "category": "system",
-   "caption": "Detect Magic (Sorcerer 1-2): Magic Herbs and Might Potion are magic, 3 charges each",
+   "caption": "Detect Magic (Sorcerer 1-2): Magic Herbs and Might Potion are magic, 3 charges",
    "route": "@equipped,AT:06:05:56,FN,left,w250,y,w150,6,w150,g,w150,c,w150,d,w150,e,w150,esc,w100,esc,w100,6,w100,c,w100,1,w100,2,w100,enter,w200,!",
    "settled": true,
    "model": "svga-1500",
@@ -793,7 +793,7 @@
   {
    "id": "location_spell",
    "category": "map",
-   "caption": "Location spell (Sorcerer 1-7): in town, map sector C-2, surface and inside coordinates, facing",
+   "caption": "Location (Sorcerer 1-7): in town, map sector C-2, coordinates and facing",
    "route": "@equipped,CAST:6:1:7,!",
    "settled": true,
    "model": "svga-1500",
@@ -969,19 +969,6 @@
    "source": "shoot.py",
    "file": "might-and-magic_dos_na_battle_encounter_surrender.png",
    "file_3x": "3x/might-and-magic_dos_na_battle_encounter_surrender.png",
-   "rom_sha1": "c1a9248dd101e924f5e2de7890258e1a768753ac",
-   "captured": "2026-11-18"
-  },
-  {
-   "id": "encounter_retreat",
-   "category": "battle",
-   "caption": "Encounter option Retreat: the party escapes to the door of the inn",
-   "route": "@combat,r,w60,!",
-   "settled": true,
-   "model": "svga-1500",
-   "source": "shoot.py",
-   "file": "might-and-magic_dos_na_battle_encounter_retreat.png",
-   "file_3x": "3x/might-and-magic_dos_na_battle_encounter_retreat.png",
    "rom_sha1": "c1a9248dd101e924f5e2de7890258e1a768753ac",
    "captured": "2026-11-18"
   },
@@ -1196,7 +1183,7 @@
   {
    "id": "combat_sleep_goblins",
    "category": "battle",
-   "caption": "Sleep (Sorcerer 1-8) on five Goblins: two not affected, one is slept and marked (ASLEEP)",
+   "caption": "Sleep (Sorcerer 1-8) on five Goblins: two not affected, one marked (ASLEEP)",
    "route": "@equipped,AT:03:07:73,FW,left,w80,u,w100,4,w200,w9,up,w250,VET,a,w300,c,w100,1,w100,8,w100,a,w20,w100,!",
    "settled": true,
    "model": "svga-1500",
@@ -1209,7 +1196,7 @@
   {
    "id": "combat_identify_monster",
    "category": "battle",
-   "caption": "Identify Monster (Sorcerer 2-3): a Poltergeist's hit points, armor class, speed, attacks, damage",
+   "caption": "Identify Monster (Sorcerer 2-3): a Poltergeist's hit points, AC, speed, attacks",
    "route": "@combat,VET,a,w300,c,w100,2,w100,3,w100,a,w20,!",
    "settled": true,
    "model": "svga-1500",
@@ -1222,7 +1209,7 @@
   {
    "id": "combat_lightning_bolt",
    "category": "battle",
-   "caption": "Lightning Bolt (Sorcerer 3-4) cast by MNZ at level 7: 30 points, the Poltergeist goes down",
+   "caption": "Lightning Bolt (Sorcerer 3-4), MNZ at level 7: 30 points, Poltergeist goes down",
    "route": "@combat,VET,a,w300,c,w100,3,w100,4,w100,a,w20,!",
    "settled": false,
    "model": "svga-1500",
@@ -1235,7 +1222,7 @@
   {
    "id": "combat_fire_ball",
    "category": "battle",
-   "caption": "Fire Ball (Sorcerer 3-1) cast with monsters in hand-to-hand range: CONDI takes 18 points of damage",
+   "caption": "Fire Ball (Sorcerer 3-1) at hand-to-hand range: CONDI takes 18 points of damage",
    "route": "@combat,VET,a,w300,c,w100,3,w100,1,w100,a,w20,!",
    "settled": true,
    "model": "svga-1500",
@@ -1287,7 +1274,7 @@
   {
    "id": "conditions_quickref",
    "category": "hud",
-   "caption": "Quick reference with conditions: poisoned, dead, asleep, paralyzed, stone, blinded",
+   "caption": "Quick reference: poisoned, dead, asleep, paralyzed, stone, blinded",
    "route": "@equipped,poke:1686B=10,poke:168EB=C0,set:168DF=0:2,poke:1696B=01,poke:169EB=20,poke:16A6B=A0,poke:16AEB=02,q,w150,!",
    "settled": true,
    "model": "svga-1500",
@@ -1300,8 +1287,8 @@
   {
    "id": "death_party_down",
    "category": "battle",
-   "caption": "A party at 1 hit point each: CUBI goes down, the last of the six",
-   "route": "@combat,LOWHP,a,w200,w200,BLK*23,!",
+   "caption": "A party at 1 hit point each: MNZ goes down, the last of the six",
+   "route": "@combat,LOWHP2,a,w200,w200,BLK*5,b,!",
    "settled": true,
    "model": "svga-1500",
    "source": "shoot.py",
@@ -1313,8 +1300,8 @@
   {
    "id": "gameover",
    "category": "gameover",
-   "caption": "The shadow of death has fallen upon your party: renew the quest from the last inn",
-   "route": "@combat,LOWHP,a,w200,w200,BLK*24,!",
+   "caption": "The shadow of death has fallen upon your party: renew the quest from the inn",
+   "route": "@combat,LOWHP2,a,w200,w200,BLK*7,!",
    "settled": true,
    "model": "svga-1500",
    "source": "shoot.py",
@@ -1456,8 +1443,8 @@
   {
    "id": "temple_poisoned",
    "category": "shop",
-   "caption": "Temple with RYZ poisoned: restore health price",
-   "route": "@equipped,poke:1686B=10,AT:04:01:14,FE,left,w250,y,w300,!",
+   "caption": "Temple Moonshadow with RYZ poisoned: a star marks him, the clerics offer help",
+   "route": "@equipped,poke:1686B=10,1,w150,esc,w100,AT:04:01:14,FE,left,w250,!",
    "settled": true,
    "model": "svga-1500",
    "source": "shoot.py",
@@ -1625,7 +1612,7 @@
   {
    "id": "statue_minotaur",
    "category": "dialogue",
-   "caption": "Statue of a gray minotaur: this beast rules a great fortress in the Enchanted Forest",
+   "caption": "Statue of a gray minotaur: this beast rules a fortress in the Enchanted Forest",
    "route": "@equipped,AT:00:06:60,FN,left,w250,y,w300,!",
    "settled": true,
    "model": "svga-1500",
@@ -1638,7 +1625,7 @@
   {
    "id": "statue_wizard",
    "category": "dialogue",
-   "caption": "Statue of an elven wizard: seek the wizard Ranalou in his lair at the Korin Bluffs",
+   "caption": "Statue of an elven wizard: seek the wizard Ranalou at the Korin Bluffs",
    "route": "@equipped,AT:00:09:90,FW,left,w250,y,w300,!",
    "settled": true,
    "model": "svga-1500",
@@ -1729,8 +1716,8 @@
   {
    "id": "trap_door_after",
    "category": "gameplay",
-   "caption": "After the trap door",
-   "route": "@equipped,AT:05:08:85,FW,left,w250,w300,left,w150,!",
+   "caption": "After the trap door, with Light cast: the cavern below Sorpigal (CAVE1) at (5,8)",
+   "route": "@equipped,CAST:6:1:6,AT:05:08:85,FW,left,w250,w300,left,w150,!",
    "settled": true,
    "model": "svga-1500",
    "source": "shoot.py",
@@ -1768,7 +1755,7 @@
   {
    "id": "dungeon_lit",
    "category": "gameplay",
-   "caption": "Cavern below Sorpigal after MNZ cast Light: green rock walls, a portcullis and a door",
+   "caption": "Cavern below Sorpigal after MNZ cast Light: green rock, a portcullis and a door",
    "route": "@cave1,!",
    "settled": true,
    "model": "svga-1500",
@@ -1807,7 +1794,7 @@
   {
    "id": "cave_arena",
    "category": "dialogue",
-   "caption": "Cavern, the Arena: balconies filled with cheering peasants, will you participate?",
+   "caption": "Cavern, the Arena: balconies of cheering peasants, will you participate?",
    "route": "@cave1,AT:01:0D:D1,FE,left,w250,!",
    "settled": true,
    "model": "svga-1500",
@@ -1976,7 +1963,7 @@
   {
    "id": "a1_dark_rider",
    "category": "dialogue",
-   "caption": "Sector A-1: surrounded by the Dark Rider and his men, he challenges you to a duel",
+   "caption": "Sector A-1: the Dark Rider and his men surround the party, a duel is offered",
    "route": "@areaa1,AT:05:02:25,FE,left,w250,!",
    "settled": true,
    "model": "svga-1500",
@@ -2067,7 +2054,7 @@
   {
    "id": "portsmith_inn",
    "category": "dialogue",
-   "caption": "Inn of Portsmith: Lara, the innkeeper's daughter, asks if you will be spending the night",
+   "caption": "Inn of Portsmith: Lara, the innkeeper's daughter, asks if you spend the night",
    "route": "@portsmith,AT:03:0C:C3,FS,left,w250,!",
    "settled": true,
    "model": "svga-1500",
@@ -2106,7 +2093,7 @@
   {
    "id": "portsmith_weapons",
    "category": "shop",
-   "caption": "B. Smith's Workshop, Portsmith: weapons for sale",
+   "caption": "B. Smith's Workshop, Portsmith, weapons: Spear 15 to Glaive and Bardiche 80",
    "route": "@portsmith,AT:0C:0D:DC,FW,left,w250,y,w150,a,w150,!",
    "settled": true,
    "model": "svga-1500",
@@ -2132,7 +2119,7 @@
   {
    "id": "portsmith_misc",
    "category": "shop",
-   "caption": "B. Smith's Workshop, Portsmith: miscellaneous items for sale",
+   "caption": "B. Smith's Workshop, Portsmith, misc: 10 Foot Pole to Antidote Brew 500",
    "route": "@portsmith,AT:0C:0D:DC,FW,left,w250,y,w150,c,w150,!",
    "settled": true,
    "model": "svga-1500",
@@ -2158,7 +2145,7 @@
   {
    "id": "portsmith_secret",
    "category": "dialogue",
-   "caption": "Portsmith: a sensuous female voice from an intoxicating mist; the men of the party are marked",
+   "caption": "Portsmith: a female voice from an intoxicating mist; the men are marked",
    "route": "@portsmith,AT:0B:08:8B,FE,left,w250,!",
    "settled": true,
    "model": "svga-1500",
@@ -2275,7 +2262,7 @@
   {
    "id": "chest_find_trap",
    "category": "system",
-   "caption": "Gold chest, find/remove trap tried by CUBI",
+   "caption": "Find/remove trap fails on the gold chest: razor sharp blades slice the party",
    "route": "@dusk,AT:00:0E:E0,FE,left,w250,2,w200,4,w20,!",
    "settled": true,
    "model": "svga-1500",
@@ -2340,7 +2327,7 @@
   {
    "id": "erliquin_inn",
    "category": "dialogue",
-   "caption": "The Inn of Erliquin: an elderly gnome adjusting his spectacles asks about signing in",
+   "caption": "The Inn of Erliquin: an elderly gnome with spectacles asks about signing in",
    "route": "@erliquin,AT:04:04:44,FW,left,w250,!",
    "settled": true,
    "model": "svga-1500",
@@ -2392,7 +2379,7 @@
   {
    "id": "alamar_king",
    "category": "dialogue",
-   "caption": "Castle Alamar, the throne room: the king sends the party to find the Crypt of Carmenca",
+   "caption": "Castle Alamar, throne room: the king sends the party to the Crypt of Carmenca",
    "route": "@alamar,AT:0C:07:7C,FE,left,w250,!",
    "settled": true,
    "model": "svga-1500",
@@ -2418,7 +2405,7 @@
   {
    "id": "doom_true_king",
    "category": "dialogue",
-   "caption": "Castle Doom: the true King Alamar, held in a forcefield, tells of the impostor and the Eye of Goros",
+   "caption": "Castle Doom: the true King Alamar, in a forcefield, tells of the impostor",
    "route": "@doom,AT:07:08:87,FE,left,w250,!",
    "settled": true,
    "model": "svga-1500",
@@ -2496,7 +2483,7 @@
   {
    "id": "boss_demon_drain",
    "category": "boss",
-   "caption": "The demons strike before the party can act: drains abilities",
+   "caption": "The Demon Lord acts first: thrusts at CONDI, 46 points, CONDI is eradicated!",
    "route": "@equipped,STRONG,GO:01:0C:01,AT:08:07:78,FE,left,w250,a,w60,!",
    "settled": true,
    "model": "svga-1500",
@@ -2587,7 +2574,7 @@
   {
    "id": "combat_lava_beast",
    "category": "boss",
-   "caption": "A Lava Beast flails at RYZ: 2 hits for 11 points; stars mark the paralyzed characters",
+   "caption": "A Lava Beast flails at RYZ: 2 hits for 11 points; stars mark the paralyzed",
    "route": "@equipped,STRONG,GO:05:07:03,AT:01:0E:E1,FE,left,w250,a,w60,w60,w60,w60,w60,w60,b,w60,w60,b,w60,w60,b,w60,w60,b,w60,w60,w60,!",
    "settled": true,
    "model": "svga-1500",
@@ -2613,7 +2600,7 @@
   {
    "id": "qvl_hydras",
    "category": "battle",
-   "caption": "Quivering Forest encounter: Pyro Hydras, Man Eating Mares, 8 and 12 Headed Hydras",
+   "caption": "Quivering Forest: Pyro Hydras, Man Eating Mares, 8 and 12 Headed Hydras",
    "route": "@qvl1,AT:05:0B:B5,FE,left,w250,!",
    "settled": true,
    "model": "svga-1500",
@@ -2743,7 +2730,7 @@
   {
    "id": "boss_scorpion",
    "category": "boss",
-   "caption": "Sector D-1: the Scorpion and eleven Giant Scorpions attack at once, no encounter options",
+   "caption": "Sector D-1: the Scorpion and eleven Giant Scorpions attack, no encounter options",
    "route": "@equipped,GO:05:05:02,AT:0A:05:5A,FE,left,w250,!",
    "settled": true,
    "model": "svga-1500",
@@ -3199,7 +3186,7 @@
    "id": "astral_door",
    "category": "gameplay",
    "caption": "Astral Plane: there's a small slot in the door. No admittance!",
-   "route": "@astral,AT:07:0A:A7,FW,left,w300,!",
+   "route": "@astral2,AT:07:0A:A7,FW,left,w300,!",
    "settled": true,
    "model": "svga-1500",
    "source": "shoot.py",
@@ -3212,7 +3199,7 @@
    "id": "astral_projector",
    "category": "gameplay",
    "caption": "Astral Plane: astral projector # 1, zap!",
-   "route": "@astral,AT:04:06:64,FE,left,w250,!",
+   "route": "@astral2,AT:04:06:64,FE,left,w250,!",
    "settled": true,
    "model": "svga-1500",
    "source": "shoot.py",
@@ -3225,7 +3212,7 @@
    "id": "astral_room",
    "category": "gameplay",
    "caption": "Astral Plane: the metallic room is dimly lit by a pulsating white glow",
-   "route": "@astral,AT:07:09:97,FW,left,w300,!",
+   "route": "@astral2,AT:07:09:97,FW,left,w300,!",
    "settled": true,
    "model": "svga-1500",
    "source": "shoot.py",
@@ -3238,7 +3225,7 @@
    "id": "ending_panel",
    "category": "ending",
    "caption": "Inner Sanctum: a metallic panel slides open, a mysterious man in a white coat",
-   "route": "@astral,AT:06:07:76,FN,left,w300,!",
+   "route": "@astral2,AT:06:07:76,FN,left,w300,!",
    "settled": true,
    "model": "svga-1500",
    "source": "shoot.py",
@@ -3250,8 +3237,8 @@
   {
    "id": "ending_sanctum",
    "category": "ending",
-   "caption": "Inner Sanctum: the Data Keeper rates the party and sends it to the Gates to Another World",
-   "route": "@astral,AT:06:07:76,FN,left,w300,space,w300,!",
+   "caption": "Inner Sanctum: the Data Keeper rates the party, on to the Gates to Another World",
+   "route": "@astral2,AT:06:07:76,FN,left,w300,space,w300,!",
    "settled": true,
    "model": "svga-1500",
    "source": "shoot.py",

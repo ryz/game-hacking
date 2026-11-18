@@ -49,7 +49,11 @@ event squares than the scout listed, (5,8) and (5,15); they were not visited.
   points, also 25 poisoned or paralyzed, 200 dead (all level 1). Paying sets the price back to "----" and the
   hit points to the maximum. A donation costs 100 gold and printed nothing (`temple_price`, `temple_cured`,
   `temple_cured_profile`, `temple_poisoned`, `temple_dead`, `temple_donation`) **(verified; the conditions
-  were set by memory edit)**.
+  were set by memory edit)**. The menu for a poisoned RYZ is pixel for pixel the one for a wounded RYZ
+  (`temple_price`): it names no condition. `temple_poisoned` therefore shows the clerics' prompt with the star
+  the party list puts before a member whose condition is not good (the star appears when the list is next
+  redrawn, here after opening a profile). Paying cleared the poison and took 25 gold **(RAM: condition 10 -> 00,
+  gold 1833 -> 1808)**.
 - **Market**: paying filled the shopper's food from 10 to 40: "THANK YOU, COME AGAIN!" (`market_bought`,
   `market_food_after`) **(verified)**.
 - **Tavern**: a drink 1 gold, a tip 1 gold; "listen for rumors" printed nothing until the bartender had been
@@ -74,8 +78,10 @@ Each statue asks "THERE IS A STATUE HERE, SEARCH IT (Y/N)?" (`statue_prompt`) an
 | (10,12) | gnome robber | "ONE BY WATER, ONE BY LAND, ONE BY AIR, AND ONE BY SAND / THE WHEEL OF LUCK WILL FAVORABLY PAY, THE MORE OF THESE MENACING BEASTS YOU SLAY! ..." (`statue_robber`) |
 | (14,14) | dwarf paladin, black and white checkered | "THERE ARE MANY DUNGEONS LIKE ME / FIND THE RIGHT PAIR AND YOU'LL DISCOVER THE KEY / THE ANCIENT SEER OG HAS LOST HIS SIGHT / THE IDOLS WILL HELP TO END HIS PLIGHT" (`statue_paladin`) |
 | (0,2) | (round 1) | `statue_lore` |
-(5,8) is a trap door: "TRAP DOOR!", and the party is in darkness, in the cavern below (`trap_door`,
-`trap_door_after`) **(verified; that it is the cavern is inferred from the darkness)**. (5,15) showed nothing
+(5,8) is a trap door: "TRAP DOOR!", then at the next key "PLEASE WAIT", and the party is in the cavern below
+at the same square (`trap_door`, `trap_door_after`) **(verified; RAM: the map number after the fall is 5 = CAVE1,
+position (5,8))**. Without light the view is the plain "DARKNESS" frame of `dungeon_darkness`; `trap_door_after`
+is taken with Light cast in town first, so it shows the cavern's rock corridor. (5,15) showed nothing
 from any of the four directions. The room at (3,6) gave, at different moments: Poltergeists, Vampire Bats,
 Goblins, Guardsmen with Gnomes, Flesh Eaters, Snakes, Mutant Larvae, Rabid Jackals with Vampire Bats
 (`encounter_goblins`, `encounter_guardsmen`, `bash_after`) **(verified)**.
