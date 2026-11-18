@@ -3,7 +3,7 @@ skill: photographer
 project: games/gbc/wizardry-empire (paths relative to its translation/ folder)
 summary: Pixel-exact reference screenshots of screens, features, options and gameplay (English and original).
 access: write (work/shots/<set>/, ../shots/<set>/), git commit of its set
-updated: 2026-11-17 (repository restructured: new paths)
+updated: 2026-11-18 (shot file names, database categories)
 ---
 
 # Photographer - reference screenshots
@@ -24,12 +24,17 @@ screenshot sets (owner's rule, 2026-11-11); you edit nothing else in the repo.
   Text must have finished typing; no fades. Screens with animation (cursor blink, town sprites) never settle:
   they are still captured and marked `settled: no` - check those by eye and retake at another frame if a
   cursor or effect hides text.
-- Same inputs for both ROMs, so `3x/<id>.compare.png` shows the same moment JP | EN.
+- Same inputs for both ROMs, so `3x/NAME.compare.png` shows the same moment JP | EN.
 
 ## Tools
 - `python3 tools/shoot.py SET [--list FILE] [--only id,id] [--rom en|jp|both|ref]` (`ref` = the reference fan patch on
   Rev 1: `tools/bps.py rom/reference_en.bps rom/wizardry_empire_j.gbc rom/wizardry_empire_ref.gbc`) -> `work/shots/SET/`:
-  `<id>.<rom>.png` (native), `3x/<id>.<rom>.png`, `3x/<id>.compare.png`, `index.md` + `index.json`.
+  `NAME.<rom>.png` (native), `3x/NAME.<rom>.png`, `3x/NAME.compare.png`, `index.md` + `index.json`.
+  NAME = `wizardry-empire_gbc_jp_<category>_<id>.<set>` (the repository's scheme, `docs/capture-guide.md` "File names";
+  the tool builds it). Set names: lowercase words joined by `-` (`rev1-tour`).
+  Categories are the database's 20 (`docs/capture-guide.md`), not places: town/facility menus and prompts = `menu`;
+  character creation, inn rest, museum, maze actions = `system`; sheets, spell and item pages = `inventory`;
+  shop and temple = `shop`; maze view = `gameplay`; battles and chests = `battle`. The tool refuses others.
 - Shot list format (`tools/routes/shots.txt` is the curated list): `id | category | description | tokens`.
   Tokens are `tools/emu.py` tokens: `pow` (power on only), `boot` (to the town), `PARTY` (form the 6-member
   party), keys (`a b start select up down left right`, `KEY*n`, `KEY+KEY`), `wN` (wait N frames), `poke` (all
@@ -46,7 +51,7 @@ screenshot sets (owner's rule, 2026-11-11); you edit nothing else in the repo.
 1. Read the dispatch: the set name and which areas to cover (or "everything reachable").
 2. Run the curated list first if asked (`shoot.py SET`), then extend: write your own list
    `work/shots/SET/shots.txt` for new screens (ids: lowercase `area_thing`, stable), run it with `--list`.
-3. Look at every `3x/<id>.compare.png` you made: is it the screen you meant, is text complete, nothing mid-fade?
+3. Look at every `3x/NAME.compare.png` you made: is it the screen you meant, is text complete, nothing mid-fade?
    Retake with different waits if not.
 4. Report.
 
@@ -83,7 +88,7 @@ End your final report with this block; the coordinator files it in `skills/photo
 ```
 
 ## Replacing a set (2026-11-12)
-- When a set replaces an older one, pixel-diff every `<id>.jp.png` against the old set and explain each
+- When a set replaces an older one, pixel-diff every `NAME.jp.png` against the old set and explain each
   difference. RNG-dependent screens (bonus roll, encounters) shift between ROM revisions: fix them with a `wN`
   before the roll.
 - Check that every `rom_sha1` in the final index is the same: another session may rebuild `build/` during a long run.

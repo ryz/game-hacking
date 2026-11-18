@@ -7,7 +7,7 @@ Everything this repository holds about the game. Japanese **Rev 1** is the refer
 |---|---|
 | [`design/`](design/README.md) | Design reference for designers: rules, formulas, item and monster tables, [all 30 floor maps](design/maps/README.md), [quirks and likely bugs](design/findings.md). No addresses. |
 | [`tech/`](tech/README.md) | The same systems for engineers: record layouts, RAM, routines, addresses, evidence. |
-| [`shots/`](shots/) | Reference screenshot sets: the original and the translation side by side ([rev1_tour](shots/rev1_tour/index.md), `jp_tour`), and a comparison with another fan patch ([compare3](shots/compare3/README.md)). |
+| [`shots/`](shots/) | Reference screenshot sets: the original and the translation side by side ([rev1-tour](shots/rev1-tour/index.md), `jp-tour`), and a comparison with another fan patch ([compare3](shots/compare3/README.md)). |
 | [`saves/`](saves/README.md) | Test saves made by the tools (a powerful party knowing every spell). |
 | [`translation/`](translation/README.md) | The unofficial English translation: script, variable-width font engine, patch build chain, tests, reverse-engineering notes, status and history. |
 | [`DOCUMENTS.md`](DOCUMENTS.md) | Which document goes where, and the rules all of them follow. |

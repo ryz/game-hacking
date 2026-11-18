@@ -367,7 +367,7 @@ Total EXP to reach level L = sum of the first L steps of the class table for L <
 level costs the 16th step again (Rev 1 multiplies it out with `0:0DFA`, see `translation/docs/re/rev1.md`). Level 1 -> 2 thus
 needs the first **two** steps. Confirmed in the emulator: a level-1 Fighter with 0 EXP is told "1200 more EXP"
 at the Inn (`work/design/characters/inn1.png`). The v1.0 ROM said 500 at the same point
-(`shots/jp_tour/inn_stable.jp.png` was taken on v1.0), so the curve changed between revisions.
+(`shots/jp-tour/wizardry-empire_gbc_jp_system_inn_stable.jp-tour.jp.png` was taken on v1.0), so the curve changed between revisions.
 
 How to read the table: row N = the **total EXP a character needs to reach level N**; a character of level N−1
 levels up at the Inn once his EXP is at least row N (`27:5B70` passes level+1 to `27:5BEA`, which adds the first
@@ -550,7 +550,7 @@ Code: `24:6C95`, 16 bytes × 125, id order.
 |---|---|---|
 | 0-10 | Name (11 bytes; the patch keeps a short fallback name here) | code (`0:24E8`) |
 | 11 | `$00` terminator | |
-| 12 | Use flags: bit 5 battle, bit 6 camp, bit 4 at a chest; bit 7 and bit 0 unknown | camp bit matches the "×" marks on the camp spell screen (`shots/jp_tour/camp_spells_mage.jp.png`); rest (guess) |
+| 12 | Use flags: bit 5 battle, bit 6 camp, bit 4 at a chest; bit 7 and bit 0 unknown | camp bit matches the "×" marks on the camp spell screen (`shots/jp-tour/wizardry-empire_gbc_jp_inventory_camp_spells_mage.jp-tour.jp.png`); rest (guess) |
 | 13 | Element / resist type 0-7 (fire spells = 2, cold 1, lightning 3, mind 4, earth 0, healing 6, none 7) | (guess) |
 | 14 | 0-`$1E`, low 3 bits look like a level, bits 3-4 an index | unknown (not the spell level; the level comes from the school tables) |
 | 15 | Low nibble = school (0 Mage, 1 Priest, 2 Valiant, 3 Avenger, 4 Musashi, 5 Kunoichi, 6 Summoner); high nibble = target type | school: matches every id range; target: (guess) from names: 1 one enemy, 6 one group, 7 all enemies, 8 caster, 9 one ally, A party, C chest |

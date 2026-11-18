@@ -7,7 +7,7 @@ may appear in a design doc and a tech doc; that overlap is intended (different r
 |---|---|---|
 | `design/` | game designers | How the game works: rules, formulas, data tables, quirks. No ROM addresses. |
 | `tech/` | engineers (ROM work, modding, verifying the design docs) | How the game systems are implemented: record layouts, RAM, routines, data tables at their addresses, how each fact was established. |
-| `shots/<set>/` | everyone | Reference screenshots (original and English side by side), made by `translation/tools/shoot.py`. |
+| `shots/<set>/` | everyone | Reference screenshots (original and English side by side), made by `translation/tools/shoot.py`. Files: `wizardry-empire_gbc_jp_<category>_<id>.<set>.<rom>.png` (`docs/capture-guide.md` at the repo root, "File names"); set names are words joined by `-`. |
 | `saves/` | everyone | Test saves made by the tools; list in `saves/README.md`. |
 | `translation/docs/re/` | engineers working on the translation patch | Reverse-engineering notes on text, display and the patch itself (text engines, small font, screen buffers, where each text lives). See `translation/docs/re/README.md`. |
 | `translation/docs/status.md` | everyone | Current snapshot of the translation: what works, what is next, known issues. |

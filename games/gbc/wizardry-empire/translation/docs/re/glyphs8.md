@@ -14,7 +14,7 @@ regenerated them with `tools/party.py --out work/re/glyphs8/party`.
 
 ## 1. Answer
 
-Every route in `../shots/jp_tour/index.json` (121) is clean except the out-of-scope name-entry chart.
+Every route in `../shots/jp-tour/index.json` (121) is clean except the out-of-scope name-entry chart.
 Every prefix of the `tools/routes/tour.txt` routes (230 screens) is clean too, and so are one full battle
 (command menus for all six classes, fight modes, Equip, the spell list and spell info, the round confirm,
 messages, Run, victory EXP) with its chest (menu, inspect, cast list, trap list, disarm, open, paralysis
@@ -86,7 +86,7 @@ searching for the flag-test shape (`bit 7 / ... ld a,$2a ... ld a,$3f ... ld a,$
 ### Coverage (all on the EN build e9125dd)
 | Set | Inputs | Result files |
 |---|---|---|
-| jp_tour, 121 routes (from power-on, as listed) | `tour.py work/re/glyphs8/tour` | `tour/<id>.json/.png`, `tour.log` |
+| jp-tour, 121 routes (from power-on, as listed) | `tour.py work/re/glyphs8/tour` | `tour/<id>.json/.png`, `tour.log` |
 | tour.txt, every token prefix of the 8 routes (PARTY expanded), 230 screens | `routes_tourtxt.json` | `tourtxt/`, `tourtxt.log` |
 | Party states | `python3 tools/party.py --out work/re/glyphs8/party` | `party/*.state` |
 | Battle start (Zombie) | `tools/explore.py build/wizardry_empire_en.gbc work/re/glyphs8/party/maze.state work/re/glyphs8/walk3 400 3` (hit at step 121) | `walk3/hit.state` |
@@ -99,7 +99,7 @@ searching for the flag-test shape (`bit 7 / ... ld a,$2a ... ld a,$3f ... ld a,$
 | Events 5009, 5C6D, 4490, 44A8 (`C889=0D`), 5C97 (`C896=00,C897=AD`) | `tools/maze_goto.py build/... work/re/glyphs8/party/maze.state X Y work/re/glyphs8/ev/event_N.state`, then `up,w90,(a,w60)x9` | `ev/run_*` |
 | Camp spell effects 0-55 | `sp36.py`: `party/camp.state` + `a,w40,down,down,down,a,w60,a,w60` + `a` until bp 24:40DF (cubi's Restore, A=`$1C` = `[$FFB0]`) -> `sp36/at40df.state`; `spsweep.py 0 55` sets A = id there, scans every 30 frames, `a` every 3rd | `spsweep/` |
 | Search Person, other location | `sp36b.py 03`: at40df (A=`$24`), bp 2E:5697, `$C511`=03 (00 = "In town", 16 = "At temple") | `sp36b/` |
-| Item marks '?'/'-' | jp_tour camp_items / camp_equip_2 / shop_sell, poke `$C4A1=$40, $C4A3=$A0` before the last 2 tokens (item flag bytes, 2 per slot) | `marks2_*.json/png` |
+| Item marks '?'/'-' | jp-tour camp_items / camp_equip_2 / shop_sell, poke `$C4A1=$40, $C4A3=$A0` before the last 2 tokens (item flag bytes, 2 per slot) | `marks2_*.json/png` |
 | Item info negative AC | museum_item_info, bp 29:6528 on the last `a`, A = `[$FFB0]` = `$FE` | `neg.py`, `neg_info.*` |
 
 Not covered: Find allies with a lost character in the maze (bank 1F lists them; no 8 px literal stores in 1F,

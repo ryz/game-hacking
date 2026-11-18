@@ -4,9 +4,10 @@ Three-way visual comparison of every curated shot in `tools/routes/shots.txt` (3
 our English build and the other (reference) fan translation, played with the same inputs from power-on and
 captured on the same frame.
 
-- `<id>3x/.compare3.png`: JP | EN | REF left to right, 3x nearest neighbour, labelled "Original (JP)",
-  "This patch", "Other patch"; same 12 px gap and background as the two-way `3x/<id>.compare.png` images.
-- `<id>.jp.png`, `<id>.en.png`, `<id>.ref.png`: native 160x144 framebuffer (CGB 5->8 bit, no correction).
+- File names: `NAME` = `wizardry-empire_gbc_jp_<category>_<id>.compare3` (`docs/capture-guide.md` at the repo root, "File names").
+- `3x/NAME.compare3.png`: JP | EN | REF left to right, 3x nearest neighbour, labelled "Original (JP)",
+  "This patch", "Other patch"; same 12 px gap and background as the two-way `3x/NAME.compare.png` images.
+- `NAME.jp.png`, `NAME.en.png`, `NAME.ref.png`: native 160x144 framebuffer (CGB 5->8 bit, no correction).
 - `index.md` / `index.json`: catalogue (tokens, settled per ROM, ROM SHA-1s, commit).
 
 This set is for visual comparison (layout, fonts, box use), not for judging wording.
@@ -35,7 +36,7 @@ A full run takes about 3 minutes (turbo, boot/PARTY route cache).
 ## Same screen?
 
 All 35 shots show the same screen in all three ROMs: no route diverges in the other patch. The JP and EN
-images are pixel-identical to the same ids in `shots/rev1_tour/` (31 shared ids; the 4 museum ids
+images are pixel-identical to the same ids in `shots/rev1-tour/` (31 shared ids; the 4 museum ids
 `museum_item_info_dn`, `museum_item_info_rt`, `museum_monster_list`, `museum_monster_page` are newer than that set).
 
 Not settled (expected, animated screens): the 8 `town_*` shots and `party_town` in all three ROMs (town cursor

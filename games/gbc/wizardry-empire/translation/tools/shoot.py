@@ -10,9 +10,14 @@
 
 Shot list lines: `id | category | description | tokens` (tokens as in tools/emu.py; `pow` = power on only,
 `boot` = power on to the town, `poke` = mark all monsters seen (museum), PARTY = form the 6-member party at the tavern from the town).
-For every shot and ROM: `<id>.<rom>.png` (native 160x144, the emulator's framebuffer: CGB colours expanded
-5->8 bit, no colour correction, no filtering), `3x/<id>.<rom>.png` (nearest neighbour, in the 3x/ subfolder), and for both ROMs
-`3x/<id>.compare.png` (JP left, EN right). With `--rom all`: `3x/<id>.compare3.png` instead, JP | EN | REF
+category = one of the database categories (CATEGORIES below; docs/capture-guide.md at the repo root).
+File names follow the repository's scheme (docs/capture-guide.md "File names"), with the set always written
+and the ROM last:  NAME = wizardry-empire_gbc_jp_<category>_<id>.<set>   (wizardry-empire_gbc_jp_menu_camp.rev1-tour.en.png)
+SET is lowercase words joined by `-` (rev1-tour). `jp` in the head is the region of the game; the ROM field
+says which build the picture shows (jp = original, en = this patch, ref = other patch).
+For every shot and ROM: `NAME.<rom>.png` (native 160x144, the emulator's framebuffer: CGB colours expanded
+5->8 bit, no colour correction, no filtering), `3x/NAME.<rom>.png` (nearest neighbour, in the 3x/ subfolder), and for both ROMs
+`3x/NAME.compare.png` (JP left, EN right). With `--rom all`: `3x/NAME.compare3.png` instead, JP | EN | REF
 left to right, each panel labelled at the top ("Original (JP)", "This patch", "Other patch"); same gap and
 background as the two-way compare, the panels themselves are the unchanged 3x images. Each shot waits until
 the screen is stable (two identical frames 10 frames apart, up to 300 frames) so text has finished typing and
@@ -23,7 +28,7 @@ images and the compare3 image of every shot.
 the set folder, e.g. a README.md) to ../shots/SET/ (compare images into its 3x/; the 3x single-ROM images are left out: they are the
 native ones enlarged).
 """
-import argparse, hashlib, json, os, shutil, subprocess, sys
+import argparse, hashlib, json, os, re, shutil, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, ".."))
@@ -36,6 +41,18 @@ ROMS = {"en": emu.EN_ROM, "jp": os.path.join(ROOT, "rom", "wizardry_empire_j.gbc
 WHICH = {"both": ["jp", "en"], "all": ["jp", "en", "ref"]}             # multi-ROM modes, left to right
 LABELS = {"jp": "Original (JP)", "en": "This patch", "ref": "Other patch"}
 GAP, BG = 12, (40, 40, 40)                                            # compare images: gap and background
+HEAD = "wizardry-empire_gbc_jp"         # <game>_<platform>_<region> of every file name (repo-wide scheme)
+# The database categories (same list as tools/shoot.py at the repo root, docs/capture-guide.md). How this game's
+# screens map onto them: town/facility menus and prompts = menu; character creation, inn rest, museum, maze
+# actions = system; character sheets, spell and item pages = inventory; shop and temple services = shop;
+# maze view = gameplay; chests = battle.
+CATEGORIES = ["boot", "title", "menu", "options", "cutscene", "gameplay", "hud", "system", "map", "inventory",
+              "dialogue", "shop", "battle", "boss", "minigame", "ending", "credits", "gameover", "save", "extra"]
+
+
+def name(s, set_name, kind):
+    """File name of a shot: kind = jp | en | ref | compare | compare3."""
+    return "%s_%s_%s.%s.%s.png" % (HEAD, s["category"], s["id"], set_name, kind)
 
 
 def shots(path):
@@ -45,6 +62,9 @@ def shots(path):
         if not line or line.startswith("#"):
             continue
         sid, cat, desc, seq = [x.strip() for x in line.split("|", 3)]
+        if cat not in CATEGORIES:
+            raise SystemExit("%s: %s: category %r is not one of %s (it is part of the file name)" % (
+                path, sid, cat, ", ".join(CATEGORIES)))
         out.append({"id": sid, "category": cat, "description": desc, "tokens": seq.replace("PARTY", PARTY)})
     return out
 
@@ -113,6 +133,8 @@ def main():
     ap.add_argument("--rom", default="both", choices=["en", "jp", "both", "ref", "all"])
     ap.add_argument("--publish", action="store_true")
     a = ap.parse_args()
+    if not re.match(r"^[a-z0-9]+(-[a-z0-9]+)*$", a.set):
+        raise SystemExit("set name %r must be lowercase a-z0-9 words joined by `-` (it is part of the file names)" % a.set)
     from PIL import Image
     out = os.path.join(ROOT, "work", "shots", a.set)
     os.makedirs(out, exist_ok=True)
@@ -129,7 +151,7 @@ def main():
             try:
                 play(g, toks[skip:])
                 rec["settled"][r] = settle(g)
-                p = os.path.join(out, "%s.%s.png" % (s["id"], r))
+                p = os.path.join(out, name(s, a.set, r))
                 g.screenshot_png(p, scale=1)
             finally:
                 g.close()
@@ -137,20 +159,20 @@ def main():
             im.save(p)
             big = im.resize((im.width * 3, im.height * 3), Image.NEAREST)
             os.makedirs(os.path.join(out, "3x"), exist_ok=True)
-            big.save(os.path.join(out, "3x", "%s.%s.png" % (s["id"], r)))
+            big.save(os.path.join(out, "3x", name(s, a.set, r)))
             rec["files"][r] = os.path.basename(p)
             rec["rom_sha1"][r] = rom_info(ROMS[r])[:12]
         if len(which) == 2:
-            a3 = [Image.open(os.path.join(out, "3x", "%s.%s.png" % (s["id"], r))) for r in which]
+            a3 = [Image.open(os.path.join(out, "3x", name(s, a.set, r))) for r in which]
             gap = GAP
             c = Image.new("RGB", (a3[0].width * 2 + gap, a3[0].height), BG)
             c.paste(a3[0], (0, 0))
             c.paste(a3[1], (a3[0].width + gap, 0))
-            c.save(os.path.join(out, "3x", "%s.compare.png" % s["id"]))
+            c.save(os.path.join(out, "3x", name(s, a.set, "compare")))
         elif len(which) == 3:
-            a3 = [Image.open(os.path.join(out, "3x", "%s.%s.png" % (s["id"], r))).convert("RGB") for r in which]
-            compare3(a3, which).save(os.path.join(out, "3x", "%s.compare3.png" % s["id"]))
-            rec["files"]["compare3"] = "3x/%s.compare3.png" % s["id"]
+            a3 = [Image.open(os.path.join(out, "3x", name(s, a.set, r))).convert("RGB") for r in which]
+            compare3(a3, which).save(os.path.join(out, "3x", name(s, a.set, "compare3")))
+            rec["files"]["compare3"] = "3x/" + name(s, a.set, "compare3")
         cat.append(rec)
         print("%-18s %s" % (s["id"], " ".join("%s:%s" % (r, "ok" if rec["settled"][r] else "NOT SETTLED") for r in which)), flush=True)
     idx = os.path.join(out, "index.json")
@@ -163,12 +185,14 @@ def main():
     with open(os.path.join(out, "index.md"), "w", encoding="utf-8") as f:
         f.write("# Reference screenshots - set `%s` (commit `%s`)\n\n" % (a.set, commit))
         if three:
-            f.write("Native 160x144 PNGs (`<id>.<rom>.png`: jp = original, en = this patch, ref = other patch), "
-                    "JP|EN|REF 3x nearest (`3x/<id>.compare3.png`).\n\n")
+            f.write("File names: `NAME` = `%s_<category>_<id>.%s`. Native 160x144 PNGs (`NAME.<rom>.png`: jp = "
+                    "original, en = this patch, ref = other patch), JP|EN|REF 3x nearest "
+                    "(`3x/NAME.compare3.png`).\n\n" % (HEAD, a.set))
             f.write("| id | category | description | settled | JP | EN | REF | compare | tokens |\n"
                     "|---|---|---|---|---|---|---|---|---|\n")
         else:
-            f.write("Native 160x144 PNGs (`<id>.<rom>.png`); 3x nearest in `3x/`: JP|EN (`3x/<id>.compare.png`).\n\n")
+            f.write("File names: `NAME` = `%s_<category>_<id>.%s`. Native 160x144 PNGs (`NAME.<rom>.png`); 3x "
+                    "nearest in `3x/`: JP|EN (`3x/NAME.compare.png`).\n\n" % (HEAD, a.set))
             f.write("| id | category | description | settled | tokens |\n|---|---|---|---|---|\n")
         for r in cat:
             settled = ", ".join("%s:%s" % (k, "yes" if v else "no") for k, v in r["settled"].items())

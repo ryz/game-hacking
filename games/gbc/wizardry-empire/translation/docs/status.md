@@ -173,7 +173,7 @@
    'quest' for the adventure, editor Polish list applied. Picture-map label 地下: done ('B', 2026-11-12).
 12. Teleport prompt: the floor digit sits a few px right of 'Floor B' (fixed cells for the cursor arrow).
 
-13. Reference screenshots: `../shots/rev1_tour/` (Rev 1 + EN, 2026-11-12) replaces `jp_tour/` (v1.0, kept for history).
+13. Reference screenshots: `../shots/rev1-tour/` (Rev 1 + EN, 2026-11-12) replaces `jp-tour/` (v1.0, kept for history).
    Not covered by any route: wall bump 'Ouch!', friendly-encounter panel, strange-pattern event. 'Choose a classsir' fixed
    (RectRows blank-cell bug).
 

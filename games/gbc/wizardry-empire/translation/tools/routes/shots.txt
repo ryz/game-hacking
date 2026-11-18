@@ -2,39 +2,42 @@
 #                                       PARTY = form the 6-member party at the tavern, starting in the town)
 # Town cursor from boot: right x1 Training, x2 Museum, x3 Tavern, x4 Notice Board, x5 Shop, x6 Temple, x7 Inn,
 # x8 back to the Edge of Town (start). Keep ids stable: they name the files.
-logo_publisher   | boot     | Publisher logo after power-on            | pow,w300
-copyright        | boot     | Copyright/licence screen                 | pow,w600
-title            | boot     | Title screen                             | pow,w760
-mode_select      | options  | Mode settings (BGM, sound, map, ...)     | pow,w750,start,w60,start,w60,start,w60,start,w60
-town_edge        | town     | Town map, Edge of Town info              | boot
-town_training    | town     | Town map, Training Grounds info          | boot,right
-town_museum      | town     | Town map, Museum info                    | boot,right*2
-town_tavern      | town     | Town map, Rose's Tavern info             | boot,right*3
-town_notice      | town     | Town map, Notice Board info              | boot,right*4
-town_shop        | town     | Town map, Lorelei's Shop info            | boot,right*5
-town_temple      | town     | Town map, Samsara Temple info            | boot,right*6
-town_inn         | town     | Town map, Aries Inn info                 | boot,right*7
-tavern_menu      | tavern   | Tavern menu                              | boot,right*3,a,w60
-tavern_add       | tavern   | Add member: roster with character card   | boot,right*3,a,w60,a,w40
-party_town       | town     | Town with the full party panel           | boot,PARTY
-training_menu    | training | Training Grounds menu                    | boot,right,a,w60
-shop_menu        | shop     | Shop: welcome and Buy/Sell menu          | boot,PARTY,right*2,a,w60,a,w60
-shop_buy         | shop     | Shop: Buy, item categories               | boot,PARTY,right*2,a,w60,a,w60,a,w40
-temple_menu      | temple   | Samsara Temple menu                      | boot,PARTY,right*3,a,w60
-inn_rooms        | inn      | Aries Inn room list                      | boot,PARTY,right*4,a,w60,a,w60
-outskirts_menu   | maze     | Edge of Town: explore / resume / end     | boot,PARTY,left*3,a,w60
-camp             | maze     | Camp menu on entering the maze           | boot,PARTY,left*3,a,w60,a,w150
-character_sheet  | maze     | Character sheet from Camp                | boot,PARTY,left*3,a,w60,a,w150,a,w40,a,w60
-maze_view        | maze     | First-person maze view, Camp closed      | boot,PARTY,left*3,a,w60,a,w150,b,w60
-maze_dmenu       | maze     | Dungeon menu (SELECT)                    | boot,PARTY,left*3,a,w60,a,w150,b,w60,select,w40
-stairs_up_prompt | maze     | Stairs up prompt (back onto the stairs)  | boot,PARTY,left*3,a,w60,a,w150,b,w60,up,w60,down,w60,a,w60
+# category = a database category (tools/shoot.py CATEGORIES): it is the area field of the file name
+#            wizardry-empire_gbc_jp_<category>_<id>.<set>.<rom>.png. Facility menus = menu, shop and temple = shop,
+#            sheets/spells/items = inventory, creation/inn rest/museum/maze actions = system, maze view = gameplay.
+logo_publisher   | boot      | Publisher logo after power-on            | pow,w300
+copyright        | boot      | Copyright/licence screen                 | pow,w600
+title            | title     | Title screen                             | pow,w760
+mode_select      | options   | Mode settings (BGM, sound, map, ...)     | pow,w750,start,w60,start,w60,start,w60,start,w60
+town_edge        | menu      | Town map, Edge of Town info              | boot
+town_training    | menu      | Town map, Training Grounds info          | boot,right
+town_museum      | menu      | Town map, Museum info                    | boot,right*2
+town_tavern      | menu      | Town map, Rose's Tavern info             | boot,right*3
+town_notice      | menu      | Town map, Notice Board info              | boot,right*4
+town_shop        | menu      | Town map, Lorelei's Shop info            | boot,right*5
+town_temple      | menu      | Town map, Samsara Temple info            | boot,right*6
+town_inn         | menu      | Town map, Aries Inn info                 | boot,right*7
+tavern_menu      | menu      | Tavern menu                              | boot,right*3,a,w60
+tavern_add       | menu      | Add member: roster with character card   | boot,right*3,a,w60,a,w40
+party_town       | menu      | Town with the full party panel           | boot,PARTY
+training_menu    | menu      | Training Grounds menu                    | boot,right,a,w60
+shop_menu        | shop      | Shop: welcome and Buy/Sell menu          | boot,PARTY,right*2,a,w60,a,w60
+shop_buy         | shop      | Shop: Buy, item categories               | boot,PARTY,right*2,a,w60,a,w60,a,w40
+temple_menu      | shop      | Samsara Temple menu                      | boot,PARTY,right*3,a,w60
+inn_rooms        | menu      | Aries Inn room list                      | boot,PARTY,right*4,a,w60,a,w60
+outskirts_menu   | menu      | Edge of Town: explore / resume / end     | boot,PARTY,left*3,a,w60
+camp             | menu      | Camp menu on entering the maze           | boot,PARTY,left*3,a,w60,a,w150
+character_sheet  | inventory | Character sheet from Camp                | boot,PARTY,left*3,a,w60,a,w150,a,w40,a,w60
+maze_view        | gameplay  | First-person maze view, Camp closed      | boot,PARTY,left*3,a,w60,a,w150,b,w60
+maze_dmenu       | menu      | Dungeon menu (SELECT)                    | boot,PARTY,left*3,a,w60,a,w150,b,w60,select,w40
+stairs_up_prompt | dialogue  | Stairs up prompt (back onto the stairs)  | boot,PARTY,left*3,a,w60,a,w150,b,w60,up,w60,down,w60,a,w60
 
-museum_menu          | museum   | Museum: item room / monster room         | boot,right*2,a,w60
-museum_item_room     | museum   | Item room: categories, found/not found   | boot,right*2,a,w60,a,w60
-museum_item_list     | museum   | Item room: weapon list                   | boot,right*2,a,w60,a,w60,a,w60
-museum_item_info     | museum   | Item page                                | boot,right*2,a,w60,a,w60,a,w60,a,w60
-museum_item_info_dn  | museum   | Item page, DOWN = next item              | boot,right*2,a,w60,a,w60,a,w60,a,w60,down,w60
-museum_item_info_rt  | museum   | Item page, RIGHT = next list page        | boot,right*2,a,w60,a,w60,a,w60,a,w60,right,w60
-museum_monster_none  | museum   | Monster room, none seen (A does nothing) | boot,right*2,a,w60,down,w20,a,w60
-museum_monster_list  | museum   | Monster room list (all seen, poked)      | boot,right*2,a,w60,poke,down,a,w120
-museum_monster_page  | museum   | Monster page (Ancient One)               | boot,right*2,a,w60,poke,down,a,w120,a,w60
+museum_menu          | menu      | Museum: item room / monster room         | boot,right*2,a,w60
+museum_item_room     | system    | Item room: categories, found/not found   | boot,right*2,a,w60,a,w60
+museum_item_list     | system    | Item room: weapon list                   | boot,right*2,a,w60,a,w60,a,w60
+museum_item_info     | system    | Item page                                | boot,right*2,a,w60,a,w60,a,w60,a,w60
+museum_item_info_dn  | system    | Item page, DOWN = next item              | boot,right*2,a,w60,a,w60,a,w60,a,w60,down,w60
+museum_item_info_rt  | system    | Item page, RIGHT = next list page        | boot,right*2,a,w60,a,w60,a,w60,a,w60,right,w60
+museum_monster_none  | system    | Monster room, none seen (A does nothing) | boot,right*2,a,w60,down,w20,a,w60
+museum_monster_list  | system    | Monster room list (all seen, poked)      | boot,right*2,a,w60,poke,down,a,w120
+museum_monster_page  | system    | Monster page (Ancient One)               | boot,right*2,a,w60,poke,down,a,w120,a,w60

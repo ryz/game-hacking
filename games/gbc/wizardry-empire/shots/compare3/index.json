@@ -6,10 +6,10 @@
   "tokens": "pow,w300",
   "commit": "f19f75f",
   "files": {
-   "jp": "logo_publisher.jp.png",
-   "en": "logo_publisher.en.png",
-   "ref": "logo_publisher.ref.png",
-   "compare3": "3x/logo_publisher.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_boot_logo_publisher.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_boot_logo_publisher.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_boot_logo_publisher.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_boot_logo_publisher.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -29,10 +29,10 @@
   "tokens": "pow,w600",
   "commit": "f19f75f",
   "files": {
-   "jp": "copyright.jp.png",
-   "en": "copyright.en.png",
-   "ref": "copyright.ref.png",
-   "compare3": "3x/copyright.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_boot_copyright.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_boot_copyright.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_boot_copyright.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_boot_copyright.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -47,15 +47,15 @@
  },
  {
   "id": "title",
-  "category": "boot",
+  "category": "title",
   "description": "Title screen",
   "tokens": "pow,w760",
   "commit": "f19f75f",
   "files": {
-   "jp": "title.jp.png",
-   "en": "title.en.png",
-   "ref": "title.ref.png",
-   "compare3": "3x/title.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_title_title.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_title_title.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_title_title.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_title_title.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -75,10 +75,10 @@
   "tokens": "pow,w750,start,w60,start,w60,start,w60,start,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "mode_select.jp.png",
-   "en": "mode_select.en.png",
-   "ref": "mode_select.ref.png",
-   "compare3": "3x/mode_select.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_options_mode_select.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_options_mode_select.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_options_mode_select.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_options_mode_select.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -93,15 +93,15 @@
  },
  {
   "id": "town_edge",
-  "category": "town",
+  "category": "menu",
   "description": "Town map, Edge of Town info",
   "tokens": "boot",
   "commit": "f19f75f",
   "files": {
-   "jp": "town_edge.jp.png",
-   "en": "town_edge.en.png",
-   "ref": "town_edge.ref.png",
-   "compare3": "3x/town_edge.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_town_edge.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_town_edge.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_town_edge.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_town_edge.compare3.compare3.png"
   },
   "settled": {
    "jp": false,
@@ -116,15 +116,15 @@
  },
  {
   "id": "town_training",
-  "category": "town",
+  "category": "menu",
   "description": "Town map, Training Grounds info",
   "tokens": "boot,right",
   "commit": "f19f75f",
   "files": {
-   "jp": "town_training.jp.png",
-   "en": "town_training.en.png",
-   "ref": "town_training.ref.png",
-   "compare3": "3x/town_training.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_town_training.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_town_training.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_town_training.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_town_training.compare3.compare3.png"
   },
   "settled": {
    "jp": false,
@@ -139,15 +139,15 @@
  },
  {
   "id": "town_museum",
-  "category": "town",
+  "category": "menu",
   "description": "Town map, Museum info",
   "tokens": "boot,right*2",
   "commit": "f19f75f",
   "files": {
-   "jp": "town_museum.jp.png",
-   "en": "town_museum.en.png",
-   "ref": "town_museum.ref.png",
-   "compare3": "3x/town_museum.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_town_museum.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_town_museum.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_town_museum.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_town_museum.compare3.compare3.png"
   },
   "settled": {
    "jp": false,
@@ -162,15 +162,15 @@
  },
  {
   "id": "town_tavern",
-  "category": "town",
+  "category": "menu",
   "description": "Town map, Rose's Tavern info",
   "tokens": "boot,right*3",
   "commit": "f19f75f",
   "files": {
-   "jp": "town_tavern.jp.png",
-   "en": "town_tavern.en.png",
-   "ref": "town_tavern.ref.png",
-   "compare3": "3x/town_tavern.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_town_tavern.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_town_tavern.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_town_tavern.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_town_tavern.compare3.compare3.png"
   },
   "settled": {
    "jp": false,
@@ -185,15 +185,15 @@
  },
  {
   "id": "town_notice",
-  "category": "town",
+  "category": "menu",
   "description": "Town map, Notice Board info",
   "tokens": "boot,right*4",
   "commit": "f19f75f",
   "files": {
-   "jp": "town_notice.jp.png",
-   "en": "town_notice.en.png",
-   "ref": "town_notice.ref.png",
-   "compare3": "3x/town_notice.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_town_notice.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_town_notice.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_town_notice.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_town_notice.compare3.compare3.png"
   },
   "settled": {
    "jp": false,
@@ -208,15 +208,15 @@
  },
  {
   "id": "town_shop",
-  "category": "town",
+  "category": "menu",
   "description": "Town map, Lorelei's Shop info",
   "tokens": "boot,right*5",
   "commit": "f19f75f",
   "files": {
-   "jp": "town_shop.jp.png",
-   "en": "town_shop.en.png",
-   "ref": "town_shop.ref.png",
-   "compare3": "3x/town_shop.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_town_shop.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_town_shop.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_town_shop.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_town_shop.compare3.compare3.png"
   },
   "settled": {
    "jp": false,
@@ -231,15 +231,15 @@
  },
  {
   "id": "town_temple",
-  "category": "town",
+  "category": "menu",
   "description": "Town map, Samsara Temple info",
   "tokens": "boot,right*6",
   "commit": "f19f75f",
   "files": {
-   "jp": "town_temple.jp.png",
-   "en": "town_temple.en.png",
-   "ref": "town_temple.ref.png",
-   "compare3": "3x/town_temple.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_town_temple.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_town_temple.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_town_temple.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_town_temple.compare3.compare3.png"
   },
   "settled": {
    "jp": false,
@@ -254,15 +254,15 @@
  },
  {
   "id": "town_inn",
-  "category": "town",
+  "category": "menu",
   "description": "Town map, Aries Inn info",
   "tokens": "boot,right*7",
   "commit": "f19f75f",
   "files": {
-   "jp": "town_inn.jp.png",
-   "en": "town_inn.en.png",
-   "ref": "town_inn.ref.png",
-   "compare3": "3x/town_inn.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_town_inn.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_town_inn.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_town_inn.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_town_inn.compare3.compare3.png"
   },
   "settled": {
    "jp": false,
@@ -277,15 +277,15 @@
  },
  {
   "id": "tavern_menu",
-  "category": "tavern",
+  "category": "menu",
   "description": "Tavern menu",
   "tokens": "boot,right*3,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "tavern_menu.jp.png",
-   "en": "tavern_menu.en.png",
-   "ref": "tavern_menu.ref.png",
-   "compare3": "3x/tavern_menu.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_tavern_menu.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_tavern_menu.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_tavern_menu.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_tavern_menu.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -300,15 +300,15 @@
  },
  {
   "id": "tavern_add",
-  "category": "tavern",
+  "category": "menu",
   "description": "Add member: roster with character card",
   "tokens": "boot,right*3,a,w60,a,w40",
   "commit": "f19f75f",
   "files": {
-   "jp": "tavern_add.jp.png",
-   "en": "tavern_add.en.png",
-   "ref": "tavern_add.ref.png",
-   "compare3": "3x/tavern_add.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_tavern_add.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_tavern_add.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_tavern_add.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_tavern_add.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -323,15 +323,15 @@
  },
  {
   "id": "party_town",
-  "category": "town",
+  "category": "menu",
   "description": "Town with the full party panel",
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "party_town.jp.png",
-   "en": "party_town.en.png",
-   "ref": "party_town.ref.png",
-   "compare3": "3x/party_town.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_party_town.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_party_town.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_party_town.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_party_town.compare3.compare3.png"
   },
   "settled": {
    "jp": false,
@@ -346,15 +346,15 @@
  },
  {
   "id": "training_menu",
-  "category": "training",
+  "category": "menu",
   "description": "Training Grounds menu",
   "tokens": "boot,right,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "training_menu.jp.png",
-   "en": "training_menu.en.png",
-   "ref": "training_menu.ref.png",
-   "compare3": "3x/training_menu.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_training_menu.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_training_menu.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_training_menu.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_training_menu.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -374,10 +374,10 @@
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "shop_menu.jp.png",
-   "en": "shop_menu.en.png",
-   "ref": "shop_menu.ref.png",
-   "compare3": "3x/shop_menu.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_shop_shop_menu.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_shop_shop_menu.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_shop_shop_menu.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_shop_shop_menu.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -397,10 +397,10 @@
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*2,a,w60,a,w60,a,w40",
   "commit": "f19f75f",
   "files": {
-   "jp": "shop_buy.jp.png",
-   "en": "shop_buy.en.png",
-   "ref": "shop_buy.ref.png",
-   "compare3": "3x/shop_buy.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_shop_shop_buy.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_shop_shop_buy.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_shop_shop_buy.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_shop_shop_buy.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -415,15 +415,15 @@
  },
  {
   "id": "temple_menu",
-  "category": "temple",
+  "category": "shop",
   "description": "Samsara Temple menu",
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*3,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "temple_menu.jp.png",
-   "en": "temple_menu.en.png",
-   "ref": "temple_menu.ref.png",
-   "compare3": "3x/temple_menu.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_shop_temple_menu.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_shop_temple_menu.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_shop_temple_menu.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_shop_temple_menu.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -438,15 +438,15 @@
  },
  {
   "id": "inn_rooms",
-  "category": "inn",
+  "category": "menu",
   "description": "Aries Inn room list",
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,right*4,a,w60,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "inn_rooms.jp.png",
-   "en": "inn_rooms.en.png",
-   "ref": "inn_rooms.ref.png",
-   "compare3": "3x/inn_rooms.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_inn_rooms.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_inn_rooms.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_inn_rooms.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_inn_rooms.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -461,15 +461,15 @@
  },
  {
   "id": "outskirts_menu",
-  "category": "maze",
+  "category": "menu",
   "description": "Edge of Town: explore / resume / end",
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "outskirts_menu.jp.png",
-   "en": "outskirts_menu.en.png",
-   "ref": "outskirts_menu.ref.png",
-   "compare3": "3x/outskirts_menu.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_outskirts_menu.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_outskirts_menu.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_outskirts_menu.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_outskirts_menu.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -484,15 +484,15 @@
  },
  {
   "id": "camp",
-  "category": "maze",
+  "category": "menu",
   "description": "Camp menu on entering the maze",
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150",
   "commit": "f19f75f",
   "files": {
-   "jp": "camp.jp.png",
-   "en": "camp.en.png",
-   "ref": "camp.ref.png",
-   "compare3": "3x/camp.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_camp.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_camp.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_camp.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_camp.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -507,15 +507,15 @@
  },
  {
   "id": "character_sheet",
-  "category": "maze",
+  "category": "inventory",
   "description": "Character sheet from Camp",
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,a,w40,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "character_sheet.jp.png",
-   "en": "character_sheet.en.png",
-   "ref": "character_sheet.ref.png",
-   "compare3": "3x/character_sheet.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_inventory_character_sheet.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_inventory_character_sheet.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_inventory_character_sheet.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_inventory_character_sheet.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -530,15 +530,15 @@
  },
  {
   "id": "maze_view",
-  "category": "maze",
+  "category": "gameplay",
   "description": "First-person maze view, Camp closed",
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "maze_view.jp.png",
-   "en": "maze_view.en.png",
-   "ref": "maze_view.ref.png",
-   "compare3": "3x/maze_view.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_gameplay_maze_view.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_gameplay_maze_view.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_gameplay_maze_view.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_gameplay_maze_view.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -553,15 +553,15 @@
  },
  {
   "id": "maze_dmenu",
-  "category": "maze",
+  "category": "menu",
   "description": "Dungeon menu (SELECT)",
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,select,w40",
   "commit": "f19f75f",
   "files": {
-   "jp": "maze_dmenu.jp.png",
-   "en": "maze_dmenu.en.png",
-   "ref": "maze_dmenu.ref.png",
-   "compare3": "3x/maze_dmenu.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_maze_dmenu.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_maze_dmenu.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_maze_dmenu.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_maze_dmenu.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -576,15 +576,15 @@
  },
  {
   "id": "stairs_up_prompt",
-  "category": "maze",
+  "category": "dialogue",
   "description": "Stairs up prompt (back onto the stairs)",
   "tokens": "boot,right*3,a,w60,a,w40,a,w30,a,w30,a,w30,a,w30,a,w30,a,w30,b,w40,b,w40,b,w60,left*3,a,w60,a,w150,b,w60,up,w60,down,w60,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "stairs_up_prompt.jp.png",
-   "en": "stairs_up_prompt.en.png",
-   "ref": "stairs_up_prompt.ref.png",
-   "compare3": "3x/stairs_up_prompt.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_dialogue_stairs_up_prompt.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_dialogue_stairs_up_prompt.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_dialogue_stairs_up_prompt.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_dialogue_stairs_up_prompt.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -599,15 +599,15 @@
  },
  {
   "id": "museum_menu",
-  "category": "museum",
+  "category": "menu",
   "description": "Museum: item room / monster room",
   "tokens": "boot,right*2,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "museum_menu.jp.png",
-   "en": "museum_menu.en.png",
-   "ref": "museum_menu.ref.png",
-   "compare3": "3x/museum_menu.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_menu_museum_menu.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_menu_museum_menu.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_menu_museum_menu.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_menu_museum_menu.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -622,15 +622,15 @@
  },
  {
   "id": "museum_item_room",
-  "category": "museum",
+  "category": "system",
   "description": "Item room: categories, found/not found",
   "tokens": "boot,right*2,a,w60,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "museum_item_room.jp.png",
-   "en": "museum_item_room.en.png",
-   "ref": "museum_item_room.ref.png",
-   "compare3": "3x/museum_item_room.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_system_museum_item_room.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_system_museum_item_room.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_system_museum_item_room.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_system_museum_item_room.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -645,15 +645,15 @@
  },
  {
   "id": "museum_item_list",
-  "category": "museum",
+  "category": "system",
   "description": "Item room: weapon list",
   "tokens": "boot,right*2,a,w60,a,w60,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "museum_item_list.jp.png",
-   "en": "museum_item_list.en.png",
-   "ref": "museum_item_list.ref.png",
-   "compare3": "3x/museum_item_list.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_system_museum_item_list.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_system_museum_item_list.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_system_museum_item_list.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_system_museum_item_list.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -668,15 +668,15 @@
  },
  {
   "id": "museum_item_info",
-  "category": "museum",
+  "category": "system",
   "description": "Item page",
   "tokens": "boot,right*2,a,w60,a,w60,a,w60,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "museum_item_info.jp.png",
-   "en": "museum_item_info.en.png",
-   "ref": "museum_item_info.ref.png",
-   "compare3": "3x/museum_item_info.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_system_museum_item_info.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_system_museum_item_info.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_system_museum_item_info.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_system_museum_item_info.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -691,15 +691,15 @@
  },
  {
   "id": "museum_item_info_dn",
-  "category": "museum",
+  "category": "system",
   "description": "Item page, DOWN = next item",
   "tokens": "boot,right*2,a,w60,a,w60,a,w60,a,w60,down,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "museum_item_info_dn.jp.png",
-   "en": "museum_item_info_dn.en.png",
-   "ref": "museum_item_info_dn.ref.png",
-   "compare3": "3x/museum_item_info_dn.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_system_museum_item_info_dn.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_system_museum_item_info_dn.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_system_museum_item_info_dn.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_system_museum_item_info_dn.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -714,15 +714,15 @@
  },
  {
   "id": "museum_item_info_rt",
-  "category": "museum",
+  "category": "system",
   "description": "Item page, RIGHT = next list page",
   "tokens": "boot,right*2,a,w60,a,w60,a,w60,a,w60,right,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "museum_item_info_rt.jp.png",
-   "en": "museum_item_info_rt.en.png",
-   "ref": "museum_item_info_rt.ref.png",
-   "compare3": "3x/museum_item_info_rt.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_system_museum_item_info_rt.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_system_museum_item_info_rt.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_system_museum_item_info_rt.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_system_museum_item_info_rt.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -737,15 +737,15 @@
  },
  {
   "id": "museum_monster_none",
-  "category": "museum",
+  "category": "system",
   "description": "Monster room, none seen (A does nothing)",
   "tokens": "boot,right*2,a,w60,down,w20,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "museum_monster_none.jp.png",
-   "en": "museum_monster_none.en.png",
-   "ref": "museum_monster_none.ref.png",
-   "compare3": "3x/museum_monster_none.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_system_museum_monster_none.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_system_museum_monster_none.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_system_museum_monster_none.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_system_museum_monster_none.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -760,15 +760,15 @@
  },
  {
   "id": "museum_monster_list",
-  "category": "museum",
+  "category": "system",
   "description": "Monster room list (all seen, poked)",
   "tokens": "boot,right*2,a,w60,poke,down,a,w120",
   "commit": "f19f75f",
   "files": {
-   "jp": "museum_monster_list.jp.png",
-   "en": "museum_monster_list.en.png",
-   "ref": "museum_monster_list.ref.png",
-   "compare3": "3x/museum_monster_list.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_system_museum_monster_list.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_system_museum_monster_list.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_system_museum_monster_list.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_system_museum_monster_list.compare3.compare3.png"
   },
   "settled": {
    "jp": true,
@@ -783,15 +783,15 @@
  },
  {
   "id": "museum_monster_page",
-  "category": "museum",
+  "category": "system",
   "description": "Monster page (Ancient One)",
   "tokens": "boot,right*2,a,w60,poke,down,a,w120,a,w60",
   "commit": "f19f75f",
   "files": {
-   "jp": "museum_monster_page.jp.png",
-   "en": "museum_monster_page.en.png",
-   "ref": "museum_monster_page.ref.png",
-   "compare3": "3x/museum_monster_page.compare3.png"
+   "jp": "wizardry-empire_gbc_jp_system_museum_monster_page.compare3.jp.png",
+   "en": "wizardry-empire_gbc_jp_system_museum_monster_page.compare3.en.png",
+   "ref": "wizardry-empire_gbc_jp_system_museum_monster_page.compare3.ref.png",
+   "compare3": "3x/wizardry-empire_gbc_jp_system_museum_monster_page.compare3.compare3.png"
   },
   "settled": {
    "jp": true,

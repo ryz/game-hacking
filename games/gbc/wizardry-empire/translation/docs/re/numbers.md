@@ -41,7 +41,7 @@ Two other digit writers exist but are not used: 0:11A3 (byte -> decimal, no call
 No ad-hoc `add $30` digit writers in game banks.
 
 How confirmed: count-only PC breakpoints on 0FE9 and on one return address per routine group (48 groups,
-`groups.txt`), run over all 118 non-boot routes of `../shots/jp_tour/index.json` on the EN build
+`groups.txt`), run over all 118 non-boot routes of `../shots/jp-tour/index.json` on the EN build
 (`census.py` -> `census_tour.json`, screenshots `work/re/numbers/shots/<id>.png`), and over the 32 JP
 battle/chest states (`census_jpbattle.json`). On every screen a scanner compared each visible BG/window cell's
 VRAM tile with the 8 px font glyphs (01:4400, non-pool codes) (`harness.py scan()`).
@@ -180,7 +180,7 @@ the automap). Full VWF: have VWF_Panel draw the counts with the names (22:5713 (
 
 ## 4. Stylistic candidates (owner decides)
 - Card/sheet big labels "L", "HP", "AC" and their values (JP uses the same 8 px ASCII):
-  `../shots/jp_tour/character_sheet.jp.png` vs `work/re/numbers/shots/character_sheet.png`,
+  `../shots/jp-tour/wizardry-empire_gbc_jp_inventory_character_sheet.jp-tour.jp.png` vs `work/re/numbers/shots/character_sheet.png`,
   `work/re/numbers/sheet_training.png`.
 - Name-entry chart grid and "END": `work/re/numbers/shots/training_create_name_abc.png`.
 - Monster panel "(2) 2" and automap coordinates (symbol sheet): `work/re/numbers/walk2_7/end.png`.
