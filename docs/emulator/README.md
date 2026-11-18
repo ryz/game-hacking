@@ -59,6 +59,11 @@ change, and the next macro then lands in the wrong menu.
 **Routes and RNG:** the route `play.py` records (with its `settle` steps) is the reproducible one; the same keys
 typed into `emu.py` without those steps can meet a different encounter. Copy routes from `play.py route`.
 
+**Story gates:** before tracing code, step onto every entry of the game's event-square table with the party in
+the right area (Megami Tensei II: the "blocked" ending was an ordinary boss-and-item chain); also try losing on
+purpose. **Picking a frame of typing text:** `play.py sample "a,w20" 12` tiles 12 steps and goes back; then `do!`
+the tokens that many times.
+
 **Typewriter text:** a press while a page is still typing is not reliably counted. Use one press per page with a
 fixed wait long enough for the page to finish (`a,w150`), not `a*N` or `mash`, wherever the count matters (naming
 routes, choices after dialogue), and prefer fixed waits to `settle` there. `settle` can stop on a pause mid-page:

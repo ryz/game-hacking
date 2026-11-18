@@ -40,6 +40,9 @@ is reproducible from power-on (states are a cache, routes are the record).
   python3 tools/play.py diff A [B]           bytes that differ between dumps A and B (B omitted: RAM now);
                                              e.g. dump before a step, step, `diff before`;
                                              the dump file maps hex addresses without 0x ("6F00") to values
+  python3 tools/play.py sample "TOKENS" [N]  run TOKENS N times (default 12) from here, tile a frame after each into
+                                             work/play/<session>/sample.png, then go back (route unchanged): pick
+                                             the frame of typing text, then do! the tokens that many times
   python3 tools/play.py stop
 
 --name N on any command runs a parallel session (default 'main'). Log: work/play/NAME/log.txt.
@@ -145,6 +148,28 @@ class Session:
         with open(os.path.join(self.dir, "log.txt"), "a") as f:
             f.write("%03d %s -> %s%s\n" % (self.n, seq, rel(p), note))
         return "%s%s\n%s" % (rel(p), note, self.watch())
+
+    def sample(self, seq, n):
+        """Run SEQ n times from here, one frame after each run, tiled into sample.png; then return to the state
+        before (the route is unchanged). For typewriter text and auto-advancing messages: pick a frame, then
+        `do! "<SEQ repeated i times>"` reaches it exactly."""
+        self.reload_game()
+        toks = self.E.expand(self.game, [t for t in self.E.split(seq) if t != "pow"])
+        back = os.path.join(self.dir, "sample.state")
+        self.emu.save_state(back)
+        freezes = list(getattr(self.emu, "freezes", []))
+        paths = []
+        for i in range(1, n + 1):
+            self.E.play(self.emu, self.game, toks)
+            p = os.path.join(self.dir, "sample_%02d.png" % i)
+            self.emu.screen_png(p)
+            paths.append(p)
+        self.emu.load_state(back)
+        self.emu.freezes = freezes
+        self.stale = True
+        out = os.path.join(self.dir, "sample.png")
+        self.E.sheet(paths, out, cols=6, labels=[str(i) for i in range(1, n + 1)])
+        return "%s (%d frames; frame i = do! with \"%s\" repeated i times; state unchanged)" % (rel(out), n, seq)
 
     def edit_shot(self, cmd, sid, caption, set_="main"):
         """unsnap: remove a shot from the working set (shots.txt, index.json, its images). recaption: change its
@@ -326,6 +351,8 @@ class Session:
         E, e = self.E, self.emu
         if cmd in ("do", "do!"):
             return self.do(args[0], settle=cmd == "do")
+        if cmd == "sample":
+            return self.sample(args[0], int(args[1]) if len(args) > 1 else 12)
         if cmd == "undo":
             if not self.undo_state:
                 return "error: nothing to undo"

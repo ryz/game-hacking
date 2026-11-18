@@ -17,7 +17,9 @@ Current snapshot; history in `progress-log.md`.
   summon, fusion, sage password, shop, healer, status, Tyrant Minotaur encounter, game over), 41/41 verified.
   Open there: level-up (EXP poke did not trigger one), battle magic, a deeper floor, the Minotaur fight, a
   demon fighting, the ending (password format not decoded).
-- Megami Tensei II (Famicom, English IPS), 2026-11-18: main set 36 shots (intro, naming, Devil Buster, battles,
+- Megami Tensei II round 2 (2026-11-18): 67 shots in game order, Pazuzu, fusion, shop, totem save, overhead maps.
+  Still open: a CHAT join, automap, Nebro and later bosses, first-person maze maps.
+- (round 1) Megami Tensei II (Famicom, English IPS), 2026-11-18: main set 36 shots (intro, naming, Devil Buster, battles,
   level-up, healer, Tokyo overworld, 3D cave, magic, computer room, save slots, shelter, game over), save
   01_computer_room. Open: Pazuzu, automap, a demon joining, summoning, fusion, shop, bosses; shots.txt not in game
   order; start_room retake. Some lines are untranslated by the patch (checked, not a layout error).

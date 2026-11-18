@@ -92,3 +92,9 @@ the Teleport entry and NPC lines show Japanese kana or garbled letters (shots `s
 **Intended:** translated text.
 **Confidence:** (verified) on screen; a patch gap like the save confirmation (coordinator's check, above).
 **Impact:** part of the shops and the later towns is unreadable in English.
+
+## Naming prompts checked (coordinator, 2026-11-18)
+The three prompts read, in order: "Your character is the young hero. Name him." (RYZ), "Name your girlfriend."
+(CONDI), "Give a name for your best friend." (EBO). So the captions follow the game's own labels: the girlfriend is
+the second fighter inside Devil Buster, the best friend is the second party member in the real world (and the one
+Pazuzu calls the second messiah). **(verified: naming screens of the English-patched ROM)**

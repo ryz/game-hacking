@@ -9,6 +9,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Megami Tensei II round 2
+- Task: game order, start_room retake, Pazuzu, demons and fusion, shop and save point, maps (67/67; commits 9e8c146
+  6d009b8).
+- Worked: stepping onto every square of the ROM's overhead event table cracked the Devil Buster ending after 60+
+  calls of code tracing; reading the code next to a system message gave the COMP layout in ~4 calls; a variant
+  runner (`var.py`) and sampling typing text every 30 frames; map stitching from warped, sprite-hidden centre crops.
+- Friction: `--publish` without `--only` re-shoots everything (past the 120 s limit); uncached `goto` timed out
+  once; fusion menu needed held presses; events stepped on in the wrong area context show ERROR; third hand-made
+  scanner, first map stitcher.
+- Proposed rule change: (1) emulator guide: story gate -> step on every event-table entry first; (2) shared
+  `tools/mapgrab.py`; (3) shared variant/sampling runner; (4) skill: run a full `--publish` in the background.
+- Corrected: (1) added; (3) built as `play.py sample` (fifth request); 6/6 re-verified; naming roles checked on
+  screen. (2) logged (first stitcher); (4) logged.
+- Status: promoted 2026-11-18 ((1), (3)); open ((2), (4))
+
 ### 2026-11-18 - Deep Dungeon III (Famicom, Japanese) main set
 - Task: main set (74/74; commits fb6c8ee c3b8e42 4294138), event squares and towns decoded, ending found, saves.
 - Worked: in-process event scanner over all 16 floors in one parallel call (~3 min), tiled sheets readable enough to

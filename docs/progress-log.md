@@ -2,6 +2,16 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Megami Tensei II round 2; play.py sample
+- game-capture round 2: 67 shots (commits 9e8c146 6d009b8), set in game order, start_room retaken; Devil Buster
+  finished as intended (Taurus -> S.ORB -> god statue -> Pazuzu), found by stepping onto every entry of the ROM's
+  event-square table; demons in the COMP by poke (CHAT joins still never happen), summon, demons in battle, fusion;
+  village shop, totem save (02_village_totem), registry; overhead maps (Devil Buster, overworld, towns) in
+  design/maps/. Coordinator: folder = index (67), 6/6 re-verified; naming prompts checked on screen (hero,
+  girlfriend CONDI, best friend EBO), so the captions follow the game's labels.
+- `play.py sample "TOKS" N`: frames after each of N runs tiled, state and route unchanged (typewriter text; asked
+  for by five runs). Emulator guide: story gates -> step on every event-table entry first.
+
 ## 2026-11-18 - Deep Dungeon III main set; macros with arguments; batch of five done
 - game-capture: 74 shots (commits fb6c8ee c3b8e42 4294138): towns and shops of three towns, temple, magic hall,
   combat, level-up, companion joining/dying, events on all floors, masters Zosem and Barzas, the ending (area 6)

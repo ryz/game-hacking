@@ -62,7 +62,7 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
   `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`; 6502 code:
   `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]`.
 - Play: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
-  `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `dump A` / `diff A [B]`, `stop`.
+  `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `dump A` / `diff A [B]`, `sample "TOKS" N`, `stop`.
 - Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish]`. Tests: `python3 -m pytest -q tests`.
 - Per game: `games/<slug>/playbook.md` is read before playing and updated after; checkpoints are routes (cache
   states are not committed). Milestone saves for the owner: save in the game, then `play.py export NAME "desc"`
