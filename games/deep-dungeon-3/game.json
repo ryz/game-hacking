@@ -40,7 +40,8 @@
     "SAVE": "down,a,w60,a,w90",
     "OUT": "down*4,a,w120,a,w60",
     "WARP_A2": "poke:00EE=1E,poke:00EF=02,poke:006F=00,left,right,w30,up,w60,a,w120,b,w60,poke:00EE=1D,poke:00EF=01,poke:006F=10,left,right,w30,up,w60",
-    "CONTINUE": "TITLE,start,w60,down*2,start,w60,start,w120"
+    "CONTINUE": "TITLE,start,w60,down*2,start,w60,start,w120",
+    "VET": "poke:7010=05,poke:7016=ED,poke:7017=01,poke:7018=3A,poke:7019=00,poke:701A=3A,poke:701B=00,poke:701C=08,poke:701D=08,poke:701E=0E,poke:7020=03,poke:7022=0A,poke:7023=05,poke:7050=05,poke:7056=A3,poke:7057=01,poke:7058=2F,poke:7059=00,poke:705A=2F,poke:705B=00,poke:705C=0B,poke:705D=0B,poke:705E=0B,poke:7060=03,poke:7062=0D,poke:7063=04,poke:7090=05,poke:7096=87,poke:7097=01,poke:7098=24,poke:7099=00,poke:709A=24,poke:709B=00,poke:709C=12,poke:709D=12,poke:709E=08,poke:70A0=02,poke:70A2=08,poke:70A3=07,poke:70D0=05,poke:70D6=7C,poke:70D7=01,poke:70D8=1B,poke:70D9=00,poke:70DA=1B,poke:70DB=00,poke:70DC=19,poke:70DD=19,poke:70DE=06,poke:70E0=02,poke:70E2=09,poke:70E3=06,poke:7001=83,poke:7002=02"
   },
   "ram": {
     "area": {
@@ -66,6 +67,14 @@
     },
     "gold": {
       "addr": "7001",
+      "size": 2
+    },
+    "hp_ryz": {
+      "addr": "7018",
+      "size": 2
+    },
+    "ex_ryz": {
+      "addr": "7016",
       "size": 2
     }
   }

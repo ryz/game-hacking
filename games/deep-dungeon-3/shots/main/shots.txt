@@ -1,0 +1,72 @@
+# id | category | caption | route
+# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
+#             minigame ending credits gameover save extra   (docs/capture-guide.md)
+# The plan for the main set. play.py snap writes captured shots (with exact routes) to
+# work/shots/deep-dungeon-3/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
+prologue_text | cutscene | Prologue: a young swordsman dreaming of glory sets out and stops at Dirige (ディリージュ) | w200
+title_screen | title | Title screen: 勇士への旅 (Yuushi e no Tabi), PUSH START, (c)1987 HummingBird Soft | @title
+menu_main | menu | Main menu: create character / erase character / begin adventure | @title,start,w60
+party_slots | menu | Party select: three party slots (empty) | @title,start,w60,start,w60
+name_entry | menu | Hiragana name entry: the swordsman named りず (ryz) | @title,start,w60,start,w60,KBD,down*4,right,a,up*3,right,a,down*3,right*6,a,w30
+class_select | menu | Second member's class: hunter (かりゅうど), priest (そうりょ), magician (まほうつかい), none | @title,start,w60,start,w60,KBD,RYZ
+inn_menu | shop | The inn of Dirige: stay / adventure record / reorder / remove member / go out; 100 gold | @start
+inn_save | save | Adventure record (ぼうけんのきろく): "recorded" | @start,SAVE
+inn_stay | shop | Staying at the inn: "It costs 4 gold - is that all right?" (yes/no) | @vets,a,w90,settle
+town_inn_door | gameplay | Dirige in first person: the inn door with its INN sign | @town,right*2,w30
+town_street | gameplay | Dirige street in first person, party panel with level, HP and MP | @town,poke:00EE=09,poke:00EF=24,poke:006F=30,left,right,w30,a,w120,a,w60,a,w60,a,w60,down,a,w60,down*2,a,w60,a,w60,down*2,a,w120,w60,settle
+field_menu | menu | Field menu: items, spells, search, status, talk | @town,b,w30
+status_ryz | inventory | Status of りず: swordsman (けんし) level 1, HP 15, AC/AP/ST/AG/LK | @town,b,w30,down*3,a,w60,a,w60
+spell_menu | system | Field spells of the magician きゅび: one spell known, スピアー (Spear) | @town,b,w30,down,a,w60,settle,down*3,a,w60,settle
+item_menu | inventory | Items of りず: grass dew (くさのつゆ), 55 gold | @town,poke:00EE=09,poke:00EF=24,poke:006F=30,left,right,w30,a,w120,a,w60,a,w60,a,w60,down,a,w60,down*2,a,w60,a,w60,down*2,a,w120,w60,settle,poke:00EE=03,poke:00EF=1B,poke:006F=30,left,right,w30,a,w120,a,w90,a,w60,a,w60,down,a,w60,a,w60,down*2,a,w120,w60,settle,down*2,a,w120,w60,settle,b,w30,a,w60,a,w60,settle,w30,b,w30,a,w60,a,w60,settle
+item_use | inventory | Item options: use (つかう), give (わたす), throw away (すてる) | @town,poke:00EE=09,poke:00EF=24,poke:006F=30,left,right,w30,a,w120,a,w60,a,w60,a,w60,down,a,w60,down*2,a,w60,a,w60,down*2,a,w120,w60,settle,poke:00EE=03,poke:00EF=1B,poke:006F=30,left,right,w30,a,w120,a,w90,a,w60,a,w60,down,a,w60,a,w60,down*2,a,w120,w60,settle,down*2,a,w120,w60,settle,b,w30,a,w60,a,w60,settle,w30,b,w30,a,w60,a,w60,settle,a,w60,settle
+shop_arms_dirige | shop | Dirige weapon and armour shop (ぶきとぼうぐのみせ): buy weapons / buy armour / leave | @town,poke:00EE=09,poke:00EF=24,poke:006F=30,left,right,w30,a,w120,settle
+shop_weapons_list | shop | Dirige weapons: dagger 5, club 8, hand axe 10, dart 10, sling 20 gold | @town,poke:00EE=09,poke:00EF=24,poke:006F=30,left,right,w30,a,w120,settle,a,w60,settle
+shop_armour_list | shop | Dirige armour: silk robe (きぬのころも) 15, arm shield (うでのたて) 20, leather 25 gold | @town,poke:00EE=09,poke:00EF=24,poke:006F=30,left,right,w30,a,w120,settle,a,w60,settle,b,w40,down,a,w60,settle
+item_shop | shop | Item shop (SHOP): came to buy / came to sell / leave | @town,poke:00EE=03,poke:00EF=1B,poke:006F=30,left,right,w30,a,w120,settle
+item_shop_list | shop | Item shop wares: grass dew (くさのつゆ) 20, white mushroom 40, lamp 50, rope ladder 250 | @town,poke:00EE=03,poke:00EF=1B,poke:006F=30,left,right,w30,a,w120,settle,a,w90,settle
+temple_menu | shop | Temple (TEMPLE): offer a prayer / revive the dead / learn spells / leave | @town,poke:00EE=0D,poke:00EF=2E,poke:006F=00,left,right,w30,a,w120,settle
+temple_spells | shop | Temple spell lessons for the hunter こんでい: キュアー (Cure) for 100 gold | @vets,OUT,w60,settle,poke:00EE=0D,poke:00EF=2E,poke:006F=00,left,right,w30,a,w120,down*2,a,w90,down*2,a,w120,settle
+temple_learned | shop | "こんでい learned the Cure spell" - 100 gold paid, 543 left | @vets,OUT,w60,settle,poke:00EE=0D,poke:00EF=2E,poke:006F=00,left,right,w30,a,w120,down*2,a,w90,down*2,a,w120,settle,a,w150,settle
+magic_guild | shop | Magic training hall (MAGIC): magicians learn spells here | @town,poke:00EE=01,poke:00EF=28,poke:006F=10,left,right,w30,a,w120,settle
+info_broker | shop | Information seller: tips 1, 2, 3 for 1, 5, 10 gold (じょうほう) | @town,poke:00EE=09,poke:00EF=24,poke:006F=30,left,right,w30,a,w120,settle,a,w60,settle,b,w40,down,a,w60,settle,down*2,a,w60,settle,a,w60,settle,down*2,a,w120,poke:00EE=09,poke:00EF=2A,poke:006F=30,left,right,w30,a,w120,settle,poke:00EE=09,poke:00EF=2A,poke:006F=30,left,right,w30,a,w120,settle
+battle_skeletons | battle | Battle: three skeletons (がいこつ) appear in the underground | @battle
+battle_commands | battle | Battle command menu: fight, spell, defend, item, run | @battle,a,w60
+battle_target | battle | Choosing a target: the first skeleton is highlighted | @battle,a,w60,a,w60,settle
+battle_spell_select | battle | Magician きゅび picks a spell: スピアー (Spear) | @battle,a,w60,a,w60,settle,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,settle
+battle_round | battle | A round plays out: りず loses 28 HP, a skeleton attacks, えぼ dodges | @battle,VET,w10,settle,a,w60,a,w60,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,settle
+battle_spell_cast | battle | きゅび casts the Spear spell (スピアーのじゅもんをとなえた) | @battle,VET,w10,settle,a,w60,a,w60,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,settle,w10*30,settle
+battle_victory | battle | Victory: the last skeleton falls - 42 gold, 6 EX for each member | @battle,VET,w10,settle,a,w60,a,w60,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,settle,w10*30,settle,w10*40,settle,w10*40,poke:7018=1E,a,w60,down*2,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,w10*80,settle,w10*40,a,w60,down*2,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,w10*60,settle
+level_up | battle | After the fight: "りず's LEVEL went up" | @battle,VET,w10,settle,a,w60,a,w60,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,settle,w10*30,settle,w10*40,settle,w10*40,poke:7018=1E,a,w60,down*2,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,w10*80,settle,w10*40,poke:7016=F0,a,w60,down*2,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,w10*60,settle,a,w60,settle
+level_up_points | system | Level 6: 2 bonus points to share among ST, AG and LK; Start when done | @battle,VET,w10,settle,a,w60,a,w60,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,settle,w10*30,settle,w10*40,settle,w10*40,poke:7018=1E,a,w60,down*2,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,w10*80,settle,w10*40,poke:7016=F0,a,w60,down*2,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,a,w60,a,w60,w10*60,settle,a,w60,settle,a,w90,settle
+gameover_swordsman | gameover | The swordsman りず falls (HP 0): "りず's party has lost its purpose" - game over | @round1,a,w60,a,w60,settle
+gameover_menu | gameover | After the wipe: restart from the last record / quit the adventure | @round1,a,w60,a,w60,settle,w300,settle
+hud_dungeon | hud | The underground (ちか) floor 1: green walls, side passages, party panel | @warp,poke:7003=01,poke:7004=00,poke:00EE=01,poke:00EF=02,a,w150,poke:006F=10,left,right,w30,settle
+ev_monument | gameplay | Underground floor 1: a stone monument - "the monsters must have come out from here" | @warp,poke:7003=01,poke:7004=00,poke:00EE=11,poke:00EF=02,a,w150,poke:006F=20,left,right,w30,up,w150,settle
+ev_wall_writing | dialogue | Writing on the wall: "Below is a prison! Rescue the people held there" | @warp,poke:7003=01,poke:7004=00,poke:00EE=01,poke:00EF=0C,a,w150,poke:006F=00,left,right,w30,up,w150,settle
+ev_prisoner_bell | dialogue | Underground floor 2 (the prison): a freed prisoner gives the party a bell | @warp,poke:7003=01,poke:7004=01,poke:00EE=0D,poke:00EF=0E,a,w150,poke:006F=00,left,right,w30,up,w150,settle
+ev_pit_trap | system | Pit trap (おとしあな): the priest えぼ loses 22 HP and dies | @warp,poke:7003=01,poke:7004=01,poke:00EE=0C,poke:00EF=1B,a,w150,poke:006F=10,left,right,w30,up,w150,settle
+ev_final_fantasy | extra | A prisoner's advice: "Buy Final Fantasy (ファイナルファンタジー), it will surely help!" | @warp,poke:7003=01,poke:7004=01,poke:00EE=08,poke:00EF=1D,a,w150,poke:006F=20,left,right,w30,up,w150,settle
+stairs_down_cave | gameplay | Orange-brick dungeon (area 2): "There are stairs going down. Use them?" | @warp
+area2_cave | gameplay | The cave (どうくつ) floor 1 is dark: only scraps of the orange brick walls show | @warp,poke:7003=02,poke:7004=00,poke:00EE=01,poke:00EF=1C,a,w150,poke:006F=10,left,right,w30,settle
+ev_sun_shield | gameplay | Cave floor 1: found a Sun Shield (サンシールド) - pick it up? | @warp,poke:7003=02,poke:7004=00,poke:00EE=1D,poke:00EF=1E,a,w150,poke:006F=10,left,right,w30,up,w150,settle
+ev_someone_here | dialogue | Cave floor 2: "Someone is here! What will you do?" - field menu to talk | @warp,poke:7003=02,poke:7004=01,poke:00EE=13,poke:00EF=01,a,w150,poke:006F=30,left,right,w30,up,w150,settle
+companion_offer | dialogue | Cave floor 2: a priest asks "May I join your adventure?" (yes/no) | @warp,poke:7003=02,poke:7004=01,poke:00EE=13,poke:00EF=01,a,w150,poke:006F=30,left,right,w30,up,w150,down*4,a,w150,settle
+companion_joins | system | The priest ビルマン (Birman, level 15) joins in the fourth slot | @warp,poke:7003=02,poke:7004=01,poke:00EE=13,poke:00EF=01,a,w150,poke:006F=30,left,right,w30,poke:7000=03,poke:70D0=00,up,w150,down*4,a,w150,a,w150,settle
+ev_sword_in_rock | gameplay | Cave floor 3: a sword stuck in a rock - "Try to pull it out?" | @warp,poke:7003=02,poke:7004=02,poke:00EE=13,poke:00EF=1B,a,w150,poke:006F=00,left,right,w30,up,w150,settle
+ev_zosem_voice | dialogue | Cave floor 4: "Welcome. I am Zosem, master of the world below! Come quickly!" | @warp,poke:7003=02,poke:7004=03,poke:00EE=0D,poke:00EF=04,a,w150,poke:006F=10,left,right,w30,up,w150,settle
+boss_zosem | boss | Cave floor 4: Zosem (ゾセム) attacks | @warp,poke:7003=02,poke:7004=03,poke:00EE=1C,poke:00EF=05,a,w150,poke:006F=00,left,right,w30,up,w150,settle
+tower_entrance | gameplay | Ail's building 7 is the tower entrance: "Tower entrance - go out to the town?" | @town,poke:00EE=1A,poke:00EF=2E,poke:006F=10,left,right,w30,a,w120,settle
+area3_tower | gameplay | The tower (とう) floor 1: blue walls | @warp,poke:7003=03,poke:7004=00,poke:00EE=0E,poke:00EF=01,a,w150,poke:006F=10,left,right,w30,settle
+area3_tower_f3 | gameplay | The tower floor 3: brown walls | @warp,poke:7003=03,poke:7004=02,poke:00EE=0E,poke:00EF=1E,a,w150,poke:006F=30,left,right,w30,settle
+area3_tower_top | gameplay | The tower floor 6: purple walls | @warp,poke:7003=03,poke:7004=05,poke:00EE=08,poke:00EF=0E,a,w150,poke:006F=00,left,right,w30,settle
+boss_tower_master | boss | Tower floor 6: the master of the tower, バーザス (Barzas), appears | @warp,poke:7003=03,poke:7004=05,poke:00EE=11,poke:00EF=10,a,w150,poke:006F=10,left,right,w30,up,w150,settle
+castle_entrance | gameplay | North town's building 8 is the castle entrance: "Castle entrance - go out to the town?" | @town,poke:00EE=04,poke:00EF=07,poke:006F=30,left,right,w30,a,w120,settle
+area4_castle | gameplay | The castle (しろ) floor 1: green pillared walls | @warp,poke:7003=04,poke:7004=00,poke:00EE=1C,poke:00EF=12,a,w150,poke:006F=00,left,right,w30,settle
+battle_wyverns | battle | Castle floor 1: two wyverns (ワイバーン) appear | @warp,poke:7003=04,poke:7004=00,poke:00EE=0F,poke:00EF=01,a,w150,poke:006F=10,left,right,w30,settle
+ev_flame_of_life | gameplay | Castle floor 3: the flame of life - "Whose sword will you search for?" | @warp,poke:7003=04,poke:7004=02,poke:00EE=1B,poke:00EF=05,a,w150,poke:006F=00,left,right,w30,up,w150,settle
+ev_king | dialogue | Castle floor 3: the king - the princess is under a monster's spell; take this necklace | @warp,poke:7003=04,poke:7004=02,poke:00EE=1D,poke:00EF=10,a,w150,poke:006F=00,left,right,w30,up,w150,settle
+ev_castle_sage | dialogue | Castle floor 4: "The right door leads back to the first room; the middle one..." | @warp,poke:7003=04,poke:7004=03,poke:00EE=0F,poke:00EF=12,a,w150,poke:006F=00,left,right,w30,up,w150,settle
+ending_princess | ending | Ending: the princess thanks the party and tells how the broken seal let the monsters out | @warp,poke:7003=06,poke:7004=00,poke:00EE=01,poke:00EF=01,a,w150,poke:006F=10,left,right,w30,w3100,!
+ending_credits | credits | Staff roll: game design by Hiroshi Takayama, Tetsuo Yasuda, Shinichi Tsuruta, Hidenori Katsura | @warp,poke:7003=06,poke:7004=00,poke:00EE=01,poke:00EF=01,a,w150,poke:006F=10,left,right,w30,w5880,!
+ending_thanks | credits | Staff roll: special thanks to Mitsuyasu Matsuo, Yoshikazu Kawauchi, Koichi Mizuno | @warp,poke:7003=06,poke:7004=00,poke:00EE=01,poke:00EF=01,a,w150,poke:006F=10,left,right,w30,w6400,!
+ending_the_end | ending | The End under the stone monument | @warp,poke:7003=06,poke:7004=00,poke:00EE=01,poke:00EF=01,a,w150,poke:006F=10,left,right,w30,w9100,!

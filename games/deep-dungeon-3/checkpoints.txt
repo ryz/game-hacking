@@ -7,3 +7,7 @@ town | Outside the first inn: first-person town view, party status panel, facing
 warp | Warp base: area 2 floor 1 (30,1) on the down-stairs prompt; poke 7003 area, 7004 floor-1, EE/EF x/y, then a | @town,poke:00EE=1E,poke:00EF=02,poke:006F=00,left,right,w30,up,w60,settle,a,w120,settle,b,w60,poke:00EE=1D,poke:00EF=01,poke:006F=10,left,right,w30,up,w60,settle
 area1 | Area 1 (the underground, ちか) floor 1 at (1,1) on the up stairs, facing north, prompt dismissed | @town,poke:00EE=01,poke:00EF=1A,poke:006F=00,left,right,w30,up,w60,a,w120,b,w60,settle
 battle | Area 1 floor 1 (2,2): random battle, がいこつ (skeleton) x3, command たたかう/にげる | @area1,right*2,w30,settle,up,w30,up,w30,up,w30,settle,left,w30,up,w30,up,w30,up,w30,settle
+tower | Tower (area 3) floor 1 entrance (1,15) from Ail building 7, exit prompt open | @town,poke:00EE=1A,poke:00EF=2E,poke:006F=10,left,right,w30,a,w120,settle
+castle | Castle (area 4) floor 1 entrance (30,15) from the north town's building 8 (2,7), exit prompt open | @town,poke:00EE=04,poke:00EF=07,poke:006F=30,left,right,w30,a,w120,settle
+round1 | Skeleton battle, all four orders given up to the magician's spell list (Spear highlighted) | @battle,a,w60,a,w60,settle,a,w60,a,w60,a,w60,a,w60,a,w60,down,a,w60,settle
+vets | Level-5 party (save 02_veterans) in the inn of Dirige, 643 gold | sav:02_veterans,CONTINUE,settle
