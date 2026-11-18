@@ -2,6 +2,14 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Dungeon Magic main set and floor maps; sets published in game order
+- game-capture: 41 shots (commits 91cae5d 242b035 1e9c2b0 9171d1e), all 39 floors + overworld mapped into
+  `games/dungeon-magic/design/maps/` (`maps.md` index, warp tokens per floor), design `magic.md`,
+  `progression.md`, save `02_granville_fire_lv1`. Coordinator: 6/6 sample re-verified from an empty cache.
+  Open: the King, camp, the swords, beaten bosses, Darces, the ending (floor-92 guardian ignores blows).
+- `shoot.py`: index.json, index.md and the sheet follow the game's `shots.txt` order (on every snap, reindex and
+  publish); second request (Megami Tensei II and Dungeon Magic captures). Checked on a shuffled copy of a set.
+
 ## 2026-11-18 - Dungeon Magic scouted; shared 6502 disassembler
 - `tools/dis6502.py` (any registered NES game or ROM path, bank size option, truncated operands as .db; test
   `tests/test_dis6502.py`), promoted from the Dungeon Magic scout's game copy (second ad-hoc disassembler after the

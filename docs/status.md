@@ -22,7 +22,9 @@ Current snapshot; history in `progress-log.md`.
   01_computer_room. Open: Pazuzu, automap, a demon joining, summoning, fusion, shop, bosses; shots.txt not in game
   order; start_room retake. Some lines are untranslated by the patch (checked, not a layout error).
 - `tools/dis6502.py` shared 6502 disassembler (2026-11-18).
-- Dungeon Magic (NES): scouted 2026-11-18 (maps located in RAM/ROM, save 01_start); capture next.
+- Dungeon Magic (NES), 2026-11-18: main set 41 shots, floor maps of all 39 floors + overworld, saves 01-02.
+  Open: the King, camp, swords, bosses beaten, Darces, ending.
+- Sets are ordered by `shots.txt` (game order), 2026-11-18.
 - Queue (registered 2026-11-18, not scouted): wizardry-nes, wizardry-2-nes, might-and-magic,
   deep-dungeon-3.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).

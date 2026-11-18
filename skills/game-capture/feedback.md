@@ -9,6 +9,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Dungeon Magic (NES) main set and floor maps
+- Task: main set (41/41 verified; commits 91cae5d 242b035 1e9c2b0 9171d1e), floor maps of every town and dungeon,
+  milestone saves.
+- Worked: decoding the exit tables (~6 calls) gave exact warps to every floor and the map index; writing the game's
+  own transition variables beat position pokes; in-process scripts (warp-scan of all floors, four-facing views,
+  door survey, random walk with a "monster in view" detector); RAM diff of declined vs accepted apprenticeship.
+- Friction: sheet/index.json in snap order, not shots.txt (reordered by hand; second occurrence); freeze inside
+  one `wN` again; the scout's `maps.py` bank formula was wrong; auto-advancing text needed frame sweeps; casting
+  controls by experiment.
+- Proposed rule change: (1) publish in shots.txt order; (2) emulator guide: decode exit/warp tables early, warp via
+  the game's transition variables; (3) `play.py snap` warns on `freeze:` before a long single `w`.
+- Corrected: (1) done in `tools/shoot.py` (every snap, reindex, publish), (2) added to `docs/emulator/README.md`;
+  6/6 sample re-verified; 228 calls; all four milestone commits made.
+- Status: promoted 2026-11-18 ((1), (2)); open ((3); freeze-in-long-wait now reported by three runs: consider
+  making freezes per-frame for new routes only)
+
 ### 2026-11-18 - Megami Tensei II (Famicom) main set
 - Task: capture the main set (36 shots, 36/36 verified; commits fa9a47d e2d1b8b), save 01_computer_room, design.
 - Worked: throwaway in-process scripts on `tools/emu.py` (breadth-first explorer over savestates, 16x16 event-scan

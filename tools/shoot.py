@@ -40,6 +40,17 @@ def prefix(set_name):
     return set_name + "_" if set_name.startswith("seq-") else ""
 
 
+def list_order(game, idx):
+    """Sort idx["shots"] by the game's shots.txt (game order); ids not in the list keep their place at the end."""
+    lst = os.path.join(game.dir, "shots.txt")
+    if not os.path.exists(lst):
+        return idx
+    pos = {r["id"]: i for i, r in enumerate(E.read_table(lst, ("id", "category", "caption", "route")))}
+    shots = idx.get("shots", [])
+    idx["shots"] = sorted(shots, key=lambda x: (x["id"] not in pos, pos.get(x["id"], 0), shots.index(x)))
+    return idx
+
+
 def index_update(game, d, entry, rom_sha1=None):
     """Insert/replace one shot in d/index.json and rewrite index.md and sheet.png."""
     p = os.path.join(d, "index.json")
@@ -59,6 +70,7 @@ def index_update(game, d, entry, rom_sha1=None):
     if entry["id"] not in order:
         order.append(entry["id"])
     idx["shots"] = [shots[i] for i in order]
+    list_order(game, idx)
     json.dump(idx, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     write_md(idx, d)
     if os.path.basename(d).startswith("seq-"):
@@ -195,6 +207,9 @@ def reindex(game, d):
     if not os.path.exists(p):
         return
     idx = json.load(open(p, encoding="utf-8"))
+    if game is not None:
+        list_order(game, idx)
+        json.dump(idx, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     write_md(idx, d)
     if os.path.basename(d).startswith("seq-"):
         sequence_files(idx, d)
@@ -266,8 +281,7 @@ def main():
         return 3 if bad else 0
     print("set: %s" % os.path.relpath(d, ROOT))
     if a.publish:
-        if a.set.startswith("seq-"):
-            reindex(game, d)            # strip, steps and the stitched full GIF from the current files
+        reindex(game, d)                # game order from shots.txt; seq-: strip, steps, full GIF
         pub = os.path.join(game.dir, "shots", a.set)
         os.makedirs(pub, exist_ok=True)
         idx = json.load(open(os.path.join(d, "index.json"), encoding="utf-8"))
