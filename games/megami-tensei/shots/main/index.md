@@ -1,6 +1,6 @@
 # Digital Devil Story: Megami Tensei (Famicom, English translation patch) - shots: main
 
-Platform nes, model ntsc, ROM SHA-1 `0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b`. 27 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
+Platform nes, model ntsc, ROM SHA-1 `0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b`. 41 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -31,5 +31,19 @@ Platform nes, model ntsc, ROM SHA-1 `0c4ff5eb16a0826a92b6196ee67d8aea2cb7572b`. 
 | fusion_confirm | system | Fusion: Trent H.P. 80 M.P. 32, spells Psycho and Hama, "Will you fuse it?" Yes/No | no | [png](fusion_confirm.png) [3x](3x/fusion_confirm.png) |
 | fusion_clip | system | Fusion at the Heretic: Nekomata and Dryad merge into Trent | clip | [png](fusion_clip.png) [3x](3x/fusion_clip.png) [gif](fusion_clip.gif) [gif 3x](3x/fusion_clip.gif) |
 | fusion_done | system | Fusion result: "I'm Astral Trent and from now on, we are partners..." | yes | [png](fusion_done.png) [3x](3x/fusion_done.png) |
+| sage | dialogue | Micom Town: "I am known as the sage here in Micom Town. Let me tell you the password." | yes | [png](sage.png) [3x](3x/sage.png) |
+| sage_password | save | The sage's password: MM962 VBMEM 2TSD7 MNLTK ARBVC GUPSK BW | yes | [png](sage_password.png) [3x](3x/sage_password.png) |
+| password_filled | save | Password entry: the sage's 32-character password typed in, cursor on W | yes | [png](password_filled.png) [3x](3x/password_filled.png) |
+| shop | shop | Micom weapon and armour shop: "Welcome! What do you seek?" Weapons / Armor, 2385 Makka | yes | [png](shop.png) [3x](3x/shop.png) |
+| shop_weapons | shop | Micom weapons: Jack Knife 80, Nunchuks 130, Dagger 195, Scorpion Whip 280 Makka | yes | [png](shop_weapons.png) [3x](3x/shop_weapons.png) |
+| status_nakajima | inventory | Stats: Nakajima level 1, Dagger equipped, MAG 1216, Jewel 2, Makka 2190 | yes | [png](status_nakajima.png) [3x](3x/status_nakajima.png) |
+| status_yumiko | inventory | Stats: Yumiko level 1, Next Level 20 pts, spell list (Mappa 2 MP), MP MAX 13 | yes | [png](status_yumiko.png) [3x](3x/status_yumiko.png) |
+| boss_minotaur | boss | 8F (31,10): Tyrant Minotaur, the first tyrant, Fight / Run / Order / Auto | no | [png](boss_minotaur.png) [3x](3x/boss_minotaur.png) |
+| guard | dialogue | 8F: the guard warns "Tread these corridors carefully!" | yes | [png](guard.png) [3x](3x/guard.png) |
+| f7_corridor | gameplay | 7F after the stairs down from Micom, facing south, info panel open | yes | [png](f7_corridor.png) [3x](3x/f7_corridor.png) |
+| mappa | map | 7F: automap in the info panel after Yumiko casts Mappa | yes | [png](mappa.png) [3x](3x/mappa.png) |
+| password_screen | save | Password entry: 40 slots, characters 0-9 and A-Y without I and O | yes | [png](password_screen.png) [3x](3x/password_screen.png) |
+| gameover | gameover | GAME OVER: "I thought you'd put up more of a fight! You're not even worth my time!" | no | [png](gameover.png) [3x](3x/gameover.png) |
+| healer | system | Micom healer: "Who needs treatment?" party with fees (N/A at full health) | yes | [png](healer.png) [3x](3x/healer.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

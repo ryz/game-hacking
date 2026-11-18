@@ -31,7 +31,9 @@
     "TITLE": "w400,settle",
     "STATS_NAKAJIMA": "a*4,down,a*2,down,a*4,down,a*3,down,a*2,w60,settle,a,w60,settle",
     "STATS_YUMIKO": "a*3,down,a*5,down,a*2,down,a*3,down,a*2,w60,settle,a,w60,settle",
-    "NEWGAME": "start,w60,settle,STATS_NAKAJIMA,STATS_YUMIKO,w200,settle"
+    "NEWGAME": "start,w60,settle,STATS_NAKAJIMA,STATS_YUMIKO,w200,settle",
+    "PW_SAGE1": "right*22,a,a,right*22,a,right*31,a,right*30,a,right*27,a,right*16,a,right*10,a,right*27,a,right*7,a,right*15,a,right*25,a,right*33,a,right*21,a,right*28,a,right*14,a,right,a,right*32,a,right*7,a,right*26,a,right*25,a,right*15,a,right*20,a,right*18,a,right*17,a,right*4,a,right*12,a,right*29,a,right*3,a,right*27,a,right*26,a,right*19,a",
+    "TALK": "a,w60,down,a,w60,down,a,w60,settle"
   },
   "ram": {
     "floor": {
@@ -53,6 +55,24 @@
     "mp_yumiko": {
       "addr": "04C7",
       "size": 1
+    },
+    "x": {
+      "addr": "0780",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "y": {
+      "addr": "0781",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "makka": {
+      "addr": "0550",
+      "size": 2
+    },
+    "mag": {
+      "addr": "0554",
+      "size": 2
     }
   },
   "source": {

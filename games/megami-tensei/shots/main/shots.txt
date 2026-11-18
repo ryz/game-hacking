@@ -25,3 +25,17 @@ fusion_result | system | Fusion preview: Nekomata + Dryad = Astral Trent, "Its l
 fusion_confirm | system | Fusion: Trent H.P. 80 M.P. 32, spells Psycho and Hama, "Will you fuse it?" Yes/No | @two_demons,poke:04B4=0E,right,w30,poke:0780=07FF,up,w200,a,w250,a,w100,down,a,w200,settle,settle
 fusion_clip | system | Fusion at the Heretic: Nekomata and Dryad merge into Trent | @two_demons,poke:04B4=0E,right,w30,poke:0780=07FF,up,w200,a,w250,a,w100,down,a,w200,settle,settle,a,w300,settle,settle,rec:360:3
 fusion_done | system | Fusion result: "I'm Astral Trent and from now on, we are partners..." | @two_demons,poke:04B4=0E,right,w30,poke:0780=07FF,up,w200,a,w250,a,w100,down,a,w200,settle,settle,a,w300,settle,settle,rec:360:3,w600,settle,settle
+sage | dialogue | Micom Town: "I am known as the sage here in Micom Town. Let me tell you the password." | @neko_summoned,down,w30,poke:0780=0104,up,w200,settle
+sage_password | save | The sage's password: MM962 VBMEM 2TSD7 MNLTK ARBVC GUPSK BW | @neko_summoned,down,w30,poke:0780=0104,up,w200,settle,a,w300,settle,settle
+password_filled | save | Password entry: the sage's 32-character password typed in, cursor on W | @password_entry,right*22,a,a,right*22,a,right*31,a,right*30,a,right*27,a,right*16,a,right*10,a,right*27,a,right*7,a,right*15,a,right*25,a,right*33,a,right*21,a,right*28,a,right*14,a,right,a,right*32,a,right*7,a,right*26,a,right*25,a,right*15,a,right*20,a,right*18,a,right*17,a,right*4,a,right*12,a,right*29,a,right*3,a,right*27,a,right*26,a,right*19,a,settle
+shop | shop | Micom weapon and armour shop: "Welcome! What do you seek?" Weapons / Armor, 2385 Makka | @password_loaded,left,w30,poke:0780=0406,up,w200,settle
+shop_weapons | shop | Micom weapons: Jack Knife 80, Nunchuks 130, Dagger 195, Scorpion Whip 280 Makka | @password_loaded,left,w30,poke:0780=0406,up,w200,settle,a,w150,settle,settle
+status_nakajima | inventory | Stats: Nakajima level 1, Dagger equipped, MAG 1216, Jewel 2, Makka 2190 | @password_loaded,left,w30,poke:0780=0406,up,w200,settle,a,w150,settle,settle,down*2,a,w150,a,w150,settle,settle,a,w150,settle,a,w100,b,w100,b,w200,settle,settle,b,w30,a,w30,down,a,w60,a,w150,settle,settle
+status_yumiko | inventory | Stats: Yumiko level 1, Next Level 20 pts, spell list (Mappa 2 MP), MP MAX 13 | @password_loaded,left,w30,poke:0780=0406,up,w200,settle,a,w150,settle,settle,down*2,a,w150,a,w150,settle,settle,a,w150,settle,a,w100,b,w100,b,w200,settle,settle,b,w30,a,w30,down,a,w60,down,a,w150,settle,settle
+boss_minotaur | boss | 8F (31,10): Tyrant Minotaur, the first tyrant, Fight / Run / Order / Auto | @password_loaded,right,w30,poke:0780=1F09,up,w300,settle,settle,settle
+guard | dialogue | 8F: the guard warns "Tread these corridors carefully!" | @guard,settle,settle
+f7_corridor | gameplay | 7F after the stairs down from Micom, facing south, info panel open | @f7_arrival,settle,settle
+mappa | map | 7F: automap in the info panel after Yumiko casts Mappa | @f7_mappa,settle,settle
+password_screen | save | Password entry: 40 slots, characters 0-9 and A-Y without I and O | @password_entry,settle,settle
+gameover | gameover | GAME OVER: "I thought you'd put up more of a fight! You're not even worth my time!" | @gameover,settle,settle
+healer | system | Micom healer: "Who needs treatment?" party with fees (N/A at full health) | @password_loaded,left,w30,poke:0780=0402,up,w250,settle,settle
