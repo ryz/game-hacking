@@ -1,9 +1,9 @@
 {
-  "slug": "wizardry-nes",
+  "slug": "wizardry",
   "title": "Wizardry: Proving Grounds of the Mad Overlord (NES, USA)",
   "platform": "nes",
   "model": "ntsc",
-  "rom": "rom/wizardry-nes.nes",
+  "rom": "rom/wizardry.nes",
   "sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
   "crc32": "e59540af",
   "size": 262160,

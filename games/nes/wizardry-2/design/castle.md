@@ -4,7 +4,7 @@
 The castle is a set of menus: Gilgamesh's Tavern (form the party), the Adventurer's Inn (rest, heal, level up),
 Boltac's Trading Post (buy, sell, uncurse, identify), the Temple of Cant (cure the dead, paralysed and ashed) and
 the Edge of Town (Training Grounds, the maze, restart an OUT party, Leave Game = save) **(verified: `castle_menu`,
-`edge_of_town`)**. Everything works like the NES Wizardry I (`../../wizardry-nes/design/castle.md`), with the
+`edge_of_town`)**. Everything works like the NES Wizardry I (`../../wizardry/design/castle.md`), with the
 differences below.
 
 ## 1. Training Grounds

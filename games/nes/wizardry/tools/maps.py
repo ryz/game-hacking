@@ -1,8 +1,8 @@
 """Wizardry: Proving Grounds of the Mad Overlord (NES) - maze floors decoded from the ROM.
 
-python3 games/nes/wizardry-nes/tools/maps.py [--out DIR] [--text] [FLOOR ...]
+python3 games/nes/wizardry/tools/maps.py [--out DIR] [--text] [FLOOR ...]
   -> DIR/floor_NN.png (20x20, north up, 24 px per square) + DIR/atlas.png; --text prints an ASCII map and
-     the special-square records. Default DIR: games/nes/wizardry-nes/design/maps.
+     the special-square records. Default DIR: games/nes/wizardry/design/maps.
 
 Format (read from the cell fetch at PRG bank 4 $8000, called from the fixed bank $D3E0; scout 2026-11-18):
   bank 4 (16 KiB at $8000) holds three tables indexed by floor*2 (floor = RAM $3D, 1-10):
@@ -24,7 +24,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[4]
-ROM = ROOT / "rom" / "wizardry-nes.nes"
+ROM = ROOT / "rom" / "wizardry.nes"
 TYPES = {0x00: "S", 0x02: "T", 0x04: "m", 0x06: "x", 0x08: "E", 0x0A: "i", 0x0C: "f", 0x0E: "P",
          0x10: "R", 0x12: "F", 0x14: "B", 0x16: "A", 0x18: "Z", 0x1A: "K", 0x1C: "C", 0x1E: "O", 0x20: "G",
          0x22: "W", 0x24: "W"}
@@ -120,7 +120,7 @@ def draw(floor, cell=24):
 
 
 def main(argv):
-    out = ROOT / "games" / "nes" / "wizardry-nes" / "design" / "maps"
+    out = ROOT / "games" / "nes" / "wizardry" / "design" / "maps"
     if "--out" in argv:
         out = Path(argv[argv.index("--out") + 1])
         del argv[argv.index("--out"):argv.index("--out") + 2]

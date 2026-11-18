@@ -1,7 +1,7 @@
-"""Wizardry II: Knight of Diamonds (NES) party-creation macros (ported from games/nes/wizardry-2-nes/tools/party.py).
+"""Wizardry II: Knight of Diamonds (NES) party-creation macros (ported from games/nes/wizardry-2/tools/party.py).
 
-python3 games/nes/wizardry-2-nes/tools/party.py          -> prints the macros (JSON) for game.json
-python3 games/nes/wizardry-2-nes/tools/party.py --write  -> writes them into games/nes/wizardry-2-nes/game.json "macros"
+python3 games/nes/wizardry-2/tools/party.py          -> prints the macros (JSON) for game.json
+python3 games/nes/wizardry-2/tools/party.py --write  -> writes them into games/nes/wizardry-2/game.json "macros"
 
 Training Grounds > Create: name keyboard (4 rows x 13, cursor starts on "0", upper case by default, Select =
 lower case, A types, B deletes, End at row 3 column 11), Yes, race, alignment, stats screen, class, Keep Yes.

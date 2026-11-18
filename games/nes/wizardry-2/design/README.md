@@ -32,7 +32,7 @@ wall, with doors, secret doors, darkness and special squares (stairs, chutes, te
 messages, fixed fights) **(verified for stairs and doors; the rest from the game data)**. The NES version
 creates its own characters (no import from Wizardry I) and ships six ready-made level 1 characters **(verified)**.
 The roster is kept in battery-backed memory; leaving the game from the Edge of Town saves it **(verified)**.
-It runs on the same engine as the NES Wizardry I (`../../wizardry-nes/design/`), so most rules there are likely
+It runs on the same engine as the NES Wizardry I (`../../wizardry/design/`), so most rules there are likely
 to hold here too **(inferred)**.
 
 ## Documents

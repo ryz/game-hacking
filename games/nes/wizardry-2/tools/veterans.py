@@ -3,7 +3,7 @@ copies $6400 and $7800 + slot*$60) into a level 11-13 party with gold, E.P., hit
 Values are chosen to look like a real save (realistic-values rule). Records keep their old check value, so the
 pokes hold for the running session; the game rewrites the check value when it saves (Leave Game).
 
-  python3 games/nes/wizardry-2-nes/tools/veterans.py [--write]   print the macro / write it into game.json
+  python3 games/nes/wizardry-2/tools/veterans.py [--write]   print the macro / write it into game.json
 """
 import json, os, sys
 

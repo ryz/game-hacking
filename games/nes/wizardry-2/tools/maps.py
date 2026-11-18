@@ -1,8 +1,8 @@
-"""Wizardry II: Knight of Diamonds (NES) - maze floors decoded from the ROM (port of games/nes/wizardry-nes/tools/maps.py).
+"""Wizardry II: Knight of Diamonds (NES) - maze floors decoded from the ROM (port of games/nes/wizardry/tools/maps.py).
 
-python3 games/nes/wizardry-2-nes/tools/maps.py [--out DIR] [--text] [FLOOR ...]
+python3 games/nes/wizardry-2/tools/maps.py [--out DIR] [--text] [FLOOR ...]
   -> DIR/floor_NN.png (20x20, north up, 24 px per square) + DIR/atlas.png; --text prints an ASCII map and
-     the special-square records. Default DIR: games/nes/wizardry-2-nes/design/maps.
+     the special-square records. Default DIR: games/nes/wizardry-2/design/maps.
 
 Format (scout 2026-11-18, from the cell fetch at PRG bank 13 (8 KiB, at $A000) $A8B7, which maps bank 9 at $8000):
   RAM: x = $EA (east+), y = $EB (north+), floor = $EC (1-6), facing = $E9 (0 N, 1 E, 2 S, 3 W); 20x20, wrapping.
@@ -23,12 +23,12 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[4]
-ROM = ROOT / "rom" / "wizardry-2-nes.nes"
+ROM = ROOT / "rom" / "wizardry-2.nes"
 TYPES = {0x01: "S", 0x02: "T", 0x03: "C", 0x04: "K", 0x05: "P", 0x06: "p", 0x07: "R", 0x08: "m",
          0x09: "x", 0x0A: "F", 0x0B: "A", 0x0C: "q", 0x0D: "i", 0x0E: "s", 0x0F: "g", 0x10: "f", 0x11: "1",
          0x12: "2", 0x13: "3", 0x14: "e", 0x15: "o", 0x16: "y"}
 # Meanings of the special types, a/b/c = the record's argument bytes. Checked in play by the capture run
-# (2026-11-18: every reachable record stepped on, work/capture/wizardry-2-nes/scan.py); "(code)" = program only.
+# (2026-11-18: every reachable record stepped on, work/capture/wizardry-2/scan.py); "(code)" = program only.
 MEANING = {
     0x00: "nothing (cleared one-time event)",
     0x01: "stairs to (a,b) on floor c (0 = castle); 'Stairs up/down --- Take them?' (verified)",
@@ -123,7 +123,7 @@ def draw(floor, cell=24):
 
 
 def main(argv):
-    out = ROOT / "games" / "nes" / "wizardry-2-nes" / "design" / "maps"
+    out = ROOT / "games" / "nes" / "wizardry-2" / "design" / "maps"
     if "--out" in argv:
         out = Path(argv[argv.index("--out") + 1])
         del argv[argv.index("--out"):argv.index("--out") + 2]

@@ -6,11 +6,11 @@ Every record ends with a 16-bit check value at +$5E/+$5F (a nibble-table CRC, co
 $8D8C/$8DB4, tables $8DDE-$8E2D). At power-on (code $8D42) a record whose check fails is emptied (byte 0 = 0),
 so a poke into a record must rewrite +$5E/+$5F: this tool prints the poke tokens with the new check value.
 
-python3 games/nes/wizardry-2-nes/tools/roster.py check SRAM.bin           -> verifies every record of a battery dump
-python3 games/nes/wizardry-2-nes/tools/roster.py edit IN.sav OUT.sav SLOT:OFF=HEX[,OFF=HEX...] [SLOT:...]
+python3 games/nes/wizardry-2/tools/roster.py check SRAM.bin           -> verifies every record of a battery dump
+python3 games/nes/wizardry-2/tools/roster.py edit IN.sav OUT.sav SLOT:OFF=HEX[,OFF=HEX...] [SLOT:...]
     -> writes a new battery save with the records changed and their check values fixed (both copies), e.g.
-       `... edit games/nes/wizardry-2-nes/saves/01_party.sav rom/saves/wizardry-2-nes/rich.sav 6:11=000000001873`
-python3 games/nes/wizardry-2-nes/tools/roster.py pokes SRAM.bin SLOT OFF=HEX[,OFF=HEX...]
+       `... edit games/nes/wizardry-2/saves/01_party.sav rom/saves/wizardry-2/rich.sav 6:11=000000001873`
+python3 games/nes/wizardry-2/tools/roster.py pokes SRAM.bin SLOT OFF=HEX[,OFF=HEX...]
     -> poke tokens for the changed record (both copies). NOTE: `play.py poke` into $6000-$7FFF is dropped while
        the game keeps the MMC3 RAM disabled (nearly always; peeks read $6x open bus), so use `edit` + `sav:NAME`.
 
@@ -23,7 +23,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[4]
-ROM = ROOT / "rom" / "wizardry-2-nes.nes"
+ROM = ROOT / "rom" / "wizardry-2.nes"
 BASES = (0x6400, 0x7800)
 
 

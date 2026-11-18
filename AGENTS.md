@@ -24,8 +24,8 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | `games/nes/megami-tensei/` | Famicom (English translation patch) | screenshot set (88, to the ending), 35 floor maps, design reference, passwords |
 | `games/nes/megami-tensei-2/` | Famicom (English translation patch) | screenshot set (67), overhead maps, design reference, saves |
 | `games/nes/dungeon-magic/` | NES | screenshot set (41), floor maps of all 39 floors + overworld, design reference, saves |
-| `games/nes/wizardry-nes/` | NES | screenshot set (71, to the ending), 10 floor maps with special squares, design reference, saves |
-| `games/nes/wizardry-2-nes/` | NES | screenshot set (91, to the ending), 6 floor maps, design reference, roster tool, saves |
+| `games/nes/wizardry/` | NES | screenshot set (71, to the ending), 10 floor maps with special squares, design reference, saves |
+| `games/nes/wizardry-2/` | NES | screenshot set (91, to the ending), 6 floor maps, design reference, roster tool, saves |
 | `games/nes/might-and-magic/` | NES | screenshot set (93, to the ending), 55 area maps with terrain and exits, design reference, saves |
 | `games/dos/might-and-magic/` | DOS (GOG release) | registered 2026-11-18, boots and plays into the first town; boot macros, one checkpoint; not scouted or captured yet |
 | `games/nes/deep-dungeon-3/` | Famicom (Japanese) | screenshot set (74, to the ending), 16 floor maps + towns, design reference, saves |

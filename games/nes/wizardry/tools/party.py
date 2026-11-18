@@ -1,7 +1,7 @@
 """Wizardry (NES) party-creation macros.
 
-python3 games/nes/wizardry-nes/tools/party.py          -> prints the macros (JSON) for game.json
-python3 games/nes/wizardry-nes/tools/party.py --write  -> writes them into games/nes/wizardry-nes/game.json "macros"
+python3 games/nes/wizardry/tools/party.py          -> prints the macros (JSON) for game.json
+python3 games/nes/wizardry/tools/party.py --write  -> writes them into games/nes/wizardry/game.json "macros"
 
 Training Grounds > Create: name keyboard (cursor starts on "1", Select = shift, A types, ret at column 12),
 Yes, race, alignment, stats screen, class, Keep Yes. The roll happens when the stats screen opens ($0254-$0259

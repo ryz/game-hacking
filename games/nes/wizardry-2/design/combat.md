@@ -5,7 +5,7 @@ Fights are round based: every member gets an order (Fight, Parry, Spell, Dispell
 list depends on class and position), then a last 'Fight / Take back' confirms the round and the messages play
 **(verified: `battle_orders`)**. Up to four monster groups are listed at the top with their counts
 **(verified: two groups in `battle_groups`)**. The rules follow the NES Wizardry I
-(`../../wizardry-nes/design/combat.md`).
+(`../../wizardry/design/combat.md`).
 
 ## 1. Orders
 - Front row (members 1-3) may Fight; members 4-6 only Parry, Spell (casters), Use Item, Run **(verified:

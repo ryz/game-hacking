@@ -1,7 +1,7 @@
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/wizardry-nes/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
+# work/shots/wizardry/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 boot_nexoft | boot | Boot: NEXOFT Corporation logo | pow,w90
 title_screen | title | Title: Wizardry - Proving Grounds of the Mad Overlord, Start Game / Select Switch | @title
 options_switch | options | Select Switch: maze SOLID/LINE, music ON/OFF, sound ON/OFF, Return to title | @title,down,w30,start,w120
