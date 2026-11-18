@@ -63,6 +63,13 @@ Current snapshot; history in `progress-log.md`.
   new session). GameFAQs/TCRF answer curl with 403 (bot protection): agents skip refusing sites.
 - Tested end to end on SameBoy's cgb-acid2 and gbemu's generated test ROM (not committed).
 
+- DOS backend (2026-11-18): DOSBox Pure libretro core at a pinned commit (`sh tools/setup_emu.sh dos`), driven
+  by `tools/lrcore.py`; a game is a ZIP of its files (`intake.py GAME.zip`), keyboard and mouse tokens, `type:`,
+  fixed cycles and a fixed emulated clock (same route = same frames), exact savestates, physical-memory
+  peek/poke/find, CS:IP. Tested with a generated test program only (4 tests). Open: no real game registered yet
+  (Might and Magic 1 DOS is waiting for the owner's files); save export / `sav:`; files written to disk are not
+  part of a savestate; CD images. Notes: `docs/emulator/dos.md`.
+
 ## Games
 | Slug | Title | Playbook | Sets |
 |---|---|---|---|

@@ -55,9 +55,10 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 
 ## Shared tooling quick reference
 Run from the repo root (how to drive any game: `docs/emulator/README.md`, then the platform file
-`docs/emulator/gb.md`, `nes.md` or `snes.md`; what to capture: `docs/capture-guide.md`):
-- Setup: `sh tools/setup_emu.sh [gb|nes|snes]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom
-  `.nes`, Mesen-S libretro core for SNES/Super Famicom `.sfc`/`.smc`).
+`docs/emulator/gb.md`, `nes.md`, `snes.md` or `dos.md`; what to capture: `docs/capture-guide.md`):
+- Setup: `sh tools/setup_emu.sh [gb|nes|snes|dos]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom
+  `.nes`, Mesen-S libretro core for SNES/Super Famicom `.sfc`/`.smc`, DOSBox Pure libretro core for DOS: a game
+  is a `.zip` of its files, keyboard tokens, see `docs/emulator/dos.md`).
 - Register a ROM: `python3 tools/intake.py ROM [--patch PATCH[:headered|unheadered] ...]` -> `games/<slug>/` +
   `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`; 6502 code:
   `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]`.

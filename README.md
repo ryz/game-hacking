@@ -49,7 +49,7 @@ category, caption, route, model, ROM SHA-1, date), `index.md`, `sheet.png` and t
 ## Quick start
 
 ```sh
-sh tools/setup_emu.sh                                   # builds both emulators into tools/ (once)
+sh tools/setup_emu.sh                                   # builds the emulators into tools/ (once)
 python3 tools/intake.py ~/roms/mygame.nes
 python3 tools/play.py start mygame
 python3 tools/play.py do "w300,start"

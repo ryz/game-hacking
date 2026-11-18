@@ -13,6 +13,7 @@ work/
 **/tools/gbemu-cli/
 **/tools/mesen/
 **/tools/mesen-s/
+**/tools/dosbox-pure/
 __pycache__/
 *.bps
 *.ips

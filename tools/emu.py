@@ -263,7 +263,7 @@ def restore_freezes(emu, game, toks):
         hold_value(emu, game, t)
 
 
-KEYTOK = re.compile(r"^([a-z+>]+)(?::(\d+))?$")
+KEYTOK = re.compile(r"^([a-z0-9+>]+)(?::(\d+))?$")       # digits: keyboard keys (1, f1, kp4) on computers
 
 
 def step(emu, game, tok):
@@ -291,6 +291,13 @@ def step(emu, game, tok):
         elif base.startswith("poke:"):
             addr, data = base[5:].split("=")
             emu.poke(int(addr, 16), bytes.fromhex(data))
+        elif base.startswith("type:") and hasattr(emu, "type_text"):
+            emu.type_text(base[5:].replace("\\n", "\n"))      # computers: type text (no comma; \n = Enter)
+            emu.frames(game.wait)
+        elif re.match(r"^mouse:-?\d+:-?\d+$", base) and hasattr(emu, "mouse"):
+            _, dx, dy = base.split(":")
+            emu.mouse(int(dx), int(dy))
+            emu.frames(2)
         elif base.startswith("mash:"):
             _, key, frames = base.split(":")
             for _ in range(int(frames) // 8):

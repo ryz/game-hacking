@@ -1,0 +1,106 @@
+diff --git a/Makefile b/Makefile
+index 5e10063..81a8f83 100644
+--- a/Makefile
++++ b/Makefile
+@@ -27,6 +27,7 @@ endif
+ PIPETONULL := $(if $(ISWIN),>nul 2>nul,>/dev/null 2>/dev/null)
+ 
+ SOURCES := \
++  gamedb_debug.cpp \
+   *.cpp       \
+   src/*.cpp   \
+   src/*/*.cpp \
+@@ -239,6 +240,7 @@ CFLAGS  += $(COMMONFLAGS)
+ 
+ LDLIBS  := -lpthread
+ LDFLAGS += $(CPUFLAGS) -shared
++LDFLAGS += -Wl,--wrap=time -Wl,--wrap=gettimeofday -Wl,--wrap=clock_gettime -Wl,--wrap=localtime
+ #LDFLAGS += -static-libstdc++ -static-libgcc #adds 1MB to output and still dynamically links against libc and libm
+ 
+ .PHONY: all clean
+diff --git a/dosbox_pure_libretro.cpp b/dosbox_pure_libretro.cpp
+index ea24d45..925f8da 100644
+--- a/dosbox_pure_libretro.cpp
++++ b/dosbox_pure_libretro.cpp
+@@ -4139,3 +4139,11 @@ unsigned DBP_Build_GL_Program(int vertex_shader_srcs_count, const char** vertex_
+ 	}
+ 	return prog;
+ }
++
++// Added by game-hacking (tools/dosbox-pure-debug.patch): wait until the emulation thread has finished the frame
++// started by the last retro_run. The core lets that thread run ahead while the frontend is busy, so input
++// events and memory reads would otherwise land at a point that depends on host timing.
++extern "C" __attribute__((visibility("default"))) void retro_gamedb_sync(void)
++{
++	if (dbp_state == DBPSTATE_FIRST_FRAME || dbp_state == DBPSTATE_RUNNING) DBP_ThreadControl(TCM_FINISH_FRAME);
++}
+diff --git a/gamedb_debug.cpp b/gamedb_debug.cpp
+new file mode 100644
+index 0000000..17a1e38
+--- /dev/null
++++ b/gamedb_debug.cpp
+@@ -0,0 +1,41 @@
++// Added by game-hacking (tools/dosbox-pure-debug.patch): a clock the frontend sets, and the program counter.
++// The linker wraps time/gettimeofday/clock_gettime/localtime (-Wl,--wrap), so the emulated PC's date, BIOS
++// tick counter and RTC follow retro_gamedb_set_time instead of the host: the same route gives the same game.
++#include <time.h>
++#include <sys/time.h>
++#include <stdint.h>
++#include "include/dosbox.h"
++#include "include/regs.h"
++
++static int64_t gamedb_usec; // 0 = host clock
++
++extern "C" {
++time_t __real_time(time_t*);
++int __real_gettimeofday(struct timeval*, void*);
++int __real_clock_gettime(clockid_t, struct timespec*);
++struct tm* __real_localtime(const time_t*);
++
++__attribute__((visibility("default"))) void retro_gamedb_set_time(int64_t usec) { gamedb_usec = usec; }
++__attribute__((visibility("default"))) uint32_t retro_gamedb_pc(void) { return ((uint32_t)SegValue(cs) << 16) | (reg_eip & 0xFFFF); }
++
++time_t __wrap_time(time_t* t)
++{
++	if (!gamedb_usec) return __real_time(t);
++	time_t r = (time_t)(gamedb_usec / 1000000);
++	if (t) *t = r;
++	return r;
++}
++int __wrap_gettimeofday(struct timeval* tv, void* tz)
++{
++	if (!gamedb_usec) return __real_gettimeofday(tv, tz);
++	if (tv) { tv->tv_sec = gamedb_usec / 1000000; tv->tv_usec = gamedb_usec % 1000000; }
++	return 0;
++}
++int __wrap_clock_gettime(clockid_t id, struct timespec* ts)
++{
++	if (!gamedb_usec) return __real_clock_gettime(id, ts);
++	if (ts) { ts->tv_sec = gamedb_usec / 1000000; ts->tv_nsec = (gamedb_usec % 1000000) * 1000; }
++	return 0;
++}
++struct tm* __wrap_localtime(const time_t* t) { return gamedb_usec ? gmtime(t) : __real_localtime(t); }
++}
+diff --git a/src/gui/render.cpp b/src/gui/render.cpp
+index ba60b45..1f1b334 100644
+--- a/src/gui/render.cpp
++++ b/src/gui/render.cpp
+@@ -855,6 +855,11 @@ void DBPSerialize_Render(DBPArchive& ar)
+ 	}
+ #endif
+ 
++	// game-hacking (tools/dosbox-pure-debug.patch): a state made at the frame end has the next frame already
++	// started (updating, no line drawn yet). RENDER_Reset below drops that frame, it is then never counted and
++	// the first retro_run after a load emulates two frames: a loaded run is one frame ahead of the run that
++	// made the state. Start the frame again after the reset.
++	const bool gamedb_was_updating = (ar.mode == DBPArchive::MODE_LOAD && render.updating);
+ 	if (ar.mode == DBPArchive::MODE_LOAD)
+ 	{
+ 		if (memcmp(&render.src, loaded_src, sizeof(render.src)))
+@@ -870,5 +875,6 @@ void DBPSerialize_Render(DBPArchive& ar)
+ 		{
+ 			RENDER_Reset();
+ 		}
++		if (gamedb_was_updating && !render.updating) RENDER_StartUpdate();
+ 	}
+ }

@@ -2,6 +2,29 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - DOS backend (DOSBox Pure)
+- Owner asked for a DOS emulator, first game to be Might and Magic 1. Chosen: DOSBox Pure as a libretro core
+  (no SDL, no display, fits `tools/lrcore.py`, has savestates); DOSBox-X and DOSBox Staging would need SDL2,
+  Xvfb and a new driver, Staging has no savestates. Source from github.com/libretro/dosbox-pure (pinned
+  e39497e); schellingb/dosbox-pure on GitHub is now only a pointer to Codeberg.
+- `tools/lrcore.py`: keyboard callback and held-key polling (without the polling the core releases a key at
+  once: letters still arrive, Shift/Ctrl/Alt never do), mouse buttons and relative motion, a virtual host clock
+  (`frame_usec`), `epoch`, memory maps, private library copy per game (`private`; the core crashes when a second
+  game is loaded into the same library), all open cores closed at interpreter exit (a core with its own thread
+  otherwise blocks the exit of a failed script).
+- `tools/dosbox-pure-debug.patch`: settable clock (time, gettimeofday, clock_gettime, localtime wrapped at link
+  time), frame sync, CS:IP, and a savestate fix. What was wrong without each: the BIOS tick counter started from
+  the host time (two boots differed); the emulation thread ran ahead of the frontend (keys landed at
+  host-dependent moments, one RAM byte differed in 1 of 3 runs); a loaded state was one frame ahead of the run
+  that made it (the render reset on load dropped the frame in progress).
+- `tools/platforms.py` `Dos` backend, `tools/emu.py`: digits in key tokens (`1`, `f1`, `kp4`), `type:TEXT`,
+  `mouse:DX:DY`. `tools/setup_emu.sh dos`. Tests: `tests/make_dos_zip.py` (33-byte KEYS.COM that prints a
+  tick-derived letter before every key) + 4 tests incl. intake -> play -> snap -> `shoot.py --verify`.
+- Measured: 6 boots identical; 200 random key steps identical between straight play and play with a state
+  save+load every third step; a fresh machine needs 2+ frames before its first state load (backend runs 4).
+- Not done: no real DOS game run yet (no game files in the container); save export, `sav:`, disk files in
+  savestates, CD images.
+
 ## 2026-11-18 - Megami Tensei round 2: maps of all 35 floors, bosses, ending
 - game-capture round 2: 41 -> 88 shots (commits 5702a0b 1030de2): level-up (the "next level" counter at $0576, not
   EXP), battle magic, a demon fighting, all six bosses beaten (each needs its item: Ratos Statue, Purski's Trumpet,

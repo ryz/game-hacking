@@ -1,6 +1,7 @@
 """Shared tooling tests: tokens, routes, header identification (no emulator), and the whole pipeline on gbemu's generated
 test ROM (skipped when tools/gbemu-cli is not built) and on a generated NES test ROM (skipped when the Mesen
-core is not built) and a generated SNES test ROM (skipped when the Mesen-S core is not built)."""
+core is not built), a generated SNES test ROM (skipped when the Mesen-S core is not built) and a generated DOS
+test program (skipped when the DOSBox Pure core is not built)."""
 import json, os, shutil, subprocess, sys
 
 import pytest
@@ -545,3 +546,112 @@ def test_snes_pipeline(snes_selftest):
     e, rest, _ = emu.start(g, "sav:early")
     assert e.peek(0x700000, 1)[0] == open(os.path.join(d, "early.sav"), "rb").read()[0] != 0
     e.close()
+
+
+# ------------------------------------------------------------------ DOS (DOSBox Pure libretro core)
+DOS_SLUG = "zz-selftest-dos"
+DOS_BOOT = "w120,enter,w60"         # start menu (one program: KEYS.COM), Enter runs it
+
+
+@pytest.fixture
+def dos_selftest(tmp_path):
+    if not os.path.exists(platforms.Dos.SO):
+        pytest.skip("DOSBox Pure core not built (sh tools/setup_emu.sh dos)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_dos_zip
+    rom = tmp_path / "t.zip"
+    rom.write_bytes(make_dos_zip.build())
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", DOS_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games", "work/shots", "work/cache", "work/intake", "work/play"):
+        shutil.rmtree(os.path.join(ROOT, sub, DOS_SLUG), ignore_errors=True)
+    if os.path.exists(os.path.join(ROOT, "rom", DOS_SLUG + ".zip")):
+        os.remove(os.path.join(ROOT, "rom", DOS_SLUG + ".zip"))
+
+
+def _dos_boot(rom):
+    e = platforms.Dos().open(str(rom))
+    e.frames(120)
+    e.input(["enter"]); e.frames(4); e.input([]); e.frames(60)
+    return e
+
+
+def test_dos_identify():
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_dos_zip
+    h = platforms.Dos.identify(make_dos_zip.build())
+    assert h["platform"] == "dos" and h["programs"] == ["KEYS.COM"] and h["model"] == "svga-7800"
+    assert platforms.by_extension("x/GAME.ZIP")[0] == "dos"
+    assert {"a", "1", "f10", "enter", "esc", "kp8", "shift", "mouse1"} <= platforms.Dos.keys
+
+
+def test_dos_backend(dos_selftest, tmp_path):
+    e = _dos_boot(dos_selftest)
+    assert e.peek(0x449, 1) == b"\x03"                              # BIOS data area: 80x25 text mode
+    assert e.peek(0x417, 1) == b"\x00" and ":" in e.regs()["pc"]
+    blank = e.screen()
+    e.input(["shift"]); e.frames(6)
+    assert e.peek(0x417, 1) == b"\x02"                              # left shift held, seen by the BIOS
+    e.input([]); e.frames(6)
+    assert e.peek(0x417, 1) == b"\x00"
+    e.type_text("Hi!")
+    typed = e.screen()
+    assert typed != blank
+    st = str(tmp_path / "x.state")
+    e.save_state(st)
+    ticks = e.peek(0x46C, 4)
+    e.input(["x"]); e.frames(4); e.input([]); e.frames(20)
+    assert e.screen() != typed and e.peek(0x46C, 4) != ticks
+    e.poke(0x4F0, b"\x5a")                                          # inter-application area: free RAM
+    assert e.peek(0x4F0, 1) == b"\x5a"
+    e.load_state(st)
+    assert e.screen() == typed and e.peek(0x46C, 4) == ticks and e.peek(0x4F0, 1) == b"\x00"
+    e.close()
+
+
+def test_dos_same_route_same_frames(dos_selftest, tmp_path):
+    """The emulated clock and timing do not depend on the host: two power-ons give the same pictures and the
+    same BIOS ticks, and a run continued after save_state equals one loaded from that state."""
+    st = str(tmp_path / "x.state")
+
+    def play(e):
+        e.type_text("abc")
+        e.frames(33)
+        return e.screen(), e.peek(0x46C, 4), e.peek(0x400, 0x100)
+
+    a, b = _dos_boot(dos_selftest), _dos_boot(dos_selftest)
+    assert a.screen() == b.screen() and a.peek(0x46C, 4) == b.peek(0x46C, 4)
+    assert play(a) == play(b)
+    a.save_state(st)
+    b.close()
+    c = platforms.Dos().open(str(dos_selftest))
+    c.frames(5)
+    c.load_state(st)
+    assert c.screen() == a.screen()
+    assert play(a) == play(c)
+    a.close()
+    c.close()
+
+
+def test_dos_pipeline(dos_selftest):
+    run("tools/intake.py", str(dos_selftest), "--slug", DOS_SLUG, "--probe", "150")
+    gj = os.path.join(ROOT, "games", DOS_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "dos" and meta["model"] == "svga-7800" and meta["rom"].endswith(".zip")
+    meta["macros"] = {"BOOT": DOS_BOOT}
+    meta["ram"] = {"shift": {"addr": "0417", "size": 1}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", DOS_SLUG]
+    run(*P, "start", DOS_SLUG)
+    run(*P, "do", "BOOT")
+    assert "saved" in run(*P, "checkpoint", "prompt", "KEYS.COM waiting for a key")
+    run(*P, "do", "type:Go 1,f,1,w20")
+    assert "shift=0" in run(*P, "status")
+    run(*P, "snap", "typed", "gameplay", "keys typed, tick letters between them")
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", DOS_SLUG, "main", "--verify")
+    run("tools/shoot.py", DOS_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", DOS_SLUG, "shots", "main", "typed.png")).convert("RGB")
+    assert im.size == (640, 400) and im.crop((0, 0, 200, 16)).getextrema()[0][1] > 100

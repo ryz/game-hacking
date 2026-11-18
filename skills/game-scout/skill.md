@@ -8,7 +8,7 @@ updated: 2026-11-18 (macro testing)
 
 # Game scout - research a game before anyone plays it
 
-> **Before you start:** paths are relative to the repo root. Read `docs/emulator/README.md` (how to drive the emulator), the file for the game's platform (`docs/emulator/gb.md`, `nes.md` or `snes.md`) and
+> **Before you start:** paths are relative to the repo root. Read `docs/emulator/README.md` (how to drive the emulator), the file for the game's platform (`docs/emulator/gb.md`, `nes.md`, `snes.md` or `dos.md`) and
 > `docs/capture-guide.md` (what the database needs), and the open entries in this skill's `feedback.md`.
 
 Owner's rules (2026-11-15): this is cataloguing, not a fair playthrough, so the most valuable research is
