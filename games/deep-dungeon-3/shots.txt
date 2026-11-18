@@ -3,4 +3,28 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/deep-dungeon-3/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Routed by the scout (2026-11-18, checked with emu.py, not yet with shoot.py):
+prologue_text | cutscene | Prologue: a young swordsman dreaming of glory sets out and stops at Dirige (ディリージュ) | w200
+title_screen | title | Title screen: 勇士への旅 (Yuushi e no Tabi), PUSH START, (c)1987 HummingBird Soft | @title
+menu_main | menu | Main menu: create character / erase character / begin adventure | @title,start,w60
+party_slots | menu | Party select: three party slots (empty) | @title,start,w60,start,w60
+name_entry | menu | Hiragana name entry: the swordsman named りず (ryz) | @title,start,w60,start,w60,KBD,down*4,right,a,up*3,right,a,down*3,right*6,a,w30
+class_select | menu | Second member's class: hunter (かりゅうど), priest (そうりょ), magician (まほうつかい), none | @title,start,w60,start,w60,KBD,RYZ
+inn_menu | shop | The inn of Dirige: stay / adventure record / reorder / remove member / go out; 100 gold | @start
+inn_save | save | Adventure record (ぼうけんのきろく): "recorded" | @start,SAVE
+town_inn_door | gameplay | Dirige in first person: the inn door with its INN sign | @town,right*2,w30
+field_menu | menu | Field menu: items, spells, search, status, talk | @town,b,w30
+status_ryz | inventory | Status of りず: swordsman (けんし) level 1, HP 15, AC/AP/ST/AG/LK | @town,b,w30,down*3,a,w60,a,w60
+stairs_down_cave | gameplay | Orange-brick dungeon (area 2): "There are stairs going down. Use them?" | @warp
+battle_skeletons | battle | Battle: three skeletons (がいこつ) appear in the underground | @battle
+battle_commands | battle | Battle command menu: fight, spell, defend, item, run | @battle,a,w60
+# Planned, not routed yet (see playbook "Shot plan"):
+# hud_dungeon | hud | dungeon corridor with the full party panel (pick a deep view)
+# area1_underground, area2_cave, area3_tower, area4_castle | gameplay | one view per area (warp, playbook)
+# shop_weapons, shop_items, temple | shop | town shops (numbered buildings 1-8 in the town grid)
+# npc_talk | dialogue | はなす to a townsperson
+# spell_menu, item_menu | system/inventory | じゅもん / どうぐ from the field menu
+# level_up | system | stat allocation on level-up (series feature)
+# battle_victory | battle | gold and EX after a won fight
+# boss_* | boss | masters (ぬし) of the underground, tower, cave and castle
+# gameover | gameover | the swordsman dies -> game over

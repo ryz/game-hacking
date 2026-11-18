@@ -311,7 +311,7 @@ class Nes(Libretro):
     """Mesen (libretro core, in-process through tools/lrcore.py). Models: ntsc (NES/Famicom, 60 Hz), pal, dendy.
     Cartridge games (.nes, iNES/NES 2.0 header); Famicom Disk System images are not set up (they need the BIOS).
     Memory is the CPU address space: 0000-07FF RAM, 6000-7FFF cartridge RAM (battery save), 8000-FFFF the PRG
-    banks mapped right now. peek has no side effects; poke writes RAM and mapped PRG, never I/O registers."""
+    banks mapped right now. peek has no side effects; poke writes RAM and cartridge RAM (not PRG ROM, not I/O registers)."""
     keys = {"a", "b", "start", "select", "up", "down", "left", "right"}
     extensions = (".nes",)
     native_size = (256, 240)

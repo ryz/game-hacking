@@ -56,6 +56,8 @@ do not capture the database set (that is `game-capture`), but you do create the 
      while a sign, prompt or keyboard is still drawing are lost, and `play.py`'s settles between calls hide it (Wizardry
      II, Might and Magic). Pad name keyboards with a harmless key (delete on an empty name). After editing a macro,
      rebuild the checkpoints whose routes use it.
+   - New screen, unclear confirm button: try every button in parallel `emu.py` runs first (Deep Dungeon III confirms
+     title menus with Start, everything else with A). Name keyboards may skip blank squares when moving.
    - Look cheaply: a small helper in `work/scout/<slug>/` that runs several token groups and tiles the
      screenshots into one image saves a look per step (used by two scouts, 2026-11-17/18).
    - Blocked web sources and a translated game: decode the ROM script (relative search for a known word) for

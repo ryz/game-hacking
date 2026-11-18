@@ -1,3 +1,9 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title screen 勇士への旅, PUSH START, settled | pow,TITLE,settle
+start | Party りず/こんでい/えぼ/きゅび (swordsman/hunter/priest/magician) in the inn of the first town, menu, 100 gold | @title,NEWGAME,settle
+town | Outside the first inn: first-person town view, party status panel, facing south | @start,SAVE,settle,OUT,settle
+warp | Warp base: area 2 floor 1 (30,1) on the down-stairs prompt; poke 7003 area, 7004 floor-1, EE/EF x/y, then a | @town,poke:00EE=1E,poke:00EF=02,poke:006F=00,left,right,w30,up,w60,settle,a,w120,settle,b,w60,poke:00EE=1D,poke:00EF=01,poke:006F=10,left,right,w30,up,w60,settle
+area1 | Area 1 (the underground, ちか) floor 1 at (1,1) on the up stairs, facing north, prompt dismissed | @town,poke:00EE=01,poke:00EF=1A,poke:006F=00,left,right,w30,up,w60,a,w120,b,w60,settle
+battle | Area 1 floor 1 (2,2): random battle, がいこつ (skeleton) x3, command たたかう/にげる | @area1,right*2,w30,settle,up,w30,up,w30,up,w30,settle,left,w30,up,w30,up,w30,up,w30,settle

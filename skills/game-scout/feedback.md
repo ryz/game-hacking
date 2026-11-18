@@ -9,6 +9,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Deep Dungeon III (Famicom, Japanese)
+- Task: scout Deep Dungeon III: playbook, naming macros, six checkpoints, RAM, 01_start, 16 floors + town grid
+  decoded and drawn, warp, shot plan.
+- Worked: RAM diff over turns/steps -> x/y -> map-address routine -> battery-RAM map -> ROM floor data in ~4 calls;
+  bank-select jump table on 7003 mapped areas to banks; the cave's stairs handler does a full reload (clean warp);
+  parallel emu.py runs tiled to test buttons and all routed shots; Data Crystal text table + small encoder.
+- Friction: Start (not A) confirms title menus (~3 calls); keyboard skips blank squares (one name mistyped); dumps
+  gone after stop/start (cross-session diff failed); poking PRG had no effect though nes.md said it would; the first
+  warp idea failed (area-1 stairs reload only their bank).
+- Proposed rule change: nes.md: PRG pokes have no effect; skill: test all buttons in parallel on new screens;
+  emulator guide: keyboards may skip blank squares.
+- Corrected: PRG claim checked and fixed in nes.md and the Nes docstring; dumps now survive `play.py start`
+  (my earlier cleanup removed them); button and keyboard notes added to skill.md step 3. 14/14 verified.
+- Status: promoted 2026-11-18
+
 ### 2026-11-18 - Might and Magic (NES)
 - Task: scout Might and Magic: playbook, macros incl. party, title/start/party/cavern checkpoints, RAM, inn save and
   01_party, 55 maps decoded and drawn, shot plan.

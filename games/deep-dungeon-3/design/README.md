@@ -23,12 +23,19 @@ the evidence: link them (`../shots/main/<id>.png`).
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Deep Dungeon III is a first-person dungeon role-playing game: a swordsman hero and up to three companions (hunter,
+priest or magician) walk square by square through towns and four dungeons, fighting random battles from a
+menu **(verified: party creation, town, underground, battle)**. It is the first game of the series with several
+towns and several dungeons - an underground, a cave, a tower and a castle, sixteen floors of 32 by 32 squares in all
+**(ROM; names inferred from text)** - each dungeon with a master, and the monster in the castle is said to have
+created this world **(ROM text)**. The game ends when the swordsman dies; players share out stat points on
+level-up; random encounters stop once the party far outclasses an area; monsters drop gold **(source: Wikipedia)**.
+Progress is saved at an inn into one of three party slots **(verified)**.
 
 ## Documents
 | Document | Covers |
 |---|---|
+| [maps.md](maps.md) | towns and dungeon floors: square types, stairs, drawn maps in [maps/](maps/) |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
@@ -37,3 +44,5 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Wikipedia "Deep Dungeon" | https://en.wikipedia.org/wiki/Deep_Dungeon | game-over rule, level-up, encounters, gold |
+| ROM text and data | `rom/deep-dungeon-3.nes` (see ../playbook.md) | place names, maps, stairs |

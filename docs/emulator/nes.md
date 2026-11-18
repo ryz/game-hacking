@@ -34,7 +34,8 @@ frame on screen, so a cached checkpoint and a freshly built one give the same pi
 ## Memory
 The CPU address space: `0000-07FF` RAM (mirrored up to `1FFF`), `6000-7FFF` cartridge RAM (battery save or work
 RAM, when the cartridge has it), `8000-FFFF` the PRG banks mapped at that moment.
-- `peek` has no side effects; `poke` reaches RAM and mapped PRG, not the PPU, APU or mapper registers.
+- `peek` has no side effects; `poke` reaches RAM and cartridge RAM, not PRG ROM (no effect, checked 2026-11-18 on
+  Deep Dungeon III), the PPU, APU or mapper registers. Code changes go into a `rom:` variant (Game Genie, IPS, `"bytes"`).
 - `find` (RAM search) covers `0000-07FF` and `6000-7FFF`.
 - `status` shows the PC without a bank number (banking depends on the mapper). Many games sit in one
   frame-wait loop, so the PC is the same all the time; that is not a hang.

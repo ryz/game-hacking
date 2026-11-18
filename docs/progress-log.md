@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Deep Dungeon III scouted; NES docs: PRG ROM pokes have no effect
+- Scout: Japanese only (no patch supplied); party りず/こんでい/えぼ/きゅび (hiragana-only keyboard, four members),
+  save 01_start, warp via the cave's stairs reload, 16 floors + town grid decoded and drawn; 14 routed shots
+  verified 14/14 by the coordinator.
+- `docs/emulator/nes.md` and the Nes docstring said poke reaches mapped PRG; checked: it has no effect on PRG ROM.
+- `play.py start` keeps RAM dumps (only old frames are cleared), so diffs work across session restarts.
+
 ## 2026-11-18 - Might and Magic (NES) main set: complete through the ending
 - game-capture: 93 shots (commits 63279a4 5d0785b 3a6af15): town services, character sheets, camp, combat,
   chests, game over, all five towns, VARN sectors, caves, castles, the impostor King Alamar, the Soul Maze and

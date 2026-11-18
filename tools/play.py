@@ -477,8 +477,8 @@ def main(argv):
             pass
         d = sdir(name)
         os.makedirs(d, exist_ok=True)
-        for f in os.listdir(d):         # a new session starts clean: no frames or dumps of an earlier one
-            if f in ("ready", "log.txt") or f.endswith(".png") or f.startswith("dump_"):
+        for f in os.listdir(d):         # a new session starts without an earlier one's frames (dumps are kept)
+            if f in ("ready", "log.txt") or f.endswith(".png"):
                 os.remove(os.path.join(d, f))
         log = open(os.path.join(d, "server.log"), "w")
         subprocess.Popen([sys.executable, __file__, "--name", name, "_serve", args[0], route, model],

@@ -28,6 +28,7 @@ Current snapshot; history in `progress-log.md`.
 - Wizardry I (NES), 2026-11-18: main set 71 shots through Werdna and the ending, 10 floor maps with all special
   squares decoded, saves 01-03. Open: Identify, spinner, teleport square; party_dead retake.
 - `play.py dump/diff` (2026-11-18).
+- Deep Dungeon III (Famicom, Japanese): scouted 2026-11-18 (16 floors + towns drawn, save 01_start); capture next.
 - Might and Magic (NES), 2026-11-18: main set 93 shots through the ending, 55 maps with terrain and exits, saves
   01-03. Open: services in the other towns, spells above level 1, Bribe/Giveup.
 - Wizardry II (NES), 2026-11-18: main set 91 shots through the ending, 6 floor maps with special types checked

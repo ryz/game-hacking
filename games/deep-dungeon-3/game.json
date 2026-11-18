@@ -1,6 +1,6 @@
 {
   "slug": "deep-dungeon-3",
-  "title": "Deep Dungeon III: Yuushi e no Tabi (Famicom, Japan)",
+  "title": "Deep Dungeon III: Yuushi e no Tabi",
   "platform": "nes",
   "model": "ntsc",
   "rom": "rom/deep-dungeon-3.nes",
@@ -27,6 +27,46 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w660",
+    "KBD": "start,w60,b,w20",
+    "RYZ": "down*4,right,a,up*3,right,a,down*3,right*6,a,left*3,down,a,w60",
+    "CONDI": "right*9,a,down*4,left*2,a,up*3,right,a,down*2,a,down,left*7,a,up,right*4,a,w60",
+    "EBO": "right*3,a,down*2,right*6,a,down*2,left,a,left*3,down,a,w60",
+    "CUBI": "right*6,a,left*5,down*5,a,up*3,right*5,a,right*2,down,a,left*3,down,a,w60",
+    "PARTY": "TITLE,start,w60,start,w60,KBD,RYZ,start,w60,b,w20,CONDI,down,start,w60,b,w20,EBO,down*2,start,w60,b,w20,CUBI",
+    "BEGIN": "down*2,start,w60,start,w120",
+    "NEWGAME": "PARTY,BEGIN",
+    "SAVE": "down,a,w60,a,w90",
+    "OUT": "down*4,a,w120,a,w60",
+    "WARP_A2": "poke:00EE=1E,poke:00EF=02,poke:006F=00,left,right,w30,up,w60,a,w120,b,w60,poke:00EE=1D,poke:00EF=01,poke:006F=10,left,right,w30,up,w60",
+    "CONTINUE": "TITLE,start,w60,down*2,start,w60,start,w120"
+  },
+  "ram": {
+    "area": {
+      "addr": "7003",
+      "size": 1
+    },
+    "floor": {
+      "addr": "7004",
+      "size": 1
+    },
+    "x": {
+      "addr": "00EE",
+      "size": 1
+    },
+    "y": {
+      "addr": "00EF",
+      "size": 1
+    },
+    "facing16": {
+      "addr": "006F",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "gold": {
+      "addr": "7001",
+      "size": 2
+    }
+  }
 }
