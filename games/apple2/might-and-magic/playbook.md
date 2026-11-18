@@ -75,6 +75,31 @@ Checkpoints `roster` (roster view after the wipe and creation), `party` (Sorpiga
   cleanly here (9 shots verified from an empty cache and from the cache).
 - `sorpigal`, `outdoors`, `after_save` still use the six characters found on the disk (the dump is unchanged).
 
+## Sorpigal and combat (capture run 2026-11-18, set `main`)
+- **verified** The event squares are those of the DOS port's table (`games/dos/might-and-magic/playbook.md`):
+  blacksmith (6,5) W, market (10,5) E, temple (4,1) N, training (13,11) N, tavern (11,14) E, leprechaun (11,3) W,
+  statue (7,1) N, jail sign (6,10) N, stairs (14,0) W, exit (12,0) S. Reach one with `AT:xx:yy:oo`, the facing
+  one turn clockwise of the wanted one, `left` (shot routes in `shots/main/shots.txt`).
+- **verified** Unlike the DOS port, every service first asks a yes/no ("CAN I HELP YOU (Y/N)?", "STEP UP TO THE
+  BAR (Y/N)?"): `y,w300` opens the menu. Blacksmith: A buy weapons, B buy armor, C buy misc, D sell item; prices
+  as in the DOS notes (Dagger 5 ... Staff 30; Small Shield 10 ... Chain Mail 200; Torch 2 ... Scroll of Fire 300).
+  Temple: restore health, uncurse items, restore align, make donation 100. Training: "TRAINING FOR LEVEL 2 NEED
+  1500 MORE EXPERIENCE POINTS". Tavern: have a drink, tip bartender, listen for rumors.
+- **verified** Statue at (7,1): "ON THIS STONE STATUE OF AN H-ORC ARCHER A PLAQUE READS..." then "IN HONOR OF
+  CORAK... FOR HIS MAPPING EXPEDITION OF THE LAND OF VARN AND REDISCOVERY OF THE LOST TOWN OF DUSK".
+- **verified** `q` quick reference (hit points, spell points, AC, food, condition), `o` re-order party, `p`
+  protect ("SPELLS CURRENTLY ACTIVE"), `r` rest ("REST HERE (Y/N)?" -> "REST COMPLETE: NO ENCOUNTERS!"), `s`
+  search ("NOTHING"); on a sheet `c` = "CAST SPELL: LEVEL=".
+- **verified** Fixed fight at (3,6) (`AT:03:06:63,FN,left,w400`): monster picture and six Battle Rats, options
+  `a` attack, `b` bribe, `r` retreat, `s` surrender. Each of them led into combat on this route. Combat screen:
+  round number, monsters A-F (`+` = in melee), party positions, handicap, then "OPTIONS FOR: name" (`a` attack,
+  `f` fight, `e` exchange, `r` retreat, `u` use, `b` block; casters also `c` cast; `d` delay, `p` protect).
+- **open** Combat stops at CUBI's turn (fourth member): `a`, and `ctrl+a` repeated 80 times, did not move on,
+  while RYZ, CONDI and EBO took `a`. Not understood; no fight has been finished on this version yet.
+- **verified** Title: `space` shows "Book One - Secret of the Inner Sanctum" for a few seconds, then demo scenes
+  on each `space`: inn door, cavern, two text pages, a treasure chest, then the first title picture again.
+- **verified** Wilderness: "IMPASSABLE" over mountains that block the way.
+
 ## Controls
 The screen lists its keys. Verified so far: arrows `up`/`down` step forward/back, `left`/`right` turn (also
 `enter` forward, `/` back per the on-screen list); `1`-`6` character sheet, `esc` back; `y`/`n` prompts; in

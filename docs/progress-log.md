@@ -2,6 +2,17 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic 1 (Apple II): set `main` grown to 58 shots
+- Owner's request: more shots. From `@party`, `@menu` and `@title` with the `AT` move macro and the DOS port's
+  table of Sorpigal's event squares (it matched square for square): blacksmith with its three price lists,
+  market, temple, training, tavern, leprechaun, statue and plaque, jail sign, stairs and the dark cavern,
+  quick reference, order, protect, rest, search, sheets and the cast prompt, the fixed fight at (3,6) with the
+  monster picture and the combat screen, character creation step by step, delete prompt, "INSERT DISK B",
+  second title picture and five demo scenes, more wilderness. 58/58 reproduce from an empty cache; published.
+- Differences from the DOS port noted in the playbook: a yes/no before every service menu.
+- Open: combat does not advance past the fourth member's turn with the keys tried, so no fight was finished;
+  side 4, other towns, level-up, game over and ending are not in the set.
+
 ## 2026-11-18 - Might and Magic 1 (Apple II): new party, first shot set
 - Owner's request: wipe the party, make a new one, do the shot roundtrip. From `@menu`: the six inherited
   characters deleted (view all, A, Ctrl-D, Y, six times), six created with re-rolls until the wanted class was

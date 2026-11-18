@@ -7,3 +7,52 @@ insert_disk_c | system | Leaving Sorpigal: the game asks for disk C | @party,AT:
 title | title | Title picture: New World Computing presents Might and Magic (ESC starts the game, SPACE shows the second title picture and demo scenes) | @title,w10,settle
 options_menu | menu | Options menu: create characters, view all characters, go to town | @menu,w10,settle
 roster | menu | View all characters: the new roster | @roster,w10,settle
+market | shop | Eulards Fine Foods: the market offers a meal | @party,AT:0A:05:5A,FS,left,w300,settle
+temple | shop | Temple Moonshadow: services | @party,AT:04:01:14,FE,left,w300,settle
+training | shop | Otto's Training: what the next level needs | @party,AT:0D:0B:BD,FE,left,w300,settle
+tavern | shop | Ye Olde Hogge Tavern: drink, tip, rumors | @party,AT:0B:0E:EB,FS,left,w300,settle
+leprechaun | dialogue | A leprechaun offers travel to another town for a gem | @party,AT:0B:03:3B,FN,left,w300,settle
+statue | dialogue | A statue in Sorpigal | @party,AT:07:01:17,FE,left,w300,settle
+statue_text | dialogue | Searching the statue: a line of lore | @party,AT:07:01:17,FE,left,w300,y,w300,settle
+jail_sign | dialogue | Sign over a door in Sorpigal | @party,AT:06:0A:A6,FE,left,w300,settle
+stairs_prompt | gameplay | Stairs going down below Sorpigal | @party,AT:0E:00:0E,FN,left,w300,settle
+cavern_dark | gameplay | The cavern below Sorpigal without light: darkness | @party,AT:0E:00:0E,FN,left,w300,y,w600,settle
+quickref | hud | Quick reference: the party at a glance | @party,q,w200,settle
+order | system | Order: rearranging the marching order | @party,o,w200,settle
+protect | system | Protect: the party's active protections | @party,p,w200,settle
+rest | gameplay | Resting | @party,r,w300,settle
+search | gameplay | Searching a square with nothing in it | @party,s,w300,settle
+sheet_mnz | system | Character sheet of MNZ, a new sorcerer | @party,6,w200,settle
+sheet_cast | system | Cast: choosing a spell level and number | @party,6,w200,c,w200,settle
+fight_room | battle | The room behind the locked door at (3,6) | @party,AT:03:06:63,FN,left,w400,settle
+smith_weapons | shop | Blacksmith: weapons | @party,AT:06:05:56,FN,left,w300,y,w300,a,w300,settle
+smith_armor | shop | Blacksmith: armor | @party,AT:06:05:56,FN,left,w300,y,w300,b,w300,settle
+smith_misc | shop | Blacksmith: miscellaneous items | @party,AT:06:05:56,FN,left,w300,y,w300,c,w300,settle
+smith_services | shop | Blacksmith: what the shop offers | @party,AT:06:05:56,FN,left,w300,y,w300,settle
+market_price | shop | Market: the price of a meal | @party,AT:0A:05:5A,FS,left,w300,y,w300,settle
+temple_services | shop | Temple Moonshadow: services | @party,AT:04:01:14,FE,left,w300,y,w300,settle
+training_need | shop | Training: what the next level needs | @party,AT:0D:0B:BD,FE,left,w300,y,w300,settle
+tavern_menu | shop | Tavern: drink, tip, rumors | @party,AT:0B:0E:EB,FS,left,w300,y,w300,settle
+statue_text2 | dialogue | The statue's plaque | @party,AT:07:01:17,FE,left,w300,y,w600,settle
+rest_done | gameplay | After resting | @party,r,w300,y,w600,settle
+battle_attack | battle | Attack chosen: the combat screen | @party,AT:03:06:63,FN,left,w400,a,w400,settle
+battle_round | battle | Combat, a moment later | @party,AT:03:06:63,FN,left,w400,a,w400,a,w300,settle
+wild_north | gameplay | Wilderness: a few steps from Sorpigal | @party,OUTSIDE,up,w100,up,w100,up,w100,up,w100,settle
+wild_turn | gameplay | Wilderness: looking the other way | @party,OUTSIDE,up,w100,right,w100,settle
+wild_quickref | hud | Quick reference outdoors | @party,OUTSIDE,q,w200,settle
+create_roll | menu | Create new characters: rolled statistics and the classes they allow | @menu,c,w400,settle
+create_race | menu | Create: choosing a race | @menu,c,w400,6,w150,settle
+create_align | menu | Create: choosing an alignment | @menu,c,w400,6,w150,1,w150,settle
+create_name | menu | Create: naming the character | @menu,c,w400,6,w150,1,w150,1,w150,1,w150,type:RYZ,settle
+delete_sure | menu | Deleting a character from the roster | @menu,v,w300,a,w300,ctrl+d,w200,settle
+insert_disk_b | system | After ESC on the title: the game asks for disk B | @title,esc,w300,settle
+title_book | title | Second title picture: Book One, Secret of the Inner Sanctum | @title,space,w150,settle
+demo_inn | cutscene | Demo scene: an inn door (the stock party of the game) | @title,space,w600,settle
+demo_cavern | cutscene | Demo scene: a cavern | @title,space,w600,space,w600,settle
+demo_text1 | cutscene | Demo text: strongholds, lairs and treasure | @title,space,w600,space,w600,space,w600,settle
+demo_text2 | cutscene | Demo text: creatures and the combat system | @title,space,w600,space,w600,space,w600,space,w600,settle
+demo5 | cutscene | Demo scene: a wooden chest opens, gold shares and found items | @title,space,w600,space,w600,space,w600,space,w600,space,w600,settle
+battle_options | battle | Combat round 1 after an offered bribe: RYZ's options | @party,AT:03:06:63,FN,left,w400,b,w400,settle
+battle_r2 | battle | Combat round 1: a battle rat is wounded; DEDDO the cleric's options include Cast | @party,AT:03:06:63,FN,left,w400,b,w400,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,settle
+wild_walk | gameplay | Wilderness: further from Sorpigal | @party,OUTSIDE,up,w100*8,settle
+wild_walk2 | gameplay | Wilderness: mountains block the way (IMPASSABLE) | @party,OUTSIDE,up,w100*3,left,w100,up,w100*6,settle

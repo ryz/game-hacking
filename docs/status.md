@@ -84,7 +84,8 @@ Current snapshot; history in `progress-log.md`.
   and `sav:` (7 tests). First game: Might and Magic Book One (`games/apple2/might-and-magic/`, four sides in one
   ZIP): title, options menu (side 2), Sorpigal, wilderness (side 3), inn save; macros, 5 checkpoints, position RAM;
   inherited roster wiped and the standard party created (RYZ, CONDI, EBO, CUBI, DEDDO, MNZ; checkpoints `roster`,
-  `party`, `signed_in`); trial set `main` of 9 shots, verified from an empty cache and published. Not scouted,
+  `party`, `signed_in`); set `main` of 58 shots (title, demo scenes, creation, Sorpigal's services, command screens, first combat,
+  wilderness), verified from an empty cache and published. Not scouted,
   side 4 not reached. Open: reset keys, write-protected disks, hard disk images with a real game, held keys/auto-repeat.
   Notes: `docs/emulator/apple2.md`.
 
