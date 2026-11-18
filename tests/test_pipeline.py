@@ -84,8 +84,10 @@ def test_macros_and_checkpoints_resolve():
 def test_find_game_by_slug_or_platform_slug():
     assert emu.find_game("pokemon-blue") == ("gb", "pokemon-blue")
     assert emu.find_game("nes/might-and-magic") == ("nes", "might-and-magic")
-    g = emu.Game("might-and-magic")
-    assert g.id == "nes/might-and-magic" and g.platform == "nes" and g.dir.endswith("games/nes/might-and-magic")
+    g = emu.Game("dungeon-magic")
+    assert g.id == "nes/dungeon-magic" and g.platform == "nes" and g.dir.endswith("games/nes/dungeon-magic")
+    with pytest.raises(SystemExit, match="dos, nes"):                       # same slug on two platforms
+        emu.find_game("might-and-magic")
     with pytest.raises(SystemExit):
         emu.find_game("no-such-game")
     with pytest.raises(SystemExit):

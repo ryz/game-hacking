@@ -1,0 +1,32 @@
+{
+  "slug": "might-and-magic",
+  "title": "Might and Magic Book One: The Secret of the Inner Sanctum (DOS)",
+  "platform": "dos",
+  "model": "svga-1500",
+  "rom": "rom/might-and-magic.zip",
+  "sha1": "c1a9248dd101e924f5e2de7890258e1a768753ac",
+  "crc32": "03afe4e9",
+  "size": 1492235,
+  "header": {
+    "files": 97,
+    "programs": [
+      "Might and Magic 1/GRAPHSET.EXE",
+      "Might and Magic 1/MM.EXE",
+      "Might and Magic 1/unins000.exe"
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {
+    "BOOT": "w120,down,enter,w300",
+    "MENU": "BOOT,w900,esc,w90,enter,w200",
+    "TOWN": "MENU,{0},w150,ctrl>a,ctrl>b,ctrl>c,ctrl>d,ctrl>e,ctrl>f,w30,x,w150"
+  },
+  "ram": {}
+}
