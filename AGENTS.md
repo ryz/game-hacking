@@ -54,7 +54,9 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 - Agent work follows the skills in `skills/` (index: `skills/skill-index.md`) and its feedback loop (below).
 - Translations live in script files (Japanese kept next to the English for review). Edit those, not the ROM.
 - Commit messages: what changed and why; one topic per commit.
-- Branch: work and push on `master` (owner's rule 2026-11-15); merge any session branch into it.
+- Branch: work on the branch the session was given (owner's rule 2026-11-18; before that, only `master`). Before a
+  session ends, make sure its work is merged into `master` and pushed, and say so in the report; if the merge or
+  push is not possible, tell the owner what is left on which branch.
 
 ## Shared tooling quick reference
 Run from the repo root (how to drive any game: `docs/emulator/README.md`, then the platform file
@@ -79,7 +81,8 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
   states are not committed). Milestone saves for the owner: save in the game, then `play.py export NAME "desc"`
   -> `games/<platform>/<slug>/saves/` (committed); password games record passwords in the playbook instead. Capture agents
   commit + push their game folder at every major milestone.
-- Wizardry Empire is not registered with these tools yet; it uses its own in `translation/tools/` (below).
+- Wizardry Empire is not registered with these tools yet; it uses its own in `translation/tools/` (below), with
+  the same file-name scheme.
 
 ## Wizardry Empire quick reference
 Run from `games/gbc/wizardry-empire/translation/`:
@@ -109,6 +112,8 @@ Run from `games/gbc/wizardry-empire/translation/`:
   `work/qa/tour_en|tour_jp/<route>/sheet.png`; run it after every build and give the sheets to `visual-qa`.
 - Reference screenshots: `python3 tools/shoot.py SET [--only ids]` (curated list `tools/routes/shots.txt`) ->
   `work/shots/SET/` native 160x144 + 3x + JP|EN compare PNGs and a catalogue (`--publish` copies to `../shots/SET/`).
+  Files: `wizardry-empire_gbc_jp_<category>_<id>.<set>.<rom>.png`; categories are the database's
+  (`docs/capture-guide.md`); set names are words joined by `-` (`rev1-tour`).
 - Maze reach: `tools/maze_goto.py` (poke next to a square + check the event), `tools/maze_route.py` (walking
   tokens), `tools/maze_make_chest.py` (chest after a battle); random walk to a battle: `tools/explore.py ROM STATE
   OUTDIR [MAXSTEPS] [SEED]`. Recipes: `docs/re/reach.md`.

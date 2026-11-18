@@ -76,6 +76,15 @@ Current snapshot; history in `progress-log.md`.
   `slug` or `platform/slug`; work directories are `work/<kind>/<platform>/<slug>/`. The same slug may exist on two
   platforms (`nes/might-and-magic`, later `dos/might-and-magic`).
 
+## File names and slugs (2026-11-18)
+- Shot files: `<game>_<platform>_<region>_<area>_<id>[.<set>].<ext>`, built by the tools (`docs/capture-guide.md`,
+  "File names"). Every `game.json` has `region` (`jp`/`na`/`eu`). All published sets are renamed.
+- Slugs carry no platform: `wizardry`, `wizardry-2` (were `wizardry-nes`, `wizardry-2-nes`). Local `rom/` and
+  `work/` copies under the old names must be renamed by hand (`rom/wizardry.nes`, `rom/wizardry-2.nes`,
+  `rom/saves/<slug>/`, `work/*/nes/<slug>/`).
+- Open: `shoot.py SLUG SET --verify` of the renamed sets has not been run (no dumps in the session that renamed
+  them); working sets in `work/shots/` are renamed by the next `shoot.py` run.
+
 ## Games
 | Slug | Title | Playbook | Sets |
 |---|---|---|---|

@@ -2,6 +2,31 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - shot file names carry game, platform, region and area; Wizardry slugs renamed
+- Owner's rule: a shot file must say what it shows outside its folder (the files are used in other contexts).
+  Scheme: `<game>_<platform>_<region>_<area>_<id>[.<set>].<ext>` (`docs/capture-guide.md`, "File names").
+  game/platform/region = `game.json` slug, platform and the new key `region` (`jp`, `na`, `eu`: the release of
+  the dump, not the language; a translated Japanese ROM is `jp`; DOS Might and Magic is `na`), area = the shot's
+  category, id unchanged (ids that start with their category repeat it, accepted). Sets other than `main` and
+  `seq-*` add `.<set>`; contact sheet, strip and sequence GIFs use the area `set`.
+- Slugs are the short game name without the platform: `games/nes/wizardry-nes` -> `games/nes/wizardry`,
+  `games/nes/wizardry-2-nes` -> `games/nes/wizardry-2` (ROM paths `rom/wizardry.nes`, `rom/wizardry-2.nes`).
+  Entries below keep the old paths.
+- Tools: `shoot.py` builds the names (`stem`, `set_file`) and renames a working set on its next run when the
+  scheme, a category, the region or the slug changed; `play.py` snap/record/unsnap use them (a re-snap with
+  another category removes the old file; unsnap of a clip no longer fails); `intake.py --region` (read from the
+  header only where it is certain: GB Japan, SNES country code, NES PAL), slug checked.
+- Migration: 1604 published images of the 11 registered games and 690 of Wizardry Empire renamed with `git mv`
+  (pixels untouched), index.json/index.md rewritten, links in design and tech documents followed; no broken
+  image link in non-history documents. Nothing was replayed: no ROMs in this container, so `--verify` of the
+  renamed sets is still to be run where the dumps are.
+- Wizardry Empire: same scheme with the set always written and the ROM last
+  (`wizardry-empire_gbc_jp_menu_camp.rev1-tour.en.png`); its place categories (town, tavern, maze...) became
+  the database categories; sets `jp_tour`/`rev1_tour` are `jp-tour`/`rev1-tour`.
+- Branch rule changed (owner): sessions work on their own branch and make sure the work is merged to `master`.
+- Tests: 33 passed with all four emulators built (new: file-name unit test, category change renames files,
+  old working set renamed on the next run).
+
 ## 2026-11-18 - Might and Magic 1 (DOS) scouted; launch log bug fixed
 - game-scout (commit 4550427): playbook filled (about 30 controls verified, rest from the manual in the ZIP),
   macros for creating RYZ and renaming the stock party, checkpoints title/menu/start/created/blacksmith/

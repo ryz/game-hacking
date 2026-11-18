@@ -4,6 +4,17 @@ Append-only, newest first. One entry per session and per test ROM sent. `docs/st
 snapshot; this file is the history (what changed since the ROM you tested). Format:
 
 ```
+## 2026-11-18 - reference screenshots renamed to the repository's file-name scheme
+- ROM: none sent (no build change).
+- Changed: shot files are `wizardry-empire_gbc_jp_<category>_<id>.<set>.<rom>.png` (owner's rule, repo root
+  `docs/capture-guide.md` "File names"); `tools/shoot.py` builds the names and refuses categories outside the
+  database's 20. The category column of `tools/routes/shots.txt` and of the three catalogues was remapped from
+  places to those categories (menu 45, battle 32, system 30, inventory 20, shop 19, gameplay 4, dialogue 3,
+  boot 2, options 2, title 1 over the 158 ids). Sets `jp_tour`, `rev1_tour` -> `jp-tour`, `rev1-tour`; the
+  state-based shots' `@3x` copies moved to `states/3x/`. 690 files renamed with `git mv`, pixels untouched;
+  `tools/doclinks.py`: 0 broken links. Entries below keep the old names.
+- Open: nothing was reshot (no ROM in the session); the next `shoot.py` run needs a set name with `-`.
+
 ## 2026-11-17 - repository restructured (paths changed)
 - The project moved from `wizardry-empire/` to `games/wizardry-empire/`: design docs, tech docs, screenshot sets
   and saves are game-level folders (`../design`, `../tech`, `../shots`, `../saves`), everything else is this

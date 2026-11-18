@@ -174,6 +174,8 @@
 12. Teleport prompt: the floor digit sits a few px right of 'Floor B' (fixed cells for the cursor arrow).
 
 13. Reference screenshots: `../shots/rev1-tour/` (Rev 1 + EN, 2026-11-12) replaces `jp-tour/` (v1.0, kept for history).
+    Files renamed 2026-11-18 to `wizardry-empire_gbc_jp_<category>_<id>.<set>.<rom>.png` with database
+    categories (sets were `rev1_tour`, `jp_tour`); not reshot since.
    Not covered by any route: wall bump 'Ouch!', friendly-encounter panel, strange-pattern event. 'Choose a classsir' fixed
    (RectRows blank-cell bug).
 
