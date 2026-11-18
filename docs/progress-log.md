@@ -2,6 +2,14 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Megami Tensei II main set; five more games registered
+- Megami Tensei II (Famicom, English IPS, headered layout): scout (3cb9dea, 15 routed shots, 15/15 verified) and
+  capture (fa9a47d, e2d1b8b): 36 shots, save `01_computer_room.sav`, design `world.md` and `combat.md`. Devil Buster
+  not finished (last stairs inside a wall); the real world reached by losing inside it. Coordinator: 6/6 sample
+  re-verified from an empty cache; the untranslated lines checked against the unheadered layout (garbles the
+  first English page), so the layout is right and the lines are a gap in the patch.
+- Registered (no patches): Dungeon Magic, Wizardry I and II (NES), Might and Magic (NES), Deep Dungeon III (b1cb5fc).
+
 ## 2026-11-18 - Megami Tensei main set
 - game-capture: 41 shots, commits 23a7460 b29aa51 e88f35c (milestone commits made as asked). Sage password
   recorded (macro `PW_SAGE1`), position/money/Comp RAM, 8F event map from a RAM-warp scanner, design `demons.md`

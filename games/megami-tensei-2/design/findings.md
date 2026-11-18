@@ -57,3 +57,9 @@ WATCHED RYZ QUIT THE GAME AND SPOKE."); the party keeps its levels but Macca and
 **Intended:** yes: quitting the computer game is part of the story frame (inferred).
 **Confidence:** (verified).
 **Impact:** a player can leave Devil Buster at any time by losing; whether the Pazuzu scene still follows is not known.
+
+## Untranslated lines are a gap in the patch, not a mis-applied patch (coordinator, 2026-11-18)
+The SAVE DATA confirmation ("G3HL-LP") and the ST GOLEM's negotiation lines show Japanese bytes drawn with the
+English font. Checked: the same IPS applied without the iNES header garbles the very first English page (the
+"Caution for Devil Busters" text), with the header it is clean. So the headered layout is right and these lines
+are simply not translated by the patch. (verified)

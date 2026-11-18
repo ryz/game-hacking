@@ -17,6 +17,12 @@ Current snapshot; history in `progress-log.md`.
   summon, fusion, sage password, shop, healer, status, Tyrant Minotaur encounter, game over), 41/41 verified.
   Open there: level-up (EXP poke did not trigger one), battle magic, a deeper floor, the Minotaur fight, a
   demon fighting, the ending (password format not decoded).
+- Megami Tensei II (Famicom, English IPS), 2026-11-18: main set 36 shots (intro, naming, Devil Buster, battles,
+  level-up, healer, Tokyo overworld, 3D cave, magic, computer room, save slots, shelter, game over), save
+  01_computer_room. Open: Pazuzu, automap, a demon joining, summoning, fusion, shop, bosses; shots.txt not in game
+  order; start_room retake. Some lines are untranslated by the patch (checked, not a layout error).
+- Queue (registered 2026-11-18, not scouted): dungeon-magic, wizardry-nes, wizardry-2-nes, might-and-magic,
+  deep-dungeon-3.
 - Tokens incl. hold (`right:30`), mash, settle, macros, checkpoints as routes (cached per ROM).
 - `play.py`: persistent session with undo, snap (capture + route), checkpoint/goto, RAM search, RAM watches.
 - `shoot.py`: replay, `--verify` (pixel-exact reproduction), `--publish`; catalogue index.json/md + contact sheet.

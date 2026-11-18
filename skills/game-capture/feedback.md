@@ -9,6 +9,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Megami Tensei II (Famicom) main set
+- Task: capture the main set (36 shots, 36/36 verified; commits fa9a47d e2d1b8b), save 01_computer_room, design.
+- Worked: throwaway in-process scripts on `tools/emu.py` (breadth-first explorer over savestates, 16x16 event-scan
+  sheet for first-person mazes, frame sweep for CHAT outcomes); cheat addresses from web-search summaries when
+  TCRF would not load (no-encounter byte); losing on purpose inside the game-within-the-game moved the story on.
+- Friction: ~60 calls of 6502 RE on the Devil Buster ending without result (no shared disassembler); HP freeze
+  did not stop a wipe inside `w10*25`; savestates refuse `rom:` variants; a script wrote into the repo root once;
+  published order is snap order, not game order.
+- Proposed rule change: (1) emulator guide: on a story gate try losing/quitting, time-box ROM RE to ~20 calls;
+  (2) shared `tools/explore.py` (BFS + event scan) and `tools/dis6502.py`; (3) publish in shots.txt order.
+- Corrected: coordinator re-verified 6/6 from an empty cache and checked the "untranslated text" finding against
+  the unheadered patch layout (layout right, patch gap). Milestones (a)(b) committed; (c) not reached. 231 calls.
+- Status: open ((1)-(3): first occurrence each; the RAM-warp scan of Megami Tensei is the same idea as (2))
+
 ### 2026-11-18 - Megami Tensei (Famicom) main set
 - Task: capture the `main` set: sage password, negotiation/summon/fusion, shop/healer/status, Minotaur (41/41
   verified; commits 23a7460 b29aa51 e88f35c).
