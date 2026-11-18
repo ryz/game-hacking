@@ -46,6 +46,29 @@ gives each hero one point to spend ("SPEND 1 PTS") **(verified)**.
 - When every hero falls: GAME OVER, "THE WORLD WILL PERISH!" **(verified: `gameover`)**. Inside Devil Buster this
   only ends the computer game and the story continues in the computer room with 0 Macca and 0 MAG **(verified)**.
 
+## 6. Demons in the party (round 2)
+- **The COMP stock:** CALL lists the demons held with their HP and the Macca it costs to summon them: PIXIE 47, KOBOL
+  79, GOBLIN 175, ST GOLEM 1044, STONK 759 **(verified: `comp_stock`; the demons were put into the COMP through memory,
+  see the playbook)**. Summoning pays the Macca at once (2471 -> 2424 for PIXIE) and the demon joins the party list
+  **(verified: `comp_summoned`)**; with too little Macca the game prints an untranslated refusal **(verified)**.
+- **Upkeep:** with two demons summoned every step on the map costs 1 MAG (1386 -> 1369 over about 17 steps)
+  **(verified, RAM watch)**; a Devil Buster sign warns that a MAG shortage makes demons' HP degrade **(verified)**.
+- **In battle** a summoned demon gets its own commands: FIGHT / MAGIC / LEAVE / GUARD **(verified: `battle_demon_cmd`)**.
+  Enemies attack demons too; a Kiyohime pair killed PIXIE and KOBOL with one blow each, always for exactly their
+  remaining HP (17, 25, and 41 when PIXIE was given 44) **(verified: `battle_demon_hit`)**, which looks like an
+  instant-death attack rather than damage (inferred). Two Kiyohime paid 9216 EXP and 576 Macca **(verified)**.
+- **Fusion** (Devil Buster's fusion master; Devil Buster's signs: demons do not level up by EXP, they are fused to
+  power up, and can be fused with elements to rank up) **(verified)**: FUSE TWO shows each demon's class and a
+  compatibility chart (O = can be fused, * = special, - = itself); PIXIE (FARY) + KOBOL (JIR) gives CARBUNK, class BRT,
+  LV 4, HP 13, MP 12, spell ZIO, cost 4 points, order NEUTRAL; A fuses, B cancels; the fusion plays a hexagram
+  ("TETRAGRAMMATON") animation **(verified: `fusion_whom`, `fusion_pair`, `fusion_result`, `fusion_ritual`)**.
+
+## 7. Bosses
+| Boss | Where | Result | Evidence |
+|---|---|---|---|
+| Taurus (the Minotaur) | Devil Buster floor 2, a fixed square | 768 EXP, 192 Macca, 24 MAG and the S.ORB; RYZ and CONDI went from LV 2 to LV 7 (5 points to spend each) | `boss_taurus`, `taurus_victory`, `got_sorb` (verified, its HP set to 1 through memory) |
+
 ## Open questions
 - Damage formulas, DIA's heal amount, flee chance, what AUTO does.
-- What a YES or NO answer changes in negotiation; how demons join; summoning cost in MAG.
+- What a YES or NO answer changes in negotiation; how demons join by talking (none joined in about 100 tries over
+  two runs; ST GOLEMs walked away after their questions).

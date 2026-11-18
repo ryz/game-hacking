@@ -1,10 +1,10 @@
 # Maps - Devil Buster, the Tokyo overworld, the towns
 
-Pictures in `maps/` are stitched from the game's own screen: the party is warped (RAM) to a grid of positions during
+Pictures in `maps/` are stitched from the game's own screen: the party is warped to a grid of positions during
 a map transition, the sprites are hidden and the centre 8 x 7 squares of every frame are pasted together
 (`work/capture/mt2/mapgrab.py`, round 2). One square = 16 x 16 pixels; the picture's top-left square is given per map.
-Event squares come from the overhead event table in the ROM (file offset 0x7DAB-0x7F40, entries `x y event`) and were
-each stepped on (sheets `work/capture/mt2/dbs_dn/`, `work/capture/mt2/scan1/`) **(RAM, verified per square below)**.
+Event squares come from the game's list of overhead event squares (offsets in the playbook) and were
+each stepped on (sheets `work/capture/mt2/dbs_dn/`, `work/capture/mt2/scan1/`) **(verified per square below)**.
 
 Warp tokens (game.json macros, see the playbook): `@db_f1_back,DBEV:X:Y1` fires the Devil Buster event at X,Y (Y1 =
 Y + 1, the square below; the party steps up onto it); `@overworld_demons,TOWNEV:X:Y1` the same for town squares.
@@ -13,7 +13,7 @@ Y + 1, the square below; the party steps up onto it); `@overworld_demons,TOWNEV:
 The game inside the game is one overhead map: ten 16 x 16 blocks, two columns (x 50-5F and 68-77) and five rows
 (y 08, 20, 38, 50, 68). Eight of them are mazes; the two grey blocks at 50,50 and 50,68 are stone temples (statues,
 blue orbs) that the stairs list leads to but that are not reached in normal play.
-| Block (top-left) | Floor | Connections (stairs, from the warp table at ROM 0x744D) |
+| Block (top-left) | Floor | Connections (stairs, from the game's stairs list) |
 |---|---|---|
 | 50,08 | 1 (start 51,08; **Micon town**, "8F of the Daedalus Tower") | 57,0C <-> 6F,0C (floor 2) |
 | 68,08 | 2 | 76,0C <-> 5E,24 (floor 3) |
@@ -41,7 +41,12 @@ Event squares (event id in brackets; all **verified** by stepping on them, round
 | 76,6A | 98 | Cerberus speaks (untranslated), YES/NO |
 | 6A,6A | 37 | a door picture with an untranslated line |
 
-## Tokyo overworld (`maps/overworld.png`, top-left square 00,07; area byte 01/04)
+## Tokyo overworld (`maps/overworld.png`, squares 00,07 to 4F,7F; area byte 01/04)
+The picture holds two parts: the northern part (about y 07-40) around the starting temple and settlement, and a southern
+part (about y 48-7F) reached by three roads that leave the north part through bridges; the south has ice fields, a dark
+lake with a ruin in the middle and more roads. Only the north was walked in play; the south and the left edge of the
+picture (some squares drawn with mixed graphics) are as the game draws them after a warp **(verified as pictures,
+not walked)**.
 Red wasteland roads cross a ring of green hills, rocks, ice fields, purple ruins and a dark swamp; purple holes are cave
 entrances (0E,2F and 1C,2B lead to the first cave **(verified)**). Doors from the warp table (overworld -> town map,
 area 05): 47,13 -> 09,58; 3C,42 -> 27,54; 17,13 -> 5D,73; 11,2B -> 5B,7E (the settlement with the armour shop and the
@@ -49,7 +54,11 @@ save totem, shot `village`); 0B,3F -> 58,56. Exits back: 09,D8 -> 47,13; 27,D4 -
 11,2B; 58,56 -> 0B,3F; 77,97 -> 20,2C (area 06).
 
 ## Towns (`maps/towns.png`, top-left square 00,07; area byte 05)
-All towns and building interiors share one overhead map with area byte 05. Event squares found by stepping on them
+All towns and building interiors share one overhead map with area byte 05 (picture: squares 00,07 to 7F,E7). The towns
+are the walled blocks in the right column (x 50-7F, y 48-7F: three small settlements in a row, the bottom one with the
+armour shop and the totem) and the grid of fifteen walled towns linked by paths in the bottom part (y about A8-E7); the
+upper left of the picture is the overworld's layout drawn with town graphics and the right half of the top shows the
+Devil Buster floors the same way (not places in this map) **(verified as pictures; the towns' events below were stepped on)**. Event squares found by stepping on them
 (**verified**, round 2):
 | Square | Event | What |
 |---|---|---|

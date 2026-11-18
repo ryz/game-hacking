@@ -63,3 +63,32 @@ The SAVE DATA confirmation ("G3HL-LP") and the ST GOLEM's negotiation lines show
 English font. Checked: the same IPS applied without the iNES header garbles the very first English page (the
 "Caution for Devil Busters" text), with the header it is clean. So the headered layout is right and these lines
 are simply not translated by the patch. (verified)
+
+## Devil Buster's ending found: Taurus and the S.ORB (round 2, 2026-11-18)
+**Behavior:** Devil Buster ends when Taurus (floor 2) is beaten and his S.ORB is offered at the fallen god statue
+(floor 3); Pazuzu then appears. The "last stairs inside a wall" (entry above) are not on this route.
+**Intended:** yes, the hints in Micon town spell it out.
+**Confidence:** (verified) shots `taurus_appears` to `pazuzu_armory`, checkpoint `real_world`.
+**Impact:** corrects round 1: the floor-8 stairs are a leftover, not a missing way out.
+
+## Kiyohime kills a demon in one blow, always for its exact HP
+**Behavior:** an overworld Kiyohime pair took a summoned PIXIE from 17 to 0 and KOBOL from 25 to 0 in one attack each;
+raised to 41 HP, PIXIE still lost exactly 41 (route of `battle_demon_hit`).
+**Intended:** probably an instant-death attack on demons (inferred).
+**Confidence:** (verified) three samples.
+**Impact:** early demons are lost at once against this enemy.
+
+## Names and roles after Pazuzu
+**Behavior:** Pazuzu addresses "RYZ AND EBO" as the messiahs and gives EBO magic; the real-world party is RYZ + EBO,
+while CONDI is the second fighter inside Devil Buster.
+**Intended:** unclear whether the three name prompts map to hero / girlfriend / friend as their texts say.
+**Confidence:** (verified) on screen (`pazuzu_messiahs`, `pazuzu_program`).
+**Impact:** captions of round 1 call CONDI the girlfriend and EBO the friend; check against later story scenes.
+
+## Untranslated names in shops and battles
+**Behavior:** some demon names (Kiyohime), shop items (Fire Guard, Dragon Mail, the weapon shop's list), town labels,
+the Teleport entry and NPC lines show Japanese kana or garbled letters (shots `shop_armor`, `battle_demons`,
+`teleport_list`).
+**Intended:** translated text.
+**Confidence:** (verified) on screen; a patch gap like the save confirmation (coordinator's check, above).
+**Impact:** part of the shops and the later towns is unreadable in English.

@@ -33,8 +33,15 @@ Eight floors, each a 24 x 24 block of one large map; stairs come in pairs (down 
 | 6 | 7 | |
 | 7 | 8 | arrival square on floor 8 **(verified)** |
 | 8 | ? | the last listed stairs sit inside the top wall of floor 8 and cannot be walked onto **(verified)**; their target is drawn as a grey stone temple where every step reports ERROR (see findings) |
-How Devil Buster is meant to be completed (the scenario text has the freed demon Pazuzu speak after it) was not found
-in this run **(verified: not reached)**.
+How Devil Buster is completed (round 2) **(verified: shots `taurus_appears` to `pazuzu_armory`)**: floor 1 is **Micon
+town** ("8F of the Daedalus Tower"), with an elder, a healer, a shop, a fusion master and townsfolk whose hints give the
+goal: Taurus holds the S.ORB, Taurus must be killed, and the S.ORB must be offered to the fallen god statue. Taurus waits
+on a fixed square of floor 2; beating him gives the S.ORB. Offering it at the statue frees **Pazuzu** ("BORN FROM FIRE
+AND STORM / I AM PAZUZU... FREEDOM.. REALITY AT LAST..."), who tells of the war at the end of the 20th century, the
+demons coming through a dimensional rift in Tokyo, and Bael, Tokyo's ruler, who sealed him in the machine. He names
+RYZ and EBO messiahs, gives magic to EBO, the Demon Summoning Program and an auto-mapping program to RYZ, and sends
+them to kill Nebro on B1; they head for the armory and play continues in the shelter, floor B4. Full room and event
+list: [maps.md](maps.md). The listed floor-8 stairs are not part of this route.
 
 ## 3. Places seen
 | Place | What is there | Evidence |
@@ -44,13 +51,16 @@ in this run **(verified: not reached)**.
 | Floor below the B4 stairs | grey stone corridors with a ladder hole | checkpoint `shelter_stairs1` (verified) |
 | Healer's temple | grey stone hall with statues and pools; a hooded healer ("I CAN HEAL.") | `heal` (verified) |
 | Tokyo overworld | red wasteland, grass, hills, a settlement, cliff caves, purple holes that lead into caves | `tokyo_overworld` (verified) |
+| Settlement north of 11,2B | houses, an armour shop (clerk in Jamaican patois: "WAGWAN?"), a save totem (LEAVE / SAVE / Teleport) | `village`, `shop`, `save_totem` (verified) |
+| Other towns | registry, slot machines, gambling, drugstore, bar, gun and weapon shops (maps.md) | round-2 scan (verified) |
 | Cave 1F | blue organic rock corridors | `dungeon_3d` (verified) |
 
 ## 4. Saving
-The home computer's SAVE DATA offers two slots, DATA1 and DATA2 **(verified: `save_slots`)**. The confirmation line
+The home computer's SAVE DATA and the totems in the towns offer two slots, DATA1 and DATA2 **(verified: `save_slots`,
+`save_recorded`)**; the totem's confirmation "RECORDED." is translated. The totem's Teleport lists the totems already
+visited (only HANEDA at first, untranslated) **(verified: `teleport_list`)**. The confirmation line
 after saving is printed as unreadable characters in this translation (findings) **(verified)**.
 
 ## Open questions
-- How Devil Buster ends and how the Pazuzu scene is reached (the summoning and auto-mapping programs come from it).
 - Where the first shop is; the events of the other shelter floors.
 - Whether BOOT GAME resumes Devil Buster where it was left.

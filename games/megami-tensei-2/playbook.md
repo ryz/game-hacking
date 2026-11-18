@@ -90,16 +90,16 @@ brackets). Must-haves from the capture guide:
 - [x] `hud_cmd` (+ `cmd_overworld`) - hud - field command screen
 - [x] `stats_ryz` - inventory - status page
 - [x] `battle_menu`, `battle_action`, `battle_chat`, `battle_victory` - battle
-- [ ] `pazuzu` - cutscene/dialogue - Pazuzu after Devil Buster (needs Devil Buster finished)
+- [x] `pazuzu` (+ `pazuzu_born`, `pazuzu_war`, `pazuzu_rift`, `pazuzu_messiahs`, `pazuzu_program`, `pazuzu_armory`, `statue_reaction`) - cutscene - round 2
 - [x] `shelter` (+ `shelter_soldier`, `shelter_gate_guard`) - gameplay - the shelter (real world, first town)
 - [x] `save_slots` (+ `computer_menu`, `computer_room`) - save - the computer's SAVE DATA / "Choose a slot" screen
 - [x] `tokyo_overworld` - map/gameplay - ruined Tokyo overhead
 - [x] `dungeon_3d` - gameplay - first-person view in a dungeon (if dungeons switch to full 3D)
 - [ ] `automap` - map - the auto-mapping program
-- [ ] `comp_summon`, `demon_joined` (no demon joined; captured `comp_menu`, `comp_call`, `magic_spells`) - system - a demon recruited by CHAT and summoned
-- [ ] `fusion` - system - fusing two demons
-- [ ] `shop` (not found), [x] `heal` - shop/system
-- [x] `levelup` - battle (+ `battle_magic`, `battle_dia`, `battle_item`, `battle_overworld`, `battle_chat_golem`); [ ] `boss_nebro` - boss (B8); `tokyo_tower_witch` - dialogue
+- [x] `comp_stock`, `comp_summoned`, `battle_demons`, `battle_demon_cmd`, `battle_demon_hit` (round 2, demons poked into the COMP); [ ] a demon joining by CHAT (never seen)
+- [x] `fusion_menu`, `fusion_whom`, `fusion_pair`, `fusion_result`, `fusion_ritual` - system (round 2, Devil Buster's fusion master)
+- [x] `shop`, `shop_armor`, `shop_bought` (round 2), `heal`, `save_totem`, `save_recorded`, `teleport_list`, `registry`, `village`
+- [x] `levelup` - battle (+ `battle_magic`, `battle_dia`, `battle_item`, `battle_overworld`, `battle_chat_golem`); [x] `boss_taurus` (+ `taurus_appears`, `taurus_victory`, `got_sorb`, `god_statue`); [ ] `boss_nebro` - boss (B1 per Pazuzu, not B8); `tokyo_tower_witch` - dialogue
 - [x] `gameover` - gameover
 Extra: `error_screen` (leftover debug screen). Not captured: `pazuzu`, `automap`, `fusion`, `shop`, `boss_nebro`,
 `tokyo_tower_witch`, a joined/summoned demon (see Strategy, capture run).
@@ -215,6 +215,9 @@ export was made (the first export belongs after Devil Buster, at the computer's 
 | 0564 + n | 1 | MP of slot n (0565 CONDI); max MP 05A0 + n | poke verified (MP 9) |
 | 037A | 1 | encounter control: `FF` held = no random battles | TCRF cheat (web search); verified |
 | 042F / 0430 | 1+1 | position in a first-person maze (x, y; S = y+1); copies at 0433/0434; on the overworld the world position | RAM diff; poke + step fires the target square's event (verified) |
+| 037A | 1 | step countdown to the next random battle (FF held = none; 01 + one step = a battle) | round 2 |
+| 0516+i, 053E+i, 057A+i, 05B6+i | 1 each | COMP stock / party slots 2-11: flag (80 = owned, in COMP), HP, max HP, demon id (PIXIE 8D, GOBLIN 8B, KOBOL 96, ST GOLEM 53, STONK AD) | round 2 (COMP CALL code bank 19 $A103) |
+| 7E0B-ish table | - | overhead event squares: ROM file 0x7DAB-0x7F40, 3-byte `x y event` (Devil Buster from 0x7DAB, towns after) | round 2 |
 | 0436 | 1 | area: 03 Devil Buster floor 1, 02 other Devil Buster floors, 04 overworld, 05 building interiors, 01 shelter | peek after warps; set from the warp's target byte through a table at $D82F |
 | 0438 | 1 | area number of the last warp (byte 4 of a warp entry) | code at $DD08 |
 | 04AA / 04AB | 1+1 | event/script id set by a warp or an event square | code at $DAE4/$DD1E |
@@ -244,6 +247,8 @@ Capture run 2026-11-18 added: `db_f1_back` (floor 1 again, LV 2, 120 Macca) -> `
 `overworld` (11,2B) -> `dungeon_1f` (cave) / `battle_golem` -> `golem_r2` -> `computer_room` (game over) ->
 `computer_menu` -> `saved_data1` (DATA1 saved) ; `computer_menu` -> `shelter_b4` (LEAVE) -> `shelter_stairs1`.
 All routes are deterministic; every shot built on them passed `--verify`.
+Round 2 added: `demons_party` -> `village` -> `village_out` -> `totem` ; `overworld_demons` -> `battle_demons` ;
+`db_f1_back` -> `boss_taurus` -> `taurus_won` -> `taurus_done` -> `statue_offer` -> `pazuzu_tale` -> `real_world`.
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -253,6 +258,9 @@ All routes are deterministic; every shot built on them passed `--verify`.
 | TCRF, manual PDF (yojimbo.eludevisibility.org), almarsguides walkthrough | https://www.tcrf.net/Digital_Devil_Story:_Megami_Tensei_II , https://yojimbo.eludevisibility.org/Stardust_Crusaders_Files/complete/NES/mt2files/Digital%20Devil%20Story%20Megami%20Tensei%202%20Manual.pdf , https://almarsguides.com/retro/walkthroughs/nes/Games/DigitalDevilStoryMegamiTenseiII/ | hosts not resolvable from this session (outside the allowed network); for the owner / an allowed session | 2026-11-18 |
 
 ## Open questions
+- (round 2) The auto-mapping program: how to open it (not Select/Start/B in the shelter). Nebro (B1), the Tokyo Tower
+  witch and the moon-phase effects were not reached. How to make a demon join by CHAT. Town names (labels untranslated).
+- (round 2) A save after the Pazuzu scene: the shelter route has no save point checked yet (home computer?).
 - (capture run) How Devil Buster is meant to end and how the Pazuzu scene is triggered; whether it still happens after
   quitting Devil Buster by a game over. Next idea: from `shelter_b4`, play the shelter (gates, other floors) and watch
   for Pazuzu at the computer (BOOT GAME); or find the script that prints "BORN FROM FIRE AND STORM" (bank 12, file
