@@ -23,17 +23,29 @@ the evidence: link them (`../shots/main/<id>.png`).
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+A first-person party RPG on 16x16-square maps: one named hero (a Knight) and up to five fellows hired from the
+roster at the town inns explore the five towns of VARN, their caverns, the outdoor sectors, castles and
+dungeons, fighting random encounters in menu-driven battles **(verified: Sorpigal, inn, Rabid Jackal fight)**.
+The NES version (G-Amusements 1991) replaces the original's six-character creation with a single named hero
+plus fifteen pre-made fellows, each living in one of the towns **(verified: inn Member > Add list, RAM)**.
+The quest leads to the Inner Sanctum and the impostor king **(ROM text)**. Saving: sign in at an inn
+("Push A button and save your adventure.") **(verified)**; one battery save, Continue on the title screen.
+Areas: 5 towns, 9 caves, 20 outdoor sectors (A1-E4), 5 castles, 3 castle dungeon levels, 2+2+2 forest/lair/wood
+levels, 4 City of Gold (P-Peek) levels, the Astral Plane and the Soul Maze: 55 maps **(ROM data)**.
 
 ## Documents
 | Document | Covers |
 |---|---|
-| [findings.md](findings.md) | quirks, exploits, likely bugs |
-<!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
-     unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
-     enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
+| [maps.md](maps.md) | the 55 maps: list, ids, how walls/doors/specials are stored, how to read the renders in `maps/` |
+| [findings.md](findings.md) | quirks and likely bugs |
+
+Planned (capture run): party and classes (six classes, stats, the fifteen fellows and their towns), combat,
+towns and services (inn, blacksmith, food, temple, training), magic, story.
+
+## Open questions
+- Outdoor sectors: the wall values there mean terrain (trees, water, mountains); which value is which is not
+  decoded yet (the renders show them as raw wall types).
+- Event squares: which script runs on each red square (stored as code per map, not as a table).
 
 ## Sources
-| Source | URL | Used for |
-|---|---|---|
+See `../playbook.md` Sources.

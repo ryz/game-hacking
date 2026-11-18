@@ -3,7 +3,7 @@ skill: game-scout
 project: all games (shared tools at the repo root)
 summary: Research a newly registered game (controls, structure, strategy, shortcuts) into its playbook and verify the basics in the emulator.
 access: write (games/<slug>/ except shots/, work/scout/<slug>/)
-updated: 2026-11-18
+updated: 2026-11-18 (macro testing)
 ---
 
 # Game scout - research a game before anyone plays it
@@ -52,6 +52,10 @@ do not capture the database set (that is `game-capture`), but you do create the 
    - 2-4 RAM addresses that make capture easier (lives/health, money, stage, position): from the sources, else
      `play.py find`. Confirm each with a poke; add them to `game.json` "ram" and the RAM map.
    - Shortcuts from the sources (passwords, level select, debug menu): try them; mark verified/failed.
+   - Macros: run every macro once as a single `do` from power-on (or with `emu.py`) before checkpointing: presses
+     while a sign, prompt or keyboard is still drawing are lost, and `play.py`'s settles between calls hide it (Wizardry
+     II, Might and Magic). Pad name keyboards with a harmless key (delete on an empty name). After editing a macro,
+     rebuild the checkpoints whose routes use it.
    - Look cheaply: a small helper in `work/scout/<slug>/` that runs several token groups and tiles the
      screenshots into one image saves a look per step (used by two scouts, 2026-11-17/18).
    - Blocked web sources and a translated game: decode the ROM script (relative search for a known word) for

@@ -9,6 +9,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-18 - Might and Magic (NES)
+- Task: scout Might and Magic: playbook, macros incl. party, title/start/party/cavern checkpoints, RAM, inn save and
+  01_party, 55 maps decoded and drawn, shot plan.
+- Worked: Data Crystal RAM map (position, area, map RAM); matching map RAM against the ROM fixed the map order
+  (Data Crystal's list is 8 slots off from Castle Doom on); following the pending-area byte through the main loop
+  gave a clean warp in ~6 calls; record check byte confirmed on all 16 records before poking; one batch of emu.py
+  runs tiled into one image to check all routed shots.
+- Friction: lost presses while signs/prompts/keyboard draw (~15 calls), hidden by play.py settles; dump keys are
+  hex without prefix (parser written); editing a macro silently changes checkpoints built from it.
+- Proposed rule change: emulator guide/skill: test macros as one `do`, pad keyboards; skill: rebuild checkpoints
+  after a macro edit; document dump key format.
+- Corrected: 16/16 verified by the coordinator; single-`do` macro test promoted into skill.md step 3 (second
+  occurrence, see Wizardry II) with the padding and rebuild notes; dump key format in play.py help.
+- Status: promoted 2026-11-18
+
 ### 2026-11-18 - Wizardry II (NES)
 - Task: scout Wizardry: Knight of Diamonds (NES): playbook, party macros, title/castle/start/f2 checkpoints, RAM,
   save handling with a check-value tool, 6 floor maps from ROM, shot plan.

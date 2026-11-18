@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic (NES) scouted
+- Scout: hero RYZ + five inn fellows renamed CONDI/EBO/CUBI/DEDDO/MNZ by poking the name table (the game names
+  only the hero; record check byte fixed), save 01_party, warp via the pending-area byte $9D, all 55 areas decoded
+  and drawn (`games/might-and-magic/design/maps/`); 16 routed shots verified 16/16 by the coordinator.
+- game-scout skill step 3: test macros as one `do` from power-on (second report), rebuild checkpoints after a
+  macro edit.
+
 ## 2026-11-18 - Wizardry II (NES) main set: complete through the ending
 - game-capture: 91 shots (commits 9bda454 a3cb2bd 498f4f3 20aa150; 498f4f3's publish failed on a stale id, fixed
   by 20aa150): castle, combat, chests, story events on all six floors, "Rock!" (type 04 = party dies), the ending

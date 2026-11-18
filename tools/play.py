@@ -38,7 +38,8 @@ is reproducible from power-on (states are a cache, routes are the record).
                                              life, `find "new == old - 1"`; repeat until a few addresses remain
   python3 tools/play.py dump NAME           save work/save RAM to work/play/<session>/dump_NAME.json
   python3 tools/play.py diff A [B]           bytes that differ between dumps A and B (B omitted: RAM now);
-                                             e.g. dump before a step, step, `diff before`
+                                             e.g. dump before a step, step, `diff before`;
+                                             the dump file maps hex addresses without 0x ("6F00") to values
   python3 tools/play.py stop
 
 --name N on any command runs a parallel session (default 'main'). Log: work/play/NAME/log.txt.

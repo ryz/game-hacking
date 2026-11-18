@@ -1,3 +1,7 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title screen: Might and Magic logo, star field, Continue / New Game (cursor on Continue; stars animate) | pow,TITLE
+start | Sorpigal (8,5) facing north: hero RYZ (Knight) alone, first control after the naming | pow,START,settle
+party | Sorpigal inn (8,3) after leaving the inn menu: party RYZ KN, CONDI PA, EBO CL, CUBI RO, DEDDO WI, MNZ AR, level 1, signed in (saved) | @start,NAMES,INN,SIGNIN,FELLOWS,settle,b,w60,settle,b,w60,settle,w60,settle,poke:00A2=00010203,up,w90,poke:00A2=02030001,up,w300,SIGNIN,settle,b,w90,settle
+cavern | Sorpigal Cavern (map 06, label C-SORPIGAL) (1,14) facing south, party of six: warp by poking the pending map id $9D and x/y, then A (menu) and B (close) | @party,poke:009D=06,poke:009F=01,poke:00A0=0E,a,w60,b,w180,settle

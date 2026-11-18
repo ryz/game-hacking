@@ -1,6 +1,40 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/might-and-magic/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# The plan for the main set, in game order (scout 2026-11-18). Routed lines were built from the checkpoints and
+# frames looked at in play.py; the capture run snaps them (play.py snap) and replaces the routes with the
+# recorded ones. Commented lines are planned shots without a route yet (how to reach them: playbook Shot plan).
+# Checkpoints: @title @start @party @cavern (checkpoints.txt). Warp: poke $9D/$9F/$A0, then a,w60,b,w180.
+boot_licence | boot | "Licensed by Nintendo" at power-on | pow,w120,settle
+boot_copyright | boot | Copyright page: American Sammy, New World Computing 1987, G-Amusements 1991 | pow,w360,settle
+title_screen | title | Title: Might and Magic, star field, Continue / New Game | @title,w1,!
+intro_owl | cutscene | New Game: the owl flies in before Sorpigal | @title,right,a,w60,!
+sorpigal_welcome | dialogue | "Welcome to our town Sorpigal." - the townsman greets the new hero | @title,right,a,w400,settle
+name_entry | menu | "What is your name?": RYZ typed on the scrolling letter row | @title,right,a,w400,a,w200,b,b,b,down,right*7,a,w20,right*7,a,w20,right,a,w60,settle
+start_sorpigal | gameplay | First control: Sorpigal street, "GO AHEAD FIGHTERS!" | @start,w1,settle
+town_sign | gameplay | Sorpigal: sign above the door "B AND B BLACKSMITHS" (second Left is eaten by the sign) | @start,left,w90,left,w120,settle
+inn_signin | dialogue | Inn of Sorpigal: the innkeeper asks "Would you like to sign in?" | @start,INN,!
+inn_save | save | Signing in saves: "Push A button and save your adventure." | @start,INN,up,w20,a,w90,settle
+inn_menu | menu | Inn menu: Member, Rest, View, Cancel | @start,INN,SIGNIN,settle
+inn_fellows | menu | Inn > Member > Add: "Select your fellows", roster with class/race card | @start,NAMES,INN,SIGNIN,ADD,ADD,down*5,w60,settle
+inn_party | menu | Inn: the party of six RYZ KN, CONDI PA, EBO CL, CUBI RO, DEDDO WI, MNZ AR | @start,NAMES,INN,SIGNIN,FELLOWS,settle,b,w60,settle
+main_menu | menu | Exploration menu: Search Cast Open Use Row View Camp Prot Speed Cancel + party | @party,a,w60,settle
+automap | map | Select: the automap of Sorpigal (visited squares only) | @party,select,w90,settle
+cavern | gameplay | Sorpigal Cavern (C-SORPIGAL): blue cave walls | @cavern,w1,settle
+# view_character | inventory | View: character sheet (stats, HP/SP, level, items) | @party,a,w60,(VIEW),...
+# camp | system | Camp menu | @party,a,w60,(CAMP)
+# battle_menu | battle | Encounter: command menu Auto Fight Use Block Row View Prot Run (random fight in Sorpigal)
+# battle_attack | battle | Fight: hit messages
+# battle_victory | battle | Victory: experience and gold, treasure
+# shop_blacksmith | shop | B and B Blacksmiths: buy list
+# shop_food | shop | Eulard's Fine Foods
+# temple | shop | Temple: heal / uncurse / align
+# training | system | Training: level up
+# town_portsmith / town_algary / town_dusk / town_erliquin | gameplay | the four other towns (warp 02-05)
+# varn_outdoors | gameplay | VARN outdoors (map 0F-22, label "Barn : A1")
+# castle_doom / castle_whitewolf / castle_alamar / castle_blackridge | gameplay | castles (warp 23-27)
+# dragadune / enchanted_forest / quiv / ravens_wood | gameplay | dungeons (warp 28-31)
+# city_of_gold | gameplay | P-PEEK floors (warp 32-35); astral_plane (36); soul_maze (37)
+# boss_alamar | boss | the false King Alamar (Sheltem) at Castle Alamar
+# inner_sanctum | ending | Inner Sanctum message "Welcome to your Inner Sanctum..." (ROM text 0x14FCA)
+# gameover | gameover | party dead (all members' HP 0 in a fight)

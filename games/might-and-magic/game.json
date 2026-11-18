@@ -1,6 +1,6 @@
 {
   "slug": "might-and-magic",
-  "title": "Might and Magic: Secret of the Inner Sanctum (NES, USA)",
+  "title": "Might and Magic: Secret of the Inner Sanctum",
   "platform": "nes",
   "model": "ntsc",
   "rom": "rom/might-and-magic.nes",
@@ -27,6 +27,47 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w700",
+    "NEWGAME": "TITLE,right,a,w400,a,w200",
+    "RYZ": "b,b,b,down,right*7,a,w20,right*7,a,w20,right,a,w20,down,a,w60",
+    "START": "NEWGAME,RYZ,a,w90,a,w60",
+    "NAMES": "poke:7FF0=0C18170D12FF,poke:7F50=0E0B18FFFFFF,poke:7F20=0C1E0B12FF,poke:7F10=0D0E0D0D18FF,poke:7F60=161723FFFFFF,poke:76EF=01,poke:76FF=34,poke:726F=01,poke:727F=3B",
+    "INN": "poke:00A2=02030001,up,w90,up,w300",
+    "SIGNIN": "up,w20,a,w90,a,w90",
+    "ADD": "a,w90",
+    "FELLOWS": "ADD,ADD,down*15,a,w90,ADD,up*10,a,w90,ADD,up*3,a,w90,ADD,up,a,w90,ADD,down*5,a,w90",
+    "CONTINUE": "TITLE,a,w300",
+    "WARP_GO": "a,w60,b,w180"
+  },
+  "ram": {
+    "map": {
+      "addr": "009E",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "x": {
+      "addr": "009F",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "y": {
+      "addr": "00A0",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "facing": {
+      "addr": "00A2",
+      "size": 1
+    },
+    "pending_map": {
+      "addr": "009D",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "party_size": {
+      "addr": "00A6",
+      "size": 1
+    }
+  }
 }
