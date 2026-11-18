@@ -27,6 +27,12 @@ Ail's building 7 is the way into the tower and the north town's building 8 the w
 **(verified: shots `shop_weapons_list`, `shop_armour_list`)**. Buying asks who will carry the item; the shop does
 not equip it **(verified)**.
 
+Prices climb from town to town **(verified: shots `shop_weapons_ail`, `shop_armour_ail`, `shop_weapons_north`)**:
+| Shop | Weapons | Armour |
+|---|---|---|
+| Ail | たんとう short sword 100, モール maul 200, スピアー spear 250, アーバレスト arbalest 300, フレイル flail 1000 | きのたて wooden shield 80, たてのゆびわ shield ring 100, てつのたて iron shield 300, くさりよろい chain mail 300, スプリント splint 500, バンデット banded 2000, プレート plate 4000 |
+| north town | ハンマー hammer 8000, ほのおのむち whip of flame 10000 | たてのゆびわ shield ring 100, まほうのたて magic shield 10000, ヒートアーマー heat armour 15000, フルプレート full plate 20000 |
+
 ## 3. Item shop (SHOP, Dirige)
 Buy or sell ("unwanted things are bought back"). Wares: くさのつゆ grass dew 20, しろきのこ white mushroom 40,
 ランプ lamp 50, なわばしご rope ladder 250 **(verified: shot `item_shop_list`)**. The rope ladder opens the well on
@@ -52,6 +58,10 @@ which only a swordsman recognised as a hero can draw; holy water cures the mad; 
 Hank's floor 2 beyond a door in the middle of a long corridor; from the cave stairs in this town walk 16 steps east
 and push the south wall: a short cut to Ail **(ROM text)**.
 
+## 7. Streets
+Nobody walks the streets: talking (はなす) in town gives "there is nobody around", searching (しらべる) "nothing
+found" **(verified, Dirige)**; all talk happens inside buildings and in the dungeons.
+
 ## Open questions
-- Prices and wares of the shops in Ail and the north town (not visited).
+- Item shops, temples and magic halls of Ail and the north town (not visited).
 - What praying does; prices of revival; the magic hall's spell list and prices.

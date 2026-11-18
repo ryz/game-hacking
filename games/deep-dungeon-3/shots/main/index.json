@@ -153,6 +153,19 @@
    "captured": "2026-11-18"
   },
   {
+   "id": "town_north",
+   "category": "gameplay",
+   "caption": "The north town, home of the castle entrance: a street",
+   "route": "@town,poke:00EE=0F,poke:00EF=04,poke:006F=10,left,right,w30,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "play.py snap",
+   "file": "town_north.png",
+   "file_3x": "3x/town_north.png",
+   "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
+   "captured": "2026-11-18"
+  },
+  {
    "id": "field_menu",
    "category": "menu",
    "caption": "Field menu: items, spells, search, status, talk",
@@ -253,6 +266,45 @@
    "source": "play.py snap",
    "file": "shop_armour_list.png",
    "file_3x": "3x/shop_armour_list.png",
+   "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "shop_weapons_ail",
+   "category": "shop",
+   "caption": "Ail weapons: short sword 100, maul 200, spear 250, arbalest 300, flail 1000 gold",
+   "route": "@town,poke:00EE=1B,poke:00EF=1C,poke:006F=10,left,right,w30,a,w120,a,w60,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "play.py snap",
+   "file": "shop_weapons_ail.png",
+   "file_3x": "3x/shop_weapons_ail.png",
+   "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "shop_armour_ail",
+   "category": "shop",
+   "caption": "Ail armour: wooden shield 80 ... banded mail 2000, plate 4000 gold",
+   "route": "@town,poke:00EE=1B,poke:00EF=1C,poke:006F=10,left,right,w30,a,w120,a,w60,settle,b,w40,down,a,w60,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "play.py snap",
+   "file": "shop_armour_ail.png",
+   "file_3x": "3x/shop_armour_ail.png",
+   "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "shop_weapons_north",
+   "category": "shop",
+   "caption": "North town weapons: hammer (ハンマー) 8000, whip of flame (ほのおのむち) 10000 gold",
+   "route": "@town,poke:00EE=11,poke:00EF=04,poke:006F=00,left,right,w30,a,w120,a,w60,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "play.py snap",
+   "file": "shop_weapons_north.png",
+   "file_3x": "3x/shop_weapons_north.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
    "captured": "2026-11-18"
   },
@@ -595,6 +647,19 @@
    "captured": "2026-11-18"
   },
   {
+   "id": "battle_centaurs",
+   "category": "battle",
+   "caption": "Cave floor 1: two groups of centaurs (セントール), 2 and 3",
+   "route": "@warp,poke:7003=02,poke:7004=00,poke:00EE=01,poke:00EF=1C,a,w150,poke:006F=10,left,right,w30,poke:7024=2D,b,w30,a,w60,a,w60,a,w60,a,w120,settle,left,right,w30,settle,w60,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "play.py snap",
+   "file": "battle_centaurs.png",
+   "file_3x": "3x/battle_centaurs.png",
+   "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
+   "captured": "2026-11-18"
+  },
+  {
    "id": "ev_sun_shield",
    "category": "gameplay",
    "caption": "Cave floor 1: found a Sun Shield (サンシールド) - pick it up?",
@@ -656,6 +721,32 @@
    "source": "play.py snap",
    "file": "ev_sword_in_rock.png",
    "file_3x": "3x/ev_sword_in_rock.png",
+   "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "ev_sword_fails",
+   "category": "gameplay",
+   "caption": "The level-1 swordsman tries the sword in the rock: \"No good, it won't come out!\"",
+   "route": "@warp,poke:7003=02,poke:7004=02,poke:00EE=13,poke:00EF=1B,a,w150,poke:006F=00,left,right,w30,up,w150,up,a,w150,settle,a,w150,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "play.py snap",
+   "file": "ev_sword_fails.png",
+   "file_3x": "3x/ev_sword_fails.png",
+   "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
+   "captured": "2026-11-18"
+  },
+  {
+   "id": "ev_sword_drawn",
+   "category": "gameplay",
+   "caption": "A strong swordsman draws it: \"Found a rotten sword (くちたつるぎ). Pick it up?\"",
+   "route": "@warp,poke:7003=02,poke:7004=02,poke:00EE=13,poke:00EF=1B,a,w150,poke:006F=00,left,right,w30,poke:7010=1C,poke:701E=3A,up,w150,up,a,w150,a,w150,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "play.py snap",
+   "file": "ev_sword_drawn.png",
+   "file_3x": "3x/ev_sword_drawn.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
    "captured": "2026-11-18"
   },

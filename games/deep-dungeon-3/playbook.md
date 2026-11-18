@@ -66,7 +66,9 @@ token. Presses while a page is drawing were not a problem in the macros (each te
   | 2 | 4 | orange brick | どうくつ, the cave ("どうくつのなかは ふくざつだ。まよったら『サークレット』をつかえ" - use the Circlet if lost) |
   | 3 | 6 | purple | とう, the tower ("とうのいりぐち まちにでますか?" - tower entrance) |
   | 4 | 4 | green/rooms | しろ, the castle (regular rooms of statues; "しろにいるまものが このせかいをつくったらしい") |
-  | 5 | - | blue | towns (Dirige ディリージュ, Ail アイル, ...) |
+  | 5 | - | blue | towns: Dirige ディリージュ (south-west), Ail アイル (east), an unnamed north town (verified, `design/maps.md` section 5) |
+  | 6 | - | - | **the ending** (princess, staff roll, "the End"; verified by warping, shots `ending_*`) |
+  Area names verified 2026-11-18: the tower and castle entrances name themselves (Ail building 7, north town building 8).
   An NPC line (ROM text) says "とう、どうくつ、しろ‥‥それぞれ ぬしがいる" (tower, cave, castle each have a master).
 - Town stairs (8, table in bank 9 $8C32): town squares with "くだるかいだんが ある" lead to area 1 or 2 floor 1
   (ROM: town (1,25) -> area 1 (1,1); (30,1) -> area 2 (1,1); full list in `design/maps.md`).
@@ -74,7 +76,13 @@ token. Presses while a page is drawing were not a problem in the macros (each te
   パーティーからはずす remove; そとにでる go out) (verified).
 
 ## Shot plan
-Routed lines are in `shots.txt` (14, all checked with emu.py by the scout, 2026-11-18). Still to capture:
+`shots.txt` holds the full main set in game order (74 shots, capture run 2026-11-18, all verified). Done in that run:
+town life (shops of three towns, temple, magic hall, information seller, inn stay), field items/spells, battle flow
+(target, spell, round, victory, level-up and bonus points, game over by the swordsman's death), one view per dungeon,
+22 event squares (prison, monument, pit trap, sword in the rock, companion joining), masters Zosem and Barzas, the
+ending and staff roll. Still open: the castle master (not found by the event scan), a mid-game battle with
+equipment, more of Ail/north town (temple, item shop), the triangle tablets and orbs as items.
+The scout's original plan, for reference:
 - [x] `prologue_text` cutscene, `title_screen`, `menu_main`, `party_slots`, `name_entry`, `class_select`
 - [x] `inn_menu` shop, `inn_save` save, `town_inn_door`, `field_menu`, `status_ryz`, `stairs_down_cave`,
   `battle_skeletons`, `battle_commands`
@@ -118,6 +126,9 @@ before each name is a harmless pad (delete on an empty name).
 ## Shortcuts
 | What | How (tokens / prefix / code) | Source | Status |
 |---|---|---|---|
+| Warp helper (scratch, rebuild from here) | `sh work/capture/dd3/w.sh AREA FLOOR X Y FACING "extra tokens" [ID CAT "caption"]` = `@warp` + the warp tokens below + `poke:006F=FACING,left,right,w30` (+ `up,w150` to step into the square ahead) | capture run | verified (all event shots) |
+| Veteran party | macro `VET` (level 5, 643 gold); checkpoint `vets` = save `02_veterans` at the inn | RAM | verified (status, battle, reload) |
+| Ending | `@warp,poke:7003=06,poke:7004=00,poke:00EE=01,poke:00EF=01,a,w150,...` then `w3100` princess, `w5880` credits, `w9100` the End (use `do!`) | warp | verified |
 | Warp to any area/floor/square | `@warp` (or from `@town`: `WARP_A2`), then `poke:7003=AREA,poke:7004=FLOOR-1,poke:00EE=X,poke:00EF=Y,a,w120` - the area-2 down stairs do `7004+1` and a full reload by `7003` | ROM code (bank 2 $8E4A) | verified (area 4 floor 4 (5,5), area 3 floor 6 (14,14)) |
 | Move on the current floor | `poke:00EE=X,poke:00EF=Y,poke:006F=F0` then `left,right` (forces a redraw) | RAM | verified (town) |
 | Enter a dungeon | from `@town`: `poke:00EE=01,poke:00EF=1A,poke:006F=00,left,right,w30,up,w60,a,w120` -> area 1 floor 1 | ROM stairs table | verified (checkpoint `area1`) |
@@ -142,7 +153,8 @@ Own exported save: `games/deep-dungeon-3/saves/01_start.sav` (new party at the f
 | `7003` | 1 | area: 1 underground, 2 cave, 3 tower, 4 castle, 5 town (6 = bank 11, unknown) | bank-select code $F530 (verified by warps) |
 | `7004` | 1 | floor in the area (town: 1) | code $F549 (verified) |
 | `7005` / `7006` | 1 / 1 | saved x / y (inn position at start: 13,39) | battery RAM (RAM) |
-| `7010` + 0x40*n | 0x40 | character n (0-3): +0 1 = present, +1..+7 name (game encoding, `C9` = ゛), +8/+9 HP, +A/+B max HP, +C MP, +D max MP, +E.. stats (ST 8 at +E?, AC/AG/LK nearby), +19 member number 1-4 | battery RAM (RAM; offsets after +D not confirmed) |
+| `7010` + 0x40*n | 0x40 | character n (0-3): **+0 level** (0 = empty slot), +1..+5 name (game encoding, `C9` = ゛), **+6/+7 EX** (LE), +8/+9 HP, +A/+B max HP, +C MP, +D max MP, +E ST, +10 AC, +12 AG, +13 LK, **+14.. items** (one id per slot; lamp = `2D`), +29 class (1 swordsman; 7 shows "たたかう"), +28 status (`20` after death) | status-page probes (verified 2026-11-18) |
+| `7000` | 1 | party size: poke `7000=03,70D0=00` to free the fourth slot (companions can then join) | verified (shot `companion_joins`) |
 | `7110`.. | | party slot 1 save copy (same layout as `7000`) | battery RAM (RAM) |
 | `6100-66FF` | 0x600 | current map grid: square (x,y) at `$6100 + y*32 + x` | code $FD73, matched against ROM (verified) |
 | `6C00`.. | | another copy of the party block | battery RAM (RAM) |
@@ -180,11 +192,19 @@ All six rebuilt from an empty cache and compared with a cache hit: identical fra
 | MobyGames | mobygames.com | outside the network (search summary only: opening inn in a town) | 2026-11-18 |
 | ROM text and code | `rom/deep-dungeon-3.nes` | place names, area/floor layout, stairs tables, map format | 2026-11-18 |
 
+## Capture notes (2026-11-18)
+- Leaving a shop takes longer than `w120`: pokes in the same `do` are overwritten (the party lands elsewhere). Make
+  each building shot from `@town` instead of chaining shops.
+- After arriving in town by the underground stairs the stairs prompt stays and blocks input (seen once): avoid.
+- Freezing HP does not save the swordsman (the hit and the death check fall inside one wait); use stronger records.
+- Skeletons hit the level-5 swordsman for 28: give him "defend" (みをまもる) and let the magician's Spear kill them.
+- The battle/round text and ending text scroll by themselves: shots use `do!` + fixed waits.
+- Event scanner (scratch): `work/capture/dd3/scan.py AREA FLOORS [PER]` warps next to each event square, steps in and
+  tiles the screens (one square per number per floor; `ALL=1` all four sides; `ONLY="x,y;x,y"`).
+
 ## Open questions
-- Which town squares/buildings are which shop (building numbers 1-8 in the town grid; 5 = the inn at Dirige).
-- Meaning of the event square numbers `01`-`1B`, `81`, `C1`-`CF` in the dungeons (chests, messages, companions,
-  masters); the event handler is in each area bank around `$8E00`-`$9300`.
-- Character record offsets beyond MP; level and EX bytes (find with `find` after a won battle).
-- Area 6 (`7003=6`, bank 11): ending or another mode?
+- ~~Which building is which~~: answered (`design/maps.md` section 5). ~~Event squares~~: per floor in section 7
+  (one side tried each). ~~Level/EX~~: record +0 / +6. ~~Area 6~~: the ending.
+- Monster HP in battle (not found: `0720`-`0746` hold round data); the castle master's square.
 - Does Down turn around in the field? Map/compass item ("ちか 2かい きた" text)?
-- Area names are inferred from text placed in each area's bank; confirm in play (entrance messages).
+- ~~Area names are inferred~~: confirmed by the tower and castle entrance prompts and the wall texts (2026-11-18).
