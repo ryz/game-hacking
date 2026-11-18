@@ -2,6 +2,12 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - environment: no setup script, emulators are built per session
+- Correction to the entry below: the setup script was removed again. Owner's decision: one session per
+  platform, so building all five emulators at every session start (203 s) wastes most of the time; a session
+  runs `sh tools/setup_emu.sh PLATFORM` when it first needs its emulator. Clean build times measured one by
+  one: gb 9 s, nes 57 s, snes 53 s, dos 32 s, apple2 78 s.
+
 ## 2026-11-18 - DOS follow-ups: shot checks, prune, paged sheets, change token, text screen, menu test, setup script
 - Owner: do all the points of the DOS handoff list, and a setup script for the environment.
 - `tools/shoot.py`: `--verify` lists still shots with identical pixels (not in seq-* sets, not clips) and

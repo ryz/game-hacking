@@ -140,8 +140,9 @@ Current snapshot; history in `progress-log.md`.
   8. Scout rules worth promoting once seen a second time (open in `skills/game-scout/feedback.md`): check a
      record table's spacing on the second and the last entry, not only the first; extend the empty-cache
      check to the disk for games that save to files.
-  9. DONE 2026-11-18: the cloud environment `game-hacking` has a setup script that runs `sh tools/setup_emu.sh`
-     (clean clone: all five emulators in 203 s, tests 41 passed). Unproven until a fresh session starts on it.
+  9. DECIDED 2026-11-18: no setup script. The owner keeps one session per platform, so each session builds its
+     one emulator on demand: `sh tools/setup_emu.sh gb|nes|snes|dos|apple2` (clean builds: 9, 57, 53, 32, 78 s;
+     all five 203 s). A script building all five was saved and removed again the same day.
   10. Content: the other ten games have no systems/interface/content documents; Might and Magic 1 now exists
       on NES, DOS and Apple II, a comparison of the three versions is possible from the existing sets.
 - Pokémon Blue leftovers (optional): trainer "!" spotting, a PC box with Pokémon, Safari BAIT, stone evolution,
