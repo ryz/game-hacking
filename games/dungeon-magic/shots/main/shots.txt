@@ -1,0 +1,26 @@
+boot_credits | boot | Boot: Dungeon Magic logo, (c) Taito 1989, "Game created & programmed by Natsume" | pow,w200
+intro_storm | cutscene | Attract intro: a tree in the storm, "The calm night is shattered... Darces has returned" | pow,w1300
+title_screen | title | Title menu: BEGIN A NEW ADVENTURE | @title
+title_continue | menu | Title menu with a battery save: BEGIN A NEW ADVENTURE / CONTINUE YOUR ADVENTURE | sav:01_start,TITLE,w30,down,w30
+start_granville | gameplay | Granville: first control, first-person street view, status panel LV 0, HP 12 | @start
+hud_pause | hud | Paused (COND STOP): command icons Fight / Item / Spell / Use / Camp, Camp panel | @start,start,w20
+sign_wanted | dialogue | Granville plaque: "Wanted: brave warriors in search of fame and fortune." | @start,up,w200,settle
+dialogue_compass | dialogue | The old man of Granville: "Take this compass with you. You will need it in your quest." | @spellpanel,down,a,w200,!
+compass_view | hud | After the old man's gift: the compass in the status window | @spellpanel,down,a,w200,w200,settle,settle,a,w60,settle
+spell_panel | system | Spell icon selected: the rune slots (no runes learned yet) | @start,start,w20,left,w20,left,w20,select,w60
+shop_weapons | shop | Granville weapon and armour shop: "Do you need a weapon or some armor?" | @start,poke:008A=74,poke:008F=74,left,w30,a,w60,up,w300
+shop_items | shop | Granville item shop (food, water, potions): "Do you wish to buy anything?" | @start,set:0040=100:2,poke:008A=B4,poke:008F=B4,left,w30,a,w60,up,w300
+inn_welcome | save | Granville inn: "Welcome. Our rooms cost 2 gold." (a night at the inn saves the game) | @start,set:0040=100:2,poke:008A=94,poke:008F=94,left,w30,a,w60,up,w300
+wizard_apprentice | system | Granville wizard's house: "Will you be apprenticed in the magic art of Fire?" | @start,poke:008A=6B,poke:008F=6B,right,w30,a,w60,up,w300,settle
+wizard_magic | system | Apprenticed: "From now on you can use the magic." The Fire runes appear in the Spell panel | @start,poke:008A=6B,poke:008F=6B,right,w30,a,w60,up,w300,settle,a,w100,!
+wise_man_level | system | Returning to the wizard with experience: "Have your journeys made you wiser?" | @start,poke:008A=6B,poke:008F=6B,right,w30,a,w60,up,w300,a,w300,settle,set:004B=412:2,poke:008A=6B,poke:008F=6B,left,w30,right,w30,a,w60,up,w300,!
+level_up | system | "You are now level 1": 15 EXP spent (412 to 397), maximum HP 12 to 15 | @start,poke:008A=6B,poke:008F=6B,right,w30,a,w60,up,w300,a,w300,settle,set:004B=412:2,poke:008A=6B,poke:008F=6B,left,w30,right,w30,a,w60,up,w300,a,w70,!
+field_castle | gameplay | Outside Granville's north gate: the field, Granville Castle ahead | @field
+castle_entrance | gameplay | Inside Granville Castle (green stone walls) | @castle
+town_02 | gameplay | Town 02 (west of Granville): an old man walks the street inside the north gate | @field,poke:0095=24,poke:008A=74,poke:008F=74,poke:0098=C4,poke:0099=A5,right,w30,right,w30,up,w240,up,w60,!
+town_05 | gameplay | Town 05 (south of the continent): a boy in blue in the street, HP lowered by a monster outside | @field,poke:0095=2E,poke:008A=2E,poke:008F=2E,poke:0098=AE,poke:0099=AC,right,w30,right,w30,up,w240,up,w60,!
+battle_monster | battle | Dungeon battle: a monster blocks the corridor, its HP (29) on the right, Fight icon active | @start,poke:004A=06,set:004B=1873:2,set:0040=642:2,poke:004D=3F,freeze:00DC=3A,poke:0095=81,poke:008A=89,poke:008F=89,poke:0098=8C,poke:0099=A1,poke:0011=00,poke:0003=16,w300,poke:008A=2B,poke:008F=2B,left,w20,right,w20,up,w20,w60,w20,up,w20,left,w20,up,w20,right,w20,right,w20,right,w20,right,w20,up,w20,up,w20,right,w20,up,w20,right,w20,right,w20,w60,w20,up,w20,right,w20,left,w20,up,w20,w60,w20,up,w20,left,w20,up,w20,up,w20,up,w20,w60,w20,up,w20,right,w20,up,w20,right,w20,up,w20,w60,w20,up,w20,right,w20,right,w20,w60,w20,up,w20,left,!
+rune_select | system | Spell panel in battle: two Fire runes entered into the spell slots (top left), game paused | @d81_monster,poke:0046=04,poke:61CB=60,poke:61CC=67,poke:61CD=68,poke:61CE=69,start,w20,right,w20,right,w20,select,w30,right,w20,b,w20,right,w20,b,w20,!
+rune_cast | battle | Fire spell cast: the monster drops from 29 to 23 HP; the spell cost the hero 6 HP | @d81_monster,poke:0046=04,poke:61CB=60,poke:61CC=67,poke:61CD=68,poke:61CE=69,start,w20,right,w20,right,w20,select,w30,right,w20,b,w20,right,w20,b,w20,start,w20,a,w12,!
+battle_win | battle | Monster defeated after two blows: it vanishes, EXP rises from 1873 to 1876 | @d81_monster,a,w10,w30,a,w20,!
+gameover | gameover | Game over: "Your life is over", the hero's sword in the ground (killed by a guardian) | @start,poke:0095=92,poke:008A=78,poke:008F=78,poke:0098=56,poke:0099=B3,poke:0011=00,poke:0003=16,w120,settle,w60,a,w30,!

@@ -64,5 +64,12 @@
       "addr": "004B",
       "size": 2
     }
+  },
+  "rom_variants": {
+    "spells": {
+      "gg": [
+        "AEEVVUPA"
+      ]
+    }
   }
 }

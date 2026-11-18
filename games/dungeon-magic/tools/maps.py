@@ -17,7 +17,7 @@ COL = {0x10: (230, 60, 60), 0x20: (60, 200, 60), 0x40: (60, 120, 255), 0x80: (24
 
 def load(mid):
     d = open(ROM, "rb").read()
-    off = 16 + ((mid & 0xE0) >> 4) * 0x4000 + 0x2000 + (mid & 0x1F) * 0x100
+    off = 16 + ((mid & 0xE0) >> 5) * 0x4000 + 0x2000 + (mid & 0x1F) * 0x100
     return d[off:off + 256]
 
 def render(m, pos=None):
