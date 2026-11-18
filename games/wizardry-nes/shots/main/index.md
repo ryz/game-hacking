@@ -1,6 +1,6 @@
 # Wizardry: Proving Grounds of the Mad Overlord (NES, USA) - shots: main
 
-Platform nes, model ntsc, ROM SHA-1 `0b28b297043db52a1eda106bba10754a2e4bfd75`. 43 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
+Platform nes, model ntsc, ROM SHA-1 `0b28b297043db52a1eda106bba10754a2e4bfd75`. 71 shots. Contact sheet: [sheet.png](sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -38,8 +38,17 @@ Platform nes, model ntsc, ROM SHA-1 `0b28b297043db52a1eda106bba10754a2e4bfd75`. 
 | maze_fullview | hud | Maze view with the party window hidden (Start toggles it) | yes | [png](maze_fullview.png) [3x](3x/maze_fullview.png) |
 | maze_menu | menu | Maze menu (Select): Quit / Search / Set Timer / Leave | yes | [png](maze_menu.png) [3x](3x/maze_menu.png) |
 | camp_menu | menu | Camp (B): Inspect / Reorder / Equip / Leave | yes | [png](camp_menu.png) [3x](3x/camp_menu.png) |
-| elevator | system | Elevator on floor 4: "There are buttons here, press one" A-D | yes | [png](elevator.png) [3x](3x/elevator.png) |
 | battle_options | battle | Battle: 5 Small humanoids (unidentified), RYZ's options Fight/Parry/Run/Take back | yes | [png](battle_options.png) [3x](3x/battle_options.png) |
+| message_square | dialogue | Floor 1 (9,12): A large sign on the wall reads *** Area out of bounds!*** | yes | [png](message_square.png) [3x](3x/message_square.png) |
+| barrier_smoke | dialogue | Floor 1 (9,13), dark: a gold smoke fills the room - compelled to leave (needs a key item) | yes | [png](barrier_smoke.png) [3x](3x/barrier_smoke.png) |
+| statue_hooded | dialogue | Floor 1 (13,5): a gem encrusted statue of a hooded man, an altar with burning incense | yes | [png](statue_hooded.png) [3x](3x/statue_hooded.png) |
+| murphy_friendly | boss | Search at the statue: a friendly group of Unseen entities (Murphy's ghost) - Fight / Leave | yes | [png](murphy_friendly.png) [3x](3x/murphy_friendly.png) |
+| murphy_fight | boss | Fight with the Unseen entity (Murphy's ghost) at the statue, floor 1 | yes | [png](murphy_fight.png) [3x](3x/murphy_fight.png) |
+| battle_victory | battle | Murphy's ghost defeated: each survivor gets 741 E.P. | yes | [png](battle_victory.png) [3x](3x/battle_victory.png) |
+| battle_gold | battle | Treasure after the fight: each survivor gets 38 G.P. | yes | [png](battle_gold.png) [3x](3x/battle_gold.png) |
+| pit | gameplay | Floor 3 (0,7): "A Pit!" - CONDI, CUBI and DEDDO lose hit points | yes | [png](pit.png) [3x](3x/pit.png) |
+| elevator | system | Elevator on floor 4: "There are buttons here, press one" A-D | yes | [png](elevator.png) [3x](3x/elevator.png) |
+| floor_04 | gameplay | Floor 4 (1,2) facing north: door ahead (brick walls of floors 1-9) | yes | [png](floor_04.png) [3x](3x/floor_04.png) |
 | battle_fixed | battle | Floor 4 guarded room: Lvl 7 Fighters, Lvl 7 Mages, High Clerics, Man in kimono | yes | [png](battle_fixed.png) [3x](3x/battle_fixed.png) |
 | battle_cleric_options | battle | EBO's options: Fight, Parry, Spell, Dispell, Run, Take back; RYZ and CONDI set to Fight | yes | [png](battle_cleric_options.png) [3x](3x/battle_cleric_options.png) |
 | battle_spell_menu | battle | Cast what Spell? Cleric Spell L5 (3 left): Dialma, Badialma, Litokan, Badi | yes | [png](battle_spell_menu.png) [3x](3x/battle_spell_menu.png) |
@@ -47,5 +56,24 @@ Platform nes, model ntsc, ROM SHA-1 `0b28b297043db52a1eda106bba10754a2e4bfd75`. 
 | battle_cast_cleric | battle | EBO (Cleric) casts a Litokan: a Lvl 7 Mage takes 17 damage | yes | [png](battle_cast_cleric.png) [3x](3x/battle_cast_cleric.png) |
 | battle_cast_mage | battle | DEDDO (Mage) casts a Mahalito: a High Cleric takes 16 damage | yes | [png](battle_cast_mage.png) [3x](3x/battle_cast_mage.png) |
 | battle_melee | battle | CONDI attempts to slice a Lvl 7 Fighter and hits once for 6 damage | yes | [png](battle_melee.png) [3x](3x/battle_melee.png) |
+| battle_tiltowait | battle | DEDDO casts a Tiltowait: the Man in kimono is killed | yes | [png](battle_tiltowait.png) [3x](3x/battle_tiltowait.png) |
+| chest | battle | A chest! You may: Inspect, Calfo, Disarm, Open, Leave alone | yes | [png](chest.png) [3x](3x/chest.png) |
+| chest_trap | battle | Inspecting the chest: the trap was triggered! | yes | [png](chest_trap.png) [3x](3x/chest_trap.png) |
+| chest_teleporter | battle | Oops! Teleporter - the chest's trap | yes | [png](chest_teleporter.png) [3x](3x/chest_teleporter.png) |
+| chest_loot | battle | Loot from the chest: DEDDO found a RING | yes | [png](chest_loot.png) [3x](3x/chest_loot.png) |
+| party_dead | battle | A Lvl 7 Fighter claws at EBO and hits once for 4 damage - EBO is Killed | yes | [png](party_dead.png) [3x](3x/party_dead.png) |
+| gameover | gameover | Whole party killed: six tombstones RYZ, CONDI, EBO, CUBI, DEDDO, MNZ | yes | [png](gameover.png) [3x](3x/gameover.png) |
+| gameover_castle | gameover | After the wipe: back at the Castle with an empty party | yes | [png](gameover_castle.png) [3x](3x/gameover_castle.png) |
+| chute | gameplay | Floor 9 (8,2): "A chute!" - it drops the party to floor 10 | yes | [png](chute.png) [3x](3x/chute.png) |
+| werdna_plaque | dialogue | Floor 10 (0,0): gold plaque - trespassing on the domain of WERDNA, "Contra-dextra avenue" | yes | [png](werdna_plaque.png) [3x](3x/werdna_plaque.png) |
+| floor_10 | gameplay | Floor 10 (1,7): the rough stone walls of the last floor, door ahead | yes | [png](floor_10.png) [3x](3x/floor_10.png) |
+| werdna_sign | dialogue | Floor 10 (17,4): Lair of the evil Wizard WERDNA - office hours 9AM to 3PM, the Wizard is *IN* | yes | [png](werdna_sign.png) [3x](3x/werdna_sign.png) |
+| werdna_drain | boss | Werdna's guards strike first: CONDI is paralyzed and drained 4 levels | yes | [png](werdna_drain.png) [3x](3x/werdna_drain.png) |
+| werdna_fight | boss | Floor 10 (17,3): Werdna (Man in robes), a Vampire Lord and 2 Vampires | yes | [png](werdna_fight.png) [3x](3x/werdna_fight.png) |
+| werdna_killed | boss | DEDDO casts a Tiltowait: the Man in robes (Werdna) is Killed | yes | [png](werdna_killed.png) [3x](3x/werdna_killed.png) |
+| werdna_amulet | boss | After Werdna's fight: DEDDO found AMULET (Werdna's amulet) | yes | [png](werdna_amulet.png) [3x](3x/werdna_amulet.png) |
+| ending | ending | Congratulations: the AMULET recovered, 50,000 G.P. and E.P., the Chevron of Rank (>) | yes | [png](ending.png) [3x](3x/ending.png) |
+| credits | credits | Staff roll after the ending: Game Programmer Yaj Mahal | no | [png](credits.png) [3x](3x/credits.png) |
+| ending_chevron | ending | After the ending: RYZ> wears the Chevron of Rank, 53412 gold (level 11 after Werdna's drain) | yes | [png](ending_chevron.png) [3x](3x/ending_chevron.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
