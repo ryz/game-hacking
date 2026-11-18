@@ -2,6 +2,24 @@
 
 Append-only, newest first.
 
+## 2026-11-18 - Might and Magic 1 (DOS) main set: 113 shots to the ending
+- game-capture (commits a5a6a46 fd0cd53 8e2f286): the 32 scouted routes, then creation steps, all Sorpigal
+  services, one fight from encounter to victory, game over, the cavern dark and lit, wilderness sectors, towns
+  2-5, three castles, Quivering Forest, Astral Plane and the Inner Sanctum text. Found the map loader and its
+  55-entry table in Sorpigal's overlay; macro `WARP:x:y:idlow:idhigh:section` pokes the operands of the town's
+  own exit event, so the game loads any area (only from inside Sorpigal). 13 checkpoints, save
+  03_portsmith_inn, design/combat.md, world.md, characters.md. Fixed in the game's tools/maps.py: event tables
+  were read two bytes early (OVR header is 14 bytes), which had hidden two event squares per area.
+- Reached by poke, stated in the captions: gold, experience, positions, 1 HP for the game over, quest marks and
+  position for the ending (level-1 party; the Astral door rejected a poked Key Card, cause not found).
+- Coordinator: cache deleted, `shoot.py dos/might-and-magic main --verify` 113/113; twelve shots across the set
+  looked at; no game data in the commits; file names follow the new scheme
+  (`might-and-magic_dos_na_<area>_<id>.png`). Shared tests 32 passed, 7 skipped (SNES and Apple II cores not
+  built in this container).
+- Tool notes from the run, not acted on: `play.py unsnap` needs a running session; `shoot.py --publish-only`
+  orders the index by the game folder's shots.txt; `emu.py` and `shoot.py` differ by a few frames on an
+  animated title; the container clock barely advanced during the run.
+
 ## 2026-11-18 - shot file names carry game, platform, region and area; Wizardry slugs renamed
 - Owner's rule: a shot file must say what it shows outside its folder (the files are used in other contexts).
   Scheme: `<game>_<platform>_<region>_<area>_<id>[.<set>].<ext>` (`docs/capture-guide.md`, "File names").

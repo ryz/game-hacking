@@ -69,8 +69,12 @@ Current snapshot; history in `progress-log.md`.
   peek/poke/find, CS:IP. First game: Might and Magic 1 (`games/dos/might-and-magic/`, GOG files), played from the title
   into Sorpigal with the stock party; 2 trial shots reproduce from an empty cache and from the cached checkpoint.
   In-game saving checked: written files travel with savestates, `play.py export` and `sav:` work (5 DOS tests).
-  Open: scout and capture of that game; files written to disk are not
-  part of a savestate; CD images. Notes: `docs/emulator/dos.md`.
+  Scouted and captured 2026-11-18: main set 113 shots from the title to the Inner Sanctum ending text, 113/113
+  verified from an empty cache by the coordinator; WARP macro (area change through Sorpigal's exit handler) and
+  the table of all 55 areas; saves 01-03; design combat/world/characters/sorpigal. Open there: 39 areas not
+  surveyed, the Astral door with a Key Card, the impostor fight, bash/trade/temple cure, statues 2-8; the ending
+  was reached by position poke with a level-1 party. Open in the tools: CD images; `unsnap` needs a session;
+  `--publish-only` orders by the game folder's shots.txt. Notes: `docs/emulator/dos.md`.
 
 - Apple II backend (2026-11-18): AppleWin libretro core (audetto's Linux port) at a pinned commit
   (`sh tools/setup_emu.sh apple2`, needs cmake), driven by `tools/lrcore.py`; a game is a disk image or a ZIP of
