@@ -17,6 +17,11 @@ Append-only, newest first.
   it now stops waiting when the server process has exited.
 - Not done: scout/capture, character creation, combat, in-game saving and what a savestate does to ROSTER.DTA.
 
+## 2026-11-18 - Wizardry I: maze SOLID vs LINE comparison set
+- Owner's request (asked for Might and Magic; the option is in Wizardry I/II, Might and Magic has none): set
+  `compare-maze`, 9 shots (options with LINE, four views x SOLID/LINE), 9/9 verified from an empty cache; option
+  byte $7ABC found with `play.py diff`; side-by-side `games/nes/wizardry-nes/design/maze-solid-vs-line.png`.
+
 ## 2026-11-18 - games grouped by platform
 - Owner's decision: `games/<slug>/` -> `games/<platform>/<slug>/`, so a game can exist on several platforms (the
   DOS Might and Magic next to the NES one). The folder is the game.json "platform" value. Mapping:
