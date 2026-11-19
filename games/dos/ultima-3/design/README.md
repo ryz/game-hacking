@@ -44,6 +44,7 @@ save **(verified)**. No music; PC speaker effects **(source: Wikipedia)**.
 | [systems.md](systems.md) | game-design lens: index of every feature, system and mechanic, with rule, details and shots |
 | [interface.md](interface.md) | UI/UX lens: conventions, inventory of every screen, menu, prompt and element, screen flow |
 | [content.md](content.md) | content lens: a reasonable variety of environments, opponents, items, equipment, abilities, people |
+| [rules.md](rules.md) | the numbers: combat, magic and classes, shops, chests and traps, dungeons, travel, the quest |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 | [../playbook.md](../playbook.md) | not a design document: addresses, routes, the place and shop squares, the quest chain with code references |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,

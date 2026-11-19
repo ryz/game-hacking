@@ -119,8 +119,12 @@ a map file).
   5 (0C,37), 6 (1F,1F), 7 (3A,1F). Phase 7's square is the only way to the Time dungeon (verified `moongate`,
   `time`). **Dawn** appears at (25,35) in the Dark Forest when both moons were at phase 7 ("new") and vanishes
   when both were 0 (code; verified `dawn`). Lord British's hint: "West 8, South 35 and await Dawn!".
-- **Wind** (code 0x5678): changes every 25 turns; a frigate cannot sail into the wind ("Invalid Move!", seen at
-  the serpent with a West Wind). `SHIP` calms it for 25 turns.
+- **Wind** (code 0x5678, 4412 = DS:2A92): changes every 25 turns to calm (1 in 9) or North/East/South/West;
+  a frigate cannot sail toward the side the wind is named after ("Invalid Move!" east into an East Wind,
+  verified `system_wind`) and **cannot move at all in a calm** (code 0x7233). ~~`SHIP` calms it for 25 turns~~
+  (capture 2026-11-19): `SHIP` sets the wind to calm, which blocks sailing; in practice the wind changed again
+  within one or two passes after `SHIP`, which is why the scout's routes work. For a fixed wind poke 4412 right
+  before the move (`poke:4412=03` = South Wind lets the frigate sail east).
 - **Whirlpool**: a moving whirlpool on the sea; sailing (or standing) on it: "A huge swirling --WhirlPool--
   engulfs you and your ship dragging both to a watery grave! ... You awaken on the shores of a forgotten Land.
   Your ship and crew lost to the sea!" -> **Ambrosia** (AMBROSIA.ULT, 64x64), at (20,36), on foot. Ambrosia's
@@ -182,8 +186,8 @@ a map file).
   +2 Bow 1050, +2 Swd 800, Gloves 1200, +4 Axe 2700, +4 Bow 6550, +4 Swd 4550. Armour: Cloth 75, Leather 195,
   Chain 575, Plate 2500, +2 Chain 6130, +2 Plate 8250.
 - **Dungeons** (8 levels of 16x16, wrap around; files DUNGEON-name.ULT: 8 x 256 bytes + level messages): squares
-  wall, door, secret door, ladder up/down, chest, and specials: fountains (heal "How wonderful!", poison, cure,
-  damage by x mod 4), strange wind (torch out), traps, gremlins (eat food), misty writing (the level's message),
+  wall, door, secret door, ladder up/down, chest, and specials: fountains by x mod 4 (verified in play: 0 poison
+  "Yuck! Horrible!", 1 heal "How wonderful!", 2 hurt "Argh! Blah! Yuk!", 3 cure "Ah! That's nice!"), strange wind (torch out), traps, gremlins (eat food), misty writing (the level's message),
   rods (marks), the Time Lord. Empty squares can spawn a fight that leaves a chest. "LVL:0n" and "Head--East"
   frame the view (verified).
 - **Combat** (verified `fight`): a separate 11x11 field (one of nine CNFLCT_x.ULT layouts; which one per terrain is open), the party at the bottom,
@@ -198,6 +202,8 @@ a map file).
   one!"; Devil Guard "Hot metal leaves a `Mark'!". Full lists in design/content.md.
 
 ## Shot plan
+**Captured 2026-11-19: set `main`, 260 shots in game order, every line in `shots.txt` (the plan below is done;
+not captured: see Capture notes).** The scout's plan, for reference:
 Planned main set: about 120 shots in game order; plan lines with routes are in `shots.txt` (comments: the route
 to use). Categories: boot 0, title 3, menu 12, cutscene 3, gameplay ~25, hud 1, system ~25, map 2, inventory 6,
 dialogue ~10, shop 8, battle ~10, boss 3, gameover 1, save 1, ending 3. Every command letter gets one shot
@@ -224,6 +230,38 @@ dialogue ~10, shop 8, battle ~10, boss 3, gameover 1, save 1, ending 3. Every co
 - Endgame: Exodus' lines, `serpent`, EVOCARE without/with mark (`evocare`), the Isle of Fire, `exodus` (lava,
   fields, monsters), the Floors, `exodus_slots`, each insert, the flashing castle, `ending` (both texts).
 - Game over: all four with status D (`@start,poke:2E5D=44,poke:2E9D=44,poke:2EDD=44,poke:2F1D=44,space,w300`).
+
+## Capture notes (2026-11-19)
+How the set `main` (260 shots) was made; reuse before experimenting. Previews: `tools/try.py` sheets (with
+`--crop 190,0,320,200` for the message area), then lines written into `work/shots/dos/ultima-3/main/shots.txt`
+and shot with `shoot.py --only`; long fights interactively with `play.py` + `sample "space,w90" N` and the
+message area of each frame tiled (pick the frame with the line wanted, then `do!` that many times).
+- **Random numbers:** one generator, 16 bytes at 4413-4422 (code 0x514B), modelled by `tools/u3rng.py`.
+  `poke:4413=` + 32 hex digits right before the deciding key forces the next rolls: all zero gives 0 first
+  (an evaded trap check fails, a steal succeeds, Repond works); chest outcomes by state (first two bytes, rest 0):
+  `0000` gold only, `025D` gold + 2-H-Swd, `035A` gold + Chain, `0089` acid (damage), `0080` poison, `0180` gas,
+  `0082` bomb, `009D` acid evaded; steal (ryz) `42` Failed!, `43` Watch out!. Poke after the prompt's last key
+  but before the key that decides: the idle loop calls the generator while a prompt waits (a poke before
+  "Resurect whom?" did not survive the wait).
+- **Monsters on the map:** `MON:pic:under:x:y:addr` (object 0 + the map byte; addr = 1A80 + y*64 + x) next to
+  the party, a pass later the fight starts. Field by terrain: brush (17,09)/(17,0A) 1D17, forest (27,2F)/(27,30)
+  26A7, frigate (3B,15) with a serpent at (3C,15) 1FFC or a dragon on the shore (3A,15) 1FFA, shore (2D,0E) with
+  a man-o-war or pirates at (2D,0F) 1E6D. Pirate ship for cannons: object 0 picture 3C at (3E,15), map 1FFE.
+- **Combat RAM:** field 11x11 at 3E44 (y*11 + x; 08 floor in dungeons, monster tile = picture/4); monsters x
+  3EC4, y 3ECC, H.P. 3EDC (8 each, binary); players x 3EE4, y 3EE8. Moving a monster: poke its x/y and both map
+  bytes (`battle_bow`).
+- **Dungeons:** `tools/u3dng.py FILE.ULT kinds` lists specials with an approach `DNG:LL:XX:YY:FF` (facing two
+  hex digits: `DNG:00:06:01:03`, a single digit fails the poke). Random fights: walk back and forth
+  (`up,w60,right,w30,right,w30` three times from `dungeon` gave Goblins, checkpoint `dfight`).
+- **Talk:** `tools/u3town.py FILE.ULT` lists every person with square, talk byte and line; people with the
+  0x40 bit wander, so only the standing ones are reliable (talk shots: POS beside them, `t,w30,1,w30,dir`).
+  Merchants also step along their counter: Dawn's weapons merchant is at (1A,11), so `SHOP:1A:13:up`.
+- **Shops:** every answer is a letter or number plus Enter; lists are paged (a key shows the next page).
+- **Whirlpools:** honest-looking route: frigate at (3B,15), `poke:1FFB=30` (the whirlpool under the ship),
+  `space`; Ambrosia's way back: `@ambrosia,POS:21:3A,poke:2921=30,space,w300`.
+- **Game over in play:** from `pinchers`, all four H.P. set low (12, 9, 15, 11), then 27 x `space,w90`.
+- **Not captured:** Ready in combat (not a combat command), Surmandum's failure into ashes (the forcing poke did
+  not hold), lava damage without the Mark of Fire (no damage seen in one step), the alternate-name rule.
 
 ## Strategy and walkthrough notes
 - **Fastest route to the ending (verified, all checkpoints):** `hero` -> `POS:0A:3B,SHIP` -> `EVOCARE:1` ->
@@ -260,6 +298,8 @@ Main character **ryz** (Paladin, leads), then condi, ebo, cubi, typed in the Cre
 | No Floors | `NOFLOORS` (Exodus castle objects 12-15) | RAM | verified |
 | Shops | `SHOP:x:y:dir` (Transact by player 1) | | verified |
 | Marks/cards of one character | rec + 0x0E: bit 0 Love, 1 Sol, 2 Moons, 3 Death, 4 Force, 5 Fire, 6 Snake, 7 Kings (`poke:2E5A=FF` = all for ryz) | code, Ztats | verified |
+| Monster beside the party | `MON:pic:under:x:y:addr` (see Capture notes) | RAM | verified (15 kinds) |
+| Forced rolls | `poke:4413=<32 hex>` before the deciding key (`tools/u3rng.py`) | code | verified (chests, traps, steal, Repond) |
 | Debug menus, level select, codes | none found (no web source reachable; nothing in the program's text) | | |
 
 `HERO` values (realistic, below the race limits Human 75/75/75/75, Elf 75/99/75/50, Dwarf 99/75/50/75, Bobbit
@@ -274,7 +314,9 @@ Everyone wears Exotic armour and readies an Exotic weapon and owns a few ordinar
 
 ### Saves (rom/saves/ultima-3/, never committed)
 None downloaded (web hosts unreachable). Made here (committed): `saves/01_start.sav` (new party, Quit & Save at
-the start), `saves/02_endgame.sav` (`HERO` party in a frigate south of the Silver Snake), see `saves/README.md`.
+the start), `saves/02_endgame.sav` (`HERO` party in a frigate south of the Silver Snake), `saves/03_pirate_frigate.sav`
+(`HERO` party in a frigate east of LCB after beating a pirate crew, the captured frigate beside it), see
+`saves/README.md`.
 
 ## RAM map (for `game.json` "ram" watches and pokes)
 Physical addresses (DS:offset + 0x1980). BCD = packed decimal, **low byte first** (write with `set:A=N:2:bcd`).
@@ -310,7 +352,11 @@ Physical addresses (DS:offset + 0x1980). BCD = packed decimal, **low byte first*
 | 2F4C / 2F4D | 1 each | x / y on the current map (dungeon: 0-15) | find, verified |
 | 2F4F | 1 | dungeon level 0-7 | code, verified |
 | 3F1D | 1 | the square under the party (tile number) | code, verified |
-| 4412 / 442A | 1 each | wind (0 calm, 1-4 N S E W) / turns until it changes | code |
+| 4412 / 442A | 1 each | wind (0 calm, 1 North, 2 East, 3 South, 4 West) / turns until it changes | code, verified |
+| 4413 | 16 | random number state (code 0x514B; `tools/u3rng.py`) | code, verified |
+| 3E44 | 121 | combat field 11x11 (y*11 + x) | RAM |
+| 3EC4 / 3ECC / 3EDC | 8 each | combat: monster x / y / hit points | RAM, verified |
+| 3EE4 / 3EE8 | 4 each | combat: player x / y | RAM |
 | 724C | 1 | dungeon facing (0 N, 1 E, 2 S, 3 W) | code, verified |
 | 7E20 | 2 | Exodus slots filled (0-4; DS:0x64A0) | code |
 
@@ -336,13 +382,19 @@ Physical addresses (DS:offset + 0x1980). BCD = packed decimal, **low byte first*
 ## Checkpoints
 `checkpoints.txt` (23): `title`, `menu`, `party`, `start`; new party: `towne` (LCB), `castle`, `lordbritish`;
 late party (`HERO`): `hero`, `fight`, `dungeon`, `rod`, `moongate`, `time`, `timelord`, `dawn`, `ambrosia`,
-`shrine`, `card`, `serpent`, `evocare`, `exodus`, `exodus_slots`, `ending`.
+`shrine`, `card`, `serpent`, `evocare`, `exodus`, `exodus_slots`, `ending`. Added by the capture (30 in all):
+`won` (orcs beaten with Mittar and Repond, a chest south of the party), `pirates` (boarding fight on two decks),
+`pirates_won` (pirates beaten, Quit & Save: save 03), `thieves` (Cutpurses on brush), `pinchers` (Snatches on
+grass), `condi_dead` (after the pinchers, condi D), `dfight` (Goblins in Dardin's Pit level 1).
 
 ## Tools
 - `tools/try.py FILE [--frames K] [--peek ADDR:LEN] [--crop x0,y0,x1,y1] [--cols N]`: many routes in parallel,
   one sheet (`work/scout/ultima-3/try_NAME.png`) (from Ultima II).
 - `tools/cachecheck.py`: every checkpoint from an empty cache vs a cache hit (frames and written files), plus
   Quit & Save after four cache hits vs the whole route.
+- `tools/u3rng.py STATE N`: the random generator's next outputs for a 16-byte state (forcing rolls).
+- `tools/u3town.py FILE.ULT ...`: the people of a towne or castle map with squares, talk bytes and lines.
+- `tools/u3dng.py FILE.ULT [kinds]`: special squares of a dungeon with a `DNG` approach.
 - Scratch (not committed, in `work/scout/ultima-3/`): `tmap.py FILE.ULT` (a map file as characters with the
   letters on signs and odd tiles listed), `dis.py START END` (ndisasm listing range), `files.py ROUTE` (files
   written after a route).
@@ -356,10 +408,12 @@ late party (`HERO`): `hero`, `fight`, `dungeon`, `rod`, `moongate`, `time`, `tim
 | Unavailable | mikesrpgcenter.com, gamercorner.net (outside the network); GameFAQs, TCRF, StrategyWiki (403, known); ultimacodex.com (known) | | 2026-11-19 |
 
 ## Open questions
-- Combat details not read: hit and damage formulas, monster hit points, the spell list's effects and costs
-  (spell names are in the program: 16 cleric, 15 named wizard spells), which CNFLCT map goes with which terrain.
-- Lark, Barbarian, Druid, Illusionist, Alchemist, Ranger: their weapon, armour and spell rules (not read).
+- ~~Combat formulas, spell effects and costs, which CNFLCT map per terrain~~ settled 2026-11-19 (design/rules.md:
+  monster hit and damage, spells A-P of both lists with costs 5 x letter, the nine fields). Still open: the
+  party's own hit and damage formulas, monster hit points per kind.
+- ~~Class rules~~ settled (design/rules.md 3: weapon and armour limits per class, who casts which list).
 - Starving: food 0 showed no message within 300 frames; the damage rule is not read.
-- Ambrosia's whirlpool back to Sosaria and the honest frigate (pirates) not played.
-- The two Exotics squares: whether a square gives exotics only once (the code sets two party-header bytes but
-  does not test them).
+- ~~Ambrosia's whirlpool back, the honest frigate~~ played 2026-11-19 (`cutscene_ambrosia_return`: back aboard
+  a frigate; `system_frigate_taken`: a boarded pirate ship stays as an empty frigate).
+- ~~Whether a square gives Exotics only once~~: it does not; each dig adds one (RAM, 2026-11-19).
+- Which of a monster's two names (Orcs/Goblins, Thieves/Cutpurses ...) a fight uses.
