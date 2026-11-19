@@ -2,6 +2,22 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Wizardry III (DOS) captured to the ending (228 shots); play.py rollback; Ultima I scouted
+- Wizardry III scout (5b30832): Wizardry II party moved and legated (only Save2.Dsk needed), alignment gates,
+  crystals, orb, ending; 22 checkpoints, all 107 messages read in play, saves 00-02.
+- Wizardry III capture (de02d74): 228 shots; the Neutral Crystal made in play (the lead from a walkthrough was
+  right, but the power is behind E)quip, not U)se); floor-gate rule verified (both earlier claims were wrong).
+- Coordinator cold verify: 199/228. Everything from checkpoint `gfloor6` on came from states one key press
+  ahead of their routes: `play.py do "y,w300!"` had pressed `y` before failing on the bad token, without
+  recording or rolling back. Backend shown deterministic (loaded states agree with the cold build). Agent fix
+  ad4511a (route gets the second `y`), coordinator cold verify 228/228. Coordinator fix dec8536: `do`/`sample`
+  roll back on any error, regression check in `test_dos_pipeline` (fails without the fix); capture skill step 7:
+  final verify from an empty cache. Merged to `master`.
+- Ultima I (DOS) registered (ef538e3) and scouted (ad34deb, 843126a, 790e379): five programs played through to
+  the ending, 22 checkpoints (cold and cache hit identical across program switches), player record mapped, warp
+  to 84 places, saves 01-02; coordinator replayed four checkpoints. Rule into the emulator guide: stale status
+  displays after pokes. Capture dispatched.
+
 ## 2026-11-19 - Wizardry II (DOS) captured to the ending (212 shots); Wizardry III registered
 - game-capture (af9641c): set `main` 213 shots, lenses, GEAR/EQUIP/KODGEAR, save 03_wizardry3_transfer; floor 2
   riddle answer "shield", all five drops confirmed in RAM, monster HP at 0D3BA, Gnilda takes the whole pack.

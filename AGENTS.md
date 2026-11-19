@@ -31,7 +31,8 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | `games/dos/might-and-magic-2/` | DOS (GOG release, boots via `loadfix -4`) | screenshot set (228, to the Congratulations ending: Kalohn, Sheltem, override code, cryptogram), three lens documents, warp to all 60 areas and centuries, event lister, saves |
 | `games/dos/wizardry/` | DOS (1984 booter via the 1998 loader, disk images) | screenshot set (208, to the ending: Werdna beaten on screen), three lens documents, ten floor maps from the disk, items with prices, floor warp, saves incl. the Wizardry II transfer source |
 | `games/dos/wizardry-2/` | DOS (same loader) | screenshot set (212, to the ending: Wizardry I party imported in the game, five guardians, Staff of Gnilda, knights), three lens documents, six floor maps, items, floor warp, saves incl. the Wizardry III transfer source |
-| `games/dos/wizardry-3/` | DOS (same loader) | registered 2026-11-19; scout in progress (party from Wizardry II via Legate) |
+| `games/dos/wizardry-3/` | DOS (same loader) | screenshot set (228, to the ending: Wizardry II party legated, both halves and guardians, Neutral Crystal made in play, orb, stars), three lens documents, six floor maps, all messages, items, floor warp, saves |
+| `games/dos/ultima/` | DOS (GOG, five programs) | registered 2026-11-19; scouted (22 checkpoints to the ending, warp to 84 places); capture in progress |
 | `games/apple2/might-and-magic/` | Apple II (four disk sides, cracked side 1) | registered 2026-11-18; plays from power-on through disk changes into Sorpigal and the wilderness, inn save; screenshot set (308, to the ending: the DOS set's routes replayed plus every area once and the disk prompts), three lens documents over the DOS detail documents, area warp, macros, checkpoints |
 | `games/nes/deep-dungeon-3/` | Famicom (Japanese) | screenshot set (74, to the ending), 16 floor maps + towns, design reference, saves |
 

@@ -130,7 +130,14 @@ Current snapshot; history in `progress-log.md`.
 - Tool to build (third request, MM2 / Wizardry I / Wizardry II captures): a shared shot previewer (try.py-style
   parallel runs with shoot.py's final settle, plan-file input, `--frames` counted from a marker token, paged
   timelines) and a duplicate check in `shoot.py --only`.
-- DOS queue (owner, 2026-11-19): Wizardry III (scout running) (import characters from
+- Wizardry III (DOS), 2026-11-19: main set 228 shots from power-on to the stars (the Wizardry II party legated,
+  both halves and guardians, the Neutral Crystal made in play through E)quip's invoke, orb, Congratulations,
+  Queen Beyki), 228/228 verified by the coordinator from an empty cache after a route fix, three lenses
+  192 / 193 / 118, saves 00-03. Floor gates verified: any good member admits to 2/4, any good member is refused
+  on 3/5, all-neutral enters all. Open: Abdul's sale and coffer (floor 5), floor 6 dragon room fight.
+- Tool fixed 2026-11-19: `play.py do`/`sample` roll back when a token fails (a failed `do` had left its earlier
+  presses in the machine but not in the route). Capture skill: final verify from an empty cache.
+- DOS queue (owner, 2026-11-19): Ultima I (scouted, capture running) (import characters from
   the previous game's SAVEn.DSK), then Ultima I, II, III (GOG; cycles 500/500/300 in GOG's configs).
 - Might and Magic 1 (DOS), state after the fix-up round (2026-11-18): 249 shots, 249/249 verified in one run
   from an empty cache by the coordinator, no identical pictures, no caption over 80 characters. Round 2 before
