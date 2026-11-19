@@ -9,6 +9,29 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Wizardry II (Apple II)
+- Task: scout Wizardry II (Apple II): boot, Wizardry I transfer through the game's utility, 39 checkpoints to the
+  ending, RAM map, warp, saves, shot plan, lenses started, Wizardry III transfer disks.
+- Worked: reading the disk's Pascal directory and roster before playing (it showed the used scenario disk); the DOS
+  routes as hypotheses run eight at a time in `try.py`; text page reads instead of screenshots; 1x frames for
+  hi-res text; `cachecheck.py` extended with a party line and per-checkpoint frames, which exposed a "won"
+  checkpoint with four dead that the hashes passed.
+- Friction: guardians silently replaced by random groups cost about ten calls before the roster hypothesis (a
+  guardian does not appear while any roster character owns its piece; the used disk held four such characters);
+  keys lost during the variable camp load (`m,w900`); `play.py` screenshots are 3x and costly to read;
+  `cachecheck.py` with names still wipes the whole cache; a second agent's edits in the same tree trigger "file
+  modified" notes; full cold checks take about 12 minutes.
+- Proposed rule change: (1) skill step 1: for disk games, list the save roster or inventory on the dump before
+  playing, since a used disk can change quest behaviour; (2) `docs/emulator/apple2.md`: Apple Pascal Wizardry
+  loads vary by 600 frames with earlier disk activity, use `w1500` or `change` after `m`; (3) shared tool:
+  `play.py text` and a 1x `look` frame (third request for `screen.py` as a shared tool); (4) cachecheck as a
+  shared tool that builds a chain once and writes a contact sheet, with the rule "look at every fight
+  checkpoint's party table, not only hashes".
+- Corrected: coordinator replayed `@ending` (Gaudeamous screen seen). The extra-disk `sav:` transfer worked as
+  designed on first use. Nothing changed in shared files yet: the session was halted by the owner after this
+  scout and the Wizardry I capture.
+- Status: open ((1)-(4); (1) and (3) now appear in two entries: promote next session)
+
 ### 2026-11-19 - Wizardry I (Apple II)
 - Task: scout Wizardry I (Apple II): boot, party, 26 checkpoints to the ending, RAM map, warp, veteran party, saves,
   Wizardry II transfer disk, shot plan, lenses started.
