@@ -33,7 +33,14 @@
     "CREATE": "right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,a,w60,a,w60,a,w60,r,y,z,w30,enter,w60,y,w200",
     "RYZ": "MENU,a,w300,CREATE",
     "PLAY": "b,w200,1,w300",
-    "NEWGAME": "RYZ,PLAY"
+    "NEWGAME": "RYZ,PLAY",
+    "WARP": "poke:129FC={0},poke:129FE={1},poke:12A80={0},poke:12A82={1},space,w60",
+    "GO": "poke:129FC={0},poke:129FE={1},poke:12A80={0},poke:12A82={1},e,w200",
+    "TPOS": "poke:19C8E={0},poke:19C90={1},z,w60,space,w60",
+    "SPAWN": "poke:12A8C={0}000100{1}00{2}00,poke:17AF6=01",
+    "GEMS": "poke:12A14=0100010001000100",
+    "ENDGAME": "set:129DE=2489:2,set:129E0=47:2,set:129E2=52:2,set:129E4=38:2,set:129E6=29:2,set:129E8=33:2,set:129EA=41:2,set:129EC=8973:2,set:129EE=7340:2,set:129F0=1342:2,GEMS,poke:12A26=0100,poke:129F6=05,poke:12A40=0100,poke:12A46=0100,poke:129F2=0F,set:12A6E=23:2",
+    "SHUTTLE": "set:17AF8=4127:2,set:129EC=8973:2,GO:27:27,TPOS:07:05,t,w100,b,w100,f,w100,space,w60,poke:19C8E=13,poke:19C90=11,down,w200"
   },
   "ram": {
     "x": {
@@ -45,6 +52,24 @@
       "addr": "129FE",
       "size": 1,
       "fmt": "hex"
+    },
+    "tx": {
+      "addr": "19C8E",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "ty": {
+      "addr": "19C90",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "lvl": {
+      "addr": "19C92",
+      "size": 1
+    },
+    "face": {
+      "addr": "19CA2",
+      "size": 1
     },
     "hits": {
       "addr": "129DE",
@@ -61,16 +86,6 @@
     "exp": {
       "addr": "129EE",
       "size": 2
-    },
-    "tx": {
-      "addr": "19C8E",
-      "size": 1,
-      "fmt": "hex"
-    },
-    "ty": {
-      "addr": "19C90",
-      "size": 1,
-      "fmt": "hex"
     }
   }
 }

@@ -1,7 +1,19 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
 title | Title picture (castle, attract loop), ULTIMA.EXE | pow,TITLE,settle
 menu | Main menu: a) Generate new character b) Continue previous game | @title,space,w400,settle
 gen | Character Generation: 30 points to distribute (GEN.EXE) | @menu,a,w300,settle
 start | ryz (level 1 human fighter) on the overworld east of the Castle of Lord British, Lands of Lord British | @gen,CREATE,settle,PLAY,settle
+britian | The city of Britian (town 1), entered from the overworld: transport, magic, pub, armour, weapons, food | @start,GO:27:27,settle
+lb_king | The Castle of Lord British, ryz standing below the king (T = transact) | @start,GO:28:26,TPOS:21:05,settle
+dungeon | The Mines of Mt. Drash II, level 1, facing south (first-person wireframe) | @start,GO:27:3C,settle
+skeleton | Dungeon level 1: a Skeleton attacks (Attacked by Skeleton! Hit! 2 damage!) | @dungeon,left,w60,up,w60,settle
+shuttle | Shuttle bought at Scooter's in Britian (game time poked past 3000 moves), parked north of the town | @start,SHUTTLE,settle
+space | SPACE.EXE: lifted off, top view of the home sector (Sosaria, sun, starbase), Shld/Fuel 1000 | @shuttle,up,w60,b,w300,w900,settle
+landed | Back in OUT.EXE: the shuttle landed next to Britian (Thou hast landed safely!) | @space,up*3,space*10,w60,settle
+endgame | Late game from save 02_endgame (level 8, 2489 hits, blaster, reflect suit, four gems, 23 enemy vessels) on the overworld at the start square | pow,sav:02_endgame,MENU,PLAY
+time_machine | Board Time Machine with the four gems: MONDAIN.EXE, the four holes R G B W | @endgame,SPAWN:12:31:27,space,w60,up,w60,b,w300,settle
+mondain | Mondain's chamber after the time journey: time machine, ryz, the gem, Mondain | @time_machine,space,w300,space,w300,space,w300,space,w300,settle
+gem_destroyed | Get beside the gem: The Gem is DESTROYED! (Mondain fights back) | @mondain,right*10,w30,g,w100,settle
+victory | Mondain's hit points poked to 0 after the gem: Mondain is dead! THOU ART VICTORIOUS! | @gem_destroyed,poke:756E=0000,space,w100,settle
+ending | Ending text (NIF.BIN) complete: Lord British's reward, Press CONTROL-ALT-DEL to Restart | @victory,space,w1800,settle
