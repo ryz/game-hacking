@@ -35,7 +35,7 @@ as **Observation:** with the reason, never as a fact.
 - **State visibility:** the party window always shows class, armour class, hit points and status (the
   status column shows the maximum hit points when the character is well, else DEAD, ASLEEP, PARALY, LOST,
   ASHES; in battle the order given or "??????") (verified: `battle_orders`, `boss_four_dead`,
-  `temple_lost_party`). Position, floor and facing are never shown except by DUMAPIC (verified:
+  `temple_lost_party`, `gameplay_poisoned`). Position, floor and facing are never shown except by DUMAPIC (verified:
   `system_dumapic`). Item marks: "*" equipped, "-" cursed, "?" unknown, "#" unusable (verified, [items](items.md)).
 - **Help and onboarding:** none beyond the letter menus; the title warns "You cannot play without making a
   scenario disk!" (verified: `title_screen`).
@@ -72,11 +72,11 @@ Type: `screen`, `menu`, `prompt`, `list`, `message`, `hud element`, `transition`
 | Square prompts | prompt | stairs, elevators, statues | move, search | "Stairs up, take them (Y/N)?", "buttons A through D/F", "Will you search (Y/N)?" | Y N, letters | "RYZ got an item." | `gameplay_stairs`, `gameplay_elevator`, `gameplay_elevator_f4`, `system_search`, `system_search_found` | - |
 | Signs and scenes | message | stepping on a message square | story, hints, gates | framed text, "Press Enter" | Enter | - | `dialogue_*` | long texts fill the whole top box |
 | Square events | message | pit, chute, rock | hazards | "A pit!", "One moment", "You are in rock!" | - | - | `gameplay_pit`, `gameplay_chute`, `gameover_rock` | - |
-| Battle | screen | encounter | fight | monster groups with counts, member options, picture, party orders | F P S D U R T, 1-4 | "Press Enter to fight, or T)ake back orders" | `battle_options`, `battle_orders`, `battle_group_select`, `battle_use_item`, `boss_werdna_orders` | - |
+| Battle | screen | encounter | fight | monster groups with counts, member options, picture, party orders | F P S D U R T, 1-4 | "Press Enter to fight, or T)ake back orders"; R)un: "One moment" | `battle_options`, `battle_orders`, `battle_group_select`, `battle_use_item`, `boss_werdna_orders`, `battle_run` | - |
 | Battle messages | message | each action | report | one blow or spell per message, its result on the next line | - | - | `battle_kill`, `battle_miss`, `battle_cast`, `battle_enemy_katino`, `boss_werdna_killed` | timed, no key needed |
 | Friendly group | prompt | encounter | choose | "A friendly group of ..." | F, L | - | `battle_friendly` | - |
 | Rewards | message | end of a fight | report | "Each survivor gets N E.P." / "N G.P.", "NAME found: ITEM" over the treasure picture | - | - | `battle_victory`, `chest_gold`, `boss_amulet_found` | - |
-| Chest | menu | after a won fight | loot | chest picture, five choices, "Who (#) will ...?" | O C L I D, digit, trap name | "Oops! Exploding box", "You disarmed the trap!" | `battle_chest`, `chest_*` | - |
+| Chest | menu | after a won fight | loot | chest picture, five choices, "Who (#) will ...?" | O C L I D, digit, trap name | "Oops! Exploding box", "You disarmed the trap!", the trap's name after Calfo or Inspect | `battle_chest`, `chest_inspect_who`, `chest_inspected`, `chest_open_who`, `chest_disarm_prompt`, `chest_disarmed`, `chest_gold`, `chest_exploding`, `chest_slain`, `chest_calfo_who`, `chest_calfo`, `chest_poison_needle` | the result replaces the menu for about 2 s, then the menu comes back |
 | Cemetery | screen | party killed | game over | tombstones, "Press Enter to leave the cemetery" | Enter | - | `gameover_cemetery` | - |
 | Ending | screen | castle with the amulet | win | congratulations, reward, chevron | Enter | - | `ending_congratulations`, `ending_castle`, `ending_final_party` | - |
 

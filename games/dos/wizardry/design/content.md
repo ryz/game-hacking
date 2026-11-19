@@ -42,11 +42,13 @@ Unidentified names as shown first; the real name where the fight revealed it.
 | Kobolds, Small humanoids | floor 1 | small armed humanoids | two groups at once | `battle_f1_kobolds` |
 | Skeletons | floor 1 | skeleton | undead | `battle_f1_skeletons` |
 | Orcs, Undead kobolds | floor 1 | friendly groups | let the party leave | `battle_friendly`, `battle_f1_undead_kobolds` |
-| Gas clouds | floor 2 | friendly | - | `battle_f2_gas_clouds` |
+| Gas clouds | floor 2 | cloud; friendly or hostile | - | `battle_f2_gas_clouds`, `battle_f2_gas_clouds_hostile` |
+| Lvl 1 priests | floor 2 | robed human | - | `battle_f2_priests` |
+| Weird humanoids, Slimes | floor 2 | two groups | strike first | `battle_f2_humanoids` |
 | Dragons (unidentified) | floor 3 | small dragon | - | `battle_f3_dragons` |
 | Lvl 3 priests | floor 3 | robed human | casters | `battle_f3_priests` |
 | Rotting corpses | floor 3 | zombie | undead | `battle_f3_corpses` |
-| Giant rodents | floor 3 | rat | six at a time, some run away | `battle_f3_rodents`, `battle_cast_badios`, `battle_multi_hit`, `battle_mahalito`, `battle_victory_vets` |
+| Giant rodents | floor 3 | rat | six at a time, some run away | `battle_f3_rodents`, `battle_cast_badios`, `battle_multi_hit`, `battle_mahalito`, `battle_victory_vets`, `battle_run` |
 | Killer wolves | floor 3 | wolf | strike first | `battle_f3_wolves` |
 | Spirits | floor 3 | ghost | - | `battle_f3_spirits` |
 | Men in armor, Lvl 7 mages, High priests, Man in kimono | floor 4 guard room (fixed) | four groups of humans | Lahalito and Badialma kill a level 1 party in one round | `battle_f4_fixed`, `battle_enemy_lahalito`, `battle_badialma`, `gameover_cemetery` |
@@ -57,6 +59,7 @@ Unidentified names as shown first; the real name where the fight revealed it.
 | Arch mages | floor 8 | robed mage | cast Katino: party members fall asleep | `battle_f8_arch_mages`, `battle_enemy_katino`, `battle_party_asleep` |
 | Men in armor | floor 8 | armoured fighter | - | `battle_f8_men_in_armor` |
 | High priests | floor 8 | priest | - | `battle_f8_high_priests` |
+| Thieves | floor 10 | thief with a blade | - | `battle_f10_thieves` |
 | Lifestealer | floor 9 | ghost | undead, casts Katino; dispelled | `battle_f9_lifestealer`, `battle_dispell` |
 | Vampire lord, Vampires ("unseen entities") | floor 10, Werdna's guards | ghost-like picture | drain 2 levels per touch, paralyze, cast Dilto and Molito; resist spells | `boss_level_drain`, `boss_paralyzed`, `boss_enemy_dilto`, `boss_spell_resisted`, `boss_vampires_identified`, `boss_vampire_lord_killed`, `boss_drained_after` |
 | Werdna ("**W*E*R*D*N*A**", or "Man in robes" unidentified) | floor 10 (17,3) | robed wizard with a staff | boss; casts Tiltowait; 71 hit points in this fight (RAM) | `boss_werdna`, `boss_werdna_orders`, `boss_werdna_hit`, `boss_werdna_killed`, `boss_tiltowait_damage`, `boss_werdna_tiltowait`, `boss_member_killed`, `boss_four_dead`, `boss_werdna_ep` |
@@ -75,7 +78,7 @@ A spread over types and tiers; the full table with numbers and prices is [items.
 | Ring of Porfic | ring | found | identified by the bishop | `inventory_bishop_identify`, `inventory_identified` |
 | Robe of curses ("-") | cursed armour | found | removed by Boltac's uncurse | `shop_uncurse`, `shop_uncursed` |
 | Statue of bear | quest item | floor 2 statue | opens the floor 2 door (source) | `system_search_found` |
-| Chest | container | after fights | trapped loot | `battle_chest`, `chest_inspect_who`, `chest_inspected`, `chest_open_who`, `chest_disarm_prompt`, `chest_disarmed`, `chest_gold`, `chest_exploding`, `chest_slain` |
+| Chest | container | after fights | trapped loot | `battle_chest`, `chest_inspect_who`, `chest_inspected`, `chest_open_who`, `chest_disarm_prompt`, `chest_disarmed`, `chest_gold`, `chest_exploding`, `chest_slain`, `chest_calfo_who`, `chest_poison_needle`, `gameplay_poisoned` |
 | Werdna's amulet (item 94) | quest item | Werdna | ends the game when brought to the castle | `boss_amulet_found`, `ending_congratulations` |
 
 ## 5. Abilities and spells
@@ -88,6 +91,7 @@ A spread over types and tiers; the full table with numbers and prices is [items.
 | DILTO | mage 2 | - | darkness on a group (cast by the vampires) | `boss_enemy_dilto` |
 | MALOR | mage 7 | - | teleport by offsets (in camp) | `camp_malor` |
 | TILTOWAIT | mage 7 | - | huge damage to every monster (or every member, when Werdna casts it) | `boss_werdna_killed`, `boss_tiltowait_damage`, `boss_werdna_tiltowait` |
+| CALFO | priest 2 | - | names a chest's trap | `chest_calfo` |
 | DIOS | priest 1 | - | heals one member | `camp_cast_whom` |
 | BADIOS | priest 1 | - | wounds one monster | `battle_cast_badios` |
 | LITOKAN | priest 5 | - | flames on a group | `boss_werdna_orders` |

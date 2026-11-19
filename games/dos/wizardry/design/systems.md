@@ -45,15 +45,15 @@ harder and the player's own paper maps grow, since the game shows no map (DUMAPI
 | Conflict | Friendly groups | some groups are friendly: F)ight or L)eave | F, L | - | - | `battle_friendly`, `battle_f1_undead_kobolds`, `battle_f2_gas_clouds`, `battle_f7_friendly_wyverns` | shown |
 | Conflict | Dispell | priests (and the elite classes) turn undead: "EBO dispells one monster"; dispelled monsters give no E.P. | D | 0 E.P. (verified for the Lifestealer) | - | `battle_dispell` | shown |
 | Conflict | Use item | U)se in battle or camp casts the item's spell (potion of Dios heals) | U, item number, target | - | - | `battle_use_item`, `camp_use_item` | shown |
-| Conflict | Run | R)un tries to flee; on a failed try the round goes on | R | - | - | - | described: one try failed, no clean frame of the flight |
-| Conflict | Status conditions | asleep (Katino), paralyzed, dead, ashes, lost; sleeping and paralyzed members move to the back of the party | - | - | - | `battle_enemy_katino`, `battle_party_asleep`, `boss_paralyzed`, `boss_four_dead`, `temple_lost_party` | shown |
+| Conflict | Run | R)un tries to flee; on success "One moment" and the party is back in the maze, on a failed try the monsters act | R | 3 of 4 timings fled from six giant rodents | - | `battle_run` | shown |
+| Conflict | Status conditions | asleep (Katino), poisoned (`gameplay_poisoned`), paralyzed, dead, ashes, lost; sleeping and paralyzed members move to the back of the party | - | - | - | `battle_enemy_katino`, `battle_party_asleep`, `boss_paralyzed`, `boss_four_dead`, `temple_lost_party` | shown |
 | Conflict | Spell resistance | monsters can resist a spell ("an unseen entity resists the spell") | - | - | - | `boss_spell_resisted` | shown |
 | Opponents | Groups | up to four named groups with counts; a group's picture shows in the view | - | - | content §3 | `battle_f4_fixed`, `boss_werdna` | shown |
 | Opponents | Monster spells | monster casters use the party's spell list: Katino, Lahalito, Badialma, Dilto, Molito, Tiltowait | - | - | content §3 | `battle_enemy_katino`, `battle_enemy_lahalito`, `battle_badialma`, `boss_enemy_dilto`, `boss_werdna_tiltowait` | shown |
 | Opponents | Fixed fights | squares that always start a fight (floor 3, 4, 7 and Werdna on 10) | - | - | [maps](maps/floors.txt) | `battle_f4_fixed`, `battle_f7_dragons`, `boss_werdna` | shown |
-| Opponents | Random encounters | fight zones ("rooms") start fights when entered or turned in; the group comes from the floor's encounter table | - | floor 1: monsters 0-5, floor 10: 70-86 (disk data) | [maps](maps/floors.txt) | `battle_f1_kobolds` ... `battle_f9_lifestealer` | shown |
+| Opponents | Random encounters | fight zones ("rooms") start fights when entered or turned in; the group comes from the floor's encounter table | - | floor 1: monsters 0-5, floor 10: 70-86 (disk data) | [maps](maps/floors.txt) | `battle_f1_kobolds`, `battle_f2_priests`, `battle_f2_humanoids`, `battle_f2_gas_clouds_hostile`, `battle_f9_lifestealer`, `battle_f10_thieves` | shown |
 | Items and equipment | Equipment | weapons, armour, shields, helms, gauntlets, misc; equipped items marked "*"; armour class drops from 10 | E)quip | AC -4 with plate+2, shield+2, helm+1 | [items](items.md) | `inventory_sheet_vet`, `menu_castle_vets` | shown |
-| Items and equipment | Chests and traps | a won fight may leave a chest: open, Calfo, leave, inspect, disarm; a trap goes off on opening (exploding box: a member slain); disarm needs the trap's name typed | O C L I D | - | §6 | `battle_chest`, `chest_*` | shown |
+| Items and equipment | Chests and traps | a won fight may leave a chest: open, Calfo (a priest names the trap), leave, inspect, disarm; a trap goes off on opening (exploding box: a member slain; poison needle: POISON); disarm needs the trap's name typed | O C L I D | - | §6 | `battle_chest`, `chest_calfo_who`, `chest_calfo`, `chest_poison_needle`, `chest_exploding`, `chest_disarmed` | shown |
 | Items and equipment | Identification and curses | found items are unknown ("?SWORD"); a bishop identifies (I on the sheet) or Boltac for gold; a cursed item ("-") stays equipped until Boltac uncurses (removes) it | I, U | - | [items](items.md) | `shop_identify`, `shop_identified`, `inventory_bishop_identify`, `inventory_identified`, `shop_uncurse` | shown |
 | Abilities and magic | Spells | typed by name ("Spell name ?") in battle and camp; 21 mage and 29 priest spells in 7 levels, points per level | S, name, Enter, target | points per level | content §5 | `battle_spell_prompt`, `inventory_mage_book`, `inventory_priest_book`, `camp_cast_whom` | shown |
 | Abilities and magic | Utility spells | DUMAPIC reports the position; MALOR teleports by offsets (E/W/N/S/U/D); healing with DIOS | camp | - | content §5 | `system_dumapic`, `camp_malor` | shown |
@@ -118,7 +118,7 @@ harder and the player's own paper maps grow, since the game shows no map (DUMAPI
   taken out of the party at the Castle.
 
 ## Open questions
-- Run: the chance to flee and what decides it.
+- Run: the chance to flee and what decides it (3 of 4 timings fled from the rodents).
 - The searchable statues on floor 1 (chicken, hooded man, boar) asked nothing in any approach tried (see
   findings); Murphy's ghost was not met.
-- Poison, criticals and stoning were not seen.
+- Criticals and stoning were not seen.

@@ -111,7 +111,7 @@ throw away keys typed before them (inferred), so keep the waits.
   slaughtered. Press Enter to leave the cemetery!".
 
 ## Shot plan
-Set `main` captured 2026-11-19 (game-capture): 199 shots from power-on to the ending, verified and published
+Set `main` captured 2026-11-19 (game-capture): 208 shots from power-on to the ending, verified and published
 (`shots.txt`, `shots/main/`). The routes were chosen in batches with `tools/try.py` (many candidate routes in
 parallel, the last K frames tiled) and written straight into the work shot list; scratch plan files were
 `work/cap/wizardry/plan/0N_*.txt`. How each area was reached:
@@ -128,9 +128,11 @@ parallel, the last K frames tiled) and written straight into the work shot list;
 - Battle frames: rounds are long; take a timeline (`try.py --frames 50` over `w40` tokens) and pick the frame
   (`enter,w40*N,!`).
 - Werdna: `@gwerdna` and the real fight below (Strategy); ending `@gending`, `@gafter`, `@final`.
+- Fleeing: `battle_run` (R)un with `w5` before it fled; `w1` failed). Calfo/poison: the rodents' chest
+  (`chest_calfo`, `gameplay_poisoned`).
 Not captured (reasons in the report and design/): Murphy's ghost (floor 1 statues give no search, findings),
-R)un succeeding, poison, criticals, Calfo, rescue of bodies, a spinner (no visible effect), Leave game (no
-in-game screen: the loader prints "Thanks for playing Wizardry!" in DOS text mode).
+criticals, stoning, rescue of bodies, a spinner (no visible effect), Leave game (no in-game screen: the
+loader prints "Thanks for playing Wizardry!" in DOS text mode).
 
 ## Strategy and walkthrough notes
 - Cataloguing: never grind. `VET` (at the Castle, then any menu change to redraw) makes the party level 13

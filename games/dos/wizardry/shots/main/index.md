@@ -1,6 +1,6 @@
 # Wizardry: Proving Grounds of the Mad Overlord (DOS) - shots: main
 
-Platform dos, region na, model ega-315, ROM SHA-1 `32c93888de1e0def3485cb667a1ddd9844189035`. 199 shots. Contact sheet: [wizardry_dos_na_set_sheet.png](wizardry_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model ega-315, ROM SHA-1 `32c93888de1e0def3485cb667a1ddd9844189035`. 208 shots. Contact sheet: [wizardry_dos_na_set_sheet.png](wizardry_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -149,6 +149,9 @@ Platform dos, region na, model ega-315, ROM SHA-1 `32c93888de1e0def3485cb667a1dd
 | battle_friendly | battle | "A friendly group of Orcs" - F)ight or L)eave | yes | [png](wizardry_dos_na_battle_battle_friendly.png) [3x](3x/wizardry_dos_na_battle_battle_friendly.png) |
 | battle_f1_undead_kobolds | battle | Floor 1: a friendly group of Undead kobolds | yes | [png](wizardry_dos_na_battle_battle_f1_undead_kobolds.png) [3x](3x/wizardry_dos_na_battle_battle_f1_undead_kobolds.png) |
 | battle_f2_gas_clouds | battle | Floor 2: a friendly group of Gas clouds | yes | [png](wizardry_dos_na_battle_battle_f2_gas_clouds.png) [3x](3x/wizardry_dos_na_battle_battle_f2_gas_clouds.png) |
+| battle_f2_priests | battle | Floor 2: 2 Lvl 1 priests | yes | [png](wizardry_dos_na_battle_battle_f2_priests.png) [3x](3x/wizardry_dos_na_battle_battle_f2_priests.png) |
+| battle_f2_humanoids | battle | Floor 2: Weird humanoids and Slimes; a slime chews at CONDI and misses | yes | [png](wizardry_dos_na_battle_battle_f2_humanoids.png) [3x](3x/wizardry_dos_na_battle_battle_f2_humanoids.png) |
+| battle_f2_gas_clouds_hostile | battle | Floor 2: 5 Gas clouds, hostile this time | yes | [png](wizardry_dos_na_battle_battle_f2_gas_clouds_hostile.png) [3x](3x/wizardry_dos_na_battle_battle_f2_gas_clouds_hostile.png) |
 | battle_f3_dragons | battle | Floor 3: 4 Dragons (unidentified), the veterans surprised them | yes | [png](wizardry_dos_na_battle_battle_f3_dragons.png) [3x](3x/wizardry_dos_na_battle_battle_f3_dragons.png) |
 | battle_f3_priests | battle | Floor 3: 6 Lvl 3 priests | yes | [png](wizardry_dos_na_battle_battle_f3_priests.png) [3x](3x/wizardry_dos_na_battle_battle_f3_priests.png) |
 | battle_f3_corpses | battle | Floor 3: 2 Rotting corpses, undead | yes | [png](wizardry_dos_na_battle_battle_f3_corpses.png) [3x](3x/wizardry_dos_na_battle_battle_f3_corpses.png) |
@@ -157,6 +160,11 @@ Platform dos, region na, model ega-315, ROM SHA-1 `32c93888de1e0def3485cb667a1dd
 | battle_multi_hit | battle | "RYZ tries to stab a giant rodent and hits 3 times ... killed!" | yes | [png](wizardry_dos_na_battle_battle_multi_hit.png) [3x](3x/wizardry_dos_na_battle_battle_multi_hit.png) |
 | battle_mahalito | battle | "DEDDO casts a MAHALITO": a giant rodent is killed | yes | [png](wizardry_dos_na_battle_battle_mahalito.png) [3x](3x/wizardry_dos_na_battle_battle_mahalito.png) |
 | battle_victory_vets | battle | "Each survivor gets 433 E.P." after the rodents | yes | [png](wizardry_dos_na_battle_battle_victory_vets.png) [3x](3x/wizardry_dos_na_battle_battle_victory_vets.png) |
+| chest_calfo_who | battle | C)alfo on the rodents' chest: "Who (#) will cast Calfo?" | yes | [png](wizardry_dos_na_battle_chest_calfo_who.png) [3x](3x/wizardry_dos_na_battle_chest_calfo_who.png) |
+| chest_calfo | battle | EBO's CALFO names the trap: "Poison needle" | yes | [png](wizardry_dos_na_battle_chest_calfo.png) [3x](3x/wizardry_dos_na_battle_chest_calfo.png) |
+| chest_poison_needle | battle | RYZ opens anyway: "Oops! Poison needle" | yes | [png](wizardry_dos_na_battle_chest_poison_needle.png) [3x](3x/wizardry_dos_na_battle_chest_poison_needle.png) |
+| gameplay_poisoned | gameplay | After the chest: RYZ shows POISON in the party window | yes | [png](wizardry_dos_na_gameplay_gameplay_poisoned.png) [3x](3x/wizardry_dos_na_gameplay_gameplay_poisoned.png) |
+| battle_run | battle | R)un from 6 Giant rodents: the party flees - "One moment" | yes | [png](wizardry_dos_na_battle_battle_run.png) [3x](3x/wizardry_dos_na_battle_battle_run.png) |
 | battle_f3_wolves | battle | Floor 3: 5 Killer wolves strike first - one nibbles at CONDI and misses | yes | [png](wizardry_dos_na_battle_battle_f3_wolves.png) [3x](3x/wizardry_dos_na_battle_battle_f3_wolves.png) |
 | battle_f3_spirits | battle | Floor 3: 6 Spirits | yes | [png](wizardry_dos_na_battle_battle_f3_spirits.png) [3x](3x/wizardry_dos_na_battle_battle_f3_spirits.png) |
 | battle_f4_fixed | battle | Floor 4 guard room: men in armor, Lvl 7 mages, high priests, man in kimono | yes | [png](wizardry_dos_na_battle_battle_f4_fixed.png) [3x](3x/wizardry_dos_na_battle_battle_f4_fixed.png) |
@@ -173,6 +181,7 @@ Platform dos, region na, model ega-315, ROM SHA-1 `32c93888de1e0def3485cb667a1dd
 | battle_f8_high_priests | battle | Floor 8: 3 High priests | yes | [png](wizardry_dos_na_battle_battle_f8_high_priests.png) [3x](3x/wizardry_dos_na_battle_battle_f8_high_priests.png) |
 | battle_f9_lifestealer | battle | Floor 9: a Lifestealer | yes | [png](wizardry_dos_na_battle_battle_f9_lifestealer.png) [3x](3x/wizardry_dos_na_battle_battle_f9_lifestealer.png) |
 | battle_dispell | battle | D)ispell by EBO: "EBO dispells one monster" (the Lifestealer) | yes | [png](wizardry_dos_na_battle_battle_dispell.png) [3x](3x/wizardry_dos_na_battle_battle_dispell.png) |
+| battle_f10_thieves | battle | Floor 10: 4 Thieves | yes | [png](wizardry_dos_na_battle_battle_f10_thieves.png) [3x](3x/wizardry_dos_na_battle_battle_f10_thieves.png) |
 | battle_enemy_lahalito | battle | Level 1 party on floor 4: "A man in robes casts a LAHALITO - RYZ is killed!" | yes | [png](wizardry_dos_na_battle_battle_enemy_lahalito.png) [3x](3x/wizardry_dos_na_battle_battle_enemy_lahalito.png) |
 | battle_badialma | battle | "A high priest casts a BADIALMA" - RYZ, CONDI and EBO already DEAD | no | [png](wizardry_dos_na_battle_battle_badialma.png) [3x](3x/wizardry_dos_na_battle_battle_badialma.png) |
 | gameover_cemetery | gameover | Tombstones: "Your entire party has been slaughtered. Press Enter ..." | yes | [png](wizardry_dos_na_gameover_gameover_cemetery.png) [3x](3x/wizardry_dos_na_gameover_gameover_cemetery.png) |
