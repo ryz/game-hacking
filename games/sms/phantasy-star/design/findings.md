@@ -24,3 +24,26 @@ save starts a new game.
 **Intended:** unclear.
 **Confidence:** (verified) for `up`; `down` seen once.
 **Impact:** none for players; automated routes use `up`.
+
+## Talking to townspeople not found
+**Behavior:** walking into a townsperson or a robotcop (from above and from the side) does nothing, and
+either button beside one opens the field menu (capture run 2026-11-19, routes from checkpoint `camineet`).
+The manual only says "stop and talk to them".
+**Intended:** people surely talk; the trigger (a facing rule, a moving person's position, or a timing) is
+not understood yet.
+**Confidence:** (verified) that these attempts fail; the intended way is open.
+**Impact:** none for players; a gap for the shot set (no townsperson dialogue yet).
+
+## Purchases have no confirmation
+**Behavior:** choosing an item in a shop list buys it at once; the next line is "Thank you. Anything else?"
+(`shop_bought`: BURGER, 126 -> 86 meseta).
+**Intended:** probably (fast shopping).
+**Confidence:** (verified)
+**Impact:** a stray press spends money; the second-hand shop buys back at half price (`shop_sell_offer`).
+
+## Special squares that show nothing
+**Behavior:** the Camineet passage's floor map marks four squares with the same code as the cave's chest
+squares; standing on one (row 1, column 7) and using SRCH showed nothing (RAM map at `CB00`, playbook).
+**Intended:** unclear: an emptied chest, or an object that needs a condition.
+**Confidence:** (RAM) for the codes, (verified) for the empty result.
+**Impact:** unknown.

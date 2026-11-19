@@ -13,3 +13,7 @@ field_s | Palma: forest south of the wall, south-west of Camineet (cave entrance
 cave_out | Palma: Alis beside a cave entrance south-west of Camineet | @field_s,down:32,left:160,w10,settle,left:16,w180,settle
 dungeon | First-person dungeon: the cave south-west of Camineet, lit with a FLASH (poked into the inventory) | @cave_out,poke:C4C0=27,poke:C4E2=01,down:16,left:16,w180,b2,w90,settle,w60,down*2,b2,w90,settle,b2,w90,b2,w120,settle
 continue | Title CONTINUE with saves/01_start.sav: slot 1 loaded, Alis in Camineet | pow,sav:01_start,TITLE,CONTINUE
+church | Camineet church: priest's first page 'THIS IS A CHURCH. DO YOU WISH TO' | @camineet,right:16,settle,up:32,right:64,settle,right:16,settle,up:16,settle,right:16,settle,right:48,settle,down:128,settle,right:32,up:16,w120,settle,w90,settle
+passage | Inside the grey dome north-east of Alis's house: green first-person passage, entry square | @start,up:16,w120,settle,b2,w150,settle,right:48,w10,up:48,w120,settle
+cave_chest | Cave south-west of Camineet: in front of the chest 5 squares north of the entry (open prompt) | @dungeon,settle,settle,up:16,w20,up:16,w20,up:16,w20,up:16,w20,settle,up:16,w20,settle,up:16,w120,settle
+cave_battle | Cave south-west of Camineet: Wing Eye battle after the chest, command menu | @cave_chest,b2,w120,settle,b2,w60,settle,down:16,w20,up:16,w20,down:16,w20,up:16,w20,down:16,w20,up:16,w20,down:16,w20,up:16,w20,down:16,w20,up:16,w20,w60,settle

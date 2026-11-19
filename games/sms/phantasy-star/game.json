@@ -54,6 +54,15 @@
     "meseta": {
       "addr": "C4E0",
       "size": 2
+    },
+    "square": {
+      "addr": "C30C",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "facing": {
+      "addr": "C30A",
+      "size": 1
     }
   }
 }

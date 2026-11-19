@@ -1,0 +1,90 @@
+# id | category | caption | route
+# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
+#             minigame ending credits gameover save extra   (docs/capture-guide.md)
+# The plan for the main set. play.py snap writes captured shots (with exact routes) to
+# work/shots/sms/phantasy-star/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
+#
+# ---- EARLY (captured 2026-11-19, game-capture): 53 shots in game order, verified from an empty cache.
+# Clips: dungeon_step / dungeon_turn (rec:N:K:P, poster = kept frame P).
+title_screen | title | Title screen: Alis with sword, START / CONTINUE | @title
+intro_planet | cutscene | Intro: planet Palma in space | @title,b1,w300
+intro_camineet | cutscene | Intro caption: Space Century 342, Camineet on Palma | @title,b1,w300,b1,w120,!
+intro_nero_beaten | cutscene | Intro: Lassic's robotcops leave Nero beaten in the street | @title,b1,w300,PAGE*2
+intro_nero_dying | cutscene | Intro: dying Nero tells Alis of Lassic's plans | @title,b1,w300,PAGE*4
+intro_alis_vow | cutscene | Intro: Alis vows that her brother did not die in vain | @title,b1,w300,PAGE*8
+camineet_start | gameplay | First control: Alis outside her house in Camineet | @start
+alis_home | dialogue | Inside Alis's house: "Here is the home of Alis." | @start,up:16,w120,settle
+camineet_passage | gameplay | First-person passage under the grey dome in Camineet: green walls, lit | @start,up:16,w120,settle,b2,w150,settle,right:48,w10,up:48,w120,settle
+camineet_shops | gameplay | Camineet: three shops, church and townspeople | @camineet
+camineet_gate | gameplay | Camineet west: the armory, townspeople and a gate guarded by robotcops | @camineet,left:96,w10,up:32,w180,settle,set:C4E0=318:2,b2,w120,settle,b2,w120,settle,b2,w120,settle,down,b2,w120,settle,b2,w120,settle
+shop_secondhand | shop | Camineet second-hand shop: BUY / SELL | @shop
+shop_list | shop | Second-hand shop price list: FLASH 20, ESCAPER 10, TRANSER 48 | @shop,set:C4E0=126:2,b2,w90
+shop_sell | shop | Second-hand shop SELL: "What would you like to sell?" over the item list | @shop,set:C4E0=37:2,poke:C4C0=2825,poke:C4E2=02,down,b2,w120,settle,w10,!
+shop_sell_offer | shop | Selling an Escaper (bought for 10): "How about 5 mesetas?" YES / NO | @shop,set:C4E0=37:2,poke:C4C0=2825,poke:C4E2=02,down,b2,w120,settle,w10,b2,w120,settle,b2,w120,settle
+shop_food | shop | Camineet food shop price list: COLA 10, BURGER 40 meseta | @camineet,left:48,w10,up:32,w180,settle,set:C4E0=126:2,b2,w120,settle,b2,w120,settle
+shop_bought | shop | Burger bought for 40 meseta: "Thank you. Anything else?" | @camineet,left:48,w10,up:32,w180,settle,set:C4E0=126:2,b2,w120,settle,b2,w120,settle,down,b2,w120,settle
+shop_armory | shop | Camineet armory: LTH. SLD 30, IRN. SLD 520, CRC. SLD 1400 meseta | @camineet,left:96,w10,up:32,w180,settle,set:C4E0=318:2,b2,w120,settle,b2,w120,settle
+item_commands | inventory | ITEM: the bought leather shield, USE / EQP / DRP | @camineet,left:96,w10,up:32,w180,settle,set:C4E0=318:2,b2,w120,settle,b2,w120,settle,b2,w120,settle,down,b2,w120,settle,b2,w120,settle,down:16,w60,settle,left:16,down:8,w60,settle,down:16,w120,settle,right:16,w30,settle,left:16,w30,settle,down:16,w30,settle,down:40,w120,settle,right:16,down:16,w20,settle,left:16,w120,settle,down:48,w10,settle,left:16,w120,settle,b2,w120,settle,down*3,b2,w120,settle,b1,w60,b1,w60,settle,left:16,w120,settle,b1,w120,settle,up:16,w10,left:16,w10,left:16,w10,down:16,w120,settle,down:16,w120,settle,MENU,down*2,b2,w90,settle,b2,w90,settle,w30,!
+item_equip | inventory | EQP: "Alis equips LTH. SLD." beside her sword, armour and shield | @camineet,left:96,w10,up:32,w180,settle,set:C4E0=318:2,b2,w120,settle,b2,w120,settle,b2,w120,settle,down,b2,w120,settle,b2,w120,settle,down:16,w60,settle,left:16,down:8,w60,settle,down:16,w120,settle,right:16,w30,settle,left:16,w30,settle,down:16,w30,settle,down:40,w120,settle,right:16,down:16,w20,settle,left:16,w120,settle,down:48,w10,settle,left:16,w120,settle,b2,w120,settle,down*3,b2,w120,settle,b1,w60,b1,w60,settle,left:16,w120,settle,b1,w120,settle,up:16,w10,left:16,w10,left:16,w10,down:16,w120,settle,down:16,w120,settle,MENU,down*2,b2,w90,settle,b2,w90,settle,w30,down,b2,w120,settle
+status_shield | inventory | STAS with the leather shield equipped: DEFENSE 16 (13 without it) | @camineet,left:96,w10,up:32,w180,settle,set:C4E0=318:2,b2,w120,settle,b2,w120,settle,b2,w120,settle,down,b2,w120,settle,b2,w120,settle,down:16,w60,settle,left:16,down:8,w60,settle,down:16,w120,settle,right:16,w30,settle,left:16,w30,settle,down:16,w30,settle,down:40,w120,settle,right:16,down:16,w20,settle,left:16,w120,settle,down:48,w10,settle,left:16,w120,settle,b2,w120,settle,down*3,b2,w120,settle,b1,w60,b1,w60,settle,left:16,w120,settle,b1,w120,settle,up:16,w10,left:16,w10,left:16,w10,down:16,w120,settle,down:16,w120,settle,MENU,down*2,b2,w90,settle,b2,w90,settle,w30,down,b2,w120,settle,b2,w90,settle,w60,b2,w120,settle
+camineet_church | dialogue | Camineet church: "Do you wish to resurrect someone?" YES / NO | @church,b2,w120,settle
+church_alive | dialogue | Church after YES: "Alis is alive." (nobody to resurrect) | @church,b2,w120,settle,b2,w150,settle
+hud_menu | hud | Field menu STAS MAGC ITEM SRCH SAVE over a view of Camineet, Alis HP/MP | @menu
+menu_status | inventory | STAS: Alis's equipment, level, EP, attack, defense, HP, MP, meseta | @menu,b2,w120
+menu_items | inventory | ITEM: meseta and carried items | @menu,set:C4E0=126:2,poke:C4C0=2724252728,poke:C4E2=05,down*2,b2,w90
+item_use_burger | inventory | ITEM, BURGER, USE: "Burger. Alis is healed." (HP 9 back to 16) | @start,poke:C401=09,poke:C4C0=25,poke:C4E2=01,MENU,down*2,b2,w90,b2,w90,settle,b2,w40,!
+menu_search | system | SRCH: "There doesn't seem to be anything" | @menu,down*3,b2,w120
+save_slots | save | SAVE: choose one of five slots | @menu,down*4,b2,w90,b2,w90
+palma_camineet | gameplay | Palma overworld: walled Camineet and its bridge | @palma
+palma_forest | gameplay | Palma: forest and the wall south-west of Camineet | @field_s
+menu_forest | hud | Field menu in the forest: the place picture changes with the terrain | @field_s,MENU,settle,w10,!
+battle_sworm | battle | First battle: a Sworm in the forest, ATTK MAGC ITEM TALK RUN | @battle
+battle_attack | battle | ATTK: Alis's blow lands, the Sworm flashes white | @battle,settle,settle,b2,w6,!
+battle_hit | battle | The Sworm strikes back: the whole screen flashes | @battle,settle,settle,b2,w6,w36,!
+battle_talk | battle | TALK: "Alis and Sworm cannot understand" each other | @battle,settle,settle,down*3,w20,settle,b2,w30,!
+battle_killed | battle | "Sworm is killed." | @battle,b2,w60,b2,w60,b2,w60
+battle_exp | battle | "You gained 2 experience points." | @battle,b2,w60,b2,w60,b2,w60,b2,w60
+battle_levelup | battle | "Alis advanced a level." (level 2 at 20 experience points) | @battle,set:C403=18:2,settle,settle,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60,!
+battle_chest | battle | Treasure chest after the fight: "Do you want to open it?" | @battle,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60
+battle_chest_meseta | battle | Chest opened: 3 meseta inside | @battle,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60
+palma_cave | gameplay | Palma: cave entrance in the forest | @cave_out
+battle_scorpion | battle | Scorpion (HP 12) attacks near the cave | @cave_out,down:32,left:16,up:16,w180
+cave_dark | dialogue | Cave without light: "Cannot go forward, it's pitch black." | @cave_out,down:16,left:16,w180
+dungeon_corridor | gameplay | First-person dungeon: the cave lit with a Flash | @dungeon
+dungeon_step | gameplay | Cave: one step forward, the floor scrolls toward the player | @dungeon,settle,settle,up:1,rec:40:2:8
+dungeon_turn | gameplay | Cave: turning right, the walls rotate smoothly | @dungeon,settle,settle,right:1,rec:56:2:8
+dungeon_chest | gameplay | Cave: a treasure chest in the corridor, "Do you want to open it?" | @dungeon,settle,settle,up:16,w20,up:16,w20,up:16,w20,up:16,w20,settle,up:16,w20,settle,up:16,w120,settle
+battle_wing_eye | battle | Cave battle: a Wing Eye (HP 11) against the corridor walls | @cave_chest,b2,w120,settle,b2,w60,settle,down:16,w20,up:16,w20,down:16,w20,up:16,w20,down:16,w20,up:16,w20,down:16,w20,up:16,w20,down:16,w20,up:16,w20,w60,settle
+battle_died | battle | Alis falls to the Wing Eye: "Alis died." | @cave_battle,poke:C401=01,down*3,w20,settle,b2,w60,b2,w60,b2,w60,!
+gameover | gameover | Game over, last page: "The adventure is over." | @cave_battle,poke:C401=01,down*3,w20,settle,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60,!
+continue_prompt | menu | Title CONTINUE: continue or delete a game | sav:01_start,TITLE,w90,up,w30,b2,w120
+continue_slots | menu | CONTINUE: select a saved game 1-5 | sav:01_start,TITLE,w90,up,w30,b2,w120,b2,w120
+#
+# ---- LATER (plan, no routes yet)
+# party_status | inventory | STAS with four members (Alis, Myau, Odin, Noah)
+# magic_menu_field | inventory | MAGC outside battle (a healing spell)
+# battle_magic | battle | a spell in battle (FIRE / WIND / THUNDER)
+# battle_talk | battle | TALK to a monster that answers
+# battle_run | battle | RUN from a fight
+# battle_trap_chest | battle | a trapped chest (arrow or explosion)
+# battle_group | battle | several monsters at once
+# battle_levelup | battle | level up message
+# church | dialogue | church: revive a fallen member
+# shops_weapons | shop | weapon / armour shop price list (equip from it)
+# shop_hospital | shop | hospital or other service
+# dialogue_npc | dialogue | townsperson talk with a portrait window
+# town_<name> | gameplay | one shot per distinct town look (Palma towns, Paseo on Motavia, Dezoris)
+# spaceport | gameplay | spaceport and the PASSPORT check
+# spaceship | cutscene | the flight between planets
+# motavia_desert | gameplay | Motavia overworld (sand, ant lions)
+# dezoris_ice | gameplay | Dezoris overworld (ice)
+# landrover | system | LANDROVER on the overworld (and a battle from it)
+# hovercraft | system | HOVERCRAFT on water
+# ice_digger | system | ICE DIGGER boring through ice
+# tower_view | gameplay | a tower interior (different wall set)
+# dungeon_stairs | gameplay | stairs / door in first person
+# dungeon_trap | system | a trap in a dungeon
+# boss_<name> | boss | each boss reachable (Lassic, Dark Falz, others)
+# gameover | gameover | the game-over screen
+# ending | ending | the ending
+# credits | credits | the staff roll

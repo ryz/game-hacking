@@ -48,8 +48,9 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 | Menus | D-pad | cursor | verified |
 | Menus | `b2` | confirm | verified |
 | Menus | `b1` | cancel / close (closing the field menu returns to the map) | verified |
-| Dungeon | `up` | step forward; `down` back (source) | verified (`up`) |
-| Dungeon | `left` / `right` | turn 90 degrees | verified (`right`) |
+| Dungeon | `up` | step forward; `down` back (source); a 1-frame press (`up:1`) is enough, the step then animates ~36 frames | verified (`up`, clip `dungeon_step`) |
+| Dungeon | `left` / `right` | turn 90 degrees; `right:1` starts a ~48-frame smooth turn | verified (`right`, clip `dungeon_turn`) |
+| Town | talk to a person | NOT FOUND: walking into a townsperson or robotcop (from above and the side) does nothing; b1/b2 beside one open the field menu (capture 2026-11-19) | open |
 | Battle | `b2` / `b1` | confirm command / cancel | verified (`b2` = ATTK) |
 | Any | `pause` | pause (manual: pauses and mutes) | source; no visible change on the map (verified: `pause` in Camineet showed nothing) |
 
@@ -84,6 +85,13 @@ multiple of 16; blocked moves turn Alis without moving.
   building north-east, EXIT gate in the south-east corner guarded by a robotcop; townspeople walk about.
 
 ## Shot plan
+**Early part captured 2026-11-19 (game-capture): 53 shots in `shots.txt` (EARLY section, game order), 53/53 from
+an empty cache, published to `shots/main/`.** Beyond the scout's 28: intro caption retaken (it fades in and out by
+itself: frame `@title,b1,w300,b1,w120,!`), Alis's house, the green passage under the grey dome, the western
+gate, the food shop and armory (lists, purchase), SELL and its offer, ITEM USE/EQP (burger, leather shield),
+STAS with the shield, church (prompt, "Alis is alive."), field menu over the forest, battle attack/hit flashes,
+TALK, level-up, cave chest, Wing Eye, death and game over, step and turn clips. Not captured: townsperson talk
+(trigger not found), RUN (only a fade), DRP, MAGC (Alis has no spells), a trap chest.
 The routes are in `shots.txt` (early section with routes that replay; the rest as plan comments). Categories
 and counts (about 75 shots, a large RPG):
 - **early (routes ready, do first, ~20):** title, intro (planet, caption, Nero beaten, Nero dying, Alis's vow), first
@@ -107,6 +115,19 @@ do not warp (see Emulation notes); the capture agent should look for a map id / 
 (`C308`/`C309` change between Camineet and the overworld) or use a late save. No downloaded save found.
 
 ## Strategy and walkthrough notes
+- Camineet layout from the `camineet` checkpoint (verified): second-hand shop `left:16,w10,up:32`, food shop
+  `left:48,w10,up:32`, armory `left:96,w10,up:32` (each `w180` after); church = checkpoint `church`; Alis's house
+  `@start,up:16`; the grey dome (green first-person passage) `@start` house exit then `right:48,w10,up:48`
+  (checkpoint `passage`); the western gate with two robotcops is south of the armory.
+- Shops take a purchase at once (no confirm); poke meseta before the list opens (`set:C4E0=...:2`, shown in the
+  MST window). Second-hand SELL pays half the price.
+- First cave (checkpoint `dungeon`, entry square `DC` facing north): the chest is 6 squares straight north
+  (`up:16,w20` x6, checkpoint `cave_chest`, 10 meseta); pacing `down:16,w20,up:16,w20` x5 after it meets a Wing
+  Eye (checkpoint `cave_battle`).
+- Level-up shots: Alis reaches level 2 at 20 EP; `set:C403=18:2` before the SWORM kill gives "Alis advanced a
+  level." on the 6th `b2,w60`.
+- Game over: `@cave_battle,poke:C401=01,down*3,w20` then TALK and `b2,w60` pages: "Alis died.", "Alis's hope
+  cannot overcome the power of Lassic. The adventure is over.", then the title (no continue prompt).
 - Alis starts alone at level 1, 16 HP, 0 meseta, no items, Short Sword and Leather Armour (verified). Early
   monsters (SWORM 8 HP, SCORPION 12 HP) are weak but Alis has 16 HP: hold HP with `gs:00C4-0110` (Alis 16) or
   poke `C401`/`C406` up while levelling by poke (realistic values: level 8-12, HP 60-70 for the mid game).
@@ -162,6 +183,9 @@ Own save: `games/sms/phantasy-star/saves/01_start.sav` (new game, slot 1), check
 | `C30A` | 1 | dungeon facing (0 at entry, +1 per right turn) | RAM diff |
 | `C30C` | 1 | dungeon square, high nibble row, low nibble column (`DC` at the cave entry, `CC` after one step) | RAM diff |
 | `C315` | 1 | 04 in the cave (dungeon id? inferred) | peek |
+| `CB00` | 256 | current first-person floor, 16x16, row-major (row = high nibble of `C30C`): `01` wall, `00` floor, `08` chest square (cave: chest with 10 meseta), `0A` exit/stairs (entry and other ends), `05`, `04`, `0C` other specials (not tried) | RAM dump in the cave and the Camineet passage |
+| `C30A` | 1 | first-person facing: 0 north, 1 east, 2 south, 3 west | turns |
+| `C405` | 1 | level: 2 at 20 EP (level 1: HP 16, attack 12, defense 13; level 2: 20 / 14 / 16) | pokes of EXP before a kill |
 | cartridge RAM `0000` | 32 | "PHANTASY STAR         BACKUP RAM" signature; the game formats 8 KiB if it is missing | backend test |
 | cartridge RAM `0201`.., `0400`+ | | slot used flags (inferred), slot 1 data from `0400` (a copy of `C300`... / `C400`...) | exported save |
 
@@ -180,7 +204,7 @@ party size lives elsewhere (open question).
 
 ## Emulation notes
 - Model `ntsc` (export header). Deterministic; RNG follows frame timing (the same walk always meets the same SWORM).
-- **Savestates do not carry cartridge RAM** (backend issue, reported): every checkpoint loaded from the cache
+- ~~**Savestates do not carry cartridge RAM** (backend issue, reported)~~ Fixed 2026-11-19 (commit 7bff75b); the capture run's verify from an empty cache passed with `continue_prompt`/`continue_slots`. Old note: every checkpoint loaded from the cache
   starts with blank (FF) cartridge RAM, while the same route replayed from power-on has the game's
   signature in it. Effects: (1) an in-game SAVE made after `goto` of a cached checkpoint writes only the slot,
   without the signature, so the exported `.sav` is formatted away on the next power-on and CONTINUE starts a
@@ -189,7 +213,7 @@ party size lives elsewhere (open question).
   `play.py start --route "TITLE,NEWGAME,..."` from power-on (no `@checkpoint`), then `export`.
 - The title cursor blinks and never settles; the overworld and towns settle. The intro caption screen fades in
   (a teal frame at `PAGE*1` with `w240`): pick its frame by eye.
-- Position pokes: in towns `C301`/`C305` move Alis on the next step (used for the EXIT gate); on the overworld
+- Position pokes: in towns `C301`/`C305` change the coordinates but NOT the picture (Alis stays where she was on screen, capture 2026-11-19): only the gate check uses them (used for the EXIT gate); walk to buildings instead; on the overworld
   the poke did not move her and left a half-drawn screen (4 variants tried, `t21`).
 - After a poke the HUD box (name, HP, MP) keeps the old value until the game redraws it (STAS showed the new
   values at once).
@@ -210,6 +234,10 @@ party size lives elsewhere (open question).
 | `cave_out` | beside the cave entrance south-west of Camineet |
 | `dungeon` | inside that cave, lit with a FLASH: first-person corridor |
 | `continue` | `sav:01_start` loaded through the title's CONTINUE |
+| `church` | inside the Camineet church, priest's first page |
+| `passage` | green first-person passage under the grey dome, entry square |
+| `cave_chest` | first cave, chest open prompt 6 squares north of the entry |
+| `cave_battle` | first cave, Wing Eye battle command menu |
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -226,6 +254,8 @@ party size lives elsewhere (open question).
 - Exact revision against No-Intro (v1.2 vs v1.3 export): needs Dat-o-Matic or SMS Power.
 - Overworld warp: which variable holds the overworld position/map (pokes of `C301`/`C305` did not take there).
 - Party size / membership variable (to add Myau, Odin, Noah by poke).
+- How to talk to townspeople (bumping and buttons tried, see Controls).
+- Church: the manual says it tells the EXP needed for the next level; answering NO only gives a blessing.
 - Title `down` did not move the cursor in one test (`up` did); check once more.
 - The manual describes save-name registration (RUB/ADV/END, 5 letters); the US cartridge asked for none.
 - Debug menu / sound test: TCRF unavailable here.
