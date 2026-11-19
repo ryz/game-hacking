@@ -11,3 +11,19 @@ maze1 | Floor 1 (0,0) facing north under the stairs up: first control in the maz
 vet | Castle with the veteran party (VET pokes level 13, HP 49-124, E.P., gold, ages, all mage spells for DEDDO, all priest spells for EBO, half for MNZ) | @start,VET,e,w300,c,w300,settle
 vmaze | Floor 1 (0,0) facing north with the veteran party | @vet,MAZE,settle
 werdna_sign | Floor 10 (17,4): the sign 'LAIR OF THE EVIL WIZARD WERDNA - THE WIZARD IS **IN**' (veterans, warped) | @vmaze,WARP:0A:10:04,settle,r,w200,r,w200,f,w400,settle
+werdna | Floor 10 (17,3): Werdna's fight after kicking the door south of the sign: 1 UNSEEN ENTITY, 1 W E R D N A, 1 UNSEEN ENTITY; RYZ'S OPTIONS F)IGHT S)PELL P)ARRY R)UN U)SE (veterans) | @werdna_sign,enter,w300,r,w300,w1,k,w600,w1500,settle
+werdna_won | Floor 10 (17,3) after beating Werdna and both vampires in one round of a real fight (Malikto, Tiltowait, Lahalito): all six alive, EBO carries the amulet | @werdna,f,w150,2,w150,f,w150,2,w150,s,w150,type:MALIKTO\n,w200,p,w150,s,w150,type:TILTOWAIT\n,w200,s,w150,type:LAHALITO\n,w200,2,w200,w10,enter,w3000,settle
+malor_home | Floor 1 (0,0): 'STAIRS GOING UP. TAKE THEM (Y/N) ?' after DEDDO's MALOR from Werdna's room (17 west, 3 south, 9 up), amulet in EBO's pack | @werdna_won,c,w400,5,w400,settle,s,w300,type:MALOR\n,w400,settle,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,s,w60,s,w60,s,w60,u,w60,u,w60,u,w60,u,w60,u,w60,u,w60,u,w60,u,w60,u,w60,settle,enter,w900,settle
+ending | The ending: *** CONGRATULATIONS *** ... BOON OF 250,000 EXPERIENCE POINTS EACH ... CHEVRON (>) ... PRESS [RETURN], HONORED ONES (after the real Werdna fight and Malor) | @malor_home,y,w900,settle
+after_ending | Castle after the ending: the six with the chevron, 250,000 more E.P., equipment and most gold taken | @ending,enter,w900,settle
+final | Castle menu after the ending and a look at RYZ's sheet in the Tavern (source of save 02_ending and of the Wizardry II transfer disk) | @after_ending,g,w300,1,w400,settle,l,w300,enter,w300,settle
+battle | Floor 1 (7,1) fight room: 3 SLIMES, RYZ'S OPTIONS F)IGHT S)PELL P)ARRY R)UN U)SE (level 1 party) | @maze1,poke:7330=0700,poke:732E=0100,poke:732A=0000,w5,r,w200,l,w200,w600,settle
+chest | Floor 1 (7,1) after beating the 3 Slimes in one round: 27 experience points each, A CHEST! O)PEN C)ALFO L)EAVE I)NSPECT D)ISARM | @battle,f,w150,f,w150,f,w150,p,w150,s,w150,type:HALITO\n,w200,p,w150,w1,enter,w2500,settle
+ending_poke | The ending by the shortcut: veterans, AMULET (Werdna's amulet poked into RYZ's pack) and HOME (step off and back onto the floor 1 stairs) | @vmaze,AMULET,HOME,w300,settle
+resume | Castle menu, party formed from the exported 01_start roster (level 1) | sav:01_start,RESUME,settle
+resume_end | Castle menu, party formed from the exported 02_ending roster (level 13, chevrons) | sav:02_ending,RESUME,settle
+gcamp | Camp at the maze entrance: veterans with poked gear (GEARPOKE), equipped by E)QUIP (AC -4 -1 3 4 9 7) | @vet,GEARPOKE,e,w300,m,w900,EQUIPALL,settle
+gcastle | Castle with the equipped veterans (gcamp, back up the stairs) | @gcamp,l,w300,y,w900,settle
+gmaze | Floor 1 (0,0) facing north with the equipped veterans (MAZE2: the second maze entry of a session loads longer) | @gcastle,MAZE2,settle
+gwerdna_sign | Floor 10 (17,4): Werdna's sign, equipped veterans (warped) | @gmaze,WARP:0A:10:04,settle,r,w200,r,w200,f,w400,settle
+gwerdna | Floor 10 (17,3): Werdna's fight with the equipped veterans: 1 W E R D N A, 1 VAMPIRE LORD, 1 UNSEEN ENTITY; RYZ'S OPTIONS | @gwerdna_sign,enter,w300,r,w300,w2,k,w600,w1500,settle

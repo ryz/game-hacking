@@ -4,3 +4,35 @@
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/apple2/wizardry/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # title_screen | title | Title screen | @title
+# Plan (scout 2026-11-19; routes checked with tools/try.py, not captured). Full plan by category: playbook, Shot plan.
+# The DOS set's ids apply where the content is the same; translate its routes with the playbook's table.
+# title_logo | title | Title: the Wizardry logo over the wizard and his cauldron | @title
+# menu_copyright | menu | Copyright, version 2.1 of 22-JAN-82, S)tart game U)tilities T)itle page | @menu
+# menu_utilities | menu | Wizardry Utilities: recover, transfer, backup, make scenario disk, update, change names | @menu,u,w600
+# menu_castle | menu | Castle: the party of six and the five places | @start
+# menu_roster_inherited | menu | Training Grounds roster: the 20 characters found on the disk | @castle,TRAINING,type:*ROSTER\n,w400
+# menu_inn_rooms | menu | Adventurer's Inn: stables to royal suites | @vet,a,w300,1,w400
+# menu_temple | menu | Temple of Radiant Cant: "Who are you helping ?" | @vet,c,w400
+# shop_boltac_stock | shop | Boltac's stock, first page: long sword 25 ... dagger 5 | @vet,b,w300,1,w400,b,w500
+# menu_edge | menu | Edge of Town | @edge
+# menu_camp | menu | Camp: reorder, equip, disband, inspect, leave | @camp
+# inventory_sheet_ryz | inventory | RYZ's sheet with equipped gear | @gcamp,1,w400
+# inventory_spellbook_mage | inventory | DEDDO's known mage spells | @vet,g,w300,5,w400,r,w300,m,w400
+# system_dumapic | system | DUMAPIC: party location | @vmaze,c,w400,5,w400,s,w300,type:DUMAPIC\n,w400
+# gameplay_maze_f1 | gameplay | Floor 1 entrance: stairs going up | @maze1
+# gameplay_dark | gameplay | Floor 1 darkness: the view is empty | @maze1,poke:7330=0900,poke:732E=0500,poke:732A=0000,a,w100,d,w100
+# gameplay_elevator | gameplay | Floor 1 elevator: buttons A through D | @gmaze,WARP:01:0A:07,poke:732A=0000,a,w100,d,w100,w,w400,w600
+# gameplay_elevator_f4 | gameplay | Floor 4 elevator: buttons A through F | @gmaze,WARP:04:0A:00
+# dialogue_f2_placard | dialogue | Floor 2 (14,11): a placard near the ground | @gmaze,WARP:02:0F:0B,poke:732A=0300,a,w100,d,w100,w,w400,w600
+# dialogue_f10_plaque | dialogue | Floor 10 (0,0) after the chute: the gold plaque | @gmaze,WARP:09:08:01,poke:732A=0000,a,w100,d,w100,w,w400,w900
+# battle_slimes | battle | Floor 1: 3 Slimes, RYZ's options | @battle
+# battle_chest | battle | 27 experience points each and a chest | @chest
+# dialogue_werdna_sign | dialogue | Floor 10: "Lair of the evil wizard Werdna - the wizard is **in**" | @werdna_sign
+# boss_werdna | boss | Werdna and two unseen entities, RYZ's options | @werdna
+# boss_werdna_friendly | boss | "A friendly group of W E R D N A. They hail you in welcome!" | @werdna_sign,enter,w300,r,w300,w17,k,w600,w1500
+# boss_four_dead | boss | Surprised: four dead after Werdna's first spell | @werdna_sign,enter,w300,r,w300,k,w600,w1500
+# system_malor | system | MALOR: 17 west, 3 south, 9 up | (malor_home's route up to the last Return)
+# gameplay_stairs_amulet | gameplay | Back on the floor 1 stairs with the amulet | @malor_home
+# ending_congratulations | ending | *** Congratulations *** | @ending
+# ending_castle_chevron | ending | The Castle after the ending | @after_ending
+# save_leave_game | save | "Press [Return] for more Wizardry" after L)eave game | @final,e,w300,l,w900

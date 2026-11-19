@@ -23,8 +23,19 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Wizardry: Proving Grounds of the Mad Overlord, the 1981 Apple II original (version 2.1 of 22 January 1982), is
+a first-person party role-playing game. The player keeps a roster of up to 20 characters, forms a party of six
+in a castle made of text menus (tavern, inn, temple, trading post, training grounds) and takes it down a maze
+of ten floors of 20 by 20 squares drawn as a small wireframe view beside the command list and the party table
+**(verified)** `start`, `maze1`. Fights are turn-based against up to four groups of monsters, with orders given
+to all six members before a round runs **(verified)** `battle`, `werdna`. The goal is the amulet held by the
+wizard Werdna on floor 10; bringing it back to the castle ends the quest with 250,000 experience points and
+the chevron of rank for each member, at the price of all equipment and most gold **(verified)** `ending`. The
+roster on the scenario disk is the only save; the game writes it as it goes **(verified)** saves 01, 02.
+This folder starts the three lens documents for the Apple II version. The scenario data (floors, items,
+monsters, spells) is the DOS port's **(verified by decoding both disks: the ten floors differ in one square)**;
+the DOS design documents (`../../../dos/wizardry/design/`) hold the detailed rules and tables and are linked
+from the rows here, each row saying what was re-checked on the Apple II.
 
 ## Documents
 | Document | Covers |
@@ -33,6 +44,8 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 | [interface.md](interface.md) | UI/UX lens: conventions, inventory of every screen, menu, prompt and element, screen flow |
 | [content.md](content.md) | content lens: a reasonable variety of environments, opponents, items, equipment, abilities, people |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
+| [maps/floors.txt](maps/floors.txt) | the ten floors as text maps with their special squares, decoded from the scenario disk (`../tools/maps.py`) |
+| DOS: [systems](../../../dos/wizardry/design/systems.md), [interface](../../../dos/wizardry/design/interface.md), [content](../../../dos/wizardry/design/content.md), [items](../../../dos/wizardry/design/items.md), [findings](../../../dos/wizardry/design/findings.md) | the detail documents of the DOS port (same scenario data, other screens and keys) |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
      enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
@@ -40,3 +53,6 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| the game disks | `rom/wizardry.zip` (not committed) | every prompt and message (program text), maps, item and monster tables, roster |
+| DOS port documents | `games/dos/wizardry/design/` | rules and tables, re-checked where a row says so |
+| scout's playbook | `../playbook.md` | routes, checkpoints, what was verified on 2026-11-19 |
