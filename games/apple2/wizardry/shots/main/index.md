@@ -1,6 +1,6 @@
 # Wizardry: Proving Grounds of the Mad Overlord - shots: main
 
-Platform apple2, region na, model iiplus-wp1, ROM SHA-1 `ae554d7dee72819912300e06874fe69f05765781`. 291 shots. Contact sheet: [wizardry_apple2_na_set_sheet.png](wizardry_apple2_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform apple2, region na, model iiplus-wp1, ROM SHA-1 `ae554d7dee72819912300e06874fe69f05765781`. 304 shots. Contact sheet: [wizardry_apple2_na_set_sheet.png](wizardry_apple2_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -295,5 +295,18 @@ Platform apple2, region na, model iiplus-wp1, ROM SHA-1 `ae554d7dee72819912300e0
 | boss_paralyzed | boss | "Vampire thrusts at RYZ and hits 1 times for 4 damage - RYZ is paralyzed" | yes | [png](wizardry_apple2_na_boss_boss_paralyzed.png) [3x](3x/wizardry_apple2_na_boss_boss_paralyzed.png) |
 | boss_level_drain | boss | The same touch: "2 levels are drained!" | yes | [png](wizardry_apple2_na_boss_boss_level_drain.png) [3x](3x/wizardry_apple2_na_boss_boss_level_drain.png) |
 | boss_round2 | boss | Round 2: RYZ paralyzed (P-LYZE), moved to sixth place, 88 hit points left | yes | [png](wizardry_apple2_na_boss_boss_round2.png) [3x](3x/wizardry_apple2_na_boss_boss_round2.png) |
+| env_f1_passages | gameplay | Floor 1: an open passage with turnings on both sides (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f1_passages.png) [3x](3x/wizardry_apple2_na_gameplay_env_f1_passages.png) |
+| env_f1_corridor | gameplay | Floor 1: a corridor ending at a door, doors on the right (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f1_corridor.png) [3x](3x/wizardry_apple2_na_gameplay_env_f1_corridor.png) |
+| env_f2_door | gameplay | Floor 2: standing in front of a door (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f2_door.png) [3x](3x/wizardry_apple2_na_gameplay_env_f2_door.png) |
+| env_f2_crossing | gameplay | Floor 2: a corridor crossing another (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f2_crossing.png) [3x](3x/wizardry_apple2_na_gameplay_env_f2_crossing.png) |
+| env_f4_door | gameplay | Floor 4: a door at the end of a short corridor (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f4_door.png) [3x](3x/wizardry_apple2_na_gameplay_env_f4_door.png) |
+| env_f5_long_view | gameplay | Floor 5: a long view past side walls (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f5_long_view.png) [3x](3x/wizardry_apple2_na_gameplay_env_f5_long_view.png) |
+| env_f5_corridor | gameplay | Floor 5: a corridor with doors on the right (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f5_corridor.png) [3x](3x/wizardry_apple2_na_gameplay_env_f5_corridor.png) |
+| env_f6_corridor | gameplay | Floor 6: a corridor with doors on the left (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f6_corridor.png) [3x](3x/wizardry_apple2_na_gameplay_env_f6_corridor.png) |
+| env_f7_door | gameplay | Floor 7: a door ahead (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f7_door.png) [3x](3x/wizardry_apple2_na_gameplay_env_f7_door.png) |
+| env_f8_corner | gameplay | Floor 8: a corner with a passage to the right (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f8_corner.png) [3x](3x/wizardry_apple2_na_gameplay_env_f8_corner.png) |
+| env_f9_corridor | gameplay | Floor 9: a long corridor with doors on the left (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f9_corridor.png) [3x](3x/wizardry_apple2_na_gameplay_env_f9_corridor.png) |
+| env_f3_side_passage | gameplay | Floor 3: a wall ahead, a passage to the left (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f3_side_passage.png) [3x](3x/wizardry_apple2_na_gameplay_env_f3_side_passage.png) |
+| env_f10_corridor | gameplay | Floor 10: a corridor with a door at its end (nothing happening: a standard view) | yes | [png](wizardry_apple2_na_gameplay_env_f10_corridor.png) [3x](3x/wizardry_apple2_na_gameplay_env_f10_corridor.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

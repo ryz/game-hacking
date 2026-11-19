@@ -104,7 +104,8 @@ Current snapshot; history in `progress-log.md`.
   Notes: `docs/emulator/apple2.md`.
 
 - Wizardry I-V on the Apple II (2026-11-19, queue halted by the owner after two games' worth of work):
-  **I** scouted and captured (`games/apple2/wizardry/`: 291 shots to the ending, lenses clean). **II** scouted, not
+  **I** scouted and captured (`games/apple2/wizardry/`: `main` 304 shots to the ending incl. 13 plain maze views,
+  lenses clean; `start` 47 shots, the early game to the first save). **II** scouted, not
   captured (`games/apple2/wizardry-2/`: transfer from I works, 39 checkpoints to the ending; next step: dispatch
   game-capture; its disk 2 carries four characters of an earlier player that the routes delete). **III, IV, V**
   registered only (next step for III: game-scout with `rom/saves/apple2/wizardry-3/00_transfer.sav`). Dumps and

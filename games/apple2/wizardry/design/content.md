@@ -123,16 +123,17 @@ The name in quotes is what the group is called before it is identified. Pictures
 
 ## Standard views of the maze (2026-11-19)
 Plain views with nothing happening, one or two per floor: what the player looks at most of the time. The maze
-has one look on all ten floors (white and violet wireframe; doors are frames in a wall) **(verified: the shots)**.
+has one look on all ten floors (white and violet wireframe; doors are frames in a wall) **(verified: the shots)**. The same wall arrangement gives the same picture on any floor: three sampled views
+were pixel-identical to others and were replaced.
 
 | Floor | What is in view | Shots |
 |---|---|---|
 | 1 | an open passage with turnings; a corridor ending at a door | `env_f1_passages`, `env_f1_corridor` |
-| 2 | a door close up; side openings; a crossing | `env_f2_door`, `env_f2_side_passages`, `env_f2_crossing` |
-| 3-4 | openings on both sides; a door at the end of a short corridor | `env_f3_openings`, `env_f4_door` |
+| 2 | a door close up; a crossing | `env_f2_door`, `env_f2_crossing` |
+| 3-4 | a passage to the left; a door at the end of a short corridor | `env_f3_side_passage`, `env_f4_door` |
 | 5-6 | a long view; corridors with doors along one wall | `env_f5_long_view`, `env_f5_corridor`, `env_f6_corridor` |
 | 7-8 | a door ahead; a corner | `env_f7_door`, `env_f8_corner` |
-| 9-10 | a long corridor with doors; openings on both sides | `env_f9_corridor`, `env_f10_openings` |
+| 9-10 | a long corridor with doors; a corridor ending at a door | `env_f9_corridor`, `env_f10_corridor` |
 
 ## Open questions
 - Monsters of floors 5 and 6 and the five pictures not met (bear, amphibian, insect, dragon, creeping coin):

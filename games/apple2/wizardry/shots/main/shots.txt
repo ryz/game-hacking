@@ -290,3 +290,16 @@ boss_mabadi | boss | "W E R D N A casts a spell - MNZ is hit by MABADI!" | @gwer
 boss_paralyzed | boss | "Vampire thrusts at RYZ and hits 1 times for 4 damage - RYZ is paralyzed" | @gwerdna,f,w150,2,w150,f,w150,2,w150,p,w150,p,w150,p,w150,p,w150,enter,w560,!
 boss_level_drain | boss | The same touch: "2 levels are drained!" | @gwerdna,f,w150,2,w150,f,w150,2,w150,p,w150,p,w150,p,w150,p,w150,enter,w720,!
 boss_round2 | boss | Round 2: RYZ paralyzed (P-LYZE), moved to sixth place, 88 hit points left | @gwerdna,f,w150,2,w150,f,w150,2,w150,p,w150,p,w150,p,w150,p,w150,enter,w1500
+env_f1_passages | gameplay | Floor 1: an open passage with turnings on both sides (nothing happening: a standard view) | @gmaze,WARP:01:01:02,poke:732A=0000,a,w100,d,w100,w300,settle
+env_f1_corridor | gameplay | Floor 1: a corridor ending at a door, doors on the right (nothing happening: a standard view) | @gmaze,WARP:01:0B:12,poke:732A=0000,a,w100,d,w100,w300,settle
+env_f2_door | gameplay | Floor 2: standing in front of a door (nothing happening: a standard view) | @gmaze,WARP:02:12:03,poke:732A=0100,a,w100,d,w100,w300,settle
+env_f2_crossing | gameplay | Floor 2: a corridor crossing another (nothing happening: a standard view) | @gmaze,WARP:02:0D:04,poke:732A=0000,a,w100,d,w100,w300,settle
+env_f4_door | gameplay | Floor 4: a door at the end of a short corridor (nothing happening: a standard view) | @gmaze,WARP:04:13:02,poke:732A=0000,a,w100,d,w100,w300,settle
+env_f5_long_view | gameplay | Floor 5: a long view past side walls (nothing happening: a standard view) | @gmaze,WARP:05:0D:01,poke:732A=0000,a,w100,d,w100,w300,settle
+env_f5_corridor | gameplay | Floor 5: a corridor with doors on the right (nothing happening: a standard view) | @gmaze,WARP:05:02:08,poke:732A=0300,a,w100,d,w100,w300,settle
+env_f6_corridor | gameplay | Floor 6: a corridor with doors on the left (nothing happening: a standard view) | @gmaze,WARP:06:0E:0B,poke:732A=0100,a,w100,d,w100,w300,settle
+env_f7_door | gameplay | Floor 7: a door ahead (nothing happening: a standard view) | @gmaze,WARP:07:11:08,poke:732A=0100,a,w100,d,w100,w300,settle
+env_f8_corner | gameplay | Floor 8: a corner with a passage to the right (nothing happening: a standard view) | @gmaze,WARP:08:05:04,poke:732A=0100,a,w100,d,w100,w300,settle
+env_f9_corridor | gameplay | Floor 9: a long corridor with doors on the left (nothing happening: a standard view) | @gmaze,WARP:09:03:0F,poke:732A=0300,a,w100,d,w100,w300,settle
+env_f3_side_passage | gameplay | Floor 3: a wall ahead, a passage to the left (nothing happening: a standard view) | @gmaze,WARP:03:03:12,poke:732A=0100,a,w100,d,w100,w300,settle
+env_f10_corridor | gameplay | Floor 10: a corridor with a door at its end (nothing happening: a standard view) | @gmaze,WARP:0A:06:13,poke:732A=0100,a,w100,d,w100,w300,settle

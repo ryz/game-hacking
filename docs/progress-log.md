@@ -2,6 +2,21 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Capture guide: standard environment shots and the `start` set; Wizardry I (Apple II) has both
+- Owner's request: a few regular dungeon screenshots for Wizardry I, and as general rules a few standard
+  environment shots with nothing special happening, and a set `start` for the early game (ending after the
+  save). Both rules are in `docs/capture-guide.md` (Must-have list, Sets) and step 6 of the capture skill.
+- Wizardry I `main`: +13 plain maze views over floors 1-10 (`env_...`), picked from 60 sampled squares; 304
+  shots. Four sampled views were pixel-identical to other shots (the wireframe repeats: same wall arrangement,
+  same picture on any floor) and were replaced. Lens check clean.
+- Wizardry I `start`: 47 shots in play order, power-on to L)eave the game, played with the level 1 party and no
+  pokes: creation, tavern, Boltac's with the 101 starting gold (long sword, leather armor), camp and equip,
+  the walk from the stairs to the first room, a real first fight (five Orcs surprise the party, three flee, 39
+  experience each), the thief inspects and opens the chest (6 gold a share), the walk back, the inn (healing,
+  1011 experience to the next level), save. New checkpoints `s_shopped` to `s_home`. Verified 49/49 from an
+  empty cache before two duplicate pictures were dropped.
+- Not done: the other games have neither the plain views nor a `start` set yet.
+
 ## 2026-11-19 - Wizardry I-V registered on the Apple II; I scouted and captured, II scouted; queue halted
 - Owner uploaded the five games and asked for them in order, then halted the queue after the Wizardry I capture
   and the Wizardry II scout. Disk sets: I boot + scenario, II and III two disks, IV six, V nine sides (side E

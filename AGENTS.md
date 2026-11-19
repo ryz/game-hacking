@@ -36,7 +36,7 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | `games/dos/ultima-2/` | DOS (GOG) | screenshot set (226, to the ending text: five periods, planets, quest chain, honest Minax fight), three lens documents, period warp, map/town/shop/monster tools, saves |
 | `games/dos/ultima-3/` | DOS (GOG) | screenshot set (260, to the ending text: party of four, nine combat fields, Ambrosia, moongates, dungeon rods, Time Lord, Exodus), three lens documents plus rules.md, warps, town/dungeon/RNG tools, saves |
 | `games/apple2/might-and-magic/` | Apple II (four disk sides, cracked side 1) | registered 2026-11-18; plays from power-on through disk changes into Sorpigal and the wilderness, inn save; screenshot set (308, to the ending: the DOS set's routes replayed plus every area once and the disk prompts), three lens documents over the DOS detail documents, area warp, macros, checkpoints |
-| `games/apple2/wizardry/` | Apple II (1981 original, boot + scenario disk, model `iiplus-wp1`) | screenshot set (291, to the ending: Werdna beaten in play, every castle service, creation, about 40 monster groups), three lens documents, ten floor maps and data tools, floor warp, 26 checkpoints |
+| `games/apple2/wizardry/` | Apple II (1981 original, boot + scenario disk, model `iiplus-wp1`) | screenshot set (304, to the ending: Werdna beaten in play, every castle service, creation, about 40 monster groups, plain maze views), `start` set (47, the early game played honestly to the first save), three lens documents, ten floor maps and data tools, floor warp, 26 checkpoints |
 | `games/apple2/wizardry-2/` | Apple II (1982, two disks) | scouted 2026-11-19: Wizardry I party moved over with the game's utility, 39 checkpoints to the ending, RAM map, floor warp, six floor maps; not captured |
 | `games/apple2/wizardry-3/`, `wizardry-4/`, `wizardry-5/` | Apple II | registered 2026-11-19 (2, 6 and 9 disk sides; all boot to the title); not scouted |
 | `games/sms/phantasy-star/` | Master System (US/EU release, v1.2 header) | screenshot set (109, all three planets and most bosses; ending not reached), battles set (12), four dungeon sequences, three lens documents, warp/dungeon/fight/party macros, ROM table tools, save |
@@ -91,6 +91,9 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
   release of the dump, a translated Japanese ROM is `jp`), the shot's category, its id; `.<set>` for sets other
   than `main` and `seq-*`. The slug is the short game name without the platform (`wizardry`, not `wizardry-nes`).
   The tools build the names; link a shot by the file name in the set's `index.md`.
+- Standard sets and shots (owner's rules 2026-11-19, `docs/capture-guide.md`): every `main` set has a few plain
+  environment views with nothing happening (`env_...`); a set `start` shows the early game in play order to the
+  first save, played honestly.
 - Three lenses per game (owner's request 2026-11-18, `docs/capture-guide.md` "Three lenses"): `design/systems.md`
   (game design: every feature, system, mechanic), `design/interface.md` (UI/UX: every screen, menu, prompt,
   element, conventions, screen flow) and `design/content.md` (a reasonable variety of environments, opponents,
