@@ -1,3 +1,13 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title: the Wizardry logo over the wizard and his cauldron (end of the opening animation) | pow,TITLE,settle
+menu | Copyright text, VERSION 2.1 OF 22-JAN-82, S)TART GAME U)TILITIES T)ITLE PAGE (write-protect check poked past) | @title,space,w300,poke:845A=00,w300,settle
+castle | Castle menu, no party (scenario disk in drive 1; the inherited roster of 20 is still on it) | @menu,s,w300,disk:2,enter,w600,enter,w900,settle
+start | Castle menu: party RYZ CONDI EBO CUBI DEDDO MNZ (level 1; the 20 inherited characters deleted, the six made in the Training Grounds) formed in the Tavern | @castle,TRAINING,WIPE,PARTYMAKE,enter,w400,g,w300,ADDPARTY,enter,w300,settle
+edge | Edge of Town: M)AZE, T)RAINING GROUNDS, C)ASTLE, L)EAVE THE GAME (party formed) | @start,e,w300,settle
+camp | Camp on entering the maze: R)EORDER, E)QUIP, D)ISBAND, #) TO INSPECT, L)EAVE THE CAMP | @edge,m,w600,settle
+maze1 | Floor 1 (0,0) facing north under the stairs up: first control in the maze | @camp,l,w300,n,w200,settle
+vet | Castle with the veteran party (VET pokes level 13, HP 49-124, E.P., gold, ages, all mage spells for DEDDO, all priest spells for EBO, half for MNZ) | @start,VET,e,w300,c,w300,settle
+vmaze | Floor 1 (0,0) facing north with the veteran party | @vet,MAZE,settle
+werdna_sign | Floor 10 (17,4): the sign 'LAIR OF THE EVIL WIZARD WERDNA - THE WIZARD IS **IN**' (veterans, warped) | @vmaze,WARP:0A:10:04,settle,r,w200,r,w200,f,w400,settle
