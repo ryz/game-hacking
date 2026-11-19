@@ -1,3 +1,6 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title screen: Wizardry logo, 'Scenario #2 - The Knight of Diamonds', a monster picture, S)tart game / M)ake scenario disk | pow,TITLE,settle
+start | Castle (Llylgamyn) menu: ryz condi ebo cubi deddo mnz imported from Wizardry I (Utilities M)ove characters, sav:00_transfer) and formed in the Tavern; levels 11-13, no items | pow,sav:00_transfer,PARTY,settle
+resume | Castle menu, party ryz condi ebo cubi deddo mnz formed from the exported 01_start roster (levels 11-13, no items) | pow,sav:01_start,RESUME,settle

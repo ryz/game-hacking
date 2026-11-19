@@ -3,7 +3,7 @@
   "title": "Wizardry II: The Knight of Diamonds (DOS)",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "ega-315",
   "rom": "rom/wizardry-2.zip",
   "sha1": "42934ace1ad2b1570c1f662f44f26cad1e76f130",
   "crc32": "6cf18b90",
@@ -23,6 +23,13 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
+  "macros": {
+    "TITLE": "w120,down,enter,w300",
+    "CASTLE": "TITLE,s,w800",
+    "IMPORT": "e,w120,u,w120,m,w200,g,w60,h,w60,i,w60,j,w60,k,w60,l,w60,enter,w700,enter,w120,c,w120",
+    "ADDPARTY": "g,w120,a,w120,c,w90,d,w90,e,w90,f,w90,k,w90,l,w120,enter,w120",
+    "PARTY": "CASTLE,IMPORT,ADDPARTY",
+    "RESUME": "CASTLE,ADDPARTY"
+  },
   "ram": {}
 }
