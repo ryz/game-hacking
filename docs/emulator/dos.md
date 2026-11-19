@@ -15,6 +15,8 @@ the author's own GitHub repository only points to Codeberg). `tools/dosbox-pure-
 - `retro_gamedb_pc`: CS:IP for `status`.
 - a fix in the savestate loader (the frame in progress was dropped, so a loaded run was one frame ahead).
 - `retro_gamedb_flush`: write the save ZIP now (see Saves).
+- `GamedbMarkWritten` in `src/dos/drive_union.cpp`: a write through a file that stays open marks it for the save
+  ZIP at once (see Saves).
 - `retro_gamedb_running`: whether a program runs (the launch log ends there); `retro_gamedb_readb`: one byte
   through the page handlers, for the text screen.
 
@@ -104,11 +106,12 @@ program:
   and copy the files over the ones in the game folder (folders inside have DOS short names such as
   `MIGHIC-1/`). `sav:NAME` powers on with it.
 - Might and Magic 1 keeps the roster in memory and reads ROSTER.DTA only when the program starts.
-- Open bug: DOSBox Pure marks a drive dirty only when a file is closed, so `retro_gamedb_flush` misses writes
-  through a handle that stays open (the Wizardry loader keeps SAVE1.DSK open all session): states carry no
-  disk changes until the game closes the file (Wizardry writes the roster on Leave game, so it is harmless
-  there). A game that reads back such writes would break. Fix idea: `Union_WriteHandle::Write` in
-  `src/dos/drive_union.cpp` sets `impl->dirty`, plus a test with a program that writes without closing.
+- Files a game keeps open (the Wizardry I-III loaders hold SAVEn.DSK all session): DOSBox Pure alone marks a
+  file for the save ZIP only when it is closed, so such writes were missing from states until Leave game, and
+  Wizardry II, which reads its roster back, showed old rosters after a cached checkpoint. Fixed 2026-11-19 in
+  the core patch (`GamedbMarkWritten`: every write marks the file; test
+  `test_dos_state_carries_writes_to_open_file`). States made with an older core keep the old behaviour: delete
+  `work/cache/dos/<slug>` after rebuilding the core.
 - Scouts check checkpoints on the disk too: save in the game after a cache hit and after an empty-cache
   rebuild and compare the written files (done for Might and Magic II, 2026-11-19).
 

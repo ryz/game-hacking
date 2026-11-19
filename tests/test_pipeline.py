@@ -707,6 +707,34 @@ def test_dos_state_carries_written_files(dos_selftest, tmp_path):
     g.close()
 
 
+def test_dos_state_carries_writes_to_open_file(tmp_path):
+    """A game that keeps its save file open (Wizardry I-III loaders): writes through the open handle reach the
+    state's files at once, not only when the file is closed (core patch: GamedbMarkWritten)."""
+    if not os.path.exists(platforms.Dos.SO):
+        pytest.skip("DOSBox Pure core not built (sh tools/setup_emu.sh dos)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_dos_zip
+    rom = tmp_path / "h.zip"
+    rom.write_bytes(make_dos_zip.build_hold())
+    st1, st2 = str(tmp_path / "1.state"), str(tmp_path / "2.state")
+    e = platforms.Dos().open(str(rom))
+    e.frames(120)
+    e.input(["x"]); e.frames(4); e.input([]); e.frames(30)
+    e.save_state(st1)
+    assert platforms.Dos._files(e.battery(0)).get("D.DAT") == b"x......."
+    e.input(["y"]); e.frames(4); e.input([]); e.frames(30)          # same handle, already marked once
+    e.save_state(st2)
+    assert platforms.Dos._files(e.battery(0)).get("D.DAT") == b"xy......"
+    e.close()
+    f = platforms.Dos().open(str(rom))                                  # fresh machine
+    f.frames(5)
+    f.load_state(st1)
+    assert platforms.Dos._files(f.battery(0)).get("D.DAT") == b"x......."
+    f.load_state(st2)
+    assert platforms.Dos._files(f.battery(0)).get("D.DAT") == b"xy......"
+    f.close()
+
+
 def test_dos_start_menu_states(tmp_path):
     """Two programs in the ZIP: the core shows its start menu and makes no states there. A state taken in the
     menu is an input log; one taken in the program loads into a machine that is still in the menu (a new

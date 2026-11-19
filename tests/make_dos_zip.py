@@ -24,6 +24,29 @@ EXIT = bytes.fromhex("B8004CCD21")      # a second program (exits at once): with
                                            # shows its start menu instead of starting the only one
 
 
+HOLD = bytes.fromhex(   # opens the shipped D.DAT read/write once, then writes every key into it and never closes
+    "B8023DBA2E01CD21"  # 0100 mov ax,3D02h / mov dx,012Eh / int 21h   open D.DAT
+    "89C3"              # 0108 mov bx,ax                               handle kept in bx
+    "B400CD16"          # 010A mov ah,0 / int 16h        wait for a key -> al
+    "3C717417"          # 010E cmp al,'q' / je 0129
+    "A23401"            # 0112 mov [0134h],al
+    "B440B90100BA3401CD21"  # 0115 mov ah,40h / mov cx,1 / mov dx,0134h / int 21h   write 1 byte
+    "8A163401B402CD21"  # 011F mov dl,[0134h] / mov ah,2 / int 21h   print the key
+    "EBE1"              # 0127 jmp 010A
+    "B8004CCD21"        # 0129 mov ax,4C00h / int 21h    exit (DOS closes the file)
+    "442E44415400"      # 012E "D.DAT",0
+    "00")               # 0134 buffer
+
+
+def build_hold():
+    """HOLD.COM + D.DAT ("........"): a game that keeps its save file open, like the Wizardry loaders."""
+    b = io.BytesIO()
+    with zipfile.ZipFile(b, "w") as z:
+        z.writestr(zipfile.ZipInfo("HOLD.COM", (1990, 1, 1, 0, 0, 0)), HOLD)
+        z.writestr(zipfile.ZipInfo("D.DAT", (1990, 1, 1, 0, 0, 0)), b"........")
+    return b.getvalue()
+
+
 def build(menu=False):
     b = io.BytesIO()
     with zipfile.ZipFile(b, "w") as z:

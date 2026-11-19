@@ -99,7 +99,7 @@ index 0000000..ca9e28a
 +struct tm* __wrap_localtime(const time_t* t) { return gamedb_usec ? gmtime(t) : __real_localtime(t); }
 +}
 diff --git a/src/dos/drive_union.cpp b/src/dos/drive_union.cpp
-index 08ec043..993d441 100644
+index 08ec043..7878107 100644
 --- a/src/dos/drive_union.cpp
 +++ b/src/dos/drive_union.cpp
 @@ -142,6 +142,10 @@ public:
@@ -129,7 +129,34 @@ index 08ec043..993d441 100644
  		if (dirty)
  			WriteSaveFile((Bitu)this);
  		if (dirty)
-@@ -1146,3 +1152,12 @@ Bits unionDrive::UnMount(void) { delete this; return 0;  }
+@@ -578,6 +584,18 @@ struct unionDriveImpl
+ 		dirty = true;
+ 	}
+ 
++	// game-hacking (tools/dosbox-pure-debug.patch): mark a file written through a handle that is still open, so
++	// retro_gamedb_flush includes it (the core alone only marks a file when it is closed; a game that keeps its
++	// save file open all session had its writes missing from every savestate). Schedules nothing.
++	void GamedbMarkWritten(const char* path)
++	{
++		if (save_file.empty()) return;
++		const Bit32u namecrc = DriveCalculateCRC32((const Bit8u*)path, (size_t)strlen(path));
++		for (Bit32u it : dirty_paths) { if (it == namecrc) { dirty = true; return; } }
++		dirty_paths.push_back(namecrc);
++		dirty = true;
++	}
++
+ 	void ForceCloseFileAndScheduleSave(DOS_Drive* drv, const char* path, bool isFile)
+ 	{
+ 		if (isFile) DriveForceCloseFile(drv, path);
+@@ -693,6 +711,7 @@ struct Union_WriteHandle : public DOS_File
+ 			dos.errorcode = save_errorcode;
+ 		}
+ 		if (!dirty) dirty = true;
++		impl->GamedbMarkWritten(name); // game-hacking: see GamedbMarkWritten
+ 		return real_file->Write(data, size);
+ 	}
+ 
+@@ -1146,3 +1165,12 @@ Bits unionDrive::UnMount(void) { delete this; return 0;  }
  
  #include <dbp_serialize.h>
  DBP_SERIALIZE_SET_POINTER_LIST(PIC_EventHandler, unionDrive, unionDriveImpl::WriteSaveFile);
