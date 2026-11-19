@@ -15,8 +15,8 @@ Each entry: what the game does, what was probably intended, how sure we are, and
 five pieces. With them in the roster every guardian square gave an ordinary random group; after deleting them
 in the Training Grounds the same routes met the five guardians (checkpoints `guard1` to `guard5`).
 **Intended:** the pieces are unique: a second copy cannot be won while one exists.
-**Confidence:** (verified) for the set of four; (inferred) that each guardian looks only for its own piece (the
-gauntlets' guardian was not tried with only THUG present).
+**Confidence:** (verified) for the set of four and piece by piece: with only the gauntlets' holder deleted the
+gauntlets' guardian came and the shield's did not.
 **Impact:** a used scenario disk can make the quest look broken; the fix is to delete or strip the holders.
 
 ## The Training Grounds disband the party
@@ -30,3 +30,12 @@ gauntlets' guardian was not tried with only THUG present).
 **Intended:** unclear; Wizardry I takes any key.
 **Confidence:** (verified).
 **Impact:** none beyond a moment of doubt.
+
+## Six at the award ceremony lose a member
+**Behavior:** a party of six that reaches the castle with the staff (possible here only with a staff put into
+a pack from outside the game) gets the ending; while the awards are asked the second member's place is used for
+each candidate, and afterwards the roster holds the last candidate twice and the second member not at all
+(route `@start,STAFF,MAZE,HOME`, five times Y, leave the game; roster read from the disk).
+**Intended:** the bearer is meant to arrive alone: Gnilda's test wants one alone.
+**Confidence:** (verified) once, roster read with `tools/data.py`.
+**Impact:** none in normal play; for cataloguing: go up alone.

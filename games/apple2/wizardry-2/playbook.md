@@ -120,15 +120,22 @@ after `m` `w1500`, equip prompts `w400` each (`e,w900` first), a step or turn `w
   | 4 | (7,12) | (10,4): 1 MAGIC HELMET (74) | (9,4) -> floor 5 (1,18) | KOD'S HELMET (126) (verified) |
   | 5 | (1,18) | (10,9): 2 MAGIC GAUNTLETS (76) | (10,10) -> floor 6 (0,0) | KOD'S GAUNTLETS (128) (verified) |
   | 6 | (0,0) | fixed-fight squares (5,15), (5,16), (18,18), (18,19), (19,19): monster 47 HIGH PRIEST (not visited) | none | - |
-  Floor 6 (1,2) the sphinx ("LYING IN FRONT OF THE DOOR IS A BEAST WITH THE HEAD OF A MAN AND THE BODY OF A
-  LION. IN AN HYPNOTIC VOICE IT INTONES:", verified first page, `sphinx`); (1,3) "ONE, ALONE." (disk text);
-  (1,4) teleport to floor 1 (9,9); Gnilda's temple floor 1 (9,10).
+  Floor 6 (1,2), kicked into from (1,1): the sphinx (verified, `sphinx` ... `temple_door`): "LYING IN FRONT OF
+  THE DOOR IS A BEAST WITH THE HEAD OF A MAN AND THE BODY OF A LION. IN AN HYPNOTIC VOICE IT INTONES:" /
+  ""ENTER HERE, THE VERY FEW WHO CAN GIVE THE ANSWER TRUE OF THIS RIDDLE ASKED OF YOU." / "SEARCH THIS LEVEL, IF
+  YOU DARE SEARCH EACH DEN AND MONSTER LAIR THREE CLUES HAVE I HIDDEN THERE." / "SEARCH EACH PASSAGE AND EACH ROOM
+  FOR A KING WITHIN HIS TOMB FOR THE ANSWER WAS HIS DOOM." / "IF YOU LIVE, YOU SHOULD NOT LOSE FOR THE ANSWER TO
+  THIS RUSE LIES CONFUSED AMONG THE CLUES." (five Returns), "ANSWER ?": `THE KNIGHT OF DIAMONDS` -> "RIGHT!" (the
+  party stays; anything else: "WRONG!" and back on (1,1)). Kick north: (1,3) "THE APPARITION REAPPEARS AND
+  INTONES: "ONE ALONE.""; kick north again: (1,4) teleports to floor 1 (9,9), facing north at the door of
+  Gnilda's temple (9,10). The doors here need K)ick (F)orward says "OUCH!").
 - **A guardian appears only while its piece is not in the roster** (verified, and the main trap of this dump):
   with the four stock characters on the disk every guardian square gave "AN ENCOUNTER" with an ordinary random
   group, on entering, re-entering, after winning and after running (about fifteen tries on floors 1-5); after `WIPE` the
-  same routes meet MAGIC ARMOR, SHIELD, SWORD, HELMET and GAUNTLETS. Not tested one piece at a time (the
-  gauntlets' guardian with only THUG deleted, and so on): the rule is inferred for the single piece. It follows
-  that a party that already carries a piece does not meet its guardian again.
+  same routes meet MAGIC ARMOR, SHIELD, SWORD, HELMET and GAUNTLETS. Piece by piece: with only THUG (the
+  gauntlets' holder) deleted, floor 5's square met "2 OBJECTS" with the gauntlet picture and floor 2's square
+  (shield, held by FURY) still a random group (verified, two routes). So a party that already carries a piece
+  should not meet its guardian again (inferred; not tried with our own party).
 - **Random fights are harsher and more frequent than on DOS**: arriving on a fight-zone square by stairs or
   warp, and kicking a door into a room, met a group almost every time (seen on floors 1-5: 5 MEN IN ARMOR + 5
   PRIESTS, 6 WERETIGERS, 5 TROLLS + 3 OGRES, 5 DEMONIC FIGURES + 1 LVL 8 NINJA; unidentified names until the
@@ -151,8 +158,13 @@ after `m` `w1500`, equip prompts `w400` each (`e,w900` first), a step or turn `w
   YOU THE RIGHT TO CREATE 5 KNIGHTS OF THE CITY OF LLYLGAMN  PRESS [RET] TO ASSIGN AWARDS". Then "KNIGHTHOODS
   LEFT : 5 / AWARD ONE TO CONDI (Y/N) ? >" for the other roster characters in roster order; the counter starts at five (only five
   others were in the roster, so what happens to a sixth was not seen; DOS asks for every character). The staff is taken; RYZ gets `">G"` and 300,000 E.P.
-  (686,327 -> 986,327), the knights `">K"`. Whether a party of six with the staff gets the ending was not
-  tried here (DOS: no).
+  (686,327 -> 986,327), the knights `">K"`.
+- **A party of six with the staff gets the ending too, and it damages the roster** (verified with the poked
+  staff, `@start,STAFF,MAZE,HOME` + five Y: DOS gives six no ending). The award step uses the second party
+  place for each candidate: afterwards the Castle lists RYZ, MNZ, EBO, CUBI, DEDDO, MNZ, and after L)eave game
+  the roster has MNZ's record in CONDI's slot (CONDI is gone, MNZ exists twice). Through the event the bearer
+  is alone anyway (Gnilda's test wants one alone and there is no way to add members below). **Always go up
+  alone (`SOLO`) when `STAFF` is used.**
 - **Game over**: as Wizardry I (not seen here). The helmet and the gauntlets killed four of six in one round.
 
 ## Differences a capture agent trips over
@@ -162,7 +174,10 @@ From the DOS version:
 - guardians need `WIPE` (above); DOS routes that kick straight into a guardian work only after it;
 - no Utilities and no Training menu in the Edge of Town; Training is a name prompt and disbands the party;
 - Tavern add is by typed name + password Return, remove by number; leave screens with `l` or Return as printed;
-- battle: round 1 offers S)PELL when the party is not surprised (DOS: never in round 1); spell names in capitals;
+- battle: S)PELL is on RYZ's first-round menu in most fights, in some surprise rounds too and in others not
+  (rule not worked out; the guardians' first round has it and the spells are cast; DOS: no spells in round 1);
+  spell names in capitals; a fight against several groups asks "FIGHT AGAINST GROUP# ?" after `f`;
+- a party of six with the staff gets the ending (DOS: no) and loses a character to it (Game structure);
 - the ending is a text screen with other words, Queen Margda, five knighthoods at most;
 - the riddle answer is typed in capitals; "LLYLGAMN" is the screens' spelling;
 - memory: position at `730E`-`7314`, party at `737E`, battle group at `6DCA` (RAM map); 16-byte monster records
@@ -217,8 +232,10 @@ How to reach: everything from `@start`, `@gcastle`, `@gmaze` + `WARP`, the guard
   and the Magic Shield (76 hit points left after the round) were still standing after the three spells; the Magic Helmet and the Magic Gauntlets
   answer with spells and blows that leave four dead. For those: poke the hit points to 1 during the orders
   (`poke:6DD6=0100`, second monster `6DE6`) and let a fighter's blow land (`guard2_won`, `guard4_won`,
-  `guard5_won`), or `WIN` (the armor: its AC -10 was not hit in three tries).
-- The finder of a piece varies with timing (armor: DEDDO; shield: RYZ or DEDDO; helmet: RYZ; gauntlets: CONDI or EBO).
+  `guard5_won`), or `WIN` (the armor: its AC -10 was not hit in three tries; the helmet: it acts before the
+  fighters and killed three or four members in all thirteen waits tried, `guard4_costly` keeps one such round,
+  `guard4_won` uses `WIN` and nobody is hurt).
+- The finder of a piece varies with timing (armor: DEDDO; shield: RYZ or DEDDO; helmet: RYZ or DEDDO; sword: MNZ; gauntlets: CONDI or EBO).
   Pieces arrive unidentified ("ARMOR", "SHIELD" ...): MNZ's I)dentify or Boltac's.
 - Critical path: five guardians -> one bearer wears all five -> floor 6 sphinx -> "ONE, ALONE." -> teleport to
   floor 1 (9,9) -> the others out in the Tavern (`SOLO`) -> (9,10) answer -> staff -> floor 1 (0,0) stairs ->
@@ -226,9 +243,10 @@ How to reach: everything from `@start`, `@gcastle`, `@gmaze` + `WARP`, the guard
   chain that carries the real drops to one bearer was not built.
 - Gnilda takes the bearer's whole pack: RYZ ends with nothing (`final`: AC 10 after a camp trip).
 - **Timing**: every fight depends on all frames before it. Timing-bound checkpoints: `battle`, `chest`,
-  `guard1`-`guard5` (which group, surprise), `guard2_won`-`guard5_won` (the round), `gnilda_test` (no random
-  group came when the door was kicked; the same route from `@start` without gear met one every time, over twenty
-  variants tried). Do not edit a macro or wait earlier in the chain: add checkpoints.
+  `guard1`-`guard5` (which group, surprise), `guard2_won`, `guard3_won`, `guard4_costly`, `guard5_won` (the
+  round), `gnilda_test` (no random group came when the door was kicked; the same route from `@start` without
+  gear met one every time, over twenty variants tried: which rooms hold a group is rolled when the floor is
+  first loaded in a session), `temple_door` (the two kicks met nothing). Do not edit a macro or wait earlier in the chain: add checkpoints.
 
 ## Naming
 No naming: the six come from Wizardry I (RYZ CONDI EBO CUBI DEDDO MNZ). Utilities C)HANGE NAMES exists ("ENTER
@@ -255,7 +273,7 @@ THE CURRENT NAME OF THE CHAR & THEN THE NEW NAME", program text; not used).
 | Monster hit points | `poke:6DD6=0100` (group 1, monster 1; next monsters +0x10) during the orders | scout | verified (shield 76, armor 305, ninja read; kills in `guardN_won`) |
 | Lone bearer | `SOLO` (Castle): Tavern, remove 6, 5, 4, 3, 2 | DOS macro | verified |
 | The five pieces | `KOD`: RYZ's pack = armor, Hrathnir, helmet, shield, gauntlets, all equipped and identified (replaces his pack) | DOS macro | verified (Gnilda's test) |
-| The staff | `STAFF`: RYZ's pack = staff of Gnilda (item 124) | DOS macro | written, **not tested here** (the event's staff was used) |
+| The staff | `STAFF`: RYZ's pack = staff of Gnilda (item 124); with `SOLO`, `MAZE`, `HOME` the ending (`ending_poke`). Never with six (Game structure) | DOS macro | verified |
 | Home | `HOME` (any floor-1 square): poke (0,1) facing south, step onto the stairs, Y | DOS macro | verified (`ending`) |
 | Awards | `KNIGHTS`: Return, then Y five times (CONDI EBO CUBI DEDDO MNZ: the only other roster characters after `WIPE`) | scout | verified |
 | Re-form | `REFORM`: Tavern, add the five by name | scout | verified |
@@ -271,6 +289,7 @@ run: the disks and the DOS documents answered what was needed).
 | 00_transfer | input, made by the Wizardry I scout: `T Wizardry I.dsk` with the six after Werdna | `games/apple2/wizardry/tools/transfer.py` | `646deb548d50937b94eb3e26bcffc69cc981fca2` | verified (`start`) |
 | 01_start | roster after the transfer and `WIPE`: the six, level 13, chevron, no items | `@start,e,w300,l,w900` + export | `83686fb50ef7f027b35c4f6d3fd1bac84bca4004` | verified (`resume`) |
 | 02_ending | after the ending: RYZ `>G` 986,327 E.P. without items, the five `>K` with their gear | `@final,e,w300,l,w900` + export | `9e3cd5b3f5897824db0f8f34ad5eeb4be036019e` | verified (`resume_end`, `data.py roster`) |
+| 03_ending_noitems | after the shortcut ending without gear (`ending_poke`): RYZ `>G`, the five `>K`, original gold, no items at all | `@plain_final,e,w300,l,w900` + export | `31cff46670841c8a7269928ff75245e23d10faba` | verified (`data.py roster`) |
 
 ### The transfer disk for Wizardry III (`rom/saves/apple2/wizardry-3/00_transfer.sav`, never committed)
 `python3 games/apple2/wizardry-2/tools/transfer.py` stores the `2 Disk 2.dsk` image of `02_ending.sav`,
@@ -281,9 +300,12 @@ unchanged, as `T Wizardry II.dsk` in a new ZIP (fixed date: the same image gives
   3 23 8 15 / 2 22 7 21 / 32 9 28 / 5 22 7 16), all OK, in the Castle, no passwords; 14 free slots; the
   unchanged Wizardry II scenario.
 - Not tried in Wizardry III. Risk: this game's own transfer refuses "** CHAR HAS NON-XFERRABLE ITEMS **"
-  (program text; which items is not known). If Wizardry III refuses the five for their gear, drop the items
-  first (sheet, D)rop) or sell them at Boltac's from `sav:02_ending,RESUME` and export again; RYZ carries
-  nothing. An item-free ending chain from `@start` was tried and always met a random group at the temple door.
+  (program text; which items is not known). For that case a second disk exists:
+  `rom/saves/apple2/wizardry-3/00_transfer_noitems.sav` (`transfer.py rom/saves/apple2/wizardry-2/03_ending_noitems.sav
+  rom/saves/apple2/wizardry-3/00_transfer_noitems.sav`), ZIP SHA-1 `ae1ec27e0f57bdd2fb2c92314075fe9adec828f8`,
+  image SHA-1 `dabe4ea8700db6fc78e3a241a13781c5760bf993`: the same six with the same marks, original gold,
+  empty packs. Its ending came from the `STAFF` poke, not from Gnilda (an item-free run through the temple
+  always met a random group at the door).
 
 ## RAM map (for `game.json` "ram" watches and pokes)
 Addresses in the 64K the program sees (main memory below `C000`); the same on every run of these routes.
@@ -333,17 +355,21 @@ OBJECT +52 (130), CHAR +72 (20; slot n at `(148+72)*512 + (n div 4)*400 + (n mod
 | `gcamp`, `gcastle`, `gmaze` | the party with gear: camp, Castle, floor 1 (0,0) |
 | `battle`, `chest` | floor 1 (14,2): 5 DEMONIC FIGURES + 1 LVL 8 NINJA, the party surprised them; the chest after `WIN` |
 | `guard1` ... `guard5` | the five guardians at RYZ's options |
-| `guard1_won` ... `guard5_won` | after each guardian (1: `WIN`; 2, 4, 5: hit points poked to 1 + a real blow; 3: a real win), piece in a pack |
-| `sphinx` | floor 6 (1,2): the riddle's first page |
+| `guard1_won` ... `guard5_won` | after each guardian (1, 4: `WIN`; 2, 5: hit points poked to 1 + a real blow; 3: a real win), nobody dead, piece in a pack (DEDDO 129, DEDDO 127, MNZ 125, DEDDO 126, CONDI 128) |
+| `guard4_costly` | the helmet beaten by a real blow after its spell: four dead |
+| `sphinx`, `sphinx_answer`, `sphinx_right`, `one_alone`, `temple_door` | floor 6 (1,2): the riddle's first page, "ANSWER ?", "RIGHT!"; (1,3) "ONE ALONE."; floor 1 (9,9) after the teleport |
+| `ending_poke`, `plain_final` | the ending by `SOLO` + `STAFF` without gear; the Castle after its awards and `REFORM` (nobody carries an item) |
 | `gnilda_test`, `gnilda_answer`, `staff_gift`, `staff` | RYZ alone with the five at the temple: the fiery face, "ANSWER ?", the gift's first page, "RYZ GOT ITEM" |
 | `ending`, `knights`, `final` | GAUDEAMOUS; Castle after the five awards; Castle with the party re-formed |
 | `resume`, `resume_end` | Castle from `sav:01_start` / `sav:02_ending` (need the files in `rom/saves/apple2/wizardry-2/`) |
 Cold check: `python3 games/apple2/wizardry-2/tools/cachecheck.py` builds every checkpoint from an empty cache
 and compares it with a cache hit in a fresh process (frame, memory 0000-BFFF, written disks), prints each
 checkpoint's floor, square, packs and marks, and writes each frame to `work/scout/apple2/wizardry-2/cc_NAME.png`.
-Result of the last run: see the end of this section.
-
-(cold check running when this was committed: see the next commit)
+Last run 2026-11-19 on model `iiplus-wp1`: all 39 checkpoints identical cold, from the cache and against the
+cache that existed before (frame, memory and written disks). The frames of the fight, quest and ending
+checkpoints were looked at on one sheet afterwards: that look is what showed four dead in the first helmet
+win (now `guard4_costly`), which the hashes could not. A run takes about 12 minutes; with names as arguments
+it still empties the whole cache first.
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -358,8 +384,9 @@ No web source was fetched (the time went to the emulator). The manual was not re
 - Why the temple door met no random group in `gnilda_test` and always one from `@start` without gear; a fight
   there can be ended with `WIN` and the square entered again (not tried).
 - Group 2-4 record layout in battle; `WIN` for a third and fourth group.
-- `STAFF` poke, the ending with six, the sphinx's later pages and its answer on floor 6, floor 2's riddle
-  (3,6) (DOS: "shield"), floor 6's fixed fights: not tried here.
+- Floor 2's riddle (3,6) (DOS: "shield"), floor 6's fixed fights, the other message squares: not tried here.
+- Whether the six-member ending also loses a character when the staff comes from Gnilda (cannot happen in
+  play as far as seen).
 - Temple, Boltac's (stock, identify price), Inn level-up, chest open/disarm, U)se, trade: flows are the capture's.
 - Utilities R)ECOVER, B)ACKUP, M)AKE SCENARIO DISK, U)PDATE, C)HANGE NAMES: text read, not used.
 - Whether Wizardry III accepts characters with items (above).

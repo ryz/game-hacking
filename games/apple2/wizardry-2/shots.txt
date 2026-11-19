@@ -43,3 +43,8 @@
 # ending_castle | ending | Castle after the awards | @final
 # ending_sheet_keeper | ending | RYZ's sheet with the marks >G | @final,g,w300,1,w400
 # save_leave_game | save | Leave game: press Return for more Wizardry | @start,e,w300,l,w900
+# system_sphinx_answer | system | The sphinx's answer prompt | @sphinx_answer
+# dialogue_sphinx_right | dialogue | RIGHT! | @sphinx_right
+# dialogue_one_alone | dialogue | The apparition: "One alone." | @one_alone
+# gameplay_temple_door | gameplay | Floor 1 (9,9) after the teleport: the temple door | @temple_door
+# boss_helmet_costly | boss | After the Magic Helmet: four dead | @guard4_costly
