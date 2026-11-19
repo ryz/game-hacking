@@ -48,7 +48,8 @@
     "SHOP": "POS:{0}:{1},t,w30,1,w30,{2},w200",
     "GATE": "poke:2CA4={0},poke:2CA5={1},poke:2CA7=00,space,w100",
     "SHIP": "poke:2E3A=0B,poke:4412=00,poke:442A=19,space,w60",
-    "NOFLOORS": "poke:2C0C=00000000"
+    "NOFLOORS": "poke:2C0C=00000000",
+    "MON": "poke:2C00={0},poke:2C20={1},poke:2C40={2},poke:2C60={3},poke:2C80=C0,poke:{4}={0},space,w60"
   },
   "ram": {
     "x": {

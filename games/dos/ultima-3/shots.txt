@@ -1,103 +1,170 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/dos/ultima-3/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# Plan (scout 2026-11-19): game order; "route" = where to start (checkpoint/macro), pick frames with do!/wN.
-#
-# --- title and menus (new party) ---
-# title_drawing | title | Exodus being drawn line by line on the title screen | w600 from power-on (do!: the drawing runs f300-f2400)
-# title_screen | title | Title screen: Exodus, Ultima III by Lord British, a dragon on the border | @title
-# title_demo | title | Attract demo: a strip of Sosaria with ships and monsters, Press <Space> | @title,w900
-# menu_main | menu | Main menu: Return to the View, Organize a Party, Journey Onward | @menu
-# menu_organize | menu | Party Organization menu | @menu,ORGANIZE
-# menu_create_entry | menu | Create: Entry# prompt (1-20) | @menu,ORGANIZE,c,w60,enter,w200
-# menu_create_form | menu | Create form: Entry#01, Points:50, Name ryz typed | (C_RYZ steps up to the name)
-# menu_create_race | menu | Create form: sex, race and type chosen (Male Human Paladin) | (C_RYZ steps)
-# menu_create_stats | menu | Create form complete: Str 20 Dex 10 Int 05 Wis 15, O.K.? | (C_RYZ without the final y)
-# menu_register | menu | Register: ryz, condi, ebo, cubi in entries 1-4 | @party,o,w60,enter,w300,e,w60,enter,w300
-# menu_form | menu | Form the Party: Player-1..4 = 1..4, (Formed) | (FORM steps)
-# menu_look | menu | Look at a Character: ryz's sheet | @party,o,w60,enter,w300,l,w60,enter,w200,1,enter
-# menu_return_view | cutscene | Return to the View: the attract demo again | @menu,r,w60,enter
-# --- first moments ---
-# start_party | gameplay | The party arrives on Sosaria beside Lord British's castle | @start
-# hud_status | hud | Play screen: map view, moons (0)(1), wind, four status panels, message area | @start
-# ztats_1 | inventory | Ztats for ryz: statistics, H.P., gold, experience | @start,z,w30,1 (+space lines)
-# ztats_2 | inventory | Ztats for ryz: weapons and armour owned | (more space lines)
-# peer_gem | map | Peer at gem: a miniature map of Sosaria | @hero,p,w30,1,w300
-# look_grass | system | Look North: Grass | @start,l,w30,up
-# save_quit | save | Quit & Save: 00000008 moves, Please wait... | @start,q,w300
-# --- towns, castle, Lord British ---
-# towne_lcb | gameplay | The towne LCB: guards, merchants, the pub | @towne
-# castle_gate | gameplay | Lord British's castle: the south gate and moat | @castle
-# castle_throne | gameplay | Throne room: Lord British, jesters, BRITISH sign | @lordbritish
-# lb_experience | dialogue | Lord British: Welcome my child, Experience more! | @lordbritish
-# lb_greater | dialogue | Lord British raises a level: Thou art greater | @hero,ENTER:2D:12,POS:20:0F,t,w30,1,w30,up,w300
-# lb_mark | dialogue | Lord British: Seek ye, the Mark of Kings! | @hero,poke:2E5A=0F06,ENTER:2D:12,POS:20:0F,t,w30,1,w30,up,w300
-# talk_* (6-8) | dialogue | Townsfolk lines (Dawn, Ambrosia, Silver Snake, cards, marks, exotics) | ENTER + POS beside a person + t
-# shop_pub | shop | The pub in LCB: It costs 7 g.p. | @hero,ENTER:2E:13,SHOP:11:10:up
-# shop_grocer | shop | Ye local Grocer: rations | @hero,ENTER:2E:13,SHOP:30:31:down
-# shop_weapons | shop | Weapons Shop list | @hero,ENTER:2E:13,SHOP:27:13:up (+ y for the list)
-# shop_armour | shop | Armour Shop list | @hero,ENTER:2E:13,SHOP:32:14:up
-# shop_healer | shop | Clerical Healing Sacraments | @hero,ENTER:2D:12,SHOP:2E:1A:up
-# shop_guild | shop | The Guild shop: keys, torches, powders, gems | @hero,ENTER:07:2C,SHOP:21:15:up
-# shop_oracle | shop | Radrion, Prophet of Life: offering, the sage's rhyme | @hero,ENTER:2D:12,SHOP:14:2E:up
-# shop_horses | shop | Equine Emporium in Devil Guard's stables | @hero,ENTER:12:1F,SHOP:0B:0F:up
-# bribe_guard | system | Bribe a guard (100 gold), he leaves | town guard square + o,1,bribe
-# steal_chest | system | Steal Chest in a town | town chest square + s + direction
-# unlock_door | system | Unlock a door with a key | town door + u
-# townes (8) | gameplay | Moon, Yew, Montor East/West, Grey, Devil Guard, Fawn, Death Gulch once each | @hero,ENTER:x:y
-# yew_pray | system | Yew's Circle of Light: Pray: Yell 'Evocare' | @hero,ENTER:22:10,POS:30:30,o,w30,1,w30,p,r,a,y,enter,w200
-# dawn_appears | system | Dawn rises in the Dark Forest when both moons are new | @hero,POS:25:36,GATE:07:07
-# dawn_towne | gameplay | The city of Dawn | @dawn
-# --- travel ---
-# horse_ride | gameplay | The party on horseback | @hero,poke:2E3A=0A,space,w60
-# frigate | gameplay | Sailing a frigate | @hero,POS:3B:15,SHIP
-# frigate_fire | system | Firing the frigate's cannons | @hero,POS:3B:15,SHIP,f,w30,right
-# wind_change | system | The wind line under the map (sailing against the wind: Invalid Move!) | serpent with a West Wind
-# moongate_open | system | A moongate opens beside the party | @moongate
-# moongate_through | system | Through the moongate: below the Time dungeon | @time
-# whirlpool | cutscene | The whirlpool swallows the frigate, You awaken on the shores of a forgotten Land | @ambrosia (and the frames before)
-# --- fights ---
-# battle_start | battle | Conflict!! ->Orcs: the combat screen | @fight
-# battle_attack | battle | Attack: Hit! Killed! Exp.+03 | @fight + moves + a,dir
-# battle_spell | battle | A spell in combat | @fight,c,...
-# battle_victory | battle | ****Victory!**** | @fight + fight to the end
-# battle_chest | system | The chest left after the fight, Get chest | after victory, g,1
-# battle_* (4-6) | battle | Other foes: thieves, skeletons, giants, daemons, dragons, balrons, pirates, sea serpent | @hero,FOE:tile
-# --- dungeons ---
-# dungeon_dark | gameplay | Dungeon entry: It's dark! | @hero,ENTER:2E:07
-# dungeon_torch | gameplay | Torch lit: corridor and a ladder, LVL:01 Head--East | @dungeon
-# dungeon_ladder | system | Klimb / Descend a ladder | dungeon ladder square + d/k
-# dungeon_fight | battle | A fight in the dungeon | dungeon + walking
-# dungeon_fountain | system | A fountain: Who will drink? How wonderful! | @hero,ENTER:31:22,TORCH,DNG:07:0A:07:03,up,w100,1,w300
-# dungeon_writing | system | Misty writing: the level's message | DNG next to an 08 square
-# dungeon_trap | system | Argh!! A trap!! / Gremlins! / Strange wind! | DNG next to 04/06/03 squares
-# dungeon_rod | system | A red hot rod in the wall. Who will touch? | @rod
-# dungeon_mark | system | It left a mark! (the Mark of Snake) | @rod,1,w300
-# timelord | cutscene | The vision of the Time Lord: Love, Sol, Moons & Death | @timelord
-# --- Ambrosia ---
-# ambrosia_shore | gameplay | Ambrosia: the shore after the whirlpool | @ambrosia
-# ambrosia_monsters | battle | Ambrosia's guardians near a shrine | @ambrosia (without CALM), walk
-# shrine_enter | system | Shrine of Intelligence: Offering*100 | @shrine
-# shrine_shazam | system | An offering raises Intelligence: Shazam! | @shrine,1,enter,...
-# card_found | system | Search the shrine: A card, with strange marks! | @card
-# ztats_cards | inventory | Ztats: Card of Love, Sol, Moons, Death and the four marks | @hero,z,w30,1 + lines
-# --- endgame ---
-# dig_exotics | system | Dig on the islet: Exotics! | @hero,POS:21:03,o,w30,1,w30,d,i,g,enter,w200
-# serpent | gameplay | The Silver Snake bars the strait to the Isle of Fire | @serpent
-# evocare_nomark | system | EVOCARE without the Mark of Snake: No effect! | @serpent with poke:2E5A=0F06
-# evocare | system | EVOCARE: the frigate passes the serpent | @evocare
-# isle_of_fire | gameplay | The Isle of Fire and Castle Exodus | @evocare,up,w60,up,w60
-# exodus_gate | gameplay | Castle Exodus: lava and the south gate | @exodus
-# exodus_lava | system | Walking through lava with the Mark of Fire | @exodus + walk
-# exodus_field | system | Force fields passed with the Mark of Force | @exodus + POS + walk
-# exodus_monsters | boss | Daemons and a balron guard the halls | @exodus + walk north
-# exodus_floors | boss | The Floor guardians before Exodus (->Floor) | @exodus,POS:1E:0E,w300
-# exodus_slots | boss | Exodus: four slots | @exodus_slots
-# insert_love | system | Insert the Card of Love: the first slot vanishes | @exodus_slots,INSERT:1:l
-# insert_wrong | system | A wrong card | @exodus_slots,INSERT:1:d
-# ending_flash | ending | The castle flashes as Exodus is destroyed | @exodus_slots + inserts (do! frames)
-# ending_congrats | ending | Congratulations! Thou hast compleated Exodus: Ultima 3 in ... moves | @ending
-# ending_text | ending | And so it came to pass ... Onward to ULTIMA IV! | @ending
-# gameover | gameover | All Players Out! | @start,poke:2E5D=44,poke:2E9D=44,poke:2EDD=44,poke:2F1D=44,space,w300
+# The main set as captured (game-capture 2026-11-19): the order is the set's order. Routes replay with
+# tools/shoot.py dos/ultima-3 main; the work copy is work/shots/dos/ultima-3/main/shots.txt.
+title_drawing | title | Title: the Exodus logo drawn line by line, a party and a dragon below | w600,!
+title_byline | title | Title: Exodus, Ultima III, by ... being written | w1200,!
+title_screen | title | Title screen: Exodus, Ultima III by Lord British, Copyright 1983 | @title
+title_demo | title | Attract demo: a strip of Sosaria with castles, frigates, monsters | @title,w900,!
+title_demo_moves | title | Attract demo later: a party and monsters moved on, Press <Space> | @title,w1500,!
+menu_main | menu | Main menu: Return to the View, Organize a Party, Journey Onward | @menu
+menu_option_echo | menu | A letter echoes the whole choice: Option:Organize (Enter confirms) | @menu,o,w60,!
+menu_organize | menu | Party Organization: register, create, form, disperse, terminate, look | @menu,ORGANIZE
+menu_create_entry | menu | Create a Character: Entry# (1-20) | @menu,ORGANIZE,c,w60,enter,w200
+menu_create_name | menu | Create form: Entry#01, Points:50, the name ryz typed | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,w60
+menu_create_sex | menu | Create form: Sex asked (M, F or O; no list is shown) | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60
+menu_create_race | menu | Male chosen; Race asked (H, E, D, B, F) | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60
+menu_create_type | menu | Human chosen; Type asked (eleven classes by letter) | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60,h,w30,enter,w60
+menu_create_str | menu | Paladin chosen; 50 points to spread, Strength first | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60,h,w30,enter,w60,p,w30,enter,w60
+menu_create_ok | menu | Strength 20, Dexterity 10, Intelligence 05, Wisdom 15: Points:00, O.K.? | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60,h,w30,enter,w60,p,w30,enter,w60,2,0,enter,w60,1,0,enter,w60,0,5,enter,w60,1,5,enter,w60
+menu_create_done | menu | O.K.?Yes: ryz the Male Human Paladin is created, Press <Space> | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60,h,w30,enter,w60,p,w30,enter,w60,2,0,enter,w60,1,0,enter,w60,0,5,enter,w60,1,5,enter,w60,y,w60,enter,w200
+menu_create_fuzzy | menu | Another build: deddo, Other Fuzzy Lark, Dex 20 Int 20, O.K.? | @party,ORGANIZE,c,w60,enter,w200,5,w60,enter,w200,d,e,d,d,o,enter,w60,o,w30,enter,w60,f,w30,enter,w60,l,w30,enter,w60,0,5,enter,w60,2,0,enter,w60,2,0,enter,w60,0,5,enter,w60
+menu_create_overspent | menu | Intelligence 30 refused: only 25 points were left | @party,ORGANIZE,c,w60,enter,w200,5,w60,enter,w200,d,e,d,d,o,enter,w60,o,w30,enter,w60,f,w30,enter,w60,l,w30,enter,w60,0,5,enter,w60,2,0,enter,w60,3,0,enter,w60
+menu_create_notempty | menu | Create on entry 1 again: (Not Empty!) | @party,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200
+menu_form | menu | Form the Party: Player-1..4 = entries 1-4, (Formed) | @menu,ORGANIZE,C_RYZ,C_CONDI,C_EBO,C_CUBI,f,w60,enter,w300,1,w30,enter,w100,2,w30,enter,w100,3,w30,enter,w100,4,w30,enter,w300
+menu_form_inuse | menu | Form the Party again while one is formed: (Party in Use) | @menu,PARTY,o,w60,enter,w300,f,w60,enter,w300
+menu_register | menu | Examine the Register: ryz, condi, ebo, cubi in entries 1-4 (* in party) | @party,o,w60,enter,w300,e,w60,enter,w300
+menu_look | menu | Look at a Character: ryz, Paladin, Hand and Skin, 150 food and gold | @party,o,w60,enter,w300,l,w60,enter,w200,1,enter,w200
+menu_disperse | menu | Disperse the Party: (Dispersed!) | @party,ORGANIZE,d,w60,enter,w300
+menu_terminate | menu | Terminate a Character: Entry#5, (No one there) | @party,ORGANIZE,t,w60,enter,w300,5,w60,enter,w200
+menu_return_view | menu | Return to the View: back to the attract demo | @menu,r,w60,enter,w300,!
+gameplay_start | gameplay | Journey Onward: the new party beside Lord British's castle and LCB | @start,w30,!
+inventory_ztats_new | inventory | Ztats for #1: ryz, Str 20 Dex 10 Int 05 Wis 15, H.P. 150 | @start,z,w30,1,w60,!
+inventory_ztats_new_arms | inventory | Ztats, last lines: Dagger and Hands, Cloth and Skin owned | @start,z,w30,1,w60,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,!
+system_look | system | Look North: ->Castle; Look East: ->Towne | @start,up,w30,right,w30,l,w30,up,w30,l,w30,right,w60,!
+gameplay_invalid_move | gameplay | Walking into the sea on foot: Invalid Move! | @start,right,w30,right,w30,right,w30,up,w60,!
+save_quit | save | Quit & Save: 00000008 moves, Please wait... (play goes on) | @start,q,w300,!
+gameplay_refusals | gameplay | Nothing to act on: Board, Enter, Fire, X-it, Klimb all <-What? | @start,b,w30,e,w30,f,w30,x,w30,k,w60,!
+gameplay_refusals_2 | gameplay | Descend<-What?; Get Chest and Attack-North with nothing there: Not Here! | @start,d,w30,g,w30,1,w30,a,w30,up,w60,!
+system_none_left | system | Peer at gem and Negate Time without gems or powders: None Left! | @start,p,w30,1,w60,n,w30,1,w60,!
+system_no_effect | system | Yell hello, Other command hello: No effect! | @start,y,w30,1,w30,h,e,l,l,o,enter,w60,o,w30,1,w30,h,e,l,l,o,enter,w100,!
+system_ignite_volume | system | Ignite a torch on the surface: Not Here!; V: Volume Off! | @start,i,w60,v,w60,!
+dialogue_lcb_9 | dialogue | LCB, a wizard: Quest ye unto Lost Ambrosia! | @hero,ENTER:2E:13,POS:20:05,t,w30,1,w30,up,w150,!
+dialogue_lcb_11 | dialogue | LCB, a thief: Exodus lies beyond the Silver Snake! | @hero,ENTER:2E:13,POS:0D:13,t,w30,1,w30,down,w150,!
+dialogue_lcb_12 | dialogue | LCB, a merchant: `Dawn' comes each new pair! | @hero,ENTER:2E:13,POS:0C:34,t,w30,1,w30,up,w150,!
+dialogue_lcb_13 | dialogue | LCB, a fighter: Dupre laughs: Drink up! | @hero,ENTER:2E:13,POS:0F:11,t,w30,1,w30,up,w150,!
+dialogue_british_19 | dialogue | Lord British's castle: The Wise Cleric: 4 cards, 4 slots | @hero,ENTER:2D:12,POS:31:09,t,w30,1,w30,down,w150,!
+dialogue_british_20 | dialogue | Lord British's castle: Phantom Fighter: The food stinks! | @hero,ENTER:2D:12,POS:12:1F,t,w30,1,w30,left,w150,!
+dialogue_british_23 | dialogue | Lord British's castle, a jester: Gwino sings: Muh eh oye oh! | @hero,ENTER:2D:12,POS:22:11,t,w30,1,w30,up,w150,!
+dialogue_moon_1 | dialogue | Moon, a cleric: Seek ye the Shrines of Truth | @hero,ENTER:06:0D,POS:0E:11,t,w30,1,w30,up,w150,!
+dialogue_moon_4 | dialogue | Moon, a fighter: <Bribe> guards! They will leave! | @hero,ENTER:06:0D,POS:31:12,t,w30,1,w30,left,w150,!
+dialogue_moon_14 | dialogue | Moon, a cleric: I've been beyond the whirlpool! | @hero,ENTER:06:0D,POS:2B:36,t,w30,1,w30,up,w150,!
+dialogue_moon_19 | dialogue | Moon, a wizard: Dawn rises in the Dark Forest. | @hero,ENTER:06:0D,POS:07:08,t,w30,1,w30,up,w150,!
+dialogue_yew_0 | dialogue | Yew, a cleric: Search and ye shall find! | @hero,ENTER:22:10,POS:16:21,t,w30,1,w30,up,w150,!
+dialogue_montor_e_25 | dialogue | Montor East, a cleric: <Insert> cards into pannels! | @hero,ENTER:31:3A,POS:07:25,t,w30,1,w30,up,w150,!
+dialogue_montor_e_28 | dialogue | Montor East: Baby Bob: Bring me bucks! | @hero,ENTER:31:3A,POS:1B:0D,t,w30,1,w30,up,w150,!
+dialogue_montor_w_31 | dialogue | Montor West, a guard: None shall pass! | @hero,ENTER:2F:3A,POS:20:14,t,w30,1,w30,up,w150,!
+dialogue_grey_24 | dialogue | Grey, a fighter: Exotic clues found at Dawn! | @hero,ENTER:07:2C,POS:19:2F,t,w30,1,w30,right,w150,!
+dialogue_grey_26 | dialogue | Grey, a jester: Don't you wish you were a Jester! | @hero,ENTER:07:2C,POS:19:21,t,w30,1,w30,up,w150,!
+dialogue_devil_1 | dialogue | Devil Guard, a fighter: Hot metal leaves a `Mark'! | @hero,ENTER:12:1F,POS:34:3A,t,w30,1,w30,up,w150,!
+dialogue_devil_3 | dialogue | Devil Guard, a fighter: A `Mark' helps invoke the Snake | @hero,ENTER:12:1F,POS:38:22,t,w30,1,w30,up,w150,!
+dialogue_devil_4 | dialogue | Devil Guard, a fighter: 4 `Marks', 4 uses! | @hero,ENTER:12:1F,POS:2E:1C,t,w30,1,w30,down,w150,!
+dialogue_fawn_1 | dialogue | Fawn, a cleric: <Pray> in the Circle of Light! | @hero,ENTER:1E:02,POS:1C:25,t,w30,1,w30,up,w150,!
+dialogue_fawn_2 | dialogue | Fawn, a cleric: `Invoke' the Silver Snake! | @hero,ENTER:1E:02,POS:1C:1D,t,w30,1,w30,up,w150,!
+dialogue_fawn_3 | dialogue | Fawn, a cleric: To pass you need a Mark! | @hero,ENTER:1E:02,POS:34:0E,t,w30,1,w30,up,w150,!
+dialogue_death_1 | dialogue | Death Gulch, a guard: <Bribe> me to enter | @hero,ENTER:38:1F,POS:0B:21,t,w30,1,w30,up,w150,!
+dialogue_dawn_19 | dialogue | Dawn, a wizard: <Dig> up Exotics | @dawn,POS:39:37,t,w30,1,w30,down,w150,!
+dialogue_dawn_30 | dialogue | Dawn, a wizard: Ambrosia awaits! | @dawn,POS:2F:2E,t,w30,1,w30,left,w150,!
+dialogue_exodus_0 | dialogue | Castle Exodus, a daemon: All may enter, None shall leave | @exodus,POS:1E:36,t,w30,1,w30,up,w150,!
+gameplay_towne_lcb | gameplay | Towne LCB: the pond with the LCB sign, guards and jesters about | @towne,POS:20:20,w30,!
+gameplay_castle | gameplay | Lord British's castle: the hall between the moat's trees | @castle,POS:20:30,w30,!
+gameplay_moon | gameplay | Moon: the Blue Boar, people at its tables | @hero,ENTER:06:0D,POS:2B:12,w30,!
+gameplay_yew | gameplay | Yew: the clerics' hall of Rogation and Worships | @hero,ENTER:22:10,POS:11:30,w30,!
+gameplay_yew_circle | gameplay | Yew: the Circle of Light, a ring of clerics among the trees | @hero,ENTER:22:10,POS:30:30,w30,!
+gameplay_montor_east | gameplay | Montor East: Acme Weaponry behind its counters | @hero,ENTER:31:3A,POS:1C:09,w30,!
+gameplay_montor_west | gameplay | Montor West: the Prison beside the Montor sign | @hero,ENTER:2F:3A,POS:25:16,w30,!
+gameplay_grey | gameplay | Grey: the Taphouse full of drinkers | @hero,ENTER:07:2C,POS:28:1A,w30,!
+gameplay_devil_guard | gameplay | Devil Guard: The Stables, horses in their paddock | @hero,ENTER:12:1F,POS:0B:10,w30,!
+gameplay_fawn | gameplay | Fawn: the Tools of Trade shop | @hero,ENTER:1E:02,POS:1E:0D,w30,!
+gameplay_death_gulch | gameplay | Death Gulch: the Draught or Spot tavern | @hero,ENTER:38:1F,POS:35:23,w30,!
+dialogue_lb_experience | dialogue | Lord British to the new ryz: Welcome my child, Experience more! | @lordbritish,w30,!
+dialogue_lb_greater | dialogue | Lord British to the seasoned ryz: Thou art greater (+100 max H.P.) | @hero,ENTER:2D:12,POS:20:0F,t,w30,1,w30,up,w300,!
+dialogue_lb_mark | dialogue | Lord British without the Mark of Kings: Seek ye, the Mark of Kings! | @hero,poke:2E5A=0F06,ENTER:2D:12,POS:20:0F,t,w30,1,w30,up,w300,!
+dialogue_lb_nomore | dialogue | Lord British at 2500 maximum hit points: No more! | @hero,set:2E68=2500:2:bcd,set:2E6A=2563:2:bcd,ENTER:2D:12,POS:20:0F,t,w30,1,w30,up,w300,!
+shop_pub | shop | LCB, The Pub: Here, friend, have a drink! It costs 7 g.p. You pay? | @hero,ENTER:2E:13,SHOP:11:10:up,!
+shop_pub_scum | shop | The Pub: paying 5 g.p.: Leave my shop! You scum!! | @hero,ENTER:2E:13,SHOP:11:10:up,0,5,enter,w150,!
+shop_pub_kindly | shop | The Pub: 8 g.p. paid: Thank you, kindly! Another? | @hero,ENTER:2E:13,SHOP:11:10:up,0,8,enter,w150,!
+shop_pub_tip_ambrosia | shop | The Pub: 10 g.p. paid, a tip: Ambrosia, ever heard of it? | @hero,ENTER:2E:13,SHOP:11:10:up,1,0,enter,w150,!
+shop_pub_tip_moons | shop | The Pub: 35 g.p., a tip: The conjunction of the moons finds link! | @hero,ENTER:2E:13,SHOP:11:10:up,3,5,enter,w150,!
+shop_pub_tip_time | shop | The Pub: 90 g.p., a tip: Seek ye out the Lord of Time | @hero,ENTER:2E:13,SHOP:11:10:up,9,0,enter,w150,!
+shop_pub_bye | shop | The Pub: Another? No: It's been a pleasure!! | @hero,ENTER:2E:13,SHOP:11:10:up,1,0,enter,w150,n,enter,w150,!
+shop_grocer | shop | LCB, Ye local Grocer: Rations 1 g.p. each. How many would you like? | @hero,ENTER:2E:13,SHOP:30:31:down,!
+shop_grocer_buy | shop | Grocer: 50 rations bought, ryz's food 1846 -> 1896 | @hero,ENTER:2E:13,SHOP:30:31:down,5,0,enter,w150,!
+shop_grocer_poor | shop | Grocer: 9000 rations asked: What? Can't pay! Out you scum! | @hero,ENTER:2E:13,SHOP:30:31:down,9,0,0,0,enter,w150,!
+shop_weapons | shop | LCB, Weapons Shop: List? Yes: Dagger 5gp to 2H Swd 250gp | @hero,ENTER:2E:13,SHOP:27:13:up,y,enter,w200,!
+shop_weapons_buy | shop | Weapons Shop: Buy, Your interest? G: Here you are. May it serve you well. | @hero,ENTER:2E:13,SHOP:27:13:up,n,enter,w60,b,enter,w60,g,enter,w150,!
+shop_weapons_poor | shop | Weapons Shop: a 2H Swd with 230 gold: you haven't the gold! | @hero,ENTER:2E:13,poke:2E6F=3002,SHOP:27:13:up,n,enter,w60,b,enter,w60,h,enter,w150,!
+shop_weapons_sell | shop | Weapons Shop: Sell, For sale? Dagger: Thank you! | @hero,ENTER:2E:13,SHOP:27:13:up,n,enter,w60,s,enter,w60,b,enter,w150,!
+shop_weapons_dawn | shop | Dawn's Weapons Shop, second page: +2 Axe 400gp to +4 Bow 6550gp | @dawn,SHOP:1A:13:up,y,enter,w300,space,w300,!
+shop_armour | shop | LCB, Armour Shop: List? Yes: Cloth 75gp to Plate 2500gp | @hero,ENTER:2E:13,SHOP:32:14:up,y,enter,w200,!
+shop_armour_buy | shop | Armour Shop: Buy D, Chain: Here you are. | @hero,ENTER:2E:13,SHOP:32:14:up,n,enter,w60,b,enter,w60,d,enter,w150,!
+shop_armour_sell | shop | Armour Shop: Sell C, Leather: You don't own one of those! | @hero,ENTER:2E:13,SHOP:32:14:up,n,enter,w60,s,enter,w60,c,enter,w150,!
+shop_armour_dawn | shop | Dawn's Armour Shop, second page: +2Chain 6130gp, +2Plate 8250gp | @dawn,SHOP:12:14:up,y,enter,w300,space,w300,!
+shop_healer | shop | Castle healer: Clerical Healing Sacraments, Curing to Recallings | @hero,ENTER:2D:12,SHOP:2E:1A:up,!
+shop_healer_cure | shop | Healer: a curing for ryz (100 g.p.): Not injured! | @hero,ENTER:2D:12,SHOP:2E:1A:up,1,enter,w100,y,enter,w60,1,w150,!
+shop_healer_heal | shop | Healer: Healings cost 200 g.p., Heal whom? 1: ryz's H.P. 2213 -> 2300 | @hero,ENTER:2D:12,SHOP:2E:1A:up,2,enter,w100,y,enter,w60,1,w600,!
+shop_healer_resurrect | shop | Healer: Resurrections cost 500 g.p., Resurrect whom? 3 (ebo was dead) | @hero,ENTER:2D:12,poke:2EDD=44,SHOP:2E:1A:up,3,enter,w100,y,enter,w60,3,w600,!
+shop_healer_bye | shop | Healer: Q: Fare thee well my children. | @hero,ENTER:2D:12,SHOP:2E:1A:up,q,enter,w100,!
+shop_guild | shop | Grey, The Guild shop: Keys 50, Torches 6, Powders 90, Gems 75gp | @hero,ENTER:07:2C,SHOP:21:15:up,!
+shop_guild_buy | shop | The Guild: Torches, How many? 5, Anything else? | @hero,ENTER:07:2C,SHOP:21:15:up,t,enter,w100,5,enter,w150,!
+shop_oracle | shop | Radrion, Prophet of Life! How many 100gp is your offering? | @hero,ENTER:2D:12,SHOP:14:2E:up,!
+shop_oracle_1 | shop | Radrion, 100gp: ...you'll learn of marks & playing cards & hidden holy shrines | @hero,ENTER:2D:12,SHOP:14:2E:up,1,enter,w300,!
+shop_oracle_2 | shop | Radrion, 200gp: Of marks I say there are but 4, of fire, force, snake & king | @hero,ENTER:2D:12,SHOP:14:2E:up,2,enter,w300,!
+shop_oracle_6 | shop | Radrion, 600gp: The cards their suits do number 4... | @hero,ENTER:2D:12,SHOP:14:2E:up,6,enter,w300,!
+shop_horses | shop | Devil Guard, Equine Emporium: 4 horses cost 800gp. Will you buy? | @hero,ENTER:12:1F,SHOP:0B:0F:up,!
+shop_horses_buy | shop | Equine Emporium: Yes: May you ride fast and true friend! | @hero,ENTER:12:1F,SHOP:0B:0F:up,y,enter,w200,!
+shop_horses_no | shop | Equine Emporium: No: Ah, too bad. These are the best in town! | @hero,ENTER:12:1F,SHOP:0B:0F:up,n,enter,w200,!
+battle_start | battle | Conflict!! ->Orcs: the party at the bottom of the field, Player 1 to act | @fight,w30,!
+battle_spell_mittar | battle | condi casts Mittar (wizard spell B, 5 M.P.): Direct? | @fight,w30,up,w30,poke:2EA5=72,poke:2F25=86,poke:2E65=45,c,w60,b,w60,!
+battle_spell_hit | battle | Mittar flies north and strikes an orc | @fight,w30,up,w30,poke:2EA5=72,poke:2F25=86,poke:2E65=45,c,w60,b,w60,up,w100,!
+battle_kill | battle | The orc falls: Killed! Exp.+03; condi's M.P. 72 -> 67 | @fight,w30,up,w30,poke:2EA5=72,poke:2F25=86,poke:2E65=45,c,w60,b,w60,up,w100,w60,!
+battle_pontori_failed | battle | cubi casts Pontori (cleric A, against the undead) on orcs: Failed! | @fight,w30,up,w30,poke:2EA5=72,poke:2F25=86,poke:2E65=45,c,w60,b,w60,up,w100,w60,up,w30,c,w60,a,w150,!
+battle_spell_repond | battle | condi's Repond (wizard A) slays the orcs: Killed! Exp.+03 four times | @fight,w30,up,w30,poke:2EA5=72,poke:2F25=86,poke:2E65=45,c,w60,b,w60,up,w100,w60,up,w30,c,w60,a,w150,up,w30,c,w60,poke:4413=00000000000000000000000000000000,a,w200,w200,!
+battle_orc_hits | battle | The last orc strikes back: Plr 1 Hit!, ryz's H.P. 2213 -> 2184 | @fight,w30,up,w30,poke:2EA5=72,poke:2F25=86,poke:2E65=45,c,w60,b,w60,up,w100,w60,up,w30,c,w60,a,w150,up,w30,c,w60,poke:4413=00000000000000000000000000000000,a,w200,w200,space,w30,space,w150,up,w30,space,w30,space,w30,space,w200,!
+battle_victory | battle | ryz's Exotic blade: Orc Hit! Killed! Exp.+03, ****Victory!**** | @fight,w30,up,w30,poke:2EA5=72,poke:2F25=86,poke:2E65=45,c,w60,b,w60,up,w100,w60,up,w30,c,w60,a,w150,up,w30,c,w60,poke:4413=00000000000000000000000000000000,a,w200,w200,space,w30,space,w150,up,w30,space,w30,space,w30,space,w200,a,w30,up,w150,!
+system_chest_after_fight | system | Back on Sosaria after the fight: a chest lies where the orcs stood | @fight,w30,up,w30,poke:2EA5=72,poke:2F25=86,poke:2E65=45,c,w60,b,w60,up,w100,w60,up,w30,c,w60,a,w150,up,w30,c,w60,poke:4413=00000000000000000000000000000000,a,w200,w200,space,w30,space,w150,up,w30,space,w30,space,w30,space,w200,a,w30,up,w150,w200,w300,!
+system_chest_gold | system | Get Chest, Plr to search-1: no trap, Gold+49 | @won,down,w30,g,w30,poke:4413=00000000000000000000000000000000,1,w300,!
+system_chest_weapon | system | A chest with arms: Gold+21 and a 2-H-Swd | @won,down,w30,g,w30,poke:4413=025D0000000000000000000000000000,1,w300,!
+system_chest_armour | system | A chest with armour: Gold+16 and Chain | @won,down,w30,g,w30,poke:4413=035A0000000000000000000000000000,1,w300,!
+system_trap_acid | system | Acid trap! burns the searcher: ryz's H.P. 2184 -> 2164, Gold+49 | @won,down,w30,g,w30,poke:4413=00890000000000000000000000000000,1,w300,!
+system_trap_poison | system | Poison trap!: Poisoned!, ryz's status turns P | @won,down,w30,g,w30,poke:4413=00800000000000000000000000000000,1,w300,!
+system_trap_gas | system | Gas trap!: Poisoned! four times, the whole party (ryz shows P first) | @won,down,w30,g,w30,poke:4413=01800000000000000000000000000000,1,w300,!
+system_trap_bomb | system | Bomb trap!: every member hurt, ryz 2184 -> 2132, cubi 1653 -> 1588 | @won,down,w30,g,w30,poke:4413=00820000000000000000000000000000,1,w300,!
+system_trap_evaded | system | Acid trap! Trap evaded! (a Dexterity roll), then Gold+53 | @won,down,w30,g,w30,poke:4413=009D0000000000000000000000000000,1,w300,!
+hud_status | hud | Play screen: map, moons (0)(0), wind, four panels (M:, L:, H:, F:), messages | @hero,w100,!
+inventory_ztats_1 | inventory | Ztats for #1, late ryz: Str 71 Dex 66 Int 38 Wis 63, H.P. 2213 | @hero,z,w30,1,w60,!
+inventory_ztats_2 | inventory | Ztats: Gold 4352, Exp. 2341, Gems, Keys, Powders, Torches, Mark of Kings | @hero,z,w30,1,w60,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,!
+inventory_ztats_marks | inventory | Ztats: Marks of Snake, Fire, Force; Cards of Death, Moons, Sol, Love | @hero,z,w30,1,w60,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,!
+inventory_ztats_weapons | inventory | Ztats: Weapon and Armour Exotic; weapons owned with their letters | @hero,z,w30,1,w60,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,!
+inventory_ztats_armour | inventory | Ztats: armour owned: Exotic (H), +2 Chain (F), Chain (D), Skin | @hero,z,w30,1,w60,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,!
+system_ready | system | Ready for # 1, Weapon: Sword: Readied! | @hero,r,w30,1,w60,g,w30,enter,w100,!
+system_ready_refused | system | condi the Wizard tries a Bow: Not allowed! | @hero,r,w30,2,w60,f,w30,enter,w100,!
+system_wear | system | Wear for # 3, ebo the Fighter: Chain: Readied! | @hero,w,w30,3,w60,d,w30,enter,w100,!
+system_wear_refused | system | Wear for # 2, condi the Wizard: Plate: Not allowed! | @hero,w,w30,2,w60,e,w30,enter,w100,!
+system_hand_gold | system | Hand Equipment from 1 to 2: F, G, E, W, A: Gold, How much? 100: Done! | @hero,h,w30,1,w30,2,w60,g,w30,enter,w60,1,0,0,enter,w100,!
+system_hand_food | system | Hand Food 50 from ryz to condi: F 1846 -> 1796 and 1591 -> 1641 | @hero,h,w30,1,w30,2,w60,f,w30,enter,w60,5,0,enter,w100,!
+system_join_refused | system | Join gold to:1: No more room! (ryz would pass 9999) | @hero,j,w30,1,w100,!
+system_modify | system | Modify order 1 and 4: Exchanged!, cubi now leads the panels | @hero,m,w30,1,w30,4,w100,!
+system_peer_gem | map | Peer at gem: the whole of Sosaria in miniature | @hero,p,w30,1,w300,!
+system_negate | system | Negate Time! Whose Powd? 1 (a powder stops the monsters for a while) | @hero,n,w30,1,w300,!
+system_unlock | system | Death Gulch: Unlock-East, Whose key? 1: the door opens, a guard steps in | @hero,ENTER:38:1F,POS:0B:20,w30,u,w30,right,w30,1,w100,!
+system_steal | system | Grey, across the counter: Steal Chest! Player? 1 Direct? West: Gold+49 | @hero,ENTER:07:2C,POS:21:2E,s,w30,1,w30,poke:4413=00000000000000000000000000000000,left,w200,!
+system_steal_failed | system | A clumsy theft: Steal Chest! ... Failed! | @hero,ENTER:07:2C,POS:21:2E,s,w30,1,w30,poke:4413=42000000000000000000000000000000,left,w200,!
+system_steal_caught | system | Caught stealing: Watch out! (the guards of Grey turn hostile) | @hero,ENTER:07:2C,POS:21:2E,s,w30,1,w30,poke:4413=43000000000000000000000000000000,left,w200,!
+system_bribe | system | Death Gulch: Cmd: bribe, Direct? North: the guard takes 100 gold and goes | @hero,ENTER:38:1F,POS:0A:0C,o,w30,1,w30,b,r,i,b,e,enter,w60,up,w150,!
+system_dig_weapon | system | Cmd: dig on the islet at (21,03): Exotics! (an Exotic weapon) | @hero,POS:21:03,o,w30,1,w30,d,i,g,enter,w100,!
+system_dig_armour | system | cubi digs on the other islet, at (13,2C): Exotics! (Exotic armour) | @hero,POS:13:2C,o,w30,3,w30,d,i,g,enter,w100,!
+system_other_no_effect | system | Cmd: dig, then Cmd: search, anywhere else: No effect! | @hero,o,w30,1,w30,d,i,g,enter,w100,o,w30,1,w30,s,e,a,r,c,h,enter,w100,!
+system_pray | system | Yew, in the Circle of Light: Cmd: pray: Yell 'Evocare' | @hero,ENTER:22:10,POS:30:30,o,w30,1,w30,p,r,a,y,enter,w100,!
+battle_pirates_fire | battle | A pirate ship closes in and its cannons strike the frigate (ebo hit) | @hero,POS:3B:15,SHIP,poke:2C00=3C,poke:2C20=00,poke:2C40=3E,poke:2C60=15,poke:2C80=C0,poke:1FFE=3C,space,w60,!
+battle_pirates_board | battle | Attacking the pirate ship: Conflict!! ->Pirates, a fight on two decks | @hero,POS:3B:15,SHIP,poke:2C00=3C,poke:2C20=00,poke:2C40=3E,poke:2C60=15,poke:2C80=C0,poke:1FFE=3C,space,w60,poke:2C40=3C,poke:1FFE=00,poke:1FFD=3C,space,w60,a,w30,right,w300,!
+battle_spell_zxkuqyb | battle | cubi casts Zxkuqyb (cleric spell O, 70 M.P.): the decks flash | @pirates,space,w30,space,w30,space,w30,poke:2F25=88,c,w60,o,w200,!
+battle_pirates_victory | battle | Every pirate Killed! Exp.+05, ****Victory!****; cubi reaches L:20 | @pirates,space,w30,space,w30,space,w30,poke:2F25=88,c,w60,o,w200,w300,!
+system_frigate_taken | system | After the boarding fight the pirate ship is an empty frigate to take | @pirates,space,w30,space,w30,space,w30,poke:2F25=88,c,w60,o,w200,w300,w300,!
+gameplay_horse | gameplay | The party on horseback rides south-west of Lord British's castle | @hero,poke:2E3A=0A,space,w60,down,w30,down,w30,left,w60,!
+system_horse_xit | system | X-it Craft: the party dismounts, the horse stays on its square | @hero,poke:2E3A=0A,space,w60,x,w60,down,w30,w60,!
+system_horse_board | system | Board the waiting horse: Mount Horse! | @hero,poke:2E3A=0A,space,w60,x,w60,down,w30,up,w30,b,w100,!
+gameplay_frigate | gameplay | Sailing a frigate east of LCB with a South Wind | @hero,POS:3B:15,SHIP,poke:4412=03,poke:442A=19,right,w60,!
+system_wind | system | Sailing east into an East Wind: Invalid Move! (a frigate needs the wind) | @hero,POS:3B:15,SHIP,poke:4412=02,poke:442A=19,right,w60,!
+battle_cannons | battle | Fire Direct-East: the frigate's cannons, Pirates Destroyed! | @hero,POS:3B:15,SHIP,poke:2C00=3C,poke:2C20=00,poke:2C40=3E,poke:2C60=15,poke:2C80=C0,poke:1FFE=3C,space,w60,f,w30,right,w30,!
