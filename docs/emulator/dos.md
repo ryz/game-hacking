@@ -43,6 +43,13 @@ Pure's start menu listing the programs in the ZIP; the boot route picks one (`w1
 to move). A ZIP with a single program starts it without the menu. The files may sit in a folder inside the ZIP
 (a GOG install folder works as it is, without its DOSBOX subfolder). CD images and installers are not set up yet.
 
+**Read the game's own DOSBox config first** (GOG: `dosbox*.conf` / `*_single.conf` in the ZIP): its `cycles`
+is the model's cycle count, and its `[autoexec]` may do more than start the program. Might and Magic II needs
+`loadfix -4 mm2.exe` (started from the menu it prints "Not enough memory for 16 color version" and quits), so its
+`BOOT` goes through "Go to Command Line": `w120,down,down,enter,w120,type:cd MIGHIC-2\n,w30,type:loadfix -4 mm2.exe\n`
+(the folder has its DOS short name). The intake probe presses no key and cannot show such failures. GOG's
+`mount ... -t overlay` of `cloud_saves` is not reproduced: the game reads the files in its own folder.
+
 ## Models
 `game.json` "model" is `MACHINE[-CYCLES]`: machine `svga` (default), `vga`, `ega`, `cga`, `tandy`, `pcjr` or
 `hercules`; cycles = emulated instructions per millisecond, fixed (default `7800`, about a 386DX-33; `315` =
@@ -92,6 +99,8 @@ program:
   and copy the files over the ones in the game folder (folders inside have DOS short names such as
   `MIGHIC-1/`). `sav:NAME` powers on with it.
 - Might and Magic 1 keeps the roster in memory and reads ROSTER.DTA only when the program starts.
+- Scouts check checkpoints on the disk too: save in the game after a cache hit and after an empty-cache
+  rebuild and compare the written files (done for Might and Magic II, 2026-11-19).
 
 ## Not supported yet
 CD-ROM images, installing a game inside the emulator, booting a real DOS or Windows, MIDI music devices, joystick.

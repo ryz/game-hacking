@@ -9,6 +9,26 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Might and Magic II (DOS, GOG)
+- Task: scout Might and Magic II (DOS, GOG): `loadfix` boot, party macros, 8 checkpoints, `01_start`, RAM map,
+  area warp, event scan, area-text dump, shot plan, design start.
+- Worked: finding the data segment from instruction patterns for the known x/y/facing addresses, then ndisasm for
+  the map-change, edge-transition and event-lookup code; the game's own edge transition as a clean warp to all 60
+  areas; dumping each area's event buffer after a warp (place names, quest chain, prices without the web); MM1's
+  scan approach (Middlegate, Square Lake ~20 s each); the empty-cache vs cache-hit check extended to the disk.
+- Friction: the start-menu launch fails without `loadfix` ("Not enough memory for 16 color version") and the
+  intake probe cannot show it; the scanner's default landing square was a fixed fight in area 17; one try.py
+  result (combat turn order) not reproducible; `play.py checkpoint` moves a replaced line to the end of
+  checkpoints.txt; GameFAQs, TCRF, StrategyWiki 403, archive.org download hosts refused (pages work).
+- Proposed rule change: (1) dos.md: read the game's own DOSBox autoexec (`loadfix`, `mount`, overlay) and copy
+  what matters into `BOOT` via the command line; (2) intake.py: record the `dosbox*.conf` autoexec lines and
+  cycles in `game.json` "header" for DOS ZIPs; (3) `play.py checkpoint`: replace a line in place.
+- Corrected: coordinator replayed `title`, `start`, `outdoors` and `combat` from a fresh process: all four frames
+  as described (title picture, inn door, area C2 outdoors, Witch's Cats encounter options). Disk check (3) of
+  the 2026-11-18 entry done by this scout.
+- Status: (1) promoted 2026-11-19 into dos.md; (2), (3) open tool wishes. The 2026-11-18 entry's (3) disk check:
+  second occurrence, promoted 2026-11-19 (done here, written into dos.md Saves).
+
 ### 2026-11-18 - Might and Magic Book One (DOS, first DOS game)
 - Task: scout Might and Magic Book One (DOS): playbook, party macros, title/menu/start and four more checkpoints,
   RAM map, move-by-poke, event scan, save export, shot plan, design start.
