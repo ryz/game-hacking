@@ -9,6 +9,27 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Ultima II (DOS, GOG)
+- Task: scout Ultima II (DOS, GOG): boot, ryz, controls, 29 checkpoints to the ending, RAM map, period warp,
+  quest chain, saves 01_start and 02_endgame, shot plan, design lenses.
+- Worked: reading the program first (strings, ndisasm of the FCB file calls, offer/transact/loot/door/space code,
+  MAPX/MONX/TLK decoded) gave every place, person, quest condition and coordinate without the web; a "patch the
+  door's destination for one step, then restore" macro warps to any period; parallel try.py sheets settled the
+  variants (commands, shops, Minax with/without the quicksword, field with/without the ring); Ultima I's
+  cachecheck carried over.
+- Friction: the dispatch said the game starts in 1990 (it starts in 1423 B.C.) and that MAPG were working copies
+  (they are planet maps; MAPX/MONX are rewritten); town objects taken for vehicles; attacks never find object 0;
+  real-time turns never settle; `play.py export` wrote `@checkpoint` routes (third report); walkthrough hosts
+  unreachable.
+- Proposed rule change: (1) skill step 1: verify the dispatch's "start" facts on screen before naming
+  checkpoints; (2) `play.py export`: write the expanded power-on route; (3) emulator guide: poke monsters into
+  an object slot the game's lookups reach (index 0 can be skipped), check with one attack.
+- Corrected: coordinator replayed `start`, `lordbritish`, `space`, `minax_dead` (as described); the dispatch's
+  1990 start and MAPG guess were the coordinator's errors. (2) fixed by the coordinator (`power_on_route`, check
+  in test_dos_pipeline that fails without it).
+- Status: (2) fixed 2026-11-19; (1) logged (a dispatch quality issue: the coordinator states guessed facts as
+  "to be checked", already in the coordinator skill); (3) logged.
+
 ### 2026-11-19 - Ultima I (DOS, GOG, five programs)
 - Task: scout Ultima I (DOS, GOG): boot through ULTIMA/GEN/OUT/SPACE/MONDAIN, ryz creation, 22 checkpoints to
   the ending, RAM map, warp, quest structure, saves 01_start and 02_endgame, design lenses, shot plan.

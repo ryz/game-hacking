@@ -812,6 +812,11 @@ def test_dos_pipeline(dos_selftest):
     r = subprocess.run([sys.executable] + P + ["do", "x,w30!"], cwd=ROOT, capture_output=True, text=True)
     assert r.returncode != 0 and "unknown token" in (r.stdout + r.stderr)
     assert run(*P, "route") == route
+    run(*P, "do", "w,w30")                                              # KEYS.COM writes S.DAT: a save
+    assert run(*P, "route").startswith("@prompt,")
+    run(*P, "export", "s1", "after w")
+    row = [l for l in open(os.path.join(ROOT, "games", "dos", DOS_SLUG, "saves", "README.md")) if l.startswith("| s1 |")]
+    assert "@prompt" not in row[0] and "BOOT" in row[0]                 # the route from power-on, macros kept
     run(*P, "snap", "typed", "gameplay", "keys typed, tick letters between them")
     assert "G" in run(*P, "text").splitlines()[0]                       # the screen as text
     run(*P, "snap", "typed_again", "gameplay", "the same frame a second time")

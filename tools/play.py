@@ -107,6 +107,18 @@ class Session:
     def route(self):
         return ",".join([self.base] + self.toks)
 
+    def power_on_route(self, route=None, seen=()):
+        """The route with its checkpoint chain written out from power-on, macro names kept (for save READMEs: a
+        checkpoint can later be rebuilt from the exported save itself, so its name alone may become circular)."""
+        toks = [t for t in self.E.split(route or self.route()) if t]
+        if toks and toks[0].startswith("@"):
+            name = toks[0][1:]
+            cps = {c["name"]: c for c in self.game.checkpoints()}
+            if name in seen or name not in cps:
+                return ",".join(toks)
+            return ",".join([self.power_on_route(cps[name]["route"], seen + (name,))] + toks[1:])
+        return ",".join(toks)
+
     def watch(self):
         out = []
         for k, v in self.game.ram().items():
@@ -350,7 +362,7 @@ class Session:
         lines = open(readme, encoding="utf-8").read().splitlines() if os.path.exists(readme) else head.splitlines()
         lines = [l for l in lines if not l.startswith("| %s |" % name)]
         import datetime
-        lines.append("| %s | %s | %s | `%s` | `%s` | %s |" % (name, files, desc.replace("|", "/"), self.route(),
+        lines.append("| %s | %s | %s | `%s` | `%s` | %s |" % (name, files, desc.replace("|", "/"), self.power_on_route(),
                      hashlib.sha1(data).hexdigest()[:12], datetime.date.today().isoformat()))
         open(readme, "w", encoding="utf-8").write("\n".join(lines) + "\n")
         return "%s (%s)%s - check the in-game save was made before exporting" % (
