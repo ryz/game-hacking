@@ -110,6 +110,14 @@ Current snapshot; history in `progress-log.md`.
   more). The other games have none yet. Earlier note: Might and Magic 1
   (DOS) is the first, written in capture round 2. Breadth rule in the capture skill (same day).
 
+- Might and Magic II (DOS, GOG), 2026-11-19: main set 228 shots from power-on to the Congratulations ending,
+  228/228 verified by the coordinator, three lenses 147 / 109 / 121 (133 in two or more), saves 01-04. Boots via
+  the command line with `loadfix -4` (GOG's autoexec), model `svga-8000`. Open: hireling hire, Cartographer
+  automap, elemental shrines and lords, bashing a locked door, time travel by the game's own means (YEAR poke
+  used), temple cure and spell purchase transactions. Tool wishes: `goto` rebuild after a macro edit,
+  `play.py checkpoint` replacing a line in place, intake recording a DOS ZIP's dosbox.conf autoexec and cycles.
+- DOS queue (owner, 2026-11-19): Wizardry I (scout running), Wizardry II, Wizardry III (import characters from
+  the previous game's SAVEn.DSK), then Ultima I, II, III (GOG; cycles 500/500/300 in GOG's configs).
 - Might and Magic 1 (DOS), state after the fix-up round (2026-11-18): 249 shots, 249/249 verified in one run
   from an empty cache by the coordinator, no identical pictures, no caption over 80 characters. Round 2 before
   it: 250 shots (after the memory leak fix in `tools/lrcore.py`). Open there: surprise message, search find,

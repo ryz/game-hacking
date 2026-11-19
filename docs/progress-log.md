@@ -2,6 +2,22 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Might and Magic II (DOS): registered, scouted, captured to the ending (228 shots)
+- Owner uploaded the GOG ZIP. Intake 782d91b (slug `might-and-magic-2`, region na).
+- game-scout (5a06d6c, b71fdc7): MM2.EXE quits from the start menu ("Not enough memory for 16 color version");
+  GOG's autoexec runs `loadfix -4`, so `BOOT` goes through the command line. Model `svga-8000` (GOG's cycles).
+  The game reads ROSTER.DAT in its folder (six premade characters); `cloud_saves/ROSTER.DAT` is a played copy,
+  not used. Party macros, 8 checkpoints (empty-cache rebuilds identical, disk included), save 01_start, RAM
+  map, WARP to all 60 areas via the game's own edge transition, scan.py and texts.py.
+- game-capture (f5a948a): set `main` 228 shots to the Congratulations screen; ending decoded from code and
+  memory (Kalohn's quest bit, the Square Lake gate bit no script sets, override code WAFE, cryptogram answer in
+  memory); three lenses; macros VET/HERO/MARKS/BATTLES; events.py; saves 02-04.
+- Coordinator: replayed four scout checkpoints from a fresh process, looked at the three contact sheets,
+  `lenses.py` clean, `shoot.py dos/might-and-magic-2 main --verify` 228/228. Rules promoted: dos.md (read the
+  game's own DOSBox config; disk check of checkpoints), emulator guide (`goto` after a macro edit). Merged to
+  `master`.
+- Wizardry I (DOS) registered (d997343); scout dispatched.
+
 ## 2026-11-18 - Might and Magic 1 (DOS): 249/249 after the fix-up round
 - Coordinator: cache deleted, `shoot.py dos/might-and-magic main --verify` in one run: 249/249 reproduce, no
   `check:` line (no identical pictures, no caption over 80 characters). Shared tests 35 passed, 8 skipped

@@ -28,6 +28,8 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | `games/nes/wizardry-2/` | NES | screenshot set (91, to the ending), 6 floor maps, design reference, roster tool, saves |
 | `games/nes/might-and-magic/` | NES | screenshot set (93, to the ending), 55 area maps with terrain and exits, design reference, saves |
 | `games/dos/might-and-magic/` | DOS (GOG release) | screenshot set (249, to the ending text: every command, 45 monster groups, all looks), three lens documents (systems, interface, content), area warp and survey of all 55 areas, saves |
+| `games/dos/might-and-magic-2/` | DOS (GOG release, boots via `loadfix -4`) | screenshot set (228, to the Congratulations ending: Kalohn, Sheltem, override code, cryptogram), three lens documents, warp to all 60 areas and centuries, event lister, saves |
+| `games/dos/wizardry/` | DOS (1998 loader with disk images) | registered 2026-11-19; scout in progress |
 | `games/apple2/might-and-magic/` | Apple II (four disk sides, cracked side 1) | registered 2026-11-18; plays from power-on through disk changes into Sorpigal and the wilderness, inn save; screenshot set (308, to the ending: the DOS set's routes replayed plus every area once and the disk prompts), three lens documents over the DOS detail documents, area warp, macros, checkpoints |
 | `games/nes/deep-dungeon-3/` | Famicom (Japanese) | screenshot set (74, to the ending), 16 floor maps + towns, design reference, saves |
 
