@@ -9,6 +9,29 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Wizardry I (Apple II)
+- Task: set `main` for Apple II Wizardry I from the title to the ending with three lenses: 291 shots, cold verify
+  298/298 before seven duplicates were dropped, published, commit c846278 pushed.
+- Worked: no interactive session at all. Plan files in shots.txt format, previewed four at a time by a small
+  wrapper that plays each line exactly as `shoot.py` does and prints the 40x24 text screen, so about 120
+  text-screen shots were captioned from text without opening a picture. Timelines (route + N x `w80`, tiled)
+  found every battle, chest and temple message. Rebuilding all 25 checkpoints in parallel first took about 7
+  minutes.
+- Friction: (1) a checkpoint route is flattened and replayed from power-on, so each of 25 checkpoints costs a full
+  boot and the serial cold verify took 30 minutes; (2) the `--frames K` count of `try.py` includes the trailing
+  `!`, so every timeline was read one step early and 42 shots were reshot; (3) `w100*26` is one token, not 26;
+  (4) duplicates surface only in the final verify, and after `unsnap` `--publish-only` ran on a set that differed
+  from the verified one; (5) milestone commits were skipped to save time that was not short; (6) the skill's
+  commit recipe says `git pull --rebase`, which the dispatch forbade and the permission system refused.
+- Proposed rule change: skill step 3: replace `git pull --rebase` with a plain push and retry when the dispatch
+  forbids rebasing. Emulator guide: "frame k of a timeline = `w(step*k)`; check one message shot before writing
+  forty", and "Apple II Wizardry: doors need K, the temple needs the patient out of the party". Tool wishes: a
+  duplicate check in `shoot.py --only`, and a shared previewer with a text-screen option for Apple II.
+- Corrected: coordinator re-verified the 291 published shots, ran the lens check (clean) and read the one caption
+  the agent flagged as unreadable (`gameplay_elevator_f2`: buttons A through D). One commit instead of
+  milestone commits; no shared file changed for the proposals: the owner halted the queue after this run.
+- Status: open
+
 ### 2026-11-19 - Ultima III (DOS) set main
 - Task: set `main` from power-on to the ending with three lenses: 260 shots, 260/260 from an empty cache,
   published and pushed (c835148, 9a54149).

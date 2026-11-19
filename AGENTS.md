@@ -36,6 +36,9 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | `games/dos/ultima-2/` | DOS (GOG) | screenshot set (226, to the ending text: five periods, planets, quest chain, honest Minax fight), three lens documents, period warp, map/town/shop/monster tools, saves |
 | `games/dos/ultima-3/` | DOS (GOG) | screenshot set (260, to the ending text: party of four, nine combat fields, Ambrosia, moongates, dungeon rods, Time Lord, Exodus), three lens documents plus rules.md, warps, town/dungeon/RNG tools, saves |
 | `games/apple2/might-and-magic/` | Apple II (four disk sides, cracked side 1) | registered 2026-11-18; plays from power-on through disk changes into Sorpigal and the wilderness, inn save; screenshot set (308, to the ending: the DOS set's routes replayed plus every area once and the disk prompts), three lens documents over the DOS detail documents, area warp, macros, checkpoints |
+| `games/apple2/wizardry/` | Apple II (1981 original, boot + scenario disk, model `iiplus-wp1`) | screenshot set (291, to the ending: Werdna beaten in play, every castle service, creation, about 40 monster groups), three lens documents, ten floor maps and data tools, floor warp, 26 checkpoints |
+| `games/apple2/wizardry-2/` | Apple II (1982, two disks) | scouted 2026-11-19: Wizardry I party moved over with the game's utility, 39 checkpoints to the ending, RAM map, floor warp, six floor maps; not captured |
+| `games/apple2/wizardry-3/`, `wizardry-4/`, `wizardry-5/` | Apple II | registered 2026-11-19 (2, 6 and 9 disk sides; all boot to the title); not scouted |
 | `games/nes/deep-dungeon-3/` | Famicom (Japanese) | screenshot set (74, to the ending), 16 floor maps + towns, design reference, saves |
 
 ## Rules (all work)

@@ -2,6 +2,28 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Wizardry I-V registered on the Apple II; I scouted and captured, II scouted; queue halted
+- Owner uploaded the five games and asked for them in order, then halted the queue after the Wizardry I capture
+  and the Wizardry II scout. Disk sets: I boot + scenario, II and III two disks, IV six, V nine sides (side E
+  from the archive's "fixed" copy; the other E, the word list and the documentation disks are in
+  `rom/docs/wizardry-5/`, uncommitted). All five boot to their titles.
+- Backend, each change for something a game needed: extra disks through a `sav:` ZIP (Wizardry II takes its party
+  from a Wizardry I disk; worked on first use); write protection (`wpN` in the model, core hook
+  `retro_gamedb_protect`: Wizardry's boot disk writes to itself and hangs unless refused; the scout had poked
+  around it); per-platform dump and save paths (the Apple II dump had overwritten `rom/wizardry.zip` of the DOS
+  game); `play.py export` writes disk-image saves to `rom/saves/apple2/<slug>/`. Tests: write protect, extra
+  disk. Apple Pascal needs model `iiplus` (80-column text on a //e).
+- Wizardry I: scout (26 checkpoints to the ending, real Werdna win, RAM map, warp, tools) and capture (291 shots,
+  cold verify 298/298 before seven identical pictures were dropped, coordinator re-verify of the 291, lenses
+  clean). The boot change to real write protection shifted every fight: the scout re-timed the chain; the
+  Werdna win holds at one input timing out of about 47.
+- Wizardry II: scout (39 checkpoints to the ending, transfer through the game's utility, guardians, RAM map,
+  transfer disks for III). Its disk 2 is a used disk whose four characters own four armor pieces; a guardian
+  does not appear while any roster character owns its piece, so the routes delete them. Two guardians and the
+  carrying of the five pieces are by poke.
+- Agents ran in parallel in one working tree (capture I, scout II) with path-limited commits: no collision.
+- Not done: Wizardry II capture; III-V scout and capture; the agents' tool requests (status.md).
+
 ## 2026-11-19 - Ultima III (DOS) scouted and captured to the ending (260 shots); DOS queue done
 - game-scout (a454aa8, cbe4b62): party ryz/condi/ebo/cubi, model svga-300 (CGA palette survives loads on svga),
   23 checkpoints to the ending, RAM map from EXODUS.BIN's load address, warps, quest chain from the code.
