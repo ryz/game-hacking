@@ -3,4 +3,69 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/sms/phantasy-star/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+#
+# ---- EARLY (scout 2026-11-19): routes from the checkpoints. [seen] = the scout looked at this exact frame;
+# [check] = route built from tested pieces, look before snapping. Values poked here are early-game realistic.
+title_screen | title | Title screen: Alis with sword, START / CONTINUE | @title
+intro_planet | cutscene | Intro: planet Palma in space | @title,b1,w300
+intro_camineet | cutscene | Intro caption: Space Century 342, Camineet on Palma | @title,b1,w300,PAGE,w60
+intro_nero_beaten | cutscene | Intro: Lassic's robotcops leave Nero beaten in the street | @title,b1,w300,PAGE*2
+intro_nero_dying | cutscene | Intro: dying Nero tells Alis of Lassic's plans | @title,b1,w300,PAGE*4
+intro_alis_vow | cutscene | Intro: Alis vows that her brother did not die in vain | @title,b1,w300,PAGE*8
+camineet_start | gameplay | First control: Alis outside her house in Camineet | @start
+camineet_shops | gameplay | Camineet: three shops, church and townspeople | @camineet
+hud_menu | hud | Field menu STAS MAGC ITEM SRCH SAVE over a view of Camineet, Alis HP/MP | @menu
+menu_status | inventory | STAS: Alis's equipment, level, EP, attack, defense, HP, MP, meseta | @menu,b2,w120
+menu_items | inventory | ITEM: meseta and carried items | @menu,set:C4E0=126:2,poke:C4C0=2724252728,poke:C4E2=05,down*2,b2,w90
+menu_search | system | SRCH: "There doesn't seem to be anything" | @menu,down*3,b2,w120
+save_slots | save | SAVE: choose one of five slots | @menu,down*4,b2,w90,b2,w90
+shop_secondhand | shop | Camineet second-hand shop: BUY / SELL | @shop
+shop_list | shop | Second-hand shop price list: FLASH 20, ESCAPER 10, TRANSER 48 | @shop,set:C4E0=126:2,b2,w90
+palma_camineet | gameplay | Palma overworld: walled Camineet and its bridge | @palma
+palma_forest | gameplay | Palma: forest and the wall south-west of Camineet | @field_s
+palma_cave | gameplay | Palma: cave entrance in the forest | @cave_out
+battle_sworm | battle | First battle: a Sworm in the forest, ATTK MAGC ITEM TALK RUN | @battle
+battle_killed | battle | "Sworm is killed." | @battle,b2,w60,b2,w60,b2,w60
+battle_exp | battle | "You gained 2 experience points." | @battle,b2,w60,b2,w60,b2,w60,b2,w60
+battle_chest | battle | Treasure chest after the fight: "Do you want to open it?" | @battle,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60
+battle_chest_meseta | battle | Chest opened: 3 meseta inside | @battle,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60,b2,w60
+battle_scorpion | battle | Scorpion (HP 12) attacks near the cave | @cave_out,down:32,left:16,up:16,w180
+cave_dark | dialogue | Cave without light: "Cannot go forward, it's pitch black." | @cave_out,down:16,left:16,w180
+dungeon_corridor | gameplay | First-person dungeon: the cave lit with a Flash | @dungeon
+continue_prompt | menu | Title CONTINUE: continue or delete a game | sav:01_start,TITLE,w90,up,w30,b2,w120
+continue_slots | menu | CONTINUE: select a saved game 1-5 | sav:01_start,TITLE,w90,up,w30,b2,w120,b2,w120
+#
+# Notes on the early routes: every route above was looked at by the scout (sheets in work/scout/phantasy-star/:
+# intro, t5, t8, t20, t23, shots, sample frames). intro_camineet fades in: pick the frame. menu_items holds
+# FLASH COLA BURGER FLASH ESCAPER and 126 meseta (change to taste). save_slots: the slot window is empty for
+# unused slots. Message windows cover the right half of the HP/MP box (HP 16 reads "1"): the game's layout.
+# A dungeon clip (one step forward and a turn) for the 3D scrolling: record from @dungeon, `up:16` and `right:16`.
+#
+# ---- LATER (plan, no routes yet)
+# party_status | inventory | STAS with four members (Alis, Myau, Odin, Noah)
+# magic_menu_field | inventory | MAGC outside battle (a healing spell)
+# battle_magic | battle | a spell in battle (FIRE / WIND / THUNDER)
+# battle_talk | battle | TALK to a monster that answers
+# battle_run | battle | RUN from a fight
+# battle_trap_chest | battle | a trapped chest (arrow or explosion)
+# battle_group | battle | several monsters at once
+# battle_levelup | battle | level up message
+# church | dialogue | church: revive a fallen member
+# shops_weapons | shop | weapon / armour shop price list (equip from it)
+# shop_hospital | shop | hospital or other service
+# dialogue_npc | dialogue | townsperson talk with a portrait window
+# town_<name> | gameplay | one shot per distinct town look (Palma towns, Paseo on Motavia, Dezoris)
+# spaceport | gameplay | spaceport and the PASSPORT check
+# spaceship | cutscene | the flight between planets
+# motavia_desert | gameplay | Motavia overworld (sand, ant lions)
+# dezoris_ice | gameplay | Dezoris overworld (ice)
+# landrover | system | LANDROVER on the overworld (and a battle from it)
+# hovercraft | system | HOVERCRAFT on water
+# ice_digger | system | ICE DIGGER boring through ice
+# tower_view | gameplay | a tower interior (different wall set)
+# dungeon_stairs | gameplay | stairs / door in first person
+# dungeon_trap | system | a trap in a dungeon
+# boss_<name> | boss | each boss reachable (Lassic, Dark Falz, others)
+# gameover | gameover | the game-over screen
+# ending | ending | the ending
+# credits | credits | the staff roll

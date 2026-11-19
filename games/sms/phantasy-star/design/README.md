@@ -23,8 +23,18 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Phantasy Star is a turn-based science-fiction RPG for the Sega Master System (Japan 1987, export 1988) **(source)**.
+The player leads Alis, whose brother Nero is killed by the tyrant Lassic's robotcops in the opening
+**(verified: intro, checkpoint `start`)**, across three planets of the Algol system (Palma, Motavia, Dezoris)
+**(source)**. Towns and planet surfaces are seen from above and walked tile by tile **(verified)**; caves,
+towers and dungeons switch to a first-person view with smoothly scrolled 3D corridors **(verified: checkpoint
+`dungeon`)**; battles are first person against an animated monster, with ATTK, MAGC, ITEM, TALK and RUN for
+each party member **(verified: `battle`)**. Beaten monsters give experience and sometimes a treasure chest with
+meseta, or a trap **(verified for meseta; source for traps)**. The party grows to four fixed characters: Alis,
+the talking cat Myau, the warrior Odin and the esper Noah **(source)**; nobody is named by the player
+**(verified)**. Vehicles (Landrover, Hovercraft, Ice Digger) and a spaceport connect the world **(source; item
+names verified)**. Dark caves cannot be entered without light (a Flash or the Magic Lamp) **(verified for Flash)**.
+The game saves to one of five slots anywhere outside battle **(verified)**.
 
 ## Documents
 | Document | Covers |
@@ -40,3 +50,5 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| US manual (OCR) | https://archive.org/stream/Phantasy_Star_1988_U/Phantasy_Star_1988_U_djvu.txt | controls, menus, commands, characters, planets, vehicles, spells |
+| Wikipedia | https://en.wikipedia.org/wiki/Phantasy_Star_(video_game) | release, staff, outline of the story |
