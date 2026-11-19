@@ -1,3 +1,5 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title screen: Wizardry logo, monster parade, S)tart game / M)ake scenario disk | pow,TITLE,settle
+start | Castle menu: party ryz condi ebo cubi deddo mnz (level 1, made in the Training Grounds) formed in the Tavern | pow,PARTY,settle

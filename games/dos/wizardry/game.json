@@ -3,7 +3,7 @@
   "title": "Wizardry: Proving Grounds of the Mad Overlord (DOS)",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "ega-315",
   "rom": "rom/wizardry.zip",
   "sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
   "crc32": "ed3321b1",
@@ -22,6 +22,15 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
+  "macros": {
+    "TITLE": "w400",
+    "CASTLE": "TITLE,s,w800",
+    "TRAINING": "e,w120,t,w120",
+    "MAKE": "c,w120,type:{0}\\n,w90,enter,w90,{1},w90,{2},w120,poke:C552={3},poke:C546={3},poke:C36E=06,up,enter,up,enter,up,enter,up,enter,up,enter,up,w60,esc,w90,{4},w90,y,w180",
+    "PARTYMAKE": "MAKE:ryz:a:a:1000070004000C0009000800:a,MAKE:condi:c:a:0F00060009000E0006000500:a,MAKE:ebo:d:a:080006000F0009000A000600:c,MAKE:cubi:e:b:06000600060008000F000E00:d,MAKE:deddo:b:a:06001000090007000A000500:b,MAKE:mnz:b:a:06000E000D00060009000500:e",
+    "ADDPARTY": "g,w90,h,w90,i,w90,j,w90,k,w90,l,w120",
+    "PARTY": "CASTLE,TRAINING,PARTYMAKE,enter,w120,c,w120,g,w120,a,w120,ADDPARTY,enter,w120",
+    "RESUME": "CASTLE,g,w120,a,w120,ADDPARTY,enter,w120"
+  },
   "ram": {}
 }
