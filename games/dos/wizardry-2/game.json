@@ -29,7 +29,42 @@
     "IMPORT": "e,w120,u,w120,m,w200,g,w60,h,w60,i,w60,j,w60,k,w60,l,w60,enter,w700,enter,w120,c,w120",
     "ADDPARTY": "g,w120,a,w120,c,w90,d,w90,e,w90,f,w90,k,w90,l,w120,enter,w120",
     "PARTY": "CASTLE,IMPORT,ADDPARTY",
-    "RESUME": "CASTLE,ADDPARTY"
+    "RESUME": "CASTLE,ADDPARTY",
+    "MAZE": "e,w120,m,w600,enter,w200,n,w120",
+    "WARP": "e,w120,m,w600,enter,w200,poke:B9D6={0}00,poke:B9F6={2}00,poke:BA16={1}00,y,w600",
+    "SOLO": "g,w120,r,w120,6,w120,r,w120,5,w120,r,w120,4,w120,r,w120,3,w120,r,w120,2,w120,enter,w120",
+    "STAFF": "poke:DDCC=0100,poke:DDCE=0000000001007C00",
+    "HOMESTAIRS": "e,w120,m,w600,enter,w200,y,w600,w600",
+    "KOD": "poke:DDCC=0500,poke:DDCE=01000000010081000100000001007D000100000001007E000100000001007F000100000001008000",
+    "HOME": "poke:DACA=0100,poke:DACC=0000,poke:DAC6=0200,a,w60,d,w60,w,w200,y,w600,w600",
+    "KNIGHTS": "enter,w150,n,w150,n,w150,y,w150,y,w150,y,w150,n,w150,n,w150,n,w150,n,w150,y,w150,y,w300",
+    "REFORM": "g,w120,a,w120,c,w90,d,w90,e,w90,j,w90,k,w120,enter,w120",
+    "WIN": "poke:D3AE=0000"
   },
-  "ram": {}
+  "ram": {
+    "floor": {
+      "addr": "DAC8",
+      "size": 2
+    },
+    "x": {
+      "addr": "DACC",
+      "size": 2
+    },
+    "y": {
+      "addr": "DACA",
+      "size": 2
+    },
+    "face": {
+      "addr": "DAC6",
+      "size": 2
+    },
+    "hp1": {
+      "addr": "DE18",
+      "size": 2
+    },
+    "items1": {
+      "addr": "DDCC",
+      "size": 2
+    }
+  }
 }

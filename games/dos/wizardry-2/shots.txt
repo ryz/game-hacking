@@ -3,4 +3,101 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/dos/wizardry-2/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Scout plan 2026-11-19 (about 125 shots). Lines with a route were seen by the scout from that checkpoint;
+# commented lines are planned, with how to reach them (playbook "Shot plan"). Gear first for realistic
+# combat shots (playbook "Strategy"). Rule: roster-reading screens after a Tavern change: one segment from @start.
+#
+# --- Power-on, title, scenario disk (6)
+# boot_dosbox_menu | boot | DOSBox Pure start menu: RUN.BAT and WIZ2.COM | w120,down
+title_screen | title | Title: Wizardry logo, 'Scenario #2 - The Knight of Diamonds', the knight picture | @title
+# title_parade | title | Title with the four-monster parade (pick the frame with do! + wN) | @title,w300
+# menu_make_scenario | menu | M)ake scenario disk: 'The disk you inserted has data on it ... Use it (Y/N)?' | @title,m,w300
+# boot_disk_prompt | boot | 'Place duplicate scenario diskette in drive 1, then press Enter' (answered by the loader) | @title,s,w240,!
+# boot_loading | boot | 'Now loading the program into memory' | @title,s,w330,!
+#
+# --- The import from Wizardry I (7): sav:00_transfer,CASTLE,...
+# menu_castle_stock | menu | Castle before the import: no party | sav:00_transfer,CASTLE
+# menu_tavern_stock | menu | Tavern add list before the import: the six stock veterans and the LOST slots? | sav:00_transfer,CASTLE,g,w120,a,w120
+# menu_utilities | menu | Wizardry Utilities: C)hange name, M)ove characters, R)estart an 'out' party | sav:00_transfer,CASTLE,e,w120,u,w120
+# system_move_list | system | Move characters: the Wizardry I roster (A TARKIN ... L MNZ) | ...,m,w200
+# system_move_marked | system | G-L marked with '+' | ...,g,w60,...,l,w60
+# system_move_moved | system | 'RYZ has been moved' | ...,enter,w100
+# menu_tavern_imported | menu | Tavern list after the import: RYZ CONDI EBO CUBI between the stock six, DEDDO MNZ | ...,enter,w700,enter,w120,c,w120,g,w120,a,w120
+#
+# --- Castle and town with the imported party (20)
+menu_castle | menu | Castle 'Llylgamyn' with RYZ CONDI EBO CUBI DEDDO MNZ (levels 11-13) | @start
+# inventory_sheet_ryz_import | inventory | RYZ's sheet after the import: L11, chevron, 74817 gold, AC -4, no items | @start,g,w120,1,w200
+# inventory_sheet_deddo | inventory | DEDDO's sheet: mage spell points 9/9/9/7/5/4/1 kept | @start,g,w120,5,w200
+# inventory_sheet_ebo | inventory | EBO's sheet: priest 9/9/9/7/4/4/2 | @start,g,w120,3,w200
+# menu_tavern | menu | Tavern menu: A)dd R)emove #)Inspect D)ivvy gold | @start,g,w120
+# menu_tavern_remove | menu | 'Remove who (#)?' | @start,g,w120,r,w120
+# menu_inn | menu | Adventurer's Inn: who will stay | @start,a,w120
+# menu_inn_rooms | menu | Inn rooms and prices | @start,a,w120,1,w150
+# menu_temple | menu | Temple of Cant: 'Who (letter) shall we help?' | @start,t,w120
+# shop_boltac | shop | Boltac's: 'Who (#) will enter?' | @start,b,w120
+# shop_boltac_menu | shop | Boltac's menu for RYZ: 74817 gold, B)uy S)ell U)ncurse I)dentify P)ool | @start,b,w120,1,w150
+# shop_boltac_buy ... (3-4) | shop | the stock pages (Wizardry II's own list), buying a sword | ...,b,w120
+# shop_identify | shop | identifying a guardian's piece ('ARMOR' -> KOD's armor) | after guard1 + WIN
+# menu_edge | menu | Edge of Town | @edge
+# menu_training | menu | Training Grounds: Inspect / Roster only (no create in Wizardry II) | @training
+# menu_training_roster | menu | Roster of characters | @training,r,w120
+# system_trade | system | T)rade a piece to RYZ | camp sheet
+# system_read_spells | inventory | R)ead: DEDDO's mage spell book | camp sheet
+#
+# --- Maze, camp, floors (25)
+# gameplay_camp | gameplay | First camp: 'Descending into the ruins under the Temple of Gnilda' | @edge,m,w200,!
+# camp_menu | gameplay | Camp: #)Inspect R)eorder E)quip Leave, AC 10 after the import | @camp
+# camp_equip | inventory | E)quip: RYZ's weapon list (after buying gear) |
+# inventory_camp_sheet | inventory | camp sheet with S)pell and U)se | @camp,1,w200
+gameplay_maze_f1_start | gameplay | Floor 1 (0,0) facing north, first control | @maze1
+# gameplay_stairs_up | gameplay | 'Stairs up, take them (Y/N)?' at the entrance | @edge,m,w600,enter,w200
+# gameplay_door / gameplay_wall / gameplay_dark | gameplay | a door ahead, 'You can't walk through walls!', a dark area (floor 1 has 98 dark squares) | WARP
+# gameplay_full_view / gameplay_status_off | gameplay | O)ff and S)tatus views |
+# gameplay_f1 ... gameplay_f6 (6-8) | gameplay | one view per floor (rock on floor 4 / 6, chutes on 5) | WARP:0N:..
+# system_pit / system_chute / system_teleport / system_spinner / system_ouch / system_rock | system | traps from the maps: f1 pit (4,12), f5 chute (2,2), f2 teleports, f6 spinners, f4 ouch squares, rock | WARP onto them
+# system_dumapic | system | DUMAPIC (DEDDO) on floor 3 | camp, spell
+# map_floors | map | design/maps (ASCII, not a game screen: skip unless drawn as an image) |
+# dialogue_f1_message / dialogue_f2_messages ... (8) | dialogue | the message squares (list in the playbook) | WARP next to them, step in
+# system_riddle_f2 | system | floor 2 (3,6): a riddle square next to the Magic Shield | WARP
+#
+# --- Battles (15)
+battle_f1_kobold_kings | battle | Floor 1: 5 Kobold Kings, RYZ's options | @battle
+# battle_order_prompt | battle | 'Press Enter to fight, or T)ake back orders' |
+# battle_spell / battle_spell_group / battle_dispell / battle_use / battle_run | battle | the commands at work |
+# battle_surprised / battle_surprise | battle | '** You surprised the monsters! **' / '** The monsters surprised you! **' | WARP:02:02:06 / WARP:03:0E:0D
+# battle_friendly | battle | 'A friendly group of Lvl 7 Priests. F)ight or L)eave' | lone RYZ arriving on f1 (9,9)
+# battle_f2 ... battle_f6 (5) | battle | one group per floor: Men in Armor, Ogres, Corr. Slimes + No-See-Um Swarm, Master Ninjas, Hatamotos + Lvl 10 Mages | WARP to fight-zone squares (try.py timings)
+# battle_damage / battle_enemy_spell | battle | 'A Lvl 7 Mage casts a Mahalito', damage lines |
+# battle_chest / battle_reward | battle | chest after a random fight; 'Each survivor gets N G.P.' |
+#
+# --- The five guardians and their pieces (12)
+boss_magic_armor | boss | Floor 1 (15,2): the Magic Armor guarding the stairs down | @guard1
+boss_magic_shield | boss | Floor 2 (2,6): the Magic Shield | @guard2
+boss_magic_sword | boss | Floor 3 (14,13): the Magic Sword | @guard3
+boss_magic_helm | boss | Floor 4 (10,4): the Magic Helm | @guard4
+boss_magic_gauntlets | boss | Floor 5 (10,9): two Magic Gauntlets | @guard5
+# boss_found_armor ... boss_found_gauntlets (5) | battle | 'MNZ found : ARMOR' etc. after each guardian (real fight with gear, or WIN) | @guardN,...,WIN,enter
+# inventory_kod_set | inventory | RYZ wearing Hrathnir and the four KOD pieces: AC, '+' regeneration | camp sheet
+# boss_f6_fixed | boss | floor 6 fixed fight (group 47) at (5,15) or (18,18) | WARP
+#
+# --- The quest end (14)
+dialogue_sphinx | dialogue | Floor 6 (1,2): 'Lying in front of the door is a beast with the head of a man and the body of a lion...' | @sphinx
+# dialogue_sphinx_2 / _3 | dialogue | the riddle pages | @sphinx,enter,w300 / ,enter,w300
+# dialogue_sphinx_answer | dialogue | 'What is your answer ?' | @sphinx,enter,w300,enter,w300,enter,w300
+# dialogue_one_alone | dialogue | Floor 6 (1,3): 'One alone.' | @sphinx,enter,w300,enter,w300,enter,w300,type:the knight of diamonds\n,w300,k,w300
+# dialogue_gnilda / _2 | dialogue | Floor 1 (9,10): Gnilda's speech with the full party | @start,WARP:01:09:0A + pages
+# dialogue_gnilda_fades | dialogue | 'The apparition slowly fades...' |
+dialogue_gnilda_test | dialogue | RYZ alone with the five: 'A hideous apparition demands of you the answer to the riddle of the sphinx' | @gnilda_test
+dialogue_staff_gift | dialogue | 'Behold! The Staff of Gnilda!' | @staff_gift
+# dialogue_got_staff | dialogue | 'RYZ got an item.' | @staff_gift,enter,w400
+# inventory_staff | inventory | RYZ's sheet with the staff of Gnilda; U)se: '* Powerless *' | @staff_gift,enter,w400,enter,w400,c,w200,1,w200
+ending_congratulations | ending | '* * Congratulations * *': the Mark of Gnilda and the Knights of the City | @ending
+# ending_make_knight | ending | 'Make CONDI a knight (Y/N)?' (one segment from @start) | @start,SOLO,KOD,WARP:01:09:0A,type:the knight of diamonds\n,w400,enter,w400,enter,w400,HOME,enter,w150,n,w150,n,w150
+# ending_sheet_ryz | ending | RYZ '>G', 484587 E.P. | @knights,g,w120,1,w200
+# ending_sheet_condi | ending | CONDI '>K' | @knights,g,w120,2,w200
+ending_castle_knights | ending | Castle after the ending: RYZ and the five knights | @knights
+#
+# --- Failure, saving (4)
+# gameover_cemetery | gameover | the party slaughtered (warp into rock: 'You are in rock!' then the cemetery) | WARP into a rock square (f3 (5,5))
+# menu_temple_dead | menu | the Temple with a dead member (status poke) |
+# save_leave_game | save | Leave game: 'Thanks for playing Wizardry!' (DOS text screen) | @edge,l,w600

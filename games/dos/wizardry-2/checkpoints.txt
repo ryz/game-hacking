@@ -4,3 +4,19 @@
 title | Title screen: Wizardry logo, 'Scenario #2 - The Knight of Diamonds', a monster picture, S)tart game / M)ake scenario disk | pow,TITLE,settle
 start | Castle (Llylgamyn) menu: ryz condi ebo cubi deddo mnz imported from Wizardry I (Utilities M)ove characters, sav:00_transfer) and formed in the Tavern; levels 11-13, no items | pow,sav:00_transfer,PARTY,settle
 resume | Castle menu, party ryz condi ebo cubi deddo mnz formed from the exported 01_start roster (levels 11-13, no items) | pow,sav:01_start,RESUME,settle
+edge | Edge of Town menu: T)raining M)aze C)astle U)tilities L)eave game, imported party formed | @start,e,w120,settle
+training | Training Grounds: I)nspect a character / R)oster of characters / Leave (no C)reate in Wizardry II), party formed | @edge,t,w120,settle
+camp | Camp on entering the maze ('Descending into the ruins under the Temple of Gnilda'): #)Inspect R)eorder E)quip Leave; AC 10 for all (no items) | @edge,m,w600,settle
+maze1 | Floor 1 entrance (0,0) facing north under the stairs up (N at the prompt), first control in the maze | @camp,enter,w200,n,w120,settle
+battle | Floor 1 (14,2) fight zone (warped): 5 Kobold Kings, RYZ's options F)ight P)arry U)se item R)un T)ake back | @start,WARP:01:0E:02,w300,w300,settle
+guard1 | Floor 1 (15,2) guardian before the stairs down (warped onto the square): 1 Magic Armor, RYZ's options | @start,WARP:01:0F:02,w300,w300,settle
+guard2 | Floor 2 (2,6) guardian: 1 Magic Shield (warped to (2,7), kicked the door south), RYZ's options | @start,WARP:02:02:07,poke:DAC6=0200,a,w60,d,w60,k,w300,w600,settle
+guard3 | Floor 3 (14,13) guardian: 1 Magic Sword (warped to (13,13), kicked the door east), RYZ's options | @start,WARP:03:0D:0D,poke:DAC6=0100,a,w60,d,w60,k,w300,w600,settle
+guard4 | Floor 4 (10,4) guardian: 1 Magic Helm (warped to (11,4), kicked the door west), RYZ's options | @start,WARP:04:0B:04,poke:DAC6=0300,a,w60,d,w60,k,w300,w600,settle
+guard5 | Floor 5 (10,9) guardian: 2 Magic Gauntlets (warped to (9,9), kicked the door east), RYZ's options | @start,WARP:05:09:09,poke:DAC6=0100,a,w60,d,w60,k,w300,w600,settle
+sphinx | Floor 6 (1,2): the sphinx's riddle, first page ('Lying in front of the door is a beast with the head of a man and the body of a lion...'), warped to (1,1), kicked the door north | @start,WARP:06:01:01,k,w300,settle
+gnilda_test | Floor 1 (9,10) temple of Gnilda, RYZ alone wearing the five KOD pieces (KOD poke): 'A hideous apparition demands of you the answer to the riddle of the sphinx. Your answer?' | @start,SOLO,KOD,WARP:01:09:0A,settle
+staff_gift | Gnilda's gift: '...By obtaining the complete regalia of the legendary Knight and presenting it here before me... Behold! The Staff of Gnilda!' | @gnilda_test,type:the knight of diamonds\n,w400,settle
+ending | Ending: '* * Congratulations * * You have retrieved the Staff of Gnilda...' Mark of Gnilda, Knight of the City; Press Enter to select your knights (RYZ alone, staff from the event, HOME up the floor 1 stairs) | @staff_gift,enter,w400,enter,w400,HOME,settle
+knights | Castle after the ending: RYZ (Mark of Gnilda, >G, +300,000 E.P.) with CONDI EBO CUBI DEDDO MNZ (Knights of the City, >K) re-added in the Tavern, one camp trip so the AC shows 10 (no items); built in one segment from @start (see Emulation notes, stale disk) | @start,SOLO,KOD,WARP:01:09:0A,type:the knight of diamonds\n,w400,enter,w400,enter,w400,HOME,KNIGHTS,REFORM,e,w120,m,w600,enter,w200,y,w600,w600,settle
+resume_end | Castle menu, party formed from the exported 02_ending roster (RYZ >G, the five >K) | pow,sav:02_ending,RESUME,settle
