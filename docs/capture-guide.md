@@ -31,6 +31,13 @@ for small arcade games. Quality beats count.
 title - main menu - first moment of control - HUD - at least 5 gameplay shots from different areas or
 situations - every core system the playbook lists - one boss (if the game has bosses) - game over (if any).
 
+Standard environment shots (owner's rule 2026-11-19): besides the shots where something happens, every set has
+a few plain views of each kind of place with nothing special going on: no message, no menu, no enemy, no
+event square. They show what the game looks like most of the time (a corridor, a junction, a door, a stretch of
+overworld, a town street). Take several per look, from different places and depths (in a dungeon game: some
+on the first floor, some on the last), category `gameplay`, ids `env_<place>_<what>`; the caption says where
+and adds nothing that is not on screen. They are exempt from the "Representative" rule below.
+
 Breadth (owner's rule 2026-11-18): rather more features, mechanics, systems and shots than fewer. Every command
 the game offers gets a shot of it at work, minor ones included; several battles with different, interesting
 enemies; each distinct visual environment once. Details: `skills/game-capture/skill.md`, step 6.
@@ -136,6 +143,13 @@ its genre and structure.
 Templates: `games/_template/design/systems.md`, `interface.md`, `content.md`.
 
 ## Sets
+- `start` (owner's request 2026-11-19): the early game as a new player meets it, in play order, ending with the
+  first save: power-on and title, the way into a new game, making the character or party, the first screens of
+  control, first shop and equipment, first steps, the first fight and its reward, the first return to safety
+  (healing, level check) and saving. Played honestly from the game's own starting state: no strengthened
+  party, no warps, no pokes of values (a position shortcut is acceptable only where walking is long and
+  shows nothing). Shots that also exist in `main` are taken again here with their routes, so the set stands on
+  its own; 30-60 shots. Its checkpoints are named `s_...`. It needs no lens documents of its own.
 - `main` is the database set. Other sets for variants: `dmg` / `sgb` (another model), `jp` (another region/ROM
   revision, separate game slug).
 - A set is finished when `tools/shoot.py SLUG main --verify` reproduces every shot and the contact sheet

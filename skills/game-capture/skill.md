@@ -74,6 +74,9 @@ edit anything outside the game's folder.
    - **Different visual environments**: at least one shot of each distinct look the game has (each wall or tile
      set, town, cave, dungeon, outdoors by terrain, castle, special places), not several of the same look.
    - Each of these goes into `design/` too (what the command does, what the enemy did), per step 5.
+   - **Standard environment shots** (owner's rule 2026-11-19, `docs/capture-guide.md`): a few plain views per
+     kind of place with nothing happening (`env_...`), and the set `start`: the early game in play order to
+     the first save, played honestly (capture guide, "Sets").
    Add opportunistic shots of anything else distinctive (category `extra` or the right one).
    **Three lenses** (owner's request 2026-11-18, `docs/capture-guide.md` "Three lenses"): keep
    `design/systems.md` (game design: one row per feature, system, mechanic), `design/interface.md` (UI/UX:

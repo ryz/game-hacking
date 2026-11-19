@@ -121,6 +121,19 @@ The name in quotes is what the group is called before it is identified. Pictures
 | Werdna | the evil wizard | floor 10 | `dialogue_werdna_sign`, `boss_werdna`, `dialogue_f10_plaque_2` |
 | The heroes afterwards | chevron, no gear | castle | `ending_castle`, `ending_chevron`, `ending_inn` |
 
+## Standard views of the maze (2026-11-19)
+Plain views with nothing happening, one or two per floor: what the player looks at most of the time. The maze
+has one look on all ten floors (white and violet wireframe; doors are frames in a wall) **(verified: the shots)**.
+
+| Floor | What is in view | Shots |
+|---|---|---|
+| 1 | an open passage with turnings; a corridor ending at a door | `env_f1_passages`, `env_f1_corridor` |
+| 2 | a door close up; side openings; a crossing | `env_f2_door`, `env_f2_side_passages`, `env_f2_crossing` |
+| 3-4 | openings on both sides; a door at the end of a short corridor | `env_f3_openings`, `env_f4_door` |
+| 5-6 | a long view; corridors with doors along one wall | `env_f5_long_view`, `env_f5_corridor`, `env_f6_corridor` |
+| 7-8 | a door ahead; a corner | `env_f7_door`, `env_f8_corner` |
+| 9-10 | a long corridor with doors; openings on both sides | `env_f9_corridor`, `env_f10_openings` |
+
 ## Open questions
 - Monsters of floors 5 and 6 and the five pictures not met (bear, amphibian, insect, dragon, creeping coin):
   kick into rooms of those floors with wait variants (playbook, "Encounters").
