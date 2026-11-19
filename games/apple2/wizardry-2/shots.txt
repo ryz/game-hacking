@@ -1,0 +1,50 @@
+# id | category | caption | route
+# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
+#             minigame ending credits gameover save extra   (docs/capture-guide.md)
+# The plan for the main set. play.py snap writes captured shots (with exact routes) to
+# work/shots/apple2/wizardry-2/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
+# title_screen | title | Title screen | @title
+# Plan (scout 2026-11-19; routes checked with tools/try.py or as checkpoints, not captured). Full plan by category:
+# playbook, Shot plan. The DOS set's ids apply where the content is the same (games/dos/wizardry-2/shots/main/shots.txt);
+# translate its routes with the playbook's "Differences" and RAM map.
+# title_logo | title | Title: Wizardry logo, knight and dragon, Knight of Diamonds | @title
+# menu_copyright | menu | Copyright, version PV3S2V1 of 10-MAR-82, S)tart game U)tilities T)itle page | @menu
+# menu_utilities | menu | Wizardry Utilities: recover, transfer, backup, make scenario disk, update, change names | @menu,u,w600
+# transfer_begin | system | Move chars between scenarios: press Return to begin | sav:00_transfer,MENU,u,w600,t,w400
+# transfer_source_prompt | system | Insert scenario with char(s) to be moved | sav:00_transfer,MENU,u,w600,t,w400,enter,w300
+# transfer_list | system | The Wizardry I disk's characters by letter | sav:00_transfer,MENU,u,w600,t,w400,enter,w300,disk:3,enter,w600
+# transfer_password | system | Moving RYZ: password prompt | sav:00_transfer,MENU,u,w600,t,w400,enter,w300,disk:3,enter,w600,a,w300
+# transfer_target_prompt | system | Insert scenario to move char(s) to | sav:00_transfer,MENU,u,w600,t,w400,enter,w300,disk:3,enter,w600,a,w300,enter,w400
+# transfer_moved | system | Char has been moved | sav:00_transfer,MENU,u,w600,t,w400,enter,w300,disk:3,enter,w600,a,w300,enter,w400,disk:2,enter,w600
+# menu_castle | menu | Castle of Llylgamyn: the six from Wizardry I | @start
+# training_no_create | menu | Training Grounds: characters cannot be created in Llylgamyn | @edge,t,w300
+# menu_roster | menu | Roster after the transfer and the clean-up | @edge,t,w300,type:*ROSTER\n,w400
+# menu_inn_rooms | menu | Adventurer's Inn: stables to royal suites | @start,a,w300,5,w300
+# inn_stables | menu | A night in the stables: experience needed for the next level | @start,a,w300,5,w300,a,w600
+# menu_edge | menu | Edge of Town | @edge
+# menu_camp | menu | Camp with the equipped party | @gcamp
+# inventory_sheet_deddo | inventory | DEDDO's sheet: staff + 2, robes, scroll, spell points 9/9/9/7/5/4/3 | @gcamp,5,w400
+# gameplay_maze_f1 | gameplay | Floor 1 entrance: stairs going up | @camp,l,w400
+# battle_demons | battle | Floor 1: 5 demonic figures and a level 8 ninja, surprised | @battle
+# battle_chest | battle | Experience and a chest | @chest
+# boss_magic_armor | boss | Floor 1 guardian: Magic Armor | @guard1
+# boss_magic_shield | boss | Floor 2 guardian: an animated object (the Magic Shield) | @guard2
+# boss_magic_sword | boss | Floor 3 guardian: Magic Sword | @guard3
+# boss_magic_helmet | boss | Floor 4 guardian: Magic Helmet | @guard4
+# boss_magic_gauntlets | boss | Floor 5 guardian: two Magic Gauntlets | @guard5
+# dialogue_sphinx | dialogue | Floor 6: the sphinx before the door | @sphinx
+# dialogue_gnilda_face | dialogue | Gnilda's temple: the fiery face asks for the sphinx's answer | @gnilda_test
+# system_gnilda_answer | system | Answer prompt | @gnilda_answer
+# dialogue_gnilda_gift | dialogue | Gnilda reclaims the regalia | @staff_gift
+# dialogue_staff | dialogue | Receive the Staff of Gnilda | @staff_gift,enter,w600,enter,w600
+# system_got_item | system | RYZ got item | @staff
+# ending_gaudeamous | ending | Gaudeamous: Queen Margda's speech | @ending
+# ending_award | ending | Knighthoods left: 5, award one to CONDI | @ending,enter,w600
+# ending_castle | ending | Castle after the awards | @final
+# ending_sheet_keeper | ending | RYZ's sheet with the marks >G | @final,g,w300,1,w400
+# save_leave_game | save | Leave game: press Return for more Wizardry | @start,e,w300,l,w900
+# system_sphinx_answer | system | The sphinx's answer prompt | @sphinx_answer
+# dialogue_sphinx_right | dialogue | RIGHT! | @sphinx_right
+# dialogue_one_alone | dialogue | The apparition: "One alone." | @one_alone
+# gameplay_temple_door | gameplay | Floor 1 (9,9) after the teleport: the temple door | @temple_door
+# boss_helmet_costly | boss | After the Magic Helmet: four dead | @guard4_costly

@@ -4,7 +4,7 @@
   "platform": "apple2",
   "region": "na",
   "model": "iie",
-  "rom": "rom/might-and-magic.zip",
+  "rom": "rom/apple2/might-and-magic.zip",
   "sha1": "da5f40815de477478f126fa71ccce6468cc093fd",
   "crc32": "30320933",
   "size": 279793,

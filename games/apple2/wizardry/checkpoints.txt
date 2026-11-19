@@ -1,0 +1,38 @@
+# name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
+# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
+# title | Title screen, settled | TITLE,settle
+title | Title: the Wizardry logo over the wizard and his cauldron (end of the opening animation) | pow,TITLE,settle
+menu | Copyright text, VERSION 2.1 OF 22-JAN-82, S)TART GAME U)TILITIES T)ITLE PAGE (boot disk write-protected: model wp1) | @title,space,w600,settle
+castle | Castle menu, no party (scenario disk in drive 1; the inherited roster of 20 is still on it) | @menu,s,w300,disk:2,enter,w600,enter,w900,settle
+start | Castle menu: party RYZ CONDI EBO CUBI DEDDO MNZ (level 1; the 20 inherited characters deleted, the six made in the Training Grounds) formed in the Tavern | @castle,TRAINING,WIPE,PARTYMAKE,enter,w400,g,w300,ADDPARTY,enter,w300,settle
+edge | Edge of Town: M)AZE, T)RAINING GROUNDS, C)ASTLE, L)EAVE THE GAME (party formed) | @start,e,w300,settle
+camp | Camp on entering the maze: R)EORDER, E)QUIP, D)ISBAND, #) TO INSPECT, L)EAVE THE CAMP | @edge,m,w600,settle
+maze1 | Floor 1 (0,0) facing north under the stairs up: first control in the maze | @camp,l,w300,n,w200,settle
+vet | Castle with the veteran party (VET pokes level 13, HP 49-124, E.P., gold, ages, all mage spells for DEDDO, all priest spells for EBO, half for MNZ) | @start,VET,e,w300,c,w300,settle
+vmaze | Floor 1 (0,0) facing north with the veteran party | @vet,MAZE,settle
+werdna_sign | Floor 10 (17,4): the sign 'LAIR OF THE EVIL WIZARD WERDNA - THE WIZARD IS **IN**' (veterans, warped) | @vmaze,WARP:0A:10:04,settle,r,w200,r,w200,f,w400,settle
+ending_poke | The ending by the shortcut: veterans, AMULET (Werdna's amulet poked into RYZ's pack) and HOME (step off and back onto the floor 1 stairs) | @vmaze,AMULET,HOME,w300,settle
+resume | Castle menu, party formed from the exported 01_start roster (level 1) | sav:01_start,RESUME,settle
+resume_end | Castle menu, party formed from the exported 02_ending roster (level 13, chevrons) | sav:02_ending,RESUME,settle
+gcamp | Camp at the maze entrance: veterans with poked gear (GEARPOKE), equipped by E)QUIP (AC -4 -1 3 4 9 7) | @vet,GEARPOKE,e,w300,m,w900,EQUIPALL,settle
+gcastle | Castle with the equipped veterans (gcamp, back up the stairs) | @gcamp,l,w300,y,w900,settle
+gmaze | Floor 1 (0,0) facing north with the equipped veterans (MAZE2: the second maze entry of a session loads longer) | @gcastle,MAZE2,settle
+gwerdna_sign | Floor 10 (17,4): Werdna's sign, equipped veterans (warped) | @gmaze,WARP:0A:10:04,settle,r,w200,r,w200,f,w400,settle
+gwerdna | Floor 10 (17,3): Werdna's fight with the equipped veterans: 1 VAMPIRE LORD, 1 W E R D N A, 1 VAMPIRE; RYZ'S OPTIONS | @gwerdna_sign,enter,w300,r,w300,w4,k,w600,w1500,settle
+battle | Floor 1 (7,1) fight room: 3 SLIMES, RYZ'S OPTIONS F)IGHT S)PELL P)ARRY R)UN U)SE (level 1 party) | @maze1,poke:7330=0700,poke:732E=0100,poke:732A=0000,w11,r,w200,l,w200,w600,settle
+werdna | Floor 10 (17,3): Werdna's fight after kicking the door south of the sign: 1 UNSEEN ENTITY, 1 W E R D N A, 1 UNSEEN ENTITY, YOU SURPRISED THE MONSTERS!; RYZ'S OPTIONS F)IGHT S)PELL P)ARRY R)UN U)SE (veterans) | @werdna_sign,enter,w300,r,w300,w10,k,w600,w1500,settle
+chest | Floor 1 (7,1) after beating the 3 Slimes: 27 experience points each, A CHEST! O)PEN C)ALFO L)EAVE I)NSPECT D)ISARM | @battle,f,w150,f,w150,f,w150,p,w150,s,w150,type:HALITO\n,w200,p,w150,w17,enter,w2500,settle
+werdna_won | Floor 10 (17,3) after beating Werdna and both vampires in the surprise round of a real fight (Malikto, Tiltowait, Lahalito): all six unhurt, RYZ carries the amulet | @werdna,f,w150,2,w150,f,w150,2,w150,s,w150,type:MALIKTO\n,w200,p,w150,s,w150,type:TILTOWAIT\n,w200,s,w150,type:LAHALITO\n,w200,2,w200,w44,enter,w3000,settle
+malor_home | Floor 1 (0,0): 'STAIRS GOING UP. TAKE THEM (Y/N) ?' after DEDDO's MALOR from Werdna's room (17 west, 3 south, 9 up), amulet in RYZ's pack | @werdna_won,c,w400,5,w400,settle,s,w300,type:MALOR\n,w400,settle,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,w,w60,s,w60,s,w60,s,w60,u,w60,u,w60,u,w60,u,w60,u,w60,u,w60,u,w60,u,w60,u,w60,settle,enter,w900,settle
+ending | The ending: *** CONGRATULATIONS *** ... BOON OF 250,000 EXPERIENCE POINTS EACH ... CHEVRON (>) ... PRESS [RETURN], HONORED ONES (after the real Werdna fight and Malor) | @malor_home,y,w900,settle
+after_ending | Castle after the ending: the six with the chevron, 250,000 more E.P., equipment and most gold taken | @ending,enter,w900,settle
+final | Castle menu after the ending and a look at RYZ's sheet in the Tavern (source of save 02_ending and of the Wizardry II transfer disk) | @after_ending,g,w300,1,w400,settle,l,w300,enter,w300,settle
+s_shopped | Castle after RYZ bought a long sword and leather armor with his starting gold (26 of 101 left) | @start,b,w300,1,w400,b,w500,p,w300,1,w400,f,w400,p,w300,5,w400,l,w400,l,w400,enter,w400,settle
+s_camp | First camp in the maze: RYZ has equipped sword and armor (AC 8) | @s_shopped,e,w300,m,w1500,e,w500,1,w400,1,w400,settle
+s_maze | Floor 1 (0,0) under the stairs: first control with the equipped level 1 party | @s_camp,l,w400,n,w300,settle
+s_door | Floor 1 (6,7) facing south: the door of the first room, reached on foot from the stairs | @s_maze,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,r,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,r,w200,f,w200,settle
+s_fight | First fight: five Orcs surprised the party behind the first door, three fled; two left, RYZ's options | @s_door,k,w100,w1400,settle
+s_chest | After the first fight: 39 experience points each and a chest | @s_fight,f,w150,f,w150,f,w150,p,w150,s,w150,type:KATINO\n,w200,p,w150,enter,w100,w1300,settle
+s_room | The first room after the chest: 6 gold each, EBO at 3 of 7 hit points | @s_chest,i,w150,4,w500,o,w150,4,w700,settle
+s_stairs | Back at the stairs on foot after the first fight: 'Stairs going up. Take them (Y/N) ?' | @s_room,l,w200,l,w200,k,w500,settle,f,w200,l,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,f,w200,settle,l,w200,settle,f,w250,settle,f,w250,settle,f,w250,settle,f,w250,settle,f,w250,settle,f,w250,settle,f,w250,settle,f,w250,settle
+s_home | Castle after the first trip into the maze | @s_stairs,y,w900,settle

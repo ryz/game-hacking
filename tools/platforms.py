@@ -1039,7 +1039,7 @@ class Apple2(Libretro):
     tools/applewin-debug.patch: fixed power-on RAM and clock, deterministic random numbers, one-key keyboard
     latch, disk insert/eject, peek/poke, program counter). A game is one disk image or a ZIP of its disk images
     (the sides in name order); disk 1 is in drive 1 at power-on, emu.disk(n, drive) changes disks.
-    Model: MACHINE[-VIDEO][-joy]. Machines: iie (enhanced //e, 128K, default), iieorig, iiplus, ii, iijplus.
+    Model: MACHINE[-VIDEO][-joy][-wpN ...] (wpN = disk N write-protected). Machines: iie (enhanced //e, 128K, default), iieorig, iiplus, ii, iijplus.
     Video: tv (default), monitor, idealized, rgb, bwtv, mono, green, amber. joy = a joystick is plugged in.
     Keys are keyboard keys (KEYS; letters arrive as capitals, shift+letter as lowercase), openapple/solidapple
     (= joystick buttons 0/1, also button0/button1) and joyleft/joyright/joyup/joydown.
@@ -1069,6 +1069,7 @@ class Apple2(Libretro):
     BLOCK = 4096                # changed parts of a disk image are kept in blocks of this size
     STATE = b"GAMEDB-APPLE2-STATE-1\n"
     FILE_SAVES = True
+    SAVES_ARE_DUMPS = True      # play.py export keeps them in rom/saves/<platform>/<slug>/ (game data)
     SAVE_HELP = ("`.sav` = a ZIP of the disk images the game has written to (whole images, same names as in the "
                  "game's ZIP): unzip it and use those images in place of the originals in any Apple II emulator.")
 
@@ -1117,16 +1118,18 @@ class Apple2(Libretro):
         if not os.path.exists(self.SO):
             raise SystemExit("%s missing: run sh tools/setup_emu.sh apple2" % self.emulator)
         parts = (model or "iie").split("-")
-        machine, video, joy = parts[0], "tv", False
+        machine, video, joy, self.protect = parts[0], "tv", False, set()
         for p in parts[1:]:
             if p == "joy":
                 joy = True
+            elif p[:2] == "wp" and p[2:].isdigit():         # wpN: disk N is write-protected
+                self.protect.add(int(p[2:]))
             elif p in self.VIDEO:
                 video = p
             else:
                 machine = None
         if machine not in self.MACHINES:
-            raise SystemExit("unknown Apple II model %r (MACHINE[-VIDEO][-joy]; machines: %s; video: %s)" % (
+            raise SystemExit("unknown Apple II model %r (MACHINE[-VIDEO][-joy][-wpN]; machines: %s; video: %s)" % (
                 model, " ".join(self.MACHINES), " ".join(self.VIDEO)))
         # Private copies of the disk images: the game writes to them, the registered dump is never touched.
         self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
@@ -1142,12 +1145,16 @@ class Apple2(Libretro):
             self.disks = ["disk" + os.path.splitext(rom)[1].lower()]
             self._orig = {self.disks[0]: data}
         start = dict(self._orig)
-        if sav:                                             # a save = ZIP of whole changed images
-            z = zipfile.ZipFile(sav)
-            for n in z.namelist():
+        if sav:                                             # a save = ZIP of whole images: a game disk under
+            z = zipfile.ZipFile(sav)                        # its own name replaces it; any other name is an
+            for n in sorted(z.namelist(), key=str.lower):   # extra disk after the game's own (a character
+                if n.endswith("/"):                         # disk of another game, a blank disk to format)
+                    continue
+                if os.path.splitext(n)[1].lower() not in self.extensions or "/" in n:
+                    raise SystemExit("%s holds %s, which is not a disk image" % (sav, n))
                 if n not in start:
-                    raise SystemExit("%s holds %s, which is not a disk of this game (%s)" % (
-                        sav, n, ", ".join(self.disks)))
+                    self.disks.append(n)
+                    self._orig[n] = z.read(n)
                 start[n] = z.read(n)
         for n, d in start.items():
             open(os.path.join(self.dir, n), "wb").write(d)
@@ -1174,7 +1181,15 @@ class Apple2(Libretro):
         if not self.c.L.retro_gamedb_insert(slot, path, 0):
             return False
         self.drives[slot] = name
+        self._protect()
         return True
+
+    def _protect(self):
+        """Tell the core which drives hold a write-protected disk (model wpN); after every insert and state load."""
+        for slot in (0, 1):
+            n = self.drives[slot]
+            if n:
+                self.c.L.retro_gamedb_protect(slot, 1 if self.disks.index(n) + 1 in self.protect else 0)
 
     def disk(self, n, drive=1):
         """Put disk n (1 = first image of the game; 0 = none) into floppy drive 1 or 2. An image that is not a
@@ -1242,6 +1257,7 @@ class Apple2(Libretro):
         self.c.L.retro_gamedb_insert(0, None, 0)
         self.c.unserialize(zlib.decompress(raw))
         self.drives = head["drives"]
+        self._protect()
 
     def battery(self, size):
         """The disk images the game has written to, whole, as a ZIP (b"" when it has written nothing)."""

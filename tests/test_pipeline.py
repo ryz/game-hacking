@@ -1122,6 +1122,15 @@ def test_apple2_disk_swap(a2_selftest, tmp_path):
         e.disk(3)
     e.load_state(st)                                                     # the state knows which disk was in
     assert e.drives[:2] == ["Side A.dsk", None]
+    import zipfile
+    extra = str(tmp_path / "extra.sav")                                  # a save with a disk of another name
+    with zipfile.ZipFile(extra, "w") as zz:
+        zz.writestr("T Transfer.dsk", bytes(143360))
+    x = platforms.Apple2().open(z, sav=extra)
+    assert x.disks == ["Side A.dsk", "Side B.dsk", "T Transfer.dsk"]     # an extra disk after the game's own
+    x.disk(3, drive=2)
+    assert x.drives[:2] == ["Side A.dsk", "T Transfer.dsk"] and x.battery(0) == b""
+    x.close()
     e.frames(200)
     assert not e.regs()["pc"].startswith("08")
     e.close()
@@ -1169,6 +1178,23 @@ def test_apple2_state_carries_disk_writes(tmp_path):
     g.frames(600)
     assert "GAMEDB" in catalog(g)
     g.close()
+
+
+def test_apple2_write_protect(tmp_path):
+    """Model wpN: disk N is write-protected, also after a savestate load (boot disks that check it: Wizardry)."""
+    if not os.path.exists(platforms.Apple2.SO) or not os.path.exists(A2_DOS33):
+        pytest.skip("AppleWin core not built (sh tools/setup_emu.sh apple2)")
+    st = str(tmp_path / "x.state")
+    e = platforms.Apple2().open(A2_DOS33, model="iie-wp1")
+    e.frames(600)
+    e.save_state(st)
+    for again in (False, True):
+        if again:
+            e.load_state(st)
+        e.type_text('10 PRINT "HI"\nSAVE GAMEDB\n')
+        e.frames(400)
+        assert "WRITE PROTECTED" in "\n".join(_a2_row(e, r) for r in range(24)) and e.battery(0) == b""
+    e.close()
 
 
 def test_apple2_colour_after_state_load(tmp_path):

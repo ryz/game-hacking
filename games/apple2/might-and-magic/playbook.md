@@ -15,7 +15,7 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 | Players / save system | 1 player; party of up to 6 from the roster; **save = sign in at an inn**, which writes the roster to disk B (verified: gold and food after a meal survive a power-on with the exported save) |
 
 ## The dump: four disk sides
-`rom/might-and-magic.zip` (never committed) holds the game's two double-sided disks as four images, in play
+`rom/apple2/might-and-magic.zip` (never committed) holds the game's two double-sided disks as four images, in play
 order; `game.json` "header" lists their SHA-1s. Owner's uploads 2026-11-18 (TOSEC names):
 | Disk | Game calls it | File in the ZIP | From | Holds |
 |---|---|---|---|---|
@@ -51,13 +51,13 @@ Macros (`game.json`): `TITLE`, `MENU`, `TOWN:n`, `AT:xx:yy:oo` + `FN FE FS FW`, 
   Sorpigal). The stairs down at (14,0) need no disk change (cavern "DARKNESS" without light, on disk B).
 - **verified** Saving: from the start square `down,left,left,up,up` -> "WOULD YOU LIKE TO SIGN IN (Y/N)?", `y`
   writes disk B and returns to the inn's list. `play.py export` gives a ZIP with the whole changed side 2, which
-  is game data: keep such saves in `rom/saves/might-and-magic/` (uncommitted), not in `saves/`.
+  is game data: keep such saves in `rom/saves/apple2/might-and-magic/` (uncommitted), not in `saves/`.
   `sav:01_signed_in` powers on with it (made 2026-11-18: gold 48 -> 43, food 5 -> 40 on Murkler's sheet).
 - Returning to a town from the wilderness will ask for disk B again (not tried).
 
 ## The party (2026-11-18, owner's request: wipe the inherited roster, make a new one)
 Checkpoints `roster` (roster view after the wipe and creation), `party` (Sorpigal, first control), `signed_in`
-(inn list after saving). Save `rom/saves/might-and-magic/02_ryz_party.sav` (uncommitted): `sav:02_ryz_party`.
+(inn list after saving). Save `rom/saves/apple2/might-and-magic/02_ryz_party.sav` (uncommitted): `sav:02_ryz_party`.
 - **verified** Delete: options menu `v`, then per character `a,w300,ctrl+d,w200,y,w400` ("ARE YOU SURE (Y/N)?");
   the list closes up, so deleting A six times empties the roster ("NO AVAILABLE CHARACTERS"). `ctrl+n` on the
   same profile re-names.
@@ -188,7 +188,7 @@ codes, debug menus, level select, sound test, RAM pokes. Values that show on scr
 | What | How (tokens / prefix / code) | Source | Status |
 |---|---|---|---|
 
-### Saves (rom/saves/might-and-magic/, never committed)
+### Saves (rom/saves/apple2/might-and-magic/, never committed)
 | Name | Contents (progress, party, items) | URL | SHA-1 | Status |
 |---|---|---|---|---|
 

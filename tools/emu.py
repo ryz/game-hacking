@@ -127,8 +127,11 @@ class Game:
         return out
 
     def sav_file(self, name):
-        """Battery save NAME: games/<platform>/<slug>/saves/ (made here, committed) first, then rom/saves/<slug>/ (downloaded)."""
+        """Battery save NAME: games/<platform>/<slug>/saves/ (made here, committed) first, then rom/saves/<platform>/<slug>/ or rom/saves/<slug>/
+        (downloaded, or game data such as Apple II disk images: never committed)."""
         p = os.path.join(self.dir, "saves", name + ".sav")
+        if not os.path.exists(p):           # uncommitted saves: per platform first (a slug can exist on several)
+            p = os.path.join(ROOT, "rom", "saves", self.platform, self.slug, name + ".sav")
         if not os.path.exists(p):
             p = os.path.join(ROOT, "rom", "saves", self.slug, name + ".sav")
         if not os.path.exists(p):

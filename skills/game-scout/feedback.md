@@ -9,6 +9,51 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Wizardry II (Apple II)
+- Task: scout Wizardry II (Apple II): boot, Wizardry I transfer through the game's utility, 39 checkpoints to the
+  ending, RAM map, warp, saves, shot plan, lenses started, Wizardry III transfer disks.
+- Worked: reading the disk's Pascal directory and roster before playing (it showed the used scenario disk); the DOS
+  routes as hypotheses run eight at a time in `try.py`; text page reads instead of screenshots; 1x frames for
+  hi-res text; `cachecheck.py` extended with a party line and per-checkpoint frames, which exposed a "won"
+  checkpoint with four dead that the hashes passed.
+- Friction: guardians silently replaced by random groups cost about ten calls before the roster hypothesis (a
+  guardian does not appear while any roster character owns its piece; the used disk held four such characters);
+  keys lost during the variable camp load (`m,w900`); `play.py` screenshots are 3x and costly to read;
+  `cachecheck.py` with names still wipes the whole cache; a second agent's edits in the same tree trigger "file
+  modified" notes; full cold checks take about 12 minutes.
+- Proposed rule change: (1) skill step 1: for disk games, list the save roster or inventory on the dump before
+  playing, since a used disk can change quest behaviour; (2) `docs/emulator/apple2.md`: Apple Pascal Wizardry
+  loads vary by 600 frames with earlier disk activity, use `w1500` or `change` after `m`; (3) shared tool:
+  `play.py text` and a 1x `look` frame (third request for `screen.py` as a shared tool); (4) cachecheck as a
+  shared tool that builds a chain once and writes a contact sheet, with the rule "look at every fight
+  checkpoint's party table, not only hashes".
+- Corrected: coordinator replayed `@ending` (Gaudeamous screen seen). The extra-disk `sav:` transfer worked as
+  designed on first use. Nothing changed in shared files yet: the session was halted by the owner after this
+  scout and the Wizardry I capture.
+- Status: open ((1)-(4); (1) and (3) now appear in two entries: promote next session)
+
+### 2026-11-19 - Wizardry I (Apple II)
+- Task: scout Wizardry I (Apple II): boot, party, 26 checkpoints to the ending, RAM map, warp, veteran party, saves,
+  Wizardry II transfer disk, shot plan, lenses started.
+- Worked: reading the p-code loop out of memory (interpreter pointer at `0058`) found the write-protect hang in a
+  few calls; printing text page 1 as text (`screen.py`, `try.py --text`) replaced most screenshots; the DOS macros
+  carried over by address offset alone; the scenario file's own table of contents gave every table offset; twelve
+  parallel timing variants found a one-round Werdna win; Malor as the honest way home.
+- Friction: no write protection in the backend (the game is unreachable without a poke); the default `iie` model
+  shows Pascal text in 80-column mode; `rom/wizardry.zip` is shared by the dos and apple2 slugs and was
+  overwritten; the second maze entry loads longer and silently drops keys; `play.py diff` prints only the first 80
+  bytes, which are all screen memory on this platform; dump keys are hex strings; `play.py` screenshots are 3x and
+  costly to read; background-wait commands are blocked, so long checks need `run_in_background`.
+- Proposed rule change: (1) apple2.md: Apple Pascal games need `iiplus`; (2) backend: per-disk write protection,
+  then drop the `845A` poke; (3) intake: a dump path per platform when the slug exists on another; (4) apple2.md:
+  text page 1 can be read as text, offer `screen.py` as a shared `play.py text`; (5) `play.py diff`: skip
+  `0400-07FF` and `2000-3FFF` on the Apple II.
+- Corrected: (1), (2), (3) done by the coordinator the same day: model `wpN` (core hook `retro_gamedb_protect`),
+  `MENU` without the poke and all checkpoints rebuilt, dumps in `rom/apple2/`, saves in `rom/saves/apple2/`,
+  `play.py export` keeps disk-image saves out of the repo. The scout used the poke although the dispatch said to
+  stop on a backend gap; it said so plainly, which is what made the fix possible.
+- Status: open ((4) and (5) not done)
+
 ### 2026-11-19 - Phantasy Star (Master System, US/EU)
 - Task: scout Phantasy Star (SMS, first game on the new Master System backend): boot macros, 12 checkpoints, RAM
   map (characters C400, inventory C4C0, meseta C4E0, town position C301/C305, dungeon C30A/C30C), item table,

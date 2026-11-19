@@ -103,6 +103,21 @@ Current snapshot; history in `progress-log.md`.
   side 4 not reached. Open: reset keys, write-protected disks, hard disk images with a real game, held keys/auto-repeat.
   Notes: `docs/emulator/apple2.md`.
 
+- Wizardry I-V on the Apple II (2026-11-19, queue halted by the owner after two games' worth of work):
+  **I** scouted and captured (`games/apple2/wizardry/`: `main` 304 shots to the ending incl. 13 plain maze views,
+  lenses clean; `start` 47 shots, the early game to the first save). **II** scouted, not
+  captured (`games/apple2/wizardry-2/`: transfer from I works, 39 checkpoints to the ending; next step: dispatch
+  game-capture; its disk 2 carries four characters of an earlier player that the routes delete). **III, IV, V**
+  registered only (next step for III: game-scout with `rom/saves/apple2/wizardry-3/00_transfer.sav`). Dumps and
+  transfer disks are in this container only (`rom/apple2/`, `rom/saves/apple2/`): a new container needs the
+  owner's five ZIPs again, and the transfer disks rebuilt from the `final` checkpoints (`tools/transfer.py` in
+  each game folder).
+- Apple II backend additions (2026-11-19): write-protected disks (model suffix `wpN`), extra disks through a
+  `sav:` ZIP (character transfer), dumps in `rom/<platform>/` and uncommitted saves in
+  `rom/saves/<platform>/<slug>/` when a slug exists on several platforms, `play.py export` keeps disk-image
+  saves out of the repo. Open requests from the agents: `play.py text` for the Apple II text screen, a shared
+  checkpoint cold-check with a contact sheet, a duplicate check in `shoot.py --only`.
+
 - Games grouped by platform (2026-11-18): `games/<platform>/<slug>/`, folder = game.json "platform"; tools take
   `slug` or `platform/slug`; work directories are `work/<kind>/<platform>/<slug>/`. The same slug may exist on two
   platforms (`nes/might-and-magic`, later `dos/might-and-magic`).
