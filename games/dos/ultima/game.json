@@ -3,7 +3,7 @@
   "title": "Ultima I: The First Age of Darkness (DOS)",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "svga-500",
   "rom": "rom/ultima.zip",
   "sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
   "crc32": "aa06a7ae",
@@ -26,6 +26,51 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "BOOT": "w120,down*4,enter",
+    "TITLE": "BOOT,w1800",
+    "MENU": "TITLE,space,w400",
+    "CREATE": "right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,a,w60,a,w60,a,w60,r,y,z,w30,enter,w60,y,w200",
+    "RYZ": "MENU,a,w300,CREATE",
+    "PLAY": "b,w200,1,w300",
+    "NEWGAME": "RYZ,PLAY"
+  },
+  "ram": {
+    "x": {
+      "addr": "129FC",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "y": {
+      "addr": "129FE",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "hits": {
+      "addr": "129DE",
+      "size": 2
+    },
+    "food": {
+      "addr": "129F0",
+      "size": 2
+    },
+    "coin": {
+      "addr": "129EC",
+      "size": 2
+    },
+    "exp": {
+      "addr": "129EE",
+      "size": 2
+    },
+    "tx": {
+      "addr": "19C8E",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "ty": {
+      "addr": "19C90",
+      "size": 1,
+      "fmt": "hex"
+    }
+  }
 }

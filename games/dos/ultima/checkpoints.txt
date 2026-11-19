@@ -1,3 +1,7 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title picture (castle, attract loop), ULTIMA.EXE | pow,TITLE,settle
+menu | Main menu: a) Generate new character b) Continue previous game | @title,space,w400,settle
+gen | Character Generation: 30 points to distribute (GEN.EXE) | @menu,a,w300,settle
+start | ryz (level 1 human fighter) on the overworld east of the Castle of Lord British, Lands of Lord British | @gen,CREATE,settle,PLAY,settle
