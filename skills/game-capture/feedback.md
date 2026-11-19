@@ -9,6 +9,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Wizardry III (DOS) fix-up: cold verify
+- Task: 29 shots (everything from checkpoint `gfloor6` on) did not reproduce from an empty cache (coordinator
+  verify 199/228); fixed the `gfloor6` route, cold verify 228/228 (commit ad4511a), no shot retaken.
+- Worked: the coordinator's evidence (loaded states and cold build agree, the session's states do not) pinned it
+  to one checkpoint; reading `emu.play()` gave the cause; a try.py pixel comparison against the published
+  PNGs proved the fix before the 15-minute verify.
+- Friction: `play.py do "y,w300!"` pressed `y`, then failed on the bad token: the press was in the machine but
+  not in the route, nothing rolled back; the agent's own verify passed because the cache held the drifted
+  states.
+- Proposed rule change: play.py `do` validates or rolls back; skill step 7: final `--verify` after deleting
+  the cache; emulator guide: `undo` after a failed `do`.
+- Corrected: coordinator fixed `play.py` (`do` and `sample` restore the state on any error; regression check in
+  `test_dos_pipeline` fails without the fix, 0/3 reproduce) and reran the cold verify (docs/progress-log.md).
+- Status: tool fixed 2026-11-19 (the `undo` rule is not needed); step 7 promoted 2026-11-19 (empty-cache final
+  verify: the coordinator's own practice since Wizardry I, now required of the agent).
+
 ### 2026-11-19 - Wizardry III (DOS) set main
 - Task: set `main` to the ending, Neutral Crystal made in play, three lenses (228 shots, commit de02d74).
 - Worked: testing the dispatch's lead with try.py variants on poked crystals first (minutes), then the whole

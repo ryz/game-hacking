@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-19 (--publish-only after a passing --verify)
+updated: 2026-11-19 (--publish-only after a passing --verify; final verify from an empty cache)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -80,7 +80,9 @@ edit anything outside the game's folder.
    not a full set; the kinds depend on the game) up to date while capturing; copy the templates from
    `games/_template/design/` if the game has none. Every shot belongs in at least one of them, most in two. Before finishing run `python3 tools/lenses.py SLUG SET` and clear its list (add the row, or
    say in the row why there is no shot).
-7. Finish: `python3 tools/shoot.py SLUG SET --verify` (every shot must reproduce; re-snap or fix the route of a
+7. Finish: delete `work/cache/<platform>/<slug>`, then `python3 tools/shoot.py SLUG SET --verify` (a warm cache
+   holds the states your session made, and a state that its route no longer produces passes there: Wizardry
+   III DOS, 2026-11-19, 29 shots; every shot must reproduce; re-snap or fix the route of a
    MISMATCH; it also lists `check:` lines: shots with identical pictures, which `--publish` refuses, and
    captions over 80 characters: retake, drop or shorten). Removing or renaming a shot: `play.py unsnap ID
    --game SLUG` (no session needed), or edit the work `shots.txt` and run `shoot.py SLUG SET --prune`.

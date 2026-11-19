@@ -138,7 +138,14 @@ class Session:
         self.emu.save_state(self.undo_state)
         self.undo_toks = list(self.toks)
         self.undo_freezes = list(getattr(self.emu, "freezes", []))
-        self.E.play(self.emu, self.game, toks)
+        try:
+            self.E.play(self.emu, self.game, toks)
+        except Exception:
+            # a bad token (or a failing `change`) stops after the tokens before it ran: those presses are in
+            # the machine but not in the route. Roll back so the session never drifts from its route.
+            self.emu.load_state(self.undo_state)
+            self.emu.freezes = list(self.undo_freezes)
+            raise
         settled = None
         if settle:
             settled, _ = self.E.settle(self.emu, self.game)
@@ -162,13 +169,15 @@ class Session:
         self.emu.save_state(back)
         freezes = list(getattr(self.emu, "freezes", []))
         paths = []
-        for i in range(1, n + 1):
-            self.E.play(self.emu, self.game, toks)
-            p = os.path.join(self.dir, "sample_%02d.png" % i)
-            self.emu.screen_png(p)
-            paths.append(p)
-        self.emu.load_state(back)
-        self.emu.freezes = freezes
+        try:
+            for i in range(1, n + 1):
+                self.E.play(self.emu, self.game, toks)
+                p = os.path.join(self.dir, "sample_%02d.png" % i)
+                self.emu.screen_png(p)
+                paths.append(p)
+        finally:
+            self.emu.load_state(back)
+            self.emu.freezes = freezes
         self.stale = True
         out = os.path.join(self.dir, "sample.png")
         self.E.sheet(paths, out, cols=6, labels=[str(i) for i in range(1, n + 1)])

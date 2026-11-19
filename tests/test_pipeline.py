@@ -805,6 +805,13 @@ def test_dos_pipeline(dos_selftest):
     assert "saved" in run(*P, "checkpoint", "prompt", "KEYS.COM waiting for a key")
     run(*P, "do", "type:Go 1,f,1,w20")
     assert "shift=0" in run(*P, "status")
+    route = run(*P, "route")
+    # a bad token after a good one: `do` fails and rolls back, so the press of x is neither in the machine nor
+    # in the route (it was both missing from the route and in the machine before: Wizardry III, 2026-11-19);
+    # the verify below would see the extra key in the snaps
+    r = subprocess.run([sys.executable] + P + ["do", "x,w30!"], cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode != 0 and "unknown token" in (r.stdout + r.stderr)
+    assert run(*P, "route") == route
     run(*P, "snap", "typed", "gameplay", "keys typed, tick letters between them")
     assert "G" in run(*P, "text").splitlines()[0]                       # the screen as text
     run(*P, "snap", "typed_again", "gameplay", "the same frame a second time")
