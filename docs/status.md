@@ -82,8 +82,10 @@ Current snapshot; history in `progress-log.md`.
   `b1 b2 pause`, savestates, 32 KiB cartridge-RAM `.sav` export and `sav:`, Z80-space peek/poke and PC
   (`tools/gpgx-debug.patch`), RAM search on work RAM, Pro Action Replay (`gs:`), Game Genie (`rom:` variant);
   3 tests on an original test ROM (`tests/make_sms_rom.py`). First game: Phantasy Star (US/EU, `games/sms/phantasy-star/`):
-  scouted (16 checkpoints, RAM map, save 01_start) and the early game captured (53 shots, verified cold).
-  Open: talking to townspeople, overworld warp, party-member flag, the rest of the game. Not set up: Game Gear,
+  main set 109 shots (three planets, Myau joining, bosses), battles 12, seq-dungeon-walk/turn/stairs/door,
+  all verified cold; warp/dungeon/fight/party macros from decoded ROM tables. Open: the ending (Dark Falz
+  trigger, likely floor 3B/3C squares coded 7), Noah joining, Odin's cure, vehicles in use, RUN/DRP, spells
+  cast, a trap, milestone saves, battle retakes in the real boss rooms. Not set up: Game Gear,
   SG-1000, light gun/paddle, Reset button, Sega Card. Notes: `docs/emulator/sms.md`.
 
 - Apple II backend (2026-11-18): AppleWin libretro core (audetto's Linux port) at a pinned commit

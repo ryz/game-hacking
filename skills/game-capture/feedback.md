@@ -9,6 +9,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Phantasy Star (Master System, US/EU), part 2
+- Task: rest of the game, a battles set, four dungeon sequences: main 109, battles 12, seq-dungeon-walk/turn/
+  stairs/door 6/6/4/4, commit 32802e3; ending not reached (Dark Falz trigger not found).
+- Worked: decoding the ROM's own tables (entrances, town buildings/people, dungeon events, monsters, text) made
+  every place reachable from @start; writing the game state byte C202 gave clean warps and battles; a small
+  preview harness (~0.1 s per route) before `shoot.py --only`.
+- Friction: ending trigger and event-scene cursor timing (Odin's cure) cost many calls without result; a warped
+  overworld still counts as a town for vehicles; no Z80 disassembler; full-page fetches of walkthrough hosts fail.
+- Proposed rule change: (1) emulator README RAM section: find the game's main state byte and write its
+  "enter map"/"start battle" values for clean warps; (2) tools: a Z80 disassembler like dis6502.py.
+- Corrected: coordinator re-ran all six sets from an empty cache: 141/141; lenses clean; sheets looked at.
+  The battles set is mostly forced encounters on one field background (Lassic and Dark Falz included, captioned
+  honestly), weaker than the dispatch asked for real boss rooms; retakes listed by the agent.
+- Status: (1) logged; (2) open tool wish.
+
 ### 2026-11-19 - Phantasy Star (Master System, US/EU), early game
 - Task: early part of the main set: 53 shots (title, intro, Camineet, shops, church, menus, items, overworld,
   battles with EXP/level-up/chests, lit cave with clips and a chest, death and game over, continue), 53/53 from

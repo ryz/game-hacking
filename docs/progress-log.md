@@ -2,6 +2,12 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Phantasy Star (Master System) capture part 2 (main 109, battles 12, four sequences)
+- game-capture (32802e3): rest of the game up to Lassic's castle, talk solved (step toward the person, push
+  again), C202 state warps, FIGHT/PARTY/DUN macros, ROM tables decoded; ending not reached.
+- Coordinator: all six sets 141/141 from an empty cache, lenses clean, sheets looked at; the battles set leans on
+  forced encounters on one field background. Merged to `master`.
+
 ## 2026-11-19 - Phantasy Star (Master System) scouted, early game captured (53 shots)
 - game-scout (a7271a5): playbook, 12 checkpoints, RAM map, item table, save 01_start; found that SMS savestates
   dropped cartridge RAM, fixed in the backend with a test (7bff75b).
