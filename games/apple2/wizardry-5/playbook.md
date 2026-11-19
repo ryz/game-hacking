@@ -57,7 +57,7 @@ codes, debug menus, level select, sound test, RAM pokes. Values that show on scr
 | What | How (tokens / prefix / code) | Source | Status |
 |---|---|---|---|
 
-### Saves (rom/saves/wizardry-5/, never committed)
+### Saves (rom/saves/apple2/wizardry-5/, never committed)
 | Name | Contents (progress, party, items) | URL | SHA-1 | Status |
 |---|---|---|---|---|
 

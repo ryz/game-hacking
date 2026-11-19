@@ -337,6 +337,11 @@ class Session:
             return "error: this cartridge has no battery RAM (header ram_kib); use --state only via checkpoint"
         d = os.path.join(self.game.dir, "saves")
         os.makedirs(d, exist_ok=True)
+        if getattr(self.emu, "SAVES_ARE_DUMPS", False):     # whole disk images: game data, never committed
+            keep = os.path.join(self.E.ROOT, "rom", "saves", self.game.platform, self.game.slug)
+            os.makedirs(keep, exist_ok=True)
+        else:
+            keep = d
         data = self.emu.battery((kib or 0) * 1024)
         if files_save and not data:
             return ("error: the game has not written any file on this route. Save in the game first, then "
@@ -344,11 +349,11 @@ class Session:
         if not files_save and (not data.strip(b"\x00") or not data.strip(b"\xff")):
             return ("error: the battery RAM is empty (nothing was saved in the game on this route). Save in the "
                     "game first, then export; nothing written")
-        p = os.path.join(d, name + ".sav")
+        p = os.path.join(keep, name + ".sav")
         open(p, "wb").write(data)
-        files = "`%s.sav`" % name
+        files = "`%s.sav`" % name if keep == d else "`%s` (not committed)" % rel(p)
         if state:
-            self.emu.save_state(os.path.join(d, name + ".state"))
+            self.emu.save_state(os.path.join(keep, name + ".state"))
             files += ", `%s.state`" % name
         import hashlib
         readme = os.path.join(d, "README.md")

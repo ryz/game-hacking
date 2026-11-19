@@ -53,6 +53,6 @@ from the rows here, each row saying what was re-checked on the Apple II.
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
-| the game disks | `rom/wizardry.zip` (not committed) | every prompt and message (program text), maps, item and monster tables, roster |
+| the game disks | `rom/apple2/wizardry.zip` (not committed) | every prompt and message (program text), maps, item and monster tables, roster |
 | DOS port documents | `games/dos/wizardry/design/` | rules and tables, re-checked where a row says so |
 | scout's playbook | `../playbook.md` | routes, checkpoints, what was verified on 2026-11-19 |

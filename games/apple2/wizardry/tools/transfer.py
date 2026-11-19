@@ -1,7 +1,7 @@
 """transfer.py [SAVE] [OUT]: make the character-transfer disk for Wizardry II (Apple II) from an exported save.
 
   python3 games/apple2/wizardry/tools/transfer.py
-      rom/saves/wizardry/02_ending.sav -> rom/saves/wizardry-2/00_transfer.sav
+      rom/saves/apple2/wizardry/02_ending.sav -> rom/saves/apple2/wizardry-2/00_transfer.sav
 
 The export (`play.py export`) is a ZIP holding the written scenario image as `2 Scenario.dsk`. Wizardry II
 takes its party from a Wizardry I scenario disk; the Apple II backend adds an image in a `sav:` ZIP whose name

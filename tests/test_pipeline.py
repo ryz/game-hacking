@@ -1045,6 +1045,23 @@ def test_apple2_state_carries_disk_writes(tmp_path):
     g.close()
 
 
+def test_apple2_write_protect(tmp_path):
+    """Model wpN: disk N is write-protected, also after a savestate load (boot disks that check it: Wizardry)."""
+    if not os.path.exists(platforms.Apple2.SO) or not os.path.exists(A2_DOS33):
+        pytest.skip("AppleWin core not built (sh tools/setup_emu.sh apple2)")
+    st = str(tmp_path / "x.state")
+    e = platforms.Apple2().open(A2_DOS33, model="iie-wp1")
+    e.frames(600)
+    e.save_state(st)
+    for again in (False, True):
+        if again:
+            e.load_state(st)
+        e.type_text('10 PRINT "HI"\nSAVE GAMEDB\n')
+        e.frames(400)
+        assert "WRITE PROTECTED" in "\n".join(_a2_row(e, r) for r in range(24)) and e.battery(0) == b""
+    e.close()
+
+
 def test_apple2_colour_after_state_load(tmp_path):
     """Colour pictures drawn after a state load equal those of the run that made the state (the core rebuilt
     its colour tables on a load with leftover filter memory: some colours were off by 1; found with Might and

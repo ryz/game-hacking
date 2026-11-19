@@ -4,7 +4,7 @@
   "platform": "apple2",
   "region": "na",
   "model": "iie",
-  "rom": "rom/wizardry-2.zip",
+  "rom": "rom/apple2/wizardry-2.zip",
   "sha1": "87abc403fa9cab3711d2b2c9e6e7f843ab89b398",
   "crc32": "1b5045c9",
   "size": 130909,

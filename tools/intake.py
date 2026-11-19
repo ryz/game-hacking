@@ -14,7 +14,8 @@ patched ROM is what gets registered and played; the dump goes to rom/src/<slug>-
 rom/patches/<slug>/, and game.json "source" records names, SHA-1s and layouts (rebuild: tools/patch.py).
 
 Writes (never overwrites existing files in games/<platform>/<slug>/):
-  rom/<slug>.<ext>                       the dump, or the patched ROM with --patch (gitignored)
+  rom/<slug>.<ext>                       the dump, or the patched ROM with --patch (gitignored);
+                                         rom/<platform>/<slug>.<ext> when another platform has that slug and extension
   games/<platform>/<slug>/game.json                 identity (SHA-1, CRC32, header), platform, model, macros, ram, press/settle
   games/<platform>/<slug>/playbook.md               controls/structure/strategy, filled by the game-scout skill
   games/<platform>/<slug>/checkpoints.txt           named states as routes
@@ -89,7 +90,12 @@ def main():
                          "(a translated Japanese ROM is jp)")
     ext = os.path.splitext(a.rom)[1].lower()
     rom_rel = "rom/%s%s" % (slug, ext)
-    os.makedirs(os.path.join(ROOT, "rom"), exist_ok=True)
+    for other in sorted(os.listdir(os.path.join(ROOT, "games"))):      # the same slug on another platform with the
+        gj2 = os.path.join(ROOT, "games", other, slug, "game.json")    # same file name: keep the dumps apart
+        if other != platform and os.path.exists(gj2) and json.load(open(gj2, encoding="utf-8")).get("rom") == rom_rel:
+            rom_rel = "rom/%s/%s%s" % (platform, slug, ext)
+            break
+    os.makedirs(os.path.dirname(os.path.join(ROOT, rom_rel)), exist_ok=True)
     dst = os.path.join(ROOT, rom_rel)
     source = None
     if applied:

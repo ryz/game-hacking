@@ -1,6 +1,6 @@
 # Wizardry: Proving Grounds of the Mad Overlord - saves
 
-Made by the agents while playing. **The `.sav` files are not in this folder and not committed:** on the Apple II an export holds the whole scenario disk image (game data), so each one is moved to `rom/saves/wizardry/` right after `play.py export` (playbook, Saves). This table is the record: route, contents, SHA-1. `.sav` = a ZIP of the disk images the game has written to (whole images, same names as in the game's ZIP): unzip it and use those images in place of the originals in any Apple II emulator. `.state` = AppleWin libretro core savestate of the exact moment (that emulator only). In routes: `sav:NAME` prefix (power on with that save).
+Made by the agents while playing. **The `.sav` files are not in this folder and not committed:** on the Apple II an export holds the whole scenario disk image (game data), so each one is moved to `rom/saves/apple2/wizardry/` right after `play.py export` (playbook, Saves). This table is the record: route, contents, SHA-1. `.sav` = a ZIP of the disk images the game has written to (whole images, same names as in the game's ZIP): unzip it and use those images in place of the originals in any Apple II emulator. `.state` = AppleWin libretro core savestate of the exact moment (that emulator only). In routes: `sav:NAME` prefix (power on with that save).
 
 | Save | Files | What it contains | Route at export | SHA-1 (.sav) | Date |
 |---|---|---|---|---|---|

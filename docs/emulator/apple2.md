@@ -52,7 +52,11 @@ their SHA-1s. Name the files so that they sort in play order (`1 Boot.dsk`, `2 S
   Try `iiplus` when an old game misbehaves on the //e.
 - video: `tv` (colour television, the emulator's default: colours blend), `monitor`, `idealized` (crisp solid
   colours), `rgb`, `bwtv`, `mono` (white), `green`, `amber`.
-- `joy`: a joystick is plugged in (centred). Without it the paddle inputs read as not connected.
+- `joy`: a joystick is plugged in (centred).
+- `wpN` (repeatable): disk N is write-protected (`iiplus-wp1`). Wizardry's boot disk checks it: it writes to
+  itself after the title and hangs on a black screen unless the write is refused.
+- Apple Pascal programs (Wizardry) switch a //e to 80 columns, where every second text column is blank: use
+  `iiplus` for them. Without it the paddle inputs read as not connected.
 Slots: Disk II in 6, hard disk in 7, Mockingboard in 4 (the core's defaults). NTSC only.
 
 ## Screenshots
@@ -91,7 +95,8 @@ process and in a new one (`test_apple2_state_carries_disk_writes`, with DOS 3.3 
   has written to, under their names from the game's ZIP (`disk.<ext>` for a single-image game). For the owner:
   unzip and use those images in place of the originals in any Apple II emulator. `sav:NAME` powers on with them.
 - An exported `.sav` holds whole disk images, so it is game data (program and maps, not only the save):
-  keep it in `rom/saves/<slug>/` (uncommitted), never in `games/apple2/<slug>/saves/`. Open: an export that
+  `play.py export` writes it to `rom/saves/apple2/<slug>/` (uncommitted) and only its line in
+  `games/apple2/<slug>/saves/README.md` is committed; `sav:NAME` finds it there. Open: an export that
   holds only the changed blocks.
 - **Extra disks** (2026-11-19): an image in the `sav:` ZIP whose name is not one of the game's disks becomes
   an additional disk after the game's own, in name order (`disk:N` with the next numbers). Use it for a

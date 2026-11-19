@@ -21,7 +21,7 @@ the screens, keys, timing and memory are not. Section "The DOS material here" sa
 | Runtime | Apple Pascal (UCSD p-code): `SYSTEM.PASCAL`, `SYSTEM.STARTUP` (title, menu, utilities) and `WIZARDRY.CODE` on the boot side; `WIZARDRY.CODE`, `SCENARIO.DATA`, `SCENARIO.MESGS` on the scenario side (disk data) |
 
 ## The dump: two disk sides
-`rom/wizardry.zip` (never committed) = `1 Boot.dsk` + `2 Scenario.dsk`, 140 KiB sector images in DOS 3.3 sector
+`rom/apple2/wizardry.zip` (never committed) = `1 Boot.dsk` + `2 Scenario.dsk`, 140 KiB sector images in DOS 3.3 sector
 order (SHA-1s in `game.json` "header"). Owner's upload 2026-11-19.
 - **verified** Both are plain sector images that boot and play: no copy-protection failure seen. The serial
   number reads `??????` (a cleaned or cracked copy).
@@ -34,7 +34,7 @@ order (SHA-1s in `game.json` "header"). Owner's upload 2026-11-19.
   `enter`). The emulator plays on private copies and every savestate carries what the game wrote, so the dump
   never changes. U)TILITIES -> M)AKE SCENARIO DISK was not used (its menu: verified; it wants the master in
   drive 2 and a formatted disk in drive 1).
-- **verified** `rom/wizardry.zip` is also the path the DOS game's `game.json` names (`games/dos/wizardry/`):
+- **verified** `rom/apple2/wizardry.zip` is also the path the DOS game's `game.json` names (`games/dos/wizardry/`):
   the Apple II intake replaced the DOS dump in this container. Tools here always say `apple2/wizardry`.
 
 ## Boot sequence
@@ -232,10 +232,10 @@ Hit points and starting gold (117-186 seen) are rolled: they follow frame timing
 No codes, downloadable saves or debug features were looked for on the web (the DOS scouts found the usual hosts
 closed to agents; the disks themselves answered everything needed).
 
-### Saves (`rom/saves/wizardry/`, never committed: whole disk images)
+### Saves (`rom/saves/apple2/wizardry/`, never committed: whole disk images)
 `play.py export` on the Apple II writes a ZIP of the changed disk image (`2 Scenario.dsk`, the whole side:
 program, maps and roster). That is game data: every export is moved from `games/apple2/wizardry/saves/` to
-`rom/saves/wizardry/` and none is committed (`saves/README.md` keeps the table with routes and SHA-1s). The
+`rom/saves/apple2/wizardry/` and none is committed (`saves/README.md` keeps the table with routes and SHA-1s). The
 committed record is the checkpoint route; rebuild a save with `play.py start apple2/wizardry --route ROUTE`,
 `play.py export NAME "..."`, `mv`.
 | Name | Contents | Route | SHA-1 (.sav, this build) | Status |
@@ -243,7 +243,7 @@ committed record is the checkpoint route; rebuild a save with `play.py start app
 | 01_start | roster RYZ CONDI EBO CUBI DEDDO MNZ, level 1, no equipment; 14 free slots | `@start,e,w300,l,w900` + export | `1515b1cd9b1be035308acad360368725f979c5ff` | verified (`sav:01_start,RESUME` = checkpoint `resume`) |
 | 02_ending | the six after the real Werdna fight, Malor and the ending: level 13, chevron, E.P. 631,933-814,762, gold 4,817-9,342, no items | `@final,e,w300,l,w900` + export | `b3d49bc83623739f129213ccc1bb48611f051fd7` | verified (`sav:02_ending,RESUME` = `resume_end`; `data.py roster`) |
 
-### The transfer disk for Wizardry II (`rom/saves/wizardry-2/00_transfer.sav`, never committed)
+### The transfer disk for Wizardry II (`rom/saves/apple2/wizardry-2/00_transfer.sav`, never committed)
 `python3 games/apple2/wizardry/tools/transfer.py` stores the scenario image of `02_ending.sav`, unchanged, as
 `T Wizardry I.dsk` in a new ZIP (fixed date, so the same image gives the same ZIP).
 - ZIP SHA-1 `328965cd286e41a74c4e768815924fd09419e549`; image SHA-1 `52c129e55f799fd10b088035d6ef9f1e5ccb224c`
@@ -330,7 +330,7 @@ slot n at `1D200 + (n div 4)*400 + (n mod 4)*D0`), EXP +114.
 | `werdna_won`, `malor_home`, `ending`, `after_ending`, `final` | the real win; Malor to the stairs; Congratulations; Castle; Castle after a look at RYZ's sheet |
 | `ending_poke` | Congratulations by `AMULET` + `HOME` |
 | `gcamp`, `gcastle`, `gmaze`, `gwerdna_sign`, `gwerdna` | the veterans with gear: camp, Castle, floor 1, Werdna's sign and fight (Werdna, Vampire Lord, unseen entity; not fought) |
-| `resume`, `resume_end` | Castle from `sav:01_start` / `sav:02_ending` (need the files in `rom/saves/wizardry/`) |
+| `resume`, `resume_end` | Castle from `sav:01_start` / `sav:02_ending` (need the files in `rom/saves/apple2/wizardry/`) |
 Cold check: `python3 games/apple2/wizardry/tools/cachecheck.py` builds every checkpoint from an empty cache and
 compares it with a cache hit in a fresh process (frame, memory 0000-BFFF, written disk). Run 2026-11-19:
 all 26 checkpoints identical cold, from the cache and against the states of the session that made them
@@ -339,7 +339,7 @@ all 26 checkpoints identical cold, from the cache and against the states of the 
 ## Sources
 | Source | URL | Used for | Accessed |
 |---|---|---|---|
-| the disks | `rom/wizardry.zip` | program text (every prompt and message), version, roster, maps, items, monsters, the write-protect check | 2026-11-19 |
+| the disks | `rom/apple2/wizardry.zip` | program text (every prompt and message), version, roster, maps, items, monsters, the write-protect check | 2026-11-19 |
 | DOS playbook and design documents | `games/dos/wizardry/` | structure, macros, record layout, routes; each fact used here was re-checked on the Apple II or is marked | 2026-11-19 |
 | Apple II Might and Magic playbook | `games/apple2/might-and-magic/playbook.md` | how a DOS set was replayed on the Apple II | 2026-11-19 |
 No web source was fetched (time went to the emulator; the DOS scout lists the hosts and what they refused).

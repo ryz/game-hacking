@@ -304,10 +304,10 @@ index 3b2bbeb..4167ebf 100644
          va_start(va, fmt);
          vfprintf(stderr, fmt, va);
 diff --git a/source/frontends/libretro/libretro.cpp b/source/frontends/libretro/libretro.cpp
-index 4103427..e59e2db 100644
+index 4103427..0921cc8 100644
 --- a/source/frontends/libretro/libretro.cpp
 +++ b/source/frontends/libretro/libretro.cpp
-@@ -496,3 +496,87 @@ size_t retro_get_memory_size(unsigned id)
+@@ -496,3 +496,96 @@ size_t retro_get_memory_size(unsigned id)
          return 0;
      };
  }
@@ -383,6 +383,15 @@ index 4103427..e59e2db 100644
 +        return 1;
 +    }
 +    return card->Insert(drive - 2, path) ? 1 : 0;
++}
++
++// Write-protect (1) or unprotect (0) the disk in floppy drive 0 or 1. The core takes the state from the image
++// file's permissions when it inserts a disk (also on a savestate load), which root's files never show.
++GAMEDB_API void retro_gamedb_protect(int drive, int writeProtected)
++{
++    Disk2InterfaceCard *card = dynamic_cast<Disk2InterfaceCard *>(GetCardMgr().GetObj(SLOT6));
++    if (card && (drive == DRIVE_1 || drive == DRIVE_2) && !card->IsDriveEmpty(drive))
++        card->SetProtect(drive, writeProtected != 0);
 +}
 +
 +// Write the floppy tracks still held in memory to their image files.
