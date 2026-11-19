@@ -9,6 +9,29 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Wizardry I (DOS) set main
+- Task: set `main` from power-on to the ending with Werdna beaten on screen, three lenses, transfer save for
+  Wizardry II (208 shots, commits 23dc245 and 89185fc).
+- Worked: shot lines written straight into plan files and previewed with the game's `try.py` (dozens of routes
+  in parallel, one sheet) before `shoot.py --only`; timelines of 40-80 `w40` frames to pick battle message
+  frames; a scripted "approach a square from every open side" survey from the decoded floor walls (~40 message
+  squares in two runs); all 100 item names read by poking 8 items at a time into a pack; the real Werdna fight
+  won with wait variants, no pokes.
+- Friction: (1) try.py routes lack shoot.py's final settle, so previews can differ slightly; (2) long timeline
+  sheets had to be cropped and split by hand; (3) reordering shots needs an edit script plus a full verify
+  before `--publish-only`; (4) "NOT settled" noise for message frames ending in `!`. Not captured: Murphy's
+  ghost and the keys (floor 1 statues never offer a search), spinner (no visible effect), Leave game screen
+  (loader prints in DOS text mode), criticals, stoning, body recovery, Divvy message, M)ove characters past its
+  first prompt.
+- Proposed rule change: emulator guide, Cataloguing: party RPG battles: pick message frames from a timeline
+  (`enter` then N x `w40`, tiled) instead of guessing waits; special squares: one route per open side from the
+  decoded walls. Tool wishes: a shared try.py-style previewer with shoot.py's settle and paged timelines;
+  `shoot.py --reorder FILE`.
+- Corrected: coordinator looked at the contact sheets (game order, no broken frames) and reran `--verify` from
+  an empty cache (result in docs/progress-log.md 2026-11-19).
+- Status: logged (first report of the timeline technique; MM2's capture used try.py previews the same way:
+  the previewer wish is the second occurrence, still a tool wish, not built).
+
 ### 2026-11-19 - Might and Magic II (DOS) set main
 - Task: set `main` from power-on to the ending with the three lenses, saves 02-04 and the playbook (228 shots,
   commit f5a948a).
