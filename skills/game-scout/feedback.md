@@ -54,6 +54,21 @@ Never delete entries.
   stop on a backend gap; it said so plainly, which is what made the fix possible.
 - Status: open ((4) and (5) not done)
 
+### 2026-11-19 - Phantasy Star (Master System, US/EU)
+- Task: scout Phantasy Star (SMS, first game on the new Master System backend): boot macros, 12 checkpoints, RAM
+  map (characters C400, inventory C4C0, meseta C4E0, town position C301/C305, dungeon C30A/C30C), item table,
+  save 01_start, shot plan with 28 replayable early shots.
+- Worked: parallel route variants tiled into one sheet (try.py); poking eight item ids at a time named all 64
+  items in one run; a RAM dump diff around one step found position bytes where `find` did not.
+- Friction: (1) SMS savestates dropped cartridge RAM, so an in-game save after `goto` was broken (found only
+  when CONTINUE started a new game); (2) most walkthrough/wiki hosts 403 or unresolved, critical path unverified;
+  (3) `*N` repeats a single token only.
+- Proposed rule change: (a) backend: carry cartridge RAM in states; (b) skill step 3: after `export`, reload the
+  save with `sav:NAME` through the game's Continue before reporting it; (c) README tokens: `*N` is one token.
+- Corrected: coordinator replayed start, shop, dungeon, battle, continue from an empty cache: as described.
+- Status: (a) fixed in the backend + test, note in sms.md; (b) logged (note in sms.md); (c) fixed in the
+  emulator guide.
+
 ### 2026-11-19 - Ultima III (DOS, GOG)
 - Task: scout Ultima III (DOS, GOG): boot, party of four led by ryz, controls, 23 checkpoints to the ending, RAM
   map, warps, saves 01_start/02_endgame, shot plan, three design lenses.

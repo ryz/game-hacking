@@ -12,7 +12,7 @@ reverse-engineering notes. No game data is included: everything runs from your o
 | [Pokémon Blue](games/gb/pokemon-blue/playbook.md) | Game Boy | Screenshot sets ([main](games/gb/pokemon-blue/shots/main/index.md), action sequences), design reference, milestone saves |
 | [Dragon Quest](games/nes/dragon-quest/playbook.md) | Famicom, with an English translation patch | Screenshot set from the logo to the staff roll ([main](games/nes/dragon-quest/shots/main/index.md)), design reference, password tools |
 
-Platforms: Game Boy / Game Boy Color, NES / Famicom and SNES / Super Famicom cartridges, DOS games (a ZIP of the
+Platforms: Game Boy / Game Boy Color, NES / Famicom, SNES / Super Famicom and Master System / Mark III cartridges, DOS games (a ZIP of the
 game's files) and Apple II disks. Another system is one backend class in
 `tools/platforms.py`. Current state of the tooling: [docs/status.md](docs/status.md).
 
@@ -24,7 +24,7 @@ game's files) and Apple II disks. Another system is one backend class in
 | `games/_template/` | Starting files for a new game. |
 | `tools/` | Shared tooling for every game: register a ROM, drive the emulators, play, capture and verify screenshot sets. |
 | `tests/` | Tests for the shared tooling. |
-| `docs/` | How the tooling is used: [emulator guide](docs/emulator/README.md) (general rules, plus one file per platform: Game Boy, NES, SNES, DOS, Apple II), [capture guide](docs/capture-guide.md), status and history. |
+| `docs/` | How the tooling is used: [emulator guide](docs/emulator/README.md) (general rules, plus one file per platform: Game Boy, NES, SNES, Master System, DOS, Apple II), [capture guide](docs/capture-guide.md), status and history. |
 | `skills/` | Working procedures for the AI agents that do much of the work, each with a feedback log ([index](skills/skill-index.md)). |
 | `agent-log/` | One line per agent run: who, what, which files, outcome. |
 | `AGENTS.md` | Rules for all work in this repository (also read through `CLAUDE.md`). |

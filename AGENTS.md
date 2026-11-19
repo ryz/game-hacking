@@ -8,7 +8,7 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | Path | What |
 |---|---|
 | `games/<platform>/<slug>/` | everything about one game: `game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt`, `shots/<set>/`, `design/`, `saves/`, `tools/` (game-specific helpers); optional `translation/` and `tech/` |
-| `games/<platform>/` | one folder per platform, named like `game.json` "platform": `gb`, `gbc`, `nes` (NES and Famicom), `snes` (SNES and Super Famicom), `dos`, `apple2` |
+| `games/<platform>/` | one folder per platform, named like `game.json` "platform": `gb`, `gbc`, `nes` (NES and Famicom), `snes` (SNES and Super Famicom), `sms` (Master System and Mark III), `dos`, `apple2` |
 | `games/_template/` | starting files for a new game (used by `tools/intake.py`) |
 | `tools/`, `tests/` | shared tooling for all games (emulators, play, capture) and its tests |
 | `docs/` | shared tooling docs: `emulator/` (general rules + one file per platform), `capture-guide.md`, `status.md`, `progress-log.md` |
@@ -39,6 +39,7 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | `games/apple2/wizardry/` | Apple II (1981 original, boot + scenario disk, model `iiplus-wp1`) | screenshot set (291, to the ending: Werdna beaten in play, every castle service, creation, about 40 monster groups), three lens documents, ten floor maps and data tools, floor warp, 26 checkpoints |
 | `games/apple2/wizardry-2/` | Apple II (1982, two disks) | scouted 2026-11-19: Wizardry I party moved over with the game's utility, 39 checkpoints to the ending, RAM map, floor warp, six floor maps; not captured |
 | `games/apple2/wizardry-3/`, `wizardry-4/`, `wizardry-5/` | Apple II | registered 2026-11-19 (2, 6 and 9 disk sides; all boot to the title); not scouted |
+| `games/sms/phantasy-star/` | Master System (US/EU release, v1.2 header) | screenshot set (109, all three planets and most bosses; ending not reached), battles set (12), four dungeon sequences, three lens documents, warp/dungeon/fight/party macros, ROM table tools, save |
 | `games/nes/deep-dungeon-3/` | Famicom (Japanese) | screenshot set (74, to the ending), 16 floor maps + towns, design reference, saves |
 
 ## Rules (all work)
@@ -71,9 +72,10 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 
 ## Shared tooling quick reference
 Run from the repo root (how to drive any game: `docs/emulator/README.md`, then the platform file
-`docs/emulator/gb.md`, `nes.md`, `snes.md`, `dos.md` or `apple2.md`; what to capture: `docs/capture-guide.md`):
-- Setup: `sh tools/setup_emu.sh [gb|nes|snes|dos|apple2]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom
-  `.nes`, Mesen-S libretro core for SNES/Super Famicom `.sfc`/`.smc`, DOSBox Pure libretro core for DOS: a game
+`docs/emulator/gb.md`, `nes.md`, `snes.md`, `sms.md`, `dos.md` or `apple2.md`; what to capture: `docs/capture-guide.md`):
+- Setup: `sh tools/setup_emu.sh [gb|nes|snes|sms|dos|apple2]` (gbemu-cli for GB/GBC, Mesen libretro core for NES/Famicom
+  `.nes`, Mesen-S libretro core for SNES/Super Famicom `.sfc`/`.smc`, Genesis Plus GX libretro core for Master System/Mark III `.sms` (buttons `b1 b2 pause`, see
+  `docs/emulator/sms.md`), DOSBox Pure libretro core for DOS: a game
   is a `.zip` of its files, keyboard tokens, see `docs/emulator/dos.md`; AppleWin libretro core for Apple II: a
   game is a disk image or a `.zip` of disk images, `disk:N` changes disks, see `docs/emulator/apple2.md`).
 - Register a ROM: `python3 tools/intake.py ROM [--slug NAME] [--region jp|na|eu] [--patch PATCH[:headered|unheadered] ...]` -> `games/<platform>/<slug>/` +

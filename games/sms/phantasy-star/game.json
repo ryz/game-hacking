@@ -1,0 +1,101 @@
+{
+  "slug": "phantasy-star",
+  "title": "Phantasy Star",
+  "platform": "sms",
+  "region": "na",
+  "model": "ntsc",
+  "rom": "rom/phantasy-star.sms",
+  "sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+  "crc32": "e4a65e79",
+  "size": 524288,
+  "header": {
+    "header": true,
+    "rom_kib": 512,
+    "ram_kib": 32,
+    "battery": "not in the header (the backend exports the 32 KiB cartridge RAM window)",
+    "product_code": "9500",
+    "version": 2,
+    "region": "Export",
+    "header_checksum_ok": true
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {
+    "TITLE": "w150",
+    "PAGE": "b1,w240",
+    "NEWGAME": "b1,w300,PAGE*10,w30",
+    "PACE": "down:64,up:64",
+    "CONTINUE": "w90,up,w30,b2,w120,b2,w120,b2,w180",
+    "MENU": "b1,w120",
+    "TOWNPOS": "poke:C301={0},poke:C305={1}",
+    "FLASH": "b2,w60,down*2,b2,w90,b2,w90,b2,w120",
+    "PARTY1": "poke:C400=01470D840309510D244603121B000000,poke:C4F0=00",
+    "PARTY2": "poke:C400=0162116C070C6F10335E07121B000000,poke:C410=01481344070A4E153A41051100000000,poke:C4F0=01",
+    "PARTY3": "poke:C400=0183149C0E0F8C16397307131B000000,poke:C410=016119980D0D74193E4C051100000000,poke:C420=017500500F0E8100284E06131B000000,poke:C4F0=02",
+    "PARTY4": "poke:C400=01A118281E13AD1959990C151C000000,poke:C410=0181213C19118E245D860A111D000000,poke:C420=018E00681F12930041620B151B000000,poke:C430=0173339416107C363A8C041800000000,poke:C4F0=03",
+    "PARTY5": "poke:C400=01C51CB0811AD21D70EF0E171F000000,poke:C410=01BD2E706219D0326FC10A181D000000,poke:C420=01B00050781ABC007BA00F161E000000,poke:C430=01AA47844E18BA4D4ECF041820000000,poke:C4F0=03",
+    "WARP": "poke:C300=00{1}0000{2}00,poke:C308={0},poke:C309={0},poke:C202=08,w100",
+    "DUN": "poke:C30D={0},poke:C30C={1},poke:C30A={2},poke:C315=04,poke:C202=0A,w120",
+    "FIGHT": "poke:C2E6={0},poke:C29D=FF,poke:C202=0C,w200",
+    "INV1": "poke:C4C0=3338252724282527,poke:C4E2=08,set:C4E0=412:2",
+    "INV2": "poke:C4C0=333425242729362825,poke:C4E2=09,set:C4E0=1187:2",
+    "INV3": "poke:C4C0=33342135252427293728,poke:C4E2=0A,set:C4E0=2364:2",
+    "INV4": "poke:C4C0=212223343335372639383B2C252429,poke:C4E2=0F,set:C4E0=3846:2",
+    "INV5": "poke:C4C0=2122232639383B3C30313A2F323E2D343335252429,poke:C4E2=15,set:C4E0=6215:2",
+    "OWARP": "poke:C300=00{1}0000{2}00,poke:C308=00,poke:C309={0},poke:C202=08,w100"
+  },
+  "ram": {
+    "x": {
+      "addr": "C301",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "y": {
+      "addr": "C305",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "alis_hp": {
+      "addr": "C401",
+      "size": 1
+    },
+    "meseta": {
+      "addr": "C4E0",
+      "size": 2
+    },
+    "square": {
+      "addr": "C30C",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "facing": {
+      "addr": "C30A",
+      "size": 1
+    },
+    "mode": {
+      "addr": "C202",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "map": {
+      "addr": "C309",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "floor": {
+      "addr": "C30D",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "party": {
+      "addr": "C4F0",
+      "size": 1
+    }
+  }
+}

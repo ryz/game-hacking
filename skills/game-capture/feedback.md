@@ -32,6 +32,36 @@ Never delete entries.
   milestone commits; no shared file changed for the proposals: the owner halted the queue after this run.
 - Status: open
 
+### 2026-11-19 - Phantasy Star (Master System, US/EU), part 2
+- Task: rest of the game, a battles set, four dungeon sequences: main 109, battles 12, seq-dungeon-walk/turn/
+  stairs/door 6/6/4/4, commit 32802e3; ending not reached (Dark Falz trigger not found).
+- Worked: decoding the ROM's own tables (entrances, town buildings/people, dungeon events, monsters, text) made
+  every place reachable from @start; writing the game state byte C202 gave clean warps and battles; a small
+  preview harness (~0.1 s per route) before `shoot.py --only`.
+- Friction: ending trigger and event-scene cursor timing (Odin's cure) cost many calls without result; a warped
+  overworld still counts as a town for vehicles; no Z80 disassembler; full-page fetches of walkthrough hosts fail.
+- Proposed rule change: (1) emulator README RAM section: find the game's main state byte and write its
+  "enter map"/"start battle" values for clean warps; (2) tools: a Z80 disassembler like dis6502.py.
+- Corrected: coordinator re-ran all six sets from an empty cache: 141/141; lenses clean; sheets looked at.
+  The battles set is mostly forced encounters on one field background (Lassic and Dark Falz included, captioned
+  honestly), weaker than the dispatch asked for real boss rooms; retakes listed by the agent.
+- Status: (1) logged; (2) open tool wish.
+
+### 2026-11-19 - Phantasy Star (Master System, US/EU), early game
+- Task: early part of the main set: 53 shots (title, intro, Camineet, shops, church, menus, items, overworld,
+  battles with EXP/level-up/chests, lit cave with clips and a chest, death and game over, continue), 53/53 from
+  an empty cache, three lenses for the early game, commit 75ae7b7.
+- Worked: shooting the scout's planned lines first, then fixing what the sheet showed; `play.py sample` for
+  flash/typing frames; a RAM dump in first person showed the 16x16 floor map (CB00) in two calls.
+- Friction: `record` refuses after `sample` (stale screen); ~12 calls lost on how to talk to townspeople (no
+  source reachable); the playbook's town-poke note read as a warp, it is not.
+- Proposed rule change: (1) emulator README: in first-person views dump RAM once and look for a 16x16 block
+  with few distinct values (the floor map); (2) tools: `sample` should not mark the screen stale, or `record`
+  should take leading tokens.
+- Corrected: coordinator re-ran `shoot.py sms/phantasy-star main --verify` from an empty cache: 53/53; sheet
+  looked at, all frames as captioned (intro_nero_dying is one page of a longer speech).
+- Status: (1) logged (first report); (2) open tool wish.
+
 ### 2026-11-19 - Ultima III (DOS) set main
 - Task: set `main` from power-on to the ending with three lenses: 260 shots, 260/260 from an empty cache,
   published and pushed (c835148, 9a54149).

@@ -1,0 +1,7 @@
+# id | category | caption | route
+01_start | gameplay | The lit cave: facing north down the corridor | @dungeon,settle,settle
+02_step_clip | gameplay | UP: one step forward, the walls slide past (clip) | @dungeon,settle,settle,up:1,rec:40:2:8
+03_step1 | gameplay | After one step | @dungeon,settle,settle,up:16,w20
+04_step2 | gameplay | After two steps | @dungeon,settle,settle,up:16,w20,up:16,w20
+05_step3 | gameplay | After three steps | @dungeon,settle,settle,up:16,w20,up:16,w20,up:16,w20
+06_step4 | gameplay | After four steps: the chest square ahead | @dungeon,settle,settle,up:16,w20,up:16,w20,up:16,w20,up:16,w20

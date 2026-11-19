@@ -76,6 +76,18 @@ Current snapshot; history in `progress-log.md`.
   was reached by position poke with a level-1 party. Open in the tools: CD images; `unsnap` needs a session;
   `--publish-only` orders by the game folder's shots.txt. Notes: `docs/emulator/dos.md`.
 
+- Master System backend (2026-11-19): Genesis Plus GX libretro core at a pinned commit (`sh tools/setup_emu.sh
+  sms`, ~11 s), driven by `tools/lrcore.py`; `.sms` cartridges (`games/sms/<slug>/`), 256x192, models
+  ntsc/ntsc-j/pal (from the `TMR SEGA` header; headerless Japanese carts need `--region jp --model ntsc-j`), keys
+  `b1 b2 pause`, savestates, 32 KiB cartridge-RAM `.sav` export and `sav:`, Z80-space peek/poke and PC
+  (`tools/gpgx-debug.patch`), RAM search on work RAM, Pro Action Replay (`gs:`), Game Genie (`rom:` variant);
+  3 tests on an original test ROM (`tests/make_sms_rom.py`). First game: Phantasy Star (US/EU, `games/sms/phantasy-star/`):
+  main set 109 shots (three planets, Myau joining, bosses), battles 12, seq-dungeon-walk/turn/stairs/door,
+  all verified cold; warp/dungeon/fight/party macros from decoded ROM tables. Open: the ending (Dark Falz
+  trigger, likely floor 3B/3C squares coded 7), Noah joining, Odin's cure, vehicles in use, RUN/DRP, spells
+  cast, a trap, milestone saves, battle retakes in the real boss rooms. Not set up: Game Gear,
+  SG-1000, light gun/paddle, Reset button, Sega Card. Notes: `docs/emulator/sms.md`.
+
 - Apple II backend (2026-11-18): AppleWin libretro core (audetto's Linux port) at a pinned commit
   (`sh tools/setup_emu.sh apple2`, needs cmake), driven by `tools/lrcore.py`; a game is a disk image or a ZIP of
   disk images (`intake.py`; `games/apple2/<slug>/`), `disk:N` / `disk2:N` change disks, keyboard tokens and
@@ -198,7 +210,7 @@ Current snapshot; history in `progress-log.md`.
      record table's spacing on the second and the last entry, not only the first; extend the empty-cache
      check to the disk for games that save to files.
   9. DECIDED 2026-11-18: no setup script. The owner keeps one session per platform, so each session builds its
-     one emulator on demand: `sh tools/setup_emu.sh gb|nes|snes|dos|apple2` (clean builds: 9, 57, 53, 32, 78 s;
+     one emulator on demand: `sh tools/setup_emu.sh gb|nes|snes|sms|dos|apple2` (clean builds: 9, 57, 53, 11, 32, 78 s;
      all five 203 s). A script building all five was saved and removed again the same day.
   10. Content: the other ten games have no systems/interface/content documents; Might and Magic 1 now exists
       on NES, DOS and Apple II, a comparison of the three versions is possible from the existing sets.

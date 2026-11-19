@@ -1,0 +1,101 @@
+{
+ "game": {
+  "slug": "phantasy-star",
+  "title": "Phantasy Star",
+  "platform": "sms",
+  "region": "na",
+  "model": "ntsc",
+  "sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+  "crc32": "e4a65e79"
+ },
+ "set": "seq-dungeon-walk",
+ "shots": [
+  {
+   "id": "01_start",
+   "category": "gameplay",
+   "caption": "The lit cave: facing north down the corridor",
+   "route": "@dungeon,settle,settle",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_01_start.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_01_start.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "02_step_clip",
+   "category": "gameplay",
+   "caption": "UP: one step forward, the walls slide past (clip)",
+   "route": "@dungeon,settle,settle,up:1,rec:40:2:8",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "clip": {
+    "frames": 40,
+    "every": 2,
+    "kept": 21,
+    "poster": 8,
+    "seconds": 0.67,
+    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_02_step_clip.gif",
+    "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_02_step_clip.gif"
+   },
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_02_step_clip.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_02_step_clip.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "03_step1",
+   "category": "gameplay",
+   "caption": "After one step",
+   "route": "@dungeon,settle,settle,up:16,w20",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_03_step1.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_03_step1.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "04_step2",
+   "category": "gameplay",
+   "caption": "After two steps",
+   "route": "@dungeon,settle,settle,up:16,w20,up:16,w20",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_04_step2.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_04_step2.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "05_step3",
+   "category": "gameplay",
+   "caption": "After three steps",
+   "route": "@dungeon,settle,settle,up:16,w20,up:16,w20,up:16,w20",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_05_step3.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_05_step3.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "06_step4",
+   "category": "gameplay",
+   "caption": "After four steps: the chest square ahead",
+   "route": "@dungeon,settle,settle,up:16,w20,up:16,w20,up:16,w20,up:16,w20",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_06_step4.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_06_step4.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+# name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
+# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
+# title | Title screen, settled | TITLE,settle
+title | Title screen: START / CONTINUE, cursor on START | pow,TITLE,settle
+start | First control: Alis in Camineet after the intro (Nero's death) | @title,NEWGAME,settle
+camineet | Camineet: Alis beside the three shops (second-hand shop at left of her), church to the southeast | @start,left:64,down:128,w30,settle
+shop | Camineet second-hand shop: BUY / SELL prompt (MST 0; poke C4E0 first to buy) | @camineet,left:16,w10,up:32,w180,b2,w90,settle
+menu | Field menu open in Camineet: STAS MAGC ITEM SRCH SAVE, Alis HP 16 | @start,b1,w120,settle
+palma | Palma overworld: Alis just outside Camineet (east side), first step out of town | @start,poke:C301=5006,poke:C305=4001,down:16,w120,settle
+battle | First battle: one SWORM (HP 8) in the forest south-west of Camineet, command menu ATTK MAGC ITEM TALK RUN | @palma,down:240,down:240,left:240,left:240,down:240,down:240,right:240,right:240,down:240,left:240,w60,settle
+field_sw | Palma south-west of Camineet: wall, forest, a cave entrance below-left | @palma,down:240,down:240,left:240,left:240,down:240,down:240,right:240,right:240,w20,settle
+field_s | Palma: forest south of the wall, south-west of Camineet (cave entrance to the west) | @field_sw,right:64,w10,settle,right:64,w10,settle,down:64,w10,settle,up:48,right:80,down:96,w10,settle
+cave_out | Palma: Alis beside a cave entrance south-west of Camineet | @field_s,down:32,left:160,w10,settle,left:16,w180,settle
+dungeon | First-person dungeon: the cave south-west of Camineet, lit with a FLASH (poked into the inventory) | @cave_out,poke:C4C0=27,poke:C4E2=01,down:16,left:16,w180,b2,w90,settle,w60,down*2,b2,w90,settle,b2,w90,b2,w120,settle
+continue | Title CONTINUE with saves/01_start.sav: slot 1 loaded, Alis in Camineet | pow,sav:01_start,TITLE,CONTINUE
+church | Camineet church: priest's first page 'THIS IS A CHURCH. DO YOU WISH TO' | @camineet,right:16,settle,up:32,right:64,settle,right:16,settle,up:16,settle,right:16,settle,right:48,settle,down:128,settle,right:32,up:16,w120,settle,w90,settle
+passage | Inside the grey dome north-east of Alis's house: green first-person passage, entry square | @start,up:16,w120,settle,b2,w150,settle,right:48,w10,up:48,w120,settle
+cave_chest | Cave south-west of Camineet: in front of the chest 5 squares north of the entry (open prompt) | @dungeon,settle,settle,up:16,w20,up:16,w20,up:16,w20,up:16,w20,settle,up:16,w20,settle,up:16,w120,settle
+cave_battle | Cave south-west of Camineet: Wing Eye battle after the chest, command menu | @cave_chest,b2,w120,settle,b2,w60,settle,down:16,w20,up:16,w20,down:16,w20,up:16,w20,down:16,w20,up:16,w20,down:16,w20,up:16,w20,down:16,w20,up:16,w20,w60,settle

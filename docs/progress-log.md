@@ -24,6 +24,33 @@ Append-only, newest first.
 - Agents ran in parallel in one working tree (capture I, scout II) with path-limited commits: no collision.
 - Not done: Wizardry II capture; III-V scout and capture; the agents' tool requests (status.md).
 
+## 2026-11-19 - Phantasy Star (Master System) capture part 2 (main 109, battles 12, four sequences)
+- game-capture (32802e3): rest of the game up to Lassic's castle, talk solved (step toward the person, push
+  again), C202 state warps, FIGHT/PARTY/DUN macros, ROM tables decoded; ending not reached.
+- Coordinator: all six sets 141/141 from an empty cache, lenses clean, sheets looked at; the battles set leans on
+  forced encounters on one field background. Merged to `master`.
+
+## 2026-11-19 - Phantasy Star (Master System) scouted, early game captured (53 shots)
+- game-scout (a7271a5): playbook, 12 checkpoints, RAM map, item table, save 01_start; found that SMS savestates
+  dropped cartridge RAM, fixed in the backend with a test (7bff75b).
+- game-capture (75ae7b7): 53 shots from the title to the first cave and game over, three lenses (early game),
+  floor map at CB00, 4 more checkpoints. Coordinator: cold `--verify` 53/53, sheet looked at. Merged to `master`.
+
+## 2026-11-19 - Phantasy Star (Master System) registered
+- `intake.py --slug phantasy-star --region na` (SHA-1 257ca76e..., 512 KiB, header Export, product 9500,
+  version 2, checksum ok, model ntsc). Boot probe: title from frame ~120; `b1` on the title starts the intro.
+  Next: game-scout.
+
+## 2026-11-19 - Master System backend (Genesis Plus GX)
+- New platform `sms`: `Sms` backend in `tools/platforms.py` on the Genesis Plus GX libretro core (pinned
+  b9c2316, `tools/gpgx-debug.patch`: Z80-space peek/poke, PC, whole cartridge RAM, info log silenced), built by
+  `sh tools/setup_emu.sh sms`. Chosen over SMS Plus GX / Gearsystem / PicoDrive for accuracy and because the same
+  core covers Game Gear, SG-1000 and Mega Drive later.
+- `Libretro._bind` split out of `_open` so a core with other debug symbol names reuses the shared driver; NES
+  and SNES unchanged (their tests re-run).
+- Tests: header/cheats, backend (picture, buttons, Pause NMI, RAM, state round trip, two cores at once, ntsc-j
+  RAM, `.sav` load) and the intake/play/shoot pipeline on an original 64 KiB test ROM. Notes `docs/emulator/sms.md`.
+
 ## 2026-11-19 - Ultima III (DOS) scouted and captured to the ending (260 shots); DOS queue done
 - game-scout (a454aa8, cbe4b62): party ryz/condi/ebo/cubi, model svga-300 (CGA palette survives loads on svga),
   23 checkpoints to the ending, RAM map from EXODUS.BIN's load address, warps, quest chain from the code.

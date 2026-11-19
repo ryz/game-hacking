@@ -1,0 +1,5 @@
+# id | category | caption | route
+01_door | gameplay | A cave on Palma: a closed door ahead | @start,PARTY3,INV3,DUN:02:68:01,w30
+02_open_clip | gameplay | Button 2 at the door: it swings open (clip) | @start,PARTY3,INV3,DUN:02:68:01,w30,b2,rec:90:2:20
+03_open | gameplay | The open door: a dark doorway | @start,PARTY3,INV3,DUN:02:68:01,w30,b2,w150
+04_through | gameplay | UP: through the door into the corridor beyond | @start,PARTY3,INV3,DUN:02:68:01,w30,b2,w150,up:1,w150

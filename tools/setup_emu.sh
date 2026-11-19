@@ -6,6 +6,9 @@
 #              tools/mesen-debug.patch adds retro_mesen_peek/poke/pc (whole CPU address space, program counter).
 #   mesen-s    Mesen-S as a libretro core (same driver). Backend for snes.
 #              tools/mesen-s-debug.patch adds retro_mesen_peek/poke/pc (24-bit address space).
+#   gpgx       Genesis Plus GX as a libretro core (same driver). Backend for sms (Master System / Mark III).
+#              tools/gpgx-debug.patch adds retro_gamedb_peek/poke/pc (Z80 address space, program counter) and
+#              retro_gamedb_sram (the whole cartridge RAM), and silences the core's info-level log.
 #   dosbox-pure  DOSBox Pure as a libretro core (same driver). Backend for dos (a game = a ZIP of its files).
 #              tools/dosbox-pure-debug.patch adds retro_gamedb_set_time (emulated clock set by the driver, not
 #              the host), retro_gamedb_sync (wait for the emulation thread at the frame end) and retro_gamedb_pc; it also makes a loaded savestate continue exactly like the run that made it,
@@ -18,7 +21,7 @@
 #              one-key latch, and adds retro_gamedb_insert/flush/peek/poke/pc and retro_gamedb_set_time; it also
 #              drops a font resource only the SDL frontend needs (it lives in a git submodule).
 #              The build embeds the firmware with `xxd -i`; without xxd, tools/xxd_i.py stands in.
-# sh tools/setup_emu.sh [gb|nes|snes|dos|apple2]   (default: all)
+# sh tools/setup_emu.sh [gb|nes|snes|sms|dos|apple2]   (default: all)
 set -e
 cd "$(dirname "$0")"
 want=${1:-all}
@@ -46,6 +49,15 @@ if [ "$want" = all ] || [ "$want" = snes ]; then
       git apply ../mesen-s-debug.patch)
   fi
   make -C mesen-s/Libretro -j"$(nproc 2>/dev/null || echo 2)"
+fi
+if [ "$want" = all ] || [ "$want" = sms ]; then
+  if [ ! -d gpgx ]; then
+    mkdir gpgx
+    (cd gpgx && git init -q && git remote add origin https://github.com/libretro/Genesis-Plus-GX.git &&
+      git fetch -q --depth 1 origin b9c2316441978d4015ba30e9a95d9b0e6f8ee981 && git checkout -q FETCH_HEAD &&
+      git apply ../gpgx-debug.patch)
+  fi
+  make -C gpgx -f Makefile.libretro -j"$(nproc 2>/dev/null || echo 2)"
 fi
 if [ "$want" = all ] || [ "$want" = dos ]; then
   if [ ! -d dosbox-pure ]; then

@@ -1,7 +1,7 @@
 # Emulator use - the general rules
 
 Platform specifics (models, memory layout, cheat formats, screenshot format, limits) are in one file per system:
-[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md), [SNES / Super Famicom](snes.md), [DOS](dos.md) and [Apple II](apple2.md). Read this file and the one for your game's
+[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md), [SNES / Super Famicom](snes.md), [Master System / Mark III](sms.md), [DOS](dos.md) and [Apple II](apple2.md). Read this file and the one for your game's
 platform.
 
 How agents drive games here, for any game. Game-specific facts (controls, routes, RAM) go into
@@ -9,7 +9,7 @@ How agents drive games here, for any game. Game-specific facts (controls, routes
 
 ## Setup (once per container)
 ```sh
-sh tools/setup_emu.sh                         # all emulators (~3.5 min); one platform is enough: `gb` 9 s, `nes` 57 s, `snes` 53 s, `dos` 32 s, `apple2` 78 s
+sh tools/setup_emu.sh                         # all emulators (~3.5 min); one platform is enough: `gb` 9 s, `nes` 57 s, `snes` 53 s, `sms` 11 s, `dos` 32 s, `apple2` 78 s
 python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<platform>/<slug>/, rom/<slug>.gbc (or .gb, .nes)
 #   + --slug might-and-magic-2 --region jp|na|eu  short game name without the platform, and where the dump was
 #     released (a translated Japanese ROM is jp); both go into every shot file name (docs/capture-guide.md)
@@ -35,7 +35,7 @@ playbooks (committed) are not. That is why every state is defined by a route.
 | `b+a` | press together | combos |
 | `select>a` | hold the first 4 frames, then both | held-modifier shortcuts |
 | `right:30` `a+right:60` | hold N frames, release, no wait | walking, running, charging, jump height |
-| `a*5` `right:16*4` | repeat | repeated menu steps, walking tile by tile |
+| `a*5` `right:16*4` | repeat one token (`b,w60*6` repeats only the wait: put a repeated group in a macro) | repeated menu steps, walking tile by tile |
 | `w60` | wait 60 frames (1 s) | fades, animations, enemy movement |
 | `mash:a:600` | tap A every 8 frames for 600 frames | skipping text and intros |
 | `settle` | run until two frames 10 apart are identical (max 300) | before a capture |
