@@ -51,7 +51,7 @@ def decode(r):
         "align": ALIGN[w(r, 0x2A) % 4], "stats": attribs(r), "gold": long3(r, 0x34), "items": w(r, 0x3A),
         "exp": long3(r, 0x7C), "maxlev": w(r, 0x82), "level": w(r, 0x84), "hp": w(r, 0x86), "hpmax": w(r, 0x88),
         "mage_sp": [w(r, 0x92 + 2 * i) for i in range(7)], "priest_sp": [w(r, 0xA0 + 2 * i) for i in range(7)],
-        "ac": w(r, 0xB0),
+        "ac": w(r, 0xB0) - (65536 if w(r, 0xB0) > 32767 else 0),
     }
 
 
@@ -88,7 +88,7 @@ def show(disk, raw=False):
         c = decode(r)
         if not c:
             continue
-        print("%2d %05X %-15s %s-%s %-6s L%-3d HP %3d/%-3d AC %2d %-6s gold %-9d exp %-9d st %s age %dw out %d items %d"
+        print("%2d %05X %-15s %s-%s %-6s L%-3d HP %3d/%-3d AC %3d %-6s gold %-9d exp %-9d st %s age %dw out %d items %d"
               % (n, o, c["name"], c["align"], c["class"], c["race"], c["level"], c["hp"], c["hpmax"], c["ac"],
                  c["status"], c["gold"], c["exp"], "/".join(map(str, c["stats"])), c["age_weeks"], c["out"],
                  c["items"]))

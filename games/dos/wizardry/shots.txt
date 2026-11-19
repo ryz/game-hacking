@@ -1,65 +1,205 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# Wizardry I (DOS), plan for set main (scout 2026-11-19). Macros and checkpoints: game.json, checkpoints.txt;
-# how to reach each area: playbook "Shot plan". Uncommented lines: frame seen by the scout with that exact route
-# (games/dos/wizardry/tools/try.py), not yet through shoot.py. Commented lines: planned, route to be built.
-# play.py snap writes captured shots to work/shots/dos/wizardry/<set>/shots.txt; copy finished lines back here.
-#
-# --- start of the game
-title_screen | title | Title: Wizardry logo, "Welcome to the world of Wizardry!", S)tart game / M)ake scenario disk | @title
-# title_monsters | title | Title, later monster parade (four monsters) | @title,w900,!   (pick the frame with play.py sample)
-# boot_scenario_prompt | boot | "Place duplicate scenario diskette in drive 1, then press Enter" (answered by the loader) | @title,s,w?,!  (frame between s+240 and s+270)
-# boot_loading | boot | "Now loading the program into memory ..." | @title,s,w?,!  (about s+330)
-menu_castle | menu | Castle: Gilgamesh's Tavern, Adventurer's Inn, Temple of Cant, Boltac's, Edge of Town; party list | @start
-menu_edge | menu | Edge of Town: Training, Maze, Castle, Utilities, Leave game | @edge
-menu_utilities | menu | Wizardry Utilities: change name, move characters, restart an "out" party | @edge,u,w120
-menu_tavern | menu | Gilgamesh's Tavern: add, remove, inspect, divvy gold, leave | @start,g,w120
+# Wizardry I (DOS), set main: 199 shots from power-on to the ending (game-capture 2026-11-19), verified with
+# tools/shoot.py dos/wizardry main --verify. Macros and checkpoints: game.json, checkpoints.txt; how each area is
+# reached: playbook "Shot plan".
+title_screen | title | Title: Wizardry logo, "Welcome to the world of Wizardry!", S)tart game / M)ake | @title
+title_parade_trio | title | Title monster parade: three monsters under the logo | @title,w600,!
+title_parade_pair | title | Title monster parade: a werewolf and a fighter-like monster | @title,w1500,!
+menu_make_scenario | menu | M)ake scenario disk: "The disk you inserted has data on it ... Use it (Y/N)?" | @title,m,w300
+boot_disk_prompt | boot | "Place duplicate scenario diskette in drive 1, then press Enter" (loader) | @title,s,w266,!
+boot_loading | boot | "Now loading the program into memory ..." while the game loads | @title,s,w460,!
+menu_castle_empty | menu | Castle on a fresh start: no party yet, the party window is empty | pow,CASTLE,settle
 menu_training | menu | Training Grounds: create, inspect, roster of characters, leave | @training
-inventory_roster | inventory | Roster of characters: six pre-made and the six of the party, level 1 | @training,r,w200
-# create_name | system | Character creation: "Enter a name for your character" (use a new name: ryz exists) | @training,c,w120,type:thal\n...
-# create_race | system | Choose race: Human Elf Dwarf Gnome Hobbit | (after name and password)
-# create_align | system | Choose alignment: Good Neutral Evil |
-# create_stats | system | Bonus points: Enter moves the pointer, Up/Down alter, eligible classes listed | (MAKE steps)
-# create_class | system | Select class: only eligible classes (A Fighter ... H Ninja) |
-# create_keep | system | "Keep this character (Y/N)?" with the finished sheet |
-# --- castle services
-shop_boltac | shop | Boltac's Trading Post: buy, sell, uncurse, identify, pool gold (veteran ryz, 24,817 gold) | @vet,b,w120,1,w150
-shop_boltac_buy | shop | Boltac's stock, first page: long sword 25 ... dagger 5 | @vet,b,w120,1,w150,b,w200
-menu_inn | menu | Adventurer's Inn: stables free, cot 10, economy 50, merchant 200, royal suite 500 gp/week | @start,a,w120,1,w150
-# system_levelup | system | Inn: "you made the next level", stat changes (needs E.P. over the next threshold: poke E.P. a bit higher) |
-# menu_temple | menu | Temple of Cant: "Who shall we help?" with a dead or paralyzed character in the roster |
-inventory_inspect_vet | inventory | Character sheet of ryz, veteran: level 13 fighter, 24,817 gold, 112 HP | @vet,g,w120,1,w200
-# --- maze
+create_name | system | Creation: "Enter a name for your character", ZED typed | @training,c,w120,type:zed,w60
+create_name_taken | system | Creation: a name already on the roster - "Name already in use" | @training,c,w120,type:ryz\n,w90
+create_password | system | Creation: "Enter password" (may be left empty) | @training,c,w120,type:zed\n,w90
+create_race | system | Creation: choose race - human, elf, dwarf, gnome, hobbit | @training,c,w120,type:zed\n,w90,enter,w90
+create_align | system | Creation: choose alignment - good, neutral, evil (elf chosen) | @training,c,w120,type:zed\n,w90,enter,w90,b,w90
+create_bonus | system | Creation: elf base statistics and 9 bonus points to share | @training,c,w120,type:zed\n,w90,enter,w90,b,w90,b,w120,poke:C36E=0900,settle
+create_bonus_spent | system | Bonus points: STR 11, IQ 11, AGI 11 open fighter, mage and thief | @training,c,w120,type:zed\n,w90,enter,w90,b,w90,b,w120,poke:C36E=0900,up,w60,up,w60,up,w60,up,w60,enter,w60,up,w60,enter,w60,enter,w60,enter,w60,up,w60,up,w60,enter,w60,up,w60,up,w60
+create_class | system | Select class: fighter, mage or thief for the neutral elf | @training,c,w120,type:zed\n,w90,enter,w90,b,w90,b,w120,poke:C36E=0900,up,w60,up,w60,up,w60,up,w60,enter,w60,up,w60,enter,w60,enter,w60,enter,w60,up,w60,up,w60,enter,w60,up,w60,up,w60,esc,w90
+create_keep | system | Mage chosen: "Keep this character (Y/N)?" | @training,c,w120,type:zed\n,w90,enter,w90,b,w90,b,w120,poke:C36E=0900,up,w60,up,w60,up,w60,up,w60,enter,w60,up,w60,enter,w60,enter,w60,enter,w60,up,w60,up,w60,enter,w60,up,w60,up,w60,esc,w90,b,w120
+training_char_menu | menu | Training Grounds, a character: inspect, delete, change class, password | @training,c,w120,type:zed\n,w90,enter,w90,b,w90,b,w120,poke:C36E=0900,up,w60,up,w60,up,w60,up,w60,enter,w60,up,w60,enter,w60,enter,w60,enter,w60,up,w60,up,w60,enter,w60,up,w60,up,w60,esc,w90,b,w120,y,w180,i,w120,m,w200
+training_inspect_new | inventory | The new character's sheet: ZED, level 1 neutral elf mage, 180 gold | @training,c,w120,type:zed\n,w90,enter,w90,b,w90,b,w120,poke:C36E=0900,up,w60,up,w60,up,w60,up,w60,enter,w60,up,w60,enter,w60,enter,w60,enter,w60,up,w60,up,w60,enter,w60,up,w60,up,w60,esc,w90,b,w120,y,w180,i,w120,m,w200,i,w200
+training_change_class | system | Change class: the classes ZED's statistics allow (fighter, thief) | @training,c,w120,type:zed\n,w90,enter,w90,b,w90,b,w120,poke:C36E=0900,up,w60,up,w60,up,w60,up,w60,enter,w60,up,w60,enter,w60,enter,w60,enter,w60,up,w60,up,w60,enter,w60,up,w60,up,w60,esc,w90,b,w120,y,w180,i,w120,m,w200,c,w200
+training_class_changed | system | ZED changed class: now N-FIG, level 1 | @training,c,w120,type:zed\n,w90,enter,w90,b,w90,b,w120,poke:C36E=0900,up,w60,up,w60,up,w60,up,w60,enter,w60,up,w60,enter,w60,enter,w60,enter,w60,up,w60,up,w60,enter,w60,up,w60,up,w60,esc,w90,b,w120,y,w180,i,w120,m,w200,c,w200,a,w200
+training_delete | system | Delete a character: "Sure you want to delete (Y/N)?" | @training,c,w120,type:zed\n,w90,enter,w90,b,w90,b,w120,poke:C36E=0900,up,w60,up,w60,up,w60,up,w60,enter,w60,up,w60,enter,w60,enter,w60,enter,w60,up,w60,up,w60,enter,w60,up,w60,up,w60,esc,w90,b,w120,y,w180,i,w120,m,w200,d,w200
+training_password | system | Alter password: "Enter new password" | @training,c,w120,type:zed\n,w90,enter,w90,b,w90,b,w120,poke:C36E=0900,up,w60,up,w60,up,w60,up,w60,enter,w60,up,w60,enter,w60,enter,w60,enter,w60,up,w60,up,w60,enter,w60,up,w60,up,w60,esc,w90,b,w120,y,w180,i,w120,m,w200,a,w200
+training_pick | menu | Inspect a character: the roster by letter, the six of the party at G-L | @training,i,w120
+inventory_roster | inventory | Roster of characters: six pre-made and the party ryz ... mnz, level 1 | @training,r,w200
+menu_tavern_add | menu | Gilgamesh's Tavern, A)dd: the roster to pick from, (letter) selects | sav:01_start,CASTLE,g,w120,a,w150
+menu_castle | menu | Castle: tavern, inn, temple, Boltac's, edge of town; the party of six | @start
+menu_tavern | menu | Gilgamesh's Tavern: add, remove, inspect, divvy gold, leave | @start,g,w120
+tavern_remove | menu | Tavern R)emove: "Remove who (#)?" | @start,g,w120,r,w150
+tavern_removed | menu | MNZ removed: five left in the party window | @start,g,w120,r,w150,6,w150
+inventory_inspect_l1 | inventory | Character sheet: RYZ, level 1 good human fighter, 8 HP, 102 gold | @start,g,w120,1,w200
+menu_inn_who | menu | Adventurer's Inn: "Who will stay?" | @start,a,w120
+menu_inn | menu | Inn rooms: stables free, cot 10, economy 50, merchant 200, royal 500 | @start,a,w120,1,w150
+inn_stables | menu | Stables: no healing, the E.P. check: "You need 1000 more E.P." | @start,a,w120,1,w150,a,w200
+inn_recuperating | system | Cot: "RYZ is recuperating", hit points 5/8, gold 82 counting down | @start,poke:DD68=040500000000,poke:DD72=0300,a,w120,1,w150,b,w100,!
+inn_levelup | system | "You made the next level!": IQ, agility and luck up, vitality down, +3 HP | @start,poke:DD68=040500000000,poke:DD72=0300,a,w120,1,w150,c,w100,w100
+menu_temple_empty | menu | Temple of Cant: "Who shall we help?" with nobody in need | @start,t,w150
+menu_edge | menu | Edge of Town: training, maze, castle, utilities, leave game | @edge
+menu_utilities | menu | Wizardry Utilities: change name, move characters, restart an "out" party | @edge,u,w120
+util_change_name | menu | Utilities C)hange name: the roster by letter | @start,e,w120,u,w150,c,w150
+util_move | menu | Utilities M)ove characters: "Insert the source scenario disk ..." | @start,e,w120,u,w150,m,w150
+util_restart_none | menu | Utilities R)estart a party: "No characters are in the maze" | @start,e,w120,u,w150,r,w150
+menu_castle_vets | menu | Castle with the veteran party: level 13, armour class -4 to 9 | @gcastle
+inventory_sheet_vet | inventory | RYZ, level 13 fighter: equipped long sword+2, plate mail+2, shield+2, helm+1 | @gcastle,g,w120,1,w200
+inventory_spellbooks | inventory | DEDDO's sheet R)ead: mage spells 9/9/9/7/5/4/3, spell book menu | @gcastle,g,w120,5,w200,r,w200
+inventory_mage_book | inventory | Mage spell book: all 21 spells, HALITO to TILTOWAIT, in seven levels | @gcastle,g,w120,5,w200,r,w200,m,w200
+inventory_priest_book | inventory | Priest spell book (EBO): all 29 spells, KALKI to KADORTO | @gcastle,g,w120,3,w200,r,w200,p,w200
+inventory_trade | inventory | T)rade: "Trade with whom (#)?" | @gcastle,g,w120,1,w200,t,w200
+inventory_trade_gold | inventory | Trade with CONDI: "Trade gold (amt)?" before the items | @gcastle,g,w120,1,w200,t,w200,2,w200
+inventory_pool | inventory | P)ool gold: the whole party's gold, 61,615, in RYZ's purse | @gcastle,g,w120,1,w200,p,w200
+inventory_drop | inventory | D)rop: "Drop item (#)?" | @gcastle,g,w120,1,w200,d,w200
+inventory_bishop_identify | inventory | MNZ (bishop) I)dentify on an unknown ring: "You identified it!" | @gcastle,poke:E136=0400,poke:E150=0000000000003600,g,w120,6,w200,i,w200,4,w60,!
+inventory_identified | inventory | The ring identified: RING OF PORFIC in MNZ's pack | @gcastle,poke:E136=0400,poke:E150=0000000000003600,g,w120,6,w200,i,w200,4,w300
+shop_boltac_who | shop | Boltac's Trading Post: "Who will enter?" | @gcastle,b,w120
+shop_boltac | shop | Boltac's menu for RYZ: buy, sell, uncurse, identify, pool gold; 24,817 gold | @gcastle,b,w120,1,w150
+shop_boltac_buy | shop | Boltac's stock, page 1: long sword 25 ... dagger 5 | @gcastle,b,w120,1,w150,b,w200
+shop_boltac_armor | shop | Boltac's stock forward: dagger, shields, robes, leather, chain mail | @gcastle,b,w120,1,w150,b,w200,f,w200
+shop_boltac_potions | shop | Boltac's stock: plate mail 750, helm 100, potions of Dios and Latumofis | @gcastle,b,w120,1,w150,b,w200,f,w200,f,w200
+shop_boltac_magic | shop | Boltac's stock: scroll of Katino 500, leather+1 to breast plate+1 1500 | @gcastle,b,w120,1,w150,b,w200,f,w200,f,w200,f,w200
+shop_boltac_rare | shop | Boltac's stock: staff+2 2500, gloves of copper 6000, then back to start | @gcastle,b,w120,1,w150,b,w200,f,w200,f,w200,f,w200,f,w200
+shop_purchase | shop | P)urchase: "Purchase (#) (Enter to leave)?" | @gcastle,b,w120,1,w150,b,w200,f,w200,f,w200,p,w200
+shop_bought | shop | Potion of Dios bought for 500: "* Just what you needed *" | @gcastle,b,w120,1,w150,b,w200,f,w200,f,w200,p,w200,5,w40,!
+shop_unusable | shop | CUBI (thief) shops: swords marked USELESS, "Unusable item - buy it (Y/N)?" | @gcastle,b,w120,4,w150,b,w200,p,w200,1,w200
+shop_sell | shop | S)ell: RYZ's pack with Boltac's prices, "Sell which (#)?" | @gcastle,b,w120,1,w150,s,w200
+shop_sold | shop | Potion sold: "* Anything else, noble sir? *" | @gcastle,b,w120,1,w150,s,w200,5,w40,!
+shop_identify | shop | I)dentify: an unknown ?SWORD in RYZ's pack | @gcastle,poke:DD26=0600,poke:DD50=0000000000002100,b,w120,1,w150,i,w200
+shop_identified | shop | Identified by Boltac: SLAYER OF DRAGONS | @gcastle,poke:DD26=0600,poke:DD50=0000000000002100,b,w120,1,w150,i,w200,6,w200
+shop_uncurse | shop | U)ncurse: RYZ wears a cursed ROBE OF CURSES (-) | @gcastle,poke:DD26=0600,poke:DD50=0100010001004900,b,w120,1,w150,u,w200
+shop_uncursed | shop | Uncursed: the robe is gone from RYZ's pack | @gcastle,poke:DD26=0600,poke:DD50=0100010001004900,b,w120,1,w150,u,w200,6,w200
+temple_dead | menu | Temple of Cant: CONDI is dead - "Who shall we help?" | @gcastle,poke:DDE4=0500,poke:DE42=0000,e,w120,c,w120,t,w150
+temple_donation | menu | "The donation will be 3250. Who will tithe?" (250 gold per level) | @gcastle,poke:DDE4=0500,poke:DE42=0000,e,w120,c,w120,t,w150,a,w150
+temple_ritual | system | "Murmur - chant - pray -": the temple's ritual | @gcastle,poke:DDE4=0500,poke:DE42=0000,e,w120,c,w120,t,w150,a,w150,w1,1,w60,w60,w60,w60,!
+temple_healed | system | "Murmur - chant - pray - invoke! * CONDI has been healed *" | @gcastle,poke:DDE4=0500,poke:DE42=0000,e,w120,c,w120,t,w150,a,w150,w1,1,w60,w60,w60,w60,w60,w60,w60,!
+temple_ashes_donation | menu | CONDI in ashes: the donation is 6500 (500 gold per level) | @gcastle,poke:DDE4=0600,poke:DE42=0000,e,w120,c,w120,t,w150,a,w150
+temple_buried | system | The ritual fails on ashes: "* CONDI will be buried *" - lost for good | @gcastle,poke:DDE4=0600,poke:DE42=0000,e,w120,c,w120,t,w150,a,w150,w1,1,w60,w60,w60,w60,w60,w60,w60,!
+temple_lost_party | system | After the burial: the party window shows CONDI as LOST | @gcastle,poke:DDE4=0600,poke:DE42=0000,e,w120,c,w120,t,w150,a,w150,w1,1,w60,w60,w60,w60,w60,w60,w60,w300,enter,w200
 gameplay_maze_f1_start | gameplay | Floor 1 entrance: wireframe corridor, command line, party window | @maze1
-gameplay_camp | menu | Camp: inspect, reorder, equip, leave | @camp
-inventory_camp_inspect | inventory | Camp, inspecting deddo (mage): spells 2/0/0/0/0/0/0, commands read, spell, use ... | @camp,5,w150
+gameplay_camp | menu | Camp on entering the maze: inspect, reorder, equip, leave | @camp
+inventory_camp_inspect | inventory | Camp, inspecting DEDDO (mage): spells, read, spell, use ... | @camp,5,w150
+camp_reorder | menu | Camp R)eorder: "Who will be #1?" - the party's marching order | @camp,r,w150
+camp_equip | inventory | Camp E)quip: "Select weapon - 1) Long sword+2 - Equip which (#)?" | @vet,GEARPOKE,e,w120,m,w600,e,w200
+camp_cast_whom | inventory | EBO casts DIOS in camp: "Cast on whom (#)?" | @gmaze,poke:DE42=1500,c,w200,3,w150,s,w90,type:dios\n,w150
+camp_use_item | inventory | U)se in camp: "Use item (#)?" - RYZ's potion of Dios | @gmaze,poke:DD72=4100,c,w200,1,w150,u,w150
+camp_malor | inventory | MALOR in camp: "Party teleport" - set east, north, up, then teleport | @gmaze,c,w200,5,w150,s,w90,type:malor\n,w300
+system_dumapic | system | DUMAPIC in camp: "Facing north. 0 east 0 north 1 down." | @gmaze,c,w200,5,w150,s,w90,type:dumapic\n,w300
+gameplay_wall | gameplay | Walking into a wall: "You can't walk through walls!" | @maze1,d,w60,w,w60,!
+gameplay_status_off | gameplay | S)tatus: the party window off, the view drawn full height | @maze1,s,w200
 gameplay_full_view | gameplay | O)ff: the maze view alone, command line and party window hidden | @maze1,o,w90
-gameplay_dark | gameplay | Floor 1 darkness: the view is hatched, nothing drawn | @maze1,poke:DA26=0900,poke:DA24=0500,poke:DA20=0000,a,w60,d,w60
-dialogue_sign_f1 | dialogue | Floor 1 sign: "** Area out of bounds! **" | @maze1,poke:DA26=0900,poke:DA24=0B00,poke:DA20=0000,a,w60,d,w60,w,w300
-system_dumapic | system | DUMAPIC in camp: "Facing north. 0 east 0 north 1 down" | @vmaze,c,w200,5,w150,s,w90,type:dumapic\n,w300
-gameplay_f2_stairs | gameplay | Floor 2 arrival on the stairs: "Stairs up, take them (Y/N)?" | @vmaze,WARP:02:0C:07
-dialogue_f4_desk | dialogue | Floor 4: the room with the large desk, crystal balls and the door that glows orange | @vmaze,WARP:04:0B:0B,a,w60,a,w60,w,w600
-# gameplay_wall | gameplay | "You can't walk through walls!" | @maze1,d,w60,w,w60
-# gameplay_kick_door | gameplay | K kicks a door open (Werdna's door) | @werdna_sign,enter,w120,d,w90  (door in view)
-# gameplay_elevator | gameplay | Floor 1 elevator (10,8): floors A-D | approach from the open side (maps.py 1)
-# gameplay_pit / gameplay_spinner / gameplay_teleport / gameplay_chute | gameplay | floor 3 pits and spinners, floor 7 teleports, floor 9 chute to floor 10 | WARP next to them (maps.py)
-# gameplay_fizzle | gameplay | Floor 5 anti-magic area | WARP:05:0A:06 then step north
-gameover_rock | gameover | "You are in rock!" after a warp into floor 10 rock | @maze1,WARP:0A:11:05
-gameover_cemetery | gameover | Party slaughtered: tombstones, "Press Enter to leave the cemetery" | @maze1,WARP:0A:11:05,w600
-# --- battle
-battle_options | battle | 4 Slimes, "You surprised the monsters", ryz's options: fight, parry, take back, use item, run | @battle
-battle_spell_prompt | battle | Deddo's options: "Spell name ?" (spells are typed) | @battle,f,w90,f,w90,f,w90,p,w90,p,w90,p,w90,enter,w1200,f,w90,f,w90,f,w90,p,w90,s,w90
-# battle_messages | battle | "Condi charges at a Slime and hits once for 5 damage / the Slime is killed!" | @battle,f,w90,f,w90,w10,f,w90,p,w90,p,w90,p,w90,enter,w40*3,!
-# battle_victory | battle | E.P. and gold for each survivor after the Slimes | (between the last round and the chest; sample the frames)
+gameplay_inspect_none | gameplay | I)nspect searches the square for bodies: "Found: * no one *" | @maze1,i,w200
+gameplay_dark | gameplay | Floor 1 darkness: the view is grey, nothing drawn | @maze1,poke:DA26=0900,poke:DA24=0500,poke:DA20=0000,a,w60,d,w60
+dialogue_sign_f1 | dialogue | Floor 1 (9,12) sign: "A large sign on the wall reads: Area out of bounds!" | @maze1,poke:DA26=0900,poke:DA24=0B00,poke:DA20=0000,a,w60,d,w60,w,w300
+dialogue_f1_mapiro | dialogue | Floor 1 (9,19): a small robed man shouts "Begone, strangers!" | @gmaze,WARP:01:0A:13,poke:DA20=0300,a,w60,d,w60,w,w400,w600
+dialogue_f1_chicken | dialogue | Floor 1 (13,3): bronze statue with a chicken's body and a cat's head | @gmaze,WARP:01:0E:03,poke:DA20=0300,a,w60,d,w60,w,w400,w600,w300
+dialogue_f1_altar | dialogue | Floor 1 (13,5): gem-encrusted statue of a hooded man, incense on an altar | @gmaze,WARP:01:0E:05,poke:DA20=0300,a,w60,d,w60,w,w400,w600
+dialogue_f1_boar | dialogue | Floor 1 (13,18): silver boar statue, a message warning of ghosts | @gmaze,WARP:01:0D:13,poke:DA20=0200,a,w60,d,w60,w,w400,w600
+gameplay_elevator | gameplay | Floor 1 elevator (10,8): "There are buttons here marked A through D" | @gmaze,WARP:01:0A:07,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+gameplay_stairs | gameplay | Floor 2 arrival on the stairs: "Stairs up, take them (Y/N)?" | @gmaze,WARP:02:0C:07
+dialogue_f2_bronze_smoke | dialogue | Floor 2 (8,7): "a bronze smoke fills it. You feel compelled to leave" | @gmaze,WARP:02:08:08,poke:DA20=0200,a,w60,d,w60,w,w400,w600
+dialogue_f2_silver_fog | dialogue | Floor 2 (8,12): a silvery fog, terrible demons: "you flee from the room!" | @gmaze,WARP:02:08:0B,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+dialogue_f2_placard | dialogue | Floor 2 (14,11): a placard near the ground: "A dungeon's dark ..." | @gmaze,WARP:02:0F:0B,poke:DA20=0300,a,w60,d,w60,w,w400,w600
+dialogue_f2_bear | dialogue | Floor 2 (9,18): a statue of a bear, "I've got a million of 'em" | @gmaze,WARP:02:09:11,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+system_search | system | At the bear statue: "Will you search (Y/N)?" | @gmaze,WARP:02:09:11,poke:DA20=0000,a,w60,d,w60,w,w400,w600,enter,w300
+system_search_found | system | Searching the statue: "RYZ got an item." (the bear statuette) | @gmaze,WARP:02:09:11,poke:DA20=0000,a,w60,d,w60,w,w400,w600,enter,w300,y,!
+dialogue_f2_frog | dialogue | Floor 2 (12,4): a caped frog statue that shakes its legs, "Yeah ... Yeah" | @gmaze,WARP:02:0C:05,poke:DA20=0200,a,w60,d,w60,w,w400,w600
+dialogue_f2_door | dialogue | Floor 2 (4,11): "Nobody in the party can break the door down" | @gmaze,WARP:02:04:0A,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+dialogue_f3_mosaic | dialogue | Floor 3 (0,15): "The floor has a mosaic reading: Turn left." | @gmaze,WARP:03:00:0E,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+gameplay_pit | gameplay | Floor 3 (0,7): the floor gives way - "A pit!" | @gmaze,WARP:03:00:06,poke:DA20=0000,a,w60,d,w60,w,w20,w20,w20,!
+dialogue_f4_control | dialogue | Floor 4 (10,14): "Testing Grounds Control Center - Do not enter" | @gmaze,WARP:04:0A:0D,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+dialogue_f4_alarm | dialogue | Floor 4 (10,15): an alarm bell, then the sounds of guardian monsters | @gmaze,WARP:04:0A:10,poke:DA20=0200,a,w60,d,w60,w,w400,w600
+dialogue_f4_treasure | dialogue | Floor 4 (8,15): "A sign on the door reads: Treasure Repository" | @gmaze,WARP:04:09:0F,poke:DA20=0300,a,w60,d,w60,w,w400,w600
+dialogue_f4_allocation | dialogue | Floor 4 (12,15): "A sign on the door reads: Monster Allocation Center" | @gmaze,WARP:04:0B:0F,poke:DA20=0100,a,w60,d,w60,w,w400,w600
+dialogue_f4_desk | dialogue | Floor 4 (11,11): the room of the large desk; a door glows orange | @gmaze,WARP:04:0B:0B,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+dialogue_f4_private | dialogue | Floor 4 (10,1): "Private express service elevator! Authorized users only!" | @gmaze,WARP:04:0A:02,poke:DA20=0200,a,w60,d,w60,w,w400,w600
+dialogue_f4_asleep | dialogue | Floor 4 (10,2) without the ribbon: "You all fall asleep ... back outside" | @gmaze,WARP:04:0A:01,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+dialogue_f4_bear_wall | dialogue | Floor 4 (17,12): a sliding wall with a bear's image forces the party out | @gmaze,WARP:04:11:0B,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+gameplay_elevator_f4 | gameplay | Floor 4 elevator (10,0): "buttons here marked A through F" (floors 4-9) | @gmaze,WARP:04:0A:00
+system_fizzle | system | Floor 5 anti-magic square: DUMAPIC cast in camp - "* Fizzle! *" | @gmaze,WARP:05:0A:08,w300,c,w200,5,w150,s,w90,type:dumapic\n,!
+gameplay_chute | gameplay | Floor 9 (8,2): the chute drops the party - "One moment" | @gmaze,WARP:09:08:01,poke:DA20=0000,a,w60,d,w60,w,w400,!
+dialogue_f10_plaque | dialogue | Floor 10 (0,0) after the chute: a gold plaque from **Werdna** with a clue | @gmaze,WARP:09:08:01,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+dialogue_f10_guardians | dialogue | Floor 10 (3,14): "One group of guardians have been defeated ... fools!" | @gmaze,WARP:0A:02:0E,poke:DA20=0100,a,w60,d,w60,w,w400,w600
+gameover_rock | gameover | Floor 10, warped into solid rock: "You are in rock!" | @maze1,WARP:0A:11:05
+battle_options | battle | 4 Slimes, "You surprised the monsters", RYZ's options: no spell this round | @battle
+battle_orders | battle | Orders given: FIGHT x3, PARRY x3 - "Press Enter to fight, or T)ake back" | @battle,f,w90,f,w90,f,w90,p,w90,p,w90,p,w90
+battle_miss | battle | "CONDI thrusts violently at a slime and misses" | @battle,f,w90,f,w90,f,w90,p,w90,p,w90,p,w90,enter,w40,!
+battle_kill | battle | "RYZ charges at a slime and hits once for 4 damage. The slime is killed!" | @battle,f,w90,f,w90,f,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,!
+battle_identified | battle | Round 2: the survivors identified as 2 Bubbly slimes; S)pell now offered | @battle,f,w90,f,w90,f,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40
+battle_spell_prompt | battle | DEDDO's order: "Spell name ?" - spells are typed, HAL so far | @battle,f,w90,f,w90,f,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,f,w90,f,w90,f,w90,p,w90,s,w90,type:hal,w30
+battle_cast | battle | "DEDDO casts a HALITO" - the last slime already fell to the fighters | @battle,f,w90,f,w90,f,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,f,w90,f,w90,f,w90,p,w90,s,w90,type:halito\n,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+battle_victory | battle | "Each survivor gets 36 E.P." after the fight | @battle,f,w90,f,w90,f,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,f,w90,f,w90,f,w90,p,w90,s,w90,type:halito\n,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
 battle_chest | battle | A chest! Open, Calfo, leave alone, inspect, disarm | @chest
-# battle_trap | battle | Chest trap identified / sprung, loot found |
-# battle_group_select | battle | "Fight which group (#)?" with three groups | @werdna,f,w60
-# boss_murphy | boss | Murphy's ghost, floor 1 (13,5) | approach from the open side, search
-# boss_f4_center | boss | Floor 4 monster allocation centre fixed fight (11..12,12..14) |
-# --- the end
-dialogue_werdna_sign | dialogue | Floor 10 sign: "Lair of the evil wizard Werdna! Office hours 9AM to 3PM ..." | @werdna_sign
-boss_werdna | boss | Werdna, a Vampire Lord and 4 Vampires; ryz's options | @werdna
-# boss_werdna_fight | boss | Werdna's turn: Tiltowait/level drain messages (round 2) | @werdna,... (see playbook strategy)
-ending_congratulations | ending | "* * Congratulations * *": amulet recovered, 50,000 G.P. and E.P., Chevron of Rank | @ending
-ending_chevron | ending | Character sheet after the ending: ryz L 13 with the chevron ">" | @after_ending,g,w120,1,w200
+chest_inspect_who | battle | I)nspect: "Who (#) will inspect?" | @chest,i,w150
+chest_inspected | battle | CUBI (thief) inspects the chest: "Exploding box" | @chest,i,w150,4,w40,!
+chest_open_who | battle | O)pen: "Who (#) will open?" - traps go off when opened untouched | @chest,o,w150
+chest_disarm_prompt | battle | D)isarm by CUBI: "Trap?" - the trap's name is typed | @chest,d,w150,4,w150,type:exploding bo,w30
+chest_disarmed | battle | "You disarmed the trap!" | @chest,d,w150,4,w150,type:exploding box\n,w40,!
+chest_gold | battle | The chest's gold: "Each survivor gets 5 G.P." over a pile of treasure | @chest,d,w150,4,w150,type:exploding box\n,w40,w40,w40,w40,w40,!
+chest_exploding | battle | Opened untouched: "Oops! Exploding box" | @chest,o,w150,1,w40,!
+chest_slain | battle | The explosion: "MNZ is slain!" | @chest,o,w150,1,w40,w40,w40,w40,w40,w40,w40,w40,!
+gameplay_member_dead | gameplay | Back in the maze after the explosion: MNZ dead in the party window | @chest,o,w150,1,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w300
+battle_f1_kobolds | battle | Floor 1: 3 Kobolds and 3 Small humanoids (unidentified) | @maze1,poke:DA26=0300,poke:DA24=0200,poke:DA20=0000,w11,a,w60,d,w300,w900
+battle_group_select | battle | Two groups on the field: "Fight which group (#)?" | @maze1,poke:DA26=0300,poke:DA24=0200,poke:DA20=0000,w11,a,w60,d,w300,w900,f,w90
+battle_f1_skeletons | battle | Floor 1: 5 Skeletons | @maze1,poke:DA26=0300,poke:DA24=0200,poke:DA20=0000,w15,a,w60,d,w300,w900
+battle_friendly | battle | "A friendly group of Orcs" - F)ight or L)eave | @maze1,poke:DA26=0300,poke:DA24=0200,poke:DA20=0000,w7,a,w60,d,w300,w900
+battle_f1_undead_kobolds | battle | Floor 1: a friendly group of Undead kobolds | @maze1,poke:DA26=0300,poke:DA24=0200,poke:DA20=0000,w23,a,w60,d,w300,w900
+battle_f2_gas_clouds | battle | Floor 2: a friendly group of Gas clouds | @gmaze,WARP:02:08:03,a,w60,w,w60,w,w60,a,w60,w,w60,w,w300,w900
+battle_f3_dragons | battle | Floor 3: 4 Dragons (unidentified), the veterans surprised them | @gmaze,WARP:03:02:05,poke:DA26=0300,poke:DA24=0500,w3,a,w60,d,w300,w900
+battle_f3_priests | battle | Floor 3: 6 Lvl 3 priests | @gmaze,WARP:03:02:05,poke:DA26=0300,poke:DA24=0500,w19,a,w60,d,w300,w900
+battle_f3_corpses | battle | Floor 3: 2 Rotting corpses, undead | @gmaze,WARP:03:02:05,poke:DA26=0300,poke:DA24=0500,w7,a,w60,d,w300,w900
+battle_f3_rodents | battle | Floor 3: 6 Giant rodents; the veterans may cast from the first round | @gmaze,WARP:03:02:05,poke:DA26=0300,poke:DA24=0500,w23,a,w60,d,w300,w900
+battle_cast_badios | battle | "EBO casts a BADIOS: a giant rodent takes 6 damage" | @gmaze,WARP:03:02:05,poke:DA26=0300,poke:DA24=0500,w23,a,w60,d,w300,w900,f,w90,f,w90,s,w90,type:badios\n,w90,p,w90,s,w90,type:mahalito\n,w90,p,w90,enter,w40,!
+battle_multi_hit | battle | "RYZ tries to stab a giant rodent and hits 3 times ... killed!" | @gmaze,WARP:03:02:05,poke:DA26=0300,poke:DA24=0500,w23,a,w60,d,w300,w900,f,w90,f,w90,s,w90,type:badios\n,w90,p,w90,s,w90,type:mahalito\n,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+battle_mahalito | battle | "DEDDO casts a MAHALITO": a giant rodent is killed | @gmaze,WARP:03:02:05,poke:DA26=0300,poke:DA24=0500,w23,a,w60,d,w300,w900,f,w90,f,w90,s,w90,type:badios\n,w90,p,w90,s,w90,type:mahalito\n,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+battle_victory_vets | battle | "Each survivor gets 433 E.P." after the rodents | @gmaze,WARP:03:02:05,poke:DA26=0300,poke:DA24=0500,w23,a,w60,d,w300,w900,f,w90,f,w90,s,w90,type:badios\n,w90,p,w90,s,w90,type:mahalito\n,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+battle_f3_wolves | battle | Floor 3: 5 Killer wolves strike first - one nibbles at CONDI and misses | @gmaze,WARP:03:0E:11,poke:DA20=0300,a,w60,d,w60,w,w400,w600
+battle_f3_spirits | battle | Floor 3: 6 Spirits | @gmaze,WARP:03:0C:11,poke:DA20=0100,a,w60,d,w60,w,w400,w600
+battle_f4_fixed | battle | Floor 4 guard room: men in armor, Lvl 7 mages, high priests, man in kimono | @gmaze,WARP:04:0C:0E,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+battle_f7_dragons | battle | Floor 7 (2,9) fixed fight: a Fire dragon | @gmaze,WARP:07:01:09,poke:DA20=0100,a,w60,d,w60,w,w400,w600
+battle_f7_friendly_wyverns | battle | Floor 7: a friendly group of Wyverns | @gmaze,WARP:07:05:06,poke:DA20=0000,a,w60,d,w60,w,w400,w600
+battle_f7_samurai | battle | Floor 7: a Man in robes and 2 Champ samurai | @gmaze,WARP:07:07:0B,poke:DA20=0100,a,w60,d,w60,w,w400,w600
+battle_f8_chimeras | battle | Floor 8: 2 Chimeras | @gmaze,WARP:08:04:0A,poke:DA26=0400,poke:DA24=0B00,w5,a,w60,d,w300,w900
+battle_monster_bite | battle | "A chimera tries to nibble on EBO and hits 3 times for 6 damage" | @gmaze,WARP:08:04:0A,poke:DA26=0400,poke:DA24=0B00,w5,a,w60,d,w300,w900,f,w90,f,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,!
+battle_use_item | battle | U)se in battle: "Use which item (#)?" - RYZ's potion of Dios | @gmaze,WARP:08:04:0A,poke:DA26=0400,poke:DA24=0B00,w5,a,w60,d,w300,w900,f,w90,f,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,u,w90,w40,w40,w40
+battle_f8_arch_mages | battle | Floor 8: 3 Arch mages | @gmaze,WARP:08:04:0A,poke:DA26=0400,poke:DA24=0B00,w7,a,w60,d,w300,w900
+battle_enemy_katino | battle | "An arch mage casts a KATINO - CONDI is slept" | @gmaze,WARP:08:04:0A,poke:DA26=0400,poke:DA24=0B00,w7,a,w60,d,w300,w900,f,w90,f,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,!
+battle_party_asleep | battle | After the Katino: CONDI and MNZ ASLEEP, moved to the back of the party | @gmaze,WARP:08:04:0A,poke:DA26=0400,poke:DA24=0B00,w7,a,w60,d,w300,w900,f,w90,f,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40
+battle_f8_men_in_armor | battle | Floor 8: 2 Men in armor | @gmaze,WARP:08:04:0A,poke:DA26=0400,poke:DA24=0B00,w19,a,w60,d,w300,w900
+battle_f8_high_priests | battle | Floor 8: 3 High priests | @gmaze,WARP:08:04:0A,poke:DA26=0400,poke:DA24=0B00,w23,a,w60,d,w300,w900
+battle_f9_lifestealer | battle | Floor 9: a Lifestealer | @gmaze,WARP:09:03:0C,poke:DA26=0300,poke:DA24=0D00,w3,a,w60,d,w300,w900
+battle_dispell | battle | D)ispell by EBO: "EBO dispells one monster" (the Lifestealer) | @gmaze,WARP:09:03:0C,poke:DA26=0300,poke:DA24=0D00,w3,a,w60,d,w300,w900,f,w90,f,w90,d,w90,p,w90,s,w90,type:lahalito\n,w90,p,w90,enter,w40,w40,w40,w40,!
+battle_enemy_lahalito | battle | Level 1 party on floor 4: "A man in robes casts a LAHALITO - RYZ is killed!" | @maze1,WARP:04:0C:0E,poke:DA20=0000,a,w60,d,w60,w,w400,w600,f,w90,1,w90,f,w90,1,w90,f,w90,1,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,f,w90,1,w90,f,w90,1,w90,f,w90,1,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,!
+battle_badialma | battle | "A high priest casts a BADIALMA" - RYZ, CONDI and EBO already DEAD | @maze1,WARP:04:0C:0E,poke:DA20=0000,a,w60,d,w60,w,w400,w600,f,w90,1,w90,f,w90,1,w90,f,w90,1,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,f,w90,1,w90,f,w90,1,w90,f,w90,1,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+gameover_cemetery | gameover | Tombstones: "Your entire party has been slaughtered. Press Enter ..." | @maze1,WARP:04:0C:0E,poke:DA20=0000,a,w60,d,w60,w,w400,w600,f,w90,1,w90,f,w90,1,w90,f,w90,1,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,f,w90,1,w90,f,w90,1,w90,f,w90,1,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40
+gameplay_door | gameplay | Werdna's door south of the sign: K)ick takes the party through | @gwerdna_sign,enter,w120,settle,d,w90
+dialogue_werdna_sign | dialogue | Floor 10 (17,4): "Lair of the evil wizard Werdna! ... The wizard is *in*!" | @gwerdna_sign
+boss_werdna | boss | Behind the door: **W*E*R*D*N*A** and two groups of unseen entities | @gwerdna
+boss_werdna_orders | boss | Round 2 orders: fight, LITOKAN, TILTOWAIT, LAHALITO - "Press Enter to fight" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90
+boss_werdna_hit | boss | "CONDI charges at **W*E*R*D*N*A** and hits once for 8 damage" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,!
+boss_werdna_killed | boss | "DEDDO casts a TILTOWAIT - **W*E*R*D*N*A** is killed!" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,!
+boss_tiltowait_damage | boss | The same TILTOWAIT on the guards: "an unseen entity takes 76 damage" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+boss_level_drain | boss | "An unseen entity charges at RYZ ... RYZ is drained 2 levels!" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+boss_paralyzed | boss | Another touch: "RYZ is paralyzed" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+boss_enemy_dilto | boss | "An unseen entity casts a DILTO" (darkness on the party) | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+boss_spell_resisted | boss | "MNZ casts a LAHALITO - an unseen entity resists the spell" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+boss_vampires_identified | boss | Round 3: the guards named - a Vampire lord, 2 Vampires; RYZ paralyzed at #6 | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40
+boss_vampire_lord_killed | boss | Round 3: "DEDDO casts a TILTOWAIT - a vampire lord is killed!" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,f,w90,1,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,2,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+boss_drained_after | boss | After the fight: "CONDI was drained!" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,f,w90,1,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,2,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+boss_werdna_ep | boss | "Each survivor gets 5472 E.P." for Werdna and his guards | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,f,w90,1,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,2,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+boss_amulet_found | boss | "CONDI found: AMULET" - Werdna's amulet, over his treasure | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w4,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,f,w90,1,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,2,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+gameplay_after_werdna | gameplay | Werdna's room after the fight: RYZ paralyzed at the back of the party | @werdna_won
+boss_werdna_tiltowait | boss | Another timing: "**W*E*R*D*N*A** casts a TILTOWAIT - RYZ takes 55 damage" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w1,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+boss_member_killed | boss | Werdna's TILTOWAIT: "EBO is killed!" | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w1,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,!
+boss_four_dead | boss | After Werdna's round: four members DEAD in the party window | @gwerdna,p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w40,w40,w40,w40,w40,w40,w1,f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40
+ending_congratulations | ending | "* * Congratulations * *": amulet recovered, 50,000 G.P. and E.P., chevron | @gending
+ending_castle | ending | The Castle after the reward: five in the party, RYZ (paralyzed) taken out | @gafter
+ending_temple_paralysis | menu | Temple after the ending: RYZ paralyzed, "The donation will be 1100" | @gafter,t,w150,a,w150
+ending_temple_healed | system | "Murmur - chant - pray - invoke! * RYZ has been healed *" | @gafter,t,w150,a,w150,1,w60,w60,w60,w60,w60,w60,w60,!
+ending_chevron | ending | RYZ> after the ending: level 11 after the drain, 74,817 gold, chevron | @gafter,t,w150,a,w150,1,w60,w60,w60,w60,w60,w60,w60,w300,enter,w200,g,w120,a,w150,g,w150,6,w200
+ending_chevron_condi | ending | CONDI>: the amulet is gone from the pack, the chevron after the name | @gafter,t,w150,a,w150,1,w60,w60,w60,w60,w60,w60,w60,w300,enter,w200,g,w120,a,w150,g,w150,1,w200
+ending_final_party | ending | The final party in the Castle: RYZ back, all six with the chevron | @gafter,t,w150,a,w150,1,w60,w60,w60,w60,w60,w60,w60,w300,enter,w200,g,w120,a,w150,g,w150,enter,w150

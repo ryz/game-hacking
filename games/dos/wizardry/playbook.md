@@ -58,28 +58,28 @@ Macros (all in `game.json`): `TITLE`, `CASTLE`, `TRAINING`, `MAKE:name:race:alig
 Every screen prints its keys; one keystroke per choice, Enter (drawn as a bent arrow) leaves or confirms.
 | Context | Key | Action | Status |
 |---|---|---|---|
-| Title | `s` / `m` | start game / make scenario disk | s verified, m not tried |
+| Title | `s` / `m` | start game / make scenario disk | s verified; m asks "The disk you inserted has data on it ... Use it (Y/N)?" (verified, N not pressed; `menu_make_scenario`) |
 | Castle | `g` `a` `t` `b` `e` | Tavern, Inn, Temple, Boltac's, Edge of Town | all verified |
-| Tavern | `a` + letter, `r`, `#` (digit), `d`, Enter | add (roster letter; list closes when six are in), remove, inspect, divvy gold, leave | add, inspect, leave verified |
-| Inn | digit, then `a`-`e`, `p`, Enter | who stays; stables (free), cot 10, economy 50, merchant 200, royal suite 500 gp/week; pool gold | menus verified, resting not tried |
-| Temple | letter, Enter | "Who shall we help?"; with nobody in bad shape it returns to the Castle at once | verified |
-| Boltac's | digit, then `b` `s` `u` `i` `p`, Enter; in the stock `p` `b` `f` `s` | buy, sell, uncurse, identify, pool gold; purchase, backward, forward, start | menus verified, buying not tried |
+| Tavern | `a` + letter, `r`, `#` (digit), `d`, Enter | add (roster letter; list closes when six are in), remove, inspect, divvy gold, leave | all verified (divvy shows no message) |
+| Inn | digit, then `a`-`e`, `p`, Enter | who stays; stables (free, no healing), cot 10, economy 50, merchant 200, royal suite 500 gp/week; pool gold | verified: resting heals week by week, level-up at the end of the stay |
+| Temple | letter, digit (payer), Enter | "Who shall we help?" lists characters not OK (letters A...), "The donation will be N. Who will tithe?" | verified: paralysis 100, dead 250, ashes 500 gold per level |
+| Boltac's | digit, then `b` `s` `u` `i` `p`, Enter; in the stock `p` `b` `f` `s` | buy, sell, uncurse, identify, pool gold; purchase, backward, forward (one item), start | all verified: P + digit buys ("Unusable item - buy it (Y/N)?" for the wrong class); S/I/U + digit act at once, no confirmation |
 | Edge of Town | `t` `m` `c` `u` `l` | Training, Maze, Castle, Utilities, Leave game (writes the disk, ends the program) | all verified |
-| Utilities | `c` `m` `r`, Enter | change name, move characters (to Wizardry II/III), restart an "out" party | menu verified |
-| Training | `c` `i` `r`, Enter | create, inspect, roster of characters | c, r verified |
+| Utilities | `c` `m` `r`, Enter | change name (roster list), move characters ("Insert the source scenario disk into drive 1, then press Enter"), restart an "out" party ("No characters are in the maze") | screens verified; M not carried on |
+| Training | `c` `i` `r`, Enter | create, inspect (letter: I)nspect, D)elete, C)hange class, A)lter password), roster | all verified |
 | Creation | text + Enter; Enter; `a`-`e`; `a`-`c`; Enter/`up`/`down`/`esc`; class letter; `y`/`n` | name (stored in capitals; "Name already in use - press Enter"), password (empty is fine, no confirmation), race, alignment, bonus points (Enter moves the pointer, Up/Down change, Esc finishes and is refused while bonus is left), class `a`-`h` (only eligible ones listed), keep | all verified |
 | Maze | `w` / `a` / `d` | step forward / turn left / turn right ("You can't walk through walls!") | verified |
 | | `k` | kick: go through the door in front | verified (Werdna's door) |
-| | `c` | camp: `1`-`6` inspect, `r` reorder, `e` equip, Enter leave | inspect, leave verified |
+| | `c` | camp: `1`-`6` inspect, `r` reorder, `e` equip (every member, slot by slot: digit or Enter), Enter leave | all verified |
 | | `o` | hide the command line and party window (full view); `o` again brings the command line back | verified |
-| | `s` | status: party window on/off | verified (once) |
-| | `i` | inspect | not tried |
-| Character sheet | `r` `t` `p` `s` `e` `d` `i` `u`, Enter | read spell book, trade, pool gold, spell (camp), equip, drop, identify (bishop), use | s verified (DUMAPIC) |
+| | `s` | status: party window off, view full height; again: back | verified |
+| | `i` | search the square for bodies ("Found: * no one *") | verified |
+| Character sheet | `r` `t` `p` `s` `e` `d` `i` `u`, Enter | read spell book (M/P), trade (whom, gold, items), pool gold, spell (camp; "Cast on whom (#)?"), equip, drop, identify (bishop), use (camp) | all verified except equip from the sheet |
 | Prompts | `y` / `n`, Enter | stairs, keep, signs | verified |
 | Battle | `f` (Enter = default) `p` `s` `d` `u` `r` `t` | fight, parry, spell (type the name + Enter), dispell (priest), use item, run, take back; members 4-6 have no Fight; first round of a surprise: no Spell | verified |
 | | `1`-`4` | "Fight which group (#)?" when there are several groups; group spells ask too | verified |
 | | Enter | "Press Enter to fight, or T)ake back orders" | verified |
-| Chest | `o` `c` `l` `i` `d` | open, Calfo, leave alone, inspect, disarm | l verified |
+| Chest | `o` `c` `l` `i` `d` | open, Calfo, leave alone, inspect, disarm; each asks "Who (#) will ...?"; disarm then wants the trap's name typed | o, i, d, l verified; c not (no level 2 priest in the level 1 party) |
 | Cemetery | Enter | leave the cemetery | screen verified |
 | Anywhere | Alt+X, Alt+Q | loader: quit to DOS | code |
 
@@ -111,33 +111,47 @@ throw away keys typed before them (inferred), so keep the waits.
   slaughtered. Press Enter to leave the cemetery!".
 
 ## Shot plan
-`shots.txt` holds the plan: 29 routed lines (each frame seen by the scout with `games/dos/wizardry/tools/try.py`,
-not yet through `shoot.py`) and 21 commented lines to build (one of them covers pit, spinner, teleport and chute).
-By category, routed + planned: title 1+1, boot 0+2, menu 7+1, inventory 3, shop 2, system 1+7, gameplay 4+4,
-dialogue 3, battle 3+4, boss 1+2, gameover 2, ending 2. The three lenses (`design/systems.md`, `interface.md`, `content.md`) already index the routed ids.
-How to reach the areas:
-- Castle, services, Training, Utilities: from `@start` / `@edge` / `@training` (level 1) or `@vet` (gold for
-  Boltac's). Creation screens: Training > C with a **new name** (ryz etc. are taken).
-- Any floor: `@vmaze,WARP:FF:XX:YY` (veterans) or `@maze1,WARP:...` (level 1); look the square up in
-  `design/maps/floors.txt` first: rock kills the party (that is the game-over route), a stairs square asks
-  "Take them?", a sign square shows its text, a fixed-fight square starts the fight.
-- Battle: `@battle` (floor 1 Slimes, level 1), `@werdna` (boss). Random fights: walk in a room (`.` squares on
-  the maps); a turn inside the floor 1 room at (7,1) started the Slime fight.
-- Ending: `@ending` / `@after_ending` (no fight needed: `AMULET`). Werdna fight shots: from `@werdna`.
-- Level-up, temple, identify, Utilities M)ove characters: playing from `@vet` (see Strategy).
-- Planned extras worth a sequence set: character creation (`seq-create`), a battle round (`seq-battle`).
+Set `main` captured 2026-11-19 (game-capture): 199 shots from power-on to the ending, verified and published
+(`shots.txt`, `shots/main/`). The routes were chosen in batches with `tools/try.py` (many candidate routes in
+parallel, the last K frames tiled) and written straight into the work shot list; scratch plan files were
+`work/cap/wizardry/plan/0N_*.txt`. How each area was reached:
+- Castle, Training, Utilities at level 1: `@start`, `@edge`, `@training`; creation shots with the throwaway
+  name ZED (elf, bonus poked to 9 at `C36E` on the bonus screen, then real key presses).
+- Veterans in the Castle with gear: `@gcastle` (VET + GEARPOKE + EQUIPALL in the first camp, back up the
+  stairs). Boltac's, temple (status poked: `DDE4` = CONDI's status 5 dead / 6 ashes), sheet commands.
+- Special squares: WARP to the neighbour square, poke the facing, `a,w60,d,w60` (redraw), `w` (or `k` for a
+  door), `w400,w600`. Which side is open: the survey helper `work/cap/wizardry/survey.py` (scratch) wrote one
+  route per open side from `tools/maps.py`; the routes are in `shots.txt`.
+- Random fights: WARP to a fight-zone square, poke the position to a neighbouring fight-zone square,
+  `wK,a,w60,d,w300,w900` (a turn on a room square rolls the encounter; K picks the monsters). Floors 1, 3, 8, 9
+  answered; floors 2, 4-7, 10 gave nothing on the squares tried (use the walking variant or the fixed fights).
+- Battle frames: rounds are long; take a timeline (`try.py --frames 50` over `w40` tokens) and pick the frame
+  (`enter,w40*N,!`).
+- Werdna: `@gwerdna` and the real fight below (Strategy); ending `@gending`, `@gafter`, `@final`.
+Not captured (reasons in the report and design/): Murphy's ghost (floor 1 statues give no search, findings),
+R)un succeeding, poison, criticals, Calfo, rescue of bodies, a spinner (no visible effect), Leave game (no
+in-game screen: the loader prints "Thanks for playing Wizardry!" in DOS text mode).
 
 ## Strategy and walkthrough notes
 - Cataloguing: never grind. `VET` (at the Castle, then any menu change to redraw) makes the party level 13
   with realistic HP, E.P., gold, ages and spells; `WARP` from floor 1 reaches any square; `AMULET`+`HOME` ends
   the game.
-- Werdna's fight is not safe even for the veterans: in one timing Tiltowait (Deddo) killed Werdna in round 2
+- **Werdna, the route that wins on screen** (no pokes in the fight): from `@gwerdna` (equipped veterans,
+  Werdna shown as **W*E*R*D*N*A** with 1 + 2 unseen entities): round 1 (surprise, no spells) all parry
+  (`p,w90` x6, `enter`), `w40*6,w4`, round 2 `f,w90,1,w90,f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,p,w90,
+  s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,3,w90,enter` (Deddo's Tiltowait kills Werdna; RYZ is
+  drained 2 levels and paralyzed), `w40*55`, round 3 `f,w90,1,w90,s,w90,type:litokan\n,w90,2,w90,f,w90,1,w90,
+  s,w90,type:tiltowait\n,w90,s,w90,type:lahalito\n,w90,2,w90,enter` (the guards die), `w40*64` -> checkpoint
+  `werdna_won` (CONDI carries the amulet). With `w1` instead of `w4` Werdna casts Tiltowait first and kills
+  four members (the `boss_four_dead` shots). Werdna's hit points in that fight: `D314` (71), RAM below.
+  Out: the castle-exit poke for (18,3) (Shortcuts), `a,w60,w,w300,y,w600,w600` -> `gending`.
+- (older notes) Werdna's fight is not safe even for the veterans: in one timing Tiltowait (Deddo) killed Werdna in round 2
   and the vampires paralyzed Condi and drained Ryz 13 -> 9; in another timing Werdna's own round killed four
   members. Unarmed fighters barely hurt vampires: buy weapons and armour at Boltac's first (`@vet` has
   5,000-25,000 gold each), and try `wN` variations before the first order. Round 1 is usually the surprise
   round (no spells): parry or fight, cast Tiltowait from round 2.
-- Monster hit points in memory were not found (one candidate area `0D500`, 16-byte records, not tested): to
-  make the fight deterministic, find them with `play.py find` over a round with known damage.
+- Monster hit points: found (RAM map, battle records). Poking Werdna's to 1 let a 3-damage hit kill him
+  (tested); the published fight needs no poke.
 - Group spells and fights ask for a group when there are several; a letter that is not an option is ignored,
   but `t` takes orders back: never type a spell name while the spell prompt is not open (`s` is refused in a
   surprise round and the name's letters then act as commands).
@@ -166,6 +180,8 @@ see `design/findings.md`.
 | Veteran party | `VET` at the Castle with the party formed, then `e,w120,c,w120` to redraw (checkpoint `vet`): level 13, HP 112/124/71/66/49/58, E.P. 377,512-560,341, gold 5,077-24,817, ages 24-63, mage spells all (Deddo), priest spells all (Ebo), bishop mage L1-4 + priest L1-3 | scout | verified (sheet, battle) |
 | Warp anywhere (from floor 1) | `WARP:FF:XX:YY` (hex): pokes floor 1's stairs-down record (square (0,10), live floor at `0B646`) to lead to floor FF square (XX,YY), puts the party on (1,10) facing west and takes the stairs; the new floor loads properly ("One moment"); arriving on a stairs or sign square shows its prompt | scout | verified (floors 2, 4, 10) |
 | Exit to the castle from any square | poke a square next to the party into stairs to the castle: square index nibble (offset 560 + x*10 + 2*(y div 4), nibble y mod 4) = an unused index i, type nibble (760 + i div 2) = 1, AUX0/1/2 (768/800/832 + 2i) = 0; example in the old `amulet`->`ending` route: `poke:B92B=D0,poke:B944=16,poke:B960=0000,poke:B980=0000,poke:B9A0=0000` for floor 10 (18,3) | scout | verified once (floor 10) |
+| Veterans with gear | `GEARPOKE` at the Castle (items unequipped in the six packs), then in the first camp `EQUIPALL` (`e` and 18 times `1,w150`): AC -4 -1 3 4 9 7 (checkpoints `gcamp`, `gcastle`, `gmaze`) | capture | verified |
+| Item numbers | pack entry = 4 words (equipped, cursed, identified, item); items 1-100 named in `design/items.md` (read by poking 8 items at a time into RYZ's pack at `DD28` and opening the sheet) | capture | verified |
 | Werdna's amulet | `AMULET` (pokes item 94 into Ryz's pack: party slot 1 must have no items), then reach the Castle (`HOME` from floor 1 (0,0) facing north) | scout | verified (ending) |
 | Ready characters | the six pre-made characters (Tavern A-F) | stock disk | verified |
 | Position report in game | DUMAPIC (mage spell, camp) | game | verified |
@@ -176,6 +192,7 @@ No downloadable saves: the 1998 package itself ships a ready SAVE1.DSK. GameFAQs
 | Name | Contents | Made by | Status |
 |---|---|---|---|
 | 01_start | the stock roster + ryz condi ebo cubi deddo mnz, level 1, ~100-199 gold, no equipment; party not formed | `@start,e,w120,l,w600` (Leave game) + `play.py export` | verified (`sav:01_start,RESUME`) |
+| 03_werdna_beaten | the six after the real Werdna fight and the ending, gear, chevrons, RYZ/CONDI level 11; the transfer source for Wizardry II | `@final,e,w120,l,w600` + export | verified (roster.py) |
 | 02_ending | same six after `VET` + the ending: level 13, Chevron of Rank, +50,000 gold and E.P.; Ryz keeps an empty pack entry (count 1, item 0) | `@after_ending,e,w120,l,w600` + export | verified (`sav:02_ending,RESUME`) |
 Each `.sav` is DOSBox Pure's save ZIP with `WIZAR1/SAVE1.DSK` (640 KB, stored uncompressed). For the owner:
 copy `SAVE1.DSK` over the one in the game folder. For Wizardry II / III: their `run.bat` copies
@@ -197,7 +214,8 @@ Physical addresses (DOS segment*16+offset), the same on every boot with this ZIP
 | `0C546` | 12 | creation: the rolled values (lower limits for Down) | dump (verified by the macro) |
 | `0C36E` | 2 | creation: bonus points left | find (verified) |
 | `01980` | | the loader WIZ1.COM (PSP segment 0188h, CS=0198h); its handles at `01B4A` (WIZ1.DSK) and `01B4C` (SAVE1.DSK) | ndisasm + PC (verified) |
-| `0D4F4` | 2 | in battle: alive count of the third monster group (4 -> 3 after a death); records of 16 bytes from `0D500` may be the monsters (HP?) | dump diff (untested) |
+| `0D308` / `0D30A` | 2 / 2 | in battle, group 1: alive count / count; monster records of 16 bytes from `0D30C`, hit points at +8 (Werdna `0D314`, 71 in `@gwerdna`; slimes 3 3 2 2) | dump diff + poke (verified: Werdna poked to 1 died to a 3-damage hit) |
+| `0D3FE`, `0D4F4` | 2 | the same for groups 2 and 3 (groups 0xF6 bytes apart; records from `0D402`, `0D4F8`); when a group dies the later groups move up | dump (verified in `@werdna`) |
 Character record (208 bytes; on disk and in memory; words little-endian; Pascal TCHAR of the Apple original):
 | Offset | Size | Field | Status |
 |---|---|---|---|
@@ -261,6 +279,11 @@ Roster on disk: SAVE1.DSK offset `1D800`, slot n at `1D800 + (n div 4)*0x400 + (
 | `ending` | the Congratulations screen (veterans + `AMULET` + `HOME`) |
 | `after_ending` | Castle after the reward (chevrons) |
 | `resume`, `resume_end` | Castle, party formed from `sav:01_start` / `sav:02_ending` |
+| `gcamp`, `gcastle`, `gmaze` | the veterans with gear (GEARPOKE + EQUIPALL): first camp, Castle, floor 1 entrance (capture 2026-11-19) |
+| `gwerdna_sign`, `gwerdna` | floor 10 (17,4) sign and the Werdna fight with the equipped veterans |
+| `werdna_won` | after the real Werdna fight (route in Strategy); CONDI has the amulet, RYZ paralyzed |
+| `gending`, `gafter` | Congratulations; the Castle after it (RYZ out of the party, paralyzed) |
+| `final` | the Castle with all six after the temple cured RYZ (source of save `03_werdna_beaten`) |
 All rebuilt from an empty cache and compared with cache hits in fresh processes on 2026-11-19: identical
 frames, party records, position and (after Leave game from `start`, `edge`, `vet`, `after_ending`) identical
 written disks. Helpers: `work/scout/wizardry/cmp.py` and `build.py` (scratch, not committed).
@@ -279,10 +302,13 @@ written disks. Helpers: `work/scout/wizardry/cmp.py` and `build.py` (scratch, no
 The manual (Sir-Tech "Playing Wizardry on your IBM PC & PCjr") was not found on an allowed host.
 
 ## Open questions
-- Monster hit points in battle (for deterministic boss routes); monster and item names are encoded on the
-  disk (not plain ASCII) - decode for content tables.
-- What `i` does in the maze; M)ake scenario disk (what it writes, with the loader's track-79 switch).
-- Levels at the inn (exact E.P. table of this version), the temple prices, Boltac's buying and identify.
-- Elevator and Murphy's ghost squares: the right side to step on from (the first tries hit walls).
-- Utilities M)ove characters: does it write anything in Wizardry I, or only in II/III (transfer)?
+- ~~Monster hit points in battle~~ found (RAM map). ~~Item names~~ read on screen (`design/items.md`);
+  monster names are still encoded on the disk (only those seen in fights are known).
+- ~~What `i` does in the maze~~ searches for bodies. M)ake scenario disk: only its Y/N prompt seen.
+- Levels at the inn: fighter level 2 at 1000 E.P. (verified); the rest of the table not read.
+- ~~Temple prices~~ 100/250/500 gold per level for paralysis/death/ashes (verified).
+- The floor 1 statues (13,3), (13,5), (13,18) never ask to search (design/findings.md): the bronze and
+  silver keys and Murphy's ghost were not reached. Ideas: the search may need a key item in the party, or a
+  different entry (stepping onto the square after a turn on it); decode the message-square handler.
+- Utilities M)ove characters: only its first prompt seen (it wants a source disk).
 - The second half of SAVE1.DSK (tracks 40-79) holds unrelated junk (Windows code fragments); harmless.

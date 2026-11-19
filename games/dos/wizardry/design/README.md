@@ -28,8 +28,8 @@ Grounds, forms a party in Gilgamesh's Tavern and leads it down a ten-floor maze 
 castle of the Mad Overlord Trebor, drawn as white wireframe corridors (verified: `gameplay_maze_f1_start`).
 The loop is: descend, fight groups of monsters in turn-based rounds where every member gets an order (fight,
 parry, spell, use item, run), open the chests they leave, climb back to rest at the Adventurer's Inn (where
-levels are gained), buy equipment at Boltac's, revive the dead at the Temple of Cant (verified menus;
-level-up at the inn: source). The goal is Werdna's amulet on floor 10; carrying it back up to the castle gives
+levels are gained), buy equipment at Boltac's, revive the dead at the Temple of Cant (verified: `inn_levelup`,
+`temple_healed`). The goal is Werdna's amulet on floor 10; carrying it back up to the castle gives
 the ending, 50,000 gold and experience and the Chevron of Rank (verified: `ending_congratulations`).
 Characters live on the scenario disk (SAVE1.DSK): the game saves the roster itself and keeps it when the
 program is left with L)eave game (verified). This is the IBM PC version (1984 PC booter) as re-released in 1998
@@ -41,6 +41,7 @@ with a DOS loader that maps the floppy drives to two disk images (verified, play
 | [systems.md](systems.md) | game-design lens: index of every feature, system and mechanic, with rule, details and shots |
 | [interface.md](interface.md) | UI/UX lens: conventions, inventory of every screen, menu, prompt and element, screen flow |
 | [content.md](content.md) | content lens: a reasonable variety of environments, opponents, items, equipment, abilities, people |
+| [items.md](items.md) | all 100 items by number with Boltac's prices (names read on screen) |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 | [maps/floors.txt](maps/floors.txt) | all ten floors as text maps with every special square (stairs, teleports, pits, spinners, darkness, rock, anti-magic, messages, fixed fights, elevators), decoded from the game disk by `../tools/maps.py` |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
