@@ -121,7 +121,7 @@ gameplay_stairs_down | gameplay | Floor 1 (0,10): "Stairs going down. Take them 
 gameplay_stairs | gameplay | Floor 2 arrival: "Stairs going up. Take them (Y/N) ?" | @gmaze,WARP:02:0C:07
 gameplay_elevator | gameplay | Floor 1 elevator (10,8): buttons marked A through D | @gmaze,WARP:01:0A:07,poke:732A=0000,a,w100,d,w100,w,w400,w600
 system_dumapic_f4 | system | After button D: DUMAPIC reports 10 east, 8 north, 4 levels below | @gmaze,WARP:01:0A:07,poke:732A=0000,a,w100,d,w100,w,w400,w600,d,w700,enter,w300,c,w400,5,w400,s,w300,type:DUMAPIC\n,w400
-gameplay_elevator_f2 | gameplay | Floor 2 (10,9): the same elevator, one square north of floor 1's | @gmaze,WARP:02:0A:08,poke:732A=0000,a,w100,d,w100,k,w400,w600
+gameplay_elevator_f2 | gameplay | Floor 2 (10,9): buttons on the wall marked A through D, the same elevator as floor 1's, one square north | @gmaze,WARP:02:0A:08,poke:732A=0000,a,w100,d,w100,k,w400,w600
 gameplay_elevator_f4 | gameplay | Floor 4 elevator (10,0): buttons marked A through F | @gmaze,WARP:04:0A:00
 gameplay_pit | gameplay | Floor 3 (0,7): "A pit!" | @gmaze,WARP:03:00:06,poke:732A=0000,a,w100,d,w100,w,w20,w20,w20,!
 gameplay_chute | gameplay | Floor 9 (8,2): "A chute!" drops the party to floor 10 | @gmaze,WARP:09:08:01,poke:732A=0000,a,w100,d,w100,w,w150,!

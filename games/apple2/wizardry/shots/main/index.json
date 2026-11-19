@@ -1599,7 +1599,7 @@
   {
    "id": "gameplay_elevator_f2",
    "category": "gameplay",
-   "caption": "Floor 2 (10,9): the same elevator, one square north of floor 1's",
+   "caption": "Floor 2 (10,9): buttons on the wall marked A through D, the same elevator as floor 1's, one square north",
    "route": "@gmaze,WARP:02:0A:08,poke:732A=0000,a,w100,d,w100,k,w400,w600",
    "settled": true,
    "model": "iiplus-wp1",
