@@ -213,4 +213,3 @@ ending_sheet_condi | ending | CONDI '>K': Knight of the City, gear kept | @grefo
 ending_rebuy | shop | RYZ buys new gear at Boltac's: 64067 gold left | @greform,b,w120,1,w150,b,w200,p,w200,1,w200,f,w200,f,w200,p,w200,3,w200,p,w200,4,w200,f,w200,p,w200,5,w200
 ending_inn_levelup | system | A night at the inn: 'You made the next level!' - RYZ level 12 | @gfinal,a,w120,1,w150,b,w200
 ending_final_party | ending | The final party in the Castle: RYZ >G, five knights >K, all equipped | @final
-save_leave_game | save | L)eave game: the loader's 'Thanks for playing Wizardry!' at the DOS prompt | @final,e,w120,l,w600

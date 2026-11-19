@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Wizardry II (DOS) captured to the ending (212 shots); Wizardry III registered
+- game-capture (af9641c): set `main` 213 shots, lenses, GEAR/EQUIP/KODGEAR, save 03_wizardry3_transfer; floor 2
+  riddle answer "shield", all five drops confirmed in RAM, monster HP at 0D3BA, Gnilda takes the whole pack.
+- Coordinator: sheets looked at, `shoot.py dos/wizardry-2 main --verify` from an empty cache 213/213, then
+  `save_leave_game` dropped (DOSBox Pure's overlay after the program quits, not the game) and republished: 212
+  shots, lenses clean (166 / 190 / 113). Rules into the emulator guide: compare wireframe floor views before
+  snapping; do not snap the front end's screens. Merged to `master`.
+- Wizardry III (DOS) registered (7f7048f); scout dispatched with the transfer from 03_wizardry3_transfer.
+
 ## 2026-11-19 - DOS backend: writes through open files reach states; Wizardry II scouted
 - Wizardry II (DOS) scout (04bd3a9, 3a1201c): the Wizardry I party imported through the game's own Move
   characters (`tools/transfer.py` puts Wizardry I's SAVE1.DSK next to the loader); quest chain to the ending

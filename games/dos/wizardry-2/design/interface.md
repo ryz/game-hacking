@@ -63,7 +63,7 @@ The interface is Wizardry I's (verified: identical layouts, fonts and keys; deta
 | Cemetery | screen | party wiped out | game over | tombstones, "Your entire party has been slaughtered. Press ↵ to leave the cemetery!" | Enter | - | `gameover_slaughtered`, `gameover_cemetery`, `gameplay_member_dead` | - |
 | Congratulations | screen | Castle with the staff, alone | the ending | the text and "Press ↵ to select your knights!" | Enter | - | `ending_congratulations` | - |
 | Make a knight | prompt | Congratulations -> each roster character -> Castle | choose companions | "Make CONDI a knight (Y/N)?" | Y, N | - | `ending_knight_caleb`, `ending_make_knight`, `ending_castle_knights`, `ending_final_party` | **Observation:** asked for every roster character, stock ones included, not only the bearer's companions |
-| Leave game | screen | Edge L -> DOS | end the session | the loader's "Thanks for playing Wizardry!" in DOS text mode | - | - | `save_leave_game` | - |
+| Leave game | screen | Edge L -> DOS | end the session | the loader's "Thanks for playing Wizardry!" in DOS text mode (no shot: the frame is the emulator's overlay) | - | - | - | - |
 
 ## 3. Screen flow
 Power-on (DOSBox Pure menu, WIZ2.COM) -> Title -> S -> (loader answers the disk prompt) -> Castle ->

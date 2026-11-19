@@ -122,7 +122,15 @@ Current snapshot; history in `progress-log.md`.
   `ega-315`. Open: Murphy's ghost and the keys (floor 1 statues never offer a search), spinner, criticals,
   stoning, body recovery. Backend gap found here (writes through a file the game keeps open missing from states)
   fixed 2026-11-19 (5310311); both DOS sets re-verified with the new core.
-- DOS queue (owner, 2026-11-19): Wizardry II (scouted 2026-11-19, capture running), Wizardry III (import characters from
+- Wizardry II (DOS), 2026-11-19: main set 212 shots from power-on to the knights (the Wizardry I party
+  imported through Move characters, five guardians with their drops, sphinx, Gnilda's test, Staff,
+  Congratulations), 213/213 verified by the coordinator from an empty cache before dropping `save_leave_game`
+  (emulator overlay), three lenses 166 / 190 / 113, saves 00-03 (03 = Wizardry III transfer source). Open: floor
+  2 (16,3) room (doors open outward only), floor 6 fixed fight, spinners, stones.
+- Tool to build (third request, MM2 / Wizardry I / Wizardry II captures): a shared shot previewer (try.py-style
+  parallel runs with shoot.py's final settle, plan-file input, `--frames` counted from a marker token, paged
+  timelines) and a duplicate check in `shoot.py --only`.
+- DOS queue (owner, 2026-11-19): Wizardry III (scout running) (import characters from
   the previous game's SAVEn.DSK), then Ultima I, II, III (GOG; cycles 500/500/300 in GOG's configs).
 - Might and Magic 1 (DOS), state after the fix-up round (2026-11-18): 249 shots, 249/249 verified in one run
   from an empty cache by the coordinator, no identical pictures, no caption over 80 characters. Round 2 before

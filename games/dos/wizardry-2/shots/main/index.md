@@ -1,6 +1,6 @@
 # Wizardry II: The Knight of Diamonds (DOS) - shots: main
 
-Platform dos, region na, model ega-315, ROM SHA-1 `42934ace1ad2b1570c1f662f44f26cad1e76f130`. 213 shots. Contact sheet: [wizardry-2_dos_na_set_sheet.png](wizardry-2_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model ega-315, ROM SHA-1 `42934ace1ad2b1570c1f662f44f26cad1e76f130`. 212 shots. Contact sheet: [wizardry-2_dos_na_set_sheet.png](wizardry-2_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -216,6 +216,5 @@ Platform dos, region na, model ega-315, ROM SHA-1 `42934ace1ad2b1570c1f662f44f26
 | ending_rebuy | shop | RYZ buys new gear at Boltac's: 64067 gold left | yes | [png](wizardry-2_dos_na_shop_ending_rebuy.png) [3x](3x/wizardry-2_dos_na_shop_ending_rebuy.png) |
 | ending_inn_levelup | system | A night at the inn: 'You made the next level!' - RYZ level 12 | yes | [png](wizardry-2_dos_na_system_ending_inn_levelup.png) [3x](3x/wizardry-2_dos_na_system_ending_inn_levelup.png) |
 | ending_final_party | ending | The final party in the Castle: RYZ >G, five knights >K, all equipped | yes | [png](wizardry-2_dos_na_ending_ending_final_party.png) [3x](3x/wizardry-2_dos_na_ending_ending_final_party.png) |
-| save_leave_game | save | L)eave game: the loader's 'Thanks for playing Wizardry!' at the DOS prompt | no | [png](wizardry-2_dos_na_save_save_leave_game.png) [3x](3x/wizardry-2_dos_na_save_save_leave_game.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
