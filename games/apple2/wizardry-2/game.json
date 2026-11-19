@@ -3,7 +3,7 @@
   "title": "Wizardry II: The Knight of Diamonds",
   "platform": "apple2",
   "region": "na",
-  "model": "iie",
+  "model": "iiplus-wp1",
   "rom": "rom/apple2/wizardry-2.zip",
   "sha1": "87abc403fa9cab3711d2b2c9e6e7f843ab89b398",
   "crc32": "1b5045c9",
@@ -30,6 +30,61 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w1200",
+    "MENU": "TITLE,enter,w900",
+    "XFER": "t,w400,enter,w300,disk:3,enter,w600,{0},w300,enter,w400,disk:2,enter,w600,enter,w400",
+    "IMPORT": "u,w600,XFER:a,XFER:b,XFER:c,XFER:d,XFER:e,XFER:f",
+    "START": "s,w400,disk:2,enter,w600,enter,w900",
+    "CASTLE": "MENU,START",
+    "ADD": "a,w200,type:{0}\\n,w300,enter,w400",
+    "ADDPARTY": "ADD:RYZ,ADD:CONDI,ADD:EBO,ADD:CUBI,ADD:DEDDO,ADD:MNZ",
+    "PARTY": "MENU,IMPORT,l,w600,disk:1,enter,w900,START,TRAINING,WIPE,enter,w400,g,w300,ADDPARTY,enter,w300",
+    "RESUME": "CASTLE,g,w300,ADDPARTY,enter,w300",
+    "MAZE": "e,w300,m,w1500,l,w400,n,w300",
+    "WARP": "poke:7314=0000,poke:7312=0100,poke:730E=0200,l,w200,r,w200,f,w300,poke:5E2C={0}00,poke:5E6C={1}00,poke:5E4C={2}00,y,w600",
+    "TRAINING": "e,w300,t,w300",
+    "DEL": "type:{0}\\n,w300,enter,w400,d,w200,y,w500",
+    "WIPE": "DEL:THUG,DEL:HALIG,DEL:KELRACH,DEL:FURY",
+    "GEAR": "poke:73B2=8A0900000000,poke:73B8=0400,poke:73BA=00000000010001000000000001000D0000000000010019000000000001000E00,poke:7482=491800000000,poke:7488=0400,poke:748A=0000000001000100000000000100180000000000010019000000000001000E00,poke:7552=E71300000000,poke:7558=0400,poke:755A=0000000001000300000000000100170000000000010008000000000001000F00,poke:7622=991000000000,poke:7628=0400,poke:762A=0000000001000200000000000100160000000000010007000000000001001500,poke:76F2=0E0800000000,poke:76F8=0300,poke:76FA=000000000100200000000000010009000000000001001C00,poke:77C2=BC1B00000000,poke:77C8=0400,poke:77CA=0000000001000500000000000100160000000000010007000000000001001000",
+    "KOD": "poke:73B8=0500,poke:73BA=01000000010081000100000001007D000100000001007E000100000001007F000100000001008000",
+    "STAFF": "poke:73B8=0100,poke:73BA=0000000001007C00",
+    "HOME": "poke:7314=0000,poke:7312=0100,poke:730E=0200,l,w200,r,w200,f,w300,y,w900",
+    "WIN": "poke:6DCA=0000",
+    "REST": "a,w300,5,w300,a,w600,enter,w300,enter,w300,3,w300,a,w600,enter,w300,enter,w300,6,w300,a,w600,enter,w300,enter,w300,enter,w300",
+    "EQUIP": "e,w900,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400,1,w400",
+    "SOLO": "g,w300,r,w300,6,w300,r,w300,5,w300,r,w300,4,w300,r,w300,3,w300,r,w300,2,w300,enter,w300",
+    "KNIGHTS": "enter,w600,y,w400,y,w400,y,w400,y,w400,y,w600",
+    "REFORM": "g,w300,ADD:CONDI,ADD:EBO,ADD:CUBI,ADD:DEDDO,ADD:MNZ,enter,w300"
+  },
+  "ram": {
+    "floor": {
+      "addr": "7310",
+      "size": 2
+    },
+    "x": {
+      "addr": "7314",
+      "size": 2
+    },
+    "y": {
+      "addr": "7312",
+      "size": 2
+    },
+    "face": {
+      "addr": "730E",
+      "size": 2
+    },
+    "hp1": {
+      "addr": "7404",
+      "size": 2
+    },
+    "items1": {
+      "addr": "73B8",
+      "size": 2
+    },
+    "status1": {
+      "addr": "73A6",
+      "size": 2
+    }
+  }
 }

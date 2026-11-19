@@ -1,3 +1,35 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title: the Wizardry logo, a knight and a dragon, KNIGHT of DIAMONDS (still picture) | pow,TITLE,settle
+menu | Copyright text, VERSION PV3S2V1 OF 10-MAR-82, S)TART GAME U)TILITIES T)ITLE PAGE (Return leaves the title; space does not) | @title,enter,w900,settle
+start | Castle (LLYLGAMN) menu: RYZ CONDI EBO CUBI DEDDO MNZ moved from the Wizardry I disk with Utilities T)RANSFER (sav:00_transfer, disk 3), the four characters that came on the scenario disk deleted (WIPE: they hold KOD pieces, and a guardian does not appear while its piece is in the roster), party formed in the Tavern; level 13, chevron, no items | pow,sav:00_transfer,PARTY,settle
+edge | Edge of Town: M)AZE, T)RAINING GROUNDS, C)ASTLE, L)EAVE THE GAME (party formed) | @start,e,w300,settle
+camp | Camp on entering the maze: R)EORDER, E)QUIP, D)ISBAND, #) TO INSPECT, L)EAVE THE CAMP; AC 10 for all (no items) | @edge,m,w1500,settle
+maze1 | Floor 1 (0,0) facing north under the stairs up (N at the prompt): first control in the maze | @camp,l,w400,n,w300,settle
+rested | Castle after a night in the stables for DEDDO, EBO and MNZ (spell points back; nobody gains a level) | @start,REST,settle
+gcamp | Camp at the maze entrance with Boltac-priced gear (GEAR poke, gold reduced by the prices) worn through E)QUIP: AC 0 -1 3 5 9 5 | @rested,GEAR,e,w300,m,w1500,EQUIP,settle
+gmaze | Floor 1 (0,0) facing north with the equipped party | @gcamp,l,w400,n,w300,settle
+gcastle | Castle with the equipped party (from gcamp, up the stairs) | @gcamp,l,w400,y,w900,settle
+guard1 | Floor 1 (15,2) guardian before the stairs down: 1 MAGIC ARMOR, RYZ'S OPTIONS (warped onto the stairs at (16,2), N, kicked the door west) | @gmaze,WARP:01:10:02,n,w300,poke:730E=0300,k,w600,w900,settle
+guard2 | Floor 2 (2,6) guardian: 1 ANIMATED OBJECT (the Magic Shield, not yet identified), RYZ'S OPTIONS (warped to (2,7), kicked the door south) | @gmaze,WARP:02:02:07,k,w600,w900,settle
+guard3 | Floor 3 (14,13) guardian: 1 MAGIC SWORD, RYZ'S OPTIONS (warped to (13,13), kicked the door east) | @gmaze,WARP:03:0D:0D,poke:730E=0100,k,w600,w900,settle
+guard4 | Floor 4 (10,4) guardian: 1 MAGIC HELMET, RYZ'S OPTIONS (warped to (11,4), kicked the door west) | @gmaze,WARP:04:0B:04,poke:730E=0300,k,w600,w900,settle
+guard5 | Floor 5 (10,9) guardian: 2 MAGIC GAUNTLETS, RYZ'S OPTIONS (warped to (9,9), kicked the door east) | @gmaze,WARP:05:09:09,poke:730E=0100,k,w600,w900,settle
+gnilda_test | Floor 1 (9,10) temple of Gnilda, RYZ alone (SOLO) wearing the five pieces (KOD poke; AC shows LO, hits 112+): 'A FIERY FACE APPEARS BEFORE YOU AND DEMANDS, "WHAT IS THE ANSWER TO THE RIDDLE OF THE SPHINX ?" THE IMAGE DISAPPEARS. PRESS [RET]' | @gcastle,SOLO,KOD,MAZE,WARP:01:09:09,poke:730E=0000,k,w900,settle
+gnilda_answer | Gnilda's temple: 'ANSWER ?' prompt (RYZ alone with the five) | @gnilda_test,enter,w600,settle
+staff_gift | Gnilda's gift, first page: 'A NOW FAMILIAR APPARITION APPEARS AND SAYS: "THROUGH YOUR VALOR, WIT, AND PRESENCE OF MIND, YOU HAVE PROVED YOURSELF THIS DAY. BY OBTAINING THE ...' [RET] FOR MORE | @gnilda_answer,type:THE KNIGHT OF DIAMONDS\n,w600,settle
+staff | Floor 1 (9,10) after the gift: 'RYZ GOT ITEM', the Staff of Gnilda is his only item (the five pieces were taken back) | @staff_gift,enter,w600,settle,enter,w600,settle,enter,w600,settle
+ending | The ending: *** GAUDEAMOUS *** ... I, QUEEN MARGDA, BESTOW UPON YOU THE RANK AND TITLE OF KEEPER OF THE HOLY STAFF OF GNILDA ... THE RIGHT TO CREATE 5 KNIGHTS OF THE CITY OF LLYLGAMN. PRESS [RET] TO ASSIGN AWARDS (RYZ alone brought the staff up the floor 1 stairs) | @staff,HOME,settle
+knights | Castle after the awards: RYZ alone, ">G" (Keeper of the Holy Staff), +300,000 E.P.; CONDI EBO CUBI DEDDO MNZ answered Y: Knights ">K" | @ending,KNIGHTS,settle
+final | Castle after the ending, the five knights re-added in the Tavern (REFORM) and one trip to the camp so RYZ's AC is recomputed (10: Gnilda took his pack); source of save 02_ending and of the Wizardry III transfer disk | @knights,REFORM,e,w300,m,w1500,l,w400,y,w900,settle
+sphinx | Floor 6 (1,2): the sphinx's riddle, first page (warped to (1,1), kicked the door north) | @gmaze,WARP:06:01:01,poke:730E=0000,k,w600,settle
+guard1_won | Floor 1 (15,2) after the Magic Armor fight ended by WIN (group count poked to 0 during the orders; the armor has 305 hit points, AC -10 and shrugged off Malikto, Tiltowait and Lahalito): KOD'S ARMOR (item 129, unidentified) in DEDDO's pack | @guard1,f,w150,f,w150,f,w150,p,w150,p,w150,p,w150,WIN,enter,w1500,settle
+guard2_won | Floor 2 (2,6) after the Magic Shield: hit points poked to 1 during the orders, then a real blow; KOD'S SHIELD (127) dropped. Timing-bound fight | @guard2,f,w150,f,w150,p,w150,p,w150,p,w150,p,w150,poke:6DD6=0100,poke:6DE6=0100,w2,enter,w2500,settle
+guard3_won | Floor 3 (14,13) after a real one-round win over the Magic Sword (two blows, Malikto, Tiltowait, Lahalito; nobody hurt); HRATHNIR (125) dropped. Timing-bound fight | @guard3,f,w150,f,w150,s,w150,type:MALIKTO\n,w200,p,w150,s,w150,type:TILTOWAIT\n,w200,s,w150,type:LAHALITO\n,w200,enter,w3000,settle
+guard4_won | Floor 4 (10,4) after the Magic Helmet: hit points poked to 1, then a real blow; KOD'S HELMET (126) dropped. Timing-bound fight | @guard4,f,w150,f,w150,p,w150,p,w150,p,w150,p,w150,poke:6DD6=0100,poke:6DE6=0100,w1,enter,w2500,settle
+guard5_won | Floor 5 (10,9) after the two Magic Gauntlets: hit points of both poked to 1, then real blows; KOD'S GAUNTLETS (128) dropped. Timing-bound fight | @guard5,f,w150,f,w150,p,w150,p,w150,p,w150,p,w150,poke:6DD6=0100,poke:6DE6=0100,w1,enter,w2500,settle
+resume | Castle menu, party formed from the exported 01_start roster (needs rom/saves/apple2/wizardry-2/01_start.sav) | pow,sav:01_start,RESUME,settle
+resume_end | Castle menu, party formed from the exported 02_ending roster: RYZ >G, the five >K | pow,sav:02_ending,RESUME,settle
+battle | Floor 1 (14,2), a fight-zone square reached by warp: a random group, RYZ'S OPTIONS F)IGHT S)PELL P)ARRY R)UN U)SE (equipped party) | @gmaze,WARP:01:0E:02,w900,settle
+chest | Floor 1 (14,2) after that fight ended by WIN on both groups (all six parried): A CHEST! YOU MAY: O)PEN C)ALFO L)EAVE I)NSPECT D)ISARM | @battle,p,w150,p,w150,p,w150,p,w150,p,w150,p,w150,WIN,poke:6F00=0000,enter,w1500,settle
