@@ -12,8 +12,13 @@ shuttle | Shuttle bought at Scooter's in Britian (game time poked past 3000 move
 space | SPACE.EXE: lifted off, top view of the home sector (Sosaria, sun, starbase), Shld/Fuel 1000 | @shuttle,up,w60,b,w300,w900,settle
 landed | Back in OUT.EXE: the shuttle landed next to Britian (Thou hast landed safely!) | @space,up*3,space*10,w60,settle
 endgame | Late game from save 02_endgame (level 8, 2489 hits, blaster, reflect suit, four gems, 23 enemy vessels) on the overworld at the start square | pow,sav:02_endgame,MENU,PLAY
-time_machine | Board Time Machine with the four gems: MONDAIN.EXE, the four holes R G B W | @endgame,SPAWN:12:31:27,space,w60,up,w60,b,w300,settle
+princess_freed | Castle of Lord British: key poked, the cell door unlocked (The door is open!), princess Julia free | @endgame,GO:28:26,FREE,settle
+rescued | Princess Julia led out (poked beside ryz at the gate): reward and the time machine far to the northwest | @princess_freed,RESCUE,settle
+time_machine_found | Overworld beside the time machine the princess revealed (object at 10,0E) | @rescued,space,w300,WARP:11:0E,settle
+time_machine | Board Time Machine with the four gems: MONDAIN.EXE, the four holes R G B W | @time_machine_found,left,w60,b,w300,settle
 mondain | Mondain's chamber after the time journey: time machine, ryz, the gem, Mondain | @time_machine,space,w300,space,w300,space,w300,space,w300,settle
-gem_destroyed | Get beside the gem: The Gem is DESTROYED! (Mondain fights back) | @mondain,right*10,w30,g,w100,settle
-victory | Mondain's hit points poked to 0 after the gem: Mondain is dead! THOU ART VICTORIOUS! | @gem_destroyed,poke:756E=0000,space,w100,settle
+gem_destroyed | Get (Gem): 2196 damage, The Gem is DESTROYED! Mondain beside ryz | @mondain,right*10,w30,g,w100,settle
+hit_mondain | Attack with blaster: Hit Mondain! 51 damage! Mondain casts psionic shock | @gem_destroyed,a,w30,right,w100,settle
+mondain_bat | Mondain below 500 hit points (poked to 300) turns into a bat | @hit_mondain,poke:756E=2C01,a,w30,right,w100,settle
+victory | Mondain's hit points poked to 0: Mondain is dead! THOU ART VICTORIOUS! | @mondain_bat,poke:756E=0000,space,w100,settle
 ending | Ending text (NIF.BIN) complete: Lord British's reward, Press CONTROL-ALT-DEL to Restart | @victory,space,w1800,settle

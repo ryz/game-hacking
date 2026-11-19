@@ -23,8 +23,17 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Ultima I is a single-character role-playing game (1986 remake of the 1981 original; MS-DOS EGA version 1987)
+**(source)**. The player creates one hero (30 points over six statistics, four races, four classes)
+**(verified)** and walks a top-down overworld of four continents, buying food, arms, armour, spells and vehicles
+in towns, taking quests from the eight kings in the castles and fighting in first-person wireframe dungeons
+**(verified)**. Two kinds of quest alternate: find a landmark (rewarded with strength) or kill a named dungeon
+monster (rewarded with one of four gems) **(verified for the first, code for the second)**. The game then turns
+into science fiction: a shuttle into space, twenty enemy ships shot down to become a Space Ace, a rescued
+princess who reveals a time machine, and a journey back in time to destroy Mondain's gem and Mondain himself
+**(verified from the time machine to the ending text)**. Saving is by Q on the overworld, four character slots
+**(verified)**. Modes are separate programs: character generation, overworld/towns/dungeons, space, the final
+confrontation **(verified)**.
 
 ## Documents
 | Document | Covers |
@@ -40,3 +49,6 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| The game's own programs (text and code, read 2026-11-19) | `rom/ultima.zip` | names, prices, quest rules, messages |
+| Wikipedia | https://en.wikipedia.org/wiki/Ultima_I:_The_First_Age_of_Darkness | release history, remake changes |
+| Manual scans (OCR text) | https://archive.org/details/Ultima_I-Manual | monster and spell names, space flight |

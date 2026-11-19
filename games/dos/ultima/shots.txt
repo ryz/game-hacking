@@ -1,6 +1,62 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
+# The plan for the main set (playbook "Shot plan", 73 ids). play.py snap writes captured shots (with exact routes) to
 # work/shots/dos/ultima/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Lines below: frames seen by the scout (2026-11-19); comments: planned, route to be confirmed by the capture run.
+title_castle | title | Ultima I: castle title picture | @title
+menu_main | menu | Main menu: a) Generate new character, b) Continue previous game | @menu
+gen_points | menu | Character Generation: 30 points to distribute over six statistics | @gen
+start_overworld | gameplay | ryz on the overworld east of the Castle of Lord British | @start
+inventory_ztats | inventory | Ztats: ryz, level 1 male human fighter, leather armour, two daggers | @start,z,w60
+gameplay_britian | gameplay | The city of Britian: transport, magic, pub, armour, weapons and food shops | @britian
+gameplay_castle | gameplay | The Castle of Lord British: halls, pools, the king's room and the prison | @lb_king
+dialogue_king_quest | dialogue | Lord British: Go forth and find The Grave of the Lost Soul | @lb_king,t,w100,s,w150
+gameplay_dungeon | gameplay | The Mines of Mt. Drash II, level 1: corridor with a chest | @dungeon
+battle_skeleton | battle | Dungeon level 1: attacked by a Skeleton | @skeleton
+gameplay_shuttle | gameplay | The shuttle bought in Britian, parked north of the town | @shuttle
+gameplay_space_top | gameplay | Space, top view: Sosaria, the sun, a starbase and the shuttle | @space
+map_sector_scan | map | Sector Scan: the 49 sectors of space | @space,i,w100
+system_landing | system | Thou hast landed safely! The shuttle back beside Britian | @landed
+system_cell_open | system | Castle prison: the cell door unlocked, the princess free | @princess_freed
+system_princess_reward | system | Princess Julia saved: rewards and the time machine far to the northwest | @rescued
+gameplay_time_machine | gameplay | The time machine on the overworld | @time_machine_found
+cutscene_time_machine | cutscene | Inside the time machine: four holes marked R G B W | @time_machine
+boss_mondain | boss | Mondain's chamber: the time machine, ryz, the gem and Mondain | @mondain
+boss_gem_destroyed | boss | Get (Gem): 2196 damage, The Gem is DESTROYED! | @gem_destroyed
+boss_hit_mondain | boss | Hit Mondain! 51 damage! Mondain casts psionic shock | @hit_mondain
+boss_mondain_bat | boss | Mondain turned into a bat | @mondain_bat
+ending_victorious | ending | Mondain is dead! THOU ART VICTORIOUS! | @victory
+ending_text | ending | Ending text: Lord British's reward, Press CONTROL-ALT-DEL to Restart | @ending
+# boot_title_text | boot | Text title: Ultima I, The First Age of Darkness | BOOT,w200
+# boot_origin | boot | Origin Systems logo: Presents... | BOOT,w1000
+# boot_credits | boot | Credits card: Conversion by John Fachini | BOOT,w300,space,w200
+# gen_stats_done | menu | 30 points spent: Str 20 Agi 18 Sta 17 Cha 13 Wis 10 Int 12 | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2
+# gen_race | menu | Select thy race: Human, Elf, Dwarf, Bobbit | (above),space,w60
+# gen_class | menu | Select thy class: Fighter, Cleric, Wizard, Thief | (above),a,w60,a,w60
+# gen_save | menu | Save this character? ryz, human male fighter | (above),a,w60,r,y,z,w30,enter,w60
+# menu_select | menu | Character Selection: 1) ryz | @gen,CREATE,b,w200
+# hud_status | hud | Status panel and message log | @start,right,w60
+# inventory_ztats_late | inventory | Ztats late: gems, blaster, reflect suit, 23 enemy vessels | @endgame,z,w60
+# gameplay_inform | gameplay | Inform and search: You are in the lands of Lord British | @start,i,w100
+# gameplay_continents | gameplay | one overworld shot per continent | @start,WARP:x:y
+# shop_transport / shop_armour / shop_weapons / shop_magic / shop_food / shop_pub | shop | Britian counters | @britian,TPOS:07:05 / 06:0C / 0C:0C / 17:03 / 17:0C / 20:05,t,w100,b,w100
+# shop_transport_space | shop | Aircar and Shuttle for sale | @start,set:17AF8=4127:2,GO:27:27,TPOS:07:05,t,w100,b,w100
+# dialogue_king_offer | dialogue | Dost thou offer pence or service | @lb_king,t,w100
+# dialogue_king_pence | dialogue | How much? | @lb_king,t,w100,p,w100
+# system_landmark_grave | system | The grave is marked VAE VICTIS; quest completed, +2 Stamina | @lb_king,t,w100,s,w150,space,w60,poke:19C8E=00,poke:19C90=09,left,w200,WARP:62:58,e,w200
+# dialogue_quest_done | dialogue | Thou hast completed thy quest: 8 points of strength | (above),space,w100,GO:28:26,TPOS:21:05,t,w100,s,w150
+# dialogue_gem | dialogue | The king gives thee a red gem | Lost King (20,1B), quest, record +0x3E poked to 1, T
+# battle_dungeon_* | battle | deeper dungeon monsters | dungeons, ladders
+# gameplay_chest | gameplay | Open a chest | @dungeon,up,w60,up,w60,o,w60
+# battle_overworld | battle | overworld monster fight | @start,poke:12A8C=2500010032002800520000000000000000,poke:17AF6=01,space,w60,a,w30,right,w100
+# gameplay_vehicles / system_frigate_fire / gameplay_aircar | gameplay | vehicles | @britian transport
+# system_liftoff | system | countdown 10..9..8.. | @shuttle,up,w60,b,w150
+# gameplay_space_front | gameplay | front view | @space,v,w60
+# system_hyperjump | system | Lightspeed! | @space,v,w60,h,wN (pick the frame with play.py sample)
+# battle_space / system_space_ace / system_starbase | battle/system | space combat, ace, docking | from @space
+# system_jester_key | system | I've got the key! | @lb_king, jester at (24,07)
+# cutscene_launch / cutscene_pulled / cutscene_face_to_face | cutscene | time machine pages 2-4 | @time_machine,space,w300 (x1..x3)
+# gameover_dead | gameover | ryz, thou art dead | @start,SPAWN:11:31:27,space,w60,up,w60,b,w300,w900
+# save_quit | save | Quit - saving game...saved. | @start,q,w200
+# system_pub_tip / system_steal / system_spell_cast | system | pub tip, steal, spell in a dungeon | towns, dungeons
