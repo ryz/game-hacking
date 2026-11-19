@@ -3,7 +3,7 @@
   "title": "Ultima III: Exodus (DOS)",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "svga-300",
   "rom": "rom/ultima-3.zip",
   "sha1": "934c23a8be23fab2c539c445cf94b5c93bc123af",
   "crc32": "328f9200",
@@ -22,6 +22,44 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w2400",
+    "MENU": "w3000,space,w300",
+    "ORGANIZE": "o,w60,enter,w300",
+    "C_RYZ": "c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60,h,w30,enter,w60,p,w30,enter,w60,2,0,enter,w60,1,0,enter,w60,0,5,enter,w60,1,5,enter,w60,y,w60,enter,w200,space,w200",
+    "C_CONDI": "c,w60,enter,w200,2,w60,enter,w200,c,o,n,d,i,enter,w60,f,w30,enter,w60,e,w30,enter,w60,w,w30,enter,w60,0,5,enter,w60,1,5,enter,w60,2,5,enter,w60,0,5,enter,w60,y,w60,enter,w200,space,w200",
+    "C_EBO": "c,w60,enter,w200,3,w60,enter,w200,e,b,o,enter,w60,m,w30,enter,w60,d,w30,enter,w60,f,w30,enter,w60,2,5,enter,w60,1,5,enter,w60,0,5,enter,w60,0,5,enter,w60,y,w60,enter,w200,space,w200",
+    "C_CUBI": "c,w60,enter,w200,4,w60,enter,w200,c,u,b,i,enter,w60,f,w30,enter,w60,b,w30,enter,w60,c,w30,enter,w60,1,0,enter,w60,1,0,enter,w60,0,5,enter,w60,2,5,enter,w60,y,w60,enter,w200,space,w200",
+    "FORM": "f,w60,enter,w300,1,w30,enter,w100,2,w30,enter,w100,3,w30,enter,w100,4,w30,enter,w300,space,w200",
+    "PARTY": "ORGANIZE,C_RYZ,C_CONDI,C_EBO,C_CUBI,FORM,m,w60,enter,w300",
+    "JOURNEY": "j,w60,enter,w600",
+    "NEWGAME": "MENU,PARTY,JOURNEY",
+    "HERO": "poke:2E5A=FF06,poke:2E5E=71663863,poke:2E66=132200234123004718524304030507000001000100010F010000000001000000010000000001,poke:2E9A=F002,poke:2E9E=33877541,poke:2EA6=841700193719009215872102010307010000000000010F010000000000000000000000000001,poke:2EDA=F004,poke:2EDE=92702230,poke:2EE6=162300248624003420653001020007000001010000010F000000010001000100000000010001,poke:2F1A=F003,poke:2F1E=41473694,poke:2F26=531600186318001614741903000207000100000000010F000100010000000000000000000001"
+  },
+  "ram": {
+    "x": {
+      "addr": "2F4C",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "y": {
+      "addr": "2F4D",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "loc": {
+      "addr": "2E3C",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "lvl": {
+      "addr": "2F4F",
+      "size": 1
+    },
+    "tile": {
+      "addr": "3F1D",
+      "size": 1,
+      "fmt": "hex"
+    }
+  }
 }

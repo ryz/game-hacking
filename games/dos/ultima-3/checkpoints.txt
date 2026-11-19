@@ -1,3 +1,7 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title screen: Exodus / Ultima III by Lord British, fully drawn (the dragon walks on below) | pow,TITLE,settle
+menu | Main menu: Return to the View / Organize a Party / Journey Onward | pow,MENU,settle
+party | Main menu again after creating ryz, condi, ebo, cubi (roster 1-4) and forming the party | @menu,PARTY,settle
+start | Party of four on the Sosaria map at (2C,14), south-west of Lord British's castle and the towne beside it | @party,JOURNEY,settle
