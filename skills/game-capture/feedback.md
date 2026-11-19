@@ -9,6 +9,24 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Ultima I (DOS) set main
+- Task: set `main` from power-on to the ending with the three lenses: 195 shots, 195/195 from an empty cache,
+  published and pushed (1c37e9d, d19fdf1).
+- Worked: string refs plus ndisasm gave steal, pub, king, landmark, chest/coffin and docking rules in a few calls;
+  the random number state (115CC) poked right before the deciding key picks any roll reproducibly; dungeon
+  monsters placed by poking the square in front (all 25 kinds in one sheet); a mid-game save through `sav:` gives
+  correct panel values; batches of 10-30 lines previewed, shot with `--only`, new shots tiled.
+- Friction: try.py and the shot of `system_steal` disagreed until the cache was deleted (stale scout states);
+  try.py labels hide bottom-line messages; checkpoint-only lines give no try frame; ~25 calls on starbase docking
+  without success; `w650!` fails (`w650,!` works). Not captured: starbase docking and ship choice, pub seduction,
+  bard/jester songs, Steal spell (not sold), Evil ranger and Invisible seeker shots.
+- Proposed rule change: emulator guide: find the game's random number state early and poke it right before the
+  deciding key; capture skill: delete the game's cache at the start of a capture that follows a scout.
+- Corrected: coordinator cold `--verify` 195/195, `lenses.py` clean, sheets looked at (overworld, all dungeon
+  levels, space, Mondain, ending).
+- Status: cache-at-start promoted 2026-11-19 into skill.md step 1 (second report of stale states, after
+  Wizardry III); RNG rule logged (first report).
+
 ### 2026-11-19 - Wizardry III (DOS) fix-up: cold verify
 - Task: 29 shots (everything from checkpoint `gfloor6` on) did not reproduce from an empty cache (coordinator
   verify 199/228); fixed the `gfloor6` route, cold verify 228/228 (commit ad4511a), no shot retaken.

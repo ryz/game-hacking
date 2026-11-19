@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Ultima I (DOS) captured to the ending (195 shots)
+- game-capture (1c37e9d, d19fdf1): set `main` 195 shots, three lenses, RNG state found (115CC) for chosen rolls,
+  save 03_midgame, `tools/shops.py`; RAM map corrections (class index, dungeon level at 19CA0).
+- Coordinator: cold `shoot.py dos/ultima main --verify` 195/195, lenses clean, sheets looked at. Capture skill
+  step 1: delete the game's cache before the first command. Merged to `master`.
+- Ultima II (DOS) registered; scout dispatched.
+
 ## 2026-11-19 - Wizardry III (DOS) captured to the ending (228 shots); play.py rollback; Ultima I scouted
 - Wizardry III scout (5b30832): Wizardry II party moved and legated (only Save2.Dsk needed), alignment gates,
   crystals, orb, ending; 22 checkpoints, all 107 messages read in play, saves 00-02.

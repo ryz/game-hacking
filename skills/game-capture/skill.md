@@ -28,6 +28,8 @@ edit anything outside the game's folder.
 ## Steps
 1. `python3 tools/play.py start SLUG --name SLUG` (start from the latest useful checkpoint: `--route @name`).
    Use `--name SLUG` on every command so parallel captures do not collide.
+   Delete `work/cache/<platform>/<slug>` before the first command: states left by the scout may not match their
+   routes (Ultima I DOS: a preview and a shot disagreed until the cache was cleared, 2026-11-19).
 2. Work through the plan in game order. For each target: reach it by the fastest route the playbook offers
    (save, code, poke, debug menu; playing last), make the
    screen good (`docs/capture-guide.md` quality rules), then
