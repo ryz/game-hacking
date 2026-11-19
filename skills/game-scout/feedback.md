@@ -9,6 +9,25 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Ultima I (DOS, GOG, five programs)
+- Task: scout Ultima I (DOS, GOG): boot through ULTIMA/GEN/OUT/SPACE/MONDAIN, ryz creation, 22 checkpoints to
+  the ending, RAM map, warp, quest structure, saves 01_start and 02_endgame, design lenses, shot plan.
+- Worked: the game's strings named every command, place and quest message; ndisasm from string references found
+  the quest table, gem and continent rules, princess conditions, shop gating and Mondain's HP; parallel try.py
+  sheets for all command letters, monster types and shop counters; the empty-cache vs cache-hit script covers
+  frames and written files across program switches (rerun after the play.py rollback fix).
+- Friction: the status panel redraws only on in-game changes (poked values invisible until a Q save and `sav:`);
+  a poke-spawned shuttle with no fuel/shield killed the player at lift-off (found by diffing INUSE.U1); an
+  exported save's README recorded a circular route once its checkpoint was rebuilt from the save; `type:` too
+  fast at 500 cycles.
+- Proposed rule change: emulator guide: games that draw status values only when they change in play: after
+  pokes check the HUD in a frame; if stale, save in the game and start from the save, or poke before a program
+  switch. `play.py export`: record the route from power-on, not the checkpoint name.
+- Corrected: coordinator replayed `start`, `dungeon`, `space`, `ending` (overworld, Mines of Mt. Drash level 1,
+  shuttle lift-off in SPACE.EXE, Mondain's ending text): all as described.
+- Status: HUD rule promoted 2026-11-19 into docs/emulator/README.md (second report: Wizardry II capture, HP and
+  status pokes shown only after a menu change); export route: open tool wish.
+
 ### 2026-11-19 - Wizardry III (DOS, legacy from Wizardry II)
 - Task: scout Wizardry III (DOS): Wizardry II transfer and legacy, macros, 22 checkpoints to the ending, RAM
   map and warp, maps, all messages, quest and alignment rules, saves 00-02, shot plan, design start.

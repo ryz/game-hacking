@@ -177,6 +177,10 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
   flag bits one at a time from a checkpoint (one `emu.py` run per bit) before exploring further. A flag set by a
   poke stays in the route and is noted in the playbook.
 - Pokes are part of the route and fine anywhere; values that show on screen follow the realistic-values rule.
+- Many games draw a status value only when it changes in play (Ultima I's Hits/Food/Exp./Coin panel, Wizardry
+  II's HP and status until a menu change). After a poke, look at the frame: if the display is stale, let the
+  game redraw it (open and close a menu, pass a turn), or save in the game and start the route from that save
+  (`sav:`), or poke before a program switch.
 - A table of records (party members, inventory slots): check the spacing on the second and the last record,
   not only the first, and after writing a macro that pokes every record read all of them back on screen
   before a shot uses it (Might and Magic 1 DOS: records 0x80 apart were taken as 0x7F; the macros hit a
