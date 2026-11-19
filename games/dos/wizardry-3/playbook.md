@@ -311,8 +311,11 @@ Roster on disk: SAVE3.DSK `1DE00` (SCENARIO.DATA at `1DA00`, its table of conten
 | `gdeath`, `gstatue`, `gorb`, `gorbid` | DEATH answered; "You have reached the statue."; the orb; identified |
 | `gfarewell`, `ghomeorb`, `gending`, `gstars`, `gafter` | L'kbreth; floor 1 after the teleport; Congratulations; the Queen; Castle after the stars |
 | `gbattle` | floor 1 (0,9) Garian Guards, round 2 options (battle mechanics shots) |
-The `g*` checkpoints (capture) were made in a `play.py` session and replayed by `shoot.py --verify` from an empty
-cache for every shot that uses them.
+The `g*` checkpoints (capture) were made in a `play.py` session. `gfloor6` first did not reproduce from an empty
+cache (coordinator's cold verify 199/228, 2026-11-19): a `play.py do "y,w300!"` had pressed `y` before failing on
+the bad token, and that press was not recorded. The route now holds both presses (`...,y,y,w300,w1800,...`) and
+the cold replay matches the published frames (fix-up, cold `--verify` below). Lesson: after a `do` that fails on
+a token, `undo` before going on, or the session drifts from its route.
 Every scout checkpoint was rebuilt from an empty cache and compared with cache hits in fresh processes on 2026-11-19
 (`work/scout/wizardry-3/cmp.py`, scratch): identical frames, party records, position and written disks (also after
 Leave game from `start`, `resume`, `after_ending`).
