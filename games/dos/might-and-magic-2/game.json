@@ -3,7 +3,7 @@
   "title": "Might and Magic II: Gates to Another World (DOS)",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "svga-8000",
   "rom": "rom/might-and-magic-2.zip",
   "sha1": "c11c7146614bbf697b884657adb718a963c631bc",
   "crc32": "0e541769",
@@ -23,6 +23,66 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "BOOT": "w120,down,down,enter,w120,type:cd MIGHIC-2\\n,w30,type:loadfix -4 mm2.exe\\n",
+    "TITLE": "BOOT,w300",
+    "MENU": "TITLE,esc,w200,s,w300",
+    "RYZ": "c,w300,a,w150,b,w150,1,w150,1,w150,1,w150,1,w150,type:ryz,w60,enter,w200,esc,w200",
+    "RENAME": "{0},w150,ctrl>n,w100,type:{1},w60,enter,w150,esc,w150",
+    "NAMES": "v,w200,RENAME:b:condi,RENAME:c:ebo,RENAME:f:cubi,RENAME:d:deddo,RENAME:e:mnz,esc,w200",
+    "JOIN": "g,w300,ctrl>g,w30,ctrl>b,w30,ctrl>c,w30,ctrl>f,w30,ctrl>d,w30,ctrl>e,w60,z,w300",
+    "PARTY": "MENU,RYZ,NAMES,JOIN",
+    "AT": "poke:10B93={0},poke:10B94={1}",
+    "FN": "poke:10BCF=4E",
+    "FE": "poke:10BCF=45",
+    "FS": "poke:10BCF=53",
+    "FW": "poke:10BCF=57",
+    "WARP": "poke:1618C={0},poke:10B93=10,poke:10B94={2},right,w300,poke:10B93={1},left,w200",
+    "CAST": "{0},w150,c,w150,{1},w100,{2},w100,enter,w150",
+    "LIGHT": "CAST:5:1:5",
+    "LIT": "poke:10BD5=1E",
+    "RESUME": "MENU,g,w300,z,w300"
+  },
+  "ram": {
+    "map": {
+      "addr": "10B92",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "x": {
+      "addr": "10B93",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "y": {
+      "addr": "10B94",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "face": {
+      "addr": "10BCF",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "hp1": {
+      "addr": "1898A",
+      "size": 2
+    },
+    "gold1": {
+      "addr": "18992",
+      "size": 4
+    },
+    "gems1": {
+      "addr": "18988",
+      "size": 2
+    },
+    "food1": {
+      "addr": "18951",
+      "size": 1
+    },
+    "light": {
+      "addr": "10BD5",
+      "size": 1
+    }
+  }
 }

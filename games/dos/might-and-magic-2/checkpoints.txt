@@ -1,3 +1,11 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title picture (Might and Magic Book Two, pegasus), after the New World Computing logo | pow,TITLE,settle
+menu | Main Options: Create, View All, Transfer, Go to town | @title,esc,w200,s,w300
+start | Party ryz condi ebo cubi deddo mnz in the Middlegate inn, facing the door (first control) | pow,PARTY,w60
+signed_in | Signed in at the Middlegate inn (ROSTER.DAT written): inn character list, party marked | @start,right,w100,right,w200,y,w300
+middlegate | Middlegate street, one step out of the inn after the spirit of Corak's greeting, facing N | @start,up,w150,space,w150
+outdoors | Outside Middlegate's gate: area C2 (map 0B) at (7,3), facing N | @middlegate,AT:05:0F,FE,left,w250,y,w400
+cavern | Cavern below Middlegate (map 11) at (15,8) facing W, after the stairs; 30 light units poked (light 10BD5), view lit | @middlegate,AT:08:00,FN,left,w250,y,w400,poke:10BD5=1E,right,w100,left,w150
+combat | Fixed encounter in Middlegate (8,1): 6 Witch's Cats and 4 Rabid Rodents, encounter options (Attack, Bribe, Hide, Run) | @middlegate,AT:08:01,FE,left,w250
