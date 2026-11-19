@@ -42,7 +42,9 @@
     "ENDGAME": "set:129DE=2489:2,set:129E0=47:2,set:129E2=52:2,set:129E4=38:2,set:129E6=29:2,set:129E8=33:2,set:129EA=41:2,set:129EC=8973:2,set:129EE=7340:2,set:129F0=1342:2,GEMS,poke:12A26=0100,poke:129F6=05,poke:12A40=0100,poke:12A46=0100,poke:129F2=0F,set:12A6E=23:2",
     "SHUTTLE": "set:17AF8=4127:2,set:129EC=8973:2,GO:27:27,TPOS:07:05,t,w100,b,w100,f,w100,space,w60,poke:19C8E=13,poke:19C90=11,down,w200",
     "FREE": "poke:17AF0=01,TPOS:1F:0F,u,w30,up,w100",
-    "RESCUE": "TPOS:00:09,poke:19C20=0100,poke:19C22=0900,left,w300"
+    "RESCUE": "TPOS:00:09,poke:19C20=0100,poke:19C22=0900,left,w300",
+    "MIDGAME": "set:129DE=1487:2,set:129E0=38:2,set:129E2=33:2,set:129E4=29:2,set:129E6=19:2,set:129E8=16:2,set:129EA=25:2,set:129EC=2381:2,set:129EE=4213:2,set:129F0=862:2,poke:12A2A=0200010001000000010000000100,poke:129F2=05,poke:12A1E=01000100,poke:129F6=02,poke:12A4A=0300020007000000020002000100010001000000,poke:129F4=03,poke:12A60=0100000000000100,set:17AF8=2417:2",
+    "TPOS2": "poke:19C8E={0},poke:19C90={1},z,w60,space,w60,space,w60"
   },
   "ram": {
     "x": {
@@ -88,6 +90,10 @@
     "exp": {
       "addr": "129EE",
       "size": 2
+    },
+    "dlvl": {
+      "addr": "19CA0",
+      "size": 1
     }
   }
 }

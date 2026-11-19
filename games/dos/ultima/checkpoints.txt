@@ -22,3 +22,8 @@ hit_mondain | Attack with blaster: Hit Mondain! 51 damage! Mondain casts psionic
 mondain_bat | Mondain below 500 hit points (poked to 300) turns into a bat | @hit_mondain,poke:756E=2C01,a,w30,right,w100,settle
 victory | Mondain's hit points poked to 0: Mondain is dead! THOU ART VICTORIOUS! | @mondain_bat,poke:756E=0000,space,w100,settle
 ending | Ending text (NIF.BIN) complete: Lord British's reward, Press CONTROL-ALT-DEL to Restart | @victory,space,w1800,settle
+mid | Mid game from save 03_midgame (level 5, 1487 hits, sword, chain mail, spells) on the overworld at the start square | pow,sav:03_midgame,MENU,PLAY,settle,settle
+mdungeon | Mid-game ryz in The Mines of Mt. Drash II, level 1, facing south | @mid,GO:27:3C,settle
+eshuttle | Late game (save 02_endgame): shuttle bought at Scooter's in Britian, parked north of the town | @endgame,SHUTTLE,settle
+espace | Late game: lifted off in the shuttle, top view of the home sector (Shld/Fuel 1000) | @eshuttle,up,w60,b,w300,w900,settle
+ejump | Late game in space: HyperJump completed, front view, an enemy fighter in the new sector | @espace,v,w60,h,w1300,settle

@@ -1,62 +1,188 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set (playbook "Shot plan", 73 ids). play.py snap writes captured shots (with exact routes) to
-# work/shots/dos/ultima/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# Lines below: frames seen by the scout (2026-11-19); comments: planned, route to be confirmed by the capture run.
+# Set main as published (play.py snap / shoot.py --only lines, game order). Checkpoints: checkpoints.txt.
+boot_title_text | boot | Text title: Ultima I, The First Age of Darkness, Copyright 1987 Origin | BOOT,w200
+boot_origin | boot | Origin Systems logo, drawn line by line in the attract loop | BOOT,w650,!
+boot_presents | boot | Origin Systems Presents... | BOOT,w1050
+boot_new_release | boot | Attract text: a new release of the best selling role-playing adventure | BOOT,w1300
+boot_masterpiece | boot | Attract text: Lord British's original fantasy masterpiece | BOOT,w1550
 title_castle | title | Ultima I: castle title picture | @title
+boot_credits | boot | Credits card after a key: trademarks, Conversion by John Fachini | BOOT,w300,space,w200
 menu_main | menu | Main menu: a) Generate new character, b) Continue previous game | @menu
 gen_points | menu | Character Generation: 30 points to distribute over six statistics | @gen
+gen_stats_mid | menu | Strength raised to 20, Agility rising: 16 points left | @gen,right*10,down,right*4
+gen_stats_done | menu | All 30 points spent: Str 20 Agi 18 Sta 17 Cha 13 Wis 10 Int 12 | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2
+gen_race | menu | Select thy race: Human, Elf, Dwarf, Bobbit | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60
+gen_sex | menu | Human chosen (Intelligence +5): select thy sex | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,a,w60
+gen_class | menu | Select thy class: Fighter, Cleric, Wizard, Thief | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,a,w60,a,w60
+gen_name | menu | Fighter (Strength and Agility +10): Enter thy name: ryz | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,a,w60,a,w60,a,w60,r,y,z,w30
+gen_save | menu | Save this character? (Y-N) | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,a,w60,a,w60,a,w60,r,y,z,w30,enter,w60
+gen_other_build | menu | Another build: female Bobbit wizard (Str -5, Wis +10, Int +10) | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,d,w60,b,w60,c,w60
+menu_select | menu | Character Selection: 1) ryz, slots 2-4 empty | @gen,CREATE,b,w200
 start_overworld | gameplay | ryz on the overworld east of the Castle of Lord British | @start
+hud_status | hud | Status panel (Hits, Food, Exp., Coin) and the four-line message log | @start,right,w30,right,w30,up,w30,space,w30
 inventory_ztats | inventory | Ztats: ryz, level 1 male human fighter, leather armour, two daggers | @start,z,w60
+inventory_ready_weapon | inventory | Ready weapon: a) Hands, b) Dagger | @start,r,w60,w,w60
+inventory_ready_armour | inventory | Ready armour: a) Skin, b) Leather armor | @start,r,w60,a,w60
+gameplay_inform | gameplay | Inform and search: You are in the lands of Lord British | @start,i,w100
+system_cast_prayer | system | Cast Prayer outdoors: "POTENTIS-LAUDIS!" Hmmmm... no effect! | @start,c,w100
+system_noise | system | Noise off, Noise on: the sound toggle | @start,n,w60,n,w60
+gameplay_refusals | gameplay | Commands without a target: HyperJump?, Huh?, Steal? | @start,g,w30,h,w30,j,w30,s,w30
+battle_orc_hit | battle | Hit the Orc! 17 damage; Orc attacks! Hit! 2 damage | @start,SPAWN:27:32:28,poke:12A94=1500,a,w30,right,w100
+battle_orc_killed | battle | Killed the Orc! 2 copper! 1 silver! (Exp. 3, Coin 112) | @start,SPAWN:27:32:28,poke:12A94=1500,a,w30,right,w100,a,w30,right,w100
+system_mount_horse | system | Mount Horse: ryz rides the horse | @start,SPAWN:0B:32:28,right,w60,b,w60
+gameplay_horse | gameplay | Riding east on the horse | @start,SPAWN:0B:32:28,right,w60,b,w60,right,w30,right,w30,right,w30
+system_xit | system | X-it: ryz dismounts, the horse stays behind | @start,SPAWN:0B:32:28,right,w60,b,w60,right,w30,x,w60
+save_quit | save | Quit - saving game...saved. (outdoors only; play continues) | @start,q,w200
+gameover_starved | gameover | Food runs out: ryz, thou art dead | @start,poke:129F0=0100,right,w60,right,w60,right,w60
+gameover_dead | gameover | ryz, thou art dead: lift-off without fuel | @start,SPAWN:11:31:27,space,w60,up,w60,b,w300,w900
+system_resurrection | system | Resurrected: 99 hits and food, no experience or coin | @start,SPAWN:11:31:27,space,w60,up,w60,b,w300,w900,w1500
 gameplay_britian | gameplay | The city of Britian: transport, magic, pub, armour, weapons and food shops | @britian
+shop_transport | shop | Scooter's Super Duper Transport: horse, cart, raft, frigate | @britian,TPOS:07:05,t,w100,b,w100
+shop_sold | shop | Horse bought for 36 pence: Sold! | @britian,TPOS:07:05,t,w100,b,w100,a,w100
+shop_no_used | shop | Selling to the transport shop: Sorry, we don't deal in used stuff | @britian,TPOS:07:05,t,w100,s,w100
+shop_armour | shop | The Armour Shop of Lord Eldric D'Charbonneux: leather, chain, plate | @britian,TPOS:06:0C,t,w100,b,w100
+shop_cannot_afford | shop | Plate mail for 135 with 100 pence: Thou canst not afford it! | @britian,TPOS:06:0C,t,w100,b,w100,d,w100
+shop_weapons | shop | Britian's weapon shop: mace 8, rope and spikes 19 | @britian,TPOS:0C:0C,t,w100,b,w100
+shop_weapons_sell | shop | Selling weapons: the dagger fetches 1 pence | @britian,TPOS:0C:0C,t,w100,s,w100
+shop_magic | shop | Mad Chad's Magic Shoppe: Open 5, Magic Missile 15, Ladder Down 25 | @britian,TPOS:17:03,t,w100,b,w100
+shop_food | shop | Li'l Karelia's Finnish Grocery: packs of 10 food for 5 pence each | @britian,TPOS:17:0C,t,w100,b,w100
+shop_food_bought | shop | 20 packs of food bought: Food 400, Coin 90 | @britian,TPOS:17:0C,t,w100,b,w100,2,0,enter,w100,space,w60
+shop_pub | shop | Pub de Varg: Here, have a cold one! (ale for 1 pence) | @britian,TPOS:20:05,t,w100,b,w100
+dialogue_pub_space | dialogue | Tavern keeper: 20 enemy vessels make a space ace | @britian,TPOS:20:05,t,w100,poke:115CC=00F0,b,w100,space,w100
+dialogue_pub_princess | dialogue | Tavern keeper: the princess's reward and a gift for an 8th level ace | @britian,TPOS:20:05,t,w100,poke:115CC=0030,b,w100,space,w100
+dialogue_pub_mondain | dialogue | Tavern keeper: Mondain's evil gem made him immortal | @britian,TPOS:20:05,t,w100,poke:115CC=0050,b,w100,space,w100
+dialogue_pub_lakes | dialogue | Tavern keeper: many lakes and ponds have strong magical powers | @britian,TPOS:20:05,t,w100,poke:115CC=0010,b,w100,space,w100
+system_steal | system | Steal behind the armour counter: Thou dost find a Reflect suit | @britian,TPOS:06:0E,s,w100
+gameplay_drop_pence | gameplay | Drop pence: 10 dropped in town (OK!) | @britian,d,w60,p,w60,1,0,enter,w100
+system_steal_caught | system | Steal with the alarm raised: Oh no! Thou wert caught! | @britian,TPOS:06:0E,poke:19C96=0100,s,w100
 gameplay_castle | gameplay | The Castle of Lord British: halls, pools, the king's room and the prison | @lb_king
+dialogue_king_offer | dialogue | Lord British: Dost thou offer pence or service? | @lb_king,t,w100
+dialogue_king_pence | dialogue | 50 pence offered: In return I give unto thee 75 hit points | @lb_king,t,w100,p,w100,5,0,enter,w100
 dialogue_king_quest | dialogue | Lord British: Go forth and find The Grave of the Lost Soul | @lb_king,t,w100,s,w150
-gameplay_dungeon | gameplay | The Mines of Mt. Drash II, level 1: corridor with a chest | @dungeon
+dialogue_king_busy | dialogue | Service asked again: Thou art on a quest for me already! | @lb_king,t,w100,s,w150,space,w60,t,w100,s,w150
+system_jester_key | system | The jester killed: Hit Jester! Killed! Thou hast found a key! | @lb_king,TPOS:23:07,poke:19C54=0100,freeze:19C58=24000700,poke:115CC=0000,a,w30,right,w100,unfreeze
+system_cell_open | system | The key unlocks a prison cell: The door is open! | @lb_king,TPOS:23:07,poke:19C54=0100,freeze:19C58=24000700,poke:115CC=0000,a,w30,right,w100,unfreeze,TPOS:1F:0F,u,w30,up,w100
+battle_guard | battle | The castle guards turn hostile: Attacked by guard! Hit!...7 damage! | @lb_king,TPOS:23:07,poke:19C54=0100,freeze:19C58=24000700,poke:115CC=0000,a,w30,right,w100,unfreeze,space,w60,space,w60,space,w60,space,w60,space,w60,space,w60
+gameplay_castle_lost_king | gameplay | The Castle of the Lost King: mess hall, stables, prison, F W A shops | @start,GO:20:1B
+dialogue_king_kill_quest | dialogue | The Lost King: Go now and kill a Gelatinous Cube | @start,GO:20:1B,TPOS:19:05,t,w100,s,w150
+dialogue_gem_red | dialogue | Quest done: all four gems launch a time machine; a red gem | @start,GO:20:1B,TPOS:19:05,poke:12A06=0100,t,w100,s,w150
+gameplay_landmark_tower | gameplay | The Tower of Knowledge on the overworld, a landmark beside a lake | @start,WARP:44:0A
+system_landmark_pillars | system | Pillars of Protection: You feel a strong magic surrounding you! | @start,WARP:23:09,right,w60,e,w200
+system_landmark_tower | system | Tower of Knowledge: TURIS-SCIENTIA-MAGNOPERE; 2 Intelligence | @start,WARP:44:0A,right,w60,e,w200
+system_landmark_argonauts | system | Pillars of the Argonauts: FORTES FORTUNA ADIUVAT! You find a Mace! | @start,WARP:5F:21,right,w60,e,w200
+system_landmark_ozymandias | system | Pillar of Ozymandias: the sonnet on a pedestal; 1 Wisdom | @start,WARP:60:42,right,w60,e,w200
+system_landmark_signpost | system | The Sign Post: ULTIMA THULE! The sky grows dark; 2 Stamina | @start,WARP:0C:59,right,w60,e,w200
+system_landmark_southern | system | The Southern Sign Post: OMNIA MUTANTUR! 2 Charisma | @start,WARP:0D:7A,left,w60,e,w200
+system_landmark_eastern | system | The Eastern Sign Post: GO EAST TO GO EAST! | @start,WARP:82:57,right,w60,e,w200
+system_landmark_grave | system | Grave of the Lost Soul on a quest: VAE VICTIS, quest completed | @lb_king,t,w100,s,w150,space,w60,poke:19C8E=00,poke:19C90=09,left,w200,WARP:61:58,right,w60,e,w200
+system_landmark_grave_gain | system | After the grave: A quest has been completed! Thou dost gain 2 Stamina | @lb_king,t,w100,s,w150,space,w60,poke:19C8E=00,poke:19C90=09,left,w200,WARP:61:58,right,w60,e,w200,space,w100
+dialogue_quest_done | dialogue | Lord British: Thou hast completed thy quest; 8 points of strength | @lb_king,t,w100,s,w150,space,w60,poke:19C8E=00,poke:19C90=09,left,w200,WARP:61:58,right,w60,e,w200,space,w100,GO:28:26,TPOS:21:05,t,w100,s,w150
+inventory_ztats_mid | inventory | Ztats mid-game: level 5, sword readied, spells, More on page 2 | @mid,z,w60
+inventory_ready_spell | inventory | Ready spell: the spells bought so far, letters fixed per spell | @mid,r,w60,s,w60
+gameplay_lands_lord_british | gameplay | The lands of Lord British: mountains, a lake, the town of Grey | @mid,WARP:3C:19,i,w100
+gameplay_lands_feudal_lords | gameplay | The lands of the Feudal Lords: forest ridge and mountains | @mid,WARP:70:3B,i,w100
+gameplay_lands_dark_unknown | gameplay | The lands of the Dark Unknown: two towns and a castle | @mid,WARP:24:74,i,w100
+gameplay_lands_danger_despair | gameplay | The lands of Danger and Despair | @mid,WARP:6E:60,i,w100
+gameplay_woods | gameplay | Inform in the forest: You are in the woods | @mid,WARP:2E:2C,i,w100
+system_blocked_water | system | On foot at the shore: You can't walk on water! | @mid,WARP:46:0E,right,w60
+system_blocked_mountains | system | Mountains are impassable! | @mid,WARP:3C:19,down,w60
+gameplay_cart | gameplay | Mount Cart: travelling east by cart | @mid,SPAWN:0C:32:28,right,w60,b,w60,right,w30,right,w30
+gameplay_raft | gameplay | Board Raft: drifting out to sea | @mid,WARP:46:0E,SPAWN:0D:47:0E,right,w60,b,w60,right,w30,right,w30
+gameplay_frigate | gameplay | Board Frigate at the coast | @mid,WARP:46:0E,SPAWN:0E:47:0E,right,w60,b,w60
+gameplay_at_sea | gameplay | On the frigate: Inform says You are at sea | @mid,WARP:46:0E,SPAWN:0E:47:0E,right,w60,b,w60,right,w30,right,w30,right,w30,i,w100
+battle_ness_creature | battle | At sea: Ness creature attacks! Hit! 8 damage | @mid,WARP:46:0E,SPAWN:0E:47:0E,right,w60,b,w60,right,w30,right,w30,SPAWN:13:4A:0E,poke:12A94=3000,space,w60,space,w60
+battle_giant_squid | battle | At sea: Giant squid attacks! | @mid,WARP:46:0E,SPAWN:0E:47:0E,right,w60,b,w60,right,w30,right,w30,SPAWN:15:4A:0E,poke:12A94=3000,space,w60,space,w60
+battle_dragon_turtle | battle | At sea: Dragon turtle attacks! Hit! 4 damage | @mid,WARP:46:0E,SPAWN:0E:47:0E,right,w60,b,w60,right,w30,right,w30,SPAWN:17:4A:0E,poke:12A94=3000,space,w60,space,w60
+system_frigate_fire | system | Fire cannons: East. Killed the Pirate ship! | @mid,WARP:46:0E,SPAWN:0E:47:0E,right,w60,b,w60,right,w30,right,w30,SPAWN:19:4B:0E,poke:12A94=3000,f,w30,right,w100
+gameplay_aircar | gameplay | Board Aircar: flying east | @mid,SPAWN:10:32:28,right,w60,b,w60,right,w30,right,w30
+system_aircar_lasers | system | Fire lasers: East. Killed the Orc! | @mid,SPAWN:10:32:28,right,w60,b,w60,SPAWN:27:35:28,poke:12A94=2000,f,w30,right,w100
+system_aircar_woods | system | Aircars can't pass woods! | @mid,WARP:2E:2C,SPAWN:10:2D:2C,left,w60,b,w60,left,w30
+battle_evil_trent | battle | Evil trent, a walking tree, attacks! Hit! 14 damage | @mid,WARP:3C:19,SPAWN:23:3D:19,poke:12A94=6000,space,w60,space,w60
+battle_knight | battle | Lands of the Feudal Lords: Knight attacks! Hit! 2 damage | @mid,WARP:70:3B,SPAWN:29:71:3B,poke:12A94=6000,space,w60,space,w60
+battle_necromancer | battle | Necromancer attacks! Hit! 6 damage | @mid,WARP:24:74,SPAWN:2B:25:74,poke:12A94=6000,space,w60,space,w60
+battle_wandering_warlock | battle | Wandering warlock attacks! Hit! 14 damage | @mid,WARP:6E:60,SPAWN:2F:6F:60,poke:12A94=6000,space,w60,space,w60
+battle_bear | battle | Bear attacks! Hit! 2 damage | @mid,WARP:3A:12,SPAWN:1D:3B:12,poke:12A94=6000,space,w60,space,w60
+battle_dark_knight | battle | Dark knight attacks! Hit! 10 damage | @mid,WARP:67:31,SPAWN:21:68:31,poke:12A94=6000,space,w60,space,w60
+battle_hidden_archer | battle | Hidden archer attacks! The archer cannot be seen | @mid,WARP:1D:60,SPAWN:1F:1E:60,poke:12A94=6000,space,w60,space,w60
+battle_hood | battle | Hood attacks! Hit! 2 damage | @mid,WARP:13:6A,SPAWN:1B:14:6A,poke:12A94=6000,space,w60,space,w60
+gameplay_town_moon | gameplay | The city of Moon: second town plan, a pond and the grocery | @mid,GO:42:29
+gameplay_town_fawn | gameplay | The city of Fawn: third town plan, arms, inn and a green park | @mid,GO:19:3D
+gameplay_town_paws | gameplay | The city of Paws: six shops in a row above two ponds | @mid,GO:2E:1C
+gameplay_town_montor | gameplay | The city of Montor: a round walled town with two counters | @mid,GO:34:3F
+gameplay_town_yew | gameplay | The city of Yew: pub, transport, armour and weapons | @mid,GO:12:22
+gameplay_town_tune | gameplay | The city of Tune: a town inside a moat | @mid,GO:46:3F
+gameplay_town_grey | gameplay | The city of Grey: weapons, transport, inn and magic in the north | @mid,GO:40:16
+shop_weapons_even | shop | The Tempered Steel in Moon: dagger, axe, sword (even towns) | @mid,GO:42:29,TPOS2:0A:04,t,w100,b,w100
+shop_weapons_late | shop | After 3,000 moves: Britian adds great sword, amulet and staff | @mid,set:17AF8=3100:2,GO:27:27,TPOS2:0A:0D,t,w100,b,w100
+shop_armour_late | shop | Max's Armoury after 3,000 moves: vacuum suit and reflect suit | @mid,set:17AF8=4600:2,GO:42:29,TPOS2:03:04,t,w100,b,w100
+shop_magic_even | shop | Mystic Melinda's in Moon: Unlock and Ladder Up | @mid,GO:42:29,TPOS2:01:0F,t,w100,b,w100
+system_steal_storeroom | system | Stealing in Lord British's weaponry: Thou dost find a Light Sword | @mid,GO:28:26,TPOS2:13:0F,poke:115CC=0060,s,w100
+gameplay_dungeon | gameplay | The Mines of Mt. Drash II, level 1: first-person wireframe corridor | @dungeon
 battle_skeleton | battle | Dungeon level 1: attacked by a Skeleton | @skeleton
-gameplay_shuttle | gameplay | The shuttle bought in Britian, parked north of the town | @shuttle
-gameplay_space_top | gameplay | Space, top view: Sosaria, the sun, a starbase and the shuttle | @space
-map_sector_scan | map | Sector Scan: the 49 sectors of space | @space,i,w100
-system_landing | system | Thou hast landed safely! The shuttle back beside Britian | @landed
-system_cell_open | system | Castle prison: the cell door unlocked, the princess free | @princess_freed
+gameplay_dungeon_door | gameplay | Dungeon door ahead (doors are walked through) | @mdungeon,poke:19CA2=02,TPOS2:03:01,space,w60
+gameplay_dungeon_ladder | gameplay | Standing on a ladder down: the hole in the floor | @mdungeon,poke:19CA2=03,TPOS2:03:07,space,w60
+system_klimb_down | system | K-limb down the ladder: level 2, a Ranger waits | @mdungeon,poke:19CA2=04,TPOS2:03:07,k,w100
+system_chest_trap | system | Unlock chest: Thou hast set off a trap! | @mdungeon,poke:19CA2=02,poke:19D0A=0400,TPOS2:01:01,space,w60,u,w100
+system_chest_gold | system | Unlock chest: Thou dost find gold | @mdungeon,poke:19CA2=02,poke:19D0A=0400,TPOS2:01:01,space,w60,poke:129E2=4F00,u,w100
+gameplay_coffin | gameplay | A coffin on the dungeon floor: Open coffin | @mdungeon,poke:19CA2=02,poke:19D0A=0500,TPOS2:01:01,space,w60,o,w100
+battle_ranger | battle | Level 1: Attacked by Ranger! Missed! | @mdungeon,poke:19CA2=02,poke:19CA0=01,poke:19D60=0000,poke:19D64=2200,TPOS2:01:01,space,w60
+battle_thief | battle | Level 1: Thief stole a Dagger | @mdungeon,poke:19CA2=02,poke:19CA0=01,poke:19D60=0200,poke:19D64=F401,TPOS2:01:01,space,w60,space,w60,space,w60,space,w60
+battle_giant_rat | battle | Level 2: a Giant rat | @mdungeon,poke:19CA2=02,poke:19CA0=02,poke:19D60=0300,poke:19D64=2400,TPOS2:01:01,space,w60
+battle_bat | battle | Level 2: a Bat | @mdungeon,poke:19CA2=02,poke:19CA0=02,poke:19D60=0400,poke:19D64=2400,TPOS2:01:01,space,w60
+battle_spider_killed | battle | Attack with sword: Hit! Spider killed! Thou dost find: 8 copper! | @mdungeon,poke:19CA2=02,poke:19CA0=03,poke:19D60=0500,poke:19D64=0800,TPOS2:01:01,space,w60,a,w100
+battle_viper | battle | Level 3: a Viper | @mdungeon,poke:19CA2=02,poke:19CA0=03,poke:19D60=0600,poke:19D64=2400,TPOS2:01:01,space,w60
+battle_cyclops | battle | Level 4: a Cyclops | @mdungeon,poke:19CA2=02,poke:19CA0=04,poke:19D60=0800,poke:19D64=3600,TPOS2:01:01,space,w60
+battle_gelatinous_cube | battle | Level 4: the invisible Gelatinous cube: Armor destroyed! | @mdungeon,poke:19CA2=02,poke:19CA0=04,poke:19D60=0900,poke:19D64=F401,TPOS2:01:01,space,w60,space,w60,space,w60,space,w60
+battle_ettin | battle | Level 5: an Ettin hits for 105 damage | @mdungeon,poke:19CA2=02,poke:19CA0=05,poke:19D60=0A00,poke:19D64=F401,TPOS2:01:01,space,w60,a,w100
+battle_mimic | battle | Level 5: Attacked by Mimic! The chest is a monster | @mdungeon,poke:19CA2=02,poke:19CA0=05,poke:19D60=0B00,poke:19D64=3C00,TPOS2:01:01,space,w60
+battle_lizard_man | battle | Level 6: a Lizard man | @mdungeon,poke:19CA2=02,poke:19CA0=06,poke:19D60=0C00,poke:19D64=4000,TPOS2:01:01,space,w60
+battle_magic_missile | battle | Cast Magic Missile "VASTO!" Hit! Orc killed! | @mdungeon,poke:19CA2=02,poke:19CA0=04,poke:19D60=0700,poke:19D64=0A00,TPOS2:01:01,space,w60,c,w100
+battle_minotaur | battle | Level 6: the Minotaur | @mdungeon,poke:19CA2=02,poke:19CA0=06,poke:19D60=0D00,poke:19D64=F401,TPOS2:01:01,space,w60,c,w100
+battle_carrion_creeper | battle | Level 7: a Carrion creeper | @mdungeon,poke:19CA2=02,poke:19CA0=07,poke:19D60=0E00,poke:19D64=4800,TPOS2:01:01,space,w60
+battle_tangler | battle | Level 7: a Tangler | @mdungeon,poke:19CA2=02,poke:19CA0=07,poke:19D60=0F00,poke:19D64=4800,TPOS2:01:01,space,w60
+battle_gremlin | battle | Level 8: A gremlin stole some food! | @mdungeon,poke:19CA2=02,poke:19CA0=08,poke:19D60=1000,poke:19D64=F401,TPOS2:01:01,space,w60,space,w60,space,w60,space,w60
+battle_wandering_eyes | battle | Level 8: Wandering eyes | @mdungeon,poke:19CA2=02,poke:19CA0=08,poke:19D60=1100,poke:19D64=5000,TPOS2:01:01,space,w60
+battle_wraith | battle | Level 9: a Wraith | @mdungeon,poke:19CA2=02,poke:19CA0=09,poke:19D60=1200,poke:19D64=5400,TPOS2:01:01,space,w60
+battle_lich | battle | Level 9: a Lich | @mdungeon,poke:19CA2=02,poke:19CA0=09,poke:19D60=1300,poke:19D64=5800,TPOS2:01:01,space,w60
+battle_mind_whipper | battle | Level 10: a Mind whipper | @mdungeon,poke:19CA2=02,poke:19CA0=0A,poke:19D60=1500,poke:19D64=F401,TPOS2:01:01,space,w60,space,w60,space,w60,space,w60
+battle_zorn | battle | Level 10: a Zorn | @mdungeon,poke:19CA2=02,poke:19CA0=0A,poke:19D60=1600,poke:19D64=6000,TPOS2:01:01,space,w60
+battle_daemon | battle | Level 10: a Daemon | @mdungeon,poke:19CA2=02,poke:19CA0=0A,poke:19D60=1700,poke:19D64=6400,TPOS2:01:01,space,w60
+battle_balron | battle | Level 10: the Balron, deepest of the dungeon monsters | @mdungeon,poke:19CA2=02,poke:19CA0=0A,poke:19D60=1800,poke:19D64=6800,TPOS2:01:01,space,w60
+system_spell_ladder_down | system | Cast Ladder Down "INFERUS!": Ladder created! | @mdungeon,poke:19CA2=02,TPOS2:01:01,space,w60,r,w60,s,w60,f,w60,c,w100
+system_spell_ladder_up | system | Cast Ladder Up "ASCENDO!": Ladder created! | @mdungeon,poke:19CA2=02,TPOS2:01:01,space,w60,r,w60,s,w60,g,w60,c,w100
+system_spell_blink | system | Cast Blink "DUCIS-EDUCO!": Teleported! | @mdungeon,poke:19CA2=02,TPOS2:01:01,space,w60,r,w60,s,w60,h,w60,c,w100
+system_spell_create | system | Cast Create "STRUXI!": a force field across the corridor | @mdungeon,poke:19CA2=04,TPOS2:01:01,space,w60,r,w60,s,w60,i,w60,c,w100
+system_spell_destroy | system | Cast Destroy "DELIO!": Field destroyed! | @mdungeon,poke:19CA2=04,TPOS2:01:01,space,w60,r,w60,s,w60,i,w60,c,w100,r,w60,s,w60,j,w60,c,w100
+system_spell_kill | system | Cast Kill "INTERFICIO!" on level 9: Lich destroyed! | @mdungeon,poke:19CA2=02,poke:19CA0=09,poke:19D60=1300,poke:19D64=F401,TPOS2:01:01,space,w60,poke:12A5C=0200,r,w60,s,w60,k,w60,c,w100
+system_spell_open | system | Cast Open "APERTUS!": Coffin opened! Thou dost find: 8 copper! | @mdungeon,poke:19CA2=02,poke:19D0A=0500,TPOS2:01:01,space,w60,r,w60,s,w60,b,w60,c,w100
+system_spell_unlock | system | Cast Unlock "PECUNIA!": Chest opened! Thou dost find: 8 copper! | @mdungeon,poke:19CA2=02,poke:19D0A=0400,TPOS2:01:01,space,w60,r,w60,s,w60,c,w60,c,w100
+system_klimb_out | system | K-Limb up to level 0: out of the dungeon, hit points gained for kills | @mdungeon,poke:19CA2=02,poke:19CA0=01,poke:19D60=0500,poke:19D64=0800,TPOS2:01:01,space,w60,a,w100,poke:19CA2=03,k,w200
+shop_transport_space | shop | After 3,000 moves Scooter's adds the Aircar and the Shuttle | @endgame,set:17AF8=4127:2,GO:27:27,TPOS:07:05,t,w100,b,w100
+gameplay_shuttle | gameplay | The shuttle bought in Britian, parked beside the town | @eshuttle
+system_liftoff | system | Board Shuttle: the countdown 10..9..8..7.. | @eshuttle,up,w60,b,w250,!
+gameplay_space_top | gameplay | Space, top view: Sosaria, the sun, a starbase and the shuttle | @espace
+map_sector_scan | map | Sector Scan: the 7x7 sectors of space, H marks enemy craft | @espace,i,w100
+gameplay_space_front | gameplay | Front view: the starfield and the gun sight | @espace,v,w60
+system_hyperjump | system | HyperJump... Lightspeed! (only from the front view) | @espace,v,w60,h,w600,!
+gameplay_space_enemy | gameplay | HyperJump completed: an enemy fighter in the new sector | @ejump
+system_space_view_refused | system | View refused: Thou must eliminate all enemy craft first! | @ejump,v,w60
+battle_space_hit | battle | Fire! Hit!!! Thou art still a Space ace! (24 vessels) | @ejump,poke:9A32=96004600,poke:9A3A=0600,f,w60
+battle_alien_fires | battle | Alien fires! A laser beam from the enemy fighter | @ejump,space,w60,space,w60,space,w60,space,w60,space,w60,space,w60,space,w60,space,w60
+system_space_ace | system | The 20th vessel: Thou hast achieved the rank of Space Ace! | @ejump,poke:E922=1300,poke:9A32=96004600,poke:9A3A=0600,f,w60
+system_landing | system | Thou hast landed safely! The shuttle back beside Britian | @espace,up*3,space*10,w60
+inventory_ztats_late | inventory | Ztats late: level 8, reflect suit, blaster, four gems | @endgame,z,w60
+system_cell_open_late | system | Late game: the cell unlocked, princess Julia free to follow ryz | @princess_freed
 system_princess_reward | system | Princess Julia saved: rewards and the time machine far to the northwest | @rescued
 gameplay_time_machine | gameplay | The time machine on the overworld | @time_machine_found
-cutscene_time_machine | cutscene | Inside the time machine: four holes marked R G B W | @time_machine
+cutscene_time_machine | cutscene | Board Time Machine: four holes marked R G B W, the gems fit | @time_machine
+cutscene_launch | cutscene | Time machine, page 2: LAUNCH pressed, the journey through time begins | @time_machine,space,w300
+cutscene_pulled | cutscene | Time machine, page 3: a strong magic pulling thee from thy craft | @time_machine,space,w300,space,w300
+cutscene_face_to_face | cutscene | Time machine, page 4: face to face with the evil Mondain himself | @time_machine,space,w300,space,w300,space,w300
 boss_mondain | boss | Mondain's chamber: the time machine, ryz, the gem and Mondain | @mondain
 boss_gem_destroyed | boss | Get (Gem): 2196 damage, The Gem is DESTROYED! | @gem_destroyed
 boss_hit_mondain | boss | Hit Mondain! 51 damage! Mondain casts psionic shock | @hit_mondain
-boss_mondain_bat | boss | Mondain turned into a bat | @mondain_bat
+boss_mondain_bat | boss | Mondain below 500 hit points turns into a bat | @mondain_bat
 ending_victorious | ending | Mondain is dead! THOU ART VICTORIOUS! | @victory
 ending_text | ending | Ending text: Lord British's reward, Press CONTROL-ALT-DEL to Restart | @ending
-# boot_title_text | boot | Text title: Ultima I, The First Age of Darkness | BOOT,w200
-# boot_origin | boot | Origin Systems logo: Presents... | BOOT,w1000
-# boot_credits | boot | Credits card: Conversion by John Fachini | BOOT,w300,space,w200
-# gen_stats_done | menu | 30 points spent: Str 20 Agi 18 Sta 17 Cha 13 Wis 10 Int 12 | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2
-# gen_race | menu | Select thy race: Human, Elf, Dwarf, Bobbit | (above),space,w60
-# gen_class | menu | Select thy class: Fighter, Cleric, Wizard, Thief | (above),a,w60,a,w60
-# gen_save | menu | Save this character? ryz, human male fighter | (above),a,w60,r,y,z,w30,enter,w60
-# menu_select | menu | Character Selection: 1) ryz | @gen,CREATE,b,w200
-# hud_status | hud | Status panel and message log | @start,right,w60
-# inventory_ztats_late | inventory | Ztats late: gems, blaster, reflect suit, 23 enemy vessels | @endgame,z,w60
-# gameplay_inform | gameplay | Inform and search: You are in the lands of Lord British | @start,i,w100
-# gameplay_continents | gameplay | one overworld shot per continent | @start,WARP:x:y
-# shop_transport / shop_armour / shop_weapons / shop_magic / shop_food / shop_pub | shop | Britian counters | @britian,TPOS:07:05 / 06:0C / 0C:0C / 17:03 / 17:0C / 20:05,t,w100,b,w100
-# shop_transport_space | shop | Aircar and Shuttle for sale | @start,set:17AF8=4127:2,GO:27:27,TPOS:07:05,t,w100,b,w100
-# dialogue_king_offer | dialogue | Dost thou offer pence or service | @lb_king,t,w100
-# dialogue_king_pence | dialogue | How much? | @lb_king,t,w100,p,w100
-# system_landmark_grave | system | The grave is marked VAE VICTIS; quest completed, +2 Stamina | @lb_king,t,w100,s,w150,space,w60,poke:19C8E=00,poke:19C90=09,left,w200,WARP:62:58,e,w200
-# dialogue_quest_done | dialogue | Thou hast completed thy quest: 8 points of strength | (above),space,w100,GO:28:26,TPOS:21:05,t,w100,s,w150
-# dialogue_gem | dialogue | The king gives thee a red gem | Lost King (20,1B), quest, record +0x3E poked to 1, T
-# battle_dungeon_* | battle | deeper dungeon monsters | dungeons, ladders
-# gameplay_chest | gameplay | Open a chest | @dungeon,up,w60,up,w60,o,w60
-# battle_overworld | battle | overworld monster fight | @start,poke:12A8C=2500010032002800520000000000000000,poke:17AF6=01,space,w60,a,w30,right,w100
-# gameplay_vehicles / system_frigate_fire / gameplay_aircar | gameplay | vehicles | @britian transport
-# system_liftoff | system | countdown 10..9..8.. | @shuttle,up,w60,b,w150
-# gameplay_space_front | gameplay | front view | @space,v,w60
-# system_hyperjump | system | Lightspeed! | @space,v,w60,h,wN (pick the frame with play.py sample)
-# battle_space / system_space_ace / system_starbase | battle/system | space combat, ace, docking | from @space
-# system_jester_key | system | I've got the key! | @lb_king, jester at (24,07)
-# cutscene_launch / cutscene_pulled / cutscene_face_to_face | cutscene | time machine pages 2-4 | @time_machine,space,w300 (x1..x3)
-# gameover_dead | gameover | ryz, thou art dead | @start,SPAWN:11:31:27,space,w60,up,w60,b,w300,w900
-# save_quit | save | Quit - saving game...saved. | @start,q,w200
-# system_pub_tip / system_steal / system_spell_cast | system | pub tip, steal, spell in a dungeon | towns, dungeons
