@@ -591,6 +591,140 @@ def test_snes_pipeline(snes_selftest):
     e.close()
 
 
+# ------------------------------------------------------------------ Master System (Genesis Plus GX libretro core)
+SMS_SLUG = "zz-selftest-sms"
+
+
+@pytest.fixture
+def sms_selftest(tmp_path):
+    if not os.path.exists(platforms.Sms.SO):
+        pytest.skip("Genesis Plus GX core not built (sh tools/setup_emu.sh sms)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_sms_rom
+    rom = tmp_path / "t.sms"
+    rom.write_bytes(make_sms_rom.build())
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", SMS_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games/sms", "work/shots/sms", "work/cache/sms", "work/intake/sms", "work/play"):
+        shutil.rmtree(os.path.join(ROOT, sub, SMS_SLUG), ignore_errors=True)
+    if os.path.exists(os.path.join(ROOT, "rom", SMS_SLUG + ".sms")):
+        os.remove(os.path.join(ROOT, "rom", SMS_SLUG + ".sms"))
+
+
+def test_sms_header_and_cheats():
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_sms_rom
+    S = platforms.Sms
+    rom = make_sms_rom.build()
+    h = S.identify(rom)
+    assert h["platform"] == "sms" and h["model"] == "ntsc" and h["region"] == "Export"
+    assert h["header_checksum_ok"] and h["product_code"] == "12345" and h["version"] == 1 and h["rom_kib"] == 64
+    jp = bytearray(rom)
+    jp[0x7FFF] = 0x3E
+    h2 = S.identify(bytes(jp))
+    assert h2["region"] == "Japan" and h2["model"] == "ntsc-j" and h2["header_checksum_ok"]
+    bad = bytearray(rom)
+    bad[0x100] ^= 1
+    assert not S.identify(bytes(bad))["header_checksum_ok"]
+    assert S.identify(bytes(0x8000)) == {"header": False, "rom_kib": 32, "ram_kib": 32, "battery": h["battery"],
+                                         "platform": "sms", "model": "ntsc"}     # most Japanese cartridges
+    gg = bytearray(rom)
+    gg[0x7FFF] = 0x6E
+    with pytest.raises(SystemExit):
+        S.identify(bytes(gg))                                       # Game Gear: not set up
+    assert platforms.by_extension("x/GAME.SMS")[0] == "sms"
+    assert S.gameshark("00C0-2509") == (None, 0xC025, 0x09)         # Pro Action Replay
+    assert S.game_genie("3A7-6DF-E66") == platforms.GameBoy.game_genie("3A7-6DF-E66")
+    small = bytearray(0x8000)                                       # no paging: the address is the offset
+    assert S.game_genie("3A7-6D8") == (0x776D, 0x3A, None)
+    assert S.apply_game_genie(small, "3A7-6D8") == [0x776D] and small[0x776D] == 0x3A
+    paged = bytearray(0x10000)
+    addr, value, cmp_ = S.game_genie("3A7-6DF-E66")
+    for o in range(addr & 0x3FFF, len(paged), 0x4000):
+        paged[o] = cmp_
+    paged[(addr & 0x3FFF) + 0x4000] = 0                             # page 1 holds something else
+    offs = S.apply_game_genie(paged, "3A7-6DF-E66")
+    assert offs == [o for o in range(addr & 0x3FFF, 0x10000, 0x4000) if o != (addr & 0x3FFF) + 0x4000]
+    assert all(paged[o] == value for o in offs)
+    with pytest.raises(ValueError):
+        S.apply_game_genie(bytearray(0x10000), "3A7-6DF")            # paged game, no compare byte
+
+
+def test_sms_backend(sms_selftest, tmp_path):
+    from PIL import Image
+    import io
+    e = platforms.Sms().open(str(sms_selftest))
+    e.frames(30)
+    img = lambda x: Image.open(io.BytesIO(x.screen())).convert("RGB")
+    assert img(e).size == (256, 192) and img(e).getpixel((100, 100)) == (0, 0, 255)
+    assert 25 <= e.peek(0xC010, 1)[0] <= 30 and e.peek(0xC012, 1) == b"\x00" and e.peek(0xC100, 1) == b"\x00"
+    assert e.peek(0x0000, 3) == b"\xc3\x80\x00" and 0x80 <= int(e.regs()["pc"], 16) < 0x100
+    e.input(["b1"])
+    e.frames(5)
+    assert img(e).getpixel((100, 100)) == (255, 0, 0) and e.peek(0xC011, 1) == b"\x10"
+    e.input(["pause"]); e.frames(3); e.input([]); e.frames(3)
+    assert e.peek(0xC013, 1) == b"\x01"                             # Pause is the NMI
+    st = str(tmp_path / "x.state")
+    e.save_state(st)
+    shot, count = e.screen(), e.peek(0xC010, 1)
+    b = platforms.Sms().open(str(sms_selftest))                     # two games at once; state keeps the frame
+    b.load_state(st)
+    assert b.screen() == shot and b.peek(0xC010, 1) == count
+    e.frames(10); b.frames(10)
+    assert e.screen() == b.screen() and e.peek(0xC010, 1) == b.peek(0xC010, 1)
+    b.close()
+    e.ram_search("new == old")
+    e.frames(3)
+    assert [x["addr"] for x in e.ram_search("new == old + 3")["results"]] == ["c010"]
+    e.poke(0xC010, b"\x80")
+    e.frames(1)
+    assert e.peek(0xC010, 1) == b"\x81" and e.peek(0x8000, 1) == b"\x81"   # cartridge RAM mapped at 8000
+    assert e.battery(0)[0] == 0x81 and len(e.battery(0)) == 0x8000
+    with pytest.raises(ValueError):
+        e.poke(0x0100, b"\x00")                                     # ROM
+    sav = tmp_path / "x.sav"
+    sav.write_bytes(e.battery(0))
+    e.close()
+    j = platforms.Sms().open(str(sms_selftest), model="ntsc-j", sav=str(sav))
+    assert j.peek(0xC100, 1) == b"\xf0" and j.battery(0)[0] == 0x81    # Japanese console: RAM starts at F0
+    j.close()
+
+
+def test_sms_pipeline(sms_selftest):
+    run("tools/intake.py", str(sms_selftest), "--slug", SMS_SLUG, "--region", "na", "--probe", "120")
+    gj = os.path.join(ROOT, "games", "sms", SMS_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "sms" and meta["model"] == "ntsc"
+    meta["macros"] = {"TITLE": "w60"}
+    meta["ram"] = {"b1": {"addr": "C012", "size": 1}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", SMS_SLUG]
+    run(*P, "start", SMS_SLUG)
+    run(*P, "do", "TITLE")
+    assert "saved" in run(*P, "checkpoint", "title", "after boot")
+    run(*P, "do", "b1+right:20,poke:C020=2A")
+    assert "b1=16" in run(*P, "status")                             # the sticky button-1 byte
+    assert "2a" in run(*P, "peek", "C020", "1")
+    run(*P, "snap", "held_b1", "gameplay", "after button 1 was held")
+    assert "candidates" in run(*P, "find", "new == old")
+    assert "early.sav" in run(*P, "export", "early", "frame counter in cartridge RAM", "--state")
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", SMS_SLUG, "main", "--verify")
+    run("tools/shoot.py", SMS_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", "sms", SMS_SLUG, "shots", "main",
+                                 "zz-selftest-sms_sms_na_gameplay_held_b1.png")).convert("RGB")
+    assert im.size == (256, 192) and im.getpixel((10, 10)) == (0, 0, 255)
+    d = os.path.join(ROOT, "games", "sms", SMS_SLUG, "saves")
+    assert os.path.getsize(os.path.join(d, "early.sav")) == 0x8000
+    assert "Genesis Plus GX" in open(os.path.join(d, "README.md")).read()
+    g = emu.Game(SMS_SLUG)
+    e, rest, _ = emu.start(g, "sav:early")
+    assert e._sram()[0] == open(os.path.join(d, "early.sav"), "rb").read()[0] != 0
+    e.close()
+
+
 # ------------------------------------------------------------------ DOS (DOSBox Pure libretro core)
 DOS_SLUG = "zz-selftest-dos"
 DOS_BOOT = "w120,enter,w60"         # start menu (one program: KEYS.COM), Enter runs it

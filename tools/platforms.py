@@ -192,7 +192,7 @@ class GameBoy(Backend):
 class Libretro(Backend):
     """Shared part of the backends that run a Mesen libretro core patched with retro_mesen_peek/poke/pc
     (tools/mesen-debug.patch, tools/mesen-s-debug.patch). Subclasses set SO, ADDR_MASK, PC_FORMAT, SEARCH and
-    call _open() with the core options."""
+    call _open() with the core options; a core with other debug symbols overrides _bind (Sms)."""
     SO = None
     ADDR_MASK = 0xFFFF
     PC_FORMAT = "%04x"
@@ -206,10 +206,7 @@ class Libretro(Backend):
         # A private empty save directory: the core must never pick up a battery file from an earlier run.
         self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
         self.c = lrcore.Core(self.SO, os.path.abspath(rom), system_dir=self.tmp, save_dir=self.tmp, options=options)
-        L = self.c.L
-        L.retro_mesen_peek.restype, L.retro_mesen_peek.argtypes = ctypes.c_uint8, [ctypes.c_uint32]
-        L.retro_mesen_poke.restype, L.retro_mesen_poke.argtypes = None, [ctypes.c_uint32, ctypes.c_uint8]
-        L.retro_mesen_pc.restype = ctypes.c_uint32
+        self._bind(self.c.L)
         if sav:
             data = open(sav, "rb").read()
             ram = self.c.memory(lrcore.MEM_SAVE_RAM)
@@ -219,6 +216,12 @@ class Libretro(Backend):
         self.c.size = self.native_size
         self._search = None
         return self
+
+    def _bind(self, L):
+        import ctypes
+        L.retro_mesen_peek.restype, L.retro_mesen_peek.argtypes = ctypes.c_uint8, [ctypes.c_uint32]
+        L.retro_mesen_poke.restype, L.retro_mesen_poke.argtypes = None, [ctypes.c_uint32, ctypes.c_uint8]
+        L.retro_mesen_pc.restype = ctypes.c_uint32
 
     def input(self, keys):
         self.c.keys = set(keys)
@@ -591,6 +594,147 @@ class Snes(Libretro):
             "mesen-s_overscan_vertical": "None", "mesen-s_overscan_horizontal": "None",
             "mesen-s_ntsc_filter": "Disabled", "mesen-s_blend_high_res": "disabled",
             "mesen-s_overclock": "None", "mesen-s_superfx_overclock": "100%"}, sav)
+
+
+# ------------------------------------------------------------------ Master System / Mark III (Genesis Plus GX core)
+SMS_REGION = {3: "Japan", 4: "Export", 5: "Japan (Game Gear)", 6: "Export (Game Gear)", 7: "International (Game Gear)"}
+SMS_SIZE = {0xA: 0x2000, 0xB: 0x4000, 0xC: 0x8000, 0xD: 0xC000, 0xE: 0x10000, 0xF: 0x20000, 0x0: 0x40000,
+            0x1: 0x80000, 0x2: 0x100000}         # header size code -> checksum range
+
+
+class Sms(Libretro):
+    """Genesis Plus GX (libretro core, in-process through tools/lrcore.py), patched by tools/gpgx-debug.patch.
+    Models: ntsc (Master System sold outside Japan, 60 Hz), ntsc-j (Japanese Master System / Mark III: FM sound
+    unit, power-on RAM $F0, the region Japanese games check), pal (50 Hz). No BIOS: the cartridge starts at once.
+    Keys: b1 (button 1, start/fire in most games), b2 (button 2), pause (the console's Pause button, an NMI).
+    Memory is the Z80 address space: C000-DFFF work RAM (mirrored at E000-FFFF; FFFC-FFFF are the Sega mapper
+    registers), 0000-BFFF the ROM pages mapped right now, or cartridge RAM at 8000-BFFF while the game maps it.
+    peek has no side effects; poke writes RAM only (work RAM, mapped cartridge RAM)."""
+    keys = {"b1", "b2", "pause", "up", "down", "left", "right"}
+    extensions = (".sms",)
+    native_size = (256, 192)
+    emulator = "Genesis Plus GX libretro core"
+    SO = os.path.join(HERE, "gpgx", "genesis_plus_gx_libretro.so")
+    MODELS = {"ntsc": "ntsc-u", "ntsc-j": "ntsc-j", "pal": "pal"}
+    PAD = {"b1": "b", "b2": "a", "pause": "start", "up": "up", "down": "down", "left": "left", "right": "right"}
+    SEARCH = [(0xC000, 0x2000)]
+    SRAM = 0x8000          # Sega mapper: two 16 KiB cartridge RAM pages (most battery games use the first 8 KiB)
+
+    @staticmethod
+    def header(data):
+        """File offset of the 'TMR SEGA' header (7FF0, 3FF0 or 1FF0), or None (most Japanese cartridges)."""
+        for o in (0x7FF0, 0x3FF0, 0x1FF0):
+            if data[o:o + 8] == b"TMR SEGA":
+                return o
+        return None
+
+    @classmethod
+    def identify(cls, data):
+        o = cls.header(data)
+        info = {"header": bool(o is not None), "rom_kib": len(data) // 1024, "ram_kib": cls.SRAM // 1024,
+                "battery": "not in the header (the backend exports the 32 KiB cartridge RAM window)",
+                "platform": "sms", "model": "ntsc"}
+        if o is None:
+            return info
+        h = data[o:o + 16]
+        region = h[15] >> 4
+        if region >= 5:
+            raise SystemExit("the header says this is a Game Gear cartridge; only the Master System is set up")
+        size = SMS_SIZE.get(h[15] & 0x0F)
+        chk = None
+        if size and size <= len(data):
+            chk = (sum(data[:min(size, 0x7FF0)]) + sum(data[0x8000:size])) & 0xFFFF
+        code = "%x%02x%02x" % (h[14] >> 4, h[13], h[12])
+        info.update({
+            "product_code": code.lstrip("0") or "0",
+            "version": h[14] & 0x0F,
+            "region": SMS_REGION.get(region, "0x%X" % region),
+            "header_checksum_ok": chk == (h[10] | h[11] << 8),
+            "model": "ntsc-j" if region == 3 else "ntsc",
+        })
+        return info
+
+    # ---- cheat formats (Master System). Pro Action Replay 00AA-AAVV: RAM, held (gs: token). Game Genie
+    # XXX-XXX[-XXX] (the Game Gear device; same code layout as the Game Boy one): ROM patch.
+    @staticmethod
+    def gameshark(code):
+        """Pro Action Replay '00AA-AAVV' -> (None, addr, value). Same decoding as Genesis Plus GX decode_cheat."""
+        c = code.replace("-", "").strip()
+        if len(c) != 8:
+            raise ValueError("Pro Action Replay code must be 00AA-AAVV: %r" % code)
+        return None, int(c[2:6], 16), int(c[6:8], 16)
+
+    @staticmethod
+    def game_genie(code):
+        return GameBoy.game_genie(code)
+
+    @classmethod
+    def apply_game_genie(cls, rom, code):
+        """Patch a ROM bytearray. With a compare byte: every 16 KiB page at that address where it matches (what
+        the device does while the page is mapped). Without one, only games without paging (<= 48 KiB) are exact."""
+        addr, value, cmp_ = cls.game_genie(code)
+        if addr >= 0xC000:
+            raise ValueError("Game Genie address %04X is not ROM" % addr)
+        if cmp_ is None:
+            if len(rom) > 0xC000:
+                raise ValueError("Game Genie code %s without a compare byte on a paged game: the page is unknown. "
+                                 "Use the 9-digit code, or rom_variants \"bytes\" with the file offset" % code)
+            offs = [addr]
+        else:
+            offs = [o for o in range(addr & 0x3FFF, len(rom), 0x4000) if rom[o] == cmp_]
+        for o in offs:
+            rom[o] = value
+        return offs
+
+    def _bind(self, L):
+        import ctypes
+        L.retro_gamedb_peek.restype, L.retro_gamedb_peek.argtypes = ctypes.c_uint8, [ctypes.c_uint16]
+        L.retro_gamedb_poke.restype, L.retro_gamedb_poke.argtypes = ctypes.c_int, [ctypes.c_uint16, ctypes.c_uint8]
+        L.retro_gamedb_pc.restype = ctypes.c_uint16
+        L.retro_gamedb_sram.restype = ctypes.c_void_p
+
+    def _sram(self):
+        import ctypes
+        return (ctypes.c_ubyte * self.SRAM).from_address(self.c.L.retro_gamedb_sram())
+
+    def open(self, rom, model="ntsc", seed=1, turbo=True, sav=None):
+        if (model or "ntsc") not in self.MODELS:
+            raise SystemExit("Master System model %r unknown (have: %s)" % (model, ", ".join(sorted(self.MODELS))))
+        # fixed setup: no BIOS, no borders or filters, the hardware sprite limit, FM unit as the region has it
+        self._open(rom, {
+            "genesis_plus_gx_system_hw": "auto", "genesis_plus_gx_region_detect": self.MODELS[model or "ntsc"],
+            "genesis_plus_gx_vdp_mode": "auto", "genesis_plus_gx_bios": "disabled",
+            "genesis_plus_gx_overscan": "disabled", "genesis_plus_gx_left_border": "disabled",
+            "genesis_plus_gx_blargg_ntsc_filter": "disabled", "genesis_plus_gx_lcd_filter": "disabled",
+            "genesis_plus_gx_render": "single field", "genesis_plus_gx_ym2413": "auto",
+            "genesis_plus_gx_no_sprite_limit": "disabled"}, None)
+        if sav:
+            data = open(sav, "rb").read()
+            ctypes_ram = self._sram()
+            for i, b in enumerate(data[:self.SRAM]):
+                ctypes_ram[i] = b
+        return self
+
+    def input(self, keys):
+        self.c.keys = {self.PAD[k] for k in keys}
+
+    def peek(self, addr, n, bank=None):
+        if bank is not None:
+            raise NotImplementedError("peek reads the mapped address space only (no bank argument)")
+        f = self.c.L.retro_gamedb_peek
+        return bytes(f((addr + i) & 0xFFFF) for i in range(n))
+
+    def poke(self, addr, data):
+        for i, b in enumerate(bytes(data)):
+            if not self.c.L.retro_gamedb_poke((addr + i) & 0xFFFF, b):
+                raise ValueError("%04X is not RAM right now (ROM page)" % ((addr + i) & 0xFFFF))
+
+    def battery(self, size):
+        """The cartridge RAM (32 KiB, the Sega mapper's two pages) as a .sav file; Genesis Plus GX loads it."""
+        return bytes(self._sram())
+
+    def regs(self):
+        return {"pc": "%04x" % self.c.L.retro_gamedb_pc()}
 
 
 # ------------------------------------------------------------------ DOS (DOSBox Pure libretro core)
@@ -1168,7 +1312,7 @@ class Apple2(Libretro):
         return {"pc": "%04x" % self.c.L.retro_gamedb_pc()}
 
 
-PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "dos": Dos, "apple2": Apple2}
+PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "sms": Sms, "dos": Dos, "apple2": Apple2}
 
 
 def backend(platform):

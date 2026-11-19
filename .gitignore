@@ -4,6 +4,7 @@
 *.nes
 *.sfc
 *.smc
+*.sms
 *.fds
 *.dsk
 *.do
@@ -20,6 +21,7 @@ work/
 **/tools/gbemu-cli/
 **/tools/mesen/
 **/tools/mesen-s/
+**/tools/gpgx/
 **/tools/dosbox-pure/
 **/tools/applewin/
 __pycache__/
