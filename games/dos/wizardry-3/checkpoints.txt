@@ -1,3 +1,26 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title screen: Wizardry logo, 'Scenario #3 - The Legacy of Llylgamyn', a monster picture, S)tart game / M)ake scenario disk | pow,TITLE
+start | Castle (Llylgamyn): ryz condi ebo cubi deddo mnz moved from Wizardry II (Utilities M)ove characters, sav:00_transfer), legated in the Training Grounds (RYZ and CUBI neutral, the others good; level 1, 500 gold) and formed in the Tavern | pow,sav:00_transfer,PARTY
+edge | Edge of Town menu: T)raining M)aze C)astle U)tilities L)eave game, party formed | @start,e,w120,settle
+resume | Castle, party ryz condi ebo cubi deddo mnz formed from the exported 01_start roster (level 1, legated) | pow,sav:01_start,RESUME
+half2 | Castle, the party for the evil half: RYZ and CUBI (neutral) with the stock neutrals KLINDT ZETT VERPA GITTER (HALF2 from start); no good member, so floors 3 and 5 admit it | @start,HALF2
+training | Training Grounds: I)nspect a character / R)oster of characters / Leave (no character creation in Wizardry III), party formed | @edge,t,w120,settle
+camp | Camp on entering the maze ('Entering the Legacy of Llylgamyn' while it loads): #)Inspect R)eorder E)quip Leave | @edge,m,w600,settle
+maze1 | Floor 1 entrance (0,0) under the stairs down to the castle (N at the prompt), facing north: first control in the maze | @camp,enter,w200,n,w120,settle
+battle | Floor 1 (15,18) fight zone (warped): 3 Giant Serpents attacked first, RYZ's options F)ight S)pell P)arry U)se item R)un T)ake back | @start,WARP:01:0F:12,w300,w600,settle
+vet | Castle, the six as veterans (VET: levels 11-13, HP 44-91, E.P., spell books of EBO DEDDO MNZ restored, ages 24-25, gold 1,974-6,232); no items | @start,VET,e,w120,c,w120,settle
+guard_good | Floor 4 (7,17), the guardian of the good half (veterans, warped to (7,18), one step south): 1 Delf (the Living Legend, unidentified) and 6 Gaunt Figures; RYZ's options | @vet,WARP:04:07:12,poke:DB6C=0200,a,w60,d,w60,w,w800,settle
+crystal_evil | Floor 4 (7,17) after the guardian fight (WIN poke, all parried): 'CUBI found: Crystal of Evil' (item 1003), back in the maze view | @guard_good,WIN,PARRY,w300,settle,w60,w60,w60,w60,w60,w60,w60,w60
+chest | Floor 4 (18,14): the chest after a fight with Unseen Entities (WIN poke): O)pen C)alfo L)eave alone I)nspect D)isarm | @crystal_evil,poke:DB72=1200,poke:DB70=0E00,poke:DB6C=0100,a,w60,d,w60,w,w300,settle,WIN,PARRY,w1500,settle
+floor6 | Floor 6 (5,0) under the stairs from floor 4, reached for real with the Crystal of Evil from the floor 4 guardian (CUBI carries it); the party was moved to (19,15) on floor 4 by a position poke | @chest,l,w200,poke:DB6C=0100,a,w60,d,w60,w,w300,settle,poke:DB72=1300,poke:DB70=0F00,poke:DB6C=0200,a,w60,d,w60,w,w300,settle,y,w600,settle,w1200,settle,n,w200,settle
+statue | Floor 6 (17,17): 'You have reached the statue.' (CUBI's crystal poked to the Neutral Crystal, item 1002; position poked to (18,17), one step west) | @floor6,poke:E0FC=0100EA03,poke:DB72=1200,poke:DB70=1100,poke:DB6C=0300,w,w300,settle
+orb | Floor 6 (17,17) after searching at the statue (Y): the Neutral Crystal became the Orb of Earithin (item 1001) in CUBI's pack | @statue,enter,w150,settle,y,w300,settle
+ending | Ending: '* * Congratulations * * Will you surrender the Orb to the sages of Llylgamyn (Y/N)?' (the orb from the statue, home through the floor 6 (5,19) teleport and the floor 1 stairs) | @orb,poke:DB72=0600,poke:DB70=1300,poke:DB6C=0300,k,w600,settle,y,w600,settle
+stars | '* * The gods be praised * *': Queen Beyki gives the party the Star of Llylgamyn and invites it to select 6 others; Press Enter to assign your stars | @ending,y,w400,settle
+after_ending | Castle after the ending: the six (veterans) still in the party, CUBI holding an empty item 1000 where the orb was; stars (award "*", +150,000 E.P.) given to KLINDT LEIF ZETT VERPA SENA GITTER (Y x 6) | @stars,enter,w150,settle,y,w150,y,w150,y,w150,y,w150,y,w150,y,w300,settle
+vet2 | Castle, the evil-half party as veterans (VET2: RYZ L12, CUBI L13, KLINDT L11, ZETT L11 with mage spells, VERPA and GITTER L10); no items | @half2,VET2,e,w120,c,w120,settle
+guard_evil | Floor 5 (12,10), the guardian of the evil half (VET2 party, warped to (12,11), one step south): 6 Hungry Monsters (Soul Trappers, unidentified), 3 Crusader Lords, 4 Fighters; RYZ's options | @vet2,WARP5:05:0C:0B,poke:DB6C=0200,a,w60,d,w60,w,w800,settle
+crystal_good | Floor 5 (12,10) after the evil-half guardian (WIN poke): 'CUBI found: Crystal of Good' (item 1004) | @guard_evil,WIN,PARRY,w300,settle,w60,w60,w60,w60,w60,w60,w60,w60,w300,settle
+resume_end | Castle, party formed from the exported 02_ending roster (the six as veterans after the ending; stars on the stock six) | pow,sav:02_ending,RESUME

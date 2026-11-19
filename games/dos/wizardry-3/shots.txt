@@ -4,3 +4,35 @@
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/dos/wizardry-3/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # title_screen | title | Title screen | @title
+# Scout's plan (2026-11-19, playbook "Shot plan"); routes are starting points, check every frame before snapping.
+# title_screen | title | Title: Wizardry logo, Scenario #3 - The Legacy of Llylgamyn | @title
+# menu_make_scenario | menu | M)ake scenario disk prompt | @title,m,w200
+# menu_castle_start | menu | Castle Llylgamyn with the six descendants | @start
+# menu_utilities | menu | Wizardry Utilities | sav:00_transfer,CASTLE,e,w120,u,w120
+# menu_move_scenario | menu | Move characters: 1) Proving Grounds 2) Knight of Diamonds | sav:00_transfer,CASTLE,e,w120,u,w120,m,w200
+# menu_move_list | menu | The Wizardry II roster on the source disk | sav:00_transfer,CASTLE,e,w120,u,w120,m,w200,2,w300
+# menu_move_marked | menu | RYZ CONDI EBO CUBI DEDDO MNZ marked with + | sav:00_transfer,CASTLE,e,w120,u,w120,m,w200,2,w300,c,w60,d,w60,e,w60,f,w60,k,w60,l,w60
+# menu_training | menu | Training Grounds: no character creation | @training
+# inventory_ancestor_sheet | inventory | RYZ before the rite: L12 G-FIG ">G" | sav:00_transfer,CASTLE,IMPORT,e,w120,t,w120,i,w120,g,w200,i,w200
+# menu_char_options | menu | L)egate I)nspect D)elete C)hange class A)lter password | sav:00_transfer,CASTLE,IMPORT,e,w120,t,w120,i,w120,g,w200
+# dialogue_rite | dialogue | The rite of passage ceremony now begins... | sav:00_transfer,CASTLE,IMPORT,e,w120,t,w120,i,w120,g,w200,l,w200
+# menu_alignment | menu | Choose an alignment for descendant: A) Good B) Neutral C) Evil | ...,l,w200,enter,w200
+# menu_alignment_thief | menu | CUBI: only B) Neutral and C) Evil | sav:00_transfer,CASTLE,IMPORT,e,w120,t,w120,i,w120,j,w200,l,w200,enter,w200
+# inventory_descendant_sheet | inventory | RYZ after the rite: L1 N-FIG ">DG", 500 gold, age 20 | @training,i,w120,g,w200,i,w200
+# menu_already_legacy | menu | That character is already a legacy! (KLINDT) | @training,i,w120,a,w200,l,w30
+# menu_roster | menu | Training roster: the stock six and the six descendants | @training,r,w200
+# menu_tavern_bad_alignment | menu | * Bad alignment * (needs an evil legacy: LEGATE with c) | (build a variant route)
+# gameplay_maze_f1_start | gameplay | Floor 1 entrance | @maze1
+# camp_menu | menu | Camp | @camp
+# battle_f1_serpents | battle | 3 Giant Serpents, RYZ's options | @battle
+# gameplay_forbidden | gameplay | You are forbidden to enter here! Begone!! (good party, floor 3 stairs) | @start,WARP:01:13:0E,y,w100,w20,w20! (pick the frame)
+# boss_guardian_good | boss | Floor 4 guardian: Delf (Living Legend) and Gaunt Figures | @guard_good
+# boss_guardian_good_won | boss | CUBI found: Crystal of Evil | @guard_good,WIN,PARRY,w300 (frames)
+# battle_chest | battle | A chest! O)pen C)alfo L)eave alone I)nspect D)isarm | @chest
+# boss_guardian_evil | boss | Floor 5 guardian: Hungry Monsters (Soul Trappers), Crusader Lords, Fighters | @guard_evil
+# gameplay_f6_arrival | gameplay | Floor 6 under the stairs from floor 4 | @floor6
+# dialogue_statue_reached | dialogue | You have reached the statue. | @statue
+# ending_congratulations | ending | Congratulations: will you surrender the orb? | @ending
+# ending_gods_praised | ending | The gods be praised: Queen Beyki and the Star of Llylgamyn | @stars
+# ending_award_star | ending | Award a star to KLINDT (Y/N)? | @stars,enter,w150
+# menu_castle_after_ending | menu | Castle after the ending | @after_ending

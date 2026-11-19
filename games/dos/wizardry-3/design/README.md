@@ -23,8 +23,15 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+A first-person party RPG on the Wizardry I engine: a party of up to six walks a wireframe maze square by square,
+fights groups of monsters in menu-driven rounds and returns to the Castle to rest, shop and heal (verified). Its own
+idea is the **legacy**: there is no character creation; veterans of Wizardry I or II are moved onto this game's disk
+and reborn as their descendants at level 1, keeping name, race, class and honors and choosing a new alignment
+(verified, [systems.md](systems.md)). The maze is a volcano climbed upward over six floors that fork after floor 1:
+floors 2 and 4 refuse parties with an evil member, 3 and 5 parties with a good member, so the game is played with two
+parties; floor 6, the summit, opens only to a party carrying a crystal (verified). The goal is the Orb of Earithin;
+bringing it to the Castle ends the game with the Star of Llylgamyn for six characters (verified). The roster is saved
+on the scenario disk whenever the game writes it (verified).
 
 ## Documents
 | Document | Covers |
@@ -33,6 +40,9 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 | [interface.md](interface.md) | UI/UX lens: conventions, inventory of every screen, menu, prompt and element, screen flow |
 | [content.md](content.md) | content lens: a reasonable variety of environments, opponents, items, equipment, abilities, people |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
+| [messages.md](messages.md) | every maze message, riddle and answer, with its square |
+| [items.md](items.md) | the 103 items by number, quest items |
+| [maps/floors.txt](maps/floors.txt) | the six floors with walls, doors, fight zones and special squares (`tools/maps.py`) |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
      enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
@@ -40,3 +50,6 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Wikipedia | https://en.wikipedia.org/wiki/Wizardry_III:_Legacy_of_Llylgamyn | year, six-level volcano, descendants at level 1 |
+| Apple II manual text (archive.org) | https://archive.org/stream/sir-tech-wizardry-3-a2-v4-ph/components/wizardry%203%20manual_djvu.txt | the rite of passage, the orb and L'kbreth, Pool gold |
+| playbook | `../playbook.md` | routes, checkpoints and addresses behind every (verified) claim |

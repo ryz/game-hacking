@@ -3,7 +3,7 @@
   "title": "Wizardry III: Legacy of Llylgamyn (DOS)",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "ega-315",
   "rom": "rom/wizardry-3.zip",
   "sha1": "7251a8f341533e94012705feb448a73fa7f11cd9",
   "crc32": "a2018e24",
@@ -23,6 +23,44 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w120,down,enter,w300",
+    "CASTLE": "TITLE,s,w800",
+    "MAZE": "e,w120,m,w600,enter,w200,n,w120",
+    "WARP": "e,w120,m,w600,enter,w200,poke:B9FE={0}00,poke:BA1E={2}00,poke:BA3E={1}00,y,w600",
+    "IMPORT": "e,w120,u,w120,m,w200,2,w300,c,w60,d,w60,e,w60,f,w60,k,w60,l,w60,enter,w700,enter,w120",
+    "LEGATE": "i,w120,{0},w200,l,w200,enter,w200,{1},w200,enter,w200",
+    "LEGATEALL": "e,w120,t,w120,LEGATE:g:b,LEGATE:h:a,LEGATE:i:a,LEGATE:j:b,LEGATE:k:a,LEGATE:l:a,enter,w200",
+    "ADDPARTY": "g,w120,a,w120,g,w90,h,w90,i,w90,j,w90,k,w90,l,w120,enter,w120",
+    "PARTY": "CASTLE,IMPORT,LEGATEALL,ADDPARTY",
+    "HALF2": "g,w120,r,w120,6,w120,r,w120,5,w120,r,w120,3,w120,r,w120,2,w120,a,w120,a,w90,c,w90,d,w90,f,w120,enter,w120",
+    "RESUME": "CASTLE,ADDPARTY",
+    "WARP5": "WARP:{0}:{1}:{2},w1300",
+    "VET": "poke:DEC8=0C09280000000C000C0054005400,poke:DF98=061F120000000B000B005B005B00,poke:E068=3304270000000C000C003F003F00,poke:E076=0000C0FFFFFF070000000000000000000000000000000900090009000700060004000200,poke:E138=F2212A0000000D000D003D003D00,poke:E208=241C250000000C000C002C002C00,poke:E216=FEFF3F000000000009000900090007000500040003000000000000000000000000000000,poke:E2D8=F7222E0000000C000C0034003400,poke:E2E6=FE0FC0FF0700000009000900050003000000000000000900060004000000000000000000,poke:DE72=EF04,poke:DE80=590D00000000,poke:DF42=1B05,poke:DF50=410B00000000,poke:E012=0A05,poke:E020=091000000000,poke:E0E2=E304,poke:E0F0=581800000000,poke:E1B2=3E05,poke:E1C0=B60700000000,poke:E282=2605,poke:E290=B81500000000",
+    "WIN": "poke:D454=0000,poke:D54A=0000,poke:D640=0000,poke:D736=0000",
+    "PARRY": "p,w90,p,w90,p,w90,p,w90,p,w90,p,w90,enter,w100",
+    "VET2": "poke:DEC8=0C09280000000C000C0054005400,poke:DE72=EF04,poke:DE80=590D00000000,poke:DF98=F2212A0000000D000D003D003D00,poke:DF42=E304,poke:DF50=581800000000,poke:E068=6105140000000B000B004F004F00,poke:E012=AC04,poke:E020=F20800000000,poke:E138=E4201A0000000B000B0026002600,poke:E146=FEFF1F000000000009000900080006000300020000000000000000000000000000000000,poke:E0E2=BF04,poke:E0F0=0C0600000000,poke:E208=F60A0B0000000A000A0048004800,poke:E1B2=9204,poke:E1C0=DB0300000000,poke:E2D8=52250A0000000A000A0044004400,poke:E282=9E04,poke:E290=510500000000"
+  },
+  "ram": {
+    "floor": {
+      "addr": "DB6E",
+      "size": 2
+    },
+    "x": {
+      "addr": "DB72",
+      "size": 2
+    },
+    "y": {
+      "addr": "DB70",
+      "size": 2
+    },
+    "face": {
+      "addr": "DB6C",
+      "size": 2
+    },
+    "hp1": {
+      "addr": "DED2",
+      "size": 2
+    }
+  }
 }
