@@ -63,6 +63,10 @@ after `goto` or a cached checkpoint); `ega`, `vga` and `svga` reload exactly. Us
 this is fixed, and compare a frame before and after a state load when choosing the machine (Wizardry I,
 2026-11-19: `ega-315`).
 
+At low cycle counts disk loads are slow: Wizardry III's floor loads take 1,000-1,800 frames at 315 cycles, and
+keys pressed meanwhile are lost (warp routes then fail silently). Use `change` or a long wait after a level
+change.
+
 ## Screenshots
 The picture has the size of the video mode: text mode 640x400, a 320x200 game 320x200 (that is what `emu.py`
 and `shoot.py` write; `play.py` shows 3x copies, 960x600); it can change during a route. No aspect correction (320x200 was shown 4:3 on a real monitor).

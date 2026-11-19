@@ -9,6 +9,27 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Wizardry III (DOS, legacy from Wizardry II)
+- Task: scout Wizardry III (DOS): Wizardry II transfer and legacy, macros, 22 checkpoints to the ending, RAM
+  map and warp, maps, all messages, quest and alignment rules, saves 00-02, shot plan, design start.
+- Worked: loader diff against WIZ2.COM with ndisasm (only Save2.Dsk needed); Wizardry II tools reused,
+  addresses at Wizardry II + 0xA6; quest conditions tested in parallel try.py runs (alignment x floor x item);
+  all 107 compressed messages read by pointing a riddle square at each message number (~1 min); cold vs
+  cache-hit compare.
+- Friction: item names misread by one (a nameless item is not listed); slow floor loads (1,000+ frames at 315
+  cycles) ate keys, so warp routes failed silently; one-way doors missed by the survey's wall rule; walkthrough
+  hosts unreachable; the Neutral Crystal step not found (the ending route pokes it).
+- Proposed rule change: (1) emulator guide, record tables: count names shown against items poked (nameless
+  entries are skipped); (2) skill step 3: for compressed text, point an existing message square at each message
+  number before decoding the format; (3) dos.md: loads can exceed 1,000 frames at 315 cycles and drop keys.
+- Corrected: coordinator replayed `start`, `guard_good`, `floor6`, `ending` (as described). Lead for the
+  Neutral Crystal from a web search (Wizardry Archives PC walkthrough): one non-neutral character holding both
+  crystals equips and invokes the crystal of their own alignment; the wrong one turns them to ash; neutral or
+  one crystal only: the crystals vanish. The scout's tries did not include that combination: handed to the
+  capture. The same walkthrough states the stair rule as party majority; the scout's emulator finding (any
+  member of the other alignment is refused) stands until tested.
+- Status: (3) promoted 2026-11-19 into dos.md (a fact about the platform at low cycles); (1), (2) logged.
+
 ### 2026-11-19 - Wizardry II (DOS, imported party)
 - Task: scout Wizardry II (DOS): boot, the Wizardry I import through the game's own Move characters, macros,
   22 checkpoints to the ending, RAM map, floor warp, floor maps, saves 00_transfer/01_start/02_ending, shot
