@@ -1,0 +1,28 @@
+{
+  "slug": "might-and-magic-2",
+  "title": "Might and Magic II: Gates to Another World (DOS)",
+  "platform": "dos",
+  "region": "na",
+  "model": "svga-7800",
+  "rom": "rom/might-and-magic-2.zip",
+  "sha1": "c11c7146614bbf697b884657adb718a963c631bc",
+  "crc32": "0e541769",
+  "size": 2072579,
+  "header": {
+    "files": 117,
+    "programs": [
+      "Might and Magic 2/MM2.EXE",
+      "Might and Magic 2/unins000.exe"
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
