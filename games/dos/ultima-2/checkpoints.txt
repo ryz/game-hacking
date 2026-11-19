@@ -1,3 +1,33 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+title | Title picture: Ultima II, the dragon, Revenge of the Enchantress (CGA) | pow,TITLE
+menu | Main menu: D demonstration, P play, C create (text mode) | @title,w360
+gen | Player generation: 90 points to distribute, Strength prompt | @menu,c,w200
+start | ryz on the 1423 B.C. surface at (14,14), 400 H.P., 399 food, 400 gold, nothing owned | pow,NEWGAME,settle
+village | 1423 B.C.: inside the village (map 1), entry square (1F,3E), a fighter nearby | @start,ENTER:26:2E
+linda | 1423 B.C.: inside Towne Linda (map 2), entry square (1F,3E) | @start,ENTER:24:1D
+castle | 1423 B.C.: inside Lord British's castle (map 3), entry square (1F,3E) | @start,ENTER:23:16
+lordbritish | Lord British's throne room: 50 gold tribute taken, 'AND FOR IT I RAISE THEE 0300' (H.P. 700, gold 823) | @castle,poke:8EE8=0873,KING
+dungeon | 1423 B.C. dungeon (map 5), level 0 at (5,5) facing east, torch lit (5 torches poked, 4 left) | @start,ENTER:19:05,poke:8EF4=05,i,w100
+tower | 1423 B.C. tower (map 4) at (5,5) facing east, torch lit (5 torches poked, 4 left) | @start,ENTER:18:28,poke:8EF4=05,i,w100
+hero | Late-game ryz on the 1423 B.C. surface at (14,14): HERO macro (Str 62 Agi 71, H.P. 3184, gold 6382, light sword, reflect armour, items) | @start,HERO,space,w60
+fight | Late ryz at (14,14), 1423 B.C., a devil (picture 30, 20 hit points, type 3, poked as object 1) on the woods square west of him | @hero,poke:8FC8=13,poke:8FE8=14,poke:9008=14,poke:9028=30,poke:9048=0C,poke:9068=03,poke:ABA3=30,space,w60
+door | 1423 B.C.: a time door (slot 0 moved next to ryz at (17,12)) east of the late character at (16,12) | @hero,poke:8E90=1612,poke:4228=1712,poke:8EFE=0601,space,w60
+legends_arrive | Through the time door (slot 0 from 1423 B.C. leads to Legends): ryz on the Legends surface at the slot-0 door square (1D,38), the islet south of Shadow Guard | @door,right,w300
+nsa | 1990 A.D.: late ryz just inside New San Antonio (period 3, map 2), entry square (1F,3E) | @hero,TIME:03,ENTER:0F:1A
+enilno | New San Antonio jail: 500 gold offered to Santre the Swashbuckler, 'ENILNO IS YOURS!' (quicksword owned) | @nsa,SANTRE
+earn_ring | New San Antonio, A TREE: 500 gold offered to the old man without Father Antos's blessing: 'EARN THE RING!' | @enilno,OLDMAN
+rocket | 2112 A.D. village, CCCP test launch: late ryz boarded the rocket at (21,03) (ankh, 6 tri-lithium, reflect armour from HERO) | @earn_ring,LEAVE,ROCKET
+space | Space: the rocket orbiting Earth (6-6-6) after launch from the 2112 village, FUEL=05 | @rocket,LAUNCH
+orbit_x | Space: hyperwarped to 9-9-9, 'YOU ARE ORBITING X.' (planet X), FUEL=04 | @space,WARP:9:9:9
+landed_x | Planet X surface: the rocket landed on grass at (0C,0D), south of Ozys Place | @orbit_x,l,w300,TOUCH:0C:0D
+ozys | Planet X: inside Ozys Place (castle, planet 9 map 3), entry square (1F,3E) | @landed_x,x,w60,up,w60,e,w300
+blessing | Ozys Place: Father Antos (transact): 'You have earned my blessing. Return and claim the Ring!' | @ozys,BLESS
+earth_2112 | Back on Earth: the rocket landed in 2112 A.D. at (0F,0F) after the return warp to 6-6-6, ryz on foot beside it, blessing held | @blessing,RETURN
+ring | New San Antonio, A TREE: with Father Antos's blessing the old man takes 500 gold: 'THE RING IS YOURS!' | @earth_2112,TIME:03,ENTER:0F:1A,OLDMAN
+shadowguard | Legends: late ryz with Enilno and the ring just inside Shadow Guard (era 0, map 3), entry square (1F,3E) | @ring,LEAVE,TIME:00,ENTER:20:20
+field | Shadow Guard gate: late ryz with the ring walked north onto the force field: 'RING PROTECTS FROM FIELD!' (quicksword readied) | @shadowguard,r,w30,9,w60,up,w40,up,w40,up,w40,up,w60
+minax | Shadow Guard, Chamber One: late ryz (quicksword readied, ring) beside Minax the Enchantress at (3C,03) | @field,POS:3B:03
+minax_dead | Shadow Guard: Minax's hit points poked to 20, one quicksword blow: 'MINAX IS DEAD!! ALL HER WORKS SHALL DIE!' | @minax,poke:9026=14,a,w30,right,w200
+ending | The ending: 'YOU HAVE SAVED THE UNIVERSE, AND COMPLETED ULTIMA ][! SEEK NOW TO CONQUER WICKED EXODUS...' over the scrolling 1990 world | @minax_dead,w1500
+endgame | 1990 A.D. surface outside New San Antonio (0F,1A): late ryz with Enilno, the ring and the blessing, saved with Q (save 02_endgame) | @ring,LEAVE,q,w300

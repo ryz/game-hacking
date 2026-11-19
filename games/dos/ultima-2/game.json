@@ -3,7 +3,7 @@
   "title": "Ultima II: The Revenge of the Enchantress (DOS)",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "svga-500",
   "rom": "rom/ultima-2.zip",
   "sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
   "crc32": "fb7dbe8c",
@@ -22,6 +22,75 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w240",
+    "MENU": "w600",
+    "STATS": "2,5,enter,w60,2,0,enter,w60,1,5,enter,w60,1,0,enter,w60,1,0,enter,w60,1,0,enter,w60",
+    "CREATE": "c,w200,STATS,m,w60,1,w60,1,w60,r,y,z,enter,w60,y,w200",
+    "RYZ": "MENU,CREATE",
+    "PLAY": "p,w300",
+    "NEWGAME": "RYZ,PLAY",
+    "TIME": "poke:8E90=1612,poke:4218=1712,poke:4220=1712,poke:4228=1712,poke:4230=1712,poke:4238=1712,poke:4137=B0{0}90909090909090909090909090,poke:8EFE=0601,space,w60,right,w300,poke:4137=A06E00F8D0D83A0649007203F81401,poke:4218=1D381F382138233822082F1C24381425101030182A18133438341C0C21171434121732223418080B",
+    "POS": "poke:8E90={0}{1},space,w60",
+    "ENTER": "POS:{0}:{1},e,w300",
+    "HERO": "poke:8EDB=627148372643,poke:8EE1=3184,poke:8EE3=246350,poke:8EE6=2083,poke:8EE8=6382,poke:8EF1=07,poke:8EF2=05,poke:8EF4=070403,poke:8F07=010002010100010000,poke:8F27=010101000100,poke:8F69=010102000100020001010201,poke:8F75=06",
+    "KING": "POS:1F:0E,t,w30,up,w200",
+    "SANTRE": "POS:36:06,o,w30,left,w30,5,w120",
+    "OLDMAN": "POS:1A:02,o,w30,left,w30,5,w120",
+    "ROCKET": "TIME:04,ENTER:2C:0E,POS:21:03,b,w60",
+    "LAUNCH": "l,w400",
+    "WARP": "h,w60,{0},w30,{1},w30,{2},w1200",
+    "TOUCH": "poke:8E90={0}{1},space,w200",
+    "BLESS": "POS:02:30,t,w30,left,w200",
+    "MINAX": "POS:3B:03,a,w30,right,w200",
+    "LEAVE": "POS:1F:3F,down,w300",
+    "RETURN": "LEAVE,down,w60,b,w60,LAUNCH,WARP:6:6:6,l,w300,TOUCH:0F:0F,w60,x,w60",
+    "SWING": "POS:3B:03,a,w30,right,w200,POS:04:3C,a,w30,left,w200"
+  },
+  "ram": {
+    "x": {
+      "addr": "8E90",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "y": {
+      "addr": "8E91",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "era": {
+      "addr": "8ED9",
+      "size": 1,
+      "note": "0 Legends,1 Pangea,2 1423BC,3 1990AD,4 2112AD"
+    },
+    "map": {
+      "addr": "8EDA",
+      "size": 1,
+      "note": "0 surface,1 village,2 town,3 castle,4 tower,5 dungeon"
+    },
+    "planet": {
+      "addr": "8EFD",
+      "size": 1
+    },
+    "hp": {
+      "addr": "8EE1",
+      "size": 2,
+      "fmt": "bcd"
+    },
+    "food": {
+      "addr": "8EE3",
+      "size": 2,
+      "fmt": "bcd"
+    },
+    "exp": {
+      "addr": "8EE6",
+      "size": 2,
+      "fmt": "bcd"
+    },
+    "gold": {
+      "addr": "8EE8",
+      "size": 2,
+      "fmt": "bcd"
+    }
+  }
 }

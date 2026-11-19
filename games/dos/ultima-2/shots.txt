@@ -1,6 +1,90 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/dos/ultima-2/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# The plan for the main set (scout 2026-11-19), in game order. Lines with a route were checked as checkpoints
+# or try.py frames; `# plan:` lines name the target and the way to reach it (capture: find the frame, snap, copy
+# the snapped line here). play.py snap writes captured shots to work/shots/dos/ultima-2/<set>/shots.txt.
+#
+# --- boot, title, demonstration
+# plan: boot_origin | boot | "ORIGIN PROUDLY PRESENTS" | w60
+# plan: boot_part2 | boot | "PART ][ OF THE #1 BEST SELLING FANTASY ROLE-PLAYING GAME BY LORD BRITISH" | w120
+title_screen | title | Title picture: Ultima II, the dragon, Revenge of the Enchantress | @title
+menu_main | menu | Main menu: D demonstration, P play, C create a new character | @menu
+# plan: cutscene_demo_creatures | cutscene | Demo: "BATTLE STRANGE CREATURES ACROSS THE FACE OF THE EARTH" | @menu,d,w300 (pick frames)
+# plan: cutscene_demo_dungeons | cutscene | Demo: "TRAVERSE DEEP DARK DEADLY DUNGEONS AND TALL TERRIFYING TOWERS" | @menu,d,w600
+# plan: cutscene_demo_minax | cutscene | Demo: "AND CONQUER TIME ITSELF TO BATTLE MINAX THE ENCHANTRESS" | @menu,d,...
+# plan: cutscene_demo_pub | cutscene | Demo: "SEARCH FOR CLUES IN CARELESS WORDS SPOKEN AT THE LOCAL PUB" | @menu,d,...
+# plan: cutscene_demo_kings | cutscene | Demo: "PLEAD WITH MEDIEVAL KINGS FOR ASSISTANCE" | @menu,d,...
+# plan: cutscene_demo_space | cutscene | Demo: "TRAVEL THROUGHOUT THE GALAXY TO THE PLANETS OF OUR SOLAR SYSTEM" | @menu,d,...
+#
+# --- character generation
+menu_generation | menu | Player generation: 90 points to distribute, Strength first | @gen
+# plan: menu_gen_points | menu | Statistics typed: Str 25 Agi 20 Sta 15 Cha 10 Wis 10 Int 10, 0 left | @gen,STATS
+# plan: menu_gen_reset | menu | A value under 10 clears the form (Wisdom 5 typed) | @gen,2,5,enter,w60,2,5,enter,w60,1,5,enter,w60,1,0,enter,w60,5,enter,w60
+# plan: menu_gen_done | menu | Male human fighter RYZ: race and type bonuses applied, SATISFACTORY (Y/N) | @gen,STATS,m,w60,1,w60,1,w60,r,y,z,enter,w60
+#
+# --- first moments (start character)
+# plan: gameplay_start | gameplay | ryz in the woods of 1423 B.C., H.P. 400, food 399, gold 400 | @start
+# plan: hud_status | hud | Status panel: H.P., FOOD, EXP., GOLD, four-line command log | @start
+# plan: inventory_ztats_new | inventory | Ztats of a new fighter: level 00, hands, skin, nothing owned | @start,z,w120
+# plan: gameplay_blocked | gameplay | "SOUTH--INVALID MOVE!" at the water's edge | @start,up,w20,right,w20,down,w30
+# plan: system_sign_1423 | system | "THE SIGN READS: ANOS: 1423 B.C." | @start,POS:3A:33,e,w90
+# plan: system_cmd_<letter> | system | one prompt per command letter (b c d f g h i j k l m n o r s u v w x y) | @start,<letter>,w90 (sheet: work/scout/ultima-2/try_cmds.png)
+# plan: save_quit | save | "QUIT OR SAVE GAME. ONE MOMENT PLEASE!" | @start,q,w120
+#
+# --- towns and castles of 1423 B.C.
+# plan: gameplay_village_1423 | gameplay | The village of 1423 B.C., a fighter in the square | @village
+# plan: gameplay_linda | gameplay | Towne Linda (1423 B.C.), its name in the wall | @linda
+# plan: gameplay_castle_lb | gameplay | Lord British's castle gate | @castle
+# plan: dialogue_lord_british | dialogue | Lord British: "FIRST MY 50 G.P. TRIBUTE! AND FOR IT I RAISE THEE 0300" | @lordbritish
+# plan: dialogue_guard / dialogue_merchant / dialogue_jester / dialogue_fighter / dialogue_cleric / dialogue_wizard / dialogue_thief | dialogue | the stock lines ("PAY YOUR TAXES!", "WILL YOU BUY MY APPLES?", "HO HO HO!" ...) | POS beside the person, t + direction
+# plan: shop_pub_buy, shop_pub_tip | shop | "WELCOME TO THE PUB! 1-BUY, 2-TIP", the barkeep's tip | @nsa,POS:0A:3B,t,w30,up,w60,1 / 2
+# plan: shop_transport | shop | "I SELL YOU HORSE 0084 GOLD, DEAL, OK?" | @nsa,POS:35:2E,t,w30,down,w120
+# plan: shop_food, shop_oracle, shop_armour, shop_weapons | shop | counters from tools/u2shops.py
+# plan: system_shop_refused | system | "RYZ YOU ARE NOT A WIZARD!" | @village,POS:0F:30,t,w30,up,w150
+# plan: system_steal | system | "STEAL DIRECT-NORTH NO LUCK!" | @nsa,POS:0A:3B,s,w30,up,w150
+#
+# --- late character, fights, doors
+# plan: inventory_ztats_late | inventory | Ztats of the late ryz: level 20, light sword, reflect, items | @hero,z,w120
+# plan: battle_devil | battle | A devil beside ryz in the woods | @fight
+# plan: battle_hit_kill | battle | "ATTACK--WEST--HIT!!!", "KILLED--GOLD+03--EXP.+04" | @fight,a,w30,left,w120
+# plan: battle_<picture> | battle | serpent 2C, man 34, robed 38, winged daemon 3C, fighter F0, wizard F8, thief FC (object 1 pokes, playbook Shortcuts)
+# plan: system_time_door | system | A time door beside ryz | @door
+# plan: gameplay_legends_islet | gameplay | Through the door: the walled islet of Legends and its sign | @legends_arrive
+# plan: gameplay_surface_<period> | gameplay | Pangea, 1990, 2112, Legends surfaces | @hero,TIME:0q
+# plan: system_sign_<period> | system | the four other signs ("ANOS: LEGENDS!" ...) | TIME + POS on the sign + e
+#
+# --- dungeon and tower
+# plan: gameplay_dungeon_dark | gameplay | "IT'S DARK!" in the 1423 B.C. dungeon | @start,ENTER:19:05
+# plan: gameplay_dungeon_torch | gameplay | Torch lit: wireframe corridor | @dungeon
+# plan: gameplay_tower | gameplay | Tower corridor with a ladder down | @tower
+# plan: system_klimb / system_descend / battle_dungeon / system_chest | ... | dungeon play
+#
+# --- the quest
+# plan: gameplay_new_san_antonio | gameplay | New San Antonio (1990 A.D.) | @nsa
+# plan: system_enilno | system | Offer 500 gold to Santre: "ENILNO IS YOURS!" | @enilno
+# plan: system_earn_ring | system | The old man under A TREE: "EARN THE RING!" | @earn_ring
+# plan: gameplay_launch_site | gameplay | CCCP TEST LAUNCH, ryz in a rocket | @rocket
+# plan: system_exploded | system | Launch without reflect or power armour: "YOU HAVE EXPLODED!" | @rocket,poke:8EF2=02,l,w600
+# plan: gameplay_space_earth | gameplay | "YOU ARE ORBITING EARTH." FUEL, XENO, YAKO, ZABO | @space
+# plan: system_hyperwarp | system | Hyperwarp to 9-9-9, the star tunnel | @space,h,w60,9,w30,9,w30,9,wN
+# plan: gameplay_orbit_x | gameplay | "YOU ARE ORBITING X." | @orbit_x
+# plan: system_landing | system | Drifting over planet X, "(PRESS ANY KEY)" | @orbit_x,l,w300
+# plan: gameplay_planet_x | gameplay | The rocket landed beside Ozys Place | @landed_x
+# plan: gameplay_ozys_place | gameplay | Ozys Place, the castle of planet X | @ozys
+# plan: dialogue_father_antos | dialogue | "You have earned my blessing. Return and claim the Ring!" | @blessing
+# plan: system_ring | system | "THE RING IS YOURS!" | @ring
+# plan: system_deep_space / system_sun / system_off_course | system | "REQUEST DENIED!", "YOU HIT THE SUN!", "SHIP OFF COURSE!" | @space + WARP
+#
+# --- endgame
+# plan: gameplay_shadow_guard | gameplay | Shadow Guard's gate of force fields | @shadowguard
+# plan: system_field_ring | system | "RING PROTECTS FROM FIELD!" | @field
+# plan: system_field_damage | system | "FIELD CAUSES 1000 DAMAGE!" without the ring | @shadowguard,poke:8F66=00,up,w40,up,w40,up,w40,up,w60
+# plan: boss_minax | boss | Chamber One: Minax beside ryz, "MINAX CRIES: DIE FOOL!" | @minax
+# plan: boss_minax_gone | boss | A quicksword hit: "SHE'S GONE!!!" | @minax,a,w30,right,w200
+# plan: boss_chamber_two | boss | Minax in Chamber Two | @minax,SWING
+# plan: boss_saved_by_idol | boss | "SAVED BY IDOL!" | @minax,SWING*3
+# plan: gameover_dead | gameover | "RYZ IS DEAD!" (start character beside Minax) | start character in Shadow Guard
+# plan: ending_minax_dead | ending | "MINAX IS DEAD!! ALL HER WORKS SHALL DIE!" | @minax_dead
+# plan: ending_crumble | ending | Shadow Guard breaking apart | @minax_dead,wN
+# plan: ending_text | ending | "YOU HAVE SAVED THE UNIVERSE, AND COMPLETED ULTIMA ][!" | @ending
