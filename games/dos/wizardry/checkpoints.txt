@@ -3,3 +3,17 @@
 # title | Title screen, settled | TITLE,settle
 title | Title screen: Wizardry logo, monster parade, S)tart game / M)ake scenario disk | pow,TITLE,settle
 start | Castle menu: party ryz condi ebo cubi deddo mnz (level 1, made in the Training Grounds) formed in the Tavern | pow,PARTY,settle
+edge | Edge of Town menu: T)raining M)aze C)astle U)tilities L)eave game, party formed | @start,e,w120,settle
+camp | Camp on entering the maze (floor 1 entrance): Inspect / Reorder / Equip / Leave | @edge,m,w300,settle,w300,settle
+maze1 | Floor 1 entrance (0,0) facing north under the stairs up, first control in the maze | @camp,5,w150,settle,enter,w120,enter,w200,settle,n,w120,settle
+battle | Floor 1 (7,1) fight room: 4 Slimes, party surprised them, RYZ's options (Fight / Parry / Take back / Use item / Run) | @maze1,poke:DA26=0700,poke:DA24=0100,poke:DA20=0000,d,w60,a,w60,settle,w200,settle,w300,settle
+chest | Floor 1 (7,1): after beating the Slimes (fight, Halito), a chest: Open / Calfo / Leave alone / Inspect / Disarm | @battle,f,w90,settle,f,w90,settle,w10,settle,f,w90,settle,p,w90,settle,p,w90,settle,p,w90,settle,enter,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w40,w600,settle,f,w90,f,w90,f,w90,p,w90,s,w90,settle,type:halito\n,w90,settle,p,w90,enter,w900,settle
+training | Training Grounds menu: C)reate / I)nspect / R)oster / Leave, party formed | @start,e,w120,t,w120,settle
+vet | Castle menu with the veteran party: VET pokes (level 13, HP 49-124, E.P., gold, ages, all spells for mage and priest, half for the bishop) into the party records | @start,VET,e,w120,c,w120,settle
+vmaze | Floor 1 entrance (0,0) facing north with the veteran party | @vet,MAZE,settle
+werdna_sign | Floor 10 (17,4): the sign 'Lair of the evil wizard Werdna! ... The wizard is *in*!' (veterans, warped) | @vmaze,WARP:0A:10:04,settle,d,w60,d,w60,w,w200,settle
+werdna | Floor 10 (17,3): Werdna, 1 Vampire Lord, 3 Vampires; RYZ's options (veterans kicked the door south of the sign) | @werdna_sign,enter,w120,settle,d,w90,settle,k,w300,settle,w600,settle
+ending | Ending: '* * Congratulations * *' amulet recovered, 50,000 G.P. and E.P., Chevron of Rank (veterans; AMULET pokes Werdna's amulet, item 94, into RYZ's pack; HOME walks back onto the floor 1 stairs up) | @vmaze,AMULET,HOME,settle
+after_ending | Castle after the ending reward: the veteran party with 50,000 more G.P./E.P. and the Chevron of Rank | @ending,enter,w600,settle
+resume | Castle menu, party formed from the exported 01_start roster (level 1) | sav:01_start,RESUME,settle
+resume_end | Castle menu, party formed from the exported 02_ending roster (level 13, Chevron of Rank) | sav:02_ending,RESUME,settle

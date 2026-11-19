@@ -1,6 +1,65 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/dos/wizardry/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Wizardry I (DOS), plan for set main (scout 2026-11-19). Macros and checkpoints: game.json, checkpoints.txt;
+# how to reach each area: playbook "Shot plan". Uncommented lines: frame seen by the scout with that exact route
+# (games/dos/wizardry/tools/try.py), not yet through shoot.py. Commented lines: planned, route to be built.
+# play.py snap writes captured shots to work/shots/dos/wizardry/<set>/shots.txt; copy finished lines back here.
+#
+# --- start of the game
+title_screen | title | Title: Wizardry logo, "Welcome to the world of Wizardry!", S)tart game / M)ake scenario disk | @title
+# title_monsters | title | Title, later monster parade (four monsters) | @title,w900,!   (pick the frame with play.py sample)
+# boot_scenario_prompt | boot | "Place duplicate scenario diskette in drive 1, then press Enter" (answered by the loader) | @title,s,w?,!  (frame between s+240 and s+270)
+# boot_loading | boot | "Now loading the program into memory ..." | @title,s,w?,!  (about s+330)
+menu_castle | menu | Castle: Gilgamesh's Tavern, Adventurer's Inn, Temple of Cant, Boltac's, Edge of Town; party list | @start
+menu_edge | menu | Edge of Town: Training, Maze, Castle, Utilities, Leave game | @edge
+menu_utilities | menu | Wizardry Utilities: change name, move characters, restart an "out" party | @edge,u,w120
+menu_tavern | menu | Gilgamesh's Tavern: add, remove, inspect, divvy gold, leave | @start,g,w120
+menu_training | menu | Training Grounds: create, inspect, roster of characters, leave | @training
+inventory_roster | inventory | Roster of characters: six pre-made and the six of the party, level 1 | @training,r,w200
+# create_name | system | Character creation: "Enter a name for your character" (use a new name: ryz exists) | @training,c,w120,type:thal\n...
+# create_race | system | Choose race: Human Elf Dwarf Gnome Hobbit | (after name and password)
+# create_align | system | Choose alignment: Good Neutral Evil |
+# create_stats | system | Bonus points: Enter moves the pointer, Up/Down alter, eligible classes listed | (MAKE steps)
+# create_class | system | Select class: only eligible classes (A Fighter ... H Ninja) |
+# create_keep | system | "Keep this character (Y/N)?" with the finished sheet |
+# --- castle services
+shop_boltac | shop | Boltac's Trading Post: buy, sell, uncurse, identify, pool gold (veteran ryz, 24,817 gold) | @vet,b,w120,1,w150
+shop_boltac_buy | shop | Boltac's stock, first page: long sword 25 ... dagger 5 | @vet,b,w120,1,w150,b,w200
+menu_inn | menu | Adventurer's Inn: stables free, cot 10, economy 50, merchant 200, royal suite 500 gp/week | @start,a,w120,1,w150
+# system_levelup | system | Inn: "you made the next level", stat changes (needs E.P. over the next threshold: poke E.P. a bit higher) |
+# menu_temple | menu | Temple of Cant: "Who shall we help?" with a dead or paralyzed character in the roster |
+inventory_inspect_vet | inventory | Character sheet of ryz, veteran: level 13 fighter, 24,817 gold, 112 HP | @vet,g,w120,1,w200
+# --- maze
+gameplay_maze_f1_start | gameplay | Floor 1 entrance: wireframe corridor, command line, party window | @maze1
+gameplay_camp | menu | Camp: inspect, reorder, equip, leave | @camp
+inventory_camp_inspect | inventory | Camp, inspecting deddo (mage): spells 2/0/0/0/0/0/0, commands read, spell, use ... | @camp,5,w150
+gameplay_full_view | gameplay | O)ff: the maze view alone, command line and party window hidden | @maze1,o,w90
+gameplay_dark | gameplay | Floor 1 darkness: the view is hatched, nothing drawn | @maze1,poke:DA26=0900,poke:DA24=0500,poke:DA20=0000,a,w60,d,w60
+dialogue_sign_f1 | dialogue | Floor 1 sign: "** Area out of bounds! **" | @maze1,poke:DA26=0900,poke:DA24=0B00,poke:DA20=0000,a,w60,d,w60,w,w300
+system_dumapic | system | DUMAPIC in camp: "Facing north. 0 east 0 north 1 down" | @vmaze,c,w200,5,w150,s,w90,type:dumapic\n,w300
+gameplay_f2_stairs | gameplay | Floor 2 arrival on the stairs: "Stairs up, take them (Y/N)?" | @vmaze,WARP:02:0C:07
+dialogue_f4_desk | dialogue | Floor 4: the room with the large desk, crystal balls and the door that glows orange | @vmaze,WARP:04:0B:0B,a,w60,a,w60,w,w600
+# gameplay_wall | gameplay | "You can't walk through walls!" | @maze1,d,w60,w,w60
+# gameplay_kick_door | gameplay | K kicks a door open (Werdna's door) | @werdna_sign,enter,w120,d,w90  (door in view)
+# gameplay_elevator | gameplay | Floor 1 elevator (10,8): floors A-D | approach from the open side (maps.py 1)
+# gameplay_pit / gameplay_spinner / gameplay_teleport / gameplay_chute | gameplay | floor 3 pits and spinners, floor 7 teleports, floor 9 chute to floor 10 | WARP next to them (maps.py)
+# gameplay_fizzle | gameplay | Floor 5 anti-magic area | WARP:05:0A:06 then step north
+gameover_rock | gameover | "You are in rock!" after a warp into floor 10 rock | @maze1,WARP:0A:11:05
+gameover_cemetery | gameover | Party slaughtered: tombstones, "Press Enter to leave the cemetery" | @maze1,WARP:0A:11:05,w600
+# --- battle
+battle_options | battle | 4 Slimes, "You surprised the monsters", ryz's options: fight, parry, take back, use item, run | @battle
+battle_spell_prompt | battle | Deddo's options: "Spell name ?" (spells are typed) | @battle,f,w90,f,w90,f,w90,p,w90,p,w90,p,w90,enter,w1200,f,w90,f,w90,f,w90,p,w90,s,w90
+# battle_messages | battle | "Condi charges at a Slime and hits once for 5 damage / the Slime is killed!" | @battle,f,w90,f,w90,w10,f,w90,p,w90,p,w90,p,w90,enter,w40*3,!
+# battle_victory | battle | E.P. and gold for each survivor after the Slimes | (between the last round and the chest; sample the frames)
+battle_chest | battle | A chest! Open, Calfo, leave alone, inspect, disarm | @chest
+# battle_trap | battle | Chest trap identified / sprung, loot found |
+# battle_group_select | battle | "Fight which group (#)?" with three groups | @werdna,f,w60
+# boss_murphy | boss | Murphy's ghost, floor 1 (13,5) | approach from the open side, search
+# boss_f4_center | boss | Floor 4 monster allocation centre fixed fight (11..12,12..14) |
+# --- the end
+dialogue_werdna_sign | dialogue | Floor 10 sign: "Lair of the evil wizard Werdna! Office hours 9AM to 3PM ..." | @werdna_sign
+boss_werdna | boss | Werdna, a Vampire Lord and 4 Vampires; ryz's options | @werdna
+# boss_werdna_fight | boss | Werdna's turn: Tiltowait/level drain messages (round 2) | @werdna,... (see playbook strategy)
+ending_congratulations | ending | "* * Congratulations * *": amulet recovered, 50,000 G.P. and E.P., Chevron of Rank | @ending
+ending_chevron | ending | Character sheet after the ending: ryz L 13 with the chevron ">" | @after_ending,g,w120,1,w200
