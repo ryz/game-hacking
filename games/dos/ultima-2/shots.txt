@@ -1,90 +1,229 @@
 # id | category | caption | route
-# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
-#             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set (scout 2026-11-19), in game order. Lines with a route were checked as checkpoints
-# or try.py frames; `# plan:` lines name the target and the way to reach it (capture: find the frame, snap, copy
-# the snapped line here). play.py snap writes captured shots to work/shots/dos/ultima-2/<set>/shots.txt.
-#
-# --- boot, title, demonstration
-# plan: boot_origin | boot | "ORIGIN PROUDLY PRESENTS" | w60
-# plan: boot_part2 | boot | "PART ][ OF THE #1 BEST SELLING FANTASY ROLE-PLAYING GAME BY LORD BRITISH" | w120
+# Set main (capture 2026-11-19), game order: boot, generation, 1423 B.C. towns, dungeons, late ryz, periods,
+# vehicles, New San Antonio, space and planets, Shadow Guard, Minax, ending. Checkpoints: checkpoints.txt.
+boot_origin | boot | Intro text: ORIGIN PROUDLY PRESENTS | pow,w60,!
+boot_part2 | boot | Intro text: Part II of the #1 best selling fantasy role-playing game | pow,w130,!
 title_screen | title | Title picture: Ultima II, the dragon, Revenge of the Enchantress | @title
-menu_main | menu | Main menu: D demonstration, P play, C create a new character | @menu
-# plan: cutscene_demo_creatures | cutscene | Demo: "BATTLE STRANGE CREATURES ACROSS THE FACE OF THE EARTH" | @menu,d,w300 (pick frames)
-# plan: cutscene_demo_dungeons | cutscene | Demo: "TRAVERSE DEEP DARK DEADLY DUNGEONS AND TALL TERRIFYING TOWERS" | @menu,d,w600
-# plan: cutscene_demo_minax | cutscene | Demo: "AND CONQUER TIME ITSELF TO BATTLE MINAX THE ENCHANTRESS" | @menu,d,...
-# plan: cutscene_demo_pub | cutscene | Demo: "SEARCH FOR CLUES IN CARELESS WORDS SPOKEN AT THE LOCAL PUB" | @menu,d,...
-# plan: cutscene_demo_kings | cutscene | Demo: "PLEAD WITH MEDIEVAL KINGS FOR ASSISTANCE" | @menu,d,...
-# plan: cutscene_demo_space | cutscene | Demo: "TRAVEL THROUGHOUT THE GALAXY TO THE PLANETS OF OUR SOLAR SYSTEM" | @menu,d,...
-#
-# --- character generation
-menu_generation | menu | Player generation: 90 points to distribute, Strength first | @gen
-# plan: menu_gen_points | menu | Statistics typed: Str 25 Agi 20 Sta 15 Cha 10 Wis 10 Int 10, 0 left | @gen,STATS
-# plan: menu_gen_reset | menu | A value under 10 clears the form (Wisdom 5 typed) | @gen,2,5,enter,w60,2,5,enter,w60,1,5,enter,w60,1,0,enter,w60,5,enter,w60
-# plan: menu_gen_done | menu | Male human fighter RYZ: race and type bonuses applied, SATISFACTORY (Y/N) | @gen,STATS,m,w60,1,w60,1,w60,r,y,z,enter,w60
-#
-# --- first moments (start character)
-# plan: gameplay_start | gameplay | ryz in the woods of 1423 B.C., H.P. 400, food 399, gold 400 | @start
-# plan: hud_status | hud | Status panel: H.P., FOOD, EXP., GOLD, four-line command log | @start
-# plan: inventory_ztats_new | inventory | Ztats of a new fighter: level 00, hands, skin, nothing owned | @start,z,w120
-# plan: gameplay_blocked | gameplay | "SOUTH--INVALID MOVE!" at the water's edge | @start,up,w20,right,w20,down,w30
-# plan: system_sign_1423 | system | "THE SIGN READS: ANOS: 1423 B.C." | @start,POS:3A:33,e,w90
-# plan: system_cmd_<letter> | system | one prompt per command letter (b c d f g h i j k l m n o r s u v w x y) | @start,<letter>,w90 (sheet: work/scout/ultima-2/try_cmds.png)
-# plan: save_quit | save | "QUIT OR SAVE GAME. ONE MOMENT PLEASE!" | @start,q,w120
-#
-# --- towns and castles of 1423 B.C.
-# plan: gameplay_village_1423 | gameplay | The village of 1423 B.C., a fighter in the square | @village
-# plan: gameplay_linda | gameplay | Towne Linda (1423 B.C.), its name in the wall | @linda
-# plan: gameplay_castle_lb | gameplay | Lord British's castle gate | @castle
-# plan: dialogue_lord_british | dialogue | Lord British: "FIRST MY 50 G.P. TRIBUTE! AND FOR IT I RAISE THEE 0300" | @lordbritish
-# plan: dialogue_guard / dialogue_merchant / dialogue_jester / dialogue_fighter / dialogue_cleric / dialogue_wizard / dialogue_thief | dialogue | the stock lines ("PAY YOUR TAXES!", "WILL YOU BUY MY APPLES?", "HO HO HO!" ...) | POS beside the person, t + direction
-# plan: shop_pub_buy, shop_pub_tip | shop | "WELCOME TO THE PUB! 1-BUY, 2-TIP", the barkeep's tip | @nsa,POS:0A:3B,t,w30,up,w60,1 / 2
-# plan: shop_transport | shop | "I SELL YOU HORSE 0084 GOLD, DEAL, OK?" | @nsa,POS:35:2E,t,w30,down,w120
-# plan: shop_food, shop_oracle, shop_armour, shop_weapons | shop | counters from tools/u2shops.py
-# plan: system_shop_refused | system | "RYZ YOU ARE NOT A WIZARD!" | @village,POS:0F:30,t,w30,up,w150
-# plan: system_steal | system | "STEAL DIRECT-NORTH NO LUCK!" | @nsa,POS:0A:3B,s,w30,up,w150
-#
-# --- late character, fights, doors
-# plan: inventory_ztats_late | inventory | Ztats of the late ryz: level 20, light sword, reflect, items | @hero,z,w120
-# plan: battle_devil | battle | A devil beside ryz in the woods | @fight
-# plan: battle_hit_kill | battle | "ATTACK--WEST--HIT!!!", "KILLED--GOLD+03--EXP.+04" | @fight,a,w30,left,w120
-# plan: battle_<picture> | battle | serpent 2C, man 34, robed 38, winged daemon 3C, fighter F0, wizard F8, thief FC (object 1 pokes, playbook Shortcuts)
-# plan: system_time_door | system | A time door beside ryz | @door
-# plan: gameplay_legends_islet | gameplay | Through the door: the walled islet of Legends and its sign | @legends_arrive
-# plan: gameplay_surface_<period> | gameplay | Pangea, 1990, 2112, Legends surfaces | @hero,TIME:0q
-# plan: system_sign_<period> | system | the four other signs ("ANOS: LEGENDS!" ...) | TIME + POS on the sign + e
-#
-# --- dungeon and tower
-# plan: gameplay_dungeon_dark | gameplay | "IT'S DARK!" in the 1423 B.C. dungeon | @start,ENTER:19:05
-# plan: gameplay_dungeon_torch | gameplay | Torch lit: wireframe corridor | @dungeon
-# plan: gameplay_tower | gameplay | Tower corridor with a ladder down | @tower
-# plan: system_klimb / system_descend / battle_dungeon / system_chest | ... | dungeon play
-#
-# --- the quest
-# plan: gameplay_new_san_antonio | gameplay | New San Antonio (1990 A.D.) | @nsa
-# plan: system_enilno | system | Offer 500 gold to Santre: "ENILNO IS YOURS!" | @enilno
-# plan: system_earn_ring | system | The old man under A TREE: "EARN THE RING!" | @earn_ring
-# plan: gameplay_launch_site | gameplay | CCCP TEST LAUNCH, ryz in a rocket | @rocket
-# plan: system_exploded | system | Launch without reflect or power armour: "YOU HAVE EXPLODED!" | @rocket,poke:8EF2=02,l,w600
-# plan: gameplay_space_earth | gameplay | "YOU ARE ORBITING EARTH." FUEL, XENO, YAKO, ZABO | @space
-# plan: system_hyperwarp | system | Hyperwarp to 9-9-9, the star tunnel | @space,h,w60,9,w30,9,w30,9,wN
-# plan: gameplay_orbit_x | gameplay | "YOU ARE ORBITING X." | @orbit_x
-# plan: system_landing | system | Drifting over planet X, "(PRESS ANY KEY)" | @orbit_x,l,w300
-# plan: gameplay_planet_x | gameplay | The rocket landed beside Ozys Place | @landed_x
-# plan: gameplay_ozys_place | gameplay | Ozys Place, the castle of planet X | @ozys
-# plan: dialogue_father_antos | dialogue | "You have earned my blessing. Return and claim the Ring!" | @blessing
-# plan: system_ring | system | "THE RING IS YOURS!" | @ring
-# plan: system_deep_space / system_sun / system_off_course | system | "REQUEST DENIED!", "YOU HIT THE SUN!", "SHIP OFF COURSE!" | @space + WARP
-#
-# --- endgame
-# plan: gameplay_shadow_guard | gameplay | Shadow Guard's gate of force fields | @shadowguard
-# plan: system_field_ring | system | "RING PROTECTS FROM FIELD!" | @field
-# plan: system_field_damage | system | "FIELD CAUSES 1000 DAMAGE!" without the ring | @shadowguard,poke:8F66=00,up,w40,up,w40,up,w40,up,w60
-# plan: boss_minax | boss | Chamber One: Minax beside ryz, "MINAX CRIES: DIE FOOL!" | @minax
-# plan: boss_minax_gone | boss | A quicksword hit: "SHE'S GONE!!!" | @minax,a,w30,right,w200
-# plan: boss_chamber_two | boss | Minax in Chamber Two | @minax,SWING
-# plan: boss_saved_by_idol | boss | "SAVED BY IDOL!" | @minax,SWING*3
-# plan: gameover_dead | gameover | "RYZ IS DEAD!" (start character beside Minax) | start character in Shadow Guard
-# plan: ending_minax_dead | ending | "MINAX IS DEAD!! ALL HER WORKS SHALL DIE!" | @minax_dead
-# plan: ending_crumble | ending | Shadow Guard breaking apart | @minax_dead,wN
-# plan: ending_text | ending | "YOU HAVE SAVED THE UNIVERSE, AND COMPLETED ULTIMA ][!" | @ending
+menu_main | menu | Main menu: D demonstration, P play a game, C create a new character | @menu
+cutscene_demo_creatures | cutscene | Demo: battle strange creatures across the face of the Earth | @menu,d,w50,!
+cutscene_demo_pub | cutscene | Demo: search for clues at the local pub (Swashbucklers Pub and Pizza) | @menu,d,w150,!
+cutscene_demo_dungeons | cutscene | Demo: traverse deep dark deadly dungeons and tall terrifying towers | @menu,d,w300,!
+cutscene_demo_space | cutscene | Demo: travel throughout the galaxy to the planets of our solar system | @menu,d,w450,!
+cutscene_demo_minax | cutscene | Demo: conquer time itself to battle Minax the Enchantress | @menu,d,w600,!
+menu_generation | menu | Player generation: 90 points to distribute, Strength asked first | @gen
+menu_gen_stats | menu | Six statistics typed (25 20 15 10 10 10): no points left | @gen,STATS
+menu_gen_male | menu | Male chosen: Strength 25 -> 30 | @gen,STATS,m,w60
+menu_gen_human | menu | Human chosen: Intelligence 10 -> 15 | @gen,STATS,m,w60,1,w60
+menu_gen_done | menu | Fighter (Strength +15), name RYZ: SATISFACTORY (Y/N) | @gen,STATS,m,w60,1,w60,1,w60,r,y,z,enter,w60
+menu_gen_other | menu | Another build: female elf wizard (Charisma +10, Agility +5, Int. +10) | @gen,3,0,enter,w60,1,5,enter,w60,1,5,enter,w60,1,0,enter,w60,1,0,enter,w60,1,0,enter,w60,f,w60,2,w60,3,w60,r,y,z,enter,w60
+gameplay_start | gameplay | ryz in the woods of 1423 B.C.: H.P. 400, food 399, gold 400 | @start,w30,!
+inventory_ztats_new | inventory | Ztats of the new ryz: level 0 male human fighter, hands, skin | @start,z,w120
+gameplay_blocked | gameplay | North, east, then SOUTH--INVALID MOVE! at the water's edge | @start,up,w20,right,w20,down,w40,!
+system_sign_1423 | system | Enter a sign: THE SIGN READS: ANOS: 1423 B.C. | @start,POS:3A:33,e,w90,!
+save_quit | save | Q: QUIT OR SAVE GAME. ONE MOMENT PLEASE! (play goes on) | @start,q,w120,!
+gameplay_refusals | gameplay | Commands with nothing to act on: BOARD WHAT? HYPER WHAT? LAUNCH WHAT? | @start,b,w30,h,w30,l,w30,!
+gameplay_refusals_2 | gameplay | More refusals: GET WHAT? FIRE WHAT? X-IT WHAT? | @start,g,w30,f,w30,x,w30,!
+gameplay_refusals_3 | gameplay | DESCEND-WHAT? KLIMB-WHAT? (ladders only below ground), VIEW WHAT? | @start,d,w30,k,w30,v,w40,!
+system_cast_none | system | Cast: NEED WAND OR STAFF!; Negate time: YOU'RE NOT EINSTEIN | @start,c,w40,n,w60,!
+system_unlock_transact | system | Unlock: NO DOOR THERE!; Transact with nobody: FUNNY, NO RESPONSE! | @start,u,w30,up,w40,t,w30,up,w40,!
+system_offer_steal | system | Offer gold: OFFER TO WHOM?; Steal north: NO LUCK! | @start,o,w30,up,w40,s,w30,up,w40,!
+system_jump_ignite | system | Jump: JUMP...WHEE...; Ignite torch on the surface does nothing | @start,j,w40,i,w90,!
+system_magic_ready | system | Magic: MAGIC SPELL READY #1 -> SPELL READY => LIGHT | @start,m,w30,1,w60,!
+system_ready_list | system | Ready weapon: 1-DA .. 9-QU list; 5 (sword): NOT OWNED! | @start,r,w30,5,w60,!
+system_wear_list | system | Wear armour: 1-CLOTH .. 6-POWER; 4 (plate): NOT OWNED! | @start,w,w30,4,w60,!
+system_yell | system | Yell: YELL WHAT? HELLO (the word is echoed, nothing answers) | @start,y,w30,h,e,l,l,o,enter,w30,!
+gameplay_village_1423 | gameplay | The village of 1423 B.C.: ryz at the south gate, villagers about | @village,w30,!
+dialogue_grendel | dialogue | Grendel the Bum says: Masters of riddle are masters indeed! | @village,POS:05:06,t,w30,up,w150,!
+dialogue_woodhead | dialogue | Robert Woodhead exclaims: Copy protect! Copy protect! | @village,POS:14:2F,t,w30,up,w150,!
+dialogue_nymph | dialogue | The chaste nubile nymph asks: Visit the Hotel California? | @village,POS:22:2A,t,w30,up,w150,!
+shop_food | shop | Alfreds Fish n Chips: THE FOOD HERE COSTS 0052 PER 100, WANT ONE? | @village,POS:30:12,poke:AABE=08,poke:8FDB=30,poke:8FFB=10,poke:AAC0=68,t,w30,up,w150,!
+shop_food_buy | shop | Yes: NO ONIONS AND TO GO PLEASE! Food 399 -> 499, gold 400 -> 348 | @village,POS:30:12,poke:AABE=08,poke:8FDB=30,poke:8FFB=10,poke:AAC0=68,t,w30,up,w150,y,w150,!
+system_cleric_refused | system | Holy Spells to a fighter: RYZ YOU ARE NOT A CLERIC! | @village,POS:30:2E,poke:B2FE=08,poke:8FDC=30,poke:8FFC=30,poke:B2C0=68,t,w30,down,w150,!
+shop_cleric | shop | Holy Spells to a cleric: WELCOME BROTHER RYZ, six spells, YOUR INTEREST? | @village,poke:8ED7=01,POS:30:2E,poke:B2FE=08,poke:8FDC=30,poke:8FFC=30,poke:B2C0=68,t,w30,down,w150,!
+shop_cleric_buy | shop | FIVE LIGHTS FOR 0020, YES, FRIEND? Yes: I WILL TAKE 5! | @village,poke:8ED7=01,POS:30:2E,poke:B2FE=08,poke:8FDC=30,poke:8FFC=30,poke:B2C0=68,t,w30,down,w150,1,w150,y,w150,!
+system_wizard_refused | system | Wizardry to a fighter: RYZ YOU ARE NOT A WIZARD! | @village,POS:10:2E,poke:B2A2=08,poke:8FDD=10,poke:8FFD=30,poke:B2A0=68,t,w30,down,w150,!
+shop_wizard | shop | Wizardry to a wizard: RYZ MUSERREF OLDUM! Six spells, BIR IKI UC...? | @village,poke:8ED7=02,POS:10:2E,poke:B2A2=08,poke:8FDD=10,poke:8FFD=30,poke:B2A0=68,t,w30,down,w150,!
+shop_wizard_buy | shop | Five passwalls for 356 gold: LUTFEN EVET? YES - GULE GULE! (gold 44) | @village,poke:8ED7=02,POS:10:2E,poke:B2A2=08,poke:8FDD=10,poke:8FFD=30,poke:B2A0=68,t,w30,down,w150,4,w150,y,w150,!
+shop_oracle | shop | The oracle: TIME AND TRAVEL MADE ME WISE... HOW MUCH WILL YOU PAY *100? | @village,poke:8EE8=0912,POS:10:0E,,t,w30,down,w150,!
+shop_oracle_0 | shop | Pay nothing: ASK ME NO QUESTIONS, I'LL TELL YOU NO LIES. | @village,poke:8EE8=0912,POS:10:0E,,t,w30,down,w150,0,w200,!
+shop_oracle_1 | shop | 100 gold: THE QUEEN IS THE KING AND THE KING IS A SPY. | @village,poke:8EE8=0912,POS:10:0E,,t,w30,down,w150,1,w200,!
+shop_oracle_3 | shop | 300 gold: BUT DISPELLING MEANS THAT YOU MUST HAVE THE RING. | @village,poke:8EE8=0912,POS:10:0E,,t,w30,down,w150,3,w200,!
+shop_oracle_7 | shop | 700 gold: THERE IS AN OLD MAN LIVING UNDER A TREE. | @village,poke:8EE8=0912,POS:10:0E,,t,w30,down,w150,7,w200,!
+shop_oracle_poor | shop | 900 asked of a poorer ryz: YOU DONT HAVE THAT MUCH! | @village,poke:8EE8=0412,POS:10:0E,,t,w30,down,w150,9,w200,!
+gameplay_linda | gameplay | Towne Linda (1423 B.C.): the gate with the towne's name in the wall | @linda,w30,!
+shop_weapons | shop | The Weapons Shoppe: 1-DA .. 8-PH (dagger to phaser), YOUR INTEREST? | @linda,POS:0E:0A,t,w30,down,w150,!
+shop_weapons_price | shop | 5: AH! YES! A SWORD FOR YOU ONLY 0136 HOW 'BOUT IT? | @linda,POS:0E:0A,t,w30,down,w150,5,w150,!
+shop_weapons_sold | shop | A light sword for 356: SOLD! (gold 400 -> 44) | @linda,POS:0E:0A,t,w30,down,w150,7,w150,y,w150,!
+shop_weapons_no | shop | A mace declined: HOW 'BOUT IT? N - OH, WELL. | @linda,POS:0E:0A,t,w30,down,w150,2,w150,n,w150,!
+shop_weapons_poor | shop | A phaser asked with 400 gold: YOU DONT HAVE THAT MUCH! | @linda,POS:0E:0A,t,w30,down,w150,8,w150,y,w150,!
+shop_armour | shop | The Armoury: 1-CLOTH .. 6-POWER, YOUR INTEREST? | @linda,POS:31:0E,t,w30,up,w150,!
+shop_armour_sold | shop | Chain mail for 220 gold: SOLD! (gold 400 -> 180) | @linda,POS:31:0E,t,w30,up,w150,3,w150,y,w150,!
+shop_pub | shop | Pub de Varg: WELCOME TO THE PUB! 1-BUY, 2-TIP | @linda,POS:0D:31,poke:B35E=70,poke:8FCF=0D,poke:8FEF=33,poke:B35D=68,t,w30,down,w150,!
+shop_pub_buy | shop | 1-Buy (5 gold), and THE BARKEEP SAYS: ISN'T THIS A GREAT GAME? | @linda,POS:0D:31,poke:B35E=70,poke:8FCF=0D,poke:8FEF=33,poke:B35D=68,t,w30,down,w150,1,w60,!
+shop_pub_tip | shop | A tip of 5 gold: THE BARKEEP SAYS: AVIATORS USE SKULL KEYS! | @linda,POS:0D:31,poke:B35E=70,poke:8FCF=0D,poke:8FEF=33,poke:B35D=68,t,w30,down,w150,2,w150,5,w150,!
+shop_pub_tip_9 | shop | A tip of 9 gold: THE BARKEEP SAYS: ANKHS OPEN SPACE! | @linda,POS:0D:31,poke:B35E=70,poke:8FCF=0D,poke:8FEF=33,poke:B35D=68,t,w30,down,w150,2,w150,9,w150,!
+shop_transport | shop | Transport shoppe: I SELL YOU HORSE 0084 GOLD, DEAL, OK? | @linda,POS:33:35,poke:B381=70,poke:8FD0=33,poke:8FF0=33,poke:B383=68,t,w30,up,w150,!
+shop_transport_buy | shop | Deal: RIDE SWIFTLY! The horse waits in the shop (gold 316) | @linda,POS:33:35,poke:B381=70,poke:8FD0=33,poke:8FF0=33,poke:B383=68,t,w30,up,w150,y,w150,!
+dialogue_ithilian | dialogue | Ithilian the Wench calls: Make me an offer sailor! | @linda,POS:0A:30,t,w30,down,w150,!
+dialogue_john_mayer | dialogue | John Mayer orders: TAKE OUT THE TRASH!!! | @linda,POS:35:36,t,w30,down,w150,!
+dialogue_keith | dialogue | Keith says: No thanks, trying to cut down. | @linda,POS:06:06,t,w30,up,w150,!
+gameplay_castle_lb | gameplay | Lord British's castle (1423 B.C.): the pillared hall below the throne | @castle,POS:1F:12,w30,!
+dialogue_lord_british | dialogue | Lord British: FIRST MY 50 G.P. TRIBUTE! AND FOR IT I RAISE THEE 0300 | @lordbritish,w30,!
+dialogue_brother_antos | dialogue | Brother Antos ordains: Search the stars for my kin! | @castle,POS:2A:33,t,w30,right,w150,!
+dialogue_bishop_bob | dialogue | Bishop Bob preaches: Confess to Brother Antos! | @castle,POS:2E:2E,t,w30,right,w150,!
+dialogue_bard | dialogue | The wandering bard asks: Do you know the way to San Jose? | @castle,POS:21:33,t,w30,right,w150,!
+dialogue_guard | dialogue | A GUARD SAYS: PAY YOUR TAXES! (gate of Towne Linda) | @linda,POS:1E:3D,t,w30,left,w150,!
+dialogue_merchant | dialogue | A MERCHANT SAYS: WILL YOU BUY MY APPLES? | @linda,POS:1F:2E,poke:B373=08,poke:8FDD=1F,poke:8FFD=2F,poke:B26F=68,t,w30,down,w150,!
+dialogue_jester | dialogue | A JESTER SINGS: HO HO HO! | @village,POS:1B:06,t,w30,down,w150,!
+dialogue_fighter | dialogue | A FIGHTER SAYS: UGH, ME TOUGH! | @linda,POS:0A:09,poke:A898=70,poke:8FD7=0A,poke:8FF7=0A,poke:A91A=F0,t,w30,down,w150,!
+dialogue_cleric | dialogue | A CLERIC SAYS: BELIEVE! | @linda,POS:31:29,poke:B082=08,poke:8FE3=31,poke:9003=2A,poke:B141=F4,t,w30,down,w150,!
+dialogue_wizard | dialogue | A WIZARD SAYS: HEX-E-POO-HEX-ON-YOU! | @linda,POS:1F:18,t,w30,down,w150,!
+dialogue_thief | dialogue | A THIEF SAYS: PSST, WANNA BUY A WATCH? | @linda,POS:07:2E,t,w30,down,w150,!
+gameplay_dungeon_dark | gameplay | The 1423 B.C. dungeon without a torch: IT'S DARK! (nothing drawn) | @start,ENTER:19:05,w30,!
+gameplay_dungeon | gameplay | Torch lit: wireframe corridor east, the ladder up overhead (level 1) | @hero_dungeon,w30,!
+gameplay_dungeon_turn | gameplay | TURN LEFT: a side corridor, the ladder still overhead | @hero_dungeon,left,w60,!
+gameplay_dungeon_retreat | gameplay | TURN RIGHT, then RETREAT-BLOCKED! (a wall behind) | @hero_dungeon,right,w60,down,w60,!
+gameplay_dungeon_door | gameplay | A doorway ahead in a dungeon corridor | @hero_dungeon,poke:8E90=0905,space,w60,!
+gameplay_dungeon_chest | gameplay | A chest on the floor at the end of the corridor | @hero_dungeon,poke:8E90=0D01,space,w60,!
+system_chest_gold | system | Get on the chest square: GET CHEST! IT CONTAINS GOLD! (gold +7) | @hero_dungeon,poke:8E90=0E01,poke:8E92=0100,space,w60,up,w60,poke:90D0=00,poke:90D3=00,poke:90D4=7F,g,w90,!
+system_descend | system | D on a ladder down: DESCEND TO LEVEL 01 (levels count from 00) | @hero_dungeon,poke:8E90=0B0B,space,w60,d,w200,!
+system_klimb_out | system | K on the ladder of the top level: KLIMB back out to the surface | @hero_dungeon,k,w300,!
+battle_dungeon_1 | battle | Dungeon creature of the first kind two squares ahead (upper levels) | @hero_dungeon,poke:8FC8=07,poke:8FE8=05,poke:9008=30,poke:9028=01,poke:9048=00,poke:A6E7=01,space,w60,!
+battle_dungeon_3 | battle | A creature of the third kind (middle levels) | @hero_dungeon,poke:8FC8=07,poke:8FE8=05,poke:9008=30,poke:9028=03,poke:9048=00,poke:A6E7=03,space,w60,!
+battle_dungeon_5 | battle | A creature of the fifth kind | @hero_dungeon,poke:8FC8=07,poke:8FE8=05,poke:9008=30,poke:9028=05,poke:9048=00,poke:A6E7=05,space,w60,!
+battle_dungeon_7 | battle | A creature of the seventh kind, the deepest | @hero_dungeon,poke:8FC8=07,poke:8FE8=05,poke:9008=30,poke:9028=07,poke:9048=00,poke:A6E7=07,space,w60,!
+battle_dungeon_hit | battle | ATTACK--HIT! on the creature ahead; it strikes back (H.P. 3184 -> 3181) | @hero_dungeon,poke:8FC8=06,poke:8FE8=05,poke:9008=50,poke:9028=04,poke:9048=00,poke:A6E6=04,space,w60,poke:90D0=00,poke:90D3=00,poke:90D4=FF,a,w60,!
+battle_dungeon_kill | battle | KILLED--GOLD+11--EXP.+00: the creature is gone | @hero_dungeon,poke:8FC8=06,poke:8FE8=05,poke:9008=18,poke:9028=04,poke:9048=00,poke:A6E6=04,space,w60,poke:90D0=00,poke:90D3=00,poke:90D4=FF,a,w60,!
+system_trap | system | ARGH! A TRAP! ESCAPED! BY USE OF TOOLS! (torch out: IT'S DARK!) | @hero_dungeon,poke:8EB5=05,poke:8E90=0B0B,space,w60,poke:90D0=00,poke:90D3=00,poke:90D4=FF,up,w300,!
+gameover_dead | gameover | A trap without tools: RYZ IS DEAD! (all numbers zero, the game stops) | @dungeon,poke:8EB5=05,poke:8E90=0B0B,space,w60,poke:90D0=00,poke:90D3=00,poke:90D4=FF,up,w200,!
+gameplay_dungeon_level16 | gameplay | Level 16 (0F) of the dungeon: chests in the north-west rooms | @hero_dungeon,poke:8EB5=0F,poke:8E90=0403,poke:8E92=FF00,space,w60,!
+system_trilithium | system | A chest on level 16: IT CONTAINS TRI-LITHIUM! (rocket fuel) | @hero_dungeon,poke:8EB5=0F,poke:8E90=0403,poke:8E92=FF00,space,w60,up,w60,g,w90,!
+system_cast_light | system | With a wand: MAGIC 1, CAST-LIGHT lights the dark dungeon | @start,ENTER:19:05,poke:8F47=05,poke:8F67=01,right,w60,m,w30,1,w60,c,w100,!
+system_cast_passwall | system | CAST-PASSWALL: the wall ahead is gone, a new passage opens | @hero_dungeon,poke:8F47=050302040201030205,poke:8F67=01,left,w60,m,w30,4,w60,c,w100,!
+system_cast_magic_missile | system | CAST-MAGIC MISSILE at a creature: KILLED--GOLD+11--EXP.+06 | @hero_dungeon,poke:8F47=050302040201030205,poke:8F67=01,poke:8FC8=07,poke:8FE8=05,poke:9008=50,poke:9028=06,poke:9048=00,poke:A6E7=06,space,w60,m,w30,7,w60,c,w100,!
+system_cast_prayer | system | CAST-PRAYER: the creature ahead is KILLED (gold +17) | @hero_dungeon,poke:8F47=050302040201030205,poke:8F67=01,poke:8FC8=07,poke:8FE8=05,poke:9008=50,poke:9028=06,poke:9048=00,poke:A6E7=06,space,w60,m,w30,6,w60,c,w100,!
+system_cast_down_ladder | system | CAST-DOWN LADDER: TO LEVEL 01 without a ladder | @hero_dungeon,poke:8F47=050302040201030205,poke:8F67=01,m,w30,2,w60,c,w200,!
+system_cast_surface | system | CAST-SURFACE on tower level 4: straight back out by the tower | @hero,ENTER:18:28,i,w100,poke:8F47=050302040201030205,poke:8F67=01,poke:8EB5=03,space,w60,m,w30,5,w60,c,w300,!
+gameplay_tower | gameplay | Inside the tower of 1423 B.C.: corridor south, the ladder down out | @tower,right,w60,!
+system_tower_klimb | system | Towers go up: KLIMB TO LEVEL 01 from a ladder up | @hero,ENTER:18:28,i,w100,poke:8E90=0B0B,space,w60,k,w200,!
+inventory_ztats_late | inventory | Ztats of a level 20 ryz: light sword, reflect armour, items, 6 tri-lithium | @hero,z,w120,!
+hud_status | hud | Status panel of the late ryz: H.P. 3184, food, experience 2083 (level 20), gold | @hero,space,w40,!
+system_ready_weapon | system | Ready weapon 5: SWORD READY. | @hero,r,w30,5,w60,!
+system_wear_armour | system | Wear armour 3: CHAIN READY. | @hero,w,w30,3,w60,!
+system_agile_refused | system | A new ryz readies a light sword: THOU ART NOT AGILE ENOUGH TO WIELD! | @linda,POS:0E:0A,t,w30,down,w150,7,w150,y,w150,r,w30,7,w60,!
+system_strong_refused | system | Power armour on a weak ryz (Str 25): THOU ART NOT STRONG ENOUGH TO WEAR! | @start,poke:8EDB=25,poke:8F2C=01,w,w30,6,w60,!
+system_view_helm | system | View with the magical helm: VIEW WITH MAGICAL HELM! The whole Earth | @hero,v,w120,!
+system_negate_time | system | Negate time with a strange coin: YOU RUB A COIN... (monsters stop) | @hero,n,w60,!
+system_unlock | system | Unlock west with a key: a jail cell door in Lord British's castle opens | @hero,ENTER:23:16,POS:0F:2B,u,w30,left,w60,!
+system_unlock_nokeys | system | The same door without keys: NO KEYS THAT FIT! | @hero,poke:8EF5=00,ENTER:23:16,POS:0F:2B,u,w30,left,w60,!
+system_steal | system | A thief steals across the weapons counter: STEAL WEAPONS! | @hero,poke:8ED7=03,ENTER:24:1D,POS:0E:0A,poke:90D0=00,poke:90D3=00,poke:90D4=FF,s,w30,down,w60,!
+system_offer_thanks | system | 100 gold offered to a guard: THANK YOU VERY MUCH! (nothing in return) | @hero,ENTER:24:1D,POS:1E:3D,o,w30,left,w30,1,w60,!
+battle_land_monsters | battle | Seven kinds of land monsters close in on ryz in the woods | @hero,poke:8FC8=11,poke:8FE8=11,poke:9008=20,poke:9028=30,poke:9048=08,poke:9068=03,poke:AAE1=30,poke:8FC9=14,poke:8FE9=11,poke:9009=30,poke:9029=FC,poke:9049=00,poke:9069=03,poke:AAE4=FC,poke:8FCA=17,poke:8FEA=11,poke:900A=40,poke:902A=34,poke:904A=08,poke:906A=03,poke:AAE7=34,poke:8FCB=11,poke:8FEB=14,poke:900B=70,poke:902B=F0,poke:904B=0C,poke:906B=03,poke:ABA1=F0,poke:8FCC=11,poke:8FEC=17,poke:900C=B0,poke:902C=38,poke:904C=0C,poke:906C=03,poke:AC61=38,poke:8FCD=14,poke:8FED=17,poke:900D=D0,poke:902D=F8,poke:904D=0C,poke:906D=03,poke:AC64=F8,poke:8FCE=17,poke:8FEE=12,poke:900E=F0,poke:902E=3C,poke:904E=08,poke:906E=03,poke:AB27=3C,space,w60,!
+battle_devil | battle | A devil steps out of the woods beside ryz | @fight,w20,!
+battle_hit_kill | battle | ATTACK--WEST--HIT!!! KILLED--GOLD+03--EXP.+04 | @fight,a,w30,left,w120,!
+battle_miss | battle | After the kill, a second blow at the empty square: ATTACK--WEST--MISS | @fight,a,w30,left,w60,a,w30,left,w120,!
+battle_legs_boots | battle | LEGS PARALIZED! SAVED BY MAGICAL BOOTS! (a paralyser two squares away) | @hero,poke:8FC8=12,poke:8FE8=13,poke:9008=F0,poke:9028=34,poke:9048=0C,poke:9068=03,poke:AB62=34,space,w40,space,w40,space,w40,space,w40,space,w40,space,w40,space,w40,!
+battle_arms_cloak | battle | ARMS PARALIZED! SAVED BY MAGICAL CLOAK (the hooded figure) | @hero,poke:8FC8=12,poke:8FE8=13,poke:9008=F0,poke:9028=38,poke:9048=0C,poke:9068=03,poke:AB62=38,space,w40,space,w40,space,w40,space,w40,space,w40,space,w40,space,w40,!
+battle_magic_missile | battle | A wizard's MAGIC MISSILE! H.P. 3184 -> 3070 | @hero,poke:8FC8=12,poke:8FE8=13,poke:9008=F0,poke:9028=F8,poke:9048=0C,poke:9068=03,poke:AB62=F8,space,w40,space,w40,space,w40,space,w40,space,w40,space,w40,space,w40,!
+battle_sleep_idol | battle | A daemon's SLEEP SPELL! SAVED BY IDOL! | @hero,poke:8FC8=12,poke:8FE8=13,poke:9008=F0,poke:9028=3C,poke:9048=0C,poke:9068=03,poke:AB62=3C,space,w40,space,w40,space,w40,space,w40,space,w40,space,w40,space,w40,!
+battle_thief_stole | battle | A thief beside ryz: A THIEF STOLE SOMETHING! | @hero,poke:8FC8=12,poke:8FE8=13,poke:9008=F0,poke:9028=FC,poke:9048=0C,poke:9068=03,poke:AB62=FC,space,w40,space,w40,space,w40,!
+system_time_door | system | A time door (barred gate) has wandered next to ryz in 1423 B.C. | @door,w20,!
+gameplay_legends_islet | gameplay | Through the door: the walled islet of the Time of Legends, with its sign | @legends_arrive,w20,!
+system_sign_legends | system | THE SIGN READS: ANOS: LEGENDS! | @legends,POS:20:36,e,w90,!
+gameplay_surface_pangea | gameplay | Pangea, 9,000,000 B.C.: one supercontinent of grass, woods and hills | @pangea,w30,!
+system_sign_pangea | system | THE SIGN READS: ANOS: 9,000,000 B.C. | @pangea,POS:21:3A,e,w90,!
+system_sign_1990 | system | The same sign square in 1990: ANOS: 1990 A.D. | @y1990,POS:3A:33,e,w90,!
+system_sign_2112 | system | And in the Aftermath: ANOS: 2112 A.D. | @y2112,POS:3A:33,e,w90,!
+gameplay_village_pangea | gameplay | The village of Pangea, guarded gate | @pangea,ENTER:14:37,w30,!
+dialogue_astronaut | dialogue | In Pangea an astronaut claims: There is a planet 'X'! | @pangea,ENTER:14:37,POS:3A:1F,t,w30,right,w150,!
+dialogue_astronaut_2 | dialogue | Another astronaut claims: Father Antos lives on 'X' | @pangea,ENTER:14:37,POS:3A:20,t,w30,right,w150,!
+dialogue_phylosopher | dialogue | The Phylosopher theorizes: She's GOT to be at 9-9-9! | @pangea,ENTER:14:37,POS:33:12,t,w30,right,w150,!
+gameplay_port_bonifice | gameplay | Port Bonifice, the village of 1990 A.D. | @y1990,ENTER:22:14,w30,!
+dialogue_sightless_sage | dialogue | The Sightless Sage says: Find the Father Earn the Ring! | @y1990,ENTER:22:14,POS:14:2F,t,w30,right,w150,!
+system_king_1990 | system | Lord British in 1990: 50 gold buys +300 H.P. even at 3184 (3484 now) | @y1990,ENTER:23:16,KING,!
+dialogue_brother_antos_1990 | dialogue | Brother Antos in 1990 inquires: Have you found my father? | @y1990,ENTER:23:16,POS:2A:33,t,w30,right,w150,!
+dialogue_balron | dialogue | The subdued balron whimpers: Lithium packs the 16th level! | @y1990,ENTER:23:16,POS:14:34,t,w30,right,w150,!
+dialogue_merchant_tribute | dialogue | The merchant orders: Give the King a tribute! | @y1990,ENTER:23:16,POS:1A:11,t,w30,right,w150,!
+gameplay_pirates_harbour | gameplay | 2112 A.D.: Pirates Harbour, the village of the Aftermath | @y2112,ENTER:2C:0E,w30,!
+gameplay_launch_site | gameplay | CCCP TEST LAUNCH: three rockets on their pads and the control house | @y2112,ENTER:2C:0E,POS:26:05,w30,!
+dialogue_village_idiot | dialogue | The Village Idiot suggests: Offer the hotel clerc gold! | @y2112,ENTER:2C:0E,POS:17:06,t,w30,right,w150,!
+dialogue_red_pirate | dialogue | Red the Pirate boasts: I've a broken Ultima ]I[, want one? | @y2112,ENTER:2C:0E,POS:18:0E,t,w30,right,w150,!
+battle_sea_monsters | battle | On the water: a sea serpent and a pirate frigate beside ryz | @hero,poke:8FC8=17,poke:8FE8=14,poke:9008=40,poke:9028=2C,poke:9048=00,poke:9068=03,poke:ABA7=2C,poke:8FC9=16,poke:8FE9=15,poke:9009=A0,poke:9029=48,poke:9049=00,poke:9069=03,poke:ABE6=48,space,w60,!
+system_board_horse | system | New San Antonio's stable: BOARD HORSE | @y1990,ENTER:0F:1A,POS:3A:34,b,w60,!
+gameplay_horse | gameplay | Riding the horse west through the 1423 B.C. woods | @hero,poke:8EA3=22,POS:13:12,left,w40,left,w40,!
+system_board_frigate | system | Pirates Cove: BOARD FRIGATE (ryz carries a blue tassle) | @y2112,ENTER:2C:0E,POS:22:0E,b,w60,!
+system_frigate_refused | system | No blue tassle: THE CREW OF THIS SHIP WILL NOT LET YOU BOARD! | @y2112,poke:8F72=00,ENTER:2C:0E,POS:22:0E,b,w60,!
+gameplay_frigate | gameplay | Under sail on the 1423 B.C. sea | @hero,poke:8EA3=24,POS:15:14,right,w40,!
+battle_frigate_cannon | battle | Cannons: FIRE DIRECT-EAST, a miss, then the serpent KILLED | @hero,poke:8EA3=24,POS:15:14,poke:8FC8=18,poke:8FE8=14,poke:9008=30,poke:9028=2C,poke:9048=00,poke:9068=03,poke:ABA8=2C,space,w40,f,w30,right,w60,f,w30,right,w100,!
+system_frigate_shore | system | A frigate cannot go ashore: WEST--INVALID MOVE! | @hero,poke:8EA3=24,POS:15:14,left,w40,!
+system_board_plane | system | The airfield of Pirates Harbour: BOARD PLANE (skull key) | @y2112,ENTER:2C:0E,POS:09:09,b,w60,!
+system_plane_refused | system | Without a skull key: STRANGE YOU CAN'T GET IN! | @y2112,poke:8F6F=00,ENTER:2C:0E,POS:09:09,b,w60,!
+system_plane_no_button | system | Launch without a brass button: FUNNY THIS PLANE IS MISSING A BRASS BUTTON! | @y2112,poke:8F71=00,ENTER:2C:0E,POS:09:09,b,w60,l,w200,!
+gameplay_plane | gameplay | LAUNCH--PLANE: flying over the 2112 coast, steered SOUTH then WEST | @y2112,ENTER:2C:0E,POS:09:09,b,w60,l,w200,l,w30,down,w100,left,w150,!
+system_plane_land_refused | system | L over hills: LAND--NOT HERE!!!!! (planes land on grass only) | @y2112,ENTER:2C:0E,POS:09:09,b,w60,l,w200,l,w30,down,w100,left,w150,l,w60,!
+system_plane_landed | system | L over grass: LAND PLANE. | @y2112,ENTER:2C:0E,POS:09:09,b,w60,l,w200,l,w30,down,w100,left,w50,l,w80,!
+system_rocket_no_ankh | system | Board a rocket: A METALIC VOICE COMMANDS: YOU MUST HAVE AN ANKH! | @y2112,poke:8F6D=00,ENTER:2C:0E,POS:21:03,b,w60,!
+gameplay_new_san_antonio | gameplay | New San Antonio (1990 A.D.): the towne gate | @nsa,w30,!
+dialogue_santre | dialogue | In the jail: Santre the Swashbuckler warns: Beware, I've a quick blade! | @nsa,POS:36:06,t,w30,left,w150,!
+system_enilno | system | 500 gold offered to Santre: ENILNO IS YOURS! (the quicksword) | @enilno,w20,!
+system_ready_quicksword | system | Ready 9 with Agility 71: QUICK SWORD READY. | @enilno,r,w30,9,w60,!
+dialogue_old_man | dialogue | Under A TREE: An old man mumbles: I'm an old man. | @nsa,POS:1A:02,t,w30,left,w150,!
+system_earn_ring | system | 500 gold to the old man before the blessing: EARN THE RING! (gold kept) | @earn_ring,w20,!
+dialogue_flopy_fighter | dialogue | At Own Risk: The Flopy Fighter brags: I own one of everything! | @nsa,POS:36:23,t,w30,right,w150,!
+system_flopy_gift | system | 100 gold to the Flopy Fighter: HERE TAKE THIS! (a phaser this time) | @nsa,POS:36:23,o,w30,right,w30,1,w150,!
+dialogue_hotel_clerk | dialogue | The Hotel: A clerk states: Welcome to the Hotel California! | @nsa,POS:0B:39,t,w30,left,w150,!
+system_alakazam | system | 200 gold to the clerk: ALAKAZAM! (Agility 71 -> 79; rare, 6 in 256) | @nsa,POS:0B:39,o,w30,left,w30,poke:90D0=00,poke:90D3=00,poke:90D4=00,2,w150,!
+gameplay_rocket | gameplay | CCCP Test Launch: BOARD ROCKET (ankh, reflect armour, tri-lithium) | @rocket,w20,!
+system_launch_no_fuel | system | No tri-lithium: A METALLIC VOICE SAYS: SHIP INCAPABLE OF LAUNCH! | @rocket,poke:8F75=00,l,w200,!
+system_exploded | system | Launched in chain mail: YOU HAVE EXPLODED! (the game ends) | @rocket,poke:8EF2=02,l,w600,!
+cutscene_launch | cutscene | Launch: the star tunnel of HYPERWARP ENGAGED! up to orbit | @rocket,l,w150,!
+gameplay_space_earth | gameplay | YOU ARE ORBITING EARTH. Panel: FUEL, XENO, YAKO, ZABO | @space,w20,!
+system_space_climb | system | Space controls: CLIMB (also LEFT, RIGHT, DIVE) shift the star field | @space,up,w60,!
+system_hyperwarp_prompt | system | H: HYPERWARP TO: XENO=9 YAKO=9 ZABO=9, PREPARE FOR HYPERWARP! | @space,h,w60,9,w30,9,w30,9,w30,!
+system_hyperwarp | system | HYPERWARP ENGAGED! the star tunnel on the way to 9-9-9 | @space,h,w60,9,w30,9,w30,9,w300,!
+gameplay_orbit_x | gameplay | YOU ARE ORBITING X. (planet X at 9-9-9, fuel 4) | @space,h,w60,9,w30,9,w30,9,w700,!
+system_deep_space | system | 1-1-1: YOU ARE IN DEEP SPACE.; landing: REQUEST DENIED! | @space,WARP:1:1:1,l,w100,!
+system_sun | system | 4-4-4: YOU HIT THE SUN! (the game ends) | @space,WARP:4:4:4,!
+system_off_course | system | Three tri-lithium left after a jump: SHIP OFF COURSE! (7-1-1) | @space,poke:8F75=04,WARP:9:9:9,!
+system_no_fuel | system | H with no tri-lithium: NO FUEL! | @space,poke:8F75=00,h,w60,!
+system_landing | system | L in orbit: LANDING REQUESTED! The rocket drifts over X (PRESS ANY KEY) | @orbit_x,l,w100,!
+gameplay_planet_x | gameplay | Landed on X: the rocket on grass beside Ozys Place | @landed_x,w20,!
+gameplay_ozys_place | gameplay | Ozys Place, the castle of planet X | @ozys,w20,!
+dialogue_father_antos | dialogue | Father Antos: You have earned my blessing. Return and claim the Ring! | @blessing,w20,!
+dialogue_queen_susan | dialogue | Castle Barataria: Queen Susan says: Father Antos awaits you! | @ozys,POS:20:07,t,w30,up,w150,!
+dialogue_sing_lee | dialogue | Ozys Place kitchen: Sing Lee the cook yells: Kichen clost, com bac lato! | @ozys,POS:02:35,t,w30,left,w150,!
+gameplay_towne_basro | gameplay | Towne Basro, the towne of planet X | @landed_x,x,w60,ENTER:08:1F,w30,!
+dialogue_ugly_irving | dialogue | Towne Basro: Ugly Irving states: No mages allowed! | @landed_x,x,w60,ENTER:08:1F,POS:0A:2D,t,w30,right,w150,!
+dialogue_warrior_x | dialogue | An experienced warrior says: Find Antos, earn the Ring! | @landed_x,x,w60,ENTER:08:1F,POS:06:08,t,w30,right,w150,!
+gameplay_mercury | gameplay | Mercury (5-4-5): landed in a crater ring, its dungeon nearby | @space,WARP:5:4:5,l,w300,TOUCH:2A:0C,x,w60,!
+gameplay_venus | gameplay | Venus (3-3-4): marshes and seas, no place to enter | @space,WARP:3:3:4,l,w300,TOUCH:20:1E,x,w60,!
+gameplay_mars | gameplay | Mars (6-2-3): mountains, the rocket beside Towne Mary | @space,WARP:6:2:3,l,w300,TOUCH:20:1E,x,w60,!
+gameplay_towne_mary | gameplay | Towne Mary on Mars | @space,WARP:6:2:3,l,w300,TOUCH:20:1E,x,w60,ENTER:20:20,w30,!
+dialogue_marlin_perkins | dialogue | Towne Mary: Marlin Perkins threatens: Go in and I'll zap you! | @space,WARP:6:2:3,l,w300,TOUCH:20:1E,x,w60,ENTER:20:20,POS:32:34,t,w30,right,w150,!
+gameplay_jupiter | gameplay | Jupiter (1-3-4): the village, a tower and a dungeon in the woods | @space,WARP:1:3:4,l,w300,TOUCH:09:07,x,w60,!
+dialogue_jocker | dialogue | Jupiter's village: The Jocker laughs: You're half way there! | @space,WARP:1:3:4,l,w300,TOUCH:09:07,x,w60,ENTER:08:08,POS:32:1A,t,w30,right,w150,!
+gameplay_saturn | gameplay | Saturn (2-8-5): woods and water, nothing to enter | @space,WARP:2:8:5,l,w300,TOUCH:20:1E,x,w60,!
+gameplay_uranus | gameplay | Uranus (9-4-6): the village New Jester among the woods | @space,WARP:9:4:6,l,w300,TOUCH:1B:25,x,w60,!
+gameplay_new_jester | gameplay | New Jester, the village of Uranus, jesters at the gate | @space,WARP:9:4:6,l,w300,TOUCH:1B:25,x,w60,ENTER:1B:27,w30,!
+gameplay_neptune | gameplay | Neptune (4-0-5): grass everywhere, a lake by the village | @space,WARP:4:0:5,l,w300,TOUCH:1F:1A,x,w60,!
+gameplay_computer_camp | gameplay | Computer Camp, the village of Neptune | @space,WARP:4:0:5,l,w300,TOUCH:1F:1A,x,w60,ENTER:1F:1F,w30,!
+dialogue_richard_garriott | dialogue | Computer Camp: Richard Garriott promises: Tomorrow--for sure! | @space,WARP:4:0:5,l,w300,TOUCH:1F:1A,x,w60,ENTER:1F:1F,POS:18:2B,t,w30,right,w150,!
+gameplay_pluto | gameplay | Pluto (0-1-4): mountains and woods, the rocket beside Towne Marler | @space,WARP:0:1:4,l,w300,TOUCH:25:1F,x,w60,!
+gameplay_towne_marler | gameplay | Towne Marler on Pluto | @space,WARP:0:1:4,l,w300,TOUCH:25:1F,x,w60,ENTER:26:20,w30,!
+dialogue_seaworthy_pirate | dialogue | Adams Pub: The Seaworthy Pirate says: See the clerk in New San. | @space,WARP:0:1:4,l,w300,TOUCH:25:1F,x,w60,ENTER:26:20,POS:06:38,t,w30,right,w150,!
+dialogue_big_bouncer | dialogue | Towne Marler: The Big Bouncer stalls: Where the hell is your I.D.? | @space,WARP:0:1:4,l,w300,TOUCH:25:1F,x,w60,ENTER:26:20,POS:0D:31,t,w30,right,w150,!
+gameplay_earth_2112 | gameplay | Back to Earth: landings always end in 2112 A.D., ryz beside the rocket | @earth_2112,w20,!
+system_ring | system | With the blessing the old man takes 500 gold: THE RING IS YOURS! | @ring,w20,!
+gameplay_legends_army | gameplay | Legends: Shadow Guard in its ring of mountains, an army of monsters outside | @ring,LEAVE,TIME:00,POS:20:24,w30,!
+gameplay_shadow_guard | gameplay | Shadow Guard: the gate behind a force field (magenta bars) | @shadowguard,w20,!
+system_field_ring | system | North through the field with the ring: RING PROTECTS FROM FIELD! | @field,w20,!
+system_field_damage | system | Without the ring: FIELD CAUSES 1000 DAMAGE! twice (H.P. 3184 -> 1184) | @shadowguard,poke:8F66=00,up,w40,up,w40,up,w40,up,w60,!
+gameplay_vehicle_hall | gameplay | Inside Shadow Guard: a hall with a horse, a frigate, a plane and a rocket | @shadowguard,POS:25:16,w30,!
+dialogue_homer | dialogue | The Morgue: Homer the Salesman asks: Ya want some life insurance? | @shadowguard,POS:26:32,t,w30,right,w150,!
+boss_minax | boss | Chamber One: Minax beside ryz, two winged guardians: MINAX CRIES: DIE FOOL! | @minax,w20,!
+dialogue_minax | dialogue | Minax: A coward dies a thousand deaths, a hero only one... you lose!!! | @minax,t,w30,right,w150,!
+boss_minax_gone | boss | A quicksword hit (255 -> 213 H.P.): SHE'S GONE!!! Then SAVED BY IDOL! | @minax,w10,!,settle,a,w30,right,w200,!,settle
+boss_chamber_two | boss | Chamber Two: Minax beside ryz again, MINAX CRIES: DIE FOOL! | @mx1,POS:04:3C,w20,!,settle
+ending_minax_dead | ending | Seven quicksword hits later: MINAX IS DEAD!! ALL HER WORKS SHALL DIE! | @mx1,POS:04:3C,w20,!,settle,POS:04:3C,a,w30,left,w200,!,settle,POS:3B:03,a,w30,right,w200,!,settle,POS:3B:03,a,w30,right,w200,!,settle,POS:04:3C,a,w30,left,w200,!,settle,POS:04:3C,a,w30,left,w200,!,settle,POS:3B:03,a,w30,right,w200,!,settle,POS:04:3C,a,w30,left,w200,!,settle,POS:3B:03,a,w30,right,w200,!,settle
+ending_crumble | ending | ALL HER WORKS SHALL DIE: Shadow Guard breaks apart square by square | @minax_honest,w400,!,settle
+ending_text | ending | YOU HAVE SAVED THE UNIVERSE, AND COMPLETED ULTIMA ][! ... rocket over 1990 | @minax_honest,w400,!,settle,w1500,!,settle

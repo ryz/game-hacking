@@ -117,9 +117,11 @@ Facts from the code and the map/talk files, checked in play where marked.
   GOLD, A CLUE IT BUYS! HOW MUCH WILL YOU PAY *100?" ROM text), NE food ("THE FOOD HERE COSTS .. PER 100"), SE
   cleric spells (clerics only: "RYZ YOU ARE NOT A CLERIC!" verified), SW wizard spells (wizards only, verified).
   Counter squares: `tools/u2shops.py` (scan; some hits are scenery, check in play).
-- **Lord British** (castle of 1423 B.C., throne at (1F,0D)): Transact from (1F,0E): "WELCOME MY CHILD RYZ, FIRST
-  MY 50 G.P. TRIBUTE! AND FOR IT I RAISE THEE 0300" (verified: H.P. 400 -> 700, gold -50); the raise is 300
-  below 500 H.P., 200 below 750, 100 below 1,000, none above (code).
+- **Lord British** (castle of 1423 B.C. and of 1990, throne at (1F,0D)): Transact from (1F,0E): "WELCOME MY CHILD
+  RYZ, FIRST MY 50 G.P. TRIBUTE! AND FOR IT I RAISE THEE 0300" (verified: H.P. 400 -> 700, gold -50);
+  ~~the raise is 300 below 500 H.P., 200 below 750, 100 below 1,000~~ the test reads the high BCD byte of H.P.:
+  +300 below 5000, +200 below 7500, +100 below 9900, none above (code; verified 3184 -> 3484 in 1990, capture
+  2026-11-19).
 - **Quest chain to the ending** (code + verified with the late character):
   1. **Enilno, the quicksword**: Offer 500 gold (`o`, direction, `5`) to Santre the Swashbuckler (jail of New
      San Antonio, 1990 A.D., cell at (35,06); stand at (36,06)): "ENILNO IS YOURS!" (verified, `enilno`).
@@ -169,6 +171,9 @@ Facts from the code and the map/talk files, checked in play where marked.
   (inferred from the 4,096-byte maps).
 
 ## Shot plan
+**Done 2026-11-19 (capture):** set `main`, 226 shots from power-on to the ending, all plan groups covered; the
+finished list is `shots.txt` (game order). Not captured: see the end of this section.
+
 Planned main set (scout 2026-11-19): about 120 shots in game order, routes for those with checkpoints are in
 `shots.txt` (plan lines are comments with the route to use). Categories: boot 2, title 1, menu 6, cutscene 6,
 gameplay ~30, hud 1, system ~35, map 2, inventory 3, dialogue ~12, shop ~8, battle ~8, boss 6, gameover 1,
@@ -195,6 +200,44 @@ save 1, ending 3. Every command letter gets one shot (prompt or result). How to 
   towns, planet X town).
 - Endgame: `shadowguard`, `field` (and the 1,000-damage variant), `minax`, a real hit + "SHE'S GONE!!!" +
   Chamber Two (`SWING`), "SAVED BY IDOL!", `minax_dead`, the crumbling castle, `ending`.
+
+- Not captured (with reason): Up ladder and Blink spells (both answered FAILED in their only try), Kill spell
+  (same frame as magic missile), a fleeing monster, natural monster loot, Uranus village talk (no named people in
+  its object list), selling (the game has none), the kings demonstration picture (file missing).
+
+## Capture notes (2026-11-19)
+How the set was made; reuse these before experimenting.
+- **Random numbers:** one lagged generator (code 0x5217): state DS:0x23F-0x244 = physical 90CF-90D4; output =
+  [240] + [243] + [244] + 1 with carries. `poke:90D0=00,poke:90D3=00,poke:90D4=FF` right before the deciding key
+  makes the next output 0 (a hit, a trap, a successful steal); `...90D4=00` makes it 1 (the clerk's ALAKAZAM on
+  Agility); `...90D4=7F` makes it 0x80 (a gold chest).
+- **Shops:** Transact needs a counter (7C or a letter tile 80+) in front and the merchant picture 68 on the square
+  behind it. Merchants wander: `tools/u2merch.py ROUTE OBJ X,Y` prints pokes that move the object (and its map
+  picture) to the square behind the counter; put them after `POS` (the pass redraws the view) and before `t`.
+- **Talk:** the named people (types 81-85) start on the squares `tools/u2town.py MAP` lists; `POS` beside them
+  and `t` + direction works in the first turns; `gen_talk`-style routes (POS, u2merch, t) for moving ones.
+- **Surface monsters:** `tools/u2mon.py ROUTE slot:x:y:pic:hp[:type]` writes object and map pokes with the right
+  tile under the monster. Pictures: 30 devil, FC thief, 34 hooded man (legs), 2C sea serpent, F0 fighter, 48
+  pirate frigate, 38 robed figure (arms), F8 wizard (magic missile), 3C winged daemon (sleep). With a monster at
+  (12,13) beside the late ryz at (14,14) the special attack fires on the 6th `space,w40` (shots `battle_*`).
+- **Dungeons:** all 16 levels are in RAM at A690 + level*256 + y*16 + x (00 floor, 80 wall, C0 door, E0 secret
+  door, 10 ladder up, 20 ladder down, 40 chest, 1-7 a creature). Level 8EB5, position 8E90, facing 8E92/93 can be
+  poked and a `space,w60` redraws. A creature = object (x, y, H.P., picture 1-7, under = level) plus its picture
+  number in the level map; without the map byte it is neither drawn nor hit. Dungeon creature slots: slot k sits
+  on level k/2. Tri-lithium chests: level 0F, (1-3,1), (1,2), (3,2), (1-3,3) in the 1423 B.C. dungeon.
+- **Vehicles:** the player picture byte 8EA3 = 22 horse, 24 frigate, 26 plane, 28 rocket; poking it on the
+  surface puts ryz in that vehicle (frigate shots). Vehicles stand in towns: horses New San Antonio (3A,32..3A),
+  frigates Pirates Cove (22,0C/0E/10) and Port Bonifice, planes Pirates Harbour (04..0B,09..0A), rockets (21/26/2B,03),
+  one of each in Shadow Guard (24..27,18). A launched plane leaves the town and lands; `l` again flies over the
+  surface, arrows steer, `l` lands on grass only (route of `system_plane_landed`).
+- **Planets:** grass landing squares beside the places: Mercury (2A,0C), Venus (20,1E), Mars (20,1E), Jupiter
+  (09,07), Saturn (20,1E), Uranus (1B,25), Neptune (1F,1A), Pluto (25,1F), X (0C,0D) / (09,1E); routes
+  `@space,WARP:x:y:z,l,w300,TOUCH:x:y,x,w60` (fuel 4 left, never off course).
+- **Minax honestly:** from `minax`, swing at her square (`a` + direction), read 8FE6/9006 before each swing and
+  go to the other chamber after every hit: 8 swings, 7 hits, ryz 3084 -> 600 H.P. (checkpoints `mx1`,
+  `minax_honest`, `ending_honest`).
+- **Unlock** works east/west only; the jail cells of Lord British's castle ((0E,27) (0E,2B) (0E,2F), stand east)
+  are reachable doors.
 
 ## Strategy and walkthrough notes
 - **Fastest route to the ending (verified, all checkpoints):** `hero` (late character by poke) -> `TIME:03`,
@@ -270,6 +313,10 @@ BCD = packed decimal, high byte first (the status panel shows the digits). The *
 | 8FC7 + i, 8FE7 + i, 9007 + i, 9027 + i, 9047 + i, 9067 + i | 32 each | objects (people, monsters) of the current map: x, y, hit points, picture, tile under, type (0 still, 1-3 movement, 81-85 named talker). Minax = object 31 | code, verified |
 | 90FA / 90FB / 90FC / 90FD | 1 each | turns left: time negated (coin), legs paralysed, arms paralysed, asleep | code |
 | 935A..935C | 1 each | hyperwarp target XENO, YAKO, ZABO | code |
+| 90CF..90D4 | 6 | random number state (code 0x5217); see Capture notes | code, verified |
+| 8EA3 | 1 | player picture / vehicle: 22 horse, 24 frigate, 26 plane, 28 rocket | code, verified |
+| 8F67 / 8F68 | 1 each | wand / staff (needed to cast) | code, verified |
+| 90FB..90FC (DS 26B/26C) | 1 each | turns of leg / arm paralysis left (0-15) | code |
 | A690 | 4096 | the current map (y*64 + x; tile = byte / 4: 0 water, 1 marsh, 2 grass, 3 woods, 4 mountains, 5 village, 6 towne, 7 tower, 8 castle, 9 dungeon, 10 sign; 11-14 horse, frigate, plane, rocket as map tiles 44/48/4C/50; door C0; in towns 70 floor, 78 wall, 7C counter, 68 merchant, A0 locked door, 5C force field) | code, verified |
 | 4218 | 40 | time-door table (CS:0x2798): period p, slot k at 4218 + 8p + 2k (x, y) | code, verified |
 | 8A92 / 8A9C / 8AA6 | 10 each | planet coordinates XENO / YAKO / ZABO (CS:0x7012) | code |
@@ -298,7 +345,9 @@ BCD = packed decimal, high byte first (the status panel shows the digits). The *
 `village`, `linda`, `castle`, `lordbritish`, `dungeon`, `tower` (torch lit); late character (`HERO`): `hero`,
 `fight` (devil beside ryz), `door` (time door visible), `legends_arrive`, `nsa`, `enilno`, `earn_ring`, `rocket`,
 `space`, `orbit_x`, `landed_x`, `ozys`, `blessing`, `earth_2112`, `ring`, `endgame` (save 02_endgame),
-`shadowguard`, `field`, `minax`, `minax_dead`, `ending`.
+`shadowguard`, `field`, `minax`, `minax_dead`, `ending`. Added by the capture: `hero_dungeon` (late ryz in the
+1423 B.C. dungeon, torch lit), `legends`, `pangea`, `y1990`, `y2112` (late ryz at (17,12) of each period),
+`mx1`, `minax_honest`, `ending_honest` (the honest Minax fight and its ending).
 
 ## Tools
 - `tools/try.py FILE [--frames K] [--peek ADDR:LEN] [--crop x0,y0,x1,y1] [--cols N]`: many routes in parallel, one
@@ -307,6 +356,9 @@ BCD = packed decimal, high byte first (the status panel shows the digits). The *
   saves after three cache hits vs the whole route.
 - `tools/u2map.py --list | --png DIR | --ascii NAME`: places and door squares of every surface, map pictures.
 - `tools/u2town.py MAP`: a town/castle map as characters with its people and their types.
+- `tools/u2objs.py ROUTE [X,Y]`: live objects after a route (+ the map bytes around X,Y).
+- `tools/u2merch.py ROUTE OBJ X,Y`: pokes that move a merchant or talker to a square (shops, talk).
+- `tools/u2mon.py ROUTE slot:x:y:pic:hp[:type] ...`: pokes that place surface or town monsters.
 - `tools/u2shops.py`: candidate counter squares for every shop (scan; verify in play).
 
 ## Sources
@@ -318,14 +370,16 @@ BCD = packed decimal, high byte first (the status panel shows the digits). The *
 | Unavailable | ultimacodex.com, wiki.ultimacodex.com, nerdlypleasures.blogspot.com, web.archive.org (outside the network); GameFAQs, TCRF, StrategyWiki (403, known) | | 2026-11-19 |
 
 ## Open questions
-- Monster creation on the surface: none appeared in 3,000 frames of standing still at the start (8EF0 and
-  movement probably matter); the plan pokes monsters.
-- Frigates, horses and planes in play (boarding, sailing, flying, "LAND PLANE", cannons) not tried; frigate and
-  plane squares are in Game structure (map tiles in MAPX31, MAPX32, MAPX41).
-- Shops for armour and weapons on Earth: New San Antonio's armour merchant is a walking person (works only
-  while he stands at his counter); full price lists not read.
-- The oracle's clues, food prices, spell prices, the hotel clerk's "ALAKAZAM!", the Flopy Fighter's weapon:
-  not tried.
-- Dungeon contents (chests, traps, monsters, level 16 tri-lithium), towers: only the entry squares seen.
-- Other planets' landings (Mercury .. Pluto): files exist (MAPG*), not visited.
-- Death: "RYZ IS DEAD!" seen (Minax); what follows (resurrection or game over) not followed.
+Settled by the capture (2026-11-19), details in Capture notes and design/:
+- ~~Monster creation~~: one try per turn on a random square of the whole map, nine kinds in a cycle (counter
+  8EF0), terrain must match: rare near the player (code + RAM).
+- ~~Frigates, horses, planes~~: all boarded, ridden, sailed, flown and landed; cannons fired.
+- ~~Shops~~: all eight kinds used; merchants placed by poke; prices follow Charisma + Intelligence (code).
+- ~~Oracle, food, spells, clerk, Flopy Fighter~~: all tried (poem verses, 52 per 100 food, ALAKAZAM is 6/256).
+- ~~Dungeon contents~~: map format, chests, traps, creatures and level 16 decoded and shown.
+- ~~Other planets~~: all eight landed, towns entered on Mars, Uranus, Neptune, Pluto, X.
+- ~~Death~~: the program loops forever after "RYZ IS DEAD!" (findings).
+Still open:
+- Natural monster loot (thief items, fighter torches/helms, guard keys) not seen on a poked kill.
+- Up ladder and Blink failed in their one try each; their conditions are not read.
+- No use found for the three gems.

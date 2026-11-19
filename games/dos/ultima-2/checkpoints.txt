@@ -31,3 +31,11 @@ minax | Shadow Guard, Chamber One: late ryz (quicksword readied, ring) beside Mi
 minax_dead | Shadow Guard: Minax's hit points poked to 20, one quicksword blow: 'MINAX IS DEAD!! ALL HER WORKS SHALL DIE!' | @minax,poke:9026=14,a,w30,right,w200
 ending | The ending: 'YOU HAVE SAVED THE UNIVERSE, AND COMPLETED ULTIMA ][! SEEK NOW TO CONQUER WICKED EXODUS...' over the scrolling 1990 world | @minax_dead,w1500
 endgame | 1990 A.D. surface outside New San Antonio (0F,1A): late ryz with Enilno, the ring and the blessing, saved with Q (save 02_endgame) | @ring,LEAVE,q,w300
+hero_dungeon | Late ryz in the 1423 B.C. dungeon, level 1 (0) at (5,5) facing east below the ladder up, torch lit (6 torches left) | @hero,ENTER:19:05,i,w100,settle
+legends | Late ryz on the Time of Legends surface at (17,12), brought by the TIME macro from 1423 B.C. | @hero,TIME:00,settle
+pangea | Late ryz on the Pangea (9,000,000 B.C.) surface at (17,12), brought by the TIME macro from 1423 B.C. | @hero,TIME:01,settle
+y1990 | Late ryz on the 1990 A.D. surface at (17,12), brought by the TIME macro from 1423 B.C. | @hero,TIME:03,settle
+y2112 | Late ryz on the 2112 A.D. (Aftermath) surface at (17,12), brought by the TIME macro from 1423 B.C. | @hero,TIME:04,settle
+mx1 | Minax fight: first hit, she is in Chamber Two at (03,3C), 213 hit points | @minax,w10,!,settle,a,w30,right,w200,!,settle
+minax_honest | Shadow Guard: Minax killed in an honest fight (8 swings, 7 hits) from mx1; the castle begins to crumble | @mx1,POS:04:3C,w20,!,settle,POS:04:3C,a,w30,left,w200,!,settle,POS:3B:03,a,w30,right,w200,!,settle,POS:3B:03,a,w30,right,w200,!,settle,POS:04:3C,a,w30,left,w200,!,settle,POS:04:3C,a,w30,left,w200,!,settle,POS:3B:03,a,w30,right,w200,!,settle,POS:04:3C,a,w30,left,w200,!,settle,POS:3B:03,a,w30,right,w200,!,settle
+ending_honest | The ending after the honest fight: the saved-the-universe text over the scrolling 1990 map | @minax_honest,w400,!,settle,w1500,!,settle

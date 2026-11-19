@@ -33,7 +33,9 @@ quicksword Enilno from a jailed swashbuckler, earn a priest's blessing on planet
 from force fields, and fight her as she jumps between two chambers (verified with pokes, see the playbook
 route). Progress is otherwise free: money from fights and thieves, hit points from Lord British, items from
 slain thieves, fighters, wizards and guards (code). One character, saved on the surface of Earth with Q
-(verified). The IBM release uses CGA four-colour graphics and 40-column text screens (verified).
+(verified). Death is final: the program stops at "RYZ IS DEAD!" and only the last save remains (verified).
+The capture of 2026-11-19 played the whole chain on screen, Minax included without pokes (set `main`, 226
+shots; the lenses index every one). The IBM release uses CGA four-colour graphics and 40-column text screens (verified).
 
 ## Documents
 | Document | Covers |
