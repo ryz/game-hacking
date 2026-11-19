@@ -15,7 +15,7 @@ session name (`--name dos-wizardry-3`).
 | Platform / model used | IBM PC, the PC booter (WIZ3.DSK boot sector "Wizardry for the IBM-PC", "(C) 1987 RWI, Inc.") run from disk images by a 1998 DOS loader; `game.json` model `ega-315` (8088 speed, as Wizardry I and II) |
 | Release (region, year) | Apple II 1983 (Wikipedia); this dump: the 1998 re-release (`wizar3/WIZ3.COM` 1998-09-01, `WIZ3.DSK` 1998-07-09, `SAVE3.DSK` 1998-09-09) plus a `run.bat` menu dated 2019 (not needed, below) and an empty `.ba1` marker named after Wizardry I (ignored) |
 | Developer / publisher | Sir-Tech Software (Wikipedia) |
-| Genre | First-person party RPG, the third scenario of Wizardry: descendants of the Wizardry I/II heroes climb six wireframe floors of a volcano; floors 2/4 admit no evil character, 3/5 no good one |
+| Genre | First-person party RPG, the third scenario of Wizardry: descendants of the Wizardry I/II heroes climb six wireframe floors of a volcano; floors 2/4 refuse a party with evil members and no good one, 3/5 any party with a good member |
 | Players / save system | 1 player; roster of 20 characters on the scenario disk image `SAVE3.DSK`, written while playing (verified); no character creation |
 | Dump | `rom/wizardry-3.zip`, SHA-1 in `game.json`; programs `wizar3/run.bat` (start menu entry 1) and `wizar3/WIZ3.COM` (entry 2) |
 
@@ -36,8 +36,9 @@ session name (`--name dos-wizardry-3`).
 
 ## Boot sequence
 Macros (all in `game.json`): `TITLE`, `CASTLE`, `IMPORT`, `LEGATE:letter:alignment`, `LEGATEALL`, `ADDPARTY`,
-`PARTY`, `RESUME`, `HALF2`, `MAZE`, `WARP:FF:XX:YY`, `WARP5:FF:XX:YY`, `VET`, `VET2`, `WIN`, `PARRY`. Every macro ran
-inside a checkpoint route rebuilt from power-on with an empty cache (see Checkpoints).
+`PARTY`, `RESUME`, `HALF2`, `MAZE`, `WARP:FF:XX:YY`, `WARP5:FF:XX:YY`, `VET`, `VET2`, `WIN`, `PARRY`, and (capture,
+2026-11-19) `GEAR`, `EQUIP`, `GEAR2`, `EQUIP2` (Shortcuts). Every scout macro ran inside a checkpoint route rebuilt
+from power-on with an empty cache (see Checkpoints).
 - **verified** Power-on: DOSBox Pure's start menu (RUN.BAT highlighted, WIZ3.COM below). `TITLE` =
   `w120,down,enter,w300`: logo, "Scenario #3 - The Legacy of Llylgamyn", a monster picture, "You cannot play without
   making a scenario disk! S)tart game M)ake scenario disk" (checkpoint `title`).
@@ -82,14 +83,16 @@ Wizardry I/II controls (those playbooks' tables) all apply; differences and chec
 | Context | Key | Action | Status |
 |---|---|---|---|
 | Title | `s` / `m` | start game / make scenario disk | s verified; m not tried |
-| Castle | `g` `a` `t` `b` `e` | Tavern, Inn, Temple, Boltac's, Edge of Town | g b e verified |
-| Tavern | `a` + letters, `r` + digit, digit, `d`, Enter | add ("* Bad alignment *" when good and evil would mix), remove, inspect, divvy, leave | a r digit verified |
+| Castle | `g` `a` `t` `b` `e` | Tavern, Inn, Temple, Boltac's, Edge of Town | all verified |
+| Inn | digit, then `a`-`e` (stables free, cot 10, economy 50, merchants 200, royal 500), Enter | rest; level-up page | verified |
+| Temple | letter (the roster in need), then the payer's digit, Enter | donation 100/level paralysis, 200 stoning, 250 death | verified |
+| Tavern | `a` + letters, `r` + digit, digit, `d`, Enter | add ("* Bad alignment *" when good and evil would mix), remove, inspect, divvy, leave. The add list holds only characters free to join (and only legated ones), lettered A, B ... in roster order; the letters stay fixed while adding (add RYZ CONDI EBO CUBI DEDDO MNZ to an empty party: `g,h,i,j,k,l`; with RYZ in the party CONDI is `g`) | verified |
 | Edge of Town | `t` `m` `c` `u` `l` | Training, Maze, Castle, Utilities, Leave game ("Thanks for playing Wizardry!") | all verified |
 | Utilities | `c` `m` `r`, Enter | change name, move characters (1 Proving Grounds / 2 Knight of Diamonds, letters, Enter; Esc quits), restart an "out" party; Enter leaves to the Castle | m verified |
 | Training | `i` `r`, Enter | inspect (letter -> L)egate I)nspect D)elete C)hange class A)lter password), roster list | i r, L)egate, I)nspect verified |
 | Boltac's | digit, `b` `s` `u` `i` `p`; stock `p` `b` `f` `s` | as Wizardry I; stock starts with short sword 30, broadsword 50, mace 60, staff 20, hand axe 30, battle axe 140, dagger 10, flail 300, round shield 40, heater shield 80, mage's robes 30 ... | b, p + digit, f verified |
 | Maze | `w` `a` `d`, `k`, `c`, `s`, `i`, `o` | as Wizardry II (command line "C)amp S)tatus I)nspect O)ff A-W-D K"); `k` goes through doors (one-way ones too) | w a d k c verified |
-| Camp / sheet | `1`-`6`, `r`, `e`, Enter; sheet `r` `t` `p` `s` `e` `d` `i` `u` | as Wizardry II; U)se on the crystals shows nothing (tried in camp) | inspect verified |
+| Camp / sheet | `1`-`6`, `r`, `e`, Enter; sheet `r` `t` `p` `s` `e` `d` `i` `u` | as Wizardry II; E)quip goes slot by slot (weapon, armour, shield, helm, gauntlets: `1` per slot when each holds one item) and then asks "Will you invoke the special power of your X (Y/N)?" for every carried item with a power, in pack order: **this is how the crystals are used**; U)se on them shows nothing | all verified (capture) |
 | Battle | `f` (+ group digit) `p` `s` `d` `u` `r` `t`, Enter | as Wizardry II ("Press Enter to fight, or T)ake back orders") | p, Enter verified |
 | Prompts | `y` / `n`, Enter | stairs, "Will you search (Y/N)?", chest menu (O)pen C)alfo L)eave alone I)nspect D)isarm) | verified |
 | Riddles | text + Enter | "What is your answer ?" | verified (wheel) |
@@ -107,13 +110,17 @@ guardian fights `w800` after the step, message pages `w150`-`w300`.
   | Floor | Admits (verified) | Ways up | Notes |
   |---|---|---|---|
   | 1 | anyone | (19,13) -> 2 (19,0); (19,14) -> 3 (2,2) | entrance (0,0) under the castle stairs; (18,13) L'kbreth's warning; lake squares (kind 5) with a beach and island (1,2)/(2,1); return stairs from 4 (7,7) and 5 (7,6) in the rock area; (19,15) teleport to the castle; large fixed-fight room (8-13, 8-19) |
-  | 2 | no evil member | (0,19) -> 4 (10,2); (10,8) -> 4 (13,13) | the Grand Wizard S.E.G. Po'le's house (dining room, wine cellar), the desk (7,1) with the Staff of Earth, riddle (4,19) AIR, password (7,11) ABDUL SENT YOU, fixed fights (3,1) and (11,19) |
+  | 2 | a party with a good member or without evil ones | (0,19) -> 4 (10,2); (10,8) -> 4 (13,13) | the Grand Wizard S.E.G. Po'le's house (dining room, wine cellar), the desk (7,1) with the Staff of Earth, riddle (4,19) AIR, password (7,11) ABDUL SENT YOU, fixed fights (3,1) and (11,19) |
   | 3 | no good member | (0,1) -> 5 (11,0) | the monk's chest (7,7), the murky pool (10,19), Abdul's taxi (18,19)/(19,0), graveyard warnings (16-17,16-17) |
-  | 4 | no evil member | (19,14) -> 6 (5,0) | **guardian (7,17): Living Legend / Delf with Gaunt Figures and Delf's Minions -> Crystal of Evil**; riddle (18,11) FIRE; Abdul (12,12) "Tell them Abdul sent you"; oily pool (10,5); traps "Look out!" along x=17-18; mostly dark |
+  | 4 | as floor 2 | (19,14) -> 6 (5,0) | **guardian (7,17): Living Legend / Delf with Gaunt Figures and Delf's Minions -> Crystal of Evil**; riddle (18,11) FIRE; Abdul (12,12) "Tell them Abdul sent you"; oily pool (10,5); traps "Look out!" along x=17-18; mostly dark |
   | 5 | no good member | (0,13) -> 6 (14,0) | **guardian (12,10): Soul Trappers (Hungry Monsters), Crusader Lords, Fighters -> Crystal of Good**; riddle (5,13) CHARIOT; Temple of the irascible Fung (19,9); Abdul's taxi (5000) and crystal sale (25000) (4,8)/(4,7); pits; anti-magic (6,14); mostly dark |
   | 6 | any party except an all-neutral one, and only carrying one of the four quest crystals/orb (items 1001-1004) | - | L'kbreth (8,3) "Farewell. May your way be easy."; three radiant statues (4,5) (12,2) (18,17); three "You have reached the statue" search squares (17,17) (13,2) (4,4); riddles (11,4) WHEEL and (19,17) DEATH; dragon room fight (9-10,4-5) group 77; (5,19) teleport to floor 1 (0,0) |
   A refused party sees "You are forbidden to enter here! Begone!!" and lands in the Castle (verified for good on 3
   and 5, evil on 2 and 4, every party without a crystal on 6, all-neutral with crystals on 6).
+  ~~Floors 2/4 refuse any party with an evil member~~ (capture 2026-11-19, poked alignments, `try.py`): floors 2/4
+  admit any party with at least one good member (1 good + 3 evil + 2 neutral entered both) and refuse a party
+  with evil members and no good one; floors 3/5 refuse any party with a good member (3 good + 1 evil refused);
+  all-neutral parties enter all four. The walkthrough's majority rule is wrong too.
 - **Alignment rules** (verified): the Tavern refuses to put good and evil together ("* Bad alignment *"); neutrals
   join either. The fork therefore needs two parties: our six (four good, RYZ and CUBI neutral) take floors 2 and 4;
   `HALF2` (RYZ, CUBI + the stock neutrals KLINDT ZETT VERPA GITTER, all neutral) takes 3 and 5 (all-neutral parties
@@ -140,10 +147,17 @@ guardian fights `w800` after the step, message pages `w150`-`w300`.
      roster outside the party until six are chosen, then the Castle (verified).
   5. Each chosen character gets the award "*" and 150,000 E.P.; the party's own records show no new award (verified:
      `roster.py` on `02_ending`). The orb becomes the empty item 1000 in its bearer's pack.
-  **Open:** how the Neutral Crystal is made in play. Tried without effect: the three radiant statues and L'kbreth
-  (8,3) with each crystal, both crystals, equipped, U)sed in camp, with good, evil, neutral and mixed (poked)
-  parties. The statue squares say "In one hand it holds a shining crystal sphere. The other hand is empty." The
-  route therefore pokes the Neutral Crystal (`statue`); see Open questions.
+  ~~**Open:** how the Neutral Crystal is made in play~~ **Solved (capture, 2026-11-19, verified, the walkthrough's
+  rule):** one character who is good or evil carries both crystals and E)quips (camp or sheet); after the
+  slots the game asks to invoke each crystal in pack order; N to the other one, Y to the crystal of his own
+  alignment: both crystals become the Neutral Crystal (no message; MNZ, good bishop, in `gneutral`; an evil CONDI
+  (poked) with the Crystal of Evil first did the same). Y to the other crystal: "Powers there be ... shall perish
+  in flame!" and the bearer is ASHES, crystals gone. A neutral bearer: "Power springs for both extremes ..." and
+  the crystals vanish (and 4 maximum HP); one crystal alone: "Nor good nor evil alone ..." and it vanishes.
+  The scout's U)se in camp never reaches the power. The set plays it: `gcrystal_good` (RYZ found the Crystal of
+  Good) -> `gcrystal_evil` (MNZ found the Crystal of Evil) -> camp, MNZ identifies, RYZ trades -> `gbearer` ->
+  `gneutral`. The scout's checkpoints with the poked crystal (`statue`, `orb`, `ending`, `stars`,
+  `after_ending`) stay in checkpoints.txt; the set uses the `g*` chain (Checkpoints).
 - **Message squares and riddles** (texts read in play by pointing a riddle square at each message number; list in
   `design/messages.md`): riddle answers AIR (floor 2), FIRE (floor 4), CHARIOT (floor 5), WHEEL and DEATH (floor 6);
   password ABDUL SENT YOU (floor 2); Abdul's taxi G2500 (floor 3) and C5000 (floor 5), crystal 25000 (floor 5).
@@ -152,56 +166,59 @@ guardian fights `w800` after the step, message pages `w150`-`w300`.
   decoded as broadsword -> Gold Medallion and Gold Medallion -> Holy Water, inferred from the statue rule).
 
 ## Shot plan
-Set `main`, to be captured by game-capture. Ids, category, what; routes start from the checkpoints named. About
-120 shots planned (counts by category at the end). Lines are in `shots.txt` as comments until shot.
-- Boot and front end: `title_screen` title (`@title`); `menu_make_scenario` (title `m`); loading/"Place duplicate
-  scenario diskette" frames (`@title,s,w100!`); `menu_castle_start` (`@start`).
-- Transfer and legacy (seq-legacy, the distinctive system): `menu_edge`, `menu_utilities`, `menu_move_scenario`
-  (1 Proving Grounds / 2 Knight of Diamonds), `menu_move_list`, `menu_move_marked`, `menu_move_moving`
-  (`sav:00_transfer,CASTLE,...` step by step), `menu_training`, `menu_training_list`, `inventory_ancestor_sheet`
-  (RYZ L12 ">G" before the rite), `menu_char_options` (L)egate ...), `dialogue_rite` ("The rite of passage ceremony
-  now begins"), `menu_alignment` (A/B/C), `menu_alignment_thief` (B/C only for CUBI), `inventory_descendant_sheet`
-  (RYZ L1 ">DG"), `menu_already_legacy` ("That character is already a legacy!", KLINDT), `menu_roster` (Training
-  R)oster), `menu_tavern_bad_alignment` ("* Bad alignment *").
-- Castle: `menu_tavern`, `menu_tavern_party`, `menu_inn`, `menu_temple`, `shop_boltac`, `shop_boltac_stock`
-  (2 pages), `shop_buy`, `inventory_sheet_gear` (castle), `hud_castle_party`.
-- Maze basics: `camp_menu`, `camp_equip`, `gameplay_maze_f1_start` (`@maze1`), `gameplay_wall`, `gameplay_door`,
-  `gameplay_status_off`, `gameplay_full_view`, `gameplay_inspect`, `gameplay_stairs_up` (floor 1 (19,13)),
-  `gameplay_one_moment` (floor 5 load).
-- Floors (one view each, compare views before snapping: wireframes repeat): `gameplay_f2`, `gameplay_f3`,
-  `gameplay_f4_dark`, `gameplay_f5`, `gameplay_f6`; `gameplay_forbidden` ("You are forbidden to enter here!
-  Begone!!", good party on the floor 3 stairs: `@start,WARP:01:13:0E,y,w100` + frames).
-- Message squares (one each, routes from `tools/survey.py` + `tools/try.py`, see Strategy):
-  floor 1 L'kbreth's warning (18,13), beach (1,2), water's edge, barracks (2,19), fortress and moat (1,17); floor 2
-  dining room (18,12), wine cellar (12,19), S.E.G. Po'le (2,1), desk (7,1) + "Will you search" + found Staff of
-  Earth, riddle AIR (4,19) question/answer, password woman (7,11); floor 3 "I'd turn back" (2,3), "another
-  direction" (3,2), monk (7,7), murky pool (10,19), Abdul's taxi (18,19), graveyard lines (16-17,16-17); floor 4 oily
-  liquid (10,5), Abdul (12,12), "Look out!" trap (17,1), riddle FIRE (18,11); floor 5 Temple of Fung (19,9), Abdul's
-  crystal offer (4,8, two pages), taxi 5000 (0,2), riddle CHARIOT (5,13); floor 6 radiant statue (4,5), L'kbreth
-  "Farewell" (8,3), riddles WHEEL (11,4) and DEATH (19,17).
-- Battles: `battle_f1_serpents` (`@battle`), 6-8 more random groups on floors 1-6 (warp onto fight zones, vary the
-  wait), `battle_spell` (S)pell with the veterans), `battle_result_xp`, `battle_chest` (`@chest`), `battle_chest_open`,
-  `battle_found_item`, `boss_guardian_good` (`@guard_good`), `boss_guardian_good_won` ("CUBI found: Crystal of
-  Evil", `@crystal_evil` frames), `boss_guardian_evil` (`@guard_evil`), `boss_guardian_evil_won`, `boss_dragon_room`
-  (floor 6 (9,4) group 77), `battle_xeno` (floor 6 (4,4) search fight).
-- Quest end (seq-orb, from `@floor6`): `inventory_crystals` (camp sheet with the Crystal of Evil and of Good),
-  `gameplay_f6_arrival`, `dialogue_statue_reached` (`@statue`), `dialogue_search`, `inventory_orb` (camp sheet with
-  the Orb of Earithin), `gameplay_teleport_home`, `ending_congratulations` (`@ending`), `ending_gods_praised`
-  (`@stars`), `ending_award_star` ("Award a star to KLINDT"), `menu_castle_after_ending` (`@after_ending`),
-  `inventory_star_sheet` (KLINDT with "*D" after the ending, Tavern/Training inspect from `@resume_end`).
-- Game over: `gameover_party_dead` (a level-1 party killed by the floor 4 guardian: `@start,WARP:04:07:12,
-  poke:DB6C=0200,a,w60,d,w60,w,w800` then let it fight), `menu_temple_dead`.
-- Items and content: `inventory_quest_items` (sheet with 1001-1008 poked in camp), one sheet per item family
-  (weapons, armour, magic items, curse: Orb of Mhuuzfes from (13,2)), `inventory_spellbook` (R)ead with the veterans).
-Counts (approximate): boot/title 3, menu 25, shop 4, gameplay 20, dialogue 30, battle 12, boss 6, inventory 10,
-ending 5, gameover 2, hud 1, map 0 (no automap; floor maps are in design/maps).
+Set `main` captured 2026-11-19 (game-capture): 228 shots from power-on to the stars, verified and published
+(`shots.txt`, `shots/main/`). Plan files were scratch (`work/cap/wizardry-3/plan/NN_*.txt`, joined in game order
+by `work/cap/wizardry-3/assemble.py` into the work `shots.txt`, previewed with `tools/try.py`, shot with
+`shoot.py --only`). How each area was reached:
+- Title, disk prompt, loading: `@title` + `w20` frames with `!` (15 and 24).
+- The import step by step: `sav:00_transfer,CASTLE,e,w120,u,w120,m,w200,2,w300`, letters, `enter` + `w20` x 1/2/4/6
+  (removing, insert, moving, "RYZ has been moved"). The legacy: `IMPORT,e,w120,t,w120` + `i,w120,g,w200` + `l`, `enter`.
+  "* Bad alignment *": a variant legacy with CUBI evil (`LEGATE:j:c`), then the Tavern adds CONDI (`h`) and CUBI (`i`).
+- Castle services with the geared veterans (`@gcastle`): Boltac's pages `b,w200` + `f,w200`; identify fails without
+  the gold, then `p` (pool) first; uncurse with a poked cursed Sallet-1 in CUBI's pack
+  (`poke:E0F6=0400,poke:E110=0100010001002504`). Inn: stables give RYZ a level; the cot with `@gcured` (HP down).
+  Temple: the real cures in the chain (`@ghome2` paralysis, `@ghome1` stoning); dead CONDI and ashed MNZ poked
+  (status `+0x28` = 5 / 6, HP `+0x86` = 0) then `e,w120,c,w120,t,w150`.
+- Camp: `@gcamp` (after `EQUIP`); sheets `N,w200`, books `r,w150,m|p,w150`, spells typed `s,w150,type:dumapic\n`.
+  Identify and trade from `@gcured` (MNZ identifies with `w5` before `i`: other waits gave "You don't have a clue!").
+- Maze views: `@gcastle,WARP:...` / `@gcastle2,WARP...` + `a,w60,d,w60`; `gameplay_f*` chosen after comparing views.
+- Message squares: `tools/survey.py F --after w400` lines with `@start` replaced by `@gcastle` (floors 1, 2, 4) or
+  `@gcastle2` (3, 5); riddle answers `enter,w200,type:X,w30`; searches `enter,w200,y` + `w20` frames.
+- Battles: fixed-fight squares from the survey; a full round from `@gbattle` (floor 1 (0,9), Garian Guards) with
+  `w40` timelines; random fights met while turning on floors 3 and 6.
+- Guardians and the quest: the `g*` chain (Checkpoints), frames by `w40` timelines (`try.py --frames`).
+- Death: statuses poked in the maze (`@gcamp,enter,w400,n,w200` + pokes, `c,w200`, Enter -> cemetery).
+Not captured: Abdul's crystal sale and coffer on floor 5 (4,7)/(4,8) (no open neighbour; probably his taxi's
+destination), the floor 6 dragon room fight (no fight when entered by the (10,3) door, once tried), M)ake scenario
+disk after Y, Utilities C)hange name and R)estart past their first screen, the Leave game frame (DOSBox Pure's
+overlay), level drain, a friendly group, R)un (the party's run in the Garian fight failed silently: no message).
 
 ## Strategy and walkthrough notes
 - Cataloguing: never grind. `VET` (our six) and `VET2` (the HALF2 party) make realistic veterans (levels 10-13,
   HP, E.P., spell books copied from Wizardry II, ages 24-25, small gold). They have no gear: buy at Boltac's with
   `poke` gold or poke packs (pack layout in the RAM map; item numbers from `design/items.md`) and E)quip in camp.
+- Gear: `GEAR` pokes a Boltac's outfit into the six packs (party order RYZ CONDI EBO CUBI DEDDO MNZ), `EQUIP`
+  wears it in the first camp (20 slot answers): AC 1 2 6 7 9 7 (`gcamp`). `GEAR2` + `EQUIP2` do the same for
+  KLINDT ZETT VERPA GITTER after `HALF2,VET2` (AC 3 9 4 5; RYZ and CUBI keep theirs).
+- Guardians with that gear (verified, capture): floor 5's men silence, paralyze and cast BADIAL; ZETT's MADALTO
+  killed the Crusader Lords in round 1, then `WIN` in round 2 (`gguard_evil_r2`). Floor 4: round 1 is a surprise
+  round (fight only); DEDDO's TILTOWAIT killed Delf in round 2, the Gaunt Figures stoned RYZ, CONDI and EBO in
+  rounds 2-3, `WIN` in round 4 (`gguard_good_r4`). The drops went to RYZ (Crystal of Good) and MNZ (Crystal of
+  Evil, unidentified). Fights differ with the waits: the same orders with `w40` steps instead of `w3000` gave
+  another battle (RYZ paralyzed, ZETT silenced).
 - Guardians: win with `WIN` (all four group counts to 0) during the orders + `PARRY`; the drop follows.
-- Critical path (verified, one poke): `@vet` -> floor 4 guardian (7,17) -> Crystal of Evil -> floor 4 (19,14) stairs
+- **The chain played for the set (capture, verified, two `WIN` pokes, no item pokes):** `gcastle` -> `HALF2,VET2,
+  GEAR2` -> floor 5 guardian -> Crystal of Good (RYZ) -> floor 5 (18,0) stairs down (door from (17,0)) -> floor 1
+  (0,1) -> (0,0) stairs -> Castle (paralyzed CUBI at the Temple, 1300) -> Tavern: the good six again -> floor 4
+  guardian -> Crystal of Evil (MNZ) -> floor 4 (7,1) stairs down (from (8,1)) -> floor 1 -> Castle (three stoned:
+  2400 + 2200 + 2400) -> camp: MNZ identifies, RYZ trades the Crystal of Good to MNZ -> MNZ E)quip, N, Y -> Neutral
+  Crystal -> floor 4 (19,15) by the WARP pokes, step south onto the stairs -> floor 6 (a random ghost fight and a
+  teleporter chest on the way) -> (19,18) south into the DEATH riddle -> door west to the radiant statue (18,17) ->
+  west to (17,17), search Y -> the orb (MNZ identifies it) -> L'kbreth (8,3) "Farewell" (door from (7,3)) -> (6,19)
+  `k` west -> floor 1 (0,0) -> Y -> Congratulations -> Y -> stars -> `gafter`.
+- On arrival by stairs, turning (`a`,`d`) shows the arrival square's stairs prompt again: answer `n` first.
+- Message boxes stay up until a key: press `enter` before position pokes, or the next key is eaten.
+- Old critical path (scout, one item poke): `@vet` -> floor 4 guardian (7,17) -> Crystal of Evil -> floor 4 (19,14) stairs
   up -> floor 6 -> poke the Neutral Crystal over the crystal -> (17,17) search Y -> Orb -> floor 6 (5,19) teleport
   (`k` west from (6,19)) -> floor 1 stairs Y -> Congratulations -> Y -> stars.
 - Message squares: arriving by `WARP` (stairs) does not trigger a square; step in from a neighbour: `WARP` next to
@@ -224,6 +241,7 @@ No naming: characters come from Wizardry II (RYZ CONDI EBO CUBI DEDDO MNZ, named
 | Second party | `HALF2` (Castle, our six formed): remove 6 5 3 2, add KLINDT ZETT VERPA GITTER | scout | verified |
 | Any item | pack count `+0x3A`, entries `+0x3C` (4 words: equipped, cursed, identified, item 1000+n) of a party record | scout | verified |
 | The orb | an orb (item 1001) in any pack + reaching the Castle = ending | scout | verified |
+| Gear | `GEAR` + `EQUIP` (first camp), `GEAR2` + `EQUIP2` (the neutral party) | capture | verified (sheets, AC) |
 | Read any message | poke a riddle square's AUX1 (both floor copies) to the number and AUX2 to 1, step in (`tools/msgdump.py`) | scout | verified |
 No downloadable saves or codes looked for beyond the sources below (the package ships ready disks).
 
@@ -233,6 +251,7 @@ No downloadable saves or codes looked for beyond the sources below (the package 
 | 00_transfer | only `WIZAR3/SAVE2.DSK` = Wizardry II `03_wizardry3_transfer`'s disk | `tools/transfer.py` | verified (`start`) |
 | 01_start | both disks after the import, the legacy and Leave game | `@edge,l,w600` + export | verified (`resume`) |
 | 02_ending | after the ending: the six as veterans, the stock six with stars | `@after_ending,e,w120,l,w600` + export | verified (`resume_end`, roster.py) |
+| 03_final | after the ending played with the Neutral Crystal made in play: the six veterans in Boltac's gear, the four stock neutrals geared, the stock six with stars | `@gafter,e,w120,l,w600` + export | verified (roster.py) |
 List them: `python3 games/dos/wizardry-3/tools/roster.py FILE`.
 
 ## RAM map (for `game.json` "ram" watches and pokes)
@@ -280,7 +299,21 @@ Roster on disk: SAVE3.DSK `1DE00` (SCENARIO.DATA at `1DA00`, its table of conten
 | `statue`, `orb` | floor 6 (17,17) "You have reached the statue." (Neutral Crystal poked); after Y: the Orb |
 | `ending`, `stars`, `after_ending` | Congratulations prompt; "The gods be praised" page; Castle after the stars |
 | `guard_evil`, `crystal_good` | floor 5 (12,10) guardian with the HALF2 veterans; "CUBI found: Crystal of Good" |
-Every checkpoint was rebuilt from an empty cache and compared with cache hits in fresh processes on 2026-11-19
+| `gcamp`, `gcastle` | the six veterans geared (`VET,GEAR` + `EQUIP` in the first camp); back in the Castle |
+| `gcamp2`, `gcastle2` | the neutral party (`HALF2,VET2,GEAR2` + `EQUIP2`) geared; in the Castle |
+| `gguard_evil`, `gguard_evil_r2`, `gcrystal_good` | floor 5 guardian: round 1 options, round 2 (CUBI paralyzed), after the `WIN` round ("RYZ found: Crystal of Good") |
+| `ghome2`, `greform` | Castle after the floor 5 trip; CUBI cured, the good six re-formed |
+| `gguard_good`, `gguard_good_r2`/`_r3`/`_r4`, `gcrystal_evil` | floor 4 guardian rounds 1-4; "MNZ found: Crystal of Evil" |
+| `ghome1`, `gcured` | Castle with three stoned; cured, party re-formed |
+| `gbearer`, `gneutral` | camp: MNZ holds both crystals; after the invoke: the Neutral Crystal |
+| `gfloor6` | floor 6 (5,0) with the Neutral Crystal |
+| `gf6_ghosts`, `gf6_ghosts_r2`, `gchest6`, `gloot6` | floor 6 (19,18) random fight, round 2, the chest, after the loot |
+| `gdeath`, `gstatue`, `gorb`, `gorbid` | DEATH answered; "You have reached the statue."; the orb; identified |
+| `gfarewell`, `ghomeorb`, `gending`, `gstars`, `gafter` | L'kbreth; floor 1 after the teleport; Congratulations; the Queen; Castle after the stars |
+| `gbattle` | floor 1 (0,9) Garian Guards, round 2 options (battle mechanics shots) |
+The `g*` checkpoints (capture) were made in a `play.py` session and replayed by `shoot.py --verify` from an empty
+cache for every shot that uses them.
+Every scout checkpoint was rebuilt from an empty cache and compared with cache hits in fresh processes on 2026-11-19
 (`work/scout/wizardry-3/cmp.py`, scratch): identical frames, party records, position and written disks (also after
 Leave game from `start`, `resume`, `after_ending`).
 
@@ -289,23 +322,21 @@ Leave game from `start`, `resume`, `after_ending`).
 |---|---|---|---|
 | Wikipedia | https://en.wikipedia.org/wiki/Wizardry_III:_Legacy_of_Llylgamyn | year, developer, six-level volcano climbed upward, descendants keep name and class, level 1, new alignment | 2026-11-19 |
 | Apple II manual (archive.org text) | https://archive.org/stream/sir-tech-wizardry-3-a2-v4-ph/components/wizardry%203%20manual_djvu.txt | rite of passage: caste and honors inherited, alignment within limits, level 1, up to 500 gold, no goods; the orb taken by the dragon L'kbreth to her mountain lair and guarded by good and evil; Disband removed, Pool gold added | 2026-11-19 |
-| Search summaries (hosts not fetched: outside the network) | tk421.net, the-spoiler.com, wizardry.wiki.gg, mocagh.org | "no character creation", "trade a Neutral Crystal for the orb at level 6 after a riddle" (the trade itself not found in play) | 2026-11-19 |
+| Search summaries (hosts not fetched: outside the network) | tk421.net, the-spoiler.com, wizardry.wiki.gg, mocagh.org | "no character creation", "trade a Neutral Crystal for the orb at level 6 after a riddle"; the tk421 walkthrough's crystal rule (both crystals, one non-neutral bearer invokes his own: verified in play 2026-11-19); its majority stair rule (wrong, Game structure) | 2026-11-19 |
 | the loader and disks | `rom/wizardry-3.zip` | loader (ndisasm), roster, floors, items (on screen), messages (in play) | 2026-11-19 |
 | Wizardry I and II DOS work | `games/dos/wizardry/`, `games/dos/wizardry-2/` | engine, controls, record layout, tools | 2026-11-19 |
 GameFAQs, TCRF, StrategyWiki: known 403 for agents (not tried); tk421.net, mirror.cyberbits.eu (a textfiles
 walkthrough): not resolvable from the session; archive.org download hosts refused (the manual's text page worked).
 
 ## Open questions
-- **How the Neutral Crystal is made** (needed for the statue): not by the statues (4,5)/(12,2)/(18,17) or L'kbreth
-  (8,3) in any variant tried (crystals carried, both, equipped, U)sed; good, evil, neutral, poked mixed parties).
-  Leads: Abdul's crystal sale on floor 5 (4,8) (25000 gold, then the coffer (4,7) "kind 2" gives item 1009 the Rod of
-  Fire? not reached: (4,8) is entered only one way, probably by his taxi), the floor 6 riddles (answered, no visible
-  effect), message kinds 13/15/16 not decoded; the source summary says L'kbreth trades the orb for the Neutral
-  Crystal after a riddle. Decoding the SPECIALS p-code segment of WIZ3.DSK would settle it.
+- ~~How the Neutral Crystal is made~~: solved 2026-11-19 (Game structure, The quest). Still open: Abdul's crystal
+  sale on floor 5 (4,8) (25000 gold) and the coffer (4,7) (kind 2, item 1009 the Rod of Fire?): no open neighbour,
+  probably reached by his floor 5 taxi.
 - The lake on floor 1 (kind 5, AUX0 5: the Ship in Bottle 1005?) and the island (1,2)/(2,1) (kind 13, AUX0 31): not
   tried. Floor 3 (0,0) kind 14 and floor 4 (10,5) kind 3: not decoded.
-- The monk (floor 3 (7,7)) and pool (10,19) swaps (inferred broadsword -> Gold Medallion -> Holy Water): not tried
-  with the items.
+- ~~The monk and pool swaps~~: verified 2026-11-19 (KLINDT's broadsword -> Gold Medallion -> Holy Water, RAM).
+  What the swap items, the Staff of Earth, Amulet of Air and Rod of Fire are for: not known.
+- The floor 6 dragon room (9-10,4-5, fixed fight group 77): entered by the (10,3) door, no fight (once tried).
 - What the "D" award and the stars change in play; whether the party should have received a star (no award bit
   was set on the party, verified on disk and in memory).
 - M)ake scenario disk; Utilities C)hange name and R)estart past their first screen; moving Wizardry I characters.

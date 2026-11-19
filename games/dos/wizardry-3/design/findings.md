@@ -31,3 +31,35 @@ forbidden to enter here!"), while good or evil parties with the same item enter 
 **Intended:** fits L'kbreth's "neither good nor evil alone" only partly; unclear.
 **Confidence:** (verified)
 **Impact:** the all-neutral party that serves both halves cannot take the last step.
+
+## The crystals' power hides behind E)quip
+**Behavior:** the Neutral Crystal is made by E)quip (camp or sheet): after the slots, the game asks "Will you
+invoke the special power of your Crystal of Evil/Good (Y/N)?" for each crystal carried. U)se, the statues and
+L'kbreth do nothing with them (scout, verified). A good or evil bearer holding both who invokes the crystal of
+his own alignment gets the Neutral Crystal in silence; the other crystal burns him to ashes ("Powers there be
+that the wise may use. Fools who play with these powers shall perish in flame!"); a neutral bearer ("Power
+springs for both extremes, from extremes must be employed!") or a bearer of one crystal ("Nor good nor evil
+alone, the balance shall remain, alone each one shall fail, to triumph, have the twain!") loses the crystals
+(verified 2026-11-19: `invoke_*` shots, checkpoint `gneutral`; the item records carry SPECIAL 28 and 29).
+**Intended:** yes (the riddle-like verses explain the rule after a failure).
+**Confidence:** (verified)
+**Impact:** a player who tries U)se never finds it; the neutral party that serves both halves cannot make it;
+a wrong guess costs a resurrection from ashes. The neutral try also cost CUBI 4 maximum hit points (61 -> 57).
+
+## Floor gates count "any good member", not the majority
+**Behavior:** floors 2 and 4 admit a party with at least one good member even when most are evil (1 good, 3
+evil, 2 neutral: admitted), and refuse one with evil members and no good one; floors 3 and 5 refuse every party
+with a good member, even 3 good against 1 evil; all-neutral parties enter all four (verified 2026-11-19 with
+poked alignments, `try.py` runs; the scout's "any evil member" for 2/4 and the walkthrough's majority rule were
+both wrong).
+**Intended:** probably "a party counts as good if anyone in it is good".
+**Confidence:** (verified)
+**Impact:** only reachable with mixed parties, which the Tavern forbids ("* Bad alignment *"), so it shows when
+an alignment changes in the maze.
+
+## A raise can fail into ashes at once
+**Behavior:** raising dead CONDI (level 11, 2750 gold) failed: "* CONDI needs KADORTO now *" (verified,
+`temple_failed`).
+**Intended:** yes (Wizardry I rule).
+**Confidence:** (verified)
+**Impact:** the gold is spent either way.

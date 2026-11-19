@@ -46,6 +46,19 @@ for sale, a monk and an apparition who trade, statues, and the dragon L'kbreth's
 | 107 | This is the grand dining room of the Grand Wizard. To the north is a large kitchen area, and to the south is the wizard's opulent boudoir. | floor 2 (18,12) | 1 |
 Messages 73 and 74 (the two guardian squares) are empty boxes on their own (verified).
 
+## 2. Texts outside the message table (verified 2026-11-19, set `main`)
+| Text | When | Shots |
+|---|---|---|
+| Will you invoke the special power of your Crystal of Evil / Good (Y/N)? | E)quip with a crystal | `invoke_evil_prompt`, `invoke_good_prompt` |
+| "Powers there be that the wise may use. Fools who play with these powers shall perish in flame!" | the wrong crystal invoked: ashes | `invoke_wrong` |
+| "Power springs for both extremes, from extremes must be employed!" | a neutral invoker: the crystals vanish | `invoke_neutral` |
+| "Nor good nor evil alone, the balance shall remain, alone each one shall fail, to triumph, have the twain!" | one crystal invoked alone | `invoke_one_crystal` |
+| RYZ got an item. / KLINDT traded an item! | search squares that give or swap | `dialogue_f2_desk_found`, `dialogue_f3_monk_traded` |
+| The fee is 2500. Will you pay (Y/N)? | Abdul's taxi (Y: to the Castle) | `dialogue_f3_taxi_fee` |
+| A pit! / A chute! / Look out! | trap squares | `gameplay_pit`, `gameplay_chute`, `dialogue_f4_look_out` |
+| You are forbidden to enter here! Begone!! | a refused floor | `gameplay_forbidden` |
+| Your entire party has been slaughtered. Press Enter to leave the cemetery! | game over | `gameover_cemetery` |
+
 ## Open questions
 - Messages 1, 3, 6-8, 10-12, 18-20, 23-25, 27, 30-31, 33, 36-37, 39-40, 42, 45-46, 48, 51-58, 61-62, 64-66, 72-79,
   82-88, 91-94, 97-99, 102-105 show as blank boxes alone: continuation lines of the message before (inferred) or

@@ -45,12 +45,31 @@ On screen "OF" is one ligature glyph ("ORB♡EARITHIN"), potions start with "&",
 |---|---|---|
 | Crystal of Evil | the floor 4 guardian (good party) (verified) | entry to floor 6 (verified) |
 | Crystal of Good | the floor 5 guardian (neutral party) (verified) | entry to floor 6 (verified) |
-| Neutral Crystal | not found in play (Open questions) | entry to floor 6; becomes the Orb at the statue search square (17,17) (verified) |
+| Neutral Crystal | both crystals invoked by one good or evil bearer (E)quip, own alignment's crystal) (verified 2026-11-19) | entry to floor 6; becomes the Orb at the statue search square (17,17) (verified) |
 | Orb of Earithin | the statue (17,17) search with the Neutral Crystal (verified) | the ending, when brought to the Castle (verified) |
 | Orb of Mhuuzfes | the statue (13,2) search with the Neutral Crystal (verified) | a cursed decoy (record: cursed, AC -10) (disk data) |
 | Staff of Earth | the floor 2 desk (7,1) search (verified) | not known |
-| Amulet of Air, Holy Water, Rod of Fire | records cast spells (disk data); Holy Water and Gold Medallion from the floor 3 swaps (inferred) | not known |
+| Amulet of Air, Holy Water, Rod of Fire | records cast spells (disk data); Gold Medallion and Holy Water from the floor 3 swaps (verified) | not known |
+
+## 3. Records, special powers and curses (disk data, 2026-11-19)
+Item records on WIZ3.DSK are Wizardry I's without the two names: 23 words (OBJTYPE, ALIGN, CURSED, SPECIAL,
+CHANGETO, CHGCHANC, PRICE x3, BOLTACXX, SPELLPWR, CLASSUSE, HEALPTS, ...) at SCENARIO.DATA block 48 (0x23A00),
+22 records per 1,024 bytes.
+- Special powers: Crystal of Good SPECIAL 28, Crystal of Evil 29, Orb of Earithin 30 (type 5, special item);
+  the Neutral Crystal and the Ship in Bottle have none. E)quip offers to invoke them (verified, findings).
+  Staff of Earth, Amulet of Air, Holy Water and Rod of Fire are type 6 with a spell power (29, 10, 35, 7), price
+  25000 and a change chance of 5 after use (disk data).
+- Cursed (CURSED -1): the Butterfly knife 1012 (150000), all "-1" items 1047-1052 and 1056-1061 (1000/2000),
+  Wargan robes 1082, Giant's club 1083, Gem of Exorcism 1088 (armour, 12000), Bag of emeralds 1089, Butterfly
+  knife 1101 (500000); the Orb of Mhuuzfes 1011 has SPECIAL 9 and AC -10.
+- Boltac identifies and uncurses for half the price: Gem of Exorcism 6000 (`shop_identify_fee`), Sallet-1 1000
+  (`shop_uncursed`) (verified).
+- Unidentified items show a family name: JEWELRY (the gem), ROD, WEAPON, SPHERE (the orbs), "&" for a potion
+  (the Holy Water) (verified: `chest_found_rod`, `inventory_crystal_sphere`, `inventory_decoy_sphere`,
+  `inventory_holy_water`).
+- Swaps: the monk (floor 3 (7,7)) takes the Broadsword 1014 for the Gold Medallion 1010, the pool (10,19) the
+  medallion for the Holy Water 1008 (verified in RAM, 2026-11-19).
 
 ## Open questions
 - What the Ship in Bottle, Staff of Earth, Amulet of Air, Holy Water, Rod of Fire, Gold Medallion and Blue Pearl
-  open; where the Neutral Crystal comes from.
+  open.

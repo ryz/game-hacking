@@ -28,9 +28,11 @@ fights groups of monsters in menu-driven rounds and returns to the Castle to res
 idea is the **legacy**: there is no character creation; veterans of Wizardry I or II are moved onto this game's disk
 and reborn as their descendants at level 1, keeping name, race, class and honors and choosing a new alignment
 (verified, [systems.md](systems.md)). The maze is a volcano climbed upward over six floors that fork after floor 1:
-floors 2 and 4 refuse parties with an evil member, 3 and 5 parties with a good member, so the game is played with two
-parties; floor 6, the summit, opens only to a party carrying a crystal (verified). The goal is the Orb of Earithin;
-bringing it to the Castle ends the game with the Star of Llylgamyn for six characters (verified). The roster is saved
+floors 2 and 4 refuse parties with evil members and no good one, 3 and 5 any party with a good member, so the game is
+played with two parties; each half ends in a guardian with a crystal, and floor 6, the summit, opens only to a party
+carrying one (verified). One good or evil character holding both crystals invokes his own and makes the Neutral
+Crystal, which a statue on floor 6 turns into the Orb of Earithin; bringing it to the Castle ends the game with the
+Star of Llylgamyn for six characters (verified in play, set `main`, [findings.md](findings.md)). The roster is saved
 on the scenario disk whenever the game writes it (verified).
 
 ## Documents
@@ -41,7 +43,7 @@ on the scenario disk whenever the game writes it (verified).
 | [content.md](content.md) | content lens: a reasonable variety of environments, opponents, items, equipment, abilities, people |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 | [messages.md](messages.md) | every maze message, riddle and answer, with its square |
-| [items.md](items.md) | the 103 items by number, quest items |
+| [items.md](items.md) | the 103 items by number, quest items, special powers, curses, swaps |
 | [maps/floors.txt](maps/floors.txt) | the six floors with walls, doors, fight zones and special squares (`tools/maps.py`) |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
