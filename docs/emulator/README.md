@@ -183,6 +183,11 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
   neighbouring value for members 2-6 through two capture rounds, seen only when the ending total changed).
 - A macro used by published shots is never edited (the routes would change silently): add the corrected one
   under a new name and move the shots. The same goes for a checkpoint whose route uses the old macro.
+- First-person RPGs with plain wireframe or tiled views (Wizardry): corridor views on different floors can be
+  pixel-identical. Compare a new view with the shots you have before snapping it; `shoot.py --verify` finds
+  duplicates only at the end (Wizardry II DOS, 2026-11-19).
+- Screens drawn by the emulator front end (DOSBox Pure's start menu and its "press any key to return to start
+  menu" line after a program quits) are not the game: do not snap them.
 - `play.py goto NAME` loads the state saved when the checkpoint was made, not one rebuilt from the current
   macros. After editing a macro a checkpoint uses (before anything is published), run `play.py checkpoint NAME`
   again or restart the session with `start --route`, or the session differs from what `shoot.py` replays

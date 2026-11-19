@@ -9,6 +9,28 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Wizardry II (DOS) set main
+- Task: set `main` to the ending with the three lenses and the Wizardry III transfer save (213 shots, commit
+  af9641c).
+- Worked: plan files per area previewed with try.py, then `shoot.py --only` in the background while planning
+  the next batch; `w40`/`w20` timelines for message frames; a survey script choosing the approach side from the
+  decoded walls of both squares (doors can be one-way); interactive `play.py` with a checkpoint per round for
+  multi-round guardian fights; the backend open-file fix let the ending chain run from cached checkpoints.
+- Friction: (1) try.py `--frames K` counts from the end of all tokens, so short routes mix in early frames;
+  (2) forcing random fights on floors 3-6 (arrival/turn on a fight-zone square rarely worked; a real step into a
+  room with wait variants did); (3) HP/status pokes show only after a menu change, battle HP written back at
+  round end; (4) identical wireframe floor views found only by the final verify (4 shots dropped, another full
+  replay); (5) `checkpoint` refuses the session's start checkpoint name after an `undo`. Not captured: floor 2
+  (16,3) room (doors open outward only), floor 6 fixed fight, spinners, stones, M)ake scenario disk after Y.
+- Proposed rule change: emulator guide, first-person RPGs: compare new "floor view" shots with the existing ones
+  before snapping (wireframe floors can be pixel-identical); tool wishes: a shared previewer (shoot.py's settle,
+  plan-file input, `--frames` from a marker token) and a duplicate check in `shoot.py --only`.
+- Corrected: coordinator looked at the sheets and dropped `save_leave_game` (mostly DOSBox Pure's own
+  "press any key to return to start menu" overlay: emulator UI, which the Wizardry I capture had left out for
+  that reason); lens rows updated; cold `--verify` by the coordinator (docs/progress-log.md 2026-11-19).
+- Status: floor-view rule promoted 2026-11-19 into docs/emulator/README.md; previewer wish: third occurrence
+  (MM2, Wizardry I, this run), moved to docs/status.md Next as a tool to build.
+
 ### 2026-11-19 - Wizardry I (DOS) set main
 - Task: set `main` from power-on to the ending with Werdna beaten on screen, three lenses, transfer save for
   Wizardry II (208 shots, commits 23dc245 and 89185fc).

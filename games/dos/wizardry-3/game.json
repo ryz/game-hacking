@@ -1,0 +1,28 @@
+{
+  "slug": "wizardry-3",
+  "title": "Wizardry III: Legacy of Llylgamyn (DOS)",
+  "platform": "dos",
+  "region": "na",
+  "model": "svga-7800",
+  "rom": "rom/wizardry-3.zip",
+  "sha1": "7251a8f341533e94012705feb448a73fa7f11cd9",
+  "crc32": "a2018e24",
+  "size": 466716,
+  "header": {
+    "files": 6,
+    "programs": [
+      "wizar3/WIZ3.COM",
+      "wizar3/run.bat"
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
