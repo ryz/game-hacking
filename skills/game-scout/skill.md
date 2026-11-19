@@ -3,7 +3,7 @@ skill: game-scout
 project: all games (shared tools at the repo root)
 summary: Research a newly registered game (controls, structure, strategy, shortcuts) into its playbook and verify the basics in the emulator.
 access: write (games/<platform>/<slug>/ except shots/, work/scout/<slug>/)
-updated: 2026-11-18 (macro testing)
+updated: 2026-11-19 (parallel variants for quest conditions)
 ---
 
 # Game scout - research a game before anyone plays it
@@ -58,6 +58,9 @@ do not capture the database set (that is `game-capture`), but you do create the 
      rebuild the checkpoints whose routes use it.
    - New screen, unclear confirm button: try every button in parallel `emu.py` runs first (Deep Dungeon III confirms
      title menus with Start, everything else with A). Name keyboards may skip blank squares when moving.
+   - A quest end or unlock with an unclear condition: test the variants in parallel `emu.py` runs (party size,
+     item equipped or carried, item from the event or poked) before decoding code (Wizardry II's "one alone"
+     rule in two runs, 2026-11-19).
    - Look cheaply: a small helper in `work/scout/<slug>/` that runs several token groups and tiles the
      screenshots into one image saves a look per step (used by two scouts, 2026-11-17/18).
    - Blocked web sources and a translated game: decode the ROM script (relative search for a known word) for

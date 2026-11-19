@@ -9,6 +9,29 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Wizardry II (DOS, imported party)
+- Task: scout Wizardry II (DOS): boot, the Wizardry I import through the game's own Move characters, macros,
+  22 checkpoints to the ending, RAM map, floor warp, floor maps, saves 00_transfer/01_start/02_ending, shot
+  plan, lenses started.
+- Worked: reading the loader with ndisasm first (the import needs only one extra file, Save1.Dsk in the game's
+  folder: `tools/transfer.py`); copying the Wizardry I tools and finding addresses at Wizardry I + 0xA6;
+  warping by re-pointing the entry staircase at the "Stairs up" prompt; naming all items by poking 8 at a time;
+  testing ending variants in parallel (solo/six, equipped/carried, event/poked staff) found the "one alone" rule
+  in two runs; cold vs cache-hit comparison exposed the stale disk.
+- Friction: the open-handle flush gap broke real routes (roster read back after Tavern changes); one stray key
+  made a scratch checkpoint look like a game rule; `play.py checkpoint` writes scratch checkpoints into
+  checkpoints.txt; walkthrough hosts outside the network.
+- Proposed rule change: (1) dos.md: make the open bug concrete and raise the backend fix; (2) play.py: scratch
+  checkpoints kept out of checkpoints.txt; (3) skill step 3: test quest-end variants in parallel before
+  decoding code.
+- Corrected: coordinator replayed `start`, `guard1`, `sphinx`, `knights` (as described) and fixed the backend
+  the same day (5310311, `GamedbMarkWritten` + test that fails without it); `@ending,KNIGHTS,...` from a cached
+  `ending` now gives the same frame as the one-segment `knights` route. The game says five KOD pieces, not six:
+  the coordinator's dispatch (from Wikipedia) was wrong.
+- Status: (1) fixed in the backend instead (dos.md Saves); (2) open tool wish, second occurrence with the MM2
+  scout's "checkpoint moves a replaced line" (both: checkpoints.txt handling); (3) promoted 2026-11-19 into
+  skill.md step 3 (parallel variants, the same idea as "try every button in parallel").
+
 ### 2026-11-19 - Wizardry I (DOS, 1998 loader with disk images)
 - Task: scout Wizardry I (DOS): boot, party macros, 16 checkpoints to the ending, RAM map, floor warp, saves
   01_start and 02_ending, floor maps, shot plan, lenses started.
