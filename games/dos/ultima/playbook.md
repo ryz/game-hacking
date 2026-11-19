@@ -72,6 +72,8 @@ Single keys; every command echoes its name in the message area (bottom left) and
 | | `z` | Ztats: Inventory screen (statistics, coins as copper/silver/gold, armour, weapons, spells, vehicles, gems, enemy vessels; readied items red), space continues | verified |
 | | `j l m p w y` | "Huh?" | verified |
 | Dungeon | `up` forward, `left`/`right` turn, `down` turn around ("Forward", "Turn left/right", "Turn around") | | verified (up, left, right) |
+| Dungeon (capture) | `a` attacks straight ahead (no direction); `k` climbs a ladder under the hero when facing north or south ("Thou must face the ladder!" otherwise); `u` opens a chest under the hero (trap roll), `o` a coffin; `c` casts the readied spell ahead. The first key after `TPOS2` is sometimes dropped: put `space,w60` after it | | verified |
+| Space front view (capture) | `space` = "Center"; `f` fires (10 fuel); `v` refused while enemies remain; a hyperjump needs about 1,250 frames before "HyperJump completed." (`h,w1300`) | | verified |
 | Space (SPACE.EXE, top view) | `up` Thrust, `down` Retro, `left` Counter-Clockwise, `right` Clockwise, `space` Pass, `i` Inform and Search = Sector Scan (7x7 map of the 49 sectors), `v` View (front view), `z` Ztats, `f` Fire, `h` HyperJump (front view only: "Lightspeed!") | | all verified 2026-11-19 (`@space`) |
 | Mondain (MONDAIN.EXE) | arrows, `a` attack, `g` Get (Gem), `c` cast ("INTERFICIO-NUNC!" makes him stronger: ROM text); Quit, Transact, Steal refused | | arrows, a, g verified |
 | Prompts | the letter shown; `y`/`n`; `space` "Press Space to continue"; `esc` back to the main menu in GEN and Character Selection | | verified |
@@ -140,75 +142,35 @@ switch (shuttle, time machine): `w300` then the next key; space lift-off countdo
   CONTROL-ALT-DEL to Restart").
 
 ## Shot plan
-Main set, to the ending. Routes from checkpoints; ids are the shot ids for `shots.txt`. Three lenses: S =
-systems row, I = interface row, C = content row it serves.
-| # | id | category | What / where | How to reach | Lens |
-|---|---|---|---|---|---|
-| 1 | `boot_title_text` | boot | text title "Ultima I / The First Age of Darkness" | `BOOT,w200` | I |
-| 2 | `boot_origin` | boot | Origin Systems logo "Presents..." | `BOOT,w1000` (pick frame) | I |
-| 3 | `title_castle` | title | castle picture "Ultima I" | `@title` | I, C |
-| 4 | `boot_credits` | boot | credits card "Conversion by: John Fachini" | `BOOT,w300,space,w200` | I |
-| 5 | `menu_main` | menu | Generate new character / Continue previous game | `@menu` | I |
-| 6 | `gen_points` | menu | Character Generation, 30 points | `@gen` | S, I |
-| 7 | `gen_stats_done` | menu | points distributed (0 left) | `@gen` + the stat keys of `CREATE` | S |
-| 8 | `gen_race` | menu | race list (Human, Elf, Dwarf, Bobbit) | ... `space,w60` | S, C |
-| 9 | `gen_class` | menu | class list after race and sex | ... `a,w60,a,w60` | S, C |
-| 10 | `gen_save` | menu | "Save this character? (Y-N)" with ryz | ... name, `enter` | I |
-| 11 | `menu_select` | menu | Character Selection 1) ryz | `@menu`-like, `b,w200` | I, S (four slots) |
-| 12 | `start_overworld` | gameplay | first moment of control, castle to the west | `@start` | S, I, C |
-| 13 | `hud_status` | hud | status panel Hits/Food/Exp./Coin and the message log | `@start` (crop not needed) | I |
-| 14 | `inventory_ztats` | inventory | Ztats at the start | `@start,z,w60` | I, C |
-| 15 | `inventory_ztats_late` | inventory | Ztats late game (gems, enemy vessels, blaster) | `@endgame,z,w60` | S, C |
-| 16 | `gameplay_inform` | gameplay | I: "You are in the lands of Lord British" | `@start,i,w100` | S |
-| 17 | `gameplay_continents` | gameplay | one overworld shot per continent (mountains, sea) | `@start,WARP:x:y` (e.g. 95,30 / 30,95 / 95,95) | C |
-| 18 | `gameplay_britian` | gameplay | town Britian with shop signs | `@britian` | C, I |
-| 19-24 | `shop_transport`, `shop_armour`, `shop_weapons`, `shop_magic`, `shop_food`, `shop_pub` | shop | each counter: `TPOS:07:05`, `06:0C`, `0C:0C`, `17:03`, `17:0C`, `20:05` + `t,w100,b,w100` | `@britian` | S (economy), I, C |
-| 25 | `shop_transport_space` | shop | Aircar and Shuttle on sale | `@start,set:17AF8=4127:2,GO:27:27,TPOS:07:05,t,w100,b,w100` | S |
-| 26 | `shop_sold` | shop | "Sold!" | `@britian`, transport, `a` | I |
-| 27 | `gameplay_castle` | gameplay | Castle of Lord British: hall, prison, king | `@lb_king` | C |
-| 28 | `dialogue_king_offer` | dialogue | "Dost thou offer pence or service:" | `@lb_king,t,w100` | I |
-| 29 | `dialogue_king_quest` | dialogue | "Go forth and find The Grave of the Lost Soul" | `@lb_king,t,w100,s,w150` | S (quests) |
-| 30 | `dialogue_king_pence` | dialogue | buying hit points from the king: "How much?" | `@lb_king,t,w100,p,w100` (verified), then an amount and `enter` | S |
-| 31 | `system_landmark_grave` | system | The Grave of the Lost Soul "VAE VICTIS"; after it "A quest has been completed!" "Thou dost gain 2 Stamina" | `@lb_king,t,w100,s,w150,space,w60,poke:19C8E=00,poke:19C90=09,left,w200,WARP:62:58,e,w200` (+`space,w100`) (verified) | S, C |
-| 32 | `dialogue_quest_done` | dialogue | back at Lord British: "Ah, ryz! Thou hast completed thy quest. For this I will give thee 8 points of strength." | route of 31 + `space,w100,GO:28:26,TPOS:21:05,t,w100,s,w150` (verified) | S |
-| 33 | `dialogue_gem` | dialogue | a gem king: "The king gives thee a red gem" | Lost King (20,1B), quest, poke the quest done (record +0x3E = 1), T | S, C |
-| 34 | `gameplay_dungeon` | gameplay | dungeon corridor with a chest, Level 1 | `@dungeon` | C, I |
-| 35 | `battle_skeleton` | battle | Attacked by Skeleton | `@skeleton` | S, C |
-| 36-39 | `battle_dungeon_*` | battle | three or four deeper monsters (Gelatinous cube, Carrion creeper, Lich, Balron) | dungeon level poke (record/level byte) or ladders; walk until met | C |
-| 40 | `gameplay_coffin` / `gameplay_chest` | gameplay | Open a coffin or chest, "Thou dost find ..." | `@dungeon,up,w60,up,w60,o,w60` | S |
-| 41 | `battle_overworld` | battle | an overworld monster attacks (Thief, Orc, Knight, Evil trent) | `@start,SPAWN-like poke: 12A8C=<type>000100320028005200...,17AF6=01,space,w60,a,w30,right` (types 23-30 hex) | S, C |
-| 42 | `gameplay_vehicles` | gameplay | horse, cart, raft, frigate (bought in Britian), at sea with a frigate | `@britian` transport, leave, `b` | S, C |
-| 43 | `system_frigate_fire` | system | frigate cannons at a sea monster | frigate + sea monster spawn, `f` | S |
-| 44 | `gameplay_aircar` | gameplay | aircar | as 25, buy `e` | C |
-| 45 | `gameplay_shuttle` | gameplay | shuttle parked by Britian | `@shuttle` | C |
-| 46 | `system_liftoff` | system | countdown "10..9..8.." | `@shuttle,up,w60,b,w150` (pick frame) | S, I |
-| 47 | `gameplay_space_top` | gameplay | space, top view: Sosaria, sun, starbase | `@space` | C, I |
-| 48 | `map_sector_scan` | map | Sector Scan, 49 sectors | `@space,i,w100` | I, S |
-| 49 | `gameplay_space_front` | gameplay | front view starfield | `@space,v,w60` | I |
-| 50 | `system_hyperjump` | system | "Lightspeed!" streaks | `@space,v,w60,h,w60` (pick frame) | S |
-| 51 | `battle_space` | battle | enemy fighters in front view, firing | hyperjump to a sector with enemies (Sector Scan), `f` | S, C |
-| 52 | `system_space_ace` | system | "Thou hast achieved the rank of Space Ace!" | kill count poked to 19 (record +0xA6) before lift-off, then one kill | S |
-| 53 | `system_starbase` | system | Docked! Welcome to base!, Choose thy ship | fly onto the starbase | S, I |
-| 54 | `system_landing` | system | "Thou hast landed safely!" | `@landed` | S |
-| 55 | `system_jester_key` | system | kill the jester: "I've got the key!" | `@lb_king`, walk to the jester (24,07), `a` | S |
-| 56 | `system_cell_open` | system | "The door is open!" princess free | `@princess_freed` | S |
-| 57 | `system_princess_reward` | system | "Thou hast saved the princess Julia ... time machine far to the northwest!" | `@rescued` | S, C |
-| 58 | `gameplay_time_machine` | gameplay | the time machine on the overworld | `@time_machine_found` | C |
-| 59 | `cutscene_time_machine` | cutscene | the four holes R G B W | `@time_machine` | S, I |
-| 60-62 | `cutscene_launch`, `cutscene_pulled`, `cutscene_face_to_face` | cutscene | the three following pages | `@time_machine,space,w300` (x1, x2, x3) | C |
-| 63 | `boss_mondain` | boss | Mondain's chamber | `@mondain` | C |
-| 64 | `boss_gem_destroyed` | boss | "Get (Gem)... 2196 damage! The Gem is DESTROYED!" | `@gem_destroyed` | S |
-| 65 | `boss_hit_mondain` | boss | "Hit Mondain! 51 damage!" | `@hit_mondain` | S |
-| 66 | `boss_mondain_bat` | boss | Mondain as a bat | `@mondain_bat` | C |
-| 67 | `ending_victorious` | ending | "Mondain is dead!" "THOU ART VICTORIOUS!" | `@victory` | S |
-| 68 | `ending_text` | ending | the ending text, "Press CONTROL-ALT-DEL to Restart" | `@ending` | C, I |
-| 69 | `gameover_dead` | gameover | "ryz, thou art dead", skull, "Attempting resurrection!" | lift off in a shuttle spawned without fuel: `@start,SPAWN:11:31:27,space,w60,up,w60,b,w300,w900`; or hits poked to 1 before a fight | S, I |
-| 70 | `save_quit` | save | "Quit - saving game...saved." | `@start,q,w200` | S, I |
-| 71 | `system_pub_tip` | dialogue | a tavern keeper's tip ("Thou had best know about space travel...") | pub, `t,b` repeated | S |
-| 72 | `system_steal` | system | Steal at a counter, "Oh no! Thou wert caught!" | shop counter, `s` | S |
-| 73 | `system_spell_cast` | system | a spell in a dungeon (Magic Missile / Ladder Down) | buy at Mad Chad's, `r,s`, `c` in a dungeon | S, C |
-More gameplay shots for breadth: each continent's towns look alike but three town layouts and two castle
-layouts exist (Wikipedia: remake added a castle variant and three town maps): take one of each.
+**Done (capture 2026-11-19): set `main`, 195 shots, power-on to the ending text**; the replayable list is
+`shots.txt` (game order), the published set `shots/main/`. Every target of the scout's 73-id plan was taken
+except `system_starbase` (below); grouped ids got real names (`gameplay_continents` -> `gameplay_lands_*`,
+`battle_overworld` -> `battle_orc_hit` and eight more, `battle_dungeon_*` -> 24 monster ids, `system_pub_tip` ->
+`dialogue_pub_*`, `system_spell_cast` -> `system_spell_*`). The set covers, in game order:
+- [x] boot and attract loop (5), title, credits, main menu; creation step by step (points, race, sex, class,
+  name, save, another build) and Character Selection
+- [x] start-character commands: HUD, Ztats, Ready weapon/armour, Inform, Cast Prayer, Noise, refusals, an orc
+  fight, horse mount/ride/X-it, Quit-save, the three deaths (shuttle without fuel, starvation) and resurrection
+- [x] Britian: town, every shop kind with buy, sell, refusals, food bought, pub ale and four tips, steal (success,
+  caught), drop pence, Quit indoors
+- [x] castles: Lord British (offer, pence -> hit points, landmark quest, busy, jester key, cell, no key, guards),
+  the Lost King plan (monster quest, red gem), all four gem hints, Olympus's quest; all eight landmarks; the grave
+  quest done and Lord British's reward
+- [x] mid game (save 03_midgame): Ztats with More, Ready spell, the four lands, woods, blocked moves, cart, raft,
+  frigate, at sea, three sea monsters, cannons, aircar, lasers, aircar vs woods, eight land monsters, the other
+  seven town plans, shops by town parity and game time, castle storeroom theft
+- [x] dungeons: level 1 to 10, door, ladder, K-limb down/out/facing, chest trap/gold, coffin, 24 monster kinds,
+  quest kill, Magic Missile and the spells Ladder Down/Up, Blink, Create, Destroy, Kill, Open, Unlock
+- [x] space (late character): Scooter's with aircar/shuttle, shuttle, countdown, top view, sector scan, front view,
+  hyperjump, enemy, view refused, hit, alien fires, Space Ace, sun death, landing
+- [x] the end: Ztats late, cell, princess, time machine (and without gems), four pages, Mondain, gem, hit, bat,
+  "...or is he?", victory, ending text
+Not captured: starbase docking and "Choose thy ship" (every port placement collided, design/findings.md), the
+pub seduction (code read, not triggered), Iolo the Bard and the jester's songs (trigger not found), Prayer in a
+dungeon (no visible effect), Steal spell (not sold anywhere seen), "Crunch!" against the starbase (seen once in
+play, not reproduced in a route).
+Ideas for a next round: the other 32 dungeon entrances look identical (fixed wireframe); a female or non-human
+hero on the overworld looks the same (one hero picture).
 
 ## Strategy and walkthrough notes
 - **Cheat freely, but through the game's own transitions.** Values on the status panel (Hits, Food, Exp., Coin)
@@ -251,10 +213,20 @@ Main character **ryz** (owner's rule): typed in GEN.EXE's name prompt one key pe
 | Prison key | `poke:17AF0=01` (as if the jester's key were taken) | code | verified |
 | Princess out | `RESCUE` (player to the gate (0,9), princess beside him, step out) | RAM | verified in Lord British's castle |
 | Mondain's hit points | `poke:756E=XXXX` in MONDAIN.EXE (1000 at the start; 1-500 bat; 0 dead) | code | verified |
+| Overworld object types (complete, capture) | 0A the hero's picture, 0B horse, 0C cart, 0D raft, 0E/0F frigate, 10 aircar, 11 shuttle, 12 time machine; sea monsters 13/14 Ness creature, 15/16 Giant squid, 17/18 Dragon turtle, 19/1A Pirate ship; land 1B/1C Hood, 1D/1E Bear, 1F/20 Hidden archer (invisible), 21/22 Dark knight, 23/24 Evil trent, 25/26 Thief, 27/28 Orc, 29/2A Knight, 2B/2C Necromancer, 2D/2E Evil ranger, 2F/30 Wandering warlock (two animation pictures each); 31-33 unknown pictures (no attack). Monster hit points: `poke:12A94=HHHH` after `SPAWN` | RAM | verified |
+| Mid-game character | `MIDGAME` (level 5, 1487 hits, sword, chain mail, spells, horse and frigate, 2417 moves), then `q`: save `03_midgame`, checkpoint `mid` | RAM | verified |
+| Position in a town, castle or dungeon for a character whose Ztats has two pages | `TPOS2:x:y` (= `TPOS` with a second space) | RAM | verified |
+| A dungeon monster of any kind | facing east from (1,1): `poke:19CA2=02,poke:19CA0=LL,poke:19D60=KK00,poke:19D64=HHHH,TPOS2:01:01,space,w60` (LL level, KK monster id, HHHH its hit points). Ids: 0 Ranger, 1 Skeleton, 2 Thief, 3 Giant rat, 4 Bat, 5 Spider, 6 Viper, 7 Orc, 8 Cyclops, 9 Gelatinous cube, 10 Ettin, 11 Mimic, 12 Lizard man, 13 Minatour, 14 Carrion creeper, 15 Tangler, 16 Gremlin, 17 Wandering eyes, 18 Wraith, 19 Lich, 20 Invisible seeker, 21 Mind whipper, 22 Zorn, 23 Daemon, 24 Balron | RAM | verified (all 25) |
+| Chest or coffin under the hero in a dungeon | `poke:19D0A=0400` (chest) / `0500` (coffin) before `TPOS2:01:01` | RAM | verified |
+| Choose a roll | `poke:115CC=XXXX` right before the key that rolls (pub tips: 00F0 space, 0030 princess, 0050 Mondain, 0010 lakes; castle weaponry theft: 0060 Light Sword, 0080 Blaster; jester hit: 0000) | RAM, code | verified |
+| Kill a castle person in one blow | the people table 19C1C + 8*i (hit points, type, x, y; jester in Lord British's castle i = 7: `poke:19C54=0100`, `freeze:19C58=24000700` keeps him beside the hero at (23,07)) | RAM | verified |
+| Space: sure hit, Space Ace | `poke:9A32=96004600,poke:9A3A=0600,f` hits; `poke:E922=1300` makes the next kill the 20th | RAM | verified |
+| Space: into the sun | `poke:B9F2=A0004600,up` (late character's lift-off sector) | RAM | verified |
 | Debug menus, level select | none found (no TCRF page reachable; nothing in the ROM text) | | |
 
 ### Saves (rom/saves/ultima/, never committed)
-None downloaded (GameFAQs refuses automated access). Made here: `saves/01_start.sav`, `saves/02_endgame.sav`
+None downloaded (GameFAQs refuses automated access). Made here: `saves/01_start.sav`, `saves/02_endgame.sav`,
+`saves/03_midgame.sav` (capture)
 (see `saves/README.md`).
 
 ## RAM map (for `game.json` "ram" watches and pokes)
@@ -264,7 +236,7 @@ searched). Words are little-endian. Offsets into the record:
 | Offset | Address (OUT) | Size | Meaning | How found |
 |---|---|---|---|---|
 | +00 | 129C8 | 16 | name | file + memory |
-| +10 / +12 | 129D8 / 129DA | 2 | race / class, as twice the list index (0 Human/Fighter, 2 Elf/Cleric, 4 Dwarf/Wizard, 6 Bobbit/Thief) | code (Ztats) |
+| +10 / +12 | 129D8 / 129DA | 2 | race / class as the list index (0 Human/Fighter, 1 Elf/Cleric, 2 Dwarf/Wizard, 3 Bobbit/Thief). ~~twice the list index~~: a new thief has 3 here (capture 2026-11-19, peeked); the steal and chest-trap code compares the class with 3 | code, RAM |
 | +14 | 129DC | 2 | sex (0 male, else female) | poke, Ztats |
 | +16 | 129DE | 2 | hit points | file, Ztats |
 | +18..+22 | 129E0..129EA | 2 each | Strength, Agility, Stamina, Charisma, Wisdom, Intelligence | file, Ztats |
@@ -294,12 +266,27 @@ Live variables outside the record (OUT.EXE):
 | 17AEE | 2 | princess freed | code, verified |
 | 17AF0 | 2 | prison key held | code, verified |
 | 19C8E / 19C90 | 2 | town, castle and dungeon x / y | RAM diff |
-| 19C92 | 2 | dungeon level - 1 | code |
+| 19C92 | 2 | ~~dungeon level - 1~~ the map number of the town/castle buffer (town plans 2-9, castle plans 0-1; 0 outdoors and in dungeons) | code, RAM (capture) |
+| 19CA0 | 2 | dungeon level (1-10; 0 = overworld). Poke it before `TPOS2` to show "Level N" and get that depth's monsters | code (K-limb), verified |
 | 19C9A | 2 | place id (1-84, as in `worldmap.py`) | code |
-| 19CA2 | 2 | dungeon facing (seen: 1 West, 2 East, 3 North, 4 South) | RAM, verified |
+| 19CA2 | 2 | dungeon facing: 1 West, 2 East, 3 North, 4 South (all four verified; ladders need 3 or 4) | RAM, verified |
+| 19CA6 | 968 | dungeon level map, 11x11 cells of 8 bytes at 19CA6 + x*0x58 + y*8: +0 square (0 corridor, 1 wall, 2 secret door, 3 door, 6 ladder down, 7 ladder up, 8 force field; 4, 5, 9, 10 look like corridor), +2 monster (FFFF none, else the dungeon monster id 0-24, see Shortcuts), +4 item on the floor (4 chest, 5 coffin), +6 monster hit points. Cell (2,1) = 19D5E, (1,1) = 19D06 | code, verified |
+| 19C96 | 2 | town alarm (1 = the next theft is caught) | code, verified |
+| 19C98 | 2 | ales drunk in this pub visit | code |
+| 115CC | 2 | the random number generator's state (advances only when the game rolls: poke it right before a roll to choose the outcome) | code, verified |
+| 17AFE | 3 x 684 | town/castle map buffer, map number 19C92: 17AFE + n*0x2AC, column-major (x*18 + y, 38 x 18). Shop floor squares: 3E transport, 36/37 armour (customer/merchant side), 3A/3B weapons, 38/39 food, 3C magic, 3D pub; counters 0B-10. Steal works on 37, 3B, 39 (behind the counter) | RAM, code |
 | 19C1C + 8*i | 8 | town people: hit points, type, x, y (castles: entry 0 = princess type 16, guards 11, jester 13) | RAM, verified in Lord British's castle |
 MONDAIN.EXE (data segment 0744, physical 07440): record at 9498 (hit points 94AE); Mondain's hit points 756E
 (1000); his form 7680 (2 wizard, 0B bat); gem destroyed 7688 (code + verified).
+
+SPACE.EXE (capture 2026-11-19; code segment 01AD, data segment 08DA = physical 8DA0; disassembly from the file
+after its 512-byte header, data at module offset 0x72D0): record at E87C (kills +A6 = E922, verified: poke 13 =
+19 before the 20th kill shows the Space Ace box); gun sight x/y 8EDA/8EDC (159, 79); current enemy x/y
+9A32/9A34 and its distance index 9A3A (0 far .. 6 near; a hit needs the enemy inside the sight's box for that
+distance: poke 9A32=96004600 and 9A3A=0600 then `f` always hits); current sector 8F8E/8F90 (3,3 at lift-off);
+sector table at 8DA0+0x26C0 + sx*0x196 + sy*0x3A: 10-byte header (enemy count, sun x/y, starbase x/y) and objects
+of 12 bytes (x, y, type, shield, fuel, heading); the player's object index at EBB4 (2 at lift-off: object at
+B9F2); velocity 8EC8/8ECA; docking port tables 988E (x) / 98A6 (y), 4 ports x 3 ship types.
 
 ## Emulation notes
 - **Model `svga-500`.** GOG's config: `machine=svga_s3`, `cycles=500`, `core=simple`, `sbtype=sb16`. 500
@@ -317,15 +304,20 @@ MONDAIN.EXE (data segment 0744, physical 07440): record at 9498 (hit points 94AE
 - The map does not follow a poked position until the player object moves too (`WARP` pokes both).
 
 ## Checkpoints
-`checkpoints.txt` (22): `title`, `menu`, `gen` (GEN.EXE), `start` (OUT.EXE), `britian`, `lb_king`, `dungeon`,
+`checkpoints.txt` (27): `title`, `menu`, `gen` (GEN.EXE), `start` (OUT.EXE), `britian`, `lb_king`, `dungeon`,
 `skeleton`, `shuttle`, `space` (SPACE.EXE), `landed` (back in OUT), `endgame` (from save 02_endgame),
 `princess_freed`, `rescued`, `time_machine_found`, `time_machine` (MONDAIN.EXE), `mondain`, `gem_destroyed`,
-`hit_mondain`, `mondain_bat`, `victory`, `ending`.
+`hit_mondain`, `mondain_bat`, `victory`, `ending`; added by the capture: `mid` (save 03_midgame on the
+overworld), `mdungeon` (mid character in the Mines of Mt. Drash II, level 1), `eshuttle` (late character, shuttle
+bought), `espace` (late character lifted off), `ejump` (late character after a hyperjump, an enemy fighter in
+view). The scout's `shuttle`, `space` and `landed` (start character with poked coin) are no longer used by shots;
+the set uses the late-character versions.
 
 ## Tools
 - `tools/try.py FILE [--frames K] [--peek ADDR:LEN] [--crop x0,y0,x1,y1] [--cols N]`: many routes in parallel,
   one sheet (`work/scout/ultima/try_NAME.png`) (copied from Wizardry III).
 - `tools/cachecheck.py`: every checkpoint rebuilt from an empty cache vs a cache hit (frames and written files), plus Q saves after `landed` and `skeleton` against the whole route from power-on (all same, 2026-11-19, 70 s).
+- `tools/shops.py [--castles]`: where to stand at each shop counter in all 32 towns (from checkpoint `mid`).
 - `tools/worldmap.py --list | --png OUT`: the 84 places (id, kind, continent, x, y, name) and a map picture from
   MAP.BIN and OUT.EXE.
 
@@ -338,10 +330,12 @@ MONDAIN.EXE (data segment 0744, physical 07440): record at 9498 (hit points 94AE
 | Unavailable | shrines.rpgclassics.com, guides.gamercorner.net, wiki.ultimacodex.com (outside the network); GameFAQs, TCRF, StrategyWiki (403) | | 2026-11-19 |
 
 ## Open questions
-- SPACE.EXE: enemy ships, firing, docking, ship choice and the Space Ace message not played; its RAM (kill
-  counter) not searched (the record's +A6 is read at lift-off).
-- Dungeon: level change by ladders (`k`) and by spells, the facing values for all four directions, coffins.
-- Which towns sell which weapons and spells (each town shows a subset; the 1,500-move "eras" in the weapon shop code).
-- The king's "pence" offer (hit points per pence), landmark statistics per landmark, whether the strength reward is always 8.
-- Thieves, gremlins and the Pub's wench/lecher text not seen.
+- ~~SPACE.EXE: enemy ships, firing, docking, ship choice and the Space Ace message not played~~ played except
+  docking (capture): every placement on a free port collided ("Crunch!"); the port tables and the dock code are in
+  the RAM map. Next try: approach a port at different speeds from further out, or the CGA model.
+- ~~Dungeon: level change by ladders and spells, the facing values, coffins~~ done (capture).
+- ~~Which towns sell which weapons and spells~~ done: by town parity and game time (design/systems.md 3.5).
+- ~~The king's pence offer, landmark statistics~~ done: 3 hits per 2 pence; (value + 8) / 10 per landmark. The
+  Eastern Sign Post gave nothing seen; Lord British's 8 Strength may be a formula too (one sample).
+- Thieves stealing on the overworld, Iolo the Bard's and the jester's songs, the pub seduction: not seen.
 - Where the jester stands in every castle and which cell holds the princess (random per entry: two cells).

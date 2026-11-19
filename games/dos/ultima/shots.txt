@@ -57,6 +57,7 @@ dialogue_pub_lakes | dialogue | Tavern keeper: many lakes and ponds have strong 
 system_steal | system | Steal behind the armour counter: Thou dost find a Reflect suit | @britian,TPOS:06:0E,s,w100
 gameplay_drop_pence | gameplay | Drop pence: 10 dropped in town (OK!) | @britian,d,w60,p,w60,1,0,enter,w100
 system_steal_caught | system | Steal with the alarm raised: Oh no! Thou wert caught! | @britian,TPOS:06:0E,poke:19C96=0100,s,w100
+system_quit_indoors | system | Q in a town: Quit - only allowed outdoors! | @britian,q,w100
 gameplay_castle | gameplay | The Castle of Lord British: halls, pools, the king's room and the prison | @lb_king
 dialogue_king_offer | dialogue | Lord British: Dost thou offer pence or service? | @lb_king,t,w100
 dialogue_king_pence | dialogue | 50 pence offered: In return I give unto thee 75 hit points | @lb_king,t,w100,p,w100,5,0,enter,w100
@@ -64,10 +65,15 @@ dialogue_king_quest | dialogue | Lord British: Go forth and find The Grave of th
 dialogue_king_busy | dialogue | Service asked again: Thou art on a quest for me already! | @lb_king,t,w100,s,w150,space,w60,t,w100,s,w150
 system_jester_key | system | The jester killed: Hit Jester! Killed! Thou hast found a key! | @lb_king,TPOS:23:07,poke:19C54=0100,freeze:19C58=24000700,poke:115CC=0000,a,w30,right,w100,unfreeze
 system_cell_open | system | The key unlocks a prison cell: The door is open! | @lb_king,TPOS:23:07,poke:19C54=0100,freeze:19C58=24000700,poke:115CC=0000,a,w30,right,w100,unfreeze,TPOS:1F:0F,u,w30,up,w100
+system_no_key | system | Unlock without the jester's key: Thou hast not a key! | @lb_king,TPOS:1F:0F,u,w60
 battle_guard | battle | The castle guards turn hostile: Attacked by guard! Hit!...7 damage! | @lb_king,TPOS:23:07,poke:19C54=0100,freeze:19C58=24000700,poke:115CC=0000,a,w30,right,w100,unfreeze,space,w60,space,w60,space,w60,space,w60,space,w60,space,w60
 gameplay_castle_lost_king | gameplay | The Castle of the Lost King: mess hall, stables, prison, F W A shops | @start,GO:20:1B
 dialogue_king_kill_quest | dialogue | The Lost King: Go now and kill a Gelatinous Cube | @start,GO:20:1B,TPOS:19:05,t,w100,s,w150
 dialogue_gem_red | dialogue | Quest done: all four gems launch a time machine; a red gem | @start,GO:20:1B,TPOS:19:05,poke:12A06=0100,t,w100,s,w150
+dialogue_gem_green | dialogue | Rondorin's king: the time machine must be used to win; a green gem | @mid,GO:72:1D,TPOS2:19:05,poke:12A0A=0100,t,w100,s,w150
+dialogue_gem_blue | dialogue | Black Dragon's king: the princess helps a space ace; a blue gem | @mid,GO:1E:7E,TPOS2:19:05,poke:12A0E=0100,t,w100,s,w150
+dialogue_gem_white | dialogue | Shamino: take nine items from my storerooms; a white gem | @mid,GO:87:69,TPOS2:19:05,poke:12A12=0100,t,w100,s,w150
+dialogue_king_olympus | dialogue | The Castle of Olympus: Go forth and find The Pillar of Ozymandias | @mid,GO:29:76,TPOS2:21:05,t,w100,s,w150
 gameplay_landmark_tower | gameplay | The Tower of Knowledge on the overworld, a landmark beside a lake | @start,WARP:44:0A
 system_landmark_pillars | system | Pillars of Protection: You feel a strong magic surrounding you! | @start,WARP:23:09,right,w60,e,w200
 system_landmark_tower | system | Tower of Knowledge: TURIS-SCIENTIA-MAGNOPERE; 2 Intelligence | @start,WARP:44:0A,right,w60,e,w200
@@ -127,6 +133,7 @@ system_klimb_down | system | K-limb down the ladder: level 2, a Ranger waits | @
 system_chest_trap | system | Unlock chest: Thou hast set off a trap! | @mdungeon,poke:19CA2=02,poke:19D0A=0400,TPOS2:01:01,space,w60,u,w100
 system_chest_gold | system | Unlock chest: Thou dost find gold | @mdungeon,poke:19CA2=02,poke:19D0A=0400,TPOS2:01:01,space,w60,poke:129E2=4F00,u,w100
 gameplay_coffin | gameplay | A coffin on the dungeon floor: Open coffin | @mdungeon,poke:19CA2=02,poke:19D0A=0500,TPOS2:01:01,space,w60,o,w100
+system_klimb_facing | system | K-limb facing east: Thou must face the ladder! | @mdungeon,poke:19CA2=02,TPOS2:01:01,space,w60,k,w100
 battle_ranger | battle | Level 1: Attacked by Ranger! Missed! | @mdungeon,poke:19CA2=02,poke:19CA0=01,poke:19D60=0000,poke:19D64=2200,TPOS2:01:01,space,w60
 battle_thief | battle | Level 1: Thief stole a Dagger | @mdungeon,poke:19CA2=02,poke:19CA0=01,poke:19D60=0200,poke:19D64=F401,TPOS2:01:01,space,w60,space,w60,space,w60,space,w60
 battle_giant_rat | battle | Level 2: a Giant rat | @mdungeon,poke:19CA2=02,poke:19CA0=02,poke:19D60=0300,poke:19D64=2400,TPOS2:01:01,space,w60
@@ -135,6 +142,7 @@ battle_spider_killed | battle | Attack with sword: Hit! Spider killed! Thou dost
 battle_viper | battle | Level 3: a Viper | @mdungeon,poke:19CA2=02,poke:19CA0=03,poke:19D60=0600,poke:19D64=2400,TPOS2:01:01,space,w60
 battle_cyclops | battle | Level 4: a Cyclops | @mdungeon,poke:19CA2=02,poke:19CA0=04,poke:19D60=0800,poke:19D64=3600,TPOS2:01:01,space,w60
 battle_gelatinous_cube | battle | Level 4: the invisible Gelatinous cube: Armor destroyed! | @mdungeon,poke:19CA2=02,poke:19CA0=04,poke:19D60=0900,poke:19D64=F401,TPOS2:01:01,space,w60,space,w60,space,w60,space,w60
+system_quest_kill | system | Lost King's quest: Gelatinous cube killed! A quest has been completed! | @mdungeon,poke:19CA2=02,poke:19CA0=04,poke:19D60=0900,poke:19D64=0500,TPOS2:01:01,space,w60,poke:12A06=FFFF,a,!
 battle_ettin | battle | Level 5: an Ettin hits for 105 damage | @mdungeon,poke:19CA2=02,poke:19CA0=05,poke:19D60=0A00,poke:19D64=F401,TPOS2:01:01,space,w60,a,w100
 battle_mimic | battle | Level 5: Attacked by Mimic! The chest is a monster | @mdungeon,poke:19CA2=02,poke:19CA0=05,poke:19D60=0B00,poke:19D64=3C00,TPOS2:01:01,space,w60
 battle_lizard_man | battle | Level 6: a Lizard man | @mdungeon,poke:19CA2=02,poke:19CA0=06,poke:19D60=0C00,poke:19D64=4000,TPOS2:01:01,space,w60
@@ -172,10 +180,12 @@ battle_space_hit | battle | Fire! Hit!!! Thou art still a Space ace! (24 vessels
 battle_alien_fires | battle | Alien fires! A laser beam from the enemy fighter | @ejump,space,w60,space,w60,space,w60,space,w60,space,w60,space,w60,space,w60,space,w60
 system_space_ace | system | The 20th vessel: Thou hast achieved the rank of Space Ace! | @ejump,poke:E922=1300,poke:9A32=96004600,poke:9A3A=0600,f,w60
 system_landing | system | Thou hast landed safely! The shuttle back beside Britian | @espace,up*3,space*10,w60
+gameover_sun | gameover | Thy ship melts near the star! ryz, thou art dead | @espace,poke:B9F2=A0004600,up,w100,w300
 inventory_ztats_late | inventory | Ztats late: level 8, reflect suit, blaster, four gems | @endgame,z,w60
 system_cell_open_late | system | Late game: the cell unlocked, princess Julia free to follow ryz | @princess_freed
 system_princess_reward | system | Princess Julia saved: rewards and the time machine far to the northwest | @rescued
 gameplay_time_machine | gameplay | The time machine on the overworld | @time_machine_found
+system_time_machine_no_gems | system | Without the four gems: Thou canst not determine how to operate the craft | @mid,SPAWN:12:32:28,right,w60,b,w100
 cutscene_time_machine | cutscene | Board Time Machine: four holes marked R G B W, the gems fit | @time_machine
 cutscene_launch | cutscene | Time machine, page 2: LAUNCH pressed, the journey through time begins | @time_machine,space,w300
 cutscene_pulled | cutscene | Time machine, page 3: a strong magic pulling thee from thy craft | @time_machine,space,w300,space,w300
@@ -184,5 +194,6 @@ boss_mondain | boss | Mondain's chamber: the time machine, ryz, the gem and Mond
 boss_gem_destroyed | boss | Get (Gem): 2196 damage, The Gem is DESTROYED! | @gem_destroyed
 boss_hit_mondain | boss | Hit Mondain! 51 damage! Mondain casts psionic shock | @hit_mondain
 boss_mondain_bat | boss | Mondain below 500 hit points turns into a bat | @mondain_bat
+boss_or_is_he | boss | Mondain killed with his gem intact: Mondain is dead!...or is he? | @mondain,right*10,w30,poke:756E=0100,a,w30,right,w100,space,w100
 ending_victorious | ending | Mondain is dead! THOU ART VICTORIOUS! | @victory
 ending_text | ending | Ending text: Lord British's reward, Press CONTROL-ALT-DEL to Restart | @ending

@@ -726,6 +726,19 @@
    "captured": "2026-11-19"
   },
   {
+   "id": "system_quit_indoors",
+   "category": "system",
+   "caption": "Q in a town: Quit - only allowed outdoors!",
+   "route": "@britian,q,w100",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_system_system_quit_indoors.png",
+   "file_3x": "3x/ultima_dos_na_system_system_quit_indoors.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
    "id": "gameplay_castle",
    "category": "gameplay",
    "caption": "The Castle of Lord British: halls, pools, the king's room and the prison",
@@ -817,6 +830,19 @@
    "captured": "2026-11-19"
   },
   {
+   "id": "system_no_key",
+   "category": "system",
+   "caption": "Unlock without the jester's key: Thou hast not a key!",
+   "route": "@lb_king,TPOS:1F:0F,u,w60",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_system_system_no_key.png",
+   "file_3x": "3x/ultima_dos_na_system_system_no_key.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
    "id": "battle_guard",
    "category": "battle",
    "caption": "The castle guards turn hostile: Attacked by guard! Hit!...7 damage!",
@@ -865,6 +891,58 @@
    "source": "shoot.py",
    "file": "ultima_dos_na_dialogue_dialogue_gem_red.png",
    "file_3x": "3x/ultima_dos_na_dialogue_dialogue_gem_red.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "dialogue_gem_green",
+   "category": "dialogue",
+   "caption": "Rondorin's king: the time machine must be used to win; a green gem",
+   "route": "@mid,GO:72:1D,TPOS2:19:05,poke:12A0A=0100,t,w100,s,w150",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_dialogue_dialogue_gem_green.png",
+   "file_3x": "3x/ultima_dos_na_dialogue_dialogue_gem_green.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "dialogue_gem_blue",
+   "category": "dialogue",
+   "caption": "Black Dragon's king: the princess helps a space ace; a blue gem",
+   "route": "@mid,GO:1E:7E,TPOS2:19:05,poke:12A0E=0100,t,w100,s,w150",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_dialogue_dialogue_gem_blue.png",
+   "file_3x": "3x/ultima_dos_na_dialogue_dialogue_gem_blue.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "dialogue_gem_white",
+   "category": "dialogue",
+   "caption": "Shamino: take nine items from my storerooms; a white gem",
+   "route": "@mid,GO:87:69,TPOS2:19:05,poke:12A12=0100,t,w100,s,w150",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_dialogue_dialogue_gem_white.png",
+   "file_3x": "3x/ultima_dos_na_dialogue_dialogue_gem_white.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "dialogue_king_olympus",
+   "category": "dialogue",
+   "caption": "The Castle of Olympus: Go forth and find The Pillar of Ozymandias",
+   "route": "@mid,GO:29:76,TPOS2:21:05,t,w100,s,w150",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_dialogue_dialogue_king_olympus.png",
+   "file_3x": "3x/ultima_dos_na_dialogue_dialogue_king_olympus.png",
    "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
    "captured": "2026-11-19"
   },
@@ -1636,6 +1714,19 @@
    "captured": "2026-11-19"
   },
   {
+   "id": "system_klimb_facing",
+   "category": "system",
+   "caption": "K-limb facing east: Thou must face the ladder!",
+   "route": "@mdungeon,poke:19CA2=02,TPOS2:01:01,space,w60,k,w100",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_system_system_klimb_facing.png",
+   "file_3x": "3x/ultima_dos_na_system_system_klimb_facing.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
    "id": "battle_ranger",
    "category": "battle",
    "caption": "Level 1: Attacked by Ranger! Missed!",
@@ -1736,6 +1827,19 @@
    "source": "shoot.py",
    "file": "ultima_dos_na_battle_battle_gelatinous_cube.png",
    "file_3x": "3x/ultima_dos_na_battle_battle_gelatinous_cube.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "system_quest_kill",
+   "category": "system",
+   "caption": "Lost King's quest: Gelatinous cube killed! A quest has been completed!",
+   "route": "@mdungeon,poke:19CA2=02,poke:19CA0=04,poke:19D60=0900,poke:19D64=0500,TPOS2:01:01,space,w60,poke:12A06=FFFF,a,!",
+   "settled": true,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_system_system_quest_kill.png",
+   "file_3x": "3x/ultima_dos_na_system_system_quest_kill.png",
    "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
    "captured": "2026-11-19"
   },
@@ -2221,6 +2325,19 @@
    "captured": "2026-11-19"
   },
   {
+   "id": "gameover_sun",
+   "category": "gameover",
+   "caption": "Thy ship melts near the star! ryz, thou art dead",
+   "route": "@espace,poke:B9F2=A0004600,up,w100,w300",
+   "settled": true,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_gameover_gameover_sun.png",
+   "file_3x": "3x/ultima_dos_na_gameover_gameover_sun.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
    "id": "inventory_ztats_late",
    "category": "inventory",
    "caption": "Ztats late: level 8, reflect suit, blaster, four gems",
@@ -2269,6 +2386,19 @@
    "source": "shoot.py",
    "file": "ultima_dos_na_gameplay_gameplay_time_machine.png",
    "file_3x": "3x/ultima_dos_na_gameplay_gameplay_time_machine.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "system_time_machine_no_gems",
+   "category": "system",
+   "caption": "Without the four gems: Thou canst not determine how to operate the craft",
+   "route": "@mid,SPAWN:12:32:28,right,w60,b,w100",
+   "settled": true,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_system_system_time_machine_no_gems.png",
+   "file_3x": "3x/ultima_dos_na_system_system_time_machine_no_gems.png",
    "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
    "captured": "2026-11-19"
   },
@@ -2373,6 +2503,19 @@
    "source": "shoot.py",
    "file": "ultima_dos_na_boss_boss_mondain_bat.png",
    "file_3x": "3x/ultima_dos_na_boss_boss_mondain_bat.png",
+   "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "boss_or_is_he",
+   "category": "boss",
+   "caption": "Mondain killed with his gem intact: Mondain is dead!...or is he?",
+   "route": "@mondain,right*10,w30,poke:756E=0100,a,w30,right,w100,space,w100",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_boss_boss_or_is_he.png",
+   "file_3x": "3x/ultima_dos_na_boss_boss_or_is_he.png",
    "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
    "captured": "2026-11-19"
   },

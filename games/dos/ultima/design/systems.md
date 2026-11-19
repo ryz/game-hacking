@@ -33,14 +33,14 @@ leaves the fantasy loop for space combat, a princess rescue and the time machine
 | Player verbs | Get | in Mondain's chamber: take the gem (2,196 damage to the player); elsewhere "Get?" or "Get what?" **(verified)** | g | 2,196 | §3.11 | `boss_gem_destroyed`, `gameplay_refusals` | shown |
 | Player verbs | HyperJump | in space, front view only, to another sector; outdoors "HyperJump?" **(verified)** | h | about 1,250 frames until "HyperJump completed." | §3.9 | `system_hyperjump`, `gameplay_space_enemy`, `gameplay_refusals` | shown |
 | Player verbs | Inform and search | names the land, "You are in the woods", "You are at sea", the town; finds secret doors in towns **(verified; secret doors: ROM text)** | i | | | `gameplay_inform`, `gameplay_woods`, `gameplay_at_sea`, `gameplay_lands_lord_british` | shown |
-| Player verbs | K-limb | climb a ladder in a dungeon; the hero must face north or south on the ladder square **(verified)** | k | | §3.8 | `system_klimb_down`, `system_klimb_out` | shown |
+| Player verbs | K-limb | climb a ladder in a dungeon; the hero must face north or south on the ladder square **(verified)** | k | | §3.8 | `system_klimb_down`, `system_klimb_out`, `system_klimb_facing` | shown |
 | Player verbs | Noise | sound on/off **(verified)** | n | | | `system_noise` | shown |
 | Player verbs | Open | coffins in dungeons (chests are opened with Unlock) **(verified)** | o | | §3.8 | `gameplay_coffin` | shown |
-| Player verbs | Quit | save the game; only outdoors; play continues **(verified)** | q | | §3.12 | `save_quit` | shown |
+| Player verbs | Quit | save the game; only outdoors; play continues **(verified)** | q | | §3.12 | `save_quit`, `system_quit_indoors` | shown |
 | Player verbs | Ready | choose weapon, armour or spell from what is owned **(verified)** | r, w/a/s, letter | | | `inventory_ready_weapon`, `inventory_ready_armour`, `inventory_ready_spell` | shown |
 | Player verbs | Steal | behind a shop counter or in a castle storeroom; caught = guards **(verified)** | s | caught on 77 of 255 rolls, thieves 37 **(code)** | §3.5 | `system_steal`, `system_steal_caught`, `system_steal_storeroom` | shown |
 | Player verbs | Transact | shops (buy/sell), pub (ale), kings (pence or service) **(verified)** | t | | §3.5 | `shop_transport`, `shop_pub`, `dialogue_king_offer` | shown |
-| Player verbs | Unlock | prison cells with the jester's key; in dungeons opens chests **(verified)** | u | | §3.10, §3.8 | `system_cell_open`, `system_chest_trap`, `system_chest_gold` | shown |
+| Player verbs | Unlock | prison cells with the jester's key; in dungeons opens chests **(verified)** | u | | §3.10, §3.8 | `system_cell_open`, `system_no_key`, `system_chest_trap`, `system_chest_gold` | shown |
 | Player verbs | View | space: top view / front view; refused while enemies are in the sector **(verified)** | v | | §3.9 | `gameplay_space_front`, `system_space_view_refused` | shown |
 | Player verbs | Ztats | inventory and statistics, paged with More **(verified)** | z | | | `inventory_ztats`, `inventory_ztats_mid`, `inventory_ztats_late` | shown |
 | Player verbs | Unknown keys | "Huh?" **(verified)** | j l m p w y | | | `gameplay_refusals` | shown |
@@ -48,7 +48,7 @@ leaves the fantasy loop for space combat, a princess rescue and the time machine
 | Characters and progression | Level | experience / 1000 + 1 **(code; verified on Ztats: 4213 exp = level 5, 7340 = level 8)** | | | | `inventory_ztats_mid`, `inventory_ztats_late` | shown |
 | Characters and progression | Hit points | the life total; bought from kings at 3 for 2 pence, earned in dungeons, 500 from a princess **(verified)** | t, p | 50 pence = 75 hits | §3.3 | `dialogue_king_pence`, `system_klimb_out`, `system_princess_reward` | shown |
 | Characters and progression | Statistics from landmarks | entering a landmark raises one statistic by (value + 8) / 10, to 99 at most **(code; verified 5 times)** | e | 28 Agility -> +3 | §3.3 | `system_landmark_pillars`, `system_landmark_tower`, `system_landmark_ozymandias`, `system_landmark_signpost`, `system_landmark_southern`, `system_landmark_grave_gain` | shown |
-| Characters and progression | Quest rewards | landmark quests: Strength from the king; monster quests: a gem **(verified)** | t, s | Lord British: 8 Strength | §3.10 | `dialogue_quest_done`, `dialogue_gem_red` | shown |
+| Characters and progression | Quest rewards | landmark quests: Strength from the king; monster quests: a gem **(verified)** | t, s | Lord British: 8 Strength | §3.10 | `dialogue_quest_done`, `dialogue_gem_red`, `dialogue_gem_green`, `dialogue_gem_blue`, `dialogue_gem_white`, `system_quest_kill` | shown |
 | Resources and economy | Coin | copper pence, max 9,999; Ztats splits it into copper, silver (10) and gold crowns (100); kills pay "2 copper! 1 silver!" **(verified)** | | | §3.5 | `inventory_ztats`, `battle_orc_killed` | shown |
 | Resources and economy | Food | one unit per move or so; 0 = death; packs of 10 for 5 pence **(verified)** | t, amount | | §3.5 | `shop_food`, `shop_food_bought`, `gameover_starved` | shown |
 | Resources and economy | Shops | six kinds; odd and even towns sell different weapons and spells; goods grow with game time; Charisma lowers prices **(verified)** | t, b/s, letter | | §3.5 | `shop_weapons`, `shop_weapons_even`, `shop_weapons_late`, `shop_armour`, `shop_armour_late`, `shop_magic`, `shop_magic_even`, `shop_transport`, `shop_transport_space` | shown |
@@ -72,13 +72,13 @@ leaves the fantasy loop for space combat, a princess rescue and the time machine
 | World and navigation | Towns and castles | one-screen maps; 8 town plans and 2 castle plans, each used once per continent **(verified)** | | | §3.1 | `gameplay_britian`, `gameplay_town_montor`, `gameplay_castle`, `gameplay_castle_lost_king` | shown |
 | World and navigation | Dungeons | first-person, 10 levels of 11x11 squares, doors, ladders, force fields, chests and coffins **(verified)** | | | §3.8 | `gameplay_dungeon`, `gameplay_dungeon_door`, `gameplay_dungeon_ladder` | shown |
 | World and navigation | Space | 7x7 sectors, sector scan, hyperjump, starbases, landing only by shuttle **(verified)** | | | §3.9 | `map_sector_scan`, `gameplay_space_top`, `system_landing` | shown |
-| Goals and gating | King quests | odd castles: find a landmark (Strength); even: kill a monster (gem); one quest per king at a time **(verified)** | t, s | | §3.10 | `dialogue_king_quest`, `dialogue_king_kill_quest`, `dialogue_king_busy`, `system_landmark_grave` | shown |
+| Goals and gating | King quests | odd castles: find a landmark (Strength); even: kill a monster (gem); one quest per king at a time **(verified)** | t, s | | §3.10 | `dialogue_king_quest`, `dialogue_king_kill_quest`, `dialogue_king_busy`, `dialogue_king_olympus`, `system_landmark_grave` | shown |
 | Goals and gating | Space Ace | 20 enemy vessels destroyed **(verified)** | f | 20 | §3.9 | `system_space_ace`, `battle_space_hit` | shown |
 | Goals and gating | Princess | key from the jester, open the cell, lead her out; with Space Ace and level 8 she reveals the time machine **(verified)** | a, u | 500 hit points, pence, experience | §3.10 | `system_jester_key`, `system_cell_open`, `system_cell_open_late`, `system_princess_reward` | shown |
-| Goals and gating | Time machine | needs all four gems **(verified)** | b | | §3.11 | `gameplay_time_machine`, `cutscene_time_machine` | shown |
-| Goals and gating | Ending | destroy the gem, kill Mondain, ending text **(verified)** | g, a | | §3.11 | `boss_gem_destroyed`, `ending_victorious`, `ending_text` | shown |
+| Goals and gating | Time machine | needs all four gems **(verified)** | b | | §3.11 | `gameplay_time_machine`, `cutscene_time_machine`, `system_time_machine_no_gems` | shown |
+| Goals and gating | Ending | destroy the gem, kill Mondain, ending text **(verified)** | g, a | | §3.11 | `boss_gem_destroyed`, `ending_victorious`, `boss_or_is_he`, `ending_text` | shown |
 | Chance | Rolls | hits, damage, steals, tips, traps, monster moves, the princess's cell, the time machine's place **(code / verified)** | | one random generator, advanced only when the game rolls | §3.4 | `system_chest_trap`, `dialogue_pub_lakes` | shown |
-| Failure and recovery | Death and resurrection | at 0 hits or 0 food: "thou art dead", "Attempting resurrection!"; the hero returns with 99 hits and 99 food, no experience and no coin **(verified)** | | | §3.12 | `gameover_dead`, `gameover_starved`, `system_resurrection` | shown |
+| Failure and recovery | Death and resurrection | at 0 hits or 0 food: "thou art dead", "Attempting resurrection!"; the hero returns with 99 hits and 99 food, no experience and no coin **(verified)** | | | §3.12 | `gameover_dead`, `gameover_starved`, `gameover_sun`, `system_resurrection` | shown |
 | Failure and recovery | Traps and theft | chest traps cost hit points; thieves and gremlins steal; a gelatinous cube destroys armour **(verified)** | | | §3.8 | `system_chest_trap`, `battle_thief`, `battle_gremlin`, `battle_gelatinous_cube` | shown |
 | Saving and sessions | Save | Q outdoors writes the character file; four character slots **(verified)** | q | | §3.12 | `save_quit`, `menu_select` | shown |
 | Pacing and difficulty | Gates by time and progress | shop goods by move count; time travel by kills and level; monsters by dungeon depth **(verified)** | | 1,500 / 3,000 moves, 20 kills, level 8 | §3.5, §3.9 | `shop_weapons_late`, `battle_balron` | shown |
@@ -185,7 +185,7 @@ Create and Destroy fail ("Failed!") when the square ahead is not an open corrido
   **(verified: the same map on two entries)**. Squares: corridor, wall, door, secret door (looks like a wall),
   ladder down, ladder up, force field **(verified by placing each)**.
 - Ladders: K-limb with the hero facing north or south on the ladder square; facing east or west gives "Thou must
-  face the ladder!" **(verified)**. Climbing out of level 1 returns to the overworld (`system_klimb_out`).
+  face the ladder!" (`system_klimb_facing`) **(verified)**. Climbing out of level 1 returns to the overworld (`system_klimb_out`).
 - Chests (opened with Unlock): a roll of 1-75 above Agility sets off a trap that costs hit points equal to the
   level ("Thou hast set off a trap!", `system_chest_trap`); otherwise gold, up to level squared + 9
   (`system_chest_gold`) **(code / verified)**. Thieves never trigger traps **(code)**.
@@ -197,7 +197,8 @@ Create and Destroy fail ("Failed!") when the square ahead is not an open corrido
   is destroyed at once (`gameover_dead`) **(verified)**.
 - Top view: planet, sun, starbase and ship (`gameplay_space_top`); flying into the planet with a shuttle lands
   ("Thou hast landed safely!", `system_landing`); other ships cannot land ("Only space shuttles are heat shielded
-  for landings!", ROM text); flying into the sun destroys the ship ("Thy ship melts near the star!", ROM text).
+  for landings!", ROM text); flying into the sun destroys the ship and kills the hero ("Thy ship melts near the
+  star!", `gameover_sun`) **(verified)**. HyperJump costs 100 fuel **(verified: 1000 -> 900)**.
 - Sector Scan shows the 7x7 sectors; H marks sectors with enemy craft (`map_sector_scan`) **(verified: a jump
   into an H sector met a fighter)**.
 - Front view: gun sight in the middle; HyperJump (front view only) streaks to the next sector
@@ -215,21 +216,27 @@ Create and Destroy fail ("Failed!") when the square ahead is not an open corrido
 - T beside the king: "Dost thou offer pence or service" (`dialogue_king_offer`). Service gives a quest: odd
   castles send the hero to a landmark (`dialogue_king_quest`), even castles to kill a dungeon monster
   (`dialogue_king_kill_quest`); asking again: "Thou art on a quest for me already!" (`dialogue_king_busy`). The
-  landmark with an open quest says "A quest has been completed!" (`system_landmark_grave_gain`); back at the
+  landmark with an open quest says "A quest has been completed!" (`system_landmark_grave_gain`), and so does the
+  kill of the quest monster (`system_quest_kill`, a Gelatinous cube for the Lost King); back at the
   king: "For this I will give thee 8 points of strength" (`dialogue_quest_done`) or a gem with a hint
-  (`dialogue_gem_red`) **(verified)**.
+  (`dialogue_gem_red`, `dialogue_gem_green`, `dialogue_gem_blue`, `dialogue_gem_white`: the four hints are all
+  four gems launch a time machine; the time machine must be used to win; the princess helps a space ace; take
+  nine items from the storerooms) **(verified)**. The Castle of Olympus sends the hero to the Pillar of Ozymandias
+  (`dialogue_king_olympus`).
 - Killing the jester gives a key ("Thou hast found a key!", `system_jester_key`) that opens one of the two cells
-  ("The door is open!", `system_cell_open`); attacking people turns the guards hostile (`battle_guard`)
+  ("The door is open!", `system_cell_open`; without it "Thou hast not a key!", `system_no_key`); attacking people turns the guards hostile (`battle_guard`)
   **(verified)**.
 - Leading the princess out: 500 hit points, pence and experience; with 20 kills and level 8 she reveals the time
   machine far to the north-west (`system_princess_reward`) **(verified)**.
 
 ### 3.11 The end
-Board the time machine with all four gems (`gameplay_time_machine`, `cutscene_time_machine`), four pages of text
+Board the time machine with all four gems (`gameplay_time_machine`, `cutscene_time_machine`; without them "Thou
+canst not determine how to operate the craft at this time.", `system_time_machine_no_gems`), four pages of text
 (`cutscene_launch`, `cutscene_pulled`, `cutscene_face_to_face`), then Mondain's chamber (`boss_mondain`). Get
 (Gem) beside the gem costs 2,196 hit points and destroys it (`boss_gem_destroyed`); Mondain casts magic missile,
 mind blaster and psionic shock (`boss_hit_mondain`), turns into a bat below 500 hit points (`boss_mondain_bat`)
-and dies at 0 (`ending_victorious`); the ending text follows (`ending_text`) **(verified)**.
+and dies at 0 (`ending_victorious`); the ending text follows (`ending_text`) **(verified)**. Killed while his gem is
+intact he only seems to die: "Mondain is dead!...or is he?" and the fight goes on (`boss_or_is_he`) **(verified)**.
 
 ### 3.12 Death, resurrection, saving
 - 0 hit points or 0 food: "ryz, thou art dead", a skull, "Attempting resurrection!" (`gameover_dead`,
@@ -237,7 +244,7 @@ and dies at 0 (`ending_victorious`); the ending text follows (`ending_text`) **(
 - Resurrection always succeeds here: the hero stands on the overworld with 99 hits and 99 food, 0 experience and
   0 coin; equipment stays (`system_resurrection`) **(verified)**.
 - Q outdoors saves to the character's slot ("Quit - saving game...saved.", `save_quit`); inside towns,
-  castles and dungeons "only allowed outdoors" **(verified)**. Four slots in Character Selection (`menu_select`).
+  castles and dungeons "Quit - only allowed outdoors!" (`system_quit_indoors`) **(verified)**. Four slots in Character Selection (`menu_select`).
 
 ## Open questions
 - Docking at a starbase: the docking ports are computed from tables (4 per starbase), but every attempt to sit on

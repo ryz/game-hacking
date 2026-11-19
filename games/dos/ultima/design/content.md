@@ -37,7 +37,7 @@ Shot ids are those of set `main`.
 | Castle: Lost King plan | even castles | mess hall, stables, prison, F W A rooms **(verified)** | `gameplay_castle_lost_king` |
 | Landmark | 8 on the map | a sign, a pillar, a tower or a grave on the map, an inscription box inside **(verified)** | `gameplay_landmark_tower`, `system_landmark_grave` |
 | Dungeon | 36 entrances | white wireframe on black; doors, ladders, force fields; deeper is deadlier **(verified)** | `gameplay_dungeon`, `gameplay_dungeon_door`, `gameplay_dungeon_ladder`, `system_spell_create` |
-| Space | 49 sectors | planet, sun, starbases; starfield front view; hyperspace streaks **(verified)** | `gameplay_space_top`, `gameplay_space_front`, `system_hyperjump` |
+| Space | 49 sectors | planet, sun, starbases; starfield front view; hyperspace streaks; the sun burns ships **(verified)** | `gameplay_space_top`, `gameplay_space_front`, `system_hyperjump`, `gameover_sun` |
 | Mondain's chamber | after the time machine | red brick walls on black **(verified)** | `boss_mondain` |
 | Ending | | white text on black **(verified)** | `ending_text` |
 
@@ -46,7 +46,7 @@ Overworld (map pieces; each kind has two animation pictures) **(verified)**:
 | Opponent | Where met | Picture | What it does | Shots |
 |---|---|---|---|---|
 | Orc | land | green humanoid | 2 damage | `battle_orc_hit`, `battle_orc_killed`, `system_aircar_lasers` |
-| Thief | land | blue figure | 8 damage; steals (ROM text) | (thief: dungeon one in `battle_thief`) |
+| Thief | land | blue figure | 8 damage; steals (ROM text) | none: looks like the other land fights; the dungeon thief's theft is `battle_thief` |
 | Evil trent | land | a walking tree, looks like woods | 14 damage | `battle_evil_trent` |
 | Knight, Dark knight | land | armoured figures | 2 and 10 damage | `battle_knight`, `battle_dark_knight` |
 | Necromancer, Wandering warlock | land | robed casters | 6 and 14 damage | `battle_necromancer`, `battle_wandering_warlock` |
@@ -67,7 +67,7 @@ Dungeon (25 kinds, white line drawings; stronger kinds deeper; the level shown i
 | Giant rat, Bat | 2 | | `battle_giant_rat`, `battle_bat` |
 | Spider, Viper | 3 | | `battle_spider_killed`, `battle_viper` |
 | Orc, Cyclops | 4 | | `battle_magic_missile`, `battle_cyclops` |
-| Gelatinous cube | 4 | invisible; destroys armour; Lost King's quest monster | `battle_gelatinous_cube` |
+| Gelatinous cube | 4 | invisible; destroys armour; Lost King's quest monster | `battle_gelatinous_cube`, `system_quest_kill` |
 | Ettin | 5 | 105 damage | `battle_ettin` |
 | Mimic | 5 | looks like a chest | `battle_mimic` |
 | Lizard man, Minotaur | 6 | Minotaur 175 damage | `battle_lizard_man`, `battle_minotaur` |
@@ -84,7 +84,7 @@ Dungeon (25 kinds, white line drawings; stronger kinds deeper; the level shown i
 
 Others: castle guards (`battle_guard`), the jester (`system_jester_key`), enemy fighters in space
 (`gameplay_space_enemy`, `battle_space_hit`, `battle_alien_fires`), Mondain and his bat form (`boss_mondain`,
-`boss_hit_mondain`, `boss_mondain_bat`) **(verified)**.
+`boss_hit_mondain`, `boss_mondain_bat`, `boss_or_is_he`) **(verified)**.
 
 ## 4. Items, equipment, vehicles
 | Item | Type | Got from | What it does | Shots |
@@ -100,7 +100,7 @@ Others: castle guards (`battle_guard`), the jester (`system_jester_key`), enemy 
 | Raft, frigate | vehicle | transport shop | sea travel; the frigate has cannons | `gameplay_raft`, `gameplay_frigate`, `system_frigate_fire` |
 | Aircar | vehicle | transport shop after 3,000 moves | lasers; no woods | `gameplay_aircar`, `system_aircar_lasers` |
 | Shuttle | vehicle | transport shop after 3,000 moves | into space | `gameplay_shuttle`, `system_liftoff` |
-| Time machine | vehicle | the princess's reward | to Mondain | `gameplay_time_machine` |
+| Time machine | vehicle | the princess's reward | to Mondain; needs all four gems | `gameplay_time_machine`, `system_time_machine_no_gems` |
 
 ## 5. Abilities
 | Spell | Got from | What it does | Shots |
@@ -120,6 +120,8 @@ Others: castle guards (`battle_guard`), the jester (`system_jester_key`), enemy 
 |---|---|---|---|
 | Lord British | his castle | landmark quests, hit points for pence | `dialogue_king_offer`, `dialogue_king_quest`, `dialogue_quest_done` |
 | The Lost King | his castle | monster quest, red gem | `dialogue_king_kill_quest`, `dialogue_gem_red` |
+| Kings of Rondorin, the Black Dragon's Castle, Shamino | their castles | green, blue, white gems with hints | `dialogue_gem_green`, `dialogue_gem_blue`, `dialogue_gem_white` |
+| King of Olympus | his castle | landmark quest (Pillar of Ozymandias) | `dialogue_king_olympus` |
 | Princess Julia | Lord British's prison | rescue reward, the time machine | `system_cell_open_late`, `system_princess_reward` |
 | Merchants | town shops | Lord Eldric D'Charbonneux, Mad Chad, Li'l Karelia, Max, Mystic Melinda ... | `shop_armour`, `shop_magic`, `shop_food`, `shop_armour_late`, `shop_magic_even` |
 | Tavern keeper | pubs | ale, tips | `shop_pub`, `dialogue_pub_mondain` |

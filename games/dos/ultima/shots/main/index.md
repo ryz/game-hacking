@@ -1,6 +1,6 @@
 # Ultima I: The First Age of Darkness (DOS) - shots: main
 
-Platform dos, region na, model svga-500, ROM SHA-1 `19a3c1ed6697fc84e9ee3c5460397c807ae1188a`. 184 shots. Contact sheet: [ultima_dos_na_set_sheet.png](ultima_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model svga-500, ROM SHA-1 `19a3c1ed6697fc84e9ee3c5460397c807ae1188a`. 195 shots. Contact sheet: [ultima_dos_na_set_sheet.png](ultima_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -59,6 +59,7 @@ Platform dos, region na, model svga-500, ROM SHA-1 `19a3c1ed6697fc84e9ee3c546039
 | system_steal | system | Steal behind the armour counter: Thou dost find a Reflect suit | no | [png](ultima_dos_na_system_system_steal.png) [3x](3x/ultima_dos_na_system_system_steal.png) |
 | gameplay_drop_pence | gameplay | Drop pence: 10 dropped in town (OK!) | no | [png](ultima_dos_na_gameplay_gameplay_drop_pence.png) [3x](3x/ultima_dos_na_gameplay_gameplay_drop_pence.png) |
 | system_steal_caught | system | Steal with the alarm raised: Oh no! Thou wert caught! | no | [png](ultima_dos_na_system_system_steal_caught.png) [3x](3x/ultima_dos_na_system_system_steal_caught.png) |
+| system_quit_indoors | system | Q in a town: Quit - only allowed outdoors! | no | [png](ultima_dos_na_system_system_quit_indoors.png) [3x](3x/ultima_dos_na_system_system_quit_indoors.png) |
 | gameplay_castle | gameplay | The Castle of Lord British: halls, pools, the king's room and the prison | no | [png](ultima_dos_na_gameplay_gameplay_castle.png) [3x](3x/ultima_dos_na_gameplay_gameplay_castle.png) |
 | dialogue_king_offer | dialogue | Lord British: Dost thou offer pence or service? | no | [png](ultima_dos_na_dialogue_dialogue_king_offer.png) [3x](3x/ultima_dos_na_dialogue_dialogue_king_offer.png) |
 | dialogue_king_pence | dialogue | 50 pence offered: In return I give unto thee 75 hit points | no | [png](ultima_dos_na_dialogue_dialogue_king_pence.png) [3x](3x/ultima_dos_na_dialogue_dialogue_king_pence.png) |
@@ -66,10 +67,15 @@ Platform dos, region na, model svga-500, ROM SHA-1 `19a3c1ed6697fc84e9ee3c546039
 | dialogue_king_busy | dialogue | Service asked again: Thou art on a quest for me already! | no | [png](ultima_dos_na_dialogue_dialogue_king_busy.png) [3x](3x/ultima_dos_na_dialogue_dialogue_king_busy.png) |
 | system_jester_key | system | The jester killed: Hit Jester! Killed! Thou hast found a key! | no | [png](ultima_dos_na_system_system_jester_key.png) [3x](3x/ultima_dos_na_system_system_jester_key.png) |
 | system_cell_open | system | The key unlocks a prison cell: The door is open! | no | [png](ultima_dos_na_system_system_cell_open.png) [3x](3x/ultima_dos_na_system_system_cell_open.png) |
+| system_no_key | system | Unlock without the jester's key: Thou hast not a key! | no | [png](ultima_dos_na_system_system_no_key.png) [3x](3x/ultima_dos_na_system_system_no_key.png) |
 | battle_guard | battle | The castle guards turn hostile: Attacked by guard! Hit!...7 damage! | no | [png](ultima_dos_na_battle_battle_guard.png) [3x](3x/ultima_dos_na_battle_battle_guard.png) |
 | gameplay_castle_lost_king | gameplay | The Castle of the Lost King: mess hall, stables, prison, F W A shops | no | [png](ultima_dos_na_gameplay_gameplay_castle_lost_king.png) [3x](3x/ultima_dos_na_gameplay_gameplay_castle_lost_king.png) |
 | dialogue_king_kill_quest | dialogue | The Lost King: Go now and kill a Gelatinous Cube | no | [png](ultima_dos_na_dialogue_dialogue_king_kill_quest.png) [3x](3x/ultima_dos_na_dialogue_dialogue_king_kill_quest.png) |
 | dialogue_gem_red | dialogue | Quest done: all four gems launch a time machine; a red gem | no | [png](ultima_dos_na_dialogue_dialogue_gem_red.png) [3x](3x/ultima_dos_na_dialogue_dialogue_gem_red.png) |
+| dialogue_gem_green | dialogue | Rondorin's king: the time machine must be used to win; a green gem | no | [png](ultima_dos_na_dialogue_dialogue_gem_green.png) [3x](3x/ultima_dos_na_dialogue_dialogue_gem_green.png) |
+| dialogue_gem_blue | dialogue | Black Dragon's king: the princess helps a space ace; a blue gem | no | [png](ultima_dos_na_dialogue_dialogue_gem_blue.png) [3x](3x/ultima_dos_na_dialogue_dialogue_gem_blue.png) |
+| dialogue_gem_white | dialogue | Shamino: take nine items from my storerooms; a white gem | no | [png](ultima_dos_na_dialogue_dialogue_gem_white.png) [3x](3x/ultima_dos_na_dialogue_dialogue_gem_white.png) |
+| dialogue_king_olympus | dialogue | The Castle of Olympus: Go forth and find The Pillar of Ozymandias | no | [png](ultima_dos_na_dialogue_dialogue_king_olympus.png) [3x](3x/ultima_dos_na_dialogue_dialogue_king_olympus.png) |
 | gameplay_landmark_tower | gameplay | The Tower of Knowledge on the overworld, a landmark beside a lake | no | [png](ultima_dos_na_gameplay_gameplay_landmark_tower.png) [3x](3x/ultima_dos_na_gameplay_gameplay_landmark_tower.png) |
 | system_landmark_pillars | system | Pillars of Protection: You feel a strong magic surrounding you! | yes | [png](ultima_dos_na_system_system_landmark_pillars.png) [3x](3x/ultima_dos_na_system_system_landmark_pillars.png) |
 | system_landmark_tower | system | Tower of Knowledge: TURIS-SCIENTIA-MAGNOPERE; 2 Intelligence | yes | [png](ultima_dos_na_system_system_landmark_tower.png) [3x](3x/ultima_dos_na_system_system_landmark_tower.png) |
@@ -129,6 +135,7 @@ Platform dos, region na, model svga-500, ROM SHA-1 `19a3c1ed6697fc84e9ee3c546039
 | system_chest_trap | system | Unlock chest: Thou hast set off a trap! | no | [png](ultima_dos_na_system_system_chest_trap.png) [3x](3x/ultima_dos_na_system_system_chest_trap.png) |
 | system_chest_gold | system | Unlock chest: Thou dost find gold | no | [png](ultima_dos_na_system_system_chest_gold.png) [3x](3x/ultima_dos_na_system_system_chest_gold.png) |
 | gameplay_coffin | gameplay | A coffin on the dungeon floor: Open coffin | no | [png](ultima_dos_na_gameplay_gameplay_coffin.png) [3x](3x/ultima_dos_na_gameplay_gameplay_coffin.png) |
+| system_klimb_facing | system | K-limb facing east: Thou must face the ladder! | no | [png](ultima_dos_na_system_system_klimb_facing.png) [3x](3x/ultima_dos_na_system_system_klimb_facing.png) |
 | battle_ranger | battle | Level 1: Attacked by Ranger! Missed! | no | [png](ultima_dos_na_battle_battle_ranger.png) [3x](3x/ultima_dos_na_battle_battle_ranger.png) |
 | battle_thief | battle | Level 1: Thief stole a Dagger | no | [png](ultima_dos_na_battle_battle_thief.png) [3x](3x/ultima_dos_na_battle_battle_thief.png) |
 | battle_giant_rat | battle | Level 2: a Giant rat | no | [png](ultima_dos_na_battle_battle_giant_rat.png) [3x](3x/ultima_dos_na_battle_battle_giant_rat.png) |
@@ -137,6 +144,7 @@ Platform dos, region na, model svga-500, ROM SHA-1 `19a3c1ed6697fc84e9ee3c546039
 | battle_viper | battle | Level 3: a Viper | no | [png](ultima_dos_na_battle_battle_viper.png) [3x](3x/ultima_dos_na_battle_battle_viper.png) |
 | battle_cyclops | battle | Level 4: a Cyclops | no | [png](ultima_dos_na_battle_battle_cyclops.png) [3x](3x/ultima_dos_na_battle_battle_cyclops.png) |
 | battle_gelatinous_cube | battle | Level 4: the invisible Gelatinous cube: Armor destroyed! | no | [png](ultima_dos_na_battle_battle_gelatinous_cube.png) [3x](3x/ultima_dos_na_battle_battle_gelatinous_cube.png) |
+| system_quest_kill | system | Lost King's quest: Gelatinous cube killed! A quest has been completed! | yes | [png](ultima_dos_na_system_system_quest_kill.png) [3x](3x/ultima_dos_na_system_system_quest_kill.png) |
 | battle_ettin | battle | Level 5: an Ettin hits for 105 damage | no | [png](ultima_dos_na_battle_battle_ettin.png) [3x](3x/ultima_dos_na_battle_battle_ettin.png) |
 | battle_mimic | battle | Level 5: Attacked by Mimic! The chest is a monster | no | [png](ultima_dos_na_battle_battle_mimic.png) [3x](3x/ultima_dos_na_battle_battle_mimic.png) |
 | battle_lizard_man | battle | Level 6: a Lizard man | no | [png](ultima_dos_na_battle_battle_lizard_man.png) [3x](3x/ultima_dos_na_battle_battle_lizard_man.png) |
@@ -174,10 +182,12 @@ Platform dos, region na, model svga-500, ROM SHA-1 `19a3c1ed6697fc84e9ee3c546039
 | battle_alien_fires | battle | Alien fires! A laser beam from the enemy fighter | no | [png](ultima_dos_na_battle_battle_alien_fires.png) [3x](3x/ultima_dos_na_battle_battle_alien_fires.png) |
 | system_space_ace | system | The 20th vessel: Thou hast achieved the rank of Space Ace! | yes | [png](ultima_dos_na_system_system_space_ace.png) [3x](3x/ultima_dos_na_system_system_space_ace.png) |
 | system_landing | system | Thou hast landed safely! The shuttle back beside Britian | no | [png](ultima_dos_na_system_system_landing.png) [3x](3x/ultima_dos_na_system_system_landing.png) |
+| gameover_sun | gameover | Thy ship melts near the star! ryz, thou art dead | yes | [png](ultima_dos_na_gameover_gameover_sun.png) [3x](3x/ultima_dos_na_gameover_gameover_sun.png) |
 | inventory_ztats_late | inventory | Ztats late: level 8, reflect suit, blaster, four gems | no | [png](ultima_dos_na_inventory_inventory_ztats_late.png) [3x](3x/ultima_dos_na_inventory_inventory_ztats_late.png) |
 | system_cell_open_late | system | Late game: the cell unlocked, princess Julia free to follow ryz | no | [png](ultima_dos_na_system_system_cell_open_late.png) [3x](3x/ultima_dos_na_system_system_cell_open_late.png) |
 | system_princess_reward | system | Princess Julia saved: rewards and the time machine far to the northwest | yes | [png](ultima_dos_na_system_system_princess_reward.png) [3x](3x/ultima_dos_na_system_system_princess_reward.png) |
 | gameplay_time_machine | gameplay | The time machine on the overworld | no | [png](ultima_dos_na_gameplay_gameplay_time_machine.png) [3x](3x/ultima_dos_na_gameplay_gameplay_time_machine.png) |
+| system_time_machine_no_gems | system | Without the four gems: Thou canst not determine how to operate the craft | yes | [png](ultima_dos_na_system_system_time_machine_no_gems.png) [3x](3x/ultima_dos_na_system_system_time_machine_no_gems.png) |
 | cutscene_time_machine | cutscene | Board Time Machine: four holes marked R G B W, the gems fit | no | [png](ultima_dos_na_cutscene_cutscene_time_machine.png) [3x](3x/ultima_dos_na_cutscene_cutscene_time_machine.png) |
 | cutscene_launch | cutscene | Time machine, page 2: LAUNCH pressed, the journey through time begins | no | [png](ultima_dos_na_cutscene_cutscene_launch.png) [3x](3x/ultima_dos_na_cutscene_cutscene_launch.png) |
 | cutscene_pulled | cutscene | Time machine, page 3: a strong magic pulling thee from thy craft | no | [png](ultima_dos_na_cutscene_cutscene_pulled.png) [3x](3x/ultima_dos_na_cutscene_cutscene_pulled.png) |
@@ -186,6 +196,7 @@ Platform dos, region na, model svga-500, ROM SHA-1 `19a3c1ed6697fc84e9ee3c546039
 | boss_gem_destroyed | boss | Get (Gem): 2196 damage, The Gem is DESTROYED! | no | [png](ultima_dos_na_boss_boss_gem_destroyed.png) [3x](3x/ultima_dos_na_boss_boss_gem_destroyed.png) |
 | boss_hit_mondain | boss | Hit Mondain! 51 damage! Mondain casts psionic shock | no | [png](ultima_dos_na_boss_boss_hit_mondain.png) [3x](3x/ultima_dos_na_boss_boss_hit_mondain.png) |
 | boss_mondain_bat | boss | Mondain below 500 hit points turns into a bat | no | [png](ultima_dos_na_boss_boss_mondain_bat.png) [3x](3x/ultima_dos_na_boss_boss_mondain_bat.png) |
+| boss_or_is_he | boss | Mondain killed with his gem intact: Mondain is dead!...or is he? | no | [png](ultima_dos_na_boss_boss_or_is_he.png) [3x](3x/ultima_dos_na_boss_boss_or_is_he.png) |
 | ending_victorious | ending | Mondain is dead! THOU ART VICTORIOUS! | yes | [png](ultima_dos_na_ending_ending_victorious.png) [3x](3x/ultima_dos_na_ending_ending_victorious.png) |
 | ending_text | ending | Ending text: Lord British's reward, Press CONTROL-ALT-DEL to Restart | yes | [png](ultima_dos_na_ending_ending_text.png) [3x](3x/ultima_dos_na_ending_ending_text.png) |
 
