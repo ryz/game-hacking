@@ -9,6 +9,25 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Ultima II (DOS) set main
+- Task: set `main` from power-on to the ending with the three lenses: 226 shots, 226/226 from an empty cache,
+  published, commit 3288ec2.
+- Worked: a string-to-offset helper over the scout's disassembly answered the open questions in a few calls
+  each (shops, spawning, dungeon format, chests, traps, steal, the clerk, death); random-state pokes forced
+  every rare outcome; small route generators (merchant, monster, talk placement) + try.py sheets of 10-50
+  candidates, then `shoot.py --only`, ~15 batches; Minax killed in an honest fight.
+- Friction: captions had to be checked against the four-line command log (long answers scroll earlier lines
+  away; two captions first named commands no longer on screen); `!,settle` inside recorded routes reads oddly;
+  a cold verify of 226 DOS shots ~15-20 min, and one late HUD shot cost a second full verify; no way to wait
+  for a background verify except a polling loop. Not captured: Up ladder and Blink spells (FAILED), fleeing,
+  natural-kill loot, Uranus talk lines (no named people), dungeon pictures 2/4/6 on their own.
+- Proposed rule change: skill step 6: check the must-have list (title, menu, first control, HUD, game over)
+  before the first cold verify; emulator guide: in games with a short scrolling command log, write the caption
+  from the frame, not from the keys sent.
+- Corrected: coordinator cold `--verify` 226/226, lenses clean (164 / 72 / 152), sheets looked at; the scout's
+  Lord British thresholds corrected by this run.
+- Status: logged (first report of both).
+
 ### 2026-11-19 - Ultima I (DOS) set main
 - Task: set `main` from power-on to the ending with the three lenses: 195 shots, 195/195 from an empty cache,
   published and pushed (1c37e9d, d19fdf1).

@@ -2,6 +2,16 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Ultima II (DOS) scouted and captured to the ending (226 shots)
+- game-scout (3523e50): ryz created, 29 checkpoints to the ending, BCD player record mapped, period warp,
+  quest chain decoded from the program; starts in 1423 B.C. (the coordinator's brief said 1990).
+- Coordinator (7b8d63d): `play.py export` writes the route from power-on into save READMEs (third report of
+  circular `@checkpoint` routes), check in test_dos_pipeline fails without the fix.
+- game-capture (3288ec2): 226 shots, honest Minax fight, every shop kind, all planets, spawn/dungeon/chest/trap
+  rules and the random state decoded; Lord British's limits corrected (5000/7500/9900).
+- Coordinator: cold `shoot.py dos/ultima-2 main --verify` 226/226, lenses clean, sheets looked at. Merged to
+  `master`. Ultima III registered (0f34e01); scout dispatched.
+
 ## 2026-11-19 - Ultima I (DOS) captured to the ending (195 shots)
 - game-capture (1c37e9d, d19fdf1): set `main` 195 shots, three lenses, RNG state found (115CC) for chosen rolls,
   save 03_midgame, `tools/shops.py`; RAM map corrections (class index, dungeon level at 19CA0).

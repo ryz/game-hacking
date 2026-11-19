@@ -140,7 +140,10 @@ Current snapshot; history in `progress-log.md`.
 - Ultima I (DOS, GOG), 2026-11-19: main set 195 shots from power-on to the ending text, 195/195 verified by the
   coordinator from an empty cache, three lenses 157 / 104 / 127, saves 01-03. Model `svga-500`. Open: starbase
   docking and ship choice, pub seduction, bard/jester songs, Steal spell.
-- DOS queue (owner, 2026-11-19): Ultima II (scout running), Ultima III (import characters from
+- Ultima II (DOS, GOG), 2026-11-19: main set 226 shots from power-on to the ending text (Minax killed without
+  pokes), 226/226 verified by the coordinator from an empty cache, three lenses 164 / 72 / 152, saves 01-03.
+  Model `svga-500`. Open: Up ladder and Blink spells, fleeing, natural-kill loot.
+- DOS queue (owner, 2026-11-19): Ultima III (scout running), the last of the queue (import characters from
   the previous game's SAVEn.DSK), then Ultima I, II, III (GOG; cycles 500/500/300 in GOG's configs).
 - Might and Magic 1 (DOS), state after the fix-up round (2026-11-18): 249 shots, 249/249 verified in one run
   from an empty cache by the coordinator, no identical pictures, no caption over 80 characters. Round 2 before
