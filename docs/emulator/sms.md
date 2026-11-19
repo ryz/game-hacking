@@ -55,6 +55,9 @@ The Z80 address space, four hex digits: `poke:C0A2=09`, `"addr": "C0A2"` in `gam
 The header does not say whether a cartridge has a battery. `play.py export` writes the cartridge RAM as a 32 KiB
 `.sav` (both Sega mapper pages; the export refuses when the game never wrote it). Genesis Plus GX loads it as its
 `.srm`; `sav:NAME` powers on with it. `--state` adds a savestate that only this core build loads.
+- Savestates carry the cartridge RAM (the core's own state leaves it out; the backend appends it, since
+  2026-11-19, found by the Phantasy Star scout). Older cached states are refused; delete them and the route
+  rebuilds them. After `export`, check the save by loading it with `sav:NAME` through the game's Continue.
 
 ## Not supported
 Game Gear and SG-1000 cartridges (the core runs them; the backend is not set up for them), a second controller,

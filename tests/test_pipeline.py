@@ -671,6 +671,7 @@ def test_sms_backend(sms_selftest, tmp_path):
     b = platforms.Sms().open(str(sms_selftest))                     # two games at once; state keeps the frame
     b.load_state(st)
     assert b.screen() == shot and b.peek(0xC010, 1) == count
+    assert b.battery(0) == e.battery(0) and b.battery(0)[0] == count[0]    # the state carries cartridge RAM
     e.frames(10); b.frames(10)
     assert e.screen() == b.screen() and e.peek(0xC010, 1) == b.peek(0xC010, 1)
     b.close()

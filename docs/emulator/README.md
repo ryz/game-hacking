@@ -35,7 +35,7 @@ playbooks (committed) are not. That is why every state is defined by a route.
 | `b+a` | press together | combos |
 | `select>a` | hold the first 4 frames, then both | held-modifier shortcuts |
 | `right:30` `a+right:60` | hold N frames, release, no wait | walking, running, charging, jump height |
-| `a*5` `right:16*4` | repeat | repeated menu steps, walking tile by tile |
+| `a*5` `right:16*4` | repeat one token (`b,w60*6` repeats only the wait: put a repeated group in a macro) | repeated menu steps, walking tile by tile |
 | `w60` | wait 60 frames (1 s) | fades, animations, enemy movement |
 | `mash:a:600` | tap A every 8 frames for 600 frames | skipping text and intros |
 | `settle` | run until two frames 10 apart are identical (max 300) | before a capture |

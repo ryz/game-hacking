@@ -710,9 +710,7 @@ class Sms(Libretro):
             "genesis_plus_gx_no_sprite_limit": "disabled"}, None)
         if sav:
             data = open(sav, "rb").read()
-            ctypes_ram = self._sram()
-            for i, b in enumerate(data[:self.SRAM]):
-                ctypes_ram[i] = b
+            self._sram()[:len(data[:self.SRAM])] = data[:self.SRAM]
         return self
 
     def input(self, keys):
@@ -728,6 +726,22 @@ class Sms(Libretro):
         for i, b in enumerate(bytes(data)):
             if not self.c.L.retro_gamedb_poke((addr + i) & 0xFFFF, b):
                 raise ValueError("%04X is not RAM right now (ROM page)" % ((addr + i) & 0xFFFF))
+
+    SRAM_TRAILER = b"GAMEDB-SMS-SRAM-1"
+
+    def save_state(self, path):
+        """The core's state leaves out the cartridge RAM (a game's battery saves, its format signature): it is
+        appended here, so a run continued from a cached checkpoint saves and loads like one from power-on."""
+        open(os.path.abspath(path), "wb").write(self.c.serialize() + bytes(self._sram()) + self.SRAM_TRAILER)
+
+    def load_state(self, path):
+        data = open(os.path.abspath(path), "rb").read()
+        if not data.endswith(self.SRAM_TRAILER):
+            raise SystemExit("%s is a Master System state without cartridge RAM (made before 2026-11-19): "
+                             "delete it, the route rebuilds it" % path)
+        end = len(data) - len(self.SRAM_TRAILER)
+        self.c.unserialize(data[:end - self.SRAM])
+        self._sram()[:] = data[end - self.SRAM:end]
 
     def battery(self, size):
         """The cartridge RAM (32 KiB, the Sega mapper's two pages) as a .sav file; Genesis Plus GX loads it."""
