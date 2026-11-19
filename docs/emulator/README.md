@@ -177,6 +177,10 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
   flag bits one at a time from a checkpoint (one `emu.py` run per bit) before exploring further. A flag set by a
   poke stays in the route and is noted in the playbook.
 - Pokes are part of the route and fine anywhere; values that show on screen follow the realistic-values rule.
+- Rolls (loot, traps, steals, rare answers): find the game's random number state early (the generator routine
+  from the code, or a value that changes only when something is rolled) and poke it right before the key that
+  decides; a small simulator of the generator finds the state for each wanted outcome. Poke after any prompt
+  that waits, not before it: idle loops may roll every frame (Ultima I-III DOS, 2026-11-19).
 - Many games draw a status value only when it changes in play (Ultima I's Hits/Food/Exp./Coin panel, Wizardry
   II's HP and status until a menu change). After a poke, look at the frame: if the display is stale, let the
   game redraw it (open and close a menu, pass a turn), or save in the game and start the route from that save

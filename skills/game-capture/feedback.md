@@ -9,6 +9,26 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Ultima III (DOS) set main
+- Task: set `main` from power-on to the ending with three lenses: 260 shots, 260/260 from an empty cache,
+  published and pushed (c835148, 9a54149).
+- Worked: a simulator of the random generator (`u3rng.py`) found the state for every chest, trap and steal
+  outcome in one try; a monster-placement macro (`MON`) gave all nine combat fields; `play.py sample
+  "space,w90" N` with a crop of the message area found the rare combat lines; cold verify of 260 shots took a
+  few minutes.
+- Friction: a poke before a waiting prompt does not survive the idle loop, which rolls every frame (one shot
+  lost); the scout's `SHIP` note was wrong (a calm blocks frigates too); `DNG` needs a two-digit facing;
+  `recaption` updates the work `shots.txt` but not the game's copy; background waits hit the shell's sleep
+  and timeout rules. Not captured: Ready refused in combat, Surmandum failing into ashes, lava damage without
+  the Mark of Fire, the Shrine of Strength (same picture as Intelligence), the wandering jester, starvation
+  and poison damage per turn.
+- Proposed rule change: emulator guide: write a simulator of the generator and poke right before the deciding
+  key, not before a waiting prompt; skill step 7: copy the work list to the game's `shots.txt` before the final
+  verify.
+- Corrected: coordinator cold `--verify` 260/260, lenses clean (189 / 100 / 115), sheets looked at.
+- Status: random-state rule promoted 2026-11-19 into docs/emulator/README.md (third report: Ultima I, II, III);
+  `recaption` and the game's shots.txt: open tool wish.
+
 ### 2026-11-19 - Ultima II (DOS) set main
 - Task: set `main` from power-on to the ending with the three lenses: 226 shots, 226/226 from an empty cache,
   published, commit 3288ec2.

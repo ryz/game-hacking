@@ -2,6 +2,16 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Ultima III (DOS) scouted and captured to the ending (260 shots); DOS queue done
+- game-scout (a454aa8, cbe4b62): party ryz/condi/ebo/cubi, model svga-300 (CGA palette survives loads on svga),
+  23 checkpoints to the ending, RAM map from EXODUS.BIN's load address, warps, quest chain from the code.
+- game-capture (c835148, 9a54149): 260 shots, rolls forced with a simulator of the random generator, all nine
+  combat fields, design/rules.md; corrected the scout (a calm also blocks frigates; fountain kind by column).
+- Coordinator: replayed four scout checkpoints; cold `shoot.py dos/ultima-3 main --verify` 260/260, lenses
+  clean, sheets looked at. Random-state rule promoted into the emulator guide (third report). Merged to
+  `master`. The owner's DOS queue of this session is done: Might and Magic II 228, Wizardry I 208, II 212,
+  III 228, Ultima I 195, II 226, III 260 shots, each verified from an empty cache.
+
 ## 2026-11-19 - Ultima II (DOS) scouted and captured to the ending (226 shots)
 - game-scout (3523e50): ryz created, 29 checkpoints to the ending, BCD player record mapped, period warp,
   quest chain decoded from the program; starts in 1423 B.C. (the coordinator's brief said 1990).
