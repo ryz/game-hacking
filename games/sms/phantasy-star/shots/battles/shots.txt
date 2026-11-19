@@ -11,3 +11,6 @@ wipe_all | gameover | Party wiped out: "You are all dead." | @start,PARTY2,INV2,
 lassic | boss | Lassic (HP 238), forced encounter: the field background, not his castle | @start,PARTY5,INV5,DUN:39:CA:01,settle,FIGHT:48
 dark_falz | boss | Dark Falz, forced encounter: he dodges every blow outside his chamber | @start,PARTY5,INV5,DUN:3C:75:02,settle,FIGHT:49
 medusa_attack | boss | Medusa's gaze: "Odin has been turned to stone." (clip) | @start,PARTY3,INV3,DUN:0A:66:01,up:1,w200,settle,b2,w30,b2,w30,b2,w30,rec:180:2:20
+corridor_vampire | battle | A Vampire in a red dungeon, the corridor running on far behind it | @start,PARTY4,INV4,DUN:2B:ED:00,settle,w12,up:1,w40,up:1,w40,w200
+corridor_nessie | battle | Nessie in a long green corridor, the walls receding to the far end | @start,PARTY4,INV4,DUN:18:EE:00,settle,w8,up:1,w40,up:1,w40,w200
+corridor_ghoul | battle | A Ghoul in a long yellow corridor, a dozen squares of passage behind it | @start,PARTY4,INV4,DUN:25:E8:00,settle,w32,up:1,w40,up:1,w40,w200
