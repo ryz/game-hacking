@@ -70,13 +70,13 @@ Every screen prints its own keys; single keystrokes, Enter only after names and 
 | Inn list | `ctrl>a`.. add/remove (tick), `z` exit into the town (shown as "'Z' to exit" once one member is ticked), `1`-`5` other towns, `esc` to DOS (after sign-in) or menu | add, `z` verified |
 | Exploration | `up` / `down` | step forward / back | verified |
 | | `left` / `right` | turn 90 degrees (a turn also fires the event of the square, like a step) | verified |
-| | `enter` | forward (manual) | source (no visible move in one try) |
-| | `b` bash, `c` controls (sounds, walk beep, disposition Inconspicuous / Average / Aggressive / Thrill Seeker, delay 0-9), `d` dismiss hireling, `e` exchange, `q` quick ref, `r` rest ("Rest here? (Y/N)"), `s` search ("Nothing Here!"), `u` unlock ("Not Locked!"), `p` protect (light, magic, forces), `m` location (coordinates; the map needs a Cartographer), `1`-`6` profile | | all verified except `b` (no door in front: nothing) |
+| | `enter` | forward (manual) | source (no visible move in one try; not needed: `up` steps) |
+| | `b` bash, `c` controls (sounds, walk beep, disposition Inconspicuous / Average / Aggressive / Thrill Seeker, delay 0-9), `d` dismiss hireling, `e` exchange, `q` quick ref, `r` rest ("Rest here? (Y/N)"), `s` search ("Nothing Here!"), `u` unlock ("Not Locked!"), `p` protect (light, magic, forces), `m` location (coordinates; the map needs a Cartographer), `1`-`6` profile | | all verified; `b` in front of the inn door walks the party out into the street (no locked door was found to bash) |
 | Profile (in play) | `q` quick ref, `c` cast, `d` drop, `e` equip, `g` gather (gold, gems), `r` remove, `s` share, `t` trade (gold, gems, food, item), `u` use, `esc` | | all prompts verified |
 | Cast | `c`, level, number, `enter` ("'Return' to cast"); the Spell Book shows the known spells | | verified (deddo Light: `CAST:5:1:5`) |
 | Prompts | `y` / `n`; `space` continues messages | | verified |
-| Encounter | `a` attack, `b` bribe, `h` hide, `r` run | | options verified, `a` verified |
-| Combat | `a` attack, `f` fight, `s` shoot, `c` cast, `u` use, `b` block, `r` run, `e` exchange, `v` view; `d` delay, `p` protect, `q` quick; `ctrl>a` quick fight | | menus seen for fighters and casters; individual commands source |
+| Encounter | `a` attack, `b` bribe (1 food, 2 gold, 3 gems), `h` hide, `r` run | | all verified: hide failed into combat once, run left the fight and put the party back on the map |
+| Combat | `a` attack, `f` fight (target in reach A-E), `s` shoot (any target), `c` cast (level, number, target or Enter), `u` use, `b` block (silent), `r` run (that member leaves the fight alone), `e` exchange (two digits), `v` view (own profile, `v` spell book); `d` opens Controls (delay), `p` protection spells, `q` quick reference; `ctrl>a` quick fight (the member's default action) | | all verified 2026-11-19 (`@vet_cats`); options depend on class and rank: only members 1-2 get attack/fight, members 3+ shoot |
 
 Input timing: the default press works everywhere. The game reads the BIOS keyboard buffer: **a key typed early
 is kept for the next screen**; wait for each screen. Waits that worked at 8000 cycles: turn `w100`, step `w150`,
@@ -89,7 +89,7 @@ menus and profiles `w150`, town or area load `w300`, event prompt `w250`, stairs
   |---|---|---|
   | 00-04 | towns | 00 Middlegate, 01 Atlantium, 02 Tundara, 03 Vulcania, 04 Sandsobar (inn town selection `1`-`5` = ids 0-4: code) |
   | 05-10, 21-28 | outdoors, a 5x4 grid that wraps around (neighbour table) | row 1: A1 05, B1 06, C1 07, D1 08, E1 21; row 2: A2 09, B2 0A, C2 0B, D2 22, E2 23; row 3: A3 0C, B3 0D, C3 0E, D3 24, E3 25; row 4: A4 0F, B4 10, C4 26, D4 27, E4 28. Middlegate is in C2 (gate at C2 (7,3)), Tundara A1, Vulcania E1, Atlantium A4, Sandsobar E4 (cluebook; texts match: E1 "Vulcania swelters before you", E4 "sits Sandsobar") |
-  | 11-20 | caverns (dark) | 11 under Middlegate (verified: stairs at Middlegate (8,0) facing W lead to 11 (15,8)); from the texts (inferred): 12 under Atlantium, 13 under Tundara, 14 under Vulcania, 15 under Sandsobar, 16 Corak's Cave, 17 Square Lake (final dungeon), 18 Ice Cavern, 19 Sarakin's Mine, 1A Murray's Cavern, 1B-1C (Druid's Point / Forbidden Forest), 1D Dragon's Dominion, 1E Dawn's Mist (Element Orb), 1F Gemmaker Volcano, 20 Nomadic Rift (?) |
+  | 11-20 | caverns (dark) | verified 2026-11-19 by their texts and exits: 11 under Middlegate, 12 under Atlantium ("Exit to Atlantium"), 13 under Tundara, 14 under Vulcania, 15 under Sandsobar, 16 Corak's Cave (Corak's Crypt, Lloyd), 17 under Square Lake (final gate, "Stairs lead back to Square Lake"), 18 Ice Cavern ("Reenter the Tundra"), 19 Sarakin's Mine, 1A Murray's Cavern, 1B the Druids' cavern (Coven Headquarters), 1C the class-quest cavern (Paladins Only, G.H.Q.), 1D Dragon's Dominion, 1E Dawn's Mist (Element Orb), 1F Gemmaker Volcano, 20 Nomadic Rift |
   | 29-2C | elemental planes | 29 Air (Lord Shalwend), 2A Fire (Lord Pyrannaste), 2B Earth (Lord Gralkor), 2C Water (Lord Acwalandar): each has a shrine opened with that element's Disc, giving the Talon (ROM text) |
   | 2D-36 | dungeons below the castles, two levels each (8) + the two wizards' towers | order inferred from texts: lords' dungeons of Hillstone (Slayer), Woodhaven (Hoardall), Pinehurst (Peabody), Luxus Palace (Lamanda); 35 Dark Keep (Ybmug), 36 Tower of Mercy (Yekop) |
   | 37-3B | castles | 37 Hillstone (Lord Slayer), 38 Woodhaven (Lord Hoardall), 39 Pinehurst (inferred), 3A Luxus Palace Royale (Corak's Study), 3B Castle Xabran (the four Discs; list of spell locations) |
@@ -128,7 +128,7 @@ menus and profiles `w150`, town or area load `w300`, event prompt `w250`, stairs
   Jesters, Warbots, Mystic Clowns, Alien Probes), 66 Devil Kings at (11,14), a gate at (0,15) E "You shouldn't
   be here until you save the King in the 9th century", a row of joke signs along y=15 ("Hello!" ... "Just
   kidding!" ... "This is IT!!!!!" at (15,15)), Beliaeff's Beastiary sign (1,0).
-- **Main quest** (ROM text and cluebook, not played): class quests for the Jurors of Mount Farview (D2 (7,0));
+- **Main quest** (ROM text and cluebook; the end verified 2026-11-19, see "The ending" below): class quests for the Jurors of Mount Farview (D2 (7,0));
   Queen Lamanda's Triple Crown (Black Tickets to the Arena, Monster Bowl and Colosseum); the four Discs in
   Castle Xabran (9th century) open the shrines of the elemental planes, which give the four Talons; King
   Kalohn's Element Orb (in Dawn's Mist cavern); in the 9th century give Kalohn the Orb and the Talons at C4
@@ -141,29 +141,52 @@ menus and profiles `w150`, town or area load `w300`, event prompt `w250`, stairs
   Evil; secondary skills (two per character: Arms Master ... Soldier, manual); hirelings (pay per day); spell
   levels 1-9, 48 cleric + 48 sorcerer spells.
 
+## The ending (verified 2026-11-19)
+1. King Kalohn: year 800, C4 (14,5) facing N with the Element Orb (DF) and the four Talons (DB-DE) in a backpack:
+   `@hero,YEAR:08,WARP:26:0E:04,poke:18966=DFDBDCDDDE,up,w250` asks, `y,w300` = he wins; this sets record
+   +0x81 bit 02 for every party member (script op `18 00 7F FD 02`). Without the items he dies and the Mega
+   Dragon attacks.
+2. Square Lake gate: area 17 (0,15) facing E (`LIT,WARP:17:02:02,...,AT:00:0F,FS,left,w250`). It tests +0x81
+   bit 20 ("save the King": nothing in the area scripts sets it; the capture pokes it). `MARKS` pokes 0x23 =
+   bits 01 (Chosen One: C2 cave and the Devil Kings), 02 (Kalohn), 20 (gate) into all six records.
+   Checkpoint `sheltem` = HERO party at the gate.
+3. Sheltem (500 HP) and four Elementals (250 HP each); monster HP words at 1A7AA (5 x 2 bytes); the route
+   pokes `poke:1A7AA=28002800280028002800` (40 each) and then `BATTLES:2316:11` (the gate zeroes both
+   counters at 10C10/10C12: findings) and finishes with `w100,ctrl>a,w150` steps.
+4. Control room: type `WAFE` + Enter (fixed code, from 2SMITH.OVL at offset 0x1342: compare with DS:45FC).
+5. Cryptogram: the answer is "Preamble" enciphered with a random 26-letter key (DS:584E, physical 1604E);
+   the enciphered answer is at physical 160AE (8 letters, case kept): read it with `play.py peek 160AE 9`
+   once the cryptogram shows and type it. The route of `ending_answer_typed` gives `Uqkcypvk` (deterministic
+   for that route; any change before it changes the key). 15-minute real clock (DS:436/438 ticks).
+6. Congratulations, then the inn list; the game writes ROSTER.DAT (save `04_ending`). Each member gets bit 08
+   in +0x81 and 50,000,000 experience.
+
 ## Shot plan
 Target: the whole game to the ending, in the three lenses (see `shots.txt` for the planned ids and how to reach
 each; about 150 shots). Reach everything with `WARP` (+ `YEAR` for other centuries, `LIT` for dark areas) and
 pokes, then scan the area (`tools/scan.py MAP`) and pick the frames.
-- [ ] Boot and menus: NWC logo, title, opening options, About, Copy Disk, Main Options, View All, hirelings
+Status 2026-11-19: **captured, set `main` 228 shots** (`shots.txt`); every group below is done except where
+noted. Not captured: hiring a hireling, the automap of a Cartographer, the shrines of the planes (the disc
+prompt did not fire on the first tries), a bashed locked door, time travel by the game's own means.
+- [x] Boot and menus: NWC logo, title, opening options, About, Copy Disk, Main Options, View All, hirelings
   list, profile, rename, Transfer prompt (8-10).
-- [ ] Creation: roll, exchange stat, class, race, alignment, sex, name (6).
-- [ ] Inn and town: inn list, exit, spirit of Corak, Middlegate street, every Middlegate service (blacksmith
+- [x] Creation: roll, exchange stat, class, race, alignment, sex, name (6).
+- [x] Inn and town: inn list, exit, spirit of Corak, Middlegate street, every Middlegate service (blacksmith
   buy/sell lists, tavern menu and rumor, temple menu, training, mage guild and spell purchase, locksmith,
   portal, travel agent, Otto Mapper, skill trainers, detox, fountains, arena), sign-in (25).
-- [ ] Exploration commands: controls menu, protect panel, quick ref, rest, search (chest, treasure), bash,
+- [x] Exploration commands: controls menu, protect panel, quick ref, rest, search (chest, treasure), bash,
   unlock, location and auto-map with a Cartographer, Wizard Eye / Eagle Eye 5x5 view, dismiss, exchange (12).
-- [ ] Combat: encounter options, combat screen, attack, fight, shoot, cast (several spell families), block, run,
+- [x] Combat: encounter options, combat screen, attack, fight, shoot, cast (several spell families), block, run,
   hide, bribe, quick fight, victory and experience, treasure, a death, game over (16).
-- [ ] Each environment once: 5 towns, outdoor terrains (grass, forest, mountains, tundra, desert, swamp, water,
+- [x] Each environment once: 5 towns, outdoor terrains (grass, forest, mountains, tundra, desert, swamp, water,
   roads), a cavern, a castle, a dungeon, the four elemental planes, the Dead Zone (D1), Murray's Resort Isle
   (20+).
-- [ ] Opponents: about 25 groups across the families (Square Lake's twelve, the elemental lords, Mega Dragon,
+- [x] Opponents: about 25 groups across the families (Square Lake's twelve, the elemental lords, Mega Dragon,
   Dread Knight, Baron Wilfrey, Dawn, Lich Lord, Devil Kings, Sheltem if met).
-- [ ] Quest and story: Jurors of Mount Farview, class quest rewards, Nordon / Nordonna, Corak's Soul and Body,
+- [x] Quest and story: Jurors of Mount Farview, class quest rewards, Nordon / Nordonna, Corak's Soul and Body,
   Castle Xabran discs, shrines and talons, Element Orb, time travel (year change), King Kalohn, Queen Lamanda,
   Triple Crown, Square Lake gate, ending (15).
-- [ ] Progression: training (level up), spell level gained, secondary skill learned, hireling hired, ageing,
+- [x] Progression: training (level up), spell level gained, secondary skill learned, hireling hired, ageing,
   temple cure (8).
 Distinctive for this game: the 16-colour first-person view with full-screen monster pictures in encounters,
 time travel by centuries, hirelings, secondary skills, arenas, the 5x4 wrap-around world.
@@ -187,6 +210,19 @@ time travel by centuries, hirelings, secondary skills, arenas, the 5x4 wrap-arou
 - **Fights**: the fixed fights of Middlegate (`@combat` = Witch's Cats and Rabid Rodents at (8,1)); level-1
   characters do not survive the bigger ones. Make the party strong by poking the records (RAM map) with
   realistic values, as for Might and Magic 1 (`VET` there).
+- **Party macros** (2026-11-19, generator `work/mm2/mkparty.py` was a scratch script; the values are in
+  game.json): `VET` = levels 10-11 (Knight/Robber 576,000-768,000 exp, others per class), HP 41-96, spell level
+  5 for deddo and mnz, basic gear equipped in the game (`e,a` per item), 487 battles won; `HERO` = levels 29-32,
+  HP 132-287, spell level 9 (casters) / 6, magic gear, 2,316 battles won. Each is `xxxP` (pokes) + `xxxEQ`
+  (equips). All six profiles were read on screen (party sheet, try_party). Checkpoints `vet`, `hero`.
+- **Experience thresholds** (training screen, exp 0): Knight/Robber level 2 1,500, 11 576,000, 12 768,000,
+  32 27,072,000, 33 30,144,000; Paladin/Archer/Sorcerer 10 512,000, 11 704,000, 29 19,520,000, 30 21,056,000,
+  31 24,128,000; Cleric 10 384,000, 11 576,000, 30 20,928,000, 31 24,000,000.
+- **Find an event**: `python3 games/dos/might-and-magic-2/tools/events.py MAP [REGEX]` prints each event with its
+  texts and an `AT` route (faster than scan.py; texts are guessed from the opcodes).
+- **Previews**: `tools/try.py FILE --cols N` runs up to ~50 candidate routes in parallel (about 1 minute) and
+  tiles them; most of the set was chosen that way, then written into the work shots.txt and shot with
+  `shoot.py --only`.
 - **Combat turns**: order by speed (at `@combat`: mnz first, then ebo). A sorcerer has no `a` (attack): `a`
   does nothing on its turn; give `b` (block) to pass it (`@combat,a,w300,b,w200` = ebo's options). One early
   try.py run showed ebo after `a,w300,a,w200`; not reproduced (four later runs, cache hit and miss, all mnz).
@@ -222,7 +258,8 @@ typed (lower case here; the premade names are mixed case).
 
 ### Saves (rom/saves/might-and-magic-2/, never committed)
 None downloaded (GameFAQs refused automated access). A ROSTER.DAT from the web could be zipped as a `.sav`
-(`MIGHIC-2/ROSTER.DAT` inside the ZIP, see `saves/README.md`). Saves made here: `saves/01_start`.
+(`MIGHIC-2/ROSTER.DAT` inside the ZIP, see `saves/README.md`). Saves made here: `saves/01_start` (new party),
+`02_midgame` (VET party), `03_endgame` (HERO party), `04_ending` (after the ending).
 
 ## RAM map (for `game.json` "ram" watches and pokes)
 Physical addresses; valid for this ZIP, model `svga-8000` and the `loadfix -4` launch. The program's data
@@ -260,7 +297,18 @@ segment is at 10800 (DS = 1080): physical = 10800 + offset. Code segment 02FB (p
 | +62 | 4 | experience | poke verified |
 | +66 | 4 | gold | poke verified |
 | +3A.. | 1 each | items (Short Sword, Large Club seen at +3A as the first backpack item); layout of equipped/backpack/charges not decoded | read |
-| +16..+1C, +28..+57 | | not decoded (resistances, spells known at +51.., quest marks, skills) | - |
+| +28..+2D / +3A..+3F | 6 / 6 | equipped item ids / backpack item ids (ITEMS.DAT index: 20-byte records, 12-char name, class mask in byte 13, price in 18-19); poke the backpack and equip in the game so AC and damage follow | equip diff, verified |
+| +4C | 1 | weapon damage of the equipped weapon (derived) | equip diff |
+| +50 | 1 | first secondary skill (1 Arms Master, 2 Athlete, 3 Cartographer ...); the second not located | Otto Mapper diff |
+| +51..+56 | 48 bits | spells known, bit n = spell n+1 of the class list (levels hold 7,7,6,6,5,5,4,4,4 spells) | Spell Book on screen |
+| +7F / +80 / +81 | 1 each | quest marks; +81: 01 Chosen One, 02 King Kalohn saved, 20 Square Lake gate, 08 Cron saved (ending); +80 bit 20 set by the Bishop of Black Battle | Kalohn diff, gate test, ending code |
+| +16..+1C, +2E..+39, +40..+4B | | not decoded (resistances, item bonuses and charges) | - |
+| 10C10 / 10C12 | 2 / 2 | battles won / lost (victory screen, ending); zeroed by the Square Lake gate | victory text |
+| 1A7AA | 2 x n | hit points of the monsters in the current fight (Sheltem 500) | combat diff |
+| 1A60E | ... | the record of the monster on display (name, stats) | read |
+| 1604E / 160AE | 26 / 9 | ending cipher key / enciphered answer | ending code |
+Code: MM2.EXE at physical 2FB0 (CS 02FB); overlays load at ADC0 (2PLAY.OVL) and F0E0 (the second slot: 2SMITH,
+2TEMPLE ...); the ending lives in 2SMITH.OVL (0x1174 onward). ndisasm is installed in the container.
 Watches in `game.json`: `map`, `x`, `y`, `face`, `hp1`, `gold1`, `gems1`, `food1` (ryz), `light`, `year`.
 Poking a record does not redraw the party window: open and close a profile (`1,w150,esc,w150`) first.
 
@@ -288,6 +336,10 @@ Poking a record does not redraw the party window: open and close a profile (`1,w
 | `outdoors` | C2 just outside Middlegate's gate |
 | `cavern` | cavern under Middlegate, lit (30 light units) |
 | `combat` | encounter options of the fixed fight at Middlegate (8,1) |
+| `vet` / `hero` | Middlegate street with the VET / HERO party |
+| `vet_cats` | VET party at the cats fight, encounter options |
+| `vet_cats_r2` | same fight, round 2 (after shoot, spell, exchange, fight, delay, protect, Bless) |
+| `sheltem` | HERO party with MARKS at the Square Lake gate: Sheltem's encounter |
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -304,11 +356,10 @@ Poking a record does not redraw the party window: open and close a profile (`1,w
 | GOG forum "mm2 roster dat editing information" | gog.com | outside the allowed hosts; not fetched | - |
 
 ## Open questions
-- What fires the ending, and its text (Square Lake past the gate at (0,15)? the 66 Devil Kings at (11,14)? the
-  "This is IT" square (15,15)?); which quest marks the gate checks. Diff a record and the data segment around
-  the King Kalohn event (C4 (14,5), year 800) to find them.
-- The record bytes not decoded: items (equipped, backpack, charges), secondary skills, spells known, quest marks,
-  awards.
+- ~~What fires the ending~~: settled 2026-11-19, see "The ending". Still open: what sets the gate's bit 20 and
+  the Chosen One bit 01 in normal play (no area script writes them; maybe the class quests or Corak).
+- ~~Record bytes~~: items, skill 1, spells, marks decoded (RAM map); still open: second skill, item bonuses and
+  charges, resistances.
 - The day counter; whether `YEAR` alone is enough or the game also keeps a "time travel" timer that sends the
   party back while resting (manual: "your stay in any century is limited").
 - The exact cave and dungeon assignment of ids 12-20 and 2D-34 (inferred from texts; confirm on the location

@@ -9,3 +9,8 @@ middlegate | Middlegate street, one step out of the inn after the spirit of Cora
 outdoors | Outside Middlegate's gate: area C2 (map 0B) at (7,3), facing N | @middlegate,AT:05:0F,FE,left,w250,y,w400
 cavern | Cavern below Middlegate (map 11) at (15,8) facing W, after the stairs; 30 light units poked (light 10BD5), view lit | @middlegate,AT:08:00,FN,left,w250,y,w400,poke:10BD5=1E,right,w100,left,w150
 combat | Fixed encounter in Middlegate (8,1): 6 Witch's Cats and 4 Rabid Rodents, encounter options (Attack, Bribe, Hide, Run) | @middlegate,AT:08:01,FE,left,w250
+vet | Middlegate street, mid-game party (VET macro: levels 10-11, equipped, gold and gems) | @middlegate,VET,settle
+hero | Middlegate street, end-game party (HERO macro: levels 29-32, magic gear) | @middlegate,HERO,settle
+vet_cats | VET party at the Middlegate cats and rodents fight: encounter options | @vet,AT:08:01,FE,left,w250,settle
+vet_cats_r2 | VET party, cats and rodents fight, round 2 (after shoot, spell, exchange, fight, delay, protect, Bless): ebo to act | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle,esc,w150,e,w150,settle,2,w150,settle,w200,settle,w200,settle,w200,settle,f,w150,settle,c,w100,settle,w200,settle,w200,settle,b,w60,settle,p,w150,settle,esc,w100,q,w150,settle,esc,w100,d,w150,settle,esc,w100,p,w150,settle,esc,w100,c,w150,1,w100,3,w100,settle,enter,w100,settle
+sheltem | Square Lake gate (0,15) with the HERO party and quest marks 0x23 poked (Chosen One, Kalohn saved, gate): Sheltem's encounter | @hero,LIT,WARP:17:02:02,poke:189AD=23,poke:18723=23,poke:187A5=23,poke:18827=23,poke:188A9=23,poke:1892B=23,settle,AT:00:0F,FS,left,w250,settle

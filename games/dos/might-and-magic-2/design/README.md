@@ -34,7 +34,8 @@ Mountaineer and Pathfinder open mountains and forests) **(source: manual; traine
 Saving is signing in at an inn; the whole roster is one file **(verified)**. The main quest: class quests for the
 Jurors of Mount Farview, the Queen's Triple Crown in three arenas, four Discs and four elemental Talons, King
 Kalohn's Element Orb returned to him in the 9th century so that he defeats the Mega Dragon, and the final
-dungeon under Square Lake **(source: area texts, cluebook; not played)**.
+dungeon under Square Lake, where Sheltem, an override code and a cryptogram end the game **(source: area texts,
+cluebook; the end verified: [systems.md](systems.md) section 3)**.
 
 ## Documents
 | Document | Covers |

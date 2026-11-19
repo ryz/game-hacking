@@ -36,5 +36,11 @@ and spell sages (7,14), locksmith (1,8), portal to Sandsobar (0,5), travel agent
 (Cartographer (0,15), Pathfinder (1,9), Mountaineering (3,12)), skill removal (12,10), arena (13,6), fountains,
 four fixed fights, stairs down (8,0) and the city gates (5,15) to C2 **(verified: every square visited)**.
 
+## 4. Caverns by id (verified 2026-11-19 by their exits and texts)
+11 under Middlegate, 12 under Atlantium, 13 under Tundara, 14 under Vulcania, 15 under Sandsobar, 16 Corak's Cave,
+17 under Square Lake (the final gate), 18 Ice Cavern, 19 Sarakin's Mine, 1A Murray's Cavern, 1B the Druids'
+cavern, 1C the class-quest cavern (Paladins Only), 1D Dragon's Dominion, 1E Dawn's Mist, 1F Gemmaker Volcano,
+20 Nomadic Rift **(verified)**. Shots: [content.md](content.md) section 2.
+
 ## Open questions
 - The cells marked (source) in the grid are from the cluebook and area texts, not visited.

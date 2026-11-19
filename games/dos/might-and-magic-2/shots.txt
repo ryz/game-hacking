@@ -1,85 +1,230 @@
 # id | category | caption | route
-# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
-#             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/dos/might-and-magic-2/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-#
-# Scout 2026-11-19: the routed lines below were each seen once as the last frame of the route (emu.py / try.py /
-# scan.py), not yet shot with shoot.py. Commented lines are the rest of the plan with the way to reach them.
-# Lenses: S = systems.md, I = interface.md, C = content.md (which document should cite the shot).
-#
-# --- boot, title, menus (I) ---
+# Might and Magic II (DOS), set main. Macros and checkpoints: games/dos/might-and-magic-2/game.json, checkpoints.txt.
 boot_nwc_logo | boot | "New World Computing Presents..." logo | BOOT,w20,!
 title_screen | title | Title picture: Might and Magic Book Two, pegasus on a forest path | @title
 menu_opening | menu | Opening options: Start Game, Copy Player Disk, About Book Two, Disk 2 drive | @title,esc,w200
 menu_about | menu | About Book Two: IBM version by Inside Out Software, version 1.01 | @title,esc,w200,a,w300
-menu_copy | menu | Copy Player Disk instructions | @title,esc,w200,c,w300
+menu_copy | menu | Copy Player Disk: advice to back up the disks before play | @title,esc,w200,c,w300
 menu_main | menu | Main Options: create, view all, transfer characters, go to town | @menu
 menu_view_all | menu | View All: the six premade characters A-F with class and level | @menu,v,w200
 menu_hirelings | menu | View All, hirelings page (empty at the start) | @menu,v,w200,space,w200
 menu_transfer | menu | Transfer Characters from Might and Magic I: path prompt | @menu,t,w300
 inventory_premade | inventory | Profile of Sir Felgar, half-orc knight (premade character) | @menu,v,w200,a,w200
-# --- creation (S characters, I) ---
+menu_rename | menu | Renaming Terwin III from his profile (Ctrl-N): condi typed | @menu,v,w200,b,w150,ctrl>n,w100,type:condi,w60
 create_roll | system | Create New Characters: statistics, eligible classes, exchange and reroll | @menu,c,w300
 create_exchange | system | Exchange Might with Intellect: Knight becomes eligible | @menu,c,w300,a,w150,b,w150
 create_race | system | Class chosen (Knight): pick a race, Human to H-Orc | @menu,c,w300,a,w150,b,w150,1,w150
 create_alignment | system | Pick an alignment: Good, Neutral, Evil | @menu,c,w300,a,w150,b,w150,1,w150,1,w150
 create_sex | system | Pick the sex: Male, Female | @menu,c,w300,a,w150,b,w150,1,w150,1,w150,1,w150
 create_name | system | Name typed: ryz, Human Knight, Good, Male | @menu,c,w300,a,w150,b,w150,1,w150,1,w150,1,w150,1,w150,type:ryz,w60
-# --- inn, town (I, S world) ---
-menu_inn_list | menu | Middlegate inn: party ryz, condi, ebo, cubi, deddo, mnz ticked | @menu,RYZ,NAMES,g,w300,ctrl>g,w30,ctrl>b,w30,ctrl>c,w30,ctrl>f,w30,ctrl>d,w30,ctrl>e,w60
+menu_inn_list | menu | Go to Town: the Middlegate inn list before anyone joins the party | @menu,RYZ,NAMES,g,w300
 gameplay_inn_start | gameplay | First control: inside the Middlegate inn, facing the door | @start
 dialogue_spirit_corak | dialogue | The spirit of Corak greets the party leaving the inn | @start,up,w150
 inventory_quickref | inventory | Quick Reference: hit points, spell points, level, AC, age, gems, food, condition | @start,q,w150
 inventory_profile_ryz | inventory | Profile of ryz, level 1 Human Knight, Short Sword in the backpack | @start,1,w150
 save_innkeeper | save | Innkeeper: "Will you sign the registry (y/n)?" | @start,right,w100,right,w200
 save_signed_in | save | After signing in: the inn's character list, ESC exits to DOS | @signed_in
-shop_blacksmith_door | shop | Svendegard the blacksmith at his forge in Middlegate | @middlegate,AT:04:04,FN,left,w250
+gameplay_middlegate_sign | gameplay | Middlegate: the signboard over the blacksmith's door | @middlegate,AT:05:04,FN,left,w250
+shop_blacksmith_door | dialogue | Svendegard the blacksmith at his forge: care to see his work? | @middlegate,AT:04:04,FN,left,w250
+shop_blacksmith_menu | shop | Blacksmith: weapons, specials, armor, misc, sell, identify; ryz's gold | @vet,AT:04:04,FN,left,w250,y,w250
+shop_blacksmith_weapons | shop | Middlegate weapons: Dagger 8, Hand Axe 10 ... Nunchakas 30 gold | @vet,AT:04:04,FN,left,w250,y,w250,a,w200
+shop_blacksmith_specials | shop | Today's Specials: +1 Staff, Sickle, Scythe, Blowpipe, Sling, Crossbow | @vet,AT:04:04,FN,left,w250,y,w250,b,w200
+shop_blacksmith_armor | shop | Armor: Small Shield 15, Padded Armor 20 ... Ring Mail 200, Helm 30 | @vet,AT:04:04,FN,left,w250,y,w250,c,w200
+shop_blacksmith_misc | shop | Misc: Torch, Lantern, Magic Herbs, Thief's Pick, Rope'n'Hooks, Green Ticket | @vet,AT:04:04,FN,left,w250,y,w250,d,w200
+shop_blacksmith_bought | shop | Bought a Cudgel for 15 gold: thank you, please come again | @vet,AT:04:04,FN,left,w250,y,w250,a,w200,c,w200
+shop_blacksmith_sell | shop | Sell Items: ryz's Cudgel, bought for 15, sells for 3 | @vet,AT:04:04,FN,left,w250,y,w250,a,w200,c,w200,space,w100,esc,w200,e,w250
+shop_blacksmith_identify | shop | Identify Items: the Cudgel examined by the blacksmith | @vet,AT:04:04,FN,left,w250,y,w250,a,w200,c,w200,space,w100,esc,w200,f,w250,a,w250
 dialogue_waitress | dialogue | Slaughtered Lamb tavern: the waitress offers the menu of drinks | @middlegate,AT:04:06,FN,left,w250
+shop_tavern_menu | shop | Tavern: feeding frenzy, a drink, specialties, tip, listen for rumors | @vet,AT:04:06,FN,left,w250,y,w250
+shop_tavern_drinks | shop | Drinks: Orc Beer 5, Straight shot, Id Elixir, Academic Ale ... Mystic Brew | @vet,AT:04:06,FN,left,w250,y,w250,b,w200
+shop_tavern_specialties | shop | Specialties: Horrors d'oeuvres 10, Soup de Ghoul 50, Dragon Steak 100 | @vet,AT:04:06,FN,left,w250,y,w250,c,w200
+shop_tavern_tip | shop | Tip the bartender: one gold, thank you, please come again | @vet,AT:04:06,FN,left,w250,y,w250,d,w200
+dialogue_tavern_rumor | dialogue | Rumor heard after a one-gold tip: "Children at 0,15" | @vet,AT:04:06,FN,left,w250,y,w250,d,w200,esc,w200,e,w300
+hud_food_frenzy | hud | Quick Reference after the feeding frenzy: each member carries 40 food | @vet,AT:04:06,FN,left,w250,y,w250,a,w300,esc,w200,esc,w200,q,w200
 system_temple | system | Gateway Temple: a cleric in a cowled robe offers aid | @middlegate,AT:07:07,FE,left,w250
+shop_temple_menu | shop | Temple: restore condition, restore alignment, donations, three spells | @vet,AT:07:07,FE,left,w250,y,w250
+shop_temple_donation | shop | Donation of 100 gold: thank you, please come again | @vet,AT:07:07,FE,left,w250,y,w250,c,w200
+shop_temple_spell_refused | shop | A knight asks for spell 1-1: sorry, that spell is unavailable | @vet,AT:07:07,FE,left,w250,y,w250,d,w200
 system_training | system | Turkov's Training: squires practise with wooden sticks | @middlegate,AT:0A:07,FS,left,w250
+system_training_need | system | Training ryz for level 12: he needs 126127 more experience | @vet,AT:0A:07,FS,left,w250,y,w250
 system_mage_guild | system | Sleepy's Mage Guild: enrol for 20 gold | @middlegate,AT:01:0C,FN,left,w250
-system_otto_mapper | system | Otto Mapper teaches the Cartographer skill for 10 gold | @middlegate,AT:00:0F,FN,left,w250
+dialogue_sages | dialogue | Sages in multi-hued robes: the archmage offers spells for sale | @vet,AT:07:0E,FE,left,w250
+shop_sages_members_only | shop | Mage guild shop: sorry, you must be a member to purchase spells | @vet,AT:07:0E,FE,left,w250,y,w250
+system_locksmith | system | Lock and Key LTD: an ancient locksmith offers a key for 500 gold | @vet,AT:01:08,FN,left,w250
 system_poorman_portal | system | The Poorman's Portal: travel to Sandsobar for 10 gold | @middlegate,AT:00:05,FN,left,w250
+system_travel_agent | system | Joan the travel agent: a trip to Murray's Resort Isle for 5,000 gold | @vet,AT:0E:08,FS,left,w250
+system_travel_booked | system | Trip booked: catch the ferry in area C3 at x7, y9 | @vet,AT:0E:08,FS,left,w250,y,w300
+system_otto_mapper | system | Otto Mapper teaches the Cartographer skill for 10 gold | @middlegate,AT:00:0F,FN,left,w250
+inventory_skill_learned | inventory | ryz's profile after Otto Mapper: Cartographer under the statistics | @vet,AT:00:0F,FN,left,w250,y,w200,1,w200,1,w150
+system_pathfinder | system | Track and Trail: a ranger teaches forest travel for 2000 gold | @vet,AT:01:09,FN,left,w250
+system_mountaineer | system | Edmund's Expeditions: Mountaineering for 2000 gold | @vet,AT:03:0C,FS,left,w250
 system_detox | system | Brain Detoxification removes all secondary skills for 100 gold | @middlegate,AT:0C:0A,FW,left,w250
 dialogue_nordon | dialogue | Nordon the wizard asks for a service | @middlegate,AT:0A:02,FN,left,w250
+dialogue_nordon_quest | dialogue | Nordon's quest: his magical goblet was stolen by the goblins below | @middlegate,AT:0A:02,FN,left,w250,y,w250
+dialogue_nordonna | dialogue | Nordonna yelps, "Begone strangers!" | @middlegate,AT:01:02,FE,left,w250
+gameplay_fountain_clairvoyance | gameplay | Middlegate: drink from the fountain of clairvoyance (y/n)? | @middlegate,AT:08:04,FW,left,w250
+gameplay_feldecarb | gameplay | Feldecarb Fountain: faeries frolic, flick a farthing (y/n)? | @middlegate,AT:0F:0F,FE,left,w250
+gameplay_arena_entrance | gameplay | Middlegate Arena: Arena Entrance Only! | @middlegate,AT:0D:06,FW,left,w250
+battle_skeletons | battle | Skeleton Closet: 13 Skeletons in a Middlegate street | @middlegate,AT:0A:04,FE,left,w250
+battle_brain_eaters | battle | Middlegate: five Brain Eaters escort a Merchant | @middlegate,AT:0D:0C,FE,left,w250
+battle_blood_suckers | battle | Middlegate: eight Blood Suckers and two Muggers | @middlegate,AT:0C:0E,FE,left,w250
 gameplay_city_gates | gameplay | Middlegate's city gates: "Exit (y/n)?" | @middlegate,AT:05:0F,FE,left,w250
-# --- exploration commands (S verbs, I) ---
+gameplay_stairs_cavern | gameplay | Middlegate: stairs to the cavern, descend (y/n)? | @middlegate,AT:08:00,FN,left,w250
 options_controls | options | Controls: sounds, walk beep, party disposition, message delay | @middlegate,c,w150
 system_protect | system | Protect panel: light units, magic and elemental resistance | @middlegate,p,w150
 system_rest_prompt | system | Rest here? (Y/N) | @middlegate,r,w150
+system_rest_done | system | Rest complete, no encounters | @vet,r,w150,y,w300
 system_search_nothing | system | Search: nothing here | @middlegate,s,w150
-system_location | system | Location (M): coordinates of the party, no map without a Cartographer | @middlegate,m,w150
+system_location | system | Location (M): coordinates only, no map without a Cartographer | @middlegate,m,w150
 system_exchange | system | Exchange: swap two marching positions | @middlegate,e,w150
+system_exchange_done | system | Exchange 1 with 2: condi now leads the party, ryz second | @vet,e,w150,1,w100,2,w200
 system_dismiss | system | Dismiss whom: send a hireling away | @middlegate,d,w150
+hud_quickref_vet | hud | Quick Reference of the party at levels 10-11 | @vet,q,w150
+inventory_profile_vet | inventory | ryz at level 11: Long Sword, Chain Mail, Large Shield, Helm, Crossbow | @vet,1,w150
+inventory_equip_prompt | inventory | Equip: which backpack item? The removed Large Shield waits at A | @vet,1,w150,r,w150,3,w200,e,w150
+inventory_remove_prompt | inventory | Profile command Remove: which equipped item 1-6? | @vet,1,w150,r,w150
+inventory_removed | inventory | Large Shield removed into the backpack: armor class 11 drops to 9 | @vet,1,w150,r,w150,3,w200
+inventory_dropped | inventory | Drop A: the Large Shield is gone from ryz's backpack for good | @vet,1,w150,r,w150,3,w200,d,w150,a,w200
+system_trade_what | system | Trade: gold, gems, food or an item | @vet,1,w150,t,w150
+system_trade_done | system | Trade 500 gold to condi: ryz's gold falls from 2316 to 1816 | @vet,1,w150,t,w150,1,w150,2,w150,type:500\n,w200
+system_share_done | system | Share gold: the party's gold split evenly, ryz now holds 2099 | @vet,1,w150,s,w150,1,w200
+system_gather_done | system | Gather gold: the whole party's 12594 gold now on ryz | @vet,1,w150,g,w150,1,w200
+system_use_prompt | system | Use: deddo picks an item, equipped A-F or backpack 1-6 (Holy Charm) | @hero,5,w150,u,w150
+inventory_profile_mnz | inventory | mnz, level 10 Elf Sorcerer: 52 spell points, spell level 5 | @vet,6,w150
+system_spellbook_deddo | system | deddo's Spell Book: cleric spells known up to level 5 | @vet,5,w150,c,w150
+system_protect_elements | system | Protection from Elements cast by deddo: Forces 30% on the panel | @vet,5,w150,c,w150,2,w100,5,w100,enter,w200
 system_cast_spellbook | system | deddo's Spell Book while casting Light (level 1, number 5) | @cavern,5,w150,c,w150,1,w100,5,w100
-# --- environments (C, S world) ---
-gameplay_outdoors_c2 | gameplay | Area C2 just outside Middlegate: forest and river | @outdoors
-gameplay_cavern_lit | gameplay | Cavern under Middlegate, lit by magic | @cavern
-gameplay_pegasus | dialogue | The Guardian Pegasus outside Middlegate asks to learn its name | @middlegate,AT:05:0F,FE,left,w250,y,w400,AT:07:04,FE,left,w250
-gameplay_xabran_800 | gameplay | Year 800: Castle Xabran stands in C2 (ruins in year 900) | @middlegate,YEAR:08,WARP:0B:0E:08,w60
-# --- combat (S conflict, I) ---
 battle_encounter | battle | Encounter: 6 Witch's Cats and 4 Rabid Rodents; attack, bribe, hide or run | @combat
 battle_options_caster | battle | Combat: options for mnz, a sorcerer (cast, use, block, run, exchange) | @combat,a,w300
-battle_options_fighter | battle | Combat: options for ebo, an archer (attack, fight, block, run, use, exchange, view) | @combat,a,w300,b,w200
+battle_options_fighter | battle | Combat: options for ebo, an archer: attack, fight, use, block, run, exchange | @combat,a,w300,b,w200
+battle_bribe_prompt | battle | Encounter option Bribe: pay with food, gold or gems | @vet_cats,b,w200
+battle_run_away | battle | Encounter option Run: the party escapes and stands outside the fight | @vet_cats,r,w200
+battle_spell_hit | battle | mnz casts Flame Arrow (1-4): a Witch's Cat takes 8 points and goes down | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle
+battle_view | battle | Combat order View: cubi's profile in the fight, V shows the spell book | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle
+battle_exchange_prompt | battle | Combat order Exchange: cubi (4) swaps places with whom? | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle,esc,w150,e,w150,settle
+battle_exchange_done | battle | After the exchange cubi fights 2nd; a Witch's Cat strikes at him and misses | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle,esc,w150,e,w150,settle,2,w150,settle
+battle_waits_opening | battle | A Rabid Rodent out of reach waits for an opening | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle,esc,w150,e,w150,settle,2,w150,settle,w200,settle
+battle_options_knight | battle | Options for ryz, a knight in front: attack, fight, use, block, run, exchange | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle,esc,w150,e,w150,settle,2,w150,settle,w200,settle,w200,settle,w200,settle
+battle_fight_prompt | battle | Combat order Fight: ryz picks a target in reach, A-E | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle,esc,w150,e,w150,settle,2,w150,settle,w200,settle,w200,settle,w200,settle,f,w150,settle
+battle_fight_hit | battle | ryz attacks a Witch's Cat 3 times, hits twice for 20 points: it goes down | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle,esc,w150,e,w150,settle,2,w150,settle,w200,settle,w200,settle,w200,settle,f,w150,settle,c,w100,settle
+battle_delay | battle | D in combat opens the Controls: message delay 0-9 and disposition | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle,esc,w150,e,w150,settle,2,w150,settle,w200,settle,w200,settle,w200,settle,f,w150,settle,c,w100,settle,w200,settle,w200,settle,b,w60,settle,p,w150,settle,esc,w100,q,w150,settle,esc,w100,d,w150,settle
+battle_protect | battle | P in combat: protection spells on the party, magic and forces | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle,esc,w150,e,w150,settle,2,w150,settle,w200,settle,w200,settle,w200,settle,f,w150,settle,c,w100,settle,w200,settle,w200,settle,b,w60,settle,p,w150,settle,esc,w100,q,w150,settle,esc,w100,d,w150,settle,esc,w100,p,w150,settle
+battle_cast_prompt | battle | deddo casts in combat: level 1, number 3 (Bless), Return to cast | @vet_cats,a,w300,settle,s,w150,settle,j,w100,settle,w150,settle,w200,settle,c,w150,1,w100,4,w100,settle,a,w100,settle,w200,settle,v,w150,settle,esc,w150,e,w150,settle,2,w150,settle,w200,settle,w200,settle,w200,settle,f,w150,settle,c,w100,settle,w200,settle,w200,settle,b,w60,settle,p,w150,settle,esc,w100,q,w150,settle,esc,w100,d,w150,settle,esc,w100,p,w150,settle,esc,w100,c,w150,1,w100,3,w100,settle
+battle_run | battle | Combat order Run: ebo slips away alone, the others fight on | @vet_cats_r2,r,w100,settle
+battle_quick_shoot | battle | Ctrl-A quick fight: ebo shoots a Witch's Cat, 2 hits of 3 for 16 points | @vet_cats_r2,ctrl>a,w100,settle
+battle_victory | battle | Victory: the party has won its 488th battle, 416 experience each | @vet_cats_r2,ctrl>a,w100,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,a,w150,settle,w150,settle,w200,settle,a,w100,settle,w200,settle
+system_training_cost | system | Turkov's Training with enough experience: level 12 costs 600 gold | @vet,set:1898E=771204:4,AT:0A:07,FS,left,w250,y,w250
+system_training_levelup | system | ryz trains to level 12 and gains 10 hit points | @vet,set:1898E=771204:4,AT:0A:07,FS,left,w250,y,w250,t,w300
+gameplay_atlantium | gameplay | Atlantium, a town by the sea: the Colosseum's door under an open sky | @vet,WARP:01:08:08,AT:07:07,FE,left,w250
+dialogue_atlantium_inn | dialogue | Carriage Inn, Atlantium: the concierge offers the finest suites | @vet,WARP:01:08:08,AT:09:0D,FW,left,w250
+save_atlantium | save | Signed in at the Atlantium inn: the roster now lodges in town 2 | @vet,WARP:01:08:08,AT:09:0D,FW,left,w250,y,w300
+system_athlete | system | Atlantium, the Olympic Trial: become an Athlete for 500 gold | @vet,WARP:01:08:08,AT:06:02,FW,left,w250
+system_hero_skill | system | Atlantium: become the Hero/Heroine of your dreams for 1000 gold | @vet,WARP:01:08:08,AT:09:02,FW,left,w250
+gameplay_atlantium_jail | gameplay | Atlantium: Danger! City Jail! | @vet,WARP:01:08:08,AT:03:0D,FN,left,w250
+system_polar_bear | system | Tundara: a talkative polar bear sells passage to Vulcania for 50 gold | @vet,WARP:02:08:08,AT:06:09,FE,left,w250
+gameplay_tundara_frozen | gameplay | Tundara: a door marked Frozen Monster | @vet,WARP:02:08:08,AT:03:01,FE,left,w250
+system_crusader | system | Tundara: an armed priest asks 250 gold to make you a Crusader | @vet,WARP:02:08:08,AT:02:0E,FN,left,w250
+system_merchant | system | Tundara market: pay 1000 gold to become a Merchant | @vet,WARP:02:08:08,AT:05:0D,FE,left,w250
+system_vulcania_export | system | Vulcania: a dust devil of Vulcanian Export flies you to Atlantium | @vet,WARP:03:08:08,AT:08:03,FE,left,w250
+system_illusionist | system | Vulcania: an illusionist offers a special guild for 10,000 gold | @vet,WARP:03:08:08,AT:03:07,FE,left,w250
+gameplay_vulcania_wild | gameplay | Vulcania: Danger Wild Section! | @vet,WARP:03:08:08,AT:07:0C,FE,left,w250
+gameplay_lava_grenade | gameplay | Vulcania: a Lava Grenade stashed in a corner, now the party's | @vet,WARP:03:08:08,AT:0A:0C,FN,left,w250
+gameplay_monster_bowl | gameplay | Sandsobar: the Monster Bowl, one of the Queen's three arenas | @vet,WARP:04:08:08,AT:0A:08,FS,left,w250
+dialogue_drunk_sorcerer | dialogue | Sandsobar: a drunk sorcerer mumbles about joining the mage guild | @vet,WARP:04:08:08,AT:00:0C,FN,left,w250
+dialogue_wino | dialogue | Sandsobar: an old wino on the snowbeast's lair in the city walls | @vet,WARP:04:08:08,AT:0D:02,FS,left,w250
+gameplay_sandsobar_sewage | gameplay | Sandsobar slums: sewage and muck ooze under foot | @vet,WARP:04:08:08,AT:0D:00,FN,left,w250
+gameplay_outdoors_c2 | gameplay | Area C2 just outside Middlegate: forest and river | @outdoors
+gameplay_pegasus | dialogue | The Guardian Pegasus outside Middlegate asks to learn its name | @middlegate,AT:05:0F,FE,left,w250,y,w400,AT:07:04,FE,left,w250
+system_ferry | system | Area C2: ferry boat crossing, 5 gold one way | @vet,WARP:0B:08:08,AT:0A:04,FS,left,w250
+system_river_walker | system | Area C2: a fellow walks on the river, he teaches it for 50 gold | @vet,WARP:0B:08:08,AT:0B:01,FN,left,w250
+gameplay_corak_cave_entrance | gameplay | Area C2: the collapsed entrance to legendary Corak's Cave | @vet,WARP:0B:08:08,AT:05:0B,FE,left,w250
+gameplay_chosen_only | gameplay | Area C2: a cave for Chosen Ones only, an invisible force repels | @vet,WARP:0B:08:08,AT:0A:07,FE,left,w250,y,w250
+gameplay_xabran_800 | gameplay | Year 800: Castle Xabran stands in C2 (ruins in year 900) | @middlegate,YEAR:08,WARP:0B:0E:08,w60
+gameplay_cavern_lit | gameplay | Cavern under Middlegate, lit by magic | @cavern
+env_tundra_a1 | gameplay | Area A1: tundra snowfield at the edge of a pine forest | @middlegate,WARP:05:07:08,FS,right,w100,left,w100
+env_signpost_b1 | gameplay | Area B1: signpost "Shortcut Pinehurst" between forest and mountains | @middlegate,WARP:06:08:08,FN,right,w100,left,w100
+env_mountains_c1 | gameplay | Area C1: grey mountain range | @middlegate,WARP:07:08:08,FN,right,w100,left,w100
+env_forest_d1 | gameplay | Area D1, forest: a voice asks, do you seek the Sword of Nobility? | @middlegate,WARP:08:08:08,FN,right,w100,left,w100
+env_snowforest_b2 | gameplay | Area B2: snow-covered forest | @middlegate,WARP:0A:07:08,FE,right,w100,left,w100
+env_sea_a3 | gameplay | Area A3, the open sea: a whirlpool sucks the party under! | @middlegate,WARP:0C:08:08,FN,right,w100,left,w100
+env_lake_c3 | gameplay | Area C3: forest at the water's edge | @middlegate,WARP:0E:08:08,FW,right,w100,left,w100
+env_lava_e1 | gameplay | Area E1: a lava field below the mountains | @middlegate,WARP:21:07:08,FN,right,w100,left,w100
+env_desert_e2 | gameplay | Area E2 desert: an oasis where large fruit trees bear inviting fruit | @middlegate,WARP:23:08:08,FN,right,w100,left,w100
+env_meadow_c4 | gameplay | Area C4: flowering meadow of the Quagmire | @middlegate,WARP:26:08:08,FE,right,w100,left,w100
+env_signpost_d4 | gameplay | Area D4: signpost to Sandsobar and Hillstone in the forest | @middlegate,WARP:27:08:07,FS,right,w100,left,w100
+env_lava_d3 | gameplay | Area D3: grassland with scattered trees | @middlegate,WARP:24:08:08,FE,right,w100,left,w100
+cave_x_marks | gameplay | Cavern under Middlegate: an 'X' marks the spot, maybe you should search | @hero,LIT,WARP:11:08:08,AT:01:00,FW,left,w250
+cave_torture_chamber | gameplay | Cavern under Middlegate: empty manacles hang in the torture chamber | @hero,LIT,WARP:11:08:08,AT:00:0F,FN,left,w250
+cave_atlantian_deity | gameplay | Cavern under Atlantium: a metallic statue of an Atlantian deity, touch it? | @hero,LIT,WARP:12:07:08,AT:05:01,FN,left,w250
+cave_scholar_statue | gameplay | Cavern under Atlantium: statue of a kneeling scholar, read pages? | @hero,LIT,WARP:12:07:08,AT:0B:0F,FS,left,w250
+cave_frozen_cadavers | gameplay | Cavern under Tundara: hundreds of frozen cadavers fill the room | @hero,LIT,WARP:13:08:08,AT:06:0C,FS,left,w250
+battle_vulcania_cavern | battle | Cavern under Vulcania: Rabid Rodents, Royal Horsemen, a Frost Dragon ... | @hero,LIT,WARP:14:08:08,AT:0F:0E,FE,left,w250
+system_thief_trainer | system | Cavern under Sandsobar: Rinaldo Jr. trains thieves for 700 gold | @hero,LIT,WARP:15:08:08,AT:00:0C,FW,left,w250
+dialogue_zombie_pass | dialogue | A foul-smelling zombie hands over an Admit 8 Pass for Corak's Cave | @hero,LIT,WARP:15:08:08,AT:00:00,FE,left,w250
+battle_corak_cave | battle | Corak's Cave: eight Skeletons and fourteen Zombies | @hero,LIT,WARP:16:08:08,AT:07:0B,FW,left,w250
+battle_ice_cavern | battle | Ice Cavern: Valiant Knights and Guardian Hounds | @hero,LIT,WARP:18:08:08,AT:0E:08,FS,left,w250
+gameplay_sarakin_mine | gameplay | Sarakin's Mine: gold dust is scattered on the floor | @hero,LIT,WARP:19:08:08,AT:08:06,FE,left,w250
+gameplay_murray_door | gameplay | Murray's Cavern: a red door marked Murray is IN! | @hero,LIT,WARP:1A:08:08,AT:03:08,FN,left,w250
+gameplay_goofy_juice | gameplay | Murray's storeroom: casks of Murray's Goofy Juice, drink some? | @hero,LIT,WARP:1A:08:08,AT:00:09,FW,left,w250
+gameplay_druid_sign | gameplay | Druids' cavern: signpost to the Water Druids | @hero,LIT,WARP:1B:06:08,AT:08:09,FE,left,w250
+gameplay_spinach | gameplay | Cans of spinach are everywhere: eat some? | @hero,LIT,WARP:1B:06:08,AT:01:0F,FS,left,w250
+gameplay_paladins_only | gameplay | The class quest cavern: Paladins Only! Can't you read? | @hero,LIT,WARP:1C:08:07,AT:08:09,FW,left,w250
+gameplay_dragon_dung | gameplay | Dragon's Dominion: SQUISH! The party is waist deep in dragon dung | @hero,LIT,WARP:1D:08:08,AT:06:00,FE,left,w250
+gameplay_swirling_pool | gameplay | Dragon's Dominion: a swirling pool, pitch a gold? | @hero,LIT,WARP:1D:08:08,AT:00:00,FN,left,w250
+dialogue_element_orb | dialogue | Dawn's Mist: King Kalohn's Element Orb rests on a pedestal, take it? | @hero,LIT,WARP:1E:08:08,AT:0A:0F,FE,left,w250
+gameplay_dawn_throne | gameplay | Dawn's Mist: the red door of Dawn's Throne Room | @hero,LIT,WARP:1E:08:08,AT:08:0A,FW,left,w250
+system_gemmaker | system | Gemmaker Volcano: a gemmaker sells the spell Enchant Item | @hero,LIT,WARP:1F:09:07,AT:03:03,FE,left,w250
+gameplay_flaming_sword | gameplay | Gemmaker Volcano: a Flaming Sword stuck in glassy rock, pry it loose? | @hero,LIT,WARP:1F:09:07,AT:09:08,FE,left,w250
+gameplay_treadmill | gameplay | Nomadic Rift: a giant treadmill looms before the party | @hero,LIT,WARP:20:07:08,AT:00:0F,FN,left,w250
+env_plane_air | gameplay | Elemental Plane of Air: a white, frozen plain | @hero,LIT,WARP:29:07:08,AT:00:0F,FE,left,w250
+env_plane_fire | gameplay | Elemental Plane of Fire: a sea of flame | @hero,LIT,WARP:2A:08:08,poke:18966=E9,AT:09:09,FE,left,w250
+env_plane_earth | gameplay | Elemental Plane of Earth: grassland under an open sky | @hero,LIT,WARP:2B:06:08,poke:18966=EA,AT:04:05,FE,left,w250
+env_plane_water | gameplay | Elemental Plane of Water: endless water | @hero,LIT,WARP:2C:07:08,poke:18966=E7,AT:08:08,FE,left,w250
+dialogue_orc_joker | dialogue | Hillstone Dungeon: a prisoner of Lord Slayer offers a way to Woodhaven | @hero,LIT,WARP:2D:08:08,AT:0F:0F,FS,left,w250
+gameplay_bottomless_pit | gameplay | Woodhaven Dungeon: a bottomless pit, toss all your gold in? | @hero,LIT,WARP:2E:08:08,AT:09:0F,FE,left,w250
+battle_killer_bees | battle | Pinehurst Dungeon: Killer Bees, Death's Agents and a Magic Serpent | @hero,LIT,WARP:30:08:08,AT:08:06,FS,left,w250
+gameplay_giant_lever | gameplay | Luxus Dungeon: a giant lever, "actions are sluggish, but precise" | @hero,LIT,WARP:31:08:08,AT:02:07,FW,left,w250
+gameplay_syrup_walls | gameplay | Luxus Dungeon 2: thick syrup drips from the walls, feel lucky? | @hero,LIT,WARP:32:08:08,AT:04:0F,FE,left,w250
+gameplay_magical_well | gameplay | Hillstone Dungeon 2: steam rises from a magical well | @hero,LIT,WARP:33:08:08,AT:05:00,FN,left,w250
+gameplay_fear_no_evil | gameplay | A dungeon sign: Fear no Evil | @hero,LIT,WARP:34:08:08,AT:05:0A,FE,left,w250
+dialogue_ybmug | dialogue | Dark Keep: the evil wizard Ybmug lies locked in a stasis field | @hero,LIT,WARP:35:08:08,AT:03:0C,FW,left,w250
+gameplay_access_code | gameplay | Dark Keep: a door asks, what is the access code? | @hero,LIT,WARP:35:08:08,AT:02:0A,FW,left,w250
+dialogue_yekop | dialogue | Tower of Mercy: the good wizard Yekop in a stasis field | @hero,LIT,WARP:36:08:08,AT:0C:03,FE,left,w250
+env_castle_hillstone | gameplay | Castle Hillstone: grey brick halls, the Zookeeper's door | @hero,LIT,WARP:37:08:08,AT:0B:0B,FE,left,w250
+gameplay_slayer_palace | gameplay | Castle Hillstone: the door to Slayer's Palace | @hero,LIT,WARP:37:08:08,AT:07:0D,FW,left,w250
+gameplay_hoardall_palace | gameplay | Castle Woodhaven: the door to Hoardall's Palace | @hero,LIT,WARP:38:08:07,AT:08:02,FE,left,w250
+gameplay_unmarked_deadly | gameplay | Castle Pinehurst: sign, "Unmarked are deadly" | @hero,LIT,WARP:39:08:08,AT:0C:07,FN,left,w250
+dialogue_xabran_disc | dialogue | Castle Xabran, year 800: a disc on an aqua pedestal, take it? | @hero,YEAR:08,LIT,WARP:3B:08:08,AT:0F:00,FS,left,w250
+env_castle_xabran | gameplay | Castle Xabran, year 800: the Hall of Spells door | @hero,YEAR:08,LIT,WARP:3B:08:08,AT:03:09,FE,left,w250
+boss_jouster | boss | Jouster's Way: the Jouster rides out, "None shall pass!" Attack? | @hero,LIT,WARP:0D:08:08,AT:05:0B,FE,left,w250,y,w300
+boss_queen_beetle | boss | Area E2: the Crawling Envoy of Evil, the Queen Beetle, attacks | @hero,LIT,WARP:23:08:08,AT:0B:06,FE,left,w250
+dialogue_lich_lord | dialogue | Area D3: a Lich Lord holds a top scientist captive, free him? | @hero,LIT,WARP:24:08:08,AT:01:0E,FE,left,w250
+boss_lich_lord | boss | The Lich Lord and his Monster Masher | @hero,LIT,WARP:24:08:08,AT:01:0E,FE,left,w250,y,w300
+gameplay_mandagual_keep | gameplay | Area D2: Dreary Mandagual's Keep, enter at your own risk | @hero,LIT,WARP:22:08:08,AT:06:08,FE,left,w250
+dialogue_kalohn_asks | dialogue | Year 800: King Kalohn asks for the Element Orb and the four Talons | @hero,YEAR:08,WARP:26:0E:04,poke:18966=DFDBDCDDDE,up,w250
+dialogue_kalohn_wins | dialogue | King Kalohn thanks the party, fights the Mega Dragon and wins | @hero,YEAR:08,WARP:26:0E:04,poke:18966=DFDBDCDDDE,up,w250,y,w300
+boss_mega_dragon | boss | Year 800, area C4: without the Orb and Talons the Mega Dragon attacks | @hero,YEAR:08,LIT,WARP:26:08:08,AT:0E:05,FE,left,w250,n,w300
+battle_sl_phantasms | battle | Square Lake: Phantasms, Devil's Envoys, a Killer Cobra and Hunchbacks | @hero,LIT,WARP:17:07:08,AT:0F:01,FE,left,w250
+battle_sl_gargoyles | battle | Square Lake: Gargoyles with Devil's Envoys and Hunchbacks | @hero,LIT,WARP:17:07:08,AT:0C:04,FE,left,w250
+battle_sl_guardians | battle | Square Lake: the party surprises six Guardians and their escort | @hero,LIT,WARP:17:07:08,AT:09:07,FE,left,w250
+battle_sl_warbots | battle | Square Lake: Warbots and Devil's Envoys, surprised by the party | @hero,LIT,WARP:17:07:08,AT:06:0A,FE,left,w250
+battle_sl_alien_probes | battle | Square Lake: Alien Probes, the last fixed fight before the end | @hero,LIT,WARP:17:07:08,AT:04:0C,FE,left,w250
 battle_square_lake_devils | boss | Square Lake: 66 Devil Kings attack | @middlegate,LIT,WARP:17:02:02,AT:0B:0E,FE,left,w250
-#
-# --- not routed yet (capture run) ---
-# gameplay_<town> x4 | Atlantium 01, Tundara 02, Vulcania 03, Sandsobar 04 | WARP:0n:xx:yy (pick a street square with scan.py 0n)
-# gameplay_<terrain> | tundra A1 05, forest B1 06, desert E2 23, mountains E1 21, swamp/sea, roads | WARP:id:08:08 or scan output
-# gameplay_dead_zone | D1 08 (scorching wind) | WARP:08:..
-# gameplay_plane_air/fire/earth/water | 29 2A 2B 2C, with the shrine prompts | WARP + scan.py 29..2C
-# gameplay_castle_luxus, castle_hillstone, dungeon_level | 3A, 37, 2D.. | WARP + scan.py
-# gameplay_murray_resort | Murray's Resort Isle (travel agent, 5,000 gold) or its area | poke gold, then the agent at Middlegate (14,8) E
-# shop_blacksmith_buy / sell | the blacksmith's lists after `y` at (4,4) | @middlegate,AT:04:04,FN,left,w250,y,...
-# shop_tavern_menu, dialogue_rumor, system_temple_menu, system_training_levelup (poke experience), system_mage_spells
-# system_skill_learned | Otto Mapper with gold poked, then the profile shows Cartographer; system_automap | M with a Cartographer
-# system_wizard_eye | the 5x5 overhead view (sorcerer level 3 spell; poke spell level and SP)
-# system_time_travel | how the game itself changes the century (Hourglass / item / spell), and YEAR shots
-# system_hireling_hired | inn hirelings page with a hireling available, then in the party (8 members)
-# battle_attack / cast / shoot / block / run / hide / bribe / victory / treasure_chest / death | @combat with VET-style pokes
-# gameover | whole party dead (poke HP 1, block)
-# boss_* | Mega Dragon (C4 14,5, year 800), Dread Knight, Baron Wilfrey, Dawn, Lich Lord, the elemental lords, Square Lake's twelve
-# dialogue_jurors, dialogue_kalohn, dialogue_lamanda, system_shrine_talon, system_disc_xabran, system_element_orb
-# extra_square_lake_signs | the joke signs along y=15 in area 17 ("Just kidding!")
-# ending_* | the ending (not found yet; see playbook Open questions)
+dialogue_devil_kings_bow | dialogue | 66 Devil Kings bow down to the Chosen One: care to attack? | @hero,LIT,WARP:17:07:08,poke:189AD=21,poke:18723=21,poke:187A5=21,poke:1892B=21,poke:18827=21,poke:188A9=21,AT:0B:0E,FE,left,w250
+extra_just_kidding | extra | Square Lake: a row of joke signs leads on, "Just kidding!" | @hero,LIT,WARP:17:07:08,AT:0D:0F,FS,left,w250
+gameplay_square_lake_gate | gameplay | Square Lake's gate: you shouldn't be here until you save the King | @hero,LIT,WARP:17:07:08,AT:00:0F,FS,left,w250
+battle_party_falls | battle | A level-1 party at the final gate: one cold breath, 250 points, ryz is down | @middlegate,LIT,WARP:17:02:02,poke:189AD=23,poke:18723=23,poke:187A5=23,poke:18827=23,poke:188A9=23,poke:1892B=23,AT:00:0F,FS,left,w250,space,w200,space,w200
+gameover_death_strikes | gameover | Death Strikes! The whole party is lost; resume at the last inn | @middlegate,LIT,WARP:1B:06:08
+gameover_inn_empty | menu | After Death Strikes: the inn list with nobody in the party | @middlegate,LIT,WARP:1B:06:08,enter,w300
+boss_sheltem_appears | boss | Square Lake gate: Sheltem's face appears, the encounter begins | @sheltem,settle,settle
+boss_sheltem_surprise | boss | Sheltem and the four Elementals surprise the party | @sheltem,settle,settle,space,w200,settle
+boss_sheltem_fight | boss | Final fight: Sheltem with the Water, Air, Fire and Earth Elementals | @sheltem,settle,settle,space,w200,settle,space,w200,settle
+boss_sheltem_slashes | boss | Sheltem slashes at cubi 8 times for 296 points: cubi goes down | @sheltem,settle,settle,space,w200,settle,space,w200,settle,settle,settle,poke:1A7AA=28002800280028002800,a,w150,settle
+boss_sheltem_victory | boss | Victory over Sheltem: the party has won its 2317th battle | @sheltem,settle,settle,space,w200,settle,space,w200,settle,settle,settle,poke:1A7AA=28002800280028002800,set:10C10=2316:2,set:10C12=11:2,a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle
+ending_control_room | ending | A vacuum tube sucks the party into the control room: Cron seen from space | @sheltem,settle,settle,space,w200,settle,space,w200,settle,settle,settle,poke:1A7AA=28002800280028002800,set:10C10=2316:2,set:10C12=11:2,a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle
+ending_collision | ending | Cron is off course toward the sun: enter override code to abort | @sheltem,settle,settle,space,w200,settle,space,w200,settle,settle,settle,poke:1A7AA=28002800280028002800,set:10C10=2316:2,set:10C12=11:2,a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w300
+ending_override_typed | ending | Override code WAFE typed at the machine | @sheltem,settle,settle,space,w200,settle,space,w200,settle,settle,settle,poke:1A7AA=28002800280028002800,set:10C10=2316:2,set:10C12=11:2,a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w300,settle,type:WAFE,w30
+ending_recalculating | ending | Thank you. Recalculating trajectory now... | @sheltem,settle,settle,space,w200,settle,space,w200,settle,settle,settle,poke:1A7AA=28002800280028002800,set:10C10=2316:2,set:10C12=11:2,a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w300,settle,type:WAFE,w30,settle,enter,w100
+ending_cryptogram | ending | Sheltem's recorded message and the cryptogram: 15 minutes on the clock | @sheltem,settle,settle,space,w200,settle,space,w200,settle,settle,settle,poke:1A7AA=28002800280028002800,set:10C10=2316:2,set:10C12=11:2,a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w300,settle,type:WAFE,w30,settle,enter,w100,settle,w200,settle
+ending_answer_typed | ending | The encrypted word for Preamble typed at the Code prompt: Uqkcypvk | @sheltem,settle,settle,space,w200,settle,space,w200,settle,settle,settle,poke:1A7AA=28002800280028002800,set:10C10=2316:2,set:10C12=11:2,a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w300,settle,type:WAFE,w30,settle,enter,w100,settle,w200,settle,settle,type:Uqkcypvk,w30
+ending_congratulations | ending | Congratulations! Cron is saved; 2317 battles won, 50,000,000 bonus exp | @sheltem,settle,settle,space,w200,settle,space,w200,settle,settle,settle,poke:1A7AA=28002800280028002800,set:10C10=2316:2,set:10C12=11:2,a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w100,ctrl>a,w150,settle,w300,settle,type:WAFE,w30,settle,enter,w100,settle,w200,settle,settle,type:Uqkcypvk,w30,settle,enter,w300
