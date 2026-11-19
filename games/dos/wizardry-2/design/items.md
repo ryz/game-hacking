@@ -8,7 +8,7 @@ helper `work/scout/wizardry-2/itemcrop.py`, scratch), so every name is the game'
 table, `games/dos/wizardry/design/items.md`). (E)/(N) mark alignment-limited items (shown in the name). The
 "#" column: the sheet marks the item as unusable for RYZ (a fighter). Several names repeat (114/122 Wand of
 mages, 115/123 Coin of power, 120/121 Amulet of skill): different item records with the same name; what
-tells them apart is not known yet. Prices and Boltac's stock: not surveyed (capture).
+tells them apart is not known yet. Boltac's stock and prices: section below (verified, capture 2026-11-19).
 
 Quest items (verified in play, playbook "Game structure"): 125 Hrathnir and 126-129 KOD's helm, shield,
 gauntlets, armor are the five pieces of the Knight of Diamonds' regalia (each carried by a guardian on floors
@@ -145,3 +145,24 @@ gauntlets, armor are the five pieces of the Knight of Diamonds' regalia (each ca
 | 127 | KOD's shield |  |
 | 128 | KOD's gauntlets |  |
 | 129 | KOD's armor |  |
+
+## Boltac's Trading Post (verified, capture 2026-11-19: shots `shop_boltac_buy` ... `shop_boltac_rare`)
+The stock is Wizardry I's starting stock, unchanged: 25 items on five pages of six (F)orward wraps round to
+the start). Prices (gold): long sword 25, short sword 15, anointed mace 30, anointed flail 150, staff 10,
+dagger 5, small shield 20, large shield 40, robes 15, leather armor 50, chain mail 90, breast plate 200, plate
+mail 750, helm 100, potion of Dios 500, potion of Latumofis 300, scroll of Katino 500, leather+1 1500, chain
+mail+1 1500, shield+1 1500, breast plate+1 1500, scroll of Badios 500, scroll of Halito 500, staff+2 2500,
+gloves of copper 6000. Selling pays half (EBO's potion of Dios 250, plate mail 375, `shop_sell`). Identifying
+KOD's shield costs 150,000 (`shop_identify`); uncursing the robe of curses 4,000 (`shop_uncurse`).
+Usable by class (verified while equipping): priests cannot wear a helm; the bishop could not use the anointed
+flail or chain mail (equipped staff, leather+1, small shield instead); a thief sees swords marked USELESS.
+
+## The guardians' drops (verified, capture 2026-11-19, RAM item numbers in the finder's pack)
+| Guardian | Floor | Found as | Item | Shot |
+|---|---|---|---|---|
+| Magic Armor | 1 | ARMOR | 129 KOD's armor | `boss_found_armor` |
+| Magic Shield | 2 | SHIELD | 127 KOD's shield | `boss_found_shield` |
+| Magic Sword | 3 | SWORD | 125 Hrathnir | `boss_found_sword` |
+| Magic Helm | 4 | HELM | 126 KOD's helm | `boss_found_helm` |
+| Magic Gauntlets | 5 | GAUNTLETS | 128 KOD's gauntlets | `boss_found_gauntlets` |
+Worn together by RYZ (level 11 fighter): AC -18 and hit point regeneration (`inventory_kod_set`).

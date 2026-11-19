@@ -16,7 +16,7 @@ layout and floor format; addresses differ (RAM map). For tools write `dos/wizard
 | Release (region, year) | Apple II 1982 (Wikipedia); this dump: the 1998 re-release with a loader (`wizar2/WIZ2.COM` dated 1998-09-01, `WIZ2.DSK` 1998-07-09, `SAVE2.DSK` 1998-09-29, an empty `.ba1` marker) plus a `run.bat` menu dated 2019 (not needed, below) |
 | Developer / publisher | Sir-Tech Software (Andrew Greenberg, Robert Woodhead) (Wikipedia) |
 | Genre | First-person party RPG, the second scenario of Wizardry: veterans from Wizardry I enter six wireframe floors of 20 x 20 under the Temple of Gnilda |
-| Players / save system | 1 player; roster of 20 characters on the scenario disk image `SAVE2.DSK`, written while playing; the save ZIP only receives it when the program ends (L)eave game) or another file is closed (see Emulation notes) (verified) |
+| Players / save system | 1 player; roster of 20 characters on the scenario disk image `SAVE2.DSK`, written while playing; since the backend fix of 2026-11-19 every write reaches states at once (see Emulation notes) (verified) |
 | Dump | `rom/wizardry-2.zip`, SHA-1 in `game.json`; programs `wizar2/run.bat` (start menu entry 1) and `wizar2/WIZ2.COM` (entry 2) |
 
 ### The loader WIZ2.COM (read with ndisasm, verified in play)
@@ -42,7 +42,8 @@ layout and floor format; addresses differ (RAM map). For tools write `dos/wizard
 
 ## Boot sequence
 Macros (all in `game.json`): `TITLE`, `CASTLE`, `IMPORT`, `ADDPARTY`, `PARTY`, `RESUME`, `MAZE`,
-`WARP:FF:XX:YY`, `SOLO`, `KOD`, `STAFF`, `HOME`, `HOMESTAIRS`, `KNIGHTS`, `REFORM`, `WIN`. Every macro was
+`WARP:FF:XX:YY`, `SOLO`, `KOD`, `STAFF`, `HOME`, `HOMESTAIRS`, `KNIGHTS`, `REFORM`, `WIN` (scout) and
+`GEAR`, `EQUIP`, `KODGEAR` (capture, Shortcuts). Every macro was
 run as one `do` from power-on or inside a checkpoint route replayed cold (see Checkpoints).
 - **verified** Power-on: DOSBox Pure's start menu (RUN.BAT highlighted, WIZ2.COM below). `TITLE` =
   `w120,down,enter,w300`: the logo, "Scenario #2 - The Knight of Diamonds", a monster picture that changes
@@ -102,14 +103,15 @@ guardian fight drawn `w600` after the kick, message pages `w300`-`w400`, knight 
   | Floor | Arrive (from above) | Guardian square: group | Stairs down -> | Piece it carries |
   |---|---|---|---|---|
   | 1 | (0,0) from the castle | (15,2): 1 Magic Armor (77) | (16,2) -> floor 2 (11,10) | KOD's armor (verified: "MNZ found : ARMOR" / "RYZ found : ARMOR", item 129, unidentified) |
-  | 2 | (11,10) | (2,6): 1 Magic Shield (75) | (1,6) -> floor 3 (0,0) | KOD's shield (inferred) |
-  | 3 | (0,0) | (14,13): 1 Magic Sword (73) | (13,14) -> floor 4 (7,12) | Hrathnir (inferred) |
-  | 4 | (7,12) | (10,4): 1 Magic Helm (74) | (9,4) -> floor 5 (1,18) | KOD's helm (inferred) |
-  | 5 | (1,18) | (10,9): 2 Magic Gauntlets (76) | (10,10) -> floor 6 (0,0) | KOD's gauntlets (inferred) |
+  | 2 | (11,10) | (2,6): 1 Magic Shield (75) | (1,6) -> floor 3 (0,0) | KOD's shield (verified: "RYZ found : SHIELD", item 127) |
+  | 3 | (0,0) | (14,13): 1 Magic Sword (73) | (13,14) -> floor 4 (7,12) | Hrathnir (verified: "MNZ found : SWORD", item 125) |
+  | 4 | (7,12) | (10,4): 1 Magic Helm (74) | (9,4) -> floor 5 (1,18) | KOD's helm (verified: "CONDI found : HELM", item 126) |
+  | 5 | (1,18) | (10,9): 2 Magic Gauntlets (76) | (10,10) -> floor 6 (0,0) | KOD's gauntlets (verified: "CUBI found : GAUNTLETS", item 128) |
   | 6 | (0,0) | fixed fights (5,15)-(5,16), (18,18)-(19,19): group 47 | none | - |
   Floor 6 (1,2): the sphinx's riddle (answer **the knight of diamonds**; a wrong answer pushes the party back
   south), (1,3) "The apparition reappears and intones: 'One alone.'", (1,4) teleport to floor 1 (9,9), next to
-  Gnilda's temple (9,10). Floor 2 (3,6), next to its guardian, is a second riddle square (answer unknown).
+  Gnilda's temple (9,10). Floor 2 (3,6), next to its guardian, is a second riddle square: "I am a lonely being, scarred by swords ... Tell me,
+  what am I?", answer **shield** (verified: the right answer leaves the party on (3,6), a wrong one puts it back on (4,6)).
   Other message squares: floor 1 (11,2); floor 2 (16,3), (3,17), (15,19)/(18,14), (18,10), (18,9); floor 3
   (8,10), (4,10); floor 4 (16,7)-(17,9), (7,13), (6,17); floor 5 (11,8); floor 6 (1,3), (11,17), (13,15),
   (16,13) (the sphinx's three clues, inferred), (5,14). Pits, chutes, teleports, dark areas, rock: maps file.
@@ -132,41 +134,55 @@ guardian fight drawn `w600` after the kick, message pages `w300`-`w400`, knight 
 - **Game over / cemetery**: as Wizardry I (not seen here).
 
 ## Shot plan
-The plan is in `shots.txt` (ids, categories, captions; routes for the lines that start at a checkpoint). Target
-about 110-150 shots, the Wizardry I DOS set (208) as the model, without repeating what is the same engine: the
-Castle screens once each, then what is new: the import, the stock veterans, the six floors, the five
-guardians and their pieces, the sphinx and its clues, Gnilda's temple, the staff, the ending and the knights.
-How each area is reached (fastest first):
-- Castle, Utilities, Move characters, Training: `@start`, `@edge`, `@training`; the import screens from
-  `sav:00_transfer,CASTLE,e,w120,u,w120` (Move list, "+" marks, "RYZ has been moved").
-- Gear: the packs are empty after the import and the AC 10. Buy at Boltac's (55,000-75,000 gold each) or poke
-  items into the packs as in Wizardry I (`GEARPOKE`/`EQUIPALL` there; item numbers in `design/items.md`), then
-  equip in the first camp. Values stay realistic (levels 11-13).
-- Floors: `WARP:FF:XX:YY` from the Castle (party formed) to any square; arriving on a fight-zone square always
-  meets a group (random encounter shots), on a special square shows it. Doors: warp to the neighbour, poke the
-  facing (`poke:DAC6=0F00`), `a,w60,d,w60`, `k,w300,w600`.
-- Guardians: `@guard1` ... `@guard5`; the win: real fight with gear, or `WIN` (group 1 alive count 0) during
-  the orders, then Enter: "MNZ found : ARMOR", "Each survivor gets 0 G.P.".
-- Sphinx: `@sphinx` and the pages after it (`enter,w300` x3, the answer prompt, `type:the knight of diamonds\n`).
-- Gnilda: the long speech with the full party at (9,10) (`@start,WARP:01:09:0A`, `enter,w400` per page);
-  the test, the gift, the ending: `@gnilda_test`, `@staff_gift`, `@ending`; knights `@knights`.
-- **Roster-reading screens after a Tavern change must be shot in one segment from `@start`** (stale disk,
-  Emulation notes): e.g. the knight prompts: `@start,SOLO,KOD,WARP:01:09:0A,type:the knight of diamonds\n,w400,enter,w400,enter,w400,HOME,enter,w150,...`,
-  never `@ending,...`.
+Set `main` captured 2026-11-19 (game-capture): 213 shots from power-on to the ending, verified and published
+(`shots.txt`, `shots/main/`). Plan files were scratch (`work/cap/wizardry-2/plan/NN_*.txt`, assembled into the
+work `shots.txt` in game order, previewed with `tools/try.py`, shot with `shoot.py --only`). How each area was
+reached:
+- Title, disk prompt, loading: `@title` + `w100`/`w20` frames (`!`).
+- The import step by step: `sav:00_transfer,CASTLE,e,w120,u,w120,m,w200`, letters, `enter` + `w20` x N frames
+  (removing, insert, moving, "RYZ has been moved").
+- Castle with the imported party: `@start`; with gear: `@gcastle` (GEAR + EQUIP, Shortcuts). Boltac's pages
+  `b,w200` + `f,w200` x N; identify after `p,w200` (pool gold) because it costs 150,000; temple with CONDI's
+  status poked (`DE8A`=5, `DEE8`=0, then `e,w120,c,w120`).
+- Message squares: `@gcastle,WARP` to the neighbour, poke the facing (`DAC6`), `a,w60,d,w60`, `w` (or `k`),
+  `w400,w600`; one route per square from `work/cap/wizardry-2/survey.py` (scratch: approaches each square from
+  an open side, checking both squares' walls: walls are stored per square and can be one-way). Pages with
+  `enter,w400`.
+- Traps: the same approach; the message frame with `w10` x 4 + `!`.
+- Random fights: arriving or turning on a fight-zone square does not always meet a group. What worked:
+  floor 2 `WARP:02:00:00,poke:DACA=0100,wK,a,w60,d,w300,w900` (every K tried gave a group), floor 1 arrival on
+  (5,7) and (10,8), and on the other floors a real step into a room square from a neighbour:
+  `WARP:FF:XX:YY,poke:DAC6=0F00,a,w60,d,w60,wK,w,w300,w900` with K varied (routes in `shots.txt`).
+- Battle frames: `enter` then `w40` x N + `!`, N read off a timeline (`try.py --frames 70`).
+- Guardians with the equipped party: checkpoints `gguard1`-`gguard5` and the round checkpoints `gguard3r2`,
+  `gguard4r2`, `gguard4r3`, `gguard5r2`, `gguard5r3`. Shield, Sword and Helm were beaten for real (Tiltowait);
+  the Magic Armor (305 hit points, regenerates, resists spells) and the gauntlets got `poke:D3BA=0800` (and
+  `D3CA` for the second gauntlet) during the orders, then real blows killed them.
+- Quest end: `@gcastle,WARP:06:01:01,k,w300` (sphinx pages), `@gcastle,WARP:01:09:0A` (Gnilda with six),
+  `gtest` -> `ggift` -> `gstaff` -> `gending` -> `gknights` -> `greform` -> `gfinal` -> `final` (one chain; RYZ
+  re-equipped at Boltac's and rested at the inn after the ending).
+- Death: CONDI's status poked in the maze shows after a camp; all six poked dead + camp + leave -> cemetery.
+Not captured: floor 2 (16,3) (no way in), the floor 6 fixed fight group 47, spinners (no visible effect), the
+stones, M)ake scenario disk after Y, Utilities C)hange name past its list, "RYZ got an item" after the gift
+(not on screen in the frames tried), a dispell result (EBO was slept before acting). Floor views of 4 and 6
+were dropped: pixel-identical to floor 1's entrance.
 
 ## Strategy and walkthrough notes
-- Cataloguing: never grind. The imported party is strong (levels 11-13) but has no weapons or armour: buy
-  gear first (Boltac's) or the guardians are hard to hit (the Magic Armor dodged every unarmed blow in two
-  rounds and hits for 5).
-- Critical path: floors 1-5, beat each guardian (the piece drops to a member, unidentified: "ARMOR"), identify
-  (bishop MNZ or Boltac's), give all five to RYZ (T)rade), equip, go down to floor 6 (or warp), the sphinx
-  (1,2) with "the knight of diamonds", (1,4) teleports to floor 1 (9,9); remove the others in the Tavern first
-  or before the temple (the test wants one alone: the scout warped a lone RYZ to (9,10)), answer again, take the
-  staff to the Castle alone (floor 1 (0,0) stairs). Then knight the five.
-- Shortcuts used by the scout: `SOLO` (remove members 6-2 in the Tavern), `KOD` (five pieces equipped in RYZ's
-  pack), `WARP:01:09:0A` (onto the temple square), `HOME` (from any floor-1 square to the stairs and up).
-- The pieces regenerate HP ("87+" next to RYZ's hits while he wears them) and give an AC the list shows as "LO"
-  (verified with the KOD poke; with real equipping not seen).
+- Cataloguing: never grind. The imported party is strong (levels 11-13) but has no items: `GEAR` gives
+  (by poke, gold reduced by Boltac's prices) a realistic Boltac's outfit, `EQUIP` wears it in the first camp:
+  AC -1 0 3 5 9 5 (checkpoints `gcamp`, `gcastle`, `gmaze`).
+- Guardians with that gear (all verified): the Magic Shield dies to Tiltowait in round 1 (it killed EBO
+  first); the Magic Sword in round 2 (it decapitated CONDI first); the Magic Helm in round 3 (Lahalito on the
+  party); the Magic Armor and the two Magic Gauntlets resist spells: poke their hit points low (`D3BA`,
+  `D3CA`). Round 1 is a surprise round in every guardian fight (no S)pell): fight with 1-3, parry with 4-6.
+- Critical path (verified in play, shortcuts for the pieces): floors 1-5 guardians -> five pieces (identify:
+  MNZ, may fail; Boltac's 150,000) -> one bearer wears all five -> floor 6 (1,2) sphinx: "the knight of
+  diamonds" -> (1,3) "One alone." -> (1,4) teleport to floor 1 (9,9) -> remove the others in the Tavern
+  (`SOLO`) -> (9,10) answer again -> the staff (Gnilda takes the whole pack) -> floor 1 (0,0) stairs (`HOME`)
+  -> Congratulations -> knights.
+- Hand the bearer's own gear to a friend before going alone (Gnilda takes everything); in the capture RYZ
+  bought new gear at Boltac's afterwards (`gfinal`).
+- The pieces regenerate HP ("87+" next to RYZ's hits while he wears them) and give AC -18 ("LO" in the list).
 
 ## Naming
 No naming: characters come from Wizardry I (RYZ CONDI EBO CUBI DEDDO MNZ, named there) or the stock six.
@@ -185,6 +201,10 @@ Utilities C)hange name exists (not used).
 | Knights | `KNIGHTS`: Enter, then N N Y Y Y N N N N Y Y for CALEB BOREE CONDI EBO CUBI ODDLER NAUTUS ZIL GUYDOMAN DEDDO MNZ (roster order after the import; only in a segment from `@start`) | scout | verified |
 | Re-form after the ending | `REFORM`: Tavern add C D E J K (RYZ is still in) | scout | verified |
 | Item names | 8 items at a time into RYZ's pack, sheet in the Tavern (`design/items.md`) | scout | verified |
+| Gear | `GEAR` (Castle, party formed): Boltac's items in the six packs, unequipped, gold reduced by their prices (RYZ long sword, plate mail, shield+1, helm, gloves of copper; CONDI the same without gloves; EBO anointed mace, chain mail+1, large shield, potion of Dios; CUBI short sword, leather+1, small shield, scroll of Katino; DEDDO staff+2, robes, scroll of Halito; MNZ staff, leather+1, small shield, potion of Latumofis); `EQUIP` in the first camp (`e` + 20 x `1,w150`) | capture | verified |
+| The five worn instead of gear | `KODGEAR`: RYZ's pack = the five pieces equipped + long sword, plate mail, shield+1 (8 items) | capture | verified (Gnilda's test) |
+| Monster hit points | `poke:D3BA=0800` (group 1, first monster; second at `D3CA`, records 16 bytes) during the orders, then `settle,enter`: the next real hit kills | capture | verified |
+| Dead member / party wipe | status +28 (`DDBA`, `DE8A`, `DF5A`, `E02A`, `E0FA`, `E1CA` = 5) and HP +86 = 0, then camp `c,w300`: DEAD in the list; all six + leave camp = cemetery | capture | verified |
 No downloadable saves or codes looked for beyond the sources below (the package itself ships ready disks).
 
 ### Saves (games/dos/wizardry-2/saves/, committed; nothing in rom/saves/)
@@ -193,6 +213,7 @@ No downloadable saves or codes looked for beyond the sources below (the package 
 | 00_transfer | only `WIZAR2/SAVE1.DSK` = Wizardry I `03_werdna_beaten`'s disk (the six after Werdna, in the Castle) | `tools/transfer.py` | verified (`start`) |
 | 01_start | both disks after the import + Leave game: SAVE2 roster with the stock six + RYZ CONDI EBO CUBI DEDDO MNZ (L11-13, chevron, no items); SAVE1 with the six LOST | `@start,e,w120,l,w600` + export | verified (`resume`) |
 | 02_ending | after the ending: RYZ ">G" 484,587 E.P., the five ">K", AC 10, no items | `@knights,e,w120,l,w600` + export | verified (`resume_end`, roster.py) |
+| 03_wizardry3_transfer | the capture's final party after the ending: RYZ L12 ">G" with Boltac's gear, the five ">K" with gear, in the Castle; **the Wizardry III transfer source** | `@final,e,w120,l,w600` + export | verified (roster.py) |
 Each `.sav` is DOSBox Pure's save ZIP with `WIZAR2/SAVE2.DSK` and `WIZAR2/SAVE1.DSK` (640 KB each, stored).
 For the owner: copy both over the files in the game folder. List them: `python3 games/dos/wizardry-2/tools/roster.py FILE`.
 **For Wizardry III** (owner's queue): this game's roster is in `SAVE2.DSK` at disk offset `1D200`, slot n at
@@ -212,7 +233,8 @@ Physical addresses; most are Wizardry I's + 0xA6 (same engine, the program sits 
 | `0DD92 + n*0xD0` | 208 | party member n (0-5) as a full character record (layout: Wizardry I playbook); RYZ's pack count `0DDCC`, entries `0DDCE` (4 words: equipped, cursed, identified, item); HP `0DE18`; awards `0DE60` | name search, pokes (verified) |
 | `0B6CC` | 894 | the floor in play (TMAZE, `tools/maps.py`); floor 1 special 5 (stairs to the castle) AUX0/AUX1/AUX2 at `0B9D6`/`0B9F6`/`0BA16` (used by `WARP`) | match with WIZ2.DSK 0x1E600 (verified) |
 | `0D3AE` / `0D3B0` | 2 / 2 | in battle, group 1: alive count / count; `0D3B2` its monster number (77 Magic Armor) | peek in `guard1` (verified); poke alive 0 = won (verified) |
-| `0D3BA` | 2 | group 1, first monster: probably hit points (306 at the start of the Magic Armor fight, then 8, 5 after poking 1: it regenerates?) | peek (unsure) |
+| `0D3BA` | 2 | group 1, first monster's hit points; monster records 16 bytes apart (`0D3CA` the second); guardians: Armor 305 (regenerates about 5 a round), Shield 79, Sword 72, Helm 156, Gauntlets 50 each | RAM diff over a 9-damage hit (verified: 310 -> 301; poke 8 + one hit = killed) |
+| `0DD92 + n*0xD0 + 0x28` / `+0x86` / `+0x34` | 2 / 2 / 6 | member n status / HP / gold (RYZ `0DDBA`, `0DE18`, `0DDC6`); the party order changes when members die (the dead move back) | pokes (verified) |
 | `01980` | | the loader WIZ2.COM (CS 0198h): handles at `01B4A` (WIZ2.DSK), `01B4C` (SAVE2.DSK), `01B50` (Save1.Dsk while moving), flag `01B6F` | ndisasm + PC (code) |
 Character record: as Wizardry I (`games/dos/wizardry/playbook.md`), plus: `+20` = 1 while the character is in
 the party or just moved (0 in the roster after Leave game); `+CC` = HP regeneration from worn items (1 with the
@@ -223,7 +245,10 @@ staff); `+CE` awards: bit 0 ">" Chevron of Rank, bit 11 "K" Knight of the City, 
 ## Emulation notes
 - **Model `ega-315`**, as Wizardry I (same CGA mode-5 booter; `cga` loses the palette on a state load, see
   dos.md). Frames compared across state loads: identical (Checkpoints).
-- **Stale disk after a state load (backend, dos.md "open bug")**: the loader keeps SAVE2.DSK open; the game
+- **~~Stale disk after a state load~~ fixed 2026-11-19 (backend commit 5310311)**: writes through the open
+  SAVE2.DSK reach states at once; `@ending,KNIGHTS,REFORM` from a cached checkpoint gives the same frame as one
+  segment from `@start` (coordinator), and the capture's `gknights` -> `greform` -> `final` chain and the
+  export of `03_wizardry3_transfer` ran from cached checkpoints. The old rule below is history. Old text: the loader keeps SAVE2.DSK open; the game
   writes roster changes into it (Tavern add/remove, knighting), but DOSBox Pure puts SAVE2.DSK into the save
   ZIP only when a file is closed (the import's Save1.Dsk closes, Leave game). A state therefore carries the disk
   as of the import; the game in memory is right, the disk can be behind. **Wizardry II reads the roster back
@@ -253,6 +278,10 @@ staff); `+CE` awards: bit 0 ">" Chevron of Rank, bit 11 "K" Knight of the City, 
 | `staff_gift` | "Behold! The Staff of Gnilda!" |
 | `ending` | Congratulations |
 | `knights` | Castle after the knighting, party re-formed, AC 10 (built in one segment from `@start`) |
+| `gcamp`, `gcastle`, `gmaze` | capture: the party with Boltac's gear (GEAR + EQUIP): first camp, Castle, floor 1 entrance |
+| `chest` | capture: floor 2 (0,0), the chest after 3 Rhino beetles |
+| `gguard1` ... `gguard5`, `gguard3r2`, `gguard4r2`, `gguard4r3`, `gguard5r2`, `gguard5r3` | capture: the guardian fights with gear, at the options of rounds 1-3 |
+| `gtest`, `ggift`, `gstaff`, `gending`, `gknights`, `greform`, `gfinal`, `final` | capture: the ending chain with the equipped party (RYZ alone with KODGEAR, the gift, the staff, Congratulations, knights, re-formed, RYZ re-equipped, after a night at the inn) |
 Every checkpoint was rebuilt from an empty cache and compared with cache hits in fresh processes on
 2026-11-19 (`work/scout/wizardry-2/cmp.py`, scratch): identical frames, party records, position and written
 disks, also after Leave game from `start`, `knights`, `resume_end`. Exception, by design: `@ending,KNIGHTS`
@@ -270,11 +299,10 @@ GameFAQs, TCRF, StrategyWiki: known 403 for agents (not tried); wizardry.wiki.gg
 not resolvable from the session.
 
 ## Open questions
-- The floor 2 riddle at (3,6) (answer = the game's message 41): its text and answer; the other message squares'
-  texts (read them on screen while capturing).
-- Do guardians 2-5 drop their pieces like the Magic Armor (inferred from the group names)? Does the floor 6
-  fight group 47 guard anything?
-- Monster hit points: `0D3BA` unsure (values 306, 8, 5); the Magic Armor may regenerate.
-- What the lone-character rule exactly is (party size 1, or something else that SOLO changes).
-- Boltac's stock and prices (Wizardry II's own shop list), the duplicate item names (114/122, 115/123, 120/121).
-- M)ake scenario disk (Y not tried), Utilities R)estart, C)hange name: screens not seen.
+- ~~The floor 2 riddle at (3,6)~~ answer **shield** (verified). Floor 2 (16,3) (kind 9): no way in found.
+- ~~Do guardians 2-5 drop their pieces?~~ yes, all five verified (items 125-129). Floor 6 group 47 not fought.
+- ~~Monster hit points~~ `0D3BA` (verified). ~~Boltac's stock~~ Wizardry I's (design/items.md).
+- The "one alone" rule: party of one (verified both ways at the temple and the Castle); nothing else tried.
+- The duplicate item names (114/122, 115/123, 120/121): still unknown.
+- M)ake scenario disk after Y, Utilities C)hange name past the list: not tried. What the sage's 100,000 buy
+  and other wishes at the well.

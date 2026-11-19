@@ -18,3 +18,18 @@ Made by the agents while playing (owner's rule 2026-11-15: committed so the owne
 - Wizardry III imports from SAVE1.DSK and SAVE2.DSK: this game's roster is in `SAVE2.DSK` at offset `1D200`
   (20 slots of 208 bytes, four per 1024-byte page; the six in slots 2-5, 10, 11). List with
   `python3 games/dos/wizardry-2/tools/roster.py games/dos/wizardry-2/saves/02_ending.sav`.
+| 03_wizardry3_transfer | `03_wizardry3_transfer.sav` | After the ending (capture route): RYZ L12 with the Mark of Gnilda (>G) and gear bought at Boltac's, CONDI EBO CUBI DEDDO MNZ Knights of the City (>K) with their gear, all in the Castle; SAVE2.DSK = this roster (the Wizardry III transfer source); SAVE1.DSK = the Wizardry I disk with the six LOST | `@final,e,w120,l,w600,settle` | `5f32dd603b3c` | 2026-11-19 |
+
+## 03_wizardry3_transfer: the source for Wizardry III (capture 2026-11-19)
+- Made from checkpoint `final` (`@final,e,w120,l,w600`, Leave game, then `play.py export`): the party is in
+  the Castle, not in the maze ("out" 0 for all), gear on, levels as played.
+- `WIZAR2/SAVE2.DSK` (this game's scenario disk) is the file Wizardry III needs: roster at `1D200`,
+  slots 2-5 (RYZ CONDI EBO CUBI), 10-11 (DEDDO MNZ). RYZ L12 fighter ">G" (Mark of Gnilda, 484,587 E.P., 89 HP,
+  long sword, plate mail, shield+1, helm bought after the ending), CONDI L11 ">K", EBO L13 ">K", CUBI L13
+  ">K", DEDDO L13 ">K", MNZ L13 ">K", each with the Boltac's outfit of the capture (`GEAR`), gold 52,062-64,057.
+  The six stock veterans (CALEB BOREE ODDLER NAUTUS ZIL GUYDOMAN) are unchanged, not knights.
+- `WIZAR2/SAVE1.DSK` is the Wizardry I disk after the move: the six are there as LOST (status 7) with their
+  Wizardry I items still in their records (5, 6, 5, 4, 3, 3); the stock Wizardry I characters TARKIN ...
+  MEWO are level 1. Nothing in it is useful for Wizardry III's transfer (the legacy characters are the ones on
+  SAVE2.DSK); keep it only as the Wizardry I history.
+- List both rosters: `python3 games/dos/wizardry-2/tools/roster.py games/dos/wizardry-2/saves/03_wizardry3_transfer.sav`.
