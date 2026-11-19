@@ -38,7 +38,7 @@ def blocks(d):
 
 def disk(path=None):
     """The scenario disk in block order: from the game ZIP, or from PATH (a .dsk, or a .sav ZIP that holds one)."""
-    path = path or os.path.join(ROOT, "rom", "wizardry.zip")
+    path = path or os.path.join(ROOT, "rom", "apple2", "wizardry.zip")
     if zipfile.is_zipfile(path):
         z = zipfile.ZipFile(path)
         name = sorted(n for n in z.namelist() if "SCENARIO" in n.upper() or "WIZARDRY I" in n.upper())[0]

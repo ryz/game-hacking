@@ -17,8 +17,8 @@ sys.path.insert(0, HERE)
 
 def main():
     a = sys.argv[1:]
-    src = a[0] if a else os.path.join(ROOT, "rom", "saves", "wizardry", "02_ending.sav")
-    out = a[1] if len(a) > 1 else os.path.join(ROOT, "rom", "saves", "wizardry-2", "00_transfer.sav")
+    src = a[0] if a else os.path.join(ROOT, "rom", "saves", "apple2", "wizardry", "02_ending.sav")
+    out = a[1] if len(a) > 1 else os.path.join(ROOT, "rom", "saves", "apple2", "wizardry-2", "00_transfer.sav")
     z = zipfile.ZipFile(src)
     name = [n for n in z.namelist() if "SCENARIO" in n.upper()][0]
     img = z.read(name)

@@ -13,7 +13,7 @@ the screens, keys, timing and memory are not. Section "The DOS material here" sa
 |---|---|
 | Title (EN / original) | Wizardry: Proving Grounds of the Mad Overlord (title logo "Wizardry"; scenario disk header "PROVING GROUNDS OF THE MAD OVERLORD!") (verified) |
 | Version | "VERSION 2.1 OF 22-JAN-82  SER:??????" on the copyright screen (verified); volumes `WBV2.1` (boot) and `WSV2.1` (scenario) |
-| Platform / model used | Apple II, `game.json` model `iiplus` (see Emulation notes: on the default `iie` the text comes out in 80-column mode, every second column blank) |
+| Platform / model used | Apple II, `game.json` model `iiplus-wp1`: a II Plus with disk 1 (the boot side) write-protected (see Emulation notes: on the default `iie` the text comes out in 80-column mode, every second column blank) |
 | Release (region, year) | North America, 1981 (copyright screen "COPYRIGHT (C)1981 ... ANDREW GREENBERG, INC & ROBERT WOODHEAD, INC.") |
 | Developer / publisher | Andrew Greenberg, Robert Woodhead / Sir-Tech Software (copyright screen; publisher: source, DOS playbook) |
 | Genre | First-person party RPG: six adventurers, a castle of text menus, a ten-floor wireframe maze of 20 x 20 squares |
@@ -34,8 +34,8 @@ order (SHA-1s in `game.json` "header"). Owner's upload 2026-11-19.
   `enter`). The emulator plays on private copies and every savestate carries what the game wrote, so the dump
   never changes. U)TILITIES -> M)AKE SCENARIO DISK was not used (its menu: verified; it wants the master in
   drive 2 and a formatted disk in drive 1).
-- **verified** `rom/apple2/wizardry.zip` is also the path the DOS game's `game.json` names (`games/dos/wizardry/`):
-  the Apple II intake replaced the DOS dump in this container. Tools here always say `apple2/wizardry`.
+- The dump is `rom/apple2/wizardry.zip` since 2026-11-19 (before: `rom/wizardry.zip`, which the DOS game also
+  named). Tools here always say `apple2/wizardry`.
 
 ## Boot sequence
 Macros (all in `game.json`): `TITLE`, `MENU`, `CASTLE`, `TRAINING`, `DEL:name`, `WIPE`,
@@ -46,13 +46,13 @@ one route from power-on (roster checked on screen); the others inside checkpoint
   FANTASY GAMES" from frame ~960, the wizard at his cauldron from ~1200, smoke rising into the Wizardry logo,
   complete at about frame 1900; the logo's colours keep cycling (orange, green), then the screen clears and the
   animation starts over (blank at frame 3000). `TITLE` = `w2100`.
-- **verified** Any key on the title: the program reads and re-writes block 0 of the boot disk and **hangs on
-  purpose unless the write is refused as write-protected** (p-code at `843C`: UNITREAD, UNITWRITE, `IORESULT <>
-  16` -> an endless loop at `8458`: `00 A1 F6`). The emulator has no write protection (docs/emulator/apple2.md,
-  "Not supported yet"), so the screen stays black for ever. `MENU` = `TITLE,space,w300,poke:845A=00,w300`: the
-  poke turns the loop's backward jump into "go on" once the program sits in it. The address is the same on
-  `iie` and `iiplus`. Without the poke nothing past the title can be reached.
-  A key during the opening animation goes to the same check at once (the text stays on screen while it hangs).
+- **verified** Any key on the title: the program checks that its boot disk is write-protected and goes to the
+  menu (about 5 s). `MENU` = `TITLE,space,w600`. The model's `wp1` protects disk 1; nothing in a route depends
+  on it beyond the model name. History: without write protection the program hangs on purpose on a black
+  screen (it re-writes block 0 of the boot disk and loops unless the write is refused); until the backend
+  offered write protection (2026-11-19) the scout's routes poked past that loop (`poke:845A=00`). That poke is
+  gone from every macro and checkpoint.
+  A key during the opening animation goes to the same check at once.
 - **verified** Menu: the copyright text, the version line and `S)TART GAME  U)TILITIES  T)ITLE PAGE`.
   `T` replays the title. `U`: "WIZARDRY UTILITIES - R)ECOVER T)RANSFER B)ACKUP M)AKE SCENARIO DISK U)PDATE
   C)HANGE NAMES L)EAVE" (menu verified, entries not used).
@@ -76,7 +76,7 @@ Every screen prints its keys: one letter per choice, `[RETURN]` where the text s
 capitals. Names (characters, spells, traps) are typed and ended with Return.
 | Context | Key | Action | Status |
 |---|---|---|---|
-| Title | any key | to the menu (after the write-protect check, see Boot) | verified |
+| Title | any key | to the menu | verified |
 | Menu | `s` / `u` / `t` | start game / utilities / title page | verified |
 | Disk prompts | `enter` | "... IN DRV 1, PRESS [RET]" | verified |
 | Castle | `a` `g` `b` `c` `e` | A)dventurer's Inn, G)ilgamesh' Tavern, B)oltac's Trading Post, Temple of C)ant, E)dge of Town | all verified |
@@ -99,7 +99,7 @@ capitals. Names (characters, spells, traps) are typed and ended with Return.
 | Prompts | `y` / `n`; Return | stairs ("STAIRS GOING UP. TAKE THEM (Y/N) ?"); "[RET] FOR MORE" on long messages; elevator buttons `a`-`d` / `a`-`f` or Return | verified (stairs, plaque, elevator prompt) |
 | Malor (camp spell) | `n` `s` `e` `w` `u` `d`, Return, `esc` | one square or floor per key press, Return teleports, Esc "chickens out" | verified (17 W, 3 S, 9 U) |
 | Battle | `f` `s` `p` `r` `u` (`d` dispell for priests) | fight ("FIGHT AGAINST GROUP# ?" when there are several groups), spell ("SPELL NAME ? >" + name + Return, then "CAST SPELL ON GROUP #?" / "PERSON # ?"), parry, run, use; then "PRESS [RETURN] TO FIGHT, OR GO B)ACK TO REDO OPTIONS" | f, s, p, Return verified |
-| Friendly monsters | `f` / `l` | "A FRIENDLY GROUP OF ... THEY HAIL YOU IN WELCOME! YOU MAY F)IGHT OR L)EAVE IN PEACE." | screen verified (Werdna himself, `@werdna_sign,enter,w300,r,w300,w17,k,w600,w1500`) |
+| Friendly monsters | `f` / `l` | "A FRIENDLY GROUP OF ... THEY HAIL YOU IN WELCOME! YOU MAY F)IGHT OR L)EAVE IN PEACE." | screen verified (Werdna himself, `@gwerdna_sign,enter,w300,r,w300,w7,k,w600,w1500`) |
 | Chest | `o` `c` `l` `i` `d` | open, Calfo, leave, inspect, disarm; "WHO (#) WILL ...?", disarm then "WHAT TRAP >" + name | menu verified; o and l return to the maze |
 
 Input timing: the default press (hold 8, wait 40) works everywhere, and one key at a time (keyboard latch):
@@ -151,7 +151,7 @@ written; the rules:
 | Temple: pick by letter | `type:NAME\n` |
 | battle `t` take back, Enter to fight | `b` go back, Return to fight; no "take back" inside the orders |
 | spell names typed in lower case | type capitals: `type:HALITO\n` |
-| random fights: `wK` before the turn in a fight room picks the monsters | the same trick works, with other K (floor 1 (7,1): K = 1 Scruffy men, 3 Orcs + Kobolds, 5 Slimes, 13 Skeletons...); a turn on a fight-room square rolled a fight in 8 of 8 tries on floor 1, 0 of 1 on floor 3 |
+| random fights: `wK` before the turn in a fight room picks the monsters | the same trick works, with other K (floor 1 (7,1): K = 1 and 3 Skeletons, 5 Slimes + Small humanoids, 7 Small humanoids, 9 Undead kobolds, 11 Slimes; the K values change with anything earlier in the route); a turn on a fight-room square rolled a fight in 8 of 8 tries on floor 1, 0 of 1 on floor 3 |
 Routes that cannot carry over: everything about the DOS loader, `o`, the Training Grounds menu, the 50,000
 G.P. reward, items kept after the ending (the DOS `final` party has gear; here it has none).
 
@@ -177,11 +177,11 @@ DOS ids where the content is the same (`games/dos/wizardry/shots/main/shots.txt`
   status effects, level drain, dispell, flee, parry), surprised either way, friendly group, victory and E.P.,
   chest menu, each chest command, traps, loot.
 - boss (about 12): Werdna's sign, the fight start variants, the won round message by message (`@werdna` +
-  the `werdna_won` orders, `try.py --frames`), the lost surprise round (`@werdna_sign,enter,w300,r,w300,k,w600`:
-  four dead after Werdna's first spell), friendly Werdna, the amulet in EBO's pack.
+  the `werdna_won` orders, `try.py --frames`), the lost surprise round (`@werdna_sign,enter,w300,r,w300,w6,k,w600,w1500`:
+  four dead), friendly Werdna, the amulet in RYZ's pack.
 - ending (5): Malor screen, stairs with the amulet, Congratulations, the Castle and a sheet with the chevron.
 - gameover (2): cemetery (kill the party: status pokes or the lost Werdna round), Malor into rock.
-- save/extra (4): utilities entries (change names, transfer prompt), the write-protect loop's black screen is
+- save/extra (4): utilities entries (change names, transfer prompt), the black screen of an unprotected boot disk is
   not a shot.
 How to reach: everything from `@start`, `@vet`, `@gcastle`, `@gmaze` + `WARP`, `@werdna`; nothing needs play.
 
@@ -190,11 +190,18 @@ How to reach: everything from `@start`, `@vet`, `@gcastle`, `@gmaze` + `WARP`, `
   change) makes the party level 13; `WARP` from floor 1 reaches any square; `AMULET` + `HOME` ends the game
   without the fight (checkpoint `ending_poke`).
 - **Werdna, the route that wins on screen** (no pokes in the fight; checkpoints `werdna` -> `werdna_won`):
-  kick the door with `w1` before `k` (1 UNSEEN ENTITY, 1 W E R D N A, 1 UNSEEN ENTITY, not surprised), orders
-  `f,2` `f,2` `s,MALIKTO` `p` `s,TILTOWAIT` `s,LAHALITO,2`, then `w10,enter,w3000`: all three groups die in the
-  first round, nobody dies, EBO finds the amulet. Of twelve waits before Return (`w1`..`w12`) only `w10` won
-  outright; most others left RYZ stoned or dead with Werdna alive. With no wait before `k` the monsters
-  surprise the party and Werdna's first spell kills four.
+  kick the door with `w10` before `k` (1 UNSEEN ENTITY, 1 W E R D N A, 1 UNSEEN ENTITY, "YOU SURPRISED THE
+  MONSTERS!"), orders `f,2` `f,2` `s,MALIKTO` `p` `s,TILTOWAIT` `s,LAHALITO,2`, then `w44,enter,w3000`: all
+  three groups die in the surprise round, nobody is touched, RYZ finds the amulet. The wait before Return
+  decides: of `w1`-`w13` and `w14`-`w47` only `w44` won outright (found by `work/scout/.../search.py`: many
+  routes in parallel, success read from memory: amulet in a pack, all six OK). With most other waits the
+  vampires die and Werdna survives the three spells; a second round against him alone (ten waits tried)
+  always left RYZ stoned, paralyzed or dead with Werdna standing. Spells rarely hurt him: expect to search.
+  A slaughtered party (cemetery screen): `@werdna_sign,enter,w300,r,w300,w7,k,w600,w1500` + the same orders
+  + `w6,enter,w3000`. Surprised by the monsters (four dead after the first spells): `w6` before `k`.
+  **These waits belong to the boot timing of model `iiplus-wp1`**: when anything earlier in the chain changes
+  (a macro, the model, a wait), every fight outcome changes and the win must be searched again (it took one
+  search of about 35 routes after the write-protection change of 2026-11-19).
 - **The way home**: DEDDO casts MALOR in camp (`c`, `5`, `s`, `type:MALOR\n`), 17 x `w`, 3 x `s`, 9 x `u`,
   Return: floor 1 (0,0) on the stairs prompt; `y` -> the ending (checkpoints `malor_home`, `ending`).
 - Group prompts appear only when there is more than one group; never type a spell name while the spell prompt
@@ -208,17 +215,16 @@ spend them (the class list beside the scores follows).
 | Name | Race | Align | Class | STR IQ PIE VIT AGI LUC | HP at L1 (route `start`) | Slot |
 |---|---|---|---|---|---|---|
 | RYZ | Human | Good | Fighter | 17 8 5 13 10 9 | 9 | 0 |
-| CONDI | Dwarf | Good | Fighter | 16 7 10 15 7 6 | 8 | 1 |
-| EBO | Gnome | Good | Priest | 9 7 16 10 11 7 | 6 | 2 |
-| CUBI | Hobbit | Neutral | Thief | 7 7 7 9 16 15 | 5 | 3 |
-| DEDDO | Elf | Good | Mage | 7 17 10 8 11 6 | 3 | 4 |
+| CONDI | Dwarf | Good | Fighter | 16 7 10 15 7 6 | 9 | 1 |
+| EBO | Gnome | Good | Priest | 9 7 16 10 11 7 | 7 | 2 |
+| CUBI | Hobbit | Neutral | Thief | 7 7 7 9 16 15 | 4 | 3 |
+| DEDDO | Elf | Good | Mage | 7 17 10 8 11 6 | 4 | 4 |
 | MNZ | Elf | Good | Bishop | 7 15 14 7 10 6 | 6 | 5 |
-Hit points and starting gold (117-186 seen) are rolled: they follow frame timing (DOS: 8 for everyone).
+Hit points and starting gold (101-186 seen) are rolled: they follow frame timing (DOS: 8 for everyone).
 
 ## Shortcuts
 | What | How (tokens / prefix / code) | Source | Status |
 |---|---|---|---|
-| Past the write-protect check | `poke:845A=00` once the title key has been pressed (`MENU`) | scout (p-code read from memory) | verified |
 | Empty roster | `WIPE` (20 x `DEL:NAME`: name, Return for the password, D, Y) | scout | verified |
 | Party with chosen statistics | `MAKE` / `PARTYMAKE` | scout (DOS macro, new addresses) | verified |
 | Veteran party | `VET` at the Castle: level 13, HP 112 124 71 66 49 58, E.P. 377,512-560,341, gold 5,077-24,817, ages 24-63, all mage spells (DEDDO), all priest spells (EBO), mage 1-4 + priest 1-3 (MNZ) | DOS macro, addresses - `695C` | verified (sheets, spell book, casting) |
@@ -234,19 +240,19 @@ closed to agents; the disks themselves answered everything needed).
 
 ### Saves (`rom/saves/apple2/wizardry/`, never committed: whole disk images)
 `play.py export` on the Apple II writes a ZIP of the changed disk image (`2 Scenario.dsk`, the whole side:
-program, maps and roster). That is game data: every export is moved from `games/apple2/wizardry/saves/` to
+program, maps and roster). That is game data: `play.py export` writes Apple II saves outside the game folder, to
 `rom/saves/apple2/wizardry/` and none is committed (`saves/README.md` keeps the table with routes and SHA-1s). The
 committed record is the checkpoint route; rebuild a save with `play.py start apple2/wizardry --route ROUTE`,
-`play.py export NAME "..."`, `mv`.
+`play.py export NAME "..."`.
 | Name | Contents | Route | SHA-1 (.sav, this build) | Status |
 |---|---|---|---|---|
-| 01_start | roster RYZ CONDI EBO CUBI DEDDO MNZ, level 1, no equipment; 14 free slots | `@start,e,w300,l,w900` + export | `1515b1cd9b1be035308acad360368725f979c5ff` | verified (`sav:01_start,RESUME` = checkpoint `resume`) |
-| 02_ending | the six after the real Werdna fight, Malor and the ending: level 13, chevron, E.P. 631,933-814,762, gold 4,817-9,342, no items | `@final,e,w300,l,w900` + export | `b3d49bc83623739f129213ccc1bb48611f051fd7` | verified (`sav:02_ending,RESUME` = `resume_end`; `data.py roster`) |
+| 01_start | roster RYZ CONDI EBO CUBI DEDDO MNZ, level 1, 101-182 gold, no equipment; 14 free slots | `@start,e,w300,l,w900` + export | `f973d721b3e124dcf71004a4c7b3872e70cf1e8a` | verified (`sav:01_start,RESUME` = checkpoint `resume`); re-exported 2026-11-19 on the `wp1` route (the first export, made on the poked route, was a valid disk too and was replaced so that save and route agree) |
+| 02_ending | the six after the real Werdna fight, Malor and the ending: level 13, full hit points, chevron, E.P. 631,933-814,762, gold 4,817-9,342, no items | `@final,e,w300,l,w900` + export | `315d811bb8a412de9ebc6a9e4d1c156856b332ff` | verified (`sav:02_ending,RESUME` = `resume_end`; `data.py roster`); re-exported 2026-11-19 |
 
 ### The transfer disk for Wizardry II (`rom/saves/apple2/wizardry-2/00_transfer.sav`, never committed)
 `python3 games/apple2/wizardry/tools/transfer.py` stores the scenario image of `02_ending.sav`, unchanged, as
 `T Wizardry I.dsk` in a new ZIP (fixed date, so the same image gives the same ZIP).
-- ZIP SHA-1 `328965cd286e41a74c4e768815924fd09419e549`; image SHA-1 `52c129e55f799fd10b088035d6ef9f1e5ccb224c`
+- ZIP SHA-1 `646deb548d50937b94eb3e26bcffc69cc981fca2`; image SHA-1 `a21bf8c120a29fc4a1f91d34532c82638347798d`
   (143,360 bytes, DOS 3.3 sector order, volume `WSV2.1`).
 - On it: the six characters of `02_ending` in slots 0-5 (all OK, in the Castle, not OUT, no passwords, no
   items, chevron), 14 free slots, and the unchanged Wizardry I scenario (maps, monsters, items, program).
@@ -271,7 +277,6 @@ the screen named.
 | `5BCA` | 12 | stack, creation: the rolled values (lower limits) | dump (verified by the macro) |
 | `5B66` | 2 | stack, creation: bonus points left | diff (verified) |
 | `6E30 + g*0x124` | 2+2+14k | battle group g (0-3): alive, count, then 14-byte monster records (hit points at +8); the group's monster definition (158 bytes, names first) at group +0x84 | dumps of two fights (read, not poked) |
-| `843C`-`845A` | | SYSTEM.STARTUP's write-protect check while it runs (Boot) | p-code read (verified by the poke) |
 | `0058` | 2 | the p-code interpreter's instruction pointer (interpreter code around `9800`) | sampling (used once) |
 Character record (208 bytes, the DOS port's layout, re-checked here through `VET`, `AMULET`, `GEARPOKE`, the
 roster tool and the sheets):
@@ -298,14 +303,13 @@ Disk (block order, `maps.blocks()`): SCENARIO.DATA from block 149; its table of 
 slot n at `1D200 + (n div 4)*400 + (n mod 4)*D0`), EXP +114.
 
 ## Emulation notes
-- **Model `iiplus`.** On `iie` (the tools' default) Apple Pascal 1.1 finds the 80-column firmware and switches
+- **Model `iiplus-wp1`.** On `iie` (the tools' default) Apple Pascal 1.1 finds the 80-column firmware and switches
   it on: all text shows in 80-column mode with every second column empty ("P R E P A R E"). The II Plus is the
   machine of 1981 and shows 40 columns. Video is the default colour TV: text is white, the maze window's lines
   purple and its text green (hi-res artifact colours), monster pictures in colour.
-- **Write protection (backend gap).** See Boot: the title's check needs a write-protected boot disk and the
-  backend cannot offer one; routes poke past it. Reproduction: `python3 tools/emu.py apple2/wizardry --seq
-  "w2100,space,w3000" --out work/x` stays black; with `poke:845A=00` after the key the menu appears. The
-  Tavern's "** WRITE-PROTECT CHEAT! **" (program text) is the opposite check on the scenario disk: not met.
+- **Write protection.** The boot side must be write-protected (`wp1` in the model, Boot sequence). The
+  scenario side must stay writable: the Tavern's "** WRITE-PROTECT CHEAT! **" (program text) is the opposite
+  check; not met.
 - Text screens (Castle, Training, camp, sheets, shops) are text page 1: `python3
   games/apple2/wizardry/tools/screen.py --name SESSION ["tokens"]` prints them, `tools/try.py FILE --text`
   prints the end screen of many routes run in parallel. The maze, fights and chests are hi-res: look at frames.
@@ -326,20 +330,21 @@ slot n at `1D200 + (n div 4)*400 + (n mod 4)*D0`), EXP +114.
 | `edge`, `camp`, `maze1` | Edge of Town; first camp; floor 1 (0,0) facing north |
 | `battle`, `chest` | floor 1 (7,1): 3 Slimes; the chest after one round |
 | `vet`, `vmaze` | Castle and floor 1 entrance with the veterans |
-| `werdna_sign`, `werdna` | floor 10 (17,4) sign; the fight's first orders (veterans, no gear) |
+| `werdna_sign`, `werdna` | floor 10 (17,4) sign; the fight's first orders, the party has surprised the monsters (veterans, no gear) |
 | `werdna_won`, `malor_home`, `ending`, `after_ending`, `final` | the real win; Malor to the stairs; Congratulations; Castle; Castle after a look at RYZ's sheet |
 | `ending_poke` | Congratulations by `AMULET` + `HOME` |
-| `gcamp`, `gcastle`, `gmaze`, `gwerdna_sign`, `gwerdna` | the veterans with gear: camp, Castle, floor 1, Werdna's sign and fight (Werdna, Vampire Lord, unseen entity; not fought) |
+| `gcamp`, `gcastle`, `gmaze`, `gwerdna_sign`, `gwerdna` | the veterans with gear: camp, Castle, floor 1, Werdna's sign and fight (Vampire Lord, Werdna, Vampire; not fought) |
 | `resume`, `resume_end` | Castle from `sav:01_start` / `sav:02_ending` (need the files in `rom/saves/apple2/wizardry/`) |
 Cold check: `python3 games/apple2/wizardry/tools/cachecheck.py` builds every checkpoint from an empty cache and
-compares it with a cache hit in a fresh process (frame, memory 0000-BFFF, written disk). Run 2026-11-19:
-all 26 checkpoints identical cold, from the cache and against the states of the session that made them
-(frames and memory for all; the written disk as well for `start`, `final` and the five `g...` ones).
+compares it with a cache hit in a fresh process (frame, memory 0000-BFFF, written disk). Last run 2026-11-19 on model
+`iiplus-wp1` after the Werdna route was re-timed: all 26 checkpoints identical cold and from the cache (frame,
+memory and written disk). Reproducing is not the same as being right: after any change earlier in the chain
+also look at what `battle`, `chest`, `werdna`, `werdna_won`, `ending` and `final` show (`try.py`).
 
 ## Sources
 | Source | URL | Used for | Accessed |
 |---|---|---|---|
-| the disks | `rom/apple2/wizardry.zip` | program text (every prompt and message), version, roster, maps, items, monsters, the write-protect check | 2026-11-19 |
+| the disks | `rom/apple2/wizardry.zip` | program text (every prompt and message), version, roster, maps, items, monsters | 2026-11-19 |
 | DOS playbook and design documents | `games/dos/wizardry/` | structure, macros, record layout, routes; each fact used here was re-checked on the Apple II or is marked | 2026-11-19 |
 | Apple II Might and Magic playbook | `games/apple2/might-and-magic/playbook.md` | how a DOS set was replayed on the Apple II | 2026-11-19 |
 No web source was fetched (time went to the emulator; the DOS scout lists the hosts and what they refused).

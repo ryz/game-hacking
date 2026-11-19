@@ -12,15 +12,16 @@ Each entry: what the game does, what was probably intended, how sure we are, and
 
 ## The boot disk must be write-protected
 **Behavior:** after the title the program writes to its own boot disk and stops for ever unless the write is
-refused (black screen, no message). Reproduce: `w2100,space,w3000` on the registered images.
+refused (black screen, no message). Reproduce: `w2100,space,w3000` on a model without `wp1`.
 **Intended:** a check that the player protected the boot side, as the update utility's text asks ("PUT A
 WRITE-PROTECT TAB ON THE NOTCH YOU PUNCHED!").
-**Confidence:** (verified) the loop read from memory; passing it by a poke shows the menu.
-**Impact:** on an emulator without write protection the game cannot be started without that poke.
+**Confidence:** (verified) the loop read from memory; with the boot side write-protected the menu appears.
+**Impact:** a boot disk without a write-protect tab (or an emulator without write protection) never reaches
+the menu, and nothing on screen says why.
 
 ## Werdna can be friendly
 **Behavior:** with one timing at his door the fight opens with "A FRIENDLY GROUP OF W E R D N A. THEY HAIL
-YOU IN WELCOME! YOU MAY F)IGHT OR L)EAVE IN PEACE." (`@werdna_sign,enter,w300,r,w300,w17,k,w600,w1500`).
+YOU IN WELCOME! YOU MAY F)IGHT OR L)EAVE IN PEACE." (`@gwerdna_sign,enter,w300,r,w300,w7,k,w600,w1500`).
 **Intended:** unclear; the friendly-group roll seems to apply to every encounter.
 **Confidence:** (verified) screen; what leaving does to the quest was not tried.
 **Impact:** a curiosity, possibly a way past the fight without the amulet.

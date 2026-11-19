@@ -28,9 +28,9 @@
 # battle_slimes | battle | Floor 1: 3 Slimes, RYZ's options | @battle
 # battle_chest | battle | 27 experience points each and a chest | @chest
 # dialogue_werdna_sign | dialogue | Floor 10: "Lair of the evil wizard Werdna - the wizard is **in**" | @werdna_sign
-# boss_werdna | boss | Werdna and two unseen entities, RYZ's options | @werdna
-# boss_werdna_friendly | boss | "A friendly group of W E R D N A. They hail you in welcome!" | @werdna_sign,enter,w300,r,w300,w17,k,w600,w1500
-# boss_four_dead | boss | Surprised: four dead after Werdna's first spell | @werdna_sign,enter,w300,r,w300,k,w600,w1500
+# boss_werdna | boss | Werdna and two unseen entities, "You surprised the monsters!", RYZ's options | @werdna
+# boss_werdna_friendly | boss | "A friendly group of W E R D N A. They hail you in welcome!" | @gwerdna_sign,enter,w300,r,w300,w7,k,w600,w1500
+# boss_four_dead | boss | Surprised by the monsters: four dead | @werdna_sign,enter,w300,r,w300,w6,k,w600,w1500
 # system_malor | system | MALOR: 17 west, 3 south, 9 up | (malor_home's route up to the last Return)
 # gameplay_stairs_amulet | gameplay | Back on the floor 1 stairs with the amulet | @malor_home
 # ending_congratulations | ending | *** Congratulations *** | @ending
