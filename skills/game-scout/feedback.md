@@ -9,6 +9,26 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Wizardry I (DOS, 1998 loader with disk images)
+- Task: scout Wizardry I (DOS): boot, party macros, 16 checkpoints to the ending, RAM map, floor warp, saves
+  01_start and 02_ending, floor maps, shot plan, lenses started.
+- Worked: ndisasm on the loader (drives, auto-typed disk prompts, save path); matching RAM against the disk image
+  for the floor buffer and Pascal records; all ten floors decoded from the disk; warp via the game's own stairs
+  record; a cache-hit vs cold compare script (frames + party memory + written disk) for every checkpoint in ~90 s;
+  counting the game's disk writes by patching the loader in memory.
+- Friction: `cga` loses its palette on a state load (found after building checkpoints; all rebuilt on `ega`);
+  DOSBox Pure keeps writes to an open file out of the save ZIP until close (source reading needed); editing
+  `WARP`'s wait changed the RNG and broke the Werdna route (recovered with the AMULET poke); keys swallowed by a
+  battle starting during a turn; `play.py`'s 2-byte watch showed gold as the low word only.
+- Proposed rule change: (1) dos.md Models: cga/tandy palette after a state load, use ega, compare a frame across
+  a load; (2) backend: flush files written through open handles, with a test; (3) skill step 3: reusable
+  cache-hit/cold compare for DOS (offer `work/scout/wizardry/cmp.py` as `tools/cpcheck.py`).
+- Corrected: coordinator replayed `start`, `maze1`, `battle`, `ending` from a fresh process: all as described
+  (Castle, wireframe floor 1, 4 Slimes with ryz's options, Congratulations). The loader-holds-SAVE1.DSK-open
+  claim not re-derived by the coordinator; written into dos.md as an open bug with the agent's evidence.
+- Status: (1) promoted 2026-11-19 into dos.md (a tool fact); (2) open, recorded in dos.md Saves; (3) open (MM2
+  and this scout both wrote their own compare: second occurrence of the need, tool not built yet).
+
 ### 2026-11-19 - Might and Magic II (DOS, GOG)
 - Task: scout Might and Magic II (DOS, GOG): `loadfix` boot, party macros, 8 checkpoints, `01_start`, RAM map,
   area warp, event scan, area-text dump, shot plan, design start.

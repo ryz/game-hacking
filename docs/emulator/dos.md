@@ -56,6 +56,11 @@ is the model's cycle count, and its `[autoexec]` may do more than start the prog
 4.77 MHz 8088, `1320` = 286-6, `2750` = 286-12). Auto cycles are not offered: they follow host speed. A game
 from the early 1980s that runs too fast needs fewer cycles, not waits.
 
+`cga` and `tandy` do not restore the CGA palette or mode registers on a state load (every screen turns cyan
+after `goto` or a cached checkpoint); `ega`, `vga` and `svga` reload exactly. Use `ega` for CGA games until
+this is fixed, and compare a frame before and after a state load when choosing the machine (Wizardry I,
+2026-11-19: `ega-315`).
+
 ## Screenshots
 The picture has the size of the video mode: text mode 640x400, a 320x200 game 320x200 (that is what `emu.py`
 and `shoot.py` write; `play.py` shows 3x copies, 960x600); it can change during a route. No aspect correction (320x200 was shown 4:3 on a real monitor).
@@ -99,6 +104,11 @@ program:
   and copy the files over the ones in the game folder (folders inside have DOS short names such as
   `MIGHIC-1/`). `sav:NAME` powers on with it.
 - Might and Magic 1 keeps the roster in memory and reads ROSTER.DTA only when the program starts.
+- Open bug: DOSBox Pure marks a drive dirty only when a file is closed, so `retro_gamedb_flush` misses writes
+  through a handle that stays open (the Wizardry loader keeps SAVE1.DSK open all session): states carry no
+  disk changes until the game closes the file (Wizardry writes the roster on Leave game, so it is harmless
+  there). A game that reads back such writes would break. Fix idea: `Union_WriteHandle::Write` in
+  `src/dos/drive_union.cpp` sets `impl->dirty`, plus a test with a program that writes without closing.
 - Scouts check checkpoints on the disk too: save in the game after a cache hit and after an empty-cache
   rebuild and compare the written files (done for Might and Magic II, 2026-11-19).
 
