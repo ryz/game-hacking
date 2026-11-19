@@ -9,6 +9,23 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Ultima III (DOS, GOG)
+- Task: scout Ultima III (DOS, GOG): boot, party of four led by ryz, controls, 23 checkpoints to the ending, RAM
+  map, warps, saves 01_start/02_endgame, shot plan, three design lenses.
+- Worked: load address from a RAM match against EXODUS.BIN (COM image: physical = 0x1A80 + file offset), so
+  disassembly offsets equal data offsets; the Other-command, Enter, moongate, shrine, card, rod and Insert code
+  gave the quest chain in about an hour; ~40 variants verified in parallel try.py sheets; poking a whirlpool or
+  moongate tile under the party fires the game's own transition (clean warps); cachecheck.py carried over.
+- Friction: a frigate checkpoint chain failed once on the random wind (seen only on the sheet after later
+  checkpoints were built on it); editing `HERO` meant rebuilding everything; `undo` is one level deep; no
+  little-endian BCD watch format (`set:...:bcd` writes it); two walkthrough hosts do not resolve.
+- Proposed rule change: (1) emulator guide: in checkpoint chains that depend on a random world state (wind,
+  moons, a moving whirlpool), poke it to a fixed value in the macro and look at each checkpoint's frame before
+  building on it; (2) tools: `"fmt": "bcd-le"` watch.
+- Corrected: coordinator replayed `start`, `fight`, `timelord`, `ending` (start beside Lord British's castle,
+  orc fight, the Time Lord's card order, Congratulations): all as described.
+- Status: (1) logged; (2) open tool wish.
+
 ### 2026-11-19 - Ultima II (DOS, GOG)
 - Task: scout Ultima II (DOS, GOG): boot, ryz, controls, 29 checkpoints to the ending, RAM map, period warp,
   quest chain, saves 01_start and 02_endgame, shot plan, design lenses.
