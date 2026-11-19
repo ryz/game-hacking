@@ -183,6 +183,10 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
   neighbouring value for members 2-6 through two capture rounds, seen only when the ending total changed).
 - A macro used by published shots is never edited (the routes would change silently): add the corrected one
   under a new name and move the shots. The same goes for a checkpoint whose route uses the old macro.
+- `play.py goto NAME` loads the state saved when the checkpoint was made, not one rebuilt from the current
+  macros. After editing a macro a checkpoint uses (before anything is published), run `play.py checkpoint NAME`
+  again or restart the session with `start --route`, or the session differs from what `shoot.py` replays
+  (Might and Magic II DOS, 2026-11-19).
 
 ## Hangs and dead ends
 - There is no generic hang detector. If several inputs change nothing: check `status` (PC moving?), wait 300
