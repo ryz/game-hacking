@@ -1,0 +1,31 @@
+{
+  "slug": "phantasy-star",
+  "title": "Phantasy Star",
+  "platform": "sms",
+  "region": "na",
+  "model": "ntsc",
+  "rom": "rom/phantasy-star.sms",
+  "sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+  "crc32": "e4a65e79",
+  "size": 524288,
+  "header": {
+    "header": true,
+    "rom_kib": 512,
+    "ram_kib": 32,
+    "battery": "not in the header (the backend exports the 32 KiB cartridge RAM window)",
+    "product_code": "9500",
+    "version": 2,
+    "region": "Export",
+    "header_checksum_ok": true
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}

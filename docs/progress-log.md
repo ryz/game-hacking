@@ -2,6 +2,11 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Phantasy Star (Master System) registered
+- `intake.py --slug phantasy-star --region na` (SHA-1 257ca76e..., 512 KiB, header Export, product 9500,
+  version 2, checksum ok, model ntsc). Boot probe: title from frame ~120; `b1` on the title starts the intro.
+  Next: game-scout.
+
 ## 2026-11-19 - Master System backend (Genesis Plus GX)
 - New platform `sms`: `Sms` backend in `tools/platforms.py` on the Genesis Plus GX libretro core (pinned
   b9c2316, `tools/gpgx-debug.patch`: Z80-space peek/poke, PC, whole cartridge RAM, info log silenced), built by
