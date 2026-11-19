@@ -1,0 +1,50 @@
+[
+ {
+  "id": "walk_blue",
+  "caption": "Walking down a long blue corridor (one step, loops seamlessly)",
+  "route": "@start,PARTY4,INV4,DUN:16:E4:00,settle,w2",
+  "hold": "up",
+  "cycle_start": 110,
+  "frames": 37,
+  "pictures": 6,
+  "seconds": 0.62,
+  "file": "phantasy-star_sms_na_gameplay_loop_walk_blue.loops.gif",
+  "sha1": "beeea0a0ac4e333c585e83da0fa72c2f7c3ec93a"
+ },
+ {
+  "id": "walk_red",
+  "caption": "Walking down a long red corridor (one step, loops seamlessly)",
+  "route": "@start,PARTY4,INV4,DUN:2B:ED:00,settle,w4",
+  "hold": "up",
+  "cycle_start": 7,
+  "frames": 36,
+  "pictures": 6,
+  "seconds": 0.6,
+  "file": "phantasy-star_sms_na_gameplay_loop_walk_red.loops.gif",
+  "sha1": "6564000b9d245a50a93ca153d588b7e12d575317"
+ },
+ {
+  "id": "turn_blue",
+  "caption": "Turning on the spot at a blue crossroads: endless turning (corridor to identical corridor)",
+  "route": "@start,PARTY4,INV4,DUN:16:64:00,settle",
+  "hold": "right",
+  "cycle_start": 348,
+  "frames": 48,
+  "pictures": 8,
+  "seconds": 0.8,
+  "file": "phantasy-star_sms_na_gameplay_loop_turn_blue.loops.gif",
+  "sha1": "473680935231161346285b57b0bcf031355750bc"
+ },
+ {
+  "id": "turn_yellow",
+  "caption": "Turning on the spot at a yellow crossroads: endless turning (corridor to identical corridor)",
+  "route": "@start,PARTY4,INV4,DUN:25:AC:00,settle",
+  "hold": "right",
+  "cycle_start": 252,
+  "frames": 48,
+  "pictures": 8,
+  "seconds": 0.8,
+  "file": "phantasy-star_sms_na_gameplay_loop_turn_yellow.loops.gif",
+  "sha1": "357b70f21fc039557aebec85be93b73877d1701c"
+ }
+]

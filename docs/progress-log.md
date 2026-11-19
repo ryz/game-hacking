@@ -39,6 +39,14 @@ Append-only, newest first.
 - Agents ran in parallel in one working tree (capture I, scout II) with path-limited commits: no collision.
 - Not done: Wizardry II capture; III-V scout and capture; the agents' tool requests (status.md).
 
+## 2026-11-19 - Phantasy Star (Master System): corridor battles and looping movement clips
+- Owner's requests: battles in front of long corridors, and dungeon movement that loops smoothly.
+- battles set 16 (corridor_vampire/nessie/ghoul/skeleton): forced FIGHT always uses the field backdrop, so these
+  are real encounters after a warp to the start of a 13-square corridor.
+- New set `loops` (4 GIFs: walking in a blue and a red corridor, endless turning at a blue and a yellow
+  crossroads), made by `games/sms/phantasy-star/tools/loop.py`, which keeps the first exactly repeating cycle;
+  a re-run gives byte-identical files.
+
 ## 2026-11-19 - Phantasy Star (Master System) capture part 2 (main 109, battles 12, four sequences)
 - game-capture (32802e3): rest of the game up to Lassic's castle, talk solved (step toward the person, push
   again), C202 state warps, FIGHT/PARTY/DUN macros, ROM tables decoded; ending not reached.

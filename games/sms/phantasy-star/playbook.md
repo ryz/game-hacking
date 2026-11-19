@@ -296,3 +296,11 @@ party size lives elsewhere (open question).
 - Debug menu / sound test: TCRF unavailable here.
 - Critical-path details (who gives the PASSPORT, how Myau joins) are from memory of the standard walkthrough, not
   from a fetched source: confirm in play.
+
+## Looping movement clips (set `loops`)
+`python3 games/sms/phantasy-star/tools/loop.py [ID ...]` holds a direction from a route, records every frame and
+writes the first cycle that repeats exactly twice as a GIF at game timing (plus poster, 3x, index). Holding `up`
+in a corridor whose far end is out of view cycles every step: 6 pictures, 36-37 frames. Holding `right` cycles every
+full rotation (194 frames), or every quarter turn (48 frames) where neighbouring corridors look the same, as at the
+crossroads 16:64 (blue) and 25:AC (yellow). Choose waits so no encounter starts; the tool stops with an error if one
+does. Long corridors: 16:E4, 2B:ED, 18:EE, 25:E8 (all facing 0).

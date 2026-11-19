@@ -14,3 +14,4 @@ medusa_attack | boss | Medusa's gaze: "Odin has been turned to stone." (clip) | 
 corridor_vampire | battle | A Vampire in a red dungeon, the corridor running on far behind it | @start,PARTY4,INV4,DUN:2B:ED:00,settle,w12,up:1,w40,up:1,w40,w200
 corridor_nessie | battle | Nessie in a long green corridor, the walls receding to the far end | @start,PARTY4,INV4,DUN:18:EE:00,settle,w8,up:1,w40,up:1,w40,w200
 corridor_ghoul | battle | A Ghoul in a long yellow corridor, a dozen squares of passage behind it | @start,PARTY4,INV4,DUN:25:E8:00,settle,w32,up:1,w40,up:1,w40,w200
+corridor_skeleton | battle | A Skeleton in a long blue corridor, the passage running on far behind it | @start,PARTY4,INV4,DUN:16:E4:00,settle,w4,up:1,w40,up:1,w40,w200

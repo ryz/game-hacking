@@ -82,7 +82,8 @@ Current snapshot; history in `progress-log.md`.
   `b1 b2 pause`, savestates, 32 KiB cartridge-RAM `.sav` export and `sav:`, Z80-space peek/poke and PC
   (`tools/gpgx-debug.patch`), RAM search on work RAM, Pro Action Replay (`gs:`), Game Genie (`rom:` variant);
   3 tests on an original test ROM (`tests/make_sms_rom.py`). First game: Phantasy Star (US/EU, `games/sms/phantasy-star/`):
-  main set 109 shots (three planets, Myau joining, bosses), battles 12, seq-dungeon-walk/turn/stairs/door,
+  main set 109 shots (three planets, Myau joining, bosses), battles 16 (4 in front of long corridors),
+  looping movement GIFs (set `loops`, tools/loop.py), seq-dungeon-walk/turn/stairs/door,
   all verified cold; warp/dungeon/fight/party macros from decoded ROM tables. Open: the ending (Dark Falz
   trigger, likely floor 3B/3C squares coded 7), Noah joining, Odin's cure, vehicles in use, RUN/DRP, spells
   cast, a trap, milestone saves, battle retakes in the real boss rooms. Not set up: Game Gear,
