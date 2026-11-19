@@ -41,7 +41,8 @@
     "CAST": "{0},w150,c,w150,{1},w100,{2},w100,enter,w150",
     "LIGHT": "CAST:5:1:5",
     "LIT": "poke:10BD5=1E",
-    "RESUME": "MENU,g,w300,z,w300"
+    "RESUME": "MENU,g,w300,z,w300",
+    "YEAR": "poke:10BCA={0}"
   },
   "ram": {
     "map": {
@@ -82,6 +83,10 @@
     },
     "light": {
       "addr": "10BD5",
+      "size": 1
+    },
+    "year": {
+      "addr": "10BCA",
       "size": 1
     }
   }

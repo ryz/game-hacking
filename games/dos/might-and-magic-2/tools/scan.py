@@ -4,7 +4,8 @@
   python3 games/dos/might-and-magic-2/tools/scan.py 0B "@middlegate,WARP:0B:08:08"
 
 MAP is the area id in hex (00-3B, playbook "Areas"). BASE_ROUTE ends with the party in that area (default:
-`@middlegate,WARP:MAP:08:08`; dark areas need Light first). The script plays BASE_ROUTE once, reads the area's
+`@middlegate,WARP:MAP:X:Y` with X,Y the free square nearest (8,8): a fixed fight on the landing square would
+block every visit; dark areas need light first, e.g. `"@middlegate,LIT,WARP:17:02:02"`). The script plays BASE_ROUTE once, reads the area's
 event table from memory (DS:6052 = physical 16852: triples square y*16+x, event number, facing mask
 80 N / 40 E / 20 S / 10 W, ended by 00 00 00), then for every entry puts the party on the square facing the
 first allowed direction (AT + facing one turn clockwise + `left`, which fires the event like a step) and
@@ -59,8 +60,15 @@ def main():
     mp = args[0].upper()
     base = args[1] if len(args) > 1 else "@middlegate,WARP:%s:08:08" % mp
     _, raw = play(base, (TABLE, 0x300))
+    ents = entries(raw)
+    if len(args) == 1:      # land on a square without an event (a fixed fight there would block every visit)
+        used = {(x, y) for x, y, _, _ in ents}
+        free = min(((x, y) for x in range(1, 15) for y in range(1, 15) if (x, y) not in used),
+                   key=lambda p: abs(p[0] - 8) + abs(p[1] - 8))
+        base = "@middlegate,WARP:%s:%02X:%02X" % (mp, free[0], free[1])
+        print("base route:", base)
     jobs = []
-    for x, y, ev, mask in entries(raw):
+    for x, y, ev, mask in ents:
         for bit, d in ((0x80, "N"), (0x40, "E"), (0x20, "S"), (0x10, "W")):
             if mask & bit:
                 break

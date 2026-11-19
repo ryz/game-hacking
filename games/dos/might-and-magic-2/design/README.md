@@ -23,8 +23,18 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+A first-person party role-playing game: a party of up to six created characters plus hirelings (eight at most)
+walks square by square through 60 areas of 16x16 squares of the world of Cron: five towns, a 5x4 grid of
+outdoor areas that wraps around at its edges, caverns, castles with two-level dungeons, two wizards' towers and
+four elemental planes **(verified)** (areas reached by memory warp; see the playbook). Fights are turn-based text
+menus over a full picture of the strongest monster; experience is paid for at training grounds; the world
+changes with the century, and the quest needs travel to the past **(source: manual; verified for the year
+change)**. Characters gain up to two secondary skills bought from trainers (Cartographer gives the auto-map,
+Mountaineer and Pathfinder open mountains and forests) **(source: manual; trainers verified in Middlegate)**.
+Saving is signing in at an inn; the whole roster is one file **(verified)**. The main quest: class quests for the
+Jurors of Mount Farview, the Queen's Triple Crown in three arenas, four Discs and four elemental Talons, King
+Kalohn's Element Orb returned to him in the 9th century so that he defeats the Mega Dragon, and the final
+dungeon under Square Lake **(source: area texts, cluebook; not played)**.
 
 ## Documents
 | Document | Covers |
@@ -40,3 +50,7 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Game manual (`Manual.pdf` in the GOG folder) | - | commands, classes, races, skills, spells, saving |
+| Area texts read from memory after a warp (`tools/texts.py`) | - | places, quests, services, prices |
+| Corak's Travelogue (cluebook), archive.org | https://archive.org/details/Might_and_Magic_II_Gates_to_Another_World_Cluebook | towns, caverns, castles, quest outline, hirelings |
+| Wikipedia | https://en.wikipedia.org/wiki/Might_and_Magic_II:_Gates_to_Another_World | release, plot outline |

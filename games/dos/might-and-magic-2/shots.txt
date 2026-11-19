@@ -3,4 +3,83 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/dos/might-and-magic-2/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+#
+# Scout 2026-11-19: the routed lines below were each seen once as the last frame of the route (emu.py / try.py /
+# scan.py), not yet shot with shoot.py. Commented lines are the rest of the plan with the way to reach them.
+# Lenses: S = systems.md, I = interface.md, C = content.md (which document should cite the shot).
+#
+# --- boot, title, menus (I) ---
+boot_nwc_logo | boot | "New World Computing Presents..." logo | BOOT,w20,!
+title_screen | title | Title picture: Might and Magic Book Two, pegasus on a forest path | @title
+menu_opening | menu | Opening options: Start Game, Copy Player Disk, About Book Two, Disk 2 drive | @title,esc,w200
+menu_about | menu | About Book Two: IBM version by Inside Out Software, version 1.01 | @title,esc,w200,a,w300
+menu_copy | menu | Copy Player Disk instructions | @title,esc,w200,c,w300
+menu_main | menu | Main Options: create, view all, transfer characters, go to town | @menu
+menu_view_all | menu | View All: the six premade characters A-F with class and level | @menu,v,w200
+menu_hirelings | menu | View All, hirelings page (empty at the start) | @menu,v,w200,space,w200
+menu_transfer | menu | Transfer Characters from Might and Magic I: path prompt | @menu,t,w300
+inventory_premade | inventory | Profile of Sir Felgar, half-orc knight (premade character) | @menu,v,w200,a,w200
+# --- creation (S characters, I) ---
+create_roll | system | Create New Characters: statistics, eligible classes, exchange and reroll | @menu,c,w300
+create_exchange | system | Exchange Might with Intellect: Knight becomes eligible | @menu,c,w300,a,w150,b,w150
+create_race | system | Class chosen (Knight): pick a race, Human to H-Orc | @menu,c,w300,a,w150,b,w150,1,w150
+create_alignment | system | Pick an alignment: Good, Neutral, Evil | @menu,c,w300,a,w150,b,w150,1,w150,1,w150
+create_sex | system | Pick the sex: Male, Female | @menu,c,w300,a,w150,b,w150,1,w150,1,w150,1,w150
+create_name | system | Name typed: ryz, Human Knight, Good, Male | @menu,c,w300,a,w150,b,w150,1,w150,1,w150,1,w150,1,w150,type:ryz,w60
+# --- inn, town (I, S world) ---
+menu_inn_list | menu | Middlegate inn: party ryz, condi, ebo, cubi, deddo, mnz ticked | @menu,RYZ,NAMES,g,w300,ctrl>g,w30,ctrl>b,w30,ctrl>c,w30,ctrl>f,w30,ctrl>d,w30,ctrl>e,w60
+gameplay_inn_start | gameplay | First control: inside the Middlegate inn, facing the door | @start
+dialogue_spirit_corak | dialogue | The spirit of Corak greets the party leaving the inn | @start,up,w150
+inventory_quickref | inventory | Quick Reference: hit points, spell points, level, AC, age, gems, food, condition | @start,q,w150
+inventory_profile_ryz | inventory | Profile of ryz, level 1 Human Knight, Short Sword in the backpack | @start,1,w150
+save_innkeeper | save | Innkeeper: "Will you sign the registry (y/n)?" | @start,right,w100,right,w200
+save_signed_in | save | After signing in: the inn's character list, ESC exits to DOS | @signed_in
+shop_blacksmith_door | shop | Svendegard the blacksmith at his forge in Middlegate | @middlegate,AT:04:04,FN,left,w250
+dialogue_waitress | dialogue | Slaughtered Lamb tavern: the waitress offers the menu of drinks | @middlegate,AT:04:06,FN,left,w250
+system_temple | system | Gateway Temple: a cleric in a cowled robe offers aid | @middlegate,AT:07:07,FE,left,w250
+system_training | system | Turkov's Training: squires practise with wooden sticks | @middlegate,AT:0A:07,FS,left,w250
+system_mage_guild | system | Sleepy's Mage Guild: enrol for 20 gold | @middlegate,AT:01:0C,FN,left,w250
+system_otto_mapper | system | Otto Mapper teaches the Cartographer skill for 10 gold | @middlegate,AT:00:0F,FN,left,w250
+system_poorman_portal | system | The Poorman's Portal: travel to Sandsobar for 10 gold | @middlegate,AT:00:05,FN,left,w250
+system_detox | system | Brain Detoxification removes all secondary skills for 100 gold | @middlegate,AT:0C:0A,FW,left,w250
+dialogue_nordon | dialogue | Nordon the wizard asks for a service | @middlegate,AT:0A:02,FN,left,w250
+gameplay_city_gates | gameplay | Middlegate's city gates: "Exit (y/n)?" | @middlegate,AT:05:0F,FE,left,w250
+# --- exploration commands (S verbs, I) ---
+options_controls | options | Controls: sounds, walk beep, party disposition, message delay | @middlegate,c,w150
+system_protect | system | Protect panel: light units, magic and elemental resistance | @middlegate,p,w150
+system_rest_prompt | system | Rest here? (Y/N) | @middlegate,r,w150
+system_search_nothing | system | Search: nothing here | @middlegate,s,w150
+system_location | system | Location (M): coordinates of the party, no map without a Cartographer | @middlegate,m,w150
+system_exchange | system | Exchange: swap two marching positions | @middlegate,e,w150
+system_dismiss | system | Dismiss whom: send a hireling away | @middlegate,d,w150
+system_cast_spellbook | system | deddo's Spell Book while casting Light (level 1, number 5) | @cavern,5,w150,c,w150,1,w100,5,w100
+# --- environments (C, S world) ---
+gameplay_outdoors_c2 | gameplay | Area C2 just outside Middlegate: forest and river | @outdoors
+gameplay_cavern_lit | gameplay | Cavern under Middlegate, lit by magic | @cavern
+gameplay_pegasus | dialogue | The Guardian Pegasus outside Middlegate asks to learn its name | @middlegate,AT:05:0F,FE,left,w250,y,w400,AT:07:04,FE,left,w250
+gameplay_xabran_800 | gameplay | Year 800: Castle Xabran stands in C2 (ruins in year 900) | @middlegate,YEAR:08,WARP:0B:0E:08,w60
+# --- combat (S conflict, I) ---
+battle_encounter | battle | Encounter: 6 Witch's Cats and 4 Rabid Rodents; attack, bribe, hide or run | @combat
+battle_options_caster | battle | Combat: options for mnz, a sorcerer (cast, use, block, run, exchange) | @combat,a,w300
+battle_options_fighter | battle | Combat: options for ebo, an archer (attack, fight, block, run, use, exchange, view) | @combat,a,w300,b,w200
+battle_square_lake_devils | boss | Square Lake: 66 Devil Kings attack | @middlegate,LIT,WARP:17:02:02,AT:0B:0E,FE,left,w250
+#
+# --- not routed yet (capture run) ---
+# gameplay_<town> x4 | Atlantium 01, Tundara 02, Vulcania 03, Sandsobar 04 | WARP:0n:xx:yy (pick a street square with scan.py 0n)
+# gameplay_<terrain> | tundra A1 05, forest B1 06, desert E2 23, mountains E1 21, swamp/sea, roads | WARP:id:08:08 or scan output
+# gameplay_dead_zone | D1 08 (scorching wind) | WARP:08:..
+# gameplay_plane_air/fire/earth/water | 29 2A 2B 2C, with the shrine prompts | WARP + scan.py 29..2C
+# gameplay_castle_luxus, castle_hillstone, dungeon_level | 3A, 37, 2D.. | WARP + scan.py
+# gameplay_murray_resort | Murray's Resort Isle (travel agent, 5,000 gold) or its area | poke gold, then the agent at Middlegate (14,8) E
+# shop_blacksmith_buy / sell | the blacksmith's lists after `y` at (4,4) | @middlegate,AT:04:04,FN,left,w250,y,...
+# shop_tavern_menu, dialogue_rumor, system_temple_menu, system_training_levelup (poke experience), system_mage_spells
+# system_skill_learned | Otto Mapper with gold poked, then the profile shows Cartographer; system_automap | M with a Cartographer
+# system_wizard_eye | the 5x5 overhead view (sorcerer level 3 spell; poke spell level and SP)
+# system_time_travel | how the game itself changes the century (Hourglass / item / spell), and YEAR shots
+# system_hireling_hired | inn hirelings page with a hireling available, then in the party (8 members)
+# battle_attack / cast / shoot / block / run / hide / bribe / victory / treasure_chest / death | @combat with VET-style pokes
+# gameover | whole party dead (poke HP 1, block)
+# boss_* | Mega Dragon (C4 14,5, year 800), Dread Knight, Baron Wilfrey, Dawn, Lich Lord, the elemental lords, Square Lake's twelve
+# dialogue_jurors, dialogue_kalohn, dialogue_lamanda, system_shrine_talon, system_disc_xabran, system_element_orb
+# extra_square_lake_signs | the joke signs along y=15 in area 17 ("Just kidding!")
+# ending_* | the ending (not found yet; see playbook Open questions)
