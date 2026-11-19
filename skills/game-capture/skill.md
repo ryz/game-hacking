@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-18 (breadth rule; three lenses; shoot.py checks, --prune, change token)
+updated: 2026-11-19 (--publish-only after a passing --verify)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -37,7 +37,8 @@ edit anything outside the game's folder.
    (`docs/emulator/README.md`, "Saves for the owner").
    **In-between commit at every major milestone** (owner's rule 2026-11-15; e.g. starter chosen, each
    badge/world, late game reached, end): save in the game + `export`, `shoot.py SLUG SET --verify` (fix
-   mismatches first), `shoot.py SLUG SET --publish`, then commit and push only the game folder:
+   mismatches first), `shoot.py SLUG SET --publish-only` (copies what the passing verify just compared;
+   `--publish` replays everything again without comparing), then commit and push only the game folder:
    ```sh
    git add games/PLATFORM/SLUG
    git commit -m "SLUG: capture - <milestone> (<n> shots)"   # + the attribution lines from the dispatch

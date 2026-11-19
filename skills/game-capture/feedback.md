@@ -9,6 +9,28 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Wizardry III (DOS) set main
+- Task: set `main` to the ending, Neutral Crystal made in play, three lenses (228 shots, commit de02d74).
+- Worked: testing the dispatch's lead with try.py variants on poked crystals first (minutes), then the whole
+  quest as one play.py checkpoint chain; timelines (`w40`/`w20` x N, `--frames N --crop`); survey.py lines
+  rebased onto geared checkpoints (~40 message squares in one sheet); reading the item records' special-power
+  field pointed at the mechanism (the crystals' power is behind E)quip, not U)se).
+- Friction: (1) try.py shows nothing for a route that is only `@checkpoint`; (2) full `--verify` and
+  `--publish` ~15 min each, `--publish` replays without comparing; (3) the same guardian orders gave a different
+  battle with `w40` steps than with one long wait: frames must come from the exact route; (4) macro waits hide
+  prompts (`WARP` contains `y,w600`); (5) message boxes eat the next key. Not captured: Abdul's sale and coffer
+  on floor 5, floor 6 dragon room fight, M)ake scenario disk after Y, Divvy/Run messages, level drain,
+  friendly group.
+- Proposed rule change: emulator guide (first-person RPGs): item powers can hide behind Equip as well as Use;
+  read the item records before calling a quest item inert. Tool wishes: try.py tiles checkpoint-only lines;
+  the skill should steer to `--publish-only` right after a passing `--verify`.
+- Corrected: coordinator looked at the sheets; floor-gate rule now verified in play (any good member admits to
+  2/4, any good member refused on 3/5), correcting both the scout and the walkthrough; cold `--verify` by the
+  coordinator (docs/progress-log.md 2026-11-19).
+- Status: logged; `--publish-only` after `--verify` promoted 2026-11-19 into skill.md step 3 (the skill text
+  named only `--publish`; MM2 and this run both paid a second full replay); previewer wishes added to the tool
+  item in docs/status.md (fourth request).
+
 ### 2026-11-19 - Wizardry II (DOS) set main
 - Task: set `main` to the ending with the three lenses and the Wizardry III transfer save (213 shots, commit
   af9641c).

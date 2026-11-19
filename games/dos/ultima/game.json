@@ -1,0 +1,31 @@
+{
+  "slug": "ultima",
+  "title": "Ultima I: The First Age of Darkness (DOS)",
+  "platform": "dos",
+  "region": "na",
+  "model": "svga-7800",
+  "rom": "rom/ultima.zip",
+  "sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
+  "crc32": "aa06a7ae",
+  "size": 147322,
+  "header": {
+    "files": 28,
+    "programs": [
+      "Ultima I/GEN.EXE",
+      "Ultima I/MONDAIN.EXE",
+      "Ultima I/OUT.EXE",
+      "Ultima I/SPACE.EXE",
+      "Ultima I/ULTIMA.EXE"
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
