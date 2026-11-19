@@ -1,7 +1,25 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
 title | Title screen: Exodus / Ultima III by Lord British, fully drawn (the dragon walks on below) | pow,TITLE,settle
 menu | Main menu: Return to the View / Organize a Party / Journey Onward | pow,MENU,settle
 party | Main menu again after creating ryz, condi, ebo, cubi (roster 1-4) and forming the party | @menu,PARTY,settle
 start | Party of four on the Sosaria map at (2C,14), south-west of Lord British's castle and the towne beside it | @party,JOURNEY,settle
+hero | Late-game party by poke (HERO): levels 19-25, 1600-2400 H.P., exotic arms worn, all four marks each, ryz holds the four cards; on the map at the start square | @start,HERO,space,w60,settle
+towne | The towne beside Lord British's castle (LCB.ULT), new party at its west gate (01,20) | @start,right,right,up,e,w300,settle
+castle | Lord British's castle (BRITISH.ULT), new party at the south gate (20,3E) | @start,up,right,up,e,w300,settle
+lordbritish | Transact with Lord British from (20,0F): Welcome my child, Experience more! (new party) | @castle,POS:20:0F,t,w30,1,w30,up,w300,settle
+fight | Combat screen: the late party against a band of orcs (one placed beside the party at the start square by FOE:60; Conflict! ->Orcs) | @hero,FOE:60,w200,settle
+dungeon | Dardin's Pit level 1 (DARDIN.ULT), torch lit by ryz, facing east | @hero,ENTER:2E:07,TORCH,settle
+rod | Snake dungeon (P.ULT) level 8: a red hot rod in the wall, Who will touch? (party without marks) | @hero,poke:2E5A=0F06,ENTER:3A:2C,TORCH,DNG:07:05:0F:01,up,w100,settle
+moongate | Moongate open at (08,08) north of the party (moons 0 and 7; destination: beside the Time dungeon) | @hero,POS:08:09,GATE:00:06,settle
+time | Through the moongate to (3A,1F), the walled-in square below the Time dungeon | @moongate,up,w300,settle
+timelord | Time dungeon level 8 (1,1): vision of the Time Lord, the card order Love, Sol, Moons & Death | @time,up,w60,e,w300,TORCH,DNG:07:01:02:00,up,w300,settle
+dawn | Dawn (DAWN.ULT): appeared at (25,35) when both moons were new, party at its west gate | @hero,POS:25:36,GATE:07:07,up,w60,e,w300,settle
+ambrosia | Ambrosia (AMBROSIA.ULT) after a whirlpool: You awaken on the shores of a forgotten Land, at (20,36) | @hero,AMBROSIA,settle
+shrine | Ambrosia: ryz enters the Shrine of Intelligence at (06,06), Offering*100 prompt (monsters of Ambrosia removed by CALM) | @ambrosia,CALM,POS:06:07,up,w60,e,w30,1,w200,settle
+card | Ambrosia: Search on the shrine at (2D,34): A card, with strange marks! (the Card of Sol) | @ambrosia,CALM,POS:2D:35,up,w60,SEARCH:1,settle
+serpent | In a frigate at (0A,3B) south of the Silver Snake that bars the way to the Isle of Fire (wind calmed) | @hero,POS:0A:3B,SHIP,settle
+evocare | ryz yells EVOCARE with the Mark of Snake: the frigate is past the serpent at (0A,38) | @serpent,EVOCARE:1,w300,settle
+exodus | Castle Exodus (EXODUS.ULT) entered from the Isle of Fire, party at the south gate (20,3E) | @evocare,up,w60,up,w60,x,w60,up,w60,e,w300,settle
+exodus_slots | In front of Exodus's four card slots at (1E,0C) (the four Floor guardians removed by NOFLOORS) | @exodus,NOFLOORS,POS:1E:0C,settle
+ending | All four cards inserted (Love, Sol, Moons, Death): Congratulations and the closing text | @exodus_slots,INSERT:1:l,right,w30,INSERT:1:s,right,w30,INSERT:1:m,right,w30,INSERT:1:d,w600,settle

@@ -5,3 +5,4 @@ Made by the agents while playing (owner's rule 2026-11-15: committed so the owne
 | Save | Files | What it contains | Route at export | SHA-1 (.sav) | Date |
 |---|---|---|---|---|---|
 | 01_start | `01_start.sav` | New party of four (ryz Human Paladin, condi Elf Wizard, ebo Dwarf Fighter, cubi Bobbit Cleric; roster 1-4, 150 H.P., 150 food and gold each) on the Sosaria map at (2C,14) beside Lord British's castle, saved with Quit & Save | `pow,MENU,settle,PARTY,settle,JOURNEY,settle,q,w600,settle` | `ef4ede77f813` | 2026-11-19 |
+| 02_endgame | `02_endgame.sav` | Late party (levels 19-25, exotic arms, all four marks each, ryz holds the four cards, 48,329 moves) in a frigate at (0A,3B) just south of the Silver Snake; yell EVOCARE to pass, the Castle of Fire lies beyond. Saved with Quit & Save | `pow,MENU,settle,PARTY,settle,JOURNEY,settle,HERO,space,w60,settle,POS:0A:3B,SHIP,settle,q,w600,settle` | `c5bc02767005` | 2026-11-19 |

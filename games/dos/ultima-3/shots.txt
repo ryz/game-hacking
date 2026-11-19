@@ -3,4 +3,101 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/dos/ultima-3/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Plan (scout 2026-11-19): game order; "route" = where to start (checkpoint/macro), pick frames with do!/wN.
+#
+# --- title and menus (new party) ---
+# title_drawing | title | Exodus being drawn line by line on the title screen | w600 from power-on (do!: the drawing runs f300-f2400)
+# title_screen | title | Title screen: Exodus, Ultima III by Lord British, a dragon on the border | @title
+# title_demo | title | Attract demo: a strip of Sosaria with ships and monsters, Press <Space> | @title,w900
+# menu_main | menu | Main menu: Return to the View, Organize a Party, Journey Onward | @menu
+# menu_organize | menu | Party Organization menu | @menu,ORGANIZE
+# menu_create_entry | menu | Create: Entry# prompt (1-20) | @menu,ORGANIZE,c,w60,enter,w200
+# menu_create_form | menu | Create form: Entry#01, Points:50, Name ryz typed | (C_RYZ steps up to the name)
+# menu_create_race | menu | Create form: sex, race and type chosen (Male Human Paladin) | (C_RYZ steps)
+# menu_create_stats | menu | Create form complete: Str 20 Dex 10 Int 05 Wis 15, O.K.? | (C_RYZ without the final y)
+# menu_register | menu | Register: ryz, condi, ebo, cubi in entries 1-4 | @party,o,w60,enter,w300,e,w60,enter,w300
+# menu_form | menu | Form the Party: Player-1..4 = 1..4, (Formed) | (FORM steps)
+# menu_look | menu | Look at a Character: ryz's sheet | @party,o,w60,enter,w300,l,w60,enter,w200,1,enter
+# menu_return_view | cutscene | Return to the View: the attract demo again | @menu,r,w60,enter
+# --- first moments ---
+# start_party | gameplay | The party arrives on Sosaria beside Lord British's castle | @start
+# hud_status | hud | Play screen: map view, moons (0)(1), wind, four status panels, message area | @start
+# ztats_1 | inventory | Ztats for ryz: statistics, H.P., gold, experience | @start,z,w30,1 (+space lines)
+# ztats_2 | inventory | Ztats for ryz: weapons and armour owned | (more space lines)
+# peer_gem | map | Peer at gem: a miniature map of Sosaria | @hero,p,w30,1,w300
+# look_grass | system | Look North: Grass | @start,l,w30,up
+# save_quit | save | Quit & Save: 00000008 moves, Please wait... | @start,q,w300
+# --- towns, castle, Lord British ---
+# towne_lcb | gameplay | The towne LCB: guards, merchants, the pub | @towne
+# castle_gate | gameplay | Lord British's castle: the south gate and moat | @castle
+# castle_throne | gameplay | Throne room: Lord British, jesters, BRITISH sign | @lordbritish
+# lb_experience | dialogue | Lord British: Welcome my child, Experience more! | @lordbritish
+# lb_greater | dialogue | Lord British raises a level: Thou art greater | @hero,ENTER:2D:12,POS:20:0F,t,w30,1,w30,up,w300
+# lb_mark | dialogue | Lord British: Seek ye, the Mark of Kings! | @hero,poke:2E5A=0F06,ENTER:2D:12,POS:20:0F,t,w30,1,w30,up,w300
+# talk_* (6-8) | dialogue | Townsfolk lines (Dawn, Ambrosia, Silver Snake, cards, marks, exotics) | ENTER + POS beside a person + t
+# shop_pub | shop | The pub in LCB: It costs 7 g.p. | @hero,ENTER:2E:13,SHOP:11:10:up
+# shop_grocer | shop | Ye local Grocer: rations | @hero,ENTER:2E:13,SHOP:30:31:down
+# shop_weapons | shop | Weapons Shop list | @hero,ENTER:2E:13,SHOP:27:13:up (+ y for the list)
+# shop_armour | shop | Armour Shop list | @hero,ENTER:2E:13,SHOP:32:14:up
+# shop_healer | shop | Clerical Healing Sacraments | @hero,ENTER:2D:12,SHOP:2E:1A:up
+# shop_guild | shop | The Guild shop: keys, torches, powders, gems | @hero,ENTER:07:2C,SHOP:21:15:up
+# shop_oracle | shop | Radrion, Prophet of Life: offering, the sage's rhyme | @hero,ENTER:2D:12,SHOP:14:2E:up
+# shop_horses | shop | Equine Emporium in Devil Guard's stables | @hero,ENTER:12:1F,SHOP:0B:0F:up
+# bribe_guard | system | Bribe a guard (100 gold), he leaves | town guard square + o,1,bribe
+# steal_chest | system | Steal Chest in a town | town chest square + s + direction
+# unlock_door | system | Unlock a door with a key | town door + u
+# townes (8) | gameplay | Moon, Yew, Montor East/West, Grey, Devil Guard, Fawn, Death Gulch once each | @hero,ENTER:x:y
+# yew_pray | system | Yew's Circle of Light: Pray: Yell 'Evocare' | @hero,ENTER:22:10,POS:30:30,o,w30,1,w30,p,r,a,y,enter,w200
+# dawn_appears | system | Dawn rises in the Dark Forest when both moons are new | @hero,POS:25:36,GATE:07:07
+# dawn_towne | gameplay | The city of Dawn | @dawn
+# --- travel ---
+# horse_ride | gameplay | The party on horseback | @hero,poke:2E3A=0A,space,w60
+# frigate | gameplay | Sailing a frigate | @hero,POS:3B:15,SHIP
+# frigate_fire | system | Firing the frigate's cannons | @hero,POS:3B:15,SHIP,f,w30,right
+# wind_change | system | The wind line under the map (sailing against the wind: Invalid Move!) | serpent with a West Wind
+# moongate_open | system | A moongate opens beside the party | @moongate
+# moongate_through | system | Through the moongate: below the Time dungeon | @time
+# whirlpool | cutscene | The whirlpool swallows the frigate, You awaken on the shores of a forgotten Land | @ambrosia (and the frames before)
+# --- fights ---
+# battle_start | battle | Conflict!! ->Orcs: the combat screen | @fight
+# battle_attack | battle | Attack: Hit! Killed! Exp.+03 | @fight + moves + a,dir
+# battle_spell | battle | A spell in combat | @fight,c,...
+# battle_victory | battle | ****Victory!**** | @fight + fight to the end
+# battle_chest | system | The chest left after the fight, Get chest | after victory, g,1
+# battle_* (4-6) | battle | Other foes: thieves, skeletons, giants, daemons, dragons, balrons, pirates, sea serpent | @hero,FOE:tile
+# --- dungeons ---
+# dungeon_dark | gameplay | Dungeon entry: It's dark! | @hero,ENTER:2E:07
+# dungeon_torch | gameplay | Torch lit: corridor and a ladder, LVL:01 Head--East | @dungeon
+# dungeon_ladder | system | Klimb / Descend a ladder | dungeon ladder square + d/k
+# dungeon_fight | battle | A fight in the dungeon | dungeon + walking
+# dungeon_fountain | system | A fountain: Who will drink? How wonderful! | @hero,ENTER:31:22,TORCH,DNG:07:0A:07:03,up,w100,1,w300
+# dungeon_writing | system | Misty writing: the level's message | DNG next to an 08 square
+# dungeon_trap | system | Argh!! A trap!! / Gremlins! / Strange wind! | DNG next to 04/06/03 squares
+# dungeon_rod | system | A red hot rod in the wall. Who will touch? | @rod
+# dungeon_mark | system | It left a mark! (the Mark of Snake) | @rod,1,w300
+# timelord | cutscene | The vision of the Time Lord: Love, Sol, Moons & Death | @timelord
+# --- Ambrosia ---
+# ambrosia_shore | gameplay | Ambrosia: the shore after the whirlpool | @ambrosia
+# ambrosia_monsters | battle | Ambrosia's guardians near a shrine | @ambrosia (without CALM), walk
+# shrine_enter | system | Shrine of Intelligence: Offering*100 | @shrine
+# shrine_shazam | system | An offering raises Intelligence: Shazam! | @shrine,1,enter,...
+# card_found | system | Search the shrine: A card, with strange marks! | @card
+# ztats_cards | inventory | Ztats: Card of Love, Sol, Moons, Death and the four marks | @hero,z,w30,1 + lines
+# --- endgame ---
+# dig_exotics | system | Dig on the islet: Exotics! | @hero,POS:21:03,o,w30,1,w30,d,i,g,enter,w200
+# serpent | gameplay | The Silver Snake bars the strait to the Isle of Fire | @serpent
+# evocare_nomark | system | EVOCARE without the Mark of Snake: No effect! | @serpent with poke:2E5A=0F06
+# evocare | system | EVOCARE: the frigate passes the serpent | @evocare
+# isle_of_fire | gameplay | The Isle of Fire and Castle Exodus | @evocare,up,w60,up,w60
+# exodus_gate | gameplay | Castle Exodus: lava and the south gate | @exodus
+# exodus_lava | system | Walking through lava with the Mark of Fire | @exodus + walk
+# exodus_field | system | Force fields passed with the Mark of Force | @exodus + POS + walk
+# exodus_monsters | boss | Daemons and a balron guard the halls | @exodus + walk north
+# exodus_floors | boss | The Floor guardians before Exodus (->Floor) | @exodus,POS:1E:0E,w300
+# exodus_slots | boss | Exodus: four slots | @exodus_slots
+# insert_love | system | Insert the Card of Love: the first slot vanishes | @exodus_slots,INSERT:1:l
+# insert_wrong | system | A wrong card | @exodus_slots,INSERT:1:d
+# ending_flash | ending | The castle flashes as Exodus is destroyed | @exodus_slots + inserts (do! frames)
+# ending_congrats | ending | Congratulations! Thou hast compleated Exodus: Ultima 3 in ... moves | @ending
+# ending_text | ending | And so it came to pass ... Onward to ULTIMA IV! | @ending
+# gameover | gameover | All Players Out! | @start,poke:2E5D=44,poke:2E9D=44,poke:2EDD=44,poke:2F1D=44,space,w300

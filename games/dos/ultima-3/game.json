@@ -34,7 +34,21 @@
     "PARTY": "ORGANIZE,C_RYZ,C_CONDI,C_EBO,C_CUBI,FORM,m,w60,enter,w300",
     "JOURNEY": "j,w60,enter,w600",
     "NEWGAME": "MENU,PARTY,JOURNEY",
-    "HERO": "poke:2E5A=FF06,poke:2E5E=71663863,poke:2E66=132200234123004718524304030507000001000100010F010000000001000000010000000001,poke:2E9A=F002,poke:2E9E=33877541,poke:2EA6=841700193719009215872102010307010000000000010F010000000000000000000000000001,poke:2EDA=F004,poke:2EDE=92702230,poke:2EE6=162300248624003420653001020007000001010000010F000000010001000100000000010001,poke:2F1A=F003,poke:2F1E=41473694,poke:2F26=531600186318001614741903000207000100000000010F000100010000000000000000000001"
+    "HERO": "poke:2E3D=17830400,poke:2E5A=FF06,poke:2E5E=71663863,poke:2E66=132200234123004718524304030507000001000100010F010000000001000000010000000001,poke:2E9A=F002,poke:2E9E=33877541,poke:2EA6=841700193719009215872102010307010000000000010F010000000000000000000000000001,poke:2EDA=F004,poke:2EDE=92702230,poke:2EE6=162300248624003420653001020007000001010000010F000000010001000100000000010001,poke:2F1A=F003,poke:2F1E=41473694,poke:2F26=531600186318001614741903000207000100000000010F000100010000000000000000000001",
+    "POS": "poke:2F4C={0},poke:2F4D={1},space,w60",
+    "ENTER": "POS:{0}:{1},e,w300",
+    "TORCH": "i,w30,1,w100",
+    "DNG": "poke:2F4F={0},poke:2F4C={1},poke:2F4D={2},poke:724C={3},space,w100",
+    "AMBROSIA": "POS:2C:14,poke:1FAC=30,space,w300",
+    "CALM": "poke:1C1F=0C,poke:1C20=0C,poke:1D6D=04,poke:1CEE=04,poke:29C6=0C,poke:29AB=00,poke:1D23=00,poke:2892=00,poke:2926=0C,poke:23C5=0C,poke:2585=08,poke:2589=08,poke:1D0A=0C,poke:2373=0C,poke:2C00=00000000000000,poke:2C09=00000000000000",
+    "SEARCH": "o,w30,{0},w30,s,e,a,r,c,h,enter,w200",
+    "INSERT": "o,w30,{0},w30,i,n,s,e,r,t,enter,w60,up,w60,{1},w30,enter,w400",
+    "EVOCARE": "y,w30,{0},w30,e,v,o,c,a,r,e,enter,w200",
+    "FOE": "poke:2C00={0},poke:2C20=04,poke:2C40=2C,poke:2C60=15,poke:2C80=C0,poke:1FEC={0},space,w60",
+    "SHOP": "POS:{0}:{1},t,w30,1,w30,{2},w200",
+    "GATE": "poke:2CA4={0},poke:2CA5={1},poke:2CA7=00,space,w100",
+    "SHIP": "poke:2E3A=0B,poke:4412=00,poke:442A=19,space,w60",
+    "NOFLOORS": "poke:2C0C=00000000"
   },
   "ram": {
     "x": {
@@ -50,16 +64,25 @@
     "loc": {
       "addr": "2E3C",
       "size": 1,
-      "fmt": "hex"
+      "fmt": "hex",
+      "note": "00 Sosaria, 01 dungeon, 02 towne, 03 castle, 04 picture (shrine/rod/fountain/Time Lord), 80 combat, FF Ambrosia"
     },
     "lvl": {
       "addr": "2F4F",
-      "size": 1
+      "size": 1,
+      "note": "dungeon level 0-7 (LVL:01-08)"
     },
     "tile": {
       "addr": "3F1D",
       "size": 1,
-      "fmt": "hex"
+      "fmt": "hex",
+      "note": "map square under the party (map byte / 4): 05 dungeon, 06 towne, 07 castle, 3E shrine"
+    },
+    "trans": {
+      "addr": "2E3A",
+      "size": 1,
+      "fmt": "hex",
+      "note": "party picture: 3F on foot, 0A horse, 0B frigate"
     }
   }
 }

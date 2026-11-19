@@ -10,7 +10,9 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   **(source)** from the manual/FAQ/wiki, link in Sources below;
   **(RAM)** read from or tested through memory while playing (e.g. the HP formula from before/after values);
   **(inferred)** reasoned from observations with a gap;
-  **(computed)** worked out here from a stated rule or table.
+  **(computed)** worked out here from a stated rule or table;
+  **(code)** read from the program (EXODUS.BIN) or its data files with a disassembler, not yet seen in play;
+  **(ROM text)** a text or table read from the program or data files.
   A claim with no tag is not allowed.
 - **Numbers:** decimal; random ranges in prose "a random number from 1 to 8"; dice `NdS+B`; percentages `5%`.
 - **Names:** the game's own on-screen names (English release; give the original name in tables if the game is
@@ -23,8 +25,18 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Ultima III: Exodus (Origin Systems, 1983; this is the IBM PC version with CGA graphics) is a party role-playing
+game: the player creates up to twenty characters from five races and eleven classes, forms a party of four and
+moves it as one icon over the 64x64 world of Sosaria, its townes and castles **(verified)**. Fights move to a
+separate tactical screen where every character and monster acts in turn **(verified)**; dungeons are
+first-person, eight levels deep and dark without torches **(verified)**. Progress is a chain of hidden
+knowledge rather than levels alone: Lord British turns experience into hit points, four marks branded by red-hot
+rods deep in the dungeons open the way (force fields, lava, the Silver Snake, levels past five), a whirlpool
+leads to the lost land of Ambrosia whose four shrines raise statistics and hide four cards, the Time Lord,
+reachable only through a moongate, tells their order, and the cards inserted into Exodus in the Castle of Fire
+end the game **(verified with pokes, code)**. Two moons drive the moongates and the brief appearance of the city
+of Dawn **(code, verified)**. Saving is Quit & Save on the map of Sosaria; entering any place also writes the
+save **(verified)**. No music; PC speaker effects **(source: Wikipedia)**.
 
 ## Documents
 | Document | Covers |
@@ -33,6 +45,7 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 | [interface.md](interface.md) | UI/UX lens: conventions, inventory of every screen, menu, prompt and element, screen flow |
 | [content.md](content.md) | content lens: a reasonable variety of environments, opponents, items, equipment, abilities, people |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
+| [../playbook.md](../playbook.md) | not a design document: addresses, routes, the place and shop squares, the quest chain with code references |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
      enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
@@ -40,3 +53,6 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| The game's files (program text, code, map and dungeon files) | `rom/ultima-3.zip` (GOG release) | commands, messages, places, prices, quest rules, talk lines **(ROM text, code)** |
+| Wikipedia, Ultima III: Exodus | https://en.wikipedia.org/wiki/Ultima_III:_Exodus | release history, PC version, story outline |
+| Web search snippets of walkthroughs | https://wiki.ultimacodex.com/wiki/Ultima_III_walkthrough | card order and the Time Lord (confirmed in play) |
