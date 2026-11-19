@@ -80,17 +80,17 @@ capitals. Names (characters, spells, traps) are typed and ended with Return.
 | Menu | `s` / `u` / `t` | start game / utilities / title page | verified |
 | Disk prompts | `enter` | "... IN DRV 1, PRESS [RET]" | verified |
 | Castle | `a` `g` `b` `c` `e` | A)dventurer's Inn, G)ilgamesh' Tavern, B)oltac's Trading Post, Temple of C)ant, E)dge of Town | all verified |
-| Tavern | `a` + name + Return + password (Return for none); `r`; digit; Return | add a member by typing the name ("WHO WILL JOIN ? >", then "ENTER PASSWORD >" even when there is none); remove ("WHO WILL LEAVE ([RETURN] EXITS) >"); see a member; leave | a, digit, Return verified; r: prompt verified |
+| Tavern | `a` + name + Return + password (Return for none); `r` + digit; digit; Return | add a member by typing the name ("WHO WILL JOIN ? >", then "ENTER PASSWORD >" even when there is none; errors "** WHO? **", "** THATS NOT IT **", "** BAD ALIGNMENT **"); remove ("WHO WILL LEAVE ([RETURN] EXITS) >" + the member's number); see a member; leave | all verified (capture) |
 | Inn | digit ("WHO WILL STAY"), then `a`-`e`, Return | stables (free), cots 10, economy 50, merchant 200, royal 500 GP/week; ends with "YOU NEED n MORE EXPERIENCE POINTS TO MAKE LEVEL" or the level-up lines; "PRESS [RETURN] TO LEAVE" | b verified |
-| Temple | name + Return | "WHO ARE YOU HELPING ? >" (a typed name, not a list); then "THE DONATION WILL BE n", "WHO WILL TITHE" | first prompt verified |
-| Boltac's | digit ("WHO WILL ENTER"), then `b` `s` `u` `i` `l` | buy, sell, uncurse, identify, leave; in the stock `p` purchase ("PURCHASE WHICH ITEM ([RETURN] EXITS) ? >"), `f` forward, `b` back, `s` start, `l` leave; six items per page | b verified, the rest from the screen text |
+| Temple | name + Return, payer's number | "WHO ARE YOU HELPING ? >" (a typed name, not a list). **Only characters outside the party**: a member gets "** RYZ IS NOT HERE **", a healthy one "** CONDI IS OK **". Then "THE DONATION WILL BE n", "WHO WILL TITHE ([RETURN] EXITS) >" + number; "MURMUR - CHANT - PRAY - INVOKE!", "** CONDI IS WELL **" (about 400 frames); too little gold: "** CHEAP APOSTATES! OUT! **" | verified (capture) |
+| Boltac's | digit ("WHO WILL ENTER"), then `b` `s` `u` `i` `l` | buy, sell, uncurse, identify, leave; in the stock `p` purchase ("PURCHASE WHICH ITEM ([RETURN] EXITS) ? >" + number; an unusable item asks Y/N), `f` forward, `b` back (five places a step: six pages, then it wraps), `s` start, `l` leave; sell / identify / uncurse list the pack with half the list price and take a number | all verified (capture) |
 | Edge of Town | `m` `t` `c` `l` | Maze (only with a party), Training Grounds, Castle, Leave game (writes the roster; "PRESS [RETURN] FOR MORE WIZARDRY") | all verified |
 | Training Grounds | name + Return; `*ROSTER` + Return; Return | a new name: "THAT CHARACTER DOES NOT EXIST. DO YOU WANT TO CREATE IT (Y/N) ?"; a known name: "PASSWORD >" (Return for none; a wrong one goes back silently), then I)nspect, D)elete, R)eroll, C)hange class, S)et new password, Return; `*ROSTER` lists the names in use (L)eave); Return alone goes to the Castle | create, delete, inspect, change class (prompt), roster verified |
 | Creation | Return twice; `a`-`e`; `a`-`c`; `shift+equals` (+), `minus`, Return, `esc`; class letter; `y`/`n` | password and its repeat (Return for none); race (Human, Elf, Dwarf, Gnome, Hobbit); alignment (Good, Neutral, Evil); bonus points: + and - change the marked score, Return goes to the next score (wraps), Esc goes on when all points are used; the classes the scores allow are listed beside them as they change (A) FIGHTER ...); "KEEP THIS CHARACTER (Y/N)? >" | all verified except `minus` |
 | Camp | digit; `r`; `e`; `d`; `l` | inspect; reorder ("REORDERING 1>>": digits); equip (everyone, slot by slot: "SELECT WEAPON FOR RYZ ... WHICH ONE ([RET] FOR NONE) ? >", only slots with a usable item are asked); disband ("CONFIRM (Y/N) ?": leaves the characters in the maze, marked OUT); leave | digit, r (prompt), e, d (prompt), l verified |
 | Character sheet | `e` `d` `t` `r` `s` `u` `i` `l` | equip, drop, trade, read spell books (`m`/`p`, `l`), cast spell ("WHAT SPELL ? >" + name; camp only), use item, identify (bishop), leave. In the Tavern/Training only the entries that apply are listed | e, r, s, l verified |
 | Maze | `f` or `w` / `l` or `a` / `r` or `d` | forward / turn left / turn right ("OUCH!" in the view when walking into a wall) | verified |
-| | `k` | kick: through the door ahead | verified (Werdna's door) |
+| | `k` | kick: through the door ahead. **F)orward does not pass a door** ("OUCH!"); every door needs `k` (capture: 14 doors) | verified |
 | | `c` | camp | verified |
 | | `s` | status: redraws the party window | key accepted, no change seen |
 | | `q` | quick plot on/off | key accepted, no change seen in a still |
@@ -99,8 +99,8 @@ capitals. Names (characters, spells, traps) are typed and ended with Return.
 | Prompts | `y` / `n`; Return | stairs ("STAIRS GOING UP. TAKE THEM (Y/N) ?"); "[RET] FOR MORE" on long messages; elevator buttons `a`-`d` / `a`-`f` or Return | verified (stairs, plaque, elevator prompt) |
 | Malor (camp spell) | `n` `s` `e` `w` `u` `d`, Return, `esc` | one square or floor per key press, Return teleports, Esc "chickens out" | verified (17 W, 3 S, 9 U) |
 | Battle | `f` `s` `p` `r` `u` (`d` dispell for priests) | fight ("FIGHT AGAINST GROUP# ?" when there are several groups), spell ("SPELL NAME ? >" + name + Return, then "CAST SPELL ON GROUP #?" / "PERSON # ?"), parry, run, use; then "PRESS [RETURN] TO FIGHT, OR GO B)ACK TO REDO OPTIONS" | f, s, p, Return verified |
-| Friendly monsters | `f` / `l` | "A FRIENDLY GROUP OF ... THEY HAIL YOU IN WELCOME! YOU MAY F)IGHT OR L)EAVE IN PEACE." | screen verified (Werdna himself, `@gwerdna_sign,enter,w300,r,w300,w7,k,w600,w1500`) |
-| Chest | `o` `c` `l` `i` `d` | open, Calfo, leave, inspect, disarm; "WHO (#) WILL ...?", disarm then "WHAT TRAP >" + name | menu verified; o and l return to the maze |
+| Friendly monsters | `f` / `l` | "A FRIENDLY GROUP OF ... THEY HAIL YOU IN WELCOME! YOU MAY F)IGHT OR L)EAVE IN PEACE." | verified: `l` leaves the party in the room (Werdna himself, `@gwerdna_sign,enter,w300,r,w300,w7,k,w600,w1500,l`; Spirits, thieves, daimyos) |
+| Chest | `o` `c` `l` `i` `d` | open, Calfo, leave, inspect, disarm; "WHO (#) WILL ...?", disarm then "WHAT TRAP >" + name (`type:CROSSBOW BOLT\n`) | all verified (capture): trapless chest, crossbow bolt named by Calfo and by the thief, set off, disarmed by the thief, set off by the fighter's disarm |
 
 Input timing: the default press (hold 8, wait 40) works everywhere, and one key at a time (keyboard latch):
 wait for the screen, then type. Waits that worked: Castle menus `w300`, a typed name `type:NAME\n,w300`, the
@@ -155,7 +155,48 @@ written; the rules:
 Routes that cannot carry over: everything about the DOS loader, `o`, the Training Grounds menu, the 50,000
 G.P. reward, items kept after the ending (the DOS `final` party has gear; here it has none).
 
-## Shot plan
+## Capture results (2026-11-19, set `main`, 291 shots)
+What the capture run found; the shot list with exact routes is `shots.txt`, the three lens documents index it.
+- **Method that worked**: no interactive session. Plan files of shot lines previewed in parallel
+  (`work/cap/pv.py`, a copy of `tools/try.py` that plays a line exactly as `shoot.py` does and prints the text
+  screen), then appended to the work `shots.txt` and shot with `shoot.py --only`. Text screens (castle, sheets,
+  shops, camp) can be captioned from the printed text without looking at a picture.
+- **Timed messages** (battle rounds, chest results, temple ritual, shop answers): a message block stays about
+  80-160 frames. Timeline: the route followed by N x `w80` with the last N frames tiled; the frame after the
+  k-th `w80` is reproduced by one `w(80*k),!` (checked on 45 shots). A round of six orders against one group
+  lasts 800-2600 frames; the chest appears about 1000 frames after Return in a one-round fight.
+- **Encounters**: kicking through a door into a room starts fights reliably; `wK` before the turn that
+  precedes the kick picks the group (floor 3 `WARP:03:0C:11,poke:732A=0100,wK,a,w100,d,w100,k`: K 1 friendly
+  Spirits, 3 Killer wolves + Dragon puppy, 5 Spirits, 11 Priests + Lvl 4 thieves, 17 Gargoyles, 19 friendly
+  thieves; floor 7 `WARP:07:07:0B,poke:732A=0100,...`: 1 Weretigers, 3 four groups, 11 friendly Major daimyos;
+  `WARP:07:05:06,poke:732A=0000,...`: 5 Champ samurai). Turning on a room square (`poke` position, `wK,r,w200,l,
+  w200`) rolled fights on floors 8 (4,11) and 9 (3,13) for 23 of 24 K values and on floor 1 (7,1) for the level
+  1 party, but never on floors 1-7 and 10 for the veterans after a `WARP` (64 tries): kick in instead.
+- **Fixed fights seen**: floor 1 room at (13,18) 5 Kobolds; floor 2 (8,7) Gas clouds (with `w1` before the
+  kick the smoke message shows instead); floor 3 (13,17) 4 Dragon flies; floor 4 (10,14) 5 Animals + 3 Men in
+  armor (veterans; the level 1 party bumped the door and read the sign).
+- **Pokes used by shots** (all on the Castle menu, visible after a menu change): RYZ's hit points `7416`,
+  experience `740C` (6 bytes; `040500000000` = 1284 gives level 2 at the Inn), DEDDO's experience `774C`,
+  CONDI's status `7488` (5 dead, 6 ashes) and hit points `74E6`, RYZ's item count `73CA` and sixth item
+  `73F4` (`0000000000002100` unidentified dragon slayer, `0100010001004900` equipped cursed robe), MNZ's item
+  count `77DA` and fourth item `77F4` (`...3600` unidentified ring of Porfic).
+- **Temple route**: status poke, Tavern `r` + the member's number (writes the record), Temple, typed name,
+  payer's number.
+- **MALOR**: into rock (floor 10 (0,4): 4 N, 9 D from the entrance) "YOU BOUNCED BACK TO WHERE YOU WERE!"; one
+  level up from floor 1 lands in the Castle with the party intact; two or more up: "YOU MATERIALIZED IN
+  MID-AIR AND FELL TO A PAINFUL DEATH!", all six DEAD on the roster. Esc spends the spell point.
+- **Rock by stairs**: `WARP` onto a rock square of floor 10 put the party on floor 1 (0,4) without a message
+  (the DOS "You are in rock!" death was not reproduced).
+- **Seen but not kept** (pictures identical to another shot, routes in git history of `shots.txt`): the Castle
+  with no party after the cemetery (`...,w3000,enter,w900`), the Castle after the robed man's shout, the creation
+  form after R)eroll, E)quip from the sheet (the camp's prompt), the ashes ritual's "IS WELL", the thief's
+  inspect naming the crossbow bolt, the fighter's failed disarm (`d,1,type:CROSSBOW BOLT`: "OOPPS! A CROSSBOW BOLT").
+- **Not captured**: stoning; a failed Temple ritual; trap kinds other than the crossbow bolt; monsters of
+  floors 5 and 6; the bear, amphibian, insect, dragon and coin pictures; S)tatus and Q)uick (no visible
+  change); the utilities beyond their first disk prompt; B)ack in the order confirmation (returns to the first
+  member's options, the same picture as the fight's start); L)eave at a chest (back to the maze, no message).
+
+## Shot plan (the scout's; done except where "Not captured" above says otherwise)
 Target: the DOS set's coverage (208 shots) replayed here plus what only this version has. Planned ids keep the
 DOS ids where the content is the same (`games/dos/wizardry/shots/main/shots.txt`). By category:
 - boot/title (6): `boot_prepare` (PREPARE YOURSELF text, `w1100,!`), `title_cauldron` (frame ~1300),
@@ -353,10 +394,10 @@ The manual was not read: the bonus-point keys and all prompts come from the scre
 ## Open questions
 - Battle hit-point pokes are untested; the monster table's dice fields (`data.py monsters`) are unchecked.
 - `s` (status) and `q` (quick plot) in the maze showed no change in a still frame: what they do in motion.
-- Temple, Inn level-up, Boltac's purchase/sell/identify/uncurse, trade, drop, use, chest open/disarm/Calfo:
-  prompts seen or read in the program, the full flows are the capture's.
-- Whether the floor 2 elevator-type square at (10,9) does anything (DOS has it at (10,8)).
+- ~~Temple, Inn level-up, Boltac's purchase/sell/identify/uncurse, trade, drop, use, chest open/disarm/Calfo:
+  prompts seen or read in the program, the full flows are the capture's.~~ Captured 2026-11-19 (Capture results).
+- ~~Whether the floor 2 elevator-type square at (10,9) does anything (DOS has it at (10,8)).~~ It is the elevator: buttons A through D (shot `gameplay_elevator_f2`).
 - U)TILITIES entries (backup, recover, transfer, update, change names): menu only.
-- The fight with the geared veterans (`gwerdna`) was not played; only the ungeared win is recorded.
+- The fight with the geared veterans (`gwerdna`) was played for one round (fight, fight, four parries: RYZ paralyzed and drained 2 levels, shots `boss_paralyzed`, `boss_level_drain`); not to the end.
 - Murphy's ghost and the keys of floor 1 (DOS: never triggered): one translated try walked into a wall.
 - Wizardry II's import of `00_transfer.sav` is untested.

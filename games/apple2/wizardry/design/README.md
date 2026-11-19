@@ -32,7 +32,7 @@ to all six members before a round runs **(verified)** `battle`, `werdna`. The go
 wizard Werdna on floor 10; bringing it back to the castle ends the quest with 250,000 experience points and
 the chevron of rank for each member, at the price of all equipment and most gold **(verified)** `ending`. The
 roster on the scenario disk is the only save; the game writes it as it goes **(verified)** saves 01, 02.
-This folder starts the three lens documents for the Apple II version. The scenario data (floors, items,
+The three lens documents index the 291 shots of the set `main` (captured 2026-11-19). The scenario data (floors, items,
 monsters, spells) is the DOS port's **(verified by decoding both disks: the ten floors differ in one square)**;
 the DOS design documents (`../../../dos/wizardry/design/`) hold the detailed rules and tables and are linked
 from the rows here, each row saying what was re-checked on the Apple II.
