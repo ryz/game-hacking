@@ -2,6 +2,19 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - DOS backend: writes through open files reach states; Wizardry II scouted
+- Wizardry II (DOS) scout (04bd3a9, 3a1201c): the Wizardry I party imported through the game's own Move
+  characters (`tools/transfer.py` puts Wizardry I's SAVE1.DSK next to the loader); quest chain to the ending
+  (five KOD pieces, sphinx riddle, one character alone receives the Staff of Gnilda, knights); 22 checkpoints,
+  saves 00-02, six floors decoded, roster at SAVE2.DSK 1D200 for Wizardry III. Found the stale-disk effect:
+  the game reads its roster back, and states lacked the writes made through the open SAVE2.DSK.
+- Coordinator (5310311): core patch `GamedbMarkWritten` marks a file for the save ZIP on every write through
+  an open handle; test `test_dos_state_carries_writes_to_open_file` (hand-assembled HOLD.COM; fails without
+  the fix); shared tests 29 passed, 15 skipped (other cores not built). The scout's failing case
+  (`@ending,KNIGHTS,...` from a cached checkpoint) now equals the one-segment route. All DOS caches deleted
+  and the published sets re-verified with the new core: dos/wizardry 208/208, dos/might-and-magic-2 228/228.
+  Merged to `master`. Wizardry II capture dispatched.
+
 ## 2026-11-19 - Wizardry I (DOS): registered, scouted, captured to the ending (208 shots)
 - Intake d997343 (slug `wizardry`, platform dos; one program, starts without the menu).
 - game-scout (88e5d0e, eec5340): WIZ1.COM runs the 1984 booter from WIZ1.DSK (game) and SAVE1.DSK (scenario

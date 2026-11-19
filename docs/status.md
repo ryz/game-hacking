@@ -120,9 +120,9 @@ Current snapshot; history in `progress-log.md`.
   pokes), 208/208 verified by the coordinator from an empty cache, three lenses 117 / 141 / 135, ten floors
   decoded from the disk, items.md, saves 01-03 (03_werdna_beaten = Wizardry II transfer source). Model
   `ega-315`. Open: Murphy's ghost and the keys (floor 1 statues never offer a search), spinner, criticals,
-  stoning, body recovery. Backend gap found: writes through a file the game keeps open reach states only when
-  it closes the file (dos.md Saves).
-- DOS queue (owner, 2026-11-19): Wizardry II (scout running), Wizardry III (import characters from
+  stoning, body recovery. Backend gap found here (writes through a file the game keeps open missing from states)
+  fixed 2026-11-19 (5310311); both DOS sets re-verified with the new core.
+- DOS queue (owner, 2026-11-19): Wizardry II (scouted 2026-11-19, capture running), Wizardry III (import characters from
   the previous game's SAVEn.DSK), then Ultima I, II, III (GOG; cycles 500/500/300 in GOG's configs).
 - Might and Magic 1 (DOS), state after the fix-up round (2026-11-18): 249 shots, 249/249 verified in one run
   from an empty cache by the coordinator, no identical pictures, no caption over 80 characters. Round 2 before
