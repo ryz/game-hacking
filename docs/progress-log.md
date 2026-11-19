@@ -2,6 +2,18 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Wizardry I (DOS): registered, scouted, captured to the ending (208 shots)
+- Intake d997343 (slug `wizardry`, platform dos; one program, starts without the menu).
+- game-scout (88e5d0e, eec5340): WIZ1.COM runs the 1984 booter from WIZ1.DSK (game) and SAVE1.DSK (scenario
+  disk, shipped ready to use). Model `ega-315` (8088 speed; `cga`/`tandy` lose the palette on a state load).
+  Party macros, 16 checkpoints title to ending, roster at SAVE1.DSK 1D800, RAM map, WARP via the stairs record,
+  ten floors decoded (maps.py), saves 01-02. Found the backend's open-file flush gap (dos.md, open).
+- game-capture (23dc245, 89185fc): set `main` 208 shots; Werdna beaten on screen without pokes; items.md;
+  save 03_werdna_beaten as the Wizardry II transfer source.
+- Coordinator: replayed four scout checkpoints, looked at the sheets, `shoot.py dos/wizardry main --verify`
+  from an empty cache 208/208. Merged to `master`.
+- Wizardry II (DOS) registered (0cd7a41); scout dispatched with the transfer from 03_werdna_beaten.
+
 ## 2026-11-19 - Might and Magic II (DOS): registered, scouted, captured to the ending (228 shots)
 - Owner uploaded the GOG ZIP. Intake 782d91b (slug `might-and-magic-2`, region na).
 - game-scout (5a06d6c, b71fdc7): MM2.EXE quits from the start menu ("Not enough memory for 16 color version");
