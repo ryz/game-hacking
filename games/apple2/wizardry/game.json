@@ -1,0 +1,35 @@
+{
+  "slug": "wizardry",
+  "title": "Wizardry: Proving Grounds of the Mad Overlord",
+  "platform": "apple2",
+  "region": "na",
+  "model": "iie",
+  "rom": "rom/wizardry.zip",
+  "sha1": "ae554d7dee72819912300e06874fe69f05765781",
+  "crc32": "783e9c0e",
+  "size": 130266,
+  "header": {
+    "disks": [
+      {
+        "name": "1 Boot.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "06f1ed7820857e88f5270f91c755ff53e2fed5e4"
+      },
+      {
+        "name": "2 Scenario.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "44a03784493d42e34f7931e925a625d434b24e40"
+      }
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}

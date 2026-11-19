@@ -987,6 +987,15 @@ def test_apple2_disk_swap(a2_selftest, tmp_path):
         e.disk(3)
     e.load_state(st)                                                     # the state knows which disk was in
     assert e.drives[:2] == ["Side A.dsk", None]
+    import zipfile
+    extra = str(tmp_path / "extra.sav")                                  # a save with a disk of another name
+    with zipfile.ZipFile(extra, "w") as zz:
+        zz.writestr("T Transfer.dsk", bytes(143360))
+    x = platforms.Apple2().open(z, sav=extra)
+    assert x.disks == ["Side A.dsk", "Side B.dsk", "T Transfer.dsk"]     # an extra disk after the game's own
+    x.disk(3, drive=2)
+    assert x.drives[:2] == ["Side A.dsk", "T Transfer.dsk"] and x.battery(0) == b""
+    x.close()
     e.frames(200)
     assert not e.regs()["pc"].startswith("08")
     e.close()

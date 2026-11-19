@@ -1,0 +1,35 @@
+{
+  "slug": "wizardry-2",
+  "title": "Wizardry II: The Knight of Diamonds",
+  "platform": "apple2",
+  "region": "na",
+  "model": "iie",
+  "rom": "rom/wizardry-2.zip",
+  "sha1": "87abc403fa9cab3711d2b2c9e6e7f843ab89b398",
+  "crc32": "1b5045c9",
+  "size": 130909,
+  "header": {
+    "disks": [
+      {
+        "name": "1 Disk 1.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "b921b3233aa98ef315a1aafe00117f8324c2aab1"
+      },
+      {
+        "name": "2 Disk 2.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "bf57d3552c0c032517252b298f3f6d2492120291"
+      }
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}

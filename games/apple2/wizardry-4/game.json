@@ -1,0 +1,55 @@
+{
+  "slug": "wizardry-4",
+  "title": "Wizardry IV: The Return of Werdna",
+  "platform": "apple2",
+  "region": "na",
+  "model": "iie",
+  "rom": "rom/wizardry-4.zip",
+  "sha1": "8ae7ca4eac68a68db764b3fb33f43c43934ebaf3",
+  "crc32": "df1b98bc",
+  "size": 475026,
+  "header": {
+    "disks": [
+      {
+        "name": "1 Disk 1.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "3fde308dd34866f726f9827c50644d904b165cb0"
+      },
+      {
+        "name": "2 Disk 2.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "3c7d8be09b40204b3148a1b0c79f9e8e83b921af"
+      },
+      {
+        "name": "3 Disk 3.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "ec6dd9d3f89ff2ff456bb3706178769d6a314ca3"
+      },
+      {
+        "name": "4 Disk 4.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "12bad13f1a617e1ed34ab29564de517d1f8856ad"
+      },
+      {
+        "name": "5 Disk 5.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "a10d2765df5d09d6de364a77702bfca67f42d285"
+      },
+      {
+        "name": "6 Disk 6.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "f9aa968f97609038da0f26629e6bd0bb21ed3475"
+      }
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}

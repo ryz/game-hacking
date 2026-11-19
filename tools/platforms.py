@@ -984,12 +984,16 @@ class Apple2(Libretro):
             self.disks = ["disk" + os.path.splitext(rom)[1].lower()]
             self._orig = {self.disks[0]: data}
         start = dict(self._orig)
-        if sav:                                             # a save = ZIP of whole changed images
-            z = zipfile.ZipFile(sav)
-            for n in z.namelist():
+        if sav:                                             # a save = ZIP of whole images: a game disk under
+            z = zipfile.ZipFile(sav)                        # its own name replaces it; any other name is an
+            for n in sorted(z.namelist(), key=str.lower):   # extra disk after the game's own (a character
+                if n.endswith("/"):                         # disk of another game, a blank disk to format)
+                    continue
+                if os.path.splitext(n)[1].lower() not in self.extensions or "/" in n:
+                    raise SystemExit("%s holds %s, which is not a disk image" % (sav, n))
                 if n not in start:
-                    raise SystemExit("%s holds %s, which is not a disk of this game (%s)" % (
-                        sav, n, ", ".join(self.disks)))
+                    self.disks.append(n)
+                    self._orig[n] = z.read(n)
                 start[n] = z.read(n)
         for n, d in start.items():
             open(os.path.join(self.dir, n), "wb").write(d)

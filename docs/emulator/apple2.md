@@ -93,6 +93,11 @@ process and in a new one (`test_apple2_state_carries_disk_writes`, with DOS 3.3 
 - An exported `.sav` holds whole disk images, so it is game data (program and maps, not only the save):
   keep it in `rom/saves/<slug>/` (uncommitted), never in `games/apple2/<slug>/saves/`. Open: an export that
   holds only the changed blocks.
+- **Extra disks** (2026-11-19): an image in the `sav:` ZIP whose name is not one of the game's disks becomes
+  an additional disk after the game's own, in name order (`disk:N` with the next numbers). Use it for a
+  character disk of another game (Wizardry II takes the party from the Wizardry I scenario disk) or a blank
+  disk a game wants to format. Make one from an export: unzip the `.sav`, zip the image again under a new
+  name (`T Wizardry I.dsk`) into `rom/saves/<slug>/NAME.sav`. The same name as a game disk replaces that disk.
 - Only this tool reads the `.state` files.
 
 ## Not supported yet

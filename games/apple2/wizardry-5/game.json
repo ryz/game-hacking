@@ -1,0 +1,70 @@
+{
+  "slug": "wizardry-5",
+  "title": "Wizardry V: Heart of the Maelstrom",
+  "platform": "apple2",
+  "region": "na",
+  "model": "iie",
+  "rom": "rom/wizardry-5.zip",
+  "sha1": "f6363aca6d2fd6d61872e0d350573a727931f96d",
+  "crc32": "65373e7c",
+  "size": 777312,
+  "header": {
+    "disks": [
+      {
+        "name": "1 Disk A.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "77ea46b5d90abe11212a81c2abeef9b04259ebaf"
+      },
+      {
+        "name": "2 Disk B.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "826f26673b411125b05ddf85daf1a54d718a0a17"
+      },
+      {
+        "name": "3 Disk C.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "14a256ffd7b027a44757e20931916b834d58f9bc"
+      },
+      {
+        "name": "4 Disk D.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "31fdd0494141b3f7b1a9663c183a8d34b17089b7"
+      },
+      {
+        "name": "5 Disk E.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "1bc125000cb61083a9a93c122cb6d6a4f1ee5b06"
+      },
+      {
+        "name": "6 Disk F.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "5c552b36f7a3e5addf9b41ed77bfade32f3b1295"
+      },
+      {
+        "name": "7 Disk G.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "4bca12c20bbf916730569d9cb65ee87d055c2134"
+      },
+      {
+        "name": "8 Disk H.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "b2129c3118762371f1c3eae1bde9642beb805519"
+      },
+      {
+        "name": "9 Disk I.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "75eabc030cf19ca2a43ba06cd0a7fbe1c8bc7929"
+      }
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
