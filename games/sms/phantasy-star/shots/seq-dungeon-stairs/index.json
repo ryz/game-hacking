@@ -1,0 +1,75 @@
+{
+ "game": {
+  "slug": "phantasy-star",
+  "title": "Phantasy Star",
+  "platform": "sms",
+  "region": "na",
+  "model": "ntsc",
+  "sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+  "crc32": "e4a65e79"
+ },
+ "set": "seq-dungeon-stairs",
+ "shots": [
+  {
+   "id": "01_stairs",
+   "category": "gameplay",
+   "caption": "Medusa's tower: stairs up in front of the party",
+   "route": "@start,PARTY3,INV3,DUN:0A:2E:02",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_01_stairs.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-stairs_01_stairs.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "02_climb_clip",
+   "category": "gameplay",
+   "caption": "UP: the party climbs, the screen goes black (clip)",
+   "route": "@start,PARTY3,INV3,DUN:0A:2E:02,up:1,rec:120:2:4",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "clip": {
+    "frames": 120,
+    "every": 2,
+    "kept": 61,
+    "poster": 4,
+    "seconds": 2.01,
+    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_02_climb_clip.gif",
+    "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-stairs_02_climb_clip.gif"
+   },
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_02_climb_clip.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-stairs_02_climb_clip.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "03_arrived",
+   "category": "gameplay",
+   "caption": "The floor above: a new corridor",
+   "route": "@start,PARTY3,INV3,DUN:0A:2E:02,up:1,w200",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_03_arrived.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-stairs_03_arrived.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "04_turn_back",
+   "category": "gameplay",
+   "caption": "Turning round: the way back down",
+   "route": "@start,PARTY3,INV3,DUN:0A:2E:02,up:1,w200,right:1,w60,right:1,w60",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_04_turn_back.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-stairs_04_turn_back.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  }
+ ]
+}

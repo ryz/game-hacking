@@ -60,6 +60,22 @@ Coverage: the early game only (Camineet, the fields around it, the first cave).
 | Priest | resurrects the dead | Camineet church | `camineet_church` |
 | Townspeople | walk the streets | Camineet | `camineet_gate`, `camineet_shops` |
 
+
+### Added in part 2 (2026-11-19)
+| Kind | Sample | Shots |
+|---|---|---|
+| Environments, Palma | Parolit (walled residential area), Gothic (stone huts in the forest), Scion (port), Drasgow (ocean town), the spaceport; overworld coast, mountains, a coastal cave | `parolit`, `gothic`, `scion`, `drasgow`, `palma_spaceport`, `palma_parolit`, `palma_drasgow`, `palma_coast_cave`, `palma_mountains`, `palma_gothic` |
+| Environments, Motavia | Paseo with the governor's moat, Paseo spaceport, two Motavian villages, the desert | `paseo`, `paseo_spaceport`, `motavia_village`, `motavia_village2`, `motavia_desert` |
+| Environments, Dezoris | ice mountains and pines, a settlement in the snow, the town under the ice beside lava, a walled snow town | `dezoris_ice`, `dezoris_village`, `skure`, `dezorian_town` |
+| Environments, sky | Lassic's air castle: a road between lakes | `lassic_castle` |
+| Dungeon wall sets | orange (Medusa's tower), blue, green, yellow, cyan, grey, red; 61 floors of 16 x 16 squares | `boss_medusa`, `odin_stone`, `boss_red_dragon`, `boss_shadow`, `boss_titan`, `seq-dungeon-door:01_door`, `seq-dungeon-stairs:01_stairs` |
+| Bosses | Medusa, Dr. Mad, blue dragon, red dragon, Titan, Lassic's shadow, Gold Dragon, Lassic, Dark Falz, Skull-En | `boss_medusa`, `boss_dr_mad`, `boss_blue_dragon`, `boss_red_dragon`, `boss_titan`, `boss_shadow`, `battle_skull_en`, `battles:gold_dragon`, `battles:lassic`, `battles:dark_falz` |
+| Opponents, groups and talkers | Marmen, Fishmen, Sorcerers, a Magician; Dezorian and Barbarian answer TALK | `battles:marman_group`, `battles:fishman_group`, `battles:sorcerers`, `battles:magician`, `battles:talk_dezorian`, `battles:talk_barbarian` |
+| People | Nekise, the planets sage, a beggar, the Bortevo junkman, the Paseo merchant with Myau, the governor and his guard, a cat thief, a talking spider, robotcops | `nekise`, `npc_question`, `cola_beggar`, `bortevo_junk`, `myau_merchant`, `governor`, `mansion_guard`, `cat_thief`, `talking_spider`, `dungeon_robotcop` |
+| Party members | Myau (portrait), Odin in stone | `myau_meet`, `myau_meet_alis`, `odin_stone` |
+| Vehicles | Land Rover; Hovercraft (only on water) | `landrover`, `vehicle_no_good` |
+| Abilities | spells: casting member chosen in MAGC | `magic_who` |
+
 ## Open questions
 - Myau, Odin, Noah and the other planets: later shots (shots.txt LATER section).
 - What the 08 squares of the Camineet passage hold (nothing showed on one of them, `design/findings.md`).

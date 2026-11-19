@@ -88,3 +88,59 @@ continue_slots | menu | CONTINUE: select a saved game 1-5 | sav:01_start,TITLE,w
 # gameover | gameover | the game-over screen
 # ending | ending | the ending
 # credits | credits | the staff roll
+talk_townsperson | dialogue | Camineet: walk into a townsperson to talk: "...is under martial law." | @start,WARP:04:6005:C001,up:32,w150,b2,w150
+nekise | dialogue | Camineet: Nekise tells of a fighter named Odin and of Nero's pot | @start,WARP:04:E004:B000,up:32,w150
+npc_question | dialogue | A villager asks a YES / NO question about the planets of Algol | @start,WARP:04:1005:8001,up:32,w150
+palma_spaceport | gameplay | Palma spaceport: ships, a control tower and shops west of Camineet | @start,PARTY1,INV1,WARP:05:B001:4001
+spaceport_guard | dialogue | Palma spaceport guard: "This is Palma's spaceport." | @start,PARTY1,INV1,WARP:04:A001:9001,up:32,w150
+spaceship_board | dialogue | Spaceport: "Bound for Motavia. Getting on?" YES / NO | @start,PARTY2,INV2,WARP:04:F001:2001,up:32,w150
+spaceship_flight | cutscene | The flight to Motavia: the liner crosses the stars | @start,PARTY2,INV2,WARP:04:F001:2001,up:32,w150,b2,w150,w200
+parolit | gameplay | Parolit, a walled residential area south of Camineet | @start,PARTY1,INV1,WARP:06:7001:0005
+parolit_medusa | dialogue | Parolit: "Medusa has been reborn and lives in a cave to the south." | @start,PARTY1,INV1,WARP:06:1001:A004,up:32,w150
+palma_parolit | gameplay | Palma overworld: Parolit's walls and the bridge north to Camineet | @start,PARTY1,INV1,WARP:00:F003:1004
+gothic | gameplay | Gothic, a village of stone huts and dirt roads in the forest | @start,PARTY1,INV1,WARP:07:0002:5001
+hospital | shop | Gothic hospital: "This is a hospital. Do you need help?" YES / NO | @start,PARTY1,INV1,WARP:07:4002:9001,up:32,w150
+hospital_fee | shop | Hospital after YES: "The fee for healing is 10..." | @start,PARTY1,INV1,WARP:07:4002:9001,up:32,w150,b2,w150
+cola_beggar | dialogue | Gothic: a beggar asks for a cup of cola (YES / NO) | @start,PARTY1,INV1,WARP:07:A001:8001,up:32,w150
+bortevo_junk | dialogue | Bortevo: the robot Hapsby lies somewhere in this pile of junk | @start,PARTY1,INV1,WARP:07:D003:8004,up:32,w150
+scion | gameplay | Scion, the port town east of Camineet | @start,PARTY1,INV1,WARP:0C:7001:2001
+drasgow | gameplay | Drasgow, a small town on the ocean | @start,PARTY1,INV1,WARP:0D:5005:0005
+palma_drasgow | gameplay | Palma overworld: a walled town on the coast | @start,PARTY1,INV1,WARP:00:0006:1003
+palma_coast_cave | gameplay | Palma overworld: a cave mouth in the sand of the coast | @start,PARTY1,INV1,WARP:00:2001:3003
+palma_mountains | gameplay | Palma overworld: a forest village among rocky mountains | @start,PARTY1,INV1,WARP:00:7000:C000
+palma_gothic | gameplay | Palma overworld: Gothic village west of the mountains | @start,PARTY1,INV1,WARP:00:F002:0004
+battle_skull_en | battle | A Skull-En guards a chest in a Palma dungeon | @start,PARTY1,INV1,DUN:08:19:02,up:1,w200
+odin_stone | gameplay | Odin's cave: Odin stands turned to stone; the menu opens by itself | @start,PARTY2,poke:C4C0=2B33343625,poke:C4E2=05,set:C4E0=1187:2,DUN:00:E2:01,up:1,w200,w120
+boss_medusa | boss | Medusa in her tower: the gaze that turns men to stone | @start,PARTY3,INV3,DUN:0A:66:01,up:1,w200
+boss_dr_mad | boss | Dr. Mad in his laboratory | @start,PARTY3,INV3,DUN:00:54:03,up:1,w200
+luveno_ship | system | The Luveno, Hapsby at the helm: "Where are we going? Gothic Uzo Skure" | @start,PARTY3,INV3,WARP:07:A000:C001,up:32,w150
+paseo_spaceport | gameplay | Paseo spaceport on Motavia: travellers and a guarded gate | @start,PARTY2,INV2,WARP:0E:5001:0004,up:16,w60
+paseo | gameplay | Paseo, Motavia's capital: the moat and the governor's mansion | @start,PARTY2,INV2,WARP:0E:3001:1001,up:16,w60
+myau_merchant | dialogue | Paseo: a merchant offers a rare animal for 1 billion meseta | @start,PARTY1,INV1,poke:C502=01,WARP:0E:4001:B001,up:32,w150
+myau_trade | dialogue | The merchant sees the Laconian pot: "Shall I trade the animal for it?" | @start,PARTY1,INV1,poke:C502=01,WARP:0E:4001:B001,up:32,w150,b2,w200,down,w60,b2,w150,b2,w150
+myau_traded | dialogue | "All right, there you go with him." | @start,PARTY1,INV1,poke:C502=01,WARP:0E:4001:B001,up:32,w150,b2,w200,down,w60,b2,w150,b2,w150,b2,w150
+myau_meet_alis | cutscene | Alis to the cat: "We will be fellow travelers. I'm Alis; what's your name?" | @start,PARTY1,INV1,poke:C502=01,WARP:0E:4001:B001,up:32,w150,b2,w200,down,w60,b2,w150,b2,w150,b2,w150,b2,w150
+myau_meet | cutscene | Myau introduces himself: "I'm Myau." | @start,PARTY1,INV1,poke:C502=01,WARP:0E:4001:B001,up:32,w150,b2,w200,down,w60,b2,w150,b2,w150,b2,w150,b2,w150,b2,w150,b2,w150
+governor | dialogue | The governor of Motavia on his throne | @start,PARTY2,INV2,WARP:0E:7001:A000,up:32,w150
+mansion_guard | dialogue | Mansion guard: "Do you have a present to give to the governor?" | @start,PARTY2,INV2,DUN:21:84:02,up:1,w200
+motavia_desert | gameplay | Motavia overworld: the desert outside Paseo | @start,PARTY2,INV2,WARP:01:D005:3002
+motavia_village | gameplay | A Motavian village: domed huts, a pond and a hospital | @start,PARTY2,INV2,WARP:0E:4004:2001,up:16,w60
+motavia_village2 | gameplay | Another Motavian village, walled, with dirt roads | @start,PARTY2,INV2,WARP:0E:0007:C003,up:16,w60
+boss_blue_dragon | boss | The blue dragon of the Casba cave holds the Amber Eye | @start,PARTY3,INV3,DUN:25:1C:01,up:1,w200
+boss_titan | boss | A Titan on Dezoris guards the Aeroprism | @start,PARTY4,INV4,DUN:3A:7A:03,up:1,w200
+boss_red_dragon | boss | A red dragon in a green-walled dungeon | @start,PARTY4,INV4,DUN:1B:59:01,up:1,w200
+boss_shadow | boss | Lassic's shadow: "I have watched all your actions." | @start,PARTY5,INV5,DUN:35:B2:02,up:1,w200
+lassic_castle | gameplay | Lassic's air castle: a road between lakes above the clouds | @start,PARTY5,INV5,WARP:17:8001:C001
+magic_who | inventory | MAGC: choose who casts | @start,PARTY4,INV4,MENU,down,b2,w120
+save_name | save | SAVE in a new slot: "Input your name." letter grid with ADV RUB END | @start,MENU,down*4,b2,w90,b2,w90,b2,w90,b2,w90
+dezoris_ice | gameplay | Dezoris overworld: ice mountains, snowy pines and a cave | @start,PARTY4,INV4,WARP:02:1004:0003
+dezoris_village | gameplay | Dezoris overworld: a small walled settlement in the snow | @start,PARTY4,INV4,WARP:02:3002:4005
+skure | gameplay | Under the ice of Dezoris: domed houses beside a field of molten rock | @start,PARTY4,INV4,WARP:15:5001:2001,up:16,w60
+dezorian_town | gameplay | A town in the Dezoris snow: walled lanes and a grey dome | @start,PARTY4,INV4,WARP:13:C000:D000,up:16,w60
+dungeon_shop | shop | A shop deep in a dungeon: "Welcome to our store. What can I..." | @start,PARTY3,INV3,DUN:15:45:02,up:1,w200
+cat_thief | dialogue | A dungeon man: "Hey, bring that cat over here!" YES / NO | @start,PARTY3,INV3,DUN:15:D8:00,up:1,w200
+dungeon_robotcop | dialogue | A robotcop in a dungeon checks for the roadpass: YES / NO | @start,PARTY3,INV3,DUN:14:51:00,up:1,w200
+talking_spider | dialogue | A spider that talks: "Polymeteral will dissolve all..." | @start,PARTY3,INV3,DUN:01:D9:02,up:1,w200
+landrover_menu | inventory | ITEM on the Palma overworld: LANDROVR, USE | @palma,PARTY3,poke:C4C0=21222334,poke:C4E2=04,MENU,down*2,b2,w90,b2,w90
+landrover | system | The Land Rover on the Palma overworld beside Camineet | @palma,PARTY3,poke:C4C0=21222334,poke:C4E2=04,MENU,down*2,b2,w90,b2,w90,b2,w200,down:64,w30
+vehicle_no_good | inventory | The hovercraft on dry land: "Using HOVRCRFT will do no good" | @palma,PARTY3,poke:C4C0=21222334,poke:C4E2=04,MENU,down*2,b2,w90,down,b2,w90,b2,w200

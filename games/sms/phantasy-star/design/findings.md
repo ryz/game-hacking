@@ -47,3 +47,15 @@ squares; standing on one (row 1, column 7) and using SRCH showed nothing (RAM ma
 **Intended:** unclear: an emptied chest, or an object that needs a condition.
 **Confidence:** (RAM) for the codes, (verified) for the empty result.
 **Impact:** unknown.
+
+## Talk needs a step first (capture part 2, 2026-11-19)
+**Behavior:** a push into a person from standstill does nothing; one step toward them and a second push opens
+the talk (`talk_townsperson`). The earlier "cannot talk" finding is resolved: it was the approach, not a bug.
+
+## Forced Dark Falz dodges (capture part 2)
+**Behavior:** Dark Falz brought into a battle with `FIGHT:49` dodges every attack ("Darkfalz dodges ..."), and his
+picture is small (`battles:dark_falz`). The real fight is set up by his chamber (floors 3B/3C); not reached.
+
+## Warped overworld counts as a town (capture part 2)
+**Behavior:** after `WARP` to a planet surface the field-menu picture and the vehicle check behave as in a town
+("Using LANDROVR will do no good"); from the real overworld (`@palma`) the Land Rover works (`landrover`).

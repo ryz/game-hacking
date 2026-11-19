@@ -50,7 +50,8 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 | Menus | `b1` | cancel / close (closing the field menu returns to the map) | verified |
 | Dungeon | `up` | step forward; `down` back (source); a 1-frame press (`up:1`) is enough, the step then animates ~36 frames | verified (`up`, clip `dungeon_step`) |
 | Dungeon | `left` / `right` | turn 90 degrees; `right:1` starts a ~48-frame smooth turn | verified (`right`, clip `dungeon_turn`) |
-| Town | talk to a person | NOT FOUND: walking into a townsperson or robotcop (from above and the side) does nothing; b1/b2 beside one open the field menu (capture 2026-11-19) | open |
+| Town | talk to a person | take one step toward the person, then push again into them (`up:16,up:16`, or from two tiles away `up:32`): the person scene opens. A push from standstill, or after a move in another direction, does nothing (that is why the first capture found nothing) | verified (capture part 2) |
+| Dungeon | `b2` facing a door | opens it (walking into a door does nothing) | verified (`seq-dungeon-door`) |
 | Battle | `b2` / `b1` | confirm command / cancel | verified (`b2` = ATTK) |
 | Any | `pause` | pause (manual: pauses and mutes) | source; no visible change on the map (verified: `pause` in Camineet showed nothing) |
 
@@ -85,6 +86,7 @@ multiple of 16; blocked moves turn Alis without moving.
   building north-east, EXIT gate in the south-east corner guarded by a robotcop; townspeople walk about.
 
 ## Shot plan
+**Part 2 captured 2026-11-19: `main` 109 shots (56 new: towns and overworlds of all three planets, spaceports and the flight, talk, hospital, Myau joining, Odin in stone, bosses, Land Rover, save naming), `battles` 12, `seq-dungeon-walk` 6, `seq-dungeon-turn` 6, `seq-dungeon-stairs` 4, `seq-dungeon-door` 4; all from an empty cache. Not reached: the ending and credits (see the toolkit section).**
 **Early part captured 2026-11-19 (game-capture): 53 shots in `shots.txt` (EARLY section, game order), 53/53 from
 an empty cache, published to `shots/main/`.** Beyond the scout's 28: intro caption retaken (it fades in and out by
 itself: frame `@title,b1,w300,b1,w120,!`), Alis's house, the green passage under the grey dome, the western
@@ -145,6 +147,39 @@ do not warp (see Emulation notes); the capture agent should look for a map id / 
   equipment, defeats Lassic, then Dark Falz. Order of towns and key items (PASSPORT, ROADPASS, LAC. POT,
   HAPSBY, PRISM, AMBR EYE, CRYSTAL ... all in the item list, verified) is **unverified recollection**: work it
   out from NPC dialogue while playing, or ask the coordinator to allow a walkthrough host.
+
+
+## Warps, party, fights: the capture toolkit (capture part 2, 2026-11-19)
+All verified from an empty cache (sets `main` 109, `battles` 12, `seq-dungeon-*` 20). Routes start from
+`@start` (town state), `@palma` (real overworld state) or `@dungeon` (real cave state).
+| Macro (game.json) | What | Notes |
+|---|---|---|
+| `WARP:MM:XXXX:YYYY` | town or overworld warp: writes `C300-C307` (X, Y little-endian pixels), `C308`=`C309`=map, then `C202`=08 (the game's own "enter map" state) | towns of another planet need one step after it (`up:16,w60`) before the picture is complete |
+| `OWARP:MM:XXXX:YYYY` | the same with `C308`=00 | the menu picture and vehicles still think it is a town: use the real overworld (`@palma`) for vehicles |
+| `DUN:FF:SQ:DD` | dungeon warp: floor `C30D`, square `C30C` (row, column nibbles), facing `C30A` (0 N, 1 E, 2 S, 3 W), light `C315`=04, `C202`=0A | 61 floors (00-3C); stand next to an event square and `up:1` to trigger it |
+| `FIGHT:ID` | any monster: `C2E6`=id, `C29D`=FF, `C202`=0C | background = the place the route came from (mountains after a DUN from a town); boss squares give the real dungeon background |
+| `PARTY1`..`PARTY5` | the party records from the ROM level tables (levels 9 / 12,10 / 15,13,14 / 19,17,18,16 / 26,25,26,24) with equipment, HP a little under max, `C4F0` = members - 1 | built by `tools/party.py` in the game folder (ROM `F8AF`, item powers `183A`) |
+| `INV1`..`INV5` | realistic inventories and meseta per stage | |
+Map ids (`C309`): 00 Palma, 01 Motavia, 02 Dezoris surface; 04 Camineet (with the spaceport and Parolit in the same
+layout: 05, 06), 07-0B Palma forest towns (Gothic, Loar, Abion, Eppi, Bortevo share one layout), 0C/0D Scion and
+Drasgow, 0E-12 Motavia towns (Paseo, its spaceport, Uzo, Casba, Sopia in one layout), 13/14 Dezoris surface towns,
+15/16 the towns under the ice (Skure), 17 Lassic's air castle.
+ROM tables (file offsets): entrances per planet `E935` (6 bytes: y, x, mode 08 town / 0A dungeon, dest, a, b; the
+tile is (x-7, y-8)), town buildings and people per town family `EA4A`.. (pointer table at `0E26`: y, x, 0C, kind,
+id, picture; kinds 10/11 house person, 08/09/0A/1B/1C outdoor person, 12 church, 13 hospital, 16/18/1A shops,
+14 spaceport counter, 1D governor / ship; Alis enters from two tiles below at X = (x-7)*16, Y = (y-8)*16 with `up:32`),
+dungeon events `EF5C` (7 bytes: floor, square, flag address `C5xx`/`C6xx`, type 00 item / 01 meseta / 02 fight + item
+/ 03 script, two data bytes), monsters `C69F` (32 bytes each, name first; ids 01 Sworm .. 43 Medusa, 48 Lassic,
+49 Dark Falz, 4A Saccubus), text with a 128-word dictionary from `BB73` (game folder `tools/dec.py`; event table: `tools/ev.py`).
+Event squares used: Medusa 0A:67, Dr. Mad 00:53, Odin in stone 00:E3, blue dragon 25:1D, red dragon 1B:5A,
+Titan 3A:79, Lassic's shadow 35:C2, Skull-En 08:29, mansion guards 21:94, Tajim 22:24, dungeon shop 15:55,
+cat thief 15:C8, talking spider 01:E9, dungeon robotcop 14:41.
+Flags: `C502` = Nekise gave the Laconian pot (needed for the Myau trade together with item 38); chest flags `C600`+.
+Myau trade: `@start,PARTY1,INV1,poke:C502=01,WARP:0E:4001:D001,up:32,w150,b2,w200,down,w60,b2,w150` then pages.
+Not solved: the Odin cure (the menu opens by itself at the statue; ITEM -> ALSULIN -> USE not hit with the right
+cursor timing), the real Dark Falz fight and the ending (forced Dark Falz dodges every blow; floors 3B/3C hold his
+chamber, `7` squares there), the Luveno flight, the hovercraft and ice digger in use (the warped overworld counts
+as a town), Noah joining (governor's letter, Maharu cave floor 1E), save export for Motavia/Dezoris.
 
 ## Naming
 No character naming: the four heroes have fixed names (verified for Alis; source for the others). The US
@@ -252,9 +287,9 @@ party size lives elsewhere (open question).
 
 ## Open questions
 - Exact revision against No-Intro (v1.2 vs v1.3 export): needs Dat-o-Matic or SMS Power.
-- Overworld warp: which variable holds the overworld position/map (pokes of `C301`/`C305` did not take there).
-- Party size / membership variable (to add Myau, Odin, Noah by poke).
-- How to talk to townspeople (bumping and buttons tried, see Controls).
+- ~~Overworld warp~~ solved: `WARP` (C202=08).
+- ~~Party size~~ solved: `C4F0` = members - 1.
+- ~~How to talk to townspeople~~ solved (Controls).
 - Church: the manual says it tells the EXP needed for the next level; answering NO only gives a blessing.
 - Title `down` did not move the cursor in one test (`up` did); check once more.
 - The manual describes save-name registration (RUB/ADV/END, 5 letters); the US cartridge asked for none.

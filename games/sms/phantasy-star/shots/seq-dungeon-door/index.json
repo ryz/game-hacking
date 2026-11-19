@@ -1,0 +1,75 @@
+{
+ "game": {
+  "slug": "phantasy-star",
+  "title": "Phantasy Star",
+  "platform": "sms",
+  "region": "na",
+  "model": "ntsc",
+  "sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+  "crc32": "e4a65e79"
+ },
+ "set": "seq-dungeon-door",
+ "shots": [
+  {
+   "id": "01_door",
+   "category": "gameplay",
+   "caption": "A cave on Palma: a closed door ahead",
+   "route": "@start,PARTY3,INV3,DUN:02:68:01,w30",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_01_door.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-door_01_door.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "02_open_clip",
+   "category": "gameplay",
+   "caption": "Button 2 at the door: it swings open (clip)",
+   "route": "@start,PARTY3,INV3,DUN:02:68:01,w30,b2,rec:90:2:20",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "clip": {
+    "frames": 90,
+    "every": 2,
+    "kept": 46,
+    "poster": 20,
+    "seconds": 1.51,
+    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_02_open_clip.gif",
+    "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-door_02_open_clip.gif"
+   },
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_02_open_clip.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-door_02_open_clip.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "03_open",
+   "category": "gameplay",
+   "caption": "The open door: a dark doorway",
+   "route": "@start,PARTY3,INV3,DUN:02:68:01,w30,b2,w150",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_03_open.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-door_03_open.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  },
+  {
+   "id": "04_through",
+   "category": "gameplay",
+   "caption": "UP: through the door into the corridor beyond",
+   "route": "@start,PARTY3,INV3,DUN:02:68:01,w30,b2,w150,up:1,w150",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_04_through.png",
+   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-door_04_through.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-19"
+  }
+ ]
+}

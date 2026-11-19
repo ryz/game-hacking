@@ -1,0 +1,7 @@
+# id | category | caption | route
+01_north | gameplay | The lit cave, facing north | @dungeon,settle,settle
+02_turn_clip | gameplay | RIGHT: the view rotates a quarter turn (clip) | @dungeon,settle,settle,right:1,rec:56:2:8
+03_east | gameplay | Facing east | @dungeon,settle,settle,right:1,w60
+04_south | gameplay | Facing south | @dungeon,settle,settle,right:1,w60,right:1,w60
+05_west | gameplay | Facing west | @dungeon,settle,settle,right:1,w60,right:1,w60,right:1,w60
+06_north | gameplay | A full turn: facing north again | @dungeon,settle,settle,right:1,w60,right:1,w60,right:1,w60,right:1,w60

@@ -1,0 +1,13 @@
+# id | category | caption | route
+marman_group | battle | Four Marmen at once: one picture, a HP line per monster | @start,PARTY4,INV4,DUN:30:79:00,FIGHT:1A
+fishman_group | battle | A group of Fishmen: the HP box lists one line per monster | @start,PARTY4,INV4,DUN:30:79:00,settle,FIGHT:14
+talk_dezorian | battle | TALK that works: a Dezorian answers "Many of the treasure chests in..." | @start,PARTY4,INV4,DUN:30:79:00,FIGHT:1B,settle,down,w20,down,w20,down,w20,b2,w30,b2,w120
+talk_barbarian | battle | TALK: a Barbarian asks "You understand our language?" | @start,PARTY4,INV4,DUN:30:79:00,FIGHT:0F,settle,down,w20,down,w20,down,w20,b2,w30,b2,w120
+sorcerers | battle | Two Sorcerers face the full party of four | @start,PARTY4,INV4,DUN:30:79:00,FIGHT:2F
+magician | battle | A Magician (HP 138) in the mountains of Dezoris | @start,PARTY4,INV4,DUN:30:79:00,settle,FIGHT:38
+gold_dragon | battle | Gold Dragon against Alis and Myau, both nearly dead | @start,PARTY2,INV2,poke:C401=05,poke:C411=04,DUN:30:79:00,settle,FIGHT:46
+wipe_myau | battle | The Gold Dragon strikes: "Myau died." | @start,PARTY2,INV2,poke:C401=05,poke:C411=04,DUN:30:79:00,settle,FIGHT:46,settle,b2,w60,b2,w60,w300,b2,w100
+wipe_all | gameover | Party wiped out: "You are all dead." | @start,PARTY2,INV2,poke:C401=05,poke:C411=04,DUN:30:79:00,settle,FIGHT:46,settle,b2,w60,b2,w60,w300,b2,w100,b2,w100
+lassic | boss | Lassic (HP 238), forced encounter: the field background, not his castle | @start,PARTY5,INV5,DUN:39:CA:01,settle,FIGHT:48
+dark_falz | boss | Dark Falz, forced encounter: he dodges every blow outside his chamber | @start,PARTY5,INV5,DUN:3C:75:02,settle,FIGHT:49
+medusa_attack | boss | Medusa's gaze: "Odin has been turned to stone." (clip) | @start,PARTY3,INV3,DUN:0A:66:01,up:1,w200,settle,b2,w30,b2,w30,b2,w30,rec:180:2:20

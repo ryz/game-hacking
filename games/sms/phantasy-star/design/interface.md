@@ -55,6 +55,26 @@ as **Observation:** with the reason, never as a fact. Coverage: the early game (
 | Battle messages | message | battle | results | kill, EXP, level, TALK, death | button / time | | `battle_killed`, `battle_exp`, `battle_levelup`, `battle_talk`, `battle_died` | some pass by themselves |
 | Game over | message | party dead -> title | end | "... The adventure is over." | button | | `gameover` | no continue prompt, back to the title |
 
+
+### 2b. Screens added in part 2 (2026-11-19)
+| Screen / element | Purpose | Shows | Accepts | Answers / leads to | Shots |
+|---|---|---|---|---|---|
+| Person scene | talk with a townsperson | the person in front of a picture of the town, a two-line text box below | button 1/2 per page | YES / NO window or the map | `talk_townsperson`, `nekise`, `npc_question`, `parolit_medusa`, `cola_beggar`, `bortevo_junk`, `governor`, `myau_merchant`, `myau_trade`, `myau_traded` |
+| Person in a dungeon | a person met on an event square | the person over the corridor view, text box | button, YES / NO | | `cat_thief`, `dungeon_robotcop`, `talking_spider`, `mansion_guard`, `boss_shadow` |
+| Portrait scene | story moments | a framed portrait (Alis, Myau) on black, text under it | button per page | | `myau_meet_alis`, `myau_meet` |
+| Hospital | heal for a fee | nurse at a counter, red cross, YES / NO | YES / NO | fee page | `hospital`, `hospital_fee` |
+| Dungeon shop | buy from a merchant inside a dungeon | the merchant in the corridor | | | `dungeon_shop` |
+| Spaceport counter | board the liner | the guard on the landing field with ships, YES / NO | YES / NO | the flight scene | `spaceport_guard`, `spaceship_board` |
+| Flight scene | travel between planets | the ship on a star field | none | the arrival spaceport | `spaceship_flight` |
+| Luveno destination list | pick a destination | Hapsby, a list GOTHIC UZO SKURE, "Where are we going?" | up/down, button | | `luveno_ship` |
+| Name grid | name a new save | letters A-Z and signs, ADV RUB END | D-pad, button | | `save_name` |
+| Member chooser | pick who acts (MAGC, STAS) | a list of the party under the field menu | up/down, button | the member's list | `magic_who` |
+| Item USE for vehicles | change to a vehicle | ITEM list with USE / EQP / DRP | | the vehicle, or "will do no good" | `landrover_menu`, `vehicle_no_good` |
+| Party HUD | permanent | one box per member with HP / MP, up to four | | | `boss_titan`, `battles:sorcerers` |
+| Battle HP box | monster HP | the name, and one HP line per monster of the group | | | `battles:marman_group`, `battles:fishman_group` |
+| Battle messages | results | deaths, "You are all dead.", TALK answers, status ("turned to stone") | button | | `battles:wipe_myau`, `battles:wipe_all`, `battles:talk_dezorian`, `battles:talk_barbarian`, `battles:medusa_attack` |
+| Map: towns | top-down towns, each family with its own tiles | | D-pad | | `parolit`, `gothic`, `scion`, `drasgow`, `paseo`, `motavia_village`, `motavia_village2`, `skure`, `dezorian_town`, `lassic_castle` |
+
 ## 3. Screen flow
 - Power-on -> title -> START -> planet -> caption -> Nero scenes -> Camineet (control).
 - Title -> CONTINUE -> continue/delete -> slot list -> the saved place.

@@ -61,6 +61,34 @@ party members, vehicles and other planets **(source)**.
 | Saving and sessions | Save | SAVE anywhere outside battle to one of five slots; CONTINUE loads or deletes **(verified)** | menu, slot | 5 slots **(verified)** | | `save_slots`, `continue_prompt`, `continue_slots` | shown |
 | Pacing and difficulty | Early danger | Alis alone with 16 HP; Sworm 8 HP, Scorpion 12, Wing Eye 11 **(verified)** | | | content.md | `battle_scorpion`, `battle_wing_eye` | shown |
 
+
+### 2b. The rest of the game (capture 2026-11-19, part 2)
+Shot ids of `../shots/main/index.md`; `battles:` ids are in `../shots/battles/index.md`, `seq-*:` in the
+sequence sets. Values come from the ROM tables (RAM map in the playbook) or the screens.
+
+| Group | System / mechanic | Rule in one line | Player's inputs | Numbers known | Details | Shots | Status |
+|---|---|---|---|---|---|---|---|
+| Player verbs | Talk | take one step toward a person, then push again into them: a scene with the person and a text box opens **(verified)**; a push from standstill does nothing | D-pad | | playbook Controls | `talk_townsperson`, `nekise`, `parolit_medusa`, `bortevo_junk` | shown |
+| Player verbs | Questions | many people end on a YES / NO window; the answer branches the talk **(verified)** | up/down, button 2 | | | `npc_question`, `cola_beggar`, `cat_thief`, `dungeon_robotcop` | shown |
+| Player verbs | Doors in dungeons | facing a door, button 2 opens it; walking into it does nothing **(verified)** | button 2, up | | interface.md | `seq-dungeon-door:01_door`, `seq-dungeon-door:02_open_clip`, `seq-dungeon-door:04_through` | shown |
+| Player verbs | Stairs | stepping onto a stair square fades to black and loads the floor above or below **(verified)** | up | about 90 frames black | | `seq-dungeon-stairs:01_stairs`, `seq-dungeon-stairs:02_climb_clip`, `seq-dungeon-stairs:03_arrived` | shown |
+| Player verbs | Dungeon walk and turn | one square per press, a quarter turn per left/right, four turns make a full circle **(verified)** | up, right | step ~36 frames, turn ~48 | | `seq-dungeon-walk:02_step_clip`, `seq-dungeon-walk:06_step4`, `seq-dungeon-turn:02_turn_clip`, `seq-dungeon-turn:06_north` | shown |
+| Characters | Party of four | Myau joins in Paseo when the merchant trades him for the Laconian pot; Odin waits in stone in a cave; party size in RAM `C4F0` (members - 1) **(verified)** | | Myau joins at level 1 (HP 22) **(RAM)** | playbook RAM map | `myau_merchant`, `myau_trade`, `myau_traded`, `myau_meet_alis`, `myau_meet`, `odin_stone` | shown |
+| Characters | Level tables | per character and level: max HP, attack, defense, max MP, EXP needed, number of battle and field spells (ROM `F8AF`, 4 x 30 levels) **(RAM)** | | Alis L1 16 HP / L30 218; Myau L30 214; Odin L30 192, no MP; Noah L30 195 HP, 83 MP | playbook | `magic_who` | shown |
+| Resources | Hospital | heals for a fee asked after YES **(verified)** | YES / NO | 10 meseta for Alis alone at the start of the scene **(verified)** | | `hospital`, `hospital_fee` | shown |
+| Resources | Shops in dungeons | a few merchants sit inside dungeons (shortcake, gas shield) **(verified)** | | shortcake 1000, gas shield 1000 (ROM text) | | `dungeon_shop` | shown |
+| Conflict | Groups | several monsters of one kind come together; the HP box gets one line per monster **(verified)** | | up to 5 lines seen | | `battles:marman_group`, `battles:fishman_group`, `battles:sorcerers` | shown |
+| Conflict | Talk in battle | most monsters "cannot understand"; Dezorians and Barbarians answer **(verified)** | TALK | | | `battles:talk_dezorian`, `battles:talk_barbarian` | shown |
+| Conflict | Status: stone | Medusa's gaze turns a member to stone **(verified)** | | | | `battles:medusa_attack`, `boss_medusa` | shown |
+| Conflict | Party wipe | when every member dies: "You are all dead.", then the game-over pages **(verified)** | | | | `battles:wipe_myau`, `battles:wipe_all` | shown |
+| Opponents | Bosses | fixed battles on event squares: Medusa, Dr. Mad, dragons, Titan, Lassic's shadow; table in ROM `EF5C` (floor, square, flag, type, data) **(RAM)** | | Medusa 200 HP, Dr. Mad 233, blue dragon 210, red dragon 175, Titan 190, Lassic 238 | content.md | `boss_medusa`, `boss_dr_mad`, `boss_blue_dragon`, `boss_red_dragon`, `boss_titan`, `boss_shadow`, `battle_skull_en`, `battles:lassic`, `battles:dark_falz`, `battles:gold_dragon`, `battles:magician` | shown |
+| World | Three planets | Palma (green), Motavia (sand), Dezoris (ice); each overworld 128 tiles wide, wrapping **(verified)** | | map ids 0 / 1 / 2 in `C309` | playbook | `palma_parolit`, `palma_drasgow`, `palma_coast_cave`, `palma_mountains`, `palma_gothic`, `motavia_desert`, `dezoris_ice`, `dezoris_village` | shown |
+| World | Space travel | the spaceport liner (passport) flies Palma - Motavia; later the Luveno, flown by Hapsby, goes to Gothic, Uzo or Skure **(verified)** | YES / NO, destination list | passport 100 meseta (ROM text) | | `palma_spaceport`, `spaceport_guard`, `spaceship_board`, `spaceship_flight`, `paseo_spaceport`, `luveno_ship` | shown |
+| World | Vehicles | LANDROVR used from ITEM on the surface turns the party into a tank-like rover; a vehicle used in the wrong place "will do no good" **(verified)** | ITEM, USE | | | `landrover_menu`, `landrover`, `vehicle_no_good` | shown |
+| Goals | Key-item chain | the pot buys Myau, the shortcake opens the governor, his letter recruits Noah, the Alsulin cures Odin (ROM text, partly verified) | | | playbook Strategy | `governor`, `mansion_guard` | shown |
+| Saving | Save name | a new slot asks for a name on a letter grid (ADV RUB END) **(verified)** | D-pad, button | | | `save_name` | shown |
+| Ending | Ending and credits | not reached: Dark Falz dodges every blow when forced outside his chamber; the trigger of the real fight was not found | | | findings.md | (no shot: not reached) | open |
+
 ## 3. How the systems feed each other
 - Fights -> experience -> levels -> more HP, attack, defense -> safer fights further out.
 - Fights and cave chests -> meseta -> armory and food -> better defense and healing.

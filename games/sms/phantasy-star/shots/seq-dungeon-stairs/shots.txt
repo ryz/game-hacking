@@ -1,0 +1,5 @@
+# id | category | caption | route
+01_stairs | gameplay | Medusa's tower: stairs up in front of the party | @start,PARTY3,INV3,DUN:0A:2E:02
+02_climb_clip | gameplay | UP: the party climbs, the screen goes black (clip) | @start,PARTY3,INV3,DUN:0A:2E:02,up:1,rec:120:2:4
+03_arrived | gameplay | The floor above: a new corridor | @start,PARTY3,INV3,DUN:0A:2E:02,up:1,w200
+04_turn_back | gameplay | Turning round: the way back down | @start,PARTY3,INV3,DUN:0A:2E:02,up:1,w200,right:1,w60,right:1,w60
