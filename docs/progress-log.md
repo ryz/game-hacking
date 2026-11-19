@@ -2,6 +2,12 @@
 
 Append-only, newest first.
 
+## 2026-11-19 - Phantasy Star (Master System) scouted, early game captured (53 shots)
+- game-scout (a7271a5): playbook, 12 checkpoints, RAM map, item table, save 01_start; found that SMS savestates
+  dropped cartridge RAM, fixed in the backend with a test (7bff75b).
+- game-capture (75ae7b7): 53 shots from the title to the first cave and game over, three lenses (early game),
+  floor map at CB00, 4 more checkpoints. Coordinator: cold `--verify` 53/53, sheet looked at. Merged to `master`.
+
 ## 2026-11-19 - Phantasy Star (Master System) registered
 - `intake.py --slug phantasy-star --region na` (SHA-1 257ca76e..., 512 KiB, header Export, product 9500,
   version 2, checksum ok, model ntsc). Boot probe: title from frame ~120; `b1` on the title starts the intro.

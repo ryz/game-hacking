@@ -81,8 +81,9 @@ Current snapshot; history in `progress-log.md`.
   ntsc/ntsc-j/pal (from the `TMR SEGA` header; headerless Japanese carts need `--region jp --model ntsc-j`), keys
   `b1 b2 pause`, savestates, 32 KiB cartridge-RAM `.sav` export and `sav:`, Z80-space peek/poke and PC
   (`tools/gpgx-debug.patch`), RAM search on work RAM, Pro Action Replay (`gs:`), Game Genie (`rom:` variant);
-  3 tests on an original test ROM (`tests/make_sms_rom.py`). First game: Phantasy Star (US/EU, registered
-  2026-11-19, `games/sms/phantasy-star/`): boots to the title, `b1` starts the intro; scout pending. Not set up: Game Gear,
+  3 tests on an original test ROM (`tests/make_sms_rom.py`). First game: Phantasy Star (US/EU, `games/sms/phantasy-star/`):
+  scouted (16 checkpoints, RAM map, save 01_start) and the early game captured (53 shots, verified cold).
+  Open: talking to townspeople, overworld warp, party-member flag, the rest of the game. Not set up: Game Gear,
   SG-1000, light gun/paddle, Reset button, Sega Card. Notes: `docs/emulator/sms.md`.
 
 - Apple II backend (2026-11-18): AppleWin libretro core (audetto's Linux port) at a pinned commit

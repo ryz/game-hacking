@@ -9,6 +9,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-19 - Phantasy Star (Master System, US/EU), early game
+- Task: early part of the main set: 53 shots (title, intro, Camineet, shops, church, menus, items, overworld,
+  battles with EXP/level-up/chests, lit cave with clips and a chest, death and game over, continue), 53/53 from
+  an empty cache, three lenses for the early game, commit 75ae7b7.
+- Worked: shooting the scout's planned lines first, then fixing what the sheet showed; `play.py sample` for
+  flash/typing frames; a RAM dump in first person showed the 16x16 floor map (CB00) in two calls.
+- Friction: `record` refuses after `sample` (stale screen); ~12 calls lost on how to talk to townspeople (no
+  source reachable); the playbook's town-poke note read as a warp, it is not.
+- Proposed rule change: (1) emulator README: in first-person views dump RAM once and look for a 16x16 block
+  with few distinct values (the floor map); (2) tools: `sample` should not mark the screen stale, or `record`
+  should take leading tokens.
+- Corrected: coordinator re-ran `shoot.py sms/phantasy-star main --verify` from an empty cache: 53/53; sheet
+  looked at, all frames as captioned (intro_nero_dying is one page of a longer speech).
+- Status: (1) logged (first report); (2) open tool wish.
+
 ### 2026-11-19 - Ultima III (DOS) set main
 - Task: set `main` from power-on to the ending with three lenses: 260 shots, 260/260 from an empty cache,
   published and pushed (c835148, 9a54149).
