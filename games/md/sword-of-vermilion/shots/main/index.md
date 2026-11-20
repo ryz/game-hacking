@@ -1,6 +1,6 @@
 # Sword of Vermilion - shots: main
 
-Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2`. 65 shots. Contact sheet: [sword-of-vermilion_md_na_set_sheet.png](sword-of-vermilion_md_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2`. 76 shots. Contact sheet: [sword-of-vermilion_md_na_set_sheet.png](sword-of-vermilion_md_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -69,5 +69,16 @@ Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f
 | env_overworld_parma | gameplay | Overworld south of Parma; the MAGIC panel shows Ferros readied | yes | [png](sword-of-vermilion_md_na_gameplay_env_overworld_parma.png) |
 | battle_magic | battle | Battle: A casts the readied Ferros (MP 37 to 36) at the green slimes | no | [png](sword-of-vermilion_md_na_battle_battle_magic.png) |
 | gameplay_cave_entrance | gameplay | Overworld east of Parma: a stone cave entrance across the road | yes | [png](sword-of-vermilion_md_na_gameplay_gameplay_cave_entrance.png) |
+| dialogue_map_gift | dialogue | Man by the well: "Here is a map of the route to Parma." | no | [png](sword-of-vermilion_md_na_dialogue_dialogue_map_gift.png) |
+| map_area_wyclif | map | Outside Wyclif's gate: the panel now shows the area map with the village | yes | [png](sword-of-vermilion_md_na_map_map_area_wyclif.png) |
+| system_mirror_atlas | system | Item, Use: "ryz uses the Mirror of Atlas." | yes | [png](sword-of-vermilion_md_na_system_system_mirror_atlas.png) |
+| map_world_mirror | map | Mirror of Atlas: "We have maps of the whole world." The area map appears | yes | [png](sword-of-vermilion_md_na_map_map_world_mirror.png) |
+| map_area_south | map | Overworld south of Wyclif: the area map in the panel, the prince as a marker | yes | [png](sword-of-vermilion_md_na_map_map_area_south.png) |
+| map_cave_south | map | Cave south of Wyclif: the cave map in the panel after the Mirror of Atlas | yes | [png](sword-of-vermilion_md_na_map_map_cave_south.png) |
+| map_cave_east | map | Cave east of Parma: its map in the panel, the prince at the entrance | yes | [png](sword-of-vermilion_md_na_map_map_cave_east.png) |
+| system_titania_mirror | system | Titania's Mirror: "A glowing map of this area appears in the mirror." | yes | [png](sword-of-vermilion_md_na_system_system_titania_mirror.png) |
+| system_titania_cave | system | Titania's Mirror in a cave: "Nothing happened!" | yes | [png](sword-of-vermilion_md_na_system_system_titania_cave.png) |
+| map_area_hills | map | Mountain road south of Parma: hills on the area map, marker at the north edge | yes | [png](sword-of-vermilion_md_na_map_map_area_hills.png) |
+| map_area_east | map | East of Parma: area map with hills to the south, marker on the road | yes | [png](sword-of-vermilion_md_na_map_map_area_east.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
