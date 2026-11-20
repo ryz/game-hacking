@@ -38,7 +38,8 @@
     "CONTINUE": "down,start,w120,c,w300,c,w300",
     "FWD": "up:8,w40",
     "TL": "left:8,w60",
-    "TR": "right:8,w60"
+    "TR": "right:8,w60",
+    "SW": "up:10,c,w2,down:10,c,w2"
   },
   "ram": {
     "kims": {

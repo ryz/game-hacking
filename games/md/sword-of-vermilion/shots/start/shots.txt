@@ -1,0 +1,35 @@
+01_boot_sega | boot | SEGA logo at power-on | pow,w120,!
+02_intro_tree | cutscene | Intro: the sword in the stone under the tree on the cliff, lightning | pow,w660,!
+03_title | title | Title screen: SWORD OF VERMILION, Start / Continue | @title
+04_name_entry | menu | Name keyboard after Start: the prince named ryz | @name
+05_prologue_tsarkon | cutscene | Prologue: King Tsarkon's hordes invade Excalabria | @name,start,w60,w200*4,!
+06_prologue_blade | cutscene | Prologue: King Erik V sends Blade away with his son and the Ring of Wisdom | @name,start,w60,w200*8,!
+07_prologue_flight | cutscene | Prologue: Blade flees the burning castle with the baby | @name,start,w60,w200*14,!
+08_prologue_years | cutscene | Prologue: "Eighteen years have passed since Tsarkon began his search" | @name,start,w60,w200*17,!
+09_first_control | gameplay | First control: the prince at the south gate of Wyclif | @start
+10_blade_house | dialogue | Blade's house: "Where have you been? Your father is calling for you." | @t_blade_room
+11_blade_father | cutscene | Blade on his deathbed: "I am not your real father." | @t_blade_room,c,w20,b,w30,left:16,up:48,left:64,up:32,w20,up:64,w200,down:32,c,c,w90,settle
+12_blade_ring | cutscene | Blade: "I hid the Ring of Wisdom in a cave near the village" | @t_blade_room,c,w20,b,w30,left:16,up:48,left:64,up:32,w20,up:64,w200,down:32,c,c,w90,settle,mash:c:900,settle
+13_blade_farewell | cutscene | Blade's last words: "Go now, and remember me...." | @t_blade_room,c,w20,b,w30,left:16,up:48,left:64,up:32,w20,up:64,w200,down:32,c,c,w90,settle,mash:c:900,settle,c,w90*12,settle,PAGE*4,PAGE*4,PAGE*4,!
+14_wyclif_open | gameplay | Wyclif after Blade's death: outside his house, every door now opens | @wyclif
+15_field_menu | hud | C opens the field commands: Talk Magic / Item Equip / Str Seek / Open Take | @wyclif,c,w40
+16_status | inventory | Str: level 1, 33 HP, 200 kims from Blade | @wyclif,c,down*2,c,w40
+17_tavern | gameplay | Wyclif tavern | @tavern
+18_weapon_shop | shop | Wyclif weapon shop, crossed swords on the wall | @weapon_shop
+19_shop_list | shop | Weapon shop Buy list: Bronze Sword 100, shields 50 and 80, armour 200, 400 | @shop_list,w32,!
+20_buy_sword | shop | "What would you like to buy? Is Bronze Sword OK?" Yes / No | @shop_list,c,w90,settle
+21_bought | shop | "Thank you. Anything else for you today?" 100 kims left | @shop_list,c,w90,settle,c,w90,settle
+22_equip_weapon | inventory | Equip, Put on, Weapon: "What do you want to ready?" | @shop_list,c,w90,settle,c,w90,settle,c,w90,down,c,w90,c,w90,settle,down,c,w90,settle,b,w40,b,w40,b,w40,b,w40,b,w40,settle,c,right,down,c,w60,c,w60,c,w60,settle
+23_sword_readied | inventory | "ryz readied Bronze Sword." | @shop_list,c,w90,settle,c,w90,settle,c,w90,down,c,w90,c,w90,settle,down,c,w90,settle,b,w40,b,w40,b,w40,b,w40,b,w40,settle,c,right,down,c,w60,c,w60,c,w60,settle,c,w90,settle
+24_overworld | gameplay | Outside the south gate: first-person forest road, compass, KIM and EXP | @field
+25_overworld_trees | gameplay | Overworld: a stand of trees west of the road | @field,FWD*8
+26_slime_approach | gameplay | A green slime comes down the road toward the prince | @field,FWD*8,TR,FWD*6
+27_battle_start | battle | First battle: the prince among a pack of green slimes | @battle,w40,!
+28_battle_swing | battle | Bronze Sword swing (C) among the slimes | @battle,SW,!
+29_battle_hurt | battle | Surrounded: HP 9 of 33 | @battle,SW*4,!
+30_prince_falls | gameover | HP 0: the prince falls | @battle,SW*5,!
+31_revived | gameover | Revived in the church: "Arise, brave warrior!", half the money goes to the poor | @battle,SW*5,w120*5
+32_priest_menu | save | The priest: Remove a curse / Apply poison balm / Save your game / Stop | @battle,SW*5,w120*5,c,w60,c,c,w90,settle
+33_save_choice | save | "Save under which number?" Saved Game 1 to 3 | @battle,SW*5,w120*5,c,w60,c,c,w90,settle,down*2,c,w90,settle
+34_saved | save | "Your game was saved successfully!" | @battle,SW*5,w120*5,c,w60,c,c,w90,settle,down*2,c,w90,settle,c,w120,settle
+35_status_after | inventory | Str after the first battle: EXP 4, kims halved to 54 | @s_saved,c,down*2,c,w40
