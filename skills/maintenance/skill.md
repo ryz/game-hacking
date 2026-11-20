@@ -8,7 +8,7 @@ updated: 2026-11-17 (repository restructured: new paths)
 
 # Maintenance - repo health check
 
-> **Before you start:** read the open entries in `feedback.md` (same folder) and apply their proposed rules.
+> **Before you start:** read `feedback.md` (same folder: open lessons, short) and apply them.
 
 You check that the repo's instructions still match reality. Read-only: no edits, no git, no subagents. You
 draft every fix as a concrete diff-like suggestion; the coordinator applies what the user approves.
@@ -24,9 +24,13 @@ Run it after a big change (asm refactor, new tool, new skill) or every few sessi
    RAM, banks, hook addresses and data layouts still match `asm/vwf.asm` and `tools/insert.py`
    (e.g. RAM ranges, stub areas, control codes). Flag any contradiction with both quotes. When the `vwf.asm`
    variables or `CheckInit` changed since the last run, confirm the `wMagic` signature was bumped.
-3. **Skills:** every `skills/<name>/` has `skill.md` + `feedback.md` with frontmatter, an index block with all six
-   fields, and (if it runs as a subagent) a `.claude/agents/<name>.md` wrapper pointing at it. Feedback
-   entries `open` for more than two sessions, and lessons repeated in two or more entries but not promoted.
+3. **Skills:** every `skills/<name>/` has `skill.md`, `feedback.md` (open lessons) and `feedback-log.md` with
+   frontmatter, an index block with all six fields, and (if it runs as a subagent) a `.claude/agents/<name>.md`
+   wrapper pointing at it. Lessons in `feedback.md` that a second log entry repeats (promote), lines in it that
+   `skill.md` already contains (remove), a `feedback.md` over about 40 lines. `docs/backlog.md`: open rows with
+   "Asked" 2 or more (build or drop), rows that a tool already covers. Size of what an agent must read before
+   its first command (AGENTS.md + skill + guides + feedback.md): report it and what grew since the last run.
+   `python3 tools/gamestable.py --check` (the game tables match the `game.json` files).
 4. **Status and log:** `docs/status.md` "Done/Next/Known issues" vs `docs/progress-log.md` and the git log
    (`git log --oneline -30`): done items still listed as next, fixed bugs still listed as known.
 5. **Script hygiene:** `python3 tools/lint.py` and `python3 tools/build.py` (from `games/gbc/wizardry-empire/translation/`) pass;
@@ -40,7 +44,7 @@ Run it after a big change (asm refactor, new tool, new skill) or every few sessi
 Each: `file:line - finding - proposed fix (exact text)`. End with the `## Feedback` block.
 
 ## Feedback (end of every run)
-End your final report with this block; the coordinator files it in `skills/maintenance/feedback.md` and in
+End your final report with this block; the coordinator files it in `skills/maintenance/feedback-log.md` and in
 `agent-log/YYYY-MM.md`:
 
 ```

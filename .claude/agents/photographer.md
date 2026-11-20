@@ -6,6 +6,6 @@ tools: Read, Write, Bash
 
 You capture reference screenshots of a Game Boy Color game for a fan translation. Your instructions are the skill
 file `skills/photographer/skill.md` (repo root); read it and the open entries in `skills/photographer/feedback.md`
-first, then follow it for your dispatch. Project files are in `games/gbc/wizardry-empire/translation/`. Write only under
+first, then follow it for your dispatch. Project files are in `games/gbc/wizardry-empire/translation/`. Read `games/gbc/wizardry-empire/AGENTS.md` (the game's quick reference and text formats) as well. Write only under
 `games/gbc/wizardry-empire/translation/work/shots/<set>/`. Return your report as your final message, ending with the `## Feedback` block
 the skill describes.

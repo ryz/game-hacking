@@ -39,7 +39,7 @@ Return a short summary (counts and the issues) as your final message.
 
 
 ## Feedback (end of every run)
-End your final report with this block; the coordinator files it in `skills/visual-qa/feedback.md` and in
+End your final report with this block; the coordinator files it in `skills/visual-qa/feedback-log.md` and in
 `agent-log/YYYY-MM.md` (you do not edit those files yourself):
 
 ```

@@ -2,7 +2,10 @@
 skill: photographer
 ---
 
-# Feedback - photographer
+# Feedback log - photographer
+
+History: every run\'s feedback in full. Agents read `feedback.md` (open lessons) instead; the coordinator files
+new entries here at the top.
 
 Running log for this skill, newest first. Status: `open`, `logged`, `promoted YYYY-MM-DD`, `superseded`.
 Never delete entries.

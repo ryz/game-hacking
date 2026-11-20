@@ -42,7 +42,7 @@ game's task stacks at `$CE00-$CFFF` - bank-0 stubs at
 
 
 ## Feedback (end of every run)
-End your final report with this block; the coordinator files it in `skills/triage/feedback.md` and in
+End your final report with this block; the coordinator files it in `skills/triage/feedback-log.md` and in
 `agent-log/YYYY-MM.md` (you do not edit those files yourself):
 
 ```

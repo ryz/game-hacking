@@ -2,17 +2,11 @@
 skill: <name>
 ---
 
-# Feedback - <name>
+# Open lessons - <name>
 
-Running log for this skill, newest first. Status: `open`, `logged`, `promoted YYYY-MM-DD`, `superseded`.
-Never delete entries.
+Read this before working: lessons from single runs that are not in `skill.md` yet. A lesson that a second run
+confirms, or that the owner states as a rule, is promoted into `skill.md` (or the document it names) and
+removed here. Every run's full feedback, newest first: `feedback-log.md` (history, not required reading).
+Tool wishes are not listed here: `docs/backlog.md`.
 
-## Entries
-
-### YYYY-MM-DD - <task>
-- Task:
-- Worked:
-- Corrected:
-- Friction:
-- Proposed rule change:
-- Status: open
+None.

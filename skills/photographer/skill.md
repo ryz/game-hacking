@@ -76,7 +76,7 @@ take them from a savestate with no settle wait. Museum monster room: the `poke` 
 - Screens you could not reach and why.
 
 ## Feedback (end of every run)
-End your final report with this block; the coordinator files it in `skills/photographer/feedback.md` and in
+End your final report with this block; the coordinator files it in `skills/photographer/feedback-log.md` and in
 `agent-log/YYYY-MM.md`:
 
 ```

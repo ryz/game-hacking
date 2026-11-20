@@ -54,7 +54,7 @@ Measure a line: `python3 -c "import sys;sys.path.insert(0,'tools');import text;p
 
 
 ## Feedback (end of every run)
-End your final report with this block; the coordinator files it in `skills/translator/feedback.md` and in
+End your final report with this block; the coordinator files it in `skills/translator/feedback-log.md` and in
 `agent-log/YYYY-MM.md` (you do not edit those files yourself):
 
 ```

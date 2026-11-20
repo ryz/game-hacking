@@ -45,7 +45,7 @@ Each: `file key - current EN - suggested EN - why`.
 
 
 ## Feedback (end of every run)
-End your final report with this block; the coordinator files it in `skills/editor/feedback.md` and in
+End your final report with this block; the coordinator files it in `skills/editor/feedback-log.md` and in
 `agent-log/YYYY-MM.md` (you do not edit those files yourself):
 
 ```

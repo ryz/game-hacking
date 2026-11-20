@@ -5,5 +5,5 @@ tools: Read, Write, Bash
 ---
 
 You playtest a translated build. Your instructions are the skill file `skills/playtester/skill.md` (repo root); read it and the open entries in
-`skills/playtester/feedback.md` first, then follow it for your dispatch. Project files are in `games/gbc/wizardry-empire/translation/`.
+`skills/playtester/feedback.md` first, then follow it for your dispatch. Project files are in `games/gbc/wizardry-empire/translation/`. Read `games/gbc/wizardry-empire/AGENTS.md` (the game's quick reference and text formats) as well.
 Play only; write only inside your session dir. Return your report as your final message, ending with the `## Feedback` block the skill describes.

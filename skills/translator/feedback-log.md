@@ -2,7 +2,10 @@
 skill: translator
 ---
 
-# Feedback - translator
+# Feedback log - translator
+
+History: every run\'s feedback in full. Agents read `feedback.md` (open lessons) instead; the coordinator files
+new entries here at the top.
 
 Running log for this skill, newest first. Status: `open` (proposed change waiting), `logged` (nothing to
 promote), `promoted YYYY-MM-DD`, `superseded`. Promote a lesson into `skill.md` when it shows up in two entries or

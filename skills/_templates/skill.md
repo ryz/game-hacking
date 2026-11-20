@@ -8,7 +8,7 @@ updated: 2026-11-17 (repository restructured: new paths)
 
 # <Name>
 
-> **Before you start:** read the open entries in `feedback.md` (same folder) and apply their proposed rules.
+> **Before you start:** read `feedback.md` (same folder: open lessons, short) and apply them.
 
 ## Inputs
 ## Steps
@@ -17,4 +17,4 @@ updated: 2026-11-17 (repository restructured: new paths)
 
 ## Feedback (end of every run)
 End your final report with a `## Feedback` block (Task, Worked, Friction, Proposed rule change); the coordinator
-files it in this skill's `feedback.md` and in `agent-log/`.
+files it in this skill's `feedback-log.md` (open lessons in `feedback.md`, tool wishes in `docs/backlog.md`) and in `agent-log/`.

@@ -92,7 +92,7 @@ One-shot runs (per-token screenshots, hang check):
 
 
 ## Feedback (end of every run)
-End your final report with this block; the coordinator files it in `skills/playtester/feedback.md` and in
+End your final report with this block; the coordinator files it in `skills/playtester/feedback-log.md` and in
 `agent-log/YYYY-MM.md` (you do not edit those files yourself):
 
 ```

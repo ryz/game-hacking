@@ -8,7 +8,7 @@ updated: 2026-11-17 (repository restructured: new paths)
 
 # Design writer - Wizardry Empire: game-design documents
 
-> **Before you start:** paths are relative to `games/gbc/wizardry-empire/translation/`. Read the open entries in `feedback.md` (same
+> **Before you start:** paths are relative to `games/gbc/wizardry-empire/translation/`. Read `feedback.md` (open lessons, same
 > folder) and apply their proposed rules. Then read `../DOCUMENTS.md` and the "Notation and style" section of
 > `../design/README.md`: both are binding (notation, confidence tags, terms, spelling, structure, cross-links).
 > Binding terms: `glossary.md`.
@@ -99,4 +99,4 @@ and the self-check results (address search hits: 0; numbers without a source: 0;
 
 ## Feedback (end of every run)
 End your final report with a `## Feedback` block (Task, Worked, Friction, Proposed rule change); the coordinator
-files it in this skill's `feedback.md` and in `agent-log/`.
+files it in this skill's `feedback-log.md` and in `agent-log/`.

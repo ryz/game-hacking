@@ -1,17 +1,19 @@
 ---
-updated: 2026-11-15
+updated: 2026-11-20
 ---
 
 # Skill index
 
 Routing map: which skill to load for a job. Each `<skill>/skill.md` is the source of truth; this file only points
-to it. Every skill folder has a `feedback.md` - read its open entries before working.
+to it. Every skill folder has a `feedback.md` (open lessons, short: read it before working) and a
+`feedback-log.md` (every run's feedback in full, newest first: history, not required reading).
 
 ## Quick start
 1. Read `AGENTS.md` (repo rules) if you have not this session.
-2. Pick the skill below; open its `skill.md` and the open entries in its `feedback.md`.
+2. Pick the skill below; open its `skill.md` and its `feedback.md`.
 3. Subagents: the `.claude/agents/<skill>.md` wrapper loads the skill; the coordinator dispatches with exact paths.
-4. End every run with a `## Feedback` block; the coordinator files it (feedback.md + `agent-log/`).
+4. End every run with a `## Feedback` block; the coordinator files it (`feedback-log.md`, open lessons in
+   `feedback.md`, tool wishes in `docs/backlog.md`, a line in `agent-log/`).
 
 ## Layers
 - **Coordination:** coordinator (the main session).
@@ -20,7 +22,7 @@ to it. Every skill folder has a `feedback.md` - read its open entries before wor
 - **Verification:** playtester (plays toward a goal), visual-qa (judges screenshot sheets).
 - **Documentation:** photographer (pixel-exact reference screenshots, English and original side by side),
   design-writer (game-design documents for designers, from the tech reference).
-- **Database games (shared tools, any GB/GBC, NES/Famicom or SNES/Super Famicom game):** game-scout (research + playbook), game-capture (play +
+- **Database games (shared tools; platforms: `docs/emulator/<platform>.md`):** game-scout (research + playbook), game-capture (play +
   screenshot set).
 - **Upkeep:** maintenance (repo health check: docs vs code, skills, feedback, status drift).
 
@@ -132,13 +134,14 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 ### game-capture
 - File: `skills/game-capture/skill.md`
 - Use when: a game has a playbook and needs (more) database screenshots.
-- Main output: `games/<platform>/<slug>/shots/<set>/` (native PNGs named `<game>_<platform>_<region>_<category>_<id>.png`, 3x copies in `3x/`, index.json/md, contact sheet, shots.txt),
+- Main output: `games/<platform>/<slug>/shots/<set>/` (native PNGs named `<game>_<platform>_<region>_<category>_<id>.png`, index.json/md, contact sheet, shots.txt),
   verified with `shoot.py --verify`; playbook and `design/` reference (rules, numbers, findings) written while
   playing; milestone saves in `games/<platform>/<slug>/saves/` for the owner.
-- Also load: `docs/emulator/README.md`, `docs/capture-guide.md`, the game's playbook.
+- Also load: `docs/emulator/README.md` + the platform file, `docs/capture-guide.md`, the game's playbook.
 - Do not use for: research from scratch (game-scout); Wizardry Empire JP/EN reference sets (photographer).
 - Guardrails: writes only `work/`, `rom/saves|patches/<slug>/` and `games/<platform>/<slug>/`; cheat freely, but visible
-  values stay realistic; main character "ryz"; commits only its game folder at major milestones (push to the session's branch).
+  values stay realistic; main character "ryz"; commits only its game folder at major milestones (push to the session's branch);
+  works in batches (`tools/preview.py`, `shoot.py --only`), budget counted in tool calls.
 
 ### maintenance
 - File: `skills/maintenance/skill.md`
@@ -149,7 +152,7 @@ new ROM -> `tools/intake.py` (coordinator) -> game-scout -> game-capture -> coor
 - Guardrails: read-only; every finding cites file:line and proposes exact text.
 
 ## Templates
-`skills/_templates/`: `skill.md`, `feedback.md` (new skills), `dispatch.md` (every subagent dispatch),
+`skills/_templates/`: `skill.md`, `feedback.md`, `feedback-log.md` (new skills), `dispatch.md` (every subagent dispatch),
 `bug-report.md` (user and playtester bug reports).
 
 ## Adding a skill

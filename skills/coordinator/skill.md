@@ -3,13 +3,14 @@ skill: coordinator
 project: all
 summary: The main session: plan, dispatch subagents, verify and integrate their results, build and ship.
 access: write (repo)
-updated: 2026-11-18 (shot file names, intake --region)
+updated: 2026-11-20 (feedback split, backlog rule, budgets in calls, game.json work/open, generated tables)
 ---
 
 # Coordinator
 
 The main Claude session. Subagents start cold and see none of the conversation, so every dispatch must be
-self-contained. Read `skills/skill-index.md` to pick the skill; read its `feedback.md` before dispatching.
+self-contained. Read `skills/skill-index.md` to pick the skill; read its `feedback.md` (open lessons) before
+dispatching. Wizardry Empire work: `games/gbc/wizardry-empire/AGENTS.md` first (quick reference, text formats).
 
 ## Dispatch
 - Fill `skills/_templates/dispatch.md` for every dispatch (goal, inputs, output, context, known issues, stop).
@@ -27,8 +28,15 @@ self-contained. Read `skills/skill-index.md` to pick the skill; read its `feedba
 - Translations: `tools/batches.py check` -> `pairs` -> reviewer -> fix -> `merge`; then build.
 - Code changes: build, `python3 -m pytest -q tests`, `tools/tour.py` (all routes), and the reproduction from the
   report. Commit one topic per commit; push.
-- After every run: copy the agent's `## Feedback` block into `skills/<name>/feedback.md` (newest first) and add a
-  line to `agent-log/YYYY-MM.md`; promote repeated lessons into `skill.md`.
+- After every run: copy the agent's `## Feedback` block into `skills/<name>/feedback-log.md` (newest first, with
+  `Corrected` and `Status`) and add a line to `agent-log/YYYY-MM.md`. Then route each proposal to one place:
+  a lesson for agents -> one line in `skills/<name>/feedback.md`; a tool wish -> `docs/backlog.md` (new row, or
+  "Asked" + 1); a game fact -> its playbook; a platform fact -> `docs/emulator/<platform>.md`.
+- Second occurrence: promote the lesson into `skill.md` and delete its line from `feedback.md`; build the tool
+  before the next dispatch of that skill (or drop the row with the reason). A wish that agents keep working
+  around costs more than building it: ten copies of `try.py` were written before `tools/preview.py` existed.
+- Keep what agents must read short. Before adding a sentence to a skill or the emulator guide, ask whether a
+  tool can enforce it instead (a refusal, a warning, a default); remove sentences a tool has made unnecessary.
 
 - RAM: never treat a range as free without write watches over all tour routes plus a battle (zeros in a
   savestate are not evidence). New VWF variables go in the shadow areas of non-pool codes (`docs/re/vwf.md`).
@@ -72,11 +80,19 @@ never commit them. Say what is new and what is known to be broken.
   game-scout. ROMs are uploaded by the owner per session; containers forget them. Patches uploaded with a ROM
   (IPS/BPS/UPS) are always applied: `intake.py ROM --patch P1 --patch P2` in the owner's order; on a CRC
   mismatch tell the owner instead of registering the unpatched dump (owner's rule 2026-11-17).
-- After the scout: check the playbook (sources listed, controls marked, `title`/`start` checkpoints replay), commit
-  `games/<platform>/<slug>/` (no shots yet), then dispatch game-capture with the set name and a time budget.
+- After the scout: check the playbook (Read first block, sources listed, controls marked), run
+  `python3 tools/cachecheck.py SLUG --flat leaves` and look at its sheet (every checkpoint reproduces and stands
+  where its description says), commit `games/<platform>/<slug>/` (no shots yet), then dispatch game-capture with
+  the set name, a budget in tool calls (the container has no usable clock; about 250 for a full set, stated
+  runs used 205-376) and the milestones at which it must commit, named explicitly.
 - Capture agents commit and push their game folder at every major milestone (game-capture skill); in the
   dispatch give the attribution lines for commits. Review those commits too, not only the final state.
-- After the capture: rerun `python3 tools/shoot.py SLUG SET --verify` yourself, look at the contact sheet (`<game>_<platform>_<region>_set_sheet.png`), run
+- After the capture: delete `work/cache/<platform>/<slug>` and rerun `python3 tools/shoot.py SLUG SET --verify`
+  yourself (in the background; four processes), look at the contact sheet (`<game>_<platform>_<region>_set_sheet.png`), run
   `python3 -m pytest -q tests` (repo root) if tools changed, commit `games/<platform>/<slug>/` (one commit per game set).
+- Bookkeeping per run, each fact once: the game's `game.json` "work" and "open" (the agent sets them, you check),
+  `python3 tools/gamestable.py` (README and status tables), the feedback log entry, the agent-log line, one
+  entry in `docs/progress-log.md` per session (not per run). `docs/status.md` changes only when a platform, a
+  tool or the queue changes.
 - Several games: one scout or capture agent per game in parallel (each uses `play.py --name <slug>`).
 - Tool or doc lessons from either skill that apply to every game go into `docs/emulator/README.md`.
