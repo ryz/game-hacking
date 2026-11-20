@@ -2,6 +2,31 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Amiga emulator set up (PUAE libretro core)
+- Owner's request: an Amiga emulator. PUAE (libretro-uae) at commit d366f77, built by `sh tools/setup_emu.sh
+  amiga` (90 s, no extra packages), backend `Amiga` in `tools/platforms.py`, platform folder `games/amiga/`.
+- `tools/puae-debug.patch`, each change for something found while setting it up: the core crashed in
+  `retro_init` without a frontend log interface (its fallback logger writes to `stderr`, which its VFS build
+  defines as 0); a loaded state ran one frame ahead of the run that saved it (the core emulated frames inside
+  `retro_unserialize` until the restore at the next vsync was done; now it restores at the start of the next
+  frame); the battery clock read the host's time; a state names its disks by full path, and each machine has
+  its own temporary folder (a restore now takes them from `retro_gamedb_disk_dir`). Added peek/poke/pc, disk
+  insert/eject and a flush of buffered disk writes.
+- Found by testing, not in the patch: the RetroPad has to be plugged into port 0 for the joystick to reach
+  Amiga port 2; the core's default hotkeys (F12 status bar, right Ctrl mouse toggle, RetroPad X = space) are
+  switched off; 24-bit colour, so the 12-bit palette comes out exact.
+- Kickstart: real ROMs are looked up in `rom/kickstart/` by PUAE's names, Amiga Forever names or SHA-1; the
+  core's built-in AROS Kickstart (`-aros`) boots bootblocks on the A1200 presets only, so the tests use
+  `A1200-aros` and real A500 games need the owner's Kickstart 1.3.
+- Test disk `tests/make_amiga_adf.py`: a hand-assembled bootblock that shows fire, mouse button, raw key code and
+  a frame counter as the background colour, stores the counter and the mouse counters in chip RAM and can write
+  a sector through trackdisk.device. Tests `test_amiga_*` (6): identify, Kickstart lookup, backend, same route
+  same frames (fresh and busy loads, re-save without a frame), disks (swap, drives, writes in states, export,
+  `sav:`), intake-play-shoot pipeline. Full suite: 29 passed, 25 skipped (other cores not built here).
+- Not done: no real game registered; untested with a real game: everything, in particular the reset keys,
+  NTSC games, AGA games, multi-disk swaps in a real game. Not supported: `.ipf`, hard disk/WHDLoad, CD32/CDTV,
+  write-protected disks.
+
 ## 2026-11-19 - Capture guide: standard environment shots and the `start` set; Wizardry I (Apple II) has both
 - Owner's request: a few regular dungeon screenshots for Wizardry I, and as general rules a few standard
   environment shots with nothing special happening, and a set `start` for the early game (ending after the

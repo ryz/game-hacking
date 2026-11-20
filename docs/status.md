@@ -103,6 +103,16 @@ Current snapshot; history in `progress-log.md`.
   in the playbook. Not scouted,
   side 4 not reached. Open: reset keys, write-protected disks, hard disk images with a real game, held keys/auto-repeat.
   Notes: `docs/emulator/apple2.md`.
+- Amiga backend (2026-11-20): PUAE (libretro-uae) core at a pinned commit (`sh tools/setup_emu.sh amiga`, 90 s),
+  driven by `tools/lrcore.py`; a game is an `.adf`/`.adz`/`.dms` or a ZIP of them (`intake.py`;
+  `games/amiga/<slug>/`), `disk:N` / `disk2:N` change disks, models `MACHINE[-ntsc][-aros][-dfN]` (default A500,
+  PAL), joystick (port 2), mouse (port 1) and keyboard tokens, `type:`, picture follows the screen mode (lores
+  360x287 PAL), peek/poke/find on the 24-bit address space, exact savestates that carry what the game wrote to
+  its disks, `play.py export` and `sav:` (6 tests, on the core's built-in AROS Kickstart with an A1200).
+  `tools/puae-debug.patch` makes a loaded state continue on the exact frame (the core ran a frame inside its
+  state load) and fixes a crash of the core without a frontend log interface. No game registered yet; real
+  games need the owner's Kickstart ROMs in `rom/kickstart/` (1.3 for the A500). Not supported: `.ipf`, hard
+  disk/WHDLoad, CD32/CDTV, write-protected disks. Notes: `docs/emulator/amiga.md`.
 
 - Wizardry I-V on the Apple II (2026-11-19, queue halted by the owner after two games' worth of work):
   **I** scouted and captured (`games/apple2/wizardry/`: `main` 304 shots to the ending incl. 13 plain maze views,
@@ -212,7 +222,7 @@ Current snapshot; history in `progress-log.md`.
      record table's spacing on the second and the last entry, not only the first; extend the empty-cache
      check to the disk for games that save to files.
   9. DECIDED 2026-11-18: no setup script. The owner keeps one session per platform, so each session builds its
-     one emulator on demand: `sh tools/setup_emu.sh gb|nes|snes|sms|dos|apple2` (clean builds: 9, 57, 53, 11, 32, 78 s;
+     one emulator on demand: `sh tools/setup_emu.sh gb|nes|snes|sms|dos|apple2|amiga` (clean builds: 9, 57, 53, 11, 32, 78, 90 s;
      all five 203 s). A script building all five was saved and removed again the same day.
   10. Content: the other ten games have no systems/interface/content documents; Might and Magic 1 now exists
       on NES, DOS and Apple II, a comparison of the three versions is possible from the existing sets.
