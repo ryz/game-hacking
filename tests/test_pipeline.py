@@ -1243,3 +1243,234 @@ def test_apple2_pipeline(a2_selftest, tmp_path):
     im = Image.open(os.path.join(ROOT, "games", "apple2", A2_SLUG, "shots", "main",
                                  "zz-selftest-apple2_apple2_na_gameplay_typed.png")).convert("RGB")
     assert im.size == (560, 384) and im.crop((0, 0, 200, 16)).getextrema()[0][1] > 100
+
+
+# ------------------------------------------------------------------ Amiga (PUAE libretro core)
+AM_SLUG = "zz-selftest-amiga"
+AM_MODEL = "A1200-aros"         # the free Kickstart built into the core; it boots bootblocks on A1200-class machines
+
+
+@pytest.fixture
+def am_selftest(tmp_path):
+    if not os.path.exists(platforms.Amiga.SO):
+        pytest.skip("PUAE core not built (sh tools/setup_emu.sh amiga)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_amiga_adf
+    rom = tmp_path / "t.adf"
+    rom.write_bytes(make_amiga_adf.build())
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", AM_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games/amiga", "work/shots/amiga", "work/cache/amiga", "work/intake/amiga", "work/play"):
+        shutil.rmtree(os.path.join(ROOT, sub, AM_SLUG), ignore_errors=True)
+    if os.path.exists(os.path.join(ROOT, "rom", AM_SLUG + ".zip")):
+        os.remove(os.path.join(ROOT, "rom", AM_SLUG + ".zip"))
+
+
+def _am_zip(path, write=False):
+    """Two disks: a blank one first (does not boot), the test program second."""
+    import zipfile
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_amiga_adf
+    with zipfile.ZipFile(path, "w") as z:
+        z.writestr("Disk 1.adf", bytes(make_amiga_adf.SIZE))
+        z.writestr("Disk 2.adf", make_amiga_adf.build(write))
+    return path
+
+
+def _am_colour(e):
+    """COLOR00 of the test program as 12-bit RGB (24-bit picture: 4-bit channel * 17)."""
+    r, g, b = e.image().convert("RGB").getpixel((100, 100))
+    assert r % 17 == g % 17 == b % 17 == 0
+    return (r // 17) << 8 | (g // 17) << 4 | b // 17
+
+
+def _am_counter(e):
+    return int.from_bytes(e.peek(0x7F000, 2), "big")
+
+
+def test_amiga_identify(tmp_path):
+    import gzip
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_amiga_adf, make_apple2_disk, make_dos_zip
+    adf = make_amiga_adf.build()
+    h = platforms.Amiga.identify(adf)
+    assert h["platform"] == "amiga" and h["model"] == "A500"
+    assert h["disks"][0]["kind"] == "3.5 inch DD floppy, 880 KiB" and h["disks"][0]["boot"] == "AmigaDOS OFS"
+    vol = bytearray(adf)
+    vol[880 * 512 + 432:880 * 512 + 437] = b"\x04Test"                  # root block: volume name
+    h = platforms.Amiga.identify(bytes(vol))
+    assert h["header_title"] == "Test" and h["disks"][0]["volume"] == "Test"
+    assert platforms.Amiga.identify(gzip.compress(adf))["disks"][0]["boot"] == "AmigaDOS OFS"   # .adz
+    assert "not an AmigaDOS disk" in platforms.Amiga.identify(bytes(901120))["disks"][0]["boot"]
+    z = _am_zip(str(tmp_path / "two.zip"))
+    h = platforms.Amiga.identify(open(z, "rb").read())
+    assert [d["name"] for d in h["disks"]] == ["Disk 1.adf", "Disk 2.adf"] and len(h["disks"][1]["sha1"]) == 40
+    assert platforms.by_extension(z)[0] == "amiga"                       # a ZIP of Amiga floppy images
+    d = tmp_path / "dos.zip"
+    d.write_bytes(make_dos_zip.build())
+    assert platforms.by_extension(str(d))[0] == "dos"
+    import zipfile
+    with zipfile.ZipFile(str(tmp_path / "a2.zip"), "w") as zz:
+        zz.writestr("A.dsk", make_apple2_disk.build())
+    assert platforms.by_extension(str(tmp_path / "a2.zip"))[0] == "apple2"
+    assert platforms.by_extension("x/GAME.ADF")[0] == "amiga" and platforms.by_extension("x/g.adz")[0] == "amiga"
+    assert {"a", "1", "enter", "esc", "up", "f10", "help", "lamiga", "ramiga", "joyup", "fire", "fire2",
+            "mouse1", "mouse2"} <= platforms.Amiga.keys
+    assert not {"f11", "f12", "pageup"} & platforms.Amiga.keys
+
+
+def test_amiga_kickstart_lookup(tmp_path, monkeypatch):
+    """A real Kickstart is found in rom/kickstart/ by PUAE's file name or the Amiga Forever name; a missing one
+    is reported with what to supply."""
+    monkeypatch.setattr(platforms.Amiga, "KICKDIR", str(tmp_path))
+    with pytest.raises(SystemExit, match="kick34005.A500.*A500-aros"):
+        platforms.Amiga.kickstart("A500")
+    (tmp_path / "amiga-os-310-a1200.rom").write_bytes(bytes(524288))
+    assert platforms.Amiga.kickstart("A1200").endswith("amiga-os-310-a1200.rom")
+    (tmp_path / "kick34005.A500").write_bytes(bytes(262144))
+    assert platforms.Amiga.kickstart("A500OG").endswith("kick34005.A500")
+
+
+def test_amiga_backend(am_selftest, tmp_path):
+    e = platforms.Amiga().open(str(am_selftest), model=AM_MODEL)
+    e.frames(300)
+    assert e.image().size[1] == 287 and _am_counter(e) > 100 and _am_colour(e) >> 4 == 0     # running, no key yet
+    assert e.regs()["pc"] < "001000"                                     # the bootblock runs in chip RAM
+    e.input(["fire"]); e.frames(4)
+    assert _am_colour(e) == 0xFFF                                        # joystick fire, port 2
+    e.input(["mouse1"]); e.frames(4)
+    assert _am_colour(e) == 0xF0F                                        # left mouse button, port 1
+    x, y = e.peek(0x7F003, 1)[0], e.peek(0x7F002, 1)[0]                  # JOY0DAT counters
+    e.mouse(10, -3); e.frames(2)
+    assert (e.peek(0x7F003, 1)[0], e.peek(0x7F002, 1)[0]) == ((x + 10) & 0xFF, (y - 3) & 0xFF)   # 1 unit = 1 count
+    e.input(["a"]); e.frames(8); e.input([]); e.frames(8)
+    assert _am_colour(e) >> 4 == 0xA0                                    # raw key code: A up ($20 | $80)
+    e.type_text("1")
+    assert _am_colour(e) >> 4 == 0x81                                    # 1 up ($01 | $80)
+    st = str(tmp_path / "x.state")
+    e.save_state(st)
+    shot = e.screen()
+    e.poke(0x7F010, b"\x5a\xa5")
+    assert e.peek(0x7F010, 2) == b"\x5a\xa5"
+    assert e.peek(0xF80000, 2) == b"\x11\x14"                            # Kickstart ROM (AROS) is readable
+    with pytest.raises(ValueError):
+        e.poke(0xF80000, b"\x00")                                        # ROM
+    with pytest.raises(ValueError):
+        e.poke(0xDFF180, b"\x00\x00")                                    # custom chips: not memory
+    assert e.peek(0xDFF006, 2) == b"\0\0"                                # read without side effects: 0
+    e.load_state(st)
+    assert e.screen() == shot
+    e.frames(1)
+    assert e.peek(0x7F010, 2) != b"\x5a\xa5"
+    assert e.ram_search("new == old")["count"] > 0
+    e.close()
+    with pytest.raises(SystemExit, match="unknown Amiga model"):
+        platforms.Amiga().open(str(am_selftest), model="A3000")
+    n = platforms.Amiga().open(str(am_selftest), model=AM_MODEL + "-ntsc")
+    n.frames(300)
+    assert n.image().size[1] < 287                                       # 60 Hz machine: fewer lines
+    n.close()
+
+
+def test_amiga_same_route_same_frames(am_selftest, tmp_path):
+    """Nothing depends on the host: two power-ons give the same pictures and chip RAM, and a run continued after
+    save_state equals one loaded from that state, into a machine that has not run yet or one that is busy
+    (the core used to emulate frames inside its state load: the loaded run was a frame ahead)."""
+    st = str(tmp_path / "x.state")
+
+    def boot():
+        e = platforms.Amiga().open(str(am_selftest), model=AM_MODEL)
+        e.frames(300)
+        return e
+
+    def play(e):
+        out = []
+        for k, w in zip(("g", "fire", "m", "mouse1", "e"), (3, 17, 5, 29, 11)):
+            e.input([k]); e.frames(3); e.input([]); e.frames(w)
+            out.append((e.screen(), _am_counter(e)))
+        return out, e.peek(0, 0x80000)
+
+    a, b = boot(), boot()
+    assert a.screen() == b.screen() and a.peek(0, 0x80000) == b.peek(0, 0x80000)
+    assert play(a) == play(b)
+    a.save_state(st)
+    c = platforms.Amiga().open(str(am_selftest), model=AM_MODEL)
+    c.load_state(st)
+    assert c.screen() == a.screen()
+    c.save_state(str(tmp_path / "y.state"))                             # not run since the load: same state
+    assert open(st, "rb").read() == open(str(tmp_path / "y.state"), "rb").read()
+    b.input(["fire"]); b.frames(7)
+    b.load_state(st)
+    want = play(a)
+    assert play(c) == want and play(b)[0][0] == want[0][0]
+    for e in (a, b, c):
+        e.close()
+
+
+def test_amiga_disks(am_selftest, tmp_path):
+    """Disk swaps, and games that save by writing to a floppy: a savestate keeps the machine, the backend
+    stores the blocks written so far next to it, and the export is the written images."""
+    z = _am_zip(str(tmp_path / "two.zip"), write=True)
+    e = platforms.Amiga().open(z, model=AM_MODEL + "-df1")
+    assert e.disks == ["Disk 1.adf", "Disk 2.adf"] and e.drives == ["Disk 1.adf", None]
+    e.frames(150)
+    assert _am_counter(e) == 0xFFFF                                      # blank disk: nothing runs
+    e.disk(2)                                                            # the boot screen notices the swap
+    e.frames(400)
+    assert e.drives == ["Disk 2.adf", None] and _am_counter(e) > 100
+    e.disk(1, drive=2)
+    assert e.drives == ["Disk 2.adf", "Disk 1.adf"]
+    e.disk(1)                                                            # a disk is in one drive at a time
+    assert e.drives == ["Disk 1.adf", None]
+    e.disk(2)
+    with pytest.raises(ValueError):
+        e.disk(3)
+    with pytest.raises(ValueError):
+        e.disk(1, drive=3)                                               # -df1: drives 1 and 2 only
+    sav = e.battery(0)
+    import io, zipfile
+    written = zipfile.ZipFile(io.BytesIO(sav)).read("Disk 2.adf")
+    assert written[1024:1536] == written[:512]                           # the program wrote its own bootblock
+    st = str(tmp_path / "w.state")
+    e.save_state(st)
+    f = platforms.Amiga().open(z, model=AM_MODEL + "-df1")               # fresh machine, pristine disks
+    assert f.battery(0) == b""
+    f.load_state(st)
+    assert f.drives == ["Disk 2.adf", None] and f.battery(0) == sav
+    f.frames(10)
+    assert f.screen() == (e.frames(10) or e.screen())
+    open(str(tmp_path / "x.sav"), "wb").write(sav)
+    g = platforms.Amiga().open(z, model=AM_MODEL, sav=str(tmp_path / "x.sav"))   # power on with the export
+    assert g.battery(0) == sav
+    with pytest.raises(RuntimeError, match="2 drives"):
+        g.load_state(st)
+    for x in (e, f, g):
+        x.close()
+
+
+def test_amiga_pipeline(am_selftest, tmp_path):
+    z = _am_zip(str(tmp_path / (AM_SLUG + ".zip")))
+    run("tools/intake.py", z, "--slug", AM_SLUG, "--region", "eu", "--model", AM_MODEL, "--probe", "120")
+    gj = os.path.join(ROOT, "games", "amiga", AM_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "amiga" and meta["model"] == AM_MODEL and meta["rom"].endswith(".zip")
+    assert [d["name"] for d in meta["header"]["disks"]] == ["Disk 1.adf", "Disk 2.adf"]
+    meta["macros"] = {"BOOT": "w100,disk:2,w400"}
+    meta["ram"] = {"counter": {"addr": "7F000", "size": 2, "fmt": "be"}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", AM_SLUG]
+    run(*P, "start", AM_SLUG)
+    run(*P, "do", "BOOT")
+    assert "saved" in run(*P, "checkpoint", "ready", "test program running")
+    run(*P, "do!", "fire:4,type:a,w10")
+    assert "counter=" in run(*P, "status")
+    run(*P, "snap", "key", "gameplay", "key A released: background colour from its key code")
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", AM_SLUG, "main", "--verify")
+    run("tools/shoot.py", AM_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", "amiga", AM_SLUG, "shots", "main",
+                                 "zz-selftest-amiga_amiga_eu_gameplay_key.png")).convert("RGB")
+    r, g, b = im.getpixel((100, 100))
+    assert (r, g) == (0xA * 17, 0)                                       # A up: $A0 -> red A, green 0

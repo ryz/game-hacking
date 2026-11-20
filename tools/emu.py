@@ -17,7 +17,8 @@ Routes are comma-separated tokens:
   mash:KEY:N                            tap KEY every 8 frames for N frames (skip text, mash through intros)
   poke:ADDR=HEX                         write bytes (poke:C0A2=09)
   type:TEXT   mouse:DX:DY               computers: type a string (no comma inside; \\n = Enter); move the mouse
-  disk:N   disk2:N                      Apple II: put disk N of the game into drive 1 / drive 2 (0 = none)
+  disk:N   disk2:N                      Apple II, Amiga: put disk N of the game into drive 1 / drive 2 (Amiga:
+                                        DF0: / DF1:; 0 = none)
   settle                                run until the screen is stable (two identical frames `settle.step`
                                         apart, at most `settle.limit` frames); deterministic like any token
   !                                     last token only (shoot.py): take the frame as is, no final settle

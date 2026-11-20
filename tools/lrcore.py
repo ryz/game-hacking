@@ -1,5 +1,5 @@
 """Minimal headless libretro frontend (ctypes): loads one core, feeds it a ROM and joypad input, collects frames.
-No window, no audio, no SDL. Used by the NES, SNES, DOS and Apple II backends in platforms.py (cores built by tools/setup_emu.sh).
+No window, no audio, no SDL. Used by the NES, SNES, DOS, Apple II and Amiga backends in platforms.py (cores built by tools/setup_emu.sh).
 
   c = Core("tools/mesen/Libretro/mesen_libretro.so", "rom/game.nes", options={"mesen_region": "NTSC"})
   c.keys = {"a", "right"}; c.run(60); c.png("x.png"); s = c.serialize(); c.unserialize(s); c.close()

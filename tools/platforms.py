@@ -1342,7 +1342,367 @@ class Apple2(Libretro):
         return {"pc": "%04x" % self.c.L.retro_gamedb_pc()}
 
 
-PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "sms": Sms, "dos": Dos, "apple2": Apple2}
+# ------------------------------------------------------------------ Amiga (PUAE libretro core)
+class Amiga(Libretro):
+    """PUAE (libretro-uae, libretro core, in-process through tools/lrcore.py, patched with tools/puae-debug.patch:
+    exact savestate loads, disk insert/eject/flush, emulated clock, peek/poke, program counter). A game is one
+    floppy image (.adf, .adz, .dms) or a ZIP of them (the disks in name order); disk 1 is in DF0: at power-on,
+    emu.disk(n, drive) changes disks (drive 1 = DF0:, 2 = DF1:, ...).
+    Model: MACHINE[-ntsc][-aros][-dfN]. Machines are PUAE's presets: A500 (Kickstart 1.3, 512K chip + 512K slow,
+    the default), A500OG, A500ECS, A500PLUS, A600, A600OG, A1200, A1200OG, A2000, A2000OG, A4030, A4040.
+    ntsc = 60 Hz NTSC machine (default PAL, 50 Hz); aros = the free AROS Kickstart built into the core instead
+    of a real one (boots many disks only on A1200-class machines); dfN = drives DF0: to DFN: (default only DF0:).
+    A real Kickstart is looked up in rom/kickstart/ (never committed) by PUAE's file names or by SHA-1 (KICKSTARTS).
+    Keys: keyboard keys (KEYS: the Amiga's, with lamiga/ramiga/help), the joystick in port 2 (joyup joydown
+    joyleft joyright fire fire2) and the mouse in port 1 (mouse1/mouse2 = left/right button, emu.mouse(dx, dy)).
+    Memory: the 68000 address space (24 bit): 000000 chip RAM, C00000 slow RAM, 200000 fast RAM, F80000 Kickstart
+    ROM. peek reads RAM and ROM (custom chips, CIAs and unmapped space read 0, no side effects); poke writes RAM."""
+    KEYS = {k: v for k, v in _retrok().items() if k not in (
+        "f11", "f12", "insert", "home", "end", "pageup", "pagedown", "rctrl")}
+    KEYS.update({"lamiga": 311, "ramiga": 312, "help": 315, "capslock": 301, "kplparen": 278, "kprparen": 279})
+    JOY = {"joyup": "up", "joydown": "down", "joyleft": "left", "joyright": "right", "fire": "b", "fire2": "a"}
+    keys = set(KEYS) | set(JOY) | {"mouse1", "mouse2"}
+    extensions = (".adf", ".adz", ".dms")
+    native_size = (360, 287)
+    emulator = "PUAE libretro core"
+    SO = os.path.join(HERE, "puae", "puae_libretro.so")
+    KICKDIR = os.path.join(HERE, "..", "rom", "kickstart")
+    MACHINES = ("A500", "A500OG", "A500ECS", "A500PLUS", "A600", "A600OG", "A1200", "A1200OG", "A2000", "A2000OG",
+                "A4030", "A4040")
+    # The Kickstart each preset boots (PUAE's emu_config_string): its file name in PUAE's naming, the Amiga
+    # Forever name, and the SHA-1 of the common dump.
+    KICKSTARTS = {
+        "kick34005.A500": ("amiga-os-130.rom", "891e9a547772fe0c6c19b610baf8bc4ea7fcb785", "1.3 (34.5)"),
+        "kick37175.A500": ("amiga-os-204.rom", "c5839f5cb98a7a8947065c3ed2f14f5f42e334a1", "2.04 (37.175)"),
+        "kick40063.A600": ("amiga-os-310-a600.rom", "3b7f1493b27e212830f989f26ca76c02049f09ca", "3.1 (40.63)"),
+        "kick40068.A1200": ("amiga-os-310-a1200.rom", "e21545723fe8374e91342617604f1b3d703094f1", "3.1 (40.68)"),
+        "kick40068.A4000": ("amiga-os-310-a4000.rom", "5fe04842d04a489720f0f4bb0e46948199406f49", "3.1 (40.68)"),
+    }
+    MACHINE_KICK = {"A500": "kick34005.A500", "A500OG": "kick34005.A500", "A500ECS": "kick34005.A500",
+                    "A2000OG": "kick34005.A500", "A500PLUS": "kick37175.A500", "A600": "kick40063.A600",
+                    "A600OG": "kick40063.A600", "A2000": "kick40063.A600", "A1200": "kick40068.A1200",
+                    "A1200OG": "kick40068.A1200", "A4030": "kick40068.A4000", "A4040": "kick40068.A4000"}
+    EPOCH = 631152000           # 1990-01-01 00:00:00 UTC (battery-backed clock)
+    PC_FORMAT = "%06x"
+    SHIFTED = Dos.SHIFTED
+    NAMES = Dos.NAMES
+    BLOCK = 4096                # changed parts of a disk image are kept in blocks of this size
+    STATE = b"GAMEDB-AMIGA-STATE-1\n"
+    FILE_SAVES = True
+    SAVES_ARE_DUMPS = True      # play.py export keeps them in rom/saves/<platform>/<slug>/ (game data)
+    SAVE_HELP = ("`.sav` = a ZIP of the disk images the game has written to (whole images, same names as in the "
+                 "game's ZIP): unzip it and use those images in place of the originals in any Amiga emulator.")
+    HOTKEYS = ("vkbd", "statusbar", "mouse_toggle", "turbo_fire_toggle", "save_disk_toggle", "aspect_ratio_toggle",
+               "crop_toggle", "reset", "select", "start", "x", "y", "l", "r", "l2", "r2", "l3", "r3",
+               "lu", "ld", "ll", "lr", "ru", "rd", "rl", "rr")
+
+    @staticmethod
+    def zip_disks(data):
+        """Names of the floppy images in a ZIP, in play order (sorted by name, case ignored); [] if it is not a
+        ZIP of Amiga floppy images."""
+        import io, zipfile
+        try:
+            names = [n for n in zipfile.ZipFile(io.BytesIO(data)).namelist() if not n.endswith("/")]
+        except zipfile.BadZipFile:
+            return []
+        if not names or not all(os.path.splitext(n)[1].lower() in Amiga.extensions for n in names):
+            return []
+        if len({os.path.basename(n).lower() for n in names}) != len(names):
+            raise SystemExit("two disk images in the ZIP have the same file name")
+        return sorted(names, key=lambda n: os.path.basename(n).lower())
+
+    @staticmethod
+    def unpack(name, data):
+        """(file name, bytes) the core gets: .adz is unpacked to .adf here, so the game's writes land in a plain
+        image; .dms stays packed (the core unpacks it in memory: writes to it are not kept)."""
+        import gzip
+        if name.lower().endswith(".adz"):
+            return os.path.splitext(name)[0] + ".adf", gzip.decompress(data)
+        return name, data
+
+    @staticmethod
+    def image_kind(name, data):
+        name, data = Amiga.unpack(name, data)
+        if name.lower().endswith(".dms"):
+            return {"kind": "DMS archive (packed floppy), %d KiB" % (len(data) // 1024)}
+        size = {901120: "3.5 inch DD floppy, 880 KiB", 1802240: "3.5 inch HD floppy, 1760 KiB"}.get(len(data))
+        out = {"kind": size or "floppy image of unusual size, %d bytes" % len(data)}
+        if data[:3] == b"DOS" and len(data) >= 901120:
+            out["boot"] = "AmigaDOS %s" % ("OFS", "FFS", "OFS intl", "FFS intl", "OFS dircache",
+                                            "FFS dircache")[data[3]] if data[3] < 6 else "AmigaDOS"
+            root = data[880 * 512:881 * 512]
+            n = root[432]
+            if 0 < n <= 30:
+                out["volume"] = root[433:433 + n].decode("latin-1")
+        else:
+            out["boot"] = "not an AmigaDOS disk (own bootblock or track format)"
+        return out
+
+    @classmethod
+    def identify(cls, data):
+        import hashlib, io, zipfile
+        names = cls.zip_disks(data)
+        if names:
+            z = zipfile.ZipFile(io.BytesIO(data))
+            disks = [dict(name=os.path.basename(n), sha1=hashlib.sha1(z.read(n)).hexdigest(),
+                          **cls.image_kind(n, z.read(n))) for n in names]
+        elif data[:2] == b"PK":
+            raise SystemExit("this ZIP is not a set of Amiga floppy images (%s)" % " ".join(cls.extensions))
+        else:
+            kind = "disk.adz" if data[:2] == b"\x1f\x8b" else "disk.dms" if data[:4] == b"DMS!" else "disk.adf"
+            disks = [cls.image_kind(kind, data)]
+        info = {"platform": "amiga", "model": "A500", "disks": disks}
+        if disks[0].get("volume"):
+            info["header_title"] = disks[0]["volume"]
+        return info
+
+    @classmethod
+    def kickstart(cls, machine):
+        """Path of the Kickstart for a machine preset in rom/kickstart/: PUAE's name, the Amiga Forever name, or
+        any file with the known SHA-1."""
+        import hashlib
+        want = cls.MACHINE_KICK[machine]
+        alt, sha, ver = cls.KICKSTARTS[want]
+        d = os.path.normpath(cls.KICKDIR)
+        for n in (want, alt):
+            if os.path.isfile(os.path.join(d, n)):
+                return os.path.join(d, n)
+        if os.path.isdir(d):
+            for n in sorted(os.listdir(d)):
+                p = os.path.join(d, n)
+                if os.path.isfile(p) and os.path.getsize(p) in (262144, 524288) and \
+                        hashlib.sha1(open(p, "rb").read()).hexdigest() == sha:
+                    return p
+        raise SystemExit("Kickstart %s for the %s missing: put your dump into rom/kickstart/ as %s (or %s; "
+                         "SHA-1 %s), or use the model %s-aros (free AROS Kickstart, fewer games boot)"
+                         % (ver, machine, want, alt, sha, machine))
+
+    def open(self, rom, model=None, seed=1, turbo=True, sav=None):
+        import ctypes, io, shutil, tempfile, zipfile
+        import lrcore
+        if not os.path.exists(self.SO):
+            raise SystemExit("%s missing: run sh tools/setup_emu.sh amiga" % self.emulator)
+        parts = (model or "A500").split("-")
+        machine, ntsc, aros, ndrives = parts[0].upper(), False, False, 1
+        for p in parts[1:]:
+            if p == "ntsc":
+                ntsc = True
+            elif p == "aros":
+                aros = True
+            elif p[:2] == "df" and p[2:] in ("1", "2", "3"):
+                ndrives = int(p[2:]) + 1
+            else:
+                machine = None
+        if machine not in self.MACHINES:
+            raise SystemExit("unknown Amiga model %r (MACHINE[-ntsc][-aros][-dfN]; machines: %s)" % (
+                model, " ".join(self.MACHINES)))
+        kick = "aros" if aros else self.kickstart(machine)
+        # Private copies of the disk images: the game writes to them, the registered dump is never touched.
+        self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
+        self.dir = os.path.join(self.tmp, "disks")
+        os.makedirs(self.dir)
+        data = open(rom, "rb").read()
+        names = self.zip_disks(data)
+        if names:
+            z = zipfile.ZipFile(io.BytesIO(data))
+            pairs = [self.unpack(os.path.basename(n), z.read(n)) for n in names]
+        else:
+            pairs = [self.unpack("disk" + os.path.splitext(rom)[1].lower(), data)]
+        self.disks = [n for n, _ in pairs]
+        self._orig = dict(pairs)
+        start = dict(self._orig)
+        if sav:                                             # a save = ZIP of whole images: a game disk under its
+            z = zipfile.ZipFile(sav)                        # own name replaces it; any other name is an extra
+            for n in sorted(z.namelist(), key=str.lower):   # disk after the game's own (a save disk)
+                if n.endswith("/"):
+                    continue
+                if os.path.splitext(n)[1].lower() not in (".adf", ".dms") or "/" in n:
+                    raise SystemExit("%s holds %s, which is not a disk image" % (sav, n))
+                if n not in start:
+                    self.disks.append(n)
+                    self._orig[n] = z.read(n)
+                start[n] = z.read(n)
+        for n, d in start.items():
+            open(os.path.join(self.dir, n), "wb").write(d)
+        save = os.path.join(self.tmp, "save")
+        os.makedirs(save)
+        # Settings the core options do not cover, appended to the machine's configuration by the core.
+        open(os.path.join(save, "puae_libretro_global.uae"), "w").write(
+            "".join("floppy%dtype=0\n" % i for i in range(1, ndrives)))
+        options = {"puae_model": machine, "puae_kickstart": kick, "puae_video_standard": "NTSC" if ntsc else "PAL",
+                   "puae_gfx_colors": "24bit", "puae_video_resolution": "auto-lores", "puae_video_vresolution": "auto",
+                   "puae_crop": "disabled", "puae_statusbar": "disabled", "puae_floppy_sound": "0",
+                   "puae_floppy_write_redirect": "disabled", "puae_autoloadfastforward": "disabled",
+                   "puae_physical_keyboard_pass_through": "enabled", "puae_physicalmouse": "enabled"}
+        options.update({"puae_mapper_" + h: "---" for h in self.HOTKEYS})
+        self.ndrives = ndrives
+        self.c = lrcore.Core(self.SO, os.path.join(self.dir, self.disks[0]), system_dir=self.tmp, save_dir=save,
+                             options=options, frame_usec=16667 if ntsc else 20000, epoch=self.EPOCH, private=True)
+        L = self.c.L
+        L.retro_gamedb_pc.restype = ctypes.c_uint
+        L.retro_gamedb_peek.restype, L.retro_gamedb_peek.argtypes = ctypes.c_uint, [ctypes.c_uint]
+        L.retro_gamedb_poke.restype, L.retro_gamedb_poke.argtypes = ctypes.c_int, [ctypes.c_uint, ctypes.c_uint]
+        L.retro_gamedb_insert.restype, L.retro_gamedb_insert.argtypes = ctypes.c_int, [ctypes.c_int, ctypes.c_char_p]
+        L.retro_gamedb_disk_dir.argtypes = [ctypes.c_char_p]
+        L.retro_gamedb_disk_dir(self.dir.encode())
+        L.retro_set_controller_port_device(0, lrcore.DEVICE_JOYPAD)     # RetroPad 1 = joystick in port 2
+        self.c.size = self.native_size
+        self.drives = [self.disks[0]] + [None] * (ndrives - 1)
+        self._down, self._search, self._loaded = set(), None, None
+        chip = self.c.memory(lrcore.MEM_SYSTEM_RAM)
+        self._chip = (ctypes.addressof(chip), len(chip))
+        self.SEARCH = [(0, len(chip))] + self._ranges(0xC00000, 0xDC0000) + self._ranges(0x200000, 0xA00000)
+        return self
+
+    def _ranges(self, lo, hi, step=0x10000):
+        """RAM ranges in [lo, hi): 64K pieces that read as memory, merged."""
+        out = []
+        for a in range(lo, hi, step):
+            if self.c.L.retro_gamedb_peek(a) and self.c.L.retro_gamedb_poke(a, self.c.L.retro_gamedb_peek(a) & 0xFF):
+                if out and out[-1][0] + out[-1][1] == a:
+                    out[-1] = (out[-1][0], out[-1][1] + step)
+                else:
+                    out.append((a, step))
+        return out
+
+    def frames(self, n):
+        if n > 0:
+            self._loaded = None
+            self.c.run(n)
+
+    # ---- disks
+    def disk(self, n, drive=1):
+        """Put disk n (1 = first image of the game; 0 = none) into drive 1-4 (DF0:-DF3:). The game sees the
+        change after the drive's usual delay, as with a person swapping disks."""
+        if not 1 <= drive <= self.ndrives or not 0 <= n <= len(self.disks):
+            raise ValueError("disk:%d in drive %d: this game has disks 1-%d (%s), the machine drives 1-%d "
+                             "(model -dfN adds drives)" % (n, drive, len(self.disks), ", ".join(self.disks),
+                                                           self.ndrives))
+        name = self.disks[n - 1] if n else None
+        for slot in range(self.ndrives):                    # a disk is in one drive at a time
+            if name and self.drives[slot] == name and slot != drive - 1:
+                self.c.L.retro_gamedb_insert(slot, None)
+                self.drives[slot] = None
+        path = os.path.join(self.dir, name).encode() if name else None
+        if not self.c.L.retro_gamedb_insert(drive - 1, path):
+            raise ValueError("the emulator refused the disk image %s" % name)
+        self.drives[drive - 1] = name
+
+    def _changed(self):
+        """{name: {"size": n, "blocks": [offsets]}}, payload: the parts of the images that differ from the dump."""
+        self.c.L.retro_gamedb_flush()
+        head, blob = {}, []
+        for n in self.disks:
+            cur, orig = open(os.path.join(self.dir, n), "rb").read(), self._orig[n]
+            if cur == orig:
+                continue
+            offs = [o for o in range(0, len(cur), self.BLOCK) if cur[o:o + self.BLOCK] != orig[o:o + self.BLOCK]]
+            head[n] = {"size": len(cur), "blocks": offs}
+            blob += [cur[o:o + self.BLOCK] for o in offs]
+        return head, b"".join(blob)
+
+    def save_state(self, path):
+        """The core's state names the disks in the drives (and keeps the track under the head); what the game
+        wrote to the images so far is stored next to it (the changed blocks), so a state made after an in-game
+        save still has that save on disk wherever it is loaded."""
+        import json
+        if self._loaded is not None:            # loaded and not run since: the core restores only on its next
+            open(os.path.abspath(path), "wb").write(self._loaded)       # frame, so this is the same state
+            return
+        raw = zlib.compress(self.c.serialize(), 1)
+        head, blob = self._changed()
+        head = json.dumps({"drives": self.drives, "disks": head, "blob": len(blob)}).encode()
+        open(os.path.abspath(path), "wb").write(self.STATE + head + b"\n" + blob + raw)
+
+    def load_state(self, path):
+        import json
+        data = open(os.path.abspath(path), "rb").read()
+        if not data.startswith(self.STATE):
+            raise RuntimeError("not an Amiga savestate of this tool version (delete work/cache): %s" % path)
+        head, rest = data[len(self.STATE):].split(b"\n", 1)
+        head = json.loads(head)
+        if len(head["drives"]) != self.ndrives:
+            raise RuntimeError("savestate made with %d drives, this machine has %d" % (
+                len(head["drives"]), self.ndrives))
+        blob, raw = rest[:head["blob"]], rest[head["blob"]:]
+        self.c.L.retro_gamedb_flush()           # nothing of this machine's writes may land after the restore
+        pos = 0
+        for n in self.disks:
+            img = bytearray(self._orig[n])
+            if n in head["disks"]:
+                d = head["disks"][n]
+                img = img[:d["size"]] + bytes(max(0, d["size"] - len(img)))
+                for o in d["blocks"]:
+                    k = min(self.BLOCK, d["size"] - o)
+                    img[o:o + k] = blob[pos:pos + k]
+                    pos += k
+            p = os.path.join(self.dir, n)
+            if open(p, "rb").read() != img:
+                open(p, "wb").write(img)
+        for k in sorted(self._down):            # keys held here are not held in the state
+            if k in self.KEYS:
+                self.c.key(self.KEYS[k], False)
+        self._down = set()
+        self.c.keys = set()
+        self.c.unserialize(zlib.decompress(raw))    # done by the core at the start of the next frame; the
+        self.drives = head["drives"]                # disks come from self.dir (retro_gamedb_disk_dir)
+        self._loaded = data
+
+    def battery(self, size):
+        """The disk images the game has written to, whole, as a ZIP (b"" when it has written nothing)."""
+        import io, zipfile
+        self.c.L.retro_gamedb_flush()
+        out = io.BytesIO()
+        with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
+            for n in self.disks:
+                cur = open(os.path.join(self.dir, n), "rb").read()
+                if cur != self._orig[n]:
+                    info = zipfile.ZipInfo(n, (1990, 1, 1, 0, 0, 0))
+                    info.compress_type = zipfile.ZIP_DEFLATED
+                    z.writestr(info, cur)
+            count = len(z.namelist())
+        return out.getvalue() if count else b""
+
+    # ---- input
+    def input(self, keys):
+        keys = set(keys)
+        for k in sorted(self._down - keys):
+            if k in self.KEYS:
+                self.c.key(self.KEYS[k], False)
+        for k in sorted(keys - self._down):
+            if k in self.KEYS:
+                self.c.key(self.KEYS[k], True)
+        self._down = keys
+        self.c.keys = {self.JOY[k] for k in keys if k in self.JOY} | {k for k in keys if k.startswith("mouse")}
+
+    def mouse(self, dx, dy):
+        """Relative mouse motion, reported to the machine during the next frame."""
+        self.c.mouse = [dx, dy]
+
+    type_text = Dos.type_text
+
+    # ---- memory
+    def peek(self, addr, n, bank=None):
+        import ctypes
+        if bank is not None:
+            raise NotImplementedError("Amiga memory has no banks: use the 24-bit address")
+        base, size = self._chip
+        if 0 <= addr and addr + n <= size:                  # chip RAM: read directly
+            return ctypes.string_at(base + addr, n)
+        f = self.c.L.retro_gamedb_peek
+        return bytes(f(addr + i) & 0xFF for i in range(n))
+
+    def poke(self, addr, data):
+        for i, b in enumerate(bytes(data)):
+            if not self.c.L.retro_gamedb_poke(addr + i, b):
+                raise ValueError("%06X is not RAM" % (addr + i))
+
+    def regs(self):
+        return {"pc": self.PC_FORMAT % self.c.L.retro_gamedb_pc()}
+
+
+PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "sms": Sms, "dos": Dos, "apple2": Apple2,
+             "amiga": Amiga}
 
 
 def backend(platform):
@@ -1355,6 +1715,8 @@ def by_extension(path):
     ext = os.path.splitext(path)[1].lower()
     if ext == ".zip" and os.path.exists(path) and Apple2.zip_disks(open(path, "rb").read()):
         return "apple2", Apple2                 # a ZIP of disk images; any other ZIP is a DOS game
+    if ext == ".zip" and os.path.exists(path) and Amiga.zip_disks(open(path, "rb").read()):
+        return "amiga", Amiga
     for name, cls in PLATFORMS.items():
         if ext in cls.extensions:
             return name, cls

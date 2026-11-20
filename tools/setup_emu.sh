@@ -21,7 +21,14 @@
 #              one-key latch, and adds retro_gamedb_insert/flush/peek/poke/pc and retro_gamedb_set_time; it also
 #              drops a font resource only the SDL frontend needs (it lives in a git submodule).
 #              The build embeds the firmware with `xxd -i`; without xxd, tools/xxd_i.py stands in.
-# sh tools/setup_emu.sh [gb|nes|snes|sms|dos|apple2]   (default: all)
+#   puae       PUAE (libretro-uae) as a libretro core (same driver). Backend for amiga (a game = an ADF or a ZIP of
+#              ADFs; real Kickstart ROMs go into rom/kickstart/, the core also has the free AROS one built in).
+#              tools/puae-debug.patch: a loaded savestate continues exactly like the run that made it (the core
+#              restores at the start of the next frame instead of emulating frames inside retro_unserialize),
+#              the battery clock follows retro_gamedb_set_time, a restore takes its disks from the folder set
+#              with retro_gamedb_disk_dir, retro_gamedb_peek/poke/pc/insert/flush; it also fixes the core's
+#              fallback logger (it wrote to a NULL stderr and crashed without a frontend log interface).
+# sh tools/setup_emu.sh [gb|nes|snes|sms|dos|apple2|amiga]   (default: all)
 set -e
 cd "$(dirname "$0")"
 want=${1:-all}
@@ -83,4 +90,13 @@ if [ "$want" = all ] || [ "$want" = apple2 ]; then
   (cd applewin/build && PATH="$PWD/shim:$PATH" &&
     cmake -DBUILD_LIBRETRO=ON -DENABLE_NETWORKING=OFF -DCMAKE_BUILD_TYPE=Release .. >/dev/null &&
     make -j"$(nproc 2>/dev/null || echo 2)" applewin_libretro)
+fi
+if [ "$want" = all ] || [ "$want" = amiga ]; then
+  if [ ! -d puae ]; then
+    mkdir puae
+    (cd puae && git init -q && git remote add origin https://github.com/libretro/libretro-uae.git &&
+      git fetch -q --depth 1 origin d366f77c60e5a5f059f129cc3773d3048306083b && git checkout -q FETCH_HEAD &&
+      git apply ../puae-debug.patch)
+  fi
+  make -C puae -j"$(nproc 2>/dev/null || echo 2)"
 fi
