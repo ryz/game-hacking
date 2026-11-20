@@ -1,3 +1,23 @@
+diff --git a/libretro-common/vfs/vfs_implementation.c b/libretro-common/vfs/vfs_implementation.c
+index 64be723..e39ba52 100644
+--- a/libretro-common/vfs/vfs_implementation.c
++++ b/libretro-common/vfs/vfs_implementation.c
+@@ -584,7 +584,6 @@ libretro_vfs_implementation_file *retro_vfs_file_open_impl(
+    libretro_vfs_implementation_file *stream =
+       (libretro_vfs_implementation_file*)
+       calloc(1, sizeof(*stream));
+-printf("%s '%s' %d  \n", __func__, path, mode);
+    if (!stream)
+       return NULL;
+ 
+@@ -1109,7 +1108,6 @@ int retro_vfs_file_error_impl(libretro_vfs_implementation_file *stream)
+ 
+ int64_t retro_vfs_file_size_impl(libretro_vfs_implementation_file *stream)
+ {
+-printf("%s\n", __func__);
+    if (stream)
+       return stream->size;
+    return 0;
 diff --git a/libretro/libretro-core.c b/libretro/libretro-core.c
 index 0f6797e..3bbeda4 100644
 --- a/libretro/libretro-core.c
