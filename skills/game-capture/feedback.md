@@ -24,10 +24,10 @@ Never delete entries.
   position pokes plus the game's own turns; (b) a shared `tools/preview.py` (parallel previews tiled at native
   size, timeline mode); (c) silence the core's VFS log.
 - Corrected: coordinator checked the commits (game folder only), counts (main 111, start 37), lenses (clean), the
-  contact sheets, and re-verified `ending_grey_lord` from an empty cache (`start/37_saved`: run pending). (c):
-  two leftover debug printfs in the core's libretro-common VFS, removal pending a rebuild.
+  contact sheets, and re-verified `ending_grey_lord` and `start/37_saved` from an empty cache (both reproduce).
+  (c) fixed: two leftover debug printfs in the core's libretro-common VFS removed in `tools/puae-debug.patch`.
 - Status: (a) open (first time seen; promote on a second case or the owner's word); (b) open (also asked for by
-  earlier runs as cachecheck/screen tools); (c) open until the rebuild.
+  earlier runs as cachecheck/screen tools); (c) done 2026-11-20.
 
 ### 2026-11-19 - Wizardry I (Apple II)
 - Task: set `main` for Apple II Wizardry I from the title to the ending with three lenses: 291 shots, cold verify

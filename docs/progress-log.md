@@ -8,7 +8,8 @@ Append-only, newest first.
   creature kinds over 24 battle shots, red dragon, Lord Chaos, game over, the save flow, plain views of levels 3
   to 14, the ending with Lord Order, the fusion and the Grey Lord) and set `start` 37 shots played honestly from
   power-on to the first in-game save (first fight: the Mummy behind the east gate of level 2). Both verified from
-  an empty cache by the agent; the coordinator re-verified the ending shot cold.
+  an empty cache by the agent; the coordinator re-verified the ending shot and the last `start` shot cold.
+- Core: two leftover debug printfs in the PUAE core's VFS (a line on stdout per file open) removed.
 - How: the whole dungeon is in slow RAM (map descriptors, squares, thing tables; `tools/dungeon.py` writes
   `design/maps.md`); level warp = poke onto a down staircase and turn (`DL3`..`DL14`, checkpoints `l3`..`l14`);
   the ending by `FUSE`: the club made the complete Firestaff, the party poked next to Lord Chaos and his open
