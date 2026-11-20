@@ -10,7 +10,7 @@ services were all found unchanged here wherever they were tried (below); its RAM
 ## Read first
 - **Start:** `python3 tools/play.py --name mm2 start apple2/might-and-magic-2 --route @middlegate` (model `iie`,
   needs `rom/apple2/might-and-magic-2.zip`, six nibble disks). Every checkpoint reproduces cold
-  (`python3 tools/cachecheck.py apple2/might-and-magic-2 --flat leaves`, 16/16, 2026-11-20).
+  (`python3 tools/cachecheck.py apple2/might-and-magic-2 --flat leaves`, 16/16, 2026-11-20; 26 checkpoints after the capture, all used by verified shots).
 - **Disks:** A boot/title (and Sheltem's picture), B roster + the five towns (00-04), C outdoors west (05-10),
   D caverns (11-20, Square Lake 17), E outdoors east + elemental planes (21-2C), F dungeons, towers, castles
   (2D-3B). The game asks "Insert Disk X in Drive 1 and Press 'Return'": answer `DISK:n` (`disk:n,enter,w700`).
@@ -30,7 +30,16 @@ services were all found unchanged here wherever they were tried (below); its RAM
   The right panel stays on "Protection" after a cast until `o` (or Esc).
   **Encounters: never `settle` on an encounter screen** (portraits animate, settle runs 300 frames and the
   fight starts: the monsters act first). End encounter checkpoints and shots with a fixed wait or `!`.
-- **State:** scouted, nothing captured. Open: the century (year) variable, the Sheltem fight, quest-mark bytes.
+- **Century:** `YEAR:08` (= `poke:2F7C9=08`) before a `WARPD` from another disk loads the area in year 800
+  (Castle Xabran in C2 (14,7)+up, King Kalohn at C4 (14,4)+up). Never rest there: a rest can reset it to 900.
+- **Equipment:** `GEAR` puts Long Sword, Chain Mail, Large Shield, Helm, Crossbow in ryz's backpack, `EQ5`
+  opens his profile and equips all five (AC 13).
+- **Combat keys:** `a` opens the fight; per member `f` + target letter (fight), `c` level number target
+  (no Return), `b` block, `q` quick reference, `v` view, `e` exchange, `d` controls, `p` protection. A fight to
+  the end without looking: repeat `a,w300,b,w300` (victory route of `battle_victory`). Monster pictures and
+  lists appear ~600 frames after "Encounter!" (they load from disk): shots use `w200*3,!` or `w200*4,!`.
+- **State (2026-11-20):** `start` 45 shots and `main` 216 shots published, both verified cold; lenses clean.
+  Open: the Sheltem fight (not won, so no ending), Earth/Water plane looks, Unlock, Use, hirelings.
 
 ## Identity
 | Field | Value |
@@ -121,6 +130,14 @@ parties and the fixed fights.
 - Apple II only: the disk prompts (B-F, and A for Sheltem's picture) - one shot.
 Distinctive here: the 1988 hi-res art (monster portraits framed in combat, animated ghost/globes), six disks.
 
+### Shot plan status (2026-11-20)
+Done: boot and menus, creation, inn and Middlegate (every service of the DOS table), exploration commands but
+Unlock and Use, combat (encounter options, every combat key, hits, spells, victory, two defeats), the other
+four towns, 12 outdoor views, caverns, dungeons, castles, Air and Fire planes, five bosses, Square Lake fights,
+year 800 (Xabran, Kalohn, Mega Dragon), Sheltem's encounter and fight, disk prompts B, C, A.
+Missing: the Sheltem victory and the ending, Earth/Water plane looks, hireling, Unlock, Use, level-up at
+training (needs experience poke), the arena.
+
 ## Strategy and walkthrough notes
 - Everything from `@middlegate` or `@hero`: `WARPD` into the area, `AT` to the square, `left` for its event.
 - Fights: level-1 parties die in the Sheltem fight in one round (250-point breath). Use `hero`; for ordinary
@@ -148,7 +165,8 @@ Main character **ryz**, then condi, ebo, cubi, deddo, mnz (lower case: `type:ryz
 | Strong parties | `HERO` (levels 29-31, HP 132-287, SP, gems, gold, ages 29-36), `VET` (levels 10-11); then `REDRAW` | RAM | verified on quick ref and profiles |
 | Light | `LIGHT` (cast) | game | verified; a light counter poke was not found |
 | Gold, gems, food, HP, SP, level, experience | record pokes (RAM map) | RAM | verified on the profile |
-| Century | not found | - | open |
+| Century | `YEAR:nn` before a load from another disk (`WARPD`) | RAM | verified (year 800: Xabran, Kalohn) |
+| Gear for ryz | `GEAR` then `EQ5` (profile, equip A five times) | RAM + game | verified (AC 13) |
 | Debug features, cheat codes | none known (web search found none) | - | - |
 
 ### Saves (rom/saves/apple2/might-and-magic-2/, never committed)
@@ -186,7 +204,13 @@ None downloaded.
 | +41 / +42 / +44 | 1 each | armour class / food / Endurance | read |
 | +45..+4A / +4B..+50 | 6 / 6 | equipped / backpack item ids (DOS ids) | poke verified |
 | +51..+73 | | item bonuses and charges (a poke here showed "Large Club +2"), skills (showed Navigator, Crusader) | poke, not decoded |
-| `20283` / `2028E` | 1 x n / 1 x n | monster HP low / high bytes during combat (Sheltem 500 = F4/01, elementals FA) | search; poking them did not end the fight (open) |
+| `20283` / `2028E` | 11 / 11 | monster HP low / high bytes during combat (Sheltem 500 = F4/01, elementals FA); a monster that runs away is removed and the arrays close up | search, diff |
+| `20299`.. | 11 each | further monster arrays, stride 11: `202A4` (01 08 06 08 08 for Sheltem's group), `202AF` (28 1E 1E 1E 1E: AC?), `202BA` (status: 01 after acting?) | diff, not decoded |
+| `2F7C9` | 1 | century: 09 = year 900; the year is printed from tables `F7D4+c` (low) / `F7DE+c` (high) | code at `D6F6`, poke verified (08 = year 800 after a load from another disk) |
+| `2F7CA + c` | 1 each | day counter per century (`2F7D3` = days in year 900); four rests = one day | diff, verified |
+| `B955`-`B970` | code | rest: outside century 9 a roll may write 09 to `F7C9` and move the party (return to the present) | code read |
+| `1050` | code | area load compares `F7C9` with the area's century `FA0F` | code read |
+| +43 | 1 | condition (00 good, 40 unconscious) | diff after a fight |
 | `A101` | 17 | exploration key table, handlers lo `A112` / hi `A123`: forward = `A16D` | code |
 Watches in `game.json`: `yx`, `facing`, `area`, `hp1`, `gold1`. Scratch disassembler used: py65 (`pip install py65`).
 
@@ -207,6 +231,8 @@ Watches in `game.json`: `yx`, `facing`, `area`, `hp1`, `gold1`. Scratch disassem
 | `signed_in` | inn list after signing in (base of `01_start`) |
 | `vet`, `hero` | street with the poked parties, window redrawn (`hero` has Light 3) |
 | `combat` | Middlegate (8,1) fixed fight, encounter options (level-1 party) |
+| `vet_cats` | the same fight met by the VET party (base of the combat shots and the victory) |
+| `s_smith`, `s_temple`, `s_training`, `s_gate`, `s_c2`, `s_orcs`, `s_death`, `s_resume`, `s_signed` | set `start`: walked from the inn to the blacksmith, temple, training, gates, C2, the ten Orcs (lost), Death Strikes, resumed, signed in |
 | `atlantium`, `cavern`, `plane_air`, `castle` | areas 01, 11 (lit), 29, 37 at (7,7) with `hero` |
 | `sheltem`, `sheltem_options` | Square Lake gate: speech; encounter options |
 
@@ -220,12 +246,16 @@ Watches in `game.json`: `yx`, `facing`, `area`, `hp1`, `gold1`. Scratch disassem
 | The game (About screen, all screens above) | - | credits, version, texts | 2026-11-20 |
 
 ## Open questions
-- **Century:** where the year lives (not `002D`, `024D`, `028D`, `0297`, `02A3`, `02CB`, `02D9`, `0389`, `2FA0F`:
-  poked 08 and warped, the status line stayed 900; no `84 03` word anywhere). Needed for Castle Xabran (year 800)
-  and King Kalohn. Next: find the code that prints the status line (texts "Day=", "Year=" at aux `A74C`).
-- **Sheltem fight:** with `HERO` the elementals' breath (125-250 points) kills members in one round; poking
-  the monster HP bytes at `20283` to 1 and attacking for a round did not end the fight. Find what the attack
-  roll uses (or freeze the party HP: `freeze:2043A=...` did not stop the damage shown).
+- ~~Century~~ solved 2026-11-20: `2F7C9` (found through the day counter `2F7D3`, which rests advance; the
+  printing code indexes the hundreds table with it). A same-disk `WARP` does not redraw the status line; a
+  load from another disk does. After an event in year 800 the status line prints 900 again (findings.md).
+  The game's texts are not stored as plain or offset-encoded ASCII (searched all 192K).
+- **Sheltem fight** (capture run, ~20 calls): monster HP 0 at `20283`/`2028E` makes breath do 0 points, but the
+  monsters keep acting and are not removed; party HP and condition frozen (`freeze:2043A=1F01 ... freeze:206C3=00`,
+  waits as `w10` chains) keep the party alive, but no party attack ever lowered a monster's HP (also with
+  `202AF`=0), and a member who was down when the freeze started (mnz) blocks the round: his turn ignores every
+  key. Next: freeze before the first round (from `sheltem_options`, before `a`), give the party weapons
+  (`GEAR`-style pokes for all six) and accuracy, or find the victory routine (the code that prints "Victory!").
 - Does the Apple gate check any quest mark (DOS bit 20 of record +81)? It opened for an unmarked party.
 - Light counter and quest-mark bytes of the record; record bytes +51..+73.
 - Hirelings: records 6-7 at `0700`/`0780`?

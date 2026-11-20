@@ -107,6 +107,6 @@
       "fmt": "hex"
     }
   },
-  "work": "scouted 2026-11-20: boot to the Middlegate inn (party of six), inn save, area warp to all 60 areas with the disk map, record layout, HERO/VET parties, 16 checkpoints to Sheltem; not captured",
-  "open": "year/century variable not found (no YEAR macro, so King Kalohn in year 800 is untested); Sheltem fight not won (monster HP poke at 0283 had no visible effect); record bytes for quest marks, items' charges and skills not decoded"
+  "work": "captured 2026-11-20: main 216 shots (boot to Sheltem's fight, all towns, outdoors, caverns, dungeons, castles, year 800), start 45 shots (power-on to the first save), three lens documents; century byte found",
+  "open": "Sheltem fight not won (no ending shots); Earth/Water plane looks, Unlock, Use, hirelings, training level-up not shot"
 }
