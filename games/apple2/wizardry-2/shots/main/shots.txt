@@ -214,7 +214,7 @@ inventory_kod_set | inventory | RYZ wearing KOD's armor, helmet, shield, gauntle
 dialogue_gnilda_test | dialogue | RYZ alone with the five: 'A FIERY FACE ... WHAT IS THE ANSWER TO THE RIDDLE ...' | @gnilda_test
 dialogue_gnilda_answer | dialogue | 'ANSWER ?' - THE KNIGHT OF DIAMONDS typed | @gnilda_answer,type:THE KNIGHT OF DIAMONDS
 dialogue_staff_gift | dialogue | 'A NOW FAMILIAR APPARITION APPEARS AND SAYS: THROUGH YOUR VALOR, WIT ...' | @staff_gift
-dialogue_staff_gift_2 | dialogue | Gnilda's gift: 'FULL REGALIA OF THE LEGENDARY KNIGHT ... RECLAIM THOSE ARTIFACTS' | @staff_gift,enter,w600
+dialogue_staff_gift_2 | dialogue | Gnilda: 'FULL REGALIA OF THE LEGENDARY KNIGHT ... RECLAIM THOSE ARTIFACTS' | @staff_gift,enter,w600
 dialogue_staff_gift_3 | dialogue | Gnilda's gift, page 3: 'RECEIVE THE STAFF OF GNILDA!' | @staff_gift,enter,w600,enter,w600
 dialogue_staff_got | dialogue | 'RYZ GOT ITEM': the pieces are gone, AC still LO | @staff
 inventory_staff | inventory | RYZ's sheet: STAFF OF GNILDA his only item | @staff,c,w900,1,w600

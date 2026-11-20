@@ -2808,7 +2808,7 @@
   {
    "id": "dialogue_staff_gift_2",
    "category": "dialogue",
-   "caption": "Gnilda's gift: 'FULL REGALIA OF THE LEGENDARY KNIGHT ... RECLAIM THOSE ARTIFACTS'",
+   "caption": "Gnilda: 'FULL REGALIA OF THE LEGENDARY KNIGHT ... RECLAIM THOSE ARTIFACTS'",
    "route": "@staff_gift,enter,w600",
    "settled": true,
    "model": "iiplus-wp1",
