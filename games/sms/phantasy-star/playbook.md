@@ -309,3 +309,6 @@ does. Long corridors: 16:E4, 2B:ED, 18:EE, 25:E8 (all facing 0).
 When a dungeon encounter starts, the monster is drawn over the corridor first and the windows follow one per frame
 or two: exactly 5 frames after the step press that triggers the encounter (`up:1,w4,!`), the picture has no UI at
 all (`battles`: corridor_skeleton_clean). Find the frame with a frame-by-frame sample from the step before.
+During the round (after every member has a command) the command menu and the party boxes are gone: only the acting
+member's name box and the monster box stay. A frame on Alis's turn with the monster in normal colours (between its
+hit flashes): `battles` corridor_skeleton_turn (`b2,w60` x3, `b2,w180,!` after the encounter).

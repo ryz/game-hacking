@@ -16,3 +16,4 @@ corridor_nessie | battle | Nessie in a long green corridor, the walls receding t
 corridor_ghoul | battle | A Ghoul in a long yellow corridor, a dozen squares of passage behind it | @start,PARTY4,INV4,DUN:25:E8:00,settle,w32,up:1,w40,up:1,w40,w200
 corridor_skeleton | battle | A Skeleton in a long blue corridor, the passage running on far behind it | @start,PARTY4,INV4,DUN:16:E4:00,settle,w4,up:1,w40,up:1,w40,w200
 corridor_skeleton_clean | battle | The Skeleton appears, one frame before the battle windows are drawn: no UI | @start,PARTY4,INV4,DUN:16:E4:00,settle,w4,up:1,w40,up:1,w4,!
+corridor_skeleton_turn | battle | Alis's turn: only her name and the monster box; one Skeleton already at HP 0 | @start,PARTY4,INV4,DUN:16:E4:00,settle,w4,up:1,w40,up:1,w40,w200,b2,w60,b2,w60,b2,w60,b2,w180,!

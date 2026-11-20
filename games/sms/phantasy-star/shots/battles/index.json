@@ -239,6 +239,19 @@
    "file_3x": "3x/phantasy-star_sms_na_battle_corridor_skeleton_clean.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
    "captured": "2026-11-20"
+  },
+  {
+   "id": "corridor_skeleton_turn",
+   "category": "battle",
+   "caption": "Alis's turn: only her name and the monster box; one Skeleton already at HP 0",
+   "route": "@start,PARTY4,INV4,DUN:16:E4:00,settle,w4,up:1,w40,up:1,w40,w200,b2,w60,b2,w60,b2,w60,b2,w180,!",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_battle_corridor_skeleton_turn.battles.png",
+   "file_3x": "3x/phantasy-star_sms_na_battle_corridor_skeleton_turn.battles.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-20"
   }
  ]
 }

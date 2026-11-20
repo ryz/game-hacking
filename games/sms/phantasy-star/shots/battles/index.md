@@ -1,6 +1,6 @@
 # Phantasy Star - shots: battles
 
-Platform sms, region na, model ntsc, ROM SHA-1 `257ca76ebcd54c75a414ca7ce968fa59ea42f150`. 17 shots. Contact sheet: [phantasy-star_sms_na_set_sheet.battles.png](phantasy-star_sms_na_set_sheet.battles.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.battles.png`.
+Platform sms, region na, model ntsc, ROM SHA-1 `257ca76ebcd54c75a414ca7ce968fa59ea42f150`. 18 shots. Contact sheet: [phantasy-star_sms_na_set_sheet.battles.png](phantasy-star_sms_na_set_sheet.battles.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.battles.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -21,5 +21,6 @@ Platform sms, region na, model ntsc, ROM SHA-1 `257ca76ebcd54c75a414ca7ce968fa59
 | corridor_ghoul | battle | A Ghoul in a long yellow corridor, a dozen squares of passage behind it | no | [png](phantasy-star_sms_na_battle_corridor_ghoul.battles.png) [3x](3x/phantasy-star_sms_na_battle_corridor_ghoul.battles.png) |
 | corridor_skeleton | battle | A Skeleton in a long blue corridor, the passage running on far behind it | no | [png](phantasy-star_sms_na_battle_corridor_skeleton.battles.png) [3x](3x/phantasy-star_sms_na_battle_corridor_skeleton.battles.png) |
 | corridor_skeleton_clean | battle | The Skeleton appears, one frame before the battle windows are drawn: no UI | no | [png](phantasy-star_sms_na_battle_corridor_skeleton_clean.battles.png) [3x](3x/phantasy-star_sms_na_battle_corridor_skeleton_clean.battles.png) |
+| corridor_skeleton_turn | battle | Alis's turn: only her name and the monster box; one Skeleton already at HP 0 | no | [png](phantasy-star_sms_na_battle_corridor_skeleton_turn.battles.png) [3x](3x/phantasy-star_sms_na_battle_corridor_skeleton_turn.battles.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
