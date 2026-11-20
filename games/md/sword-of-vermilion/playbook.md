@@ -17,28 +17,25 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Controls:** C = confirm / field command window / **sword swing in battle** (one per press); B = back/close;
   Start = title choice and ends naming. Overworld: up = step forward, left/right = turn. Battle: D-pad moves freely; **walking off
   the left (or right) edge escapes** (verified left).
-- **Leaving Wyclif:** the south gate (tile 0D,2B) after Blade has spoken: stand on it, then a fresh `down`.
-- **First battle:** `@field,FWD*8,TR,FWD*7,w100` (green slimes).
+- **Leaving Wyclif:** stand on the south gate (0D,2B) after Blade has spoken, fresh `down`. First battle: `@field,FWD*8,TR,FWD*7,w100`.
 - **Traps that cost calls:**
   - **Doors and stairs fire only on a fresh press** made while standing on the door/stair tile: walk onto it,
     then `w20,up:16` (or the direction of the exit) again. Holding the direction into the door does nothing.
   - **Every door in Wyclif is locked** until Blade has spoken (his house, tile 09,0B, is open; he is upstairs).
   - Town movement: 16 frames per tile; copy routes from `play.py route` / checkpoints.txt (settles matter).
-  - Text types slowly at Normal speed and C does not complete a page; `mash` lost pages. Use `PAGE*N`.
+  - Text types slowly and C does not complete a page: use `PAGE*N`, not `mash`.
   - Position pokes (FFC606/FFC608) are overwritten at once: the real position is the hero object FFD020 +0x0E/+0x12.
   - **Shop dialogs:** after a purchase the cursor stays where it was: a blind `down,c` sold the sword. Look.
   - End checkpoints outside battles (a state loaded mid-battle can differ from a replay in a stack word).
   - The title and most field screens never settle (blinking cursor, animated water/NPCs): "NOT settled" is normal.
-- **State:** captured 2026-11-20: sets `start` (35, honest, to the first save), `main` (132: town talk shots and seven more towns added in run 5), `seq-aries` (7),
+- **State:** captured 2026-11-20: sets `start` (35, honest, to the first save), `main` (136: town talk shots, seven more towns and map-panel encounters added in run 5), `seq-aries` (7),
   `seq-ending` (12) and `seq-boss` (14) published and verified. Reached: Parma, the Ring of Wisdom, the Cave of Troy
   entrance; every boss and the ending by poke (code map below). Not reached on foot: a boss square, Watling.
 - **Ending (round 4):** `@saved,poke:FFC400=0012,w60` then timed pages (`w300*N,!`: N=2 mother page, 6 embrace,
   16 STAFF, 30 PLAYER ryz, 35 END). Start it from an interior (`@saved`): from the overworld a stray red sprite
   (the map marker) stays on screen through the whole ending.
-- **Any boss (round 4):** in the overworld or a cave, `poke:FFC8NN=FF,poke:FFC817=FF` (NN = boss 00-0D); the field
-  loop starts the boss fight at once (~160 frames of fade-in; controls from ~300). Boss HP word at
-  FFD108 (= object at (FFCC14).l + 0x28; boss 0: 1000); `poke:FFD108=0031` then `right:100,c` from
-  `w20*15` kills boss 0 in one hit. Shots use `@m_cave2_lit` (cave east of Parma) as the place.
+- **Any boss (round 4):** overworld or cave, `poke:FFC8NN=FF,poke:FFC817=FF` (NN = boss 00-0D); fight starts at
+  once (controls from ~300 frames); boss HP word FFD108 (`poke:FFD108=0031`, then `right:100,c` from `w20*15`).
 - **Maps (round 3):** one flag byte per map, FFC820 + y*16 + x (map x/y = FFC666/FFC668; Wyclif's south map is
   (0,7), Parma (1,4)). Poke the byte *before* entering the map (inside a town, or before crossing an edge): the
   panel is drawn on map entry, not on a step. Mirror of Atlas (item 0x23) = all 256 flags; Titania's Mirror
@@ -49,9 +46,8 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   honestly (old man at window (18,20) of the cave, via `m_cave_inner`); `m_map_gift` (ring flag poked, from
   `@overworld`) has the man by the well give the Parma route map (5 maps).
 - **Any enemy group:** `poke:FFC68B=NN` (0-0x55) right before the step that starts the encounter, e.g.
-  `@field,FWD*8,TR,FWD*6,poke:FFC68B=24,freeze:FFC62C=0021,FWD,w10*16,!`. 0x56 and above crash. At `m_strong`
-  the group is fixed earlier (the poke before the last step did nothing). FFC0A4 looks like a mode byte
-  (0 title, 1 name, 9 interior, 10 overworld, 11 battle, 12 cave) but poking it changes nothing.
+  `@field,FWD*8,TR,FWD*6,poke:FFC68B=24,freeze:FFC62C=0021,FWD,w10*16,!`. 0x56 and above crash; at `m_strong`
+  and in the run-5 Aries encounters the poke did not pick the group (the area table did).
 - **Main-set chain:** `m_strong` (level 5, 162 HP, 3424 kims; overworld) -> caves south of Wyclif (`m_cave*`),
   Parma (`m_parma*`, magic shop, Ferros readied), `m_cave2_lit` (cave east of Parma, lit). Start set: `s_saved`.
 - **Walking without looking:** the map is a 48x32 byte window at FF9000 (0 open, 1 trees, 2 hills, 5 cave wall,
@@ -61,6 +57,10 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Any town (run 5):** checkpoints `m_stow` (raid), `m_deepdale`, `m_keltwick`, `m_malaga`, `m_helwig`,
   `m_excalabria`, `m_cartahena` via `@m_aries_list` (Aries list, all 14 visited flags FFC508+ poked), a held
   `down:16,w20` per row (8-frame taps are ignored); check FFC40C (town index, RAM map), not the keys.
+- **Encounter with the map panel (run 5):** poke stats, `FFC820`x256 = FF (all maps), spell list and readied
+  spell (`FFC4D6` = 0200 Aero) at `@m_aries_list`, cast to a town (panels redrawn on arrival), `TR,TR`, then
+  `poke:FFC685=13,FWD,w60,!` (step counter 0x14 starts a battle); routes `gameplay_encounter_map_*`. Poke EXP with
+  matching level/next level/stats (else a level-up window opens on arrival).
 - **Talk shots:** `python3 games/md/sword-of-vermilion/tools/npcs.py "@CP" --plan CP` prints a Talk route to every
   person within 15 tiles (NPC table FFD0E0, collision grid FF2000); preview, keep those in mid-screen.
 - **Traps (capture):** menu cursor moves right after `c,w60` are dropped: put `settle` before `down*N` (Aries, Lantern).
@@ -247,8 +247,10 @@ loaded by `@continue` (verified).
 | FFD020 | 0x40 | hero object: +0x0E world x, +0x12 world y (pixels, tile*16+8) | code 0x3782 |
 | FFD0E0 + n*0x40 | 0x40 each | townspeople: byte 0 bit 7 in use, +0x0E/+0x12 world x/y, +0x1C line pointer (ROM) | RAM + ROM text, verified (`tools/npcs.py`) |
 | FF2000 | 0x2000 | town collision window: 64x64 cells of 8 px, one word each (128 bytes per row); high nibble 0/2/3/E/F open; tile (x,y) = cell (2x+1, 2y+1), wraps every 32 tiles | code 0x39C0, verified by the BFS routes |
+| FFC4D6 | 2 | readied spell (MAGIC panel): 0205 Ferros, 0200 Aero, FFFF none; the list word also gets bit 15 | diff before/after readying, verified by poke |
+| FFC685 | 1 | encounter step counter: a battle starts when it reaches 0x14 (field loop 0x27EA), or by a random check | code, verified by poke |
 | FFC0A4 | 1 | mode-like byte (0 title, 1 name, 6 town start, 9 interior, 10 overworld, 11 battle, 12 cave, 0x18 at a ladder); writes ignored | diff |
-| FFC685 | 1 | counts steps and turns on the overworld (reset by a battle); encounter counter? | diff, unconfirmed |
+| ~~FFC685~~ | 1 | ~~counts steps and turns; encounter counter?~~ confirmed as the encounter counter (row above) | diff |
 | 200001 ... (odd bytes) | | Saved Game 1 starts with the name | peek after saving |
 
 ## Code map (68000, `python3 tools/dis68k.py sword-of-vermilion ADDR`; round 4, 2026-11-20)

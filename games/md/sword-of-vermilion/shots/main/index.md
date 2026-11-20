@@ -1,6 +1,6 @@
 # Sword of Vermilion - shots: main
 
-Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2`. 132 shots. Contact sheet: [sword-of-vermilion_md_na_set_sheet.png](sword-of-vermilion_md_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2`. 136 shots. Contact sheet: [sword-of-vermilion_md_na_set_sheet.png](sword-of-vermilion_md_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -83,6 +83,10 @@ Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f
 | env_overworld_hills | gameplay | Overworld: road through the hills south of Parma | yes | [png](sword-of-vermilion_md_na_gameplay_env_overworld_hills.png) |
 | map_area_hills | map | Mountain road south of Parma: hills on the area map, marker at the north edge | yes | [png](sword-of-vermilion_md_na_map_map_area_hills.png) |
 | gameplay_encounter_goblin | gameplay | Overworld north of Wyclif: a goblin with a sword blocks the road | yes | [png](sword-of-vermilion_md_na_gameplay_gameplay_encounter_goblin.png) |
+| gameplay_encounter_map_deepdale | gameplay | Forest road by Deepdale: a hooded figure appears; full area map, level 22, Aero | yes | [png](sword-of-vermilion_md_na_gameplay_gameplay_encounter_map_deepdale.png) |
+| gameplay_encounter_map_keltwick | gameplay | Near Keltwick: a blue flame spirit on the road, area map with hills to the north | yes | [png](sword-of-vermilion_md_na_gameplay_gameplay_encounter_map_keltwick.png) |
+| gameplay_encounter_map_malaga | gameplay | Near Malaga: a winged demon swoops down the road, area map with the town | yes | [png](sword-of-vermilion_md_na_gameplay_gameplay_encounter_map_malaga.png) |
+| gameplay_encounter_map_helwig | gameplay | Hills by Helwig: a teal tentacled blob in the middle of the road; area map | yes | [png](sword-of-vermilion_md_na_gameplay_gameplay_encounter_map_helwig.png) |
 | battle_goblins | battle | Battle with a band of goblins | no | [png](sword-of-vermilion_md_na_battle_battle_goblins.png) |
 | env_parma_gate | gameplay | Parma: the south entrance, soldiers in the street | no | [png](sword-of-vermilion_md_na_gameplay_env_parma_gate.png) |
 | env_parma_church | gameplay | Parma: main street by the stone church | no | [png](sword-of-vermilion_md_na_gameplay_env_parma_church.png) |

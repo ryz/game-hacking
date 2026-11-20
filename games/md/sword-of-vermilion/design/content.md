@@ -43,6 +43,10 @@ Check: `python3 tools/lenses.py md/sword-of-vermilion`. Shots: set `main` unless
 | Green slime | road south of Wyclif | slime, packs of 6-8 | hops at the prince, about 3 HP per touch at level 1 **(verified)** | `gameplay_encounter_slime`, `battle_first`, `battle_magic` |
 | Blue slime | south of Wyclif | slime | same behaviour, packs of 4-6 **(verified)** | `gameplay_encounter_blue`, `battle_blue_slimes` |
 | Goblin | road to Parma | armed beast-man with a sword, packs of 6 | walks in and strikes **(verified)** | `gameplay_encounter_goblin`, `battle_goblins` |
+| Hooded figure | forest road by Deepdale | purple robe and hood | appears on the road (battle not shot) | `gameplay_encounter_map_deepdale` |
+| Blue flame spirit | near Keltwick | a blue wisp | appears on the road (battle not shot) | `gameplay_encounter_map_keltwick` |
+| Winged demon | near Malaga | brown bird-like demon | swoops down the road (battle not shot) | `gameplay_encounter_map_malaga` |
+| Teal blob | hills by Helwig | teal tentacled blob | appears in the middle of the road (battle not shot) | `gameplay_encounter_map_helwig` |
 | Tree creatures | (type 0x1C poked) | walking trees with leafy crowns, 8 | ring the prince **(verified)** | `battle_tree_monsters` |
 | One-eyed ogres | (type 0x24 poked) | hulking cyclopes, 8 | close in **(verified)** | `battle_cyclopes` |
 | Flame spirits | (type 0x28 poked) | green flames with red cores, 8 | drift and flare **(verified)** | `battle_flames` |
