@@ -4,22 +4,28 @@ is reproducible from power-on (states are a cache, routes are the record).
 
   python3 tools/play.py start GAME [--route "@title"] [--model M]   power on (or start at a checkpoint/route)
   python3 tools/play.py do "right:30,a"      play tokens (tools/emu.py syntax), then settle; prints the
-                                             screenshot path, whether it settled, PC and the game.json RAM watch
+                                             screenshot path (native size), whether it settled, the call
+                                             number of this session, PC and the game.json RAM watch
   python3 tools/play.py do! "a,w5"           same without the final settle (catch a moving frame)
   python3 tools/play.py undo                 back to before the last do (one level)
-  python3 tools/play.py shot [PATH]          screenshot only (default work/play/NAME/last.png, 3x)
+  python3 tools/play.py shot [PATH] [--scale N]
+                                             screenshot only (default work/play/NAME/last.png). Pictures are
+                                             native size: an enlarged one costs several times more to look at.
+                                             --scale N (nearest neighbour) only when small text cannot be read;
+                                             a game that always needs it: game.json "look_scale": 2
   python3 tools/play.py snap ID CATEGORY "caption" [--set SET]
-                                             capture the current frame for the database: native PNG (+ 3x copy in 3x/) into
+                                             capture the current frame for the database: native PNG into
                                              work/shots/PLATFORM/GAME/SET/ (default set: main), its line (with the full
                                              route) appended to that set's shots.txt and index.json. File name:
                                              <game>_<platform>_<region>_<CATEGORY>_<ID>[.<SET>].png (tools/shoot.py)
   python3 tools/play.py recaption ID "caption" [--set SET]    change a shot's caption (no replay)
   python3 tools/play.py unsnap ID [--set SET] [--game GAME]   remove a shot from the working set (with --game:
                                                               no running session needed; also for recaption)
-  python3 tools/play.py text                                  the text-mode screen as text (DOS text modes)
+  python3 tools/play.py text                                  the text screen as text (DOS text modes, Apple II
+                                                              text page): cheaper and more exact than a picture
   python3 tools/play.py record ID CATEGORY FRAMES "caption" [--every K] [--poster P] [--set SET]
                                              clip: record FRAMES frames from now (every Kth kept, default 2) as
-                                             NAME.gif (+ 3x/NAME.gif; poster NAME.png; NAME as for snap) into the set, route + `rec:N:K`
+                                             NAME.gif (poster NAME.png; NAME as for snap) into the set, route + `rec:N:K`
                                              in its shots.txt; the session moves on by FRAMES frames; prints
                                              work/play/NAME/clip_ID.png (every kept frame, numbered) - pick a
                                              poster still with --poster P (kept frame number; -1 = last)
@@ -32,9 +38,10 @@ is reproducible from power-on (states are a cache, routes are the record).
                                              <rom name>.sav, and in routes as sav:NAME) and document it in
                                              games/PLATFORM/GAME/saves/README.md; --state also writes NAME.state
                                              (SameBoy savestate of this exact moment, SameBoy only)
-  python3 tools/play.py goto NAME            jump to a checkpoint (built from its route if not cached)
+  python3 tools/play.py goto NAME            jump to a checkpoint (built from its route if not cached; a macro
+                                             edited since it was cached changes its route, so it is rebuilt)
   python3 tools/play.py route                the current route (replay it with emu.py or a shots.txt line)
-  python3 tools/play.py status               PC/bank + every game.json "ram" watch value
+  python3 tools/play.py status               call number, PC/bank + every game.json "ram" watch value
   python3 tools/play.py peek ADDR [N] | poke ADDR HEX
   python3 tools/play.py find "EXPR" | find reset
                                              RAM search (cheat-search style, narrows each call): e.g. lose a
@@ -93,6 +100,7 @@ class Session:
         self.toks = [t for t in toks if not t.startswith("@") and t != "pow"]
         self.undo_state = None
         self.n = 0
+        self.calls = 0          # commands handled: the budget of a dispatch is counted in these
         # a loaded state has no rendered frame yet: snap refuses until a `do` has run frames
         self.stale = bool(rest == [] and route.split(",")[0].startswith("@"))
         self.meta_mtime = os.path.getmtime(os.path.join(self.game.dir, "game.json"))
@@ -132,11 +140,12 @@ class Session:
             else:
                 out.append("%s=%d" % (k, int.from_bytes(b, "big" if fmt == "be" else "little")))
         r = self.emu.regs()
-        return "pc=%s bank=%s  %s" % (r["pc"], r.get("bank"), " ".join(out))
+        return "call=%d pc=%s bank=%s  %s" % (self.calls, r["pc"], r.get("bank"), " ".join(out))
 
-    def shot(self, path=None, scale=3):
+    def shot(self, path=None, scale=None):
         path = path or os.path.join(self.dir, "last.png")
         self.emu.screen_png(path)
+        scale = int(scale or self.game.meta.get("look_scale", 1))
         if scale > 1:
             self.E.enlarge(path, path, scale)
         return path
@@ -248,7 +257,6 @@ class Session:
         before = open(native, "rb").read() if os.path.exists(native) else None
         self.emu.screen_png(native)
         unchanged = before is not None and _pixels(before) == _pixels(open(native, "rb").read())
-        self.E.enlarge(native, self.E.x3(native))
         a = self.emu.screen()
         self.emu.save_state(os.path.join(self.dir, "snap.state"))
         self.emu.frames(self.game.settle_step)
@@ -265,8 +273,10 @@ class Session:
         import shoot
         shoot.index_update(self.game, d, {"id": sid, "category": cat, "caption": caption, "route": route,
                                           "settled": settled, "model": self.model, "source": "play.py snap"})
-        return "%s%s%s" % (rel(native), "" if settled else "  (not settled: animated frame, check it)",
-                           "  (UNCHANGED: identical to the PNG this id already had)" if unchanged else "")
+        same = shoot.twins(d, sid)
+        return "%s%s%s%s" % (rel(native), "" if settled else "  (not settled: animated frame, check it)",
+                             "  (UNCHANGED: identical to the PNG this id already had)" if unchanged else "",
+                             "  (IDENTICAL picture to: %s - retake or unsnap one)" % ", ".join(same) if same else "")
 
     def record(self, sid, cat, frames, caption, every=2, set_="main", poster=0):
         if not re.match(r"^[a-z0-9_]+$", sid):
@@ -374,6 +384,7 @@ class Session:
             rel(p), "%d KiB" % kib if kib else "%d bytes" % len(data), " + state" if state else "")
 
     def goto(self, name):
+        self.reload_game()      # macros edited since the state was cached: the route differs, so it is rebuilt
         self.emu.close()        # reopen: the checkpoint may use another ROM variant or save (start() uses the cache)
         self.emu, _, _ = self.E.start(self.game, "@" + name, self.model)
         self.base, self.toks = "@" + name, []
@@ -382,6 +393,8 @@ class Session:
 
     def handle(self, cmd, args):
         E, e = self.E, self.emu
+        if cmd != "ping":
+            self.calls += 1
         if cmd in ("do", "do!"):
             return self.do(args[0], settle=cmd == "do")
         if cmd == "sample":
@@ -395,7 +408,9 @@ class Session:
             self.stale = True
             return "%s (frame not redrawn yet: `do settle` before a snap)\n%s" % (rel(self.shot()), self.watch())
         if cmd == "shot":
-            return rel(self.shot(args[0] if args else None))
+            args = list(args)
+            scale = opt(args, "--scale")
+            return rel(self.shot(args[0] if args else None, scale))
         if cmd == "text":
             if not hasattr(e, "text"):
                 return "error: this platform has no text screen to read"

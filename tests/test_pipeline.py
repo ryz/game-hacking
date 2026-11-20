@@ -3,7 +3,7 @@ test ROM (skipped when tools/gbemu-cli is not built) and on a generated NES test
 core is not built), a generated SNES test ROM (skipped when the Mesen-S core is not built), a generated DOS
 test program (skipped when the DOSBox Pure core is not built) and a generated Apple II test disk (skipped when
 the AppleWin core is not built)."""
-import json, os, shutil, subprocess, sys
+import json, os, re, shutil, subprocess, sys
 
 import pytest
 
@@ -163,6 +163,7 @@ def run(*args):
 
 
 def test_pipeline(selftest):
+    from PIL import Image
     run("tools/intake.py", str(selftest), "--slug", SLUG, "--region", "na", "--probe", "120")
     gj = os.path.join(ROOT, "games", "gb", SLUG, "game.json")
     meta = json.load(open(gj))
@@ -189,8 +190,15 @@ def test_pipeline(selftest):
     assert "oops" not in open(os.path.join(d, "shots.txt")).read() and not os.path.exists(os.path.join(d, name % "oops"))
     run(*P, "snap", "moved", "menu", "category changes")
     run(*P, "snap", "moved", "gameplay", "category changed: the file follows it")
-    assert os.path.exists(os.path.join(d, name % "moved")) and os.path.exists(os.path.join(d, "3x", name % "moved"))
-    assert not [f for f in os.listdir(d) + os.listdir(os.path.join(d, "3x")) if "_menu_" in f]
+    assert os.path.exists(os.path.join(d, name % "moved")) and not os.path.exists(os.path.join(d, "3x"))
+    assert not [f for f in os.listdir(d) if "_menu_" in f]
+    # the same picture under a second id: said at once, not at the final verify
+    assert "IDENTICAL picture to: a_shot, moved" in run(*P, "snap", "twin", "gameplay", "the same frame again")
+    run(*P, "unsnap", "twin")
+    # pictures are native size unless asked for (an enlarged one costs several times more to look at)
+    assert Image.open(os.path.join(ROOT, run(*P, "shot").strip())).size == (160, 144)
+    assert Image.open(os.path.join(ROOT, run(*P, "shot", "--scale", "2").strip())).size == (320, 288)
+    assert re.search(r"call=\d+ pc=", run(*P, "status"))                     # budgets are counted in calls
     run(*P, "unsnap", "moved")
     run(*P, "stop")
     out = run("tools/shoot.py", SLUG, "main", "--verify")
@@ -199,12 +207,15 @@ def test_pipeline(selftest):
     idx = json.load(open(os.path.join(ROOT, "games", "gb", SLUG, "shots", "main", "index.json")))
     s = idx["shots"][0]
     assert s["id"] == "a_shot" and s["route"] == "@title,right:20,a,settle" and s["rom_sha1"] == meta["sha1"]
-    from PIL import Image
     pub = os.path.join(ROOT, "games", "gb", SLUG, "shots", "main")
     assert Image.open(os.path.join(pub, name % "a_shot")).size == (160, 144)
-    assert Image.open(os.path.join(pub, "3x", name % "a_shot")).size == (480, 432)    # same name, 3x/ subfolder
-    assert s["file"] == name % "a_shot" and s["file_3x"] == "3x/" + name % "a_shot" and idx["game"]["region"] == "na"
-    assert "(3x/%s)" % (name % "a_shot") in open(os.path.join(pub, "index.md")).read()
+    assert s["file"] == name % "a_shot" and "file_3x" not in s and idx["game"]["region"] == "na"
+    assert len(s["pixel_sha1"]) == 40 and not os.path.exists(os.path.join(pub, "3x"))
+    assert "3x/" not in open(os.path.join(pub, "index.md")).read()
+    # enlarged copies on demand: tools/x3.py, into 3x/ next to the originals (ignored by git)
+    run("tools/x3.py", pub)
+    assert Image.open(os.path.join(pub, "3x", name % "a_shot")).size == (480, 432)
+    shutil.rmtree(os.path.join(pub, "3x"))
     assert os.path.exists(os.path.join(pub, "zz-selftest_gb_na_set_sheet.png"))    # set files: area field `set`
     # a category changed by hand in index.json, or a set made before the scheme: the next run renames the files
     work = os.path.join(ROOT, "work", "shots", "gb", SLUG, "main")
@@ -331,12 +342,11 @@ def test_clip_and_sequence(selftest):
     assert "3/3 reproduce" in run("tools/shoot.py", SLUG, "seq-test", "--verify")
     run("tools/shoot.py", SLUG, "seq-test", "--publish-only")
     pub = os.path.join(ROOT, "games", "gb", SLUG, "shots", "seq-test")
-    for f in ("gameplay_seq-test_s01_start.png", "gameplay_seq-test_s02_clip.gif", "3x/gameplay_seq-test_s02_clip.gif",
-              "gameplay_seq-test_s02_clip.png", "3x/gameplay_seq-test_s03_after.png", "set_seq-test_strip.png",
-              "set_seq-test_steps.gif", "3x/set_seq-test_steps.gif", "set_seq-test_full.gif",
-              "3x/set_seq-test_full.gif", "set_seq-test_sheet.png"):
-        sub, name = os.path.split(f)                                        # 3x copies in the 3x/ subfolder
-        assert os.path.exists(os.path.join(pub, sub, "zz-selftest_gb_na_" + name)), f  # sequence ids carry the set name
+    for name in ("gameplay_seq-test_s01_start.png", "gameplay_seq-test_s02_clip.gif",
+                 "gameplay_seq-test_s02_clip.png", "gameplay_seq-test_s03_after.png", "set_seq-test_strip.png",
+                 "set_seq-test_steps.gif", "set_seq-test_full.gif", "set_seq-test_sheet.png"):
+        assert os.path.exists(os.path.join(pub, "zz-selftest_gb_na_" + name)), name    # sequence ids carry the set name
+    assert not os.path.exists(os.path.join(pub, "3x"))                      # enlarged copies only on demand
     assert not [f for f in os.listdir(pub) if f.endswith((".png", ".gif")) and "_seq-test_" not in f]
     idx = json.load(open(os.path.join(pub, "index.json")))
     clip = [s for s in idx["shots"] if s["id"] == "s02_clip"][0]["clip"]
@@ -1004,7 +1014,8 @@ def a2_selftest(tmp_path):
     yield rom
     subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", A2_SLUG, "stop"],
                    capture_output=True)
-    for sub in ("games/apple2", "work/shots/apple2", "work/cache/apple2", "work/intake/apple2", "work/play"):
+    for sub in ("games/apple2", "work/shots/apple2", "work/cache/apple2", "work/intake/apple2", "work/play",
+                "work/preview/apple2", "work/cachecheck/apple2"):
         shutil.rmtree(os.path.join(ROOT, sub, A2_SLUG), ignore_errors=True)
     if os.path.exists(os.path.join(ROOT, "rom", A2_SLUG + ".zip")):
         os.remove(os.path.join(ROOT, "rom", A2_SLUG + ".zip"))
@@ -1042,6 +1053,7 @@ def test_apple2_backend(a2_selftest, tmp_path):
     assert _a2_row(e)[1::2] == "Hi1!"                                    # every second character is a timing letter
     e.type_text("Ab, 2+2=4")
     assert _a2_row(e)[1::2] == "Hi1!Ab, 2+2=4"
+    assert e.text()[0][1::2] == "Hi1!Ab, 2+2=4" and len(e.text()) == 24    # the text page as text (play.py text)
     typed = e.screen()
     st = str(tmp_path / "x.state")
     e.save_state(st)
@@ -1243,6 +1255,137 @@ def test_apple2_pipeline(a2_selftest, tmp_path):
     im = Image.open(os.path.join(ROOT, "games", "apple2", A2_SLUG, "shots", "main",
                                  "zz-selftest-apple2_apple2_na_gameplay_typed.png")).convert("RGB")
     assert im.size == (560, 384) and im.crop((0, 0, 200, 16)).getextrema()[0][1] > 100
+
+
+# ------------------------------------------------------------------ checkpoint chains, parallel runs, previews
+# On the Apple II test disk: every key prints a letter made from a counter that runs while the program waits,
+# so the picture and the memory record the exact timing of a route (the GB test ROM shows a still picture).
+def _chain_game(a2_selftest, tmp_path):
+    """The test disk registered with a chain of three checkpoints and six shots (s6 repeats the picture of s2)."""
+    run("tools/intake.py", _a2_zip(str(tmp_path / (A2_SLUG + ".zip"))), "--slug", A2_SLUG, "--region", "na",
+        "--probe", "0")
+    d = os.path.join(ROOT, "games", "apple2", A2_SLUG)
+    open(os.path.join(d, "checkpoints.txt"), "w").write(
+        "one | first | BOOT,h\ntwo | second | @one,i,w33\nthree | third | @two,x,y,w21\n")
+    meta = json.load(open(os.path.join(d, "game.json")))
+    meta["macros"] = {"BOOT": "w200,disk:2,6,ctrl+p,enter,w200"}        # side B holds the test program
+    json.dump(meta, open(os.path.join(d, "game.json"), "w"))
+    work = os.path.join(ROOT, "work", "shots", "apple2", A2_SLUG, "main")
+    os.makedirs(work, exist_ok=True)
+    open(os.path.join(work, "shots.txt"), "w").write("".join(
+        "s%d | gameplay | shot %d | %s\n" % (i, i, r) for i, r in enumerate(
+            ["@three", "@one,a", "@two,b,w10", "@three,c", "@three,d,w7,e", "@one,a,w1"], 1)))
+    return emu.Game(A2_SLUG), work
+
+
+def test_checkpoint_chain_builds_once(a2_selftest, tmp_path, monkeypatch):
+    g, _ = _chain_game(a2_selftest, tmp_path)
+    cache = os.path.join(ROOT, "work", "cache", "apple2", A2_SLUG)
+    boots = []
+    real = emu.open_game
+    monkeypatch.setattr(emu, "open_game", lambda *a, **k: (boots.append(k.get("state") or (a[2:3] or [None])[0]), real(*a, **k))[1])
+    e, rest, full = emu.start(g, "@three,w5")           # empty cache: one power-on, every link cached on the way
+    emu.play(e, g, rest)
+    cold = e.screen()
+    assert _a2_row(e)[1::2] == "HIXY"                   # four keys, a timing letter before each
+    e.close()
+    assert boots == [None] and full[-8:] == ["w200", "h", "i", "w33", "x", "y", "w21", "w5"]
+    assert len([f for f in os.listdir(cache) if f.endswith(".state")]) == 3
+    e, rest, _ = emu.start(g, "@three,w5")              # cache hit: the state of `three` itself
+    emu.play(e, g, rest)
+    assert e.screen() == cold and len(boots) == 2 and boots[1].endswith(".state")
+    e.close()
+    e, rest, _ = emu.start(g, "@three,w5", cache=False) # the reference: the flat route from power-on, no file read
+    emu.play(e, g, rest)
+    assert e.screen() == cold and boots[2] is None
+    e.close()
+    os.remove(emu.cache_path(g, emu.resolve(g, "@three"), g.model))
+    e, rest, _ = emu.start(g, "@three,w5")              # only the last link is missing: built from the state of `two`
+    emu.play(e, g, rest)
+    assert e.screen() == cold and boots[3] == emu.cache_path(g, emu.resolve(g, "@two"), g.model)
+    e.close()
+
+
+def test_parallel_shoot_verify_and_duplicates(a2_selftest, tmp_path):
+    SLUG = A2_SLUG
+    g, work = _chain_game(a2_selftest, tmp_path)
+    out = run("tools/shoot.py", SLUG, "main", "--jobs", "3")           # empty cache, three processes
+    assert len(re.findall(r"^s\d +settled$", out, re.M)) == 6
+    idx = json.load(open(os.path.join(work, "index.json")))
+    assert [s["id"] for s in idx["shots"]] == ["s1", "s2", "s3", "s4", "s5", "s6"]      # list order, not finish order
+    assert os.path.exists(os.path.join(work, "zz-selftest-apple2_apple2_na_set_sheet.png"))
+    assert len({s["pixel_sha1"] for s in idx["shots"]}) == 5                           # s6 repeats s2
+    first = {s["id"]: s["pixel_sha1"] for s in idx["shots"]}
+    shutil.rmtree(os.path.join(ROOT, "work", "cache", "apple2", SLUG))
+    assert "6/6 reproduce" in run("tools/shoot.py", SLUG, "main", "--verify", "--jobs", "4")     # cold, parallel
+    assert "6/6 reproduce" in run("tools/shoot.py", SLUG, "main", "--verify", "--jobs", "1")     # warm, serial
+    # the order of the set is the order of its own list
+    lines = open(os.path.join(work, "shots.txt")).read().splitlines()
+    open(os.path.join(work, "shots.txt"), "w").write("\n".join(lines[::-1]) + "\n")
+    assert "6/6 reproduce" in run("tools/shoot.py", SLUG, "main", "--verify")
+    idx = json.load(open(os.path.join(work, "index.json")))
+    assert [s["id"] for s in idx["shots"]] == ["s6", "s5", "s4", "s3", "s2", "s1"]
+    assert {s["id"]: s["pixel_sha1"] for s in idx["shots"]} == first
+    # a new shot that repeats a picture is reported by the run that makes it
+    open(os.path.join(work, "shots.txt"), "a").write("s7 | gameplay | s1 again | @three,w1\n")
+    out = run("tools/shoot.py", SLUG, "main", "--only", "s7")
+    dup = [l for l in out.splitlines() if l.startswith("check: identical pictures")]
+    assert len(dup) == 1 and "s7" in dup[0] and "s1" in dup[0]         # s2 = s6 is not this run's news
+    r = subprocess.run([sys.executable, "tools/shoot.py", SLUG, "main", "--publish-only"], cwd=ROOT,
+                       capture_output=True, text=True)
+    assert r.returncode == 4 and "not published" in r.stdout
+    # a set without a working list falls back to its published list, not to the plan of main
+    r = subprocess.run([sys.executable, "tools/shoot.py", SLUG, "other"], cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode != 0 and "no shot list for set 'other'" in r.stderr
+
+
+def test_preview_and_cachecheck(a2_selftest, tmp_path):
+    from PIL import Image
+    SLUG = A2_SLUG
+    g, work = _chain_game(a2_selftest, tmp_path)
+    run("tools/shoot.py", SLUG, "main", "--only", "s1,s2")
+    plan = os.path.join(ROOT, "work", "preview", "apple2", SLUG, "plan.txt")
+    os.makedirs(os.path.dirname(plan), exist_ok=True)
+    open(plan, "w").write("# candidates\n"
+                          "like_s1 | gameplay | the frame of s1 | @three\n"
+                          "marks | @one,?,right:20,?,a\n"
+                          "broken | @one,nosuchkey\n")
+    r = subprocess.run([sys.executable, "tools/preview.py", SLUG, plan, "--set", "main", "--peek", "0024:1"],
+                       cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode == 1 and "broken" in r.stdout and "ERROR" in r.stdout          # one bad line, the rest shown
+    line = [l for l in r.stdout.splitlines() if l.startswith("like_s1")][0]
+    assert "= shot s1" in line and "0024=08" in line and " settled" in line                                     # shoot.py would give this frame
+    out = os.path.join(ROOT, "work", "preview", "apple2", SLUG, "plan")
+    assert Image.open(out + ".png").size[0] == 4 * 562                                 # native tiles, four per row
+    assert sorted(os.listdir(out)) == ["like_s1.png", "marks.png", "marks__1.png", "marks__2.png"]
+    idx = {s["id"]: s for s in json.load(open(os.path.join(work, "index.json")))["shots"]}
+    import shoot
+    assert shoot.pixel_sha1(os.path.join(out, "like_s1.png")) == idx["s1"]["pixel_sha1"]
+    # text screens are read as text, without a picture to look at
+    o = run("tools/preview.py", SLUG, "-r", "typed | @three,z", "--text")
+    row = [l for l in o.splitlines() if l.startswith("|")][0]
+    assert row[2::2] == "HIXYZ" and ".png" not in o
+    # a timeline: frame +k is the route followed by k waits, as printed
+    o = run("tools/preview.py", SLUG, "-r", "t | @two,a,!", "--timeline", "3:10", "--out", "tl")
+    assert "frame +K = @two,a,w10*(K/10),!" in o
+    e, rest, _ = emu.start(g, "@two,a,w10*2,!")
+    emu.play(e, g, rest)
+    tl = os.path.join(ROOT, "work", "preview", "apple2", SLUG, "tl", "t_+20.png")
+    assert Image.open(tl).convert("RGB").tobytes() == Image.open(__import__("io").BytesIO(e.screen())).convert("RGB").tobytes()
+    e.close()
+    # cachecheck: every checkpoint from power-on, built in a chain, and loaded gives the same machine
+    o = run("tools/cachecheck.py", SLUG)
+    assert "3/3 checkpoints reproduce" in o and o.count(" same ") == 3
+    assert os.path.exists(os.path.join(ROOT, "work", "cachecheck", "apple2", SLUG, "sheet.png"))
+    # a state in the cache that its route does not produce (a session that drifted) is found and removed
+    cp2, cp3 = (emu.cache_path(g, emu.resolve(g, "@" + n), g.model) for n in ("two", "three"))
+    shutil.copyfile(cp2, cp3)
+    r = subprocess.run([sys.executable, "tools/cachecheck.py", SLUG, "three", "--flat", "leaves", "--fix"],
+                       cwd=ROOT, capture_output=True, text=True)
+    assert r.returncode == 1 and "yours DIFFERS" in r.stdout and "removed 1 stale" in r.stdout
+    assert not os.path.exists(cp3) and os.path.exists(cp2)
+    assert "3/3 checkpoints reproduce" in run("tools/cachecheck.py", SLUG, "three", "--flat", "leaves")
+
 
 
 # ------------------------------------------------------------------ Amiga (PUAE libretro core)

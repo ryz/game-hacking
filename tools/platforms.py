@@ -1073,6 +1073,18 @@ class Apple2(Libretro):
     SAVE_HELP = ("`.sav` = a ZIP of the disk images the game has written to (whole images, same names as in the "
                  "game's ZIP): unzip it and use those images in place of the originals in any Apple II emulator.")
 
+    def text(self):
+        """The 40x24 text page 1 (0400-07FF) as a list of lines; inverse and flashing characters read as plain
+        ones. The soft switches cannot be read without side effects, so this does not know whether the text
+        page is on screen: on a hi-res or 80-column screen the lines are leftovers, look at the picture then."""
+        mem = bytes(self.peek(0x0400, 0x400))
+        out = []
+        for r in range(24):
+            base = 0x80 * (r % 8) + 0x28 * (r // 8)
+            out.append("".join(chr(c & 0x7F) if 32 <= (c & 0x7F) < 127 else chr((c & 0x3F) + 64) if (c & 0x7F) < 32
+                               else " " for c in mem[base:base + 40]).rstrip())
+        return out
+
     @staticmethod
     def zip_disks(data):
         """Names of the disk images in a ZIP, in play order (sorted by name, case ignored); [] if it is not a

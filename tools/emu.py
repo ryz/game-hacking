@@ -45,8 +45,9 @@ Route prefixes (start of a route or a checkpoint route only; a route from @check
   sav:NAME                              power on with the battery save rom/saves/<slug>/NAME.sav (downloaded or
                                         made; never committed; record its source and SHA-1 in the playbook)
 
-Checkpoints (`name | description | route`) are built on demand by replaying their route from power-on and cached
-per exact ROM and route in work/cache/<platform>/<slug>/ (savestates are never committed; the route is the source of truth).
+Checkpoints (`name | description | route`) are built on demand and cached per exact ROM and flat route in
+work/cache/<platform>/<slug>/ (savestates are never committed; the route is the source of truth). A checkpoint
+whose route starts with @other is built from that checkpoint's state, so a chain is played once, not once per link.
 Everything is deterministic (fixed seed, fixed boot ROM), so a route always gives the same frames.
 """
 import argparse, hashlib, io, json, os, re, sys
@@ -58,6 +59,7 @@ import platforms  # noqa: E402
 
 GAMES = os.path.join(ROOT, "games")
 WORK = os.path.join(ROOT, "work")
+CACHE_DIR = None        # another root for the checkpoint cache (tools/cachecheck.py builds into an empty one)
 
 
 # ------------------------------------------------------------------ games
@@ -421,7 +423,59 @@ def cache_path(game, toks, model):
     if opts.get("sav"):
         h.update(open(game.sav_file(opts["sav"]), "rb").read())
     key = hashlib.sha1((h.hexdigest() + "|" + model + "|" + ",".join(toks)).encode()).hexdigest()[:16]
-    return os.path.join(WORK, "cache", game.id, key + ".state")
+    return os.path.join(CACHE_DIR or os.path.join(WORK, "cache"), game.id, key + ".state")
+
+
+def _lock(path):
+    """Exclusive lock for building one cache file: parallel runs that need the same checkpoint wait for the
+    first one instead of replaying the route several times (shoot.py --jobs, preview.py)."""
+    import contextlib, fcntl
+
+    @contextlib.contextmanager
+    def held():
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path + ".lock", "w") as f:
+            fcntl.flock(f, fcntl.LOCK_EX)
+            try:
+                yield
+            finally:
+                fcntl.flock(f, fcntl.LOCK_UN)
+    return held()
+
+
+def at_checkpoint(game, name, model, cache=True):
+    """Emulator at checkpoint NAME. Cache hit: power on, load the state. Miss: go to the checkpoint its route
+    starts from (cached the same way) and play only this checkpoint's own tokens, then save the state: a chain
+    of N checkpoints costs one pass over its tokens, not N boots. cache=False plays the whole flat route from
+    power-on and touches no file: the reference that tools/cachecheck.py compares the cache against."""
+    base = resolve(game, "@" + name)                # flat route from power-on: the cache key (and loop check)
+    opts, base_toks = prefix(base)
+    if not cache:
+        emu = open_game(game, model, opts=opts)
+        play(emu, game, base_toks)
+        return emu, base
+    path = cache_path(game, base, model)
+
+    def load():
+        emu = open_game(game, model, path, opts)
+        restore_freezes(emu, game, base)        # held GameShark values are not part of a savestate
+        return emu
+    if os.path.exists(path):
+        return load(), base
+    with _lock(path):
+        if os.path.exists(path):                # built by another process while this one waited
+            return load(), base
+        own = expand(game, split({c["name"]: c for c in game.checkpoints()}[name]["route"]))
+        if own and own[0].startswith("@"):
+            emu, _ = at_checkpoint(game, own[0][1:], model)
+            play(emu, game, own[1:])
+        else:
+            emu = open_game(game, model, opts=opts)
+            play(emu, game, base_toks)
+        tmp = "%s.%d.tmp" % (path, os.getpid())
+        emu.save_state(tmp)
+        os.replace(tmp, path)       # atomic: a reader never sees half a state
+    return emu, base
 
 
 def start(game, route, model=None, cache=True):
@@ -432,23 +486,10 @@ def start(game, route, model=None, cache=True):
     if not (toks and toks[0].startswith("@")):
         opts, rest = prefix(toks)
         return open_game(game, model, opts=opts), rest, resolve(game, route)
-    base = resolve(game, toks[0])
     rest = toks[1:]
     if prefix(rest)[0]:
         raise ValueError("rom:/sav: must come first in a checkpoint's own route, not after @checkpoint")
-    opts, base_toks = prefix(base)
-    path = cache_path(game, base, model)
-    if not (cache and os.path.exists(path)):
-        emu = open_game(game, model, opts=opts)
-        play(emu, game, base_toks)
-        if cache:
-            os.makedirs(os.path.dirname(path), exist_ok=True)
-            tmp = "%s.%d.tmp" % (path, os.getpid())
-            emu.save_state(tmp)
-            os.replace(tmp, path)       # atomic: parallel runs may race
-        return emu, rest, base + rest
-    emu = open_game(game, model, path, opts)
-    restore_freezes(emu, game, base)        # held GameShark values are not part of a savestate
+    emu, base = at_checkpoint(game, toks[0][1:], model, cache)
     return emu, rest, base + rest
 
 
@@ -503,15 +544,8 @@ def write_gif(frames, path, every=2, scale=1, hold_ms=None, durations=None):
 
 
 # ------------------------------------------------------------------ images
-X3 = "3x"        # subfolder of a set for the 3x copies: same file names as the originals
-
-
-def x3(path):
-    """The 3x copy of a set file: <set>/3x/<same name> (originals stay in the set folder)."""
-    return os.path.join(os.path.dirname(path), X3, os.path.basename(path))
-
-
 def enlarge(src, dst, scale=3):
+    """Nearest-neighbour copy of a PNG, on demand only (tools/x3.py, play.py shot --scale N)."""
     from PIL import Image
     os.makedirs(os.path.dirname(dst) or ".", exist_ok=True)
     im = Image.open(src).convert("RGB")
