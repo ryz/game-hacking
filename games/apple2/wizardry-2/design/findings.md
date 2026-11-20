@@ -39,3 +39,51 @@ each candidate, and afterwards the roster holds the last candidate twice and the
 **Intended:** the bearer is meant to arrive alone: Gnilda's test wants one alone.
 **Confidence:** (verified) once, roster read with `tools/data.py`.
 **Impact:** none in normal play; for cataloguing: go up alone.
+
+## The first round after surprising the monsters has no spells
+**Behavior:** when the message box says "YOU SURPRISED THE MONSTERS!", the options of every member lack S)PELL
+(shot `battle_surprised_no_spell`, also `battle_f1_swarm`, `battle_f6_evil_eyes`); in ordinary rounds S)PELL is
+offered (`battle_f1_men_in_armor`, `battle_dispell`). When the monsters surprise the party they act before any
+orders are asked (`battle_f2_men_in_armor`, `battle_f3_four_groups`, `battle_f5_swarms`, `battle_f6_succubus`).
+**Intended:** a free round of blows only; this answers the scout's open question about when S)PELL appears.
+**Confidence:** (verified) in eight encounters.
+**Impact:** the surprise round is weaker for a caster-heavy party than it looks.
+
+## Battle messages do not name the spell
+**Behavior:** "DEDDO CASTS A SPELL", "MAGIC HELMET CASTS A SPELL": the spell's name is never shown, only its result
+(`battle_spell_damage`, `boss_helmet_spell`); DOS writes "casts a LAHALITO".
+**Intended:** unclear (screen space).
+**Confidence:** (verified).
+**Impact:** the player cannot tell which spell a monster used.
+
+## Message squares fire on arrival by warp, and fights do not (except on floor 1)
+**Behavior:** the `WARP` macro onto the sage's squares (floor 2 (18,9), (18,10)) and floor 6 (11,17) shows their
+text at once (`dialogue_f2_sage`, `dialogue_f6_king_power`), contrary to the scout's note; arriving by warp on a
+room square met a random group only on floor 1 (four of six tries) and never on floors 2-6 (30 tries); kicking
+a door into a room met one in 13 of 38 tries. The view is not redrawn after a warp until the next turn.
+**Intended:** not a game rule: a property of the poke-based warp.
+**Confidence:** (verified) for these squares.
+**Impact:** routes only; see the playbook.
+
+## The Burma-Shave fountain stones the wader
+**Behavior:** floor 4's four signs read as a Burma-Shave rhyme ending "... A CLEAR BLUE FOUNTAIN." BURMA SHAVE
+(TM) (`dialogue_f4_fountain`); "WHO (#) WILL WADE" and RYZ, wading, is STONED and moved to the back
+(`gameplay_stoned`). DOS poisoned the wader.
+**Intended:** a joke with a sting.
+**Confidence:** (verified) once.
+**Impact:** a stoned member needs the Temple.
+
+## Mapiro's shout and the well send the party home
+**Behavior:** on floor 3 (8,10) a familiar figure shouts "MAPIRO MAHAMA DIROMAT" and the next screen is the Castle
+(`dialogue_f3_mapiro_shout`). At the well (floor 5 (11,8)) Y to "FEE IS 5000 / PAY (Y/N) ?" also ended in the
+Castle, with RYZ holding 2,442 gold (not settled whether the wish or the lack of gold did it).
+**Intended:** the shout is Werdna's teleport phrase from Wizardry I (inferred).
+**Confidence:** (verified) the Castle after both; the cause at the well (inferred, open).
+**Impact:** a free trip home from floor 3.
+
+## The Inn's cot heals one hit point per ten gold
+**Behavior:** RYZ poked to 41 of 112 hit points: after the cot's first frames 55 hit points and 140 gold spent,
+later 73 and 320 (`inn_healing`).
+**Intended:** a week per point, as in Wizardry I.
+**Confidence:** (verified) frames, starting value poked (RAM).
+**Impact:** none.

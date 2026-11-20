@@ -94,10 +94,10 @@ gameplay_stairs_up | gameplay | Leaving the camp at the entrance: 'STAIRS GOING 
 gameplay_maze_f1_start | gameplay | Floor 1 (0,0): wireframe view, command list, spells line, party window | @gmaze
 env_f1_corridor | gameplay | Floor 1 (12,2) facing west: a corridor with side openings | @gmaze,WARP:01:0C:02,poke:730E=0300,l,w200,r,w200
 gameplay_dark | gameplay | Floor 1 (2,4): a dark square, nothing of the maze drawn | @gmaze,WARP:01:02:04,l,w300
-dialogue_f1_armor_clue | dialogue | Floor 1 (11,2): 'THE ARMOR YOU SEEK ... LIES FOUR STEPS AHEAD, BUT THREE STEPS AWAY.' | @gmaze,WARP:01:0C:02,poke:730E=0300,l,w200,r,w200,f,w600,w600
-gameplay_stairs_down | gameplay | Floor 1 (16,2), kicked in from the Magic Armor's room: 'STAIRS GOING DOWN. TAKE THEM (Y/N) ?' | @guard1_won,poke:730E=0100,l,w200,r,w200,k,w600
+dialogue_f1_armor_clue | dialogue | Floor 1 (11,2): 'THE ARMOR YOU SEEK ... FOUR STEPS AHEAD, BUT THREE STEPS AWAY.' | @gmaze,WARP:01:0C:02,poke:730E=0300,l,w200,r,w200,f,w600,w600
+gameplay_stairs_down | gameplay | Floor 1 (16,2), kicked in from the guardian's room: 'STAIRS GOING DOWN' | @guard1_won,poke:730E=0100,l,w200,r,w200,k,w600
 gameplay_pit | gameplay | Floor 1 (1,5), kicked in from the south: 'A PIT!' | @gmaze,WARP:01:01:04,poke:730E=0000,l,w200,r,w200,k,w60,!
-dialogue_gnilda | dialogue | Floor 1 (9,10), Gnilda's temple: 'AS YOU ENTER, AN EERIE GLOW FILLS THE ROOM ...' | @gmaze,WARP:01:09:09,poke:730E=0000,l,w200,r,w200,k,w600,w600
+dialogue_gnilda | dialogue | Floor 1 (9,10), Gnilda's temple: 'AS YOU ENTER, AN EERIE GLOW FILLS THE ROOM' | @gmaze,WARP:01:09:09,poke:730E=0000,l,w200,r,w200,k,w600,w600
 dialogue_gnilda_2 | dialogue | Gnilda: 'HEAR THESE, THE WORDS OF GNILDA. THE CITY LLYLGAMN HAVING SHOWN ...' | @gmaze,WARP:01:09:09,poke:730E=0000,l,w200,r,w200,k,w600,w600,enter,w600
 dialogue_gnilda_3 | dialogue | Gnilda: 'ONLY HERE, IN MY TEMPLE, MAY ONE WORTHY ENOUGH REGAIN THOSE SYMBOLS' | @gmaze,WARP:01:09:09,poke:730E=0000,l,w200,r,w200,k,w600,w600,enter,w600,enter,w600
 dialogue_gnilda_4 | dialogue | Gnilda: 'TO OBTAIN MY STAFF, ONE MUST ACQUIRE THE FIVE ...' | @gmaze,WARP:01:09:09,poke:730E=0000,l,w200,r,w200,k,w600,w600,enter,w600,enter,w600,enter,w600
@@ -109,7 +109,7 @@ dialogue_f2_riddle | dialogue | Floor 2 (3,6), a riddle: 'I AM A LONELY BEING, S
 dialogue_f2_riddle_2 | dialogue | The riddle, page 2: 'I WITNESS WAR, PERILOUS FIGHT, NOR HOPE FOR CONSOLATION' | @gmaze,WARP:02:04:06,poke:730E=0300,l,w200,r,w200,f,w600,w600,enter,w600
 dialogue_f2_riddle_end | dialogue | The riddle ends: 'WHAT AM I?' - PRESS [RET] | @gmaze,WARP:02:04:06,poke:730E=0300,l,w200,r,w200,f,w600,w600,enter,w600,enter,w600,enter,w600,enter,w600,enter,w600,enter,w600
 dialogue_f2_riddle_answer | dialogue | 'ANSWER ?' - SHIELD typed | @gmaze,WARP:02:04:06,poke:730E=0300,l,w200,r,w200,f,w600,w600,enter,w600,enter,w600,enter,w600,enter,w600,enter,w600,enter,w600,enter,w600,type:SHIELD
-dialogue_f2_sage | dialogue | Floor 2 (18,10): 'A WIZENED SAGE ... FOR BUT 100000 GOLD, MANY THINGS WILL YOU BE TOLD.' | @gmaze,WARP:02:12:0A,w600
+dialogue_f2_sage | dialogue | Floor 2 (18,10), a sage: 'FOR BUT 100000 GOLD, MANY THINGS WILL YOU BE TOLD.' | @gmaze,WARP:02:12:0A,w600
 dialogue_f2_sage_fee | dialogue | The sage: 'FEE IS 100000 / PAY (Y/N) ?' | @gmaze,WARP:02:12:0A,w600,enter,w600
 dialogue_f2_sage_study | dialogue | Floor 2 (18,9): 'THE SAGE USHERS YOU INTO A LAVISHLY DECORATED STUDY ...' | @gmaze,WARP:02:12:09,w600
 dialogue_f2_sage_stars | dialogue | The sage: 'MY STUDIES HAVE SHOWN THE STARS COME INTO A NEW CONFIGURATION ...' | @gmaze,WARP:02:12:09,w600,enter,w600
@@ -127,16 +127,16 @@ dialogue_f4_fountain | dialogue | Floor 4 (16,7): '"... A CLEAR BLUE FOUNTAIN." 
 dialogue_f4_wade | dialogue | The fountain: 'WHO (#) WILL WADE, [RET] EXITS' | @gmaze,WARP:04:10:08,poke:730E=0200,l,w200,r,w200,f,w600,w600,enter,w600
 gameplay_stoned | gameplay | RYZ waded in: STONED, moved to the back of the party | @gmaze,WARP:04:10:08,poke:730E=0200,l,w200,r,w200,f,w600,w600,enter,w600,1,w300,w600
 env_f4_cavern | gameplay | Floor 4 (6,13) facing east: the open cavern | @gmaze,WARP:04:06:0D,poke:730E=0100,l,w200,r,w200
-dialogue_f4_cavern | dialogue | Floor 4 (7,13): 'YOU STAND AT THE ENTRANCE OF WHAT SEEMS TO BE A HUGE CAVERN ...' | @gmaze,WARP:04:06:0D,poke:730E=0100,l,w200,r,w200,f,w600,w600
+dialogue_f4_cavern | dialogue | Floor 4 (7,13): 'YOU STAND AT THE ENTRANCE OF WHAT SEEMS TO BE A HUGE CAVERN' | @gmaze,WARP:04:06:0D,poke:730E=0100,l,w200,r,w200,f,w600,w600
 dialogue_f4_stalactites | dialogue | The cavern: 'FROM THE VAULTED CEILING HANG GREAT STALACTITES ...' | @gmaze,WARP:04:06:0D,poke:730E=0100,l,w200,r,w200,f,w600,w600,enter,w600
 dialogue_f4_cave_in | dialogue | Floor 4 (6,17): 'BEFORE YOU IS A PILE OF SHATTERED STONE ... A CAVE-IN.' | @gmaze,WARP:04:06:10,poke:730E=0000,l,w200,r,w200,f,w600,w600
 gameplay_ouch | gameplay | Floor 4 (3,6), an OUCH square: hit points lost in the party window | @gmaze,WARP:04:02:06,poke:730E=0100,l,w200,r,w200,f,w600,w600
-dialogue_f5_well | dialogue | Floor 5 (11,8): 'A BRICK-WALLED WELL ... A SIGN READING: "WISHES: 5000 GP WIZICORP."' | @gmaze,WARP:05:0B:09,poke:730E=0200,l,w200,r,w200,k,w600,w600
+dialogue_f5_well | dialogue | Floor 5 (11,8): a brick-walled well, a sign: 'WISHES: 5000 GP WIZICORP.' | @gmaze,WARP:05:0B:09,poke:730E=0200,l,w200,r,w200,k,w600,w600
 dialogue_f5_well_fee | dialogue | The well: 'FEE IS 5000 / PAY (Y/N) ?' | @gmaze,WARP:05:0B:09,poke:730E=0200,l,w200,r,w200,k,w600,w600,enter,w600
 gameplay_chute | gameplay | Floor 5 (8,11): 'A CHUTE!' - down to floor 6 | @gmaze,WARP:05:08:0B,w30,!
-dialogue_f6_king_treasure | dialogue | Floor 6 (13,15): 'THAT KING, THE KING WHO WORSHIPS GOLD, WILL NO MORE SEE HIS TREASURE ROOM.' | @gmaze,WARP:06:0E:0F,poke:730E=0300,l,w200,r,w200,k,w600,w600
-dialogue_f6_king_doom | dialogue | Floor 6 (16,13): 'THAT KING, THE KING WHO WORSHIPS THESE THAT KING, HE FINDS DOOM!' | @gmaze,WARP:06:10:0C,poke:730E=0000,l,w200,r,w200,k,w600,w600
-dialogue_f6_king_power | dialogue | Floor 6 (11,17): 'THAT KING, THE KING WHO WORSHIPS POWER WILL HAVE NONE WITHIN HIS TOMB.' | @gmaze,WARP:06:0B:11,w600
+dialogue_f6_king_treasure | dialogue | Floor 6 (13,15): 'THAT KING, THE KING WHO WORSHIPS GOLD, WILL NO MORE SEE ...' | @gmaze,WARP:06:0E:0F,poke:730E=0300,l,w200,r,w200,k,w600,w600
+dialogue_f6_king_doom | dialogue | Floor 6 (16,13): 'THAT KING, THE KING WHO WORSHIPS THESE ... HE FINDS DOOM!' | @gmaze,WARP:06:10:0C,poke:730E=0000,l,w200,r,w200,k,w600,w600
+dialogue_f6_king_power | dialogue | Floor 6 (11,17): 'THAT KING, THE KING WHO WORSHIPS POWER WILL HAVE NONE ...' | @gmaze,WARP:06:0B:11,w600
 gameplay_wall | gameplay | Walking into a wall on floor 6: 'OUCH!' in the view | @gmaze,WARP:06:0B:10,poke:730E=0000,l,w200,r,w200,f,w600,w600
 env_f6_spinner | gameplay | Floor 6 (14,15): a spinner square, the view gives no sign of it | @gmaze,WARP:06:0E:0F,w600
 battle_f1_men_in_armor | battle | Floor 1: 3 MEN IN ARMOR and 3 LVL 8 MAGES - RYZ'S OPTIONS | @gmaze,w1,WARP:01:08:0E,w900
@@ -201,9 +201,9 @@ gameplay_time | gameplay | T)ime in the maze: 'NEW DELAY (1-9999) >' - the messa
 gameplay_inspect | gameplay | I)nspect: 'LOOKING.......' - searching the square for bodies | @gmaze,i,w600
 dialogue_sphinx | dialogue | Floor 6 (1,2): 'A BEAST WITH THE HEAD OF A MAN AND THE BODY OF A LION ...' | @sphinx
 dialogue_sphinx_2 | dialogue | The sphinx: 'ENTER HERE, THE VERY FEW WHO CAN GIVE THE ANSWER TRUE ...' | @sphinx,enter,w600
-dialogue_sphinx_3 | dialogue | The sphinx: 'SEARCH THIS LEVEL, IF YOU DARE ... THREE CLUES HAVE I HIDDEN THERE.' | @sphinx,enter,w600,enter,w600
+dialogue_sphinx_3 | dialogue | The sphinx: 'SEARCH THIS LEVEL, IF YOU DARE ... THREE CLUES HAVE I HIDDEN' | @sphinx,enter,w600,enter,w600
 dialogue_sphinx_4 | dialogue | The sphinx: 'SEARCH EACH PASSAGE AND EACH ROOM FOR A KING WITHIN HIS TOMB ...' | @sphinx,enter,w600,enter,w600,enter,w600
-dialogue_sphinx_5 | dialogue | The sphinx: 'IF YOU LIVE, YOU SHOULD NOT LOSE ... LIES CONFUSED AMONG THE CLUES.' | @sphinx,enter,w600,enter,w600,enter,w600,enter,w600
+dialogue_sphinx_5 | dialogue | The sphinx: 'IF YOU LIVE, YOU SHOULD NOT LOSE ... CONFUSED AMONG THE CLUES.' | @sphinx,enter,w600,enter,w600,enter,w600,enter,w600
 dialogue_sphinx_answer | dialogue | 'ANSWER ?' - THE KNIGHT OF DIAM being typed | @sphinx_answer,type:THE KNIGHT OF DIAM
 dialogue_sphinx_wrong | dialogue | A wrong answer (SHIELD): 'WRONG!' | @sphinx_answer,type:SHIELD\n,w600
 dialogue_sphinx_right | dialogue | THE KNIGHT OF DIAMONDS: 'RIGHT!' | @sphinx_right

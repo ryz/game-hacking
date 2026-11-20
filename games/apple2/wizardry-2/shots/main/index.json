@@ -1248,7 +1248,7 @@
   {
    "id": "dialogue_f1_armor_clue",
    "category": "dialogue",
-   "caption": "Floor 1 (11,2): 'THE ARMOR YOU SEEK ... LIES FOUR STEPS AHEAD, BUT THREE STEPS AWAY.'",
+   "caption": "Floor 1 (11,2): 'THE ARMOR YOU SEEK ... FOUR STEPS AHEAD, BUT THREE STEPS AWAY.'",
    "route": "@gmaze,WARP:01:0C:02,poke:730E=0300,l,w200,r,w200,f,w600,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1261,7 +1261,7 @@
   {
    "id": "gameplay_stairs_down",
    "category": "gameplay",
-   "caption": "Floor 1 (16,2), kicked in from the Magic Armor's room: 'STAIRS GOING DOWN. TAKE THEM (Y/N) ?'",
+   "caption": "Floor 1 (16,2), kicked in from the guardian's room: 'STAIRS GOING DOWN'",
    "route": "@guard1_won,poke:730E=0100,l,w200,r,w200,k,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1287,7 +1287,7 @@
   {
    "id": "dialogue_gnilda",
    "category": "dialogue",
-   "caption": "Floor 1 (9,10), Gnilda's temple: 'AS YOU ENTER, AN EERIE GLOW FILLS THE ROOM ...'",
+   "caption": "Floor 1 (9,10), Gnilda's temple: 'AS YOU ENTER, AN EERIE GLOW FILLS THE ROOM'",
    "route": "@gmaze,WARP:01:09:09,poke:730E=0000,l,w200,r,w200,k,w600,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1443,7 +1443,7 @@
   {
    "id": "dialogue_f2_sage",
    "category": "dialogue",
-   "caption": "Floor 2 (18,10): 'A WIZENED SAGE ... FOR BUT 100000 GOLD, MANY THINGS WILL YOU BE TOLD.'",
+   "caption": "Floor 2 (18,10), a sage: 'FOR BUT 100000 GOLD, MANY THINGS WILL YOU BE TOLD.'",
    "route": "@gmaze,WARP:02:12:0A,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1677,7 +1677,7 @@
   {
    "id": "dialogue_f4_cavern",
    "category": "dialogue",
-   "caption": "Floor 4 (7,13): 'YOU STAND AT THE ENTRANCE OF WHAT SEEMS TO BE A HUGE CAVERN ...'",
+   "caption": "Floor 4 (7,13): 'YOU STAND AT THE ENTRANCE OF WHAT SEEMS TO BE A HUGE CAVERN'",
    "route": "@gmaze,WARP:04:06:0D,poke:730E=0100,l,w200,r,w200,f,w600,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1729,7 +1729,7 @@
   {
    "id": "dialogue_f5_well",
    "category": "dialogue",
-   "caption": "Floor 5 (11,8): 'A BRICK-WALLED WELL ... A SIGN READING: \"WISHES: 5000 GP WIZICORP.\"'",
+   "caption": "Floor 5 (11,8): a brick-walled well, a sign: 'WISHES: 5000 GP WIZICORP.'",
    "route": "@gmaze,WARP:05:0B:09,poke:730E=0200,l,w200,r,w200,k,w600,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1768,7 +1768,7 @@
   {
    "id": "dialogue_f6_king_treasure",
    "category": "dialogue",
-   "caption": "Floor 6 (13,15): 'THAT KING, THE KING WHO WORSHIPS GOLD, WILL NO MORE SEE HIS TREASURE ROOM.'",
+   "caption": "Floor 6 (13,15): 'THAT KING, THE KING WHO WORSHIPS GOLD, WILL NO MORE SEE ...'",
    "route": "@gmaze,WARP:06:0E:0F,poke:730E=0300,l,w200,r,w200,k,w600,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1781,7 +1781,7 @@
   {
    "id": "dialogue_f6_king_doom",
    "category": "dialogue",
-   "caption": "Floor 6 (16,13): 'THAT KING, THE KING WHO WORSHIPS THESE THAT KING, HE FINDS DOOM!'",
+   "caption": "Floor 6 (16,13): 'THAT KING, THE KING WHO WORSHIPS THESE ... HE FINDS DOOM!'",
    "route": "@gmaze,WARP:06:10:0C,poke:730E=0000,l,w200,r,w200,k,w600,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1794,7 +1794,7 @@
   {
    "id": "dialogue_f6_king_power",
    "category": "dialogue",
-   "caption": "Floor 6 (11,17): 'THAT KING, THE KING WHO WORSHIPS POWER WILL HAVE NONE WITHIN HIS TOMB.'",
+   "caption": "Floor 6 (11,17): 'THAT KING, THE KING WHO WORSHIPS POWER WILL HAVE NONE ...'",
    "route": "@gmaze,WARP:06:0B:11,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1846,7 +1846,7 @@
   {
    "id": "battle_f1_swarm",
    "category": "battle",
-   "caption": "Floor 1: two groups of 5 SWARM",
+   "caption": "Floor 1: two groups of 5 SWARM - 'YOU SURPRISED THE MONSTERS!', no S)PELL",
    "route": "@gmaze,w9,WARP:01:08:0E,w900",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1872,7 +1872,7 @@
   {
    "id": "battle_f2_men_in_armor",
    "category": "battle",
-   "caption": "Floor 2: 6 MEN IN ARMOR, 1 MAN IN ARMOR, 1 LVL 7 PRIEST",
+   "caption": "Floor 2: men in armor and a lvl 7 priest strike first - a thrust at CONDI misses",
    "route": "@gmaze,WARP:02:0B:07,poke:730E=0100,l,w200,r,w200,k,w600,w900",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1937,7 +1937,7 @@
   {
    "id": "battle_f3_four_groups",
    "category": "battle",
-   "caption": "Floor 3: men in leather, lvl 8 priests, men in armor, lvl 8 mages",
+   "caption": "Floor 3: four groups strike first - 'LVL 8 MAGE THRUSTS AT CONDI AND MISSES!'",
    "route": "@gmaze,WARP:03:0F:05,poke:730E=0300,l,w200,r,w200,k,w600,w900",
    "settled": true,
    "model": "iiplus-wp1",
@@ -1950,7 +1950,7 @@
   {
    "id": "battle_f5_swarms",
    "category": "battle",
-   "caption": "Floor 5: four groups of 9 - SWARM and WASP SWARM",
+   "caption": "Floor 5: four groups of 9 swarms - 'GIANT WASP BITES AT EBO ... 3 DAMAGE'",
    "route": "@gmaze,WARP:05:0D:0E,poke:730E=0000,l,w200,r,w200,k,w600,w900",
    "settled": true,
    "model": "iiplus-wp1",
@@ -2002,7 +2002,7 @@
   {
    "id": "battle_f6_succubus",
    "category": "battle",
-   "caption": "Floor 6: 7 LVL 8 NINJAS, 1 SUCCUBUS, 7 DEMONIC FIGURES, 4 PRIESTS",
+   "caption": "Floor 6: ninjas, a succubus, demonic figures, priests - a figure chops at CONDI",
    "route": "@gmaze,WARP:06:12:0A,poke:730E=0000,l,w200,r,w200,w5,k,w600,w900",
    "settled": true,
    "model": "iiplus-wp1",
@@ -2639,7 +2639,7 @@
   {
    "id": "dialogue_sphinx_3",
    "category": "dialogue",
-   "caption": "The sphinx: 'SEARCH THIS LEVEL, IF YOU DARE ... THREE CLUES HAVE I HIDDEN THERE.'",
+   "caption": "The sphinx: 'SEARCH THIS LEVEL, IF YOU DARE ... THREE CLUES HAVE I HIDDEN'",
    "route": "@sphinx,enter,w600,enter,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -2665,7 +2665,7 @@
   {
    "id": "dialogue_sphinx_5",
    "category": "dialogue",
-   "caption": "The sphinx: 'IF YOU LIVE, YOU SHOULD NOT LOSE ... LIES CONFUSED AMONG THE CLUES.'",
+   "caption": "The sphinx: 'IF YOU LIVE, YOU SHOULD NOT LOSE ... CONFUSED AMONG THE CLUES.'",
    "route": "@sphinx,enter,w600,enter,w600,enter,w600,enter,w600",
    "settled": true,
    "model": "iiplus-wp1",
@@ -2808,7 +2808,7 @@
   {
    "id": "dialogue_staff_gift_2",
    "category": "dialogue",
-   "caption": "Gnilda's gift, page 2",
+   "caption": "Gnilda's gift: 'FULL REGALIA OF THE LEGENDARY KNIGHT ... I SHALL RECLAIM THOSE ARTIFACTS'",
    "route": "@staff_gift,enter,w600",
    "settled": true,
    "model": "iiplus-wp1",

@@ -99,10 +99,10 @@ Platform apple2, region na, model iiplus-wp1, ROM SHA-1 `87abc403fa9cab3711d2b2c
 | gameplay_maze_f1_start | gameplay | Floor 1 (0,0): wireframe view, command list, spells line, party window | yes | [png](wizardry-2_apple2_na_gameplay_gameplay_maze_f1_start.png) |
 | env_f1_corridor | gameplay | Floor 1 (12,2) facing west: a corridor with side openings | yes | [png](wizardry-2_apple2_na_gameplay_env_f1_corridor.png) |
 | gameplay_dark | gameplay | Floor 1 (2,4): a dark square, nothing of the maze drawn | yes | [png](wizardry-2_apple2_na_gameplay_gameplay_dark.png) |
-| dialogue_f1_armor_clue | dialogue | Floor 1 (11,2): 'THE ARMOR YOU SEEK ... LIES FOUR STEPS AHEAD, BUT THREE STEPS AWAY.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f1_armor_clue.png) |
-| gameplay_stairs_down | gameplay | Floor 1 (16,2), kicked in from the Magic Armor's room: 'STAIRS GOING DOWN. TAKE THEM (Y/N) ?' | yes | [png](wizardry-2_apple2_na_gameplay_gameplay_stairs_down.png) |
+| dialogue_f1_armor_clue | dialogue | Floor 1 (11,2): 'THE ARMOR YOU SEEK ... FOUR STEPS AHEAD, BUT THREE STEPS AWAY.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f1_armor_clue.png) |
+| gameplay_stairs_down | gameplay | Floor 1 (16,2), kicked in from the guardian's room: 'STAIRS GOING DOWN' | yes | [png](wizardry-2_apple2_na_gameplay_gameplay_stairs_down.png) |
 | gameplay_pit | gameplay | Floor 1 (1,5), kicked in from the south: 'A PIT!' | yes | [png](wizardry-2_apple2_na_gameplay_gameplay_pit.png) |
-| dialogue_gnilda | dialogue | Floor 1 (9,10), Gnilda's temple: 'AS YOU ENTER, AN EERIE GLOW FILLS THE ROOM ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_gnilda.png) |
+| dialogue_gnilda | dialogue | Floor 1 (9,10), Gnilda's temple: 'AS YOU ENTER, AN EERIE GLOW FILLS THE ROOM' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_gnilda.png) |
 | dialogue_gnilda_2 | dialogue | Gnilda: 'HEAR THESE, THE WORDS OF GNILDA. THE CITY LLYLGAMN HAVING SHOWN ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_gnilda_2.png) |
 | dialogue_gnilda_3 | dialogue | Gnilda: 'ONLY HERE, IN MY TEMPLE, MAY ONE WORTHY ENOUGH REGAIN THOSE SYMBOLS' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_gnilda_3.png) |
 | dialogue_gnilda_4 | dialogue | Gnilda: 'TO OBTAIN MY STAFF, ONE MUST ACQUIRE THE FIVE ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_gnilda_4.png) |
@@ -114,7 +114,7 @@ Platform apple2, region na, model iiplus-wp1, ROM SHA-1 `87abc403fa9cab3711d2b2c
 | dialogue_f2_riddle_2 | dialogue | The riddle, page 2: 'I WITNESS WAR, PERILOUS FIGHT, NOR HOPE FOR CONSOLATION' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f2_riddle_2.png) |
 | dialogue_f2_riddle_end | dialogue | The riddle ends: 'WHAT AM I?' - PRESS [RET] | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f2_riddle_end.png) |
 | dialogue_f2_riddle_answer | dialogue | 'ANSWER ?' - SHIELD typed | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f2_riddle_answer.png) |
-| dialogue_f2_sage | dialogue | Floor 2 (18,10): 'A WIZENED SAGE ... FOR BUT 100000 GOLD, MANY THINGS WILL YOU BE TOLD.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f2_sage.png) |
+| dialogue_f2_sage | dialogue | Floor 2 (18,10), a sage: 'FOR BUT 100000 GOLD, MANY THINGS WILL YOU BE TOLD.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f2_sage.png) |
 | dialogue_f2_sage_fee | dialogue | The sage: 'FEE IS 100000 / PAY (Y/N) ?' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f2_sage_fee.png) |
 | dialogue_f2_sage_study | dialogue | Floor 2 (18,9): 'THE SAGE USHERS YOU INTO A LAVISHLY DECORATED STUDY ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f2_sage_study.png) |
 | dialogue_f2_sage_stars | dialogue | The sage: 'MY STUDIES HAVE SHOWN THE STARS COME INTO A NEW CONFIGURATION ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f2_sage_stars.png) |
@@ -132,32 +132,32 @@ Platform apple2, region na, model iiplus-wp1, ROM SHA-1 `87abc403fa9cab3711d2b2c
 | dialogue_f4_wade | dialogue | The fountain: 'WHO (#) WILL WADE, [RET] EXITS' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f4_wade.png) |
 | gameplay_stoned | gameplay | RYZ waded in: STONED, moved to the back of the party | yes | [png](wizardry-2_apple2_na_gameplay_gameplay_stoned.png) |
 | env_f4_cavern | gameplay | Floor 4 (6,13) facing east: the open cavern | yes | [png](wizardry-2_apple2_na_gameplay_env_f4_cavern.png) |
-| dialogue_f4_cavern | dialogue | Floor 4 (7,13): 'YOU STAND AT THE ENTRANCE OF WHAT SEEMS TO BE A HUGE CAVERN ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f4_cavern.png) |
+| dialogue_f4_cavern | dialogue | Floor 4 (7,13): 'YOU STAND AT THE ENTRANCE OF WHAT SEEMS TO BE A HUGE CAVERN' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f4_cavern.png) |
 | dialogue_f4_stalactites | dialogue | The cavern: 'FROM THE VAULTED CEILING HANG GREAT STALACTITES ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f4_stalactites.png) |
 | dialogue_f4_cave_in | dialogue | Floor 4 (6,17): 'BEFORE YOU IS A PILE OF SHATTERED STONE ... A CAVE-IN.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f4_cave_in.png) |
 | gameplay_ouch | gameplay | Floor 4 (3,6), an OUCH square: hit points lost in the party window | yes | [png](wizardry-2_apple2_na_gameplay_gameplay_ouch.png) |
-| dialogue_f5_well | dialogue | Floor 5 (11,8): 'A BRICK-WALLED WELL ... A SIGN READING: "WISHES: 5000 GP WIZICORP."' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f5_well.png) |
+| dialogue_f5_well | dialogue | Floor 5 (11,8): a brick-walled well, a sign: 'WISHES: 5000 GP WIZICORP.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f5_well.png) |
 | dialogue_f5_well_fee | dialogue | The well: 'FEE IS 5000 / PAY (Y/N) ?' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f5_well_fee.png) |
 | gameplay_chute | gameplay | Floor 5 (8,11): 'A CHUTE!' - down to floor 6 | yes | [png](wizardry-2_apple2_na_gameplay_gameplay_chute.png) |
-| dialogue_f6_king_treasure | dialogue | Floor 6 (13,15): 'THAT KING, THE KING WHO WORSHIPS GOLD, WILL NO MORE SEE HIS TREASURE ROOM.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f6_king_treasure.png) |
-| dialogue_f6_king_doom | dialogue | Floor 6 (16,13): 'THAT KING, THE KING WHO WORSHIPS THESE THAT KING, HE FINDS DOOM!' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f6_king_doom.png) |
-| dialogue_f6_king_power | dialogue | Floor 6 (11,17): 'THAT KING, THE KING WHO WORSHIPS POWER WILL HAVE NONE WITHIN HIS TOMB.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f6_king_power.png) |
+| dialogue_f6_king_treasure | dialogue | Floor 6 (13,15): 'THAT KING, THE KING WHO WORSHIPS GOLD, WILL NO MORE SEE ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f6_king_treasure.png) |
+| dialogue_f6_king_doom | dialogue | Floor 6 (16,13): 'THAT KING, THE KING WHO WORSHIPS THESE ... HE FINDS DOOM!' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f6_king_doom.png) |
+| dialogue_f6_king_power | dialogue | Floor 6 (11,17): 'THAT KING, THE KING WHO WORSHIPS POWER WILL HAVE NONE ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_f6_king_power.png) |
 | gameplay_wall | gameplay | Walking into a wall on floor 6: 'OUCH!' in the view | yes | [png](wizardry-2_apple2_na_gameplay_gameplay_wall.png) |
 | env_f6_spinner | gameplay | Floor 6 (14,15): a spinner square, the view gives no sign of it | yes | [png](wizardry-2_apple2_na_gameplay_env_f6_spinner.png) |
 | battle_f1_men_in_armor | battle | Floor 1: 3 MEN IN ARMOR and 3 LVL 8 MAGES - RYZ'S OPTIONS | yes | [png](wizardry-2_apple2_na_battle_battle_f1_men_in_armor.png) |
-| battle_f1_swarm | battle | Floor 1: two groups of 5 SWARM | yes | [png](wizardry-2_apple2_na_battle_battle_f1_swarm.png) |
+| battle_f1_swarm | battle | Floor 1: two groups of 5 SWARM - 'YOU SURPRISED THE MONSTERS!', no S)PELL | yes | [png](wizardry-2_apple2_na_battle_battle_f1_swarm.png) |
 | battle_encounter | battle | Floor 1 (14,2): 5 DEMONIC FIGURES and 1 LVL 8 NINJA | yes | [png](wizardry-2_apple2_na_battle_battle_encounter.png) |
-| battle_f2_men_in_armor | battle | Floor 2: 6 MEN IN ARMOR, 1 MAN IN ARMOR, 1 LVL 7 PRIEST | yes | [png](wizardry-2_apple2_na_battle_battle_f2_men_in_armor.png) |
+| battle_f2_men_in_armor | battle | Floor 2: men in armor and a lvl 7 priest strike first - a thrust at CONDI misses | yes | [png](wizardry-2_apple2_na_battle_battle_f2_men_in_armor.png) |
 | battle_f2_priests | battle | Floor 2: 5 MEN IN ARMOR and 4 PRIESTS | yes | [png](wizardry-2_apple2_na_battle_battle_f2_priests.png) |
 | battle_f2_weretigers | battle | Floor 2: 6 WERETIGERS | yes | [png](wizardry-2_apple2_na_battle_battle_f2_weretigers.png) |
 | battle_f2_fluffy_things | battle | Floor 2: 8 FLUFFY THINGS | yes | [png](wizardry-2_apple2_na_battle_battle_f2_fluffy_things.png) |
 | battle_f3_manticores | battle | Floor 3 (5,13): 4 MANTICORES | yes | [png](wizardry-2_apple2_na_battle_battle_f3_manticores.png) |
-| battle_f3_four_groups | battle | Floor 3: men in leather, lvl 8 priests, men in armor, lvl 8 mages | yes | [png](wizardry-2_apple2_na_battle_battle_f3_four_groups.png) |
-| battle_f5_swarms | battle | Floor 5: four groups of 9 - SWARM and WASP SWARM | yes | [png](wizardry-2_apple2_na_battle_battle_f5_swarms.png) |
+| battle_f3_four_groups | battle | Floor 3: four groups strike first - 'LVL 8 MAGE THRUSTS AT CONDI AND MISSES!' | yes | [png](wizardry-2_apple2_na_battle_battle_f3_four_groups.png) |
+| battle_f5_swarms | battle | Floor 5: four groups of 9 swarms - 'GIANT WASP BITES AT EBO ... 3 DAMAGE' | yes | [png](wizardry-2_apple2_na_battle_battle_f5_swarms.png) |
 | battle_f6_greater_demons | battle | Floor 6: 4 GREATER DEMONS, 4 LVL 8 NINJAS, 9 DEMONIC FIGURES | yes | [png](wizardry-2_apple2_na_battle_battle_f6_greater_demons.png) |
 | battle_f6_evil_eyes | battle | Floor 6: 2 EVIL EYES and 2 SKULLS | yes | [png](wizardry-2_apple2_na_battle_battle_f6_evil_eyes.png) |
 | battle_f6_dragon | battle | Floor 6: 2 MEN IN BLACK, 1 DRAGON, 8 STRANGE ANIMALS | yes | [png](wizardry-2_apple2_na_battle_battle_f6_dragon.png) |
-| battle_f6_succubus | battle | Floor 6: 7 LVL 8 NINJAS, 1 SUCCUBUS, 7 DEMONIC FIGURES, 4 PRIESTS | yes | [png](wizardry-2_apple2_na_battle_battle_f6_succubus.png) |
+| battle_f6_succubus | battle | Floor 6: ninjas, a succubus, demonic figures, priests - a figure chops at CONDI | yes | [png](wizardry-2_apple2_na_battle_battle_f6_succubus.png) |
 | battle_group_select | battle | Three groups: F)ight asks 'FIGHT AGAINST GROUP# ?' | yes | [png](wizardry-2_apple2_na_battle_battle_group_select.png) |
 | battle_options_condi | battle | CONDI's options after RYZ chose F)ight | yes | [png](wizardry-2_apple2_na_battle_battle_options_condi.png) |
 | battle_dispell | battle | EBO (priest) has D)ISPELL among his options | yes | [png](wizardry-2_apple2_na_battle_battle_dispell.png) |
@@ -206,9 +206,9 @@ Platform apple2, region na, model iiplus-wp1, ROM SHA-1 `87abc403fa9cab3711d2b2c
 | gameplay_inspect | gameplay | I)nspect: 'LOOKING.......' - searching the square for bodies | yes | [png](wizardry-2_apple2_na_gameplay_gameplay_inspect.png) |
 | dialogue_sphinx | dialogue | Floor 6 (1,2): 'A BEAST WITH THE HEAD OF A MAN AND THE BODY OF A LION ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_sphinx.png) |
 | dialogue_sphinx_2 | dialogue | The sphinx: 'ENTER HERE, THE VERY FEW WHO CAN GIVE THE ANSWER TRUE ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_sphinx_2.png) |
-| dialogue_sphinx_3 | dialogue | The sphinx: 'SEARCH THIS LEVEL, IF YOU DARE ... THREE CLUES HAVE I HIDDEN THERE.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_sphinx_3.png) |
+| dialogue_sphinx_3 | dialogue | The sphinx: 'SEARCH THIS LEVEL, IF YOU DARE ... THREE CLUES HAVE I HIDDEN' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_sphinx_3.png) |
 | dialogue_sphinx_4 | dialogue | The sphinx: 'SEARCH EACH PASSAGE AND EACH ROOM FOR A KING WITHIN HIS TOMB ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_sphinx_4.png) |
-| dialogue_sphinx_5 | dialogue | The sphinx: 'IF YOU LIVE, YOU SHOULD NOT LOSE ... LIES CONFUSED AMONG THE CLUES.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_sphinx_5.png) |
+| dialogue_sphinx_5 | dialogue | The sphinx: 'IF YOU LIVE, YOU SHOULD NOT LOSE ... CONFUSED AMONG THE CLUES.' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_sphinx_5.png) |
 | dialogue_sphinx_answer | dialogue | 'ANSWER ?' - THE KNIGHT OF DIAM being typed | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_sphinx_answer.png) |
 | dialogue_sphinx_wrong | dialogue | A wrong answer (SHIELD): 'WRONG!' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_sphinx_wrong.png) |
 | dialogue_sphinx_right | dialogue | THE KNIGHT OF DIAMONDS: 'RIGHT!' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_sphinx_right.png) |
@@ -219,7 +219,7 @@ Platform apple2, region na, model iiplus-wp1, ROM SHA-1 `87abc403fa9cab3711d2b2c
 | dialogue_gnilda_test | dialogue | RYZ alone with the five: 'A FIERY FACE ... WHAT IS THE ANSWER TO THE RIDDLE ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_gnilda_test.png) |
 | dialogue_gnilda_answer | dialogue | 'ANSWER ?' - THE KNIGHT OF DIAMONDS typed | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_gnilda_answer.png) |
 | dialogue_staff_gift | dialogue | 'A NOW FAMILIAR APPARITION APPEARS AND SAYS: THROUGH YOUR VALOR, WIT ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_staff_gift.png) |
-| dialogue_staff_gift_2 | dialogue | Gnilda's gift, page 2 | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_staff_gift_2.png) |
+| dialogue_staff_gift_2 | dialogue | Gnilda's gift: 'FULL REGALIA OF THE LEGENDARY KNIGHT ... I SHALL RECLAIM THOSE ARTIFACTS' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_staff_gift_2.png) |
 | dialogue_staff_gift_3 | dialogue | Gnilda's gift, page 3: 'RECEIVE THE STAFF OF GNILDA!' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_staff_gift_3.png) |
 | dialogue_staff_got | dialogue | 'RYZ GOT ITEM': the pieces are gone, AC still LO | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_staff_got.png) |
 | inventory_staff | inventory | RYZ's sheet: STAFF OF GNILDA his only item | yes | [png](wizardry-2_apple2_na_inventory_inventory_staff.png) |

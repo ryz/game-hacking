@@ -16,6 +16,34 @@ Controls table, it applies here). This file says what was checked here and what 
 > `python3 tools/play.py text` / `preview.py --text` for text screens. Pictures are native size
 > (`play.py shot --scale N` on demand).
 
+## Read first (capture 2026-11-20)
+- Sets: `start` (35 shots, transfer to the party formed, `games/apple2/wizardry-2/shots/start/`) and `main`
+  (229 shots: utilities, transfer, castle and every service, camp and sheets, all six floors, 18 message squares,
+  14 random encounters, every guardian, chests, the quest, ending, cemetery). Lenses in `design/` clean.
+- Always `apple2/wizardry-2` and `play.py --name wiz2`. Saves `00_transfer`, `01_start`, `02_ending` must be in
+  `rom/saves/apple2/wizardry-2/` (rebuild: Saves below).
+- Work in batches: `preview.py apple2/wizardry-2 FILE` (text screens: `--text`; maze/battle: `--crop 0,0,560,262`
+  for the message area, `--timeline N:60` for battle and chest messages, which are timed and never wait).
+- Checkpoints to start from: `s_util`, `s_imported`, `s_castle`, `s_training`, `s_wiped` (start set chain);
+  `start`, `gcastle` (geared party in the Castle), `gcamp`, `gmaze` (floor 1 entrance); fights `battle`,
+  `chest`, `b_mant` (floor 3 manticores), `b_demons`, `b_skulls` (floor 6); `guard1`-`guard5`, quest chain
+  `sphinx` ... `final`.
+- `WARP:FF:XX:YY` from `@gmaze`: the view is NOT redrawn on arrival: add `l,w200,r,w200` (or `poke:730E=0N00`
+  first to choose the facing) before a shot. Message squares fire on arrival (sage, floor 6 (11,17)), others
+  need a step in (`f,w600,w600`, `k` through doors). Warp arrival rolls fights only on floor 1; on floors 2-6 kick
+  through a door into a room (`games/apple2/wizardry-2/tools/doors.py`: outside square, face the room, `k,w600,w900`;
+  13 of 38 doors met a group). Floor 4 has no room doors.
+- Battle messages: a round of six orders lasts ~1,800 frames; frame +K of `ROUTE,enter` is `ROUTE,enter,w60*N,!`.
+  Victory E.P. at +300 after `WIN,enter`; the chest settles after `w600`.
+- Temple: status poke (`7476=0500` CONDI dead), Tavern `r,2` (the patient must be outside the party), `c`,
+  `type:CONDI\n`, payer digit: EBO (party place 2 after the removal) can pay 3,250, RYZ cannot ("CHEAP APOSTATES").
+- Inn level-up: RYZ's E.P. at `73FA` (6 bytes, 3 words of 0-9999): `poke:73FA=B50445000000` = 691,205 -> level 14.
+- Unknown and cursed items: item slot = 4 words (equipped, cursed, identified, number): RYZ slot 5 `73DA`,
+  CONDI count `7488` slot 5 `74AA`, MNZ count `77C8` slot 5 `77EA`.
+- Game over: `@guard4_costly,poke:73A6=0500,poke:7476=0500,c,w900,l,w900` -> the cemetery.
+- Not shown: R)un (no message), Q)uick and S)tatus (no visible change), Dispell's effect, the staff in use,
+  paying a fee, floor 4 random groups, floor 6 fixed fights.
+
 ## Identity
 | Field | Value |
 |---|---|
@@ -182,7 +210,7 @@ From the DOS version:
 - no Utilities and no Training menu in the Edge of Town; Training is a name prompt and disbands the party;
 - Tavern add is by typed name + password Return, remove by number; leave screens with `l` or Return as printed;
 - battle: S)PELL is on RYZ's first-round menu in most fights, in some surprise rounds too and in others not
-  (rule not worked out; the guardians' first round has it and the spells are cast; DOS: no spells in round 1);
+  (rule, capture 2026-11-20: no S)PELL in the round after "YOU SURPRISED THE MONSTERS!"; DOS: no spells in round 1);
   spell names in capitals; a fight against several groups asks "FIGHT AGAINST GROUP# ?" after `f`;
 - a party of six with the staff gets the ending (DOS: no) and loses a character to it (Game structure);
 - the ending is a text screen with other words, Queen Margda, five knighthoods at most;
@@ -198,6 +226,7 @@ From Apple II Wizardry I:
 - the maze load needs `w1500`.
 
 ## Shot plan
+Done 2026-11-20 (sets `start` and `main`, see Capture results); what is not shown is listed in Read first.
 Target: the DOS set's coverage (213 shots, `games/dos/wizardry-2/shots/main/shots.txt`) replayed here, plus
 what only this version has. Ids keep the DOS ids where the content is the same. By category:
 - boot/title/menu (6): `title_logo` (`@title`), `menu_copyright` (`@menu`), `menu_utilities` (`@menu,u,w600`),
@@ -230,6 +259,24 @@ what only this version has. Ids keep the DOS ids where the content is the same. 
 - gameover (2): cemetery (status pokes + camp, or the helmet's round continued).
 - save/extra (3): Utilities entries (change names, backup prompt), "PRESS [RETURN] FOR MORE WIZARDRY".
 How to reach: everything from `@start`, `@gcastle`, `@gmaze` + `WARP`, the guardian and quest checkpoints.
+
+## Capture results (2026-11-20)
+- **Method:** no interactive session; plan files previewed (`--text` for town screens, cropped sheets and
+  `--timeline` for maze and battle messages), then appended to the work `shots.txt` and shot with `--only`.
+  About 110 tool calls for both sets.
+- **Verified here** (new): utilities' first screens; Training Grounds options (inspect, delete, change class,
+  set password); Boltac's six stock pages, purchase, unusable confirm, sell, identify, uncurse; Inn rooms,
+  stables, cot healing (1 hit point per 10 gold), level-up; Temple flow and "CHEAP APOSTATES! OUT!"; camp
+  reorder, disband, equip prompts, sheets, spell books (21 mage, 29 priest), cast, DUMAPIC, MALOR, use, trade
+  (gold first), drop, bishop identify; maze T)ime ("NEW DELAY (1-9999)"), I)nspect ("LOOKING......."); the
+  message squares of every floor (pages in `main`); battle rules: back rank has no F)ight, no S)PELL in the
+  round after "YOU SURPRISED THE MONSTERS!", spells are not named in round messages; chest inspect, Calfo,
+  disarm by typed trap name, the teleporter trap; guardians' round messages and drops ("DEDDO FOUND - PLATE
+  ARMOR" ...); the cemetery.
+- **Encounter recipes** (shots `battle_*`): floor 1 `@gmaze,wK,WARP:01:08:0E,w900` (K 1: men in armor + mages,
+  K 9: swarms); floors 2-6 door kicks, routes in `shots.txt`.
+- **Floor 3 (8,10)**: after "MAPIRO MAHAMA DIROMAT" the party is in the Castle; the well's Y did the same.
+- **Riddle of floor 2**: seven pages, then "ANSWER ?"; SHIELD -> "RIGHT!".
 
 ## Strategy and walkthrough notes
 - Cataloguing: never grind. `REST` + `GEAR` + `EQUIP` give a rested party with Boltac-priced gear (AC 0 -1 3 5
@@ -274,7 +321,7 @@ THE CURRENT NAME OF THE CHAR & THEN THE NEW NAME", program text; not used).
 | Guardians appear | `WIPE` (Training Grounds: delete THUG, HALIG, KELRACH, FURY), inside `PARTY` | scout | verified |
 | Spell points | `REST` (Castle: stables for members 5, 3, 6) | game | verified |
 | Gear | `GEAR` (Castle or camp, party in slots 1-6): packs poked, gold reduced by the prices: RYZ long sword, plate mail, shield + 1, helm; CONDI long sword, plate mail + 1, shield + 1, helm; EBO anointed mace, chain mail + 1, large shield, Dios potion; CUBI short sword, leather + 1, small shield, scroll/Katino; DEDDO staff + 2, robes, scroll/Halito; MNZ staff, leather + 1, small shield, Latumofis potion. `EQUIP` in the camp: `e,w900` + 19 x `1,w400` (19 prompts for exactly this gear) | DOS macro, new addresses and cheaper items (the Wizardry I ending left 4,817-9,342 gold) | verified (`gcamp`) |
-| Warp anywhere (from floor 1) | `WARP:FF:XX:YY` (hex): puts the party on (0,1) facing south, turns, steps onto the stairs to the castle, rewrites that staircase (special 5 of the floor in play: AUX0 floor `5E2C`, AUX2 x `5E6C`, AUX1 y `5E4C`) and answers Y. Works only while floor 1 is loaded. Arriving on stairs shows their prompt; arriving on a fight-zone square usually starts a fight; a message square does not fire on arrival (step out and in) | DOS recipe | verified (floors 1-6) |
+| Warp anywhere (from floor 1) | `WARP:FF:XX:YY` (hex): puts the party on (0,1) facing south, turns, steps onto the stairs to the castle, rewrites that staircase (special 5 of the floor in play: AUX0 floor `5E2C`, AUX2 x `5E6C`, AUX1 y `5E4C`) and answers Y. Works only while floor 1 is loaded. Arriving on stairs shows their prompt; arriving on a fight-zone square usually starts a fight; ~~a message square does not fire on arrival~~ some do (the sage, floor 6 (11,17)), others need a step in; the view is not redrawn until a turn (capture 2026-11-20) | DOS recipe | verified (floors 1-6) |
 | Facing | `poke:730E=0N00` before `k` or `f` (0 N, 1 E, 2 S, 3 W); the view redraws on the next move | scout | verified |
 | Win a fight | `WIN` = `poke:6DCA=0000` (group 1 alive count) during the orders, then Return; second group `poke:6F00=0000`: counts as killed, E.P., chest or drop | DOS recipe | verified (`guard1_won`, `chest`) |
 | Monster hit points | `poke:6DD6=0100` (group 1, monster 1; next monsters +0x10) during the orders | scout | verified (shield 76, armor 305, ninja read; kills in `guardN_won`) |
@@ -368,6 +415,8 @@ OBJECT +52 (130), CHAR +72 (20; slot n at `(148+72)*512 + (n div 4)*400 + (n mod
 | `ending_poke`, `plain_final` | the ending by `SOLO` + `STAFF` without gear; the Castle after its awards and `REFORM` (nobody carries an item) |
 | `gnilda_test`, `gnilda_answer`, `staff_gift`, `staff` | RYZ alone with the five at the temple: the fiery face, "ANSWER ?", the gift's first page, "RYZ GOT ITEM" |
 | `ending`, `knights`, `final` | GAUDEAMOUS; Castle after the five awards; Castle with the party re-formed |
+| `s_util`, `s_imported`, `s_castle`, `s_training`, `s_wiped` | start set: Utilities with the Wizardry I disk; after the six transfers; Castle before a party; Training Grounds; after `WIPE` |
+| `b_mant`, `b_demons`, `b_skulls` | fights met by door kicks: floor 3 4 manticores; floor 6 greater demons + ninjas + demonic figures; floor 6 evil eyes + skulls (surprised) |
 | `resume`, `resume_end` | Castle from `sav:01_start` / `sav:02_ending` (need the files in `rom/saves/apple2/wizardry-2/`) |
 Cold check: `python3 tools/cachecheck.py apple2/wizardry-2` builds every checkpoint from an empty cache
 and compares it with a cache hit in a fresh process (frame, memory 0000-BFFF, written disks), prints each
@@ -394,7 +443,7 @@ No web source was fetched (the time went to the emulator). The manual was not re
 - Floor 2's riddle (3,6) (DOS: "shield"), floor 6's fixed fights, the other message squares: not tried here.
 - Whether the six-member ending also loses a character when the staff comes from Gnilda (cannot happen in
   play as far as seen).
-- Temple, Boltac's (stock, identify price), Inn level-up, chest open/disarm, U)se, trade: flows are the capture's.
+- ~~Temple, Boltac's, Inn level-up, chest open/disarm, U)se, trade~~: captured 2026-11-20.
 - Utilities R)ECOVER, B)ACKUP, M)AKE SCENARIO DISK, U)PDATE, C)HANGE NAMES: text read, not used.
 - Whether Wizardry III accepts characters with items (above).
 - The other keys on the title; `iie` and an unprotected boot disk on this game.
