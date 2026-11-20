@@ -51,7 +51,27 @@
     "SAVENEW": "SAVEMENU,FORMAT,SAVEBTN,SAVEDONE",
     "SAVEGAME": "SAVEMENU,disk:2,w100,SAVEBTN,SAVEDONE",
     "TITLE": "w700,mouse1:10,w4000",
-    "RESUME": "CLICK:4:1:48:44,w300,disk:2,w1500,disk:1,w300,CLICK:2:2:78:46,w4000,CLICK:2:2:78:46,w300"
+    "RESUME": "CLICK:4:1:48:44,w300,disk:2,w1500,disk:1,w300,CLICK:2:2:78:46,w4000,CLICK:2:2:78:46,w300",
+    "WARP": "poke:C167D0=00{0},poke:C167D2=00{1},poke:C167CE=000{2},w2,TL,TR",
+    "STAIRS": "poke:C167D0=00{0},poke:C167D2=00{1},w2,TL,w100",
+    "DL3": "STAIRS:06:1A,settle",
+    "DL4": "STAIRS:19:15,settle",
+    "DL5": "STAIRS:06:08,settle",
+    "DL6": "STAIRS:08:06,settle",
+    "DL7": "STAIRS:19:19,settle",
+    "DL8": "STAIRS:16:1D,settle",
+    "DL9": "STAIRS:03:05,settle",
+    "DL10": "STAIRS:0A:05,settle",
+    "DL11": "STAIRS:04:00,settle",
+    "DL12": "STAIRS:12:1A,settle",
+    "DL13": "STAIRS:08:12,settle",
+    "DL14": "STAIRS:03:0A,settle",
+    "ACT": "CLICK:4:1:{0}:84,w10",
+    "DO1": "CLICK:4:1:22:60",
+    "DO2": "CLICK:4:1:22:86",
+    "DO3": "CLICK:4:1:22:110",
+    "GO": "poke:C167D0=00{0},poke:C167D2=00{1},w2,TL,TR",
+    "MID": "poke:C1856C=00A300AB05AC05FA00000000,poke:C186AC=005C0061036903C200760083,poke:C187EC=0068006D03F404290057005E,poke:C1892C=0094009904F4053C00000000,poke:C18596=00006B3A,poke:C186A8=0000A12C,poke:C18822=000048C6,poke:C18956=00005956"
   },
   "ram": {
     "facing": {

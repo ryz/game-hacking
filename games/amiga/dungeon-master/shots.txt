@@ -1,69 +1,97 @@
 # id | category | caption | route
-# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
-#             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/amiga/dungeon-master/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-#
-# Scout's plan (2026-11-20). Lines with a route: the route reaches the screen (verified by the scout); check the
-# frame (pointer: add HIDE before the shot where the pointer would cover something) and snap it in play.py.
-# Lines with "route: ..." in words: reachable, route still to be written. Pixel spots: playbook "Pointer".
-#
-# --- boot, title, entering
-# boot_crack_note | boot | Crack note of this release in an AmigaDOS window (waits for a click) | w700
-# boot_logo | boot | Dungeon Master logo while the game loads from disk | w700,mouse1:10,w2000
-# title_entrance | title | Entrance doors with ENTER, RESUME and QUIT | @entrance
-# cutscene_doors_open | cutscene | The entrance doors opening onto the corridor (clip) | @entrance,mouse1:10,rec:300:3
-# --- Hall of Champions (level 1)
-# hall_start | gameplay | First view in the Hall of Champions: corridor ahead, doors behind | @dungeon
-# hall_inscription | gameplay | "HALL OF CHAMPIONS" carved into the wall | @dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,HIDE
-# hall_mirror | gameplay | A champion's portrait in its mirror | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR
-# system_champion_panel | system | Halk the Barbarian: possessions, health, stamina, mana, RESURRECT / REINCARNATE | (hall_mirror),MIRROR
-# system_reincarnate_name | system | Reincarnation: the new name RYZ typed on the letter board | (hall_mirror),MIRROR,REINCARNATE,type:ryz,w30
-# system_reincarnated | system | "RYZ REINCARNATED." and the empty mirror; first champion in the party bar | (hall_mirror),MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60
-# hall_champion_lizard | gameplay | Hissssa Lizar of Makan in his mirror panel | @dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD*7,TR,FWD*4,TL,FWD,TR,FWD*6,MIRROR,w40
-# hall_champion_wizard | gameplay | Tiggy Tamal, a wizard with the most mana in the hall | @dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TL,FWD*3,TL,FWD*2,TR,FWD,TL,MIRROR,w40
-# system_party_four | system | Four champions resurrected: bars, hands and formation icons | @party
-# system_formation | system | Formation swapped: fighters in front, casters behind | @party (zoom of the icons in the caption)
-# hall_gate_closed | gameplay | The iron gate at the hall's west end, closed while the party is empty | @dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*3,HIDE
-# hall_gate_open | gameplay | The gate open once champions have joined | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,HIDE
-# hall_entrance_inside | gameplay | The entrance doors seen from inside the hall | @dungeon,TR,TR,HIDE
-# env_hall_corridor | gameplay | Hall of Champions: a plain corridor | @dungeon,FWD
-# env_hall_shackles | gameplay | Shackles on the wall behind the gate, an apple on the floor | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,HIDE
-# system_torch_sconce | system | A torch in its wall sconce | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,TL,FWD*3,FWD,FWD,TR,HIDE
-# system_torch_taken | system | The torch taken into RYZ's ready hand, the sconce empty | (system_torch_sconce),WALL,CLICK:0:0:22:32,w30,HIDE
-# gameplay_stairs_down | gameplay | Stairs down to level 2 | route: behind the gate at (4,15) facing west
-# --- level 2 and below
-# env_l2_corridor | gameplay | Level 2: corridor east of the stairs, lit by the torch | @level2
-# env_l2_dark | gameplay | Level 2 without light: almost nothing visible | @party,...,stairs without taking the torch (the explore route: work/scout ex2_end.png)
-# gameplay_l2_door_button | gameplay | Wooden door with a button beside it | @level2,TR,TR,HIDE
-# gameplay_stairs_up | gameplay | The stairs back up, seen from level 2 | @level2,TR,HIDE
-# hud_party | hud | The whole screen: champion bars, hands, spell panel, actions, movement arrows | @level2
-# --- systems (inventory, magic, actions)
-# inventory_ryz | inventory | RYZ's inventory: body slots, backpack, food and water, health/stamina/mana, load | @level2,f1,w30,HIDE
-# inventory_tiggy | inventory | Tiggy's inventory (a wizard) | @level2,f2,w30,HIDE
-# inventory_stats | inventory | Statistics and skill levels shown while the eye is held | open: needs a held click
-# system_runes | system | Tiggy reciting runes: LO and FUL in the incantation line | @level2,CLICK:4:0:90:88,w20,CLICK:4:0:0:110,w20,CLICK:4:0:86:110,w20
-# system_cast | system | Spell cast: Tiggy's mana spent, her hand greyed while she recovers | (system_runes),CLICK:4:1:58:14,w60,HIDE
-# system_action_menu | system | Action menu of RYZ's club: THROW, BASH | @level2,CLICK:4:1:4:84,w30
-# system_freeze | system | GAME FROZEN (Esc) | @level2,esc,w60
-# system_sleep | system | The party asleep (ZZZ), WAKE UP | route: @level2,f1,w30, click (216,58)
-# system_eat | system | Eating the apple (mouth) | route: pick the apple at (4,9) on level 1, f1, drop it on the mouth
-# system_potion | system | Wuuf makes a potion in his flask (VI) | route: Wuuf caster tab, VI rune, cast
-# system_level_up | system | "... JUST GAINED A ... LEVEL!" | play fights or cast repeatedly
-# system_lever_door | system | A button opening a door | @level2, door button west of the arrival square
-# battle_first | battle | First monster met on level 2 | play from @saved
-# battle_attack | battle | Fighters striking (damage numbers on the monster) | play
-# battle_spell | battle | A spell in flight (fireball) | play, later levels
-# battle_mummy | battle | Mummy | play
-# battle_screamer | battle | Screamer | play
-# battle_scorpion | battle | Giant Scorpion | play, deeper
-# boss_dragon | boss | Red Dragon | full game
-# boss_chaos | boss | Lord Chaos | full game
-# gameover_party_dead | gameover | All champions dead | play
-# --- saving
-# save_menu | save | Save menu: PUT THE GAME SAVE DISK IN DF0:, SAVE / QUIT / FORMAT FLOPPY / CANCEL | @level2,SAVEMENU
-# save_blank_prompt | save | PUT A BLANK DISK IN DF0: (FORMAT FLOPPY / CANCEL) | @level2,SAVEMENU,disk:2,w100,CLICK:0:2:114:48,w60
-# save_formatting | save | FORMATTING DISK . . . with the progress bar | (save_blank_prompt),CLICK:1:1:98:94,w1000
-# save_saving | save | SAVING GAME . . . | @level2,SAVEMENU,FORMAT,CLICK:0:1:114:94,w200
-# save_resume_prompt | save | RESUME: PUT THE GAME SAVE DISK IN DF0: (LOAD SAVED GAME / CANCEL) | sav:01_level2,pow,TITLE,settle,CLICK:4:1:48:44,w300
-# save_loaded | save | GAME LOADED, READY TO PLAY. | sav:01_level2,pow,TITLE,settle,CLICK:4:1:48:44,w300,disk:2,w1500,disk:1,w300,CLICK:2:2:78:46,w4000
+boot_crack_note | boot | Crack note of this release in an AmigaDOS window, waiting for a click | w700
+boot_logo | boot | Dungeon Master logo while the game loads from disk | w700,mouse1:10,w2000
+title_entrance | title | Entrance doors with ENTER, RESUME and QUIT | @entrance,HIDE
+cutscene_doors_open | cutscene | ENTER clicked: the entrance doors swing open onto the first corridor (clip) | @entrance,AT:4:0:48:104,mouse1:4,rec:160:2:25
+hall_start | gameplay | First view in the Hall of Champions: a corridor, no champions yet | @dungeon,HIDE
+hall_inscription | gameplay | HALL OF CHAMPIONS carved into the wall | @dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,HIDE
+hall_mirror | gameplay | A champion's portrait in its mirror: Halk the Barbarian | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,HIDE
+system_champion_panel | system | Halk the Barbarian: possessions, health, stamina, mana, RESURRECT or REINCARNATE | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,HIDE
+system_reincarnate_name | system | Reincarnation: the new first name RYZ typed on the letter board | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,HIDE
+system_reincarnated | system | RYZ REINCARNATED: the mirror empty, the first champion in the party bar | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60,HIDE
+hall_champion_lizard | gameplay | Hissssa Lizar of Makan in his mirror panel | @sd_dungeon,WARP:10:0E:2,MIRROR,w40,HIDE
+hall_champion_wizard | gameplay | Tiggy Tamal: the most mana in the hall (36) | @sd_dungeon,WARP:09:0D:1,MIRROR,w40,HIDE
+hall_champion_ninja | gameplay | Wu Tse Son of Heaven with throwing stars | @sd_dungeon,WARP:07:0D:2,MIRROR,w40,HIDE
+hall_champion_priestess | gameplay | Chani Sayyadina Sihaya wearing a moonstone | @sd_dungeon,WARP:0E:03:0,MIRROR,w40,HIDE
+hall_champion_gothmog | gameplay | Gothmog, a hooded wizard with a wand | @sd_dungeon,WARP:10:11:0,MIRROR,w40,HIDE
+system_resurrected | system | TIGGY RESURRECTED: a champion joins with her own skills | @sd_dungeon,WARP:09:0D:1,MIRROR,RESURRECT,w60,HIDE
+system_party_four | system | Party of four: names, hands, health/stamina/mana bars, formation icons | @party,HIDE
+system_leader | system | Tiggy made the leader by clicking her name: it turns orange | @party,CLICK:1:0:58:6,w40,HIDE
+hall_gate_closed | gameplay | The iron gate at the hall's west end, closed while the party is empty | @dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*3,HIDE
+hall_gate_open | gameplay | The same gate open once champions have joined | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,HIDE
+hall_entrance_inside | gameplay | The entrance doors seen from inside the hall | @dungeon,TR,TR,HIDE
+env_hall_shackles | gameplay | Behind the gate: shackles on the wall, an apple on the floor | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,HIDE
+system_torch_sconce | system | A torch in its wall sconce | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,TL,FWD*3,FWD,FWD,TR,HIDE
+system_torch_taken | system | The torch taken into RYZ's ready hand, the sconce empty | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,TL,FWD*3,FWD,FWD,TR,WALL,CLICK:0:0:22:32,w30,HIDE
+gameplay_stairs_down | gameplay | Stairs down from the Hall of Champions to level 2 | @party,GO:04:0F,TR,HIDE
+env_l2_dark | gameplay | Level 2 without a light: only outlines of the corridor | @party,GO:04:0F,TR,FWD,w600,HIDE
+system_magic_light | system | The same spot after Tiggy casts ON FUL: the magic torch lights the walls | @party,GO:04:0F,TR,FWD,w600,CLICK:4:0:90:88,w20,CLICK:4:0:30:110,w20,CLICK:4:0:86:110,w20,CLICK:4:1:58:14,w100,HIDE
+hud_party | hud | Level 2 with a torch: party bar, spell panel, actions, arrows | @level2
+gameplay_l2_door_button | gameplay | A wooden door with its opening button on the frame | @level2,TR,TR,HIDE
+gameplay_stairs_up | gameplay | The stairs back up to the hall, seen from level 2 | @level2,TR,HIDE
+env_l2_corridor | gameplay | Level 2: a long corridor lit by the torch | @level2,GO:0F:0E,HIDE
+env_l2_junction | gameplay | Level 2: a side passage to the left, wall ahead | @level2,GO:15:0D,HIDE
+inventory_ryz | inventory | RYZ's inventory: body slots, backpack, food and water, health/stamina/mana, load | @level2,f1,w30,HIDE
+inventory_tiggy | inventory | Tiggy's inventory: a wizard with a wand and clothes | @level2,f2,w30,HIDE
+inventory_stats | inventory | Eye held: RYZ's strength, dexterity, wisdom, vitality, anti-magic, anti-fire | @level2,f1,w30,AT:0:0:36:104,mouse1:60,!
+inventory_examine | inventory | Club held over the eye: CLUB, WEIGHS 3.6 KG | @level2,f1,w30,CLICK:1:1:18:66,AT:0:0:36:104,mouse1:60,!
+system_sleep | system | The party asleep after the ZZZ icon: WAKE UP | @level2,f1,w30,CLICK:3:0:30:78,w60,HIDE
+system_freeze | system | GAME FROZEN after Esc: every control hatched | @level2,HIDE,esc,w60
+system_runes | system | Tiggy's spell panel: LO and FUL chosen, element runes on offer | @level2,CLICK:4:0:90:88,w20,CLICK:4:0:0:110,w20,CLICK:4:0:86:110,w20,HIDE
+system_action_menu | system | RYZ's club offers THROW and BASH | @level2,ACT:4,HIDE
+system_action_wuuf | system | Wuuf with empty hands: PUNCH, KICK, WAR CRY | @level2,ACT:92,HIDE
+battle_screamers | battle | Four Screamers two squares ahead on level 2 | @saved,GO:0F:04,TL,TL,HIDE
+battle_hit | battle | RYZ bashes a Screamer: 17 damage in the action panel | @saved,GO:0E:04,TL,TL,ACT:4,AT:4:1:22:86,mouse1:2,HIDE,w10,!
+battle_mummies | battle | Four Mummies shamble toward the party on level 2 | @level2,GO:05:12,TL,TL,HIDE
+battle_trolin | battle | Level 3: a Trolin with a club strikes RYZ for 28 | @l3,GO:00:0D,TR,HIDE
+battle_rockpiles | battle | Level 4: two Rockpiles, living heaps of stone | @l4,GO:13:18,TR,HIDE
+battle_giant_wasp | battle | Level 4: a Giant Wasp in the corridor | @l4,GO:09:1D,TR,HIDE
+battle_magenta_worms | battle | Level 4: two Magenta Worms | @l4,GO:0E:18,TR,TR,HIDE
+battle_ghost | battle | Level 4: a Ghost, only its green outline visible | @l4,GO:19:11,TR,HIDE
+battle_couatl | battle | Level 5: a Couatl, a winged serpent | @l5,GO:06:17,TR,TR,HIDE
+battle_wizard_eye | battle | Level 6: a Wizard Eye floating ahead | @l6,GO:00:07,TR,TR,HIDE
+battle_stone_golem | battle | Level 7: a Stone Golem in a doorway | @l7,GO:04:0F,HIDE
+battle_skeletons | battle | Level 8: two Skeletons with swords and shields | @l8,GO:01:08,TL,HIDE
+battle_fireball | battle | Level 9: a Vexirk after its fireball hit all four champions (damage on the bars) | @l9,GO:00:03,TR,TR,HIDE
+battle_pain_rat | battle | Level 9: a Pain Rat | @l9,GO:02:10,TR,TR,HIDE
+battle_ruster | battle | Level 9: a Ruster | @l9,GO:0A:02,TL,HIDE
+battle_giggler | battle | Level 10: a Giggler beside two Skeletons | @l10,GO:02:17,TR,HIDE
+battle_trolins | battle | Level 11: two Trolins side by side | @l11,GO:02:14,HIDE
+battle_water_elemental | battle | Level 11: a Water Elemental, a pool on the floor | @l11,GO:05:1C,TR,TR,HIDE
+battle_giant_wasps | battle | Level 11: two Giant Wasps | @l11,GO:11:0A,TR,TR,HIDE
+battle_animated_armour | battle | Level 12: two Animated Armours | @l12,GO:00:02,HIDE
+battle_oitu | battle | Level 12: an Oitu, a long-legged spider | @l12,GO:00:0D,TR,TR,HIDE
+battle_materializer | battle | Level 12: a Materializer, a whirl of flame | @l12,GO:0B:1A,HIDE
+battle_demon | battle | Level 13: a Demon hurling a fireball down the corridor | @l13,GO:0D:0F,HIDE
+boss_lord_chaos | boss | Level 13: Lord Chaos, the final opponent, in his robe | @l13,GO:0F:02,TR,TR,HIDE
+boss_red_dragon | boss | Level 14: the Red Dragon guarding the deepest level | @l14,GO:16:09,TL,HIDE
+gameplay_door_closed | gameplay | Level 2: a closed wooden door, its button on the right of the frame | @level2,TR,TR,FWD,HIDE
+system_door_opened | system | The button pressed: the door has slid up into the ceiling | @level2,TR,TR,FWD,CLICK:2:1:98:38,w60,HIDE
+system_throw | system | RYZ throws his club at the Screamers: the club in flight | @saved,GO:0F:04,TL,TL,ACT:4,DO1,HIDE,!
+system_potion | system | Wuuf casts LO VI with an empty flask in hand: a healing potion | @level2,f3,w30,CLICK:0:1:26:106,w20,CLICK:0:1:26:66,w20,f3,w30,CLICK:5:0:0:88,w20,CLICK:4:0:0:110,w20,CLICK:4:0:30:110,w20,CLICK:4:1:58:14,w60,HIDE
+inventory_potion | inventory | Wuuf's inventory: the new potion in his hand, mana spent (27/30) | @level2,f3,w30,CLICK:0:1:26:106,w20,CLICK:0:1:26:66,w20,f3,w30,CLICK:5:0:0:88,w20,CLICK:4:0:0:110,w20,CLICK:4:0:30:110,w20,CLICK:4:1:58:14,w60,f3,w30,HIDE
+system_level_up | system | RYZ JUST GAINED A FIGHTER LEVEL! after a blow at the Screamers | @saved,GO:0E:04,TL,TL,poke:C18596=00003E7B,ACT:4,DO2,w40,HIDE
+system_pick_up | system | A killed Screamer left a slice: picked up, SCREAMER SLICE in the hand | @saved,GO:0E:04,TL,TL,poke:C18596=00003E7B,ACT:4,DO2,w40,ACT:4,DO2,w40,ACT:4,DO2,w40,CLICK:1:2:24:26,w20
+inventory_feed | inventory | The Screamer slice held over RYZ's mouth | @saved,GO:0E:04,TL,TL,poke:C18596=00003E7B,ACT:4,DO2,w40,ACT:4,DO2,w40,ACT:4,DO2,w40,CLICK:1:2:24:26,w20,poke:C1857A=0300,f1,w30,AT:1:0:6:104
+system_eat | system | Slice eaten: RYZ's food bar has grown | @saved,GO:0E:04,TL,TL,poke:C18596=00003E7B,ACT:4,DO2,w40,ACT:4,DO2,w40,ACT:4,DO2,w40,CLICK:1:2:24:26,w20,poke:C1857A=0300,f1,w30,AT:1:0:6:104,mouse1,w30,HIDE
+gameplay_pit | gameplay | Level 2: an open pit in the floor ahead | @saved,GO:07:07,TR,HIDE
+system_pit_fall | system | Through the pit onto level 3: every champion hurt by the fall (damage on bars) | @saved,MID,w10,GO:07:07,TR,kp8,w24,!
+gameplay_fountain | gameplay | Level 5: a lion-head fountain on the wall | @l5,TL,TR,HIDE
+system_drink | system | Three clicks on the fountain with an empty hand: RYZ's water bar refilled | @l5,TL,TR,poke:C1857C=0200,CLICK:1:1:98:66,w30,CLICK:1:1:98:66,w30,CLICK:1:1:98:66,w30,f1,w30,HIDE
+system_champion_dead | system | Level 3: a Trolin kills RYZ, his torch falls, bones on the floor | @l3,GO:00:0D,TR,poke:C1856C=0001,poke:C186AC=0001,poke:C187EC=0001,poke:C1892C=0001,w150,!
+gameover_party_dead | gameover | All four champions dead: skulls in the party bar | @l3,GO:00:0D,TR,poke:C1856C=0001,poke:C186AC=0001,poke:C187EC=0001,poke:C1892C=0001,w600,!
+gameover_the_end | gameover | The End | @l3,GO:00:0D,TR,poke:C1856C=0001,poke:C186AC=0001,poke:C187EC=0001,poke:C1892C=0001,w1050
+save_menu | save | Save menu: PUT THE GAME SAVE DISK IN DF0: with SAVE, QUIT, FORMAT FLOPPY, CANCEL | @level2,SAVEMENU,HIDE
+save_blank_prompt | save | PUT A BLANK DISK IN DF0: before formatting | @level2,SAVEMENU,disk:2,w100,CLICK:0:2:114:48,w60,HIDE
+save_formatting | save | FORMATTING DISK . . . with its progress bar | @level2,SAVEMENU,disk:2,w100,CLICK:0:2:114:48,w60,CLICK:1:1:98:94,HIDE,w1000,!
+save_saving | save | SAVING GAME . . . | @level2,SAVEMENU,FORMAT,CLICK:0:1:114:94,HIDE,w200,!
+save_resume_prompt | save | RESUME: PUT THE GAME SAVE DISK IN DF0: with LOAD SAVED GAME and CANCEL | sav:01_level2,pow,TITLE,settle,CLICK:4:1:48:44,w300,HIDE
+save_loaded | save | GAME LOADED, READY TO PLAY. | sav:01_level2,pow,TITLE,settle,CLICK:4:1:48:44,w300,disk:2,w1500,disk:1,w300,CLICK:2:2:78:46,w4000,HIDE
+env_l3_corridor | gameplay | Level 3: a plain corridor with a side opening | @l3,GO:06:06,TR,TR,HIDE
+env_l4_corridor | gameplay | Level 4: a corridor with a small ornament on the right wall | @l4,GO:16:09,TR,TR,HIDE
+env_l5_shackles | gameplay | Level 5: shackles on the left wall of a corridor | @l5,GO:0B:06,TL,HIDE
+env_l6_corridor | gameplay | Level 6: a corridor with a blue ornament on the left wall | @l6,GO:11:04,TR,HIDE
+env_l8_corridor | gameplay | Level 8: a wide open area, the floor stretching into the dark | @l8,GO:19:04,TR,TR,HIDE
+env_l10_corridor | gameplay | Level 10: a corridor opening into a wide room on the left | @l10,GO:1C:18,TR,HIDE
+env_l12_corridor | gameplay | Level 12: a long corridor, a small ornament on the left wall | @l12,GO:0F:05,TL,HIDE
+env_l14_corridor | gameplay | Level 14, the deepest: a long corridor | @l14,GO:0B:04,TR,HIDE
