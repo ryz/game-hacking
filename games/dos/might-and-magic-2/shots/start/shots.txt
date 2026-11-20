@@ -1,0 +1,54 @@
+# id | category | caption | route
+# Might and Magic II (DOS), set start: a new party played honestly from power-on to the first sign-in at the inn (no pokes, no warps).
+01_nwc_logo | boot | "New World Computing Presents..." logo at power-on | BOOT,w20,!
+02_title_screen | title | Title picture: Might and Magic Book Two, pegasus on a forest path | @title
+03_opening | menu | Opening options: Start Game, Copy Player Disk, About Book Two, Disk 2 drive | @title,esc,w200
+04_main_options | menu | Main Options: create, view all, transfer characters, go to town | @menu
+05_view_all | menu | View All: the six premade characters A-F waiting at the inn | @menu,v,w200
+06_create_roll | system | Create New Characters: first roll, Knight not eligible yet | @menu,c,w300
+07_create_exchange | system | Exchange Might with Intellect: Might 17, Knight becomes eligible | @menu,c,w300,a,w150,b,w150
+08_create_race | system | Class Knight chosen: pick a race, Human to H-Orc | @menu,c,w300,a,w150,b,w150,1,w150
+09_create_alignment | system | Race Human: pick an alignment, Good, Neutral or Evil | @menu,c,w300,a,w150,b,w150,1,w150,1,w150
+10_create_sex | system | Alignment Good: pick the sex, Male or Female | @menu,c,w300,a,w150,b,w150,1,w150,1,w150,1,w150
+11_create_name | system | Name typed: ryz, Human Knight, Good, Male; Enter saves him | @menu,c,w300,a,w150,b,w150,1,w150,1,w150,1,w150,1,w150,type:ryz,w60
+12_view_all_ryz | menu | View All again: ryz has joined the roster as G | @menu,RYZ,v,w200
+13_premade | inventory | Profile of the premade Terwin III, dwarf paladin, before renaming | @menu,RYZ,v,w200,b,w150
+14_rename | menu | Ctrl-N on his profile: Terwin III renamed condi | @menu,RYZ,v,w200,b,w150,ctrl>n,w100,type:condi,w60
+15_view_all_renamed | menu | View All after renaming: condi, ebo, deddo, mnz, cubi and ryz | @menu,RYZ,NAMES,v,w200
+16_inn_list | menu | Go to Town: the Middlegate inn list, nobody in the party yet | @menu,RYZ,NAMES,g,w300
+17_party_ticked | menu | Ctrl plus a letter ticks each member: six in the party, Z to exit | @menu,RYZ,NAMES,g,w300,ctrl>g,w30,ctrl>b,w30,ctrl>c,w30,ctrl>f,w30,ctrl>d,w30,ctrl>e,w60
+18_first_control | gameplay | First control: inside the Middlegate inn, facing the door | @start
+19_quickref | inventory | Quick Reference: the new party's hit points, levels, food, no gems | @start,q,w150
+20_profile_ryz | inventory | Profile of ryz: level 1 knight, 0 gold, Short Sword in the backpack | @start,1,w150
+21_equip_prompt | inventory | Equip: ryz picks the backpack item to equip | @start,1,w150,e,w150
+22_equipped | inventory | Short Sword equipped: it moves to ryz's equipped list | @start,1,w150,e,w150,a,w150
+23_spirit_corak | dialogue | Stepping out: the spirit of Corak greets the party | @s_equipped,up,w150
+24_env_middlegate_street | gameplay | Middlegate street outside the inn, facing north | @s_street
+25_blacksmith | dialogue | Svendegard the blacksmith at his forge: care to see his work? | @s_smith
+26_blacksmith_menu | shop | Blacksmith menu: weapons, specials, armor, misc, sell; ryz has 0 gold | @s_smith,y,w250
+27_blacksmith_weapons | shop | Middlegate weapons: Dagger 8 ... Nunchakas 30 gold, nothing affordable | @s_smith,y,w250,a,w200
+28_blacksmith_armor | shop | Middlegate armor list and prices | @s_smith,y,w250,c,w200
+29_temple | dialogue | Gateway Temple door | @s_temple
+30_temple_menu | shop | Gateway Temple services and their prices | @s_temple,y,w250
+31_training | dialogue | Turkov's Training ground door | @s_temple,n,w200,right,w100,right,w100,up,w150,left,w100,up,w150,up,w150,left,w100,up,w150,right,w100,up,w250
+32_training_need | system | Training: ryz needs more experience for level 2 | @s_temple,n,w200,right,w100,right,w100,up,w150,left,w100,up,w150,up,w150,left,w100,up,w150,right,w100,up,w250,y,w250
+33_city_gates | dialogue | Middlegate's city gates: Exit (y/n)? | @s_gate
+34_env_c2_outside_gate | gameplay | Outside Middlegate in area C2: the road north, a river on the right | @s_c2
+35_pegasus | dialogue | The Guardian Pegasus greets the party on the road outside the gates | @s_c2,up,w250
+36_env_c2_road | gameplay | Area C2: the road west along the forest | @s_c2,up,w250,space,w150,up,w150,up,w150,up,w150,left,w100,up,w150
+37_orcs_encounter | battle | Ten Orcs block the road: Attack, Bribe, Hide or Run | @s_orcs
+38_options_mnz | battle | Attack chosen: combat screen, mnz the sorcerer acts first | @s_orcs,a,w300
+39_spell_book | battle | View in combat: mnz's spell book, four level-1 spells known | @s_orcs,a,w300,v,w150,v,w150
+40_cast_target | battle | Cast level 1 spell 4, Flame Arrow: on which Orc (A-J)? | @s_orcs,a,w300,v,w150,v,w150,esc,w100,esc,w100,c,w150,1,w100,4,w100
+41_orc_hurt | battle | Flame Arrow leaves Orc A Hurt; ebo the archer acts next | @s_orcs,a,w300,v,w150,v,w150,esc,w100,esc,w100,c,w150,1,w100,4,w100,a,w150
+42_orc_misses | battle | Orc attacks deddo 1 time and missed | @s_orcs,a,w300,v,w150,v,w150,esc,w100,esc,w100,c,w150,1,w100,4,w100,a,w150,ctrl>a,w300
+43_options_deddo | battle | Options for deddo the cleric: attack, fight, cast, use, block, run | @s_orcs,a,w300,v,w150,v,w150,esc,w100,esc,w100,c,w150,1,w100,4,w100,a,w150,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300
+44_orc_hits | battle | Orc charges deddo: 1 hit for 2 points | @s_orcs,a,w300,v,w150,v,w150,esc,w100,esc,w100,c,w150,1,w100,4,w100,a,w150,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300
+45_orc_waits | battle | "Orc waits for opening!"; ebo is already down | @s_orcs,a,w300,v,w150,v,w150,esc,w100,esc,w100,c,w150,1,w100,4,w100,a,w150,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300
+46_deddo_down | battle | Orc attacks deddo for 15 points: deddo goes down | @s_orcs,a,w300,v,w150,v,w150,esc,w100,esc,w100,c,w150,1,w100,4,w100,a,w150,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300
+47_ryz_down | battle | Orc thrusts at ryz for 11 points: ryz, the last one standing, goes down | @s_orcs,a,w300,v,w150,v,w150,esc,w100,esc,w100,c,w150,1,w100,4,w100,a,w150,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300
+48_death_strikes | gameover | Death Strikes! The party will resume at the inn where it last stayed | @s_orcs,a,w300,v,w150,v,w150,esc,w100,esc,w100,c,w150,1,w100,4,w100,a,w150,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300,ctrl>a,w300
+49_inn_after_death | menu | After Enter: the Middlegate inn list, everyone alive again, party empty | @s_dead
+50_inn_again | gameplay | The same six ticked again and back in the Middlegate inn | @s_resume
+51_innkeeper | save | Turned to the innkeeper: "Will you sign the registry (y/n)?" | @s_resume,right,w100,right,w200
+52_signed_in | save | Signed in: ROSTER.DAT written; the inn list, ESC exits to DOS | @s_resume,right,w100,right,w200,y,w300

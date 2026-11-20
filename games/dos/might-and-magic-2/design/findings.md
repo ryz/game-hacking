@@ -55,3 +55,13 @@ cipher drawn at random when the cryptogram appears, so it differs between games 
 **Intended:** yes: the player must decode the enciphered preamble to learn the cipher.
 **Confidence:** (verified).
 **Impact:** walkthroughs cannot give the second answer, only the method.
+
+## Defeat costs nothing that was saved (set start, 2026-11-20)
+- Seen: the level-1 party lost to ten Orcs in C2 (2,5) before ever signing in. "Death Strikes!" and Enter put
+  it at the Middlegate inn list with all six alive and full hit points; ryz's Short Sword, equipped after the
+  start, was back in his backpack (profile identical to the one before equipping). Route: checkpoints `s_dead`,
+  `s_resume` (shots start `48_death_strikes`, `49_inn_after_death`).
+- Likely cause: the game reloads ROSTER.DAT, which creation and renaming had already written; a defeat only
+  loses what happened since the last write. **(verified on screen; cause inferred)**
+- Also: the Middlegate fixed fight at (8,1) (cats and rodents) cannot be reached on foot: the square is walled
+  in on every side (wall map, see the playbook RAM map 161D6); the main set reached it by position poke.

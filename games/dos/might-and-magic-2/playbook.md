@@ -12,6 +12,17 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 > `python3 tools/play.py text` / `preview.py --text` for text screens. Pictures are native size
 > (`play.py shot --scale N` on demand).
 
+## Read first
+- Boot: `TITLE`, `MENU`, `PARTY` (all in `game.json`); checkpoints `start` (party in the inn), `middlegate`
+  (street), `vet`/`hero` (strong parties, pokes) and the honest `s_...` chain of set `start` (below).
+- Moving: `AT:x:y` + facing + `left` (poke); `WARP:map:x:y` between areas; walking routes from the wall map
+  (RAM 161D6, "Walking honestly" below).
+- Waits: turn `w100`, step `w150`, menus `w150`, area load `w300`, event prompt `w250`. Keys typed early are kept.
+- Traps: the creation roll follows frame timing (anything before `RYZ` changes it); the Middlegate cats fight
+  (8,1) is walled in (poke only); a new party has 0 gold; ten Orcs at C2 (2,5) beat a level-1 party.
+- Sets: `main` (228, pokes allowed), `start` (52, honest, `work/shots/.../start/shots.txt` -> published).
+- Open: hireling hire, Cartographer map, shrines, bashing, own time travel; a won fight with a new party.
+
 ## Identity
 | Field | Value |
 |---|---|
@@ -195,8 +206,34 @@ prompt did not fire on the first tries), a bashed locked door, time travel by th
   Triple Crown, Square Lake gate, ending (15).
 - [x] Progression: training (level up), spell level gained, secondary skill learned, hireling hired, ageing,
   temple cure (8).
+Set `start` (2026-11-20): 52 shots, power-on to the first sign-in, played honestly (see "Set start").
 Distinctive for this game: the 16-colour first-person view with full-screen monster pictures in encounters,
 time travel by centuries, hirelings, secondary skills, arenas, the 5x4 wrap-around world.
+
+## Set start (honest new game, 2026-11-20)
+52 shots, `shots/start/`, checkpoints `s_equipped` .. `s_signed` (`checkpoints.txt`), no pokes or warps: the
+`PARTY` macro (create ryz, rename the premades with Ctrl-N, tick six) and then only walking and menus. All verified:
+- Equip from the profile: `@start,1,w150,e,w150,a,w150` = Short Sword equipped (checkpoint `s_equipped`).
+- Walk inn -> blacksmith (4,4): `up,w150,left,w100,up,w150,left,w100,up,w150,right,w100,up,w150,up,w250` from
+  `s_street`. Blacksmith menu: `a` weapons, `c` armor; `esc` from the menu leaves the shop (from a list it goes
+  back to the menu). Temple (7,7) and Turkov's Training (10,7) and the gate (5,15): routes in `s_temple`, `s_gate`.
+- Every shop, the temple and training are browse-only: all six start with **0 gold, 0 gems, 10 food** (RAM).
+- Outside (`s_c2`): `up` meets the Guardian Pegasus (Space continues); the road runs N on x=7 and W on y=7; forest
+  (terrain 64) is "Impassable!". No encounter came in ~45 road steps or ~40 steps on the western grass at
+  (3,9)-(3,13); stepping S from (2,7) to (2,5) met **ten Orcs** in every timing tried (4 of 4; surprised in one
+  timing, options Attack/Bribe/Hide/Run in the `s_orcs` timing). Orcs have 20 HP each; a Flame Arrow did 4.
+- Combat: mnz (Sorcerer) knows level-1 spells 2, 4, 5, 6 (spell book in combat: `v,v`); `c,1,4` + target = Flame
+  Arrow. Sorcerers in rank 3+ have no Attack; `ctrl>a,w300` steps (quick fight) play a round for everyone.
+- Defeat: after 20 such steps "Death Strikes!", `enter,w400` = inn list, all alive (`s_dead`); ticking the six
+  again and `z` = in the inn (`s_resume`), the equip undone; sign in = `s_signed`, save `05_start_honest`.
+- No encounters in Middlegate's streets (about 60 steps at several timings) and none while resting there
+  ("Rest complete, no encounters.", one food per member).
+
+## Walking honestly (wall map)
+RAM 16 1D6 (256 bytes, index y*16+x) holds each square's four sides, 2 bits each: bits 7-6 N, 5-4 E, 3-2 S,
+1-0 W; 0 and 2 are passable, 1 and 3 are walls ("Solid!"; building doors are event walls). Outdoors the same
+block holds terrain codes instead (00 grass, 10/11/17/18 road, 64 forest, 8A water, 21 mountain: read, not all
+tested). A breadth-first search over it gave every walking route of set `start` (scratch script, not kept).
 
 ## Strategy and walkthrough notes
 - **Moving is one token**: `AT:xx:yy,Fd,left,w250` puts the party on a square and fires its event facing the
@@ -285,6 +322,7 @@ segment is at 10800 (DS = 1080): physical = 10800 + offset. Code segment 02FB (p
 | 10BD5 | 1 | light units (Protect panel "Light (n)") | dump over two Light casts, poke verified |
 | 10C16 | 16 | party: roster slot numbers as 16-bit words, FFFF = empty; count at 10C26 | search |
 | 16852 | ... | event table of the loaded area (DS:6052): triples square y*16+x, event number, facing mask (80 N, 40 E, 20 S, 10 W), ended by 00 00 00; scripts and texts follow | disassembly of the event lookup, read in all areas |
+| 161D6 | 256 | walls of the loaded town/cavern square by square (2 bits per side, see "Walking honestly"); terrain codes outdoors | read, walked (set start) |
 | 162D6 | 256 | per-square property bytes of the area (DS:5AD6, index y*16+x) | disassembly |
 | 18620 + 82*n | 130 | roster record n (slot A = 0 ... X = 23; hirelings after): this party = ryz 1892C (G), condi 186A2 (B), ebo 18724 (C), deddo 187A6 (D), mnz 18828 (E), cubi 188AA (F) | name search; spacing checked on four records |
 | record +00 | 10 (+1) | name, space padded | read |
@@ -347,6 +385,7 @@ Poking a record does not redraw the party window: open and close a profile (`1,w
 | `vet_cats` | VET party at the cats fight, encounter options |
 | `vet_cats_r2` | same fight, round 2 (after shoot, spell, exchange, fight, delay, protect, Bless) |
 | `sheltem` | HERO party with MARKS at the Square Lake gate: Sheltem's encounter |
+| `s_equipped` .. `s_signed` | honest chain of set `start`: sword equipped, street, blacksmith, temple, gate, C2, orcs, defeat, resume, signed in |
 
 ## Sources
 | Source | URL | Used for | Accessed |
