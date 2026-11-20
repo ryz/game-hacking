@@ -118,6 +118,6 @@
       "fmt": "hex"
     }
   },
-  "work": "sets main (113), start (35, to the first save), seq-aries (7), seq-boss (14) and seq-ending (12) published and verified 2026-11-20; three lenses; 48 checkpoints to Parma, the Ring of Wisdom and two caves; all 14 bosses and the ending reached by poke (code map in the playbook); RAM map; save 01_start",
-  "open": "the bosses' real cave squares and the ring quest played on foot (bosses and ending are poked); rings after Wisdom, Watling and later towns; message-speed option; Sangua and other spells cast; a church save after Parma"
+  "work": "sets main (132), start (35, to the first save), seq-aries (7), seq-boss (14) and seq-ending (12) published and verified 2026-11-20; three lenses; 56 checkpoints to Parma, the Ring of Wisdom, two caves and seven later towns by Aries; outdoor talk shots in 7 towns; all 14 bosses and the ending reached by poke; RAM and code map; townspeople/talk planner tools/npcs.py; save 01_start",
+  "open": "the bosses' real cave squares and the ring quest played on foot (bosses and ending are poked); rings after Wisdom; Watling, Barrow, Tadcaster, Swaffham and Hastings not shot; Malaga talk; message-speed option; Sangua and other spells cast; a church save after Parma"
 }

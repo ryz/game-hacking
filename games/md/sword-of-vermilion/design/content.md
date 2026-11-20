@@ -8,7 +8,7 @@ Check: `python3 tools/lenses.py md/sword-of-vermilion`. Shots: set `main` unless
 ## 1. Kinds of content
 | Kind | In the game (count if known) | Shown here | Full list |
 |---|---|---|---|
-| Environments | 14 towns, overworld maps, caves **(ROM text: town table)** | 2 towns, 5 overworld views, 2 caves | [../playbook.md](../playbook.md) Game structure |
+| Environments | 14 towns, overworld maps, caves **(ROM text: town table)** | 9 towns (7 reached by Aries with poked visited flags), 5 overworld views, 2 caves | [../playbook.md](../playbook.md) Game structure |
 | Opponents | 86 encounter groups (0-0x55) and 14 bosses **(code)** | green slimes, blue slimes, goblins, 6 poked groups, 7 boss pictures | playbook code map |
 | Items | 44 named items **(ROM text, decoded table)** | Herbs, Candle, Lantern | playbook RAM map (item ids) |
 | Equipment | 20 swords, 20 shields, 17 armours incl. cursed and duplicates **(ROM text)** | Bronze Sword; shop list of 2 shields and 2 armours | - |
@@ -20,6 +20,13 @@ Check: `python3 tools/lenses.py md/sword-of-vermilion`. Shots: set `main` unless
 |---|---|---|---|
 | Wyclif village | start | wooden houses, fences, forest, stream | `start_wyclif_gate`, `env_wyclif_blade_house`, `gameplay_tavern` |
 | Parma town | two maps north of Wyclif | cobbled streets, stone church with a spire, fountain, soldiers | `env_parma_gate`, `env_parma_church`, `env_parma_street`, `env_parma_fountain`, `gameplay_parma_inn`, `gameplay_magic_shop` |
+| Stow | Aries (poked) | teal roofs, an eating house with a fork-and-spoon sign; after the monster raid (flag FFC75C) everyone stands still and a man lies in the street | `env_town_stow`, `talk_stow_old_man`, `talk_stow_woman` |
+| Deepdale | Aries (poked) | blue roofs, a canal on the east side | `env_town_deepdale`, `talk_deepdale` |
+| Keltwick | Aries (poked) | grey roofs and a grey church, a lion statue fountain | `env_town_keltwick`, `talk_keltwick` |
+| Malaga | Aries (poked) | purple roofs and a purple church | `env_town_malaga` |
+| Helwig | Aries (poked) | log houses like Wyclif's, a wooden gate, a stream | `env_town_helwig`, `talk_helwig_welcome`, `talk_helwig_bride`, `talk_helwig_mine` |
+| Excalabria | Aries (poked) | the ruined castle town: broken stone walls, a dead tree, rubble | `env_town_excalabria` |
+| Cartahena | Aries (poked) | a moat with lion statues at the bridge, a guard | `env_town_cartahena`, `talk_cartahena_guard` |
 | Interiors | both towns | brown wood (Wyclif) and grey stone walls (Parma inn) | `shop_weapon`, `save_church_menu`, `gameplay_parma_inn` |
 | Overworld forest road | around Wyclif | dense pines, dirt road | `env_overworld_road`, `env_overworld_trees` |
 | Overworld meadow | west of the cave turn-off | open grass, scattered pines, mountains | `env_overworld_meadow`, `env_overworld_north` |
@@ -84,8 +91,12 @@ Check: `python3 tools/lenses.py md/sword-of-vermilion`. Shots: set `main` unless
 | Soldiers in blue | patrol the street | Parma | `env_parma_gate` |
 | King Tsarkon, King Erik V | prologue | - | `cutscene_prologue_tsarkon`, `cutscene_prologue_blade` |
 | Man by the well | gives the map to Parma after the ring | Wyclif | `dialogue_map_gift` |
+| Townspeople (outdoors) | hints, gossip, story state; most stand still, some walk | every town | `talk_wyclif_money`, `talk_wyclif_old_man`, `talk_parma_slander`, `talk_keltwick`, `talk_deepdale` |
+| Raid survivors | kneeling old man, a woman in red: "Don't let the monster kill us!", "The monster had two heads!" | Stow | `talk_stow_old_man`, `talk_stow_woman` |
+| Women of Helwig | the men were taken to Methuen's Cave as slaves | Helwig | `talk_helwig_welcome`, `talk_helwig_bride`, `talk_helwig_mine` |
+| Gate guard | "You may not enter without a pass." | Cartahena | `talk_cartahena_guard` |
 | Old man in the cave | kept the Ring of Wisdom for Blade | cave south of Wyclif | `dialogue_ring_keeper`, `gameplay_ring_keeper` |
 
 ## Open questions
-What exists but was not seen: the bosses' real places, rings, later towns (Watling and beyond), most equipment and spells. A
+What exists but was not seen: the bosses' real places, rings, later towns on foot (Watling, Barrow, Tadcaster, Swaffham, Hastings not shot), most equipment and spells. A
 route east of Parma reaches the next cave (`m_cave2_lit`); poked money (FFC620) buys later gear.

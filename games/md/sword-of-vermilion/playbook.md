@@ -5,35 +5,31 @@ Status of each fact: **verified** (seen in the emulator, with the route) or **so
 checked). Never delete a fact that turned out wrong: strike it and say what is true.
 
 ## Read first
-- **Start:** `rom/sword-of-vermilion.md` (SHA-1 c18fc75e...), model `ntsc`. `play.py start sword-of-vermilion --route @field`
-  (overworld outside Wyclif, Bronze Sword readied), `@battle` (first battle), `@saved` (Wyclif church, game
-  saved) or `@wyclif` (outside Blade's house). `@continue` = the same state via the
-  exported save `saves/01_start.sav` and the title's Continue.
+- **Start:** `rom/sword-of-vermilion.md`, model `ntsc`. `play.py start sword-of-vermilion --route @field` (overworld,
+  sword readied), `@battle`, `@saved` (Wyclif church, saved; `@continue` = same via `saves/01_start.sav`), `@wyclif`.
 - **Macros:** `TITLE` = `w800` (title with cursor; inputs work from ~f300, Start then lands on the title);
   `NAME` types ryz on a fresh keyboard; `NEWGAME` = keyboard, name, Start, the auto-running prologue (no skip)
   to first control (~4500 frames); `PAGE` = `c,w90` (one dialogue page at Normal speed); `CONTINUE` = title ->
   Continue -> Saved Game 1 -> "Your game is ready" -> in front of the priest.
 - **Overworld macros:** `FWD` = `up:8,w40` (one step forward), `TL` / `TR` = `left:8,w60` / `right:8,w60` (turn 90 degrees).
-- **Checkpoints:** 48, all reproduce (`tools/cachecheck.py`); boot chain title -> ... -> saved, sword -> field ->
+- **Checkpoints:** 56, all reproduce (`tools/cachecheck.py`); boot chain title -> ... -> saved, sword -> field ->
   battle (table "Checkpoints" below). Routes before `wyclif` wander: correct, not short.
-- **Controls:** C = confirm / field command window / **sword swing in battle** (one swing per press: holding
-  C does nothing); B = back/close and delete on the keyboard; Start = title choice and ends naming. A and B do
-  nothing in battle. Overworld: up = step forward, left/right = turn. Battle: D-pad moves freely; **walking off
+- **Controls:** C = confirm / field command window / **sword swing in battle** (one per press); B = back/close;
+  Start = title choice and ends naming. Overworld: up = step forward, left/right = turn. Battle: D-pad moves freely; **walking off
   the left (or right) edge escapes** (verified left).
 - **Leaving Wyclif:** the south gate (tile 0D,2B) after Blade has spoken: stand on it, then a fresh `down`.
-- **First battle:** `@field,FWD*8,TR,FWD*7,w100` (green slimes); without a weapon the prince dies in ~600 frames
-  and wakes in the Wyclif church with half his money.
+- **First battle:** `@field,FWD*8,TR,FWD*7,w100` (green slimes).
 - **Traps that cost calls:**
   - **Doors and stairs fire only on a fresh press** made while standing on the door/stair tile: walk onto it,
     then `w20,up:16` (or the direction of the exit) again. Holding the direction into the door does nothing.
   - **Every door in Wyclif is locked** until Blade has spoken (his house, tile 09,0B, is open; he is upstairs).
   - Town movement: 16 frames per tile; copy routes from `play.py route` / checkpoints.txt (settles matter).
   - Text types slowly at Normal speed and C does not complete a page; `mash` lost pages. Use `PAGE*N`.
-  - Position pokes (FFC606/FFC608) are overwritten at once: the real position lives elsewhere (open).
+  - Position pokes (FFC606/FFC608) are overwritten at once: the real position is the hero object FFD020 +0x0E/+0x12.
   - **Shop dialogs:** after a purchase the cursor stays where it was: a blind `down,c` sold the sword. Look.
   - End checkpoints outside battles (a state loaded mid-battle can differ from a replay in a stack word).
   - The title and most field screens never settle (blinking cursor, animated water/NPCs): "NOT settled" is normal.
-- **State:** captured 2026-11-20: sets `start` (35, honest, to the first save), `main` (113), `seq-aries` (7),
+- **State:** captured 2026-11-20: sets `start` (35, honest, to the first save), `main` (132: town talk shots and seven more towns added in run 5), `seq-aries` (7),
   `seq-ending` (12) and `seq-boss` (14) published and verified. Reached: Parma, the Ring of Wisdom, the Cave of Troy
   entrance; every boss and the ending by poke (code map below). Not reached on foot: a boss square, Watling.
 - **Ending (round 4):** `@saved,poke:FFC400=0012,w60` then timed pages (`w300*N,!`: N=2 mother page, 6 embrace,
@@ -62,6 +58,11 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   0F town, others special squares); `tools/go.py @CP 16 16 TX TY` (game folder) plans a BFS route; re-plan per map.
 - **Battle:** `SW` = `up:10,c,w2,down:10,c,w2` (swing while dodging). A = cast the readied spell (Ferros 1 MP).
   Battle flag: FFC550 = FF during a battle. Level-ups happen when the battle ends; the status window opens itself.
+- **Any town (run 5):** checkpoints `m_stow` (raid), `m_deepdale`, `m_keltwick`, `m_malaga`, `m_helwig`,
+  `m_excalabria`, `m_cartahena` via `@m_aries_list` (Aries list, all 14 visited flags FFC508+ poked), a held
+  `down:16,w20` per row (8-frame taps are ignored); check FFC40C (town index, RAM map), not the keys.
+- **Talk shots:** `python3 games/md/sword-of-vermilion/tools/npcs.py "@CP" --plan CP` prints a Talk route to every
+  person within 15 tiles (NPC table FFD0E0, collision grid FF2000); preview, keep those in mid-screen.
 - **Traps (capture):** menu cursor moves right after `c,w60` are dropped: put `settle` before `down*N` (Aries, Lantern).
   The walker's battles sometimes end by the prince being pushed off the edge (an escape, no EXP).
 
@@ -240,6 +241,12 @@ loaded by `@continue` (verified).
 | FFC534 | 2 | current boss index (0-13) | code + peek |
 | FFD108 | 2 | boss 0's HP (the boss object at (FFCC14).l, HP at +0x28, attack at +0x2C) | code + RAM, verified |
 | FFC77E | 1 | set when the Sixteen Rings are used at the last place (ROM 0x1B02A): starts the ending | code |
+| FFC40C | 2 | current town: 0 Wyclif, 1 Parma, 2 Watling, 3 Deepdale, 4 Stow, 6 Keltwick, 7 Malaga, 8 Barrow, 9 Tadcaster, 0x0A Helwig, 0x0B Swaffham, 0x0C Excalabria, 0x0D Hastings, 0x0F Cartahena | peek after Aries (run 5) |
+| FFC508-FFC515 | 1 each | visited towns for Aries, town-table order (Wyclif ... Cartahena); FF = listed | code 0x1134E + poke, verified |
+| FFC72E, FFC72F, FFC75C, FFC732, FFC758 | 1 each | story flags read by Stow's line selector (ROM 0x1EDD2): FFC75C = monster raid, FFC732 = healed; FFC758 = everyone everywhere uses table 0x272AC | code; FFC75C verified by poke |
+| FFD020 | 0x40 | hero object: +0x0E world x, +0x12 world y (pixels, tile*16+8) | code 0x3782 |
+| FFD0E0 + n*0x40 | 0x40 each | townspeople: byte 0 bit 7 in use, +0x0E/+0x12 world x/y, +0x1C line pointer (ROM) | RAM + ROM text, verified (`tools/npcs.py`) |
+| FF2000 | 0x2000 | town collision window: 64x64 cells of 8 px, one word each (128 bytes per row); high nibble 0/2/3/E/F open; tile (x,y) = cell (2x+1, 2y+1), wraps every 32 tiles | code 0x39C0, verified by the BFS routes |
 | FFC0A4 | 1 | mode-like byte (0 title, 1 name, 6 town start, 9 interior, 10 overworld, 11 battle, 12 cave, 0x18 at a ladder); writes ignored | diff |
 | FFC685 | 1 | counts steps and turns on the overworld (reset by a battle); encounter counter? | diff, unconfirmed |
 | 200001 ... (odd bytes) | | Saved Game 1 starts with the name | peek after saving |
@@ -290,6 +297,8 @@ loaded by `@continue` (verified).
 | m_map_gift, m_map_out | Wyclif after the man by the well gave the Parma route map (ring flag poked); outside the gate with the area map in the panel |
 | m_ring | cave south of Wyclif, Ring of Wisdom received from the old man (honest, from `m_cave_inner`) |
 | m_strong ... m_cave2_lit | main-set chain, see Read first |
+| m_aries_list | Aries town list with all 14 towns (from `m_strong`) |
+| m_stow, m_deepdale, m_keltwick, m_malaga, m_helwig, m_excalabria, m_cartahena | just inside each town after Aries (Stow with the raid flag) |
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -345,3 +354,14 @@ loaded by `@continue` (verified).
 - A boss started from `@m_cave2_lit` with HP frozen (`freeze:FFC62C=00A2`) never hurts the shot; the frozen HP
   still shows hits between tokens (`boss_winged_demon` shows 313/512).
 - No in-game save was made this round (bosses and ending are poked; nothing to save for the owner).
+
+## Capture 2026-11-20 run 5 (outdoor talk shots)
+- The owner's example scene is Stow during the monster raid (`talk_stow_old_man`): the eating house (fork-and-spoon
+  sign) at tile (25,19), the kneeling old man at (27,19), the prince talks from (26,19). Stow's raid line table
+  (ROM 0x3195C) has 17 people, none walks.
+- Talk targets were found with `tools/npcs.py --plan` (one preview of 23 routes, 14 worked; the misses were people
+  who had walked away or a target at a map edge, where the text box covers them). Wyclif's people do walk:
+  routes reproduce only with the exact waits.
+- Malaga's people near the entrance stand at the south edge (hidden by the text box): no Malaga talk shot.
+- Line tables per town and phase: pointer lists like Stow's at ROM 0x1EDD2 (pointer, flag address, ...,
+  default), resolved by 0x1F1BC. Text: "Don't let the monster kill us!" at 0x31DDA (healed phase) and 0x31E1E.

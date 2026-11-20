@@ -1,6 +1,6 @@
 # Sword of Vermilion - shots: main
 
-Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2`. 113 shots. Contact sheet: [sword-of-vermilion_md_na_set_sheet.png](sword-of-vermilion_md_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2`. 132 shots. Contact sheet: [sword-of-vermilion_md_na_set_sheet.png](sword-of-vermilion_md_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -39,6 +39,8 @@ Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f
 | battle_attack | battle | Battle: Bronze Sword swing (C) among the slimes | no | [png](sword-of-vermilion_md_na_battle_battle_attack.png) |
 | gameover_revived | gameover | Lost battle: revived in the church, "Arise, brave warrior!", half the money gone | no | [png](sword-of-vermilion_md_na_gameover_gameover_revived.png) |
 | dialogue_map_gift | dialogue | Man by the well: "Here is a map of the route to Parma." | no | [png](sword-of-vermilion_md_na_dialogue_dialogue_map_gift.png) |
+| talk_wyclif_money | dialogue | Wyclif street: "To gain money, you must defeat monsters." | no | [png](sword-of-vermilion_md_na_dialogue_talk_wyclif_money.png) |
+| talk_wyclif_old_man | dialogue | Wyclif, north lane: old man, "Blade was once a mighty warrior..." | no | [png](sword-of-vermilion_md_na_dialogue_talk_wyclif_old_man.png) |
 | map_area_wyclif | map | Outside Wyclif's gate: the panel now shows the area map with the village | yes | [png](sword-of-vermilion_md_na_map_map_area_wyclif.png) |
 | battle_levelup | battle | After a won battle: level 5 reached, the status window opens by itself | yes | [png](sword-of-vermilion_md_na_battle_battle_levelup.png) |
 | env_overworld_meadow | gameplay | Overworld: the road west of the cave turn-off, meadow and pines | yes | [png](sword-of-vermilion_md_na_gameplay_env_overworld_meadow.png) |
@@ -53,6 +55,7 @@ Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f
 | menu_magic_cast | menu | Magic, Cast: "From which Book do you wish to cast a spell?" | no | [png](sword-of-vermilion_md_na_menu_menu_magic_cast.png) |
 | system_aries_towns | system | Aries on the overworld: the town list holds only Wyclif so far | no | [png](sword-of-vermilion_md_na_system_system_aries_towns.png) |
 | system_aries_arrival | system | Aries: after a fade the prince stands at Wyclif's gate, MP 37 to 24 | yes | [png](sword-of-vermilion_md_na_system_system_aries_arrival.png) |
+| system_aries_all_towns | system | Aries with every town visited: the full list of 14 towns | no | [png](sword-of-vermilion_md_na_system_system_aries_all_towns.png) |
 | system_griffin_wing | system | Item, Use: "ryz uses the Griffin Wing." (it also flies to Wyclif) | yes | [png](sword-of-vermilion_md_na_system_system_griffin_wing.png) |
 | system_mirror_atlas | system | Item, Use: "ryz uses the Mirror of Atlas." | yes | [png](sword-of-vermilion_md_na_system_system_mirror_atlas.png) |
 | map_world_mirror | map | Mirror of Atlas: "We have maps of the whole world." The area map appears | yes | [png](sword-of-vermilion_md_na_map_map_world_mirror.png) |
@@ -117,5 +120,21 @@ Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f
 | credits_staff | credits | Staff roll over a starry sky and the sea: STAFF, DIRECTOR SADA | no | [png](sword-of-vermilion_md_na_credits_credits_staff.png) |
 | credits_player | credits | Staff roll: PLAYER ryz, the player's own name in the credits | no | [png](sword-of-vermilion_md_na_credits_credits_player.png) |
 | ending_end | ending | END over the starry sky, the final screen | no | [png](sword-of-vermilion_md_na_ending_ending_end.png) |
+| talk_stow_old_man | dialogue | Stow, eating house: kneeling old man, "Don't let the monster kill us!" | yes | [png](sword-of-vermilion_md_na_dialogue_talk_stow_old_man.png) |
+| talk_stow_woman | dialogue | Stow, teal roofs: a woman in red says "The monster had two heads!" | yes | [png](sword-of-vermilion_md_na_dialogue_talk_stow_woman.png) |
+| talk_parma_slander | dialogue | Parma: an old woman warns "Beware of slandering the king." | no | [png](sword-of-vermilion_md_na_dialogue_talk_parma_slander.png) |
+| talk_keltwick | dialogue | Keltwick, grey roofs: "Explore the fair town of Keltwick, stranger." | no | [png](sword-of-vermilion_md_na_dialogue_talk_keltwick.png) |
+| talk_deepdale | dialogue | Deepdale, blue roofs: "This town is amazingly peaceful." | no | [png](sword-of-vermilion_md_na_dialogue_talk_deepdale.png) |
+| talk_helwig_welcome | dialogue | Helwig: an old woman, "You are in Helwig, adventurer!" | no | [png](sword-of-vermilion_md_na_dialogue_talk_helwig_welcome.png) |
+| talk_helwig_bride | dialogue | Helwig, village of women: "Alas! We were to be married next week!" | no | [png](sword-of-vermilion_md_na_dialogue_talk_helwig_bride.png) |
+| talk_helwig_mine | dialogue | Helwig: old man on the gold mined from Methuen's Cave | no | [png](sword-of-vermilion_md_na_dialogue_talk_helwig_mine.png) |
+| talk_cartahena_guard | dialogue | Cartahena, by the moat: a guard, "You may not enter without a pass." | no | [png](sword-of-vermilion_md_na_dialogue_talk_cartahena_guard.png) |
+| env_town_stow | gameplay | Stow after the monster raid: teal roofs, a man lying in the street | yes | [png](sword-of-vermilion_md_na_gameplay_env_town_stow.png) |
+| env_town_deepdale | gameplay | Deepdale: blue-roofed houses and the inn at the south entrance | no | [png](sword-of-vermilion_md_na_gameplay_env_town_deepdale.png) |
+| env_town_keltwick | gameplay | Keltwick: grey-roofed houses and a grey church | yes | [png](sword-of-vermilion_md_na_gameplay_env_town_keltwick.png) |
+| env_town_malaga | gameplay | Malaga: purple-roofed houses and a purple church | no | [png](sword-of-vermilion_md_na_gameplay_env_town_malaga.png) |
+| env_town_helwig | gameplay | Helwig: log houses and a gate in a wooden fence | no | [png](sword-of-vermilion_md_na_gameplay_env_town_helwig.png) |
+| env_town_excalabria | gameplay | Excalabria: the ruined castle town, broken walls and a dead tree | yes | [png](sword-of-vermilion_md_na_gameplay_env_town_excalabria.png) |
+| env_town_cartahena | gameplay | Cartahena: a moat, lion statues and a guard at the bridge | no | [png](sword-of-vermilion_md_na_gameplay_env_town_cartahena.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
