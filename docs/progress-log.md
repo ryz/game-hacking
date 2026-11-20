@@ -2,6 +2,11 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - 68000 disassembler
+- Owner: install capstone. `tools/dis68k.py SLUG ADDR [N]` disassembles Mega Drive code; `--xref ADDR` lists
+  every instruction naming a variable (absolute-short `$c818.w` included), with `game.json` watch names as
+  comments. `setup_emu.sh md` installs capstone; test added. Unblocks Sword of Vermilion's boss and ending triggers.
+
 ## 2026-11-20 - Sword of Vermilion: area maps and presentations
 - Owner's request: more presentations (travel and so on) and the full map in the overworld panel. The panel shows
   the whole 16x16 area map once the area's map is owned: flags `FFC820 + y*16 + x` (FF = owned), set by NPC map

@@ -67,6 +67,7 @@ if [ "$want" = all ] || [ "$want" = sms ] || [ "$want" = md ]; then
       git apply ../gpgx-debug.patch)
   fi
   make -C gpgx -f Makefile.libretro -j"$(nproc 2>/dev/null || echo 2)"
+  [ "$want" = sms ] || python3 -c "import capstone" 2>/dev/null || pip install -q capstone   # tools/dis68k.py
 fi
 if [ "$want" = all ] || [ "$want" = dos ]; then
   if [ ! -d dosbox-pure ]; then

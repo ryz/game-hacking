@@ -58,7 +58,8 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
   into `rom/kickstart/` (never committed).
 - Register a ROM: `python3 tools/intake.py ROM [--slug NAME] [--region jp|na|eu] [--patch PATCH[:headered|unheadered] ...]` -> `games/<platform>/<slug>/` +
   `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`; 6502 code:
-  `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]`.
+  `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]`; 68000 code: `python3 tools/dis68k.py SLUG ADDR [N]`,
+  `--xref ADDR` (who reads a variable).
 - SLUG is the game's folder name; write `PLATFORM/SLUG` (`dos/might-and-magic`) when two platforms have the
   same slug. Work files follow the same shape: `work/shots/<platform>/<slug>/`, `work/cache/...`, `work/intake/...`.
 - Explore: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,

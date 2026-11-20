@@ -1,4 +1,5 @@
 import os, sys
+import pytest
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tools"))
 import dis6502  # noqa: E402
@@ -101,3 +102,15 @@ def test_x3_png_and_gif(tmp_path):
     assert g.info["duration"] == 120
     x3.main([str(tmp_path / "a.png"), "--scale", "2", "--out", str(tmp_path / "big")])
     assert Image.open(tmp_path / "big" / "a.png").size == (16, 12)
+
+
+def test_dis68k_decodes_and_finds_references():
+    import importlib.util
+    if importlib.util.find_spec("capstone") is None:
+        pytest.skip("capstone not installed")
+    import dis68k
+    code = bytes.fromhex("4A38C818" "4E75")          # tst.b $c818.w ; rts
+    ins = list(dis68k.engine().disasm(code, 0x1000))
+    assert [i.mnemonic for i in ins] == ["tst.b", "rts"]
+    assert dis68k.targets(ins[0].op_str) == [0xFFC818]
+    assert "; flag" in dis68k.line(ins[0], {0xFFC818: "flag"})

@@ -54,6 +54,9 @@ The 68000 address space, six hex digits: `poke:FF0123=09`, `"addr": "FF0123"` in
   square): dump and look for low-variety blocks before mapping by hand; a path planner on it walks without frames.
 - A byte that looks like a game mode can be a status copy the game ignores when written (Sword of Vermilion
   `FFC0A4`): find what the game reads before poking it.
+- Code: `python3 tools/dis68k.py SLUG ADDR [N]` disassembles the ROM (capstone, installed by `setup_emu.sh md`);
+  `dis68k.py SLUG --xref FFC818` lists every instruction that names a variable: the way to the code that reads
+  a story flag or starts a scene.
 - `find` (RAM search) covers the 64 KiB of work RAM. `find --wide` compares 16-bit words, big-endian.
 - **Byte order is big-endian (68000).** RAM watches (`"size": 2`, `"fmt": "hex"`) and `set:FF0040=300:2` use it by
   default; write `:le` / `"fmt": "le"` only for the rare little-endian value.
