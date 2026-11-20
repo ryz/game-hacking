@@ -1330,6 +1330,10 @@ class Apple2(Libretro):
         if machine not in self.MACHINES:
             raise SystemExit("unknown Apple II model %r (MACHINE[-VIDEO][-joy][-wpN]; machines: %s; video: %s)" % (
                 model, " ".join(self.MACHINES), " ".join(self.VIDEO)))
+        # find/dump/diff: the 48K below the I/O as mapped, the auxiliary 64K of a //e, and the language card RAM
+        # as stored (2C000-2CFFF bank 1, 2D000-2FFFF bank 2 and the RAM under the ROM): games keep state there.
+        self.SEARCH = [(0x0000, 0xC000)] + ([(0x10000, 0x10000)] if machine.startswith("iie") else []) \
+            + [(0x2C000, 0x4000)]
         # Private copies of the disk images: the game writes to them, the registered dump is never touched.
         self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
         self.dir = os.path.join(self.tmp, "disks")

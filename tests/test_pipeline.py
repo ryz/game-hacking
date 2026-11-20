@@ -1238,7 +1238,7 @@ def test_apple2_backend(a2_selftest, tmp_path):
     assert e.peek(0x300, 2) == b"\x5a\x11" and e.peek(0x2C010, 1) == b"\x42"
     e.load_state(st)
     assert e.screen() == typed and e.peek(0x300, 2) != b"\x5a\xa5"
-    assert e.ram_search("new == old")["count"] == 0xC000
+    assert e.ram_search("new == old")["count"] == 0xC000 + 0x10000 + 0x4000   # mapped 48K, aux 64K, language card
     e.close()
     with pytest.raises(SystemExit, match="unknown Apple II model"):
         platforms.Apple2().open(str(a2_selftest), model="iigs")

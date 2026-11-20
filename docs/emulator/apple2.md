@@ -87,8 +87,8 @@ language card), ROM included, the soft switches `C000-C0FF` read as 0 (no side e
 auxiliary 64K of a //e wherever it is mapped. `20000-2FFFF` is the main 64K as stored, mapped or not
 (`2C000-2CFFF` = language card bank 1 of `D000`, `2D000-2FFFF` = bank 2 and the RAM under the ROM): games keep
 data there while ROM is mapped (Might and Magic's character records are at `2C000`). `poke` writes RAM only (ROM and I/O are refused). `find`, `dump` and `diff` cover
-`0000-BFFF` only, yet game state often lives in the language card (Might and Magic II: century, days and
-area at `2F7xx`/`2FA00`): when a search there finds nothing, read `20000-2FFFF` with `peek` (wider search: backlog). Text page 1 is `0400-07FF` (screen codes: high bit set = normal), hi-res page 1 `2000-3FFF`.
+`0000-BFFF` as mapped, the auxiliary `10000-1FFFF` (//e models) and the language card `2C000-2FFFF` as stored:
+games keep state there (Might and Magic II: automap bits at `10200`, century and days at `2F7xx`). Text page 1 is `0400-07FF` (screen codes: high bit set = normal), hi-res page 1 `2000-3FFF`.
 `status` shows the program counter. 6502 code can be read with `tools/dis6502.py` only for NES files so far.
 
 ## Saves
