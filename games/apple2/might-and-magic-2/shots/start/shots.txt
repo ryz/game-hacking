@@ -1,0 +1,45 @@
+01_power_on | boot | "New World Computing Presents" with the globe at power-on | w400
+02_title | title | Title picture: Might and Magic Book Two, the pegasus on a forest path | @title
+03_opening_options | menu | Opening options: Start Game, Copy Disk, About Book Two, Number of Drives | @options
+04_insert_disk_b | system | Start Game: "Insert Disk B in Drive 1 and Press 'Return'" | @options,s,w600
+05_main_options | menu | Main Options: create, view all, transfer, go to towns | @menu
+06_create_roll | system | Create New Characters: first roll, eligible classes numbered (Knight 1) | MENU,c,w400
+07_create_exchange | system | Exchange Stat (D) with Stat (A-G)? Endurance chosen | MENU,c,w400,d,w200
+08_create_exchanged | system | Endurance and Intellect swapped: Endurance 15, Intellect 4 | MENU,c,w400,d,w200,b,w200
+09_create_race | system | Class Knight chosen: select race, Human to H-Orc | MENU,c,w400,d,w200,b,w200,1,w200
+10_create_alignment | system | Race Human: select alignment, Good, Neutral or Evil | MENU,c,w400,d,w200,b,w200,1,w200,1,w200
+11_create_sex | system | Alignment Good: select sex, Male or Female | MENU,c,w400,d,w200,b,w200,1,w200,1,w200,1,w200
+12_create_name | system | Name typed: ryz, Human Knight, Good, Male; Return saves | MENU,c,w400,d,w200,b,w200,1,w200,1,w200,1,w200,1,w200,type:ryz,w100
+13_create_next | system | ryz saved: the next roll is ready for another character | MENU,c,w400,d,w200,b,w200,1,w200,1,w200,1,w200,1,w200,type:ryz,w100,enter,w400
+14_view_all | menu | View All: Sir Felgar and the five premades, ryz added as G | MENU,RYZ,v,w400
+15_premade | inventory | Profile of the premade Terwin III, dwarf paladin, before renaming | MENU,RYZ,v,w400,b,w400
+16_rename | menu | Ctrl-N on his profile: Terwin III renamed condi | MENU,RYZ,v,w400,b,w400,ctrl+n,w300,type:condi,w100
+17_view_all_renamed | menu | View All after renaming: condi, ebo, deddo, mnz, cubi and ryz | MENU,RYZ,v,w400,RENAME:b:condi,RENAME:c:ebo,RENAME:f:cubi,RENAME:d:deddo,RENAME:e:mnz
+18_inn_list | menu | Go to Towns: the Middlegate inn list, nobody in the party yet | MENU,RYZ,NAMES,g,w600
+19_party_ticked | menu | Ctrl plus a letter ticks each member: six in the party, Z to exit | MENU,RYZ,NAMES,g,w600,ctrl+g,w200,ctrl+b,w200,ctrl+c,w200,ctrl+f,w200,ctrl+d,w200,ctrl+e,w200
+20_first_control | gameplay | First control: inside the Middlegate inn, facing the door | @start
+21_quickref | inventory | Quick Reference: the new party's hit points, levels, food, no gold | @start,q,w300
+22_profile_ryz | inventory | Profile of ryz: level 1 Human Knight, a Large Club in the backpack | @start,1,w300
+23_spirit_corak | cutscene | Stepping out: the spirit of Corak proclaims at the inn door | @start,up,w300,up,w400
+24_street | gameplay | Middlegate street outside the inn, facing north | @middlegate
+25_blacksmith | dialogue | Svendegard the blacksmith at his forge: care to see his work? | @s_smith
+26_blacksmith_menu | shop | Blacksmith menu: weapons, specials, armor, misc, sell, identify; 0 gold | @s_smith,y,w400
+27_blacksmith_weapons | shop | Middlegate weapons and prices; nothing affordable with 0 gold | @s_smith,y,w400,a,w300
+28_temple | dialogue | Gateway Temple: the cleric offers aid | @s_temple
+29_temple_menu | shop | Temple services: restore condition and alignment, donation 100, spells | @s_temple,y,w400
+30_training | dialogue | Training ground: squires practise with wooden sticks, care to train? | @s_training
+31_training_need | system | Train for level 2: ryz needs 1500 more experience | @s_training,y,w400
+32_city_gates | dialogue | Middlegate's city gates: Exit (y/n)? | @s_gate
+33_insert_disk_c | system | Leaving town: "Insert Disk C in Drive 1" | @s_gate,y,w600
+34_c2_outside | gameplay | Area C2 outside Middlegate's gate: forest and coast | @s_c2
+35_pegasus | dialogue | The Guardian Pegasus greets the party outside the town walls | @s_c2,up,w400
+36_orcs | battle | Ten Orcs on the road: Attack, Bribe, Hide or Run | @s_orcs,!
+37_combat_mnz | battle | Attack chosen: combat screen, mnz the sorcerer acts first | @s_orcs,a,w600
+38_cast_target | battle | Cast level 1 spell 4 (Flame Arrow): on which Orc (A-J)? | @s_orcs,a,w600,c,w300,1,w200,4,w300
+39_orc_hurt | battle | Flame Arrow leaves Orc A Hurt; ebo the archer acts next | @s_orcs,a,w600,c,w300,1,w200,4,w300,a,w400
+40_options_ryz | battle | Options for ryz, the knight in front: attack, fight, use, block, run | @s_orcs,a,w600,c,w300,1,w200,4,w300,a,w400,a,w300
+41_death_strikes | gameover | Death Strikes! Resume at the inn where the party last stayed | @s_death
+42_inn_after_death | menu | After Return: the Middlegate inn list, party empty | @s_death,enter,w900
+43_inn_again | gameplay | The same six ticked again and back in the Middlegate inn | @s_resume
+44_innkeeper | save | Turned to the innkeeper: "Will you sign the registry (y/n)?" | @s_resume,right,w200,right,w300
+45_signed_in | save | Signed in: the roster written to disk B; the inn list with the party | @s_signed

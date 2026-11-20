@@ -16,3 +16,13 @@ plane_air | Elemental Plane of Air (area 29) at (7,7) | @hero,WARPD:29:7:7:5,set
 castle | Castle Hillstone (area 37) at (7,7) | @hero,WARPD:37:7:7:6,settle
 combat | Middlegate (8,1): fixed fight with the level-1 party, encounter options | @middlegate,AT:8:1,FN,left,w400
 vet | Middlegate street (7,5) with the VET party (levels 10-11, poked), party window redrawn | @middlegate,VET,REDRAW,settle
+s_smith | Middlegate blacksmith (4,4) facing W, walked from the street: care to see his work (y/n)? | @middlegate,left,w200,up,w300,left,w200,up,w300,right,w200,up,w300,settle,up,w400,settle
+s_temple | Gateway Temple (7,7) facing N, walked from the blacksmith | @s_smith,y,w400,settle,esc,w300,right,w200,right,w200,up,w300,left,w200,up,w300,right,w200,up,w300,left,w200,up,w300,right,w200,up,w300,left,w200,settle,up,w400,settle
+s_training | Turkov's Training (10,7) facing E, walked from the temple: care to train? | @s_temple,y,w400,settle,esc,w300,right,w200,right,w200,up,w300,left,w200,up,w300,up,w300,left,w200,up,w300,right,w200,up,w400,settle
+s_gate | Middlegate city gates (5,15) facing N, walked from the training ground: Exit (y/n)? | @s_training,y,w400,settle,esc,w300,right,w200,right,w200,up,w300,right,w200,up,w300,up,w300,up,w300,up,w300,up,w300,left,w200,up,w300,up,w300,up,w300,right,w200,up,w300,left,w200,up,w300,right,w200,up,w300,up,w400,settle
+s_c2 | Area C2 just outside Middlegate (7,3) facing N, walked out through the gates, disk C | @s_gate,y,w600,settle,disk:3,enter,w700,settle
+s_orcs | Area C2 (2,5): ten Orcs meet the level-1 party, walked west along the road from the gate | @s_c2,up,w400,settle,space,w300,up,w300,up,w300,up,w300,left,w200,up,w300,up,w300,up,w300,up,w300,up,w300,left,w200,up,w300,up,w400,settle
+s_death | Death Strikes! after the orc fight lost (disk B inserted) | @s_orcs,a,w600,settle,c,w300,1,w200,4,w300,settle,a,w400,settle,a,w300,settle,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,settle,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,settle,disk:2,enter,w700,settle
+s_resume | After the defeat: the same six ticked again, Z: party back in the Middlegate inn | @s_death,enter,w900,settle,ctrl+g,w200,ctrl+b,w200,ctrl+c,w200,ctrl+f,w200,ctrl+d,w200,ctrl+e,w200,z,w900,settle
+s_signed | After the defeat and the resume: signed in at the Middlegate inn (roster written to disk B), inn list | @s_resume,right,w200,right,w300,settle,y,w600,settle
+vet_cats | Middlegate (8,1) fixed fight met by the VET party: encounter options | @vet,AT:8:1,FN,left,w400
