@@ -18,6 +18,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `intake.py` records a DOS ZIP's `dosbox*.conf` autoexec lines and cycles in `game.json` | 1 | Might and Magic II scout |
 | `cachecheck.py --show-diff NAME`: the first differing addresses between flat and cached state | 1 | Sword of Vermilion scout (a stack word, found by hand) |
 | `preview.py --repeat TOKENS N`: a sheet of the route after 1..N repetitions | 1 | Sword of Vermilion scout (one more step per line) |
+| `tools/dis68k.py SLUG ADDR N`: 68000 disassembler like `dis6502.py` (story, boss and ending triggers on the Mega Drive) | 1 | Sword of Vermilion capture run 2 (installing capstone was refused) |
 | `snap` warns when the route has `freeze:` before one long `wN` (freezes are applied between tokens) | 3 | the guide says `w10*N`; a warning would catch it |
 | Contact sheet labels when frame sizes are mixed (SNES hi-res rows) | 1 | Shin Megami Tensei run 1 |
 | Macros used by published shots change those routes when edited: store expanded routes in `index.json`, or refuse the edit | 2 | today a rule in the emulator guide (new macro name) |
@@ -41,4 +42,5 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | Session clock for budgets | 3 | 2026-11-20 budgets in tool calls, `call=N` in the status line |
 | Scout cannot run `shoot.py` | 3 | 2026-11-20 scouts write under `work/` and preview with `preview.py` |
 | `play.py diff`: more than 80 rows, an address range (Apple II screen memory, Mega Drive tile maps) | 2 | 2026-11-20 `diff A [B] --range LO-HI --max N` |
+| `preview.py --out` with a path doubled it; `--peek ADDR:0x10` refused | 1 | 2026-11-20 fixed (base name taken, hex lengths) |
 | Earlier, by date | - | `unsnap`/`recaption` (2026-11-17), hex and BCD watches, `dis6502.py`, `dump`/`diff`, macros with arguments, sheets in pages, `--prune`, stale PNGs removed at publish (2026-11-18), `do` rollback, `export` route from power-on (2026-11-19) |

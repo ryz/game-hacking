@@ -18,12 +18,12 @@ and one look per route.
   ?                    token inside a route: take a frame here too (label `name ?1`, `?2`, ...); it is not part
                        of the route
   --timeline N[:STEP]  STEP defaults to 40 frames. The route is played without its final settle first.
-  --peek ADDR:LEN      print these bytes (hex) after the last token of every route; several allowed
+  --peek ADDR:LEN      (LEN decimal or 0x..) print these bytes (hex) after the last token of every route; several allowed
   --crop x0,y0,x1,y1   keep this part of every frame on the sheet (a message line, a status window)
   --scale N            enlarge the tiles (nearest neighbour); default 1 = native size
   --cols N             tiles per row (default 4); --page N tiles per sheet (default 24; then NAME_2.png ...)
   --set SET            also say when a frame is identical to a shot the working set SET already has
-  --out NAME           name of the sheet (default: the file's name, or `routes`)
+  --out NAME           name of the sheet (default: the file's name, or `routes`); a path gives its base name
   --jobs N             processes (default 4, or the CPU count if lower)
 Output: work/preview/PLATFORM/GAME/NAME.png (labels above the tiles), every frame also at native size in
 work/preview/PLATFORM/GAME/NAME/<label>.png. Per route one text line: its label(s), `settled` or not, the
@@ -193,7 +193,7 @@ def main(argv=None):
     if a.timeline:
         n, _, step = a.timeline.partition(":")
         timeline = (int(n), int(step or 40))
-    peeks = [(p.split(":")[0], int(p.split(":")[1])) for p in a.peek]
+    peeks = [(p.split(":")[0], int(p.split(":")[1], 0)) for p in a.peek]     # LEN: 16 or 0x10
     crop = tuple(int(v) for v in a.crop.split(",")) if a.crop else None
     jobs = [(game.id, a.model or game.model, name, route, timeline, peeks, a.text) for name, route in lines]
     if a.jobs > 1 and len(jobs) > 1:
@@ -203,7 +203,7 @@ def main(argv=None):
     else:
         res = [run(j) for j in jobs]
     out = os.path.join(ROOT, "work", "preview", game.id,
-                       a.out or (os.path.splitext(os.path.basename(a.file))[0] if a.file and a.file != "-" else "routes"))
+                       (a.out and os.path.splitext(os.path.basename(a.out.rstrip("/")))[0]) or (os.path.splitext(os.path.basename(a.file))[0] if a.file and a.file != "-" else "routes"))
     os.makedirs(out, exist_ok=True)
     known = {}
     if a.set:                                       # pictures the working set already has

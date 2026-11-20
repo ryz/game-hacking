@@ -2,6 +2,16 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Sword of Vermilion: area maps and presentations
+- Owner's request: more presentations (travel and so on) and the full map in the overworld panel. The panel shows
+  the whole 16x16 area map once the area's map is owned: flags `FFC820 + y*16 + x` (FF = owned), set by NPC map
+  gifts (Wyclif's well man: five maps to Parma), by the Mirror of Atlas (all maps) or for the moment by
+  Titania's Mirror. `main` 65 -> 96 shots (maps of four areas and two caves, mirrors, intro and prologue frames,
+  Aries arrival, Griffin Wing, battle start, Ring of Wisdom keeper, six more enemy groups); new set `seq-aries`
+  (7, cast to arrival in Wyclif). Re-verified from an empty cache: 96/96, 7/7.
+- Tools: `preview.py --out PATH` and `--peek ADDR:0xNN` fixed. Backlog: a 68000 disassembler.
+- Open: first boss and ending triggers (need the disassembler), the NPC with the cave map.
+
 ## 2026-11-20 - Sword of Vermilion: first Mega Drive game, scouted and captured
 - Owner uploaded the North American Genesis dump (SHA-1 `c18fc75e...`, header GM 00005502-00); registered as
   `md/sword-of-vermilion`, region na, model ntsc. First real game on the md backend (Genesis Plus GX): no

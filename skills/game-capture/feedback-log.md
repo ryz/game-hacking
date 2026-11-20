@@ -12,6 +12,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Sword of Vermilion (Mega Drive, run 2: area maps, presentations)
+- Task: extend main with presentations and area maps; republish, lenses, playbook.
+- Worked: preview --timeline found intro, prologue, Aries and battle-start frames in a few looks; RAM diff around
+  the mirror found the map flags in 2 calls; searching the ROM for 4-byte pointers to a dialogue line found the
+  town's (line table, flag) list and the story flags without a disassembler; RAM compared across 3 battle
+  checkpoints gave the encounter-type byte.
+- Friction: no 68000 disassembler (boss and ending triggers unreached; capstone install refused); preview --out
+  with a path doubled it; --peek wanted a decimal length; wandering NPCs cost ~15 calls.
+- Proposed rule change: (1) backlog: tools/dis68k.py; (2) fix preview --out and hex --peek; (3) md.md: a
+  mode-like byte can be an ignored status copy.
+- Corrected: none; coordinator re-verified from an empty cache: main 96/96, seq-aries 7/7; map shots checked on a
+  sheet. Note: seq-aries 04_warp_clip.png equals 05_arrival (the warp is only in the GIF).
+- Status: (1) backlog; (2) fixed 2026-11-20; (3) logged in md.md.
+
 ### 2026-11-20 - Sword of Vermilion (Mega Drive)
 - Task: capture and publish `main` and `start` of Sword of Vermilion (md) with the three lenses.
 - Worked: preview.py with `?` markers gave whole dialogue/menu sequences on one sheet; the map as a 48x32 byte
