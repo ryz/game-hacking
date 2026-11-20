@@ -98,9 +98,14 @@ bar, floppy sounds and the core's hotkeys are switched off.
   (US layout).
 - Joystick in port 2: `joyup joydown joyleft joyright fire fire2` (`fire+joyright:30` = run right while firing).
   The cursor keys are the keyboard's, not the joystick's.
-- Mouse in port 1: `mouse1` (left button), `mouse2` (right button), `mouse:DX:DY` moves it. One unit is one
-  count of the Amiga's mouse counter (one lores pixel in most games); large moves arrive over a few frames, so
-  wait a few frames before clicking.
+- Mouse in port 1: `mouse1` (left button), `mouse2` (right button), `mouse:DX:DY` moves it by DX, DY counts of
+  the Amiga's mouse counter. The machine takes at most 120 counts per frame and axis (it drops the rest of a
+  larger step), so the backend sends a longer move out over several frames, 120 a frame (2026-11-20; before,
+  everything above about 128 counts of one token was lost). How far a count moves the pointer is up to the game
+  (Dungeon Master: 2 counts = 1 lores pixel). The pointer position itself is not known to the tools: to put the
+  pointer on a spot, push it into a corner with a large move (the game stops it at the edge), then move by
+  measured offsets, and keep that as macros plus a pixel-to-token helper in the game's `tools/` (Dungeon
+  Master: `HOME`, `AT`, `CLICK`, `tools/at.py`).
 - Ctrl + both Amiga keys (`ctrl+lamiga+ramiga`) should be the keyboard reset, as on the real machine (the core
   implements it; not tried yet).
 - `w30` is "wait 30 frames" (`w` is the W key on its own).
@@ -124,7 +129,11 @@ and in a new one (`test_amiga_disks`).
   `games/amiga/<slug>/saves/README.md` is committed; `sav:NAME` powers on with it.
 - An image in the `sav:` ZIP whose name is not one of the game's disks becomes an extra disk after the game's
   own (a save disk: `disk2:3`). A game that wants a blank disk to format: put an empty 880 KiB `.adf` into the
-  `sav:` ZIP under a new name.
+  `sav:` ZIP under a new name (Dungeon Master: `rom/saves/dungeon-master/blank.sav` with `savedisk.adf`; the
+  game formats it itself and asks for the swaps, one drive is enough).
+- `sav:` acts at power-on only, so a game that will save to its own disk needs the blank disk from the start:
+  build the checkpoint chain on a `sav:blank` base (Dungeon Master: `sd_dungeon`) before the first checkpoint
+  anyone saves from.
 - Only this tool reads the `.state` files.
 
 ## Not supported yet

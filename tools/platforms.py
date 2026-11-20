@@ -1548,7 +1548,7 @@ class Amiga(Libretro):
         L.retro_set_controller_port_device(0, lrcore.DEVICE_JOYPAD)     # RetroPad 1 = joystick in port 2
         self.c.size = self.native_size
         self.drives = [self.disks[0]] + [None] * (ndrives - 1)
-        self._down, self._search, self._loaded = set(), None, None
+        self._down, self._search, self._loaded, self._mouse = set(), None, None, [0, 0]
         chip = self.c.memory(lrcore.MEM_SYSTEM_RAM)
         self._chip = (ctypes.addressof(chip), len(chip))
         self.SEARCH = [(0, len(chip))] + self._ranges(0xC00000, 0xDC0000) + self._ranges(0x200000, 0xA00000)
@@ -1565,9 +1565,18 @@ class Amiga(Libretro):
                     out.append((a, step))
         return out
 
+    MOUSE_STEP = 120            # counts the machine takes from the mouse in one frame (more is lost)
+
     def frames(self, n):
         if n > 0:
             self._loaded = None
+        while n > 0 and self._mouse != [0, 0]:         # a long move goes out over several frames
+            part = [max(-self.MOUSE_STEP, min(self.MOUSE_STEP, v)) for v in self._mouse]
+            self._mouse = [v - p for v, p in zip(self._mouse, part)]
+            self.c.mouse = part
+            self.c.run(1)
+            n -= 1
+        if n > 0:
             self.c.run(n)
 
     # ---- disks
@@ -1642,7 +1651,7 @@ class Amiga(Libretro):
         for k in sorted(self._down):            # keys held here are not held in the state
             if k in self.KEYS:
                 self.c.key(self.KEYS[k], False)
-        self._down = set()
+        self._down, self._mouse = set(), [0, 0]
         self.c.keys = set()
         self.c.unserialize(zlib.decompress(raw))    # memory and registers are the loaded ones at once; the
         self.drives = head["drives"]                # disks come from self.dir (retro_gamedb_disk_dir)
@@ -1676,8 +1685,9 @@ class Amiga(Libretro):
         self.c.keys = {self.JOY[k] for k in keys if k in self.JOY} | {k for k in keys if k.startswith("mouse")}
 
     def mouse(self, dx, dy):
-        """Relative mouse motion, reported to the machine during the next frame."""
-        self.c.mouse = [dx, dy]
+        """Relative mouse motion in Amiga mouse counts, from the next frame on: at most MOUSE_STEP counts per
+        frame and axis (the machine drops the rest of a larger step), so a long move takes several frames."""
+        self._mouse = [self._mouse[0] + dx, self._mouse[1] + dy]
 
     type_text = Dos.type_text
 

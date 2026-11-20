@@ -1344,6 +1344,11 @@ def test_amiga_backend(am_selftest, tmp_path):
     x, y = e.peek(0x7F003, 1)[0], e.peek(0x7F002, 1)[0]                  # JOY0DAT counters
     e.mouse(10, -3); e.frames(2)
     assert (e.peek(0x7F003, 1)[0], e.peek(0x7F002, 1)[0]) == ((x + 10) & 0xFF, (y - 3) & 0xFF)   # 1 unit = 1 count
+    x = e.peek(0x7F003, 1)[0]
+    e.mouse(400, 0); e.frames(2)
+    assert (e.peek(0x7F003, 1)[0] - x) & 0xFF < 250                       # 120 counts a frame, not all at once
+    e.frames(10)
+    assert e.peek(0x7F003, 1)[0] == (x + 400) & 0xFF                      # ... but all of it arrives
     e.input(["a"]); e.frames(8); e.input([]); e.frames(8)
     assert _am_colour(e) >> 4 == 0xA0                                    # raw key code: A up ($20 | $80)
     e.type_text("1")
