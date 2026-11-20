@@ -1,0 +1,250 @@
+diff --git a/libretro/libretro-core.c b/libretro/libretro-core.c
+index 0f6797e..4d2497e 100644
+--- a/libretro/libretro-core.c
++++ b/libretro/libretro-core.c
+@@ -5069,11 +5069,19 @@ static struct retro_disk_control_ext_callback disk_interface_ext = {
+ 
+ static void fallback_log(enum retro_log_level level, const char *fmt, ...)
+ {
+-   (void)level;
++   /* gamedb: stderr is #defined to 0 with USE_LIBRETRO_VFS (sysconfig.h), so the original vfprintf(stderr)
++    * crashed in a frontend without a log interface. Silent unless GAMEDB_CORE_LOG is set. */
++   char buf[1024];
++   int n;
+    va_list va;
++   (void)level;
++   if (!getenv("GAMEDB_CORE_LOG"))
++      return;
+    va_start(va, fmt);
+-   vfprintf(stderr, fmt, va);
++   n = vsnprintf(buf, sizeof(buf), fmt, va);
+    va_end(va);
++   if (n > 0 && write(2, buf, n < (int)sizeof(buf) ? n : (int)sizeof(buf) - 1) < 0)
++      return;
+ }
+ 
+ void retro_init(void)
+@@ -8856,42 +8864,15 @@ bool retro_unserialize(const void *data_, size_t size)
+ 
+          if (len == size)
+          {
+-            unsigned frame_counter = 0;
+-            unsigned max_frames    = 50;
+-
++            /* gamedb: restore at the start of the next retro_run, before the CPU runs a cycle. The original
++             * emulated frames here until the restore was done (the old machine up to its next vsync, where
++             * the restore happened, then a frame of the loaded one), so a loaded state continued a frame
++             * later than the run that saved it. m68k_go() restores at the top of its loop when quit_program
++             * is set, exactly like the reset that the vsync check would have requested. */
+             zfile_fseek(retro_deserialize_file, 0, SEEK_SET);
+             savestate_state = STATE_DORESTORE;
++            quit_program    = UAE_RESET;
+ 
+-            /* For correct operation of the frontend,
+-             * the save state restore must be completed
+-             * by the time this function returns.
+-             * Since PUAE requires several (2) frames to get
+-             * itself in order during a restore event, we
+-             * have to keep emulating frames until the
+-             * restore is complete...
+-             * > Note that we set a 'timeout' of 50 frames
+-             *   here (1s of emulated time at 50Hz) to
+-             *   prevent lock-ups in the event of unexpected
+-             *   errors
+-             * > Temporarily 'deactivate' runloop - this lets
+-             *   us call m68k_go() without accessing frontend
+-             *   features - specifically, it disables the audio
+-             *   callback functionality */
+-            libretro_runloop_active = false;
+-            while (savestate_state && (frame_counter < max_frames))
+-            {
+-               /* Note that retro_deserialize_file will be
+-                * closed inside m68k_go() upon successful
+-                * completion of the restore event */
+-               restart_pending = m68k_go(1, 1);
+-               frame_counter++;
+-            }
+-            libretro_runloop_active = true;
+-
+-            /* If the above while loop times out, then
+-             * everything is completely broken. We cannot
+-             * handle this here, so just assume the restore
+-             * completed successfully... */
+             request_reset_drawing = true;
+             success               = true;
+          }
+@@ -8928,3 +8909,83 @@ void retro_cheat_set(unsigned index, bool enabled, const char *code)
+    (void)enabled;
+    (void)code;
+ }
++
++/* ---- gamedb additions (tools/puae-debug.patch): memory, program counter, disks and clock for the
++ * headless driver tools/lrcore.py. */
++#include "newcpu.h"
++
++static int64_t gamedb_usec = -1;
++
++/* Emulated wall clock in microseconds (Unix time), set by the driver every frame. The battery-backed clock
++ * (cia.c) reads it instead of the host's time(). */
++void retro_gamedb_set_time(int64_t usec)
++{
++   gamedb_usec = usec;
++}
++
++time_t gamedb_time(void)
++{
++   return gamedb_usec < 0 ? time(NULL) : (time_t)(gamedb_usec / 1000000);
++}
++
++unsigned retro_gamedb_pc(void)
++{
++   return m68k_getpc();
++}
++
++/* Host pointer for one byte of the 68k address space: RAM (and ROM for reading) only. Custom chips, CIAs
++ * and unmapped space give NULL, so a peek never has side effects. */
++static uae_u8 *gamedb_xlate(unsigned addr, bool write)
++{
++   addrbank *ab = &get_mem_bank(addr);
++   if (ab->flags & ABFLAG_IO)
++      return NULL;
++   if (!(ab->flags & (write ? ABFLAG_RAM : (ABFLAG_RAM | ABFLAG_ROM))))
++      return NULL;
++   if (!ab->check || !ab->xlateaddr || !ab->check(addr, 1))
++      return NULL;
++   return ab->xlateaddr(addr);
++}
++
++/* The byte with bit 8 set, or 0 when the address is not RAM or ROM. */
++unsigned retro_gamedb_peek(unsigned addr)
++{
++   uae_u8 *p = gamedb_xlate(addr, false);
++   return p ? 0x100 | *p : 0;
++}
++
++int retro_gamedb_poke(unsigned addr, unsigned value)
++{
++   uae_u8 *p = gamedb_xlate(addr, true);
++   if (!p)
++      return 0;
++   *p = (uae_u8)value;
++   return 1;
++}
++
++/* Put an image file into floppy drive 0-3 (path NULL or "" = take the disk out). Like a person swapping
++ * disks: the drive reports the change after the usual delay. */
++int retro_gamedb_insert(int drive, const char *path)
++{
++   if (drive < 0 || drive > 3)
++      return 0;
++   if (!path || !*path)
++      disk_eject(drive);
++   else
++      disk_insert(drive, path);
++   return 1;
++}
++
++/* The folder that holds this machine's disk images: a loaded savestate takes its disks from there. */
++extern void gamedb_set_disk_dir(const char *dir);
++void retro_gamedb_disk_dir(const char *dir)
++{
++   gamedb_set_disk_dir(dir);
++}
++
++/* Write what the game has written to the disk images out to the files now. */
++extern void gamedb_disk_flush(void);
++void retro_gamedb_flush(void)
++{
++   gamedb_disk_flush();
++}
+diff --git a/sources/src/cia.c b/sources/src/cia.c
+index 59182fc..7961b2a 100644
+--- a/sources/src/cia.c
++++ b/sources/src/cia.c
+@@ -1030,6 +1030,8 @@ void CIA_hsync_prehandler (void)
+ {
+ }
+ 
++extern time_t gamedb_time(void);
++
+ static void keyreq (void)
+ {
+ #if KB_DEBUG
+@@ -2737,7 +2739,7 @@ static void write_battclock(void)
+ 	struct zfile *f = zfile_fopen_2x(path, _T("wb"));
+ 	if (f) {
+ 		struct tm *ct;
+-		time_t t = time(0);
++		time_t t = gamedb_time(); /* gamedb: emulated clock, not the host's */
+ 		t += currprefs.cs_rtc_adjust;
+ 		ct = localtime(&t);
+ 		uae_u8 od;
+@@ -2845,7 +2847,7 @@ static uae_u32 REGPARAM2 clock_bget(uaecptr addr)
+ 	if ((addr & 3) == 2 || (addr & 3) == 0 || currprefs.cs_rtc == 0) {
+ 		return dummy_get_safe(addr, 1, false, v);
+ 	}
+-	time_t t = time(0);
++	time_t t = gamedb_time(); /* gamedb: emulated clock, not the host's */
+ 	t += currprefs.cs_rtc_adjust;
+ 	ct = localtime(&t);
+ 	addr >>= 2;
+diff --git a/sources/src/disk.c b/sources/src/disk.c
+index d5e318e..2900a09 100644
+--- a/sources/src/disk.c
++++ b/sources/src/disk.c
+@@ -5954,6 +5954,29 @@ void restore_disk_finish (void)
+ #endif
+ }
+ 
++#ifdef __LIBRETRO__
++/* gamedb (tools/puae-debug.patch): a savestate names the disk images by full path, but every machine of the
++ * driver works on private copies in its own folder. With a folder set, a restore takes the image of the same
++ * name from that folder. */
++static TCHAR gamedb_disk_dir[MAX_DPATH];
++
++void gamedb_set_disk_dir(const TCHAR *dir)
++{
++	_tcsncpy(gamedb_disk_dir, dir ? dir : _T(""), MAX_DPATH - 1);
++}
++
++static TCHAR *gamedb_remap(TCHAR *s)
++{
++	if (!s || !s[0] || !gamedb_disk_dir[0])
++		return s;
++	const TCHAR *b = _tcsrchr(s, '/');
++	TCHAR *n = xmalloc(TCHAR, MAX_DPATH);
++	snprintf(n, MAX_DPATH, "%s/%s", gamedb_disk_dir, b ? b + 1 : s);
++	xfree(s);
++	return n;
++}
++#endif
++
+ uae_u8 *restore_disk (int num,uae_u8 *src)
+ {
+ 	drive *drv;
+@@ -6010,6 +6033,9 @@ uae_u8 *restore_disk (int num,uae_u8 *src)
+ 		xfree(s);
+ 		s = restore_path_full();
+ 	}
++#ifdef __LIBRETRO__
++	s = gamedb_remap(s);
++#endif
+ 	if (s && s[0])
+ 		write_log(_T("-> '%s'\n"), s);
+ 	_tcscpy(old, currprefs.floppyslots[num].df);
+@@ -6472,3 +6498,15 @@ void disk_reserved_reset_disk_change(int num)
+ 		drv->dskchange = false;
+ 	}
+ }
++
++#ifdef __LIBRETRO__
++#include "zarchive.h"
++/* gamedb (tools/puae-debug.patch): flush the image files of all drives (writes are buffered by the VFS). */
++void gamedb_disk_flush(void)
++{
++	for (int i = 0; i < MAX_FLOPPY_DRIVES; i++) {
++		if (floppy[i].diskfile && floppy[i].diskfile->f)
++			fflush(floppy[i].diskfile->f);
++	}
++}
++#endif

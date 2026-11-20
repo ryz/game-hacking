@@ -13,6 +13,11 @@
 *.woz
 *.2mg
 *.hdv
+*.adf
+*.adz
+*.dms
+*.ipf
+*.hdf
 *.sav
 *.state
 rom/
@@ -24,6 +29,7 @@ work/
 **/tools/gpgx/
 **/tools/dosbox-pure/
 **/tools/applewin/
+**/tools/puae/
 __pycache__/
 *.bps
 *.ips
