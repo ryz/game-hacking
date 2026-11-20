@@ -73,3 +73,27 @@ def test_lenses_check(tmp_path):
     assert "in no document: bash_wall" in text and "in no document: trade" not in text
     assert "in no document: bash (" not in text                         # `bash` does not count for bash_wall
     assert "systems.md:4 row without a shot or a reason: Verbs" in text and "Hidden roll" not in text
+
+
+def test_game_tables_match_game_json():
+    """README.md and docs/status.md carry the tables tools/gamestable.py writes from the game.json files."""
+    import gamestable
+    assert gamestable.main(["--check"]) == 0, "run python3 tools/gamestable.py"
+    rows = gamestable.games()
+    assert all(g["work"] for g in rows) and len({g["id"] for g in rows}) == len(rows)
+
+
+def test_x3_png_and_gif(tmp_path):
+    from PIL import Image
+    import x3
+    a, b = Image.new("RGB", (8, 6), (255, 0, 0)), Image.new("RGB", (8, 6), (0, 0, 255))
+    a.save(tmp_path / "a.png")
+    a.save(tmp_path / "c.gif", save_all=True, append_images=[b], duration=[40, 120], loop=0)
+    assert x3.main([str(tmp_path)]) == 0
+    assert Image.open(tmp_path / "3x" / "a.png").size == (24, 18)
+    g = Image.open(tmp_path / "3x" / "c.gif")
+    assert g.size == (24, 18) and g.n_frames == 2
+    g.seek(1)
+    assert g.info["duration"] == 120
+    x3.main([str(tmp_path / "a.png"), "--scale", "2", "--out", str(tmp_path / "big")])
+    assert Image.open(tmp_path / "big" / "a.png").size == (16, 12)

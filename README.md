@@ -6,11 +6,40 @@ reverse-engineering notes. No game data is included: everything runs from your o
 
 ## Games
 
+<!-- games:begin -->
 | Game | Platform | What is here |
 |---|---|---|
-| [Wizardry Empire](games/gbc/wizardry-empire/README.md) | Game Boy Color (Starfish, 1999) | English translation (playable throughout, [status](games/gbc/wizardry-empire/translation/docs/status.md)) with a variable-width font engine; design and technical reference; all 30 dungeon floors mapped; reference screenshots, original next to translation |
-| [Pokémon Blue](games/gb/pokemon-blue/playbook.md) | Game Boy | Screenshot sets ([main](games/gb/pokemon-blue/shots/main/index.md), action sequences), design reference, milestone saves |
-| [Dragon Quest](games/nes/dragon-quest/playbook.md) | Famicom, with an English translation patch | Screenshot set from the logo to the staff roll ([main](games/nes/dragon-quest/shots/main/index.md)), design reference, password tools |
+| [Wizardry Empire](games/gbc/wizardry-empire/README.md) | Game Boy Color | English translation (`translation/`: script, VWF engine, build chain, RE notes), design docs, tech docs, floor maps, reference screenshots |
+| [Pokémon Blue Version](games/gb/pokemon-blue/playbook.md) | Game Boy | screenshot sets and sequences, design reference, saves |
+| [Deep Dungeon III: Yuushi e no Tabi](games/nes/deep-dungeon-3/playbook.md) | Famicom (Japanese) | screenshot set (74, to the ending), 16 floor maps + towns, design reference, saves |
+| [Dragon Quest (Famicom, English translation patch)](games/nes/dragon-quest/playbook.md) | Famicom (English translation patch) | screenshot set, design reference, password tools |
+| [Dungeon Magic: Sword of the Elements (NES, USA)](games/nes/dungeon-magic/playbook.md) | NES | screenshot set (41), floor maps of all 39 floors + overworld, design reference, saves |
+| [Digital Devil Story: Megami Tensei (Famicom, English translation patch)](games/nes/megami-tensei/playbook.md) | Famicom (English translation patch) | screenshot set (88, to the ending), 35 floor maps, design reference, passwords |
+| [Digital Devil Monogatari: Megami Tensei II (Famicom, English translation patch)](games/nes/megami-tensei-2/playbook.md) | Famicom (English translation patch) | screenshot set (67), overhead maps, design reference, saves |
+| [Might and Magic: Secret of the Inner Sanctum](games/nes/might-and-magic/playbook.md) | NES | screenshot set (93, to the ending), 55 area maps with terrain and exits, design reference, saves |
+| [Wizardry: Proving Grounds of the Mad Overlord (NES, USA)](games/nes/wizardry/playbook.md) | NES | screenshot set (71, to the ending), 10 floor maps with special squares, design reference, saves |
+| [Wizardry: Knight of Diamonds - The Second Scenario (NES, USA)](games/nes/wizardry-2/playbook.md) | NES | screenshot set (91, to the ending), 6 floor maps, design reference, roster tool, saves |
+| [Shin Megami Tensei (Super Famicom, English translation patch)](games/snes/shin-megami-tensei/playbook.md) | Super Famicom (English translation patches) | screenshot set, design reference, saves |
+| [Phantasy Star](games/sms/phantasy-star/playbook.md) | Master System (US/EU release, v1.2 header) | screenshot set (109, all three planets and most bosses; ending not reached), battles set (12), four dungeon sequences, three lens documents, warp/dungeon/fight/party macros, ROM table tools, save |
+| [Might and Magic Book One: The Secret of the Inner Sanctum (DOS)](games/dos/might-and-magic/playbook.md) | DOS (GOG release) | screenshot set (249, to the ending text: every command, 45 monster groups, all looks), three lens documents (systems, interface, content), area warp and survey of all 55 areas, saves |
+| [Might and Magic II: Gates to Another World (DOS)](games/dos/might-and-magic-2/playbook.md) | DOS (GOG release, boots via `loadfix -4`) | screenshot set (228, to the Congratulations ending: Kalohn, Sheltem, override code, cryptogram), three lens documents, warp to all 60 areas and centuries, event lister, saves |
+| [Ultima I: The First Age of Darkness (DOS)](games/dos/ultima/playbook.md) | DOS (GOG, five programs) | screenshot set (195, to the ending text: creation, towns, castles, landmarks, dungeons 1-10, space, Mondain), three lens documents, warp to 84 places, shop tool, saves |
+| [Ultima II: The Revenge of the Enchantress (DOS)](games/dos/ultima-2/playbook.md) | DOS (GOG) | screenshot set (226, to the ending text: five periods, planets, quest chain, honest Minax fight), three lens documents, period warp, map/town/shop/monster tools, saves |
+| [Ultima III: Exodus (DOS)](games/dos/ultima-3/playbook.md) | DOS (GOG) | screenshot set (260, to the ending text: party of four, nine combat fields, Ambrosia, moongates, dungeon rods, Time Lord, Exodus), three lens documents plus rules.md, warps, town/dungeon/RNG tools, saves |
+| [Wizardry: Proving Grounds of the Mad Overlord (DOS)](games/dos/wizardry/playbook.md) | DOS (1984 booter via the 1998 loader, disk images) | screenshot set (208, to the ending: Werdna beaten on screen), three lens documents, ten floor maps from the disk, items with prices, floor warp, saves incl. the Wizardry II transfer source |
+| [Wizardry II: The Knight of Diamonds (DOS)](games/dos/wizardry-2/playbook.md) | DOS (same loader) | screenshot set (212, to the ending: Wizardry I party imported in the game, five guardians, Staff of Gnilda, knights), three lens documents, six floor maps, items, floor warp, saves incl. the Wizardry III transfer source |
+| [Wizardry III: Legacy of Llylgamyn (DOS)](games/dos/wizardry-3/playbook.md) | DOS (same loader) | screenshot set (228, to the ending: Wizardry II party legated, both halves and guardians, Neutral Crystal made in play, orb, stars), three lens documents, six floor maps, all messages, items, floor warp, saves |
+| [Might and Magic Book One: The Secret of the Inner Sanctum](games/apple2/might-and-magic/playbook.md) | Apple II (four disk sides, cracked side 1) | registered 2026-11-18; plays from power-on through disk changes into Sorpigal and the wilderness, inn save; screenshot set (308, to the ending: the DOS set's routes replayed plus every area once and the disk prompts), three lens documents over the DOS detail documents, area warp, macros, checkpoints |
+| [Wizardry: Proving Grounds of the Mad Overlord](games/apple2/wizardry/playbook.md) | Apple II (1981 original, boot + scenario disk, model `iiplus-wp1`) | screenshot set (304, to the ending: Werdna beaten in play, every castle service, creation, about 40 monster groups, plain maze views), `start` set (47, the early game played honestly to the first save), three lens documents, ten floor maps and data tools, floor warp, 26 checkpoints |
+| [Wizardry II: The Knight of Diamonds](games/apple2/wizardry-2/playbook.md) | Apple II (1982, two disks) | scouted 2026-11-19: Wizardry I party moved over with the game's utility, 39 checkpoints to the ending, RAM map, floor warp, six floor maps; not captured |
+| [Wizardry III: Legacy of Llylgamyn](games/apple2/wizardry-3/playbook.md) | Apple II (2 disk sides) | registered 2026-11-19 (boots to the title); not scouted |
+| [Wizardry IV: The Return of Werdna](games/apple2/wizardry-4/playbook.md) | Apple II (6 disk sides) | registered 2026-11-19 (boots to the title); not scouted |
+| [Wizardry V: Heart of the Maelstrom](games/apple2/wizardry-5/playbook.md) | Apple II (9 disk sides) | registered 2026-11-19 (boots to the title); not scouted |
+| [Dungeon Master](games/amiga/dungeon-master/playbook.md) | Amiga (v3.60, cracked ADF, A500 with Kickstart 1.3) | screenshot set (111, to the ending: all 14 levels, 22 creature kinds, Lord Chaos fused, the Grey Lord), `start` set (37, played honestly to the first save), three lens documents, maps of all 14 levels, level warp, pointer macros, saves |
+<!-- games:end -->
+
+This table is written by `python3 tools/gamestable.py` from each game's `game.json`; sets, lens documents and
+open items per game: [docs/status.md](docs/status.md).
 
 Platforms: Game Boy / Game Boy Color, NES / Famicom, SNES / Super Famicom and Master System / Mark III cartridges, DOS games (a ZIP of the
 game's files), Apple II disks and Amiga floppies. Another system is one backend class in
@@ -25,7 +54,7 @@ game's files), Apple II disks and Amiga floppies. Another system is one backend 
 | `tools/` | Shared tooling for every game: register a ROM, drive the emulators, play, capture and verify screenshot sets. |
 | `tests/` | Tests for the shared tooling. |
 | `docs/` | How the tooling is used: [emulator guide](docs/emulator/README.md) (general rules, plus one file per platform: Game Boy, NES, SNES, Master System, DOS, Apple II, Amiga), [capture guide](docs/capture-guide.md), status and history. |
-| `skills/` | Working procedures for the AI agents that do much of the work, each with a feedback log ([index](skills/skill-index.md)). |
+| `skills/` | Working procedures for the AI agents that do much of the work, each with its open lessons and a feedback log ([index](skills/skill-index.md)). |
 | `agent-log/` | One line per agent run: who, what, which files, outcome. |
 | `AGENTS.md` | Rules for all work in this repository (also read through `CLAUDE.md`). |
 | `rom/`, `work/` | Your ROMs, downloaded saves and patches; states, caches and scratch. Ignored by git. |
@@ -43,8 +72,8 @@ ROM --tools/intake.py--> games/<platform>/<slug>/ --scout--> playbook + checkpoi
    replays from power-on, publishes the set, extends the design reference.
 4. **Review:** the coordinator reruns the verification, looks at the contact sheet and commits.
 
-A set is one PNG per shot (native resolution, raw framebuffer), the same image enlarged 3x in `3x/` (nearest
-neighbour, same name), `index.json` (identity and per shot: category, caption, route, model, ROM SHA-1, date),
+A set is one PNG per shot (native resolution, raw framebuffer; enlarged copies on demand with
+`python3 tools/x3.py FOLDER`), `index.json` (identity and per shot: category, caption, route, model, ROM SHA-1, date),
 `index.md`, a contact sheet and the routes in `shots.txt`. File names carry their context
 (`docs/capture-guide.md`, "File names"): `<game>_<platform>_<region>_<category>_<id>.png`, e.g.
 `dragon-quest_nes_jp_battle_battle_slime.png`.
@@ -54,10 +83,11 @@ neighbour, same name), `index.json` (identity and per shot: category, caption, r
 ```sh
 sh tools/setup_emu.sh                                   # builds the emulators into tools/ (once)
 python3 tools/intake.py ~/roms/mygame.nes --region na  # region of the dump: jp, na or eu
-python3 tools/play.py start mygame
+python3 tools/play.py start mygame                     # explore: one emulator kept running
 python3 tools/play.py do "w300,start"
 python3 tools/play.py snap title_screen title "Title screen"
-python3 tools/shoot.py mygame main --verify
+python3 tools/preview.py mygame plan.txt               # or: many candidate routes at once, one sheet
+python3 tools/shoot.py mygame main --verify            # every shot replays from power-on
 python3 -m pytest -q tests
 ```
 

@@ -1,0 +1,8 @@
+{
+ "title": "Wizardry Empire",
+ "link": "games/gbc/wizardry-empire/README.md",
+ "edition": "Game Boy Color",
+ "work": "English translation (`translation/`: script, VWF engine, build chain, RE notes), design docs, tech docs, floor maps, reference screenshots",
+ "open": "see games/gbc/wizardry-empire/translation/docs/status.md",
+ "note": "not registered with the shared tools (its own in translation/tools/); this file feeds tools/gamestable.py"
+}

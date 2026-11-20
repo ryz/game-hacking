@@ -2,6 +2,50 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Process review: faster verify, shared previewer, native pictures, shorter reading, generated tables
+Owner's request: analyse the repository and its feedback for what costs time and tokens, then implement it.
+- **Findings** (from 31 capture and 22 scout feedback entries): interactive play with a 3x picture per
+  step was the main cost (250-376 calls per run); a cold verify rebuilt every checkpoint from power-on in one
+  process (15-35 minutes, run by the agent and again by the coordinator); `try.py` was copied into ten game
+  folders, `cachecheck.py` into five, while the shared previewer stayed a wish through six runs; an agent read
+  about 30,000 tokens before its first command (`AGENTS.md`, guides, a 48 KB feedback log); one run was filed
+  in five or six files and the game table existed in three versions.
+- **Tools** (`5f90131`): `emu.py` builds a checkpoint from the state of the one it starts from and caches every
+  link, under a lock; `shoot.py --jobs N` (default 4) for shooting and `--verify`, index and sheets written
+  once per batch, `pixel_sha1` per shot, identical pictures reported by `--only`, the set's own `shots.txt`
+  gives the order, a set without a working list falls back to its published list; `play.py`: native pictures
+  (`shot --scale N`, `game.json` "look_scale" on demand), `call=N` in the status line, `snap` names a shot
+  with the same picture, `goto` picks up edited macros, `text` reads the Apple II text page; new
+  `tools/preview.py` (plan files or routes in parallel on one sheet, played as `shoot.py` plays them; `?`
+  marks, `--timeline`, `--text`, `--peek`, `--set`), `tools/cachecheck.py` (flat replay vs chained build vs
+  cache hit vs the existing cache: frame, memory, save data; sheet of all checkpoints), `tools/x3.py`.
+  Measured on a synthetic Apple II chain of 20 checkpoints with 40 shots, empty cache: 508 s with the tools of
+  `26ad47e`, 61 s now; the deepest shot is byte-identical. 59 tests (was 54), the new ones on the Apple II
+  test disk because its picture records the exact timing of a route.
+- **Owner's decision: no 3x pictures by default** (`4f1018f`): 3,595 enlarged files (94 of 177 MB of shots)
+  removed from the database sets, `index.json` without `file_3x`, `index.md` linking the native files, the
+  sets' `3x/` folders ignored by git; enlarged copies on demand with `tools/x3.py`. Wizardry Empire's compare
+  images (its own tools) are unchanged.
+- **Helpers** (`ab83987`): ten `try.py`, five `cachecheck.py` and two `screen.py` removed from game folders; the
+  eleven playbooks that name them say at their top what replaces them.
+- **Skills and guides:** capture works in batches by default (plan file, `preview.py` sheet, `shoot.py --only`),
+  `play.py` for exploring; budgets in tool calls; milestone commits stated as part of the task; the push recipe
+  without `pull --rebase`; scouts check tables on the second and last record and run `cachecheck.py`;
+  playbooks get a "Read first" block (template; existing playbooks at their next run).
+- **Reading load:** `skills/<name>/feedback.md` is now the short list of open lessons, the full history moved to
+  `feedback-log.md` (nothing deleted); tool wishes are one list, `docs/backlog.md`, with the rule that a second
+  request is built or dropped; `AGENTS.md` lost the game table and the Wizardry Empire reference (now
+  `games/gbc/wizardry-empire/AGENTS.md`, loaded through its own `CLAUDE.md`): 19.7 KB -> 11.6 KB. A capture
+  agent's fixed reading went from about 120 KB to 71 KB (before the playbook).
+- **Bookkeeping:** each game's `game.json` holds "edition", "work" and "open"; `tools/gamestable.py` writes the
+  tables in `README.md` (it listed 3 of 27 games) and `docs/status.md` from them. `docs/status.md` is a snapshot
+  again (platforms, tools, generated game table, next); its accumulated text is kept unchanged in
+  `docs/archive/status-2026-11-20.md`.
+- **Not done:** no published set was re-verified with the new tools (no dumps in this container): first session
+  with a dump runs `shoot.py SLUG main --verify` from an empty cache. The per-game `maps.py` / `roster.py` /
+  `transfer.py` were not merged into shared modules (untestable without the dumps; `docs/backlog.md`). Existing
+  playbooks have no "Read first" block yet. Wizardry Empire's own tools still write their 3x compare images.
+
 ## 2026-11-20 - Dungeon Master (Amiga) captured to the ending
 - game-capture run: set `main` 111 shots (boot, Hall of Champions and five mirror panels, level 2 systems,
   inventories, statistics, spells and fireball, level-up, food and water, pit, fountain, champion death, 22
