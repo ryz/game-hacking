@@ -12,6 +12,24 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Might and Magic II (DOS, set `start`)
+- Task: set `start` for an honest new party from power-on to the first inn sign-in.
+- Worked: decoding the area's wall map early (one dump, 161D6) plus a small BFS gave every walking route and
+  showed the dispatch's (8,1) fight is walled in; a scripted walker stopping on a monster-record change found the
+  first encounter in a few calls; logging both sides' HP per round picked fight frames, `preview.py` fixed them.
+- Friction: the dispatch assumed the (8,1) fight was walkable and a purchase possible (walled in; 0 gold for all
+  six), ~15 calls; `rm -f $W/*.png` blocked (`shoot.py --prune` is the tool); ids repeating the category
+  (`01_boot_nwc_logo`) cost a rename pass; `play.py peek` per record costs one call each.
+- Proposed rule change: guide/`shoot.py` warn when a start id repeats the category; coordinator: check starting
+  gold and reachability of the first fight before dispatching a start set; backlog `tools/walk.py SLUG FROM TO`
+  building walking routes from a wall-map decoder in `game.json`.
+- Corrected: one commit instead of the two asked for (whole route verified in one pass): accepted. Coordinator
+  re-verified `start` from an empty cache: 52/52 (104 s); sheet and battle captions checked against the frames.
+  The repeat-category warning not built: the guide already accepts such ids and 20 published start shots in four
+  games use them, so it would be noise.
+- Status: coordinator lesson in `skills/coordinator/feedback.md` (open); walk.py in `docs/backlog.md`; id
+  repeat logged.
+
 ### 2026-11-20 - Sword of Vermilion (Mega Drive, run 4: town talk, encounters with map)
 - Task: outdoor talk shots with the hero and speaker side by side mid-screen (owner's Stow example) and overworld
   encounters with the full area map in the panel (owner's example).

@@ -9,4 +9,5 @@ confirms, or that the owner states as a rule, is promoted into `skill.md` (or th
 removed here. Every run's full feedback, newest first: `feedback-log.md` (history, not required reading).
 Tool wishes are not listed here: `docs/backlog.md`.
 
-None.
+- **`start` set dispatches:** check the new party's starting gold and that the suggested first fight is
+  reachable on foot before listing shop and reward steps (Might and Magic II DOS, 2026-11-20: 0 gold, (8,1) walled in).

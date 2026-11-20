@@ -11,6 +11,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | Shared module for series on one engine (Wizardry I-III on DOS and Apple II: `maps.py`, `roster.py`, `transfer.py`; survey / event scan / text scan for first-person RPGs: `scan.py`, `survey.py`, `eventscan`, `mapgrab`, `textscan`, `explore`) | 6 | 12 `maps.py`, 4 `roster.py`, 4 `transfer.py` live per game and differ by 30-60 lines. Needs the dumps to test against; do it at the next Wizardry or Might and Magic run |
 | `play.py checkpoint`: scratch checkpoints kept out of `checkpoints.txt` (`--scratch`), a replaced line stays in place instead of moving to the end | 3 | Megami Tensei scout, Wizardry II DOS scout, Might and Magic II scout |
 | Deeper `undo` (more than one level) | 3 | Pokémon Blue, Megami Tensei, Ultima III; a `checkpoint` before a risky step is the workaround |
+| `tools/walk.py SLUG FROM TO`: walking routes for first-person RPGs from a wall-map decoder named in `game.json` | 1 | Might and Magic II DOS start set (per-run BFS script) |
 | Z80 disassembler like `dis6502.py` | 1 | Phantasy Star part 2 |
 | `sample` leaves the screen stale so `record` refuses; `record` taking leading tokens | 1 | Phantasy Star early game |
 | `lenses.py SLUG SET --work` (check the working set, not the published one) | 1 | Might and Magic 1 DOS fix-up |

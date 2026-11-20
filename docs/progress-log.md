@@ -2,6 +2,17 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Might and Magic II (DOS): new rules applied, set `start`
+- Owner re-uploaded the GOG ZIP (SHA-1 matches). `main` re-verified with the new tools from an empty cache:
+  228/228, 213 s with 4 processes.
+- New set `start` (game-capture, ccbd75e): 52 shots played honestly from power-on to the first inn sign-in, no
+  pokes or warps. Found: the new party has 0 gold (shops browse only), the (8,1) cats fight is walled in, no
+  encounters in Middlegate; the first one on foot (ten Orcs at C2 (2,5)) beats the level-1 party, so the set shows
+  the defeat and the return to the inn. Wall map at 161D6 decoded (playbook). Coordinator re-verified from an
+  empty cache: 52/52.
+- Open: a won fight and a purchase in `start` (needs a stronger honest route, e.g. resting/training first or a
+  different first fight), plus the older open items in `game.json`.
+
 ## 2026-11-20 - Sword of Vermilion: town talk and encounters with the map
 - Owner's examples: a talk shot with the hero and speaker side by side mid-screen (Stow during the monster raid,
   found via the line table; flag FFC75C) and overworld encounters with the area map in the panel. `main`
