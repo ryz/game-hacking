@@ -8,11 +8,11 @@ middlegate | Middlegate street outside the inn after the spirit of Corak (7,5) f
 outdoors | area C2 outside Middlegate's gate (7,3) facing N, disk C in drive 1 | @middlegate,AT:5:F,FE,left,w300,y,w600,disk:3,enter,w700,settle
 signed_in | inn list after signing in at the Middlegate inn (roster written to disk B) | @start,right,w200,right,w300,settle,y,w600,settle
 hero | Middlegate street (7,5) with the HERO party (levels 29-31, poked), three Light casts, party window redrawn | @middlegate,HERO,LIGHT,LIGHT,LIGHT,o,w200,REDRAW,settle
-sheltem | Square Lake (area 17) gate (0,15) facing E, HERO party: Sheltem speech; the picture comes from disk A | @hero,WARPD:17:2:2:4,AT:0:F,FS,left,w400,disk:1,enter,w400,settle
-sheltem_options | Sheltem and four Elementals: encounter options (A attack, B bribe, H hide, R run), disk D back | @sheltem,space,w400,space,w400,disk:4,enter,w600,settle
+sheltem | Square Lake (area 17) gate (0,15) facing E, HERO party: Sheltem speech; the picture comes from disk A | @hero,WARPD:17:2:2:4,AT:0:F,FS,w1,left,w400,disk:1,enter,w400
+sheltem_options | Sheltem and four Elementals: encounter options (A attack, B bribe, H hide, R run), disk D back | @sheltem,space,w400,space,w400,disk:4,enter,w600
 atlantium | Atlantium (area 01) street (7,7) by warp from the HERO party | @hero,WARPD:01:7:7:2,settle
 cavern | cavern under Middlegate (area 11) at (7,7), lit | @hero,WARPD:11:7:7:4,settle
 plane_air | Elemental Plane of Air (area 29) at (7,7) | @hero,WARPD:29:7:7:5,settle
 castle | Castle Hillstone (area 37) at (7,7) | @hero,WARPD:37:7:7:6,settle
-combat | Middlegate (8,1): fixed fight with the level-1 party, encounter options | @middlegate,AT:8:1,FN,left,w400,settle
+combat | Middlegate (8,1): fixed fight with the level-1 party, encounter options | @middlegate,AT:8:1,FN,left,w400
 vet | Middlegate street (7,5) with the VET party (levels 10-11, poked), party window redrawn | @middlegate,VET,REDRAW,settle

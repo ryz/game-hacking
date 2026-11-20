@@ -23,8 +23,17 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+A first-person party role-playing game: a party of up to six characters (plus hirelings) walks square by square
+through 16x16-square areas of the world of Cron - five towns, a 5x4 grid of outdoor areas, caverns, castles,
+dungeons and four elemental planes, 60 areas in all **(verified: area warp)** - fighting menu-driven battles
+against groups shown as a framed monster portrait and a name list **(verified: `combat`, `sheltem_options`)**,
+buying services in towns and following quests; the party can travel through nine centuries, which the final
+quest needs **(source: Wikipedia)**. This is the original 1988 Apple II release on six disk sides; the game asks
+for each side when an area or picture is on another one **(verified)**. Saving is signing the registry at an
+inn **(verified: `signed_in`)**. The rules, quests and content are those of the DOS port documented in
+`games/dos/might-and-magic-2/design/` **(inferred: every area id, event square, item id and service checked here
+matched; see the playbook)**: the documents below will link there and record the Apple II differences (the
+Square Lake gate let an unmarked party meet Sheltem **(verified)**, hi-res pictures, disk prompts).
 
 ## Documents
 | Document | Covers |
@@ -40,3 +49,5 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Wikipedia | https://en.wikipedia.org/wiki/Might_and_Magic_II:_Gates_to_Another_World | release order, time travel, ending outline |
+| DOS port's design reference | `games/dos/might-and-magic-2/design/` | rules and content of the same game |

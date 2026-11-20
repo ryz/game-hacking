@@ -4,3 +4,55 @@
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/apple2/might-and-magic-2/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # title_screen | title | Title screen | @title
+# Plan by the scout (2026-11-20). Lines without '#' were previewed (work/preview/apple2/might-and-magic-2/);
+# captions to be checked against the frame when shot. Commented lines still need a route.
+boot_nwc | boot | "New World Computing Presents" with the globe | w400
+title_screen | title | Title picture: Might and Magic Book Two, the pegasus | @title
+menu_options | menu | Opening options: Start Game, Copy Disk, About Book Two, Number of Drives | @options
+menu_about | menu | About Book Two: Version 1.00 and the authors | @options,a,w600
+menu_copy | menu | 1 Drive Disk Copy: insert source disk | @options,c,w400
+menu_disk_b | system | Disk change prompt: Insert Disk B in Drive 1 | @options,s,w600
+menu_main | menu | Main Options: create, view all, transfer, go to towns | @menu
+menu_transfer | menu | Transfer Characters from Book 1 | @menu,t,w400
+menu_view_all | menu | View All: the roster with the five renamed premades and ryz | sav:01_start,MENU,v,w400
+menu_hirelings | menu | View All, hirelings list (empty at the start) | @menu,v,w400,space,w300
+create_roll | menu | Create New Characters: rolled statistics and the classes they allow | @menu,c,w400
+inn_list | menu | Middlegate inn list with the party ticked | @signed_in
+inn_registry | dialogue | Innkeeper: Will you sign the registry? | @start,right,w200,right,w300
+cutscene_corak | cutscene | The spirit of Corak proclaims, at the inn door | @start,up,w300,up,w400
+gameplay_start | gameplay | First control: inside the Middlegate inn, facing the door | @start
+env_middlegate_street | gameplay | Middlegate street outside the inn | @middlegate
+env_c2_coast | gameplay | Area C2 outside Middlegate's gate: forest and coast | @outdoors
+dialogue_pegasus | dialogue | The Guardian Pegasus greets the party in C2 | @outdoors,up,w300
+shop_blacksmith | shop | Svendegard the blacksmith's prompt | @middlegate,AT:4:4,FN,left,w300
+shop_tavern | shop | Slaughtered Lamb: Amber asks for drink orders | @middlegate,AT:4:6,FN,left,w400
+shop_temple | shop | Gateway Temple: the cleric offers aid | @middlegate,AT:7:7,FE,left,w400
+system_training | system | Training grounds prompt | @middlegate,AT:A:7,FS,left,w400
+shop_guild | shop | Mage guild enrolment for 20 gold | @middlegate,AT:1:C,FN,left,w400
+shop_locksmith | shop | Locksmith offers a key for 500 gold | @middlegate,AT:1:8,FN,left,w400
+system_portal | system | Poorman's Portal to Sandsobar for 10 gold | @middlegate,AT:0:5,FN,left,w400
+system_mapper | system | Otto Mapper teaches mapping for 10 gold | @middlegate,AT:0:F,FN,left,w400
+dialogue_nordon | dialogue | Nordon the wizard asks a service | @middlegate,AT:A:2,FN,left,w400
+gameplay_stairs | gameplay | Stairs to Cavern prompt | @middlegate,AT:8:0,FN,left,w400
+gameplay_gates | gameplay | Middlegate city gates: Exit? | @middlegate,AT:5:F,FE,left,w300
+options_controls | options | Controls: sounds, walk beep, disposition, delay | @middlegate,c,w300
+inventory_quickref | inventory | Quick reference: hit points, spell points, levels, food | @middlegate,q,w300
+system_search | system | Search: nothing here | @middlegate,s,w300
+inventory_profile | inventory | ryz's character sheet | @middlegate,1,w300
+system_spellbook | system | deddo's spell book while casting | @middlegate,5,w300,c,w300
+system_light | system | Light cast: the Protection panel | @middlegate,LIGHT
+battle_options | battle | Encounter: Witch's Cats and Rabid Rodents, attack/bribe/hide/run | @combat,!
+battle_screen | battle | Combat screen: monster list and mnz's options | @combat,a,w900
+battle_bribe | battle | Bribe with food, gold or gems | @combat,b,w300
+env_cavern_dark | gameplay | Cavern under Middlegate without light: Darkness | @middlegate,WARPD:11:7:7:4
+env_cavern | gameplay | Cavern under Middlegate, lit | @cavern,right,w300
+env_atlantium | gameplay | Atlantium street | @atlantium
+env_plane_air | gameplay | Elemental Plane of Air | @plane_air
+env_castle | gameplay | Castle Hillstone corridor | @castle
+env_e1_mountain | gameplay | Area E1 near Vulcania | @hero,WARPD:21:7:7:5,right,w300
+gameplay_xabran_ruins | gameplay | Ruins of Castle Xabran in C2, year 900 | @outdoors,AT:E:7,FN,w100,up,w400
+boss_sheltem | boss | Sheltem guards the control room | @sheltem,!
+boss_sheltem_options | boss | Sheltem and the four Elementals: encounter options | @sheltem_options,!
+# still to route: creation steps, rename, every service menu after `y`, rest, unlock, bash, exchange, other towns,
+# outdoor terrains (tundra A1, desert, swamp, water), dungeon, planes of fire/earth/water, opponents, victory,
+# death, game over, training level-up, skills, hireling, Kalohn, ending (needs the century and the Sheltem fight).
