@@ -47,9 +47,22 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
     replayed from power-on (same picture): the death/revival is a shot route (`gameover_revived`), not a
     checkpoint. Re-verify such shots with `shoot.py --verify`.
   - The title and most field screens never settle (blinking cursor, animated water/NPCs): "NOT settled" is normal.
-- **State:** captured 2026-11-20: sets `start` (35, honest, to the first save) and `main` (65) published and verified.
-  Reached: Parma, its inn and magic shop, the cave south of Wyclif, the entrance of the cave east of Parma.
-  Not reached: a boss, a ring, Watling, message-speed option.
+- **State:** captured 2026-11-20: sets `start` (35, honest, to the first save), `main` (96) and `seq-aries` (7: Aries
+  cast -> fade -> Wyclif gate, with a clip) published and verified. Reached: Parma, the Ring of Wisdom (old man,
+  cave south of Wyclif), the Cave of Troy entrance map. Not reached: a boss, Watling, the ending, message speed.
+- **Maps (round 3):** one flag byte per map, FFC820 + y*16 + x (map x/y = FFC666/FFC668; Wyclif's south map is
+  (0,7), Parma (1,4)). Poke the byte *before* entering the map (inside a town, or before crossing an edge): the
+  panel is drawn on map entry, not on a step. Mirror of Atlas (item 0x23) = all 256 flags; Titania's Mirror
+  (0x1E) = current outdoor map; Griffin Wing (0x1D) = fade to Wyclif's gate. Item Use recipe:
+  `poke:FFC443=01,poke:FFC444=00XX,c,w30,down,w20,c,w40,c,w60,settle,c,w120` (one more `c,w120` for the result).
+- **Story flags:** FFC720 = Blade has spoken, FFC818 = Ring of Wisdom received; a town picks its people's line
+  table on entry from these (ROM 0x1EB0C for Wyclif), so poke them before entering. `m_ring` gets the ring
+  honestly (old man at window (18,20) of the cave, via `m_cave_inner`); `m_map_gift` (ring flag poked, from
+  `@overworld`) has the man by the well give the Parma route map (5 maps).
+- **Any enemy group:** `poke:FFC68B=NN` (0-0x55) right before the step that starts the encounter, e.g.
+  `@field,FWD*8,TR,FWD*6,poke:FFC68B=24,freeze:FFC62C=0021,FWD,w10*16,!`. 0x56 and above crash. At `m_strong`
+  the group is fixed earlier (the poke before the last step did nothing). FFC0A4 looks like a mode byte
+  (0 title, 1 name, 9 interior, 10 overworld, 11 battle, 12 cave) but poking it changes nothing.
 - **Main-set chain (capture 2026-11-20):** `m_strong` (from `@battle`: EXP poked to 2417, battle won with HP frozen
   -> level 5, 162 HP, 3424 kims) -> `m_cave1` (cave south of Wyclif, dark) -> `m_cave_lit` (2 Herbs, Candle, Lantern
   poked, Lantern used) -> `m_cave_door`/`m_cave_inner`/`m_cave_chest`/`m_cave_west`; `m_strong` -> `m_north1` ->
@@ -162,8 +175,10 @@ Routes in `shots.txt` (22 lines verified by `preview.py`, the rest planned as co
 - [ ] `env_wyclif_*` (2-3 plain street views), `env_graveyard`, Blade's grave
 - [x] more `env_overworld_*` (other maps), `gameplay_cave_dark` / `gameplay_cave_lit` - first-person views
 - [x] `battle_magic`, `battle_levelup` (won), blue slimes, goblins (2026-11-20); `battle_escape` not shot (same frame as a road) - more battles (several enemy types)
-- [~] `system_aries_towns`, `system_lantern` done; `map_area` open (the Area Map is not in the item table), `system_magic` (a spell cast), `system_lantern`
-- [ ] `boss_first` - the first boss; `options_message_speed`; Watling ... (Parma done 2026-11-20)
+- [x] `system_aries_towns`, `system_lantern`; area maps (2026-11-20 round 3: `map_*`, mirrors, map gift); travel (`system_aries_arrival`, `system_griffin_wing`, set `seq-aries`)
+- [x] presentations: intro (`cutscene_intro_rise`, `cutscene_title_letters`), all four prologue pages, battle start fade, Ring of Wisdom scene
+- [ ] Sangua cast; town entry/exit and cave entry are plain fades (`seq-aries` 06 shows one), not shot separately
+- [ ] `boss_first` - the first boss (Cave of Troy guardians? trigger unknown); ending (text at ROM 0x17722, staff 0x179CA; trigger unknown); `options_message_speed`; Watling ...
 Fastest ways: the `saved` checkpoint for town shots; stats by poke (RAM map) before fights; town warps with
 the Aries spell once the spell slot RAM is known (Action Replay lists name "All Towns Available With Aries").
 
@@ -226,6 +241,12 @@ loaded by `@continue` (verified).
 | FFC640 | 2 | level minus 1 | level-up diff, verified |
 | FFC550 | 1 | FF during a battle | diff, verified |
 | FF9000 | 0x600 | map window 48x32 (overworld/cave), see Read first | verified |
+| FFC666 / FFC668 | 2 / 2 | current map x / y in the 16x16 grid of maps (outside); in a cave they keep the overworld map | peek at checkpoints, verified |
+| FFC820 | 256 | owned-map flags, FF = owned, index y*16 + x; the Mirror of Atlas sets all | Mirror diff, verified by poke |
+| FFC55F | 1 | set to FF by a mirror use (meaning unknown) | diff |
+| FFC720 / FFC818 | 1 / 1 | story flags: Blade has spoken / Ring of Wisdom received (choose the town line tables) | ROM table 0x1EB0C + poke, verified |
+| FFC68B | 1 | enemy group type of the next encounter (0 green slime, 1 blue slime, 0x0A goblins, ... 0x55) | diff over three battles, verified by poke |
+| FFC0A4 | 1 | mode-like byte (0 title, 1 name, 6 town start, 9 interior, 10 overworld, 11 battle, 12 cave, 0x18 at a ladder); writes ignored | diff |
 | FFC685 | 1 | counts steps and turns on the overworld (reset by a battle); encounter counter? | diff, unconfirmed |
 | 200001 ... (odd bytes) | | Saved Game 1 starts with the name | peek after saving |
 
@@ -255,6 +276,9 @@ loaded by `@continue` (verified).
 | field | overworld outside the south gate with the sword |
 | battle | first battle (green slimes), ~100 frames after the transition |
 | escaped | the same battle left by the left edge, back on the overworld (HP 27/33) |
+| m_map_gift, m_map_out | Wyclif after the man by the well gave the Parma route map (ring flag poked); outside the gate with the area map in the panel |
+| m_ring | cave south of Wyclif, Ring of Wisdom received from the old man (honest, from `m_cave_inner`) |
+| m_strong ... m_cave2_lit | main-set chain, see Read first |
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -287,3 +311,14 @@ loaded by `@continue` (verified).
 - East of Parma: a stone cave entrance on the overworld (`m_cave2_gate`), same stone tile set inside; a special
   square value 2 at window (30,16) not reached (the walker got lost when the window re-centred).
 - No in-game save was made after Parma (no church visited there); `saves/01_start.sav` is still the only export.
+
+## Capture 2026-11-20 round 3 (maps and presentations)
+- Wyclif people: 14 per phase, three tables at ROM 0x2D424 (before Blade), 0x2D45C (after), 0x2D494 (ring). Index 1
+  says "There's a ring in a cave south of here. Here's a map to guide you." after Blade (not found on foot: people
+  wander); index 3 is the man by the well west of the inn (`m_map_gift`).
+- Cave south of Wyclif: money chest at window (18,27) (route in shots `system_open_money`), the ring keeper at
+  (18,20). Cave of Troy (map 3,4): one map; the special square 2 at (29,16) is a ladder up seen from (28,16); its
+  chests and the treasure not explored.
+- NPCs walk: a Talk route only reproduces with the exact waits; the dialogue shot replays from `@overworld`.
+- Dead ends for the boss/ending: no 68000 disassembler in the container (installing capstone was refused); the
+  encounter byte above 0x55 crashes (0x81 gives a green screen); FFC0A4 writes are ignored.

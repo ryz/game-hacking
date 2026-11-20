@@ -96,8 +96,18 @@
     "level": {
       "addr": "FFC640",
       "size": 2
+    },
+    "map_x": {
+      "addr": "FFC666",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "map_y": {
+      "addr": "FFC668",
+      "size": 2,
+      "fmt": "hex"
     }
   },
-  "work": "sets main (65) and start (35, to the first save) published and verified 2026-11-20; three lenses; 43 checkpoints to Parma and two caves; RAM map incl. items, spells, map window; save 01_start",
-  "open": "first boss, rings, Watling and later towns; Area Map; message-speed option; Sangua and other spells cast; a church save after Parma"
+  "work": "sets main (96), start (35, to the first save) and seq-aries (7) published and verified 2026-11-20; three lenses; 48 checkpoints to Parma, the Ring of Wisdom and two caves; RAM map incl. items, spells, map flags, story flags, encounter type; save 01_start",
+  "open": "first boss (trigger unknown) and the ending (text found, trigger unknown); rings after Wisdom, Watling and later towns; message-speed option; Sangua and other spells cast; a church save after Parma"
 }

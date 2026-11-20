@@ -30,3 +30,14 @@ is pressed (`save_church_menu`, `32_priest_menu` in set start).
 **Intended:** unclear.
 **Confidence:** (verified)
 **Impact:** cosmetic.
+
+## Round 3 (2026-11-20)
+- Town lines are chosen once, on entering the town, from (table, flag) pairs at ROM 0x1EB0C (Wyclif: FFC818 ring
+  -> 0x2D494, FFC720 Blade -> 0x2D45C, else 0x2D424); a flag set inside the town changes nothing until the town is
+  left and entered again **(verified: poke inside Wyclif kept the old line)**.
+- Map gifts set the map flags when the line is shown, before the next page **(RAM)**.
+- The area-map panel is redrawn only on map entry or a mirror use: a flag poked mid-map shows nothing until the
+  next map edge or town exit **(verified)**.
+- Encounter types 0x56 and above (and 0x80-0xFF) crash or hang the battle loader **(verified)**: no range check.
+- The battle HP readout can show 0 while HP is frozen at 33: the panel is drawn from the value before the
+  freeze is applied again **(verified: `w10*28` frames)**.
