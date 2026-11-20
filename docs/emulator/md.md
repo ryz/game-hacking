@@ -82,3 +82,7 @@ cannot be entered.
 First game on this backend: Sword of Vermilion (scout 2026-11-20) found no friction with buttons, battery RAM,
 `export`/`sav:`, peek/poke or timing. Most of work RAM changing on a step is tile maps: use
 `play.py diff A --range FFC000-FFFFFF` (or wherever the game keeps its variables).
+A state loaded mid-scene can differ from a flat replay in a dead stack word (Sword of Vermilion: `FFFD8C`, a
+return address below the stack pointer, 600 frames into a battle; game variables and frames equal, gone after
+more play): an interrupt landed one instruction apart. `cachecheck.py` reports such a checkpoint as "DIFFERS
+(memory)"; end checkpoints outside real-time scenes, or check that the differing bytes are stack.

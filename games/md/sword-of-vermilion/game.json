@@ -35,7 +35,10 @@
     "NAME": "down*4,right*7,c,left*3,down,c,right,c",
     "NEWGAME": "start,w120,NAME,start,w60,w4400",
     "PAGE": "c,w90",
-    "CONTINUE": "down,start,w120,c,w300,c,w300"
+    "CONTINUE": "down,start,w120,c,w300,c,w300",
+    "FWD": "up:8,w40",
+    "TL": "left:8,w60",
+    "TR": "right:8,w60"
   },
   "ram": {
     "kims": {
@@ -69,8 +72,22 @@
     "facing": {
       "addr": "FFC60D",
       "size": 1
+    },
+    "ow_x": {
+      "addr": "FFC662",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "ow_y": {
+      "addr": "FFC664",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "steps": {
+      "addr": "FFC685",
+      "size": 1
     }
   },
-  "work": "scouted 2026-11-20: boot, naming, Blade scene, Wyclif church save, 14 checkpoints, save 01_start; overworld and battles not reached; not captured",
-  "open": "town exit to the overworld, first-person overworld/caves, first battle, weapon shop entry, message speed setting, map/area RAM, encounter and battle RAM"
+  "work": "scouted 2026-11-20 (2 rounds): boot, naming, Blade scene, church save, weapon shop, overworld, first battle; 23 checkpoints, RAM map, save 01_start; not captured",
+  "open": "a won battle and its reward, Area Map, ring cave south of Wyclif, magic and its battle button, first boss, Parma; overworld map-number RAM; cache divergence after a lost battle"
 }

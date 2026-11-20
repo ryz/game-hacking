@@ -18,14 +18,17 @@ gameplay_tavern | gameplay | Wyclif tavern interior | @tavern
 save_church_menu | save | Church: Remove a curse / Apply poison balm / Save your game / Stop | @church_menu
 save_slots | save | Save under which number? Saved Game 1-3 | @church_menu,down*2,c,w90
 menu_continue_slots | menu | Continue: Saved Game 1 ryz level 1 | sav:01_start,TITLE,down,start,w120
-# hud_field_menu | hud | Field command window: Talk Magic Item Equip Str Seek Open Take | (any town, c)
-# inventory_status | inventory | Status: Level, EXP, HP/MHP, MP/MMP, STR AC INT DEX LUK KIM | (c,down*2,c)
-# inventory_equip | inventory | Equip: Put on / Remove -> Weapon Shield Armor | (c,right,down,c,c)
-# shop_weapon | shop | Wyclif weapon shop (crossed-swords sign) buying a Bronze Sword | needs the route in
 # env_graveyard | gameplay | Wyclif east: graveyard by the stream | @t_door,down:32,w10,right:320,w10,up:96,right:320,w300
-# env_overworld_* | gameplay | First-person overworld near Wyclif, 3-4 plain views | needs the town exit
-# battle_first / battle_attack / battle_magic / battle_won | battle | Side-view real-time battle | first encounter
 # map_area | map | Area Map item in use | buy/take the map near the inn
 # boss_first | boss | First boss (Peak Cave / Cave of Troy) | poke stats, play
-# gameover | gameover | Death screen | let a battle be lost
 # options_message_speed | options | Message Speed: Fast Normal Slow | where is it opened? (open question)
+hud_field_menu | hud | Field command window: Talk Magic / Item Equip / Str Seek / Open Take | @wyclif,c,w40
+inventory_status | inventory | Status: Level 1, EXP, HP/MHP, MP/MMP, STR AC INT DEX LUK KIM | @wyclif,c,down*2,c,w40
+shop_weapon | shop | Wyclif weapon shop: Bronze Sword 100, shields 50/80, armour 200/400 kims | @shop_list
+inventory_equip | inventory | Equip: Put on, Weapon, "What do you want to ready?" with the Bronze Sword | @shop_list,c,w90,c,w90,b,w40,b,w40,b,w40,b,w40,b,w40,c,right,down,c,w60,c,w60,c,w60,c,w90
+env_overworld_road | gameplay | Overworld: first-person forest road south of Wyclif, HUD with KIM, EXP, HP, MP, MAGIC | @overworld
+env_overworld_trees | gameplay | Overworld: facing a stand of trees west of the road | @field,FWD*8
+gameplay_encounter_slime | gameplay | Overworld: a green slime approaches on the road | @field,FWD*8,TR,FWD*6
+battle_first | battle | First battle: the prince and a pack of green slimes in the forest | @battle,w40,!
+battle_attack | battle | Battle: Bronze Sword swing (C) among the slimes | @battle,mash:c:600,!
+gameover_revived | gameover | Lost battle: revived in the church, "Arise, brave warrior!", half the money taken | @battle,mash:a:600,w540

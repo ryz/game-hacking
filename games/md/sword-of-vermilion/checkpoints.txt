@@ -15,3 +15,12 @@ church | Wyclif church: just inside the door | @tavern,down:48,w200,down:16,w10,
 church_menu | Wyclif church: priest's menu (Remove a curse / Apply poison balm / Save your game / Stop) | @church,up:16,left:48,up:80,right:64,up:16,c,c,w90,settle
 saved | Wyclif church after saving to Saved Game 1 (ryz, level 1, 200 kims), menus closed | @church_menu,down*2,c,w90,settle,c,w120,settle,c,w60,b,w30,b,w30,b,w30,settle
 continue | Continue with saves/01_start.sav: Saved Game 1 loaded, ryz in front of the Wyclif priest | sav:01_start,TITLE,CONTINUE
+t_north_road | Wyclif: north road behind Blade's house | @wyclif,down:16,w10,left:80,w10,up:320,w200,settle
+t_south_west | Wyclif: south-west corner inside the fence, west of the weapon shop | @tavern,down:48,w200,down:16,w10,down:16,w10,right:16,w10,right:64,w10,down:128,w10,left:128,w10,left:80,w10,down:96,w30,down:160,w10,settle
+overworld | Overworld: first-person view just south of Wyclif's gate (no weapon, 200 kims) | @t_south_west,right:144,w10,down:64,w20,down:32,w300,settle
+weapon_shop | Wyclif weapon shop (crossed swords), just inside the door | @t_south_west,right:80,w10,up:48,w20,up:16,w150,settle
+shop_list | Wyclif weapon shop: Buy list with prices (200 kims) | @weapon_shop,up:96,c,c,w90,settle,c,w90,settle
+sword | Weapon shop after buying and readying a Bronze Sword (100 kims left) | @shop_list,c,w90,settle,c,w90,settle,c,w90,down,c,w90,c,w90,settle,down,c,w90,settle,b,w40,b,w40,b,w40,b,w40,b,w40,settle,c,right,down,c,w60,c,w60,c,w60,settle,c,w90,settle,c,w40,b,w40,b,w40,b,w40,settle
+field | Overworld south of Wyclif's gate with the Bronze Sword readied (100 kims) | @sword,down:160,w150,down:32,w10,right:64,w10,down:64,w20,down:32,w300,settle
+battle | First random encounter south of Wyclif: side-view battle with green slimes, Bronze Sword readied | @field,FWD*8,TR,FWD*7,w100,settle
+escaped | Battle escaped by walking off the left edge: back in the first-person overworld (HP 27/33) | @battle,left:300,w200

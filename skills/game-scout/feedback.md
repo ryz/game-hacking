@@ -26,4 +26,5 @@ Tool wishes are not listed here: `docs/backlog.md`.
 - **Facts in a dispatch are "to be checked":** verify the stated start (year, place, working files) on screen
   before naming checkpoints after it (Ultima II, 2026-11-19).
 - **Doors that ignore walking into them:** test "step onto the tile, release, press again" in one preview batch
-  before trying Open/Seek or other doors (Sword of Vermilion, 2026-11-20, ~40 calls).
+  before trying Open/Seek or other doors (Sword of Vermilion, 2026-11-20, ~40 calls). An exit that does nothing
+  before a story event: retry it after the event before searching elsewhere (same game, the south gate).

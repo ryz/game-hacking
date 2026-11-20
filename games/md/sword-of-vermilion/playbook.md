@@ -5,18 +5,31 @@ Status of each fact: **verified** (seen in the emulator, with the route) or **so
 checked). Never delete a fact that turned out wrong: strike it and say what is true.
 
 ## Read first
-- **Start:** `rom/sword-of-vermilion.md` (SHA-1 c18fc75e...), model `ntsc`. `play.py start sword-of-vermilion --route @saved`
-  (Wyclif church, game saved) or `@wyclif` (outside Blade's house). `@continue` = the same state via the
+- **Start:** `rom/sword-of-vermilion.md` (SHA-1 c18fc75e...), model `ntsc`. `play.py start sword-of-vermilion --route @field`
+  (overworld outside Wyclif, Bronze Sword readied), `@battle` (first battle), `@saved` (Wyclif church, game
+  saved) or `@wyclif` (outside Blade's house). `@continue` = the same state via the
   exported save `saves/01_start.sav` and the title's Continue.
 - **Macros:** `TITLE` = `w800` (title with cursor; inputs work from ~f300, Start then lands on the title);
   `NAME` types ryz on a fresh keyboard; `NEWGAME` = keyboard, name, Start, the auto-running prologue (no skip)
   to first control (~4500 frames); `PAGE` = `c,w90` (one dialogue page at Normal speed); `CONTINUE` = title ->
   Continue -> Saved Game 1 -> "Your game is ready" -> in front of the priest.
+- **Overworld macros:** `FWD` = `up:8,w40` (one step forward), `TL` / `TR` = `left:8,w60` / `right:8,w60` (turn 90 degrees).
 - **Checkpoint chain:** title -> name -> start -> t_door -> t_church -> t_blade_in -> t_blade_room -> blade ->
-  wyclif -> tavern -> church -> church_menu -> saved; continue (from the .sav). All 14 reproduce
+  wyclif -> tavern -> church -> church_menu -> saved; continue (from the .sav); wyclif -> t_north_road;
+  tavern -> t_south_west -> overworld (no weapon); t_south_west -> weapon_shop -> shop_list -> sword -> field
+  -> battle -> escaped. All 23 reproduce
   (`tools/cachecheck.py`). The routes before `wyclif` are exploratory (they wander); they are correct, not short.
-- **Controls:** C = confirm / field command window; B = back/close and delete on the keyboard; Start = title
-  choice and ends naming. A: no use found yet.
+- **Controls:** C = confirm / field command window / **sword swing in battle** (one swing per press: holding
+  C does nothing); B = back/close and delete on the keyboard; Start = title choice and ends naming. A and B do
+  nothing in battle. Overworld: up = step forward, left/right = turn. Battle: D-pad moves freely; **walking off
+  the left (or right) edge escapes** (verified left).
+- **Leaving Wyclif:** the south gate (tile 0D,2B) after Blade has spoken: stand on it, then a fresh `down`
+  (`w20,down:32,w300`). Before Blade it does nothing. A man by the well (west of the inn) says "Be sure to buy
+  armor, a weapon, and a shield before you leave the village."
+- **First battle:** `@field,FWD*8,TR,FWD*7,w100`: a green slime appears on the road at step 3 after the turn and
+  meets the prince at step 7; side-view battle with about eight slimes. Without a weapon (or pressing only
+  A/B) the prince dies in ~600 frames and is revived at the Wyclif church with half his money ("Arise, brave
+  warrior! Our world needs you! But half your money ...").
 - **Traps that cost calls:**
   - **Doors and stairs fire only on a fresh press** made while standing on the door/stair tile: walk onto it,
     then `w20,up:16` (or the direction of the exit) again. Holding the direction into the door does nothing.
@@ -28,9 +41,14 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
     from `play.py route` / checkpoints.txt.
   - Text types slowly at Normal speed and C does not complete a page; `mash` lost pages. Use `PAGE*N`.
   - Position pokes (FFC606/FFC608) are overwritten at once: the real position lives elsewhere (open).
+  - **Shop dialogs:** after a purchase "Anything else for you today?" Yes returns to Buy / Sell / Stop with the
+    cursor where it was: a blind `down,c` sold the sword offer ("Is 30 kims all right?"). Look before each step.
+  - A state loaded mid-battle (`@battle`) and played on to a lost battle differed in memory from the same route
+    replayed from power-on (same picture): the death/revival is a shot route (`gameover_revived`), not a
+    checkpoint. Re-verify such shots with `shoot.py --verify`.
   - The title and most field screens never settle (blinking cursor, animated water/NPCs): "NOT settled" is normal.
-- **State:** scouted only. Not reached: the exit from Wyclif to the overworld (south gate tile 0D,2B does not
-  lead out; east is a graveyard), the first-person overworld, any battle, the weapon shop interior.
+- **State:** scouted (two rounds). Reached: overworld, first battle, weapon shop. Not reached: a won battle
+  (with its reward screen, if any), the Area Map, the ring cave south of the village, magic, a boss, Parma.
 
 ## Identity
 | Field | Value |
@@ -75,8 +93,16 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 | Open | | doors/chests: "There's nothing to open here!", "Sorry, you can't open that!" | verified |
 | Seek | | "You searched carefully, but you didn't notice anything unusual." | verified |
 | Church (Talk to the priest across the altar) | | Remove a curse / Apply poison balm / Save your game / Stop -> slot 1-3 | verified |
-| Overworld / caves | D-pad | step forward / turn (first person) | source (Wikipedia), unverified |
-| Battle | | sword attack, magic, real-time (source: Wikipedia); buttons unverified | source |
+| Overworld | `up` / `down` | step forward / back (`FWD` = `up:8,w40`; ~40 frames per step) | verified (`up`); `down` source (GameFAQs via search snippet) |
+| Overworld | `left` / `right` | turn 90 degrees (`left:8,w60`) | verified |
+| Overworld | `c` | field command window (same as in town) | source; not tried here |
+| Overworld | walk onto the town square | enter the town (two right turns + steps back from `@overworld` re-entered Wyclif) | verified |
+| Battle | D-pad | move the prince anywhere on the field (real time) | verified |
+| Battle | `c` | sword swing, one per press (mashing C killed a slime: EXP +1, KIM +2) | verified |
+| Battle | `a` / `b` | nothing seen (the prince died while mashing them) | verified |
+| Battle | walk off the left/right edge | escape to the overworld | verified (left) |
+| Battle | magic | button unknown (no spell owned yet) | open |
+| Shop | Talk to the keeper across the counter | Buy / Sell / Stop -> list with prices -> "Is X OK?" Yes/No -> "Anything else for you today?" | verified |
 | `a` | | no effect found on the title or in town | verified (title) |
 | Second pad A+B+C+Start | | hidden menu (source: Sega Retro via search snippet); not testable: the md backend has no second pad | unverified |
 
@@ -109,22 +135,31 @@ need a separate press after arriving (see Read first). Dialogue: `PAGE` = `c,w90
   door (09,28) by the south gate; graveyard with crosses east of the stream (~(23,25)).
 
 ## Shot plan
-Routes in `shots.txt` (12 lines verified by `preview.py`, the rest planned as comments).
+Routes in `shots.txt` (22 lines verified by `preview.py`, the rest planned as comments).
 - [x] `boot_sega`, `cutscene_intro_tree`, `title_screen`, `menu_name`, `cutscene_prologue_tsarkon` - boot to naming
 - [x] `start_wyclif_gate` (gameplay), `dialogue_blade_house`, `env_wyclif_blade_house`, `gameplay_tavern`
 - [x] `save_church_menu`, `save_slots`, `menu_continue_slots`
+- [x] `hud_field_menu`, `inventory_status`, `shop_weapon`, `inventory_equip` (round 2)
+- [x] `env_overworld_road`, `env_overworld_trees`, `gameplay_encounter_slime`, `battle_first`, `battle_attack`,
+  `gameover_revived` (round 2)
 - [ ] `cutscene_blade` - Blade's deathbed pages (from `t_blade_room`, route in `blade`; pick a page with `PAGE`)
-- [ ] `hud_field_menu`, `inventory_status`, `inventory_equip` - field window, status, equip (routes in Controls)
-- [ ] `shop_weapon` - buy a Bronze Sword in Wyclif (door 09,28; enter with a fresh `up`)
 - [ ] `env_wyclif_*` (2-3 plain street views), `env_graveyard`, Blade's grave
-- [ ] `env_overworld_*` (3-4), `gameplay_cave_dark` / `gameplay_cave_lit` - first-person views
-- [ ] `battle_first`, `battle_attack`, `battle_magic`, `battle_won` - side-view battles (several enemy types)
+- [ ] more `env_overworld_*` (other maps), `gameplay_cave_dark` / `gameplay_cave_lit` - first-person views
+- [ ] `battle_magic`, `battle_won`, `battle_escape` - more battles (several enemy types)
 - [ ] `map_area` (Area Map item), `system_magic` (a spell cast), `system_lantern`
-- [ ] `boss_first` - the first boss; `gameover`; `options_message_speed`; later towns (Parma, Watling ...)
+- [ ] `boss_first` - the first boss; `options_message_speed`; later towns (Parma, Watling ...)
 Fastest ways: the `saved` checkpoint for town shots; stats by poke (RAM map) before fights; town warps with
 the Aries spell once the spell slot RAM is known (Action Replay lists name "All Towns Available With Aries").
 
 ## Strategy and walkthrough notes
+- Round 2 (verified): Wyclif weapon shop prices: Bronze Sword 100, Leather Shield 50, Small Shield 80, Leather
+  Armor 200, Bronze Armor 400 kims; selling the Bronze Sword gives 30. With Blade's 200 kims buy the sword and
+  the Leather Shield (`@sword` bought only the sword). Readying the sword: STR 4 -> 0x20 in RAM (STR word
+  FFC634 = 0020 after readying; status screen value not read).
+- First enemies: green slimes in packs of 6-8 on the road south of Wyclif (verified); they hit for about 3 HP.
+  For battle shots freeze HP (`freeze:FFC62C=0021`, re-applied per token: use `w10*N`, not one long wait).
+- Source (search snippets): the Ring of Wisdom cave is south of the village; "follow the path north from Wyclif
+  to reach Parma"; the man behind the weapon shop gives the map to Parma; fight near the village until a level-up.
 - Opening (verified): from `start` go to Blade's house (top-left, the only open doorway), up the ladder, talk to
   Blade (stand below-left of the bed: `@t_blade_room` route), `PAGE*16`; 200 kims. Then every door opens.
 - Buy a weapon first: Equip shows no gear at the start. Bronze Sword price unknown (open).
@@ -168,6 +203,8 @@ loaded by `@continue` (verified).
 | FFC630 / FFC632 | 2 / 2 | MP / MMP | read |
 | FFC634-FFC63C | 2 each | STR, AC, INT, DEX, LUK | read |
 | FFC64C | 4+ | name, ASCII, FF-terminated ("ryz") | read |
+| FFC662 / FFC664 | 2 / 2 | overworld square x / y within the current 16x16 map (hex); facing is FFC60D (0 N, 2 W, 4 S, 6 E) | diff over a step (round 2); the map number is open |
+| FFC685 | 1 | counts steps and turns on the overworld (reset by a battle); encounter counter? | diff, unconfirmed |
 | 200001 ... (odd bytes) | | Saved Game 1 starts with the name | peek after saving |
 
 ## Emulation notes
@@ -189,6 +226,13 @@ loaded by `@continue` (verified).
 | tavern | tavern interior |
 | church, church_menu, saved | church, priest's menu, after Saved Game 1 |
 | continue | the same via `sav:01_start` and Continue |
+| t_north_road | the road along the north edge of Wyclif (dead end both ways) |
+| t_south_west | south-west corner of Wyclif inside the fence, west of the weapon shop |
+| overworld | first-person overworld just outside the south gate, no weapon, 200 kims |
+| weapon_shop, shop_list, sword | weapon shop door, Buy list, Bronze Sword bought and readied (100 kims) |
+| field | overworld outside the south gate with the sword |
+| battle | first battle (green slimes), ~100 frames after the transition |
+| escaped | the same battle left by the left edge, back on the overworld (HP 27/33) |
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -203,8 +247,10 @@ loaded by `@continue` (verified).
 | Unavailable | gamefaqs (403), tcrf.net (403), strategywiki (403), datacrystal (no page), archive.org file hosts and almarsguides/gopherproxy (not allowed) | - | 2026-11-20 |
 
 ## Open questions
-- How to leave Wyclif: the south gate tile (0D,2B) and fresh `down` presses do not exit; east is the graveyard;
-  north ends at Blade's house. Try west, the gate with a longer wait, or talk to the gate guard first.
+- ~~How to leave Wyclif~~ solved in round 2: the south gate opens after Blade has spoken (fresh `down` on 0D,2B).
+- Is there a victory/reward screen after the last enemy of a battle? (not reached: mashing C alone stalls with
+  slimes around; move toward them between swings).
+- Why `@battle` + 600 frames of losing differs in memory between a loaded state and a flat replay (backend?).
 - Real position variables (town and overworld), map id, encounter trigger, battle state, spell list slots.
 - Battle buttons; where Message Speed is set; Bronze Sword price; the inn and fortune teller interiors.
 - Whether the AR invincibility codes (ROM words) and the Game Genie codes work as `rom:` variants.

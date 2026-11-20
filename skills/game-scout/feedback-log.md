@@ -12,6 +12,19 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Sword of Vermilion (Mega Drive, round 2)
+- Task: reach the overworld and the first battle as checkpoints; verify the buttons there.
+- Worked: a search snippet led to retrying the gate after Blade's speech; preview batches with --peek found
+  gate, encounter step and battle buttons; mashing each button in parallel with EXP/kims/HP peeked found the
+  attack button; diff --range found the overworld position at once.
+- Friction: cachecheck says "DIFFERS (memory)" without addresses (a dropped `revived` checkpoint); preview
+  --timeline only adds waits; speedrun.com, rpgclassics not allowed, GameFAQs 403.
+- Proposed rule change: (1) lesson: retry an exit after the story event; (2) backlog: cachecheck --show-diff;
+  (3) backlog: preview --repeat; (4) md.md: mid-battle state drift, to confirm.
+- Corrected: (4) checked by the coordinator: the only difference is a dead stack word (FFFD8C), gone after more
+  play; game state and frames equal. 23/23 checkpoints reproduce (cachecheck, sheet checked).
+- Status: (1) open (merged with the door lesson); (2), (3) backlog; (4) logged in md.md with the explanation.
+
 ### 2026-11-20 - Sword of Vermilion (Mega Drive, round 1)
 - Task: scout Sword of Vermilion, the first Mega Drive game: boot, controls, checkpoints, save, shot plan.
 - Worked: md backend deterministic; big-endian set:/poke: and BCD watches; odd-byte cartridge RAM via peek
