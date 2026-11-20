@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_01_start.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_01_start.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2e26ddd710ad292f1af960ecaf071c9de7dc40f6"
   },
   {
    "id": "02_step_clip",
@@ -37,11 +37,9 @@
     "kept": 21,
     "poster": 8,
     "seconds": 0.67,
-    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_02_step_clip.gif",
-    "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_02_step_clip.gif"
+    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_02_step_clip.gif"
    },
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_02_step_clip.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_02_step_clip.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
    "captured": "2026-11-19"
   },
@@ -54,9 +52,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_03_step1.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_03_step1.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9890612f0f5a5f54003b2df25a3028b4291716ae"
   },
   {
    "id": "04_step2",
@@ -67,9 +65,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_04_step2.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_04_step2.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4df152e0f26118fac72d86b71cb52436d940f9c7"
   },
   {
    "id": "05_step3",
@@ -80,9 +78,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_05_step3.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_05_step3.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "84f16cbac41831025231e51265a898e4a024948e"
   },
   {
    "id": "06_step4",
@@ -93,9 +91,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-walk_06_step4.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-walk_06_step4.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "980e848a26d0f291a07d17fafa545baca98bb0c8"
   }
  ]
 }

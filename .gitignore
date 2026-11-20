@@ -38,3 +38,6 @@ __pycache__/
 # stay in rom/saves/ (ignored).
 !games/*/*/saves/*.sav
 !games/*/*/saves/*.state
+# enlarged copies of database shots are made on demand (tools/x3.py), never committed
+games/*/*/shots/*/[0-9]x/
+!games/gbc/wizardry-empire/shots/*/3x/

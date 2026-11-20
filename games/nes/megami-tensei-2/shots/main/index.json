@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_intro_skyline.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_intro_skyline.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6d321d0e60ae376d125b5e253977f4e09bc7bd78"
   },
   {
    "id": "intro_face",
@@ -32,9 +32,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_intro_face.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_intro_face.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "98b32ce8f8fc44a43f32bb128a5a14e82d6d93ae"
   },
   {
    "id": "intro_blast",
@@ -45,9 +45,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_intro_blast.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_intro_blast.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b09a47f26aef3c0e727917d9928957c410ebe647"
   },
   {
    "id": "title_screen",
@@ -58,9 +58,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_title_title_screen.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_title_title_screen.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7684b6bd457050d68b0c4a50d1669e290177eac6"
   },
   {
    "id": "caution",
@@ -71,9 +71,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_caution.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_caution.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1c2f443893ecc3ef971054fe605613a4333c13eb"
   },
   {
    "id": "naming_hero",
@@ -84,9 +84,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_menu_naming_hero.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_menu_naming_hero.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2e16ce0650bf658c03a531466f82ad6f07a9c470"
   },
   {
    "id": "naming_ryz",
@@ -97,9 +97,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_menu_naming_ryz.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_menu_naming_ryz.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4f453b9186627c41ce8ff488bf84034de91e1d68"
   },
   {
    "id": "stats_alloc",
@@ -110,9 +110,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_menu_stats_alloc.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_menu_stats_alloc.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "03619148aed942b8670446e3a51011504f3110ee"
   },
   {
    "id": "start_room",
@@ -123,9 +123,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_gameplay_start_room.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_gameplay_start_room.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2d5d8487d398af76cd4ea9d8794d47b2c31848fa"
   },
   {
    "id": "hud_cmd",
@@ -136,9 +136,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_hud_hud_cmd.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_hud_hud_cmd.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "f2c0cc355ee1d695890551fe8b2dc9a701efec8b"
   },
   {
    "id": "stats_ryz",
@@ -149,9 +149,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_inventory_stats_ryz.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_inventory_stats_ryz.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a20cc615f3da9555fa9ad8293ced961035126628"
   },
   {
    "id": "battle_menu",
@@ -162,9 +162,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_menu.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_menu.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d39d9d818fa7e551eb50f5185706025b04640075"
   },
   {
    "id": "battle_action",
@@ -175,9 +175,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_action.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_action.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "20641c5d8f2b6de407dcef3b50f2e60fee29616d"
   },
   {
    "id": "battle_chat",
@@ -188,9 +188,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_chat.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_chat.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0f48a9e676d82da4331a36f061858479eefb9056"
   },
   {
    "id": "battle_victory",
@@ -201,9 +201,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_victory.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_victory.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "357be6a502eb759e414e2b32f26f2e3936be584e"
   },
   {
    "id": "levelup",
@@ -214,9 +214,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_levelup.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_levelup.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "10f6c0ed8b3cd1b275d4298d3a43d186fa725e3d"
   },
   {
    "id": "comp_menu",
@@ -227,9 +227,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_system_comp_menu.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_system_comp_menu.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "bac3d14cf86d0b0d2ef30b1c00a6954ecd0409aa"
   },
   {
    "id": "heal",
@@ -240,9 +240,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_shop_heal.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_shop_heal.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "40572a030f121f59213165536ec893848278232b"
   },
   {
    "id": "fusion_menu",
@@ -253,9 +253,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_system_fusion_menu.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_system_fusion_menu.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a434718e5b529f92f11ff93e612a9c0410c8da50"
   },
   {
    "id": "fusion_whom",
@@ -266,9 +266,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_system_fusion_whom.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_system_fusion_whom.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "dcc75d586416f62a730c1c6a46c3734ffdb11bba"
   },
   {
    "id": "fusion_pair",
@@ -279,9 +279,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_system_fusion_pair.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_system_fusion_pair.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d6266a2049a5cfc1acecb18cc230144fd1ae1aca"
   },
   {
    "id": "fusion_result",
@@ -292,9 +292,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_system_fusion_result.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_system_fusion_result.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6abde950d43c169fb7fdcaafea0431c07be77ea0"
   },
   {
    "id": "fusion_ritual",
@@ -305,9 +305,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_system_fusion_ritual.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_system_fusion_ritual.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "37d71db22c50cc50eb3cb9539857ca988228165f"
   },
   {
    "id": "taurus_appears",
@@ -318,9 +318,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_boss_taurus_appears.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_boss_taurus_appears.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7b8660afd2143a4eb2de4cbfc4e0b0e9b9349135"
   },
   {
    "id": "boss_taurus",
@@ -331,9 +331,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_boss_boss_taurus.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_boss_boss_taurus.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "edf38c069e5131d958c05627c46e751ac62741ad"
   },
   {
    "id": "taurus_victory",
@@ -344,9 +344,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_boss_taurus_victory.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_boss_taurus_victory.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "02266595a8a9212b45e24a89e63c1e1686145772"
   },
   {
    "id": "got_sorb",
@@ -357,9 +357,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_boss_got_sorb.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_boss_got_sorb.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "9e64a53b362eb2969363153aaa93403eb790daa8"
   },
   {
    "id": "god_statue",
@@ -370,9 +370,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_dialogue_god_statue.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_dialogue_god_statue.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "e80ebd5dcc5771634fcd6672bd358433ceaa0419"
   },
   {
    "id": "statue_reaction",
@@ -383,9 +383,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_statue_reaction.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_statue_reaction.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5916721ad8fd538412fee441719c3516104b1d1c"
   },
   {
    "id": "pazuzu_born",
@@ -396,9 +396,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_pazuzu_born.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_pazuzu_born.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0381da0b46b2f7c1cf92d33d523a5f219abafc62"
   },
   {
    "id": "pazuzu",
@@ -409,9 +409,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_pazuzu.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_pazuzu.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "38c2220f8c056a91ce385759c3323457b1ae47cf"
   },
   {
    "id": "pazuzu_war",
@@ -422,9 +422,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_pazuzu_war.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_pazuzu_war.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7d3444382796b7918d7fa8935c4f94b79b046790"
   },
   {
    "id": "pazuzu_rift",
@@ -435,9 +435,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_pazuzu_rift.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_pazuzu_rift.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "10797401cbc9ffde940093416846e5ee6d935c2a"
   },
   {
    "id": "pazuzu_messiahs",
@@ -448,9 +448,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_pazuzu_messiahs.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_pazuzu_messiahs.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "75f622af6b617f6ca3331fc0ff8136f914ff6a35"
   },
   {
    "id": "pazuzu_program",
@@ -461,9 +461,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_pazuzu_program.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_pazuzu_program.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "9559b2e1c5f783cb9f6530ad425a87906ded4ced"
   },
   {
    "id": "pazuzu_armory",
@@ -474,9 +474,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_pazuzu_armory.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_pazuzu_armory.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "889ca1892e17903c103ae437bf9c51956aa6cbb8"
   },
   {
    "id": "gameover",
@@ -487,9 +487,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_gameover_gameover.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_gameover_gameover.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "99a5116e74307d457095c013a0302c142e71906c"
   },
   {
    "id": "computer_room",
@@ -500,9 +500,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_cutscene_computer_room.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_cutscene_computer_room.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0e222a6cfcff6deb11f951a6fd697d3a67430f3c"
   },
   {
    "id": "computer_menu",
@@ -513,9 +513,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_menu_computer_menu.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_menu_computer_menu.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b85faf3ba4fcac8b96ac7369b11d36ffea689947"
   },
   {
    "id": "save_slots",
@@ -526,9 +526,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_save_save_slots.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_save_save_slots.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a2e0ead0310dc7c7076ccf6ef86b34911be742c9"
   },
   {
    "id": "shelter",
@@ -539,9 +539,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_gameplay_shelter.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_gameplay_shelter.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "541345b872b5420aca7b74a319d3fa4c03e288d0"
   },
   {
    "id": "shelter_soldier",
@@ -552,9 +552,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_dialogue_shelter_soldier.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_dialogue_shelter_soldier.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "61de753352adee0b5591d3dffc6a296d3abeafb2"
   },
   {
    "id": "shelter_gate_guard",
@@ -565,9 +565,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_dialogue_shelter_gate_guard.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_dialogue_shelter_gate_guard.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b5c3fe2524e1d5361ff3d9fb5dfa2b75e7aeef1b"
   },
   {
    "id": "tokyo_overworld",
@@ -578,9 +578,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_gameplay_tokyo_overworld.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_gameplay_tokyo_overworld.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5d2b4480a710812aa40a4d16139cdb912ddebabb"
   },
   {
    "id": "cmd_overworld",
@@ -591,9 +591,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_hud_cmd_overworld.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_hud_cmd_overworld.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ca607c0e4a4f4a6b4505b518a219bb7071253c37"
   },
   {
    "id": "dungeon_3d",
@@ -604,9 +604,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_gameplay_dungeon_3d.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_gameplay_dungeon_3d.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "82163e9b945715a54809da9b015d3986afda7cff"
   },
   {
    "id": "magic_spells",
@@ -617,9 +617,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_system_magic_spells.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_system_magic_spells.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4f2d99008fcd1170184ebb2890d39eb721995c2b"
   },
   {
    "id": "battle_overworld",
@@ -630,9 +630,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_overworld.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_overworld.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7414a32fe5629c8de91e7a8c4ccdcdfcef92ab4b"
   },
   {
    "id": "battle_magic",
@@ -643,9 +643,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_magic.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_magic.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0720b9e5933ff820902996921706ada60969bf29"
   },
   {
    "id": "battle_dia",
@@ -656,9 +656,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_dia.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_dia.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ab47e42cc6c7111c60e9686c68382dcec88de74a"
   },
   {
    "id": "battle_chat_golem",
@@ -669,9 +669,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_chat_golem.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_chat_golem.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "08bfdd6504983391adbe8a3bc59ddfe7e38692b9"
   },
   {
    "id": "comp_call",
@@ -682,9 +682,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_system_comp_call.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_system_comp_call.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d5746fa6293cdf6ad2196a2ad293e5ff2a3787b4"
   },
   {
    "id": "battle_item",
@@ -695,9 +695,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_item.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_item.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5b97ed762b274b00bb70113bcea4cfba34cf8b09"
   },
   {
    "id": "comp_stock",
@@ -708,9 +708,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_system_comp_stock.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_system_comp_stock.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "da70cd99da8fd5d498d2511052033920077df83b"
   },
   {
    "id": "comp_summoned",
@@ -721,9 +721,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_system_comp_summoned.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_system_comp_summoned.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ea540dadb98d42b261a961c84d18196043296337"
   },
   {
    "id": "village",
@@ -734,9 +734,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_gameplay_village.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_gameplay_village.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "3d653a6b1e83ca1ff3db21c3d46b88e0bbd0a86a"
   },
   {
    "id": "shop",
@@ -747,9 +747,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_shop_shop.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_shop_shop.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "138a64a7e1b5f8625922ad1e4665c25b716d0b0d"
   },
   {
    "id": "shop_armor",
@@ -760,9 +760,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_shop_shop_armor.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_shop_shop_armor.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "668ebbd81e41f19f5aa137d9b5d4244b59ada617"
   },
   {
    "id": "shop_bought",
@@ -773,9 +773,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_shop_shop_bought.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_shop_shop_bought.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4abf5bd477ebcf131d2294c07050dd15e1c3ee0f"
   },
   {
    "id": "save_totem",
@@ -786,9 +786,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_save_save_totem.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_save_save_totem.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "dab56b59b150a5d2fc39100e021c0ea8621b2143"
   },
   {
    "id": "save_recorded",
@@ -799,9 +799,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_save_save_recorded.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_save_save_recorded.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6f169387c0937aad8906102326a861ad4d558ac7"
   },
   {
    "id": "teleport_list",
@@ -812,9 +812,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_menu_teleport_list.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_menu_teleport_list.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "03b9aface63eff1accd86304ebf7c3ac5104b1fe"
   },
   {
    "id": "registry",
@@ -825,9 +825,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_dialogue_registry.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_dialogue_registry.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "15130c0a3dd393e9ee1f9225377ac8ea1b83a7a6"
   },
   {
    "id": "battle_demons",
@@ -838,9 +838,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_demons.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_demons.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6fe41bc429b3aef32ce074db7e978f05fad34bc2"
   },
   {
    "id": "battle_demon_cmd",
@@ -851,9 +851,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_demon_cmd.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_demon_cmd.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "185a7d4d378027fe17383c24f0571e3ae14d22d4"
   },
   {
    "id": "battle_demon_hit",
@@ -864,9 +864,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_battle_battle_demon_hit.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_battle_battle_demon_hit.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7fd84d026d66b8f42b94c82cf676cc92a861521c"
   },
   {
    "id": "error_screen",
@@ -877,9 +877,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "megami-tensei-2_nes_jp_extra_error_screen.png",
-   "file_3x": "3x/megami-tensei-2_nes_jp_extra_error_screen.png",
    "rom_sha1": "59641a60e019e4fc7d16b606b0bf2df0abd68595",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b06fdc3e9bd29413b62a03f70dd2a87a8a4b77d9"
   }
  ]
 }

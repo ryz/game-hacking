@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_boot_boot_credits.png",
-   "file_3x": "3x/dungeon-magic_nes_na_boot_boot_credits.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "91b0012dd234eae4734cebdca3c916dd48c37036"
   },
   {
    "id": "intro_storm",
@@ -32,9 +32,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_cutscene_intro_storm.png",
-   "file_3x": "3x/dungeon-magic_nes_na_cutscene_intro_storm.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "49a3c8ddcfba2e410229c29a5b0fdd85abf7cbe8"
   },
   {
    "id": "title_screen",
@@ -45,9 +45,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_title_title_screen.png",
-   "file_3x": "3x/dungeon-magic_nes_na_title_title_screen.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b11d50afab463f328a3d80ac12b39d3655c476c2"
   },
   {
    "id": "title_continue",
@@ -58,9 +58,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_menu_title_continue.png",
-   "file_3x": "3x/dungeon-magic_nes_na_menu_title_continue.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5b2e7f6078cd1c8216699c198670523c47ba2c62"
   },
   {
    "id": "start_granville",
@@ -71,9 +71,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_gameplay_start_granville.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_start_granville.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "adbfbdc75a28c831a18a2c7bdb5c9f9ccb88cb83"
   },
   {
    "id": "hud_pause",
@@ -84,9 +84,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_hud_hud_pause.png",
-   "file_3x": "3x/dungeon-magic_nes_na_hud_hud_pause.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b36c64fad639b7e273bde983647dff94984e6e90"
   },
   {
    "id": "sign_wanted",
@@ -97,9 +97,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_dialogue_sign_wanted.png",
-   "file_3x": "3x/dungeon-magic_nes_na_dialogue_sign_wanted.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "648af26ebc56337a72e6ae258cba1450c8999b87"
   },
   {
    "id": "dialogue_compass",
@@ -110,9 +110,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_dialogue_dialogue_compass.png",
-   "file_3x": "3x/dungeon-magic_nes_na_dialogue_dialogue_compass.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ac5fd36bd0760aa28a2592d20ce56c454d133623"
   },
   {
    "id": "compass_view",
@@ -123,9 +123,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_hud_compass_view.png",
-   "file_3x": "3x/dungeon-magic_nes_na_hud_compass_view.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "83cd25acb5f81fa0cda66ad39e9ee3ba5a4e5b87"
   },
   {
    "id": "spell_panel",
@@ -136,9 +136,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_system_spell_panel.png",
-   "file_3x": "3x/dungeon-magic_nes_na_system_spell_panel.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "34fa3b0b0c1b12a0eee3c3a907f40dd6cd549caf"
   },
   {
    "id": "shop_weapons",
@@ -149,9 +149,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_shop_shop_weapons.png",
-   "file_3x": "3x/dungeon-magic_nes_na_shop_shop_weapons.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "20a351196b2bea6ce7744e13ed8d3d6e5339dbe9"
   },
   {
    "id": "shop_items",
@@ -162,9 +162,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_shop_shop_items.png",
-   "file_3x": "3x/dungeon-magic_nes_na_shop_shop_items.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ea974c4368898787eb2c2c52d67a4a23d8d3517b"
   },
   {
    "id": "shop_buying",
@@ -175,9 +175,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_shop_shop_buying.png",
-   "file_3x": "3x/dungeon-magic_nes_na_shop_shop_buying.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0f1c34a35dc5b5d4fc7305f212c2c16441c9da8c"
   },
   {
    "id": "inventory_items",
@@ -188,9 +188,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_inventory_inventory_items.png",
-   "file_3x": "3x/dungeon-magic_nes_na_inventory_inventory_items.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a520c54c58b83ec9431f7bfc2db83b94d44d4f6d"
   },
   {
    "id": "inn_welcome",
@@ -201,9 +201,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_save_inn_welcome.png",
-   "file_3x": "3x/dungeon-magic_nes_na_save_inn_welcome.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "052b3691157eadb9429325381d5ef090f2575a3c"
   },
   {
    "id": "wizard_apprentice",
@@ -214,9 +214,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_system_wizard_apprentice.png",
-   "file_3x": "3x/dungeon-magic_nes_na_system_wizard_apprentice.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6cbe885af721b72680f875d13019bb48050a79ce"
   },
   {
    "id": "wizard_magic",
@@ -227,9 +227,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_system_wizard_magic.png",
-   "file_3x": "3x/dungeon-magic_nes_na_system_wizard_magic.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1adc8dc16c15b50d23bdad8c88061ecd994c3fdb"
   },
   {
    "id": "wise_man_level",
@@ -240,9 +240,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_system_wise_man_level.png",
-   "file_3x": "3x/dungeon-magic_nes_na_system_wise_man_level.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "8667086138de4826089668b93f3d10a3944aaf18"
   },
   {
    "id": "level_up",
@@ -253,9 +253,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_system_level_up.png",
-   "file_3x": "3x/dungeon-magic_nes_na_system_level_up.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0efd725b187dc9e33ebeec09c886fa0641684ec0"
   },
   {
    "id": "inn_morning",
@@ -266,9 +266,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_save_inn_morning.png",
-   "file_3x": "3x/dungeon-magic_nes_na_save_inn_morning.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "69d10da85393d115923f3db6f8d9c39ba61ec9cc"
   },
   {
    "id": "field_castle",
@@ -279,9 +279,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_gameplay_field_castle.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_field_castle.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "eb9e234a05a9cd7c8835b585e47d403e8deb300e"
   },
   {
    "id": "battle_field",
@@ -292,9 +292,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_battle_battle_field.png",
-   "file_3x": "3x/dungeon-magic_nes_na_battle_battle_field.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "9d2d4714eca24e18efabf22390843cb2ae1c707f"
   },
   {
    "id": "castle_entrance",
@@ -305,9 +305,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dungeon-magic_nes_na_gameplay_castle_entrance.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_castle_entrance.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "128f70d46367edc67f9bfd86fb60c157745cdba4"
   },
   {
    "id": "castle_cellar",
@@ -318,9 +318,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_castle_cellar.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_castle_cellar.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6288c3cd01f417ee5ef8f7f5e1090069aafda432"
   },
   {
    "id": "town_02",
@@ -331,9 +331,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_town_02.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_town_02.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "85b09a33240779ffbe555b43ebc7f11031192174"
   },
   {
    "id": "town_05",
@@ -344,9 +344,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_town_05.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_town_05.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "20eb50205ff1aa5f10491233515742a605d5b735"
   },
   {
    "id": "dungeon_80",
@@ -357,9 +357,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_dungeon_80.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_dungeon_80.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "516ec7a81956ee0d093808d14ee4975c4fddc290"
   },
   {
    "id": "battle_monster",
@@ -370,9 +370,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_battle_battle_monster.png",
-   "file_3x": "3x/dungeon-magic_nes_na_battle_battle_monster.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "02c7f6d03b326dde679377b6c5a8c6eeba59eb5a"
   },
   {
    "id": "rune_select",
@@ -383,9 +383,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_system_rune_select.png",
-   "file_3x": "3x/dungeon-magic_nes_na_system_rune_select.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a2d5571132d717b35bea53b94e43a652b338a9dc"
   },
   {
    "id": "rune_cast",
@@ -396,9 +396,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_battle_rune_cast.png",
-   "file_3x": "3x/dungeon-magic_nes_na_battle_rune_cast.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "eff5592778c3f1e1bac6b2b431ffd9bcde48b1a6"
   },
   {
    "id": "battle_win",
@@ -409,9 +409,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_battle_battle_win.png",
-   "file_3x": "3x/dungeon-magic_nes_na_battle_battle_win.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c0ddb27095c1d42261f656474df911d5d559744b"
   },
   {
    "id": "dungeon_83",
@@ -422,9 +422,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_dungeon_83.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_dungeon_83.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4596b74a36082ddb8b75d5f3407a2041269dfc39"
   },
   {
    "id": "battle_skeleton",
@@ -435,9 +435,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_battle_battle_skeleton.png",
-   "file_3x": "3x/dungeon-magic_nes_na_battle_battle_skeleton.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "eccd67e092b4e9d0d6f3867030422ece055af263"
   },
   {
    "id": "forest_43",
@@ -448,9 +448,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_forest_43.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_forest_43.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "27873a538c968ee0d18e1b6f3aa2691738b00297"
   },
   {
    "id": "dungeon_8c",
@@ -461,9 +461,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_dungeon_8c.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_dungeon_8c.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c3d2c64e62bf47012e11c62cbb45fe545cabfd85"
   },
   {
    "id": "dungeon_8f",
@@ -474,9 +474,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_dungeon_8f.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_dungeon_8f.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a44c75b377fa6a6a48741436644ded83f51df7c9"
   },
   {
    "id": "forest_40",
@@ -487,9 +487,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_forest_40.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_forest_40.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1b62d1cd353648c740558c0dcc9670a4854be39e"
   },
   {
    "id": "forest_46",
@@ -500,9 +500,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_forest_46.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_forest_46.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "fd53b49aa293ae6f088038eee839780d2d12bd67"
   },
   {
    "id": "dungeon_95",
@@ -513,9 +513,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameplay_dungeon_95.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameplay_dungeon_95.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0da31d11be813a5efeec5ed6451b3045affcf601"
   },
   {
    "id": "boss_guardian",
@@ -526,9 +526,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_boss_boss_guardian.png",
-   "file_3x": "3x/dungeon-magic_nes_na_boss_boss_guardian.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "443e8062db71b5aaa797d68108347b9aa577e7ad"
   },
   {
    "id": "gameover",
@@ -539,9 +539,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dungeon-magic_nes_na_gameover_gameover.png",
-   "file_3x": "3x/dungeon-magic_nes_na_gameover_gameover.png",
    "rom_sha1": "0f8e5f97e23f1209f08cbd27c1c58ea585f0c3b1",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7ea5ca931d92ebce2b1547ec1bb3b84dfb2fa837"
   }
  ]
 }

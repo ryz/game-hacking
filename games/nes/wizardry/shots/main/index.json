@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_boot_boot_nexoft.png",
-   "file_3x": "3x/wizardry_nes_na_boot_boot_nexoft.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a8086a878afa2e29bbb38cb67c0bca895d595741"
   },
   {
    "id": "title_screen",
@@ -32,9 +32,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_title_title_screen.png",
-   "file_3x": "3x/wizardry_nes_na_title_title_screen.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "85e5531099e3e0a4f70b182d06fbc20e3b0f3370"
   },
   {
    "id": "options_switch",
@@ -45,9 +45,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_options_options_switch.png",
-   "file_3x": "3x/wizardry_nes_na_options_options_switch.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d5abb1fa6b84c482d60f1d653dadf0d9f121a81b"
   },
   {
    "id": "boot_copyright",
@@ -58,9 +58,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_boot_boot_copyright.png",
-   "file_3x": "3x/wizardry_nes_na_boot_boot_copyright.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "8a09840585716398746eebcb7f3b31a64f8b5105"
   },
   {
    "id": "castle_menu",
@@ -71,9 +71,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_menu_castle_menu.png",
-   "file_3x": "3x/wizardry_nes_na_menu_castle_menu.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c5d720bd7dc11d907d5b12fe290794d1e11c8a4e"
   },
   {
    "id": "edge_of_town",
@@ -84,9 +84,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_menu_edge_of_town.png",
-   "file_3x": "3x/wizardry_nes_na_menu_edge_of_town.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a88c7ef7a251c72d9d740b016b0e3f64e22b0cf5"
   },
   {
    "id": "training_menu",
@@ -97,9 +97,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_menu_training_menu.png",
-   "file_3x": "3x/wizardry_nes_na_menu_training_menu.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "59a805978de324211ac7b6fe9860a57fc8e97389"
   },
   {
    "id": "training_name",
@@ -110,9 +110,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_system_training_name.png",
-   "file_3x": "3x/wizardry_nes_na_system_training_name.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "57a926f2b5f45b410e1cebeb6d50fb5788f6c7ad"
   },
   {
    "id": "training_confirm",
@@ -123,9 +123,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_system_training_confirm.png",
-   "file_3x": "3x/wizardry_nes_na_system_training_confirm.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "3a1d9fc33a7ae1969ed2fa8bc6dc14324fcecaec"
   },
   {
    "id": "training_race",
@@ -136,9 +136,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_system_training_race.png",
-   "file_3x": "3x/wizardry_nes_na_system_training_race.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "31aa4e46710e4e444073a85a7a96e6d251501e02"
   },
   {
    "id": "training_alignment",
@@ -149,9 +149,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_system_training_alignment.png",
-   "file_3x": "3x/wizardry_nes_na_system_training_alignment.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "673e7e053a7a0e0a3f132187f6782210f8134555"
   },
   {
    "id": "training_bonus",
@@ -162,9 +162,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_system_training_bonus.png",
-   "file_3x": "3x/wizardry_nes_na_system_training_bonus.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ed2e4baccbda2dbe2974d24a85191318eab56b07"
   },
   {
    "id": "training_stats",
@@ -175,9 +175,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_system_training_stats.png",
-   "file_3x": "3x/wizardry_nes_na_system_training_stats.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5246d80a3a363676ec0761c134c014b95498895b"
   },
   {
    "id": "training_class",
@@ -188,9 +188,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_system_training_class.png",
-   "file_3x": "3x/wizardry_nes_na_system_training_class.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "df167bde31cb07bac6ea1189f8d09ec3337c67be"
   },
   {
    "id": "tavern_roster",
@@ -201,9 +201,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_menu_tavern_roster.png",
-   "file_3x": "3x/wizardry_nes_na_menu_tavern_roster.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "03098135ffb72dc951e451e6f6a93a6e2dbc0cec"
   },
   {
    "id": "tavern_menu",
@@ -214,9 +214,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_menu_tavern_menu.png",
-   "file_3x": "3x/wizardry_nes_na_menu_tavern_menu.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4405fbcd26080b53cc545e4b9876de53efc89d98"
   },
   {
    "id": "inspect_sheet",
@@ -227,9 +227,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_inventory_inspect_sheet.png",
-   "file_3x": "3x/wizardry_nes_na_inventory_inspect_sheet.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "163b22f9f3899dd90c0141933045e776a230d2be"
   },
   {
    "id": "inspect_mage",
@@ -240,9 +240,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_inventory_inspect_mage.png",
-   "file_3x": "3x/wizardry_nes_na_inventory_inspect_mage.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a68fcfe09d9ef75aff000ab068abe3f4571499bd"
   },
   {
    "id": "spellbook_mage",
@@ -253,9 +253,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_inventory_spellbook_mage.png",
-   "file_3x": "3x/wizardry_nes_na_inventory_spellbook_mage.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b987cc3a90f31d8fda2edcb5b28f1dd19a594cc6"
   },
   {
    "id": "spellbook_cleric",
@@ -266,9 +266,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_inventory_spellbook_cleric.png",
-   "file_3x": "3x/wizardry_nes_na_inventory_spellbook_cleric.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b104187bc712a8a234f91dd3ea5ae487b71e58ff"
   },
   {
    "id": "inn_rooms",
@@ -279,9 +279,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_menu_inn_rooms.png",
-   "file_3x": "3x/wizardry_nes_na_menu_inn_rooms.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "298f23a6278427128fe4be4e18703f2d6bb4d106"
   },
   {
    "id": "inn_levelup",
@@ -292,9 +292,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_system_inn_levelup.png",
-   "file_3x": "3x/wizardry_nes_na_system_inn_levelup.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1b31b263142ec189ad2f25bc57b066195b9cdb0f"
   },
   {
    "id": "shop_boltac",
@@ -305,9 +305,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_shop_shop_boltac.png",
-   "file_3x": "3x/wizardry_nes_na_shop_shop_boltac.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "37e2a8de1522aebed8c19ea840a58570d2895b32"
   },
   {
    "id": "shop_buy",
@@ -318,9 +318,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_shop_shop_buy.png",
-   "file_3x": "3x/wizardry_nes_na_shop_shop_buy.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6a8a8e135db40eecbe449dc6e79faf03330b2607"
   },
   {
    "id": "shop_bought",
@@ -331,9 +331,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_shop_shop_bought.png",
-   "file_3x": "3x/wizardry_nes_na_shop_shop_bought.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "e68ad0c5fe1788755e5075e28b1a6f54f5739718"
   },
   {
    "id": "shop_armor",
@@ -344,9 +344,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_shop_shop_armor.png",
-   "file_3x": "3x/wizardry_nes_na_shop_shop_armor.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "8c878e4cb43befee99e7c1e43b912b9254807e7a"
   },
   {
    "id": "shop_sell",
@@ -357,9 +357,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_shop_shop_sell.png",
-   "file_3x": "3x/wizardry_nes_na_shop_shop_sell.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d4fb02d634d526eda6d470d95020c5796c8b4196"
   },
   {
    "id": "temple_cant",
@@ -370,9 +370,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_shop_temple_cant.png",
-   "file_3x": "3x/wizardry_nes_na_shop_temple_cant.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0a6ce800101da7aee6c2ea4fbc699fe430ea6373"
   },
   {
    "id": "temple_cured",
@@ -383,9 +383,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_shop_temple_cured.png",
-   "file_3x": "3x/wizardry_nes_na_shop_temple_cured.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "039b2af4a1b02e6bf98f46424e915586b936b4d0"
   },
   {
    "id": "save_leave",
@@ -396,9 +396,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_save_save_leave.png",
-   "file_3x": "3x/wizardry_nes_na_save_save_leave.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b476a9ff557179c1ffe7ef34493235382d4a1993"
   },
   {
    "id": "maze_start",
@@ -409,9 +409,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameplay_maze_start.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_maze_start.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d59a9a540dab9d7b18298546033c6eef88663685"
   },
   {
    "id": "maze_fullview",
@@ -422,9 +422,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_hud_maze_fullview.png",
-   "file_3x": "3x/wizardry_nes_na_hud_maze_fullview.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "168c8365c70426d3bd901e5ebcc337441b8028a7"
   },
   {
    "id": "maze_menu",
@@ -435,9 +435,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_menu_maze_menu.png",
-   "file_3x": "3x/wizardry_nes_na_menu_maze_menu.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7e1c637dedb58fc8c2c456628c1c39694e2bcbb1"
   },
   {
    "id": "camp_menu",
@@ -448,9 +448,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_menu_camp_menu.png",
-   "file_3x": "3x/wizardry_nes_na_menu_camp_menu.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "10daca30c6becae73fa0ebdef36a30cbca27bfff"
   },
   {
    "id": "battle_options",
@@ -461,9 +461,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_battle_battle_options.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_options.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2781a60b80c6c1c9e85b2dfd3e0dbb221fabb293"
   },
   {
    "id": "message_square",
@@ -474,9 +474,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_dialogue_message_square.png",
-   "file_3x": "3x/wizardry_nes_na_dialogue_message_square.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "348b5520f1c3adb9e59e0b58e35c17aed9322f85"
   },
   {
    "id": "barrier_smoke",
@@ -487,9 +487,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_dialogue_barrier_smoke.png",
-   "file_3x": "3x/wizardry_nes_na_dialogue_barrier_smoke.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "45fea97884ecfaadbcd0b7ec46e6be7a2be9b813"
   },
   {
    "id": "statue_hooded",
@@ -500,9 +500,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_dialogue_statue_hooded.png",
-   "file_3x": "3x/wizardry_nes_na_dialogue_statue_hooded.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "177014528a5af56c98ebb5f55f5a399d671ec622"
   },
   {
    "id": "murphy_friendly",
@@ -513,9 +513,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_boss_murphy_friendly.png",
-   "file_3x": "3x/wizardry_nes_na_boss_murphy_friendly.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7c8761201a3d1e9dbca1a99bcbe88ff0e3b5d5a1"
   },
   {
    "id": "murphy_fight",
@@ -526,9 +526,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_boss_murphy_fight.png",
-   "file_3x": "3x/wizardry_nes_na_boss_murphy_fight.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "be016119e5e608ccf7a3df9efcf4e2e11ee26f57"
   },
   {
    "id": "battle_victory",
@@ -539,9 +539,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_battle_battle_victory.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_victory.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "cd5855c4476c8cf2c0f6e9a45be94c8ec43a9b06"
   },
   {
    "id": "battle_gold",
@@ -552,9 +552,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_battle_battle_gold.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_gold.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2d9bac1a77cf99f1d009391d3cb10da390c45635"
   },
   {
    "id": "pit",
@@ -565,9 +565,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_gameplay_pit.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_pit.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "990d6647f69636833105db7fcb7352b181b83516"
   },
   {
    "id": "elevator",
@@ -578,9 +578,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_system_elevator.png",
-   "file_3x": "3x/wizardry_nes_na_system_elevator.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "fc61c1568bf3c2175bffe18f4f24b02a2b5c60ac"
   },
   {
    "id": "floor_04",
@@ -591,9 +591,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameplay_floor_04.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_floor_04.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "f18032b6639e456a21a8c12d0da2389ff676c1d8"
   },
   {
    "id": "battle_fixed",
@@ -604,9 +604,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_battle_battle_fixed.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_fixed.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a2346d41335fa930b4c51ac7bdd56d53d40cd0fa"
   },
   {
    "id": "battle_cleric_options",
@@ -617,9 +617,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_battle_battle_cleric_options.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_cleric_options.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ee7da4f76308e1cb20d9707901d2bffe9dfdf49d"
   },
   {
    "id": "battle_spell_menu",
@@ -630,9 +630,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_battle_battle_spell_menu.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_spell_menu.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4b99688b3c0fb575a31d3894b3dbbebc42e2bc3f"
   },
   {
    "id": "battle_orders",
@@ -643,9 +643,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_battle_battle_orders.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_orders.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6132f15b20543dc444d249d8a279e240d3055c92"
   },
   {
    "id": "battle_cast_cleric",
@@ -656,9 +656,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_battle_battle_cast_cleric.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_cast_cleric.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "32689427a14bdcc140473fb16e7668fd688227b6"
   },
   {
    "id": "battle_cast_mage",
@@ -669,9 +669,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_battle_battle_cast_mage.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_cast_mage.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "44310b59b6f66ddb0680408483b14672f3c00b36"
   },
   {
    "id": "battle_melee",
@@ -682,9 +682,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_battle_battle_melee.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_melee.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "652ceddc4056cde50caf2467734bd60b99cab67c"
   },
   {
    "id": "battle_tiltowait",
@@ -695,9 +695,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_battle_battle_tiltowait.png",
-   "file_3x": "3x/wizardry_nes_na_battle_battle_tiltowait.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "f27eb6ab43b333437303196003f2cac273e5fb06"
   },
   {
    "id": "chest",
@@ -708,9 +708,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_battle_chest.png",
-   "file_3x": "3x/wizardry_nes_na_battle_chest.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "88b3f8d839d01d2ff69effd55c159ed56168ed2b"
   },
   {
    "id": "chest_trap",
@@ -721,9 +721,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_battle_chest_trap.png",
-   "file_3x": "3x/wizardry_nes_na_battle_chest_trap.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "afa5af1b004904b6440a2bd8a8fe15817bc32c78"
   },
   {
    "id": "chest_teleporter",
@@ -734,9 +734,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_battle_chest_teleporter.png",
-   "file_3x": "3x/wizardry_nes_na_battle_chest_teleporter.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a336ddd529557d17d85568bea7cb40eb31e7d0df"
   },
   {
    "id": "chest_loot",
@@ -747,9 +747,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_battle_chest_loot.png",
-   "file_3x": "3x/wizardry_nes_na_battle_chest_loot.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ab784d2406422468336df64346fbac7fff47c744"
   },
   {
    "id": "party_dead",
@@ -760,9 +760,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_battle_party_dead.png",
-   "file_3x": "3x/wizardry_nes_na_battle_party_dead.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a10c7a9dd0e7020342b11c5ed7ffcf30f3e52af3"
   },
   {
    "id": "gameover",
@@ -773,9 +773,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameover_gameover.png",
-   "file_3x": "3x/wizardry_nes_na_gameover_gameover.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "fb3f3fc236229397cfca8955869fdef9c33d68ea"
   },
   {
    "id": "gameover_castle",
@@ -786,9 +786,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameover_gameover_castle.png",
-   "file_3x": "3x/wizardry_nes_na_gameover_gameover_castle.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7295341a28de0c05e8e179d607f96a5ead0de535"
   },
   {
    "id": "chute",
@@ -799,9 +799,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_gameplay_chute.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_chute.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "574cf3d9ba2fb432a2220d65d4abd7facb0f093a"
   },
   {
    "id": "werdna_plaque",
@@ -812,9 +812,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_dialogue_werdna_plaque.png",
-   "file_3x": "3x/wizardry_nes_na_dialogue_werdna_plaque.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "86c00707309a1bfb2143e1599262c9f6430af916"
   },
   {
    "id": "floor_10",
@@ -825,9 +825,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameplay_floor_10.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_floor_10.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "05c9d16b9b8f45e924c347c9bdb280a170fa67e3"
   },
   {
    "id": "werdna_sign",
@@ -838,9 +838,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_dialogue_werdna_sign.png",
-   "file_3x": "3x/wizardry_nes_na_dialogue_werdna_sign.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "3b44354caebde8dc233973ece370f6e661748743"
   },
   {
    "id": "werdna_drain",
@@ -851,9 +851,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_boss_werdna_drain.png",
-   "file_3x": "3x/wizardry_nes_na_boss_werdna_drain.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "e8b70e8a6429220df59a09a214b2035083041afc"
   },
   {
    "id": "werdna_fight",
@@ -864,9 +864,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_boss_werdna_fight.png",
-   "file_3x": "3x/wizardry_nes_na_boss_werdna_fight.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b2bb7cf8f1cb0de8fa912137bbc3b01f6b7b5618"
   },
   {
    "id": "werdna_killed",
@@ -877,9 +877,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_boss_werdna_killed.png",
-   "file_3x": "3x/wizardry_nes_na_boss_werdna_killed.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "efc6586e66429a5815e8177a18e7af80c93d636a"
   },
   {
    "id": "werdna_amulet",
@@ -890,9 +890,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_boss_werdna_amulet.png",
-   "file_3x": "3x/wizardry_nes_na_boss_werdna_amulet.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "74a690ed1481a0dc783a84cefa34f371363d1802"
   },
   {
    "id": "ending",
@@ -903,9 +903,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_ending_ending.png",
-   "file_3x": "3x/wizardry_nes_na_ending_ending.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a31c78b604fcecc3ab68d3c78d67c3e2fad4019f"
   },
   {
    "id": "credits",
@@ -916,9 +916,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_credits_credits.png",
-   "file_3x": "3x/wizardry_nes_na_credits_credits.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "63152afb8e85c38696bd41c85a93feadc85c859f"
   },
   {
    "id": "ending_chevron",
@@ -929,9 +929,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "wizardry_nes_na_ending_ending_chevron.png",
-   "file_3x": "3x/wizardry_nes_na_ending_ending_chevron.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2b478bb315d64d7b70c8478fd65124c946462f1e"
   }
  ]
 }

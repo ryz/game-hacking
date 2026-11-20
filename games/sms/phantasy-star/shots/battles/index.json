@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_marman_group.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_marman_group.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "38f0b55bc0571a761316446344bf93f642cc8f40"
   },
   {
    "id": "fishman_group",
@@ -32,9 +32,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_fishman_group.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_fishman_group.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f948213d79e42f219dcb1033f4fb90da25b25aca"
   },
   {
    "id": "talk_dezorian",
@@ -45,9 +45,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_talk_dezorian.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_talk_dezorian.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "41287ff7dbcb22b73c5732d923add33037ff1fdb"
   },
   {
    "id": "talk_barbarian",
@@ -58,9 +58,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_talk_barbarian.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_talk_barbarian.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6533b0c0868a847268306fba9e5cc4ea336e8269"
   },
   {
    "id": "sorcerers",
@@ -71,9 +71,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_sorcerers.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_sorcerers.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "07c52cbbd9606eb4d334c0e7317621e110948eab"
   },
   {
    "id": "magician",
@@ -84,9 +84,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_magician.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_magician.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "667725534744fe9a22593c893cc24fb15b41ecb6"
   },
   {
    "id": "gold_dragon",
@@ -97,9 +97,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_gold_dragon.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_gold_dragon.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "96044ba7c97023974cfc02e4c454f73e605517a4"
   },
   {
    "id": "wipe_myau",
@@ -110,9 +110,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_wipe_myau.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_wipe_myau.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6d2d22ba046bc2837916d91dd847b7d1f968d251"
   },
   {
    "id": "wipe_all",
@@ -123,9 +123,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameover_wipe_all.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameover_wipe_all.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8881c1fc951473ae8b8cbc3df25d46218b1ce92e"
   },
   {
    "id": "lassic",
@@ -136,9 +136,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_boss_lassic.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_boss_lassic.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0bdcdadff3942d134d4b223086e91d23fc75b758"
   },
   {
    "id": "dark_falz",
@@ -149,9 +149,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_boss_dark_falz.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_boss_dark_falz.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8cd6ae67c31134bd8549a25bac5b3a8f8174bb9c"
   },
   {
    "id": "medusa_attack",
@@ -167,11 +167,9 @@
     "kept": 91,
     "poster": 20,
     "seconds": 3.01,
-    "file": "phantasy-star_sms_na_boss_medusa_attack.battles.gif",
-    "file_3x": "3x/phantasy-star_sms_na_boss_medusa_attack.battles.gif"
+    "file": "phantasy-star_sms_na_boss_medusa_attack.battles.gif"
    },
    "file": "phantasy-star_sms_na_boss_medusa_attack.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_boss_medusa_attack.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
    "captured": "2026-11-19"
   },
@@ -184,9 +182,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_corridor_vampire.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_corridor_vampire.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "947e3a20af92428d8f16c49babb5a95f19d65ce3"
   },
   {
    "id": "corridor_nessie",
@@ -197,9 +195,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_corridor_nessie.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_corridor_nessie.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6bbadf2b865bfd6afa6219b2ef6bc8cc8b811abb"
   },
   {
    "id": "corridor_ghoul",
@@ -210,9 +208,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_corridor_ghoul.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_corridor_ghoul.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9de6970a2d7b511533f91ea28989b33fef73c41a"
   },
   {
    "id": "corridor_skeleton",
@@ -223,9 +221,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_corridor_skeleton.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_corridor_skeleton.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "32a945491e25d0813b8ba3121786915b9cf90aa8"
   },
   {
    "id": "corridor_skeleton_clean",
@@ -236,9 +234,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_corridor_skeleton_clean.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_corridor_skeleton_clean.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "80a4180233010e2882302a888e7b2a21d2037cf9"
   },
   {
    "id": "corridor_skeleton_turn",
@@ -249,9 +247,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_corridor_skeleton_turn.battles.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_corridor_skeleton_turn.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "3535bffe59921818fbe844565373d31da1244e00"
   }
  ]
 }

@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_01_stairs.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-stairs_01_stairs.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "635af4e289c43b0ff051de3dd03675825937709d"
   },
   {
    "id": "02_climb_clip",
@@ -37,11 +37,9 @@
     "kept": 61,
     "poster": 4,
     "seconds": 2.01,
-    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_02_climb_clip.gif",
-    "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-stairs_02_climb_clip.gif"
+    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_02_climb_clip.gif"
    },
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_02_climb_clip.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-stairs_02_climb_clip.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
    "captured": "2026-11-19"
   },
@@ -54,9 +52,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_03_arrived.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-stairs_03_arrived.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5adc8f087d23f758588c31d44c8e92eb7916f796"
   },
   {
    "id": "04_turn_back",
@@ -67,9 +65,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-stairs_04_turn_back.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-stairs_04_turn_back.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d1e15f1dac1c3c604430a48a9d65a7be878d692c"
   }
  ]
 }

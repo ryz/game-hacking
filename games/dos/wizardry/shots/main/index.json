@@ -19,9 +19,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_title_title_screen.png",
-   "file_3x": "3x/wizardry_dos_na_title_title_screen.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4ab89b40a98f3a3b77e0de302b2af3c927a5710a"
   },
   {
    "id": "title_parade_trio",
@@ -32,9 +32,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_title_title_parade_trio.png",
-   "file_3x": "3x/wizardry_dos_na_title_title_parade_trio.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "255691b6075577da26eab377ce05d7dadca6a663"
   },
   {
    "id": "title_parade_pair",
@@ -45,9 +45,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_title_title_parade_pair.png",
-   "file_3x": "3x/wizardry_dos_na_title_title_parade_pair.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a25a0244bf6915dd702acf05697ad834ac8eede0"
   },
   {
    "id": "menu_make_scenario",
@@ -58,9 +58,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_make_scenario.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_make_scenario.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c836627fb1444878f1ba06e2c013544dca67a46a"
   },
   {
    "id": "boot_disk_prompt",
@@ -71,9 +71,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boot_boot_disk_prompt.png",
-   "file_3x": "3x/wizardry_dos_na_boot_boot_disk_prompt.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ffc1ce0a49986b775acafe1375e38906a5a19d8d"
   },
   {
    "id": "boot_loading",
@@ -84,9 +84,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boot_boot_loading.png",
-   "file_3x": "3x/wizardry_dos_na_boot_boot_loading.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "74b57c44685aad43202945a2f8d252c2e8b77956"
   },
   {
    "id": "menu_castle_empty",
@@ -97,9 +97,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_castle_empty.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_castle_empty.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "10ada9aab278431bd00cfc1eb683f73798dab685"
   },
   {
    "id": "menu_training",
@@ -110,9 +110,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_training.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_training.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0fb56822f5e9ca7905cc02e56e3674bd2869d637"
   },
   {
    "id": "create_name",
@@ -123,9 +123,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_create_name.png",
-   "file_3x": "3x/wizardry_dos_na_system_create_name.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "444db58310888134536d5dcb9d81f3b1be475745"
   },
   {
    "id": "create_name_taken",
@@ -136,9 +136,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_create_name_taken.png",
-   "file_3x": "3x/wizardry_dos_na_system_create_name_taken.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bdc59a225001bc0b7fb67636ee315584aba9ca02"
   },
   {
    "id": "create_password",
@@ -149,9 +149,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_create_password.png",
-   "file_3x": "3x/wizardry_dos_na_system_create_password.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "455514361ae2edc937b3fe64fc32bf40a79da94b"
   },
   {
    "id": "create_race",
@@ -162,9 +162,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_create_race.png",
-   "file_3x": "3x/wizardry_dos_na_system_create_race.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "76ffebd06d3216c3c5d115f09c8b5eac5c501ff4"
   },
   {
    "id": "create_align",
@@ -175,9 +175,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_create_align.png",
-   "file_3x": "3x/wizardry_dos_na_system_create_align.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "da0762bd7b00f467b5fa0f53db902620a46e7218"
   },
   {
    "id": "create_bonus",
@@ -188,9 +188,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_create_bonus.png",
-   "file_3x": "3x/wizardry_dos_na_system_create_bonus.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bb386c67e424c467a5f257bb9d7b4b8283021da3"
   },
   {
    "id": "create_bonus_spent",
@@ -201,9 +201,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_create_bonus_spent.png",
-   "file_3x": "3x/wizardry_dos_na_system_create_bonus_spent.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "92a68b594fe687b2ac1b591dda9b4897096c530c"
   },
   {
    "id": "create_class",
@@ -214,9 +214,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_create_class.png",
-   "file_3x": "3x/wizardry_dos_na_system_create_class.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4b76accfa92e8f00eb8967af4fd55a8de8ea4f06"
   },
   {
    "id": "create_keep",
@@ -227,9 +227,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_create_keep.png",
-   "file_3x": "3x/wizardry_dos_na_system_create_keep.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f2e8094c5986281de004b37fd4064f8fd68ed454"
   },
   {
    "id": "training_char_menu",
@@ -240,9 +240,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_training_char_menu.png",
-   "file_3x": "3x/wizardry_dos_na_menu_training_char_menu.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d3fbb4af54d9fc26a954535027036b3053dc35c1"
   },
   {
    "id": "training_inspect_new",
@@ -253,9 +253,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_training_inspect_new.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_training_inspect_new.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e600566fde0fb0dc5186e16c23602963b69ecdef"
   },
   {
    "id": "training_change_class",
@@ -266,9 +266,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_training_change_class.png",
-   "file_3x": "3x/wizardry_dos_na_system_training_change_class.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "386ef57ee643b302f4ca1aca237bd3f7da95ac74"
   },
   {
    "id": "training_class_changed",
@@ -279,9 +279,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_training_class_changed.png",
-   "file_3x": "3x/wizardry_dos_na_system_training_class_changed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6e6a1599396dfb59ceecaef06c37f375e64d5668"
   },
   {
    "id": "training_delete",
@@ -292,9 +292,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_training_delete.png",
-   "file_3x": "3x/wizardry_dos_na_system_training_delete.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "86cf8b6159f6acbc250b890210e63948f7aa54da"
   },
   {
    "id": "training_password",
@@ -305,9 +305,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_training_password.png",
-   "file_3x": "3x/wizardry_dos_na_system_training_password.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "86c932146d9a40ea6980301579b6e5635ca7a61b"
   },
   {
    "id": "training_pick",
@@ -318,9 +318,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_training_pick.png",
-   "file_3x": "3x/wizardry_dos_na_menu_training_pick.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b27b701f97053b38b57aef8c48685abcfb100109"
   },
   {
    "id": "inventory_roster",
@@ -331,9 +331,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_roster.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_roster.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4e59e8813d056309afd84219d26ab2dc956c9048"
   },
   {
    "id": "menu_tavern_add",
@@ -344,9 +344,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_tavern_add.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_tavern_add.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b79953f673b76612e677b0e204b417c6245a4c7a"
   },
   {
    "id": "menu_castle",
@@ -357,9 +357,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_castle.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_castle.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "19a013908aa3d84051c92f7a8c1d3157a8f66d68"
   },
   {
    "id": "menu_tavern",
@@ -370,9 +370,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_tavern.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_tavern.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "37bb2c9c283c99fc885ffa0657795a67e547349d"
   },
   {
    "id": "tavern_remove",
@@ -383,9 +383,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_tavern_remove.png",
-   "file_3x": "3x/wizardry_dos_na_menu_tavern_remove.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "17352a1dc75089ebea9dc28dab1b83c3a670513a"
   },
   {
    "id": "tavern_removed",
@@ -396,9 +396,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_tavern_removed.png",
-   "file_3x": "3x/wizardry_dos_na_menu_tavern_removed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c4e89c823cad059ccf228c0a2af16a17430adaa0"
   },
   {
    "id": "inventory_inspect_l1",
@@ -409,9 +409,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_inspect_l1.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_inspect_l1.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2ae068f8156491dbcd61e9af4e1bab6317a63bf5"
   },
   {
    "id": "menu_inn_who",
@@ -422,9 +422,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_inn_who.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_inn_who.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dfc2f5017521942690cb5a579ef407d9e55f48d5"
   },
   {
    "id": "menu_inn",
@@ -435,9 +435,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_inn.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_inn.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fe31d0632c6724e81e7253a2054e5a12c75c15c1"
   },
   {
    "id": "inn_stables",
@@ -448,9 +448,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_inn_stables.png",
-   "file_3x": "3x/wizardry_dos_na_menu_inn_stables.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e0cf7ab43c0ac5acca2d502dd745c4372924faa2"
   },
   {
    "id": "inn_recuperating",
@@ -461,9 +461,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_inn_recuperating.png",
-   "file_3x": "3x/wizardry_dos_na_system_inn_recuperating.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d94ca9b83dc8571c773ea2b7d8e73b82fa5691eb"
   },
   {
    "id": "inn_levelup",
@@ -474,9 +474,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_inn_levelup.png",
-   "file_3x": "3x/wizardry_dos_na_system_inn_levelup.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "03049a3a1cff0f60718070545bb5260d478dc6b6"
   },
   {
    "id": "menu_temple_empty",
@@ -487,9 +487,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_temple_empty.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_temple_empty.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9b419e144a9cb40fa65c76bdca1e0bbe2f3e56d1"
   },
   {
    "id": "menu_edge",
@@ -500,9 +500,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_edge.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_edge.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "06390bcf55d6c745a8c8e24b6be34bcdbe7b6efd"
   },
   {
    "id": "menu_utilities",
@@ -513,9 +513,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_utilities.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_utilities.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "91c5797f6fa524018c7d9013a98b648dfd8b0998"
   },
   {
    "id": "util_change_name",
@@ -526,9 +526,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_util_change_name.png",
-   "file_3x": "3x/wizardry_dos_na_menu_util_change_name.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2ba55292cb41b8f19363b4248a7b75e32002c729"
   },
   {
    "id": "util_move",
@@ -539,9 +539,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_util_move.png",
-   "file_3x": "3x/wizardry_dos_na_menu_util_move.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0c0f26e3b6641189360a74b6381a7b70636267d1"
   },
   {
    "id": "util_restart_none",
@@ -552,9 +552,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_util_restart_none.png",
-   "file_3x": "3x/wizardry_dos_na_menu_util_restart_none.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "937cce4f1139a0b60d195679da8bd0c129e4abaf"
   },
   {
    "id": "menu_castle_vets",
@@ -565,9 +565,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_menu_castle_vets.png",
-   "file_3x": "3x/wizardry_dos_na_menu_menu_castle_vets.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e463b5268a556254e63f21ad39a7b9bf1e9598cb"
   },
   {
    "id": "inventory_sheet_vet",
@@ -578,9 +578,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_sheet_vet.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_sheet_vet.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0cd1a6b4b9ff19f33b1dbee3245115cb5c09ca1b"
   },
   {
    "id": "inventory_spellbooks",
@@ -591,9 +591,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_spellbooks.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_spellbooks.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d6dc336b74b80a9ca18326015f69c705d3fb2b2e"
   },
   {
    "id": "inventory_mage_book",
@@ -604,9 +604,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_mage_book.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_mage_book.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6cff85eaf0bec9292808c84e8002ae3e06ea7dae"
   },
   {
    "id": "inventory_priest_book",
@@ -617,9 +617,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_priest_book.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_priest_book.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "68813f109f08a5cce6207824736d53fde9094f60"
   },
   {
    "id": "inventory_trade",
@@ -630,9 +630,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_trade.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_trade.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "647aaadf151ca8cb04de6db0c26428389fd3a673"
   },
   {
    "id": "inventory_trade_gold",
@@ -643,9 +643,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_trade_gold.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_trade_gold.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "359aec4087165e86e03d08571e93e4b6098d6526"
   },
   {
    "id": "inventory_pool",
@@ -656,9 +656,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_pool.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_pool.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6821ea7d1c2256ed150cccd5245b5579c01cb014"
   },
   {
    "id": "inventory_drop",
@@ -669,9 +669,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_drop.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_drop.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4ce4d72817e3d985171415f16926d607818e889c"
   },
   {
    "id": "inventory_bishop_identify",
@@ -682,9 +682,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_bishop_identify.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_bishop_identify.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "14d120f0ebd53fa46fbae53c51bab97561408ed7"
   },
   {
    "id": "inventory_identified",
@@ -695,9 +695,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_identified.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_identified.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "29e1b34ade5814537a82c61c661ed242cd01d045"
   },
   {
    "id": "shop_boltac_who",
@@ -708,9 +708,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_boltac_who.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_boltac_who.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7092b736589caaed72c0229c1d59b2aa0f1781ff"
   },
   {
    "id": "shop_boltac",
@@ -721,9 +721,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_boltac.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_boltac.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d5aec655aab21701f5a6670d278bbd7c6738b28f"
   },
   {
    "id": "shop_boltac_buy",
@@ -734,9 +734,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_boltac_buy.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_boltac_buy.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fb552a16c28f8170149a92bb994d1b89da6b48c0"
   },
   {
    "id": "shop_boltac_armor",
@@ -747,9 +747,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_boltac_armor.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_boltac_armor.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "afb39ab5bb68e6a9fb1264c886aa796ab747f460"
   },
   {
    "id": "shop_boltac_potions",
@@ -760,9 +760,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_boltac_potions.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_boltac_potions.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a5f218f90cb6b92b284c4daba0f38b19ed57c9b2"
   },
   {
    "id": "shop_boltac_magic",
@@ -773,9 +773,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_boltac_magic.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_boltac_magic.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d0d13dbe1d7329c46492aa7d638ae8d95646dbf2"
   },
   {
    "id": "shop_boltac_rare",
@@ -786,9 +786,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_boltac_rare.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_boltac_rare.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3077009a0b73d96dafb80c6e6274cfb51ab3be6d"
   },
   {
    "id": "shop_purchase",
@@ -799,9 +799,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_purchase.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_purchase.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4d77080c59def09f29b808f7f751062d67002e35"
   },
   {
    "id": "shop_bought",
@@ -812,9 +812,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_bought.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_bought.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "676bafb0b14a6c88c81d498199b9c6c4c965cff5"
   },
   {
    "id": "shop_unusable",
@@ -825,9 +825,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_unusable.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_unusable.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1ebd88eb8f94a561e10b2cccfd883eb9b87ba29b"
   },
   {
    "id": "shop_sell",
@@ -838,9 +838,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_sell.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_sell.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b0f6c4ebfbcdab6acd0fb9646ac77b80dd2ce095"
   },
   {
    "id": "shop_sold",
@@ -851,9 +851,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_sold.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_sold.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f482d7a0f958fc8c07ca210a82835f49f7bec79a"
   },
   {
    "id": "shop_identify",
@@ -864,9 +864,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_identify.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_identify.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "eb3ecf787add8e724f1ffe0e254204d4589f7bb0"
   },
   {
    "id": "shop_identified",
@@ -877,9 +877,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_identified.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_identified.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e960d9877e15760d29aa09636887f60795b992f4"
   },
   {
    "id": "shop_uncurse",
@@ -890,9 +890,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_uncurse.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_uncurse.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ed9834be9a34a60cdde8495ac72d197517b93fd1"
   },
   {
    "id": "shop_uncursed",
@@ -903,9 +903,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_shop_shop_uncursed.png",
-   "file_3x": "3x/wizardry_dos_na_shop_shop_uncursed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ada24483bab30bb5f726e577d57e4a1de62f1835"
   },
   {
    "id": "temple_dead",
@@ -916,9 +916,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_temple_dead.png",
-   "file_3x": "3x/wizardry_dos_na_menu_temple_dead.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "465b903a75fae6bf28de24fcd8c83b9fbc1c9272"
   },
   {
    "id": "temple_donation",
@@ -929,9 +929,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_temple_donation.png",
-   "file_3x": "3x/wizardry_dos_na_menu_temple_donation.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "904704b5bdb985283e23ab825c672e6e183fb253"
   },
   {
    "id": "temple_ritual",
@@ -942,9 +942,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_temple_ritual.png",
-   "file_3x": "3x/wizardry_dos_na_system_temple_ritual.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6fde1657aa3cb889c5467970269911bbc2012d6c"
   },
   {
    "id": "temple_healed",
@@ -955,9 +955,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_temple_healed.png",
-   "file_3x": "3x/wizardry_dos_na_system_temple_healed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2b2440c6a351d6c97842729b752447f5d58784bf"
   },
   {
    "id": "temple_ashes_donation",
@@ -968,9 +968,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_temple_ashes_donation.png",
-   "file_3x": "3x/wizardry_dos_na_menu_temple_ashes_donation.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "04bae44cc3174936101bd853f947962300bd0f8f"
   },
   {
    "id": "temple_buried",
@@ -981,9 +981,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_temple_buried.png",
-   "file_3x": "3x/wizardry_dos_na_system_temple_buried.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f888b4f427444bcfff2115a919d49d266be4fc67"
   },
   {
    "id": "temple_lost_party",
@@ -994,9 +994,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_temple_lost_party.png",
-   "file_3x": "3x/wizardry_dos_na_system_temple_lost_party.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "426b8d8c568e2cb60f4501de966020e525b287ad"
   },
   {
    "id": "gameplay_maze_f1_start",
@@ -1007,9 +1007,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_maze_f1_start.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_maze_f1_start.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e4955d86b1b2a8332a72b2ca1e0c43ae8af98574"
   },
   {
    "id": "gameplay_camp",
@@ -1020,9 +1020,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_gameplay_camp.png",
-   "file_3x": "3x/wizardry_dos_na_menu_gameplay_camp.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4efb93404ff9625778dc968e054dc866c4fbbbae"
   },
   {
    "id": "inventory_camp_inspect",
@@ -1033,9 +1033,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_inventory_camp_inspect.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_inventory_camp_inspect.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1f2552f8ae0bdef58ba1a77f80f0eb0dd56da5e7"
   },
   {
    "id": "camp_reorder",
@@ -1046,9 +1046,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_camp_reorder.png",
-   "file_3x": "3x/wizardry_dos_na_menu_camp_reorder.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6a74fba69a4f4d19be89daadeb7ee9216b8f0a4f"
   },
   {
    "id": "camp_equip",
@@ -1059,9 +1059,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_camp_equip.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_camp_equip.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d6ac0b26a0a2f83227b0fb5f85ba443f9856fbd2"
   },
   {
    "id": "camp_cast_whom",
@@ -1072,9 +1072,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_camp_cast_whom.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_camp_cast_whom.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cb05b042cf71234071b6e58014cff93893135c14"
   },
   {
    "id": "camp_use_item",
@@ -1085,9 +1085,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_camp_use_item.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_camp_use_item.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9c630bc9bcbd60faa42904719021ee38725abfd6"
   },
   {
    "id": "camp_malor",
@@ -1098,9 +1098,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_inventory_camp_malor.png",
-   "file_3x": "3x/wizardry_dos_na_inventory_camp_malor.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e4820ef49c2135da67d248992f1fdb306f156005"
   },
   {
    "id": "system_dumapic",
@@ -1111,9 +1111,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_system_dumapic.png",
-   "file_3x": "3x/wizardry_dos_na_system_system_dumapic.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3191040bcaeb08d0f452d11a3d32d89f9e115d5d"
   },
   {
    "id": "gameplay_wall",
@@ -1124,9 +1124,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_wall.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_wall.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7ee22981f3038d855e76bd3da5081687134afc43"
   },
   {
    "id": "gameplay_status_off",
@@ -1137,9 +1137,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_status_off.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_status_off.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "02d61be6f4177daccac6de4ac3710bb74d72f1b0"
   },
   {
    "id": "gameplay_full_view",
@@ -1150,9 +1150,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_full_view.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_full_view.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "322b65f49484371f7db59e577a321788808f3f11"
   },
   {
    "id": "gameplay_inspect_none",
@@ -1163,9 +1163,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_inspect_none.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_inspect_none.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6ad0b3022d5ec9ca921ff10a85cbfc95516b0381"
   },
   {
    "id": "gameplay_dark",
@@ -1176,9 +1176,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_dark.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_dark.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "16dfd2d3f927f962516cac2e33c350f4b3f10418"
   },
   {
    "id": "dialogue_sign_f1",
@@ -1189,9 +1189,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_sign_f1.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_sign_f1.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e10653d181dfe45f7133d9bfbecd1e1515797e76"
   },
   {
    "id": "dialogue_f1_mapiro",
@@ -1202,9 +1202,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f1_mapiro.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f1_mapiro.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f3346752a10a82d85fae6064b6b81e252d2fd174"
   },
   {
    "id": "dialogue_f1_chicken",
@@ -1215,9 +1215,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f1_chicken.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f1_chicken.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2976c2f8a4348f92a73584030ca16d180245af59"
   },
   {
    "id": "dialogue_f1_altar",
@@ -1228,9 +1228,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f1_altar.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f1_altar.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a42e29b3466220237f6fe248bd34abd2dabe7735"
   },
   {
    "id": "dialogue_f1_boar",
@@ -1241,9 +1241,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f1_boar.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f1_boar.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c1856b7c1120bb37e90d9813ab36acecab14a1fe"
   },
   {
    "id": "gameplay_elevator",
@@ -1254,9 +1254,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_elevator.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_elevator.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b306209755a3dbe314f9e719f358360c8a833b42"
   },
   {
    "id": "gameplay_stairs",
@@ -1267,9 +1267,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_stairs.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_stairs.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bdb1750c5660d2b0dc3b720739d7a39f0686c5c5"
   },
   {
    "id": "dialogue_f2_bronze_smoke",
@@ -1280,9 +1280,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f2_bronze_smoke.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f2_bronze_smoke.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c66b36ae86548daa6f329179f0e76c8fcc45b33c"
   },
   {
    "id": "dialogue_f2_silver_fog",
@@ -1293,9 +1293,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f2_silver_fog.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f2_silver_fog.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "752e899cfef3ead97c93023bd4844e5f89f26d8f"
   },
   {
    "id": "dialogue_f2_placard",
@@ -1306,9 +1306,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f2_placard.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f2_placard.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "47c234666b5d1eb2ba46d0a3144511eecab24d14"
   },
   {
    "id": "dialogue_f2_bear",
@@ -1319,9 +1319,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f2_bear.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f2_bear.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a5482949f97d5eb24f573240b46cd3736c0400d6"
   },
   {
    "id": "system_search",
@@ -1332,9 +1332,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_system_search.png",
-   "file_3x": "3x/wizardry_dos_na_system_system_search.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9295a40de921c03bea2f52d2a409fe8f09e55247"
   },
   {
    "id": "system_search_found",
@@ -1345,9 +1345,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_system_search_found.png",
-   "file_3x": "3x/wizardry_dos_na_system_system_search_found.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4ef4f8affbf532158015ecbe24a340b4ec7e82ce"
   },
   {
    "id": "dialogue_f2_frog",
@@ -1358,9 +1358,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f2_frog.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f2_frog.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1f97f72e393d7925afcb056591c7f22a10a2d2d6"
   },
   {
    "id": "dialogue_f2_door",
@@ -1371,9 +1371,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f2_door.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f2_door.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fe43fb20388a0f484d07a035b2ca4bd6207af276"
   },
   {
    "id": "dialogue_f3_mosaic",
@@ -1384,9 +1384,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f3_mosaic.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f3_mosaic.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "81b9b7c2da05df0fd606df2e3df87ee754f9e9b3"
   },
   {
    "id": "gameplay_pit",
@@ -1397,9 +1397,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_pit.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_pit.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "784b07af46f8d6c2c837c75bee60b7f40f89a806"
   },
   {
    "id": "dialogue_f4_control",
@@ -1410,9 +1410,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f4_control.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f4_control.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "184912f2d9ad0cf1664988922e532b58e1869e30"
   },
   {
    "id": "dialogue_f4_alarm",
@@ -1423,9 +1423,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f4_alarm.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f4_alarm.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1bba730a1b5140153937713a92081f60c90442b8"
   },
   {
    "id": "dialogue_f4_treasure",
@@ -1436,9 +1436,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f4_treasure.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f4_treasure.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f3abd7d29275799d6f86ec4172deb6f5b97425d8"
   },
   {
    "id": "dialogue_f4_allocation",
@@ -1449,9 +1449,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f4_allocation.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f4_allocation.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "694a20d2d336277cd558932e7bf0679cd05825c7"
   },
   {
    "id": "dialogue_f4_desk",
@@ -1462,9 +1462,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f4_desk.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f4_desk.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a2e6c4791a53ec56a28238ddb455b3f41ba28848"
   },
   {
    "id": "dialogue_f4_private",
@@ -1475,9 +1475,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f4_private.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f4_private.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3f9586588655d789420eac9699051037c9c2131f"
   },
   {
    "id": "dialogue_f4_asleep",
@@ -1488,9 +1488,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f4_asleep.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f4_asleep.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "963b136059165eece72d8cf50dcc90582f6c8651"
   },
   {
    "id": "dialogue_f4_bear_wall",
@@ -1501,9 +1501,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f4_bear_wall.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f4_bear_wall.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "719fc9e2a4b99e3ea14d2b911b75450d6458a113"
   },
   {
    "id": "gameplay_elevator_f4",
@@ -1514,9 +1514,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_elevator_f4.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_elevator_f4.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d0af7acd73f06a4c03b948a32dac69018a3def71"
   },
   {
    "id": "system_fizzle",
@@ -1527,9 +1527,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_system_fizzle.png",
-   "file_3x": "3x/wizardry_dos_na_system_system_fizzle.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "360475e10348d1ffc87d61545cd7f5d6a2a81556"
   },
   {
    "id": "gameplay_chute",
@@ -1540,9 +1540,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_chute.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_chute.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "58b621822d90a986b0c451084a7f486e583fd423"
   },
   {
    "id": "dialogue_f10_plaque",
@@ -1553,9 +1553,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f10_plaque.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f10_plaque.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "91adc84294c9b5b8400fff772132ac31028a3697"
   },
   {
    "id": "dialogue_f10_guardians",
@@ -1566,9 +1566,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_f10_guardians.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_f10_guardians.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "42ee8f894ef02cfb476fdc5dd73603a5b458758e"
   },
   {
    "id": "gameover_rock",
@@ -1579,9 +1579,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameover_gameover_rock.png",
-   "file_3x": "3x/wizardry_dos_na_gameover_gameover_rock.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4b309b4b81c5ca1d1db48d3d02b4658e961cbaa3"
   },
   {
    "id": "battle_options",
@@ -1592,9 +1592,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_options.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_options.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "16c3406641eba42134aae51b2b90fbf5ba219019"
   },
   {
    "id": "battle_orders",
@@ -1605,9 +1605,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_orders.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_orders.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9559a4b71e3527d83df28598f480b54bc19ee601"
   },
   {
    "id": "battle_miss",
@@ -1618,9 +1618,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_miss.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_miss.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2c24891afe323616d4fc626bdf3e5cfd5175af95"
   },
   {
    "id": "battle_kill",
@@ -1631,9 +1631,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_kill.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_kill.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "644c697100a27ee9768e8b653136d940fb98632d"
   },
   {
    "id": "battle_identified",
@@ -1644,9 +1644,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_identified.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_identified.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "acefcbe8ef4c52cb3f1aca9940b40f0a4173bcd3"
   },
   {
    "id": "battle_spell_prompt",
@@ -1657,9 +1657,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_spell_prompt.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_spell_prompt.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "76318b710c8e66e454e7ba980c6542ee2a7122dc"
   },
   {
    "id": "battle_cast",
@@ -1670,9 +1670,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_cast.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_cast.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b69356f900cc63090b57cb03f75c9431d6be3a52"
   },
   {
    "id": "battle_victory",
@@ -1683,9 +1683,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_victory.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_victory.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "500593344319611242fd898181641fa96a3bcac3"
   },
   {
    "id": "battle_chest",
@@ -1696,9 +1696,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_chest.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_chest.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "688b46fbd6c8886f9a55ad4c340fd7022d294646"
   },
   {
    "id": "chest_inspect_who",
@@ -1709,9 +1709,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_inspect_who.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_inspect_who.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c3f76af66f35689294bf23c9caadbf4a609e4f2d"
   },
   {
    "id": "chest_inspected",
@@ -1722,9 +1722,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_inspected.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_inspected.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b05409f1cd674cb53aa40f82ebf856f9bdc0b60d"
   },
   {
    "id": "chest_open_who",
@@ -1735,9 +1735,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_open_who.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_open_who.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b4615b3e6c0b2b61c27fa612ca7e3905a7d39bb9"
   },
   {
    "id": "chest_disarm_prompt",
@@ -1748,9 +1748,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_disarm_prompt.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_disarm_prompt.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8838e2443a4a667fc69a1ea80aa1b4ef44f29eeb"
   },
   {
    "id": "chest_disarmed",
@@ -1761,9 +1761,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_disarmed.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_disarmed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "63e4706b14775cefab1e1987f79f198ed449edb0"
   },
   {
    "id": "chest_gold",
@@ -1774,9 +1774,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_gold.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_gold.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "647962bb4c14d8af9a3396a00e1ae6db0062c8a6"
   },
   {
    "id": "chest_exploding",
@@ -1787,9 +1787,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_exploding.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_exploding.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "654a9cd98ac411905499212656287a759221fd22"
   },
   {
    "id": "chest_slain",
@@ -1800,9 +1800,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_slain.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_slain.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a4b797a79837fac14f76296a2651af745ff3d231"
   },
   {
    "id": "gameplay_member_dead",
@@ -1813,9 +1813,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_member_dead.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_member_dead.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "18bcaf82100e4939c00beabe5ab804b028a890c7"
   },
   {
    "id": "battle_f1_kobolds",
@@ -1826,9 +1826,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f1_kobolds.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f1_kobolds.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "372170fc70141d09c5858f8b3b1b09edcd22aa7b"
   },
   {
    "id": "battle_group_select",
@@ -1839,9 +1839,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_group_select.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_group_select.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "43cd367c4620b18eec2d1908058001be52513377"
   },
   {
    "id": "battle_f1_skeletons",
@@ -1852,9 +1852,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f1_skeletons.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f1_skeletons.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f061b6f64dc34a093ba5b7c31b35d203ea2e2dd5"
   },
   {
    "id": "battle_friendly",
@@ -1865,9 +1865,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_friendly.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_friendly.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "07980358b7e84b0f66c3ca65ea69836e310142e9"
   },
   {
    "id": "battle_f1_undead_kobolds",
@@ -1878,9 +1878,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f1_undead_kobolds.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f1_undead_kobolds.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5ed1b4aa3d1660ad6415516d6702b87d10724d18"
   },
   {
    "id": "battle_f2_gas_clouds",
@@ -1891,9 +1891,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f2_gas_clouds.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f2_gas_clouds.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0dafc122f4e733dcd07da2e816809bc0cad1249f"
   },
   {
    "id": "battle_f2_priests",
@@ -1904,9 +1904,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f2_priests.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f2_priests.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8a69befebc570b5e24b46eb863cb839eff021058"
   },
   {
    "id": "battle_f2_humanoids",
@@ -1917,9 +1917,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f2_humanoids.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f2_humanoids.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e5d416a15ef88a174d642deee05f626495028673"
   },
   {
    "id": "battle_f2_gas_clouds_hostile",
@@ -1930,9 +1930,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f2_gas_clouds_hostile.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f2_gas_clouds_hostile.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f556765fb58bf1aea391140e9cdc2918b6d21b62"
   },
   {
    "id": "battle_f3_dragons",
@@ -1943,9 +1943,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f3_dragons.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f3_dragons.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "92c2b9318a988b9d0165bbe7b3dd30a41f9473b3"
   },
   {
    "id": "battle_f3_priests",
@@ -1956,9 +1956,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f3_priests.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f3_priests.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1854ee35bd2982caf22492ea08553ae943aa5e61"
   },
   {
    "id": "battle_f3_corpses",
@@ -1969,9 +1969,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f3_corpses.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f3_corpses.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cb79ad7e058b92a8e62f463f4b3ba531b635d457"
   },
   {
    "id": "battle_f3_rodents",
@@ -1982,9 +1982,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f3_rodents.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f3_rodents.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d4aa599772d9cf2a2596c0d2b9c8935327bd1cc3"
   },
   {
    "id": "battle_cast_badios",
@@ -1995,9 +1995,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_cast_badios.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_cast_badios.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "26afd483b7a5e78d572e6466b49e601d31e1026f"
   },
   {
    "id": "battle_multi_hit",
@@ -2008,9 +2008,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_multi_hit.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_multi_hit.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b4aa61c651e4b27ae9b20a23da12c2cfb8be362a"
   },
   {
    "id": "battle_mahalito",
@@ -2021,9 +2021,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_mahalito.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_mahalito.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a8b49f799c2ef187c80d9b9f1eebda1758fe87b3"
   },
   {
    "id": "battle_victory_vets",
@@ -2034,9 +2034,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_victory_vets.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_victory_vets.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "33337eb5fcd5d53923ef7ff4c9a6f9548e421150"
   },
   {
    "id": "chest_calfo_who",
@@ -2047,9 +2047,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_calfo_who.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_calfo_who.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d4a25978798977445bb3b222da4002c0210af39b"
   },
   {
    "id": "chest_calfo",
@@ -2060,9 +2060,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_calfo.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_calfo.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0a1dca46f8003a219eb35b3f9820ca03d4825a26"
   },
   {
    "id": "chest_poison_needle",
@@ -2073,9 +2073,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_chest_poison_needle.png",
-   "file_3x": "3x/wizardry_dos_na_battle_chest_poison_needle.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0d1ef466ae7a4a69252440b3c956d705619148a1"
   },
   {
    "id": "gameplay_poisoned",
@@ -2086,9 +2086,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_poisoned.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_poisoned.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3aceff9dc7499ccc1626be6cd37e305a07734987"
   },
   {
    "id": "battle_run",
@@ -2099,9 +2099,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_run.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_run.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2b2d36f3d572983b632de9cbeedf48cc2425ef7a"
   },
   {
    "id": "battle_f3_wolves",
@@ -2112,9 +2112,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f3_wolves.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f3_wolves.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "36e776ab4f15aac04f151c20cd533ee9d7f7f114"
   },
   {
    "id": "battle_f3_spirits",
@@ -2125,9 +2125,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f3_spirits.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f3_spirits.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5c83689c6b108829f6c4027c03355cbd15be07f3"
   },
   {
    "id": "battle_f4_fixed",
@@ -2138,9 +2138,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f4_fixed.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f4_fixed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c5fd9b5b74edfd614c1e0268f80244f67532e6f2"
   },
   {
    "id": "battle_f7_dragons",
@@ -2151,9 +2151,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f7_dragons.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f7_dragons.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b05dc11a9bbe0401ef754ee039f71fb0ed4c57b7"
   },
   {
    "id": "battle_f7_friendly_wyverns",
@@ -2164,9 +2164,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f7_friendly_wyverns.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f7_friendly_wyverns.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d695effbbd9aa34173adb9639da4364fdb31e6fe"
   },
   {
    "id": "battle_f7_samurai",
@@ -2177,9 +2177,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f7_samurai.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f7_samurai.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "12b1df5d163937ada619319b5f94f10b1ba85eef"
   },
   {
    "id": "battle_f8_chimeras",
@@ -2190,9 +2190,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f8_chimeras.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f8_chimeras.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f95bfbd1d0619d6e96cb6e0ec369bca2540e7eba"
   },
   {
    "id": "battle_monster_bite",
@@ -2203,9 +2203,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_monster_bite.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_monster_bite.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7e7adbf5f3b2975f0be869a64d49c8e058afe038"
   },
   {
    "id": "battle_use_item",
@@ -2216,9 +2216,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_use_item.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_use_item.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "59468fd2aecdf1443c59d8285bf2914d69657ac8"
   },
   {
    "id": "battle_f8_arch_mages",
@@ -2229,9 +2229,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f8_arch_mages.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f8_arch_mages.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1ba0f40d3bd1e060a915b93127b3afb66e64d72e"
   },
   {
    "id": "battle_enemy_katino",
@@ -2242,9 +2242,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_enemy_katino.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_enemy_katino.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "03957f942b8aad4c558862b41f4e6cc4c230cdd6"
   },
   {
    "id": "battle_party_asleep",
@@ -2255,9 +2255,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_party_asleep.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_party_asleep.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "14b38e4ead19b4ffbad36693d8bad97b52545923"
   },
   {
    "id": "battle_f8_men_in_armor",
@@ -2268,9 +2268,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f8_men_in_armor.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f8_men_in_armor.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b531490021e7cbd51b8ce812ae14913a6128acc8"
   },
   {
    "id": "battle_f8_high_priests",
@@ -2281,9 +2281,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f8_high_priests.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f8_high_priests.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ec9cb8d965ed6096c4368e49f5e452b3dd24318b"
   },
   {
    "id": "battle_f9_lifestealer",
@@ -2294,9 +2294,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f9_lifestealer.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f9_lifestealer.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fb85af9efe6e96f976ae5eeb777119f2ae307868"
   },
   {
    "id": "battle_dispell",
@@ -2307,9 +2307,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_dispell.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_dispell.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1b49e9fc5f70359235f7b34850e310c06edd26c8"
   },
   {
    "id": "battle_f10_thieves",
@@ -2320,9 +2320,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_f10_thieves.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_f10_thieves.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a48e5d8215f1536c576300b41d5093209213b178"
   },
   {
    "id": "battle_enemy_lahalito",
@@ -2333,9 +2333,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_enemy_lahalito.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_enemy_lahalito.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0742d76a1c5671798085fad8ebc8b9a829e46610"
   },
   {
    "id": "battle_badialma",
@@ -2346,9 +2346,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_battle_battle_badialma.png",
-   "file_3x": "3x/wizardry_dos_na_battle_battle_badialma.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "627154227a60b8cfac68ae0acda94b13d1980a63"
   },
   {
    "id": "gameover_cemetery",
@@ -2359,9 +2359,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameover_gameover_cemetery.png",
-   "file_3x": "3x/wizardry_dos_na_gameover_gameover_cemetery.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "21516c941e9e4da52f96fe4e08c0955143f9d73f"
   },
   {
    "id": "gameplay_door",
@@ -2372,9 +2372,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_door.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_door.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b3a475ba1da269a65836d72d74c017b8a576a8ca"
   },
   {
    "id": "dialogue_werdna_sign",
@@ -2385,9 +2385,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_dialogue_dialogue_werdna_sign.png",
-   "file_3x": "3x/wizardry_dos_na_dialogue_dialogue_werdna_sign.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a9602af71de4cf9420265e44bfa1ef07ee57a3ee"
   },
   {
    "id": "boss_werdna",
@@ -2398,9 +2398,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_werdna.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_werdna.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "19fa13442b734c1fca199cd7411f7ff7b6e0c8df"
   },
   {
    "id": "boss_werdna_orders",
@@ -2411,9 +2411,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_werdna_orders.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_werdna_orders.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "454fb673b9b40ae0e127a9e0b20f2f2a54226edf"
   },
   {
    "id": "boss_werdna_hit",
@@ -2424,9 +2424,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_werdna_hit.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_werdna_hit.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f97cffd7734b3a512b4ac71de0a5859646c9521e"
   },
   {
    "id": "boss_werdna_killed",
@@ -2437,9 +2437,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_werdna_killed.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_werdna_killed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b79bc98742874ca6f62303751bd8a309c2b46278"
   },
   {
    "id": "boss_tiltowait_damage",
@@ -2450,9 +2450,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_tiltowait_damage.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_tiltowait_damage.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d98b11a61fda474f43c542c6f72de6d3252968a0"
   },
   {
    "id": "boss_level_drain",
@@ -2463,9 +2463,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_level_drain.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_level_drain.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "520176405b7035bbdd194b8f08ac0cc7887143ca"
   },
   {
    "id": "boss_paralyzed",
@@ -2476,9 +2476,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_paralyzed.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_paralyzed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "62a92276ed3f0174250355c601984e967973da2c"
   },
   {
    "id": "boss_enemy_dilto",
@@ -2489,9 +2489,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_enemy_dilto.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_enemy_dilto.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d32431068198d2995e6c160151c301332c280e72"
   },
   {
    "id": "boss_spell_resisted",
@@ -2502,9 +2502,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_spell_resisted.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_spell_resisted.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9f7ab4e3ae6e81c0b2e98d6d7f3ffcdb9aed1256"
   },
   {
    "id": "boss_vampires_identified",
@@ -2515,9 +2515,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_vampires_identified.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_vampires_identified.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8c1a817683446671ddc060ba27dc32d6fc577f79"
   },
   {
    "id": "boss_vampire_lord_killed",
@@ -2528,9 +2528,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_vampire_lord_killed.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_vampire_lord_killed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e9e5782ba7f86ae1290e73d3e58e39fb8c78729a"
   },
   {
    "id": "boss_drained_after",
@@ -2541,9 +2541,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_drained_after.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_drained_after.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cb5160392bb64cf31d4a5d447c232d071517ce8a"
   },
   {
    "id": "boss_werdna_ep",
@@ -2554,9 +2554,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_werdna_ep.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_werdna_ep.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0c11204d3e0ede47aeb799dcea633669853b9b06"
   },
   {
    "id": "boss_amulet_found",
@@ -2567,9 +2567,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_amulet_found.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_amulet_found.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "69f8327dbf388e7acc68ee63649c172e646c1592"
   },
   {
    "id": "gameplay_after_werdna",
@@ -2580,9 +2580,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_gameplay_gameplay_after_werdna.png",
-   "file_3x": "3x/wizardry_dos_na_gameplay_gameplay_after_werdna.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ed97e75488a941f0cf2afb8cb0e9065ce1c0ab48"
   },
   {
    "id": "boss_werdna_tiltowait",
@@ -2593,9 +2593,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_werdna_tiltowait.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_werdna_tiltowait.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4651b8ebe02c364a98a9631ea0859aa844f397bc"
   },
   {
    "id": "boss_member_killed",
@@ -2606,9 +2606,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_member_killed.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_member_killed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d1792eca65b1ec42697d8517f36149651708cf06"
   },
   {
    "id": "boss_four_dead",
@@ -2619,9 +2619,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_boss_boss_four_dead.png",
-   "file_3x": "3x/wizardry_dos_na_boss_boss_four_dead.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "016b91503faf8f5273c30e6af8136f9ebadd52c0"
   },
   {
    "id": "ending_congratulations",
@@ -2632,9 +2632,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_ending_ending_congratulations.png",
-   "file_3x": "3x/wizardry_dos_na_ending_ending_congratulations.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4acc535bf774c841293c6cbef2d7ef984642f680"
   },
   {
    "id": "ending_castle",
@@ -2645,9 +2645,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_ending_ending_castle.png",
-   "file_3x": "3x/wizardry_dos_na_ending_ending_castle.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2aa83816ddae5d94a30636d7137bef610d1f08c9"
   },
   {
    "id": "ending_temple_paralysis",
@@ -2658,9 +2658,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_menu_ending_temple_paralysis.png",
-   "file_3x": "3x/wizardry_dos_na_menu_ending_temple_paralysis.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "00fa203638c2167b089c28bd347408788fa88dd5"
   },
   {
    "id": "ending_temple_healed",
@@ -2671,9 +2671,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_system_ending_temple_healed.png",
-   "file_3x": "3x/wizardry_dos_na_system_ending_temple_healed.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3af3addcd2dc009a3a420a42a5959a36818d935e"
   },
   {
    "id": "ending_chevron",
@@ -2684,9 +2684,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_ending_ending_chevron.png",
-   "file_3x": "3x/wizardry_dos_na_ending_ending_chevron.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dc25f5a1604c798dda4742274070482a10f2da38"
   },
   {
    "id": "ending_chevron_condi",
@@ -2697,9 +2697,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_ending_ending_chevron_condi.png",
-   "file_3x": "3x/wizardry_dos_na_ending_ending_chevron_condi.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "75fc2a6d7e293ff235abaea6a3edc030deeb0b28"
   },
   {
    "id": "ending_final_party",
@@ -2710,9 +2710,9 @@
    "model": "ega-315",
    "source": "shoot.py",
    "file": "wizardry_dos_na_ending_ending_final_party.png",
-   "file_3x": "3x/wizardry_dos_na_ending_ending_final_party.png",
    "rom_sha1": "32c93888de1e0def3485cb667a1ddd9844189035",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "70acba150ceca792a88ae425f09179696c4cd8f7"
   }
  ]
 }

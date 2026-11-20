@@ -1,236 +1,236 @@
 # Wizardry III: Legacy of Llylgamyn (DOS) - shots: main
 
-Platform dos, region na, model ega-315, ROM SHA-1 `7251a8f341533e94012705feb448a73fa7f11cd9`. 228 shots. Contact sheet: [wizardry-3_dos_na_set_sheet.png](wizardry-3_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model ega-315, ROM SHA-1 `7251a8f341533e94012705feb448a73fa7f11cd9`. 228 shots. Contact sheet: [wizardry-3_dos_na_set_sheet.png](wizardry-3_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
-| title_screen | title | Title: Wizardry logo, 'Scenario #3 - The Legacy of Llylgamyn', a monster | yes | [png](wizardry-3_dos_na_title_title_screen.png) [3x](3x/wizardry-3_dos_na_title_title_screen.png) |
-| menu_make_scenario | menu | M)ake scenario disk: 'The disk you inserted has data on it ... (Y/N)?' | yes | [png](wizardry-3_dos_na_menu_menu_make_scenario.png) [3x](3x/wizardry-3_dos_na_menu_menu_make_scenario.png) |
-| boot_disk_prompt | boot | 'Place duplicate scenario diskette in drive 1' (answered by the loader) | no | [png](wizardry-3_dos_na_boot_boot_disk_prompt.png) [3x](3x/wizardry-3_dos_na_boot_boot_disk_prompt.png) |
-| boot_loading | boot | 'Now loading the program into memory': the swap-disk notice | yes | [png](wizardry-3_dos_na_boot_boot_loading.png) [3x](3x/wizardry-3_dos_na_boot_boot_loading.png) |
-| menu_castle_empty | menu | Castle before the import: Llylgamyn, no party formed | yes | [png](wizardry-3_dos_na_menu_menu_castle_empty.png) [3x](3x/wizardry-3_dos_na_menu_menu_castle_empty.png) |
-| menu_tavern_stock | menu | Tavern A)dd before the import: the six stock legacies of the disk | yes | [png](wizardry-3_dos_na_menu_menu_tavern_stock.png) [3x](3x/wizardry-3_dos_na_menu_menu_tavern_stock.png) |
-| menu_edge_empty | menu | Edge of Town: training, maze, castle, utilities, leave game | yes | [png](wizardry-3_dos_na_menu_menu_edge_empty.png) [3x](3x/wizardry-3_dos_na_menu_menu_edge_empty.png) |
-| inventory_stock_klindt | inventory | Stock legacy KLINDT: level 1 dwarf fighter, award 'D', 252 gold | yes | [png](wizardry-3_dos_na_inventory_inventory_stock_klindt.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_stock_klindt.png) |
-| menu_utilities | menu | Wizardry Utilities: change name, move characters, restart an 'out' party | yes | [png](wizardry-3_dos_na_menu_menu_utilities.png) [3x](3x/wizardry-3_dos_na_menu_menu_utilities.png) |
-| system_move_scenario | system | M)ove characters: from 1) Proving Grounds or 2) Knight of Diamonds | yes | [png](wizardry-3_dos_na_system_system_move_scenario.png) [3x](3x/wizardry-3_dos_na_system_system_move_scenario.png) |
-| system_move_list | system | The Wizardry II roster on SAVE2.DSK: CALEB to MNZ, select by letter | yes | [png](wizardry-3_dos_na_system_system_move_list.png) [3x](3x/wizardry-3_dos_na_system_system_move_list.png) |
-| system_move_marked | system | RYZ CONDI EBO CUBI DEDDO MNZ (C-F, K, L) marked '+' for the move | yes | [png](wizardry-3_dos_na_system_system_move_marked.png) [3x](3x/wizardry-3_dos_na_system_system_move_marked.png) |
-| system_move_removing | system | Move: 'Removing the characters you selected from the roster' | no | [png](wizardry-3_dos_na_system_system_move_removing.png) [3x](3x/wizardry-3_dos_na_system_system_move_removing.png) |
-| system_move_insert | system | Move: 'Insert the destination scenario disk' (the loader presses Enter) | yes | [png](wizardry-3_dos_na_system_system_move_insert.png) [3x](3x/wizardry-3_dos_na_system_system_move_insert.png) |
-| system_move_moving | system | Move: 'Moving the characters to the new scenario disk' | yes | [png](wizardry-3_dos_na_system_system_move_moving.png) [3x](3x/wizardry-3_dos_na_system_system_move_moving.png) |
-| system_move_moved | system | 'RYZ has been moved' - one character after another | yes | [png](wizardry-3_dos_na_system_system_move_moved.png) [3x](3x/wizardry-3_dos_na_system_system_move_moved.png) |
-| menu_training | menu | Training Grounds: only inspect and roster - no character creation | yes | [png](wizardry-3_dos_na_menu_menu_training.png) [3x](3x/wizardry-3_dos_na_menu_menu_training.png) |
-| training_pick | menu | Training I)nspect: stock legacies A-F, then the imported heroes | yes | [png](wizardry-3_dos_na_menu_training_pick.png) [3x](3x/wizardry-3_dos_na_menu_training_pick.png) |
-| menu_char_options | menu | RYZ's options: L)egate I)nspect D)elete C)hange class A)lter password | yes | [png](wizardry-3_dos_na_menu_menu_char_options.png) [3x](3x/wizardry-3_dos_na_menu_menu_char_options.png) |
-| inventory_ancestor_sheet | inventory | RYZ before the rite: level 12 fighter from Wizardry II, award '>G' | yes | [png](wizardry-3_dos_na_inventory_inventory_ancestor_sheet.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_ancestor_sheet.png) |
-| dialogue_rite | dialogue | L)egate: 'The rite of passage ceremony now begins...' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_rite.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_rite.png) |
-| menu_alignment | menu | 'Choose an alignment for descendant: A) Good B) Neutral C) Evil' | yes | [png](wizardry-3_dos_na_menu_menu_alignment.png) [3x](3x/wizardry-3_dos_na_menu_menu_alignment.png) |
-| menu_alignment_thief | menu | CUBI the thief may only be B) Neutral or C) Evil | yes | [png](wizardry-3_dos_na_menu_menu_alignment_thief.png) [3x](3x/wizardry-3_dos_na_menu_menu_alignment_thief.png) |
-| inventory_descendant_sheet | inventory | RYZ after the rite: level 1 neutral fighter, '>DG', 8 hit points, 500 gold | yes | [png](wizardry-3_dos_na_inventory_inventory_descendant_sheet.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_descendant_sheet.png) |
-| inventory_descendant_evil | inventory | CUBI legated evil (a variant): E-THI, level 1, '>KD' | yes | [png](wizardry-3_dos_na_inventory_inventory_descendant_evil.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_descendant_evil.png) |
-| menu_already_legacy | menu | L)egate on a stock character: 'That character is already a legacy!' | yes | [png](wizardry-3_dos_na_menu_menu_already_legacy.png) [3x](3x/wizardry-3_dos_na_menu_menu_already_legacy.png) |
-| menu_tavern_bad_alignment | menu | Good CONDI in the party, evil CUBI refused: '* Bad alignment *' | no | [png](wizardry-3_dos_na_menu_menu_tavern_bad_alignment.png) [3x](3x/wizardry-3_dos_na_menu_menu_tavern_bad_alignment.png) |
-| inventory_roster | inventory | Training R)oster: twelve level-1 legacies, the stock six and the heroes | yes | [png](wizardry-3_dos_na_inventory_inventory_roster.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_roster.png) |
-| menu_castle_start | menu | Castle with the six descendants: level 1, AC 10, 8 hit points each | yes | [png](wizardry-3_dos_na_menu_menu_castle_start.png) [3x](3x/wizardry-3_dos_na_menu_menu_castle_start.png) |
-| menu_tavern | menu | Gilgamesh's Tavern: add, remove, inspect, divvy gold, leave | yes | [png](wizardry-3_dos_na_menu_menu_tavern.png) [3x](3x/wizardry-3_dos_na_menu_menu_tavern.png) |
-| tavern_remove | menu | Tavern R)emove: 'Remove who (#)?' | yes | [png](wizardry-3_dos_na_menu_tavern_remove.png) [3x](3x/wizardry-3_dos_na_menu_tavern_remove.png) |
-| tavern_add | menu | Tavern A)dd: the characters free to join, by letter | yes | [png](wizardry-3_dos_na_menu_tavern_add.png) [3x](3x/wizardry-3_dos_na_menu_tavern_add.png) |
-| menu_castle_geared | menu | The Castle with the veterans in Boltac's gear: AC 1 2 6 7 9 7 | yes | [png](wizardry-3_dos_na_menu_menu_castle_geared.png) [3x](3x/wizardry-3_dos_na_menu_menu_castle_geared.png) |
-| inventory_sheet_geared | inventory | RYZ equipped: broadsword+1, plate armor, heater shield, sallet, gloves | yes | [png](wizardry-3_dos_na_inventory_inventory_sheet_geared.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_sheet_geared.png) |
-| shop_boltac_who | shop | Boltac's Trading Post: 'Who (#) will enter?' | yes | [png](wizardry-3_dos_na_shop_shop_boltac_who.png) [3x](3x/wizardry-3_dos_na_shop_shop_boltac_who.png) |
-| shop_boltac | shop | Boltac's for RYZ: buy, sell, uncurse, identify, pool gold; 3417 gold | yes | [png](wizardry-3_dos_na_shop_shop_boltac.png) [3x](3x/wizardry-3_dos_na_shop_shop_boltac.png) |
-| shop_boltac_buy | shop | Stock page 1: short sword 30, broadsword 50, mace 60 ... battle axe 140 | yes | [png](wizardry-3_dos_na_shop_shop_boltac_buy.png) [3x](3x/wizardry-3_dos_na_shop_shop_boltac_buy.png) |
-| shop_boltac_shields | shop | Stock: dagger 10, flail 300, round and heater shields, mage's robes | yes | [png](wizardry-3_dos_na_shop_shop_boltac_shields.png) [3x](3x/wizardry-3_dos_na_shop_shop_boltac_shields.png) |
-| shop_boltac_armor | shop | Stock: cuirass 100, hauberk 200, breastplate 400, plate armor 1500 | yes | [png](wizardry-3_dos_na_shop_shop_boltac_armor.png) [3x](3x/wizardry-3_dos_na_shop_shop_boltac_armor.png) |
-| shop_purchase | shop | P)urchase: sallet, potions of Dios and Latumofis, +1 swords, Katino | yes | [png](wizardry-3_dos_na_shop_shop_purchase.png) [3x](3x/wizardry-3_dos_na_shop_shop_purchase.png) |
-| shop_bought | shop | RYZ buys a potion of Dios: '* Just what you needed *' | yes | [png](wizardry-3_dos_na_shop_shop_bought.png) [3x](3x/wizardry-3_dos_na_shop_shop_bought.png) |
-| shop_boltac_magic | shop | Stock: scroll of Katino, cuirass+1 to heater+1 8500, gloves of iron | yes | [png](wizardry-3_dos_na_shop_shop_boltac_magic.png) [3x](3x/wizardry-3_dos_na_shop_shop_boltac_magic.png) |
-| shop_unusable | shop | DEDDO (mage) shops: 'USELESS' marks, 'Unusable item - buy it (Y/N)?' | yes | [png](wizardry-3_dos_na_shop_shop_unusable.png) [3x](3x/wizardry-3_dos_na_shop_shop_unusable.png) |
-| shop_sell | shop | S)ell: EBO's pack at Boltac's prices, 'Sell which (#)?' | yes | [png](wizardry-3_dos_na_shop_shop_sell.png) [3x](3x/wizardry-3_dos_na_shop_shop_sell.png) |
-| shop_sold | shop | EBO sells his potion of Dios: '* Anything else, noble sir? *' | yes | [png](wizardry-3_dos_na_shop_shop_sold.png) [3x](3x/wizardry-3_dos_na_shop_shop_sold.png) |
-| shop_identify_fee | shop | I)dentify MNZ's ?JEWELRY for 6000: '* You cannot afford our fee *' | yes | [png](wizardry-3_dos_na_shop_shop_identify_fee.png) [3x](3x/wizardry-3_dos_na_shop_shop_identify_fee.png) |
-| shop_pool | shop | P)ool gold: the party's gold in MNZ's purse, 24189 | yes | [png](wizardry-3_dos_na_shop_shop_pool.png) [3x](3x/wizardry-3_dos_na_shop_shop_pool.png) |
-| shop_identified | shop | Identified after pooling: the jewelry is a GEM OF EXORCISM | yes | [png](wizardry-3_dos_na_shop_shop_identified.png) [3x](3x/wizardry-3_dos_na_shop_shop_identified.png) |
-| shop_uncurse | shop | U)ncurse: CUBI wears a cursed '-SALLET-1', uncursing costs 1000 | yes | [png](wizardry-3_dos_na_shop_shop_uncurse.png) [3x](3x/wizardry-3_dos_na_shop_shop_uncurse.png) |
-| shop_uncursed | shop | Uncursed: the sallet-1 is gone from CUBI's pack | yes | [png](wizardry-3_dos_na_shop_shop_uncursed.png) [3x](3x/wizardry-3_dos_na_shop_shop_uncursed.png) |
-| menu_inn_who | menu | Adventurer's Inn: 'Who (#) will stay?' | yes | [png](wizardry-3_dos_na_menu_menu_inn_who.png) [3x](3x/wizardry-3_dos_na_menu_menu_inn_who.png) |
-| menu_inn | menu | Inn rooms: stables free, cot 10, economy 50, merchants 200, royal 500 | yes | [png](wizardry-3_dos_na_menu_menu_inn.png) [3x](3x/wizardry-3_dos_na_menu_menu_inn.png) |
-| inn_levelup | system | RYZ in the stables: 'You made the next level!' - statistics change | yes | [png](wizardry-3_dos_na_system_inn_levelup.png) [3x](3x/wizardry-3_dos_na_system_inn_levelup.png) |
-| inn_recuperating | system | Cot: 'CONDI is recuperating', hit points 85 of 91, gold counting down | yes | [png](wizardry-3_dos_na_system_inn_recuperating.png) [3x](3x/wizardry-3_dos_na_system_inn_recuperating.png) |
-| temple_petrified | menu | Temple of Cant after the floor 4 guardian: RYZ, CONDI and EBO stoned | yes | [png](wizardry-3_dos_na_menu_temple_petrified.png) [3x](3x/wizardry-3_dos_na_menu_temple_petrified.png) |
-| temple_donation | menu | 'The donation will be 2400. Who (#) will tithe?' - RYZ, level 12, stoned | yes | [png](wizardry-3_dos_na_menu_temple_donation.png) [3x](3x/wizardry-3_dos_na_menu_temple_donation.png) |
-| temple_paralyzed | menu | Temple for CUBI, paralyzed by a Soul Trapper: 1300 (100 per level) | yes | [png](wizardry-3_dos_na_menu_temple_paralyzed.png) [3x](3x/wizardry-3_dos_na_menu_temple_paralyzed.png) |
-| temple_murmur | system | 'Murmur - chant - pray -' while the priests work | yes | [png](wizardry-3_dos_na_system_temple_murmur.png) [3x](3x/wizardry-3_dos_na_system_temple_murmur.png) |
-| temple_cured | system | 'Murmur - chant - pray - invoke!' and '* CUBI has been cured *' | yes | [png](wizardry-3_dos_na_system_temple_cured.png) [3x](3x/wizardry-3_dos_na_system_temple_cured.png) |
-| camp_menu | menu | First camp after the legacy: inspect, reorder, equip, leave; AC 10 | yes | [png](wizardry-3_dos_na_menu_camp_menu.png) [3x](3x/wizardry-3_dos_na_menu_camp_menu.png) |
-| camp_equip | inventory | Camp E)quip: 'Select weapon - 1) Broadsword+1 - Equip which (#)?' | yes | [png](wizardry-3_dos_na_inventory_camp_equip.png) [3x](3x/wizardry-3_dos_na_inventory_camp_equip.png) |
-| camp_equip_armor | inventory | E)quip goes slot by slot: MNZ's armor, a cuirass or an unknown ?JEWELRY | yes | [png](wizardry-3_dos_na_inventory_camp_equip_armor.png) [3x](3x/wizardry-3_dos_na_inventory_camp_equip_armor.png) |
-| camp_equipped | menu | Camp after equipping: AC 1 2 6 7 9 7 | yes | [png](wizardry-3_dos_na_menu_camp_equipped.png) [3x](3x/wizardry-3_dos_na_menu_camp_equipped.png) |
-| camp_reorder | menu | Camp R)eorder: 'Reordering' - the marching order, slot by slot | yes | [png](wizardry-3_dos_na_menu_camp_reorder.png) [3x](3x/wizardry-3_dos_na_menu_camp_reorder.png) |
-| inventory_sheet_priest | inventory | EBO's sheet: level 12 priest, priest spell points 9/9/9/8/6/6/4/2 | yes | [png](wizardry-3_dos_na_inventory_inventory_sheet_priest.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_sheet_priest.png) |
-| inventory_read | inventory | R)ead: spells known per level, then the mage or priest book | yes | [png](wizardry-3_dos_na_inventory_inventory_read.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_read.png) |
-| inventory_mage_book | inventory | DEDDO's mage book: HALITO to TILTOWAIT, 21 spells | yes | [png](wizardry-3_dos_na_inventory_inventory_mage_book.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_mage_book.png) |
-| inventory_priest_book | inventory | EBO's priest book: KALKI to KADORTO, 29 spells | yes | [png](wizardry-3_dos_na_inventory_inventory_priest_book.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_priest_book.png) |
-| camp_cast_what | inventory | S)pell in camp: 'Cast what spell?' - spells are typed | yes | [png](wizardry-3_dos_na_inventory_camp_cast_what.png) [3x](3x/wizardry-3_dos_na_inventory_camp_cast_what.png) |
-| system_dumapic | system | DUMAPIC: 'Facing north. 0 east 0 north 1 up.' - the castle is below | yes | [png](wizardry-3_dos_na_system_system_dumapic.png) [3x](3x/wizardry-3_dos_na_system_system_dumapic.png) |
-| camp_malor | inventory | MALOR in camp: party teleport, set east, north, up, then T)eleport | yes | [png](wizardry-3_dos_na_inventory_camp_malor.png) [3x](3x/wizardry-3_dos_na_inventory_camp_malor.png) |
-| camp_cast_whom | inventory | EBO casts DIOS in camp: 'Cast on whom (#)?' | yes | [png](wizardry-3_dos_na_inventory_camp_cast_whom.png) [3x](3x/wizardry-3_dos_na_inventory_camp_cast_whom.png) |
-| camp_use_item | inventory | U)se in camp: 'Use item (#)?' - EBO's potion of Dios | yes | [png](wizardry-3_dos_na_inventory_camp_use_item.png) [3x](3x/wizardry-3_dos_na_inventory_camp_use_item.png) |
-| camp_drop | inventory | D)rop: 'Drop item (#)?' | yes | [png](wizardry-3_dos_na_inventory_camp_drop.png) [3x](3x/wizardry-3_dos_na_inventory_camp_drop.png) |
-| camp_pool | inventory | P)ool gold in camp: the party's 24189 gold in EBO's purse | yes | [png](wizardry-3_dos_na_inventory_camp_pool.png) [3x](3x/wizardry-3_dos_na_inventory_camp_pool.png) |
-| inventory_unidentified | inventory | MNZ with the guardian's drop: '?CRYSTAL OF EVIL', not yet identified | yes | [png](wizardry-3_dos_na_inventory_inventory_unidentified.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_unidentified.png) |
-| inventory_bishop_noclue | inventory | MNZ (bishop) I)dentifies the crystal: 'You don't have a clue!' | yes | [png](wizardry-3_dos_na_inventory_inventory_bishop_noclue.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_bishop_noclue.png) |
-| inventory_bishop_identify | inventory | Another try: 'You identified it!' | yes | [png](wizardry-3_dos_na_inventory_inventory_bishop_identify.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_bishop_identify.png) |
-| inventory_trade | inventory | T)rade: RYZ, holding the Crystal of Good: 'Trade with whom (#)?' | yes | [png](wizardry-3_dos_na_inventory_inventory_trade.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_trade.png) |
-| inventory_trade_item | inventory | Trade to MNZ: 'Trade item (#)?' - the ?CRYSTAL OF GOOD is item 6 | yes | [png](wizardry-3_dos_na_inventory_inventory_trade_item.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_trade_item.png) |
-| inventory_crystals | inventory | MNZ, a good bishop, now holds the Crystal of Evil and the Crystal of Good | yes | [png](wizardry-3_dos_na_inventory_inventory_crystals.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_crystals.png) |
-| gameplay_maze_f1_start | gameplay | Floor 1 entrance: wireframe corridor, command line, the level-1 party | yes | [png](wizardry-3_dos_na_gameplay_gameplay_maze_f1_start.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_maze_f1_start.png) |
-| gameplay_stairs_castle | gameplay | Leaving camp at the entrance: 'Stairs down, take them (Y/N)?' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_stairs_castle.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_stairs_castle.png) |
-| gameplay_wall | gameplay | Walking into a wall: 'You can't walk through walls!' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_wall.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_wall.png) |
-| gameplay_door | gameplay | Floor 1 (1,0) facing east: a door, drawn as a frame inside the wall | yes | [png](wizardry-3_dos_na_gameplay_gameplay_door.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_door.png) |
-| gameplay_status_off | gameplay | S)tatus: the party window off, the view drawn full height | yes | [png](wizardry-3_dos_na_gameplay_gameplay_status_off.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_status_off.png) |
-| gameplay_full_view | gameplay | O)ff: the maze view alone, command line and party window hidden | yes | [png](wizardry-3_dos_na_gameplay_gameplay_full_view.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_full_view.png) |
-| gameplay_inspect | gameplay | I)nspect searches the square for bodies: 'Found: * no one *' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_inspect.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_inspect.png) |
-| gameplay_forbidden | gameplay | Good members on the floor 3 stairs: 'You are forbidden to enter here!' | no | [png](wizardry-3_dos_na_gameplay_gameplay_forbidden.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_forbidden.png) |
-| gameplay_f2 | gameplay | Floor 2, the Grand Wizard's level: a corridor with side openings | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f2.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_f2.png) |
-| gameplay_f3 | gameplay | Floor 3 with the neutral party: walls and an opening to the left | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f3.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_f3.png) |
-| gameplay_f4 | gameplay | Floor 4: a door at the end of a short passage | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f4.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_f4.png) |
-| gameplay_f5 | gameplay | Floor 5: a long wall ahead, openings on both sides | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f5.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_f5.png) |
-| gameplay_f5_dark | gameplay | Floor 5: a dark square, the view hatched grey | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f5_dark.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_f5_dark.png) |
-| gameplay_f6 | gameplay | Floor 6, the summit, with the Neutral Crystal: openings on both sides | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f6.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_f6.png) |
-| dialogue_f1_beach | dialogue | Floor 1 (1,2): 'You stand on a beach ... a dark lake ... a small island.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f1_beach.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f1_beach.png) |
-| dialogue_f1_water | dialogue | The lake: 'You are at the water's edge. If you go any further, you will drown!' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f1_water.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f1_water.png) |
-| dialogue_f1_fortress | dialogue | Floor 1 (1,17): a great fortress - 'Beware of the moat monsters!' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f1_fortress.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f1_fortress.png) |
-| dialogue_f1_barracks | dialogue | Floor 1 (2,19): 'A sign on the door reads: Barracks' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f1_barracks.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f1_barracks.png) |
-| dialogue_f1_lkbreth | dialogue | Floor 1 (18,13): L'kbreth's warning - 'neither good nor evil alone ...' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f1_lkbreth.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f1_lkbreth.png) |
-| dialogue_f2_pole | dialogue | Floor 2 (2,1): 'S.E.G. Po'le, Grand Wizard ... The wizard is *out*' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_pole.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f2_pole.png) |
-| dialogue_f2_dining | dialogue | Floor 2 (18,12): 'This is the grand dining room of the Grand Wizard...' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f2_dining.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f2_dining.png) |
-| dialogue_f2_wine_cellar | dialogue | Floor 2 (12,19): 'A sign on the door reads Wine cellar' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_wine_cellar.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f2_wine_cellar.png) |
-| dialogue_f2_desk | dialogue | Floor 2 (7,1): 'A large, dusty desk ... an ornate letter P' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f2_desk.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f2_desk.png) |
-| dialogue_f2_desk_search | dialogue | The desk: 'Will you search (Y/N)?' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_desk_search.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f2_desk_search.png) |
-| dialogue_f2_desk_found | dialogue | Searched: 'RYZ got an item.' - the Staff of Earth | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_desk_found.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f2_desk_found.png) |
-| dialogue_f2_riddle_air | dialogue | Floor 2 (4,19): 'I am around you always but you have never seen me...' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_riddle_air.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f2_riddle_air.png) |
-| dialogue_f2_answer_air | dialogue | 'What is your answer ?' - AIR typed | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_answer_air.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f2_answer_air.png) |
-| gameplay_riddle_wrong | gameplay | A wrong answer (WATER): the party is pushed back out of the square | yes | [png](wizardry-3_dos_na_gameplay_gameplay_riddle_wrong.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_riddle_wrong.png) |
-| dialogue_f2_whip | dialogue | Floor 2 (7,11): 'An elegantly dressed woman with a whip ... password?' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_whip.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f2_whip.png) |
-| dialogue_f2_password | dialogue | The password typed: ABDUL SENT YOU | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_password.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f2_password.png) |
-| dialogue_f3_turn_back | dialogue | Floor 3 (2,3): 'I'd turn back if I were you.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_turn_back.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_turn_back.png) |
-| dialogue_f3_direction | dialogue | Floor 3 (3,2): 'Have you considered another direction?' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_direction.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_direction.png) |
-| dialogue_f3_monk | dialogue | Floor 3 (7,7): an aged monk - 'In exchange for your soul ... this chest!' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f3_monk.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_monk.png) |
-| dialogue_f3_monk_traded | dialogue | Searched with KLINDT's broadsword: 'KLINDT traded an item!' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_monk_traded.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_monk_traded.png) |
-| dialogue_f3_pool | dialogue | Floor 3 (10,19): 'An apparition beckons ... above a murky pool.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_pool.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_pool.png) |
-| dialogue_f3_pool_traded | dialogue | At the pool the monk's Gold Medallion is traded again | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_pool_traded.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_pool_traded.png) |
-| inventory_holy_water | inventory | KLINDT after both trades: '?&' - the Holy Water, not yet identified | yes | [png](wizardry-3_dos_na_inventory_inventory_holy_water.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_holy_water.png) |
-| dialogue_f3_graveyard | dialogue | Floor 3 (16,16): '"A graveyard's dark..."' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_graveyard.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_graveyard.png) |
-| dialogue_f3_crock | dialogue | Floor 3 (16,17): '"And this trap's a crock..."' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_crock.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_crock.png) |
-| dialogue_f3_further | dialogue | Floor 3 (17,17): '"Don't go any further, or..."' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_further.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_further.png) |
-| dialogue_f3_taxi | dialogue | Floor 3 (18,19): 'Abdul's ethereal taxi service - 2500 GP one way' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_taxi.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_taxi.png) |
-| dialogue_f3_taxi_fee | dialogue | 'The fee is 2500. Will you pay (Y/N)?' - Y takes the party to the Castle | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_taxi_fee.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f3_taxi_fee.png) |
-| dialogue_f4_oily | dialogue | Floor 4 (10,5): 'An oily black liquid drips from the ceiling...' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f4_oily.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f4_oily.png) |
-| dialogue_f4_abdul | dialogue | Floor 4 (12,12): a swarthy man in a turban - 'Tell them Abdul sent you' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f4_abdul.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f4_abdul.png) |
-| dialogue_f4_look_out | dialogue | Floor 4 (17,1): a trap square - 'Look out!' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f4_look_out.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f4_look_out.png) |
-| dialogue_f4_riddle_fire | dialogue | Floor 4 (18,11): 'Ours is an uneasy friendship ... What am I?' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f4_riddle_fire.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f4_riddle_fire.png) |
-| dialogue_f4_answer_fire | dialogue | 'What is your answer ?' - FIRE typed | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f4_answer_fire.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f4_answer_fire.png) |
-| gameplay_chute | gameplay | Floor 4 (11,8): 'A chute!' - the floor drops away | yes | [png](wizardry-3_dos_na_gameplay_gameplay_chute.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_chute.png) |
-| dialogue_f5_taxi | dialogue | Floor 5 (0,2): 'Abdul's ethereal taxi service, give up yet? Still only 5000' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f5_taxi.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f5_taxi.png) |
-| gameplay_pit | gameplay | Floor 5 (2,4), a dark square: 'A pit!' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_pit.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_pit.png) |
-| dialogue_f5_riddle_chariot | dialogue | Floor 5 (5,13): 'I am one of the deck of seventy-eight ... What card?' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f5_riddle_chariot.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f5_riddle_chariot.png) |
-| dialogue_f5_answer_chariot | dialogue | 'What is your answer ?' - CHARIOT typed | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f5_answer_chariot.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f5_answer_chariot.png) |
-| dialogue_f5_fung | dialogue | Floor 5 (19,9): 'Temple of the irascible Fung - Private!! No trespassing!!' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f5_fung.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_f5_fung.png) |
-| battle_f1_serpents | battle | Floor 1 with the level-1 party: 3 Giant Serpents attack first | yes | [png](wizardry-3_dos_na_battle_battle_f1_serpents.png) [3x](3x/wizardry-3_dos_na_battle_battle_f1_serpents.png) |
-| battle_f1_ambush | battle | Floor 1 (0,9): 4 Garian Guards, 3 Corsairs - 'The monsters surprised you!' | yes | [png](wizardry-3_dos_na_battle_battle_f1_ambush.png) [3x](3x/wizardry-3_dos_na_battle_battle_f1_ambush.png) |
-| battle_f1_runs_away | battle | Outclassed foes flee: 'A corsair runs away' | yes | [png](wizardry-3_dos_na_battle_battle_f1_runs_away.png) [3x](3x/wizardry-3_dos_na_battle_battle_f1_runs_away.png) |
-| battle_options_spell | battle | Round 2: RYZ's options with S)pell, U)se item, R)un, P)arry | yes | [png](wizardry-3_dos_na_battle_battle_options_spell.png) [3x](3x/wizardry-3_dos_na_battle_battle_options_spell.png) |
-| battle_spell_prompt | battle | EBO's order: 'Spell name ? >BAD' - spells are typed | yes | [png](wizardry-3_dos_na_battle_battle_spell_prompt.png) [3x](3x/wizardry-3_dos_na_battle_battle_spell_prompt.png) |
-| battle_use_item | battle | U)se in battle: 'Use which item (#)?' - EBO's potion of Dios | yes | [png](wizardry-3_dos_na_battle_battle_use_item.png) [3x](3x/wizardry-3_dos_na_battle_battle_use_item.png) |
-| battle_orders_spells | battle | Orders: fight, fight, BADIOS, parry, LAHALITO, KATINO - 'Press Enter' | yes | [png](wizardry-3_dos_na_battle_battle_orders_spells.png) [3x](3x/wizardry-3_dos_na_battle_battle_orders_spells.png) |
-| battle_lahalito | battle | 'DEDDO casts a LAHALITO - a Garian guard is killed!' | yes | [png](wizardry-3_dos_na_battle_battle_lahalito.png) [3x](3x/wizardry-3_dos_na_battle_battle_lahalito.png) |
-| battle_katino | battle | 'MNZ casts a KATINO - a corsair is slept' | yes | [png](wizardry-3_dos_na_battle_battle_katino.png) [3x](3x/wizardry-3_dos_na_battle_battle_katino.png) |
-| battle_kill | battle | 'CONDI leaps at a corsair and hits 3 times for 40 damage ... killed!' | yes | [png](wizardry-3_dos_na_battle_battle_kill.png) [3x](3x/wizardry-3_dos_na_battle_battle_kill.png) |
-| battle_badios_wasted | battle | 'EBO casts a BADIOS' - no target left, the spell is spent | yes | [png](wizardry-3_dos_na_battle_battle_badios_wasted.png) [3x](3x/wizardry-3_dos_na_battle_battle_badios_wasted.png) |
-| battle_victory | battle | 'Each survivor gets 100 E.P.' after the Garian Guards | yes | [png](wizardry-3_dos_na_battle_battle_victory.png) [3x](3x/wizardry-3_dos_na_battle_battle_victory.png) |
-| battle_f1_moat_monsters | battle | Floor 1 (8,12) by the fortress: 5 Moat Monsters, surprised by the party | yes | [png](wizardry-3_dos_na_battle_battle_f1_moat_monsters.png) [3x](3x/wizardry-3_dos_na_battle_battle_f1_moat_monsters.png) |
-| battle_f1_corsairs | battle | Floor 1 (16,13): a Corsair and 5 Garian Captains | yes | [png](wizardry-3_dos_na_battle_battle_f1_corsairs.png) [3x](3x/wizardry-3_dos_na_battle_battle_f1_corsairs.png) |
-| battle_f2_shadowy | battle | Floor 2 (3,1): 8 Shadowy Figures and an Unseen Entity | yes | [png](wizardry-3_dos_na_battle_battle_f2_shadowy.png) [3x](3x/wizardry-3_dos_na_battle_battle_f2_shadowy.png) |
-| battle_f2_pole | battle | Floor 2 (11,19), the wine cellar: a Skeletal Figure and Po'le | yes | [png](wizardry-3_dos_na_battle_battle_f2_pole.png) [3x](3x/wizardry-3_dos_na_battle_battle_f2_pole.png) |
-| battle_f3_leprechauns | battle | Floor 3 with the neutral party: two groups of Leprechauns | yes | [png](wizardry-3_dos_na_battle_battle_f3_leprechauns.png) [3x](3x/wizardry-3_dos_na_battle_battle_f3_leprechauns.png) |
-| battle_f3_were_rats | battle | Floor 3: 4 Were Rats and 5 Vultures | yes | [png](wizardry-3_dos_na_battle_battle_f3_were_rats.png) [3x](3x/wizardry-3_dos_na_battle_battle_f3_were_rats.png) |
-| battle_f4_minions | battle | Floor 4 (12,17) near the guardian: Delf's Minions and Gaunt Figures | yes | [png](wizardry-3_dos_na_battle_battle_f4_minions.png) [3x](3x/wizardry-3_dos_na_battle_battle_f4_minions.png) |
-| battle_f5_banshees | battle | Floor 5 (0,9), a dark room: 3 Banshees | yes | [png](wizardry-3_dos_na_battle_battle_f5_banshees.png) [3x](3x/wizardry-3_dos_na_battle_battle_f5_banshees.png) |
-| battle_f6_xeno | battle | Floor 6 (4,4): searching at the third statue wakes a Xeno | yes | [png](wizardry-3_dos_na_battle_battle_f6_xeno.png) [3x](3x/wizardry-3_dos_na_battle_battle_f6_xeno.png) |
-| dialogue_statue_xeno | dialogue | Floor 6 (4,4): 'You have reached the statue.' - the one guarded by Xeno | yes | [png](wizardry-3_dos_na_dialogue_dialogue_statue_xeno.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_statue_xeno.png) |
-| menu_castle_half2 | menu | The neutral party for the evil half: RYZ CUBI KLINDT ZETT VERPA GITTER | yes | [png](wizardry-3_dos_na_menu_menu_castle_half2.png) [3x](3x/wizardry-3_dos_na_menu_menu_castle_half2.png) |
-| boss_guardian_evil | boss | Floor 5 (12,10), the evil half's guardian: Soul Trappers, Crusader Lords | yes | [png](wizardry-3_dos_na_boss_boss_guardian_evil.png) [3x](3x/wizardry-3_dos_na_boss_boss_guardian_evil.png) |
-| battle_orders | battle | Orders given: fight, fight, fight, MADALTO, parry, parry - 'Press Enter' | yes | [png](wizardry-3_dos_na_battle_battle_orders.png) [3x](3x/wizardry-3_dos_na_battle_battle_orders.png) |
-| boss_montino | boss | 'A fighter casts a MONTINO - RYZ is silenced' | yes | [png](wizardry-3_dos_na_boss_boss_montino.png) [3x](3x/wizardry-3_dos_na_boss_boss_montino.png) |
-| boss_multi_hit | boss | 'RYZ thrusts violently at a soul trapper and hits 3 times for 18 damage' | yes | [png](wizardry-3_dos_na_boss_boss_multi_hit.png) [3x](3x/wizardry-3_dos_na_boss_boss_multi_hit.png) |
-| boss_badial | boss | 'A crusader lord casts a BADIAL - ZETT takes 10 damage' | yes | [png](wizardry-3_dos_na_boss_boss_badial.png) [3x](3x/wizardry-3_dos_na_boss_boss_badial.png) |
-| boss_paralyzed | boss | 'A soul trapper thrusts violently at RYZ ... RYZ is paralyzed' | yes | [png](wizardry-3_dos_na_boss_boss_paralyzed.png) [3x](3x/wizardry-3_dos_na_boss_boss_paralyzed.png) |
-| boss_runs_away | boss | Guardian's men flee: 'A fighter runs away' | yes | [png](wizardry-3_dos_na_boss_boss_runs_away.png) [3x](3x/wizardry-3_dos_na_boss_boss_runs_away.png) |
-| boss_cannot_speak | boss | Silenced: 'ZETT tries to cast a MADALTO but cannot speak!' | yes | [png](wizardry-3_dos_na_boss_boss_cannot_speak.png) [3x](3x/wizardry-3_dos_na_boss_boss_cannot_speak.png) |
-| boss_guardian_evil_r2 | boss | Round 2: MADALTO killed the Crusader Lords; CUBI paralyzed at the back | yes | [png](wizardry-3_dos_na_boss_boss_guardian_evil_r2.png) [3x](3x/wizardry-3_dos_na_boss_boss_guardian_evil_r2.png) |
-| boss_evil_ep | boss | The guardian beaten: 'Each survivor gets 2060 E.P.' | yes | [png](wizardry-3_dos_na_boss_boss_evil_ep.png) [3x](3x/wizardry-3_dos_na_boss_boss_evil_ep.png) |
-| boss_found_good | boss | 'RYZ found : Crystal of Good' - the evil half's crystal | yes | [png](wizardry-3_dos_na_boss_boss_found_good.png) [3x](3x/wizardry-3_dos_na_boss_boss_found_good.png) |
-| gameplay_stairs_down | gameplay | Floor 5 (18,0): 'Stairs down, take them (Y/N)?' - the way home to floor 1 | yes | [png](wizardry-3_dos_na_gameplay_gameplay_stairs_down.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_stairs_down.png) |
-| menu_castle_paralyzed | menu | Home with five: paralyzed CUBI left the party for the Temple | yes | [png](wizardry-3_dos_na_menu_menu_castle_paralyzed.png) [3x](3x/wizardry-3_dos_na_menu_menu_castle_paralyzed.png) |
-| boss_guardian_good | boss | Floor 4 (7,17), the good half's guardian: a Living Legend, 6 Gaunt Figures | yes | [png](wizardry-3_dos_na_boss_boss_guardian_good.png) [3x](3x/wizardry-3_dos_na_boss_boss_guardian_good.png) |
-| boss_gaunt_killed | boss | 'CONDI tries to stab a gaunt figure, hits 3 times ... is killed!' | yes | [png](wizardry-3_dos_na_boss_boss_gaunt_killed.png) [3x](3x/wizardry-3_dos_na_boss_boss_gaunt_killed.png) |
-| boss_delf_named | boss | Round 2: the Living Legend named - Delf; DEDDO will cast TILTOWAIT | yes | [png](wizardry-3_dos_na_boss_boss_delf_named.png) [3x](3x/wizardry-3_dos_na_boss_boss_delf_named.png) |
-| boss_tiltowait | boss | 'DEDDO casts a TILTOWAIT - a Delf is killed!' | yes | [png](wizardry-3_dos_na_boss_boss_tiltowait.png) [3x](3x/wizardry-3_dos_na_boss_boss_tiltowait.png) |
-| boss_resists | boss | 'DEDDO casts a TILTOWAIT - a gaunt figure resists the spell' | yes | [png](wizardry-3_dos_na_boss_boss_resists.png) [3x](3x/wizardry-3_dos_na_boss_boss_resists.png) |
-| boss_stoned | boss | 'A gaunt figure leaps at RYZ and hits once for 5 damage - RYZ is stoned' | yes | [png](wizardry-3_dos_na_boss_boss_stoned.png) [3x](3x/wizardry-3_dos_na_boss_boss_stoned.png) |
-| boss_guardian_good_r3 | boss | Round 3: three Gaunt Figures left, RYZ petrified at the back | yes | [png](wizardry-3_dos_na_boss_boss_guardian_good_r3.png) [3x](3x/wizardry-3_dos_na_boss_boss_guardian_good_r3.png) |
-| boss_guardian_good_r4 | boss | Round 4: RYZ, CONDI and EBO petrified, CUBI DEDDO MNZ fight on | yes | [png](wizardry-3_dos_na_boss_boss_guardian_good_r4.png) [3x](3x/wizardry-3_dos_na_boss_boss_guardian_good_r4.png) |
-| boss_good_ep | boss | The guardian beaten: 'Each survivor gets 4800 E.P.' | yes | [png](wizardry-3_dos_na_boss_boss_good_ep.png) [3x](3x/wizardry-3_dos_na_boss_boss_good_ep.png) |
-| boss_found_evil | boss | 'MNZ found : Crystal of Evil' - the good half's crystal | yes | [png](wizardry-3_dos_na_boss_boss_found_evil.png) [3x](3x/wizardry-3_dos_na_boss_boss_found_evil.png) |
-| invoke_evil_prompt | system | MNZ E)quips: 'Will you invoke the special power of your Crystal of Evil?' | yes | [png](wizardry-3_dos_na_system_invoke_evil_prompt.png) [3x](3x/wizardry-3_dos_na_system_invoke_evil_prompt.png) |
-| invoke_good_prompt | system | N, then: 'Will you invoke the special power of your Crystal of Good?' | yes | [png](wizardry-3_dos_na_system_invoke_good_prompt.png) [3x](3x/wizardry-3_dos_na_system_invoke_good_prompt.png) |
-| inventory_neutral_crystal | inventory | Y: the two crystals become one '?NEUTRAL CRYSTAL' in MNZ's pack | yes | [png](wizardry-3_dos_na_inventory_inventory_neutral_crystal.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_neutral_crystal.png) |
-| invoke_wrong | system | The Crystal of Evil invoked by good MNZ: 'Fools ... shall perish in flame!' | yes | [png](wizardry-3_dos_na_system_invoke_wrong.png) [3x](3x/wizardry-3_dos_na_system_invoke_wrong.png) |
-| invoke_ashes | inventory | MNZ after the wrong crystal: STATUS ASHES, both crystals gone | yes | [png](wizardry-3_dos_na_inventory_invoke_ashes.png) [3x](3x/wizardry-3_dos_na_inventory_invoke_ashes.png) |
-| invoke_neutral | system | Neutral CUBI invokes: 'Power springs for both extremes ... employed!' | yes | [png](wizardry-3_dos_na_system_invoke_neutral.png) [3x](3x/wizardry-3_dos_na_system_invoke_neutral.png) |
-| invoke_vanished | inventory | After CUBI's try both crystals are gone (and 4 hit points) | yes | [png](wizardry-3_dos_na_inventory_invoke_vanished.png) [3x](3x/wizardry-3_dos_na_inventory_invoke_vanished.png) |
-| invoke_one_crystal | system | One crystal alone: 'Nor good nor evil alone ... have the twain!' | yes | [png](wizardry-3_dos_na_system_invoke_one_crystal.png) [3x](3x/wizardry-3_dos_na_system_invoke_one_crystal.png) |
-| gameplay_stairs_up | gameplay | Floor 4 (19,14) with the Neutral Crystal: 'Stairs up, take them (Y/N)?' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_stairs_up.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_stairs_up.png) |
-| gameplay_one_moment | gameplay | Up to floor 6: 'One moment' while the summit loads (30 seconds) | yes | [png](wizardry-3_dos_na_gameplay_gameplay_one_moment.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_one_moment.png) |
-| gameplay_f6_arrival | gameplay | Floor 6 (5,0) under the stairs from floor 4: 'Stairs down' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f6_arrival.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_f6_arrival.png) |
-| battle_f6_ghosts | battle | Floor 6: an Unseen Entity and 2 Ghosts; a surprise round, no S)pell | yes | [png](wizardry-3_dos_na_battle_battle_f6_ghosts.png) [3x](3x/wizardry-3_dos_na_battle_battle_f6_ghosts.png) |
-| battle_f6_ghost_killed | battle | 'CONDI charges at a ghost and hits 3 times for 21 damage ... killed!' | yes | [png](wizardry-3_dos_na_battle_battle_f6_ghost_killed.png) [3x](3x/wizardry-3_dos_na_battle_battle_f6_ghost_killed.png) |
-| battle_dispell_which | battle | Round 2: EBO (priest) D)ispells: 'Dispell which group (#)?' | yes | [png](wizardry-3_dos_na_battle_battle_dispell_which.png) [3x](3x/wizardry-3_dos_na_battle_battle_dispell_which.png) |
-| battle_dispell_fails | battle | 'EBO attempts to dispell and fails' | yes | [png](wizardry-3_dos_na_battle_battle_dispell_fails.png) [3x](3x/wizardry-3_dos_na_battle_battle_dispell_fails.png) |
-| battle_chest | battle | After the ghosts: 'A chest! You may: O)pen C)alfo L)eave alone ...' | yes | [png](wizardry-3_dos_na_battle_battle_chest.png) [3x](3x/wizardry-3_dos_na_battle_battle_chest.png) |
-| chest_inspect_who | battle | I)nspect: 'Who (#) will inspect?' | yes | [png](wizardry-3_dos_na_battle_chest_inspect_who.png) [3x](3x/wizardry-3_dos_na_battle_chest_inspect_who.png) |
-| chest_inspected | battle | CUBI (thief) inspects the chest: 'Teleporter' | yes | [png](wizardry-3_dos_na_battle_chest_inspected.png) [3x](3x/wizardry-3_dos_na_battle_chest_inspected.png) |
-| chest_calfo | battle | C)alfo: 'Who (#) will cast Calfo?' - a priest's spell names the trap | yes | [png](wizardry-3_dos_na_battle_chest_calfo.png) [3x](3x/wizardry-3_dos_na_battle_chest_calfo.png) |
-| chest_disarm_prompt | battle | D)isarm by CUBI: 'Trap (Enter exits)?' - the trap's name is typed | yes | [png](wizardry-3_dos_na_battle_chest_disarm_prompt.png) [3x](3x/wizardry-3_dos_na_battle_chest_disarm_prompt.png) |
-| chest_disarmed | battle | 'You disarmed the trap!' | yes | [png](wizardry-3_dos_na_battle_chest_disarmed.png) [3x](3x/wizardry-3_dos_na_battle_chest_disarmed.png) |
-| chest_found_jewelry | battle | Treasure: 'EBO found : JEWELRY' - an unidentified item | yes | [png](wizardry-3_dos_na_battle_chest_found_jewelry.png) [3x](3x/wizardry-3_dos_na_battle_chest_found_jewelry.png) |
-| chest_found_rod | battle | 'CONDI found : ROD' | yes | [png](wizardry-3_dos_na_battle_chest_found_rod.png) [3x](3x/wizardry-3_dos_na_battle_chest_found_rod.png) |
-| chest_trap_oops | battle | Another try, O)pened untouched by RYZ: 'Oops! Teleporter' | yes | [png](wizardry-3_dos_na_battle_chest_trap_oops.png) [3x](3x/wizardry-3_dos_na_battle_chest_trap_oops.png) |
-| dialogue_riddle_death | dialogue | Floor 6 (19,17): 'Black figure on a black horse ... What card is he?' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_riddle_death.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_riddle_death.png) |
-| dialogue_answer_death | dialogue | 'What is your answer ?' - DEATH typed | yes | [png](wizardry-3_dos_na_dialogue_dialogue_answer_death.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_answer_death.png) |
-| dialogue_riddle_wheel | dialogue | Floor 6 (11,4): 'On my roll, you move forward; my turn is your turn.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_riddle_wheel.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_riddle_wheel.png) |
-| dialogue_answer_wheel | dialogue | 'What is your answer ?' - WHEEL typed | yes | [png](wizardry-3_dos_na_dialogue_dialogue_answer_wheel.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_answer_wheel.png) |
-| dialogue_radiant_statue | dialogue | Floor 6 (18,17): 'A radiant statue ... the other hand is empty.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_radiant_statue.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_radiant_statue.png) |
-| dialogue_statue_reached | dialogue | Floor 6 (17,17): 'You have reached the statue.' | no | [png](wizardry-3_dos_na_dialogue_dialogue_statue_reached.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_statue_reached.png) |
-| dialogue_search | dialogue | 'Will you search (Y/N)?' at the statue | yes | [png](wizardry-3_dos_na_dialogue_dialogue_search.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_search.png) |
-| inventory_crystal_sphere | inventory | Searched: the Neutral Crystal became a '?CRYSTAL SPHERE' (and ?WEAPON) | yes | [png](wizardry-3_dos_na_inventory_inventory_crystal_sphere.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_crystal_sphere.png) |
-| inventory_orb | inventory | MNZ identifies it: the ORB OF EARITHIN | yes | [png](wizardry-3_dos_na_inventory_inventory_orb.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_orb.png) |
-| dialogue_lkbreth_farewell | dialogue | Floor 6 (8,3), L'kbreth's lair: 'Farewell. May your way be easy.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_lkbreth_farewell.png) [3x](3x/wizardry-3_dos_na_dialogue_dialogue_lkbreth_farewell.png) |
-| gameplay_teleport_home | gameplay | Floor 6 (5,19) teleports the party to floor 1 (0,0): the stairs home | yes | [png](wizardry-3_dos_na_gameplay_gameplay_teleport_home.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_teleport_home.png) |
-| ending_congratulations | ending | '* * Congratulations * * Will you surrender the orb ... (Y/N)?' | yes | [png](wizardry-3_dos_na_ending_ending_congratulations.png) [3x](3x/wizardry-3_dos_na_ending_ending_congratulations.png) |
-| ending_gods_praised | ending | Queen Beyki gives the party the Star of Llylgamyn and 6 more to award | yes | [png](wizardry-3_dos_na_ending_ending_gods_praised.png) [3x](3x/wizardry-3_dos_na_ending_ending_gods_praised.png) |
-| ending_award_star | ending | 'Award a star to KLINDT (Y/N)?' - the roster outside the party is asked | yes | [png](wizardry-3_dos_na_ending_ending_award_star.png) [3x](3x/wizardry-3_dos_na_ending_ending_award_star.png) |
-| menu_castle_after_ending | menu | The Castle after the ending: the party home, the orb surrendered | yes | [png](wizardry-3_dos_na_menu_menu_castle_after_ending.png) [3x](3x/wizardry-3_dos_na_menu_menu_castle_after_ending.png) |
-| gameplay_member_dead | gameplay | CONDI dead (status set): DEAD in the camp's party list | yes | [png](wizardry-3_dos_na_gameplay_gameplay_member_dead.png) [3x](3x/wizardry-3_dos_na_gameplay_gameplay_member_dead.png) |
-| gameover_slaughtered | gameover | All six DEAD (status set), seen in camp | yes | [png](wizardry-3_dos_na_gameover_gameover_slaughtered.png) [3x](3x/wizardry-3_dos_na_gameover_gameover_slaughtered.png) |
-| gameover_cemetery | gameover | Tombstones: 'Your entire party has been slaughtered ... the cemetery!' | yes | [png](wizardry-3_dos_na_gameover_gameover_cemetery.png) [3x](3x/wizardry-3_dos_na_gameover_gameover_cemetery.png) |
-| temple_dead | menu | Temple of Cant: CONDI dead and MNZ in ashes - 'Who shall we help?' | yes | [png](wizardry-3_dos_na_menu_temple_dead.png) [3x](3x/wizardry-3_dos_na_menu_temple_dead.png) |
-| temple_resurrect_fee | menu | 'The donation will be 2750' for CONDI (250 gold per level) | yes | [png](wizardry-3_dos_na_menu_temple_resurrect_fee.png) [3x](3x/wizardry-3_dos_na_menu_temple_resurrect_fee.png) |
-| temple_failed | system | Raising failed: '* CONDI needs KADORTO now *' - turned to ashes | yes | [png](wizardry-3_dos_na_system_temple_failed.png) [3x](3x/wizardry-3_dos_na_system_temple_failed.png) |
-| inventory_decoy_sphere | inventory | Floor 6 (13,2) searched with the Neutral Crystal: '?SPHERE', the cursed orb | yes | [png](wizardry-3_dos_na_inventory_inventory_decoy_sphere.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_decoy_sphere.png) |
-| inventory_star_sheet | inventory | KLINDT after the ending: '*D' - the Star of Llylgamyn, +150,000 E.P. | yes | [png](wizardry-3_dos_na_inventory_inventory_star_sheet.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_star_sheet.png) |
-| inventory_bearer_after | inventory | MNZ, who carried the orb: '>KD', no star of his own | yes | [png](wizardry-3_dos_na_inventory_inventory_bearer_after.png) [3x](3x/wizardry-3_dos_na_inventory_inventory_bearer_after.png) |
+| title_screen | title | Title: Wizardry logo, 'Scenario #3 - The Legacy of Llylgamyn', a monster | yes | [png](wizardry-3_dos_na_title_title_screen.png) |
+| menu_make_scenario | menu | M)ake scenario disk: 'The disk you inserted has data on it ... (Y/N)?' | yes | [png](wizardry-3_dos_na_menu_menu_make_scenario.png) |
+| boot_disk_prompt | boot | 'Place duplicate scenario diskette in drive 1' (answered by the loader) | no | [png](wizardry-3_dos_na_boot_boot_disk_prompt.png) |
+| boot_loading | boot | 'Now loading the program into memory': the swap-disk notice | yes | [png](wizardry-3_dos_na_boot_boot_loading.png) |
+| menu_castle_empty | menu | Castle before the import: Llylgamyn, no party formed | yes | [png](wizardry-3_dos_na_menu_menu_castle_empty.png) |
+| menu_tavern_stock | menu | Tavern A)dd before the import: the six stock legacies of the disk | yes | [png](wizardry-3_dos_na_menu_menu_tavern_stock.png) |
+| menu_edge_empty | menu | Edge of Town: training, maze, castle, utilities, leave game | yes | [png](wizardry-3_dos_na_menu_menu_edge_empty.png) |
+| inventory_stock_klindt | inventory | Stock legacy KLINDT: level 1 dwarf fighter, award 'D', 252 gold | yes | [png](wizardry-3_dos_na_inventory_inventory_stock_klindt.png) |
+| menu_utilities | menu | Wizardry Utilities: change name, move characters, restart an 'out' party | yes | [png](wizardry-3_dos_na_menu_menu_utilities.png) |
+| system_move_scenario | system | M)ove characters: from 1) Proving Grounds or 2) Knight of Diamonds | yes | [png](wizardry-3_dos_na_system_system_move_scenario.png) |
+| system_move_list | system | The Wizardry II roster on SAVE2.DSK: CALEB to MNZ, select by letter | yes | [png](wizardry-3_dos_na_system_system_move_list.png) |
+| system_move_marked | system | RYZ CONDI EBO CUBI DEDDO MNZ (C-F, K, L) marked '+' for the move | yes | [png](wizardry-3_dos_na_system_system_move_marked.png) |
+| system_move_removing | system | Move: 'Removing the characters you selected from the roster' | no | [png](wizardry-3_dos_na_system_system_move_removing.png) |
+| system_move_insert | system | Move: 'Insert the destination scenario disk' (the loader presses Enter) | yes | [png](wizardry-3_dos_na_system_system_move_insert.png) |
+| system_move_moving | system | Move: 'Moving the characters to the new scenario disk' | yes | [png](wizardry-3_dos_na_system_system_move_moving.png) |
+| system_move_moved | system | 'RYZ has been moved' - one character after another | yes | [png](wizardry-3_dos_na_system_system_move_moved.png) |
+| menu_training | menu | Training Grounds: only inspect and roster - no character creation | yes | [png](wizardry-3_dos_na_menu_menu_training.png) |
+| training_pick | menu | Training I)nspect: stock legacies A-F, then the imported heroes | yes | [png](wizardry-3_dos_na_menu_training_pick.png) |
+| menu_char_options | menu | RYZ's options: L)egate I)nspect D)elete C)hange class A)lter password | yes | [png](wizardry-3_dos_na_menu_menu_char_options.png) |
+| inventory_ancestor_sheet | inventory | RYZ before the rite: level 12 fighter from Wizardry II, award '>G' | yes | [png](wizardry-3_dos_na_inventory_inventory_ancestor_sheet.png) |
+| dialogue_rite | dialogue | L)egate: 'The rite of passage ceremony now begins...' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_rite.png) |
+| menu_alignment | menu | 'Choose an alignment for descendant: A) Good B) Neutral C) Evil' | yes | [png](wizardry-3_dos_na_menu_menu_alignment.png) |
+| menu_alignment_thief | menu | CUBI the thief may only be B) Neutral or C) Evil | yes | [png](wizardry-3_dos_na_menu_menu_alignment_thief.png) |
+| inventory_descendant_sheet | inventory | RYZ after the rite: level 1 neutral fighter, '>DG', 8 hit points, 500 gold | yes | [png](wizardry-3_dos_na_inventory_inventory_descendant_sheet.png) |
+| inventory_descendant_evil | inventory | CUBI legated evil (a variant): E-THI, level 1, '>KD' | yes | [png](wizardry-3_dos_na_inventory_inventory_descendant_evil.png) |
+| menu_already_legacy | menu | L)egate on a stock character: 'That character is already a legacy!' | yes | [png](wizardry-3_dos_na_menu_menu_already_legacy.png) |
+| menu_tavern_bad_alignment | menu | Good CONDI in the party, evil CUBI refused: '* Bad alignment *' | no | [png](wizardry-3_dos_na_menu_menu_tavern_bad_alignment.png) |
+| inventory_roster | inventory | Training R)oster: twelve level-1 legacies, the stock six and the heroes | yes | [png](wizardry-3_dos_na_inventory_inventory_roster.png) |
+| menu_castle_start | menu | Castle with the six descendants: level 1, AC 10, 8 hit points each | yes | [png](wizardry-3_dos_na_menu_menu_castle_start.png) |
+| menu_tavern | menu | Gilgamesh's Tavern: add, remove, inspect, divvy gold, leave | yes | [png](wizardry-3_dos_na_menu_menu_tavern.png) |
+| tavern_remove | menu | Tavern R)emove: 'Remove who (#)?' | yes | [png](wizardry-3_dos_na_menu_tavern_remove.png) |
+| tavern_add | menu | Tavern A)dd: the characters free to join, by letter | yes | [png](wizardry-3_dos_na_menu_tavern_add.png) |
+| menu_castle_geared | menu | The Castle with the veterans in Boltac's gear: AC 1 2 6 7 9 7 | yes | [png](wizardry-3_dos_na_menu_menu_castle_geared.png) |
+| inventory_sheet_geared | inventory | RYZ equipped: broadsword+1, plate armor, heater shield, sallet, gloves | yes | [png](wizardry-3_dos_na_inventory_inventory_sheet_geared.png) |
+| shop_boltac_who | shop | Boltac's Trading Post: 'Who (#) will enter?' | yes | [png](wizardry-3_dos_na_shop_shop_boltac_who.png) |
+| shop_boltac | shop | Boltac's for RYZ: buy, sell, uncurse, identify, pool gold; 3417 gold | yes | [png](wizardry-3_dos_na_shop_shop_boltac.png) |
+| shop_boltac_buy | shop | Stock page 1: short sword 30, broadsword 50, mace 60 ... battle axe 140 | yes | [png](wizardry-3_dos_na_shop_shop_boltac_buy.png) |
+| shop_boltac_shields | shop | Stock: dagger 10, flail 300, round and heater shields, mage's robes | yes | [png](wizardry-3_dos_na_shop_shop_boltac_shields.png) |
+| shop_boltac_armor | shop | Stock: cuirass 100, hauberk 200, breastplate 400, plate armor 1500 | yes | [png](wizardry-3_dos_na_shop_shop_boltac_armor.png) |
+| shop_purchase | shop | P)urchase: sallet, potions of Dios and Latumofis, +1 swords, Katino | yes | [png](wizardry-3_dos_na_shop_shop_purchase.png) |
+| shop_bought | shop | RYZ buys a potion of Dios: '* Just what you needed *' | yes | [png](wizardry-3_dos_na_shop_shop_bought.png) |
+| shop_boltac_magic | shop | Stock: scroll of Katino, cuirass+1 to heater+1 8500, gloves of iron | yes | [png](wizardry-3_dos_na_shop_shop_boltac_magic.png) |
+| shop_unusable | shop | DEDDO (mage) shops: 'USELESS' marks, 'Unusable item - buy it (Y/N)?' | yes | [png](wizardry-3_dos_na_shop_shop_unusable.png) |
+| shop_sell | shop | S)ell: EBO's pack at Boltac's prices, 'Sell which (#)?' | yes | [png](wizardry-3_dos_na_shop_shop_sell.png) |
+| shop_sold | shop | EBO sells his potion of Dios: '* Anything else, noble sir? *' | yes | [png](wizardry-3_dos_na_shop_shop_sold.png) |
+| shop_identify_fee | shop | I)dentify MNZ's ?JEWELRY for 6000: '* You cannot afford our fee *' | yes | [png](wizardry-3_dos_na_shop_shop_identify_fee.png) |
+| shop_pool | shop | P)ool gold: the party's gold in MNZ's purse, 24189 | yes | [png](wizardry-3_dos_na_shop_shop_pool.png) |
+| shop_identified | shop | Identified after pooling: the jewelry is a GEM OF EXORCISM | yes | [png](wizardry-3_dos_na_shop_shop_identified.png) |
+| shop_uncurse | shop | U)ncurse: CUBI wears a cursed '-SALLET-1', uncursing costs 1000 | yes | [png](wizardry-3_dos_na_shop_shop_uncurse.png) |
+| shop_uncursed | shop | Uncursed: the sallet-1 is gone from CUBI's pack | yes | [png](wizardry-3_dos_na_shop_shop_uncursed.png) |
+| menu_inn_who | menu | Adventurer's Inn: 'Who (#) will stay?' | yes | [png](wizardry-3_dos_na_menu_menu_inn_who.png) |
+| menu_inn | menu | Inn rooms: stables free, cot 10, economy 50, merchants 200, royal 500 | yes | [png](wizardry-3_dos_na_menu_menu_inn.png) |
+| inn_levelup | system | RYZ in the stables: 'You made the next level!' - statistics change | yes | [png](wizardry-3_dos_na_system_inn_levelup.png) |
+| inn_recuperating | system | Cot: 'CONDI is recuperating', hit points 85 of 91, gold counting down | yes | [png](wizardry-3_dos_na_system_inn_recuperating.png) |
+| temple_petrified | menu | Temple of Cant after the floor 4 guardian: RYZ, CONDI and EBO stoned | yes | [png](wizardry-3_dos_na_menu_temple_petrified.png) |
+| temple_donation | menu | 'The donation will be 2400. Who (#) will tithe?' - RYZ, level 12, stoned | yes | [png](wizardry-3_dos_na_menu_temple_donation.png) |
+| temple_paralyzed | menu | Temple for CUBI, paralyzed by a Soul Trapper: 1300 (100 per level) | yes | [png](wizardry-3_dos_na_menu_temple_paralyzed.png) |
+| temple_murmur | system | 'Murmur - chant - pray -' while the priests work | yes | [png](wizardry-3_dos_na_system_temple_murmur.png) |
+| temple_cured | system | 'Murmur - chant - pray - invoke!' and '* CUBI has been cured *' | yes | [png](wizardry-3_dos_na_system_temple_cured.png) |
+| camp_menu | menu | First camp after the legacy: inspect, reorder, equip, leave; AC 10 | yes | [png](wizardry-3_dos_na_menu_camp_menu.png) |
+| camp_equip | inventory | Camp E)quip: 'Select weapon - 1) Broadsword+1 - Equip which (#)?' | yes | [png](wizardry-3_dos_na_inventory_camp_equip.png) |
+| camp_equip_armor | inventory | E)quip goes slot by slot: MNZ's armor, a cuirass or an unknown ?JEWELRY | yes | [png](wizardry-3_dos_na_inventory_camp_equip_armor.png) |
+| camp_equipped | menu | Camp after equipping: AC 1 2 6 7 9 7 | yes | [png](wizardry-3_dos_na_menu_camp_equipped.png) |
+| camp_reorder | menu | Camp R)eorder: 'Reordering' - the marching order, slot by slot | yes | [png](wizardry-3_dos_na_menu_camp_reorder.png) |
+| inventory_sheet_priest | inventory | EBO's sheet: level 12 priest, priest spell points 9/9/9/8/6/6/4/2 | yes | [png](wizardry-3_dos_na_inventory_inventory_sheet_priest.png) |
+| inventory_read | inventory | R)ead: spells known per level, then the mage or priest book | yes | [png](wizardry-3_dos_na_inventory_inventory_read.png) |
+| inventory_mage_book | inventory | DEDDO's mage book: HALITO to TILTOWAIT, 21 spells | yes | [png](wizardry-3_dos_na_inventory_inventory_mage_book.png) |
+| inventory_priest_book | inventory | EBO's priest book: KALKI to KADORTO, 29 spells | yes | [png](wizardry-3_dos_na_inventory_inventory_priest_book.png) |
+| camp_cast_what | inventory | S)pell in camp: 'Cast what spell?' - spells are typed | yes | [png](wizardry-3_dos_na_inventory_camp_cast_what.png) |
+| system_dumapic | system | DUMAPIC: 'Facing north. 0 east 0 north 1 up.' - the castle is below | yes | [png](wizardry-3_dos_na_system_system_dumapic.png) |
+| camp_malor | inventory | MALOR in camp: party teleport, set east, north, up, then T)eleport | yes | [png](wizardry-3_dos_na_inventory_camp_malor.png) |
+| camp_cast_whom | inventory | EBO casts DIOS in camp: 'Cast on whom (#)?' | yes | [png](wizardry-3_dos_na_inventory_camp_cast_whom.png) |
+| camp_use_item | inventory | U)se in camp: 'Use item (#)?' - EBO's potion of Dios | yes | [png](wizardry-3_dos_na_inventory_camp_use_item.png) |
+| camp_drop | inventory | D)rop: 'Drop item (#)?' | yes | [png](wizardry-3_dos_na_inventory_camp_drop.png) |
+| camp_pool | inventory | P)ool gold in camp: the party's 24189 gold in EBO's purse | yes | [png](wizardry-3_dos_na_inventory_camp_pool.png) |
+| inventory_unidentified | inventory | MNZ with the guardian's drop: '?CRYSTAL OF EVIL', not yet identified | yes | [png](wizardry-3_dos_na_inventory_inventory_unidentified.png) |
+| inventory_bishop_noclue | inventory | MNZ (bishop) I)dentifies the crystal: 'You don't have a clue!' | yes | [png](wizardry-3_dos_na_inventory_inventory_bishop_noclue.png) |
+| inventory_bishop_identify | inventory | Another try: 'You identified it!' | yes | [png](wizardry-3_dos_na_inventory_inventory_bishop_identify.png) |
+| inventory_trade | inventory | T)rade: RYZ, holding the Crystal of Good: 'Trade with whom (#)?' | yes | [png](wizardry-3_dos_na_inventory_inventory_trade.png) |
+| inventory_trade_item | inventory | Trade to MNZ: 'Trade item (#)?' - the ?CRYSTAL OF GOOD is item 6 | yes | [png](wizardry-3_dos_na_inventory_inventory_trade_item.png) |
+| inventory_crystals | inventory | MNZ, a good bishop, now holds the Crystal of Evil and the Crystal of Good | yes | [png](wizardry-3_dos_na_inventory_inventory_crystals.png) |
+| gameplay_maze_f1_start | gameplay | Floor 1 entrance: wireframe corridor, command line, the level-1 party | yes | [png](wizardry-3_dos_na_gameplay_gameplay_maze_f1_start.png) |
+| gameplay_stairs_castle | gameplay | Leaving camp at the entrance: 'Stairs down, take them (Y/N)?' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_stairs_castle.png) |
+| gameplay_wall | gameplay | Walking into a wall: 'You can't walk through walls!' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_wall.png) |
+| gameplay_door | gameplay | Floor 1 (1,0) facing east: a door, drawn as a frame inside the wall | yes | [png](wizardry-3_dos_na_gameplay_gameplay_door.png) |
+| gameplay_status_off | gameplay | S)tatus: the party window off, the view drawn full height | yes | [png](wizardry-3_dos_na_gameplay_gameplay_status_off.png) |
+| gameplay_full_view | gameplay | O)ff: the maze view alone, command line and party window hidden | yes | [png](wizardry-3_dos_na_gameplay_gameplay_full_view.png) |
+| gameplay_inspect | gameplay | I)nspect searches the square for bodies: 'Found: * no one *' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_inspect.png) |
+| gameplay_forbidden | gameplay | Good members on the floor 3 stairs: 'You are forbidden to enter here!' | no | [png](wizardry-3_dos_na_gameplay_gameplay_forbidden.png) |
+| gameplay_f2 | gameplay | Floor 2, the Grand Wizard's level: a corridor with side openings | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f2.png) |
+| gameplay_f3 | gameplay | Floor 3 with the neutral party: walls and an opening to the left | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f3.png) |
+| gameplay_f4 | gameplay | Floor 4: a door at the end of a short passage | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f4.png) |
+| gameplay_f5 | gameplay | Floor 5: a long wall ahead, openings on both sides | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f5.png) |
+| gameplay_f5_dark | gameplay | Floor 5: a dark square, the view hatched grey | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f5_dark.png) |
+| gameplay_f6 | gameplay | Floor 6, the summit, with the Neutral Crystal: openings on both sides | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f6.png) |
+| dialogue_f1_beach | dialogue | Floor 1 (1,2): 'You stand on a beach ... a dark lake ... a small island.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f1_beach.png) |
+| dialogue_f1_water | dialogue | The lake: 'You are at the water's edge. If you go any further, you will drown!' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f1_water.png) |
+| dialogue_f1_fortress | dialogue | Floor 1 (1,17): a great fortress - 'Beware of the moat monsters!' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f1_fortress.png) |
+| dialogue_f1_barracks | dialogue | Floor 1 (2,19): 'A sign on the door reads: Barracks' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f1_barracks.png) |
+| dialogue_f1_lkbreth | dialogue | Floor 1 (18,13): L'kbreth's warning - 'neither good nor evil alone ...' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f1_lkbreth.png) |
+| dialogue_f2_pole | dialogue | Floor 2 (2,1): 'S.E.G. Po'le, Grand Wizard ... The wizard is *out*' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_pole.png) |
+| dialogue_f2_dining | dialogue | Floor 2 (18,12): 'This is the grand dining room of the Grand Wizard...' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f2_dining.png) |
+| dialogue_f2_wine_cellar | dialogue | Floor 2 (12,19): 'A sign on the door reads Wine cellar' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_wine_cellar.png) |
+| dialogue_f2_desk | dialogue | Floor 2 (7,1): 'A large, dusty desk ... an ornate letter P' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f2_desk.png) |
+| dialogue_f2_desk_search | dialogue | The desk: 'Will you search (Y/N)?' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_desk_search.png) |
+| dialogue_f2_desk_found | dialogue | Searched: 'RYZ got an item.' - the Staff of Earth | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_desk_found.png) |
+| dialogue_f2_riddle_air | dialogue | Floor 2 (4,19): 'I am around you always but you have never seen me...' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_riddle_air.png) |
+| dialogue_f2_answer_air | dialogue | 'What is your answer ?' - AIR typed | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_answer_air.png) |
+| gameplay_riddle_wrong | gameplay | A wrong answer (WATER): the party is pushed back out of the square | yes | [png](wizardry-3_dos_na_gameplay_gameplay_riddle_wrong.png) |
+| dialogue_f2_whip | dialogue | Floor 2 (7,11): 'An elegantly dressed woman with a whip ... password?' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_whip.png) |
+| dialogue_f2_password | dialogue | The password typed: ABDUL SENT YOU | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f2_password.png) |
+| dialogue_f3_turn_back | dialogue | Floor 3 (2,3): 'I'd turn back if I were you.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_turn_back.png) |
+| dialogue_f3_direction | dialogue | Floor 3 (3,2): 'Have you considered another direction?' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_direction.png) |
+| dialogue_f3_monk | dialogue | Floor 3 (7,7): an aged monk - 'In exchange for your soul ... this chest!' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f3_monk.png) |
+| dialogue_f3_monk_traded | dialogue | Searched with KLINDT's broadsword: 'KLINDT traded an item!' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_monk_traded.png) |
+| dialogue_f3_pool | dialogue | Floor 3 (10,19): 'An apparition beckons ... above a murky pool.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_pool.png) |
+| dialogue_f3_pool_traded | dialogue | At the pool the monk's Gold Medallion is traded again | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_pool_traded.png) |
+| inventory_holy_water | inventory | KLINDT after both trades: '?&' - the Holy Water, not yet identified | yes | [png](wizardry-3_dos_na_inventory_inventory_holy_water.png) |
+| dialogue_f3_graveyard | dialogue | Floor 3 (16,16): '"A graveyard's dark..."' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_graveyard.png) |
+| dialogue_f3_crock | dialogue | Floor 3 (16,17): '"And this trap's a crock..."' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_crock.png) |
+| dialogue_f3_further | dialogue | Floor 3 (17,17): '"Don't go any further, or..."' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_further.png) |
+| dialogue_f3_taxi | dialogue | Floor 3 (18,19): 'Abdul's ethereal taxi service - 2500 GP one way' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_taxi.png) |
+| dialogue_f3_taxi_fee | dialogue | 'The fee is 2500. Will you pay (Y/N)?' - Y takes the party to the Castle | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f3_taxi_fee.png) |
+| dialogue_f4_oily | dialogue | Floor 4 (10,5): 'An oily black liquid drips from the ceiling...' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f4_oily.png) |
+| dialogue_f4_abdul | dialogue | Floor 4 (12,12): a swarthy man in a turban - 'Tell them Abdul sent you' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f4_abdul.png) |
+| dialogue_f4_look_out | dialogue | Floor 4 (17,1): a trap square - 'Look out!' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f4_look_out.png) |
+| dialogue_f4_riddle_fire | dialogue | Floor 4 (18,11): 'Ours is an uneasy friendship ... What am I?' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f4_riddle_fire.png) |
+| dialogue_f4_answer_fire | dialogue | 'What is your answer ?' - FIRE typed | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f4_answer_fire.png) |
+| gameplay_chute | gameplay | Floor 4 (11,8): 'A chute!' - the floor drops away | yes | [png](wizardry-3_dos_na_gameplay_gameplay_chute.png) |
+| dialogue_f5_taxi | dialogue | Floor 5 (0,2): 'Abdul's ethereal taxi service, give up yet? Still only 5000' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f5_taxi.png) |
+| gameplay_pit | gameplay | Floor 5 (2,4), a dark square: 'A pit!' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_pit.png) |
+| dialogue_f5_riddle_chariot | dialogue | Floor 5 (5,13): 'I am one of the deck of seventy-eight ... What card?' | no | [png](wizardry-3_dos_na_dialogue_dialogue_f5_riddle_chariot.png) |
+| dialogue_f5_answer_chariot | dialogue | 'What is your answer ?' - CHARIOT typed | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f5_answer_chariot.png) |
+| dialogue_f5_fung | dialogue | Floor 5 (19,9): 'Temple of the irascible Fung - Private!! No trespassing!!' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_f5_fung.png) |
+| battle_f1_serpents | battle | Floor 1 with the level-1 party: 3 Giant Serpents attack first | yes | [png](wizardry-3_dos_na_battle_battle_f1_serpents.png) |
+| battle_f1_ambush | battle | Floor 1 (0,9): 4 Garian Guards, 3 Corsairs - 'The monsters surprised you!' | yes | [png](wizardry-3_dos_na_battle_battle_f1_ambush.png) |
+| battle_f1_runs_away | battle | Outclassed foes flee: 'A corsair runs away' | yes | [png](wizardry-3_dos_na_battle_battle_f1_runs_away.png) |
+| battle_options_spell | battle | Round 2: RYZ's options with S)pell, U)se item, R)un, P)arry | yes | [png](wizardry-3_dos_na_battle_battle_options_spell.png) |
+| battle_spell_prompt | battle | EBO's order: 'Spell name ? >BAD' - spells are typed | yes | [png](wizardry-3_dos_na_battle_battle_spell_prompt.png) |
+| battle_use_item | battle | U)se in battle: 'Use which item (#)?' - EBO's potion of Dios | yes | [png](wizardry-3_dos_na_battle_battle_use_item.png) |
+| battle_orders_spells | battle | Orders: fight, fight, BADIOS, parry, LAHALITO, KATINO - 'Press Enter' | yes | [png](wizardry-3_dos_na_battle_battle_orders_spells.png) |
+| battle_lahalito | battle | 'DEDDO casts a LAHALITO - a Garian guard is killed!' | yes | [png](wizardry-3_dos_na_battle_battle_lahalito.png) |
+| battle_katino | battle | 'MNZ casts a KATINO - a corsair is slept' | yes | [png](wizardry-3_dos_na_battle_battle_katino.png) |
+| battle_kill | battle | 'CONDI leaps at a corsair and hits 3 times for 40 damage ... killed!' | yes | [png](wizardry-3_dos_na_battle_battle_kill.png) |
+| battle_badios_wasted | battle | 'EBO casts a BADIOS' - no target left, the spell is spent | yes | [png](wizardry-3_dos_na_battle_battle_badios_wasted.png) |
+| battle_victory | battle | 'Each survivor gets 100 E.P.' after the Garian Guards | yes | [png](wizardry-3_dos_na_battle_battle_victory.png) |
+| battle_f1_moat_monsters | battle | Floor 1 (8,12) by the fortress: 5 Moat Monsters, surprised by the party | yes | [png](wizardry-3_dos_na_battle_battle_f1_moat_monsters.png) |
+| battle_f1_corsairs | battle | Floor 1 (16,13): a Corsair and 5 Garian Captains | yes | [png](wizardry-3_dos_na_battle_battle_f1_corsairs.png) |
+| battle_f2_shadowy | battle | Floor 2 (3,1): 8 Shadowy Figures and an Unseen Entity | yes | [png](wizardry-3_dos_na_battle_battle_f2_shadowy.png) |
+| battle_f2_pole | battle | Floor 2 (11,19), the wine cellar: a Skeletal Figure and Po'le | yes | [png](wizardry-3_dos_na_battle_battle_f2_pole.png) |
+| battle_f3_leprechauns | battle | Floor 3 with the neutral party: two groups of Leprechauns | yes | [png](wizardry-3_dos_na_battle_battle_f3_leprechauns.png) |
+| battle_f3_were_rats | battle | Floor 3: 4 Were Rats and 5 Vultures | yes | [png](wizardry-3_dos_na_battle_battle_f3_were_rats.png) |
+| battle_f4_minions | battle | Floor 4 (12,17) near the guardian: Delf's Minions and Gaunt Figures | yes | [png](wizardry-3_dos_na_battle_battle_f4_minions.png) |
+| battle_f5_banshees | battle | Floor 5 (0,9), a dark room: 3 Banshees | yes | [png](wizardry-3_dos_na_battle_battle_f5_banshees.png) |
+| battle_f6_xeno | battle | Floor 6 (4,4): searching at the third statue wakes a Xeno | yes | [png](wizardry-3_dos_na_battle_battle_f6_xeno.png) |
+| dialogue_statue_xeno | dialogue | Floor 6 (4,4): 'You have reached the statue.' - the one guarded by Xeno | yes | [png](wizardry-3_dos_na_dialogue_dialogue_statue_xeno.png) |
+| menu_castle_half2 | menu | The neutral party for the evil half: RYZ CUBI KLINDT ZETT VERPA GITTER | yes | [png](wizardry-3_dos_na_menu_menu_castle_half2.png) |
+| boss_guardian_evil | boss | Floor 5 (12,10), the evil half's guardian: Soul Trappers, Crusader Lords | yes | [png](wizardry-3_dos_na_boss_boss_guardian_evil.png) |
+| battle_orders | battle | Orders given: fight, fight, fight, MADALTO, parry, parry - 'Press Enter' | yes | [png](wizardry-3_dos_na_battle_battle_orders.png) |
+| boss_montino | boss | 'A fighter casts a MONTINO - RYZ is silenced' | yes | [png](wizardry-3_dos_na_boss_boss_montino.png) |
+| boss_multi_hit | boss | 'RYZ thrusts violently at a soul trapper and hits 3 times for 18 damage' | yes | [png](wizardry-3_dos_na_boss_boss_multi_hit.png) |
+| boss_badial | boss | 'A crusader lord casts a BADIAL - ZETT takes 10 damage' | yes | [png](wizardry-3_dos_na_boss_boss_badial.png) |
+| boss_paralyzed | boss | 'A soul trapper thrusts violently at RYZ ... RYZ is paralyzed' | yes | [png](wizardry-3_dos_na_boss_boss_paralyzed.png) |
+| boss_runs_away | boss | Guardian's men flee: 'A fighter runs away' | yes | [png](wizardry-3_dos_na_boss_boss_runs_away.png) |
+| boss_cannot_speak | boss | Silenced: 'ZETT tries to cast a MADALTO but cannot speak!' | yes | [png](wizardry-3_dos_na_boss_boss_cannot_speak.png) |
+| boss_guardian_evil_r2 | boss | Round 2: MADALTO killed the Crusader Lords; CUBI paralyzed at the back | yes | [png](wizardry-3_dos_na_boss_boss_guardian_evil_r2.png) |
+| boss_evil_ep | boss | The guardian beaten: 'Each survivor gets 2060 E.P.' | yes | [png](wizardry-3_dos_na_boss_boss_evil_ep.png) |
+| boss_found_good | boss | 'RYZ found : Crystal of Good' - the evil half's crystal | yes | [png](wizardry-3_dos_na_boss_boss_found_good.png) |
+| gameplay_stairs_down | gameplay | Floor 5 (18,0): 'Stairs down, take them (Y/N)?' - the way home to floor 1 | yes | [png](wizardry-3_dos_na_gameplay_gameplay_stairs_down.png) |
+| menu_castle_paralyzed | menu | Home with five: paralyzed CUBI left the party for the Temple | yes | [png](wizardry-3_dos_na_menu_menu_castle_paralyzed.png) |
+| boss_guardian_good | boss | Floor 4 (7,17), the good half's guardian: a Living Legend, 6 Gaunt Figures | yes | [png](wizardry-3_dos_na_boss_boss_guardian_good.png) |
+| boss_gaunt_killed | boss | 'CONDI tries to stab a gaunt figure, hits 3 times ... is killed!' | yes | [png](wizardry-3_dos_na_boss_boss_gaunt_killed.png) |
+| boss_delf_named | boss | Round 2: the Living Legend named - Delf; DEDDO will cast TILTOWAIT | yes | [png](wizardry-3_dos_na_boss_boss_delf_named.png) |
+| boss_tiltowait | boss | 'DEDDO casts a TILTOWAIT - a Delf is killed!' | yes | [png](wizardry-3_dos_na_boss_boss_tiltowait.png) |
+| boss_resists | boss | 'DEDDO casts a TILTOWAIT - a gaunt figure resists the spell' | yes | [png](wizardry-3_dos_na_boss_boss_resists.png) |
+| boss_stoned | boss | 'A gaunt figure leaps at RYZ and hits once for 5 damage - RYZ is stoned' | yes | [png](wizardry-3_dos_na_boss_boss_stoned.png) |
+| boss_guardian_good_r3 | boss | Round 3: three Gaunt Figures left, RYZ petrified at the back | yes | [png](wizardry-3_dos_na_boss_boss_guardian_good_r3.png) |
+| boss_guardian_good_r4 | boss | Round 4: RYZ, CONDI and EBO petrified, CUBI DEDDO MNZ fight on | yes | [png](wizardry-3_dos_na_boss_boss_guardian_good_r4.png) |
+| boss_good_ep | boss | The guardian beaten: 'Each survivor gets 4800 E.P.' | yes | [png](wizardry-3_dos_na_boss_boss_good_ep.png) |
+| boss_found_evil | boss | 'MNZ found : Crystal of Evil' - the good half's crystal | yes | [png](wizardry-3_dos_na_boss_boss_found_evil.png) |
+| invoke_evil_prompt | system | MNZ E)quips: 'Will you invoke the special power of your Crystal of Evil?' | yes | [png](wizardry-3_dos_na_system_invoke_evil_prompt.png) |
+| invoke_good_prompt | system | N, then: 'Will you invoke the special power of your Crystal of Good?' | yes | [png](wizardry-3_dos_na_system_invoke_good_prompt.png) |
+| inventory_neutral_crystal | inventory | Y: the two crystals become one '?NEUTRAL CRYSTAL' in MNZ's pack | yes | [png](wizardry-3_dos_na_inventory_inventory_neutral_crystal.png) |
+| invoke_wrong | system | The Crystal of Evil invoked by good MNZ: 'Fools ... shall perish in flame!' | yes | [png](wizardry-3_dos_na_system_invoke_wrong.png) |
+| invoke_ashes | inventory | MNZ after the wrong crystal: STATUS ASHES, both crystals gone | yes | [png](wizardry-3_dos_na_inventory_invoke_ashes.png) |
+| invoke_neutral | system | Neutral CUBI invokes: 'Power springs for both extremes ... employed!' | yes | [png](wizardry-3_dos_na_system_invoke_neutral.png) |
+| invoke_vanished | inventory | After CUBI's try both crystals are gone (and 4 hit points) | yes | [png](wizardry-3_dos_na_inventory_invoke_vanished.png) |
+| invoke_one_crystal | system | One crystal alone: 'Nor good nor evil alone ... have the twain!' | yes | [png](wizardry-3_dos_na_system_invoke_one_crystal.png) |
+| gameplay_stairs_up | gameplay | Floor 4 (19,14) with the Neutral Crystal: 'Stairs up, take them (Y/N)?' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_stairs_up.png) |
+| gameplay_one_moment | gameplay | Up to floor 6: 'One moment' while the summit loads (30 seconds) | yes | [png](wizardry-3_dos_na_gameplay_gameplay_one_moment.png) |
+| gameplay_f6_arrival | gameplay | Floor 6 (5,0) under the stairs from floor 4: 'Stairs down' | yes | [png](wizardry-3_dos_na_gameplay_gameplay_f6_arrival.png) |
+| battle_f6_ghosts | battle | Floor 6: an Unseen Entity and 2 Ghosts; a surprise round, no S)pell | yes | [png](wizardry-3_dos_na_battle_battle_f6_ghosts.png) |
+| battle_f6_ghost_killed | battle | 'CONDI charges at a ghost and hits 3 times for 21 damage ... killed!' | yes | [png](wizardry-3_dos_na_battle_battle_f6_ghost_killed.png) |
+| battle_dispell_which | battle | Round 2: EBO (priest) D)ispells: 'Dispell which group (#)?' | yes | [png](wizardry-3_dos_na_battle_battle_dispell_which.png) |
+| battle_dispell_fails | battle | 'EBO attempts to dispell and fails' | yes | [png](wizardry-3_dos_na_battle_battle_dispell_fails.png) |
+| battle_chest | battle | After the ghosts: 'A chest! You may: O)pen C)alfo L)eave alone ...' | yes | [png](wizardry-3_dos_na_battle_battle_chest.png) |
+| chest_inspect_who | battle | I)nspect: 'Who (#) will inspect?' | yes | [png](wizardry-3_dos_na_battle_chest_inspect_who.png) |
+| chest_inspected | battle | CUBI (thief) inspects the chest: 'Teleporter' | yes | [png](wizardry-3_dos_na_battle_chest_inspected.png) |
+| chest_calfo | battle | C)alfo: 'Who (#) will cast Calfo?' - a priest's spell names the trap | yes | [png](wizardry-3_dos_na_battle_chest_calfo.png) |
+| chest_disarm_prompt | battle | D)isarm by CUBI: 'Trap (Enter exits)?' - the trap's name is typed | yes | [png](wizardry-3_dos_na_battle_chest_disarm_prompt.png) |
+| chest_disarmed | battle | 'You disarmed the trap!' | yes | [png](wizardry-3_dos_na_battle_chest_disarmed.png) |
+| chest_found_jewelry | battle | Treasure: 'EBO found : JEWELRY' - an unidentified item | yes | [png](wizardry-3_dos_na_battle_chest_found_jewelry.png) |
+| chest_found_rod | battle | 'CONDI found : ROD' | yes | [png](wizardry-3_dos_na_battle_chest_found_rod.png) |
+| chest_trap_oops | battle | Another try, O)pened untouched by RYZ: 'Oops! Teleporter' | yes | [png](wizardry-3_dos_na_battle_chest_trap_oops.png) |
+| dialogue_riddle_death | dialogue | Floor 6 (19,17): 'Black figure on a black horse ... What card is he?' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_riddle_death.png) |
+| dialogue_answer_death | dialogue | 'What is your answer ?' - DEATH typed | yes | [png](wizardry-3_dos_na_dialogue_dialogue_answer_death.png) |
+| dialogue_riddle_wheel | dialogue | Floor 6 (11,4): 'On my roll, you move forward; my turn is your turn.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_riddle_wheel.png) |
+| dialogue_answer_wheel | dialogue | 'What is your answer ?' - WHEEL typed | yes | [png](wizardry-3_dos_na_dialogue_dialogue_answer_wheel.png) |
+| dialogue_radiant_statue | dialogue | Floor 6 (18,17): 'A radiant statue ... the other hand is empty.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_radiant_statue.png) |
+| dialogue_statue_reached | dialogue | Floor 6 (17,17): 'You have reached the statue.' | no | [png](wizardry-3_dos_na_dialogue_dialogue_statue_reached.png) |
+| dialogue_search | dialogue | 'Will you search (Y/N)?' at the statue | yes | [png](wizardry-3_dos_na_dialogue_dialogue_search.png) |
+| inventory_crystal_sphere | inventory | Searched: the Neutral Crystal became a '?CRYSTAL SPHERE' (and ?WEAPON) | yes | [png](wizardry-3_dos_na_inventory_inventory_crystal_sphere.png) |
+| inventory_orb | inventory | MNZ identifies it: the ORB OF EARITHIN | yes | [png](wizardry-3_dos_na_inventory_inventory_orb.png) |
+| dialogue_lkbreth_farewell | dialogue | Floor 6 (8,3), L'kbreth's lair: 'Farewell. May your way be easy.' | yes | [png](wizardry-3_dos_na_dialogue_dialogue_lkbreth_farewell.png) |
+| gameplay_teleport_home | gameplay | Floor 6 (5,19) teleports the party to floor 1 (0,0): the stairs home | yes | [png](wizardry-3_dos_na_gameplay_gameplay_teleport_home.png) |
+| ending_congratulations | ending | '* * Congratulations * * Will you surrender the orb ... (Y/N)?' | yes | [png](wizardry-3_dos_na_ending_ending_congratulations.png) |
+| ending_gods_praised | ending | Queen Beyki gives the party the Star of Llylgamyn and 6 more to award | yes | [png](wizardry-3_dos_na_ending_ending_gods_praised.png) |
+| ending_award_star | ending | 'Award a star to KLINDT (Y/N)?' - the roster outside the party is asked | yes | [png](wizardry-3_dos_na_ending_ending_award_star.png) |
+| menu_castle_after_ending | menu | The Castle after the ending: the party home, the orb surrendered | yes | [png](wizardry-3_dos_na_menu_menu_castle_after_ending.png) |
+| gameplay_member_dead | gameplay | CONDI dead (status set): DEAD in the camp's party list | yes | [png](wizardry-3_dos_na_gameplay_gameplay_member_dead.png) |
+| gameover_slaughtered | gameover | All six DEAD (status set), seen in camp | yes | [png](wizardry-3_dos_na_gameover_gameover_slaughtered.png) |
+| gameover_cemetery | gameover | Tombstones: 'Your entire party has been slaughtered ... the cemetery!' | yes | [png](wizardry-3_dos_na_gameover_gameover_cemetery.png) |
+| temple_dead | menu | Temple of Cant: CONDI dead and MNZ in ashes - 'Who shall we help?' | yes | [png](wizardry-3_dos_na_menu_temple_dead.png) |
+| temple_resurrect_fee | menu | 'The donation will be 2750' for CONDI (250 gold per level) | yes | [png](wizardry-3_dos_na_menu_temple_resurrect_fee.png) |
+| temple_failed | system | Raising failed: '* CONDI needs KADORTO now *' - turned to ashes | yes | [png](wizardry-3_dos_na_system_temple_failed.png) |
+| inventory_decoy_sphere | inventory | Floor 6 (13,2) searched with the Neutral Crystal: '?SPHERE', the cursed orb | yes | [png](wizardry-3_dos_na_inventory_inventory_decoy_sphere.png) |
+| inventory_star_sheet | inventory | KLINDT after the ending: '*D' - the Star of Llylgamyn, +150,000 E.P. | yes | [png](wizardry-3_dos_na_inventory_inventory_star_sheet.png) |
+| inventory_bearer_after | inventory | MNZ, who carried the orb: '>KD', no star of his own | yes | [png](wizardry-3_dos_na_inventory_inventory_bearer_after.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

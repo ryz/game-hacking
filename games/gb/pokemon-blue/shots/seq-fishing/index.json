@@ -19,9 +19,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_seq-fishing_01_shore.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fishing_01_shore.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "b7bd358bb39f1900ab947b7a5b364c6160c97cb9"
   },
   {
    "id": "02_start_menu",
@@ -32,9 +32,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_seq-fishing_02_start_menu.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_seq-fishing_02_start_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "bd9f93391781261e09506a5f301857b320c4b54c"
   },
   {
    "id": "03_bag",
@@ -45,9 +45,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_seq-fishing_03_bag.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_seq-fishing_03_bag.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "472fedb41288644a5b798d04e9e49d83dee7409e"
   },
   {
    "id": "04_super_rod",
@@ -58,9 +58,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_seq-fishing_04_super_rod.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_seq-fishing_04_super_rod.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "2afc3fc3b2f77842037596c182db2ee38821e7dd"
   },
   {
    "id": "05_use",
@@ -71,9 +71,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_seq-fishing_05_use.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_seq-fishing_05_use.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "aa162ee9cc53c923b824311b8548172eda3fba9f"
   },
   {
    "id": "06_used_rod",
@@ -84,9 +84,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_dialogue_seq-fishing_06_used_rod.png",
-   "file_3x": "3x/pokemon-blue_gb_na_dialogue_seq-fishing_06_used_rod.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "b45957e7682a87c9da613635bae7a4f6a67d8252"
   },
   {
    "id": "07_cast_clip",
@@ -102,11 +102,9 @@
     "kept": 121,
     "poster": 102,
     "seconds": 4.02,
-    "file": "pokemon-blue_gb_na_gameplay_seq-fishing_07_cast_clip.gif",
-    "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fishing_07_cast_clip.gif"
+    "file": "pokemon-blue_gb_na_gameplay_seq-fishing_07_cast_clip.gif"
    },
    "file": "pokemon-blue_gb_na_gameplay_seq-fishing_07_cast_clip.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fishing_07_cast_clip.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -119,9 +117,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_dialogue_seq-fishing_08_bite.png",
-   "file_3x": "3x/pokemon-blue_gb_na_dialogue_seq-fishing_08_bite.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "675c95ae76c591f00f918d5d4359560bffba2403"
   },
   {
    "id": "09_battle_clip",
@@ -137,11 +135,9 @@
     "kept": 166,
     "poster": 72,
     "seconds": 5.53,
-    "file": "pokemon-blue_gb_na_battle_seq-fishing_09_battle_clip.gif",
-    "file_3x": "3x/pokemon-blue_gb_na_battle_seq-fishing_09_battle_clip.gif"
+    "file": "pokemon-blue_gb_na_battle_seq-fishing_09_battle_clip.gif"
    },
    "file": "pokemon-blue_gb_na_battle_seq-fishing_09_battle_clip.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_seq-fishing_09_battle_clip.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -154,9 +150,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_seq-fishing_10_hooked.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_seq-fishing_10_hooked.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "2c7aa84a4cc32d237f0bbe1e40799baa409f8fc7"
   },
   {
    "id": "11_attacked",
@@ -167,9 +163,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_seq-fishing_11_attacked.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_seq-fishing_11_attacked.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "5d1ca70f3572a2f9af5bbc66c9a75e490e8a72e0"
   },
   {
    "id": "12_battle_menu",
@@ -180,9 +176,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_seq-fishing_12_battle_menu.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_seq-fishing_12_battle_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "c0846a436698817a0c2b3d00c0f2cef63791ea32"
   },
   {
    "id": "13_nibble_clip",
@@ -198,11 +194,9 @@
     "kept": 133,
     "poster": 0,
     "seconds": 4.42,
-    "file": "pokemon-blue_gb_na_gameplay_seq-fishing_13_nibble_clip.gif",
-    "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fishing_13_nibble_clip.gif"
+    "file": "pokemon-blue_gb_na_gameplay_seq-fishing_13_nibble_clip.gif"
    },
    "file": "pokemon-blue_gb_na_gameplay_seq-fishing_13_nibble_clip.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fishing_13_nibble_clip.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -215,9 +209,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_dialogue_seq-fishing_14_nibble.png",
-   "file_3x": "3x/pokemon-blue_gb_na_dialogue_seq-fishing_14_nibble.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "1ba9155c8aec131c29b474b6b84fcd3b690ce7f4"
   },
   {
    "id": "15_nibble_end",
@@ -228,9 +222,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_seq-fishing_15_nibble_end.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fishing_15_nibble_end.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "b7bd358bb39f1900ab947b7a5b364c6160c97cb9"
   }
  ]
 }

@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_cutscene_prologue_text.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_cutscene_prologue_text.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5c254a6708368094662b8db9208fe60ab9aa9c9a"
   },
   {
    "id": "title_screen",
@@ -32,9 +32,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_title_title_screen.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_title_title_screen.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1313701fc084aa1c52f9b6fb7af587e3ab9f1d9f"
   },
   {
    "id": "menu_main",
@@ -45,9 +45,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_menu_menu_main.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_menu_menu_main.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "fc144352bd2cb07d60c5ae8bc2ae77dd05179f4a"
   },
   {
    "id": "party_slots",
@@ -58,9 +58,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_menu_party_slots.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_menu_party_slots.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a5cd3e5887c1806597a1b2a88bca36d002b730d0"
   },
   {
    "id": "name_entry",
@@ -71,9 +71,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_menu_name_entry.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_menu_name_entry.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "98f446a52a0d6b6d2bdc7fe3fc4760df32bcebbb"
   },
   {
    "id": "class_select",
@@ -84,9 +84,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_menu_class_select.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_menu_class_select.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "e7470722bba223c4eacb9d8ed6e633fa8391b173"
   },
   {
    "id": "inn_menu",
@@ -97,9 +97,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_shop_inn_menu.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_inn_menu.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7d6f87ec9ef53e2989df947549983d3ebb727f0c"
   },
   {
    "id": "inn_save",
@@ -110,9 +110,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_save_inn_save.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_save_inn_save.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "e6698e8670609a9ebd5088c9807e57409e086e91"
   },
   {
    "id": "inn_stay",
@@ -123,9 +123,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_inn_stay.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_inn_stay.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c6284a504e27315fc3b14140001e670ad9d6017a"
   },
   {
    "id": "town_inn_door",
@@ -136,9 +136,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_gameplay_town_inn_door.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_town_inn_door.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "e8e2b56ac28606c35c555eeae906cfd00d824b86"
   },
   {
    "id": "town_street",
@@ -149,9 +149,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_town_street.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_town_street.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "70c241cda267953b20de66fb203e5fda2ce878b6"
   },
   {
    "id": "town_north",
@@ -162,9 +162,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_town_north.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_town_north.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ba2cb45fdc6714104b1c45dc510109ea293549ea"
   },
   {
    "id": "field_menu",
@@ -175,9 +175,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_menu_field_menu.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_menu_field_menu.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "fb78170d3ddaa2d22721f89aacd6a08c39556de0"
   },
   {
    "id": "status_ryz",
@@ -188,9 +188,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_inventory_status_ryz.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_inventory_status_ryz.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d9414b793199e4bd81536ab1fa6c7e4790f7328b"
   },
   {
    "id": "spell_menu",
@@ -201,9 +201,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_system_spell_menu.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_system_spell_menu.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2f737ccfb620215572f052ee538c9f0f6553307e"
   },
   {
    "id": "item_menu",
@@ -214,9 +214,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_inventory_item_menu.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_inventory_item_menu.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "de1db5f505da5d24f73756277eff201a2e53c6f3"
   },
   {
    "id": "item_use",
@@ -227,9 +227,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_inventory_item_use.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_inventory_item_use.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "51bd6cb941e4a5d4b9bfa4a5747e7e994131aa6a"
   },
   {
    "id": "shop_arms_dirige",
@@ -240,9 +240,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_shop_arms_dirige.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_shop_arms_dirige.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "38724994f3ad9a94e233ad5f2e134a52508cc017"
   },
   {
    "id": "shop_weapons_list",
@@ -253,9 +253,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_shop_weapons_list.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_shop_weapons_list.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6dc0aec44af9cd646ea87b7bb08508ad276498bf"
   },
   {
    "id": "shop_armour_list",
@@ -266,9 +266,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_shop_armour_list.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_shop_armour_list.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4551a24229d1d850463c26be2bbec5a8484f662b"
   },
   {
    "id": "shop_weapons_ail",
@@ -279,9 +279,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_shop_weapons_ail.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_shop_weapons_ail.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1c7188659b9c00149e2a6d96df8e5efcd3ebdd5d"
   },
   {
    "id": "shop_armour_ail",
@@ -292,9 +292,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_shop_armour_ail.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_shop_armour_ail.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6f8366fcbe003e9c11ea8362f6409ab932403458"
   },
   {
    "id": "shop_weapons_north",
@@ -305,9 +305,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_shop_weapons_north.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_shop_weapons_north.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "66b17ada1287b8ded33ef6794331c614e0599b26"
   },
   {
    "id": "item_shop",
@@ -318,9 +318,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_item_shop.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_item_shop.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5d87505e542bedb5320e8dd81033761778a40121"
   },
   {
    "id": "item_shop_list",
@@ -331,9 +331,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_item_shop_list.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_item_shop_list.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d314a6661fc2ba38dc06e27251f1152a4e324dd7"
   },
   {
    "id": "temple_menu",
@@ -344,9 +344,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_temple_menu.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_temple_menu.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c28e5dd263b6a14a270de1c1618ea323fd424afd"
   },
   {
    "id": "temple_spells",
@@ -357,9 +357,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_temple_spells.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_temple_spells.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "e89909b5a77efa6ac4a021833bd61c4c486ce72d"
   },
   {
    "id": "temple_learned",
@@ -370,9 +370,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_temple_learned.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_temple_learned.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2de7091457a178e609c47804fa6ea0982f225ee8"
   },
   {
    "id": "magic_guild",
@@ -383,9 +383,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_magic_guild.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_magic_guild.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "884b0d87140a4f1982e8931cdfcf84982543e2b8"
   },
   {
    "id": "info_broker",
@@ -396,9 +396,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_shop_info_broker.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_shop_info_broker.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "bd0c1d0cfa1f3843811f6ad6b2aa9abbddb194e1"
   },
   {
    "id": "battle_skeletons",
@@ -409,9 +409,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_battle_battle_skeletons.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_battle_battle_skeletons.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "9ea8ad634899d5c5c2b3ae481bb96cfb2acd035c"
   },
   {
    "id": "battle_commands",
@@ -422,9 +422,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_battle_battle_commands.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_battle_battle_commands.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4da9a1e30a23581a697ea03dffaef226f16e1fa5"
   },
   {
    "id": "battle_target",
@@ -435,9 +435,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_battle_battle_target.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_battle_battle_target.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "af984458d204fa43930948ca11ca41e7269bcdf8"
   },
   {
    "id": "battle_spell_select",
@@ -448,9 +448,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_battle_battle_spell_select.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_battle_battle_spell_select.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "79efc825436dc5c17b2f1ffed4831cbe968caa29"
   },
   {
    "id": "battle_round",
@@ -461,9 +461,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_battle_battle_round.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_battle_battle_round.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a4664c39f5494e64e997f93f992b7f790e7c8ae3"
   },
   {
    "id": "battle_spell_cast",
@@ -474,9 +474,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_battle_battle_spell_cast.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_battle_battle_spell_cast.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "49e249d89d7ee6f1304c61258218de2996b7e76c"
   },
   {
    "id": "battle_victory",
@@ -487,9 +487,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_battle_battle_victory.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_battle_battle_victory.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "3b58d1ceac2df470a336f44b8ae1217869309a25"
   },
   {
    "id": "level_up",
@@ -500,9 +500,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_battle_level_up.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_battle_level_up.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "39fcd2814be1fb8a7e39d6fd66248f6dffd95627"
   },
   {
    "id": "level_up_points",
@@ -513,9 +513,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_system_level_up_points.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_system_level_up_points.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "78d4b7cb8714e2ae5010c8b8d826f0464a8e2fd6"
   },
   {
    "id": "gameover_swordsman",
@@ -526,9 +526,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameover_gameover_swordsman.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameover_gameover_swordsman.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b2731c5830e4e6561c18130c556f6831a62891d3"
   },
   {
    "id": "gameover_menu",
@@ -539,9 +539,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameover_gameover_menu.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameover_gameover_menu.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5d0c37636d2dfe3b44f2eb03d23bd2c77a917b27"
   },
   {
    "id": "hud_dungeon",
@@ -552,9 +552,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_hud_hud_dungeon.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_hud_hud_dungeon.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "afd7c1b6d33f92bd5757bfab37c0e1ce0627e9d8"
   },
   {
    "id": "ev_monument",
@@ -565,9 +565,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_ev_monument.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_ev_monument.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "3875a5005bde6eab7218ba0144497f5c8546d643"
   },
   {
    "id": "ev_wall_writing",
@@ -578,9 +578,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_dialogue_ev_wall_writing.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_dialogue_ev_wall_writing.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "cbf7be95db157687ef57168f822d14e9c51586eb"
   },
   {
    "id": "ev_prisoner_bell",
@@ -591,9 +591,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_dialogue_ev_prisoner_bell.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_dialogue_ev_prisoner_bell.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "83b31990c2bc90b8055bb6e9184c0295a7ea8fc1"
   },
   {
    "id": "ev_pit_trap",
@@ -604,9 +604,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_system_ev_pit_trap.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_system_ev_pit_trap.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2b4dc2e0ab7178b069ee6cda7f4d53265fe55593"
   },
   {
    "id": "ev_final_fantasy",
@@ -617,9 +617,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_extra_ev_final_fantasy.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_extra_ev_final_fantasy.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c6e46a355fa3a754aab9ae1f2332008655f1baea"
   },
   {
    "id": "stairs_down_cave",
@@ -630,9 +630,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "deep-dungeon-3_nes_jp_gameplay_stairs_down_cave.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_stairs_down_cave.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a931cfb4976b1bc9993bf632229dd807dd88b720"
   },
   {
    "id": "area2_cave",
@@ -643,9 +643,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_area2_cave.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_area2_cave.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c16ae9ff3241818985240dc28d4c4edca4732396"
   },
   {
    "id": "battle_centaurs",
@@ -656,9 +656,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_battle_battle_centaurs.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_battle_battle_centaurs.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "dc4158e1e5ee74af81953239488c8fc4ebcb0d49"
   },
   {
    "id": "ev_sun_shield",
@@ -669,9 +669,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_ev_sun_shield.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_ev_sun_shield.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "53c32b28d9f13f4d517602e007de8855f448290c"
   },
   {
    "id": "ev_someone_here",
@@ -682,9 +682,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_dialogue_ev_someone_here.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_dialogue_ev_someone_here.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "27fb8a7e48c8ca4a1826be5fad147fcff9406c26"
   },
   {
    "id": "companion_offer",
@@ -695,9 +695,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_dialogue_companion_offer.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_dialogue_companion_offer.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1544b44b71aecc21f597ea7b11fe1ad38f77e898"
   },
   {
    "id": "companion_joins",
@@ -708,9 +708,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_system_companion_joins.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_system_companion_joins.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a09695a3abe78a28cfdbb968d3c3ab0f242eaadc"
   },
   {
    "id": "ev_sword_in_rock",
@@ -721,9 +721,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_ev_sword_in_rock.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_ev_sword_in_rock.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "cc83ba22c3fc3a2f4e8a6df4e11a9e83fffafcd6"
   },
   {
    "id": "ev_sword_fails",
@@ -734,9 +734,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_ev_sword_fails.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_ev_sword_fails.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "3c6866294d4960a649323ffe8f8dced9ac8eb978"
   },
   {
    "id": "ev_sword_drawn",
@@ -747,9 +747,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_ev_sword_drawn.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_ev_sword_drawn.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ffd1f3f6f4c622da1e2d77b8e126f34c2359a9fa"
   },
   {
    "id": "ev_zosem_voice",
@@ -760,9 +760,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_dialogue_ev_zosem_voice.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_dialogue_ev_zosem_voice.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2a3d544dd0011ce0263b72ff82e611263f787bed"
   },
   {
    "id": "boss_zosem",
@@ -773,9 +773,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_boss_boss_zosem.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_boss_boss_zosem.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "9022ef31ad29aedc14ca38064a32e77a4928c8ac"
   },
   {
    "id": "tower_entrance",
@@ -786,9 +786,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_tower_entrance.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_tower_entrance.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2e80546b1df5ca74fa804307f4eeceb2b7d3e817"
   },
   {
    "id": "area3_tower",
@@ -799,9 +799,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_area3_tower.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_area3_tower.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "cf36eff44c5b7d378ff7b91aaf49e01e5a1ac04c"
   },
   {
    "id": "area3_tower_f3",
@@ -812,9 +812,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_area3_tower_f3.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_area3_tower_f3.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "78b51cd401e2f276c28fbec03890f5b8c336002a"
   },
   {
    "id": "area3_tower_top",
@@ -825,9 +825,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_area3_tower_top.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_area3_tower_top.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "341d4d9648760a5f42399401a7f077df375546d2"
   },
   {
    "id": "boss_tower_master",
@@ -838,9 +838,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_boss_boss_tower_master.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_boss_boss_tower_master.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c94ab8157f60f712dd5dd6b52a5e77c0137e382b"
   },
   {
    "id": "castle_entrance",
@@ -851,9 +851,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_castle_entrance.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_castle_entrance.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a993afba1d5d2b74e973bd8afae473619ba5683d"
   },
   {
    "id": "area4_castle",
@@ -864,9 +864,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_area4_castle.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_area4_castle.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "aecc1d218b851fbd5007b4517b66516ae3c42706"
   },
   {
    "id": "battle_wyverns",
@@ -877,9 +877,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_battle_battle_wyverns.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_battle_battle_wyverns.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "614502a6a147ec81114b349e823158b710507cb7"
   },
   {
    "id": "ev_flame_of_life",
@@ -890,9 +890,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_gameplay_ev_flame_of_life.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_gameplay_ev_flame_of_life.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d60b45ed6ba99dc0cb532445c949b0aa32c0edc2"
   },
   {
    "id": "ev_king",
@@ -903,9 +903,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_dialogue_ev_king.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_dialogue_ev_king.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7e076030503abcdf2825a9d6b0a29e73b5305e18"
   },
   {
    "id": "ev_castle_sage",
@@ -916,9 +916,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_dialogue_ev_castle_sage.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_dialogue_ev_castle_sage.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "9a58f0b4690314012c60e8570df796b66da3a6ab"
   },
   {
    "id": "ending_princess",
@@ -929,9 +929,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_ending_ending_princess.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_ending_ending_princess.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0311b7dde5a40f9f29e638a09d7ca152a7fdd903"
   },
   {
    "id": "ending_credits",
@@ -942,9 +942,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_credits_ending_credits.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_credits_ending_credits.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "79e00b9d5f6af3faaa6f1c12a404fafde6ab2b84"
   },
   {
    "id": "ending_thanks",
@@ -955,9 +955,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_credits_ending_thanks.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_credits_ending_thanks.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c9f078336d221e6c7e522cc705258ff82596bbb5"
   },
   {
    "id": "ending_the_end",
@@ -968,9 +968,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "deep-dungeon-3_nes_jp_ending_ending_the_end.png",
-   "file_3x": "3x/deep-dungeon-3_nes_jp_ending_ending_the_end.png",
    "rom_sha1": "ed0d8f64d6e0c1c16286a1e014abbeb8ae95a654",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "f726973d2bf378af2e782f4c199abcefdcc233cb"
   }
  ]
 }

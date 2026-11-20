@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_options_options_line.compare-maze.png",
-   "file_3x": "3x/wizardry_nes_na_options_options_line.compare-maze.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a9f27ca96ebb06320edbbc85653b89fa1914b623"
   },
   {
    "id": "start_solid",
@@ -32,9 +32,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameplay_start_solid.compare-maze.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_start_solid.compare-maze.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d59a9a540dab9d7b18298546033c6eef88663685"
   },
   {
    "id": "start_line",
@@ -45,9 +45,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameplay_start_line.compare-maze.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_start_line.compare-maze.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "f337dee79140faefe85b925573f181e127dab7d4"
   },
   {
    "id": "fullview_solid",
@@ -58,9 +58,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_hud_fullview_solid.compare-maze.png",
-   "file_3x": "3x/wizardry_nes_na_hud_fullview_solid.compare-maze.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "168c8365c70426d3bd901e5ebcc337441b8028a7"
   },
   {
    "id": "fullview_line",
@@ -71,9 +71,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_hud_fullview_line.compare-maze.png",
-   "file_3x": "3x/wizardry_nes_na_hud_fullview_line.compare-maze.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "45b190fd0c4518e666c3c1bfb4f4fa6c507233fa"
   },
   {
    "id": "floor04_solid",
@@ -84,9 +84,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameplay_floor04_solid.compare-maze.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_floor04_solid.compare-maze.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "f18032b6639e456a21a8c12d0da2389ff676c1d8"
   },
   {
    "id": "floor04_line",
@@ -97,9 +97,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameplay_floor04_line.compare-maze.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_floor04_line.compare-maze.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "cb4175ddecad3634987687092dad9edb436146d5"
   },
   {
    "id": "floor10_solid",
@@ -110,9 +110,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameplay_floor10_solid.compare-maze.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_floor10_solid.compare-maze.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "05c9d16b9b8f45e924c347c9bdb280a170fa67e3"
   },
   {
    "id": "floor10_line",
@@ -123,9 +123,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "wizardry_nes_na_gameplay_floor10_line.compare-maze.png",
-   "file_3x": "3x/wizardry_nes_na_gameplay_floor10_line.compare-maze.png",
    "rom_sha1": "0b28b297043db52a1eda106bba10754a2e4bfd75",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2f0fcbad070e3d1df0c9f25e6891c9be7a210a06"
   }
  ]
 }

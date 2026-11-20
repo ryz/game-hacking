@@ -19,9 +19,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boot_boot_prepare.png",
-   "file_3x": "3x/wizardry_apple2_na_boot_boot_prepare.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "883be6e6e8a54fc2d123fbbb56da6692f15ea0b2"
   },
   {
    "id": "title_cauldron",
@@ -32,9 +32,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_title_title_cauldron.png",
-   "file_3x": "3x/wizardry_apple2_na_title_title_cauldron.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7a8f17e713d0870f18f916d2284cf97957f494ff"
   },
   {
    "id": "title_smoke",
@@ -45,9 +45,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_title_title_smoke.png",
-   "file_3x": "3x/wizardry_apple2_na_title_title_smoke.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9edcc2fb25ed0bb6deba11c4317d02569c02f7c5"
   },
   {
    "id": "title_logo",
@@ -58,9 +58,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_title_title_logo.png",
-   "file_3x": "3x/wizardry_apple2_na_title_title_logo.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fb4e87438cd3a4ae3f7402b38212d912e2da1230"
   },
   {
    "id": "menu_copyright",
@@ -71,9 +71,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_copyright.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_copyright.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "02c006b45ef7bfb3b74aa8e6fa6374212699b02c"
   },
   {
    "id": "menu_utilities",
@@ -84,9 +84,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_utilities.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_utilities.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ddfb566fa291a57deac4ad84a269a8dd8da8b76c"
   },
   {
    "id": "util_change_names",
@@ -97,9 +97,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_change_names.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_change_names.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2de566e78bd3fbdd730e5f9353faef65944e670c"
   },
   {
    "id": "util_change_names_disk",
@@ -110,9 +110,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_change_names_disk.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_change_names_disk.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "81359699107f2ca09ff932b35a0305eaee46ac45"
   },
   {
    "id": "util_transfer",
@@ -123,9 +123,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_transfer.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_transfer.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ffcd8b37be532cab6fe2490dc59f9b963815c4d7"
   },
   {
    "id": "util_transfer_disk",
@@ -136,9 +136,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_transfer_disk.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_transfer_disk.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "657c2cb067ed2cf9b588e93cbf0b2837bd18a910"
   },
   {
    "id": "util_backup",
@@ -149,9 +149,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_backup.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_backup.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f13b96d58bf3bb41b9a9cad84ca78ef1ec0eda1e"
   },
   {
    "id": "util_backup_dir",
@@ -162,9 +162,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_backup_dir.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_backup_dir.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ea79b5661fe91fb172f3c99be69c713167a7f11c"
   },
   {
    "id": "util_recover",
@@ -175,9 +175,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_recover.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_recover.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1a85d36e30a2d13f5f48b487f05bf14f5d44c3fe"
   },
   {
    "id": "util_recover_disk",
@@ -188,9 +188,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_recover_disk.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_recover_disk.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "61c2edbdaf321350596d8d12b60bf8ee646453e1"
   },
   {
    "id": "util_update",
@@ -201,9 +201,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_update.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_update.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b166ee8dfa01dd0d6dfdb83ea55c7700fe9577b2"
   },
   {
    "id": "util_update_step1",
@@ -214,9 +214,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_update_step1.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_update_step1.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "04287be7bfa94192686ac6e5ac9147ce41ea2205"
   },
   {
    "id": "util_make_scenario",
@@ -227,9 +227,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_util_make_scenario.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_util_make_scenario.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "241fe83ea53b9c4b4db500db8cc60249c75a2c07"
   },
   {
    "id": "boot_disk_master",
@@ -240,9 +240,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boot_boot_disk_master.png",
-   "file_3x": "3x/wizardry_apple2_na_boot_boot_disk_master.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "318316a8c8e893cefccb4277ac1017b0335e3862"
   },
   {
    "id": "boot_disk_duplicate",
@@ -253,9 +253,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boot_boot_disk_duplicate.png",
-   "file_3x": "3x/wizardry_apple2_na_boot_boot_disk_duplicate.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "eb23859106de7f327d04290c69503690611a1091"
   },
   {
    "id": "menu_castle_empty",
@@ -266,9 +266,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_castle_empty.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_castle_empty.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7fd39906bc8a6896f1ea35aade1cf4720c46e1e2"
   },
   {
    "id": "menu_tavern_empty",
@@ -279,9 +279,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_tavern_empty.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_tavern_empty.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0aebd4ad86b16409b94ff86a2d1b54e71ce00897"
   },
   {
    "id": "menu_tavern_add",
@@ -292,9 +292,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_tavern_add.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_tavern_add.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "af0e5225ae0eff65c960ed8021ad6d4461c37a5e"
   },
   {
    "id": "tavern_password",
@@ -305,9 +305,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_tavern_password.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_tavern_password.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d33e5048939686d92e3d8767f789c85251616c26"
   },
   {
    "id": "tavern_who",
@@ -318,9 +318,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_tavern_who.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_tavern_who.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8ebbe78cafe4e8149ffd656a40744cfcbb525687"
   },
   {
    "id": "tavern_wrong_password",
@@ -331,9 +331,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_tavern_wrong_password.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_tavern_wrong_password.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9190faf45fe19ef7aba44fc3f1d1f77be8610fe6"
   },
   {
    "id": "tavern_bad_alignment",
@@ -344,9 +344,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_tavern_bad_alignment.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_tavern_bad_alignment.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d8af735bfd77251a4b45229e9ea2936ac2dbf6f1"
   },
   {
    "id": "menu_edge_empty",
@@ -357,9 +357,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_edge_empty.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_edge_empty.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cd47f3ee1eb71e7a05f2f49abdc298573719b72d"
   },
   {
    "id": "menu_training",
@@ -370,9 +370,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_training.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_training.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a47ae3813411c249223ad5cd91e8d3672604637b"
   },
   {
    "id": "menu_roster_inherited",
@@ -383,9 +383,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_roster_inherited.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_roster_inherited.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e3ad78e68299c0ad38c32c26bfb0a79ae3ba62ba"
   },
   {
    "id": "training_no_room",
@@ -396,9 +396,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_training_no_room.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_training_no_room.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6c46165c7e9e537638cb8ba57dc2003e2a273f56"
   },
   {
    "id": "inventory_sheet_ninja",
@@ -409,9 +409,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_ninja.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_ninja.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "836aecfddb018cec244c3b2e1a6980e9994a6b80"
   },
   {
    "id": "inventory_sheet_samurai",
@@ -422,9 +422,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_samurai.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_samurai.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "db9685f87653a0e47535b417477ec7920f031ff7"
   },
   {
    "id": "inventory_sheet_lord",
@@ -435,9 +435,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_lord.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_lord.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c1cbac952f6a9a10214be91518f8a0f08b204cfe"
   },
   {
    "id": "inventory_sheet_jib",
@@ -448,9 +448,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_jib.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_jib.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d9c697fa2c32a7d9a6b2a0d140f53bf9c694f487"
   },
   {
    "id": "create_new_name",
@@ -461,9 +461,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_create_new_name.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_new_name.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "25dcb4bd24bcd757ed50e6bc44205c91fbb55320"
   },
   {
    "id": "create_password",
@@ -474,9 +474,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_create_password.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_password.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b58c36ad70a8cb53c03f52c36285938978c635a0"
   },
   {
    "id": "create_password_again",
@@ -487,9 +487,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_create_password_again.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_password_again.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0f95ac68e5640904b3f96f3f4709529ab6b69300"
   },
   {
    "id": "create_race",
@@ -500,9 +500,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_create_race.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_race.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2a82505dd3eadaf0294c815fc7a989244eff47c9"
   },
   {
    "id": "create_align",
@@ -513,9 +513,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_create_align.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_align.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "758ff0253a7dc07de65d037829a91672fb29a247"
   },
   {
    "id": "create_bonus",
@@ -526,9 +526,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_create_bonus.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_bonus.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3ced43ab8d13c1e55c446491f8708310249b5873"
   },
   {
    "id": "create_bonus_minus",
@@ -539,9 +539,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_create_bonus_minus.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_bonus_minus.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "633a879a0f2de0dbf0d3832efb372e085f3917c9"
   },
   {
    "id": "create_bonus_spent",
@@ -552,9 +552,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_create_bonus_spent.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_bonus_spent.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3db3e8fe0f0393b554b51de47c8332acb62dc536"
   },
   {
    "id": "create_class",
@@ -565,9 +565,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_create_class.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_class.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "41e3128e5f635ebc8dcbfe3993084c589f5eff91"
   },
   {
    "id": "create_keep",
@@ -578,9 +578,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_create_keep.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_keep.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "63d41489bb84ab88045640a6bc80256329db6f8c"
   },
   {
    "id": "training_char_menu",
@@ -591,9 +591,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_training_char_menu.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_training_char_menu.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "768d2377175df9b12d9bebf57dc86e63e9773475"
   },
   {
    "id": "training_inspect_new",
@@ -604,9 +604,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_training_inspect_new.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_training_inspect_new.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "57ce067e6ee2f0e676d12d0fbc9b46e64fafc2c6"
   },
   {
    "id": "training_change_class",
@@ -617,9 +617,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_training_change_class.png",
-   "file_3x": "3x/wizardry_apple2_na_system_training_change_class.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "21e8ea4d72f0247786ed9ee338f317884bef0a75"
   },
   {
    "id": "training_class_changed",
@@ -630,9 +630,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_training_class_changed.png",
-   "file_3x": "3x/wizardry_apple2_na_system_training_class_changed.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1f90f5f3476387f386a62b940a0b05bd668b8f3d"
   },
   {
    "id": "training_class_changed_sheet",
@@ -643,9 +643,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_training_class_changed_sheet.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_training_class_changed_sheet.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "72f8cd60a351b662f2b8d6abda9ef942918a571a"
   },
   {
    "id": "training_delete",
@@ -656,9 +656,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_training_delete.png",
-   "file_3x": "3x/wizardry_apple2_na_system_training_delete.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "11ee72ebd0c47bd3fc0381068471088f25b970a5"
   },
   {
    "id": "training_reroll",
@@ -669,9 +669,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_training_reroll.png",
-   "file_3x": "3x/wizardry_apple2_na_system_training_reroll.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "07f48b8ed3bec0453e3e295202a185af757d21db"
   },
   {
    "id": "training_password",
@@ -682,9 +682,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_training_password.png",
-   "file_3x": "3x/wizardry_apple2_na_system_training_password.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "89bca0efa94096748871c1aebdac2d68ce109927"
   },
   {
    "id": "training_name_password",
@@ -695,9 +695,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_training_name_password.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_training_name_password.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bf8bbd1ec2bdbfa60f92f3075d1a9ab9a2f21b88"
   },
   {
    "id": "menu_roster",
@@ -708,9 +708,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_roster.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_roster.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "48712e9089edd64041a2e6250119c89239d603a2"
   },
   {
    "id": "menu_castle",
@@ -721,9 +721,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_castle.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_castle.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "76909ba6da5ac6d9af66708bf34cee2854e51ff5"
   },
   {
    "id": "menu_tavern",
@@ -734,9 +734,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_tavern.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_tavern.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1e4053f9cd48a00699d9b68eda7f13ac330cf77d"
   },
   {
    "id": "tavern_remove",
@@ -747,9 +747,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_tavern_remove.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_tavern_remove.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "833583b88076fb9cece5cb42e69a03f8bafa29dd"
   },
   {
    "id": "tavern_removed",
@@ -760,9 +760,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_tavern_removed.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_tavern_removed.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "db0d1431e636c268d0a2fdc9176ef8742b993927"
   },
   {
    "id": "inventory_sheet_l1",
@@ -773,9 +773,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_l1.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_l1.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dfdc3e14255dee1742adab8c81cf45f2ec8eba3a"
   },
   {
    "id": "menu_inn_who",
@@ -786,9 +786,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_inn_who.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_inn_who.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ee8292d09d77791dbcfe1f359a609aab54034995"
   },
   {
    "id": "menu_inn",
@@ -799,9 +799,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_inn.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_inn.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d852b55404c465507080824ee30065c0ce2b30aa"
   },
   {
    "id": "inn_stables",
@@ -812,9 +812,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_inn_stables.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_inn_stables.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2519e91734243562c0d8a02740574ee0b7e37e64"
   },
   {
    "id": "inn_healing",
@@ -825,9 +825,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_inn_healing.png",
-   "file_3x": "3x/wizardry_apple2_na_system_inn_healing.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e1ad6d49dbcd0428921e3a4078a62cc9deb9825f"
   },
   {
    "id": "inn_levelup",
@@ -838,9 +838,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_inn_levelup.png",
-   "file_3x": "3x/wizardry_apple2_na_system_inn_levelup.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bab8993c3177c2f748c9c01511a0a66e6625d870"
   },
   {
    "id": "inn_levelup_mage",
@@ -851,9 +851,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_inn_levelup_mage.png",
-   "file_3x": "3x/wizardry_apple2_na_system_inn_levelup_mage.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9d108d39c3a651de6703bceb8b374076e80a256b"
   },
   {
    "id": "inn_royal",
@@ -864,9 +864,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_inn_royal.png",
-   "file_3x": "3x/wizardry_apple2_na_system_inn_royal.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "88c48630a12d63493e736a23596a5b0bac103e70"
   },
   {
    "id": "inn_stables_vet",
@@ -877,9 +877,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_inn_stables_vet.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_inn_stables_vet.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8598b620ab6f6d37e0dad0461d377ba3668d3111"
   },
   {
    "id": "menu_edge",
@@ -890,9 +890,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_edge.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_edge.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "afe7553f796ede37026e599f367ba8d9d28e1934"
   },
   {
    "id": "save_leave_game",
@@ -903,9 +903,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_save_save_leave_game.png",
-   "file_3x": "3x/wizardry_apple2_na_save_save_leave_game.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "efbc234c08c637467eb44b4d68cf482631113c52"
   },
   {
    "id": "menu_castle_vets",
@@ -916,9 +916,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_castle_vets.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_castle_vets.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "680d0c8f823b5435b26d88814a004ec5355c4565"
   },
   {
    "id": "inventory_sheet_vet",
@@ -929,9 +929,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_vet.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_vet.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7b822c6d4f7b94d2e43bba7ee1bb0d39a4c04135"
   },
   {
    "id": "inventory_sheet_condi",
@@ -942,9 +942,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_condi.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_condi.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ed54979e3ca4f9dcef63fc155c925d2caee14e8a"
   },
   {
    "id": "inventory_sheet_priest",
@@ -955,9 +955,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_priest.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_priest.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a5ad5e7aeb464b9046c1911fd4e231f196cf4679"
   },
   {
    "id": "inventory_sheet_thief",
@@ -968,9 +968,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_thief.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_thief.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "844ffabf671e6f3e28080c5db0718beec00ef9d9"
   },
   {
    "id": "inventory_sheet_mage",
@@ -981,9 +981,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_mage.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_mage.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d3ad462df4bde4e29678497e5420dea776b436b5"
   },
   {
    "id": "inventory_sheet_bishop",
@@ -994,9 +994,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_bishop.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_bishop.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "06a805256421d9b7915923affc06756f877d85d3"
   },
   {
    "id": "inventory_spellbooks",
@@ -1007,9 +1007,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_spellbooks.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_spellbooks.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "81033dae81420652a4851838c3c183f2b14cf8a3"
   },
   {
    "id": "inventory_mage_book",
@@ -1020,9 +1020,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_mage_book.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_mage_book.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "42862c80b7ec2542cfc0bf09194dd00a615b62e1"
   },
   {
    "id": "inventory_priest_book",
@@ -1033,9 +1033,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_priest_book.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_priest_book.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2c111be463561a2db3c321d996ae7e0b740c71b9"
   },
   {
    "id": "inventory_trade",
@@ -1046,9 +1046,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_trade.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_trade.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a10e4ed288839565c5bb041418d3ac9089c99673"
   },
   {
    "id": "inventory_trade_gold",
@@ -1059,9 +1059,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_trade_gold.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_trade_gold.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f2682f6c1a254db2218fa46d05d3e8062d6f7513"
   },
   {
    "id": "inventory_trade_item",
@@ -1072,9 +1072,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_trade_item.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_trade_item.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5bb251d00a6960addca22b5ce358615609a97dd0"
   },
   {
    "id": "inventory_drop",
@@ -1085,9 +1085,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_drop.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_drop.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bd8de2e2668407758e5ad2360ec4d913f34eca8d"
   },
   {
    "id": "inventory_dropped",
@@ -1098,9 +1098,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_dropped.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_dropped.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c1f91ee5706ff581824824070a4d48f3738eccbc"
   },
   {
    "id": "inventory_cursed",
@@ -1111,9 +1111,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_cursed.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_cursed.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "867649485fd60a934a9a6163a65a2c234b971542"
   },
   {
    "id": "shop_boltac_who",
@@ -1124,9 +1124,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_boltac_who.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_boltac_who.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fbc17b3689995ae1a1b7fe23d99ce812f8321eb9"
   },
   {
    "id": "shop_boltac",
@@ -1137,9 +1137,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_boltac.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_boltac.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d2a9a18a76df56caf37d564fbd549c574c108d62"
   },
   {
    "id": "shop_boltac_buy",
@@ -1150,9 +1150,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_boltac_buy.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_boltac_buy.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "eb3aed5d9155e5423fb15fa65277aadfc1046596"
   },
   {
    "id": "shop_boltac_armor",
@@ -1163,9 +1163,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_boltac_armor.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_boltac_armor.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7bac4a1b1fffa4c14f3cb4a9a697cd491f1a2c92"
   },
   {
    "id": "shop_boltac_potions",
@@ -1176,9 +1176,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_boltac_potions.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_boltac_potions.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "af68d7a13b62af5e504940403fb1bed5f1c83979"
   },
   {
    "id": "shop_boltac_magic",
@@ -1189,9 +1189,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_boltac_magic.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_boltac_magic.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7849c9e05cceb58d6a0fe5092bf636ea81efca59"
   },
   {
    "id": "shop_boltac_plus1",
@@ -1202,9 +1202,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_boltac_plus1.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_boltac_plus1.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5c087e83edbb87a059f6941d4ebe50d5dcf1f688"
   },
   {
    "id": "shop_boltac_rare",
@@ -1215,9 +1215,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_boltac_rare.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_boltac_rare.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "81d41f3972a4ffcd3a1b9fd45e170952aef18599"
   },
   {
    "id": "shop_purchase",
@@ -1228,9 +1228,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_purchase.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_purchase.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "de889fa1d7875f70d05259c8863c79604927a2d0"
   },
   {
    "id": "shop_bought",
@@ -1241,9 +1241,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_bought.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_bought.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bb1d01682bf31da8e368f8c8498629be08e68d56"
   },
   {
    "id": "shop_unusable",
@@ -1254,9 +1254,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_unusable.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_unusable.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cec2b7e6cff901a6cc66a6a45a9b0779e8f225b3"
   },
   {
    "id": "shop_sell",
@@ -1267,9 +1267,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_sell.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_sell.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "88219ac65342acb3e67eb6224f882ca2adac2c62"
   },
   {
    "id": "shop_sold",
@@ -1280,9 +1280,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_sold.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_sold.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "88a7305033b086eca7749f043b11b672ee6b0aa2"
   },
   {
    "id": "shop_identify",
@@ -1293,9 +1293,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_identify.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_identify.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6efaea609a4ee3051588b58f55d994cc5093146b"
   },
   {
    "id": "shop_identified",
@@ -1306,9 +1306,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_identified.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_identified.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "49a479bef9e2fbed754d1a51e43a1392587aa4cf"
   },
   {
    "id": "shop_uncurse",
@@ -1319,9 +1319,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_uncurse.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_uncurse.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "377bf52fc9c4508a67ec94edda3539a3fd622e18"
   },
   {
    "id": "shop_uncursed",
@@ -1332,9 +1332,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_shop_shop_uncursed.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_uncursed.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "89267bd4181f7ac47c8f0d87b3a35502461a93af"
   },
   {
    "id": "menu_temple",
@@ -1345,9 +1345,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_menu_temple.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_temple.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6831d98f68d334570bfbdddc3ff0ffae6854728e"
   },
   {
    "id": "temple_not_here",
@@ -1358,9 +1358,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_temple_not_here.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_temple_not_here.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9a87a751c9d951099a58bc8f2e992f41e4afe637"
   },
   {
    "id": "temple_is_ok",
@@ -1371,9 +1371,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_temple_is_ok.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_temple_is_ok.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bf7a852a41a0fb8058c7f90059755b862044fb46"
   },
   {
    "id": "temple_donation",
@@ -1384,9 +1384,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_temple_donation.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_temple_donation.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "df8023c18b8171b844c7f8eb3ffb5af15783d128"
   },
   {
    "id": "temple_ritual",
@@ -1397,9 +1397,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_temple_ritual.png",
-   "file_3x": "3x/wizardry_apple2_na_system_temple_ritual.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e6118a1f11697504807fd999efa71ad989de8873"
   },
   {
    "id": "temple_healed",
@@ -1410,9 +1410,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_temple_healed.png",
-   "file_3x": "3x/wizardry_apple2_na_system_temple_healed.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2e69cc403a100e56dd2e171be00bccb5d223d95a"
   },
   {
    "id": "temple_healed_sheet",
@@ -1423,9 +1423,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_temple_healed_sheet.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_temple_healed_sheet.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bf59d5f8f93fc777e37a6b6c275cb051d628cee4"
   },
   {
    "id": "temple_ashes_donation",
@@ -1436,9 +1436,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_temple_ashes_donation.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_temple_ashes_donation.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d8bcb6938a3ea0f7ea2a9ffe1a64b51bc14fb59a"
   },
   {
    "id": "temple_cheap",
@@ -1449,9 +1449,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_temple_cheap.png",
-   "file_3x": "3x/wizardry_apple2_na_system_temple_cheap.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7c74c0578e3eff91ba6e2c836d63e26a3933f858"
   },
   {
    "id": "gameplay_camp",
@@ -1462,9 +1462,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_gameplay_camp.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_gameplay_camp.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "10c3ccd39c44099bf751cf1c10780236684e64f4"
   },
   {
    "id": "gameplay_maze_f1_start",
@@ -1475,9 +1475,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_maze_f1_start.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_maze_f1_start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a9eb68b7a4c4ad0bad805113e977b09cc654351c"
   },
   {
    "id": "gameplay_wall",
@@ -1488,9 +1488,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_wall.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_wall.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ec5a8d2c839fe4a91200391bfb9dd2c5e495307c"
   },
   {
    "id": "gameplay_time_delay",
@@ -1501,9 +1501,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_time_delay.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_time_delay.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "09877696a01ee24892ab30af3c8b771f6b533158"
   },
   {
    "id": "gameplay_inspect_none",
@@ -1514,9 +1514,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_inspect_none.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_inspect_none.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2954fc28553bc363d9bfa301b64add05ed84acfe"
   },
   {
    "id": "gameplay_dark",
@@ -1527,9 +1527,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_dark.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_dark.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7212dc1d46a35a149f17a4f4c4aa3ea0e5672083"
   },
   {
    "id": "gameplay_door",
@@ -1540,9 +1540,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_door.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_door.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0140d817b23b71c47601e658a8cedfd01b969285"
   },
   {
    "id": "gameplay_stairs_down",
@@ -1553,9 +1553,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_stairs_down.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_stairs_down.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9ae3c5989c12c786de8fe1fdb2b599ed0fed54e6"
   },
   {
    "id": "gameplay_stairs",
@@ -1566,9 +1566,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_stairs.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_stairs.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "00a9d9cc007046e7f7b9f48418568e1d254ed722"
   },
   {
    "id": "gameplay_elevator",
@@ -1579,9 +1579,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_elevator.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_elevator.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ba58c1cbb75d9798034628fd70e3605ea820eca2"
   },
   {
    "id": "system_dumapic_f4",
@@ -1592,9 +1592,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_system_dumapic_f4.png",
-   "file_3x": "3x/wizardry_apple2_na_system_system_dumapic_f4.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2f373d74a271038f9c3cb35043db62dfe55efdc4"
   },
   {
    "id": "gameplay_elevator_f2",
@@ -1605,9 +1605,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_elevator_f2.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_elevator_f2.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "89a4f5a26a33f0b41aa9607b98e8da463f341713"
   },
   {
    "id": "gameplay_elevator_f4",
@@ -1618,9 +1618,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_elevator_f4.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_elevator_f4.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "aebf3fa6678171cd612f775a6bf36bbd0232a767"
   },
   {
    "id": "gameplay_pit",
@@ -1631,9 +1631,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_pit.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_pit.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "27123136daea417a72316467b1dd7f094d163f71"
   },
   {
    "id": "gameplay_chute",
@@ -1644,9 +1644,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_chute.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_chute.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "89e2d7266136af0847b2eedbbf08c6cb954d8924"
   },
   {
    "id": "gameplay_f3_crossing",
@@ -1657,9 +1657,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_f3_crossing.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_f3_crossing.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "240e7a2ea4df11d4a42c8632da057b08a6c3b148"
   },
   {
    "id": "gameplay_f6_doors",
@@ -1670,9 +1670,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_f6_doors.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_f6_doors.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "896c83f66c193c69ffa44a8e0e270d6e579dd2c8"
   },
   {
    "id": "gameplay_f7_hall",
@@ -1683,9 +1683,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_f7_hall.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_f7_hall.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c4482ad3d9a33c8ddb16472935678ecc8c38ac78"
   },
   {
    "id": "dialogue_sign_f1",
@@ -1696,9 +1696,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_sign_f1.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_sign_f1.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b7319d91e80e674859eab4740302f2cb477276f0"
   },
   {
    "id": "dialogue_f1_mapiro",
@@ -1709,9 +1709,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f1_mapiro.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f1_mapiro.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b8d6bc6925ae1e8afd391e5f5d64b4843bb1ae72"
   },
   {
    "id": "dialogue_f1_chicken",
@@ -1722,9 +1722,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f1_chicken.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f1_chicken.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "787927b581bfeb02ffa948469896c31196f5b942"
   },
   {
    "id": "dialogue_f1_altar",
@@ -1735,9 +1735,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f1_altar.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f1_altar.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4d17fc49f732ed0b62170f4aa4bdfe5a94473a24"
   },
   {
    "id": "dialogue_f2_bronze_smoke",
@@ -1748,9 +1748,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f2_bronze_smoke.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f2_bronze_smoke.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "57e38addbec0c490886996ce9d554c627625e7ad"
   },
   {
    "id": "dialogue_f2_silver_fog",
@@ -1761,9 +1761,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f2_silver_fog.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f2_silver_fog.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6e9da83586d4cf232cb4dd12f6f5a756fc1fc65a"
   },
   {
    "id": "dialogue_f2_placard",
@@ -1774,9 +1774,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f2_placard.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f2_placard.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ff13044a25ed1a2d311ec1c82e290b7fa27c2c6b"
   },
   {
    "id": "dialogue_f2_bear",
@@ -1787,9 +1787,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f2_bear.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f2_bear.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "470c0342a7aff9ee3883d304df755cd53a17a38f"
   },
   {
    "id": "system_search",
@@ -1800,9 +1800,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_system_search.png",
-   "file_3x": "3x/wizardry_apple2_na_system_system_search.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a26daebb2780ca4c342a6d4a63dbb6bd7f0301f4"
   },
   {
    "id": "system_search_found",
@@ -1813,9 +1813,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_system_search_found.png",
-   "file_3x": "3x/wizardry_apple2_na_system_system_search_found.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "99afce76c235259e091b0dc935bb5b5f6ee55752"
   },
   {
    "id": "dialogue_f2_frog",
@@ -1826,9 +1826,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f2_frog.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f2_frog.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a140a694bda298e073b6d341a1488aab4e77fada"
   },
   {
    "id": "dialogue_f2_door",
@@ -1839,9 +1839,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f2_door.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f2_door.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ccf9be5ef0397c5d6d41acf6595deca5e30b4d5e"
   },
   {
    "id": "dialogue_f3_mosaic",
@@ -1852,9 +1852,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f3_mosaic.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f3_mosaic.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "75c7fe464ad92f7deb1f95705ec9589b08fd7763"
   },
   {
    "id": "dialogue_f4_control",
@@ -1865,9 +1865,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f4_control.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f4_control.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "029a70cb959381fd78b9a7238f45922f0e4897a9"
   },
   {
    "id": "dialogue_f4_alarm",
@@ -1878,9 +1878,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f4_alarm.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f4_alarm.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dc2bb6cf202016daceb45d9ece6369296f9e3ee3"
   },
   {
    "id": "dialogue_f4_alarm_guardians",
@@ -1891,9 +1891,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f4_alarm_guardians.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f4_alarm_guardians.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a2597494ca033bfff725d1df9732eec49782ae6a"
   },
   {
    "id": "dialogue_f4_treasure",
@@ -1904,9 +1904,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f4_treasure.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f4_treasure.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b607da4216cd2b3be8554382a1b2a69e90893068"
   },
   {
    "id": "dialogue_f4_allocation",
@@ -1917,9 +1917,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f4_allocation.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f4_allocation.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e075870df59ce73778532e6c9dab45a0b8154010"
   },
   {
    "id": "dialogue_f4_desk",
@@ -1930,9 +1930,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f4_desk.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f4_desk.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9fd94e122b0c34542ba2751fb27cdeb011b9ab13"
   },
   {
    "id": "dialogue_f4_private",
@@ -1943,9 +1943,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f4_private.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f4_private.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9ebe9a4419a22827e1ba2240eeb26b3525f46c15"
   },
   {
    "id": "dialogue_f4_asleep",
@@ -1956,9 +1956,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f4_asleep.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f4_asleep.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "486da8dc8e678128fc46159006db6d5d9c5d90d5"
   },
   {
    "id": "dialogue_f4_asleep_outside",
@@ -1969,9 +1969,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f4_asleep_outside.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f4_asleep_outside.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8d977d66f8c189c176adcc320fe37ad19d8d8e19"
   },
   {
    "id": "dialogue_f4_bear_wall",
@@ -1982,9 +1982,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f4_bear_wall.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f4_bear_wall.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "41e4871db895a1d0227fc5bda20f2932111976e1"
   },
   {
    "id": "system_fizzle",
@@ -1995,9 +1995,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_system_fizzle.png",
-   "file_3x": "3x/wizardry_apple2_na_system_system_fizzle.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5537610cfc3d7ea6e9584ed82a337f5b71420e52"
   },
   {
    "id": "dialogue_f10_plaque",
@@ -2008,9 +2008,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f10_plaque.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f10_plaque.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "684e47489c3fed17399c87f0aee30b77bd895f75"
   },
   {
    "id": "dialogue_f10_plaque_2",
@@ -2021,9 +2021,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f10_plaque_2.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f10_plaque_2.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6db1a8de1038f7ba90f0cbf2804949e672de0ee6"
   },
   {
    "id": "dialogue_f10_plaque_3",
@@ -2034,9 +2034,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f10_plaque_3.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f10_plaque_3.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9459a4fa050c8bd9295832eac85f3273eee8c39c"
   },
   {
    "id": "dialogue_f10_guardians",
@@ -2047,9 +2047,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f10_guardians.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f10_guardians.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "560473f1066dc7be5e55de12d73b399058a07dca"
   },
   {
    "id": "dialogue_werdna_sign",
@@ -2060,9 +2060,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_werdna_sign.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_werdna_sign.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e49af1d1b556b18d25b7d8c1c262a7c9bf7aa538"
   },
   {
    "id": "inventory_camp_inspect",
@@ -2073,9 +2073,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_camp_inspect.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_camp_inspect.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5366bc0ca8e85b5c99f9ef9b399f080b71772d79"
   },
   {
    "id": "camp_reorder",
@@ -2086,9 +2086,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_camp_reorder.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_camp_reorder.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b6dd9a47ea5a88d941009b291dce607eacf64c29"
   },
   {
    "id": "camp_equip",
@@ -2099,9 +2099,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_camp_equip.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_camp_equip.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f56f33b7ef510de99c6ed2b7ed7246d887eb7919"
   },
   {
    "id": "camp_equip_armor",
@@ -2112,9 +2112,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_camp_equip_armor.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_camp_equip_armor.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6cd9eab68b9383278d52401e7ade315e405001e3"
   },
   {
    "id": "camp_disband",
@@ -2125,9 +2125,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_menu_camp_disband.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_camp_disband.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9e9f70157cf1cecbf4589e338ae1496369b80235"
   },
   {
    "id": "camp_cast_whom",
@@ -2138,9 +2138,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_camp_cast_whom.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_camp_cast_whom.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "790669f2f876a68b440fecc9b061bbf5d5b45fee"
   },
   {
    "id": "camp_use_item",
@@ -2151,9 +2151,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_camp_use_item.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_camp_use_item.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "277509ac044e49e6b9aa43b61e3f6e27db5bc58c"
   },
   {
    "id": "camp_use_whom",
@@ -2164,9 +2164,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_camp_use_whom.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_camp_use_whom.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1f8d6c0483f2fd4d71d7b029b601659ca59be79c"
   },
   {
    "id": "inventory_bishop_identify",
@@ -2177,9 +2177,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_bishop_identify.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_bishop_identify.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "00b3150c64b93668321cef47b1cb5b7cb1d967ca"
   },
   {
    "id": "inventory_identified",
@@ -2190,9 +2190,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_identified.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_identified.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "77ddd88e1177caac09e54d11eeb8646dc5a6f183"
   },
   {
    "id": "system_dumapic",
@@ -2203,9 +2203,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_system_dumapic.png",
-   "file_3x": "3x/wizardry_apple2_na_system_system_dumapic.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "949838c40e57099c238c91eaaf3348c5e83521d1"
   },
   {
    "id": "camp_malor",
@@ -2216,9 +2216,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_camp_malor.png",
-   "file_3x": "3x/wizardry_apple2_na_system_camp_malor.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "adbee3b9877183e4f6739340e74b1fba1b2426a6"
   },
   {
    "id": "camp_malor_set",
@@ -2229,9 +2229,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_camp_malor_set.png",
-   "file_3x": "3x/wizardry_apple2_na_system_camp_malor_set.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "eaae0c019fd7fa96dd18b8b33953ac8dbc4d0340"
   },
   {
    "id": "camp_malor_bounce",
@@ -2242,9 +2242,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_camp_malor_bounce.png",
-   "file_3x": "3x/wizardry_apple2_na_system_camp_malor_bounce.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4a4cab605356021111e1120048dd2bd847e9d3bb"
   },
   {
    "id": "gameover_malor_midair",
@@ -2255,9 +2255,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameover_gameover_malor_midair.png",
-   "file_3x": "3x/wizardry_apple2_na_gameover_gameover_malor_midair.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ebcbf07df66324107af9b2a32e33ee12a044567a"
   },
   {
    "id": "gameover_roster_dead",
@@ -2268,9 +2268,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameover_gameover_roster_dead.png",
-   "file_3x": "3x/wizardry_apple2_na_gameover_gameover_roster_dead.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e808adece32d453420d5e8778ea44bce34d937c6"
   },
   {
    "id": "battle_slimes",
@@ -2281,9 +2281,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_slimes.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_slimes.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9e200a4a157522028a5824d8f6b106dc6af757fe"
   },
   {
    "id": "battle_spell_prompt",
@@ -2294,9 +2294,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_spell_prompt.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_spell_prompt.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "863c03a2f769bf3bd1adbc3db502410cce95fb8c"
   },
   {
    "id": "battle_orders",
@@ -2307,9 +2307,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_orders.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_orders.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "126fef2db2f9820af5fab55ea31a536bd23318cf"
   },
   {
    "id": "battle_kill",
@@ -2320,9 +2320,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_kill.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_kill.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0c9bd340728829511c0cde7b29ed9329a822fdb5"
   },
   {
    "id": "battle_cast",
@@ -2333,9 +2333,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_cast.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_cast.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4a41522d65570e27ba3e568024c937dd58048f41"
   },
   {
    "id": "battle_victory",
@@ -2346,9 +2346,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_victory.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_victory.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3520f9103c41ebc89ba0e0acf28adcc6be19daad"
   },
   {
    "id": "battle_chest",
@@ -2359,9 +2359,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_chest.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_chest.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9c056f8e8ee4b3aae61df8a35dc0d602682458d4"
   },
   {
    "id": "chest_inspect_who",
@@ -2372,9 +2372,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_inspect_who.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_inspect_who.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d285439d5466abc9bedc53799ecbe7e268aedca2"
   },
   {
    "id": "chest_inspected",
@@ -2385,9 +2385,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_inspected.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_inspected.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2b340ff773d0fba1676760535f31507d8b9c433a"
   },
   {
    "id": "chest_open_who",
@@ -2398,9 +2398,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_open_who.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_open_who.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "548ba4356f8e957f7d3e0d0af6883d64c77e475b"
   },
   {
    "id": "chest_gold",
@@ -2411,9 +2411,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_gold.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_gold.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "42d25c8eb034ec21dc861518845792e2a4c81b89"
   },
   {
    "id": "chest_disarm_prompt",
@@ -2424,9 +2424,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_disarm_prompt.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_disarm_prompt.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2452d3fffa8fe3a201f931ff634e8c94db98f31f"
   },
   {
    "id": "chest_not_trapped",
@@ -2437,9 +2437,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_not_trapped.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_not_trapped.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b22014d414a912eb135c18d05e7334a1be788d27"
   },
   {
    "id": "battle_f1_skeletons",
@@ -2450,9 +2450,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f1_skeletons.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f1_skeletons.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ff97af19877e2dc29cda8c1ecd364a151f31be16"
   },
   {
    "id": "battle_f1_two_groups",
@@ -2463,9 +2463,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f1_two_groups.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f1_two_groups.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "79ce0a8db791a995b934cfeed9f579b18d12ca07"
   },
   {
    "id": "battle_group_select",
@@ -2476,9 +2476,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_group_select.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_group_select.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8137b8df95d7e43294c4fde353c07c4a697518f9"
   },
   {
    "id": "battle_f1_small_humanoids",
@@ -2489,9 +2489,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f1_small_humanoids.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f1_small_humanoids.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2043eeac9cac4d17431f6c9a54b2c64317944d13"
   },
   {
    "id": "battle_f1_undead_kobolds",
@@ -2502,9 +2502,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f1_undead_kobolds.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f1_undead_kobolds.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "826bc27d5c18eb965b7016b8f825921741d33d95"
   },
   {
    "id": "battle_f1_scruffy_men",
@@ -2515,9 +2515,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f1_scruffy_men.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f1_scruffy_men.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "307c7ccbd1634a12ee688da7abd92a3c5c2e4e6c"
   },
   {
    "id": "battle_f1_bubbly_slimes",
@@ -2528,9 +2528,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f1_bubbly_slimes.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f1_bubbly_slimes.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4cb7c3c9355e2d51c5abe85f6ee094a700f83281"
   },
   {
    "id": "battle_f1_kobolds",
@@ -2541,9 +2541,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f1_kobolds.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f1_kobolds.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5b56102f3a8e9a5fd155d1d6322a9f1a1983bc73"
   },
   {
    "id": "battle_encounter",
@@ -2554,9 +2554,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_encounter.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_encounter.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2a42c70a1d7063f21a1463af997219314114f6e3"
   },
   {
    "id": "battle_surprised",
@@ -2567,9 +2567,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_surprised.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_surprised.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "45c435d29ff5fc45b7a7e45fdedbcb8a25158a6c"
   },
   {
    "id": "battle_flees",
@@ -2580,9 +2580,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_flees.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_flees.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d79b6c620bd70e5e6180cbda9513beb598cdf2c0"
   },
   {
    "id": "battle_gas_spell",
@@ -2593,9 +2593,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_gas_spell.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_gas_spell.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "13e9070d2dc19fc7eccf57c3eaacf1dff0475575"
   },
   {
    "id": "battle_not_slept",
@@ -2606,9 +2606,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_not_slept.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_not_slept.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "77acb926fa14af821fa49ded801735e87ba66400"
   },
   {
    "id": "battle_f2_priests",
@@ -2619,9 +2619,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f2_priests.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f2_priests.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "685fcd497e1e26d729f3bd34a8e296e78166ca32"
   },
   {
    "id": "battle_f3_spirit",
@@ -2632,9 +2632,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f3_spirit.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f3_spirit.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a9d98212caa4f3e244569087810d21dd3b00ccbc"
   },
   {
    "id": "battle_f3_dragon_flies",
@@ -2645,9 +2645,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f3_dragon_flies.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f3_dragon_flies.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "18c3d35d522b861a7edba44d5edb44216ec75b16"
   },
   {
    "id": "battle_mahalito",
@@ -2658,9 +2658,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_mahalito.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_mahalito.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ffba6809a8718bfea70a3f2c7d5178e44fdd0467"
   },
   {
    "id": "battle_katino",
@@ -2671,9 +2671,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_katino.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_katino.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f9197d5e831c04413d70cba79c57823cad9d771a"
   },
   {
    "id": "battle_breath",
@@ -2684,9 +2684,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_breath.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_breath.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "15e27126893bbb7264b7d88cef353cdcdb558567"
   },
   {
    "id": "battle_unaffected",
@@ -2697,9 +2697,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_unaffected.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_unaffected.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5a51339fd9a154a8eeea77f75c33f8c6242ee2e7"
   },
   {
    "id": "battle_multi_hit",
@@ -2710,9 +2710,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_multi_hit.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_multi_hit.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cb12f16c62863f9c12e61cd49eb6860d4609c62f"
   },
   {
    "id": "battle_round2",
@@ -2723,9 +2723,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_round2.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_round2.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e50d0814b9653892e1f4fae9705bf4df07c6a4ed"
   },
   {
    "id": "battle_f4_fixed",
@@ -2736,9 +2736,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f4_fixed.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f4_fixed.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "978785e6930984eabc4c995e03f983ad87b4f84c"
   },
   {
    "id": "battle_f7_ninjas",
@@ -2749,9 +2749,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f7_ninjas.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f7_ninjas.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f2713a3e1fd2c7b139abe508c404a89a5ae0f38c"
   },
   {
    "id": "battle_f7_medusalizards",
@@ -2762,9 +2762,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f7_medusalizards.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f7_medusalizards.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8537468eee22ef2f896b6ba7e5d4ede4e5639dcf"
   },
   {
    "id": "battle_f8_demon",
@@ -2775,9 +2775,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f8_demon.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f8_demon.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "108f1af034a7f48bc6dc318cb50976d2ade0ebc3"
   },
   {
    "id": "battle_spell_group",
@@ -2788,9 +2788,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_spell_group.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_spell_group.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "66bad25ff9de9bd8394fd25bab9f496173209f97"
   },
   {
    "id": "battle_demon_stab",
@@ -2801,9 +2801,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_demon_stab.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_demon_stab.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "44c245e9b4f857ff9ec9a02f3bc81a214fa3f0ca"
   },
   {
    "id": "battle_malikto",
@@ -2814,9 +2814,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_malikto.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_malikto.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "833767d5476287ba92f1c8b458b6c7239434854d"
   },
   {
    "id": "battle_malikto_ninja",
@@ -2827,9 +2827,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_malikto_ninja.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_malikto_ninja.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3c555f07a14d3fb1e112fdf14f7cff0d1e8d8739"
   },
   {
    "id": "battle_tiltowait",
@@ -2840,9 +2840,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_tiltowait.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_tiltowait.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3deeada71743b6477211a362613a46b622f6fbb6"
   },
   {
    "id": "battle_demon_unaffected",
@@ -2853,9 +2853,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_demon_unaffected.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_demon_unaffected.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "155aeecabbbeaa05062049a01b9ff9a8c78488bf"
   },
   {
    "id": "battle_demon_alone",
@@ -2866,9 +2866,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_demon_alone.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_demon_alone.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6642505482b732de5f986c183d7f3adb3ed27868"
   },
   {
    "id": "battle_f8_men_in_armor",
@@ -2879,9 +2879,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f8_men_in_armor.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f8_men_in_armor.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9128656c814b5dc595ca126ae6f01d180356d526"
   },
   {
    "id": "battle_f8_priest_animal",
@@ -2892,9 +2892,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f8_priest_animal.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f8_priest_animal.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cefbaa8589832fb916588ec53fde70c32d547b2b"
   },
   {
    "id": "battle_f8_master_thieves",
@@ -2905,9 +2905,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f8_master_thieves.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f8_master_thieves.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8d388c64e3651b82ec699ccd843dd97931467920"
   },
   {
    "id": "battle_f8_samurai",
@@ -2918,9 +2918,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f8_samurai.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f8_samurai.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8bafb80d52af7fc3e2d3c2625382e3d24d134ed5"
   },
   {
    "id": "battle_f8_arch_mages",
@@ -2931,9 +2931,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f8_arch_mages.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f8_arch_mages.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2c61b0a381936e394e705c370a40d0dcb43dbe45"
   },
   {
    "id": "battle_enemy_spell",
@@ -2944,9 +2944,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_enemy_spell.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_enemy_spell.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4569805b4cb3fdd34dbb5bef202d0daa5d993804"
   },
   {
    "id": "battle_f8_trolls",
@@ -2957,9 +2957,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f8_trolls.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f8_trolls.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d151c524fe2ba3091c2ac2babe23ea78f0955cb1"
   },
   {
    "id": "battle_f9_strange_animal",
@@ -2970,9 +2970,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f9_strange_animal.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f9_strange_animal.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c5655f608d28eade2583e91a41a872e9c15cce0f"
   },
   {
    "id": "battle_f9_gaze_hounds",
@@ -2983,9 +2983,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f9_gaze_hounds.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f9_gaze_hounds.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b1ad2b5efca89e8a1ffef860674ec64319279272"
   },
   {
    "id": "battle_f9_three_groups",
@@ -2996,9 +2996,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f9_three_groups.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f9_three_groups.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4045144d391051fbbe1805e5018d6952993f6a2a"
   },
   {
    "id": "battle_f9_strange_animals",
@@ -3009,9 +3009,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f9_strange_animals.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f9_strange_animals.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5d90332047191ffe5ae55a2f761475cdfecc31c7"
   },
   {
    "id": "battle_use_item",
@@ -3022,9 +3022,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_use_item.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_use_item.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8b8b9516c373b606e52a9e547120205a3ed855a0"
   },
   {
    "id": "battle_poisoned",
@@ -3035,9 +3035,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_poisoned.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_poisoned.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "15ab024a170e7e41e7a212ff597b214af090536d"
   },
   {
    "id": "battle_potion",
@@ -3048,9 +3048,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_potion.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_potion.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a3d374d96503761a23a1b13ca9bda8578d2c9158"
   },
   {
    "id": "battle_run_failed",
@@ -3061,9 +3061,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_run_failed.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_run_failed.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ec6c073194cfddbcf52f70541f473f50c193006c"
   },
   {
    "id": "battle_run",
@@ -3074,9 +3074,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_run.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_run.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a74516069a66df6678fae2a569c3da5736fc380e"
   },
   {
    "id": "battle_f9_unseen_entity",
@@ -3087,9 +3087,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f9_unseen_entity.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f9_unseen_entity.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "76882b9172e133aeac90a9627f454c59dd57a2cf"
   },
   {
    "id": "battle_dispell",
@@ -3100,9 +3100,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_dispell.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_dispell.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f7e2bd5de487a2a389224b1f9e14fe05df2cb65e"
   },
   {
    "id": "battle_dispell_ep",
@@ -3113,9 +3113,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_dispell_ep.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_dispell_ep.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "87f663731a8bc5b46abd1e6dcd110167642efba7"
   },
   {
    "id": "chest_calfo_who",
@@ -3126,9 +3126,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_calfo_who.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_calfo_who.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ffe1790b9b4a0d29942b6cfc39da8549456abaa0"
   },
   {
    "id": "chest_calfo",
@@ -3139,9 +3139,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_calfo.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_calfo.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "301aa17e536910607362b3b37f24f66000833b1f"
   },
   {
    "id": "chest_crossbow_bolt",
@@ -3152,9 +3152,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_crossbow_bolt.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_crossbow_bolt.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "015ee182691b9b470c8b702c821c2535671f6561"
   },
   {
    "id": "chest_item_found",
@@ -3165,9 +3165,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_item_found.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_item_found.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6a2d5bdf2ba150e45930769aa77e467d45b45471"
   },
   {
    "id": "chest_gold_58",
@@ -3178,9 +3178,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_gold_58.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_gold_58.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1b8ecd08b29f077d223cf73a82fa56936212fa2b"
   },
   {
    "id": "battle_f10_mages",
@@ -3191,9 +3191,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f10_mages.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f10_mages.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9441e34b17849138cf81faa8b8c4a0c33c3a2447"
   },
   {
    "id": "battle_f10_giant",
@@ -3204,9 +3204,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f10_giant.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f10_giant.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2451775ca03bd804098039ce0174bb1a7b62580d"
   },
   {
    "id": "battle_l1_floor8",
@@ -3217,9 +3217,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_l1_floor8.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_l1_floor8.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4b9eee464272728080a3474e06c13d91d990738e"
   },
   {
    "id": "battle_slain",
@@ -3230,9 +3230,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_slain.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_slain.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "04f76b1fce7c079904f59fd179924c87e32c1723"
   },
   {
    "id": "battle_call_for_help",
@@ -3243,9 +3243,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_call_for_help.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_call_for_help.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c7c9217264bde777b7535cb791e959e2f8f4749d"
   },
   {
    "id": "battle_help_heard",
@@ -3256,9 +3256,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_help_heard.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_help_heard.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0cb235dce4d159c6be0b27e1ac693aeac9224d31"
   },
   {
    "id": "battle_three_dead",
@@ -3269,9 +3269,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_three_dead.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_three_dead.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e9127d2dec92dbe66e8810bd7c968b6ffb26f670"
   },
   {
    "id": "boss_werdna",
@@ -3282,9 +3282,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_werdna.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_werdna.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "67bcaa41af0ab6b8084e91912d9d935999bd46f3"
   },
   {
    "id": "boss_werdna_orders",
@@ -3295,9 +3295,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_werdna_orders.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_werdna_orders.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e1f85616727e1c2b9428b6a7f663243ebe38fcfe"
   },
   {
    "id": "boss_tiltowait",
@@ -3308,9 +3308,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_tiltowait.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_tiltowait.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8b9cbf6898d740b1475d2c865e0eb9601d46ddd5"
   },
   {
    "id": "boss_werdna_hurt",
@@ -3321,9 +3321,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_werdna_hurt.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_werdna_hurt.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cbf01d28a213427e4178d9f22ce440623000f5e0"
   },
   {
    "id": "boss_spell_unaffected",
@@ -3334,9 +3334,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_spell_unaffected.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_spell_unaffected.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1b5576582a99b92e05ab1470101b9dd7effa94ca"
   },
   {
    "id": "boss_werdna_killed",
@@ -3347,9 +3347,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_werdna_killed.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_werdna_killed.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "50f487fadc7e024fbf25f5dcaf729f07fb692b16"
   },
   {
    "id": "boss_werdna_ep",
@@ -3360,9 +3360,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_werdna_ep.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_werdna_ep.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "94954a75a1e7ecfd27fd98dacd7a6141fa673f92"
   },
   {
    "id": "boss_amulet_found",
@@ -3373,9 +3373,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_amulet_found.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_amulet_found.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "624f6fa535adf367d4fce7e6556acd1311e97874"
   },
   {
    "id": "gameplay_after_werdna",
@@ -3386,9 +3386,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_after_werdna.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_after_werdna.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f09dee581b9dd1dc2b64148fe1ed6857c3390540"
   },
   {
    "id": "inventory_amulet",
@@ -3399,9 +3399,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_inventory_inventory_amulet.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_amulet.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6e62fc1f579a59fe743c5ffb7729c456b093b6f7"
   },
   {
    "id": "boss_werdna_geared",
@@ -3412,9 +3412,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_werdna_geared.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_werdna_geared.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "27613cd5056b9354fac62abd154345ebfb728f55"
   },
   {
    "id": "boss_werdna_friendly",
@@ -3425,9 +3425,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_werdna_friendly.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_werdna_friendly.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "afb179fb84acffddb804c3f636c68437295ad147"
   },
   {
    "id": "boss_friendly_left",
@@ -3438,9 +3438,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_friendly_left.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_friendly_left.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a1ddb1fa80dcbc4a2f5e18d484e4ec175542ff0c"
   },
   {
    "id": "boss_werdna_spell",
@@ -3451,9 +3451,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_werdna_spell.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_werdna_spell.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "412f4509418d813e55af93b10efca3c1fe334586"
   },
   {
    "id": "boss_member_dies",
@@ -3464,9 +3464,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_member_dies.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_member_dies.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "055dac47cd8d3b9dc1e686ab4af516ad1a5345a3"
   },
   {
    "id": "boss_vampire_spell",
@@ -3477,9 +3477,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_vampire_spell.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_vampire_spell.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "27a866dd37a10a2d4bd11d56a9212ed0744e9c6d"
   },
   {
    "id": "boss_four_dead",
@@ -3490,9 +3490,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_four_dead.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_four_dead.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fbba40816fbcd3c22ae85681c4aa90b7af8cfb6a"
   },
   {
    "id": "gameover_cemetery",
@@ -3503,9 +3503,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameover_gameover_cemetery.png",
-   "file_3x": "3x/wizardry_apple2_na_gameover_gameover_cemetery.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2bd78bdb58198bc61c08564a176e16f045271612"
   },
   {
    "id": "camp_malor_home",
@@ -3516,9 +3516,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_system_camp_malor_home.png",
-   "file_3x": "3x/wizardry_apple2_na_system_camp_malor_home.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "096dcfddb83374e87fe1e66f54dd6d538aae1842"
   },
   {
    "id": "gameplay_stairs_amulet",
@@ -3529,9 +3529,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_gameplay_gameplay_stairs_amulet.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_gameplay_stairs_amulet.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2263cc5e9b6453ab5cfaf7a9f91eb80b40c03eea"
   },
   {
    "id": "ending_congratulations",
@@ -3542,9 +3542,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_ending_ending_congratulations.png",
-   "file_3x": "3x/wizardry_apple2_na_ending_ending_congratulations.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5d2b4f39d51d255f9f7ca7c53b31db02838f6bb1"
   },
   {
    "id": "ending_castle",
@@ -3555,9 +3555,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_ending_ending_castle.png",
-   "file_3x": "3x/wizardry_apple2_na_ending_ending_castle.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "884a8e82c07c128479701c643e0f0751c2eafce3"
   },
   {
    "id": "ending_chevron",
@@ -3568,9 +3568,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_ending_ending_chevron.png",
-   "file_3x": "3x/wizardry_apple2_na_ending_ending_chevron.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "34e85d288a90700b9681e502d622bb438fc4e3ed"
   },
   {
    "id": "ending_inn",
@@ -3581,9 +3581,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_ending_ending_inn.png",
-   "file_3x": "3x/wizardry_apple2_na_ending_ending_inn.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "41e623811af8ce09f353e6d546116f98d5669ae6"
   },
   {
    "id": "battle_friendly",
@@ -3594,9 +3594,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_friendly.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_friendly.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5e80f8e40319b35a613f92c569652f1fd0020aca"
   },
   {
    "id": "battle_f3_wolves",
@@ -3607,9 +3607,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f3_wolves.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f3_wolves.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "797c339fd3aa165cc1305e1ffd934b6e0bb93d80"
   },
   {
    "id": "battle_f3_priests_thieves",
@@ -3620,9 +3620,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f3_priests_thieves.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f3_priests_thieves.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d1fc8155845f050d2f35592a89aa601faa66ea2a"
   },
   {
    "id": "battle_f3_gargoyles",
@@ -3633,9 +3633,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f3_gargoyles.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f3_gargoyles.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "96b12f043977d06487d36c3be8433b47c60ff7ad"
   },
   {
    "id": "battle_friendly_thieves",
@@ -3646,9 +3646,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_friendly_thieves.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_friendly_thieves.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0c211febc4fc673b386642b14185a4921384e9bf"
   },
   {
    "id": "battle_f7_weretigers",
@@ -3659,9 +3659,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f7_weretigers.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f7_weretigers.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "83ea1cb1463fc47b84dabd4bc4b8dc5965d77ff4"
   },
   {
    "id": "battle_f7_four_groups",
@@ -3672,9 +3672,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f7_four_groups.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f7_four_groups.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8dbb2b35e6e43ac30b9cecb075763d6f507b0d45"
   },
   {
    "id": "battle_f7_champ_samurai",
@@ -3685,9 +3685,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f7_champ_samurai.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f7_champ_samurai.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "91a00dcc745001415a84cbc464d6a9433135964f"
   },
   {
    "id": "battle_f7_friendly_daimyos",
@@ -3698,9 +3698,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_battle_f7_friendly_daimyos.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_battle_f7_friendly_daimyos.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dcf6a8eafae31f9d8c8a7fe048bf9e86a2fc40ca"
   },
   {
    "id": "dialogue_f2_silver_fog_flee",
@@ -3711,9 +3711,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_dialogue_dialogue_f2_silver_fog_flee.png",
-   "file_3x": "3x/wizardry_apple2_na_dialogue_dialogue_f2_silver_fog_flee.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3a6164bac8c2e359bce07ab62561b978b4481b79"
   },
   {
    "id": "chest_disarmed",
@@ -3724,9 +3724,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_battle_chest_disarmed.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_disarmed.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d5c5ec54c6969c541d41f75c5762af47c51bb646"
   },
   {
    "id": "boss_werdna_chop",
@@ -3737,9 +3737,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_werdna_chop.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_werdna_chop.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "583267d95de6c2df3488f0fa013441b20862d3b9"
   },
   {
    "id": "boss_mabadi",
@@ -3750,9 +3750,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_mabadi.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_mabadi.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "06ae464d53eb486d49adcd8cfaf76208ddac8641"
   },
   {
    "id": "boss_paralyzed",
@@ -3763,9 +3763,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_paralyzed.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_paralyzed.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "622187d422c1476b69b35518b214422489b7ff99"
   },
   {
    "id": "boss_level_drain",
@@ -3776,9 +3776,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_level_drain.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_level_drain.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ad3cd4e87ec69ae5a7c1e2fcaa954822beb8388f"
   },
   {
    "id": "boss_round2",
@@ -3789,9 +3789,9 @@
    "model": "iiplus-wp1",
    "source": "shoot.py",
    "file": "wizardry_apple2_na_boss_boss_round2.png",
-   "file_3x": "3x/wizardry_apple2_na_boss_boss_round2.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1470739d01826fd825651af35fad5d97ee40f748"
   },
   {
    "id": "env_f1_passages",
@@ -3802,9 +3802,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f1_passages.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f1_passages.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "aee2e018fdaf4e618a1cd51188b961bd9da2473f"
   },
   {
    "id": "env_f1_corridor",
@@ -3815,9 +3815,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f1_corridor.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f1_corridor.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7536ae687ec86c1dc78202397d1f6e2f857f8722"
   },
   {
    "id": "env_f2_door",
@@ -3828,9 +3828,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f2_door.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f2_door.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "73843c8f46c07b51508fc4da3d85cf346f81c4e8"
   },
   {
    "id": "env_f2_crossing",
@@ -3841,9 +3841,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f2_crossing.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f2_crossing.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c5d85487036ee2ae676710140a4e6f0694efe76d"
   },
   {
    "id": "env_f4_door",
@@ -3854,9 +3854,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f4_door.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f4_door.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bc73564723b287b5d1c28911fe13f7155e235daf"
   },
   {
    "id": "env_f5_long_view",
@@ -3867,9 +3867,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f5_long_view.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f5_long_view.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b644828cf83ecc303f2a57815143d23026c5eeb0"
   },
   {
    "id": "env_f5_corridor",
@@ -3880,9 +3880,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f5_corridor.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f5_corridor.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "eef6a38f3a939c8b9e29afab739a1e8423eca101"
   },
   {
    "id": "env_f6_corridor",
@@ -3893,9 +3893,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f6_corridor.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f6_corridor.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8ca10bd2210ee3719c5bc49b7dd9bcb6c8689936"
   },
   {
    "id": "env_f7_door",
@@ -3906,9 +3906,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f7_door.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f7_door.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a09f3c8245140818e53de00df4d72b7207918077"
   },
   {
    "id": "env_f8_corner",
@@ -3919,9 +3919,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f8_corner.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f8_corner.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e27e15fa347bce1e12c2e8bc08ba068695b8ca62"
   },
   {
    "id": "env_f9_corridor",
@@ -3932,9 +3932,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f9_corridor.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f9_corridor.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f7897d1a125dbee62bf56cb4f2d67030176e743d"
   },
   {
    "id": "env_f3_side_passage",
@@ -3945,9 +3945,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f3_side_passage.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f3_side_passage.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "228650f08533a3baf32f9c055604af3e4cbc0be7"
   },
   {
    "id": "env_f10_corridor",
@@ -3958,9 +3958,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_env_f10_corridor.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_env_f10_corridor.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "88abb2471871bb3ea9a4e45062bd1d87c418f260"
   }
  ]
 }

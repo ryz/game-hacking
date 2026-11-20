@@ -19,9 +19,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_boot_boot_origin.png",
-   "file_3x": "3x/ultima-2_dos_na_boot_boot_origin.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0e8a25af3694babd54a641dbff9b63a8a3950997"
   },
   {
    "id": "boot_part2",
@@ -32,9 +32,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_boot_boot_part2.png",
-   "file_3x": "3x/ultima-2_dos_na_boot_boot_part2.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a49eaa97ad3dddd27d50f6e9ea085c5951ba4b59"
   },
   {
    "id": "title_screen",
@@ -45,9 +45,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_title_title_screen.png",
-   "file_3x": "3x/ultima-2_dos_na_title_title_screen.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "62cf7f13b04a711cdb80e88ad5bf8e4bc690af7f"
   },
   {
    "id": "menu_main",
@@ -58,9 +58,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_menu_menu_main.png",
-   "file_3x": "3x/ultima-2_dos_na_menu_menu_main.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "370f73e833b9787950a25b93492dd949a8cd5791"
   },
   {
    "id": "cutscene_demo_creatures",
@@ -71,9 +71,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_cutscene_cutscene_demo_creatures.png",
-   "file_3x": "3x/ultima-2_dos_na_cutscene_cutscene_demo_creatures.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8fe2c8c895efc10a1074edd051bc02ecbea739b8"
   },
   {
    "id": "cutscene_demo_pub",
@@ -84,9 +84,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_cutscene_cutscene_demo_pub.png",
-   "file_3x": "3x/ultima-2_dos_na_cutscene_cutscene_demo_pub.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b0075bd73889b37d07699f6f535d822255682286"
   },
   {
    "id": "cutscene_demo_dungeons",
@@ -97,9 +97,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_cutscene_cutscene_demo_dungeons.png",
-   "file_3x": "3x/ultima-2_dos_na_cutscene_cutscene_demo_dungeons.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1be0eca530ef2637f396933648897d92785c17d7"
   },
   {
    "id": "cutscene_demo_space",
@@ -110,9 +110,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_cutscene_cutscene_demo_space.png",
-   "file_3x": "3x/ultima-2_dos_na_cutscene_cutscene_demo_space.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a1ff2fd000cc2622493f531a67d1aae07295530d"
   },
   {
    "id": "cutscene_demo_minax",
@@ -123,9 +123,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_cutscene_cutscene_demo_minax.png",
-   "file_3x": "3x/ultima-2_dos_na_cutscene_cutscene_demo_minax.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e21dea3493bdf55a5251dabc379797e32224eac5"
   },
   {
    "id": "menu_generation",
@@ -136,9 +136,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_menu_menu_generation.png",
-   "file_3x": "3x/ultima-2_dos_na_menu_menu_generation.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bffc460b6bf6d96d84dc8a4620133b868601527e"
   },
   {
    "id": "menu_gen_stats",
@@ -149,9 +149,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_menu_menu_gen_stats.png",
-   "file_3x": "3x/ultima-2_dos_na_menu_menu_gen_stats.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c80c3db1cb542470ff1769a2f70c316502dd24a6"
   },
   {
    "id": "menu_gen_male",
@@ -162,9 +162,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_menu_menu_gen_male.png",
-   "file_3x": "3x/ultima-2_dos_na_menu_menu_gen_male.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "db47297db63bf4e86e6f2563132a4b20a95337ba"
   },
   {
    "id": "menu_gen_human",
@@ -175,9 +175,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_menu_menu_gen_human.png",
-   "file_3x": "3x/ultima-2_dos_na_menu_menu_gen_human.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2ddaac1ab32b35151f0bd3ca7d064b623be51a3c"
   },
   {
    "id": "menu_gen_done",
@@ -188,9 +188,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_menu_menu_gen_done.png",
-   "file_3x": "3x/ultima-2_dos_na_menu_menu_gen_done.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c4c54de41464dbbfa6921da825459d133b6c58fa"
   },
   {
    "id": "menu_gen_other",
@@ -201,9 +201,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_menu_menu_gen_other.png",
-   "file_3x": "3x/ultima-2_dos_na_menu_menu_gen_other.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dff429d8ee0139419cb6699f1d7a193d2df84191"
   },
   {
    "id": "gameplay_start",
@@ -214,9 +214,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_start.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_start.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9fda080e4dcfa1c848fa499cb565ef1885848e08"
   },
   {
    "id": "inventory_ztats_new",
@@ -227,9 +227,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_inventory_inventory_ztats_new.png",
-   "file_3x": "3x/ultima-2_dos_na_inventory_inventory_ztats_new.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "095cd2f493d426401ec5d8d81cb3fe5e64db4221"
   },
   {
    "id": "gameplay_blocked",
@@ -240,9 +240,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_blocked.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_blocked.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "652de7b39e4dacf8815ba70cb9c2837ac06fc05c"
   },
   {
    "id": "system_sign_1423",
@@ -253,9 +253,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_sign_1423.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_sign_1423.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "77d91bbe56f049b17d1f0b097a0fd1e0771358cb"
   },
   {
    "id": "save_quit",
@@ -266,9 +266,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_save_save_quit.png",
-   "file_3x": "3x/ultima-2_dos_na_save_save_quit.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6ee6876a166322b7213b76aab15feeb821313859"
   },
   {
    "id": "gameplay_refusals",
@@ -279,9 +279,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_refusals.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_refusals.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a669f40e5a51b4158a6d63828e831cb7f612ce9d"
   },
   {
    "id": "gameplay_refusals_2",
@@ -292,9 +292,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_refusals_2.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_refusals_2.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a1ec8981fd689a59dcdc446656230ca45e8d266b"
   },
   {
    "id": "gameplay_refusals_3",
@@ -305,9 +305,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_refusals_3.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_refusals_3.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "029169d0beea1b6a7a35c741d55ee1f7cee2d5ca"
   },
   {
    "id": "system_cast_none",
@@ -318,9 +318,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_cast_none.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_cast_none.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a5f558fc126a9975a38b27f0273624cddd059717"
   },
   {
    "id": "system_unlock_transact",
@@ -331,9 +331,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_unlock_transact.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_unlock_transact.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fd39052441d97ead18a5f13e2540adbbf4f5a333"
   },
   {
    "id": "system_offer_steal",
@@ -344,9 +344,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_offer_steal.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_offer_steal.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c23f6b6e80b4f9dd0f1acf70d04c3b52873f37de"
   },
   {
    "id": "system_jump_ignite",
@@ -357,9 +357,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_jump_ignite.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_jump_ignite.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0c6a0b07203aeef2fbe79f941d537632d949bc93"
   },
   {
    "id": "system_magic_ready",
@@ -370,9 +370,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_magic_ready.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_magic_ready.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b8cb5abdc76eaaf6c2f056e7cfe39f38bfbf48e8"
   },
   {
    "id": "system_ready_list",
@@ -383,9 +383,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_ready_list.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_ready_list.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "32f1391af7c958bf992505c4c8d1de11dc94daa7"
   },
   {
    "id": "system_wear_list",
@@ -396,9 +396,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_wear_list.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_wear_list.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a8b3d802aeaa3f974e069b07d229ebcbdd792f0f"
   },
   {
    "id": "system_yell",
@@ -409,9 +409,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_yell.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_yell.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "de2640726d528d3712ee7d24c966d182011459ef"
   },
   {
    "id": "gameplay_village_1423",
@@ -422,9 +422,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_village_1423.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_village_1423.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c4d9b9fc7f3886607c2acccdbc9440e56d2513ef"
   },
   {
    "id": "dialogue_grendel",
@@ -435,9 +435,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_grendel.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_grendel.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "afdd07926e60f1f99796c3e6a5f3a8abaa053975"
   },
   {
    "id": "dialogue_woodhead",
@@ -448,9 +448,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_woodhead.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_woodhead.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "520d33cb70f07b1a15f39afe97f1cf7af66dff59"
   },
   {
    "id": "dialogue_nymph",
@@ -461,9 +461,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_nymph.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_nymph.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "68dc4ef457a4ae74e4be2c1a5232e799e7dcf128"
   },
   {
    "id": "shop_food",
@@ -474,9 +474,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_food.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_food.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6c3a36dd56010cdc863c904a18496970fccf2a3c"
   },
   {
    "id": "shop_food_buy",
@@ -487,9 +487,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_food_buy.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_food_buy.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9097cec8847ccdae4fb575edd492712f4b8425e9"
   },
   {
    "id": "system_cleric_refused",
@@ -500,9 +500,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_cleric_refused.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_cleric_refused.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "09c8b9b64a4e39d3cd2e309f4088f4aaf53ad84d"
   },
   {
    "id": "shop_cleric",
@@ -513,9 +513,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_cleric.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_cleric.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b50fee22a595985133a70ff29a3bd662127ce67c"
   },
   {
    "id": "shop_cleric_buy",
@@ -526,9 +526,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_cleric_buy.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_cleric_buy.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b644afcf1b4b4241888a76ed10b8041aefd9b5cc"
   },
   {
    "id": "system_wizard_refused",
@@ -539,9 +539,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_wizard_refused.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_wizard_refused.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2d3c062d086fc96d43dd44a3012683c773e8f6c4"
   },
   {
    "id": "shop_wizard",
@@ -552,9 +552,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_wizard.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_wizard.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f45198ee8c259a3ed1c52483018a784be3c8ff34"
   },
   {
    "id": "shop_wizard_buy",
@@ -565,9 +565,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_wizard_buy.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_wizard_buy.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "711d88ae3231fc82f6e6cde9c7243c1fa616bced"
   },
   {
    "id": "shop_oracle",
@@ -578,9 +578,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_oracle.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_oracle.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "607ed57b023503b3c2d8760d5b0c94d9d8099613"
   },
   {
    "id": "shop_oracle_0",
@@ -591,9 +591,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_oracle_0.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_oracle_0.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0fb9d0dbd23e62ea1a3a6f7ef5d4e69c07cea6c7"
   },
   {
    "id": "shop_oracle_1",
@@ -604,9 +604,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_oracle_1.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_oracle_1.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5c759f1c61ba641c25f0788e137d50c9eca5073b"
   },
   {
    "id": "shop_oracle_3",
@@ -617,9 +617,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_oracle_3.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_oracle_3.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "42e10053edde5171abe1386d1fc39a38587e1e9d"
   },
   {
    "id": "shop_oracle_7",
@@ -630,9 +630,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_oracle_7.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_oracle_7.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c242ca5e67aecf3cdcddecaa72a5fabe5fa99c77"
   },
   {
    "id": "shop_oracle_poor",
@@ -643,9 +643,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_oracle_poor.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_oracle_poor.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6a800aa39e9eca48d95c7ad0f742537bf2ecc98c"
   },
   {
    "id": "gameplay_linda",
@@ -656,9 +656,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_linda.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_linda.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "56ab46bd333af4cb601fbf9ac51b25b3973609bc"
   },
   {
    "id": "shop_weapons",
@@ -669,9 +669,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_weapons.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_weapons.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "116c08699f91d54fa7b684d832da2cb9d37fd5e8"
   },
   {
    "id": "shop_weapons_price",
@@ -682,9 +682,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_weapons_price.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_weapons_price.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "81cfe3fc67eed51812c22ec2f56838ebac6285a5"
   },
   {
    "id": "shop_weapons_sold",
@@ -695,9 +695,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_weapons_sold.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_weapons_sold.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "da7b2ded6d6b7b1611f8704aee75033fbc5a1f9e"
   },
   {
    "id": "shop_weapons_no",
@@ -708,9 +708,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_weapons_no.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_weapons_no.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "491a6fc6a82663775d06f05dc2f48acc4387230b"
   },
   {
    "id": "shop_weapons_poor",
@@ -721,9 +721,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_weapons_poor.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_weapons_poor.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "49ade48da6179f334ae3226a8b783cc91b930773"
   },
   {
    "id": "shop_armour",
@@ -734,9 +734,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_armour.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_armour.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "81173b0507aaa37875bec38b1b1c0612b2c05262"
   },
   {
    "id": "shop_armour_sold",
@@ -747,9 +747,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_armour_sold.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_armour_sold.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "73c847b10b10c479721591f4320370bb5ca19445"
   },
   {
    "id": "shop_pub",
@@ -760,9 +760,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_pub.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_pub.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "22f6ca321133bd2240ad441953f30ef8a6fe9162"
   },
   {
    "id": "shop_pub_buy",
@@ -773,9 +773,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_pub_buy.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_pub_buy.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b09789d205043c79f033e33ceb46079bd01da554"
   },
   {
    "id": "shop_pub_tip",
@@ -786,9 +786,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_pub_tip.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_pub_tip.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "aa957f2e7817129a2ba9c1ab506f4a9cd5f7d76e"
   },
   {
    "id": "shop_pub_tip_9",
@@ -799,9 +799,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_pub_tip_9.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_pub_tip_9.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "79d2d9ce057c064d8d4d99cd93a9599330f4d6a0"
   },
   {
    "id": "shop_transport",
@@ -812,9 +812,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_transport.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_transport.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d87977ee948a8aef7966b8f772d1d4f559271c35"
   },
   {
    "id": "shop_transport_buy",
@@ -825,9 +825,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_shop_shop_transport_buy.png",
-   "file_3x": "3x/ultima-2_dos_na_shop_shop_transport_buy.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6b48c1841f1e246c610a07beafa9a7c722773b91"
   },
   {
    "id": "dialogue_ithilian",
@@ -838,9 +838,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_ithilian.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_ithilian.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3e002b2288704a103c61a7334c69294d1a444265"
   },
   {
    "id": "dialogue_john_mayer",
@@ -851,9 +851,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_john_mayer.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_john_mayer.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8d9e356fbd91e26a97085bb050981f5e5cdf99d4"
   },
   {
    "id": "dialogue_keith",
@@ -864,9 +864,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_keith.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_keith.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6fb85c0d74710a00c99589e2c8380f370bd3414d"
   },
   {
    "id": "gameplay_castle_lb",
@@ -877,9 +877,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_castle_lb.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_castle_lb.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "904f7c5f5d67aa02a99c989cfca56fa405afff24"
   },
   {
    "id": "dialogue_lord_british",
@@ -890,9 +890,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_lord_british.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_lord_british.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ac0b1a853a341aac2ddeea156a654dac4effdb5c"
   },
   {
    "id": "dialogue_brother_antos",
@@ -903,9 +903,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_brother_antos.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_brother_antos.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3ae56e7acd8b1395f19f61c72dd1a116c9549e4c"
   },
   {
    "id": "dialogue_bishop_bob",
@@ -916,9 +916,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_bishop_bob.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_bishop_bob.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5c6995b8c4ef18ff0e2335ad1eccb0268ce2b59d"
   },
   {
    "id": "dialogue_bard",
@@ -929,9 +929,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_bard.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_bard.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2d84d3ca879256c8d8a0b64ebe46fc14a75103c8"
   },
   {
    "id": "dialogue_guard",
@@ -942,9 +942,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_guard.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_guard.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "507851b1baab1cdd22dd5efa3bf6f97a606cd6f8"
   },
   {
    "id": "dialogue_merchant",
@@ -955,9 +955,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_merchant.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_merchant.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "81fae4b6d8e8a51856dbc044414625594c6960d7"
   },
   {
    "id": "dialogue_jester",
@@ -968,9 +968,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_jester.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_jester.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cdcbe378023a21a37f0f800983fa3a548a2b3624"
   },
   {
    "id": "dialogue_fighter",
@@ -981,9 +981,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_fighter.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_fighter.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "00d99c8da10ed95bab9246e5a4584c80913d4570"
   },
   {
    "id": "dialogue_cleric",
@@ -994,9 +994,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_cleric.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_cleric.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9e1f64705c30e2b33d9a51eb732a4004f6f16e90"
   },
   {
    "id": "dialogue_wizard",
@@ -1007,9 +1007,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_wizard.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_wizard.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7bc8f1e0d1fc817fe00edc6182dc49c5d374a21b"
   },
   {
    "id": "dialogue_thief",
@@ -1020,9 +1020,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_thief.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_thief.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "96d0744c3c467a4819f829a8a95789a8b5a10f9e"
   },
   {
    "id": "gameplay_dungeon_dark",
@@ -1033,9 +1033,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_dungeon_dark.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_dungeon_dark.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "221e54dd6de300eb19e582fdd6a30758d6c9b88c"
   },
   {
    "id": "gameplay_dungeon",
@@ -1046,9 +1046,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_dungeon.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_dungeon.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c093f75e935b01cab7b140283a6d05009e1aa15b"
   },
   {
    "id": "gameplay_dungeon_turn",
@@ -1059,9 +1059,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_dungeon_turn.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_dungeon_turn.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "709c3708826586ae5f6d51762afe7adef4f2db93"
   },
   {
    "id": "gameplay_dungeon_retreat",
@@ -1072,9 +1072,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_dungeon_retreat.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_dungeon_retreat.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "993018d63b59f7bf0fb19771c9a0f0d5bf0d9e2a"
   },
   {
    "id": "gameplay_dungeon_door",
@@ -1085,9 +1085,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_dungeon_door.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_dungeon_door.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1296075694bc6710efcba6831590e37024a6d55f"
   },
   {
    "id": "gameplay_dungeon_chest",
@@ -1098,9 +1098,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_dungeon_chest.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_dungeon_chest.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "607538945f7cf24e62aa185c3dfc18b1d2c6132c"
   },
   {
    "id": "system_chest_gold",
@@ -1111,9 +1111,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_chest_gold.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_chest_gold.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "daad4f5e7d3cedb7e018907ff41be571c17d5919"
   },
   {
    "id": "system_descend",
@@ -1124,9 +1124,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_descend.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_descend.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ec468f60bb338197dacbf5fbc1e582fd1cdbddd3"
   },
   {
    "id": "system_klimb_out",
@@ -1137,9 +1137,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_klimb_out.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_klimb_out.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9065eff7e83a73791d3ab82872a299017c0002c7"
   },
   {
    "id": "battle_dungeon_1",
@@ -1150,9 +1150,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_dungeon_1.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_dungeon_1.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dc10ddb502dfdb36e358bd11953adf6257502405"
   },
   {
    "id": "battle_dungeon_3",
@@ -1163,9 +1163,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_dungeon_3.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_dungeon_3.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0c3dd16d72515b54ce7c5bd17a5c2400575aca43"
   },
   {
    "id": "battle_dungeon_5",
@@ -1176,9 +1176,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_dungeon_5.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_dungeon_5.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e5ef9cc87b38a71ea497b13078d432d11be123a3"
   },
   {
    "id": "battle_dungeon_7",
@@ -1189,9 +1189,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_dungeon_7.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_dungeon_7.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6f1b3cfc0d3fbbc043c7f828a0bddd01c0bd2475"
   },
   {
    "id": "battle_dungeon_hit",
@@ -1202,9 +1202,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_dungeon_hit.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_dungeon_hit.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "743852a2c035a4df4cea0d23a127b8766c7aac0f"
   },
   {
    "id": "battle_dungeon_kill",
@@ -1215,9 +1215,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_dungeon_kill.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_dungeon_kill.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6170d861ecc1da95adf1e64331dad61f7da49357"
   },
   {
    "id": "system_trap",
@@ -1228,9 +1228,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_trap.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_trap.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "abccec015577f13d577cccddc31e92e139e6dff2"
   },
   {
    "id": "gameover_dead",
@@ -1241,9 +1241,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameover_gameover_dead.png",
-   "file_3x": "3x/ultima-2_dos_na_gameover_gameover_dead.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "468121b782d5b1561e5153bbf8c9dd47bc0c1594"
   },
   {
    "id": "gameplay_dungeon_level16",
@@ -1254,9 +1254,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_dungeon_level16.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_dungeon_level16.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4b3ffa18b9c2677c9b45c3f30b6cdbf3b457c624"
   },
   {
    "id": "system_trilithium",
@@ -1267,9 +1267,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_trilithium.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_trilithium.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "713e48a1ccba6fcbca9632e5fac85de75472a432"
   },
   {
    "id": "system_cast_light",
@@ -1280,9 +1280,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_cast_light.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_cast_light.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "069beb6a2e7acddf802e181abb8c9c56274b54b0"
   },
   {
    "id": "system_cast_passwall",
@@ -1293,9 +1293,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_cast_passwall.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_cast_passwall.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "349eda9b16b22a763f10690927eef60593060821"
   },
   {
    "id": "system_cast_magic_missile",
@@ -1306,9 +1306,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_cast_magic_missile.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_cast_magic_missile.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "aadb7fdb1fca87063763c1484800e721d110563d"
   },
   {
    "id": "system_cast_prayer",
@@ -1319,9 +1319,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_cast_prayer.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_cast_prayer.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "88c870d60c97714b2532ca5edb4c9e01b64499a6"
   },
   {
    "id": "system_cast_down_ladder",
@@ -1332,9 +1332,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_cast_down_ladder.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_cast_down_ladder.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a5b66a4d98f188030d2d6f4eccff4fdc3b229e30"
   },
   {
    "id": "system_cast_surface",
@@ -1345,9 +1345,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_cast_surface.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_cast_surface.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "eda9b46c3ea6831222c7b20f89601e53f33b7308"
   },
   {
    "id": "gameplay_tower",
@@ -1358,9 +1358,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_tower.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_tower.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4346772e2ef7b182aca1d64541fc2874b0da4fe1"
   },
   {
    "id": "system_tower_klimb",
@@ -1371,9 +1371,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_tower_klimb.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_tower_klimb.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0f5ca200ea70777b0593cbe7cbad6a468b444d7b"
   },
   {
    "id": "inventory_ztats_late",
@@ -1384,9 +1384,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_inventory_inventory_ztats_late.png",
-   "file_3x": "3x/ultima-2_dos_na_inventory_inventory_ztats_late.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "035f6c2b74600ccab27a2d61e799ede71d8060f1"
   },
   {
    "id": "hud_status",
@@ -1397,9 +1397,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_hud_hud_status.png",
-   "file_3x": "3x/ultima-2_dos_na_hud_hud_status.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4d37bf118314c377d640ce6abd3d4bc985eefb4c"
   },
   {
    "id": "system_ready_weapon",
@@ -1410,9 +1410,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_ready_weapon.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_ready_weapon.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4472b847c4ef55bc4c08dfb59fcf5fde35654f55"
   },
   {
    "id": "system_wear_armour",
@@ -1423,9 +1423,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_wear_armour.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_wear_armour.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "575b92fb2ebda8a3b623bc3aba4a1497d2ad3026"
   },
   {
    "id": "system_agile_refused",
@@ -1436,9 +1436,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_agile_refused.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_agile_refused.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "03178dac9c92ddfb519d9881e6bda2edca17f103"
   },
   {
    "id": "system_strong_refused",
@@ -1449,9 +1449,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_strong_refused.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_strong_refused.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a0ee380d5747c38a9d6ee7029b82498e6098c230"
   },
   {
    "id": "system_view_helm",
@@ -1462,9 +1462,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_view_helm.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_view_helm.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "44720ec5ce7f0eefbdde470cc22a0ea80f464fd6"
   },
   {
    "id": "system_negate_time",
@@ -1475,9 +1475,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_negate_time.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_negate_time.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6e06633305851aab8b2fb78c52019bbfb9c650e5"
   },
   {
    "id": "system_unlock",
@@ -1488,9 +1488,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_unlock.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_unlock.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "249577b918a0cabf20cd1e55b6047448b6c5e71a"
   },
   {
    "id": "system_unlock_nokeys",
@@ -1501,9 +1501,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_unlock_nokeys.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_unlock_nokeys.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "232ffb9870e9d565d1d4c35a8173288c10b62078"
   },
   {
    "id": "system_steal",
@@ -1514,9 +1514,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_steal.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_steal.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b6f511e86a86a83fb0711374a6608446b519293c"
   },
   {
    "id": "system_offer_thanks",
@@ -1527,9 +1527,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_offer_thanks.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_offer_thanks.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d1e7d10a2c2a0454938542eacc37462bb77a9d9e"
   },
   {
    "id": "battle_land_monsters",
@@ -1540,9 +1540,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_land_monsters.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_land_monsters.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3c57f40154993cf7b07f76d542dc9d56fcb2f353"
   },
   {
    "id": "battle_devil",
@@ -1553,9 +1553,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_devil.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_devil.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "35d6939c0a9f187f106b294a562686b888e4280b"
   },
   {
    "id": "battle_hit_kill",
@@ -1566,9 +1566,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_hit_kill.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_hit_kill.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "303901a22ae25d07edd468878e41ff01f15414ae"
   },
   {
    "id": "battle_miss",
@@ -1579,9 +1579,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_miss.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_miss.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6b8c3676b91bb6aeaf0bb7a65d8480cd8ef90684"
   },
   {
    "id": "battle_legs_boots",
@@ -1592,9 +1592,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_legs_boots.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_legs_boots.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "46a8b9c1e0b952400eeaf68856237d58702772fb"
   },
   {
    "id": "battle_arms_cloak",
@@ -1605,9 +1605,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_arms_cloak.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_arms_cloak.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "46fdb18869ee1d475f799fa171b217d257ce535b"
   },
   {
    "id": "battle_magic_missile",
@@ -1618,9 +1618,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_magic_missile.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_magic_missile.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ef4043c83caa43b93108b2453cccba5c36a85c72"
   },
   {
    "id": "battle_sleep_idol",
@@ -1631,9 +1631,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_sleep_idol.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_sleep_idol.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6c084f5751cf734b142652bfa41c6d1ad18a7f78"
   },
   {
    "id": "battle_thief_stole",
@@ -1644,9 +1644,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_thief_stole.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_thief_stole.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4b042faf9971be672cb2350a7f22785077f9e862"
   },
   {
    "id": "system_time_door",
@@ -1657,9 +1657,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_time_door.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_time_door.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dc10526abecedf0a8e4102cd9c1e9fad7332b9ae"
   },
   {
    "id": "gameplay_legends_islet",
@@ -1670,9 +1670,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_legends_islet.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_legends_islet.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4d525e541bb703f19090060c04e1229e3fba7458"
   },
   {
    "id": "system_sign_legends",
@@ -1683,9 +1683,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_sign_legends.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_sign_legends.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "05ac013b4af3d3d1bda1aed239a16a8ca7b6f0ad"
   },
   {
    "id": "gameplay_surface_pangea",
@@ -1696,9 +1696,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_surface_pangea.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_surface_pangea.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "19090d3e26f7ed36548bc401454c22206ce68309"
   },
   {
    "id": "system_sign_pangea",
@@ -1709,9 +1709,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_sign_pangea.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_sign_pangea.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1935d59cf367c1d0c51727e1f37d41c1a36b8dd4"
   },
   {
    "id": "system_sign_1990",
@@ -1722,9 +1722,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_sign_1990.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_sign_1990.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b66b07eb173964c43e7519f48dfc63c8b2d14717"
   },
   {
    "id": "system_sign_2112",
@@ -1735,9 +1735,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_sign_2112.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_sign_2112.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "26e151d1a40d4359cb64a8d6fe7e7088ea888424"
   },
   {
    "id": "gameplay_village_pangea",
@@ -1748,9 +1748,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_village_pangea.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_village_pangea.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0bc0eaffa48d53ed8e480bfbb6384286422fbc9a"
   },
   {
    "id": "dialogue_astronaut",
@@ -1761,9 +1761,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_astronaut.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_astronaut.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a4063c106a5cb3afd292f0de21be38cac44b4bb6"
   },
   {
    "id": "dialogue_astronaut_2",
@@ -1774,9 +1774,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_astronaut_2.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_astronaut_2.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "237bb984c228005be20ef73be69cb59b744f7ab6"
   },
   {
    "id": "dialogue_phylosopher",
@@ -1787,9 +1787,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_phylosopher.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_phylosopher.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1a67e1e824dc98d8c6e16db05da094c16bb6a347"
   },
   {
    "id": "gameplay_port_bonifice",
@@ -1800,9 +1800,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_port_bonifice.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_port_bonifice.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dfb64ae962f9c0e4c5272a69aeeef663dafff28b"
   },
   {
    "id": "dialogue_sightless_sage",
@@ -1813,9 +1813,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_sightless_sage.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_sightless_sage.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "853e7ccab956c547abd41b692034432a900e2d74"
   },
   {
    "id": "system_king_1990",
@@ -1826,9 +1826,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_king_1990.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_king_1990.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "78c49f2015c52b34b50458ac3e73a0fd492e3ee7"
   },
   {
    "id": "dialogue_brother_antos_1990",
@@ -1839,9 +1839,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_brother_antos_1990.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_brother_antos_1990.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3853b5e8f9cb0c7df1387912830f4552a64b1cff"
   },
   {
    "id": "dialogue_balron",
@@ -1852,9 +1852,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_balron.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_balron.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "18f85c6f5d733b26ce9d2c60915d4e21cd81fd1b"
   },
   {
    "id": "dialogue_merchant_tribute",
@@ -1865,9 +1865,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_merchant_tribute.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_merchant_tribute.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1dbd53a7398504bb6aecb91fb58e6a6cc4d0cc5a"
   },
   {
    "id": "gameplay_pirates_harbour",
@@ -1878,9 +1878,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_pirates_harbour.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_pirates_harbour.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "34562d97738744428aa62ae02ac59a685c82678b"
   },
   {
    "id": "gameplay_launch_site",
@@ -1891,9 +1891,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_launch_site.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_launch_site.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "624f1176486bacff464522f361ac5c0ed441593a"
   },
   {
    "id": "dialogue_village_idiot",
@@ -1904,9 +1904,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_village_idiot.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_village_idiot.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4b423f0172e7ea2c9283b4297b99e58e3cfa6a41"
   },
   {
    "id": "dialogue_red_pirate",
@@ -1917,9 +1917,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_red_pirate.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_red_pirate.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e55546337387f57eed78c30c404aadfd0e248a1f"
   },
   {
    "id": "battle_sea_monsters",
@@ -1930,9 +1930,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_sea_monsters.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_sea_monsters.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "44fb1b55facd4c559f70b0c80e18a6a2f315ea24"
   },
   {
    "id": "system_board_horse",
@@ -1943,9 +1943,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_board_horse.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_board_horse.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "28b42a6daa0041e168cffe8ca0e9da576dfa6806"
   },
   {
    "id": "gameplay_horse",
@@ -1956,9 +1956,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_horse.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_horse.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1fa8489913de84b27dd456dca87cd85c4782994c"
   },
   {
    "id": "system_board_frigate",
@@ -1969,9 +1969,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_board_frigate.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_board_frigate.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6cb1f506edc10cb75f28450a201d9f72d17aba5a"
   },
   {
    "id": "system_frigate_refused",
@@ -1982,9 +1982,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_frigate_refused.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_frigate_refused.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c98cf2463a6622b40803740e200ebd0805e1f7ea"
   },
   {
    "id": "gameplay_frigate",
@@ -1995,9 +1995,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_frigate.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_frigate.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1d160152d874621a358df1e8ad59ef9998a351fd"
   },
   {
    "id": "battle_frigate_cannon",
@@ -2008,9 +2008,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_battle_battle_frigate_cannon.png",
-   "file_3x": "3x/ultima-2_dos_na_battle_battle_frigate_cannon.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "352ffd467312f7d73717c29f6c134f9c86cf7b0f"
   },
   {
    "id": "system_frigate_shore",
@@ -2021,9 +2021,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_frigate_shore.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_frigate_shore.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d2a969bb6bdc4ce97666a0d5745c1ea133cb5c6d"
   },
   {
    "id": "system_board_plane",
@@ -2034,9 +2034,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_board_plane.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_board_plane.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "57f694423878a3d7094b8aac00d5178d846d4b27"
   },
   {
    "id": "system_plane_refused",
@@ -2047,9 +2047,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_plane_refused.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_plane_refused.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "58258ccacc2a328f719ff3277581eff7cfbe21b2"
   },
   {
    "id": "system_plane_no_button",
@@ -2060,9 +2060,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_plane_no_button.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_plane_no_button.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cf20953ebac265c79e77f634da20192d30d0f485"
   },
   {
    "id": "gameplay_plane",
@@ -2073,9 +2073,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_plane.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_plane.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4552ac4054670fdb76bdcfd65133d59eab663eb5"
   },
   {
    "id": "system_plane_land_refused",
@@ -2086,9 +2086,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_plane_land_refused.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_plane_land_refused.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c33c840fe490986b068befa5b6cbb01fea71378a"
   },
   {
    "id": "system_plane_landed",
@@ -2099,9 +2099,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_plane_landed.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_plane_landed.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e22309fc1f29ebb35ad658a1efe3175fa7321042"
   },
   {
    "id": "system_rocket_no_ankh",
@@ -2112,9 +2112,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_rocket_no_ankh.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_rocket_no_ankh.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c11f80d7a75e120759355149a6f15a62439cb20c"
   },
   {
    "id": "gameplay_new_san_antonio",
@@ -2125,9 +2125,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_new_san_antonio.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_new_san_antonio.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cf0afaa63fd37ef082331bf8c3e10283a9b91054"
   },
   {
    "id": "dialogue_santre",
@@ -2138,9 +2138,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_santre.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_santre.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "75ddfa29ebeed2b15ecd1bb8ddd964e9824e0e79"
   },
   {
    "id": "system_enilno",
@@ -2151,9 +2151,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_enilno.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_enilno.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "29797fe6d46453eec864f33e2fd8045a5273b7dc"
   },
   {
    "id": "system_ready_quicksword",
@@ -2164,9 +2164,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_ready_quicksword.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_ready_quicksword.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "19205ee9be2c77dbfefc4722fb22d63e8d3eff8a"
   },
   {
    "id": "dialogue_old_man",
@@ -2177,9 +2177,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_old_man.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_old_man.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "129bd5c243cebc8d5889dc6d5b58847b618d3383"
   },
   {
    "id": "system_earn_ring",
@@ -2190,9 +2190,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_earn_ring.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_earn_ring.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "678003ca9e2539e7564414cdea7769970b6befd0"
   },
   {
    "id": "dialogue_flopy_fighter",
@@ -2203,9 +2203,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_flopy_fighter.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_flopy_fighter.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d09feccb29cef762cc8e0087c5eaa2bb8f1f4f18"
   },
   {
    "id": "system_flopy_gift",
@@ -2216,9 +2216,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_flopy_gift.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_flopy_gift.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "867b33b4094e07c2245a276c66b197d6aa9c49fe"
   },
   {
    "id": "dialogue_hotel_clerk",
@@ -2229,9 +2229,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_hotel_clerk.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_hotel_clerk.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9920fd7f2c33fc4a95a4ff5802defb031e1425be"
   },
   {
    "id": "system_alakazam",
@@ -2242,9 +2242,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_alakazam.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_alakazam.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d9a9eaefe532d2c0eda139ba32d24c33e5148b1a"
   },
   {
    "id": "gameplay_rocket",
@@ -2255,9 +2255,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_rocket.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_rocket.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "94d9fb373f36524e843366b92c01f0b1688e9f25"
   },
   {
    "id": "system_launch_no_fuel",
@@ -2268,9 +2268,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_launch_no_fuel.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_launch_no_fuel.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "27be25f69fc201de5bd01d6c725bc554339ed9a5"
   },
   {
    "id": "system_exploded",
@@ -2281,9 +2281,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_exploded.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_exploded.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9bcbb353a38086676e5caceae4a972ef3b732e96"
   },
   {
    "id": "cutscene_launch",
@@ -2294,9 +2294,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_cutscene_cutscene_launch.png",
-   "file_3x": "3x/ultima-2_dos_na_cutscene_cutscene_launch.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "71b9bbe94c36cad567d294019e82d1b1ece621da"
   },
   {
    "id": "gameplay_space_earth",
@@ -2307,9 +2307,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_space_earth.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_space_earth.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "237f905db90d80e0b2287e9ea0edb1ed328c16d7"
   },
   {
    "id": "system_space_climb",
@@ -2320,9 +2320,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_space_climb.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_space_climb.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "efbe9cb3dcfdd52c060e4fd65cb63862f78e9dec"
   },
   {
    "id": "system_hyperwarp_prompt",
@@ -2333,9 +2333,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_hyperwarp_prompt.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_hyperwarp_prompt.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "88e1011e763f38033eb62cfbd87cbb740f868fce"
   },
   {
    "id": "system_hyperwarp",
@@ -2346,9 +2346,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_hyperwarp.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_hyperwarp.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6cd1bd5ec6a72a1f0ccb6201c09b99dc87a605a0"
   },
   {
    "id": "gameplay_orbit_x",
@@ -2359,9 +2359,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_orbit_x.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_orbit_x.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d920b3f24b7ee7a1f1926fcce04c27530c1ed6ff"
   },
   {
    "id": "system_deep_space",
@@ -2372,9 +2372,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_deep_space.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_deep_space.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9944746b1479000affc780c5702f90e5449d124f"
   },
   {
    "id": "system_sun",
@@ -2385,9 +2385,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_sun.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_sun.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2c013ddd07040e4483baa01f78a5079b19dfe0d3"
   },
   {
    "id": "system_off_course",
@@ -2398,9 +2398,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_off_course.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_off_course.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d5369248f24ae882a2aaf2eb8cac17389641ef34"
   },
   {
    "id": "system_no_fuel",
@@ -2411,9 +2411,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_no_fuel.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_no_fuel.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5e49279fed9919a2b063eb6ac32271e7e557fc76"
   },
   {
    "id": "system_landing",
@@ -2424,9 +2424,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_landing.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_landing.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ef6e4b3010c92705820bef12eb363584e43e101f"
   },
   {
    "id": "gameplay_planet_x",
@@ -2437,9 +2437,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_planet_x.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_planet_x.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f3a4256fe4c404c8749b610ac796e57842768326"
   },
   {
    "id": "gameplay_ozys_place",
@@ -2450,9 +2450,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_ozys_place.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_ozys_place.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "38f1877cf15bf009d0dfdd8257d38b326807fe01"
   },
   {
    "id": "dialogue_father_antos",
@@ -2463,9 +2463,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_father_antos.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_father_antos.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cf75e686699ef668eb14057c5c5eddf0d2565217"
   },
   {
    "id": "dialogue_queen_susan",
@@ -2476,9 +2476,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_queen_susan.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_queen_susan.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "48784ee984df98ef0ad039b4bd8d4430e6ed2514"
   },
   {
    "id": "dialogue_sing_lee",
@@ -2489,9 +2489,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_sing_lee.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_sing_lee.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "355e85ef94411ab624226b7c39590fb0cbb37366"
   },
   {
    "id": "gameplay_towne_basro",
@@ -2502,9 +2502,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_towne_basro.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_towne_basro.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ac3bf8f4ddc7b5186044cd8331a1d4f7585f6c2e"
   },
   {
    "id": "dialogue_ugly_irving",
@@ -2515,9 +2515,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_ugly_irving.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_ugly_irving.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "97fadc12cbbbd8a78d4e42a175bd929e243c8158"
   },
   {
    "id": "dialogue_warrior_x",
@@ -2528,9 +2528,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_warrior_x.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_warrior_x.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "599685e43716b644f49264bbbd82ce1608df6660"
   },
   {
    "id": "gameplay_mercury",
@@ -2541,9 +2541,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_mercury.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_mercury.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "43a6ad4881c37d6bb788a791919a88e18ee749ec"
   },
   {
    "id": "gameplay_venus",
@@ -2554,9 +2554,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_venus.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_venus.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "153246ee34aab045d518c984aecbb9e726f124c5"
   },
   {
    "id": "gameplay_mars",
@@ -2567,9 +2567,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_mars.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_mars.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "53d179711960ff597c6ef33e19e4983c18b33275"
   },
   {
    "id": "gameplay_towne_mary",
@@ -2580,9 +2580,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_towne_mary.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_towne_mary.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "80bb284cff5f3d2eebe23f114003fb1a0ad296aa"
   },
   {
    "id": "dialogue_marlin_perkins",
@@ -2593,9 +2593,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_marlin_perkins.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_marlin_perkins.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0f460e5eab66c6c9c4857daa7af2a1e6327fdf17"
   },
   {
    "id": "gameplay_jupiter",
@@ -2606,9 +2606,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_jupiter.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_jupiter.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "012a54822a568fcc7a933ffebc19e4bfea0a29b8"
   },
   {
    "id": "dialogue_jocker",
@@ -2619,9 +2619,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_jocker.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_jocker.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1f2807007ff0ef2f143a50971e5b0f308ff5f634"
   },
   {
    "id": "gameplay_saturn",
@@ -2632,9 +2632,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_saturn.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_saturn.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9294b06f1efd72e147fbfaad65533efef2165d06"
   },
   {
    "id": "gameplay_uranus",
@@ -2645,9 +2645,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_uranus.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_uranus.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bfea978065ce0c7d274f104df3a6c3ca1164173f"
   },
   {
    "id": "gameplay_new_jester",
@@ -2658,9 +2658,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_new_jester.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_new_jester.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9dd1b570e530d166b8048c5d8b4ca9701df7b3f7"
   },
   {
    "id": "gameplay_neptune",
@@ -2671,9 +2671,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_neptune.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_neptune.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6d5f0049fbebdab01e191dd6033708e308209b0f"
   },
   {
    "id": "gameplay_computer_camp",
@@ -2684,9 +2684,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_computer_camp.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_computer_camp.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6b434ab2afbd9c2051ce5b3757a911f18b72c807"
   },
   {
    "id": "dialogue_richard_garriott",
@@ -2697,9 +2697,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_richard_garriott.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_richard_garriott.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2d6b0153086d44be4688e1be66fe1996a7fda720"
   },
   {
    "id": "gameplay_pluto",
@@ -2710,9 +2710,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_pluto.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_pluto.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a55e7bd95229e6a20bade721ebb8290b2f65fa8d"
   },
   {
    "id": "gameplay_towne_marler",
@@ -2723,9 +2723,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_towne_marler.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_towne_marler.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "979863ec09b05ac6bf1a25a518881ea638755285"
   },
   {
    "id": "dialogue_seaworthy_pirate",
@@ -2736,9 +2736,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_seaworthy_pirate.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_seaworthy_pirate.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "844b789293ab3ed2664f76420a3e8d0e6668c8bd"
   },
   {
    "id": "dialogue_big_bouncer",
@@ -2749,9 +2749,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_big_bouncer.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_big_bouncer.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bbc3c64c864fd328574bd6c34bf5f28305c7a9e3"
   },
   {
    "id": "gameplay_earth_2112",
@@ -2762,9 +2762,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_earth_2112.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_earth_2112.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "51f8e5e9e4f42abdbfda01d9eeb04ca9c16a6c73"
   },
   {
    "id": "system_ring",
@@ -2775,9 +2775,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_ring.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_ring.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7a1ba94722ce9d53f3a56354edceda795107d5e5"
   },
   {
    "id": "gameplay_legends_army",
@@ -2788,9 +2788,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_legends_army.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_legends_army.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2b26193306eab4c4dab2bd4215900bc209137983"
   },
   {
    "id": "gameplay_shadow_guard",
@@ -2801,9 +2801,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_shadow_guard.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_shadow_guard.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c677dd17746c0fb0f49d9bcd0e2a57d12cb350ce"
   },
   {
    "id": "system_field_ring",
@@ -2814,9 +2814,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_field_ring.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_field_ring.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "678df82f6bbfda1a0086ba81a3fe0307ad22da2e"
   },
   {
    "id": "system_field_damage",
@@ -2827,9 +2827,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_system_system_field_damage.png",
-   "file_3x": "3x/ultima-2_dos_na_system_system_field_damage.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a257156f717edee9389c0a73ca04a5ed2d582eea"
   },
   {
    "id": "gameplay_vehicle_hall",
@@ -2840,9 +2840,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_gameplay_gameplay_vehicle_hall.png",
-   "file_3x": "3x/ultima-2_dos_na_gameplay_gameplay_vehicle_hall.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fad5ea23b3d002c1e1cf6e33352d6aaf50101097"
   },
   {
    "id": "dialogue_homer",
@@ -2853,9 +2853,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_homer.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_homer.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "78540c11584305d7a89b6734918ff79ba2a7edef"
   },
   {
    "id": "boss_minax",
@@ -2866,9 +2866,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_boss_boss_minax.png",
-   "file_3x": "3x/ultima-2_dos_na_boss_boss_minax.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "16baf52154ce1585ef339faf37b17e5de4347e74"
   },
   {
    "id": "dialogue_minax",
@@ -2879,9 +2879,9 @@
    "model": "svga-500",
    "source": "shoot.py",
    "file": "ultima-2_dos_na_dialogue_dialogue_minax.png",
-   "file_3x": "3x/ultima-2_dos_na_dialogue_dialogue_minax.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "eb7fd26bcd6f0309a11d8010458085ad94b21e2a"
   },
   {
    "id": "boss_minax_gone",
@@ -2892,9 +2892,9 @@
    "model": "svga-500",
    "source": "play.py snap",
    "file": "ultima-2_dos_na_boss_boss_minax_gone.png",
-   "file_3x": "3x/ultima-2_dos_na_boss_boss_minax_gone.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6062a4daacb43f8c397a88afb5748bf9747a3ed7"
   },
   {
    "id": "boss_chamber_two",
@@ -2905,9 +2905,9 @@
    "model": "svga-500",
    "source": "play.py snap",
    "file": "ultima-2_dos_na_boss_boss_chamber_two.png",
-   "file_3x": "3x/ultima-2_dos_na_boss_boss_chamber_two.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f8f00c5cb502be73f54f78440a2f96c053b7c4dd"
   },
   {
    "id": "ending_minax_dead",
@@ -2918,9 +2918,9 @@
    "model": "svga-500",
    "source": "play.py snap",
    "file": "ultima-2_dos_na_ending_ending_minax_dead.png",
-   "file_3x": "3x/ultima-2_dos_na_ending_ending_minax_dead.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9d587e73cea9ac0177826901a69476ac505fd9fd"
   },
   {
    "id": "ending_crumble",
@@ -2931,9 +2931,9 @@
    "model": "svga-500",
    "source": "play.py snap",
    "file": "ultima-2_dos_na_ending_ending_crumble.png",
-   "file_3x": "3x/ultima-2_dos_na_ending_ending_crumble.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1dd0aa00c2e613724c747d5b34f3277721929224"
   },
   {
    "id": "ending_text",
@@ -2944,9 +2944,9 @@
    "model": "svga-500",
    "source": "play.py snap",
    "file": "ultima-2_dos_na_ending_ending_text.png",
-   "file_3x": "3x/ultima-2_dos_na_ending_ending_text.png",
    "rom_sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3f7c1b1fd2c1af36bd96e0cdbe213e73c3f87088"
   }
  ]
 }

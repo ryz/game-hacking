@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_boot_boot_atlus.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_boot_boot_atlus.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "739c8e70967cdb6351acdc671f405806c45306ef"
   },
   {
    "id": "intro_circle",
@@ -32,9 +32,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_cutscene_intro_circle.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_cutscene_intro_circle.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "a8f208e43e1f9d5f46729f52d57acb81cb6f8d1a"
   },
   {
    "id": "intro_terminal",
@@ -45,9 +45,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_cutscene_intro_terminal.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_cutscene_intro_terminal.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "ba0e91a86c94290d6a8fb7bdfe72882c4fae86ee"
   },
   {
    "id": "intro_199x",
@@ -58,9 +58,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_cutscene_intro_199x.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_cutscene_intro_199x.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "c52cd3518106c00aa515fe3f2bf445143c2915e6"
   },
   {
    "id": "intro_scene",
@@ -71,9 +71,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_cutscene_intro_scene.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_cutscene_intro_scene.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "487eebb0dc7a5bef4b90bf9504bd3fa38cdbb89c"
   },
   {
    "id": "title_screen",
@@ -84,9 +84,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_title_title_screen.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_title_title_screen.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "f83a51f7bc6a638a45bb9d1f148569ac31806397"
   },
   {
    "id": "dream_door",
@@ -97,9 +97,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_dialogue_dream_door.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_dialogue_dream_door.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "afce6e0dbd06c7d960760c479a5b360087369323"
   },
   {
    "id": "name_entry",
@@ -110,9 +110,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_name_entry.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_name_entry.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "ab91161327fadd3ab4cb3712c23f50a1d648eb42"
   },
   {
    "id": "stat_allocation",
@@ -123,9 +123,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_stat_allocation.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_stat_allocation.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "609bdf316357ce09aead2e25e19d7859b2ca6cca"
   },
   {
    "id": "dream_law_hero",
@@ -136,9 +136,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_cutscene_dream_law_hero.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_cutscene_dream_law_hero.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "2996caf27f7ed0178f5cda190af84c054b1d8a8e"
   },
   {
    "id": "dream_chaos_hero",
@@ -149,9 +149,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_cutscene_dream_chaos_hero.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_cutscene_dream_chaos_hero.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "a434fe85c91d2fc237235fe4ce95dcb6b2878d6d"
   },
   {
    "id": "dream_pond",
@@ -162,9 +162,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_cutscene_dream_pond.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_cutscene_dream_pond.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "fdabc31adba427f119b9c7729c34c982e2806ab9"
   },
   {
    "id": "room_menu",
@@ -175,9 +175,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_menu_room_menu.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_menu_room_menu.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "1b30810dbc1776ac125b1a854862314ea3692617"
   },
   {
    "id": "room_mail",
@@ -188,9 +188,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_dialogue_room_mail.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_dialogue_room_mail.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "034bbec162686267aafd79c6054cf7611c6419f2"
   },
   {
    "id": "save_files",
@@ -201,9 +201,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_save_save_files.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_save_save_files.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "9fbfd60b977efa4bba38ec70e89d70c416f3ddd1"
   },
   {
    "id": "home_mother",
@@ -214,9 +214,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_dialogue_home_mother.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_dialogue_home_mother.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "fde00b1461e4bee6e1acd1d671a2392bfbe800f7"
   },
   {
    "id": "apartment_corridor",
@@ -227,9 +227,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_hud_apartment_corridor.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_hud_apartment_corridor.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "3262bab6057b16e4cd999d8619a69337e87cf815"
   },
   {
    "id": "menu_command",
@@ -240,9 +240,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_menu_menu_command.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_menu_menu_command.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "4c8afaafc35021d42c7f49848ca0c382bd33dd7a"
   },
   {
    "id": "menu_comp",
@@ -253,9 +253,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_menu_comp.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_menu_comp.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "c9dba0eb147e8d04bd91644e067b6ccfff2b3730"
   },
   {
    "id": "status_hero",
@@ -266,9 +266,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_inventory_status_hero.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_inventory_status_hero.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "9a7bcab2b191065ce32da9dc41490233559f931f"
   },
   {
    "id": "load_files",
@@ -279,9 +279,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_menu_load_files.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_menu_load_files.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "3154c7edb2682d26bd2ae9b64b01672153d93d32"
   },
   {
    "id": "map_kichijoji",
@@ -292,9 +292,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_map_map_kichijoji.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_map_map_kichijoji.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "cc56e3447afef48a840be9783444fdaf2a2e9bb4"
   },
   {
    "id": "clinic_doctor",
@@ -305,9 +305,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_dialogue_clinic_doctor.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_dialogue_clinic_doctor.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "d7012b08cd595344d82ac6be0b35e8b9e2581a96"
   },
   {
    "id": "kichijoji_police",
@@ -318,9 +318,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_dialogue_kichijoji_police.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_dialogue_kichijoji_police.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "b00d419307467edf3023aa477d66543bbbc2a2ab"
   },
   {
    "id": "exit_prompt",
@@ -331,9 +331,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_gameplay_exit_prompt.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_gameplay_exit_prompt.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "9856343df6242ce003adc9e263c14363eb2f14d4"
   },
   {
    "id": "arcade_mall",
@@ -344,9 +344,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_gameplay_arcade_mall.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_gameplay_arcade_mall.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "fb4c3267f8ce206ecf97956941d8842a6c3f9625"
   },
   {
    "id": "shop_menu",
@@ -357,9 +357,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_shop_shop_menu.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_shop_shop_menu.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "b95aee195705f1f4487bfcefbbdc80a5e4504e0b"
   },
   {
    "id": "shop_buy",
@@ -370,9 +370,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_shop_shop_buy.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_shop_shop_buy.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "b8ec926fe059c2f44cb8169117e2318f70df4d16"
   },
   {
    "id": "equipment",
@@ -383,9 +383,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_inventory_equipment.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_inventory_equipment.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "90c38d58bffe76de8bf31b3282b548b2b8fefff3"
   },
   {
    "id": "shop_antique",
@@ -396,9 +396,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_shop_shop_antique.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_shop_shop_antique.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "a2bd66b4cb0aa6fcc7ba690599026a2f72220f5b"
   },
   {
    "id": "arcade_rumor",
@@ -409,9 +409,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_dialogue_arcade_rumor.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_dialogue_arcade_rumor.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "64f578b96d691628fff415050b2658be7070fb1e"
   },
   {
    "id": "cafe_master",
@@ -422,9 +422,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_dialogue_cafe_master.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_dialogue_cafe_master.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "e860340a47361059aa019e3c5b6ff4bf0cd1ba0c"
   },
   {
    "id": "police_roadblock",
@@ -435,9 +435,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_dialogue_police_roadblock.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_dialogue_police_roadblock.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "3503510aa3851e630b92f43e52351ffa493408f3"
   },
   {
    "id": "full_moon",
@@ -448,9 +448,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_full_moon.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_full_moon.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "757d37440d50f362b485736a079eecfefc99ac8f"
   },
   {
    "id": "dream2_condi",
@@ -461,9 +461,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_cutscene_dream2_condi.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_cutscene_dream2_condi.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "d56a542bd411d5fe2db9ce57cfb9f757a360d40c"
   },
   {
    "id": "dream2_yuriko",
@@ -474,9 +474,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_cutscene_dream2_yuriko.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_cutscene_dream2_yuriko.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "42f532d12d14f612bdf7685edf22c39f0e868270"
   },
   {
    "id": "dream2_ceremony",
@@ -487,9 +487,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_cutscene_dream2_ceremony.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_cutscene_dream2_ceremony.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "57721e1c50dea6fc2cc63c96958880289a6d8ebf"
   },
   {
    "id": "name_heroine",
@@ -500,9 +500,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_name_heroine.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_name_heroine.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "870ddd1639ae166244594038d784cc4a245fc1e6"
   },
   {
    "id": "first_battle",
@@ -513,9 +513,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_battle_first_battle.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_battle_first_battle.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "6d393aa1df0132da5cd4a197702c3f72ba45e90c"
   },
   {
    "id": "talk_fullmoon",
@@ -526,9 +526,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_talk_fullmoon.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_talk_fullmoon.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "357e2f65b064eecf8ff1d187a4e37d63d863d06d"
   },
   {
    "id": "battle_commands",
@@ -539,9 +539,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_battle_battle_commands.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_battle_battle_commands.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "0e810b006f959c3b22d1ea4224cb9a2ab00189ee"
   },
   {
    "id": "battle_attack",
@@ -552,9 +552,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_battle_battle_attack.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_battle_battle_attack.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "3315b8425fa46606e2a363549fdd1c6f1d08bd8e"
   },
   {
    "id": "battle_enemy_spell",
@@ -565,9 +565,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_battle_battle_enemy_spell.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_battle_battle_enemy_spell.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "5665f0dd5a1c91ab7e24018214a2905f58080733"
   },
   {
    "id": "battle_result",
@@ -578,9 +578,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_battle_battle_result.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_battle_battle_result.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "6cc95d43c03f2977f7398523b5e13dde370a8de4"
   },
   {
    "id": "level_up",
@@ -591,9 +591,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_level_up.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_level_up.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "82bce42937c3d2da0ab8da50239c79e97f0558aa"
   },
   {
    "id": "battle_escape",
@@ -604,9 +604,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_battle_battle_escape.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_battle_battle_escape.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "2cc9cc5740b1f453a1e8f17df6083f482c48fa46"
   },
   {
    "id": "battle_death",
@@ -617,9 +617,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_battle_battle_death.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_battle_battle_death.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "0461afcf99beb265c39a0cd000e3602657a2c3df"
   },
   {
    "id": "gameover",
@@ -630,9 +630,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_gameover_gameover.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_gameover_gameover.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "ac563c92c1ad66e8881089d1251d54aebbcd3038"
   },
   {
    "id": "encounter_pixie",
@@ -643,9 +643,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_battle_encounter_pixie.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_battle_encounter_pixie.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "4c51eed93ab3c9248732ca09eab8392c269c0e7c"
   },
   {
    "id": "demon_talk",
@@ -656,9 +656,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_demon_talk.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_demon_talk.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "97b913b2386f2649a39dbb38a15b5c8f07d69389"
   },
   {
    "id": "demon_talk_tease",
@@ -669,9 +669,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_demon_talk_tease.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_demon_talk_tease.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "3ce15e5356e139a98b16e5b28d8706cf8d50c5a5"
   },
   {
    "id": "demon_talk_offer",
@@ -682,9 +682,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_demon_talk_offer.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_demon_talk_offer.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "751c80c78649cf8d93696ecd72fd7668b88b6b6a"
   },
   {
    "id": "demon_talk_ask",
@@ -695,9 +695,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_demon_talk_ask.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_demon_talk_ask.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "128dd90cd362bd0a83fbf5029ff1c933e2511fda"
   },
   {
    "id": "dream2_save_girl",
@@ -708,9 +708,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_dialogue_dream2_save_girl.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_dialogue_dream2_save_girl.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "fb40478bd9ead4375dd15c4d11a580264b9ff66e"
   },
   {
    "id": "demon_talk_fail",
@@ -721,9 +721,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_system_demon_talk_fail.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_system_demon_talk_fail.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "b1d0f1498179f071a6afa6541f1d509f9a07ab91"
   },
   {
    "id": "automap",
@@ -734,9 +734,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "shin-megami-tensei_snes_jp_map_automap.png",
-   "file_3x": "3x/shin-megami-tensei_snes_jp_map_automap.png",
    "rom_sha1": "3581a9a51354ad68662dca6a6856da2963f62562",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "e4a49a86e44415520f99160a8472e1cee522687d"
   }
  ]
 }

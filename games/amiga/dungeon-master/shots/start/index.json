@@ -19,9 +19,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_boot_01_crack_note.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_boot_01_crack_note.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "20d8e347b0091a6d06d0997eb387ac470319056d"
   },
   {
    "id": "02_logo",
@@ -32,9 +32,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_boot_02_logo.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_boot_02_logo.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "3815cfa416b2acbbe9592fbbf8862f29f56147a3"
   },
   {
    "id": "03_entrance",
@@ -45,9 +45,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_title_03_entrance.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_title_03_entrance.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "0a9281953d3a42f8e9d57f50ea61aee1cf083631"
   },
   {
    "id": "04_doors_open",
@@ -58,9 +58,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_cutscene_04_doors_open.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_cutscene_04_doors_open.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "7e48dad9864e029c0e0a42ebef842983757d101e"
   },
   {
    "id": "05_hall_first_view",
@@ -71,9 +71,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_05_hall_first_view.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_05_hall_first_view.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "f64b24e5efcac47f04a664b4417a4d81d4b528a5"
   },
   {
    "id": "06_hall_walk",
@@ -84,9 +84,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_06_hall_walk.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_06_hall_walk.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "e13266d08980958b23b8d053679c63d3657ad148"
   },
   {
    "id": "07_hall_inscription",
@@ -97,9 +97,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_07_hall_inscription.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_07_hall_inscription.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "2b9a71c9b56acfe569b101ba6f62090239364df1"
   },
   {
    "id": "08_mirror_halk",
@@ -110,9 +110,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_08_mirror_halk.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_08_mirror_halk.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "d85fcb9be0701517c09bdcc9ed162a1eab6083a3"
   },
   {
    "id": "09_panel_halk",
@@ -123,9 +123,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_system_09_panel_halk.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_system_09_panel_halk.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "f47741e35a6734d2cb6f22618bc85b804dbe5b48"
   },
   {
    "id": "10_reincarnate",
@@ -136,9 +136,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_system_10_reincarnate.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_system_10_reincarnate.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "4067f7f57c5dcec8086b608aa7a058957fdaa7e1"
   },
   {
    "id": "11_ryz_joins",
@@ -149,9 +149,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_system_11_ryz_joins.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_system_11_ryz_joins.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "1f9d958373e2b224a3b054863c43e1ca48bbcb49"
   },
   {
    "id": "12_mirror_tiggy",
@@ -162,9 +162,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_12_mirror_tiggy.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_12_mirror_tiggy.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "84accf70379f8bad168efd45636896cb9c5aaa6a"
   },
   {
    "id": "13_tiggy_joins",
@@ -175,9 +175,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_system_13_tiggy_joins.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_system_13_tiggy_joins.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "e27027f0a62984fd105e13db98b083926caf571d"
   },
   {
    "id": "14_panel_wuuf",
@@ -188,9 +188,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_14_panel_wuuf.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_14_panel_wuuf.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "146ac3c83f895c8fb049e4c13849bd99d579a9cd"
   },
   {
    "id": "15_wuuf_joins",
@@ -201,9 +201,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_system_15_wuuf_joins.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_system_15_wuuf_joins.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "7c293007beb9a2b1182beeabc02a8f7cd322e0e6"
   },
   {
    "id": "16_panel_stamm",
@@ -214,9 +214,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_16_panel_stamm.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_16_panel_stamm.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "99b6d23f49fe03780e9e9a385dfc8c36f3fdd552"
   },
   {
    "id": "17_party_four",
@@ -227,9 +227,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_system_17_party_four.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_system_17_party_four.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "763998230ad9701f60b0dd604bcc65e37846a91b"
   },
   {
    "id": "18_formation",
@@ -240,9 +240,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_system_18_formation.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_system_18_formation.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "eb0671b41e65e53d6b370f4569771a5bdc8f17fa"
   },
   {
    "id": "19_gate_open",
@@ -253,9 +253,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_19_gate_open.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_19_gate_open.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "0ea3d1b1378bb051da84755214d73987bedf7d9b"
   },
   {
    "id": "20_apple",
@@ -266,9 +266,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_20_apple.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_20_apple.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "a1e4766e4a0a361a4f53bea0403c7dac771689c0"
   },
   {
    "id": "21_sconce",
@@ -279,9 +279,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_system_21_sconce.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_system_21_sconce.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "838d1000cf8319e76cbe6af6051da76c561a6d22"
   },
   {
    "id": "22_torch",
@@ -292,9 +292,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_system_22_torch.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_system_22_torch.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "4daa0044df3fe6ad4cdef4558e07587489363b36"
   },
   {
    "id": "23_stairs_down",
@@ -305,9 +305,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_23_stairs_down.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_23_stairs_down.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "0d0456fef391926ede1562f4f962a996be881e2a"
   },
   {
    "id": "24_level2",
@@ -318,9 +318,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_24_level2.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_24_level2.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "71b13c0ccdb59b318e9da2d5439254ca8872bafb"
   },
   {
    "id": "25_inventory",
@@ -331,9 +331,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_inventory_25_inventory.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_inventory_25_inventory.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "c116c0b736ad88d449b7be397fd1fa43f1a70c7b"
   },
   {
    "id": "26_gate_mummy",
@@ -344,9 +344,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_26_gate_mummy.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_26_gate_mummy.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "41bf1b1b2197674d8f4908be0791ff40ab384205"
   },
   {
    "id": "27_gate_opened",
@@ -357,9 +357,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_27_gate_opened.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_27_gate_opened.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "af43b2f91cdd2f3380b6b499e68e418a4fb79085"
   },
   {
    "id": "28_mummy_close",
@@ -370,9 +370,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_battle_28_mummy_close.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_battle_28_mummy_close.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "03760eaa71a76f3c0f1b7cfe906198f1930623d6"
   },
   {
    "id": "29_bash_menu",
@@ -383,9 +383,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_battle_29_bash_menu.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_battle_29_bash_menu.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "097e9d09a6415271115aa8493fab2eb696d71786"
   },
   {
    "id": "30_bash_hit",
@@ -396,9 +396,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_battle_30_bash_hit.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_battle_30_bash_hit.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "6889d37ea976fea25f2ae7b7957a7f25028e3e03"
   },
   {
    "id": "31_victory",
@@ -409,9 +409,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_31_victory.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_31_victory.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "59b03cb4341e692a48ead1039088864a8b213cba"
   },
   {
    "id": "32_beyond_gate",
@@ -422,9 +422,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_32_beyond_gate.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_32_beyond_gate.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "13aceced1991b2c1d2ec3ff3d9a0819fedda661c"
   },
   {
    "id": "33_save_menu",
@@ -435,9 +435,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_save_33_save_menu.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_save_33_save_menu.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "4e0b58b84785b2e8062c34efed278bdf03fa9102"
   },
   {
    "id": "34_blank_disk",
@@ -448,9 +448,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_save_34_blank_disk.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_save_34_blank_disk.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "62d48a04b74f62948c9dcc3af2af17bf149cc316"
   },
   {
    "id": "35_formatting",
@@ -461,9 +461,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_save_35_formatting.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_save_35_formatting.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "47bf37f3876bf76fd42c24f6fb1108290609f4d8"
   },
   {
    "id": "36_saving",
@@ -474,9 +474,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_save_36_saving.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_save_36_saving.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "5c64e6a3cb0076dfe7eb371a6015b20449b27472"
   },
   {
    "id": "37_saved",
@@ -487,9 +487,9 @@
    "model": "A500",
    "source": "shoot.py",
    "file": "dungeon-master_amiga_eu_gameplay_37_saved.start.png",
-   "file_3x": "3x/dungeon-master_amiga_eu_gameplay_37_saved.start.png",
    "rom_sha1": "8a45c26b29997e3d1351588420d3ea739d3851cd",
-   "captured": "2026-11-20"
+   "captured": "2026-11-20",
+   "pixel_sha1": "cdb104159be8bb5cf20a75df013ddcba26454e8a"
   }
  ]
 }

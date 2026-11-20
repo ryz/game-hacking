@@ -19,9 +19,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boot_boot_nwc_logo.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boot_boot_nwc_logo.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c584c880ce5f3edc66f0837ecaed82b010d1e190"
   },
   {
    "id": "title_screen",
@@ -32,9 +32,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_title_title_screen.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_title_title_screen.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "36e7a22b8ba1be7788c8f10b7ad8c7025c513a56"
   },
   {
    "id": "menu_opening",
@@ -45,9 +45,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_menu_menu_opening.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_menu_menu_opening.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ff4b099b4b745b1db555f612fb12c5f50f11a3aa"
   },
   {
    "id": "menu_about",
@@ -58,9 +58,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_menu_menu_about.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_menu_menu_about.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3e22f580feb69ee441f4c3135162bea17f514aff"
   },
   {
    "id": "menu_copy",
@@ -71,9 +71,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_menu_menu_copy.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_menu_menu_copy.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dad0a92525bde74e3221c94186889e2ff8ce385d"
   },
   {
    "id": "menu_main",
@@ -84,9 +84,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_menu_menu_main.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_menu_menu_main.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e3d09dd9315ffc0a6692594008abc04e7e4ab239"
   },
   {
    "id": "menu_view_all",
@@ -97,9 +97,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_menu_menu_view_all.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_menu_menu_view_all.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0d258e8217d45808715d1946ca7475e2f8560ce2"
   },
   {
    "id": "menu_hirelings",
@@ -110,9 +110,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_menu_menu_hirelings.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_menu_menu_hirelings.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8a7835216334ad46188057d5a7508ef8720a1ba7"
   },
   {
    "id": "menu_transfer",
@@ -123,9 +123,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_menu_menu_transfer.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_menu_menu_transfer.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7b7b41aeef5f4b8d40832d290001b558e7da5111"
   },
   {
    "id": "inventory_premade",
@@ -136,9 +136,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_inventory_inventory_premade.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_inventory_inventory_premade.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "686666ac5a200017926c59f0156fff15f64233b6"
   },
   {
    "id": "menu_rename",
@@ -149,9 +149,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_menu_menu_rename.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_menu_menu_rename.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0a73b5106d3cdf3fbe274ddb9a989b6cce9e4f6d"
   },
   {
    "id": "create_roll",
@@ -162,9 +162,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_create_roll.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_create_roll.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "671577e2e4baa68cc1000c942839b55e66ade676"
   },
   {
    "id": "create_exchange",
@@ -175,9 +175,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_create_exchange.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_create_exchange.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0d40625a4f7b94d6f29766f6d6284088744162f2"
   },
   {
    "id": "create_race",
@@ -188,9 +188,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_create_race.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_create_race.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "196547f836148b5eeca072e2204401ce2b205689"
   },
   {
    "id": "create_alignment",
@@ -201,9 +201,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_create_alignment.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_create_alignment.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f467f84dc147f9a84ab10161f8708b2a0ffa10d4"
   },
   {
    "id": "create_sex",
@@ -214,9 +214,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_create_sex.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_create_sex.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a63751f7a4e895b4de1b62daee263fd113e0e74e"
   },
   {
    "id": "create_name",
@@ -227,9 +227,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_create_name.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_create_name.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "872c6e476610392111334ce440e328bf7c6e1320"
   },
   {
    "id": "menu_inn_list",
@@ -240,9 +240,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_menu_menu_inn_list.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_menu_menu_inn_list.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9f6f22c0783f3005fb10145ae6b5839ffbdb92dc"
   },
   {
    "id": "gameplay_inn_start",
@@ -253,9 +253,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_inn_start.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_inn_start.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2b79507f4fb11f91b53148b61c577f6b776eeb59"
   },
   {
    "id": "dialogue_spirit_corak",
@@ -266,9 +266,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_spirit_corak.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_spirit_corak.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f338bf67037e08932cde09c9336de7084fee0043"
   },
   {
    "id": "inventory_quickref",
@@ -279,9 +279,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_inventory_inventory_quickref.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_inventory_inventory_quickref.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "12c48a4cd8a5e8bf67335d476fb0cbb967df8a5d"
   },
   {
    "id": "inventory_profile_ryz",
@@ -292,9 +292,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_inventory_inventory_profile_ryz.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_inventory_inventory_profile_ryz.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "945bb4e21329741d16bf8f0988a999ed7fd639d0"
   },
   {
    "id": "save_innkeeper",
@@ -305,9 +305,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_save_save_innkeeper.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_save_save_innkeeper.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2c71c664f9f2e8649f2dc0bbccdb6974ed199639"
   },
   {
    "id": "save_signed_in",
@@ -318,9 +318,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_save_save_signed_in.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_save_save_signed_in.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0df52130c1838ad6c5c303328d5b0bdbe3d28540"
   },
   {
    "id": "gameplay_middlegate_sign",
@@ -331,9 +331,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_middlegate_sign.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_middlegate_sign.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "10bd9a811d8b62fe2561a383f58b1a75957a3948"
   },
   {
    "id": "shop_blacksmith_door",
@@ -344,9 +344,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_shop_blacksmith_door.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_shop_blacksmith_door.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5e96c278b02bc38dace2aa19812aa5ccb4b4b5b2"
   },
   {
    "id": "shop_blacksmith_menu",
@@ -357,9 +357,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_blacksmith_menu.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_blacksmith_menu.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "27d6b5018b8c4815dcb0552dcbac7a769dc267ac"
   },
   {
    "id": "shop_blacksmith_weapons",
@@ -370,9 +370,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_blacksmith_weapons.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_blacksmith_weapons.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f7f628dc695eac0bc214c1d88f556877881a56f4"
   },
   {
    "id": "shop_blacksmith_specials",
@@ -383,9 +383,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_blacksmith_specials.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_blacksmith_specials.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dcd495cc21bae76b2f6337a3681e1d6bba1bf81b"
   },
   {
    "id": "shop_blacksmith_armor",
@@ -396,9 +396,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_blacksmith_armor.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_blacksmith_armor.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e71bd58d9f649daa9992f2f1039a421aa4525980"
   },
   {
    "id": "shop_blacksmith_misc",
@@ -409,9 +409,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_blacksmith_misc.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_blacksmith_misc.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e8f7e0971821acdaf196903cef9dfe364a9f31a6"
   },
   {
    "id": "shop_blacksmith_bought",
@@ -422,9 +422,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_blacksmith_bought.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_blacksmith_bought.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4b275d8118f39791c7cae37fba16d06ae008574f"
   },
   {
    "id": "shop_blacksmith_sell",
@@ -435,9 +435,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_blacksmith_sell.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_blacksmith_sell.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "33564251c23bb49ecd3aac69988dd2baacd20049"
   },
   {
    "id": "shop_blacksmith_identify",
@@ -448,9 +448,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_blacksmith_identify.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_blacksmith_identify.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d919f77305fe19095738f1c4483d399ada08b974"
   },
   {
    "id": "dialogue_waitress",
@@ -461,9 +461,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_waitress.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_waitress.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6fc6666b8a9e5e1d0468a530c302193a07d87bb9"
   },
   {
    "id": "shop_tavern_menu",
@@ -474,9 +474,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_tavern_menu.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_tavern_menu.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a9532dd11b703aee271853bd33fb87b07348e21d"
   },
   {
    "id": "shop_tavern_drinks",
@@ -487,9 +487,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_tavern_drinks.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_tavern_drinks.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "58fce6b58da3be34be5f3c25ab4b018d2bb37627"
   },
   {
    "id": "shop_tavern_specialties",
@@ -500,9 +500,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_tavern_specialties.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_tavern_specialties.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "22f82c237f9737dcd8a9ab9b5c83db55f1d40880"
   },
   {
    "id": "shop_tavern_tip",
@@ -513,9 +513,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_tavern_tip.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_tavern_tip.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dc371cc7d6657c814955f07acc6194890c516f04"
   },
   {
    "id": "dialogue_tavern_rumor",
@@ -526,9 +526,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_tavern_rumor.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_tavern_rumor.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9897d241adda27a37826c61c2938dca8613d8129"
   },
   {
    "id": "hud_food_frenzy",
@@ -539,9 +539,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_hud_hud_food_frenzy.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_hud_hud_food_frenzy.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3645abd37a09362d599a40aa0a201e1bb3d901bb"
   },
   {
    "id": "system_temple",
@@ -552,9 +552,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_temple.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_temple.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e3f5f4f73576ea67414614343aec48d7b32cee97"
   },
   {
    "id": "shop_temple_menu",
@@ -565,9 +565,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_temple_menu.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_temple_menu.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "377abb507645a82aaaacb9fcc7f14497fb44a103"
   },
   {
    "id": "shop_temple_donation",
@@ -578,9 +578,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_temple_donation.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_temple_donation.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e8986f742d2b190691962968be7bc5931711c8df"
   },
   {
    "id": "shop_temple_spell_refused",
@@ -591,9 +591,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_temple_spell_refused.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_temple_spell_refused.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "801be6083050a00235364ba441ef3d5642a1439b"
   },
   {
    "id": "system_training",
@@ -604,9 +604,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_training.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_training.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8633e13c55c2af73723af930779afb1ad0f1e5a1"
   },
   {
    "id": "system_training_need",
@@ -617,9 +617,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_training_need.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_training_need.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "67bb86d1f311510a28e9caddbf3c58677dd4169e"
   },
   {
    "id": "system_mage_guild",
@@ -630,9 +630,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_mage_guild.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_mage_guild.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fdb6f97634a7a8777308cb8c0640b2c327aab178"
   },
   {
    "id": "dialogue_sages",
@@ -643,9 +643,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_sages.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_sages.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ea1e8a1db92507d74c3826bc81b0d688366c7f0c"
   },
   {
    "id": "shop_sages_members_only",
@@ -656,9 +656,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_shop_shop_sages_members_only.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_shop_shop_sages_members_only.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f29606a1b2575bce629553cde1823121ac05b9e9"
   },
   {
    "id": "system_locksmith",
@@ -669,9 +669,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_locksmith.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_locksmith.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e523a0296b2fd45021bf9f5f7417f7cc89e155e0"
   },
   {
    "id": "system_poorman_portal",
@@ -682,9 +682,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_poorman_portal.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_poorman_portal.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "edb50fb01cf0f4aea217a7f9709d8ea84d7300d9"
   },
   {
    "id": "system_travel_agent",
@@ -695,9 +695,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_travel_agent.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_travel_agent.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fb334641abfd497a239d8bba2a320348d0ebb395"
   },
   {
    "id": "system_travel_booked",
@@ -708,9 +708,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_travel_booked.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_travel_booked.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b5244d8074291ab13d34da240b5e849f2d238130"
   },
   {
    "id": "system_otto_mapper",
@@ -721,9 +721,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_otto_mapper.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_otto_mapper.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "308cba10c62fccef3d80a9d486a4a1635dec79de"
   },
   {
    "id": "inventory_skill_learned",
@@ -734,9 +734,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_inventory_inventory_skill_learned.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_inventory_inventory_skill_learned.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4298f0a5bc6b57362344a2e3ee70f2cfde5cf5a4"
   },
   {
    "id": "system_pathfinder",
@@ -747,9 +747,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_pathfinder.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_pathfinder.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1eb866f4394c4caa66caefffc68cbc981f29048d"
   },
   {
    "id": "system_mountaineer",
@@ -760,9 +760,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_mountaineer.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_mountaineer.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "da4b877f898386c7fd611d315b5b789d30de6a5e"
   },
   {
    "id": "system_detox",
@@ -773,9 +773,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_detox.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_detox.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0dd97e70b8036d53c6e8bd781b26f9d30e6b1b95"
   },
   {
    "id": "dialogue_nordon",
@@ -786,9 +786,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_nordon.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_nordon.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dcad41a91c185e5f28261d02a8b45ab52f47c1ce"
   },
   {
    "id": "dialogue_nordon_quest",
@@ -799,9 +799,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_nordon_quest.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_nordon_quest.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6f9582908d529e9d14c56dd4174a8a0f0e3ffc17"
   },
   {
    "id": "dialogue_nordonna",
@@ -812,9 +812,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_nordonna.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_nordonna.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "361d1eff9366ce035c5f3100a0f2c24937c8ecb8"
   },
   {
    "id": "gameplay_fountain_clairvoyance",
@@ -825,9 +825,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_fountain_clairvoyance.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_fountain_clairvoyance.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5ab5c107e9187b59544df663725a56ccaaa06094"
   },
   {
    "id": "gameplay_feldecarb",
@@ -838,9 +838,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_feldecarb.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_feldecarb.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2991cbb4ca901f1c444759f2e38b72085427649b"
   },
   {
    "id": "gameplay_arena_entrance",
@@ -851,9 +851,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_arena_entrance.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_arena_entrance.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d65b127c14be2f0c48ce7bc950ad6cd7cb1e5889"
   },
   {
    "id": "battle_skeletons",
@@ -864,9 +864,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_skeletons.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_skeletons.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "99a6edadbb46fdfc62806fe00633136988b966ea"
   },
   {
    "id": "battle_brain_eaters",
@@ -877,9 +877,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_brain_eaters.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_brain_eaters.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "aaa4fc57bde2167737dd056f5038cb7a5987bff2"
   },
   {
    "id": "battle_blood_suckers",
@@ -890,9 +890,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_blood_suckers.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_blood_suckers.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6051f0cca08ed831b02451e83801d718a564de79"
   },
   {
    "id": "gameplay_city_gates",
@@ -903,9 +903,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_city_gates.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_city_gates.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4b028e89accd44e756dd2d88e69cbb108ab595c8"
   },
   {
    "id": "gameplay_stairs_cavern",
@@ -916,9 +916,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_stairs_cavern.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_stairs_cavern.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1da4cfe48017718d0a981436051e03c810ea00e5"
   },
   {
    "id": "options_controls",
@@ -929,9 +929,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_options_options_controls.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_options_options_controls.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "41eefb54be87716249870def0237b02a22ed07e3"
   },
   {
    "id": "system_protect",
@@ -942,9 +942,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_protect.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_protect.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "07a1ee12b4c5dcd05bc28f466c011f8991636dd2"
   },
   {
    "id": "system_rest_prompt",
@@ -955,9 +955,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_rest_prompt.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_rest_prompt.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fdde54ec2b681b454674b5d51e1a1a379d3c91e7"
   },
   {
    "id": "system_rest_done",
@@ -968,9 +968,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_rest_done.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_rest_done.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e026d41d0456a323244a9c655bdf21412caf47d9"
   },
   {
    "id": "system_search_nothing",
@@ -981,9 +981,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_search_nothing.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_search_nothing.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2888318bacf2daa7a00cbcde95875d424c8fec1f"
   },
   {
    "id": "system_location",
@@ -994,9 +994,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_location.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_location.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "749d99ae15739c0c1ee5260c8a13fc74319ccc6c"
   },
   {
    "id": "system_exchange",
@@ -1007,9 +1007,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_exchange.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_exchange.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "15728ee14c6ea929d8c4f30aba5e11ebd74e80a4"
   },
   {
    "id": "system_exchange_done",
@@ -1020,9 +1020,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_exchange_done.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_exchange_done.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9acfc19cce8c1847d756fd7b6c4da3b3898add75"
   },
   {
    "id": "system_dismiss",
@@ -1033,9 +1033,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_dismiss.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_dismiss.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a54a3c13d4badbf6483c5521daecab6018c802f3"
   },
   {
    "id": "hud_quickref_vet",
@@ -1046,9 +1046,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_hud_hud_quickref_vet.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_hud_hud_quickref_vet.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "781b01994aac62fdb90abf710949095b51b79e40"
   },
   {
    "id": "inventory_profile_vet",
@@ -1059,9 +1059,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_inventory_inventory_profile_vet.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_inventory_inventory_profile_vet.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e0dec2c6b738b3d2c52c04f59e5e2eb4020d6424"
   },
   {
    "id": "inventory_equip_prompt",
@@ -1072,9 +1072,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_inventory_inventory_equip_prompt.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_inventory_inventory_equip_prompt.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f66e5dcce62acccaa0edbe3282b9f999e93138af"
   },
   {
    "id": "inventory_remove_prompt",
@@ -1085,9 +1085,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_inventory_inventory_remove_prompt.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_inventory_inventory_remove_prompt.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3ba1b62efb701ab168fea070fd8abd78d48228ea"
   },
   {
    "id": "inventory_removed",
@@ -1098,9 +1098,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_inventory_inventory_removed.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_inventory_inventory_removed.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8ad16dd2d008c764ddf383d2595ded35c62d5a1e"
   },
   {
    "id": "inventory_dropped",
@@ -1111,9 +1111,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_inventory_inventory_dropped.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_inventory_inventory_dropped.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ff82f2fbed68214b5cd5ce3a4e2193226cb79d9b"
   },
   {
    "id": "system_trade_what",
@@ -1124,9 +1124,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_trade_what.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_trade_what.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "61f4897ca5f95b0b307f66e0210b79d81828666d"
   },
   {
    "id": "system_trade_done",
@@ -1137,9 +1137,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_trade_done.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_trade_done.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5414810873ff415d678341f554017d4bd7ca7e63"
   },
   {
    "id": "system_share_done",
@@ -1150,9 +1150,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_share_done.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_share_done.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e379a1293613693b44cae8693c1b72a713f54554"
   },
   {
    "id": "system_gather_done",
@@ -1163,9 +1163,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_gather_done.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_gather_done.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bc8f97b2c306e85c285416b4b386a22398092478"
   },
   {
    "id": "system_use_prompt",
@@ -1176,9 +1176,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_use_prompt.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_use_prompt.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "68f59332fd05cbc27224e7e6960fb334650a854e"
   },
   {
    "id": "inventory_profile_mnz",
@@ -1189,9 +1189,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_inventory_inventory_profile_mnz.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_inventory_inventory_profile_mnz.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1f2eedfb035bd75513b476210930bd496a63fcfc"
   },
   {
    "id": "system_spellbook_deddo",
@@ -1202,9 +1202,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_spellbook_deddo.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_spellbook_deddo.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4a0ca7069ab0a0691a2cc6567131921160698efc"
   },
   {
    "id": "system_protect_elements",
@@ -1215,9 +1215,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_protect_elements.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_protect_elements.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4c91a3fa50389cd6651a473a6961c46541ff6b1b"
   },
   {
    "id": "system_cast_spellbook",
@@ -1228,9 +1228,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_cast_spellbook.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_cast_spellbook.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "48c5514dbcc6a56fbd6ba5f9f915ea430d8ab759"
   },
   {
    "id": "battle_encounter",
@@ -1241,9 +1241,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_encounter.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_encounter.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "86e5e9d2ee6abbaf9b03d3376e3165b516da019f"
   },
   {
    "id": "battle_options_caster",
@@ -1254,9 +1254,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_options_caster.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_options_caster.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6ff18100268229820b63e8844621569ac02547da"
   },
   {
    "id": "battle_options_fighter",
@@ -1267,9 +1267,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_options_fighter.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_options_fighter.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5e8fe96d8caffcc3e534d84ebc178bbfcd9008f3"
   },
   {
    "id": "battle_bribe_prompt",
@@ -1280,9 +1280,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_bribe_prompt.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_bribe_prompt.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dc7c7dcfbe397c471bdfd8995e62c71516e51fca"
   },
   {
    "id": "battle_run_away",
@@ -1293,9 +1293,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_run_away.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_run_away.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cfc5b94b07d999bfcc88dd6ee88221a12bd617e8"
   },
   {
    "id": "battle_spell_hit",
@@ -1306,9 +1306,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_spell_hit.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_spell_hit.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b2366eb204ab086e780149efba4969eea294f0c5"
   },
   {
    "id": "battle_view",
@@ -1319,9 +1319,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_view.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_view.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2c2f193ca905322d080d53a8f0fba72af1382360"
   },
   {
    "id": "battle_exchange_prompt",
@@ -1332,9 +1332,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_exchange_prompt.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_exchange_prompt.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f151eaf3656e61fd73a764df4ceecedd1971347c"
   },
   {
    "id": "battle_exchange_done",
@@ -1345,9 +1345,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_exchange_done.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_exchange_done.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "077a29a50d1c21499f42bdecb3e7b10407284746"
   },
   {
    "id": "battle_waits_opening",
@@ -1358,9 +1358,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_waits_opening.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_waits_opening.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4795da271233a68fd5b68947b24a6f64e442acdc"
   },
   {
    "id": "battle_options_knight",
@@ -1371,9 +1371,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_options_knight.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_options_knight.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e49d03444ff3935e9ef50c10e5fc03aec25b32f3"
   },
   {
    "id": "battle_fight_prompt",
@@ -1384,9 +1384,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_fight_prompt.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_fight_prompt.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ce08bc46bfce6e0771ef42f5d07a8482d64eb964"
   },
   {
    "id": "battle_fight_hit",
@@ -1397,9 +1397,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_fight_hit.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_fight_hit.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "285ce875f8c9e253bbf0607d10be1b2861b603da"
   },
   {
    "id": "battle_delay",
@@ -1410,9 +1410,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_delay.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_delay.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5af673cf86aacb89409dce2fdf53fc7840e54656"
   },
   {
    "id": "battle_protect",
@@ -1423,9 +1423,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_protect.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_protect.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5986ca9146e1ada8502f72cfc15da28795fcc7f8"
   },
   {
    "id": "battle_cast_prompt",
@@ -1436,9 +1436,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_cast_prompt.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_cast_prompt.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6cda051a66213bc760ebc9c4393da1f220a56d45"
   },
   {
    "id": "battle_run",
@@ -1449,9 +1449,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_run.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_run.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6ea5382370c1a326a4a53c4f08ae32ff5d883a1b"
   },
   {
    "id": "battle_quick_shoot",
@@ -1462,9 +1462,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_quick_shoot.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_quick_shoot.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f25168f9241b31c2119a3bca57ca2bf189e39fc7"
   },
   {
    "id": "battle_victory",
@@ -1475,9 +1475,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_victory.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_victory.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "73b6074e7a7364e1dde31e539dfeeda5968aa7f8"
   },
   {
    "id": "system_training_cost",
@@ -1488,9 +1488,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_training_cost.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_training_cost.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "05d5d3869425642b6c848c4baaa1d0c6e68e0928"
   },
   {
    "id": "system_training_levelup",
@@ -1501,9 +1501,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_training_levelup.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_training_levelup.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "eea000416358ae1acf0968ee8ac30ba8cac809ce"
   },
   {
    "id": "gameplay_atlantium",
@@ -1514,9 +1514,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_atlantium.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_atlantium.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "39440f67405317a63e877f25ed3dd2c5c4a80be2"
   },
   {
    "id": "dialogue_atlantium_inn",
@@ -1527,9 +1527,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_atlantium_inn.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_atlantium_inn.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "561bb6991b3913d10eebb9aaeaf1e51aae69c2a3"
   },
   {
    "id": "save_atlantium",
@@ -1540,9 +1540,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_save_save_atlantium.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_save_save_atlantium.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5368b430f402816417f3e71dd78313f974e31b62"
   },
   {
    "id": "system_athlete",
@@ -1553,9 +1553,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_athlete.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_athlete.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d61a685db45ead7b75c56c761b9c5cd601f14612"
   },
   {
    "id": "system_hero_skill",
@@ -1566,9 +1566,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_hero_skill.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_hero_skill.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e38fbf7bed0013d7db2bf9f042a747aab5f2cd1c"
   },
   {
    "id": "gameplay_atlantium_jail",
@@ -1579,9 +1579,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_atlantium_jail.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_atlantium_jail.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e2e80d1bf9331b13cd362635e9bf16525164bbf0"
   },
   {
    "id": "system_polar_bear",
@@ -1592,9 +1592,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_polar_bear.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_polar_bear.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7694467319edb97e2d201ec46b16a48b6b3b113a"
   },
   {
    "id": "gameplay_tundara_frozen",
@@ -1605,9 +1605,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_tundara_frozen.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_tundara_frozen.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "485d0f86d933b42bd1f93bc1041f099e253847c2"
   },
   {
    "id": "system_crusader",
@@ -1618,9 +1618,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_crusader.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_crusader.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7dd2a746e4c493de446c59c4f2c5c89ca885e267"
   },
   {
    "id": "system_merchant",
@@ -1631,9 +1631,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_merchant.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_merchant.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "57fb6bb18c824f27925804b3014a99016e3cd5f3"
   },
   {
    "id": "system_vulcania_export",
@@ -1644,9 +1644,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_vulcania_export.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_vulcania_export.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f7cfff286f8fdadd6e1e77ae371ac04e9dfbc78b"
   },
   {
    "id": "system_illusionist",
@@ -1657,9 +1657,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_illusionist.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_illusionist.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "29bac42cd8f8041c0585ea7f2c7dbbde8e3149c8"
   },
   {
    "id": "gameplay_vulcania_wild",
@@ -1670,9 +1670,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_vulcania_wild.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_vulcania_wild.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1ac1d96eb8b12b90ffdcf3399867a82a96665ef1"
   },
   {
    "id": "gameplay_lava_grenade",
@@ -1683,9 +1683,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_lava_grenade.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_lava_grenade.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "af2a9748f15558629b67b03d6a5661b604032252"
   },
   {
    "id": "gameplay_monster_bowl",
@@ -1696,9 +1696,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_monster_bowl.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_monster_bowl.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "840d20b9f812c27435c002519b6192ba3a33de64"
   },
   {
    "id": "dialogue_drunk_sorcerer",
@@ -1709,9 +1709,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_drunk_sorcerer.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_drunk_sorcerer.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "df616c7f97dc73f5df3942f359bdea2e00eca0da"
   },
   {
    "id": "dialogue_wino",
@@ -1722,9 +1722,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_wino.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_wino.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e2922e9cbd32823bb6154f46d59b6cdc2149e84b"
   },
   {
    "id": "gameplay_sandsobar_sewage",
@@ -1735,9 +1735,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_sandsobar_sewage.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_sandsobar_sewage.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "58c8580a3a8d3fb1735f53b9bb8c0948579d9bc2"
   },
   {
    "id": "gameplay_outdoors_c2",
@@ -1748,9 +1748,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_outdoors_c2.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_outdoors_c2.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9d886d078251ba434d13719055c6b590aa6c431a"
   },
   {
    "id": "gameplay_pegasus",
@@ -1761,9 +1761,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_gameplay_pegasus.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_gameplay_pegasus.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "565205c0b49a1203e52065f8b22cf61c779e2ab8"
   },
   {
    "id": "system_ferry",
@@ -1774,9 +1774,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_ferry.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_ferry.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "becd0b0acdc6392308f5c00a94aecdb48ed66d8b"
   },
   {
    "id": "system_river_walker",
@@ -1787,9 +1787,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_river_walker.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_river_walker.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "11d62286fa40cd674427b982a78f684acf1cb5c9"
   },
   {
    "id": "gameplay_corak_cave_entrance",
@@ -1800,9 +1800,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_corak_cave_entrance.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_corak_cave_entrance.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0cf6e6caa3b5c219d6e36e499cf8c9ff8d322bfc"
   },
   {
    "id": "gameplay_chosen_only",
@@ -1813,9 +1813,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_chosen_only.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_chosen_only.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2a03fddca0c2489ff93e3e1570311e907d3adbf0"
   },
   {
    "id": "gameplay_xabran_800",
@@ -1826,9 +1826,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_xabran_800.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_xabran_800.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2b040e9ca3de33adb67b9315b7b1cc2f4a562a85"
   },
   {
    "id": "gameplay_cavern_lit",
@@ -1839,9 +1839,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_cavern_lit.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_cavern_lit.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b350ebf73e4a54958d44ca9f036cf2495042d104"
   },
   {
    "id": "env_tundra_a1",
@@ -1852,9 +1852,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_tundra_a1.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_tundra_a1.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "38664fb4fe76e7df9f0d91196eaf629bec7c6d89"
   },
   {
    "id": "env_signpost_b1",
@@ -1865,9 +1865,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_signpost_b1.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_signpost_b1.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9a580d54c5d9a7737199c3a97ee9231f1c46093b"
   },
   {
    "id": "env_mountains_c1",
@@ -1878,9 +1878,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_mountains_c1.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_mountains_c1.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b69e7170fdc3e7833810b6eb84b338d62c48aff4"
   },
   {
    "id": "env_forest_d1",
@@ -1891,9 +1891,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_forest_d1.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_forest_d1.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c7078f254177f568e7026f124fb1643d5983497d"
   },
   {
    "id": "env_snowforest_b2",
@@ -1904,9 +1904,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_snowforest_b2.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_snowforest_b2.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "84854ada11c9805d1400e341f3ae089d8bfd3b46"
   },
   {
    "id": "env_sea_a3",
@@ -1917,9 +1917,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_sea_a3.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_sea_a3.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a1c1e5a22cfeace07c326a92e03a4f8930f2a2c6"
   },
   {
    "id": "env_lake_c3",
@@ -1930,9 +1930,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_lake_c3.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_lake_c3.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d1e650fcdcd2a1c99438cea95823365076d536b4"
   },
   {
    "id": "env_lava_e1",
@@ -1943,9 +1943,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_lava_e1.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_lava_e1.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "46708082ae5c695ccf11c188f788b64951cf2817"
   },
   {
    "id": "env_desert_e2",
@@ -1956,9 +1956,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_desert_e2.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_desert_e2.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "20f2d7f91a44106c2448ef18681b10e5a7faa80e"
   },
   {
    "id": "env_meadow_c4",
@@ -1969,9 +1969,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_meadow_c4.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_meadow_c4.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "41eb861ccc7d6755d4526b1e9bf97591e3e116eb"
   },
   {
    "id": "env_signpost_d4",
@@ -1982,9 +1982,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_signpost_d4.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_signpost_d4.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fc2c7d0680b9cfc6de0fa81141f3136e2d531312"
   },
   {
    "id": "env_lava_d3",
@@ -1995,9 +1995,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_lava_d3.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_lava_d3.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6e4e10cad824ced583ec9297b70197879d57a684"
   },
   {
    "id": "cave_x_marks",
@@ -2008,9 +2008,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_cave_x_marks.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_cave_x_marks.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "16c0a471664ae5df5ebabd17dc04e9f94b14f523"
   },
   {
    "id": "cave_torture_chamber",
@@ -2021,9 +2021,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_cave_torture_chamber.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_cave_torture_chamber.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f4688ff61e95983c9e8eb0f7e531a399c5cdde09"
   },
   {
    "id": "cave_atlantian_deity",
@@ -2034,9 +2034,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_cave_atlantian_deity.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_cave_atlantian_deity.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "931d42a08105ed988aabbc0e8cc561271b6437d5"
   },
   {
    "id": "cave_scholar_statue",
@@ -2047,9 +2047,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_cave_scholar_statue.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_cave_scholar_statue.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "184bc8c2ae9b0c56b49ba3a0bd5efe0f9e61c006"
   },
   {
    "id": "cave_frozen_cadavers",
@@ -2060,9 +2060,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_cave_frozen_cadavers.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_cave_frozen_cadavers.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a48b1a4c5837bcd3d65e2d74b9d5091095b454b1"
   },
   {
    "id": "battle_vulcania_cavern",
@@ -2073,9 +2073,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_vulcania_cavern.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_vulcania_cavern.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1867479b6d835fcdeb76d3fc42adb3a645821de6"
   },
   {
    "id": "system_thief_trainer",
@@ -2086,9 +2086,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_thief_trainer.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_thief_trainer.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "014995f8e16562e9094db0055a128c8b162498f6"
   },
   {
    "id": "dialogue_zombie_pass",
@@ -2099,9 +2099,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_zombie_pass.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_zombie_pass.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6df4db2e4d17a782cd92cfe16297ed78e0dccc55"
   },
   {
    "id": "battle_corak_cave",
@@ -2112,9 +2112,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_corak_cave.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_corak_cave.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1a8701b9d4c29f111207d74a83ff184e79406119"
   },
   {
    "id": "battle_ice_cavern",
@@ -2125,9 +2125,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_ice_cavern.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_ice_cavern.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2f2e33ccdcf970b12d96731d97e849b4846a6fc9"
   },
   {
    "id": "gameplay_sarakin_mine",
@@ -2138,9 +2138,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_sarakin_mine.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_sarakin_mine.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4ac3e34a66b3fcd33cdd870692cc403552154759"
   },
   {
    "id": "gameplay_murray_door",
@@ -2151,9 +2151,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_murray_door.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_murray_door.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "de70609715d8093bd226c74b90d488cff8f0785c"
   },
   {
    "id": "gameplay_goofy_juice",
@@ -2164,9 +2164,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_goofy_juice.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_goofy_juice.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "451bfde53e1839ec88cb97a5692661c9e0b3c203"
   },
   {
    "id": "gameplay_druid_sign",
@@ -2177,9 +2177,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_druid_sign.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_druid_sign.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "70a1bcbb75061beeabd66c0ea20767f4b233c8c5"
   },
   {
    "id": "gameplay_spinach",
@@ -2190,9 +2190,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_spinach.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_spinach.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7a73cbad8da038d94bff695506d1c8ceeb8e92e2"
   },
   {
    "id": "gameplay_paladins_only",
@@ -2203,9 +2203,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_paladins_only.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_paladins_only.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e94f4837c1cea1316a344a9cf965aba111bece76"
   },
   {
    "id": "gameplay_dragon_dung",
@@ -2216,9 +2216,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_dragon_dung.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_dragon_dung.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9967f29a879d93c8b44f794622215c2dc9cd9a1e"
   },
   {
    "id": "gameplay_swirling_pool",
@@ -2229,9 +2229,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_swirling_pool.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_swirling_pool.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "63e452f86216960470c11a33608265d191facd64"
   },
   {
    "id": "dialogue_element_orb",
@@ -2242,9 +2242,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_element_orb.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_element_orb.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "37f275e8ffdd18e7ffe907ec7b81f2a05dfdc6eb"
   },
   {
    "id": "gameplay_dawn_throne",
@@ -2255,9 +2255,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_dawn_throne.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_dawn_throne.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ce49e03a1dfa1752044c7978595cf6e321e49215"
   },
   {
    "id": "system_gemmaker",
@@ -2268,9 +2268,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_system_system_gemmaker.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_system_system_gemmaker.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7425e51a0106925095283dc72a06cb57bb68ab21"
   },
   {
    "id": "gameplay_flaming_sword",
@@ -2281,9 +2281,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_flaming_sword.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_flaming_sword.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "20c0a136032757bf8f05e5530fde9c6117eb2234"
   },
   {
    "id": "gameplay_treadmill",
@@ -2294,9 +2294,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_treadmill.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_treadmill.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cddb776920064cdf091c5b57f3c424de018db692"
   },
   {
    "id": "env_plane_air",
@@ -2307,9 +2307,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_plane_air.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_plane_air.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "483e9823407bd9f0be1cdd55c972c608130e706a"
   },
   {
    "id": "env_plane_fire",
@@ -2320,9 +2320,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_plane_fire.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_plane_fire.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8818b20e384476932f88e81d1007656bff54b028"
   },
   {
    "id": "env_plane_earth",
@@ -2333,9 +2333,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_plane_earth.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_plane_earth.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c8122a2ee6e61b6c3b34a7da94caa5fce897e88d"
   },
   {
    "id": "env_plane_water",
@@ -2346,9 +2346,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_plane_water.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_plane_water.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4c1996a765333748dc769f54f7c5778147cbd35c"
   },
   {
    "id": "dialogue_orc_joker",
@@ -2359,9 +2359,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_orc_joker.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_orc_joker.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "57fec93834bc33430ae8881fb25b65656fae46cd"
   },
   {
    "id": "gameplay_bottomless_pit",
@@ -2372,9 +2372,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_bottomless_pit.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_bottomless_pit.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "20ff7c83765da4ab43762d4c5d459fe4669d8bf8"
   },
   {
    "id": "battle_killer_bees",
@@ -2385,9 +2385,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_killer_bees.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_killer_bees.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "50e25601c5d3c79e0322ed5e2b8f32d57bfb2a42"
   },
   {
    "id": "gameplay_giant_lever",
@@ -2398,9 +2398,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_giant_lever.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_giant_lever.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bc3c12bfe6331156a353381e33d94f632abec106"
   },
   {
    "id": "gameplay_syrup_walls",
@@ -2411,9 +2411,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_syrup_walls.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_syrup_walls.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "00a1e30060ab3ed8bf0ccbbe603636f7e0396dc8"
   },
   {
    "id": "gameplay_magical_well",
@@ -2424,9 +2424,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_magical_well.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_magical_well.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "da699231efdcd17d7d628c1b6527c6c6049d8b1b"
   },
   {
    "id": "gameplay_fear_no_evil",
@@ -2437,9 +2437,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_fear_no_evil.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_fear_no_evil.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7f76d89ee3cdbbc8562b1c822aacf556f68da2f7"
   },
   {
    "id": "dialogue_ybmug",
@@ -2450,9 +2450,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_ybmug.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_ybmug.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "36fee56f35d6230eaa04fa402820c8c240fcdb17"
   },
   {
    "id": "gameplay_access_code",
@@ -2463,9 +2463,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_access_code.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_access_code.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4ead28b64182d837f7a38f45d11b8a62760fa544"
   },
   {
    "id": "dialogue_yekop",
@@ -2476,9 +2476,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_yekop.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_yekop.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "40ce3501727d8bf613adb20c2a637a56b663583e"
   },
   {
    "id": "env_castle_hillstone",
@@ -2489,9 +2489,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_castle_hillstone.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_castle_hillstone.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d7f75b279b1fd722755d861bc85775b4aabdb214"
   },
   {
    "id": "gameplay_slayer_palace",
@@ -2502,9 +2502,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_slayer_palace.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_slayer_palace.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ca113de8aa2c6c8619cd83a227300b188cbf8969"
   },
   {
    "id": "gameplay_hoardall_palace",
@@ -2515,9 +2515,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_hoardall_palace.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_hoardall_palace.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "141c39997fad755a108427f4ac0f18912e6ce8db"
   },
   {
    "id": "gameplay_unmarked_deadly",
@@ -2528,9 +2528,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_unmarked_deadly.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_unmarked_deadly.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a0ce4c109aee940785f1cd3be0977b28f879fdc9"
   },
   {
    "id": "dialogue_xabran_disc",
@@ -2541,9 +2541,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_xabran_disc.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_xabran_disc.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b8124aef79609c868b7506a2f9232d987be04d2d"
   },
   {
    "id": "env_castle_xabran",
@@ -2554,9 +2554,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_env_castle_xabran.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_env_castle_xabran.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3aeb5252ad73a3a6889932737a3539136367c0ba"
   },
   {
    "id": "boss_jouster",
@@ -2567,9 +2567,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boss_boss_jouster.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boss_boss_jouster.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "db3d448997cd9e12e1ed37f8cf8f678ce3ae3897"
   },
   {
    "id": "boss_queen_beetle",
@@ -2580,9 +2580,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boss_boss_queen_beetle.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boss_boss_queen_beetle.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6d36ef7c1409bba08a7579453cfb5fd5ff7e75fd"
   },
   {
    "id": "dialogue_lich_lord",
@@ -2593,9 +2593,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_lich_lord.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_lich_lord.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "06ee4b10acaa8cfad5d887e5f93fd9fd7d40908f"
   },
   {
    "id": "boss_lich_lord",
@@ -2606,9 +2606,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boss_boss_lich_lord.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boss_boss_lich_lord.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "372a79789776ed02a55c2747f97adacd76b2f075"
   },
   {
    "id": "gameplay_mandagual_keep",
@@ -2619,9 +2619,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_mandagual_keep.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_mandagual_keep.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e2155746b5d7fcdd7c1b21995ed318adc138df47"
   },
   {
    "id": "dialogue_kalohn_asks",
@@ -2632,9 +2632,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_kalohn_asks.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_kalohn_asks.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3831dd4acb33ef667444c3395df22937a251fd2a"
   },
   {
    "id": "dialogue_kalohn_wins",
@@ -2645,9 +2645,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_kalohn_wins.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_kalohn_wins.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8f60cf71e8829c790cd80f874006a39ccd6243ba"
   },
   {
    "id": "boss_mega_dragon",
@@ -2658,9 +2658,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boss_boss_mega_dragon.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boss_boss_mega_dragon.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d8c8e5673fb74b903c7f79f7e2ae171eed48ab94"
   },
   {
    "id": "battle_sl_phantasms",
@@ -2671,9 +2671,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_sl_phantasms.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_sl_phantasms.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "81ca93fbb306731a99064ed3986f7b90d54020c6"
   },
   {
    "id": "battle_sl_gargoyles",
@@ -2684,9 +2684,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_sl_gargoyles.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_sl_gargoyles.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2ed4e21369dd547df403de5e38b8540430478d58"
   },
   {
    "id": "battle_sl_guardians",
@@ -2697,9 +2697,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_sl_guardians.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_sl_guardians.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e9ca2cd1afe8555856cb88b3cf6b41117b79e035"
   },
   {
    "id": "battle_sl_warbots",
@@ -2710,9 +2710,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_sl_warbots.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_sl_warbots.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "31567e4e78fcd4389f3f07d6439a52413af32dc8"
   },
   {
    "id": "battle_sl_alien_probes",
@@ -2723,9 +2723,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_sl_alien_probes.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_sl_alien_probes.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e9f85633c867c3c9bb45f37b23d56c5d1dceac61"
   },
   {
    "id": "battle_square_lake_devils",
@@ -2736,9 +2736,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boss_battle_square_lake_devils.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boss_battle_square_lake_devils.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e2b93c99f8b1410c315d8f9820341a62c52fce7b"
   },
   {
    "id": "dialogue_devil_kings_bow",
@@ -2749,9 +2749,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_dialogue_dialogue_devil_kings_bow.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_dialogue_dialogue_devil_kings_bow.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3f778ad123eac60ae3745c9f90db491e7d58de28"
   },
   {
    "id": "extra_just_kidding",
@@ -2762,9 +2762,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_extra_extra_just_kidding.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_extra_extra_just_kidding.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "08ae7ea80d4202a21ec2ca6d67d6463d059cfc3c"
   },
   {
    "id": "gameplay_square_lake_gate",
@@ -2775,9 +2775,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameplay_gameplay_square_lake_gate.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameplay_gameplay_square_lake_gate.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c0cb7cc290fa2d8a0fcee6a19c2f3e0b879eaf9b"
   },
   {
    "id": "battle_party_falls",
@@ -2788,9 +2788,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_battle_battle_party_falls.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_battle_battle_party_falls.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ade960447b99ddb72d6dbdcc9989de4b857acf7e"
   },
   {
    "id": "gameover_death_strikes",
@@ -2801,9 +2801,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_gameover_gameover_death_strikes.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_gameover_gameover_death_strikes.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "71cf8f0204e417a0cbbbf5cf064354c8ae0be800"
   },
   {
    "id": "gameover_inn_empty",
@@ -2814,9 +2814,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_menu_gameover_inn_empty.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_menu_gameover_inn_empty.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "543977febcae6869f54a499406f10aa6ae62e1f6"
   },
   {
    "id": "boss_sheltem_appears",
@@ -2827,9 +2827,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boss_boss_sheltem_appears.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boss_boss_sheltem_appears.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "47b54c8dab31512fa492cbc254e099bc20e38e04"
   },
   {
    "id": "boss_sheltem_surprise",
@@ -2840,9 +2840,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boss_boss_sheltem_surprise.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boss_boss_sheltem_surprise.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "90431ed424a0db1729718aa93ec6a93d937a8620"
   },
   {
    "id": "boss_sheltem_fight",
@@ -2853,9 +2853,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boss_boss_sheltem_fight.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boss_boss_sheltem_fight.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a61e220ce268d40881b29b1268a4f1f7f4f2e442"
   },
   {
    "id": "boss_sheltem_slashes",
@@ -2866,9 +2866,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boss_boss_sheltem_slashes.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boss_boss_sheltem_slashes.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "db75cf2019990bffd25ad0f1dcba3d5f8cd05f47"
   },
   {
    "id": "boss_sheltem_victory",
@@ -2879,9 +2879,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_boss_boss_sheltem_victory.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_boss_boss_sheltem_victory.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7c8ebe851cafa5e9d82fa63a4a62f3c7a1a96d97"
   },
   {
    "id": "ending_control_room",
@@ -2892,9 +2892,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_ending_ending_control_room.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_ending_ending_control_room.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cd705f6d602dd0de8913106d0d69417b3de04628"
   },
   {
    "id": "ending_collision",
@@ -2905,9 +2905,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_ending_ending_collision.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_ending_ending_collision.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6cba5a651e33167570f1870e1a59bf868a8a9050"
   },
   {
    "id": "ending_override_typed",
@@ -2918,9 +2918,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_ending_ending_override_typed.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_ending_ending_override_typed.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a974fdab9adb03c9d40a6402db319bbde3c60183"
   },
   {
    "id": "ending_recalculating",
@@ -2931,9 +2931,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_ending_ending_recalculating.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_ending_ending_recalculating.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e1571484d2cb024c10fa05791555f4c926cd9f83"
   },
   {
    "id": "ending_cryptogram",
@@ -2944,9 +2944,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_ending_ending_cryptogram.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_ending_ending_cryptogram.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "acd9934d28fefd3a9167a9af1bf987b7619f7068"
   },
   {
    "id": "ending_answer_typed",
@@ -2957,9 +2957,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_ending_ending_answer_typed.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_ending_ending_answer_typed.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4917a00b47d8cd01f87fd66fe43fcde8d60f0dcd"
   },
   {
    "id": "ending_congratulations",
@@ -2970,9 +2970,9 @@
    "model": "svga-8000",
    "source": "shoot.py",
    "file": "might-and-magic-2_dos_na_ending_ending_congratulations.png",
-   "file_3x": "3x/might-and-magic-2_dos_na_ending_ending_congratulations.png",
    "rom_sha1": "c11c7146614bbf697b884657adb718a963c631bc",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e6b5724e68e3368f2b9c7bebff7a0b9fea73bc08"
   }
  ]
 }

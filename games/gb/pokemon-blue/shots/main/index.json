@@ -19,9 +19,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_boot_boot_gamefreak.png",
-   "file_3x": "3x/pokemon-blue_gb_na_boot_boot_gamefreak.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "9d1d78397421710dea99a2ec48a844b785bec5a4"
   },
   {
    "id": "intro_fight",
@@ -32,9 +32,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_cutscene_intro_fight.png",
-   "file_3x": "3x/pokemon-blue_gb_na_cutscene_intro_fight.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "b3915d60692ccd692142d523227ed70b674235fc"
   },
   {
    "id": "title_screen",
@@ -45,9 +45,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_title_title_screen.png",
-   "file_3x": "3x/pokemon-blue_gb_na_title_title_screen.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "f42a75891b7ecd01b32eebaee9c54a839c6306b1"
   },
   {
    "id": "menu_main",
@@ -58,9 +58,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_menu_main.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_menu_main.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "10276514720d59acb7ca462497e8c0f1d9cbeb76"
   },
   {
    "id": "oak_intro",
@@ -71,9 +71,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_cutscene_oak_intro.png",
-   "file_3x": "3x/pokemon-blue_gb_na_cutscene_oak_intro.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "83d7a7cb0d1073a05b3ade4643567810aef4176d"
   },
   {
    "id": "oak_nidorino",
@@ -84,9 +84,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_cutscene_oak_nidorino.png",
-   "file_3x": "3x/pokemon-blue_gb_na_cutscene_oak_nidorino.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "1707c7989581d6d698392bf1a24b0471209a6611"
   },
   {
    "id": "oak_name_menu",
@@ -97,9 +97,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_oak_name_menu.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_oak_name_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "0e206d0b71dc631387e1d21a6bbb20781a57523f"
   },
   {
    "id": "naming_player",
@@ -110,9 +110,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_naming_player.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_naming_player.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "85aac6d6619f1ee24c456fb08215b0c565a10ba1"
   },
   {
    "id": "oak_rival_intro",
@@ -123,9 +123,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_cutscene_oak_rival_intro.png",
-   "file_3x": "3x/pokemon-blue_gb_na_cutscene_oak_rival_intro.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "ac104ddc97e7ff9db015c75376e82931c677e3db"
   },
   {
    "id": "naming_rival",
@@ -136,9 +136,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_naming_rival.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_naming_rival.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "88098561132257a65877ef9401a53f09bb4ceabb"
   },
   {
    "id": "start_room",
@@ -149,9 +149,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_start_room.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_start_room.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "42595e60d9ca660c2a58d6289596ee4e59ff271b"
   },
   {
    "id": "pallet_town",
@@ -162,9 +162,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_pallet_town.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_pallet_town.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "8cc7783fe3828ad023d1f20a8e2ea4f921607964"
   },
   {
    "id": "oak_wait",
@@ -175,9 +175,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_dialogue_oak_wait.png",
-   "file_3x": "3x/pokemon-blue_gb_na_dialogue_oak_wait.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "633b31fde98d61013d9990e3e7f8be9a5a20c673"
   },
   {
    "id": "starter_preview",
@@ -188,9 +188,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_cutscene_starter_preview.png",
-   "file_3x": "3x/pokemon-blue_gb_na_cutscene_starter_preview.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "128344d3c78ca8c2f3a9bd8e0eb8c684c5782f8c"
   },
   {
    "id": "oak_lab_choose",
@@ -201,9 +201,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_cutscene_oak_lab_choose.png",
-   "file_3x": "3x/pokemon-blue_gb_na_cutscene_oak_lab_choose.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "76680e1facabb9c3e0f7a04268a8211e41820d0c"
   },
   {
    "id": "starter_received",
@@ -214,9 +214,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_dialogue_starter_received.png",
-   "file_3x": "3x/pokemon-blue_gb_na_dialogue_starter_received.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "7c8eec22265cb4c04352e5f1b9c0685b8a9630a1"
   },
   {
    "id": "battle_rival_first",
@@ -227,9 +227,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_battle_rival_first.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_battle_rival_first.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "4d4ba2a0c6190b50e5b1a527d2ab8c0b49636a23"
   },
   {
    "id": "battle_menu",
@@ -240,9 +240,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_battle_menu.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_battle_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "f3ece7c4167a709d25d15cf83826c1379690aed7"
   },
   {
    "id": "battle_moves",
@@ -253,9 +253,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_battle_moves.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_battle_moves.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "76237d8dae92e3688f329d0dd4636bbeb081d77e"
   },
   {
    "id": "battle_levelup",
@@ -266,9 +266,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_battle_levelup.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_battle_levelup.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "5b7f4bf9fa7d226f8b461ec5e20fc32f4b99dcdf"
   },
   {
    "id": "battle_rival_defeated",
@@ -279,9 +279,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_battle_rival_defeated.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_battle_rival_defeated.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "a0f0c9e6101c8a6b2bf9a0b1f983bdd00b9abe6c"
   },
   {
    "id": "route1_grass",
@@ -292,9 +292,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_route1_grass.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_route1_grass.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "d6bc44c08d3b136e81f0e9cac088eaf69ed70a07"
   },
   {
    "id": "battle_wild",
@@ -305,9 +305,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_battle_wild.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_battle_wild.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "84a018b153aa674796409d4c529c440892b052fb"
   },
   {
    "id": "battle_ball_throw",
@@ -318,9 +318,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_battle_ball_throw.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_battle_ball_throw.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "7f154a6d51a1e71e39807088718574572ecf397b"
   },
   {
    "id": "battle_catch_fail",
@@ -331,9 +331,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_battle_catch_fail.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_battle_catch_fail.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "fd6606828f658eecb22e92a9bc658441f335d6e9"
   },
   {
    "id": "battle_catch",
@@ -344,9 +344,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_battle_catch.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_battle_catch.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "338827c5d8634bfe3ea48d0a588483cab6ec8ad0"
   },
   {
    "id": "pokedex_entry",
@@ -357,9 +357,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_inventory_pokedex_entry.png",
-   "file_3x": "3x/pokemon-blue_gb_na_inventory_pokedex_entry.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "6158dedeae300db48772f5025cd91663fbcaa526"
   },
   {
    "id": "start_menu",
@@ -370,9 +370,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_start_menu.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_start_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "bc5b565af5e2c2896956477a2c3fe0133200d281"
   },
   {
    "id": "pokedex_list",
@@ -383,9 +383,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_inventory_pokedex_list.png",
-   "file_3x": "3x/pokemon-blue_gb_na_inventory_pokedex_list.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "f91de231ec96bfc8ebc3f31766cf1ac207354255"
   },
   {
    "id": "pokedex_area",
@@ -396,9 +396,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_map_pokedex_area.png",
-   "file_3x": "3x/pokemon-blue_gb_na_map_pokedex_area.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "f0d6e7c25d2f42795cde5e9d279a036e9100088c"
   },
   {
    "id": "party_screen",
@@ -409,9 +409,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_inventory_party_screen.png",
-   "file_3x": "3x/pokemon-blue_gb_na_inventory_party_screen.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "5e66790165ce234df880700c9c84419f1061cca3"
   },
   {
    "id": "party_submenu",
@@ -422,9 +422,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_party_submenu.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_party_submenu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "901e2de51584f14791fd8c583ac19babf5dbdd4f"
   },
   {
    "id": "summary_stats",
@@ -435,9 +435,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_inventory_summary_stats.png",
-   "file_3x": "3x/pokemon-blue_gb_na_inventory_summary_stats.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "982cddf2c926fafabb36016c65ee61951cd4c6c7"
   },
   {
    "id": "summary_moves",
@@ -448,9 +448,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_inventory_summary_moves.png",
-   "file_3x": "3x/pokemon-blue_gb_na_inventory_summary_moves.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "c0e8d47dcfab0bcc9f81f4b9b600113b3a3962bb"
   },
   {
    "id": "trainer_card",
@@ -461,9 +461,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_inventory_trainer_card.png",
-   "file_3x": "3x/pokemon-blue_gb_na_inventory_trainer_card.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "e28043fc450f372f0bd0108c413aebca1ebafd85"
   },
   {
    "id": "bag_items",
@@ -474,9 +474,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_inventory_bag_items.png",
-   "file_3x": "3x/pokemon-blue_gb_na_inventory_bag_items.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "45b528bd111acb2080ef8041197c835af6ceae8d"
   },
   {
    "id": "town_map",
@@ -487,9 +487,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_map_town_map.png",
-   "file_3x": "3x/pokemon-blue_gb_na_map_town_map.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "7e5bd112624bba1bcbfe8201a063d21c3cd27dae"
   },
   {
    "id": "elite_four_room",
@@ -500,9 +500,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_elite_four_room.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_elite_four_room.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "e8d1c8c3f158a29a57d69e5a59937055e1b7f553"
   },
   {
    "id": "lorelei_talk",
@@ -513,9 +513,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_dialogue_lorelei_talk.png",
-   "file_3x": "3x/pokemon-blue_gb_na_dialogue_lorelei_talk.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "b3afa80f585f7a4e83df1d68fd918b72cec54c4c"
   },
   {
    "id": "elite_four",
@@ -526,9 +526,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_boss_elite_four.png",
-   "file_3x": "3x/pokemon-blue_gb_na_boss_elite_four.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "0b2476d1049a40ec603fac3fed6e7195ddf97d9b"
   },
   {
    "id": "battle_attack",
@@ -539,9 +539,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_battle_attack.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_battle_attack.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "b387bf3674c3b34bab41fb873baaf9799f727c99"
   },
   {
    "id": "battle_super_effective",
@@ -552,9 +552,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_battle_super_effective.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_battle_super_effective.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "7be5f6d09e0bc2f2856da277306bc73ba6af7620"
   },
   {
    "id": "boss_defeated",
@@ -565,9 +565,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_boss_boss_defeated.png",
-   "file_3x": "3x/pokemon-blue_gb_na_boss_boss_defeated.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "340fed33d3b4e7266b94a1f6d465836f655ed4b6"
   },
   {
    "id": "blackout",
@@ -578,9 +578,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameover_blackout.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameover_blackout.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "7e992708feaaad0da3c7afdf72298ab4173dc707"
   },
   {
    "id": "mart_buy",
@@ -591,9 +591,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_shop_mart_buy.png",
-   "file_3x": "3x/pokemon-blue_gb_na_shop_mart_buy.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "7cf222ab7817e744126c566947e81dcd3048946f"
   },
   {
    "id": "pokecenter_nurse",
@@ -604,9 +604,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_dialogue_pokecenter_nurse.png",
-   "file_3x": "3x/pokemon-blue_gb_na_dialogue_pokecenter_nurse.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "4f6b2c21b31057b3d7dcbee489993a18a57b1e81"
   },
   {
    "id": "save_prompt",
@@ -617,9 +617,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_save_save_prompt.png",
-   "file_3x": "3x/pokemon-blue_gb_na_save_save_prompt.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "4ffc5fc30511746ae590da0b3e9317f5682dcf8a"
   },
   {
    "id": "options",
@@ -630,9 +630,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_options_options.png",
-   "file_3x": "3x/pokemon-blue_gb_na_options_options.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "de691d0594a990457cf48c4162c88a58dc92698e"
   },
   {
    "id": "pokecenter_heal",
@@ -643,9 +643,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_pokecenter_heal.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_pokecenter_heal.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "4f3aa6afb6a61de3d26b420a4589c4edd6993b6b"
   },
   {
    "id": "cable_club",
@@ -656,9 +656,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_dialogue_cable_club.png",
-   "file_3x": "3x/pokemon-blue_gb_na_dialogue_cable_club.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "26d164e8cc5142cc9c1d5ffae60717e63bcced3f"
   },
   {
    "id": "pewter_gym",
@@ -669,9 +669,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_pewter_gym.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_pewter_gym.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "745e335a4aef93b694cab52fdce37c66c0b1f7fc"
   },
   {
    "id": "brock_talk",
@@ -682,9 +682,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_dialogue_brock_talk.png",
-   "file_3x": "3x/pokemon-blue_gb_na_dialogue_brock_talk.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "631042ce066ab7bfdba31dab51ce62fbe2ed9063"
   },
   {
    "id": "gym_brock",
@@ -695,9 +695,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_boss_gym_brock.png",
-   "file_3x": "3x/pokemon-blue_gb_na_boss_gym_brock.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "4af956256632ac19685e663b0ce47f7da5fe9552"
   },
   {
    "id": "learn_move",
@@ -708,9 +708,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_learn_move.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_learn_move.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "1b595ccc636f70f2732b7c27cb7fb325250bc707"
   },
   {
    "id": "learn_move_forget",
@@ -721,9 +721,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_learn_move_forget.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_learn_move_forget.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "801f1dbad6e172637bf55a3f761a7ca2713c8e55"
   },
   {
    "id": "badge_received",
@@ -734,9 +734,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_badge_received.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_badge_received.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "2d99d7024ee2f461304a9536f62c8d2db4330602"
   },
   {
    "id": "evolution_start",
@@ -747,9 +747,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_evolution_start.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_evolution_start.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "2393369a9ea81e47fd3dc310dde170ac4d95f1f6"
   },
   {
    "id": "evolution",
@@ -760,9 +760,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_evolution.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_evolution.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "578b624e8b57a6bd12d5bb3eab0ab87a5d16ff35"
   },
   {
    "id": "indigo_plateau",
@@ -773,9 +773,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_indigo_plateau.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_indigo_plateau.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "f6982996ddb60353f53059478bcd2443c4a67a99"
   },
   {
    "id": "fly_map",
@@ -786,9 +786,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_map_fly_map.png",
-   "file_3x": "3x/pokemon-blue_gb_na_map_fly_map.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "98104fc71338aa534018b685979f893dedc20364"
   },
   {
    "id": "surfing",
@@ -799,9 +799,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_surfing.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_surfing.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "d870618395ce4c67d1423f80d0dc6f856e2db43b"
   },
   {
    "id": "fishing",
@@ -812,9 +812,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_fishing.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_fishing.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "2174d00240407bd741aa81fc1442e13e559fe43f"
   },
   {
    "id": "fishing_battle",
@@ -825,9 +825,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_fishing_battle.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_fishing_battle.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "e27cfe1e7bc429b397990e27e01db09b17a29910"
   },
   {
    "id": "bicycle",
@@ -838,9 +838,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_bicycle.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_bicycle.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "6c30b45e0a0c71a5e5efe029fcb2c7d36fe6e1c1"
   },
   {
    "id": "cut_tree",
@@ -851,9 +851,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_cut_tree.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_cut_tree.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "56edeff9f26241255263cdcbce2e194b67a06cab"
   },
   {
    "id": "viridian_forest",
@@ -864,9 +864,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_viridian_forest.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_viridian_forest.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "eff3b7d8befdea324a638d055acf72852893d7cd"
   },
   {
    "id": "mt_moon",
@@ -877,9 +877,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_mt_moon.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_mt_moon.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "253c2771f79d9253dc65ff34826d44074945db75"
   },
   {
    "id": "safari_gate",
@@ -890,9 +890,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_dialogue_safari_gate.png",
-   "file_3x": "3x/pokemon-blue_gb_na_dialogue_safari_gate.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "74ee85edffbd146addadace7fcc1da87b2319b2f"
   },
   {
    "id": "safari_zone",
@@ -903,9 +903,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_safari_zone.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_safari_zone.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "e7f06d161d8554e3d3243aac3714bdb8b3884545"
   },
   {
    "id": "safari_battle",
@@ -916,9 +916,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_minigame_safari_battle.png",
-   "file_3x": "3x/pokemon-blue_gb_na_minigame_safari_battle.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "d3eb350679b4debd16d6f42a270baf29de2c13e2"
   },
   {
    "id": "safari_rock",
@@ -929,9 +929,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_minigame_safari_rock.png",
-   "file_3x": "3x/pokemon-blue_gb_na_minigame_safari_rock.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "29682ff1bb376016be27e54d8d52683b615f6f94"
   },
   {
    "id": "game_corner",
@@ -942,9 +942,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_game_corner.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_game_corner.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "ac29b86d26d7ba348cd208103688b9d854c5831b"
   },
   {
    "id": "slots_bet",
@@ -955,9 +955,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_minigame_slots_bet.png",
-   "file_3x": "3x/pokemon-blue_gb_na_minigame_slots_bet.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "f63f5bfb24478b65963d2336bf7c5735ef4d11b3"
   },
   {
    "id": "slots_spin",
@@ -968,9 +968,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_minigame_slots_spin.png",
-   "file_3x": "3x/pokemon-blue_gb_na_minigame_slots_spin.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "f869df6ddf121ea781f4f6dfb241bc168929b291"
   },
   {
    "id": "slots_win",
@@ -981,9 +981,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_minigame_slots_win.png",
-   "file_3x": "3x/pokemon-blue_gb_na_minigame_slots_win.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "9f9a39320ef2485f2e84797e3287ca39dfe126cd"
   },
   {
    "id": "ss_anne",
@@ -994,9 +994,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_ss_anne.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_ss_anne.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "4906ca8166f0d132ac4bc5bbc72e8955cf8682af"
   },
   {
    "id": "pokemon_tower",
@@ -1007,9 +1007,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_pokemon_tower.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_pokemon_tower.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "a8eecc2f2e2e02505d211d359524b90919896882"
   },
   {
    "id": "tower_ghost",
@@ -1020,9 +1020,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_battle_tower_ghost.png",
-   "file_3x": "3x/pokemon-blue_gb_na_battle_tower_ghost.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "d7d53714da7866edd1e804ad4f78f34d9082d494"
   },
   {
    "id": "silph_co",
@@ -1033,9 +1033,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_silph_co.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_silph_co.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "418bc7bf5a88c484ba499410fca3f601f501b3ae"
   },
   {
    "id": "champion_room",
@@ -1046,9 +1046,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_champion_room.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_champion_room.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "65b161c6ee4c8c09916c4556cf1e226aafe4e691"
   },
   {
    "id": "champion",
@@ -1059,9 +1059,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_boss_champion.png",
-   "file_3x": "3x/pokemon-blue_gb_na_boss_champion.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "2739c06eb5939f97b49f4330b704c5a5d2ba0913"
   },
   {
    "id": "champion_defeated",
@@ -1072,9 +1072,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_boss_champion_defeated.png",
-   "file_3x": "3x/pokemon-blue_gb_na_boss_champion_defeated.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "bd8c649a62c201f143749aeb382831ad904c3960"
   },
   {
    "id": "oak_congrats",
@@ -1085,9 +1085,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_cutscene_oak_congrats.png",
-   "file_3x": "3x/pokemon-blue_gb_na_cutscene_oak_congrats.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "a1e2676cae41386b0857ae4f6cf516ff8618a760"
   },
   {
    "id": "hall_of_fame_room",
@@ -1098,9 +1098,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_cutscene_hall_of_fame_room.png",
-   "file_3x": "3x/pokemon-blue_gb_na_cutscene_hall_of_fame_room.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "b2ed42dc09bdbe99dfdfba9ea93ba3ec9503133b"
   },
   {
    "id": "hall_of_fame",
@@ -1111,9 +1111,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_ending_hall_of_fame.png",
-   "file_3x": "3x/pokemon-blue_gb_na_ending_hall_of_fame.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "4e3ac5685188e024cbb1cc9cf199582a43427ba7"
   },
   {
    "id": "hall_of_fame_trainer",
@@ -1124,9 +1124,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_ending_hall_of_fame_trainer.png",
-   "file_3x": "3x/pokemon-blue_gb_na_ending_hall_of_fame_trainer.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "5a5f21e53242b3e36a83840d3d3512a169d2d36a"
   },
   {
    "id": "dex_rating",
@@ -1137,9 +1137,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_ending_dex_rating.png",
-   "file_3x": "3x/pokemon-blue_gb_na_ending_dex_rating.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "b2a58b41b9461c7a5ca85e82601b0bdbbad3fcab"
   },
   {
    "id": "credits",
@@ -1150,9 +1150,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_credits_credits.png",
-   "file_3x": "3x/pokemon-blue_gb_na_credits_credits.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "fc667d2c50d17542ee99d0f68f23763246fd3ba2"
   },
   {
    "id": "credits_programmers",
@@ -1163,9 +1163,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_credits_credits_programmers.png",
-   "file_3x": "3x/pokemon-blue_gb_na_credits_credits_programmers.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "7a8946f5cd106f2690a8b118dceda4941aa18541"
   },
   {
    "id": "the_end",
@@ -1176,9 +1176,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_credits_the_end.png",
-   "file_3x": "3x/pokemon-blue_gb_na_credits_the_end.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "63b569630bac1320788538de3981f5757d183bfe"
   },
   {
    "id": "pc_menu",
@@ -1189,9 +1189,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_pc_menu.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_pc_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "0f909817a2d51c1ca9b766287df47fb652f881d2"
   },
   {
    "id": "pc_items",
@@ -1202,9 +1202,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_system_pc_items.png",
-   "file_3x": "3x/pokemon-blue_gb_na_system_pc_items.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "4d1e7f1ee844d08453ed71ec3557c002b4b39ab3"
   }
  ]
 }

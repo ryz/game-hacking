@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-turn_01_north.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-turn_01_north.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2e26ddd710ad292f1af960ecaf071c9de7dc40f6"
   },
   {
    "id": "02_turn_clip",
@@ -37,11 +37,9 @@
     "kept": 29,
     "poster": 8,
     "seconds": 0.94,
-    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-turn_02_turn_clip.gif",
-    "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-turn_02_turn_clip.gif"
+    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-turn_02_turn_clip.gif"
    },
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-turn_02_turn_clip.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-turn_02_turn_clip.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
    "captured": "2026-11-19"
   },
@@ -54,9 +52,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-turn_03_east.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-turn_03_east.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "64b76ab7f086b6abb81f19cfbaed2f65d7660291"
   },
   {
    "id": "04_south",
@@ -67,9 +65,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-turn_04_south.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-turn_04_south.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "46bd9216d4d8b9902962109aae531b6fcc21d068"
   },
   {
    "id": "05_west",
@@ -80,9 +78,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-turn_05_west.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-turn_05_west.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "64b76ab7f086b6abb81f19cfbaed2f65d7660291"
   },
   {
    "id": "06_north",
@@ -93,9 +91,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-turn_06_north.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-turn_06_north.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2e26ddd710ad292f1af960ecaf071c9de7dc40f6"
   }
  ]
 }

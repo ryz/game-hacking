@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_title_title_screen.png",
-   "file_3x": "3x/phantasy-star_sms_na_title_title_screen.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "56fac5948ecf3517597a23a94bd1064ae21bb1c6"
   },
   {
    "id": "intro_planet",
@@ -32,9 +32,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_cutscene_intro_planet.png",
-   "file_3x": "3x/phantasy-star_sms_na_cutscene_intro_planet.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "328f4700b22f1dc63492b8fae8947337cfbbd488"
   },
   {
    "id": "intro_camineet",
@@ -45,9 +45,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_cutscene_intro_camineet.png",
-   "file_3x": "3x/phantasy-star_sms_na_cutscene_intro_camineet.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a483f9b1e676e8905056fefbacce948e94a0bc5d"
   },
   {
    "id": "intro_nero_beaten",
@@ -58,9 +58,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_cutscene_intro_nero_beaten.png",
-   "file_3x": "3x/phantasy-star_sms_na_cutscene_intro_nero_beaten.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4e31ea5d1a7a4c5fd1c0ff7f2d6b6b1a176cb0a7"
   },
   {
    "id": "intro_nero_dying",
@@ -71,9 +71,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_cutscene_intro_nero_dying.png",
-   "file_3x": "3x/phantasy-star_sms_na_cutscene_intro_nero_dying.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b3af519a34dc22320755aa96eb3f24d39d35eb1a"
   },
   {
    "id": "intro_alis_vow",
@@ -84,9 +84,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_cutscene_intro_alis_vow.png",
-   "file_3x": "3x/phantasy-star_sms_na_cutscene_intro_alis_vow.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a008ed1c25846e699ef5a87f5c1d7d232c381590"
   },
   {
    "id": "camineet_start",
@@ -97,9 +97,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_camineet_start.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_camineet_start.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "098a81b784b9f7f0c6a0d778402973d8979106e1"
   },
   {
    "id": "alis_home",
@@ -110,9 +110,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_dialogue_alis_home.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_alis_home.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b44890042ca9864b57be48ded5dc0bf5a9a1bc56"
   },
   {
    "id": "camineet_passage",
@@ -123,9 +123,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_gameplay_camineet_passage.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_camineet_passage.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0f1230a7c5fd2db789984e478599f3bb750a19c2"
   },
   {
    "id": "camineet_shops",
@@ -136,9 +136,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_camineet_shops.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_camineet_shops.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9bb92bc99c62fd0fbf28768105df8594416ba517"
   },
   {
    "id": "camineet_gate",
@@ -149,9 +149,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_gameplay_camineet_gate.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_camineet_gate.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "f92a0d3f721d109d5632d1406354d50b6fab11ce"
   },
   {
    "id": "shop_secondhand",
@@ -162,9 +162,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_shop_shop_secondhand.png",
-   "file_3x": "3x/phantasy-star_sms_na_shop_shop_secondhand.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3aeda3f389216d478a1f6e8996e05764c24f221f"
   },
   {
    "id": "shop_list",
@@ -175,9 +175,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_shop_shop_list.png",
-   "file_3x": "3x/phantasy-star_sms_na_shop_shop_list.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d0b16573147a8262bce05ed619024c3ff3465950"
   },
   {
    "id": "shop_sell",
@@ -188,9 +188,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_shop_shop_sell.png",
-   "file_3x": "3x/phantasy-star_sms_na_shop_shop_sell.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b4389abc35dac9b5737989c41ffa8958916e3f9a"
   },
   {
    "id": "shop_sell_offer",
@@ -201,9 +201,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_shop_shop_sell_offer.png",
-   "file_3x": "3x/phantasy-star_sms_na_shop_shop_sell_offer.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2fbdcf547dd6c4930faf2d7c5f1d0c74c654c25c"
   },
   {
    "id": "shop_food",
@@ -214,9 +214,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_shop_shop_food.png",
-   "file_3x": "3x/phantasy-star_sms_na_shop_shop_food.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c7da6342da571283b4eec76c002b6b61c4184d35"
   },
   {
    "id": "shop_bought",
@@ -227,9 +227,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_shop_shop_bought.png",
-   "file_3x": "3x/phantasy-star_sms_na_shop_shop_bought.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0cb36471c710341590e0442b9545d371118ac993"
   },
   {
    "id": "shop_armory",
@@ -240,9 +240,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_shop_shop_armory.png",
-   "file_3x": "3x/phantasy-star_sms_na_shop_shop_armory.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a423a01e3bc2905495542da29dd1f9a00fff5f45"
   },
   {
    "id": "item_commands",
@@ -253,9 +253,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_inventory_item_commands.png",
-   "file_3x": "3x/phantasy-star_sms_na_inventory_item_commands.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "add3bcd2de799f5b7871207cfba8ebf35235b5a6"
   },
   {
    "id": "item_equip",
@@ -266,9 +266,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_inventory_item_equip.png",
-   "file_3x": "3x/phantasy-star_sms_na_inventory_item_equip.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "247648cd5e7a20cefff60928c8f37713cf6fb833"
   },
   {
    "id": "status_shield",
@@ -279,9 +279,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_inventory_status_shield.png",
-   "file_3x": "3x/phantasy-star_sms_na_inventory_status_shield.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3242bab47db90ec679720c27766cd58ac19735bf"
   },
   {
    "id": "camineet_church",
@@ -292,9 +292,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_dialogue_camineet_church.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_camineet_church.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "47edbfab59965171e6524fccdd0b344397ba9fb0"
   },
   {
    "id": "church_alive",
@@ -305,9 +305,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_dialogue_church_alive.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_church_alive.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ceb98cb23e9ad7869396d4739abbe5c23ffbda3d"
   },
   {
    "id": "hud_menu",
@@ -318,9 +318,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_hud_hud_menu.png",
-   "file_3x": "3x/phantasy-star_sms_na_hud_hud_menu.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ae95b8f783c90bc8e5a96ced38ce35700c54a43d"
   },
   {
    "id": "menu_status",
@@ -331,9 +331,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_inventory_menu_status.png",
-   "file_3x": "3x/phantasy-star_sms_na_inventory_menu_status.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d914b3de5862b5da835e52a807f6ae7dcfbe5394"
   },
   {
    "id": "menu_items",
@@ -344,9 +344,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_inventory_menu_items.png",
-   "file_3x": "3x/phantasy-star_sms_na_inventory_menu_items.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d522538915a4de4a5bab1edc5e7abb86f8926a30"
   },
   {
    "id": "item_use_burger",
@@ -357,9 +357,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_inventory_item_use_burger.png",
-   "file_3x": "3x/phantasy-star_sms_na_inventory_item_use_burger.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "13113bc94f0f47f59a9110207eb8e287c6a2d890"
   },
   {
    "id": "menu_search",
@@ -370,9 +370,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_system_menu_search.png",
-   "file_3x": "3x/phantasy-star_sms_na_system_menu_search.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2c8113263ba1e4f1bbbfe8fa534bbb03001ee274"
   },
   {
    "id": "save_slots",
@@ -383,9 +383,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_save_save_slots.png",
-   "file_3x": "3x/phantasy-star_sms_na_save_save_slots.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8c83cbc189afe0b6f90214a0a11486bf94ad6e6d"
   },
   {
    "id": "palma_camineet",
@@ -396,9 +396,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_palma_camineet.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_palma_camineet.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e6d745ddcbf872faf4a172edae3f95fe48d86c28"
   },
   {
    "id": "palma_forest",
@@ -409,9 +409,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_palma_forest.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_palma_forest.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a64309ada49cbb3cf428eb09f2aeb1b64dd74fa4"
   },
   {
    "id": "menu_forest",
@@ -422,9 +422,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_hud_menu_forest.png",
-   "file_3x": "3x/phantasy-star_sms_na_hud_menu_forest.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "aa884a433f2815d6000f36c8caee849656886239"
   },
   {
    "id": "battle_sworm",
@@ -435,9 +435,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_battle_sworm.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_sworm.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "65e6338d1e8a6e68e1762de216eee6e890e07de1"
   },
   {
    "id": "battle_attack",
@@ -448,9 +448,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_battle_battle_attack.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_attack.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "afe86bf0556217c652cc66433b5323810ef139fc"
   },
   {
    "id": "battle_hit",
@@ -461,9 +461,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_battle_battle_hit.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_hit.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dfd9496adada6f866a8c3525faef082182d9b626"
   },
   {
    "id": "battle_talk",
@@ -474,9 +474,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_battle_battle_talk.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_talk.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8736320fa39be43ab6ee09f3f06fe9927f73b6e8"
   },
   {
    "id": "battle_killed",
@@ -487,9 +487,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_battle_killed.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_killed.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "386a12d69d11a4fc83466c6f47442cd77acea81f"
   },
   {
    "id": "battle_exp",
@@ -500,9 +500,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_battle_exp.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_exp.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "725b329d62c8606393146b87240a81e7f3499cd9"
   },
   {
    "id": "battle_levelup",
@@ -513,9 +513,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_battle_battle_levelup.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_levelup.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2964125570cee2d7bc8b52642c67990c74c32955"
   },
   {
    "id": "battle_chest",
@@ -526,9 +526,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_battle_chest.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_chest.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "94e9a1fd3ab01586fdf458295c0eac9996945a49"
   },
   {
    "id": "battle_chest_meseta",
@@ -539,9 +539,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_battle_chest_meseta.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_chest_meseta.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "02508f85b343cc6b53eb5a5871f2e5993772aca5"
   },
   {
    "id": "palma_cave",
@@ -552,9 +552,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_palma_cave.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_palma_cave.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "179316e6165bc1febacb0850769b50f8054ccb34"
   },
   {
    "id": "battle_scorpion",
@@ -565,9 +565,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_battle_scorpion.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_scorpion.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "01b14bfa61145dc675a27fc71ebca591f5eaf436"
   },
   {
    "id": "cave_dark",
@@ -578,9 +578,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_cave_dark.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_cave_dark.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c3dfaf3552b0e2b641186a78cf712e85a41c62bc"
   },
   {
    "id": "dungeon_corridor",
@@ -591,9 +591,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_dungeon_corridor.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_dungeon_corridor.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2e26ddd710ad292f1af960ecaf071c9de7dc40f6"
   },
   {
    "id": "dungeon_step",
@@ -609,11 +609,9 @@
     "kept": 21,
     "poster": 8,
     "seconds": 0.67,
-    "file": "phantasy-star_sms_na_gameplay_dungeon_step.gif",
-    "file_3x": "3x/phantasy-star_sms_na_gameplay_dungeon_step.gif"
+    "file": "phantasy-star_sms_na_gameplay_dungeon_step.gif"
    },
    "file": "phantasy-star_sms_na_gameplay_dungeon_step.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_dungeon_step.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
    "captured": "2026-11-19"
   },
@@ -631,11 +629,9 @@
     "kept": 29,
     "poster": 8,
     "seconds": 0.94,
-    "file": "phantasy-star_sms_na_gameplay_dungeon_turn.gif",
-    "file_3x": "3x/phantasy-star_sms_na_gameplay_dungeon_turn.gif"
+    "file": "phantasy-star_sms_na_gameplay_dungeon_turn.gif"
    },
    "file": "phantasy-star_sms_na_gameplay_dungeon_turn.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_dungeon_turn.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
    "captured": "2026-11-19"
   },
@@ -648,9 +644,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_gameplay_dungeon_chest.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_dungeon_chest.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "af239a29eaadf65b4f5fd6b23c7db7a1897b4578"
   },
   {
    "id": "battle_wing_eye",
@@ -661,9 +657,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_battle_battle_wing_eye.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_wing_eye.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "73e976b6287995baba4165d1ca8945842db9cfc3"
   },
   {
    "id": "battle_died",
@@ -674,9 +670,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_battle_battle_died.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_died.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "bc5a5cdd01445506fea9941a32340336ace2567a"
   },
   {
    "id": "gameover",
@@ -687,9 +683,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "phantasy-star_sms_na_gameover_gameover.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameover_gameover.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ecf9e9dd56b81105159ea8aa92971a6cc2bbf38a"
   },
   {
    "id": "continue_prompt",
@@ -700,9 +696,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_menu_continue_prompt.png",
-   "file_3x": "3x/phantasy-star_sms_na_menu_continue_prompt.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c8649c4f664f649c95bda5ea952e76c68df05fe0"
   },
   {
    "id": "continue_slots",
@@ -713,9 +709,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_menu_continue_slots.png",
-   "file_3x": "3x/phantasy-star_sms_na_menu_continue_slots.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "32075129cdd574c2f16d03db52a876bfa153e17c"
   },
   {
    "id": "talk_townsperson",
@@ -726,9 +722,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_talk_townsperson.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_talk_townsperson.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d45693ba94a5556318bfb10e25775ee15d9ddee0"
   },
   {
    "id": "nekise",
@@ -739,9 +735,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_nekise.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_nekise.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e4980195bc847350339f7c9ec872f6b0c5623746"
   },
   {
    "id": "npc_question",
@@ -752,9 +748,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_npc_question.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_npc_question.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1e92292816fec7831aec68db71530b94a2e6c995"
   },
   {
    "id": "palma_spaceport",
@@ -765,9 +761,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_palma_spaceport.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_palma_spaceport.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5eac7056e8013fa73696319a5cdd7b675e8c2979"
   },
   {
    "id": "spaceport_guard",
@@ -778,9 +774,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_spaceport_guard.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_spaceport_guard.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1de17a471096d4d19db0c0a5f6517c11a31095f4"
   },
   {
    "id": "spaceship_board",
@@ -791,9 +787,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_spaceship_board.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_spaceship_board.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "699e5a87f3264787567b1a225e0a97017d114303"
   },
   {
    "id": "spaceship_flight",
@@ -804,9 +800,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_cutscene_spaceship_flight.png",
-   "file_3x": "3x/phantasy-star_sms_na_cutscene_spaceship_flight.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9da79c1372d6df654becf0a64e15a259862adcd7"
   },
   {
    "id": "parolit",
@@ -817,9 +813,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_parolit.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_parolit.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5311b74ce2d3929069aba1296fe99a4fed5e4f63"
   },
   {
    "id": "parolit_medusa",
@@ -830,9 +826,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_parolit_medusa.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_parolit_medusa.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "de7235141616a5d5cd295dc150183b37b008a752"
   },
   {
    "id": "palma_parolit",
@@ -843,9 +839,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_palma_parolit.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_palma_parolit.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e4d41fca6a6d337e94bf2faed8b6466a5eee5ba2"
   },
   {
    "id": "gothic",
@@ -856,9 +852,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_gothic.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_gothic.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "59e7527836329c451ef98ea8a927b873cdcec171"
   },
   {
    "id": "hospital",
@@ -869,9 +865,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_shop_hospital.png",
-   "file_3x": "3x/phantasy-star_sms_na_shop_hospital.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a8cf573116dfa411095cd81fdddb9df033efa83e"
   },
   {
    "id": "hospital_fee",
@@ -882,9 +878,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_shop_hospital_fee.png",
-   "file_3x": "3x/phantasy-star_sms_na_shop_hospital_fee.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a732c72dffeabd5d5bafa00c4cc56b9ca48351c1"
   },
   {
    "id": "cola_beggar",
@@ -895,9 +891,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_cola_beggar.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_cola_beggar.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4ebb4ab998fb35c5e1690e4aeca7c2757ffb4ad8"
   },
   {
    "id": "bortevo_junk",
@@ -908,9 +904,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_bortevo_junk.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_bortevo_junk.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9673609f70dcc75c9b58f6ba11982af0b017e451"
   },
   {
    "id": "scion",
@@ -921,9 +917,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_scion.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_scion.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cabafb8dc18239c95e7daa0b5b82bdd8de41c938"
   },
   {
    "id": "drasgow",
@@ -934,9 +930,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_drasgow.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_drasgow.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9604aec0bd3afc81f27598ddc41937617c86b1d6"
   },
   {
    "id": "palma_drasgow",
@@ -947,9 +943,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_palma_drasgow.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_palma_drasgow.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9b50d7f2e86b09cc9d1d153102a94b31a40d195e"
   },
   {
    "id": "palma_coast_cave",
@@ -960,9 +956,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_palma_coast_cave.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_palma_coast_cave.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b462f27f70449c8906b04e01816da6682fc59ce8"
   },
   {
    "id": "palma_mountains",
@@ -973,9 +969,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_palma_mountains.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_palma_mountains.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "0f9d01d38cf59e3c406b2dc1773dd1cdcd4832da"
   },
   {
    "id": "palma_gothic",
@@ -986,9 +982,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_palma_gothic.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_palma_gothic.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b0613f189d49320d49832f35e4c01b8f106e679f"
   },
   {
    "id": "battle_skull_en",
@@ -999,9 +995,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_battle_battle_skull_en.png",
-   "file_3x": "3x/phantasy-star_sms_na_battle_battle_skull_en.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5f33ea59a0cc1e8c5128beba2479e857b792d12e"
   },
   {
    "id": "odin_stone",
@@ -1012,9 +1008,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_odin_stone.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_odin_stone.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9295895802197168697e38cae47e4c99c6b74c3d"
   },
   {
    "id": "boss_medusa",
@@ -1025,9 +1021,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_boss_boss_medusa.png",
-   "file_3x": "3x/phantasy-star_sms_na_boss_boss_medusa.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "48d35bc36622d1ce88b05065081b5e287eaaad8d"
   },
   {
    "id": "boss_dr_mad",
@@ -1038,9 +1034,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_boss_boss_dr_mad.png",
-   "file_3x": "3x/phantasy-star_sms_na_boss_boss_dr_mad.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "87372523aa7800e5be46e4347a3fb16b7ff2c963"
   },
   {
    "id": "luveno_ship",
@@ -1051,9 +1047,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_system_luveno_ship.png",
-   "file_3x": "3x/phantasy-star_sms_na_system_luveno_ship.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e3a51d82d6401f2929ff30a58cedfcede8c6138f"
   },
   {
    "id": "paseo_spaceport",
@@ -1064,9 +1060,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_paseo_spaceport.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_paseo_spaceport.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9abd5179683c8ea459183d40d375207c3835f845"
   },
   {
    "id": "paseo",
@@ -1077,9 +1073,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_paseo.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_paseo.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9a997f4da71b1f6f74cdd2cf874fb10a4564db95"
   },
   {
    "id": "myau_merchant",
@@ -1090,9 +1086,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_myau_merchant.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_myau_merchant.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7bdb17355877816bd60770f7317e24919ea7d14b"
   },
   {
    "id": "myau_trade",
@@ -1103,9 +1099,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_myau_trade.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_myau_trade.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9c838b53cd5ead0fd28e11c159e1d806b5861417"
   },
   {
    "id": "myau_traded",
@@ -1116,9 +1112,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_myau_traded.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_myau_traded.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "84f3ed2b2c4b308e6c3dc18a8b40c35b22f7af43"
   },
   {
    "id": "myau_meet_alis",
@@ -1129,9 +1125,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_cutscene_myau_meet_alis.png",
-   "file_3x": "3x/phantasy-star_sms_na_cutscene_myau_meet_alis.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8eea1cc6a87dd28b7de0fd7255794927260f222f"
   },
   {
    "id": "myau_meet",
@@ -1142,9 +1138,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_cutscene_myau_meet.png",
-   "file_3x": "3x/phantasy-star_sms_na_cutscene_myau_meet.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b9208edf9c4da61e3ea1d97bd8eb18eda13c40cb"
   },
   {
    "id": "governor",
@@ -1155,9 +1151,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_governor.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_governor.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "49cc910e7b33b7cbb67ef0cd884ef5b3d639e6dc"
   },
   {
    "id": "mansion_guard",
@@ -1168,9 +1164,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_mansion_guard.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_mansion_guard.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9e0ed481452864ccccdfd1d4dea22d785fe167ce"
   },
   {
    "id": "motavia_desert",
@@ -1181,9 +1177,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_motavia_desert.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_motavia_desert.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5a45ae952e0c2b425d6f1f31b9e813bb7776d693"
   },
   {
    "id": "motavia_village",
@@ -1194,9 +1190,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_motavia_village.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_motavia_village.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d3b2ee744d5142457d08eacdf1e5c58e76766c13"
   },
   {
    "id": "motavia_village2",
@@ -1207,9 +1203,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_motavia_village2.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_motavia_village2.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "71da2b967a45bf0b25dd8ec45821cdd37534fb2d"
   },
   {
    "id": "boss_blue_dragon",
@@ -1220,9 +1216,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_boss_boss_blue_dragon.png",
-   "file_3x": "3x/phantasy-star_sms_na_boss_boss_blue_dragon.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cb9c743a555f8c8c41e1f36183157d553727834b"
   },
   {
    "id": "boss_titan",
@@ -1233,9 +1229,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_boss_boss_titan.png",
-   "file_3x": "3x/phantasy-star_sms_na_boss_boss_titan.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "60f325a5bad78d5ffb05aa68b5b31e1f59a6521a"
   },
   {
    "id": "boss_red_dragon",
@@ -1246,9 +1242,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_boss_boss_red_dragon.png",
-   "file_3x": "3x/phantasy-star_sms_na_boss_boss_red_dragon.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "d80ffd361d4a9b830bea77705cf4ba7832b4f497"
   },
   {
    "id": "boss_shadow",
@@ -1259,9 +1255,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_boss_boss_shadow.png",
-   "file_3x": "3x/phantasy-star_sms_na_boss_boss_shadow.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "989b161ab5d8e46363cb2d72fa4c0eaf8e6c6f6b"
   },
   {
    "id": "lassic_castle",
@@ -1272,9 +1268,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_lassic_castle.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_lassic_castle.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "07d7958e623ecff8c3cfca4ab06a784276eb627c"
   },
   {
    "id": "magic_who",
@@ -1285,9 +1281,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_inventory_magic_who.png",
-   "file_3x": "3x/phantasy-star_sms_na_inventory_magic_who.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "cec51624f58b2bf3bc6ab9c4df259f0b58bdc346"
   },
   {
    "id": "save_name",
@@ -1298,9 +1294,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_save_save_name.png",
-   "file_3x": "3x/phantasy-star_sms_na_save_save_name.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a4e55865695b738152ba695cf53f6f5c69fc554a"
   },
   {
    "id": "dezoris_ice",
@@ -1311,9 +1307,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_dezoris_ice.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_dezoris_ice.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c36a44647d16980a271e9df13eb051309141abb0"
   },
   {
    "id": "dezoris_village",
@@ -1324,9 +1320,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_dezoris_village.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_dezoris_village.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "4b2cee9df0185b19801bf97b64b63fdcca1dbf72"
   },
   {
    "id": "skure",
@@ -1337,9 +1333,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_skure.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_skure.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2926c874077ccac36fb190a27bc4a4537a87403c"
   },
   {
    "id": "dezorian_town",
@@ -1350,9 +1346,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_dezorian_town.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_dezorian_town.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8e65b7291f909fb9002a48a38b39503033e07d12"
   },
   {
    "id": "dungeon_shop",
@@ -1363,9 +1359,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_shop_dungeon_shop.png",
-   "file_3x": "3x/phantasy-star_sms_na_shop_dungeon_shop.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "678a5823a6c70a06869d2488deec2b20a339b97c"
   },
   {
    "id": "cat_thief",
@@ -1376,9 +1372,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_cat_thief.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_cat_thief.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a86c6fd7f5c44b7fc3e227fae059477c94b3ec16"
   },
   {
    "id": "dungeon_robotcop",
@@ -1389,9 +1385,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_dungeon_robotcop.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_dungeon_robotcop.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "45756edf976cc8e868f05f73db3c8966e56d308f"
   },
   {
    "id": "talking_spider",
@@ -1402,9 +1398,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_dialogue_talking_spider.png",
-   "file_3x": "3x/phantasy-star_sms_na_dialogue_talking_spider.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "805a2bef466154f3d059f92b9eea218fe52c8287"
   },
   {
    "id": "landrover_menu",
@@ -1415,9 +1411,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_inventory_landrover_menu.png",
-   "file_3x": "3x/phantasy-star_sms_na_inventory_landrover_menu.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6a8312655a3e3286e218f6b183751db4be461bce"
   },
   {
    "id": "landrover",
@@ -1428,9 +1424,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_system_landrover.png",
-   "file_3x": "3x/phantasy-star_sms_na_system_landrover.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ddf2bc969300279253e5bc362ab3501366a165cf"
   },
   {
    "id": "vehicle_no_good",
@@ -1441,9 +1437,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_inventory_vehicle_no_good.png",
-   "file_3x": "3x/phantasy-star_sms_na_inventory_vehicle_no_good.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "e158ee6c1b948acd73931f04f4efffdfdb33b787"
   }
  ]
 }

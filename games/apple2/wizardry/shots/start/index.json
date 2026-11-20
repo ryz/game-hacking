@@ -19,9 +19,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_title_title_logo.start.png",
-   "file_3x": "3x/wizardry_apple2_na_title_title_logo.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "fb4e87438cd3a4ae3f7402b38212d912e2da1230"
   },
   {
    "id": "menu_copyright",
@@ -32,9 +32,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_menu_copyright.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_copyright.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "02c006b45ef7bfb3b74aa8e6fa6374212699b02c"
   },
   {
    "id": "boot_disk_master",
@@ -45,9 +45,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_boot_boot_disk_master.start.png",
-   "file_3x": "3x/wizardry_apple2_na_boot_boot_disk_master.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "318316a8c8e893cefccb4277ac1017b0335e3862"
   },
   {
    "id": "menu_castle_empty",
@@ -58,9 +58,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_menu_castle_empty.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_castle_empty.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7fd39906bc8a6896f1ea35aade1cf4720c46e1e2"
   },
   {
    "id": "menu_tavern_add",
@@ -71,9 +71,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_menu_tavern_add.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_tavern_add.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "af0e5225ae0eff65c960ed8021ad6d4461c37a5e"
   },
   {
    "id": "menu_training",
@@ -84,9 +84,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_menu_training.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_training.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "a47ae3813411c249223ad5cd91e8d3672604637b"
   },
   {
    "id": "create_new_name",
@@ -97,9 +97,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_system_create_new_name.start.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_new_name.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "25dcb4bd24bcd757ed50e6bc44205c91fbb55320"
   },
   {
    "id": "create_race",
@@ -110,9 +110,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_system_create_race.start.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_race.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2a82505dd3eadaf0294c815fc7a989244eff47c9"
   },
   {
    "id": "create_align",
@@ -123,9 +123,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_system_create_align.start.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_align.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "758ff0253a7dc07de65d037829a91672fb29a247"
   },
   {
    "id": "create_bonus",
@@ -136,9 +136,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_system_create_bonus.start.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_bonus.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3ced43ab8d13c1e55c446491f8708310249b5873"
   },
   {
    "id": "create_bonus_spent",
@@ -149,9 +149,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_system_create_bonus_spent.start.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_bonus_spent.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3db3e8fe0f0393b554b51de47c8332acb62dc536"
   },
   {
    "id": "create_class",
@@ -162,9 +162,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_system_create_class.start.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_class.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "41e3128e5f635ebc8dcbfe3993084c589f5eff91"
   },
   {
    "id": "create_keep",
@@ -175,9 +175,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_system_create_keep.start.png",
-   "file_3x": "3x/wizardry_apple2_na_system_create_keep.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "63d41489bb84ab88045640a6bc80256329db6f8c"
   },
   {
    "id": "menu_roster",
@@ -188,9 +188,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_menu_roster.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_roster.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "48712e9089edd64041a2e6250119c89239d603a2"
   },
   {
    "id": "menu_castle",
@@ -201,9 +201,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_menu_castle.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_menu_castle.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "76909ba6da5ac6d9af66708bf34cee2854e51ff5"
   },
   {
    "id": "inventory_sheet_l1",
@@ -214,9 +214,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_inventory_inventory_sheet_l1.start.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_inventory_sheet_l1.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "dfdc3e14255dee1742adab8c81cf45f2ec8eba3a"
   },
   {
    "id": "inn_healing",
@@ -227,9 +227,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_system_inn_healing.start.png",
-   "file_3x": "3x/wizardry_apple2_na_system_inn_healing.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "3d1a1bcb02c19e4d6d735ebf19442eab21f7a7d3"
   },
   {
    "id": "camp_equip_armor",
@@ -240,9 +240,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_inventory_camp_equip_armor.start.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_camp_equip_armor.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5cb2b5ab34a6126b675b135d391886653dd67e45"
   },
   {
    "id": "chest_inspected",
@@ -253,9 +253,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_chest_inspected.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_inspected.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8ff3cf2fcb3a7c90b710293bab456b1d98ca147c"
   },
   {
    "id": "shop_first_visit",
@@ -266,9 +266,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_shop_shop_first_visit.start.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_first_visit.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "58d86d4aa40b067882e2d318f2dc622bccb9ab24"
   },
   {
    "id": "shop_sword_bought",
@@ -279,9 +279,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_shop_shop_sword_bought.start.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_sword_bought.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "448976145d08e097fc16136544958d868132d50a"
   },
   {
    "id": "shop_armor_page",
@@ -292,9 +292,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_shop_shop_armor_page.start.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_armor_page.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "748a1a969b0d49d748370d2aacb4af8ca8c48b39"
   },
   {
    "id": "shop_spent",
@@ -305,9 +305,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_shop_shop_spent.start.png",
-   "file_3x": "3x/wizardry_apple2_na_shop_shop_spent.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8c1398807106d31eed953de5ec957e72ae732894"
   },
   {
    "id": "edge_first",
@@ -318,9 +318,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_edge_first.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_edge_first.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "afe7553f796ede37026e599f367ba8d9d28e1934"
   },
   {
    "id": "camp_first",
@@ -331,9 +331,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_camp_first.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_camp_first.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "10c3ccd39c44099bf751cf1c10780236684e64f4"
   },
   {
    "id": "camp_equip_weapon",
@@ -344,9 +344,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_inventory_camp_equip_weapon.start.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_camp_equip_weapon.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9425c308c6625542c6135762a6163aed3f38b6c9"
   },
   {
    "id": "camp_equipped",
@@ -357,9 +357,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_camp_equipped.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_camp_equipped.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8d6ba829dd76e64f72ade906af754a8824dc1c38"
   },
   {
    "id": "maze_first_control",
@@ -370,9 +370,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_maze_first_control.start.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_maze_first_control.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "eaf18e57d49e62a940896b013dae8d05cf99e9eb"
   },
   {
    "id": "maze_corridor",
@@ -383,9 +383,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_maze_corridor.start.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_maze_corridor.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "1f3f0c615517644b14259672fbeb497d62f7e303"
   },
   {
    "id": "maze_first_door",
@@ -396,9 +396,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_maze_first_door.start.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_maze_first_door.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "57aab692c5bf242dcf261b69c752612146f330bf"
   },
   {
    "id": "fight_surprised",
@@ -409,9 +409,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_fight_surprised.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_fight_surprised.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c1dafeeb421549733ee2c77ad2d8fc26134b0450"
   },
   {
    "id": "fight_orc_flees",
@@ -422,9 +422,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_fight_orc_flees.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_fight_orc_flees.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "af752aff7da8507cfbc025da3edcfb2a24079ddc"
   },
   {
    "id": "fight_orc_misses",
@@ -435,9 +435,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_fight_orc_misses.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_fight_orc_misses.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "c45a54444d235858c82a78b25ff7a1a6720de34b"
   },
   {
    "id": "fight_options",
@@ -448,9 +448,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_fight_options.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_fight_options.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "2cce80b84fe1ed9eaaeda78f2e23ebcd50df0f7a"
   },
   {
    "id": "fight_spell_typed",
@@ -461,9 +461,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_fight_spell_typed.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_fight_spell_typed.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "6a011644cf3443dc7982776f2fa2de088613a84f"
   },
   {
    "id": "fight_confirm",
@@ -474,9 +474,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_fight_confirm.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_fight_confirm.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "8f100baaf24885770a3bfadca6dbec72aa86f8d7"
   },
   {
    "id": "fight_cast",
@@ -487,9 +487,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_fight_cast.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_fight_cast.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "849b709bc3c061d7ff397db491c4b7690923df98"
   },
   {
    "id": "fight_won",
@@ -500,9 +500,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_fight_won.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_fight_won.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "02bdb1f23f8f8335a1f6f5848bee1a795e787634"
   },
   {
    "id": "chest_found",
@@ -513,9 +513,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_chest_found.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_found.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "9b1a7e483c7fb465a5683eeb1fcbf7efa2e9be62"
   },
   {
    "id": "chest_opened",
@@ -526,9 +526,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_battle_chest_opened.start.png",
-   "file_3x": "3x/wizardry_apple2_na_battle_chest_opened.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "7a23a70ba3f7636ac6f87112ac461da537cd75c3"
   },
   {
    "id": "room_after",
@@ -539,9 +539,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_room_after.start.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_room_after.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "56185b71ecc500743d24745598d380be07ae4fe3"
   },
   {
    "id": "stairs_home",
@@ -552,9 +552,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_gameplay_stairs_home.start.png",
-   "file_3x": "3x/wizardry_apple2_na_gameplay_stairs_home.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "30166a17d6285954aa2d9279432020f0bdc347fa"
   },
   {
    "id": "castle_return",
@@ -565,9 +565,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_castle_return.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_castle_return.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "40f11416cb06df8b11d85cc84dad0e0cd590afb4"
   },
   {
    "id": "inn_rooms",
@@ -578,9 +578,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_menu_inn_rooms.start.png",
-   "file_3x": "3x/wizardry_apple2_na_menu_inn_rooms.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "ce84c5270728cb3e2bd594989676cceda53d454a"
   },
   {
    "id": "inn_need_exp",
@@ -591,9 +591,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_system_inn_need_exp.start.png",
-   "file_3x": "3x/wizardry_apple2_na_system_inn_need_exp.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "b34f1f971fa325c93b0e384a114c400b92faec16"
   },
   {
    "id": "sheet_after",
@@ -604,9 +604,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_inventory_sheet_after.start.png",
-   "file_3x": "3x/wizardry_apple2_na_inventory_sheet_after.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "577f8ef626509d68b3994a5878f7e6b504ab0ed1"
   },
   {
    "id": "leave_game",
@@ -617,9 +617,9 @@
    "model": "iiplus-wp1",
    "source": "play.py snap",
    "file": "wizardry_apple2_na_save_leave_game.start.png",
-   "file_3x": "3x/wizardry_apple2_na_save_leave_game.start.png",
    "rom_sha1": "ae554d7dee72819912300e06874fe69f05765781",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "efbc234c08c637467eb44b4d68cf482631113c52"
   }
  ]
 }

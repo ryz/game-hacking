@@ -19,9 +19,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_seq-fly_01_vermilion.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fly_01_vermilion.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "5bf1d9e4e4f004bf9cc588bfa7d5251481152bda"
   },
   {
    "id": "02_start_menu",
@@ -32,9 +32,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_seq-fly_02_start_menu.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_seq-fly_02_start_menu.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "5c70de35c0624c2b0d447548a2e7f010d3fff7e6"
   },
   {
    "id": "03_party",
@@ -45,9 +45,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_seq-fly_03_party.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_seq-fly_03_party.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "75f27a76f454d1f33b298584cda909f146f7971b"
   },
   {
    "id": "04_fly_option",
@@ -58,9 +58,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_menu_seq-fly_04_fly_option.png",
-   "file_3x": "3x/pokemon-blue_gb_na_menu_seq-fly_04_fly_option.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "dfecdf25d713e9d246448518f53305455870bf84"
   },
   {
    "id": "05_town_map",
@@ -71,9 +71,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_map_seq-fly_05_town_map.png",
-   "file_3x": "3x/pokemon-blue_gb_na_map_seq-fly_05_town_map.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "4102dc0d6159f7d16c48c13ab9d97bb343d43d67"
   },
   {
    "id": "06_to_lavender",
@@ -84,9 +84,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_map_seq-fly_06_to_lavender.png",
-   "file_3x": "3x/pokemon-blue_gb_na_map_seq-fly_06_to_lavender.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "28c186190ed6a175f2ecfe04fb1888061f2ff5ec"
   },
   {
    "id": "07_takeoff_clip",
@@ -102,11 +102,9 @@
     "kept": 106,
     "poster": 42,
     "seconds": 3.52,
-    "file": "pokemon-blue_gb_na_gameplay_seq-fly_07_takeoff_clip.gif",
-    "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fly_07_takeoff_clip.gif"
+    "file": "pokemon-blue_gb_na_gameplay_seq-fly_07_takeoff_clip.gif"
    },
    "file": "pokemon-blue_gb_na_gameplay_seq-fly_07_takeoff_clip.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fly_07_takeoff_clip.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -124,11 +122,9 @@
     "kept": 96,
     "poster": 24,
     "seconds": 3.18,
-    "file": "pokemon-blue_gb_na_gameplay_seq-fly_08_landing_clip.gif",
-    "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fly_08_landing_clip.gif"
+    "file": "pokemon-blue_gb_na_gameplay_seq-fly_08_landing_clip.gif"
    },
    "file": "pokemon-blue_gb_na_gameplay_seq-fly_08_landing_clip.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fly_08_landing_clip.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
    "captured": "2026-11-15"
   },
@@ -141,9 +137,9 @@
    "model": "dmg",
    "source": "shoot.py",
    "file": "pokemon-blue_gb_na_gameplay_seq-fly_09_lavender.png",
-   "file_3x": "3x/pokemon-blue_gb_na_gameplay_seq-fly_09_lavender.png",
    "rom_sha1": "d7037c83e1ae5b39bde3c30787637ba1d4c48ce2",
-   "captured": "2026-11-15"
+   "captured": "2026-11-15",
+   "pixel_sha1": "972ca384eb6578377f728a68031ddb44606b1cde"
   }
  ]
 }

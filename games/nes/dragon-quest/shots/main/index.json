@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_boot_boot_logo.png",
-   "file_3x": "3x/dragon-quest_nes_jp_boot_boot_logo.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "c4f02704bd4a3c7f0f6e4c0727d546e26241d0b4"
   },
   {
    "id": "title_screen",
@@ -32,9 +32,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_title_title_screen.png",
-   "file_3x": "3x/dragon-quest_nes_jp_title_title_screen.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "f7549750f204bab125b7dded43d2dbf529d1dfdf"
   },
   {
    "id": "name_entry",
@@ -45,9 +45,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_menu_name_entry.png",
-   "file_3x": "3x/dragon-quest_nes_jp_menu_name_entry.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "75f32a353198e8672cfc895d2cbb347937d6fced"
   },
   {
    "id": "king_intro",
@@ -58,9 +58,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_cutscene_king_intro.png",
-   "file_3x": "3x/dragon-quest_nes_jp_cutscene_king_intro.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "7cdeae101002cd214730868bc89e09db4c16c77d"
   },
   {
    "id": "talk_compass",
@@ -71,9 +71,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_talk_compass.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_talk_compass.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "b3ffeb6b107fbee3dc0b0e7282c8ab2ca21ad2ca"
   },
   {
    "id": "king_gifts",
@@ -84,9 +84,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_cutscene_king_gifts.png",
-   "file_3x": "3x/dragon-quest_nes_jp_cutscene_king_gifts.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "5945886ab1e477ce2a731baaa2e797e4b552bd80"
   },
   {
    "id": "throne_room_start",
@@ -97,9 +97,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameplay_throne_room_start.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_throne_room_start.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "4cdc12204b62a8292942336407ff7e86eee0d09f"
   },
   {
    "id": "commands_window",
@@ -110,9 +110,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_menu_commands_window.png",
-   "file_3x": "3x/dragon-quest_nes_jp_menu_commands_window.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "d3341227223f5d573b3395e70fb6834457886327"
   },
   {
    "id": "throne_room_chest",
@@ -123,9 +123,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_throne_room_chest.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_throne_room_chest.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "df26d99c9903d53b3a8c6cc9df091b2cc3a4ac0b"
   },
   {
    "id": "npc_soldier",
@@ -136,9 +136,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_dialogue_npc_soldier.png",
-   "file_3x": "3x/dragon-quest_nes_jp_dialogue_npc_soldier.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "c1967d643bad5e91aadb861f7e5dcc84214d59a7"
   },
   {
    "id": "door_command",
@@ -149,9 +149,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_door_command.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_door_command.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "b5177db0b25def21cf259ae1766d42641df1292a"
   },
   {
    "id": "throne_room_door",
@@ -162,9 +162,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameplay_throne_room_door.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_throne_room_door.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "6f547dc4fd036633be7fd6cc2d6ea3c4682cb136"
   },
   {
    "id": "stairs_command",
@@ -175,9 +175,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_stairs_command.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_stairs_command.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "88c4632cd2d8413c45e6cb2d3408dec22aaa2519"
   },
   {
    "id": "castle_1f",
@@ -188,9 +188,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameplay_castle_1f.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_castle_1f.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "f6b6dbd5ef290c6b08cf014d47d9339eacb407f3"
   },
   {
    "id": "hud_status_popup",
@@ -201,9 +201,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_hud_hud_status_popup.png",
-   "file_3x": "3x/dragon-quest_nes_jp_hud_hud_status_popup.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "37830693bd65f603f2c00d833e5bbc192d1d2119"
   },
   {
    "id": "overworld_tantegel",
@@ -214,9 +214,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_map_overworld_tantegel.png",
-   "file_3x": "3x/dragon-quest_nes_jp_map_overworld_tantegel.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "1217cf6409af343d72bb261167c7f953ba1826f0"
   },
   {
    "id": "battle_slime",
@@ -227,9 +227,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_battle_battle_slime.png",
-   "file_3x": "3x/dragon-quest_nes_jp_battle_battle_slime.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "9c79491c9b490fb82c07777fe585da75fd3772c0"
   },
   {
    "id": "battle_command",
@@ -240,9 +240,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_battle_battle_command.png",
-   "file_3x": "3x/dragon-quest_nes_jp_battle_battle_command.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "f6896668df2480dedfec27011cb4cfe390aaca80"
   },
   {
    "id": "battle_levelup",
@@ -253,9 +253,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_battle_battle_levelup.png",
-   "file_3x": "3x/dragon-quest_nes_jp_battle_battle_levelup.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "8be15007478f5e2537ee57f880692c6f789a3a5e"
   },
   {
    "id": "stats_sheet",
@@ -266,9 +266,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_inventory_stats_sheet.png",
-   "file_3x": "3x/dragon-quest_nes_jp_inventory_stats_sheet.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "7df27d0d9edeb69243e73f4590b4f6b485388891"
   },
   {
    "id": "items_window",
@@ -279,9 +279,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_inventory_items_window.png",
-   "file_3x": "3x/dragon-quest_nes_jp_inventory_items_window.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "0bd2ed4274b193188912a9362d0cd434841057dd"
   },
   {
    "id": "spell_window",
@@ -292,9 +292,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_inventory_spell_window.png",
-   "file_3x": "3x/dragon-quest_nes_jp_inventory_spell_window.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "43fdaa31c759862f7b63c020dc74a0feec39d4c3"
   },
   {
    "id": "spell_field",
@@ -305,9 +305,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_spell_field.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_spell_field.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "a9bdf4e0ee45dc9c0f98fc118984da319f53a5f9"
   },
   {
    "id": "king_password",
@@ -318,9 +318,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_save_king_password.png",
-   "file_3x": "3x/dragon-quest_nes_jp_save_king_password.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "af7a7ed714f7a8dab40fcb5061cc07d3fba13312"
   },
   {
    "id": "password_entry",
@@ -331,9 +331,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_save_password_entry.png",
-   "file_3x": "3x/dragon-quest_nes_jp_save_password_entry.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "335093667350639c1da65d4fca30a650ecd916f7"
   },
   {
    "id": "password_typed",
@@ -344,9 +344,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_save_password_typed.png",
-   "file_3x": "3x/dragon-quest_nes_jp_save_password_typed.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "6a9d8699564ae9f07a91968df54423227900e704"
   },
   {
    "id": "town_first",
@@ -357,9 +357,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameplay_town_first.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_town_first.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "d542f804cc07dfe3927a743c1b1d1ac4f18d961a"
   },
   {
    "id": "inn_stay",
@@ -370,9 +370,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_shop_inn_stay.png",
-   "file_3x": "3x/dragon-quest_nes_jp_shop_inn_stay.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "155d85d229de344c6c6f11d34bd001180acb223a"
   },
   {
    "id": "inn_morning",
@@ -383,9 +383,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_inn_morning.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_inn_morning.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "fce9693c060e95f7c24fe4d6b20a6160325a57bc"
   },
   {
    "id": "shop_weapons",
@@ -396,9 +396,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_shop_shop_weapons.png",
-   "file_3x": "3x/dragon-quest_nes_jp_shop_shop_weapons.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "0c2c3f312d8b4f61a7f1239dbe81fc8ae3caf702"
   },
   {
    "id": "cave_dark",
@@ -409,9 +409,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_cave_dark.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_cave_dark.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "01366d65b076a8db82828d3680ad99dd3edf7b82"
   },
   {
    "id": "cave_torch",
@@ -422,9 +422,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_cave_torch.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_cave_torch.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "e5ee68e3a7c56e65c394695eac201ece7413f3c5"
   },
   {
    "id": "cave_remira",
@@ -435,9 +435,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_cave_remira.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_cave_remira.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "83ad86caf2ff9f6cfd32bdba70b8c0f32485d2cb"
   },
   {
    "id": "town_kol",
@@ -448,9 +448,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameplay_town_kol.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_town_kol.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "1ec93c4cc482adf014867365994fa439d92b80ca"
   },
   {
    "id": "town_rimuldar",
@@ -461,9 +461,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameplay_town_rimuldar.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_town_rimuldar.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "d3a1b25afd013e7478949568f39954a212fd21ad"
   },
   {
    "id": "cantlin_roof",
@@ -474,9 +474,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_cantlin_roof.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_cantlin_roof.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "cd38d24250a3e53982a8d2b3dad1801e667f07dd"
   },
   {
    "id": "town_cantlin",
@@ -487,9 +487,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameplay_town_cantlin.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_town_cantlin.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "49b2b9a8b8e78e8a799c132b989da30922453180"
   },
   {
    "id": "ruins_hauksness",
@@ -500,9 +500,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameplay_ruins_hauksness.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_ruins_hauksness.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "27448291785550333dfc7e2829915c09e1df8b36"
   },
   {
    "id": "battle_archmage",
@@ -513,9 +513,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_battle_battle_archmage.png",
-   "file_3x": "3x/dragon-quest_nes_jp_battle_battle_archmage.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "7246e867bb3f049d48c5bced7a7fe8264b250216"
   },
   {
    "id": "battle_spell",
@@ -526,9 +526,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_battle_battle_spell.png",
-   "file_3x": "3x/dragon-quest_nes_jp_battle_battle_spell.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "095c79182a4f0f85fefce0ae3d9297245a2a8480"
   },
   {
    "id": "battle_spell_cast",
@@ -539,9 +539,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_battle_battle_spell_cast.png",
-   "file_3x": "3x/dragon-quest_nes_jp_battle_battle_spell_cast.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "1e9175f35470802bdf74d1f78b091221cfbec8f7"
   },
   {
    "id": "boss_golem",
@@ -552,9 +552,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_boss_boss_golem.png",
-   "file_3x": "3x/dragon-quest_nes_jp_boss_boss_golem.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "f056369975f51efe27dc899d7aa56afe9be7a022"
   },
   {
    "id": "boss_green_dragon",
@@ -565,9 +565,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_boss_boss_green_dragon.png",
-   "file_3x": "3x/dragon-quest_nes_jp_boss_boss_green_dragon.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "91aef74210153a90dc7e108580b9621b433017f6"
   },
   {
    "id": "boss_dragon_king_2",
@@ -578,9 +578,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_boss_boss_dragon_king_2.png",
-   "file_3x": "3x/dragon-quest_nes_jp_boss_boss_dragon_king_2.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "40f70c07c65ab877427821d0c6fd8316eb44250f"
   },
   {
    "id": "dragon_king_offer",
@@ -591,9 +591,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_cutscene_dragon_king_offer.png",
-   "file_3x": "3x/dragon-quest_nes_jp_cutscene_dragon_king_offer.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "6f9c9befaef57dc62a76ae67b43fa1735994c4d8"
   },
   {
    "id": "dragon_king_question",
@@ -604,9 +604,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_cutscene_dragon_king_question.png",
-   "file_3x": "3x/dragon-quest_nes_jp_cutscene_dragon_king_question.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "bb3e140f991585d7c0444038b62168aa147efb49"
   },
   {
    "id": "boss_dragon_king_1",
@@ -617,9 +617,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_boss_boss_dragon_king_1.png",
-   "file_3x": "3x/dragon-quest_nes_jp_boss_boss_dragon_king_1.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "260baa1b3ad7495af6eb9ef51748c7601f63b33e"
   },
   {
    "id": "ending_light_orb",
@@ -630,9 +630,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_ending_ending_light_orb.png",
-   "file_3x": "3x/dragon-quest_nes_jp_ending_ending_light_orb.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "c8758ff05844b0b306796eb885d5b19521d62116"
   },
   {
    "id": "ending_overworld",
@@ -643,9 +643,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_ending_ending_overworld.png",
-   "file_3x": "3x/dragon-quest_nes_jp_ending_ending_overworld.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "baeeaa1cb31e7619d65e842fab6ecc08caa8c691"
   },
   {
    "id": "ending_courtyard",
@@ -656,9 +656,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_ending_ending_courtyard.png",
-   "file_3x": "3x/dragon-quest_nes_jp_ending_ending_courtyard.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "142fd549e122feb5a0240a3225309542d9f748f2"
   },
   {
    "id": "ending_king",
@@ -669,9 +669,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_ending_ending_king.png",
-   "file_3x": "3x/dragon-quest_nes_jp_ending_ending_king.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "11f8e618ed818687189dadc704a568a5a1e56b57"
   },
   {
    "id": "ending_princess",
@@ -682,9 +682,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_ending_ending_princess.png",
-   "file_3x": "3x/dragon-quest_nes_jp_ending_ending_princess.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "5a214be5358425cb8c7fcc69b79dece1fa0185e1"
   },
   {
    "id": "ending_message",
@@ -695,9 +695,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_ending_ending_message.png",
-   "file_3x": "3x/dragon-quest_nes_jp_ending_ending_message.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "1468607ae59028238c0b70cd46a90de7b4f04da0"
   },
   {
    "id": "ending_credits",
@@ -708,9 +708,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_credits_ending_credits.png",
-   "file_3x": "3x/dragon-quest_nes_jp_credits_ending_credits.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "0acea91e3ff0a918cb370926bc3e3f697c9d1d83"
   },
   {
    "id": "ending_fanfare",
@@ -721,9 +721,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_ending_ending_fanfare.png",
-   "file_3x": "3x/dragon-quest_nes_jp_ending_ending_fanfare.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "b897008d79d691ddeb1a2233b51075e2643ab3ea"
   },
   {
    "id": "charlock_entrance",
@@ -734,9 +734,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameplay_charlock_entrance.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_charlock_entrance.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "5696b01b3f3c9024d9886b0a06d356a851273306"
   },
   {
    "id": "charlock_lair",
@@ -747,9 +747,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameplay_charlock_lair.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_charlock_lair.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "f194c7ad08f94f8143f136f93e68fbe744e0ff01"
   },
   {
    "id": "lura_return",
@@ -760,9 +760,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_lura_return.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_lura_return.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "6dbe7cc5381275d790f20a792bdfb0e2261b45fa"
   },
   {
    "id": "rainbow_bridge_built",
@@ -773,9 +773,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_rainbow_bridge_built.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_rainbow_bridge_built.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "19baa6b99640eb0470be3eb6ed5fae72390d97db"
   },
   {
    "id": "rainbow_drop_use",
@@ -786,9 +786,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_rainbow_drop_use.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_rainbow_drop_use.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "e0a8a6c6b31ace667d4b70c25de039e7f7b60ed1"
   },
   {
    "id": "rainbow_bridge",
@@ -799,9 +799,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_system_rainbow_bridge.png",
-   "file_3x": "3x/dragon-quest_nes_jp_system_rainbow_bridge.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "ff279ec0e1a93ad52aa4642eab43ab86b5d33533"
   },
   {
    "id": "death_king",
@@ -812,9 +812,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameover_death_king.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameover_death_king.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "44326e78467f401593024bab5d8365a497dd659b"
   },
   {
    "id": "death_battle",
@@ -825,9 +825,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_gameover_death_battle.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameover_death_battle.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "2afc0e83c2191acd4c92a04729eb6f0f2be0536d"
   },
   {
    "id": "battle_dragon",
@@ -838,9 +838,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dragon-quest_nes_jp_battle_battle_dragon.png",
-   "file_3x": "3x/dragon-quest_nes_jp_battle_battle_dragon.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "b70c6342569c4bf8139b844d47835f4f12ab41c5"
   },
   {
    "id": "charlock_overworld",
@@ -851,9 +851,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dragon-quest_nes_jp_gameplay_charlock_overworld.png",
-   "file_3x": "3x/dragon-quest_nes_jp_gameplay_charlock_overworld.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "45ff2d97c196669f510cdf3587141f1ef67b6637"
   },
   {
    "id": "jp_password_entry",
@@ -864,9 +864,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "dragon-quest_nes_jp_extra_jp_password_entry.png",
-   "file_3x": "3x/dragon-quest_nes_jp_extra_jp_password_entry.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "8a2028a88910c5710b9f2a9cbbd454687fdc6419"
   },
   {
    "id": "shop_tools",
@@ -877,9 +877,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "dragon-quest_nes_jp_shop_shop_tools.png",
-   "file_3x": "3x/dragon-quest_nes_jp_shop_shop_tools.png",
    "rom_sha1": "991969075f1d8f3cf5d8c61b42cfaa721e3487d8",
-   "captured": "2026-11-17"
+   "captured": "2026-11-17",
+   "pixel_sha1": "8b41231d504584155007b6bedae9463ff3100bc8"
   }
  ]
 }

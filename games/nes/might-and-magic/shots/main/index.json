@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_boot_boot_licence.png",
-   "file_3x": "3x/might-and-magic_nes_na_boot_boot_licence.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "e56f5028b57e9c45e7113fffaa29f4509c218175"
   },
   {
    "id": "boot_copyright",
@@ -32,9 +32,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_boot_boot_copyright.png",
-   "file_3x": "3x/might-and-magic_nes_na_boot_boot_copyright.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7ea2bb59e4a1201540212507a39fd0bb9794a150"
   },
   {
    "id": "title_screen",
@@ -45,9 +45,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_title_title_screen.png",
-   "file_3x": "3x/might-and-magic_nes_na_title_title_screen.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4a7d51f6a59fc3cf7550e48f944b16b63f07397b"
   },
   {
    "id": "intro_owl",
@@ -58,9 +58,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_cutscene_intro_owl.png",
-   "file_3x": "3x/might-and-magic_nes_na_cutscene_intro_owl.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "26e938214a926bc8b32aeb32d55efbde808f0b85"
   },
   {
    "id": "sorpigal_welcome",
@@ -71,9 +71,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_dialogue_sorpigal_welcome.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_sorpigal_welcome.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d81380ee1572901fcd6e950e375019aca82bdd1a"
   },
   {
    "id": "name_entry",
@@ -84,9 +84,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_menu_name_entry.png",
-   "file_3x": "3x/might-and-magic_nes_na_menu_name_entry.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "54e84ad466f61f3112056e47ace5606a2bc3ac06"
   },
   {
    "id": "start_sorpigal",
@@ -97,9 +97,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_gameplay_start_sorpigal.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_start_sorpigal.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "63e2ef4a501ff363871195117534be74ca94e98c"
   },
   {
    "id": "town_sign",
@@ -110,9 +110,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_gameplay_town_sign.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_town_sign.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "72103b5df4b874094b0fef50851d02909a63caf5"
   },
   {
    "id": "inn_signin",
@@ -123,9 +123,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_dialogue_inn_signin.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_inn_signin.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a435f5a805c84eb481a144328c8ae9e7d76f5cdd"
   },
   {
    "id": "inn_save",
@@ -136,9 +136,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_save_inn_save.png",
-   "file_3x": "3x/might-and-magic_nes_na_save_inn_save.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "3806bfef401256d7d44a2bf0274f078c29baae4c"
   },
   {
    "id": "inn_menu",
@@ -149,9 +149,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_menu_inn_menu.png",
-   "file_3x": "3x/might-and-magic_nes_na_menu_inn_menu.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0fb227665f74183a869fdf955da719eaf4497d6b"
   },
   {
    "id": "inn_fellows",
@@ -162,9 +162,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_menu_inn_fellows.png",
-   "file_3x": "3x/might-and-magic_nes_na_menu_inn_fellows.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1546e2e337d27c0f9e79cda1874fd68b2091a4c8"
   },
   {
    "id": "inn_party",
@@ -175,9 +175,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_menu_inn_party.png",
-   "file_3x": "3x/might-and-magic_nes_na_menu_inn_party.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "bdb8b0e2da9735ce6892d280150226a0948bc19b"
   },
   {
    "id": "main_menu",
@@ -188,9 +188,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_menu_main_menu.png",
-   "file_3x": "3x/might-and-magic_nes_na_menu_main_menu.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "db97e4651925cec0be7c032cc5af221d76109404"
   },
   {
    "id": "automap_explored",
@@ -201,9 +201,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_map_automap_explored.png",
-   "file_3x": "3x/might-and-magic_nes_na_map_automap_explored.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "42eb534ae3a2d5a1daf3344a760be601331dc247"
   },
   {
    "id": "view_profile",
@@ -214,9 +214,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_inventory_view_profile.png",
-   "file_3x": "3x/might-and-magic_nes_na_inventory_view_profile.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a9064478da4eb521163c4c0c9d05703a9952eba2"
   },
   {
    "id": "view_stats",
@@ -227,9 +227,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_inventory_view_stats.png",
-   "file_3x": "3x/might-and-magic_nes_na_inventory_view_stats.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c263b4cc5d00498031adcfc7c1714a56ec04ac0e"
   },
   {
    "id": "view_vitals",
@@ -240,9 +240,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_inventory_view_vitals.png",
-   "file_3x": "3x/might-and-magic_nes_na_inventory_view_vitals.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "e17e7a07b56db69e78995e5bf1d35880cb763091"
   },
   {
    "id": "blacksmith_greet",
@@ -253,9 +253,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_dialogue_blacksmith_greet.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_blacksmith_greet.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c970b6acf14f895052c3d4c65597516142fb1764"
   },
   {
    "id": "blacksmith_menu",
@@ -266,9 +266,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_shop_blacksmith_menu.png",
-   "file_3x": "3x/might-and-magic_nes_na_shop_blacksmith_menu.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "836616b965f828e523b9ce15a4be1852f6dc590a"
   },
   {
    "id": "blacksmith_weapons",
@@ -279,9 +279,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_shop_blacksmith_weapons.png",
-   "file_3x": "3x/might-and-magic_nes_na_shop_blacksmith_weapons.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "10770a9e15164bea085a5adadbaf203933c4ac3f"
   },
   {
    "id": "blacksmith_price",
@@ -292,9 +292,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_shop_blacksmith_price.png",
-   "file_3x": "3x/might-and-magic_nes_na_shop_blacksmith_price.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "cce77093323a0512de9dd3bd5c26974a94acf987"
   },
   {
    "id": "blacksmith_armor",
@@ -305,9 +305,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_shop_blacksmith_armor.png",
-   "file_3x": "3x/might-and-magic_nes_na_shop_blacksmith_armor.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "fa6ac18141f8d372cd3aca539f5d8ad37146fc65"
   },
   {
    "id": "view_backpack",
@@ -318,9 +318,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_inventory_view_backpack.png",
-   "file_3x": "3x/might-and-magic_nes_na_inventory_view_backpack.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "510c6d8f600b401f4568c782979c9665f8df73dc"
   },
   {
    "id": "camp_rest",
@@ -331,9 +331,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_system_camp_rest.png",
-   "file_3x": "3x/might-and-magic_nes_na_system_camp_rest.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "df8f2a7c0bc179c199da1eae79a546ca5945a2fd"
   },
   {
    "id": "camp_items",
@@ -344,9 +344,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_menu_camp_items.png",
-   "file_3x": "3x/might-and-magic_nes_na_menu_camp_items.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1d300bef03f80db1f7e65bdc86484e5f7211df9a"
   },
   {
    "id": "view_equipped",
@@ -357,9 +357,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_inventory_view_equipped.png",
-   "file_3x": "3x/might-and-magic_nes_na_inventory_view_equipped.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a015877cd6fb34d5a70fcfb63952380e0aac6a0d"
   },
   {
    "id": "food_shop",
@@ -370,9 +370,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_shop_food_shop.png",
-   "file_3x": "3x/might-and-magic_nes_na_shop_food_shop.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "e7d35f169fea3446e22be16888234603bd756caf"
   },
   {
    "id": "food_price",
@@ -383,9 +383,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_shop_food_price.png",
-   "file_3x": "3x/might-and-magic_nes_na_shop_food_price.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "26a2abab94dc4dfbae3e9c89c958ece01918db6b"
   },
   {
    "id": "temple_greet",
@@ -396,9 +396,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_dialogue_temple_greet.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_temple_greet.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "f7075b2755fd19fcbc3a6a26eeae876656021e9a"
   },
   {
    "id": "temple",
@@ -409,9 +409,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_shop_temple.png",
-   "file_3x": "3x/might-and-magic_nes_na_shop_temple.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c72a59c6396ff94c43f81279ec34d179f656610d"
   },
   {
    "id": "training_greet",
@@ -422,9 +422,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_dialogue_training_greet.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_training_greet.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "3184cf9a6aa34b058b5702e76e6ff2c69a3e95f0"
   },
   {
    "id": "training_need",
@@ -435,9 +435,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_system_training_need.png",
-   "file_3x": "3x/might-and-magic_nes_na_system_training_need.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "0971ed82c79325d3d0dcb22465b4884f244d8136"
   },
   {
    "id": "training_levelup",
@@ -448,9 +448,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_system_training_levelup.png",
-   "file_3x": "3x/might-and-magic_nes_na_system_training_levelup.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "86e3f62a6f873a385e58a9e49a20983b8f9ea04d"
   },
   {
    "id": "guild",
@@ -461,9 +461,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_menu_guild.png",
-   "file_3x": "3x/might-and-magic_nes_na_menu_guild.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "9cbe8532330316f62e9cd4e397d64c95d39a79a7"
   },
   {
    "id": "guild_change",
@@ -474,9 +474,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_dialogue_guild_change.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_guild_change.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d6bc6c63f4e4329ee6d1ce7b4518e7386d2a922d"
   },
   {
    "id": "tavern",
@@ -487,9 +487,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_shop_tavern.png",
-   "file_3x": "3x/might-and-magic_nes_na_shop_tavern.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b5672684422912dbcb69ac1b25d530e83c297d2f"
   },
   {
    "id": "tavern_rumor",
@@ -500,9 +500,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_dialogue_tavern_rumor.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_tavern_rumor.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "cc4afa3c26738f981efc2ef33ffde34c498425f1"
   },
   {
    "id": "leprechaun",
@@ -513,9 +513,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_dialogue_leprechaun.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_leprechaun.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "641b1070ba640416856d1e809110a09bae5d5e53"
   },
   {
    "id": "battle_encounter",
@@ -526,9 +526,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_encounter.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_encounter.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "913fd83b737fdfaa5424364ab3c4d27a1e164d1f"
   },
   {
    "id": "battle_orders",
@@ -539,9 +539,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_orders.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_orders.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "680133059efd25f9b6e8b464c58caa0ad41ac5c0"
   },
   {
    "id": "battle_target",
@@ -552,9 +552,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_target.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_target.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "95568b3416562cf0cc1423837bd8c79babf14fb7"
   },
   {
    "id": "battle_hit",
@@ -565,9 +565,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_hit.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_hit.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1798ef07a1094b2aef209508eae7f62512436180"
   },
   {
    "id": "battle_cast_level",
@@ -578,9 +578,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_cast_level.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_cast_level.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "c8cd76de2fa9befd8c5c24c0037dde695b4fbf79"
   },
   {
    "id": "battle_mage_spells",
@@ -591,9 +591,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_mage_spells.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_mage_spells.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "514221696acfda20208b4d2437a8f6cf9023d2a2"
   },
   {
    "id": "cavern",
@@ -604,9 +604,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "might-and-magic_nes_na_gameplay_cavern.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_cavern.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "36f94dd8ad11641908e470c60d2d4093db96e8dd"
   },
   {
    "id": "cavern_portal",
@@ -617,9 +617,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_dialogue_cavern_portal.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_cavern_portal.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5da7f2619bed29c84b05a14f906c347cb818ba28"
   },
   {
    "id": "battle_kill",
@@ -630,9 +630,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_kill.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_kill.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5ac4cae490762d40139ec11013dc32553ffb9b82"
   },
   {
    "id": "battle_cleric_spells",
@@ -643,9 +643,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_cleric_spells.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_cleric_spells.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "27da1887e533954e91f5025924f16eb3cc378205"
   },
   {
    "id": "battle_spell_flame",
@@ -656,9 +656,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_spell_flame.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_spell_flame.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "71d16b3696e7110373e3ecff3bd32d658bd24c61"
   },
   {
    "id": "battle_victory",
@@ -669,9 +669,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_victory.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_victory.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d0c1ba015863c7c01ed35ba3308fd37aed945b42"
   },
   {
    "id": "chest_found",
@@ -682,9 +682,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_system_chest_found.png",
-   "file_3x": "3x/might-and-magic_nes_na_system_chest_found.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2971a92cc48ad257d0f7fc2cc3a58b6229a2a27c"
   },
   {
    "id": "chest_menu",
@@ -695,9 +695,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_system_chest_menu.png",
-   "file_3x": "3x/might-and-magic_nes_na_system_chest_menu.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "949b25a53347368f86fe436849c8c0ced2415800"
   },
   {
    "id": "chest_blades",
@@ -708,9 +708,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_system_chest_blades.png",
-   "file_3x": "3x/might-and-magic_nes_na_system_chest_blades.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "14b26a31bfc70e13fad2b84a8e1abe715ac93765"
   },
   {
    "id": "chest_loot",
@@ -721,9 +721,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_system_chest_loot.png",
-   "file_3x": "3x/might-and-magic_nes_na_system_chest_loot.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "56ddef28671a697e85d8d1024eb9626934e5bd4c"
   },
   {
    "id": "battle_death",
@@ -734,9 +734,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_death.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_death.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1e59170b44a6181b913df33d1be2388f5770fb34"
   },
   {
    "id": "battle_dies",
@@ -747,9 +747,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_battle_battle_dies.png",
-   "file_3x": "3x/might-and-magic_nes_na_battle_battle_dies.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "5292f38da609a88deb0609c15b42d3179f951458"
   },
   {
    "id": "gameover",
@@ -760,9 +760,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameover_gameover.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameover_gameover.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "23ffaed50af984a552fdf4a71d31eb34bad49478"
   },
   {
    "id": "town_portsmith",
@@ -773,9 +773,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_town_portsmith.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_town_portsmith.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "de798fd44177917de26933ac8d3d9813b82e8202"
   },
   {
    "id": "town_algary",
@@ -786,9 +786,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_town_algary.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_town_algary.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "f952f65a975f490ac0341ff0b1d5a32d1ecc0a49"
   },
   {
    "id": "town_dusk",
@@ -799,9 +799,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_town_dusk.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_town_dusk.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "81c87b28b1abcb14d3f1b9db8a4a1c1c3a7fe4af"
   },
   {
    "id": "town_erliquin",
@@ -812,9 +812,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_town_erliquin.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_town_erliquin.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "776a03150e0fa24352dfc6b54edf07fdc87562a4"
   },
   {
    "id": "varn_a2",
@@ -825,9 +825,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_varn_a2.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_varn_a2.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "66419921aad07038c6871072521e5eba2894c2fb"
   },
   {
    "id": "varn_b3",
@@ -838,9 +838,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_varn_b3.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_varn_b3.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "9e93647ffee7b2672b6325fb538536f08a425775"
   },
   {
    "id": "varn_water",
@@ -851,9 +851,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_varn_water.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_varn_water.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "cfc08d85d324484220cbad88e53963c2ecd9728e"
   },
   {
    "id": "varn_c4",
@@ -864,9 +864,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_varn_c4.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_varn_c4.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ef7a040cddd1620accbd530fa39bfd7758bd21e5"
   },
   {
    "id": "varn_d1",
@@ -877,9 +877,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_varn_d1.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_varn_d1.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "7f9e2252ecb47d2e5c1e275095b8d2ad6856c71b"
   },
   {
    "id": "varn_desert",
@@ -890,9 +890,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_varn_desert.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_varn_desert.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "bfa1dfdd3f96220d295de34ea278470c3ed599cb"
   },
   {
    "id": "varn_e4",
@@ -903,9 +903,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_varn_e4.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_varn_e4.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "010083b7228c8325c9da52c5c5621617c5308fd3"
   },
   {
    "id": "cave_dusk",
@@ -916,9 +916,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_cave_dusk.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_cave_dusk.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "883b156910a69a0d6a40b4e250565e48fac607da"
   },
   {
    "id": "volcano",
@@ -929,9 +929,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_volcano.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_volcano.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "aa878d447c563638e8e3c48151adcad26151b581"
   },
   {
    "id": "castle_doom",
@@ -942,9 +942,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_castle_doom.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_castle_doom.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "6f64f3c7bd27cdd930be28de26d5ebcc02266949"
   },
   {
    "id": "castle_whitewolf",
@@ -955,9 +955,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_castle_whitewolf.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_castle_whitewolf.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ee2400aff2eb2ed611cb6bc180ad20568ad7be69"
   },
   {
    "id": "castle_blackridge",
@@ -968,9 +968,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_castle_blackridge.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_castle_blackridge.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "70bf2cc289005b4b5cbf3a3a7fd18052031f8c21"
   },
   {
    "id": "dragadune",
@@ -981,9 +981,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_dragadune.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_dragadune.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "2e45a5300542ad0c7d11cf4ad2061ecec4a2aede"
   },
   {
    "id": "enchanted_forest",
@@ -994,9 +994,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_enchanted_forest.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_enchanted_forest.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "a27080b8db96cbeab06ce30fcfd13ff129f016fd"
   },
   {
    "id": "city_of_gold",
@@ -1007,9 +1007,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_city_of_gold.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_city_of_gold.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4c39813605d5920628186f2cd52364a234c9dd15"
   },
   {
    "id": "castle_alamar",
@@ -1020,9 +1020,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_castle_alamar.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_castle_alamar.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "beb6c1dc8388326ff7c0440b40f44f6a1f2e8a9d"
   },
   {
    "id": "king_alamar",
@@ -1033,9 +1033,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_boss_king_alamar.png",
-   "file_3x": "3x/might-and-magic_nes_na_boss_king_alamar.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "cc90e377bdc2d41b48770303ee272c8ddc249e80"
   },
   {
    "id": "king_alamar_quest",
@@ -1046,9 +1046,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_dialogue_king_alamar_quest.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_king_alamar_quest.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "8db75a129d80f9bbfbdd47db371b029acb087c39"
   },
   {
    "id": "boss_unmasked",
@@ -1059,9 +1059,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_boss_boss_unmasked.png",
-   "file_3x": "3x/might-and-magic_nes_na_boss_boss_unmasked.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "b47814defb7aca8830659ee73720ce58414e4cf7"
   },
   {
    "id": "soul_maze_alien",
@@ -1072,9 +1072,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_boss_soul_maze_alien.png",
-   "file_3x": "3x/might-and-magic_nes_na_boss_soul_maze_alien.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "ffad46ef7b253633c4cb5c3eedda04ec2691f52f"
   },
   {
    "id": "soul_maze_riddle",
@@ -1085,9 +1085,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_dialogue_soul_maze_riddle.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_soul_maze_riddle.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "3d6d02fbcbb06745d31e5aac4596dc7964c4513a"
   },
   {
    "id": "soul_maze",
@@ -1098,9 +1098,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_gameplay_soul_maze.png",
-   "file_3x": "3x/might-and-magic_nes_na_gameplay_soul_maze.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "d25a8fdcc8d1acb6dcc1ec09cb95eb0d1a5f821f"
   },
   {
    "id": "soul_maze_answer",
@@ -1111,9 +1111,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_system_soul_maze_answer.png",
-   "file_3x": "3x/might-and-magic_nes_na_system_soul_maze_answer.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "dd6ded20e0b368409e893bc51b55455d1af4d7fd"
   },
   {
    "id": "boss_voided",
@@ -1124,9 +1124,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_boss_boss_voided.png",
-   "file_3x": "3x/might-and-magic_nes_na_boss_boss_voided.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "88a1197d72e1f887735543ccf514befae662b332"
   },
   {
    "id": "rank1",
@@ -1137,9 +1137,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_cutscene_rank1.png",
-   "file_3x": "3x/might-and-magic_nes_na_cutscene_rank1.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "1c9128f2c349687adb750d5a7f0ac6a93389c90a"
   },
   {
    "id": "astral_dream",
@@ -1150,9 +1150,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_dialogue_astral_dream.png",
-   "file_3x": "3x/might-and-magic_nes_na_dialogue_astral_dream.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "3eb7f0fa7951eb6b542ff5a0c4e60738ec8f9241"
   },
   {
    "id": "ending_metallic_room",
@@ -1163,9 +1163,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_ending_ending_metallic_room.png",
-   "file_3x": "3x/might-and-magic_nes_na_ending_ending_metallic_room.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "19a8dc45829ab621a256e44543f8c5dff9d1f116"
   },
   {
    "id": "ending_welcome",
@@ -1176,9 +1176,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_ending_ending_welcome.png",
-   "file_3x": "3x/might-and-magic_nes_na_ending_ending_welcome.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "4e4015c61f7455a68adaa9abad386604bddea396"
   },
   {
    "id": "ending_transfer",
@@ -1189,9 +1189,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_ending_ending_transfer.png",
-   "file_3x": "3x/might-and-magic_nes_na_ending_ending_transfer.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "fedf7ecce83399259813db51d1350e51a103c70c"
   },
   {
    "id": "ending_exp",
@@ -1202,9 +1202,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_ending_ending_exp.png",
-   "file_3x": "3x/might-and-magic_nes_na_ending_ending_exp.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "bb535444531c3f1d4851d3ae75e10f13603cdfc7"
   },
   {
    "id": "ending_panel",
@@ -1215,9 +1215,9 @@
    "model": "ntsc",
    "source": "play.py snap",
    "file": "might-and-magic_nes_na_ending_ending_panel.png",
-   "file_3x": "3x/might-and-magic_nes_na_ending_ending_panel.png",
    "rom_sha1": "f03848e1ec1e5d77b958551d6be74fe3fed40a5f",
-   "captured": "2026-11-18"
+   "captured": "2026-11-18",
+   "pixel_sha1": "511b468cccfd17d21c588a337fb31bc98d8935f1"
   }
  ]
 }

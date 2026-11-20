@@ -1,257 +1,257 @@
 # Might and Magic Book One: The Secret of the Inner Sanctum (DOS) - shots: main
 
-Platform dos, region na, model svga-1500, ROM SHA-1 `c1a9248dd101e924f5e2de7890258e1a768753ac`. 249 shots. Contact sheet: [might-and-magic_dos_na_set_sheet.png](might-and-magic_dos_na_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model svga-1500, ROM SHA-1 `c1a9248dd101e924f5e2de7890258e1a768753ac`. 249 shots. Contact sheet: [might-and-magic_dos_na_set_sheet.png](might-and-magic_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
-| title_screen | title | Title: New World Computing presents Might and Magic; ESC starts, SPACE scenes | no | [png](might-and-magic_dos_na_title_title_screen.png) [3x](3x/might-and-magic_dos_na_title_title_screen.png) |
-| title_book_one | title | Title, second picture: Book One - Secret of the Inner Sanctum | no | [png](might-and-magic_dos_na_title_title_book_one.png) [3x](3x/might-and-magic_dos_na_title_title_book_one.png) |
-| demo_stronghold | extra | Demo scene (SPACE on the title): a warrior's stronghold or a wizard's lair | no | [png](might-and-magic_dos_na_extra_demo_stronghold.png) [3x](3x/might-and-magic_dos_na_extra_demo_stronghold.png) |
-| demo_treasure | extra | Demo scene: an iron box opens, each share worth 38 gold, 10 gems found | no | [png](might-and-magic_dos_na_extra_demo_treasure.png) [3x](3x/might-and-magic_dos_na_extra_demo_treasure.png) |
-| ready_prompt | menu | After ESC on the title: are you ready? Then press Enter! | yes | [png](might-and-magic_dos_na_menu_ready_prompt.png) [3x](3x/might-and-magic_dos_na_menu_ready_prompt.png) |
-| menu_options | menu | Options: create new characters, view all characters, go to town | yes | [png](might-and-magic_dos_na_menu_menu_options.png) [3x](3x/might-and-magic_dos_na_menu_menu_options.png) |
-| create_roll | system | Create new characters: seven statistics rolled, eligible classes, ENT to re-roll | yes | [png](might-and-magic_dos_na_system_create_roll.png) [3x](3x/might-and-magic_dos_na_system_create_roll.png) |
-| create_race | system | Creation: Knight chosen, select a race: Human, Elf, Dwarf, Gnome, Half-Orc | yes | [png](might-and-magic_dos_na_system_create_race.png) [3x](3x/might-and-magic_dos_na_system_create_race.png) |
-| create_alignment | system | Creation: select alignment (Good, Neut, Evil) | yes | [png](might-and-magic_dos_na_system_create_alignment.png) [3x](3x/might-and-magic_dos_na_system_create_alignment.png) |
-| create_name | system | Creation: Knight, Human, Good, Male, name RYZ typed | yes | [png](might-and-magic_dos_na_system_create_name.png) [3x](3x/might-and-magic_dos_na_system_create_name.png) |
-| create_save | system | Creation: SAVE CHARACTER (Y/N)? | yes | [png](might-and-magic_dos_na_system_create_save.png) [3x](3x/might-and-magic_dos_na_system_create_save.png) |
-| roster_view_all | menu | View all characters: letter, name, town, level and class of the seven listed | yes | [png](might-and-magic_dos_na_menu_roster_view_all.png) [3x](3x/might-and-magic_dos_na_menu_roster_view_all.png) |
-| profile_menu | inventory | Roster profile: new Knight RYZ with a Club; Ctrl-N re-name, Ctrl-D delete | yes | [png](might-and-magic_dos_na_inventory_profile_menu.png) [3x](3x/might-and-magic_dos_na_inventory_profile_menu.png) |
-| rename_prompt | system | Re-naming a character: NAME prompt under CONDI's profile | yes | [png](might-and-magic_dos_na_system_rename_prompt.png) [3x](3x/might-and-magic_dos_na_system_rename_prompt.png) |
-| start_inn_door | gameplay | First control: in the Inn of Sorpigal facing its door; commands, party of six | yes | [png](might-and-magic_dos_na_gameplay_start_inn_door.png) [3x](3x/might-and-magic_dos_na_gameplay_start_inn_door.png) |
-| sorpigal_inn_sign | gameplay | Sorpigal: sign above the door reads THE INN OF SORPIGAL | yes | [png](might-and-magic_dos_na_gameplay_sorpigal_inn_sign.png) [3x](3x/might-and-magic_dos_na_gameplay_sorpigal_inn_sign.png) |
-| save_inn_prompt | save | The innkeeper asks: would you like to sign in (Y/N)? | yes | [png](might-and-magic_dos_na_save_save_inn_prompt.png) [3x](3x/might-and-magic_dos_na_save_save_inn_prompt.png) |
-| save_inn_list | save | Signed in: Inn of Sorpigal, available characters, party marked with @ | yes | [png](might-and-magic_dos_na_save_save_inn_list.png) [3x](3x/might-and-magic_dos_na_save_save_inn_list.png) |
-| shop_blacksmith_prompt | dialogue | B and B Blacksmiths: a man wearing a leather apron speaks | yes | [png](might-and-magic_dos_na_dialogue_shop_blacksmith_prompt.png) [3x](3x/might-and-magic_dos_na_dialogue_shop_blacksmith_prompt.png) |
-| shop_blacksmith_menu | shop | Blacksmith: buy weapons, buy armor, buy misc, sell item; RYZ's gold | yes | [png](might-and-magic_dos_na_shop_shop_blacksmith_menu.png) [3x](3x/might-and-magic_dos_na_shop_shop_blacksmith_menu.png) |
-| shop_weapons | shop | Blacksmith weapons: Dagger 5 ... Crossbow 50, Staff 30 | yes | [png](might-and-magic_dos_na_shop_shop_weapons.png) [3x](3x/might-and-magic_dos_na_shop_shop_weapons.png) |
-| shop_armor | shop | Blacksmith armor: Small Shield 10 ... Chain Mail 200 | yes | [png](might-and-magic_dos_na_shop_shop_armor.png) [3x](3x/might-and-magic_dos_na_shop_shop_armor.png) |
-| shop_misc | shop | Blacksmith misc: Torch 2, Rope & Hooks, Garlic, Magic Herbs, Scroll of Fire 300 | yes | [png](might-and-magic_dos_na_shop_shop_misc.png) [3x](3x/might-and-magic_dos_na_shop_shop_misc.png) |
-| shop_sell | shop | Blacksmith, sell item: Club worth 0, the Short Sword bought for 20 sells for 10 | yes | [png](might-and-magic_dos_na_shop_shop_sell.png) [3x](3x/might-and-magic_dos_na_shop_shop_sell.png) |
-| shop_cant_use | shop | Blacksmith with MNZ the Sorcerer shopping: weapons marked - cannot be used | yes | [png](might-and-magic_dos_na_shop_shop_cant_use.png) [3x](3x/might-and-magic_dos_na_shop_shop_cant_use.png) |
-| profile_ryz | inventory | RYZ's profile: statistics, HP, AC, gold, Short Sword and Leather Armor equipped | yes | [png](might-and-magic_dos_na_inventory_profile_ryz.png) [3x](3x/might-and-magic_dos_na_inventory_profile_ryz.png) |
-| equip_prompt | inventory | RYZ's profile: equip which item A-F? | yes | [png](might-and-magic_dos_na_inventory_equip_prompt.png) [3x](3x/might-and-magic_dos_na_inventory_equip_prompt.png) |
-| share_prompt | system | Share all: gems, gold or food split evenly among the party | yes | [png](might-and-magic_dos_na_system_share_prompt.png) [3x](3x/might-and-magic_dos_na_system_share_prompt.png) |
-| share_done | system | Share gold: the party's 1833 gold split evenly, RYZ now holds 305 | yes | [png](might-and-magic_dos_na_system_share_done.png) [3x](3x/might-and-magic_dos_na_system_share_done.png) |
-| gather_prompt | system | Gather all: gems, gold or food onto CONDI | yes | [png](might-and-magic_dos_na_system_gather_prompt.png) [3x](3x/might-and-magic_dos_na_system_gather_prompt.png) |
-| gather_done | system | Gather gold: CONDI now carries the party's 1833 gold | yes | [png](might-and-magic_dos_na_system_gather_done.png) [3x](3x/might-and-magic_dos_na_system_gather_done.png) |
-| trade_with | system | Trade: trade with which character 1-6? | yes | [png](might-and-magic_dos_na_system_trade_with.png) [3x](3x/might-and-magic_dos_na_system_trade_with.png) |
-| trade_which | system | Trade which: gems, gold, food or an item | yes | [png](might-and-magic_dos_na_system_trade_which.png) [3x](3x/might-and-magic_dos_na_system_trade_which.png) |
-| trade_how_much | system | Trade gold: how much? 250 typed | yes | [png](might-and-magic_dos_na_system_trade_how_much.png) [3x](3x/might-and-magic_dos_na_system_trade_how_much.png) |
-| trade_gold_done | system | After the trade: CONDI's profile shows 250 gold | yes | [png](might-and-magic_dos_na_system_trade_gold_done.png) [3x](3x/might-and-magic_dos_na_system_trade_gold_done.png) |
-| trade_item_done | system | Trade item: RYZ's Club is now in CONDI's backpack | yes | [png](might-and-magic_dos_na_system_trade_item_done.png) [3x](3x/might-and-magic_dos_na_system_trade_item_done.png) |
-| trade_food_done | system | Trade food: EBO received 4 food from RYZ and holds 22 | yes | [png](might-and-magic_dos_na_system_trade_food_done.png) [3x](3x/might-and-magic_dos_na_system_trade_food_done.png) |
-| discard_prompt | system | Discard which item A-F? | yes | [png](might-and-magic_dos_na_system_discard_prompt.png) [3x](3x/might-and-magic_dos_na_system_discard_prompt.png) |
-| discard_done | system | Discarded: the Club is gone from RYZ's backpack | yes | [png](might-and-magic_dos_na_system_discard_done.png) [3x](3x/might-and-magic_dos_na_system_discard_done.png) |
-| use_prompt | system | Use which item A-F or 1-6? | yes | [png](might-and-magic_dos_na_system_use_prompt.png) [3x](3x/might-and-magic_dos_na_system_use_prompt.png) |
-| use_no_power | system | Using the Short Sword: no special power | yes | [png](might-and-magic_dos_na_system_use_no_power.png) [3x](3x/might-and-magic_dos_na_system_use_no_power.png) |
-| use_might_potion | inventory | RYZ drank a Might Potion bought at the blacksmith: Might 15 to 20 | yes | [png](might-and-magic_dos_na_inventory_use_might_potion.png) [3x](3x/might-and-magic_dos_na_inventory_use_might_potion.png) |
-| use_herbs_target | system | Using Magic Herbs: cast on which character 1-6? | yes | [png](might-and-magic_dos_na_system_use_herbs_target.png) [3x](3x/might-and-magic_dos_na_system_use_herbs_target.png) |
-| use_herbs_done | inventory | Magic Herbs used on RYZ: hit points 6 to 14 | yes | [png](might-and-magic_dos_na_inventory_use_herbs_done.png) [3x](3x/might-and-magic_dos_na_inventory_use_herbs_done.png) |
-| remove_prompt | inventory | Remove which item 1-6? | yes | [png](might-and-magic_dos_na_inventory_remove_prompt.png) [3x](3x/might-and-magic_dos_na_inventory_remove_prompt.png) |
-| remove_done | inventory | Leather Armor removed into the backpack: armor class drops | yes | [png](might-and-magic_dos_na_inventory_remove_done.png) [3x](3x/might-and-magic_dos_na_inventory_remove_done.png) |
-| equip_wrong_class | inventory | MNZ the Sorcerer tries to equip Chain Mail: wrong class | yes | [png](might-and-magic_dos_na_inventory_equip_wrong_class.png) [3x](3x/might-and-magic_dos_na_inventory_equip_wrong_class.png) |
-| quickref | hud | Quick reference: hit points, spell points, AC, food and condition of all six | yes | [png](might-and-magic_dos_na_hud_quickref.png) [3x](3x/might-and-magic_dos_na_hud_quickref.png) |
-| order_prompt | system | Order: re-order the party by typing the old positions in the new order | yes | [png](might-and-magic_dos_na_system_order_prompt.png) [3x](3x/might-and-magic_dos_na_system_order_prompt.png) |
-| order_done | system | Order typed 2 1 3 6 5 4: CONDI now leads, MNZ and CUBI swapped | yes | [png](might-and-magic_dos_na_system_order_done.png) [3x](3x/might-and-magic_dos_na_system_order_done.png) |
-| cast_prompt | system | Casting from a profile: MNZ enters level 1, number 5 (Leather Skin), then Enter | yes | [png](might-and-magic_dos_na_system_cast_prompt.png) [3x](3x/might-and-magic_dos_na_system_cast_prompt.png) |
-| cast_on_whom | system | DEDDO the Cleric casts First Aid (1-4): cast on which character? | yes | [png](might-and-magic_dos_na_system_cast_on_whom.png) [3x](3x/might-and-magic_dos_na_system_cast_on_whom.png) |
-| cast_done | system | First Aid cast on RYZ: done, DEDDO has 4 of 5 spell points left | yes | [png](might-and-magic_dos_na_system_cast_done.png) [3x](3x/might-and-magic_dos_na_system_cast_done.png) |
-| cast_healed | inventory | RYZ after First Aid: hit points 6 to 14 of 15 | yes | [png](might-and-magic_dos_na_inventory_cast_healed.png) [3x](3x/might-and-magic_dos_na_inventory_cast_healed.png) |
-| detect_magic | system | Detect Magic (Sorcerer 1-2): Magic Herbs and Might Potion are magic, 3 charges | yes | [png](might-and-magic_dos_na_system_detect_magic.png) [3x](3x/might-and-magic_dos_na_system_detect_magic.png) |
-| vet_profile | inventory | MNZ at level 7: 38 spell points, spell level 4, 14 gems | yes | [png](might-and-magic_dos_na_inventory_vet_profile.png) [3x](3x/might-and-magic_dos_na_inventory_vet_profile.png) |
-| cast_create_food | system | Create Food (Cleric 3-1): 3 spell points and a gem, DEDDO's food 18 to 24 | yes | [png](might-and-magic_dos_na_system_cast_create_food.png) [3x](3x/might-and-magic_dos_na_system_cast_create_food.png) |
-| cast_spell_failed | system | Jump (Sorcerer 2-4) in a town corridor: spell failed | yes | [png](might-and-magic_dos_na_system_cast_spell_failed.png) [3x](3x/might-and-magic_dos_na_system_cast_spell_failed.png) |
-| protect_active | system | Protect: spells currently active, Leather Skin | yes | [png](might-and-magic_dos_na_system_protect_active.png) [3x](3x/might-and-magic_dos_na_system_protect_active.png) |
-| protect_three | system | Protect: Protection from Fear +21%, Light (1) and Leather Skin active | yes | [png](might-and-magic_dos_na_system_protect_three.png) [3x](3x/might-and-magic_dos_na_system_protect_three.png) |
-| location_spell | map | Location (Sorcerer 1-7): in town, map sector C-2, coordinates and facing | yes | [png](might-and-magic_dos_na_map_location_spell.png) [3x](3x/might-and-magic_dos_na_map_location_spell.png) |
-| rest_prompt | system | Rest here (Y/N)? | yes | [png](might-and-magic_dos_na_system_rest_prompt.png) [3x](3x/might-and-magic_dos_na_system_rest_prompt.png) |
-| rest_complete | system | Rest complete: no encounters! | yes | [png](might-and-magic_dos_na_system_rest_complete.png) [3x](3x/might-and-magic_dos_na_system_rest_complete.png) |
-| door_locked | gameplay | Sorpigal: a locked door (LOCKED!) | yes | [png](might-and-magic_dos_na_gameplay_door_locked.png) [3x](3x/might-and-magic_dos_na_gameplay_door_locked.png) |
-| unlock_who | system | Unlock: who will try 1-6? | yes | [png](might-and-magic_dos_na_system_unlock_who.png) [3x](3x/might-and-magic_dos_na_system_unlock_who.png) |
-| unlock_success | system | Unlock: CUBI the Robber picks the lock, success! | yes | [png](might-and-magic_dos_na_system_unlock_success.png) [3x](3x/might-and-magic_dos_na_system_unlock_success.png) |
-| unlock_trap | system | Unlock tried by RYZ the Knight: razor sharp blades slice through the party | yes | [png](might-and-magic_dos_na_system_unlock_trap.png) [3x](3x/might-and-magic_dos_na_system_unlock_trap.png) |
-| trap_damage | hud | Quick reference after the blade trap: every member lost hit points | yes | [png](might-and-magic_dos_na_hud_trap_damage.png) [3x](3x/might-and-magic_dos_na_hud_trap_damage.png) |
-| bash_trap | system | Bash on the locked door: a faint hiss, noxious fumes fill the air (gas trap) | yes | [png](might-and-magic_dos_na_system_bash_trap.png) [3x](3x/might-and-magic_dos_na_system_bash_trap.png) |
-| bash_after | battle | Behind the bashed door: two Rabid Jackals and three Vampire Bats | yes | [png](might-and-magic_dos_na_battle_bash_after.png) [3x](3x/might-and-magic_dos_na_battle_bash_after.png) |
-| encounter_poltergeists | battle | Encounter: four Poltergeists, picture, Attack / Bribe / Retreat / Surrender | yes | [png](might-and-magic_dos_na_battle_encounter_poltergeists.png) [3x](3x/might-and-magic_dos_na_battle_encounter_poltergeists.png) |
-| combat_round | battle | Combat round 1: formation, monster list, handicap, a Poltergeist hacks at CONDI | yes | [png](might-and-magic_dos_na_battle_combat_round.png) [3x](3x/might-and-magic_dos_na_battle_combat_round.png) |
-| encounter_bribe | battle | Encounter option Bribe: no response | yes | [png](might-and-magic_dos_na_battle_encounter_bribe.png) [3x](3x/might-and-magic_dos_na_battle_encounter_bribe.png) |
-| encounter_surrender | battle | Encounter option Surrender: the monsters don't take prisoners! | yes | [png](might-and-magic_dos_na_battle_encounter_surrender.png) [3x](3x/might-and-magic_dos_na_battle_encounter_surrender.png) |
-| encounter_goblins | battle | Sorpigal, the same room at another moment: five Goblins | yes | [png](might-and-magic_dos_na_battle_encounter_goblins.png) [3x](3x/might-and-magic_dos_na_battle_encounter_goblins.png) |
-| encounter_guardsmen | battle | Sorpigal, the same room: two Guardsmen and three Gnomes | yes | [png](might-and-magic_dos_na_battle_encounter_guardsmen.png) [3x](3x/might-and-magic_dos_na_battle_encounter_guardsmen.png) |
-| encounter_bribe_demand | battle | Bribe accepted for talks: give up all your food (Y/N)? | yes | [png](might-and-magic_dos_na_battle_encounter_bribe_demand.png) [3x](3x/might-and-magic_dos_na_battle_encounter_bribe_demand.png) |
-| encounter_bribe_paid | battle | Bribe paid | yes | [png](might-and-magic_dos_na_battle_encounter_bribe_paid.png) [3x](3x/might-and-magic_dos_na_battle_encounter_bribe_paid.png) |
-| encounter_bribe_food | hud | Quick reference after the bribe | yes | [png](might-and-magic_dos_na_hud_encounter_bribe_food.png) [3x](3x/might-and-magic_dos_na_hud_encounter_bribe_food.png) |
-| combat_options | battle | Combat: options for MNZ the Sorcerer (Exchange, Retreat, Cast, Use, Block) | yes | [png](might-and-magic_dos_na_battle_combat_options.png) [3x](3x/might-and-magic_dos_na_battle_combat_options.png) |
-| combat_cast | battle | Combat: MNZ casts spell level 1, number 4 (Flame Arrow) | yes | [png](might-and-magic_dos_na_battle_combat_cast.png) [3x](3x/might-and-magic_dos_na_battle_combat_cast.png) |
-| combat_spell_hit | battle | MNZ casts a spell: Poltergeist takes 5 points of damage | yes | [png](might-and-magic_dos_na_battle_combat_spell_hit.png) [3x](3x/might-and-magic_dos_na_battle_combat_spell_hit.png) |
-| combat_shoot | battle | EBO shoots a Poltergeist with the sling: hit for 7 points, Poltergeist goes down | yes | [png](might-and-magic_dos_na_battle_combat_shoot.png) [3x](3x/might-and-magic_dos_na_battle_combat_shoot.png) |
-| combat_fight_prompt | battle | Combat order Fight: RYZ chooses which monster in reach, A-C | yes | [png](might-and-magic_dos_na_battle_combat_fight_prompt.png) [3x](3x/might-and-magic_dos_na_battle_combat_fight_prompt.png) |
-| combat_exchange_prompt | battle | Combat order Exchange: MNZ, exchange places with (1-6)? | yes | [png](might-and-magic_dos_na_battle_combat_exchange_prompt.png) [3x](3x/might-and-magic_dos_na_battle_combat_exchange_prompt.png) |
-| combat_exchange_done | battle | After Exchange: MNZ stands in position 1, RYZ in position 6 | yes | [png](might-and-magic_dos_na_battle_combat_exchange_done.png) [3x](3x/might-and-magic_dos_na_battle_combat_exchange_done.png) |
-| combat_use | battle | Combat order Use: MNZ's items, use which? | yes | [png](might-and-magic_dos_na_battle_combat_use.png) [3x](3x/might-and-magic_dos_na_battle_combat_use.png) |
-| combat_bless | battle | DEDDO casts Bless (Cleric 1-2) in combat: done | yes | [png](might-and-magic_dos_na_battle_combat_bless.png) [3x](3x/might-and-magic_dos_na_battle_combat_bless.png) |
-| combat_sleep_immune | battle | MNZ casts Sleep (Sorcerer 1-8) at a Poltergeist: not affected | yes | [png](might-and-magic_dos_na_battle_combat_sleep_immune.png) [3x](3x/might-and-magic_dos_na_battle_combat_sleep_immune.png) |
-| combat_turn_undead | battle | DEDDO casts Turn Undead (Cleric 1-8) at Skeletons: some monsters were destroyed | yes | [png](might-and-magic_dos_na_battle_combat_turn_undead.png) [3x](3x/might-and-magic_dos_na_battle_combat_turn_undead.png) |
-| combat_sleep_goblins | battle | Sleep (Sorcerer 1-8) on five Goblins: two not affected, one marked (ASLEEP) | yes | [png](might-and-magic_dos_na_battle_combat_sleep_goblins.png) [3x](3x/might-and-magic_dos_na_battle_combat_sleep_goblins.png) |
-| combat_identify_monster | battle | Identify Monster (Sorcerer 2-3): a Poltergeist's hit points, AC, speed, attacks | yes | [png](might-and-magic_dos_na_battle_combat_identify_monster.png) [3x](3x/might-and-magic_dos_na_battle_combat_identify_monster.png) |
-| combat_lightning_bolt | battle | Lightning Bolt (Sorcerer 3-4), MNZ at level 7: 30 points, Poltergeist goes down | no | [png](might-and-magic_dos_na_battle_combat_lightning_bolt.png) [3x](3x/might-and-magic_dos_na_battle_combat_lightning_bolt.png) |
-| combat_fire_ball | battle | Fire Ball (Sorcerer 3-1) at hand-to-hand range: CONDI takes 18 points of damage | yes | [png](might-and-magic_dos_na_battle_combat_fire_ball.png) [3x](3x/might-and-magic_dos_na_battle_combat_fire_ball.png) |
-| combat_victory | battle | Victory: for defeating the monsters each survivor receives 100 experience points | yes | [png](might-and-magic_dos_na_battle_combat_victory.png) [3x](3x/might-and-magic_dos_na_battle_combat_victory.png) |
-| search_nothing | system | Searching the room after the fight: nothing | yes | [png](might-and-magic_dos_na_system_search_nothing.png) [3x](3x/might-and-magic_dos_na_system_search_nothing.png) |
-| unconscious_quickref | hud | After a fight: CONDI at 0 hit points, condition unconscious | yes | [png](might-and-magic_dos_na_hud_unconscious_quickref.png) [3x](3x/might-and-magic_dos_na_hud_unconscious_quickref.png) |
-| conditions_quickref | hud | Quick reference: poisoned, dead, asleep, paralyzed, stone, blinded | yes | [png](might-and-magic_dos_na_hud_conditions_quickref.png) [3x](3x/might-and-magic_dos_na_hud_conditions_quickref.png) |
-| death_party_down | battle | A party at 1 hit point each: MNZ goes down, the last of the six | yes | [png](might-and-magic_dos_na_battle_death_party_down.png) [3x](3x/might-and-magic_dos_na_battle_death_party_down.png) |
-| gameover | gameover | The shadow of death has fallen upon your party: renew the quest from the inn | yes | [png](might-and-magic_dos_na_gameover_gameover.png) [3x](3x/might-and-magic_dos_na_gameover_gameover.png) |
-| train_level2 | system | Otto's Training: training for level 2 costs 25 gold | yes | [png](might-and-magic_dos_na_system_train_level2.png) [3x](3x/might-and-magic_dos_na_system_train_level2.png) |
-| train_no_gold | system | Training without the 25 gold: not enough gold | no | [png](might-and-magic_dos_na_system_train_no_gold.png) [3x](3x/might-and-magic_dos_na_system_train_no_gold.png) |
-| train_levelup | system | Congratulations! You are now level 2, you gained 11 hit points | yes | [png](might-and-magic_dos_na_system_train_levelup.png) [3x](3x/might-and-magic_dos_na_system_train_levelup.png) |
-| train_level3_need | system | Training done: level 3 needs 1315 more experience points | yes | [png](might-and-magic_dos_na_system_train_level3_need.png) [3x](3x/might-and-magic_dos_na_system_train_level3_need.png) |
-| train_level8_need | system | Training at level 7 with 61480 experience: level 8 needs 34520 more | yes | [png](might-and-magic_dos_na_system_train_level8_need.png) [3x](3x/might-and-magic_dos_na_system_train_level8_need.png) |
-| profile_level2 | inventory | RYZ after training: level 2, age 19, 26 hit points, 1808 gold left | yes | [png](might-and-magic_dos_na_inventory_profile_level2.png) [3x](3x/might-and-magic_dos_na_inventory_profile_level2.png) |
-| temple_services | shop | Temple Moonshadow: restore health, uncurse items, restore align, make donation | yes | [png](might-and-magic_dos_na_shop_temple_services.png) [3x](3x/might-and-magic_dos_na_shop_temple_services.png) |
-| temple_price | shop | Temple with RYZ at 4 hit points: restore health costs 25 gold | yes | [png](might-and-magic_dos_na_shop_temple_price.png) [3x](3x/might-and-magic_dos_na_shop_temple_price.png) |
-| temple_cured | shop | Health restored: 25 gold paid, nothing left to restore | yes | [png](might-and-magic_dos_na_shop_temple_cured.png) [3x](3x/might-and-magic_dos_na_shop_temple_cured.png) |
-| temple_cured_profile | inventory | RYZ after the temple | yes | [png](might-and-magic_dos_na_inventory_temple_cured_profile.png) [3x](3x/might-and-magic_dos_na_inventory_temple_cured_profile.png) |
-| temple_poisoned | shop | Temple Moonshadow with RYZ poisoned: a star marks him, the clerics offer help | yes | [png](might-and-magic_dos_na_shop_temple_poisoned.png) [3x](3x/might-and-magic_dos_na_shop_temple_poisoned.png) |
-| temple_dead | shop | Temple with CONDI dead: the price of raising | yes | [png](might-and-magic_dos_na_shop_temple_dead.png) [3x](3x/might-and-magic_dos_na_shop_temple_dead.png) |
-| temple_donation | shop | Donation made: 100 gold paid | yes | [png](might-and-magic_dos_na_shop_temple_donation.png) [3x](3x/might-and-magic_dos_na_shop_temple_donation.png) |
-| market_food | shop | Eulards Fine Foods: all you can eat, 5 gold each, will you pay? | yes | [png](might-and-magic_dos_na_shop_market_food.png) [3x](3x/might-and-magic_dos_na_shop_market_food.png) |
-| market_bought | shop | Eulards Fine Foods after paying: thank you, come again! | no | [png](might-and-magic_dos_na_shop_market_bought.png) [3x](3x/might-and-magic_dos_na_shop_market_bought.png) |
-| market_food_after | hud | Quick reference after the meal | yes | [png](might-and-magic_dos_na_hud_market_food_after.png) [3x](3x/might-and-magic_dos_na_hud_market_food_after.png) |
-| tavern_menu | shop | Ye Olde Hogge Tavern: have a drink, tip bartender, listen for rumors | yes | [png](might-and-magic_dos_na_shop_tavern_menu.png) [3x](3x/might-and-magic_dos_na_shop_tavern_menu.png) |
-| tavern_drink | shop | Tavern: a drink costs 1 gold | yes | [png](might-and-magic_dos_na_shop_tavern_drink.png) [3x](3x/might-and-magic_dos_na_shop_tavern_drink.png) |
-| tavern_rumor | dialogue | Tavern rumor after two tips: the desert has many oases! | yes | [png](might-and-magic_dos_na_dialogue_tavern_rumor.png) [3x](3x/might-and-magic_dos_na_dialogue_tavern_rumor.png) |
-| statue_lore | dialogue | A statue's inscription: in memory of a time long ago... | yes | [png](might-and-magic_dos_na_dialogue_statue_lore.png) [3x](3x/might-and-magic_dos_na_dialogue_statue_lore.png) |
-| statue_archer | dialogue | Statue of a half-orc archer: in honor of Corak, for his mapping expedition | yes | [png](might-and-magic_dos_na_dialogue_statue_archer.png) [3x](3x/might-and-magic_dos_na_dialogue_statue_archer.png) |
-| statue_cleric | dialogue | Statue of a human cleric: in honor of Gala and the savages of the volcanic isles | yes | [png](might-and-magic_dos_na_dialogue_statue_cleric.png) [3x](3x/might-and-magic_dos_na_dialogue_statue_cleric.png) |
-| statue_knight | dialogue | Statue of a human knight: five towns you must travel | yes | [png](might-and-magic_dos_na_dialogue_statue_knight.png) [3x](3x/might-and-magic_dos_na_dialogue_statue_knight.png) |
-| statue_minotaur | dialogue | Statue of a gray minotaur: this beast rules a fortress in the Enchanted Forest | yes | [png](might-and-magic_dos_na_dialogue_statue_minotaur.png) [3x](3x/might-and-magic_dos_na_dialogue_statue_minotaur.png) |
-| statue_wizard | dialogue | Statue of an elven wizard: seek the wizard Ranalou at the Korin Bluffs | yes | [png](might-and-magic_dos_na_dialogue_statue_wizard.png) [3x](3x/might-and-magic_dos_na_dialogue_statue_wizard.png) |
-| statue_robber | dialogue | Statue of a gnome robber: one by water, one by land, one by air and one by sand | yes | [png](might-and-magic_dos_na_dialogue_statue_robber.png) [3x](3x/might-and-magic_dos_na_dialogue_statue_robber.png) |
-| statue_paladin | dialogue | Statue of a dwarf paladin: there are many dungeons like me, the idols will help | yes | [png](might-and-magic_dos_na_dialogue_statue_paladin.png) [3x](3x/might-and-magic_dos_na_dialogue_statue_paladin.png) |
-| statue_prompt | dialogue | A stone statue with a plaque: search it? | yes | [png](might-and-magic_dos_na_dialogue_statue_prompt.png) [3x](3x/might-and-magic_dos_na_dialogue_statue_prompt.png) |
-| leprechaun | system | A tenacious leprechaun offers travel to a town for one gem | yes | [png](might-and-magic_dos_na_system_leprechaun.png) [3x](3x/might-and-magic_dos_na_system_leprechaun.png) |
-| leprechaun_algary | gameplay | The leprechaun took one gem: the party stands in Algary | yes | [png](might-and-magic_dos_na_gameplay_leprechaun_algary.png) [3x](3x/might-and-magic_dos_na_gameplay_leprechaun_algary.png) |
-| trap_door | gameplay | Sorpigal (5,8): trap door! | yes | [png](might-and-magic_dos_na_gameplay_trap_door.png) [3x](3x/might-and-magic_dos_na_gameplay_trap_door.png) |
-| trap_door_after | gameplay | After the trap door, with Light cast: the cavern below Sorpigal (CAVE1) at (5,8) | yes | [png](might-and-magic_dos_na_gameplay_trap_door_after.png) [3x](3x/might-and-magic_dos_na_gameplay_trap_door_after.png) |
-| stairs_prompt | gameplay | Sorpigal: stairs going down, take them (Y/N)? | yes | [png](might-and-magic_dos_na_gameplay_stairs_prompt.png) [3x](3x/might-and-magic_dos_na_gameplay_stairs_prompt.png) |
-| dungeon_darkness | gameplay | Below Sorpigal without light: DARKNESS | yes | [png](might-and-magic_dos_na_gameplay_dungeon_darkness.png) [3x](3x/might-and-magic_dos_na_gameplay_dungeon_darkness.png) |
-| dungeon_lit | gameplay | Cavern below Sorpigal after MNZ cast Light: green rock, a portcullis and a door | yes | [png](might-and-magic_dos_na_gameplay_dungeon_lit.png) [3x](3x/might-and-magic_dos_na_gameplay_dungeon_lit.png) |
-| cave_courier | dialogue | Cavern below Sorpigal: an elderly man behind a desk needs a courier service | yes | [png](might-and-magic_dos_na_dialogue_cave_courier.png) [3x](3x/might-and-magic_dos_na_dialogue_cave_courier.png) |
-| cave_wall_message | gameplay | Cavern: scrawled on the wall, a message reads: the jail above has many cells | yes | [png](might-and-magic_dos_na_gameplay_cave_wall_message.png) [3x](3x/might-and-magic_dos_na_gameplay_cave_wall_message.png) |
-| cave_arena | dialogue | Cavern, the Arena: balconies of cheering peasants, will you participate? | yes | [png](might-and-magic_dos_na_dialogue_cave_arena.png) [3x](3x/might-and-magic_dos_na_dialogue_cave_arena.png) |
-| cave_arena_fight | battle | The Arena below Sorpigal: the party agrees to participate | yes | [png](might-and-magic_dos_na_battle_cave_arena_fight.png) [3x](3x/might-and-magic_dos_na_battle_cave_arena_fight.png) |
-| cave_portal | gameplay | Cavern: a shimmering blue and white portal appears, enter? | yes | [png](might-and-magic_dos_na_gameplay_cave_portal.png) [3x](3x/might-and-magic_dos_na_gameplay_cave_portal.png) |
-| cave_skeletons | battle | Cavern encounter: five Skeletons | yes | [png](might-and-magic_dos_na_battle_cave_skeletons.png) [3x](3x/might-and-magic_dos_na_battle_cave_skeletons.png) |
-| cave_fire_ants | battle | Cavern encounter: five Fire Ants | yes | [png](might-and-magic_dos_na_battle_cave_fire_ants.png) [3x](3x/might-and-magic_dos_na_battle_cave_fire_ants.png) |
-| cave_snakes | battle | Cavern encounter: ten Snakes | yes | [png](might-and-magic_dos_na_battle_cave_snakes.png) [3x](3x/might-and-magic_dos_na_battle_cave_snakes.png) |
-| outdoors_first | gameplay | Outside Sorpigal: mountains and forest | yes | [png](might-and-magic_dos_na_gameplay_outdoors_first.png) [3x](3x/might-and-magic_dos_na_gameplay_outdoors_first.png) |
-| outdoors_forest | gameplay | Sector C-2, forest: a glowing white column, touch it? | yes | [png](might-and-magic_dos_na_gameplay_outdoors_forest.png) [3x](3x/might-and-magic_dos_na_gameplay_outdoors_forest.png) |
-| outdoors_fountain | gameplay | Sector C-2, dense woods: a strange fountain, drink? | yes | [png](might-and-magic_dos_na_gameplay_outdoors_fountain.png) [3x](3x/might-and-magic_dos_na_gameplay_outdoors_fountain.png) |
-| outdoors_statues | gameplay | Sector C-2: statues block the path, smash them? | yes | [png](might-and-magic_dos_na_gameplay_outdoors_statues.png) [3x](3x/might-and-magic_dos_na_gameplay_outdoors_statues.png) |
-| outdoors_vines | battle | Wilderness encounter in the forest: nine Strangling Vines | yes | [png](might-and-magic_dos_na_battle_outdoors_vines.png) [3x](3x/might-and-magic_dos_na_battle_outdoors_vines.png) |
-| outdoors_gypsy | dialogue | Sector C-2: a toothless gypsy seer offers to read a character's sign | yes | [png](might-and-magic_dos_na_dialogue_outdoors_gypsy.png) [3x](3x/might-and-magic_dos_na_dialogue_outdoors_gypsy.png) |
-| outdoors_cave | gameplay | Sector C-2, mountains: there's a cave here, enter? | yes | [png](might-and-magic_dos_na_gameplay_outdoors_cave.png) [3x](3x/might-and-magic_dos_na_gameplay_outdoors_cave.png) |
-| a1_dark_rider | dialogue | Sector A-1: the Dark Rider and his men surround the party, a duel is offered | yes | [png](might-and-magic_dos_na_dialogue_a1_dark_rider.png) [3x](3x/might-and-magic_dos_na_dialogue_a1_dark_rider.png) |
-| boss_dark_rider | boss | Sector A-1: the duel with the Dark Rider is accepted | yes | [png](might-and-magic_dos_na_boss_boss_dark_rider.png) [3x](3x/might-and-magic_dos_na_boss_boss_dark_rider.png) |
-| a1_ice | gameplay | Sector A-1: carved on a block of ice, start at 15-7 and walk to Doom | yes | [png](might-and-magic_dos_na_gameplay_a1_ice.png) [3x](3x/might-and-magic_dos_na_gameplay_a1_ice.png) |
-| a1_castle_doom | gameplay | Sector A-1: the fabled Castle Doom, will you enter? | yes | [png](might-and-magic_dos_na_gameplay_a1_castle_doom.png) [3x](3x/might-and-magic_dos_na_gameplay_a1_castle_doom.png) |
-| e1_volcano | gameplay | Sector E-1, south edge: mountains beside a red expanse | yes | [png](might-and-magic_dos_na_gameplay_e1_volcano.png) [3x](3x/might-and-magic_dos_na_gameplay_e1_volcano.png) |
-| e1_dragadune | gameplay | Sector E-1, mountains: ruins of Castle Dragadune, enter? | yes | [png](might-and-magic_dos_na_gameplay_e1_dragadune.png) [3x](3x/might-and-magic_dos_na_gameplay_e1_dragadune.png) |
-| portsmith_inn_sign | gameplay | Portsmith: a sign above the door reads Inn of Portsmith | yes | [png](might-and-magic_dos_na_gameplay_portsmith_inn_sign.png) [3x](3x/might-and-magic_dos_na_gameplay_portsmith_inn_sign.png) |
-| portsmith_inn | dialogue | Inn of Portsmith: Lara, the innkeeper's daughter, asks if you spend the night | yes | [png](might-and-magic_dos_na_dialogue_portsmith_inn.png) [3x](3x/might-and-magic_dos_na_dialogue_portsmith_inn.png) |
-| portsmith_signed_in | save | Signed in at town 2: Inn of Portsmith, the six characters now lodge here | yes | [png](might-and-magic_dos_na_save_portsmith_signed_in.png) [3x](3x/might-and-magic_dos_na_save_portsmith_signed_in.png) |
-| portsmith_blacksmith | dialogue | Portsmith, B. Smith's Workshop: a young girl forging a long sword | yes | [png](might-and-magic_dos_na_dialogue_portsmith_blacksmith.png) [3x](3x/might-and-magic_dos_na_dialogue_portsmith_blacksmith.png) |
-| portsmith_weapons | shop | B. Smith's Workshop, Portsmith, weapons: Spear 15 to Glaive and Bardiche 80 | yes | [png](might-and-magic_dos_na_shop_portsmith_weapons.png) [3x](3x/might-and-magic_dos_na_shop_portsmith_weapons.png) |
-| portsmith_armor | shop | B. Smith's Workshop, Portsmith: armor for sale | yes | [png](might-and-magic_dos_na_shop_portsmith_armor.png) [3x](3x/might-and-magic_dos_na_shop_portsmith_armor.png) |
-| portsmith_misc | shop | B. Smith's Workshop, Portsmith, misc: 10 Foot Pole to Antidote Brew 500 | yes | [png](might-and-magic_dos_na_shop_portsmith_misc.png) [3x](3x/might-and-magic_dos_na_shop_portsmith_misc.png) |
-| portsmith_zam | dialogue | Portsmith: Zam, astral brother of Zom: you're not the couriers! | yes | [png](might-and-magic_dos_na_dialogue_portsmith_zam.png) [3x](3x/might-and-magic_dos_na_dialogue_portsmith_zam.png) |
-| portsmith_secret | dialogue | Portsmith: a female voice from an intoxicating mist; the men are marked | yes | [png](might-and-magic_dos_na_dialogue_portsmith_secret.png) [3x](3x/might-and-magic_dos_na_dialogue_portsmith_secret.png) |
-| algary_inn | dialogue | The Inn of Algary: a tall bearded half-orc behind a large desk | yes | [png](might-and-magic_dos_na_dialogue_algary_inn.png) [3x](3x/might-and-magic_dos_na_dialogue_algary_inn.png) |
-| algary_mystic | dialogue | Algary: Morango the Mystic asks whom to measure | yes | [png](might-and-magic_dos_na_dialogue_algary_mystic.png) [3x](3x/might-and-magic_dos_na_dialogue_algary_mystic.png) |
-| algary_portal | gameplay | Algary: a magic portal, enter? | yes | [png](might-and-magic_dos_na_gameplay_algary_portal.png) [3x](3x/might-and-magic_dos_na_gameplay_algary_portal.png) |
-| dusk_inn | dialogue | The Inn of Dusk: an eerie silence, a ghostly apparition asks to sign in | yes | [png](might-and-magic_dos_na_dialogue_dusk_inn.png) [3x](3x/might-and-magic_dos_na_dialogue_dusk_inn.png) |
-| dusk_training | dialogue | Dusk, Clearman's Training: several empty suits of armor approach | yes | [png](might-and-magic_dos_na_dialogue_dusk_training.png) [3x](3x/might-and-magic_dos_na_dialogue_dusk_training.png) |
-| dusk_chest | system | Dusk: a gold chest: open it, find/remove trap, detect magic/trap | yes | [png](might-and-magic_dos_na_system_dusk_chest.png) [3x](3x/might-and-magic_dos_na_system_dusk_chest.png) |
-| chest_who | system | Gold chest, open it: who will try 1-6? | yes | [png](might-and-magic_dos_na_system_chest_who.png) [3x](3x/might-and-magic_dos_na_system_chest_who.png) |
-| chest_opened | system | The chest opens for CUBI the Robber: 200 gems and an Undead Amulet found | yes | [png](might-and-magic_dos_na_system_chest_opened.png) [3x](3x/might-and-magic_dos_na_system_chest_opened.png) |
-| chest_find_trap | system | Find/remove trap fails on the gold chest: razor sharp blades slice the party | yes | [png](might-and-magic_dos_na_system_chest_find_trap.png) [3x](3x/might-and-magic_dos_na_system_chest_find_trap.png) |
-| chest_detect | system | Gold chest, detect magic/trap tried by MNZ | yes | [png](might-and-magic_dos_na_system_chest_detect.png) [3x](3x/might-and-magic_dos_na_system_chest_detect.png) |
-| dusk_vampires | battle | Dusk encounter: ten Vampires | yes | [png](might-and-magic_dos_na_battle_dusk_vampires.png) [3x](3x/might-and-magic_dos_na_battle_dusk_vampires.png) |
-| dusk_banshees | battle | Dusk encounter: ten Banshees | yes | [png](might-and-magic_dos_na_battle_dusk_banshees.png) [3x](3x/might-and-magic_dos_na_battle_dusk_banshees.png) |
-| erliquin_agar | dialogue | Erliquin: the wizard Agar speaks: I have no business with you. Begone! | yes | [png](might-and-magic_dos_na_dialogue_erliquin_agar.png) [3x](3x/might-and-magic_dos_na_dialogue_erliquin_agar.png) |
-| erliquin_inn | dialogue | The Inn of Erliquin: an elderly gnome with spectacles asks about signing in | yes | [png](might-and-magic_dos_na_dialogue_erliquin_inn.png) [3x](3x/might-and-magic_dos_na_dialogue_erliquin_inn.png) |
-| erliquin_training | dialogue | Erliquin: three huge armor clad knights bark in unison, want a good workout? | yes | [png](might-and-magic_dos_na_dialogue_erliquin_training.png) [3x](3x/might-and-magic_dos_na_dialogue_erliquin_training.png) |
-| alamar_guards | dialogue | Castle Alamar: castle guards exclaim, no merchants pass! Begone peasants | yes | [png](might-and-magic_dos_na_dialogue_alamar_guards.png) [3x](3x/might-and-magic_dos_na_dialogue_alamar_guards.png) |
-| alamar_prisoner | system | Castle Alamar: a fair maiden weeps in a steel cage: set free, torment or leave | yes | [png](might-and-magic_dos_na_system_alamar_prisoner.png) [3x](3x/might-and-magic_dos_na_system_alamar_prisoner.png) |
-| alamar_king | dialogue | Castle Alamar, throne room: the king sends the party to the Crypt of Carmenca | yes | [png](might-and-magic_dos_na_dialogue_alamar_king.png) [3x](3x/might-and-magic_dos_na_dialogue_alamar_king.png) |
-| doom_golden_door | gameplay | Castle Doom: a golden door repels you! | yes | [png](might-and-magic_dos_na_gameplay_doom_golden_door.png) [3x](3x/might-and-magic_dos_na_gameplay_doom_golden_door.png) |
-| doom_true_king | dialogue | Castle Doom: the true King Alamar, in a forcefield, tells of the impostor | yes | [png](might-and-magic_dos_na_dialogue_doom_true_king.png) [3x](3x/might-and-magic_dos_na_dialogue_doom_true_king.png) |
-| whitewolf_ironfist | dialogue | Castle White Wolf: Lord Ironfist speaks: your services are needed! Accept? | yes | [png](might-and-magic_dos_na_dialogue_whitewolf_ironfist.png) [3x](3x/might-and-magic_dos_na_dialogue_whitewolf_ironfist.png) |
-| whitewolf_quest | dialogue | Lord Ironfist's first quest: find the stronghold in Ravens Wood | yes | [png](might-and-magic_dos_na_dialogue_whitewolf_quest.png) [3x](3x/might-and-magic_dos_na_dialogue_whitewolf_quest.png) |
-| whitewolf_button | gameplay | Castle White Wolf: a banner and a button on the wall, push it? | yes | [png](might-and-magic_dos_na_gameplay_whitewolf_button.png) [3x](3x/might-and-magic_dos_na_gameplay_whitewolf_button.png) |
-| qvl_okrim | boss | Quivering Forest: the wizard Okrim with three Wizards and a Brontasaurus | yes | [png](might-and-magic_dos_na_boss_qvl_okrim.png) [3x](3x/might-and-magic_dos_na_boss_qvl_okrim.png) |
-| boss_demon_lord | boss | Cavern 3: the Demon Lord with Greater, Lesser and Minor Demons | yes | [png](might-and-magic_dos_na_boss_boss_demon_lord.png) [3x](3x/might-and-magic_dos_na_boss_boss_demon_lord.png) |
-| boss_demon_drain | boss | The Demon Lord acts first: thrusts at CONDI, 46 points, CONDI is eradicated! | yes | [png](might-and-magic_dos_na_boss_boss_demon_drain.png) [3x](3x/might-and-magic_dos_na_boss_boss_demon_drain.png) |
-| boss_demon_drains | boss | A demon's hit drains abilities | yes | [png](might-and-magic_dos_na_boss_boss_demon_drains.png) [3x](3x/might-and-magic_dos_na_boss_boss_demon_drains.png) |
-| boss_lich | boss | Sector B-2: five Mummies and a Lich | yes | [png](might-and-magic_dos_na_boss_boss_lich.png) [3x](3x/might-and-magic_dos_na_boss_boss_lich.png) |
-| boss_lich_eradicates | boss | The Lich acts first: EBO is eradicated! | yes | [png](might-and-magic_dos_na_boss_boss_lich_eradicates.png) [3x](3x/might-and-magic_dos_na_boss_boss_lich_eradicates.png) |
-| boss_gray_minotaur | boss | Enchanted Forest level 2: the Gray Minotaur with twelve Minotaurs | yes | [png](might-and-magic_dos_na_boss_boss_gray_minotaur.png) [3x](3x/might-and-magic_dos_na_boss_boss_gray_minotaur.png) |
-| boss_evil_eyes | boss | Below Dragadune level 3: three Evil Eyes, two Lava Beasts and a Naga | yes | [png](might-and-magic_dos_na_boss_boss_evil_eyes.png) [3x](3x/might-and-magic_dos_na_boss_boss_evil_eyes.png) |
-| combat_paralyzed | boss | An Evil Eye's spell: RYZ is paralyzed! | yes | [png](might-and-magic_dos_na_boss_combat_paralyzed.png) [3x](3x/might-and-magic_dos_na_boss_combat_paralyzed.png) |
-| combat_lava_beast | boss | A Lava Beast flails at RYZ: 2 hits for 11 points; stars mark the paralyzed | yes | [png](might-and-magic_dos_na_boss_combat_lava_beast.png) [3x](3x/might-and-magic_dos_na_boss_combat_lava_beast.png) |
-| combat_conditions | hud | Quick reference in the fight: four characters paralyzed | yes | [png](might-and-magic_dos_na_hud_combat_conditions.png) [3x](3x/might-and-magic_dos_na_hud_combat_conditions.png) |
-| qvl_hydras | battle | Quivering Forest: Pyro Hydras, Man Eating Mares, 8 and 12 Headed Hydras | yes | [png](might-and-magic_dos_na_battle_qvl_hydras.png) [3x](3x/might-and-magic_dos_na_battle_qvl_hydras.png) |
-| battle_caryatids | battle | Cavern 2: four Caryatid Guards | yes | [png](might-and-magic_dos_na_battle_battle_caryatids.png) [3x](3x/might-and-magic_dos_na_battle_battle_caryatids.png) |
-| battle_cyclops | battle | Cavern 2: four Cyclops | yes | [png](might-and-magic_dos_na_battle_battle_cyclops.png) [3x](3x/might-and-magic_dos_na_battle_battle_cyclops.png) |
-| battle_alien | battle | Cavern 6: four Aliens | yes | [png](might-and-magic_dos_na_battle_battle_alien.png) [3x](3x/might-and-magic_dos_na_battle_battle_alien.png) |
-| battle_medusas | battle | Cavern 9: nine Medusas | yes | [png](might-and-magic_dos_na_battle_battle_medusas.png) [3x](3x/might-and-magic_dos_na_battle_battle_medusas.png) |
-| combat_stoned | battle | A Medusa's gaze: DEDDO is turned to stone! | yes | [png](might-and-magic_dos_na_battle_combat_stoned.png) [3x](3x/might-and-magic_dos_na_battle_combat_stoned.png) |
-| battle_red_dragons | battle | Sector A-2: ten Red Dragons | yes | [png](might-and-magic_dos_na_battle_battle_red_dragons.png) [3x](3x/might-and-magic_dos_na_battle_battle_red_dragons.png) |
-| combat_dragon_breath | battle | A Red Dragon breathes: RYZ takes 83 points of damage and goes down | yes | [png](might-and-magic_dos_na_battle_combat_dragon_breath.png) [3x](3x/might-and-magic_dos_na_battle_combat_dragon_breath.png) |
-| combat_dies | battle | A second breath: RYZ takes 87 points of damage and dies | yes | [png](might-and-magic_dos_na_battle_combat_dies.png) [3x](3x/might-and-magic_dos_na_battle_combat_dies.png) |
-| battle_assassins | battle | Sector B-2: five Assassins led by a Black Knight | yes | [png](might-and-magic_dos_na_battle_battle_assassins.png) [3x](3x/might-and-magic_dos_na_battle_battle_assassins.png) |
-| boss_scorpion | boss | Sector D-1: the Scorpion and eleven Giant Scorpions attack, no encounter options | yes | [png](might-and-magic_dos_na_boss_boss_scorpion.png) [3x](3x/might-and-magic_dos_na_boss_boss_scorpion.png) |
-| battle_mummies | battle | Dusk: six Mummies | yes | [png](might-and-magic_dos_na_battle_battle_mummies.png) [3x](3x/might-and-magic_dos_na_battle_battle_mummies.png) |
-| battle_centaurs | battle | Quivering Forest: eight Centaurs, two Satyrs and a Celestial Stag | yes | [png](might-and-magic_dos_na_battle_battle_centaurs.png) [3x](3x/might-and-magic_dos_na_battle_battle_centaurs.png) |
-| battle_dinobeetles | battle | Quivering Forest: eight Dinobeetles | yes | [png](might-and-magic_dos_na_battle_battle_dinobeetles.png) [3x](3x/might-and-magic_dos_na_battle_battle_dinobeetles.png) |
-| battle_hippogriffs | battle | Quivering Forest level 2: ten Hippogriffs and two Harpies | yes | [png](might-and-magic_dos_na_battle_battle_hippogriffs.png) [3x](3x/might-and-magic_dos_na_battle_battle_hippogriffs.png) |
-| battle_giants | battle | Raven's Wood level 2: Cave, Frost, Stone and Storm Giants | yes | [png](might-and-magic_dos_na_battle_battle_giants.png) [3x](3x/might-and-magic_dos_na_battle_battle_giants.png) |
-| battle_cockatrices | battle | Enchanted Forest: Cockatrices, Pegasi and Strangling Vines | yes | [png](might-and-magic_dos_na_battle_battle_cockatrices.png) [3x](3x/might-and-magic_dos_na_battle_battle_cockatrices.png) |
-| battle_werewolves | battle | Enchanted Forest level 2: eight Werewolves and two Werebears | yes | [png](might-and-magic_dos_na_battle_battle_werewolves.png) [3x](3x/might-and-magic_dos_na_battle_battle_werewolves.png) |
-| battle_lepers | battle | Below Dragadune: Rabid Lepers, Rotting Corpses, Zombies and a Cleric | yes | [png](might-and-magic_dos_na_battle_battle_lepers.png) [3x](3x/might-and-magic_dos_na_battle_battle_lepers.png) |
-| battle_elementals | battle | Below Dragadune level 3: four Earth and two Air Elementals | yes | [png](might-and-magic_dos_na_battle_battle_elementals.png) [3x](3x/might-and-magic_dos_na_battle_battle_elementals.png) |
-| battle_white_dragons | battle | Below Dragadune level 3: two White Dragons, six Warriors and a Wizard | yes | [png](might-and-magic_dos_na_battle_battle_white_dragons.png) [3x](3x/might-and-magic_dos_na_battle_battle_white_dragons.png) |
-| battle_scorpions | battle | PP level 1: twelve Giant Scorpions | yes | [png](might-and-magic_dos_na_battle_battle_scorpions.png) [3x](3x/might-and-magic_dos_na_battle_battle_scorpions.png) |
-| combat_magicians | battle | PP level 1: thirteen Magicians cast at the party, EBO takes 30 points of damage | yes | [png](might-and-magic_dos_na_battle_combat_magicians.png) [3x](3x/might-and-magic_dos_na_battle_combat_magicians.png) |
-| battle_magicians | battle | PP level 1: thirteen Magicians | yes | [png](might-and-magic_dos_na_battle_battle_magicians.png) [3x](3x/might-and-magic_dos_na_battle_battle_magicians.png) |
-| qvl_floor_spins | gameplay | Quivering Forest: the floor spins! | no | [png](might-and-magic_dos_na_gameplay_qvl_floor_spins.png) [3x](3x/might-and-magic_dos_na_gameplay_qvl_floor_spins.png) |
-| env_cliffs_a1 | gameplay | Sector A-1: a path between striped rock walls | yes | [png](might-and-magic_dos_na_gameplay_env_cliffs_a1.png) [3x](3x/might-and-magic_dos_na_gameplay_env_cliffs_a1.png) |
-| env_ice_a2 | gameplay | Sector A-2: ice mountains | yes | [png](might-and-magic_dos_na_gameplay_env_ice_a2.png) [3x](3x/might-and-magic_dos_na_gameplay_env_ice_a2.png) |
-| env_sea_a3 | gameplay | Sector A-3: the sea, a beach and mountains | yes | [png](might-and-magic_dos_na_gameplay_env_sea_a3.png) [3x](3x/might-and-magic_dos_na_gameplay_env_sea_a3.png) |
-| env_beach_a4 | gameplay | Sector A-4: along the beach | yes | [png](might-and-magic_dos_na_gameplay_env_beach_a4.png) [3x](3x/might-and-magic_dos_na_gameplay_env_beach_a4.png) |
-| env_glacier_b1 | gameplay | Sector B-1: frozen ground between ice mountains | yes | [png](might-and-magic_dos_na_gameplay_env_glacier_b1.png) [3x](3x/might-and-magic_dos_na_gameplay_env_glacier_b1.png) |
-| env_forest_c1 | gameplay | Sector C-1: a forest path | yes | [png](might-and-magic_dos_na_gameplay_env_forest_c1.png) [3x](3x/might-and-magic_dos_na_gameplay_env_forest_c1.png) |
-| env_coast_c4 | gameplay | Sector C-4: forest meeting the coast | yes | [png](might-and-magic_dos_na_gameplay_env_coast_c4.png) [3x](3x/might-and-magic_dos_na_gameplay_env_coast_c4.png) |
-| env_road_d1 | gameplay | Sector D-1: a forest road | yes | [png](might-and-magic_dos_na_gameplay_env_road_d1.png) [3x](3x/might-and-magic_dos_na_gameplay_env_road_d1.png) |
-| env_mountains_d3 | gameplay | Sector D-3: brown mountains | yes | [png](might-and-magic_dos_na_gameplay_env_mountains_d3.png) [3x](3x/might-and-magic_dos_na_gameplay_env_mountains_d3.png) |
-| env_swamp_d4 | gameplay | Sector D-4: swamp reeds beside the forest | yes | [png](might-and-magic_dos_na_gameplay_env_swamp_d4.png) [3x](3x/might-and-magic_dos_na_gameplay_env_swamp_d4.png) |
-| env_volcano_e1 | gameplay | Sector E-1: the volcano in a red lava field | yes | [png](might-and-magic_dos_na_gameplay_env_volcano_e1.png) [3x](3x/might-and-magic_dos_na_gameplay_env_volcano_e1.png) |
-| env_lava_e2 | gameplay | Sector E-2: lava across the forest road | yes | [png](might-and-magic_dos_na_gameplay_env_lava_e2.png) [3x](3x/might-and-magic_dos_na_gameplay_env_lava_e2.png) |
-| env_cave6 | gameplay | Cavern 6: a long rock tunnel | yes | [png](might-and-magic_dos_na_gameplay_env_cave6.png) [3x](3x/might-and-magic_dos_na_gameplay_env_cave6.png) |
-| env_doom | gameplay | Castle Doom: brick corridors | yes | [png](might-and-magic_dos_na_gameplay_env_doom.png) [3x](3x/might-and-magic_dos_na_gameplay_env_doom.png) |
-| env_blackridge_s | gameplay | Castle Blackridge South: doors under red banners | yes | [png](might-and-magic_dos_na_gameplay_env_blackridge_s.png) [3x](3x/might-and-magic_dos_na_gameplay_env_blackridge_s.png) |
-| env_whitewolf | gameplay | Castle White Wolf: banner doors along a corridor | yes | [png](might-and-magic_dos_na_gameplay_env_whitewolf.png) [3x](3x/might-and-magic_dos_na_gameplay_env_whitewolf.png) |
-| env_alamar | gameplay | Castle Alamar: carved wooden doors | yes | [png](might-and-magic_dos_na_gameplay_env_alamar.png) [3x](3x/might-and-magic_dos_na_gameplay_env_alamar.png) |
-| env_qvl2 | gameplay | Quivering Forest level 2: a blue portcullis | yes | [png](might-and-magic_dos_na_gameplay_env_qvl2.png) [3x](3x/might-and-magic_dos_na_gameplay_env_qvl2.png) |
-| env_udrag1 | gameplay | Below Castle Dragadune, level 1 | yes | [png](might-and-magic_dos_na_gameplay_env_udrag1.png) [3x](3x/might-and-magic_dos_na_gameplay_env_udrag1.png) |
-| env_demon | gameplay | The demon's stronghold | yes | [png](might-and-magic_dos_na_gameplay_env_demon.png) [3x](3x/might-and-magic_dos_na_gameplay_env_demon.png) |
-| astral_door | gameplay | Astral Plane: there's a small slot in the door. No admittance! | yes | [png](might-and-magic_dos_na_gameplay_astral_door.png) [3x](3x/might-and-magic_dos_na_gameplay_astral_door.png) |
-| astral_projector | gameplay | Astral Plane: astral projector # 1, zap! | yes | [png](might-and-magic_dos_na_gameplay_astral_projector.png) [3x](3x/might-and-magic_dos_na_gameplay_astral_projector.png) |
-| astral_room | gameplay | Astral Plane: the metallic room is dimly lit by a pulsating white glow | yes | [png](might-and-magic_dos_na_gameplay_astral_room.png) [3x](3x/might-and-magic_dos_na_gameplay_astral_room.png) |
-| ending_panel | ending | Inner Sanctum: a metallic panel slides open, a mysterious man in a white coat | yes | [png](might-and-magic_dos_na_ending_ending_panel.png) [3x](3x/might-and-magic_dos_na_ending_ending_panel.png) |
-| ending_sanctum | ending | Inner Sanctum: the Data Keeper rates the party, on to the Gates to Another World | yes | [png](might-and-magic_dos_na_ending_ending_sanctum.png) [3x](3x/might-and-magic_dos_na_ending_ending_sanctum.png) |
+| title_screen | title | Title: New World Computing presents Might and Magic; ESC starts, SPACE scenes | no | [png](might-and-magic_dos_na_title_title_screen.png) |
+| title_book_one | title | Title, second picture: Book One - Secret of the Inner Sanctum | no | [png](might-and-magic_dos_na_title_title_book_one.png) |
+| demo_stronghold | extra | Demo scene (SPACE on the title): a warrior's stronghold or a wizard's lair | no | [png](might-and-magic_dos_na_extra_demo_stronghold.png) |
+| demo_treasure | extra | Demo scene: an iron box opens, each share worth 38 gold, 10 gems found | no | [png](might-and-magic_dos_na_extra_demo_treasure.png) |
+| ready_prompt | menu | After ESC on the title: are you ready? Then press Enter! | yes | [png](might-and-magic_dos_na_menu_ready_prompt.png) |
+| menu_options | menu | Options: create new characters, view all characters, go to town | yes | [png](might-and-magic_dos_na_menu_menu_options.png) |
+| create_roll | system | Create new characters: seven statistics rolled, eligible classes, ENT to re-roll | yes | [png](might-and-magic_dos_na_system_create_roll.png) |
+| create_race | system | Creation: Knight chosen, select a race: Human, Elf, Dwarf, Gnome, Half-Orc | yes | [png](might-and-magic_dos_na_system_create_race.png) |
+| create_alignment | system | Creation: select alignment (Good, Neut, Evil) | yes | [png](might-and-magic_dos_na_system_create_alignment.png) |
+| create_name | system | Creation: Knight, Human, Good, Male, name RYZ typed | yes | [png](might-and-magic_dos_na_system_create_name.png) |
+| create_save | system | Creation: SAVE CHARACTER (Y/N)? | yes | [png](might-and-magic_dos_na_system_create_save.png) |
+| roster_view_all | menu | View all characters: letter, name, town, level and class of the seven listed | yes | [png](might-and-magic_dos_na_menu_roster_view_all.png) |
+| profile_menu | inventory | Roster profile: new Knight RYZ with a Club; Ctrl-N re-name, Ctrl-D delete | yes | [png](might-and-magic_dos_na_inventory_profile_menu.png) |
+| rename_prompt | system | Re-naming a character: NAME prompt under CONDI's profile | yes | [png](might-and-magic_dos_na_system_rename_prompt.png) |
+| start_inn_door | gameplay | First control: in the Inn of Sorpigal facing its door; commands, party of six | yes | [png](might-and-magic_dos_na_gameplay_start_inn_door.png) |
+| sorpigal_inn_sign | gameplay | Sorpigal: sign above the door reads THE INN OF SORPIGAL | yes | [png](might-and-magic_dos_na_gameplay_sorpigal_inn_sign.png) |
+| save_inn_prompt | save | The innkeeper asks: would you like to sign in (Y/N)? | yes | [png](might-and-magic_dos_na_save_save_inn_prompt.png) |
+| save_inn_list | save | Signed in: Inn of Sorpigal, available characters, party marked with @ | yes | [png](might-and-magic_dos_na_save_save_inn_list.png) |
+| shop_blacksmith_prompt | dialogue | B and B Blacksmiths: a man wearing a leather apron speaks | yes | [png](might-and-magic_dos_na_dialogue_shop_blacksmith_prompt.png) |
+| shop_blacksmith_menu | shop | Blacksmith: buy weapons, buy armor, buy misc, sell item; RYZ's gold | yes | [png](might-and-magic_dos_na_shop_shop_blacksmith_menu.png) |
+| shop_weapons | shop | Blacksmith weapons: Dagger 5 ... Crossbow 50, Staff 30 | yes | [png](might-and-magic_dos_na_shop_shop_weapons.png) |
+| shop_armor | shop | Blacksmith armor: Small Shield 10 ... Chain Mail 200 | yes | [png](might-and-magic_dos_na_shop_shop_armor.png) |
+| shop_misc | shop | Blacksmith misc: Torch 2, Rope & Hooks, Garlic, Magic Herbs, Scroll of Fire 300 | yes | [png](might-and-magic_dos_na_shop_shop_misc.png) |
+| shop_sell | shop | Blacksmith, sell item: Club worth 0, the Short Sword bought for 20 sells for 10 | yes | [png](might-and-magic_dos_na_shop_shop_sell.png) |
+| shop_cant_use | shop | Blacksmith with MNZ the Sorcerer shopping: weapons marked - cannot be used | yes | [png](might-and-magic_dos_na_shop_shop_cant_use.png) |
+| profile_ryz | inventory | RYZ's profile: statistics, HP, AC, gold, Short Sword and Leather Armor equipped | yes | [png](might-and-magic_dos_na_inventory_profile_ryz.png) |
+| equip_prompt | inventory | RYZ's profile: equip which item A-F? | yes | [png](might-and-magic_dos_na_inventory_equip_prompt.png) |
+| share_prompt | system | Share all: gems, gold or food split evenly among the party | yes | [png](might-and-magic_dos_na_system_share_prompt.png) |
+| share_done | system | Share gold: the party's 1833 gold split evenly, RYZ now holds 305 | yes | [png](might-and-magic_dos_na_system_share_done.png) |
+| gather_prompt | system | Gather all: gems, gold or food onto CONDI | yes | [png](might-and-magic_dos_na_system_gather_prompt.png) |
+| gather_done | system | Gather gold: CONDI now carries the party's 1833 gold | yes | [png](might-and-magic_dos_na_system_gather_done.png) |
+| trade_with | system | Trade: trade with which character 1-6? | yes | [png](might-and-magic_dos_na_system_trade_with.png) |
+| trade_which | system | Trade which: gems, gold, food or an item | yes | [png](might-and-magic_dos_na_system_trade_which.png) |
+| trade_how_much | system | Trade gold: how much? 250 typed | yes | [png](might-and-magic_dos_na_system_trade_how_much.png) |
+| trade_gold_done | system | After the trade: CONDI's profile shows 250 gold | yes | [png](might-and-magic_dos_na_system_trade_gold_done.png) |
+| trade_item_done | system | Trade item: RYZ's Club is now in CONDI's backpack | yes | [png](might-and-magic_dos_na_system_trade_item_done.png) |
+| trade_food_done | system | Trade food: EBO received 4 food from RYZ and holds 22 | yes | [png](might-and-magic_dos_na_system_trade_food_done.png) |
+| discard_prompt | system | Discard which item A-F? | yes | [png](might-and-magic_dos_na_system_discard_prompt.png) |
+| discard_done | system | Discarded: the Club is gone from RYZ's backpack | yes | [png](might-and-magic_dos_na_system_discard_done.png) |
+| use_prompt | system | Use which item A-F or 1-6? | yes | [png](might-and-magic_dos_na_system_use_prompt.png) |
+| use_no_power | system | Using the Short Sword: no special power | yes | [png](might-and-magic_dos_na_system_use_no_power.png) |
+| use_might_potion | inventory | RYZ drank a Might Potion bought at the blacksmith: Might 15 to 20 | yes | [png](might-and-magic_dos_na_inventory_use_might_potion.png) |
+| use_herbs_target | system | Using Magic Herbs: cast on which character 1-6? | yes | [png](might-and-magic_dos_na_system_use_herbs_target.png) |
+| use_herbs_done | inventory | Magic Herbs used on RYZ: hit points 6 to 14 | yes | [png](might-and-magic_dos_na_inventory_use_herbs_done.png) |
+| remove_prompt | inventory | Remove which item 1-6? | yes | [png](might-and-magic_dos_na_inventory_remove_prompt.png) |
+| remove_done | inventory | Leather Armor removed into the backpack: armor class drops | yes | [png](might-and-magic_dos_na_inventory_remove_done.png) |
+| equip_wrong_class | inventory | MNZ the Sorcerer tries to equip Chain Mail: wrong class | yes | [png](might-and-magic_dos_na_inventory_equip_wrong_class.png) |
+| quickref | hud | Quick reference: hit points, spell points, AC, food and condition of all six | yes | [png](might-and-magic_dos_na_hud_quickref.png) |
+| order_prompt | system | Order: re-order the party by typing the old positions in the new order | yes | [png](might-and-magic_dos_na_system_order_prompt.png) |
+| order_done | system | Order typed 2 1 3 6 5 4: CONDI now leads, MNZ and CUBI swapped | yes | [png](might-and-magic_dos_na_system_order_done.png) |
+| cast_prompt | system | Casting from a profile: MNZ enters level 1, number 5 (Leather Skin), then Enter | yes | [png](might-and-magic_dos_na_system_cast_prompt.png) |
+| cast_on_whom | system | DEDDO the Cleric casts First Aid (1-4): cast on which character? | yes | [png](might-and-magic_dos_na_system_cast_on_whom.png) |
+| cast_done | system | First Aid cast on RYZ: done, DEDDO has 4 of 5 spell points left | yes | [png](might-and-magic_dos_na_system_cast_done.png) |
+| cast_healed | inventory | RYZ after First Aid: hit points 6 to 14 of 15 | yes | [png](might-and-magic_dos_na_inventory_cast_healed.png) |
+| detect_magic | system | Detect Magic (Sorcerer 1-2): Magic Herbs and Might Potion are magic, 3 charges | yes | [png](might-and-magic_dos_na_system_detect_magic.png) |
+| vet_profile | inventory | MNZ at level 7: 38 spell points, spell level 4, 14 gems | yes | [png](might-and-magic_dos_na_inventory_vet_profile.png) |
+| cast_create_food | system | Create Food (Cleric 3-1): 3 spell points and a gem, DEDDO's food 18 to 24 | yes | [png](might-and-magic_dos_na_system_cast_create_food.png) |
+| cast_spell_failed | system | Jump (Sorcerer 2-4) in a town corridor: spell failed | yes | [png](might-and-magic_dos_na_system_cast_spell_failed.png) |
+| protect_active | system | Protect: spells currently active, Leather Skin | yes | [png](might-and-magic_dos_na_system_protect_active.png) |
+| protect_three | system | Protect: Protection from Fear +21%, Light (1) and Leather Skin active | yes | [png](might-and-magic_dos_na_system_protect_three.png) |
+| location_spell | map | Location (Sorcerer 1-7): in town, map sector C-2, coordinates and facing | yes | [png](might-and-magic_dos_na_map_location_spell.png) |
+| rest_prompt | system | Rest here (Y/N)? | yes | [png](might-and-magic_dos_na_system_rest_prompt.png) |
+| rest_complete | system | Rest complete: no encounters! | yes | [png](might-and-magic_dos_na_system_rest_complete.png) |
+| door_locked | gameplay | Sorpigal: a locked door (LOCKED!) | yes | [png](might-and-magic_dos_na_gameplay_door_locked.png) |
+| unlock_who | system | Unlock: who will try 1-6? | yes | [png](might-and-magic_dos_na_system_unlock_who.png) |
+| unlock_success | system | Unlock: CUBI the Robber picks the lock, success! | yes | [png](might-and-magic_dos_na_system_unlock_success.png) |
+| unlock_trap | system | Unlock tried by RYZ the Knight: razor sharp blades slice through the party | yes | [png](might-and-magic_dos_na_system_unlock_trap.png) |
+| trap_damage | hud | Quick reference after the blade trap: every member lost hit points | yes | [png](might-and-magic_dos_na_hud_trap_damage.png) |
+| bash_trap | system | Bash on the locked door: a faint hiss, noxious fumes fill the air (gas trap) | yes | [png](might-and-magic_dos_na_system_bash_trap.png) |
+| bash_after | battle | Behind the bashed door: two Rabid Jackals and three Vampire Bats | yes | [png](might-and-magic_dos_na_battle_bash_after.png) |
+| encounter_poltergeists | battle | Encounter: four Poltergeists, picture, Attack / Bribe / Retreat / Surrender | yes | [png](might-and-magic_dos_na_battle_encounter_poltergeists.png) |
+| combat_round | battle | Combat round 1: formation, monster list, handicap, a Poltergeist hacks at CONDI | yes | [png](might-and-magic_dos_na_battle_combat_round.png) |
+| encounter_bribe | battle | Encounter option Bribe: no response | yes | [png](might-and-magic_dos_na_battle_encounter_bribe.png) |
+| encounter_surrender | battle | Encounter option Surrender: the monsters don't take prisoners! | yes | [png](might-and-magic_dos_na_battle_encounter_surrender.png) |
+| encounter_goblins | battle | Sorpigal, the same room at another moment: five Goblins | yes | [png](might-and-magic_dos_na_battle_encounter_goblins.png) |
+| encounter_guardsmen | battle | Sorpigal, the same room: two Guardsmen and three Gnomes | yes | [png](might-and-magic_dos_na_battle_encounter_guardsmen.png) |
+| encounter_bribe_demand | battle | Bribe accepted for talks: give up all your food (Y/N)? | yes | [png](might-and-magic_dos_na_battle_encounter_bribe_demand.png) |
+| encounter_bribe_paid | battle | Bribe paid | yes | [png](might-and-magic_dos_na_battle_encounter_bribe_paid.png) |
+| encounter_bribe_food | hud | Quick reference after the bribe | yes | [png](might-and-magic_dos_na_hud_encounter_bribe_food.png) |
+| combat_options | battle | Combat: options for MNZ the Sorcerer (Exchange, Retreat, Cast, Use, Block) | yes | [png](might-and-magic_dos_na_battle_combat_options.png) |
+| combat_cast | battle | Combat: MNZ casts spell level 1, number 4 (Flame Arrow) | yes | [png](might-and-magic_dos_na_battle_combat_cast.png) |
+| combat_spell_hit | battle | MNZ casts a spell: Poltergeist takes 5 points of damage | yes | [png](might-and-magic_dos_na_battle_combat_spell_hit.png) |
+| combat_shoot | battle | EBO shoots a Poltergeist with the sling: hit for 7 points, Poltergeist goes down | yes | [png](might-and-magic_dos_na_battle_combat_shoot.png) |
+| combat_fight_prompt | battle | Combat order Fight: RYZ chooses which monster in reach, A-C | yes | [png](might-and-magic_dos_na_battle_combat_fight_prompt.png) |
+| combat_exchange_prompt | battle | Combat order Exchange: MNZ, exchange places with (1-6)? | yes | [png](might-and-magic_dos_na_battle_combat_exchange_prompt.png) |
+| combat_exchange_done | battle | After Exchange: MNZ stands in position 1, RYZ in position 6 | yes | [png](might-and-magic_dos_na_battle_combat_exchange_done.png) |
+| combat_use | battle | Combat order Use: MNZ's items, use which? | yes | [png](might-and-magic_dos_na_battle_combat_use.png) |
+| combat_bless | battle | DEDDO casts Bless (Cleric 1-2) in combat: done | yes | [png](might-and-magic_dos_na_battle_combat_bless.png) |
+| combat_sleep_immune | battle | MNZ casts Sleep (Sorcerer 1-8) at a Poltergeist: not affected | yes | [png](might-and-magic_dos_na_battle_combat_sleep_immune.png) |
+| combat_turn_undead | battle | DEDDO casts Turn Undead (Cleric 1-8) at Skeletons: some monsters were destroyed | yes | [png](might-and-magic_dos_na_battle_combat_turn_undead.png) |
+| combat_sleep_goblins | battle | Sleep (Sorcerer 1-8) on five Goblins: two not affected, one marked (ASLEEP) | yes | [png](might-and-magic_dos_na_battle_combat_sleep_goblins.png) |
+| combat_identify_monster | battle | Identify Monster (Sorcerer 2-3): a Poltergeist's hit points, AC, speed, attacks | yes | [png](might-and-magic_dos_na_battle_combat_identify_monster.png) |
+| combat_lightning_bolt | battle | Lightning Bolt (Sorcerer 3-4), MNZ at level 7: 30 points, Poltergeist goes down | no | [png](might-and-magic_dos_na_battle_combat_lightning_bolt.png) |
+| combat_fire_ball | battle | Fire Ball (Sorcerer 3-1) at hand-to-hand range: CONDI takes 18 points of damage | yes | [png](might-and-magic_dos_na_battle_combat_fire_ball.png) |
+| combat_victory | battle | Victory: for defeating the monsters each survivor receives 100 experience points | yes | [png](might-and-magic_dos_na_battle_combat_victory.png) |
+| search_nothing | system | Searching the room after the fight: nothing | yes | [png](might-and-magic_dos_na_system_search_nothing.png) |
+| unconscious_quickref | hud | After a fight: CONDI at 0 hit points, condition unconscious | yes | [png](might-and-magic_dos_na_hud_unconscious_quickref.png) |
+| conditions_quickref | hud | Quick reference: poisoned, dead, asleep, paralyzed, stone, blinded | yes | [png](might-and-magic_dos_na_hud_conditions_quickref.png) |
+| death_party_down | battle | A party at 1 hit point each: MNZ goes down, the last of the six | yes | [png](might-and-magic_dos_na_battle_death_party_down.png) |
+| gameover | gameover | The shadow of death has fallen upon your party: renew the quest from the inn | yes | [png](might-and-magic_dos_na_gameover_gameover.png) |
+| train_level2 | system | Otto's Training: training for level 2 costs 25 gold | yes | [png](might-and-magic_dos_na_system_train_level2.png) |
+| train_no_gold | system | Training without the 25 gold: not enough gold | no | [png](might-and-magic_dos_na_system_train_no_gold.png) |
+| train_levelup | system | Congratulations! You are now level 2, you gained 11 hit points | yes | [png](might-and-magic_dos_na_system_train_levelup.png) |
+| train_level3_need | system | Training done: level 3 needs 1315 more experience points | yes | [png](might-and-magic_dos_na_system_train_level3_need.png) |
+| train_level8_need | system | Training at level 7 with 61480 experience: level 8 needs 34520 more | yes | [png](might-and-magic_dos_na_system_train_level8_need.png) |
+| profile_level2 | inventory | RYZ after training: level 2, age 19, 26 hit points, 1808 gold left | yes | [png](might-and-magic_dos_na_inventory_profile_level2.png) |
+| temple_services | shop | Temple Moonshadow: restore health, uncurse items, restore align, make donation | yes | [png](might-and-magic_dos_na_shop_temple_services.png) |
+| temple_price | shop | Temple with RYZ at 4 hit points: restore health costs 25 gold | yes | [png](might-and-magic_dos_na_shop_temple_price.png) |
+| temple_cured | shop | Health restored: 25 gold paid, nothing left to restore | yes | [png](might-and-magic_dos_na_shop_temple_cured.png) |
+| temple_cured_profile | inventory | RYZ after the temple | yes | [png](might-and-magic_dos_na_inventory_temple_cured_profile.png) |
+| temple_poisoned | shop | Temple Moonshadow with RYZ poisoned: a star marks him, the clerics offer help | yes | [png](might-and-magic_dos_na_shop_temple_poisoned.png) |
+| temple_dead | shop | Temple with CONDI dead: the price of raising | yes | [png](might-and-magic_dos_na_shop_temple_dead.png) |
+| temple_donation | shop | Donation made: 100 gold paid | yes | [png](might-and-magic_dos_na_shop_temple_donation.png) |
+| market_food | shop | Eulards Fine Foods: all you can eat, 5 gold each, will you pay? | yes | [png](might-and-magic_dos_na_shop_market_food.png) |
+| market_bought | shop | Eulards Fine Foods after paying: thank you, come again! | no | [png](might-and-magic_dos_na_shop_market_bought.png) |
+| market_food_after | hud | Quick reference after the meal | yes | [png](might-and-magic_dos_na_hud_market_food_after.png) |
+| tavern_menu | shop | Ye Olde Hogge Tavern: have a drink, tip bartender, listen for rumors | yes | [png](might-and-magic_dos_na_shop_tavern_menu.png) |
+| tavern_drink | shop | Tavern: a drink costs 1 gold | yes | [png](might-and-magic_dos_na_shop_tavern_drink.png) |
+| tavern_rumor | dialogue | Tavern rumor after two tips: the desert has many oases! | yes | [png](might-and-magic_dos_na_dialogue_tavern_rumor.png) |
+| statue_lore | dialogue | A statue's inscription: in memory of a time long ago... | yes | [png](might-and-magic_dos_na_dialogue_statue_lore.png) |
+| statue_archer | dialogue | Statue of a half-orc archer: in honor of Corak, for his mapping expedition | yes | [png](might-and-magic_dos_na_dialogue_statue_archer.png) |
+| statue_cleric | dialogue | Statue of a human cleric: in honor of Gala and the savages of the volcanic isles | yes | [png](might-and-magic_dos_na_dialogue_statue_cleric.png) |
+| statue_knight | dialogue | Statue of a human knight: five towns you must travel | yes | [png](might-and-magic_dos_na_dialogue_statue_knight.png) |
+| statue_minotaur | dialogue | Statue of a gray minotaur: this beast rules a fortress in the Enchanted Forest | yes | [png](might-and-magic_dos_na_dialogue_statue_minotaur.png) |
+| statue_wizard | dialogue | Statue of an elven wizard: seek the wizard Ranalou at the Korin Bluffs | yes | [png](might-and-magic_dos_na_dialogue_statue_wizard.png) |
+| statue_robber | dialogue | Statue of a gnome robber: one by water, one by land, one by air and one by sand | yes | [png](might-and-magic_dos_na_dialogue_statue_robber.png) |
+| statue_paladin | dialogue | Statue of a dwarf paladin: there are many dungeons like me, the idols will help | yes | [png](might-and-magic_dos_na_dialogue_statue_paladin.png) |
+| statue_prompt | dialogue | A stone statue with a plaque: search it? | yes | [png](might-and-magic_dos_na_dialogue_statue_prompt.png) |
+| leprechaun | system | A tenacious leprechaun offers travel to a town for one gem | yes | [png](might-and-magic_dos_na_system_leprechaun.png) |
+| leprechaun_algary | gameplay | The leprechaun took one gem: the party stands in Algary | yes | [png](might-and-magic_dos_na_gameplay_leprechaun_algary.png) |
+| trap_door | gameplay | Sorpigal (5,8): trap door! | yes | [png](might-and-magic_dos_na_gameplay_trap_door.png) |
+| trap_door_after | gameplay | After the trap door, with Light cast: the cavern below Sorpigal (CAVE1) at (5,8) | yes | [png](might-and-magic_dos_na_gameplay_trap_door_after.png) |
+| stairs_prompt | gameplay | Sorpigal: stairs going down, take them (Y/N)? | yes | [png](might-and-magic_dos_na_gameplay_stairs_prompt.png) |
+| dungeon_darkness | gameplay | Below Sorpigal without light: DARKNESS | yes | [png](might-and-magic_dos_na_gameplay_dungeon_darkness.png) |
+| dungeon_lit | gameplay | Cavern below Sorpigal after MNZ cast Light: green rock, a portcullis and a door | yes | [png](might-and-magic_dos_na_gameplay_dungeon_lit.png) |
+| cave_courier | dialogue | Cavern below Sorpigal: an elderly man behind a desk needs a courier service | yes | [png](might-and-magic_dos_na_dialogue_cave_courier.png) |
+| cave_wall_message | gameplay | Cavern: scrawled on the wall, a message reads: the jail above has many cells | yes | [png](might-and-magic_dos_na_gameplay_cave_wall_message.png) |
+| cave_arena | dialogue | Cavern, the Arena: balconies of cheering peasants, will you participate? | yes | [png](might-and-magic_dos_na_dialogue_cave_arena.png) |
+| cave_arena_fight | battle | The Arena below Sorpigal: the party agrees to participate | yes | [png](might-and-magic_dos_na_battle_cave_arena_fight.png) |
+| cave_portal | gameplay | Cavern: a shimmering blue and white portal appears, enter? | yes | [png](might-and-magic_dos_na_gameplay_cave_portal.png) |
+| cave_skeletons | battle | Cavern encounter: five Skeletons | yes | [png](might-and-magic_dos_na_battle_cave_skeletons.png) |
+| cave_fire_ants | battle | Cavern encounter: five Fire Ants | yes | [png](might-and-magic_dos_na_battle_cave_fire_ants.png) |
+| cave_snakes | battle | Cavern encounter: ten Snakes | yes | [png](might-and-magic_dos_na_battle_cave_snakes.png) |
+| outdoors_first | gameplay | Outside Sorpigal: mountains and forest | yes | [png](might-and-magic_dos_na_gameplay_outdoors_first.png) |
+| outdoors_forest | gameplay | Sector C-2, forest: a glowing white column, touch it? | yes | [png](might-and-magic_dos_na_gameplay_outdoors_forest.png) |
+| outdoors_fountain | gameplay | Sector C-2, dense woods: a strange fountain, drink? | yes | [png](might-and-magic_dos_na_gameplay_outdoors_fountain.png) |
+| outdoors_statues | gameplay | Sector C-2: statues block the path, smash them? | yes | [png](might-and-magic_dos_na_gameplay_outdoors_statues.png) |
+| outdoors_vines | battle | Wilderness encounter in the forest: nine Strangling Vines | yes | [png](might-and-magic_dos_na_battle_outdoors_vines.png) |
+| outdoors_gypsy | dialogue | Sector C-2: a toothless gypsy seer offers to read a character's sign | yes | [png](might-and-magic_dos_na_dialogue_outdoors_gypsy.png) |
+| outdoors_cave | gameplay | Sector C-2, mountains: there's a cave here, enter? | yes | [png](might-and-magic_dos_na_gameplay_outdoors_cave.png) |
+| a1_dark_rider | dialogue | Sector A-1: the Dark Rider and his men surround the party, a duel is offered | yes | [png](might-and-magic_dos_na_dialogue_a1_dark_rider.png) |
+| boss_dark_rider | boss | Sector A-1: the duel with the Dark Rider is accepted | yes | [png](might-and-magic_dos_na_boss_boss_dark_rider.png) |
+| a1_ice | gameplay | Sector A-1: carved on a block of ice, start at 15-7 and walk to Doom | yes | [png](might-and-magic_dos_na_gameplay_a1_ice.png) |
+| a1_castle_doom | gameplay | Sector A-1: the fabled Castle Doom, will you enter? | yes | [png](might-and-magic_dos_na_gameplay_a1_castle_doom.png) |
+| e1_volcano | gameplay | Sector E-1, south edge: mountains beside a red expanse | yes | [png](might-and-magic_dos_na_gameplay_e1_volcano.png) |
+| e1_dragadune | gameplay | Sector E-1, mountains: ruins of Castle Dragadune, enter? | yes | [png](might-and-magic_dos_na_gameplay_e1_dragadune.png) |
+| portsmith_inn_sign | gameplay | Portsmith: a sign above the door reads Inn of Portsmith | yes | [png](might-and-magic_dos_na_gameplay_portsmith_inn_sign.png) |
+| portsmith_inn | dialogue | Inn of Portsmith: Lara, the innkeeper's daughter, asks if you spend the night | yes | [png](might-and-magic_dos_na_dialogue_portsmith_inn.png) |
+| portsmith_signed_in | save | Signed in at town 2: Inn of Portsmith, the six characters now lodge here | yes | [png](might-and-magic_dos_na_save_portsmith_signed_in.png) |
+| portsmith_blacksmith | dialogue | Portsmith, B. Smith's Workshop: a young girl forging a long sword | yes | [png](might-and-magic_dos_na_dialogue_portsmith_blacksmith.png) |
+| portsmith_weapons | shop | B. Smith's Workshop, Portsmith, weapons: Spear 15 to Glaive and Bardiche 80 | yes | [png](might-and-magic_dos_na_shop_portsmith_weapons.png) |
+| portsmith_armor | shop | B. Smith's Workshop, Portsmith: armor for sale | yes | [png](might-and-magic_dos_na_shop_portsmith_armor.png) |
+| portsmith_misc | shop | B. Smith's Workshop, Portsmith, misc: 10 Foot Pole to Antidote Brew 500 | yes | [png](might-and-magic_dos_na_shop_portsmith_misc.png) |
+| portsmith_zam | dialogue | Portsmith: Zam, astral brother of Zom: you're not the couriers! | yes | [png](might-and-magic_dos_na_dialogue_portsmith_zam.png) |
+| portsmith_secret | dialogue | Portsmith: a female voice from an intoxicating mist; the men are marked | yes | [png](might-and-magic_dos_na_dialogue_portsmith_secret.png) |
+| algary_inn | dialogue | The Inn of Algary: a tall bearded half-orc behind a large desk | yes | [png](might-and-magic_dos_na_dialogue_algary_inn.png) |
+| algary_mystic | dialogue | Algary: Morango the Mystic asks whom to measure | yes | [png](might-and-magic_dos_na_dialogue_algary_mystic.png) |
+| algary_portal | gameplay | Algary: a magic portal, enter? | yes | [png](might-and-magic_dos_na_gameplay_algary_portal.png) |
+| dusk_inn | dialogue | The Inn of Dusk: an eerie silence, a ghostly apparition asks to sign in | yes | [png](might-and-magic_dos_na_dialogue_dusk_inn.png) |
+| dusk_training | dialogue | Dusk, Clearman's Training: several empty suits of armor approach | yes | [png](might-and-magic_dos_na_dialogue_dusk_training.png) |
+| dusk_chest | system | Dusk: a gold chest: open it, find/remove trap, detect magic/trap | yes | [png](might-and-magic_dos_na_system_dusk_chest.png) |
+| chest_who | system | Gold chest, open it: who will try 1-6? | yes | [png](might-and-magic_dos_na_system_chest_who.png) |
+| chest_opened | system | The chest opens for CUBI the Robber: 200 gems and an Undead Amulet found | yes | [png](might-and-magic_dos_na_system_chest_opened.png) |
+| chest_find_trap | system | Find/remove trap fails on the gold chest: razor sharp blades slice the party | yes | [png](might-and-magic_dos_na_system_chest_find_trap.png) |
+| chest_detect | system | Gold chest, detect magic/trap tried by MNZ | yes | [png](might-and-magic_dos_na_system_chest_detect.png) |
+| dusk_vampires | battle | Dusk encounter: ten Vampires | yes | [png](might-and-magic_dos_na_battle_dusk_vampires.png) |
+| dusk_banshees | battle | Dusk encounter: ten Banshees | yes | [png](might-and-magic_dos_na_battle_dusk_banshees.png) |
+| erliquin_agar | dialogue | Erliquin: the wizard Agar speaks: I have no business with you. Begone! | yes | [png](might-and-magic_dos_na_dialogue_erliquin_agar.png) |
+| erliquin_inn | dialogue | The Inn of Erliquin: an elderly gnome with spectacles asks about signing in | yes | [png](might-and-magic_dos_na_dialogue_erliquin_inn.png) |
+| erliquin_training | dialogue | Erliquin: three huge armor clad knights bark in unison, want a good workout? | yes | [png](might-and-magic_dos_na_dialogue_erliquin_training.png) |
+| alamar_guards | dialogue | Castle Alamar: castle guards exclaim, no merchants pass! Begone peasants | yes | [png](might-and-magic_dos_na_dialogue_alamar_guards.png) |
+| alamar_prisoner | system | Castle Alamar: a fair maiden weeps in a steel cage: set free, torment or leave | yes | [png](might-and-magic_dos_na_system_alamar_prisoner.png) |
+| alamar_king | dialogue | Castle Alamar, throne room: the king sends the party to the Crypt of Carmenca | yes | [png](might-and-magic_dos_na_dialogue_alamar_king.png) |
+| doom_golden_door | gameplay | Castle Doom: a golden door repels you! | yes | [png](might-and-magic_dos_na_gameplay_doom_golden_door.png) |
+| doom_true_king | dialogue | Castle Doom: the true King Alamar, in a forcefield, tells of the impostor | yes | [png](might-and-magic_dos_na_dialogue_doom_true_king.png) |
+| whitewolf_ironfist | dialogue | Castle White Wolf: Lord Ironfist speaks: your services are needed! Accept? | yes | [png](might-and-magic_dos_na_dialogue_whitewolf_ironfist.png) |
+| whitewolf_quest | dialogue | Lord Ironfist's first quest: find the stronghold in Ravens Wood | yes | [png](might-and-magic_dos_na_dialogue_whitewolf_quest.png) |
+| whitewolf_button | gameplay | Castle White Wolf: a banner and a button on the wall, push it? | yes | [png](might-and-magic_dos_na_gameplay_whitewolf_button.png) |
+| qvl_okrim | boss | Quivering Forest: the wizard Okrim with three Wizards and a Brontasaurus | yes | [png](might-and-magic_dos_na_boss_qvl_okrim.png) |
+| boss_demon_lord | boss | Cavern 3: the Demon Lord with Greater, Lesser and Minor Demons | yes | [png](might-and-magic_dos_na_boss_boss_demon_lord.png) |
+| boss_demon_drain | boss | The Demon Lord acts first: thrusts at CONDI, 46 points, CONDI is eradicated! | yes | [png](might-and-magic_dos_na_boss_boss_demon_drain.png) |
+| boss_demon_drains | boss | A demon's hit drains abilities | yes | [png](might-and-magic_dos_na_boss_boss_demon_drains.png) |
+| boss_lich | boss | Sector B-2: five Mummies and a Lich | yes | [png](might-and-magic_dos_na_boss_boss_lich.png) |
+| boss_lich_eradicates | boss | The Lich acts first: EBO is eradicated! | yes | [png](might-and-magic_dos_na_boss_boss_lich_eradicates.png) |
+| boss_gray_minotaur | boss | Enchanted Forest level 2: the Gray Minotaur with twelve Minotaurs | yes | [png](might-and-magic_dos_na_boss_boss_gray_minotaur.png) |
+| boss_evil_eyes | boss | Below Dragadune level 3: three Evil Eyes, two Lava Beasts and a Naga | yes | [png](might-and-magic_dos_na_boss_boss_evil_eyes.png) |
+| combat_paralyzed | boss | An Evil Eye's spell: RYZ is paralyzed! | yes | [png](might-and-magic_dos_na_boss_combat_paralyzed.png) |
+| combat_lava_beast | boss | A Lava Beast flails at RYZ: 2 hits for 11 points; stars mark the paralyzed | yes | [png](might-and-magic_dos_na_boss_combat_lava_beast.png) |
+| combat_conditions | hud | Quick reference in the fight: four characters paralyzed | yes | [png](might-and-magic_dos_na_hud_combat_conditions.png) |
+| qvl_hydras | battle | Quivering Forest: Pyro Hydras, Man Eating Mares, 8 and 12 Headed Hydras | yes | [png](might-and-magic_dos_na_battle_qvl_hydras.png) |
+| battle_caryatids | battle | Cavern 2: four Caryatid Guards | yes | [png](might-and-magic_dos_na_battle_battle_caryatids.png) |
+| battle_cyclops | battle | Cavern 2: four Cyclops | yes | [png](might-and-magic_dos_na_battle_battle_cyclops.png) |
+| battle_alien | battle | Cavern 6: four Aliens | yes | [png](might-and-magic_dos_na_battle_battle_alien.png) |
+| battle_medusas | battle | Cavern 9: nine Medusas | yes | [png](might-and-magic_dos_na_battle_battle_medusas.png) |
+| combat_stoned | battle | A Medusa's gaze: DEDDO is turned to stone! | yes | [png](might-and-magic_dos_na_battle_combat_stoned.png) |
+| battle_red_dragons | battle | Sector A-2: ten Red Dragons | yes | [png](might-and-magic_dos_na_battle_battle_red_dragons.png) |
+| combat_dragon_breath | battle | A Red Dragon breathes: RYZ takes 83 points of damage and goes down | yes | [png](might-and-magic_dos_na_battle_combat_dragon_breath.png) |
+| combat_dies | battle | A second breath: RYZ takes 87 points of damage and dies | yes | [png](might-and-magic_dos_na_battle_combat_dies.png) |
+| battle_assassins | battle | Sector B-2: five Assassins led by a Black Knight | yes | [png](might-and-magic_dos_na_battle_battle_assassins.png) |
+| boss_scorpion | boss | Sector D-1: the Scorpion and eleven Giant Scorpions attack, no encounter options | yes | [png](might-and-magic_dos_na_boss_boss_scorpion.png) |
+| battle_mummies | battle | Dusk: six Mummies | yes | [png](might-and-magic_dos_na_battle_battle_mummies.png) |
+| battle_centaurs | battle | Quivering Forest: eight Centaurs, two Satyrs and a Celestial Stag | yes | [png](might-and-magic_dos_na_battle_battle_centaurs.png) |
+| battle_dinobeetles | battle | Quivering Forest: eight Dinobeetles | yes | [png](might-and-magic_dos_na_battle_battle_dinobeetles.png) |
+| battle_hippogriffs | battle | Quivering Forest level 2: ten Hippogriffs and two Harpies | yes | [png](might-and-magic_dos_na_battle_battle_hippogriffs.png) |
+| battle_giants | battle | Raven's Wood level 2: Cave, Frost, Stone and Storm Giants | yes | [png](might-and-magic_dos_na_battle_battle_giants.png) |
+| battle_cockatrices | battle | Enchanted Forest: Cockatrices, Pegasi and Strangling Vines | yes | [png](might-and-magic_dos_na_battle_battle_cockatrices.png) |
+| battle_werewolves | battle | Enchanted Forest level 2: eight Werewolves and two Werebears | yes | [png](might-and-magic_dos_na_battle_battle_werewolves.png) |
+| battle_lepers | battle | Below Dragadune: Rabid Lepers, Rotting Corpses, Zombies and a Cleric | yes | [png](might-and-magic_dos_na_battle_battle_lepers.png) |
+| battle_elementals | battle | Below Dragadune level 3: four Earth and two Air Elementals | yes | [png](might-and-magic_dos_na_battle_battle_elementals.png) |
+| battle_white_dragons | battle | Below Dragadune level 3: two White Dragons, six Warriors and a Wizard | yes | [png](might-and-magic_dos_na_battle_battle_white_dragons.png) |
+| battle_scorpions | battle | PP level 1: twelve Giant Scorpions | yes | [png](might-and-magic_dos_na_battle_battle_scorpions.png) |
+| combat_magicians | battle | PP level 1: thirteen Magicians cast at the party, EBO takes 30 points of damage | yes | [png](might-and-magic_dos_na_battle_combat_magicians.png) |
+| battle_magicians | battle | PP level 1: thirteen Magicians | yes | [png](might-and-magic_dos_na_battle_battle_magicians.png) |
+| qvl_floor_spins | gameplay | Quivering Forest: the floor spins! | no | [png](might-and-magic_dos_na_gameplay_qvl_floor_spins.png) |
+| env_cliffs_a1 | gameplay | Sector A-1: a path between striped rock walls | yes | [png](might-and-magic_dos_na_gameplay_env_cliffs_a1.png) |
+| env_ice_a2 | gameplay | Sector A-2: ice mountains | yes | [png](might-and-magic_dos_na_gameplay_env_ice_a2.png) |
+| env_sea_a3 | gameplay | Sector A-3: the sea, a beach and mountains | yes | [png](might-and-magic_dos_na_gameplay_env_sea_a3.png) |
+| env_beach_a4 | gameplay | Sector A-4: along the beach | yes | [png](might-and-magic_dos_na_gameplay_env_beach_a4.png) |
+| env_glacier_b1 | gameplay | Sector B-1: frozen ground between ice mountains | yes | [png](might-and-magic_dos_na_gameplay_env_glacier_b1.png) |
+| env_forest_c1 | gameplay | Sector C-1: a forest path | yes | [png](might-and-magic_dos_na_gameplay_env_forest_c1.png) |
+| env_coast_c4 | gameplay | Sector C-4: forest meeting the coast | yes | [png](might-and-magic_dos_na_gameplay_env_coast_c4.png) |
+| env_road_d1 | gameplay | Sector D-1: a forest road | yes | [png](might-and-magic_dos_na_gameplay_env_road_d1.png) |
+| env_mountains_d3 | gameplay | Sector D-3: brown mountains | yes | [png](might-and-magic_dos_na_gameplay_env_mountains_d3.png) |
+| env_swamp_d4 | gameplay | Sector D-4: swamp reeds beside the forest | yes | [png](might-and-magic_dos_na_gameplay_env_swamp_d4.png) |
+| env_volcano_e1 | gameplay | Sector E-1: the volcano in a red lava field | yes | [png](might-and-magic_dos_na_gameplay_env_volcano_e1.png) |
+| env_lava_e2 | gameplay | Sector E-2: lava across the forest road | yes | [png](might-and-magic_dos_na_gameplay_env_lava_e2.png) |
+| env_cave6 | gameplay | Cavern 6: a long rock tunnel | yes | [png](might-and-magic_dos_na_gameplay_env_cave6.png) |
+| env_doom | gameplay | Castle Doom: brick corridors | yes | [png](might-and-magic_dos_na_gameplay_env_doom.png) |
+| env_blackridge_s | gameplay | Castle Blackridge South: doors under red banners | yes | [png](might-and-magic_dos_na_gameplay_env_blackridge_s.png) |
+| env_whitewolf | gameplay | Castle White Wolf: banner doors along a corridor | yes | [png](might-and-magic_dos_na_gameplay_env_whitewolf.png) |
+| env_alamar | gameplay | Castle Alamar: carved wooden doors | yes | [png](might-and-magic_dos_na_gameplay_env_alamar.png) |
+| env_qvl2 | gameplay | Quivering Forest level 2: a blue portcullis | yes | [png](might-and-magic_dos_na_gameplay_env_qvl2.png) |
+| env_udrag1 | gameplay | Below Castle Dragadune, level 1 | yes | [png](might-and-magic_dos_na_gameplay_env_udrag1.png) |
+| env_demon | gameplay | The demon's stronghold | yes | [png](might-and-magic_dos_na_gameplay_env_demon.png) |
+| astral_door | gameplay | Astral Plane: there's a small slot in the door. No admittance! | yes | [png](might-and-magic_dos_na_gameplay_astral_door.png) |
+| astral_projector | gameplay | Astral Plane: astral projector # 1, zap! | yes | [png](might-and-magic_dos_na_gameplay_astral_projector.png) |
+| astral_room | gameplay | Astral Plane: the metallic room is dimly lit by a pulsating white glow | yes | [png](might-and-magic_dos_na_gameplay_astral_room.png) |
+| ending_panel | ending | Inner Sanctum: a metallic panel slides open, a mysterious man in a white coat | yes | [png](might-and-magic_dos_na_ending_ending_panel.png) |
+| ending_sanctum | ending | Inner Sanctum: the Data Keeper rates the party, on to the Gates to Another World | yes | [png](might-and-magic_dos_na_ending_ending_sanctum.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

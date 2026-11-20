@@ -19,9 +19,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_01_door.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-door_01_door.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "be308d0cae5f5a2a83f863f88fb0836613ca0b0f"
   },
   {
    "id": "02_open_clip",
@@ -37,11 +37,9 @@
     "kept": 46,
     "poster": 20,
     "seconds": 1.51,
-    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_02_open_clip.gif",
-    "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-door_02_open_clip.gif"
+    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_02_open_clip.gif"
    },
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_02_open_clip.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-door_02_open_clip.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
    "captured": "2026-11-19"
   },
@@ -54,9 +52,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_03_open.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-door_03_open.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "5b69b033169af2d669c0116ff3beeb2a9450d395"
   },
   {
    "id": "04_through",
@@ -67,9 +65,9 @@
    "model": "ntsc",
    "source": "shoot.py",
    "file": "phantasy-star_sms_na_gameplay_seq-dungeon-door_04_through.png",
-   "file_3x": "3x/phantasy-star_sms_na_gameplay_seq-dungeon-door_04_through.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
-   "captured": "2026-11-19"
+   "captured": "2026-11-19",
+   "pixel_sha1": "274489b3ed90872a4df5520b68d3d40360fcda70"
   }
  ]
 }
