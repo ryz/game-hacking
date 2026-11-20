@@ -1,3 +1,17 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+title | Title screen: Start / Continue, cursor on Start (blinks; never settles) | pow,TITLE
+name | Name keyboard after Start: ryz typed, cursor on z (Start ends the name) | @title,start,w120,NAME
+start | First control: the prince (silver armour) at the south gate of Wyclif after the auto-running prologue | @name,start,w60,w4400,settle
+t_door | Wyclif: in front of the house where the prince started (south-west, crossed-swords sign; locked until Blade has spoken) | @start,right:32,settle,right:16,settle,down:16,settle,settle,settle,up:64,right:96,settle,c,c,w60,settle,c,w30,b,w30,left:96,down:64,left:64,up:48,settle,left:16,up:32,w60,settle
+t_church | Wyclif: in front of the church | @t_door,down:32,right:80,up:160,settle,left:48,up:32,w120,settle,c,down*3,c,w120,settle,c,w20,b,w30,down:32,right:128,up:96,settle,right:32,up:128,left:32,settle,c,c,w60,settle,c,w20,b,w30,right:32,up:160,settle,up:16,right:112,up:32,w120,settle,up:32,w120,settle
+t_blade_in | Wyclif: inside Blade's house (top-left of the village), at the door | @t_church,down:16,settle,left:16,settle,up:16,settle,down:16,left:192,settle,left:96,up:48,w120,settle,c,down*3,c,w60,settle,c,w20,b,w30,down:16,left:96,up:160,settle,right:48,up:32,w120,settle
+t_blade_room | Blade's house: next to the woman at the bed | @t_blade_in,up:48,right:16,c,c,w90,settle,c,w20,b,w30,right:16,c,c,w90,settle,c,w20,b,w30,up:16,right:16,c,c,w90,settle
+blade | Blade's upstairs room after his last words (200 kims received) | @t_blade_room,c,w20,b,w30,left:16,up:48,left:64,up:32,w20,up:64,w200,down:32,c,c,w90,settle,mash:c:900,settle,c,w90*12,settle,PAGE*12,settle,PAGE*4,settle,w300,settle,c,w200,settle,b,w30,settle
+wyclif | Wyclif: outside Blade's house after his death (200 kims, no weapon) | @blade,up:32,w20,left:64,w200,right:16,down:32,right:32,down:160,w150,settle,right:16,down:48,w150,settle
+tavern | Wyclif: inside the tavern (door south of Blade's house) | @wyclif,down:32,left:48,down:128,right:96,up:32,w20,up:16,w150,settle
+church | Wyclif church: just inside the door | @tavern,down:48,w200,down:16,w10,down:16,w10,right:304,w10,up:16,w20,up:16,w20,up:16,w150,settle,right:16,w10,up:16,w20,up:16,w150,settle
+church_menu | Wyclif church: priest's menu (Remove a curse / Apply poison balm / Save your game / Stop) | @church,up:16,left:48,up:80,right:64,up:16,c,c,w90,settle
+saved | Wyclif church after saving to Saved Game 1 (ryz, level 1, 200 kims), menus closed | @church_menu,down*2,c,w90,settle,c,w120,settle,c,w60,b,w30,b,w30,b,w30,settle
+continue | Continue with saves/01_start.sav: Saved Game 1 loaded, ryz in front of the Wyclif priest | sav:01_start,TITLE,CONTINUE

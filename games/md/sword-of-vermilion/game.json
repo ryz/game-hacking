@@ -1,6 +1,6 @@
 {
   "slug": "sword-of-vermilion",
-  "title": "SWORD OF VERMILION",
+  "title": "Sword of Vermilion",
   "platform": "md",
   "region": "na",
   "model": "ntsc",
@@ -30,6 +30,47 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w800",
+    "NAME": "down*4,right*7,c,left*3,down,c,right,c",
+    "NEWGAME": "start,w120,NAME,start,w60,w4400",
+    "PAGE": "c,w90",
+    "CONTINUE": "down,start,w120,c,w300,c,w300"
+  },
+  "ram": {
+    "kims": {
+      "addr": "FFC620",
+      "size": 4,
+      "fmt": "bcd"
+    },
+    "exp": {
+      "addr": "FFC624",
+      "size": 4,
+      "fmt": "bcd"
+    },
+    "hp": {
+      "addr": "FFC62C",
+      "size": 2
+    },
+    "mhp": {
+      "addr": "FFC62E",
+      "size": 2
+    },
+    "tile_x": {
+      "addr": "FFC606",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "tile_y": {
+      "addr": "FFC608",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "facing": {
+      "addr": "FFC60D",
+      "size": 1
+    }
+  },
+  "work": "scouted 2026-11-20: boot, naming, Blade scene, Wyclif church save, 14 checkpoints, save 01_start; overworld and battles not reached; not captured",
+  "open": "town exit to the overworld, first-person overworld/caves, first battle, weapon shop entry, message speed setting, map/area RAM, encounter and battle RAM"
 }

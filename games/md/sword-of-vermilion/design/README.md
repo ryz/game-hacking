@@ -23,8 +23,19 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Action role-playing game (Sega AM2, 1989/1990) told from four views **(source: Wikipedia)**: top-down towns
+with houses, shops, an inn, a tavern and a church entered by walking into their doors **(verified: Wyclif,
+checkpoints `tavern`, `church`)**; a first-person overworld and caves split into 16x16 maps **(source:
+TheStarbird walkthrough, via search snippet)** with random encounters that switch to side-view real-time
+battles **(source: Wikipedia)**; side-view boss fights **(source)**. One hero, the prince (named by the player,
+**ryz** here), raised by the knight Blade in Wyclif; he gathers the eight Rings of Good and the Sword of
+Vermilion against King Tsarkon of Cartahena **(source: Wikipedia; ROM text: ring and sword names)**.
+Fourteen towns and villages from Wyclif to Cartahena **(ROM text: town name table)**. Field commands on C:
+Talk, Magic, Item, Equip, Str (status), Seek, Open, Take **(verified)**. Character values: Level, EXP, Next
+level EXP, HP/MHP, MP/MMP, STR, AC, INT, DEX, LUK, KIM (money) **(verified: status screen)**. Saving at
+churches into three slots ("Saved Game 1-3"); the church also removes curses and cures poison **(verified:
+checkpoints `church_menu`, `saved`, `continue`)**. The opening is gated: houses and shops stay locked
+("Sorry, you can't open that!") until the prince has heard Blade's last words **(verified)**.
 
 ## Documents
 | Document | Covers |
@@ -40,3 +51,5 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Wikipedia | https://en.wikipedia.org/wiki/Sword_of_Vermilion | release, developer, story frame, the four views |
+| ROM text (this dump) | `strings` over `rom/sword-of-vermilion.md` | menu words, town, item, ring, sword, armour, magic names |

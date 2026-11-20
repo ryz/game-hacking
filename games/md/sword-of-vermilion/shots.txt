@@ -4,3 +4,28 @@
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/md/sword-of-vermilion/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # title_screen | title | Title screen | @title
+# --- Plan (scout 2026-11-20); lines with a route are verified checkpoints, the rest need the capture run ---
+title_screen | title | Title screen: SWORD OF VERMILION, Start / Continue | @title
+boot_sega | boot | SEGA logo | pow,w120,!
+cutscene_intro_tree | cutscene | Intro: tree on the cliff, the sword in the stone, lightning | pow,w660,!
+menu_name | menu | Name keyboard: ryz typed | @name
+cutscene_prologue_tsarkon | cutscene | Prologue page 1: King Tsarkon's hordes invade Excalabria | @name,start,w60,w300
+start_wyclif_gate | gameplay | First control: the prince at the south gate of Wyclif | @start
+dialogue_blade_house | dialogue | Woman in Blade's house: "Where have you been? Your father is calling for you." | @t_blade_room
+# cutscene_blade | cutscene | Blade on his deathbed: "I am not your real father" | (from @t_blade_room, route in playbook; pick the page)
+env_wyclif_blade_house | gameplay | Wyclif: outside Blade's house, nobody talking | @wyclif
+gameplay_tavern | gameplay | Wyclif tavern interior | @tavern
+save_church_menu | save | Church: Remove a curse / Apply poison balm / Save your game / Stop | @church_menu
+save_slots | save | Save under which number? Saved Game 1-3 | @church_menu,down*2,c,w90
+menu_continue_slots | menu | Continue: Saved Game 1 ryz level 1 | sav:01_start,TITLE,down,start,w120
+# hud_field_menu | hud | Field command window: Talk Magic Item Equip Str Seek Open Take | (any town, c)
+# inventory_status | inventory | Status: Level, EXP, HP/MHP, MP/MMP, STR AC INT DEX LUK KIM | (c,down*2,c)
+# inventory_equip | inventory | Equip: Put on / Remove -> Weapon Shield Armor | (c,right,down,c,c)
+# shop_weapon | shop | Wyclif weapon shop (crossed-swords sign) buying a Bronze Sword | needs the route in
+# env_graveyard | gameplay | Wyclif east: graveyard by the stream | @t_door,down:32,w10,right:320,w10,up:96,right:320,w300
+# env_overworld_* | gameplay | First-person overworld near Wyclif, 3-4 plain views | needs the town exit
+# battle_first / battle_attack / battle_magic / battle_won | battle | Side-view real-time battle | first encounter
+# map_area | map | Area Map item in use | buy/take the map near the inn
+# boss_first | boss | First boss (Peak Cave / Cave of Troy) | poke stats, play
+# gameover | gameover | Death screen | let a battle be lost
+# options_message_speed | options | Message Speed: Fast Normal Slow | where is it opened? (open question)
