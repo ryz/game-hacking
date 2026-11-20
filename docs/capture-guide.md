@@ -78,6 +78,10 @@ Every image and GIF says what it shows without its folder, so a file keeps its c
 - **Region is the release of the dump, not the language on screen:** a Japanese ROM with an English patch is
   `jp`. `nes` covers NES and Famicom, `snes` SNES and Super Famicom: the region tells them apart. DOS games
   take the region of the release (`na` for a US release). `tools/intake.py --region` sets it.
+- **Set `start`** (owner's rule 2026-11-20): its ids are `NN_<step>` and the step number moves in front of the
+  area, so the files list in play order: `<game>_<platform>_<region>_<NN>_<area>_<step>.start.png`
+  (`dungeon-master_amiga_eu_01_boot_crack_note.start.png`). Here `name.split("_", 5)` gives game, platform,
+  region, number, area and step. `tools/shoot.py` refuses an unnumbered id in this set.
 - An id that starts with its category repeats it (`..._battle_battle_slime`): accepted, ids are not shortened.
 - Sets hold native pictures only (owner's rule 2026-11-20). An enlarged copy is made on demand with
   `python3 tools/x3.py FOLDER|FILE` (same name in `3x/`, ignored by git).
@@ -151,6 +155,12 @@ Templates: `games/_template/design/systems.md`, `interface.md`, `content.md`.
   party, no warps, no pokes of values (a position shortcut is acceptable only where walking is long and
   shows nothing). Shots that also exist in `main` are taken again here with their routes, so the set stands on
   its own; 30-60 shots. Its checkpoints are named `s_...`. It needs no lens documents of its own.
+  **Sequential order** (owner's rule 2026-11-20): ids are numbered in play order like a sequence set,
+  `01_<step>`, `02_<step>`, ... (two digits, three past 99), and the set's `shots.txt` lists them in that
+  order, so `index.md`, the contact sheet and the ids read as one playthrough. A shot added later between two
+  steps renumbers the ones after it (the files are renamed on the next `shoot.py` run). In this set only, the
+  step number goes before the area in the file name (owner's rule 2026-11-20, "File names"), so a folder
+  listing is the play order too.
 - `main` is the database set. Other sets for variants: `dmg` / `sgb` (another model), `jp` (another region/ROM
   revision, separate game slug).
 - A set is finished when `tools/shoot.py SLUG main --verify` reproduces every shot and the contact sheet

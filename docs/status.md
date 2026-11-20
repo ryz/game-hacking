@@ -10,7 +10,7 @@ changes `game.json` ("work", "open") in its game folder and one line in the prog
 ## Platforms
 Each session builds only the emulator it needs (`sh tools/setup_emu.sh PLATFORM`; no setup script, decided
 2026-11-18). All backends: deterministic, exact savestates, peek/poke/RAM search, battery or file saves through
-`play.py export` and `sav:`.
+`play.py export` and `sav:`. RAM watches and `set:` follow the CPU's byte order (backend attribute `ENDIAN`).
 
 | Platform | Backend (pinned commit) | Build | A game is | Not supported or untested | Notes |
 |---|---|---|---|---|---|
@@ -18,6 +18,7 @@ Each session builds only the emulator it needs (`sh tools/setup_emu.sh PLATFORM`
 | `nes` | Mesen libretro core | 57 s | `.nes` (NES and Famicom) | Famicom Disk System, second controller, 6-letter Game Genie codes on bank-switched games | [nes.md](emulator/nes.md) |
 | `snes` | Mesen-S libretro core | 53 s | `.sfc` / `.smc` | special-chip games untested | [snes.md](emulator/snes.md) |
 | `sms` | Genesis Plus GX libretro core | 11 s | `.sms` | Game Gear, SG-1000, light gun, paddle, Reset button, Sega Card | [sms.md](emulator/sms.md) |
+| `md` | Genesis Plus GX libretro core (the `sms` build) | 11 s | `.md` / `.gen` / `.bin` (Mega Drive and Genesis) | Mega-CD, 32X, lock-on, second pad, mouse, light guns, `.smd` dumps; no game registered yet (backend 2026-11-20) | [md.md](emulator/md.md) |
 | `dos` | DOSBox Pure libretro core | 32 s | a ZIP of the game's files | CD images and installers, mouse tokens, sound card choice; `cga`/`tandy` lose the palette on a state load (use `ega`) | [dos.md](emulator/dos.md) |
 | `apple2` | AppleWin libretro core (needs cmake) | 78 s | a disk image or a ZIP of disk images | reset keys, hard disk images with a real game, held keys / auto-repeat | [apple2.md](emulator/apple2.md) |
 | `amiga` | PUAE libretro core | 90 s | an ADF or a ZIP of ADFs; Kickstart ROMs in `rom/kickstart/` | `.ipf`, hard disk / WHDLoad, CD32 / CDTV, write-protected disks | [amiga.md](emulator/amiga.md) |
@@ -36,12 +37,12 @@ Each session builds only the emulator it needs (`sh tools/setup_emu.sh PLATFORM`
 | `gamestable.py` | writes the game tables below and in `README.md` from each `game.json` |
 | `dis6502.py` | 6502 disassembler for NES games |
 
-Tests: `python3 -m pytest -q tests` (59, on generated test ROMs and disks for all seven platforms; a platform's
+Tests: `python3 -m pytest -q tests` (62, on generated test ROMs and disks for all eight platforms; a platform's
 tests are skipped when its emulator is not built).
 
 **Not yet done after the 2026-11-20 tool changes:** no published set has been re-verified with the chained
 checkpoint builds and parallel replays, because no dump is in the container that made them. The pipeline tests
-of all seven platforms pass and a timing-sensitive Apple II test chain gives identical frames flat, chained,
+of all eight platforms pass and a timing-sensitive Apple II test chain gives identical frames flat, chained,
 cached and in parallel. First session with a dump: `rm -rf work/cache/PLATFORM/SLUG; python3 tools/shoot.py SLUG
 main --verify` and note the result here.
 

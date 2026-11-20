@@ -6,9 +6,11 @@
 #              tools/mesen-debug.patch adds retro_mesen_peek/poke/pc (whole CPU address space, program counter).
 #   mesen-s    Mesen-S as a libretro core (same driver). Backend for snes.
 #              tools/mesen-s-debug.patch adds retro_mesen_peek/poke/pc (24-bit address space).
-#   gpgx       Genesis Plus GX as a libretro core (same driver). Backend for sms (Master System / Mark III).
+#   gpgx       Genesis Plus GX as a libretro core (same driver). Backend for sms (Master System / Mark III) and
+#              md (Mega Drive / Genesis): `sms` and `md` build the same core.
 #              tools/gpgx-debug.patch adds retro_gamedb_peek/poke/pc (Z80 address space, program counter) and
-#              retro_gamedb_sram (the whole cartridge RAM), and silences the core's info-level log.
+#              retro_gamedb_sram (the whole cartridge RAM), and silences the core's info-level log;
+#              retro_gamedb_peek68k/poke68k/pc68k do the same for the 68000 (Mega Drive address space).
 #   dosbox-pure  DOSBox Pure as a libretro core (same driver). Backend for dos (a game = a ZIP of its files).
 #              tools/dosbox-pure-debug.patch adds retro_gamedb_set_time (emulated clock set by the driver, not
 #              the host), retro_gamedb_sync (wait for the emulation thread at the frame end) and retro_gamedb_pc; it also makes a loaded savestate continue exactly like the run that made it,
@@ -28,7 +30,7 @@
 #              the battery clock follows retro_gamedb_set_time, a restore takes its disks from the folder set
 #              with retro_gamedb_disk_dir, retro_gamedb_peek/poke/pc/insert/flush; it also fixes the core's
 #              fallback logger (it wrote to a NULL stderr and crashed without a frontend log interface).
-# sh tools/setup_emu.sh [gb|nes|snes|sms|dos|apple2|amiga]   (default: all)
+# sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga]   (default: all)
 set -e
 cd "$(dirname "$0")"
 want=${1:-all}
@@ -57,7 +59,7 @@ if [ "$want" = all ] || [ "$want" = snes ]; then
   fi
   make -C mesen-s/Libretro -j"$(nproc 2>/dev/null || echo 2)"
 fi
-if [ "$want" = all ] || [ "$want" = sms ]; then
+if [ "$want" = all ] || [ "$want" = sms ] || [ "$want" = md ]; then
   if [ ! -d gpgx ]; then
     mkdir gpgx
     (cd gpgx && git init -q && git remote add origin https://github.com/libretro/Genesis-Plus-GX.git &&

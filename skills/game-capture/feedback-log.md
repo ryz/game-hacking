@@ -12,6 +12,17 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - owner's rule: start sets in sequential order
+- Task: owner's request, not an agent run.
+- Worked: Dungeon Master's `start` set already used numbered ids (`01_crack_note` ...) in play order.
+- Friction: Apple II Wizardry's `start` set has unnumbered ids, and its list and `index.md` are not in play
+  order (Tavern A)dd after the roster, a chest before the first shop), so the set is hard to follow.
+- Proposed rule change: `start` ids numbered `01_<step>` ... in play order, `shots.txt` in that order.
+- Corrected: -
+- Status: promoted 2026-11-20 (owner's rule; `docs/capture-guide.md` "Sets", skill step "Standard environment shots").
+  Same day, owner's follow-up: in `start` sets the number goes before the category in the file name
+  (`tools/shoot.py` `stem()`); both existing `start` sets renamed.
+
 ### 2026-11-20 - Dungeon Master (Amiga)
 - Task: Dungeon Master (Amiga v3.60) sets `main` (to the ending) and `start`, three lenses, from the scout's playbook.
 - Worked: reading the whole dungeon from RAM once (map descriptors, squares, thing tables) gave stairs, monsters and

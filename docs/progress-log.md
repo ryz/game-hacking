@@ -45,6 +45,30 @@ Owner's request: analyse the repository and its feedback for what costs time and
   with a dump runs `shoot.py SLUG main --verify` from an empty cache. The per-game `maps.py` / `roster.py` /
   `transfer.py` were not merged into shared modules (untestable without the dumps; `docs/backlog.md`). Existing
   playbooks have no "Read first" block yet. Wizardry Empire's own tools still write their 3x compare images.
+## 2026-11-20 - Mega Drive / Genesis backend
+- New platform `md` on the Master System's core (Genesis Plus GX, same pinned commit and build;
+  `setup_emu.sh md` is an alias of `sms`). `tools/gpgx-debug.patch` gains `retro_gamedb_peek68k`/`poke68k`/`pc68k`:
+  side-effect-free reads of work RAM, ROM, Z80 RAM and mapped cartridge RAM (I/O, VDP and open bus are refused,
+  since reading them changes the hardware), writes to RAM only.
+- `platforms.MegaDrive` (subclass of `Sms`): header identification (titles, product code, I/O field and
+  six-button pad, old/new region field, `RA` backup RAM, checksum), models ntsc/ntsc-j/pal, fixed core options
+  (Mega Drive hardware whatever the extension, no TMSS, no add-on or lock-on), the 64 KiB cartridge RAM buffer
+  appended to savestates and exported as `.sav`, Pro Action Replay and Game Genie as the core decodes them.
+- 68000 values are big-endian: RAM watches and `set:` now default to the backend's byte order (`ENDIAN`,
+  little-endian everywhere else, so other platforms are unchanged); `find --wide` compares big-endian words.
+- Tests: `tests/make_md_rom.py` builds an original test ROM (hand-assembled 68000, V-blank loop, pad read,
+  cartridge RAM); 3 tests (header and cheats, backend, intake-to-shoot pipeline). Docs: `docs/emulator/md.md`.
+
+## 2026-11-20 - rule: `start` sets in play order
+- Owner's rule: `start` set ids are numbered in play order (`01_<step>` ...) and listed in that order, so the
+  set reads as one playthrough. In `docs/capture-guide.md` ("Sets") and the game-capture skill. Dungeon Master's
+  set already follows it; Apple II Wizardry's (unnumbered, partly out of order) does not yet.
+- Follow-up the same day: in `start` sets the step number goes before the category in the file name
+  (`<game>_<platform>_<region>_<NN>_<area>_<step>.start.png`), so a folder listing is the play order.
+  `tools/shoot.py`: `stem()` builds it and refuses unnumbered `start` ids; `list_order()` sorts a set by its own
+  `shots.txt` (before: the game's main list, which put Apple II Wizardry's `start` index out of order). Both
+  `start` sets renamed without replaying (no ROMs here): Dungeon Master (37), Apple II Wizardry (47, ids
+  numbered `01_` to `47_` in the order of its shot list); index.md and contact sheets rebuilt.
 
 ## 2026-11-20 - Dungeon Master (Amiga) captured to the ending
 - game-capture run: set `main` 111 shots (boot, Hall of Champions and five mirror panels, level 2 systems,

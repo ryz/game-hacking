@@ -27,7 +27,9 @@ A route is played exactly, then `settle` is added unless it already ends with `s
 File names say what a file shows without its folder (docs/capture-guide.md, "File names"):
   <game>_<platform>_<region>_<area>_<id>[.<set>].png      might-and-magic_nes_na_battle_battle_sprites.png
 game, platform, region = game.json "slug", "platform", "region"; area = the shot's category; id = the shot id (in
-a `seq-<action>` set: `seq-<action>_<id>`); `.<set>` for every set but `main` and `seq-*`. Below, NAME is that name.
+a `seq-<action>` set: `seq-<action>_<id>`); `.<set>` for every set but `main` and `seq-*`. Set `start`: ids are
+`NN_<step>` in play order and the number goes before the area: <game>_<platform>_<region>_<NN>_<area>_<step>.start.png.
+Below, NAME is that name.
 Outputs per shot: NAME.png (native, framebuffer as is: no filter, no colour correction, no scaling). Enlarged
 copies are made on demand, never by default: python3 tools/x3.py FOLDER|FILE ... Per set: index.json, index.md and the contact
 sheet <game>_<platform>_<region>_set_sheet[.<set>].png (all shots, captioned; `set` in the area field = a file about the whole set).
@@ -82,10 +84,18 @@ def head(g, set_name):
 
 
 def stem(g, set_name, category, sid):
-    """File name of a shot without the extension: <game>_<platform>_<region>_<area>_<id>[.<set>]."""
+    """File name of a shot without the extension: <game>_<platform>_<region>_<area>_<id>[.<set>].
+    Set `start` (played in order): ids are `NN_<step>` and the step number goes before the area, so a folder
+    listing is the play order: <game>_<platform>_<region>_<NN>_<area>_<step>.start."""
     if not re.match(r"^[a-z]+$", category) or category == "set":
         raise SystemExit("error: %s: category %r must be one lowercase word, not `set` (it is the area field of "
                          "the file name)" % (sid, category))
+    if set_name == "start":
+        m = re.match(r"^(\d{2,3})_(.+)$", sid)
+        if not m:
+            raise SystemExit("error: %s: ids in the set `start` are numbered in play order: 01_<step>, 02_<step> "
+                             "... (docs/capture-guide.md, \"Sets\")" % sid)
+        return "%s_%s_%s_%s%s" % (head(g, set_name), m.group(1), category, m.group(2), suffix(set_name))
     return "%s_%s_%s%s%s" % (head(g, set_name), category, prefix(set_name), sid, suffix(set_name))
 
 
@@ -246,9 +256,10 @@ def write_md(idx, d):
     out = ["# %s - shots: %s" % (g["title"], idx["set"]), "",
            "Platform %s, region %s, model %s, ROM SHA-1 `%s`. %d shots. Contact sheet: [%s](%s). Native "
            "size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: "
-           "`<game>_<platform>_<region>_<category>_<id>%s.png`." % (
+           "`<game>_<platform>_<region>_%s%s.png`." % (
                g["platform"], g["region"], g["model"], g["sha1"], len(idx["shots"]), sf("sheet.png"),
-               sf("sheet.png"), suffix(idx["set"])), "",
+               sf("sheet.png"), "<NN>_<category>_<step>" if idx["set"] == "start" else "<category>_<id>",
+               suffix(idx["set"])), "",
            "| id | category | caption | settled | image |", "|---|---|---|---|---|"]
     for s in idx["shots"]:
         clip = " [gif](%s)" % s["clip"]["file"] if s.get("clip") else ""

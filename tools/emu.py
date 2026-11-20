@@ -270,7 +270,8 @@ def hold_value(emu, game, tok):
         emu.freezes = []
     elif tok.startswith("gs:"):
         bank, addr, v = platforms.PLATFORMS[game.platform].gameshark(tok[3:])
-        emu.freezes = [f for f in emu.freezes if f[:2] != (bank, addr)] + [(bank, addr, bytes([v]))]
+        v = v if isinstance(v, bytes) else bytes([v])          # Mega Drive: a word code gives two bytes
+        emu.freezes = [f for f in emu.freezes if f[:2] != (bank, addr)] + [(bank, addr, v)]
     elif tok.startswith("freeze:"):
         addr, data = tok[7:].split("=")
         emu.freezes = [f for f in emu.freezes if f[:2] != (None, int(addr, 16))] + \
@@ -304,7 +305,8 @@ def step(emu, game, tok):
             addr, rest = base[4:].split("=")
             parts = rest.split(":")
             n = int(parts[1]) if len(parts) > 1 else 1
-            emu.poke(int(addr, 16), encode_value(int(parts[0]), n, parts[2] if len(parts) > 2 else "le"))
+            emu.poke(int(addr, 16), encode_value(int(parts[0]), n,
+                                                 parts[2] if len(parts) > 2 else getattr(emu, "ENDIAN", "le")))
         elif base == "settle":
             settle(emu, game)
         elif re.match(r"^w\d+$", base):

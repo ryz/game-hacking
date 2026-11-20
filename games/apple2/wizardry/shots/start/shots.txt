@@ -1,47 +1,47 @@
-title_logo | title | Title: the smoke has formed the Wizardry logo above the wizard | @title,w2,settle
-menu_copyright | menu | Copyright, version 2.1 of 22-JAN-82: S)tart game, U)tilities, T)itle page | @menu,w2,settle
-boot_disk_master | boot | After S)tart game: "Scenario master in drv 1, press [RET]" | @menu,s,w300,settle
-menu_castle_empty | menu | Castle with no party: inn, tavern, trading post, temple, edge of town | @castle,w2,settle
-menu_training | menu | Training Grounds: type a name to add, inspect or edit, "*ROSTER", or Return | @castle,TRAINING,settle
-create_new_name | system | A new name: "That character does not exist. Do you want to create it (Y/N) ?" | @start,TRAINING,type:ZED\n,w300,settle
-create_race | system | Creation: choose a race - human, elf, dwarf, gnome, hobbit | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,settle
-create_align | system | Creation: choose an alignment - good, neutral, evil (elf chosen) | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,b,w300,settle
-create_bonus | system | Creation: the elf's scores 7 10 10 6 9 6 and 8 points to share with + and - | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,b,w300,b,w300,settle
-create_bonus_spent | system | Points spent: STR 11, IQ 11, AGI 11 list A) fighter, B) mage, D) thief | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,b,w300,b,w300,shift+equals,w60,shift+equals,w60,shift+equals,w60,shift+equals,w60,enter,w60,shift+equals,w60,enter,w60,enter,w60,shift+equals,w60,enter,w60,shift+equals,w60,shift+equals,w60,settle
-create_class | system | Esc with no points left: "Choose a class" | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,b,w300,b,w300,shift+equals,w60,shift+equals,w60,shift+equals,w60,shift+equals,w60,enter,w60,shift+equals,w60,enter,w60,enter,w60,shift+equals,w60,enter,w60,shift+equals,w60,shift+equals,w60,esc,w300,settle
-create_keep | system | Mage chosen: "Keep this character (Y/N)?" | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,b,w300,b,w300,shift+equals,w60,shift+equals,w60,shift+equals,w60,shift+equals,w60,enter,w60,shift+equals,w60,enter,w60,enter,w60,shift+equals,w60,enter,w60,shift+equals,w60,shift+equals,w60,esc,w300,b,w300,settle
-menu_roster | menu | "*ROSTER" after the clean-up: the party of six, all level 1 | @start,TRAINING,type:*ROSTER\n,w400,settle
-menu_tavern_add | menu | Tavern A)dd: "Who will join ?" - the name is typed | @castle,g,w300,a,w300,settle
-menu_castle | menu | Castle: the party of six, level 1, and the five places to go | @start,w2,settle
-inventory_sheet_l1 | inventory | RYZ, level 1 good human fighter: 9 hit points, 101 gold, age 19 | @start,g,w300,1,w400,settle
-shop_first_visit | shop | Boltac's, first visit: RYZ has 101 gold; long sword 25, short sword 15 | @start,b,w300,1,w400,b,w500,settle
-shop_sword_bought | shop | RYZ bought a long sword: 76 gold left | @start,b,w300,1,w400,b,w500,p,w300,1,w400,settle
-shop_armor_page | shop | The armor page: shields, robes, leather armor 50, chain mail 90 | @start,b,w300,1,w400,b,w500,p,w300,1,w400,f,w400,settle
-shop_spent | shop | Leather armor bought too: 26 gold left | @start,b,w300,1,w400,b,w500,p,w300,1,w400,f,w400,p,w300,5,w400,settle
-edge_first | menu | Edge of Town: the maze, the training grounds, the castle, or leave the game | @s_shopped,e,w300,settle
-camp_first | menu | Entering the maze opens the camp: reorder, equip, disband, inspect, leave | @s_shopped,e,w300,m,w1500,settle
-camp_equip_weapon | inventory | Camp E)quip: 'Select weapon for RYZ - 1) long sword' | @s_shopped,e,w300,m,w1500,e,w500,settle
-camp_equip_armor | inventory | Equip, next step: 'Select armor for RYZ - 1) leather armor' | @s_shopped,e,w300,m,w1500,e,w500,1,w400,settle
-camp_equipped | menu | Camp after equipping: RYZ's armor class is 8 | @s_camp,w2,settle
-maze_first_control | gameplay | Floor 1 (0,0): first control, the corridor north of the stairs | @s_maze,w2,settle
-maze_corridor | gameplay | Floor 1 (0,4): four steps up the first corridor | @s_maze,f,w200,f,w200,f,w200,f,w200,settle
-maze_first_door | gameplay | Floor 1 (6,7): the door of the first room | @s_door,w2,settle
-fight_surprised | battle | Behind the door: 5 Orcs, 'The monsters surprised you!' | @s_door,k,w100,w300,!
-fight_orc_flees | battle | The surprise round: 'Orc flees!' | @s_door,k,w100,w600,!
-fight_orc_misses | battle | 'Orc swings at CONDI and misses!' | @s_door,k,w100,w900,!
-fight_options | battle | Two Orcs left, EBO hurt: RYZ's options fight, spell, parry, run, use | @s_fight,w2,settle
-fight_spell_typed | battle | DEDDO the mage: 'Spell name ?' KATINO typed | @s_fight,f,w150,f,w150,f,w150,p,w150,s,w150,type:KATINO,settle
-fight_confirm | battle | All six orders given: Return to fight, or B)ack to redo | @s_fight,f,w150,f,w150,f,w150,p,w150,s,w150,type:KATINO\n,w200,p,w150,settle
-fight_cast | battle | 'DEDDO casts a spell' (Katino, sleep) | @s_fight,f,w150,f,w150,f,w150,p,w150,s,w150,type:KATINO\n,w200,p,w150,enter,w100,w300,!
-fight_won | battle | First victory: 'For killing the monsters each survivor gets 39 experience' | @s_fight,f,w150,f,w150,f,w150,p,w150,s,w150,type:KATINO\n,w200,p,w150,enter,w100,w900,!
-chest_found | battle | A chest after the fight: open, Calfo, leave, inspect, disarm | @s_chest,w2,settle
-chest_inspected | battle | CUBI the thief inspects it: 'Trapless chest' | @s_chest,i,w150,4,w100,!
-chest_opened | battle | CUBI opens it: 'Each share is worth 6 GP!' | @s_chest,i,w150,4,w500,o,w150,4,w100,!
-room_after | gameplay | The first room after the fight and the chest; EBO at 3 of 7 hit points | @s_room,w2,settle
-stairs_home | gameplay | Back at the stairs on foot: 'Stairs going up. Take them (Y/N) ?' | @s_stairs,w2,settle
-castle_return | menu | Castle after the first trip: all six alive, EBO hurt | @s_home,w2,settle
-inn_rooms | menu | Adventurer's Inn, EBO: stables free, cots 10 gold a week, up to royal suites | @s_home,a,w300,3,w400,settle
-inn_healing | system | Cots: 'EBO is healing up - hit points (5/7)', gold counts down | @s_home,a,w300,3,w400,b,w60,!
-inn_need_exp | system | After the rest: 'You need 1011 more experience points to make level' | @s_home,a,w300,3,w400,b,w60,w600,settle
-sheet_after | inventory | RYZ after the first trip: 39 experience, long sword and leather armor worn | @s_home,g,w300,s,w300,1,w500,settle
-leave_game | save | Edge of Town, L)eave the game: the roster is written to the scenario disk | @s_home,e,w300,l,w900,settle
+01_title_logo | title | Title: the smoke has formed the Wizardry logo above the wizard | @title,w2,settle
+02_menu_copyright | menu | Copyright, version 2.1 of 22-JAN-82: S)tart game, U)tilities, T)itle page | @menu,w2,settle
+03_boot_disk_master | boot | After S)tart game: "Scenario master in drv 1, press [RET]" | @menu,s,w300,settle
+04_menu_castle_empty | menu | Castle with no party: inn, tavern, trading post, temple, edge of town | @castle,w2,settle
+05_menu_training | menu | Training Grounds: type a name to add, inspect or edit, "*ROSTER", or Return | @castle,TRAINING,settle
+06_create_new_name | system | A new name: "That character does not exist. Do you want to create it (Y/N) ?" | @start,TRAINING,type:ZED\n,w300,settle
+07_create_race | system | Creation: choose a race - human, elf, dwarf, gnome, hobbit | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,settle
+08_create_align | system | Creation: choose an alignment - good, neutral, evil (elf chosen) | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,b,w300,settle
+09_create_bonus | system | Creation: the elf's scores 7 10 10 6 9 6 and 8 points to share with + and - | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,b,w300,b,w300,settle
+10_create_bonus_spent | system | Points spent: STR 11, IQ 11, AGI 11 list A) fighter, B) mage, D) thief | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,b,w300,b,w300,shift+equals,w60,shift+equals,w60,shift+equals,w60,shift+equals,w60,enter,w60,shift+equals,w60,enter,w60,enter,w60,shift+equals,w60,enter,w60,shift+equals,w60,shift+equals,w60,settle
+11_create_class | system | Esc with no points left: "Choose a class" | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,b,w300,b,w300,shift+equals,w60,shift+equals,w60,shift+equals,w60,shift+equals,w60,enter,w60,shift+equals,w60,enter,w60,enter,w60,shift+equals,w60,enter,w60,shift+equals,w60,shift+equals,w60,esc,w300,settle
+12_create_keep | system | Mage chosen: "Keep this character (Y/N)?" | @start,TRAINING,type:ZED\n,w300,y,w300,enter,w300,enter,w300,b,w300,b,w300,shift+equals,w60,shift+equals,w60,shift+equals,w60,shift+equals,w60,enter,w60,shift+equals,w60,enter,w60,enter,w60,shift+equals,w60,enter,w60,shift+equals,w60,shift+equals,w60,esc,w300,b,w300,settle
+13_menu_roster | menu | "*ROSTER" after the clean-up: the party of six, all level 1 | @start,TRAINING,type:*ROSTER\n,w400,settle
+14_menu_tavern_add | menu | Tavern A)dd: "Who will join ?" - the name is typed | @castle,g,w300,a,w300,settle
+15_menu_castle | menu | Castle: the party of six, level 1, and the five places to go | @start,w2,settle
+16_inventory_sheet_l1 | inventory | RYZ, level 1 good human fighter: 9 hit points, 101 gold, age 19 | @start,g,w300,1,w400,settle
+17_shop_first_visit | shop | Boltac's, first visit: RYZ has 101 gold; long sword 25, short sword 15 | @start,b,w300,1,w400,b,w500,settle
+18_shop_sword_bought | shop | RYZ bought a long sword: 76 gold left | @start,b,w300,1,w400,b,w500,p,w300,1,w400,settle
+19_shop_armor_page | shop | The armor page: shields, robes, leather armor 50, chain mail 90 | @start,b,w300,1,w400,b,w500,p,w300,1,w400,f,w400,settle
+20_shop_spent | shop | Leather armor bought too: 26 gold left | @start,b,w300,1,w400,b,w500,p,w300,1,w400,f,w400,p,w300,5,w400,settle
+21_edge_first | menu | Edge of Town: the maze, the training grounds, the castle, or leave the game | @s_shopped,e,w300,settle
+22_camp_first | menu | Entering the maze opens the camp: reorder, equip, disband, inspect, leave | @s_shopped,e,w300,m,w1500,settle
+23_camp_equip_weapon | inventory | Camp E)quip: 'Select weapon for RYZ - 1) long sword' | @s_shopped,e,w300,m,w1500,e,w500,settle
+24_camp_equip_armor | inventory | Equip, next step: 'Select armor for RYZ - 1) leather armor' | @s_shopped,e,w300,m,w1500,e,w500,1,w400,settle
+25_camp_equipped | menu | Camp after equipping: RYZ's armor class is 8 | @s_camp,w2,settle
+26_maze_first_control | gameplay | Floor 1 (0,0): first control, the corridor north of the stairs | @s_maze,w2,settle
+27_maze_corridor | gameplay | Floor 1 (0,4): four steps up the first corridor | @s_maze,f,w200,f,w200,f,w200,f,w200,settle
+28_maze_first_door | gameplay | Floor 1 (6,7): the door of the first room | @s_door,w2,settle
+29_fight_surprised | battle | Behind the door: 5 Orcs, 'The monsters surprised you!' | @s_door,k,w100,w300,!
+30_fight_orc_flees | battle | The surprise round: 'Orc flees!' | @s_door,k,w100,w600,!
+31_fight_orc_misses | battle | 'Orc swings at CONDI and misses!' | @s_door,k,w100,w900,!
+32_fight_options | battle | Two Orcs left, EBO hurt: RYZ's options fight, spell, parry, run, use | @s_fight,w2,settle
+33_fight_spell_typed | battle | DEDDO the mage: 'Spell name ?' KATINO typed | @s_fight,f,w150,f,w150,f,w150,p,w150,s,w150,type:KATINO,settle
+34_fight_confirm | battle | All six orders given: Return to fight, or B)ack to redo | @s_fight,f,w150,f,w150,f,w150,p,w150,s,w150,type:KATINO\n,w200,p,w150,settle
+35_fight_cast | battle | 'DEDDO casts a spell' (Katino, sleep) | @s_fight,f,w150,f,w150,f,w150,p,w150,s,w150,type:KATINO\n,w200,p,w150,enter,w100,w300,!
+36_fight_won | battle | First victory: 'For killing the monsters each survivor gets 39 experience' | @s_fight,f,w150,f,w150,f,w150,p,w150,s,w150,type:KATINO\n,w200,p,w150,enter,w100,w900,!
+37_chest_found | battle | A chest after the fight: open, Calfo, leave, inspect, disarm | @s_chest,w2,settle
+38_chest_inspected | battle | CUBI the thief inspects it: 'Trapless chest' | @s_chest,i,w150,4,w100,!
+39_chest_opened | battle | CUBI opens it: 'Each share is worth 6 GP!' | @s_chest,i,w150,4,w500,o,w150,4,w100,!
+40_room_after | gameplay | The first room after the fight and the chest; EBO at 3 of 7 hit points | @s_room,w2,settle
+41_stairs_home | gameplay | Back at the stairs on foot: 'Stairs going up. Take them (Y/N) ?' | @s_stairs,w2,settle
+42_castle_return | menu | Castle after the first trip: all six alive, EBO hurt | @s_home,w2,settle
+43_inn_rooms | menu | Adventurer's Inn, EBO: stables free, cots 10 gold a week, up to royal suites | @s_home,a,w300,3,w400,settle
+44_inn_healing | system | Cots: 'EBO is healing up - hit points (5/7)', gold counts down | @s_home,a,w300,3,w400,b,w60,!
+45_inn_need_exp | system | After the rest: 'You need 1011 more experience points to make level' | @s_home,a,w300,3,w400,b,w60,w600,settle
+46_sheet_after | inventory | RYZ after the first trip: 39 experience, long sword and leather armor worn | @s_home,g,w300,s,w300,1,w500,settle
+47_leave_game | save | Edge of Town, L)eave the game: the roster is written to the scenario disk | @s_home,e,w300,l,w900,settle
