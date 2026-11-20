@@ -2,6 +2,20 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Wizardry III (DOS) re-verified with the new tools
+- First published set checked after the process review: the owner uploaded the dump (SHA-1 as in `game.json`).
+  `shoot.py dos/wizardry-3 main --verify --published` from an empty cache: 228/228 identical to the committed
+  pictures, which the old tools made. 64 s with 4 processes, 201 s with one; the capture run of 2026-11-19
+  reported about 15 minutes for a full verify. 41 of the 56 checkpoints were built (chain depth 34, 25 routes
+  on `sav:00_transfer`), 92 MB of states.
+- New: `shoot.py --verify --published` compares with the committed set instead of the working set (a new
+  container has none) and writes nothing into it; test added.
+- Seen: the DOS core writes about 16 log lines per shot to stderr (`docs/backlog.md`).
+- Open: the other sets named in `docs/status.md`. Shin Megami Tensei: the base dump uploaded in this session
+  matches `game.json` "source" (`f765341b...`), but the IPS that came with it (`Shin_Megami_Tensei_if_SNES_J.ips`,
+  SHA-1 `3963452b...`) is neither `smte1.ips` nor `smte2.ips`, the two patches the set was made with; the set
+  cannot be rebuilt or verified until those two are uploaded.
+
 ## 2026-11-20 - Process review: faster verify, shared previewer, native pictures, shorter reading, generated tables
 Owner's request: analyse the repository and its feedback for what costs time and tokens, then implement it.
 - **Findings** (from 31 capture and 22 scout feedback entries): interactive play with a 3x picture per

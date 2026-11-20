@@ -212,6 +212,13 @@ def test_pipeline(selftest):
     assert s["file"] == name % "a_shot" and "file_3x" not in s and idx["game"]["region"] == "na"
     assert len(s["pixel_sha1"]) == 40 and not os.path.exists(os.path.join(pub, "3x"))
     assert "3x/" not in open(os.path.join(pub, "index.md")).read()
+    # a new container has no working set: the committed set verifies on its own, and is not written to
+    before = {f: os.path.getmtime(os.path.join(pub, f)) for f in os.listdir(pub)}
+    shutil.rmtree(os.path.join(ROOT, "work", "shots", "gb", SLUG))
+    shutil.rmtree(os.path.join(ROOT, "work", "cache", "gb", SLUG))
+    assert "1/1 reproduce" in run("tools/shoot.py", SLUG, "main", "--verify", "--published")
+    assert before == {f: os.path.getmtime(os.path.join(pub, f)) for f in os.listdir(pub)}
+    run("tools/shoot.py", SLUG, "main")                 # the working set again, from the published list
     # enlarged copies on demand: tools/x3.py, into 3x/ next to the originals (ignored by git)
     run("tools/x3.py", pub)
     assert Image.open(os.path.join(pub, "3x", name % "a_shot")).size == (480, 432)

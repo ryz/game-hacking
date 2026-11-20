@@ -90,6 +90,9 @@ never commit them. Say what is new and what is known to be broken.
 - After the capture: delete `work/cache/<platform>/<slug>` and rerun `python3 tools/shoot.py SLUG SET --verify`
   yourself (in the background; four processes), look at the contact sheet (`<game>_<platform>_<region>_set_sheet.png`), run
   `python3 -m pytest -q tests` (repo root) if tools changed, commit `games/<platform>/<slug>/` (one commit per game set).
+- A set made in another container, or after a change to the tools or an emulator: `python3 tools/shoot.py SLUG
+  SET --verify --published` replays the committed list against the committed pictures (nothing there is
+  written); note the result in `docs/status.md`.
 - Bookkeeping per run, each fact once: the game's `game.json` "work" and "open" (the agent sets them, you check),
   `python3 tools/gamestable.py` (README and status tables), the feedback log entry, the agent-log line, one
   entry in `docs/progress-log.md` per session (not per run). `docs/status.md` changes only when a platform, a

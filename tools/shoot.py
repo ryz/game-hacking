@@ -12,6 +12,11 @@
   python3 tools/shoot.py GAME SET --verify          replay into a temp dir and compare with the PNGs already in
                                                     the set (e.g. made with play.py snap): proves every route
                                                     reproduces its frame; exit 3 on a mismatch
+  python3 tools/shoot.py GAME SET --verify --published
+                                                    the same against the committed set games/PLATFORM/GAME/shots/SET/
+                                                    (its own shots.txt and pictures; nothing there is changed): a
+                                                    new container, a changed tool or emulator. Mismatches are
+                                                    written to work/shots/PLATFORM/GAME/SET/NAME.replay.png
   python3 tools/shoot.py GAME SET --publish         replay the set, then copy it to games/PLATFORM/GAME/shots/SET/ (committed)
   python3 tools/shoot.py GAME SET --publish-only    copy without replaying (right after a passing --verify)
   (a passing full --verify also rebuilds index.md, sheet.png and a sequence's strip/steps from index.json)
@@ -412,17 +417,17 @@ def reindex(game, d):
 def _job(job):
     """One shot in a worker process (--jobs): replay it into its folder, or for --verify into a temp folder and
     compare with the set. Returns (shot, result): settled / clip dict, or for --verify True / False."""
-    game_id, s, d, model, set_name, verify = job
+    game_id, s, d, model, set_name, verify, ref = job      # ref: the folder with the pictures to compare with
     game = E.Game(game_id)
     if not verify:
         return s, shoot_one(game, s, d, model, set_name)
     with tempfile.TemporaryDirectory() as t:
         r = shoot_one(game, s, t, model, set_name)
         st = stem(game.meta, set_name, s["category"], s["id"])
-        old = os.path.join(d, st + ".png")
+        old = os.path.join(ref, st + ".png")
         same = os.path.exists(old) and _pixels(old) == _pixels(os.path.join(t, st + ".png"))
         if same and isinstance(r, dict):
-            g = os.path.join(d, st + ".gif")
+            g = os.path.join(ref, st + ".gif")
             same = os.path.exists(g) and _gif_frames(g) == _gif_frames(os.path.join(t, st + ".gif"))
         if not same:
             shutil.copyfile(os.path.join(t, st + ".png"), os.path.join(d, st + ".replay.png"))
@@ -449,6 +454,8 @@ def main():
     ap.add_argument("--list")
     ap.add_argument("--only")
     ap.add_argument("--verify", action="store_true")
+    ap.add_argument("--published", action="store_true",
+                    help="with --verify: compare with the committed set instead of the working set")
     ap.add_argument("--publish", action="store_true")
     ap.add_argument("--publish-only", action="store_true",
                     help="copy the work set to games/PLATFORM/GAME/shots/SET/ without replaying (after a passing --verify)")
@@ -465,13 +472,18 @@ def main():
     d = os.path.join(ROOT, "work", "shots", game.id, a.set)
     os.makedirs(d, exist_ok=True)
     head(game.meta, a.set)              # fails early when game.json has no region or the set name does not fit
-    if normalize(game, d):
+    pub = os.path.join(game.dir, "shots", a.set)
+    if a.published and not a.verify:
+        raise SystemExit("--published goes with --verify")
+    if a.published and not os.path.exists(os.path.join(pub, "shots.txt")):
+        raise SystemExit("no published set %s" % os.path.relpath(pub, ROOT))
+    if not a.published and normalize(game, d):
         print("renamed the working set to the current file names")
     if a.prune:
         gone = prune(game, d)
         print("pruned %d: %s" % (len(gone), " ".join(gone)) if gone else "nothing to prune")
         return 0
-    lst = a.list or os.path.join(d, "shots.txt")
+    lst = a.list or os.path.join(pub if a.published else d, "shots.txt")
     if not os.path.exists(lst):         # a new container: the published set's own list, for main also the plan
         lst = os.path.join(game.dir, "shots", a.set, "shots.txt")
     if not os.path.exists(lst) and a.set == "main":
@@ -494,7 +506,8 @@ def main():
         if s["category"] not in CATEGORIES:
             print("warning: %s: category %r not in %s" % (s["id"], s["category"], ", ".join(CATEGORIES)))
         stem(game.meta, a.set, s["category"], s["id"])      # a bad category or id stops the run before it starts
-    jobs = [(game.id, s, d, model, a.set, a.verify) for s in shots]
+    ref = pub if a.published else d
+    jobs = [(game.id, s, d, model, a.set, a.verify, ref) for s in shots]
     for s, r in run_jobs(jobs, a.jobs):
         if a.verify:
             bad += not r
@@ -517,10 +530,10 @@ def main():
                     print("check: identical pictures: " + ", ".join(ids))
     if a.verify:
         print("%d/%d reproduce" % (len(shots) - bad, len(shots)))
-        if not bad and not a.only:
+        if not bad and not a.only and not a.published:
             reindex(game, d)        # pick up hand edits of captions/categories in index.json
-        if not a.only and os.path.exists(os.path.join(d, "index.json")):
-            dup, long_ = quality(json.load(open(os.path.join(d, "index.json"), encoding="utf-8")), d)
+        if not a.only and os.path.exists(os.path.join(ref, "index.json")):
+            dup, long_ = quality(json.load(open(os.path.join(ref, "index.json"), encoding="utf-8")), ref)
             for line in dup + long_:
                 print("check: " + line)
             if dup:

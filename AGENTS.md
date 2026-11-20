@@ -69,7 +69,7 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
   on one sheet exactly as they will be shot; then the lines go into the set's `shots.txt` and
   `python3 tools/shoot.py SLUG SET --only id,id`.
 - Sets: `python3 tools/shoot.py SLUG SET [--verify|--publish|--publish-only] [--jobs N]` (four processes by
-  default; a set's order is its own `shots.txt`). Checkpoints: `python3 tools/cachecheck.py SLUG` (cache equals
+  default; a set's order is its own `shots.txt`; `--verify --published` checks the committed set itself). Checkpoints: `python3 tools/cachecheck.py SLUG` (cache equals
   replay from power-on; sheet of all checkpoints). Tests: `python3 -m pytest -q tests`.
 - Shot file names (owner's rule 2026-11-18, `docs/capture-guide.md` "File names"):
   `<game>_<platform>_<region>_<area>_<id>[.<set>].png` = `game.json` slug, platform, region (`jp`/`na`/`eu`: the

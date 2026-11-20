@@ -22,6 +22,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | Macros used by published shots change those routes when edited: store expanded routes in `index.json`, or refuse the edit | 2 | today a rule in the emulator guide (new macro name) |
 | `--model sgb` hangs on the SGB transfer screen (gbemu-cli handshake) | 1 | Pokémon Blue; capture in `dmg` |
 | `play.py undo`: a route recorded after `undo` replayed differently | 1 | Wizardry II NES; needs a reproduction |
+| DOSBox Pure prints its log to stderr (about 16 lines per shot: 3,600 for a 228-shot verify); silence it in the core patch or the driver | 1 | seen 2026-11-20; until then run `shoot.py ... 2>/dev/null` or filter for `reproduce\|MISMATCH\|check:` |
 | DOS: mouse tokens, CD images, installers, sound card choice | - | untested; expect work with the first game that needs each |
 | Wizardry Empire: `floormap --list` per-door gating, connected parts, warp landings; `play.py --dir`; JP variant of `party.py`; emu.py `hold:keys:N`; census segment mode and attributes; `gbdis --rom`; `explore.py` change | 1 each | from the tracer, triage, design-writer and playtester logs (its own tools in `translation/tools/`) |
 
