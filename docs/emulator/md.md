@@ -29,7 +29,8 @@ default pick (a European dump of a `JUE` game: `--region eu --model pal`).
 ## Screenshots
 320x224 for most games (H40 mode), 256x224 for games in the narrow H32 mode, the raw frame, no filter, no border.
 Enlarged copies only on demand (`tools/x3.py`, nearest neighbour).
-- A game can switch modes between screens (a 256-wide title, a 320-wide game), so a set can hold both widths.
+- A game can switch modes between screens (a 256-wide title, a 320-wide game), so a set can hold both widths
+  (Sword of Vermilion: the name keyboard is 256 wide, the rest 320).
 - PAL games in the 240-line mode give 320x240. Interlaced screens (two-player split screens) are one field:
   320x224, as the core renders them.
 
@@ -75,4 +76,9 @@ a savestate that only this core build loads.
 ## Not supported
 Mega-CD / Sega CD, 32X, Sonic & Knuckles lock-on, Power Base Converter (Master System games run on the `sms`
 platform), Pico, a second controller, Team Player / 4 Way Play, mouse, Menacer / Justifier light guns, the
-Reset button, the TMSS boot screen, interleaved `.smd` dumps.
+Reset button, the TMSS boot screen, interleaved `.smd` dumps. Codes and debug menus that need the second pad
+cannot be entered.
+
+First game on this backend: Sword of Vermilion (scout 2026-11-20) found no friction with buttons, battery RAM,
+`export`/`sav:`, peek/poke or timing. Most of work RAM changing on a step is tile maps: use
+`play.py diff A --range FFC000-FFFFFF` (or wherever the game keeps its variables).

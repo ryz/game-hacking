@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Sword of Vermilion (Mega Drive, round 1)
+- Task: scout Sword of Vermilion, the first Mega Drive game: boot, controls, checkpoints, save, shot plan.
+- Worked: md backend deterministic; big-endian set:/poke: and BCD watches; odd-byte cartridge RAM via peek
+  200001; export/sav:/Continue round-trip; H32 256-wide name keyboard; preview batches of 3-6 variants found the
+  door, stair and church-counter rules; the ROM's ASCII strings replaced blocked wikis for names.
+- Friction: research hosts blocked (GameFAQs, tcrf, StrategyWiki 403; archive.org file hosts not allowed);
+  `play.py diff` capped at 80 rows, all tile maps; dump/diff take no range; preview vs play.py differ after
+  settles; gamestable.py writes files outside a scout's scope; the fresh-press door rule cost ~40 calls. Town
+  exit of Wyclif not found within budget: no overworld or battle yet.
+- Proposed rule change: (1) md.md: no backend friction; H32 switch real; pad-2 codes unusable; (2) backlog:
+  diff --range, no cap; (3) lesson: fresh press on door tiles; (4) skill step 7: gamestable.py is run by the
+  coordinator; (5) owner: allow ia*.us.archive.org for manual scans.
+- Corrected: none; 14/14 checkpoints reproduce (coordinator cachecheck, sheet checked).
+- Status: (1) logged in md.md; (2) built 2026-11-20 (second ask); (3) open; (4) logged in skill.md;
+  (5) reported to the owner.
+
 ### 2026-11-20 - Dungeon Master (Amiga)
 - Task: scout Dungeon Master v3.60 (Amiga, first game on the new backend): pointer positioning, controls, Hall of
   Champions map, party of four on level 2, in-game save and RESUME, RAM map, shot plan, lenses started.

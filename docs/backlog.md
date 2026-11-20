@@ -16,7 +16,6 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `lenses.py SLUG SET --work` (check the working set, not the published one) | 1 | Might and Magic 1 DOS fix-up |
 | `"fmt": "bcd-le"` RAM watch (`set:...:bcd` already writes it) | 1 | Ultima III scout |
 | `intake.py` records a DOS ZIP's `dosbox*.conf` autoexec lines and cycles in `game.json` | 1 | Might and Magic II scout |
-| `play.py diff`: skip screen memory on the Apple II (`0400-07FF`, `2000-3FFF`), print more than the first 80 bytes | 1 | Wizardry I Apple II scout |
 | `snap` warns when the route has `freeze:` before one long `wN` (freezes are applied between tokens) | 3 | the guide says `w10*N`; a warning would catch it |
 | Contact sheet labels when frame sizes are mixed (SNES hi-res rows) | 1 | Shin Megami Tensei run 1 |
 | Macros used by published shots change those routes when edited: store expanded routes in `index.json`, or refuse the edit | 2 | today a rule in the emulator guide (new macro name) |
@@ -39,4 +38,5 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | Reordering a set (`--reorder`), `recaption` not reaching the game's `shots.txt`, `--publish-only` ordering by the game's list | 4 | 2026-11-20 the set's own `shots.txt` is the order and the record |
 | Session clock for budgets | 3 | 2026-11-20 budgets in tool calls, `call=N` in the status line |
 | Scout cannot run `shoot.py` | 3 | 2026-11-20 scouts write under `work/` and preview with `preview.py` |
+| `play.py diff`: more than 80 rows, an address range (Apple II screen memory, Mega Drive tile maps) | 2 | 2026-11-20 `diff A [B] --range LO-HI --max N` |
 | Earlier, by date | - | `unsnap`/`recaption` (2026-11-17), hex and BCD watches, `dis6502.py`, `dump`/`diff`, macros with arguments, sheets in pages, `--prune`, stale PNGs removed at publish (2026-11-18), `do` rollback, `export` route from power-on (2026-11-19) |

@@ -47,7 +47,9 @@ is reproducible from power-on (states are a cache, routes are the record).
                                              RAM search (cheat-search style, narrows each call): e.g. lose a
                                              life, `find "new == old - 1"`; repeat until a few addresses remain
   python3 tools/play.py dump NAME           save work/save RAM to work/play/<session>/dump_NAME.json
-  python3 tools/play.py diff A [B]           bytes that differ between dumps A and B (B omitted: RAM now);
+  python3 tools/play.py diff A [B] [--range LO-HI] [--max N]
+                                             bytes that differ between dumps A and B (B omitted: RAM now),
+                                             only in LO-HI (hex) if given, N rows (default 80, 0 = all);
                                              e.g. dump before a step, step, `diff before`;
                                              the dump file maps hex addresses without 0x ("6F00") to values
   python3 tools/play.py sample "TOKENS" [N]  run TOKENS N times (default 12) from here, tile a frame after each into
@@ -464,11 +466,22 @@ class Session:
             if cmd == "dump":
                 json.dump({"%X" % a: v for a, v in snap().items()}, open(path(args[0]), "w"))
                 return "dumped %d bytes -> %s" % (sum(n for _, n in ranges), os.path.relpath(path(args[0]), ROOT))
-            a = {int(k, 16): v for k, v in json.load(open(path(args[0]))).items()}
-            b = {int(k, 16): v for k, v in json.load(open(path(args[1]))).items()} if len(args) > 1 else snap()
-            ch = [(k, a[k], b[k]) for k in sorted(a) if k in b and a[k] != b[k]]
-            rows = ["%04X  %02X -> %02X  (%d -> %d)" % (k, x, y, x, y) for k, x, y in ch[:80]]
-            return "%d bytes differ%s\n%s" % (len(ch), " (first 80)" if len(ch) > 80 else "", "\n".join(rows))
+            lo, hi, cap, rest = 0, 1 << 32, 80, []
+            it = iter(args)
+            for x in it:
+                if x == "--range":      # --range LO-HI (hex, inclusive): only addresses in it
+                    lo, hi = (int(v, 16) for v in next(it).split("-"))
+                elif x == "--max":      # --max N: rows printed (0 = all; default 80)
+                    cap = int(next(it))
+                else:
+                    rest.append(x)
+            a = {int(k, 16): v for k, v in json.load(open(path(rest[0]))).items()}
+            b = {int(k, 16): v for k, v in json.load(open(path(rest[1]))).items()} if len(rest) > 1 else snap()
+            ch = [(k, a[k], b[k]) for k in sorted(a) if lo <= k <= hi and k in b and a[k] != b[k]]
+            shown = ch if cap == 0 else ch[:cap]
+            rows = ["%04X  %02X -> %02X  (%d -> %d)" % (k, x, y, x, y) for k, x, y in shown]
+            more = " (first %d; --max 0 for all)" % cap if len(ch) > len(shown) else ""
+            return "%d bytes differ%s\n%s" % (len(ch), more, "\n".join(rows))
         if cmd == "peek":
             a, n = int(args[0], 16), int(args[1], 0) if len(args) > 1 else 16
             data = e.peek(a, n)

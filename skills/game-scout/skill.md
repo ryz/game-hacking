@@ -89,7 +89,8 @@ do not capture the database set (that is `game-capture`), but you do create the 
    whatever you could not settle. Write its **Read first** block last (top of the file, at most 60 lines): how
    to start, the macros and checkpoints that matter, the traps that cost calls, what is open. The capture
    agent reads that block first and the rest by section. Set `game.json` "work" (one line for the README
-   table, e.g. "scouted 2026-11-20: boot, 12 checkpoints, RAM map; not captured") and "open".
+   table, e.g. "scouted 2026-11-20: boot, 12 checkpoints, RAM map; not captured") and "open". Do not run
+   `tools/gamestable.py`: the coordinator does (it writes `README.md` and `docs/status.md`).
 
 ## Guardrails
 - Write only `games/<platform>/<slug>/game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt` (plan lines without routes

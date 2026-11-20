@@ -25,3 +25,5 @@ Tool wishes are not listed here: `docs/backlog.md`.
 - **Name keyboards:** check whether shift/case persists from one name to the next (Wizardry I NES, 2026-11-18).
 - **Facts in a dispatch are "to be checked":** verify the stated start (year, place, working files) on screen
   before naming checkpoints after it (Ultima II, 2026-11-19).
+- **Doors that ignore walking into them:** test "step onto the tile, release, press again" in one preview batch
+  before trying Open/Seek or other doors (Sword of Vermilion, 2026-11-20, ~40 calls).
