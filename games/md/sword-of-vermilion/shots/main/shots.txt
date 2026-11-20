@@ -1,0 +1,51 @@
+title_screen | title | Title screen: SWORD OF VERMILION, Start / Continue | @title
+boot_sega | boot | SEGA logo | pow,w120,!
+cutscene_intro_tree | cutscene | Intro: tree on the cliff, the sword in the stone, lightning | pow,w660,!
+menu_name | menu | Name keyboard: ryz typed | @name
+cutscene_prologue_tsarkon | cutscene | Prologue page 1: King Tsarkon's hordes invade Excalabria | @name,start,w60,w300
+start_wyclif_gate | gameplay | First control: the prince at the south gate of Wyclif | @start
+dialogue_blade_house | dialogue | Woman in Blade's house: "Where have you been? Your father is calling for you." | @t_blade_room
+env_wyclif_blade_house | gameplay | Wyclif: outside Blade's house, nobody talking | @wyclif
+gameplay_tavern | gameplay | Wyclif tavern interior | @tavern
+save_church_menu | save | Church: Remove a curse / Apply poison balm / Save your game / Stop | @church_menu
+save_slots | save | Save under which number? Saved Game 1-3 | @church_menu,down*2,c,w90
+menu_continue_slots | menu | Continue: Saved Game 1 ryz level 1 | sav:01_start,TITLE,down,start,w120
+hud_field_menu | hud | Field command window: Talk Magic / Item Equip / Str Seek / Open Take | @wyclif,c,w40
+inventory_status | inventory | Status: Level 1, EXP, HP/MHP, MP/MMP, STR AC INT DEX LUK KIM | @wyclif,c,down*2,c,w40
+shop_weapon | shop | Wyclif weapon shop: Bronze Sword 100, shields 50/80, armour 200/400 kims | @shop_list
+inventory_equip | inventory | Equip: Put on, Weapon, "What do you want to ready?" with the Bronze Sword | @shop_list,c,w90,c,w90,b,w40,b,w40,b,w40,b,w40,b,w40,c,right,down,c,w60,c,w60,c,w60,c,w90
+env_overworld_road | gameplay | Overworld: first-person forest road south of Wyclif; HUD with KIM, EXP, HP, MP | @overworld
+env_overworld_trees | gameplay | Overworld: facing a stand of trees west of the road | @field,FWD*8
+gameplay_encounter_slime | gameplay | Overworld: a green slime approaches on the road | @field,FWD*8,TR,FWD*6
+battle_first | battle | First battle: the prince and a pack of green slimes in the forest | @battle,w40,!
+battle_attack | battle | Battle: Bronze Sword swing (C) among the slimes | @battle,mash:c:600,!
+gameover_revived | gameover | Lost battle: revived in the church, "Arise, brave warrior!", half the money gone | @battle,mash:a:600,w540
+cutscene_prologue_flight | cutscene | Prologue: Blade flees the burning castle with the baby prince | @name,start,w60,w200*14,!
+cutscene_blade_deathbed | cutscene | Blade on his deathbed: "I am not your real father." | @t_blade_room,c,w20,b,w30,left:16,up:48,left:64,up:32,w20,up:64,w200,down:32,c,c,w90,settle
+shop_buy_confirm | shop | Weapon shop: "Is Bronze Sword OK?" Yes / No, 200 kims | @shop_list,c,w90,settle
+shop_sell_offer | shop | Weapon shop, Sell: "Is 30 kims all right?" for the Bronze Sword | @shop_list,c,w90,settle,c,w90,settle,c,w90,down,c,w90,c,w90,settle
+inventory_readied | inventory | Equip result: "ryz readied Bronze Sword." | @shop_list,c,w90,settle,c,w90,settle,c,w90,down,c,w90,c,w90,settle,down,c,w90,settle,b,w40,b,w40,b,w40,b,w40,b,w40,settle,c,right,down,c,w60,c,w60,c,w60,settle,c,w90,settle
+battle_levelup | battle | After a won battle: level 5 reached, the status window opens by itself | @battle,poke:FFC624=00002417,poke:FFC620=00003412,freeze:FFC62C=0021,SW*18,unfreeze,poke:FFC62C=00A4,w60,settle,poke:FFC62C=00A2,TR,TL,settle
+gameplay_encounter_blue | gameplay | Overworld: a blue slime comes down the road south of Wyclif | @m_strong,TR,TR,FWD,FWD,FWD,FWD,TR,FWD,FWD,FWD,w60,!
+battle_blue_slimes | battle | Battle with blue slimes in the forest | @m_strong,TR,TR,FWD,FWD,FWD,FWD,TR,FWD,FWD,FWD,w300,!
+gameplay_encounter_goblin | gameplay | Overworld north of Wyclif: a goblin with a sword blocks the road | @m_north2,FWD,FWD,FWD,FWD,FWD,TR,FWD,FWD,w60,!
+battle_goblins | battle | Battle with a band of goblins | @m_north2,FWD,FWD,FWD,FWD,FWD,TR,FWD,FWD,w300,!
+env_overworld_meadow | gameplay | Overworld: the road west of the cave turn-off, meadow and pines | @m_strong
+env_overworld_north | gameplay | Overworld: road at the north edge of the Wyclif map | @m_north1
+env_overworld_hills | gameplay | Overworld: road through the hills south of Parma | @m_north2
+gameplay_cave_dark | gameplay | Cave south of Wyclif without light: the view is black | @m_cave1
+inventory_items | inventory | Item, Use: Herbs, Herbs, Candle, Lantern | @m_cave1,poke:FFC443=04,poke:FFC444=0000000000010002,c,w30,down,w20,c,w40,c,w60
+system_lantern | system | Item, Use: "ryz uses the Lantern." in the dark cave | @m_cave1,poke:FFC443=04,poke:FFC444=0000000000010002,c,w30,down,w20,c,w40,c,w60,settle,down*3,c,w120
+gameplay_cave_lit | gameplay | The cave lit by the Lantern: stone walls, the entrance ladder | @m_cave_lit
+gameplay_cave_door | gameplay | Cave: a barred door | @m_cave_door
+system_open_door | system | Open: the bars of the cave door rise | @m_cave_door,c,w30,down*3,w20,c,w90
+env_cave_corridor | gameplay | Cave corridor beyond the barred door | @m_cave_inner
+gameplay_cave_chest | gameplay | Cave: a treasure chest at the end of a passage | @m_cave_chest
+system_open_chest | system | Open: "You opened the chest. There's Candle inside!" | @m_cave_chest,c,w30,down*3,w20,c,w90
+system_take | system | Take: "ryz takes Candle." | @m_cave_chest,c,w30,down*3,w20,c,w90,b,w30,b,w30,c,w30,down*3,right,w20,c,w90
+menu_magic_cast | menu | Magic, Cast: "From which Book do you wish to cast a spell?" | @m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60
+system_aries_towns | system | Aries on the overworld: the town list holds only Wyclif so far | @m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90
+menu_magic_ready | menu | Magic, Ready: "You have no Books of Spells that can be used in combat." | @m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,down,w20,c,w60
+env_parma_gate | gameplay | Parma: the south entrance, soldiers in the street | @m_parma,w300
+env_parma_church | gameplay | Parma: main street by the stone church | @m_parma,up:64,up:64
+env_parma_street | gameplay | Parma: main street north, houses and a shop sign | @m_parma,up:64,up:64,up:64,up:64
