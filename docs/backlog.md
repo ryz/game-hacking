@@ -21,6 +21,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `play.py find` warns when nothing ran since the last narrowing (0 candidates without a hint); `preview.py --timeline` per route, not per call | 1 | Sword of Vermilion capture run 3 |
 | `dis6502.py` for Apple II: disassemble live memory (a `play.py dump` or main/aux `2xxxx` addresses), not only ROM banks | 1 | Might and Magic II Apple II scout (py65 + scratch script) |
 | `play.py dump` JSON: zero-padded hex keys or a note in the output that keys are hex | 1 | Might and Magic II Apple II scout (read as decimal, several calls lost) |
+| `shoot.py --verify`/`--publish-only` take captions and categories from the work `shots.txt` when they differ from `index.json` (or warn); `preview.py --set` flags identical frames within an unshot plan | 1 | Wizardry II Apple II capture (second `recaption` pass; stairs-down = dark warp found only at shoot) |
 | `dis68k.py`: hint when an address points inside an instruction or string (pointer searches off by a few bytes) | 1 | Sword of Vermilion capture run 3 |
 | `set:ADDR=N:bcd` follows the platform's byte order (big-endian on md; today little-endian unless told) | 1 | Sword of Vermilion capture run 4 |
 | `snap` warns when the route has `freeze:` before one long `wN` (freezes are applied between tokens) | 3 | the guide says `w10*N`; a warning would catch it |

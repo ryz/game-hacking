@@ -2,6 +2,16 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Wizardry II (Apple II) captured; Might and Magic II (Apple II) registered and scouted
+- Owner re-uploaded the Wizardry I and II disks (same disk SHA-1s). `emu.py` check_rom accepts a re-packed ZIP
+  of disk images when every disk matches `game.json` "header" "disks" by name and SHA-1 (16748be). Wizardry I
+  02_ending, Wizardry II 00_transfer, 01_start and 02_ending rebuilt byte-identical from their routes.
+- Wizardry II: `start` 35 and `main` 229 shots, lenses, verified cold by the coordinator (35/35, 229/229).
+- Might and Magic II (Apple II, six nibble disks): registered (9759bd4), scouted: 16 checkpoints (16/16 cold),
+  warp to all 60 areas, record layout, poked parties, save 01_start, 47 previewed shot lines.
+- Open: Wizardry II R)un/Q)uick/S)tatus, floor 6 fixed fights; MM2 year address and the Sheltem fight; MM2
+  capture next.
+
 ## 2026-11-20 - Sword of Vermilion: town talk and encounters with the map
 - Owner's examples: a talk shot with the hero and speaker side by side mid-screen (Stow during the monster raid,
   found via the line table; flag FFC75C) and overworld encounters with the area map in the panel. `main`
