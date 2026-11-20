@@ -1,0 +1,35 @@
+{
+  "slug": "sword-of-vermilion",
+  "title": "SWORD OF VERMILION",
+  "platform": "md",
+  "region": "na",
+  "model": "ntsc",
+  "rom": "rom/sword-of-vermilion.md",
+  "sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+  "crc32": "ea1bc9ab",
+  "size": 655360,
+  "header": {
+    "rom_kib": 640,
+    "ram_kib": 64,
+    "header": true,
+    "console": "SEGA_MEGA_DRIVE",
+    "header_title": "SWORD OF VERMILION",
+    "title_domestic": "VERMILION",
+    "product_code": "GM 00005502-00",
+    "io": "J",
+    "six_button": false,
+    "region": "North America",
+    "battery": "header: battery RAM 200001-203FFF",
+    "header_checksum_ok": true
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
