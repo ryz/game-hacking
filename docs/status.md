@@ -113,10 +113,12 @@ Current snapshot; history in `progress-log.md`.
   state load) and fixes a crash of the core without a frontend log interface. Real games need the owner's
   Kickstart ROMs in `rom/kickstart/` (1.3 and 3.1 A1200 supplied 2026-11-20, in this container only). First
   game: Dungeon Master v3.60 (`games/amiga/dungeon-master/`, cracked ADF, A500): scouted 2026-11-20, playbook,
-  pointer macros, 7 checkpoints to a party of four on level 2 with an in-game save and RESUME (all rebuilt cold
-  and matching), save `01_level2` in `rom/saves/amiga/dungeon-master/` (uncommitted), 57-line shot plan; not
-  captured. Open there: level warp, Gando's mirror, the eye panel, strategy sources (fan sites refuse
-  automated access). Not supported: `.ipf`, hard disk/WHDLoad, CD32/CDTV, write-protected disks. Notes:
+  pointer macros, party of four, in-game save and RESUME; captured 2026-11-20: set `main` 111 shots to the
+  ending (all 14 levels, 22 creature kinds, red dragon, Lord Chaos fused, the Grey Lord), set `start` 37 shots
+  played honestly to the first save, both verified from an empty cache; three lenses clean, `design/maps.md` of
+  all levels; level warp and a scripted ending (`FUSE`). Saves in `rom/saves/amiga/dungeon-master/`
+  (uncommitted). Open there: a teleporter, pressure plate, chest, scroll, three creature kinds, Gando's mirror,
+  a few actions (KICK, WAR CRY, CALM, INVOKE, FLUXCAGE used). Not supported: `.ipf`, hard disk/WHDLoad, CD32/CDTV, write-protected disks. Notes:
   `docs/emulator/amiga.md`.
 
 - Wizardry I-V on the Apple II (2026-11-19, queue halted by the owner after two games' worth of work):

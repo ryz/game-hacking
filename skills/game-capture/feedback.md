@@ -9,6 +9,26 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Dungeon Master (Amiga)
+- Task: Dungeon Master (Amiga v3.60) sets `main` (to the ending) and `start`, three lenses, from the scout's playbook.
+- Worked: reading the whole dungeon from RAM once (map descriptors, squares, thing tables) gave stairs, monsters and
+  walls for every level; the level warp is "poke onto a down staircase and turn"; generated viewing positions gave
+  22 creature kinds in one preview batch; a parallel previewer (4 routes, tiled at native size) and a timeline tool
+  (route plus N times a step, tiled) found every frame (damage starbursts, ending messages); poking map squares
+  into walls in the same frame as the click made the scripted ending (FUSE) possible.
+- Friction: (1) the scout's same-level warp poked the facing byte, which with champions in the party leaves their
+  formation cells unrotated and the fighters' blows never land (about 15 calls to diagnose); (2) previewing with
+  `emu.play` needs `E.expand(g, E.split(...))` for macros; (3) the PUAE core printed `retro_vfs_file_open_impl`
+  lines on every state load; (4) the cold verify of 148 shots took about 35 minutes.
+- Proposed rule change: (a) docs/emulator/README.md, RAM: in party games never poke the facing byte, move by
+  position pokes plus the game's own turns; (b) a shared `tools/preview.py` (parallel previews tiled at native
+  size, timeline mode); (c) silence the core's VFS log.
+- Corrected: coordinator checked the commits (game folder only), counts (main 111, start 37), lenses (clean), the
+  contact sheets, and re-verified `ending_grey_lord` from an empty cache (`start/37_saved`: run pending). (c):
+  two leftover debug printfs in the core's libretro-common VFS, removal pending a rebuild.
+- Status: (a) open (first time seen; promote on a second case or the owner's word); (b) open (also asked for by
+  earlier runs as cachecheck/screen tools); (c) open until the rebuild.
+
 ### 2026-11-19 - Wizardry I (Apple II)
 - Task: set `main` for Apple II Wizardry I from the title to the ending with three lenses: 291 shots, cold verify
   298/298 before seven duplicates were dropped, published, commit c846278 pushed.

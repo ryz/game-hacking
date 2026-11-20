@@ -2,6 +2,22 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Dungeon Master (Amiga) captured to the ending
+- game-capture run: set `main` 111 shots (boot, Hall of Champions and five mirror panels, level 2 systems,
+  inventories, statistics, spells and fireball, level-up, food and water, pit, fountain, champion death, 22
+  creature kinds over 24 battle shots, red dragon, Lord Chaos, game over, the save flow, plain views of levels 3
+  to 14, the ending with Lord Order, the fusion and the Grey Lord) and set `start` 37 shots played honestly from
+  power-on to the first in-game save (first fight: the Mummy behind the east gate of level 2). Both verified from
+  an empty cache by the agent; the coordinator re-verified the ending shot cold.
+- How: the whole dungeon is in slow RAM (map descriptors, squares, thing tables; `tools/dungeon.py` writes
+  `design/maps.md`); level warp = poke onto a down staircase and turn (`DL3`..`DL14`, checkpoints `l3`..`l14`);
+  the ending by `FUSE`: the club made the complete Firestaff, the party poked next to Lord Chaos and his open
+  neighbouring squares turned to walls in the same frame as the click. Finding: poking the facing byte with
+  champions in the party leaves their formation cells unrotated (fighters miss); move with position pokes and
+  the game's own turns (`GO`).
+- Open: a teleporter, pressure plate, chest, scroll, Swamp Slime, Giant Scorpion, Black Flame, Gando's mirror,
+  KICK/WAR CRY/CALM/INVOKE/FLUXCAGE in use, the altar of rebirth.
+
 ## 2026-11-20 - Dungeon Master (Amiga) scouted; Amiga mouse moves fixed
 - game-scout run: playbook, pointer macros `HOME`/`AT`/`CLICK` with `tools/at.py` (pointer pushed into a corner,
   then measured offsets; 2 counts = 1 pixel), Hall of Champions mapped by a walker on the position bytes (23 of
