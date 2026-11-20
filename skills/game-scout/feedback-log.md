@@ -12,6 +12,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Might and Magic II (Apple II)
+- Task: scout Apple II Might and Magic II (boot, party, warp, RAM, checkpoints, shot plan).
+- Worked: matching the DOS port's area-neighbour bytes (07 22 0E 0A) found the area header in language-card RAM
+  in one search, and from it the key table, forward handler and loader; previewing the warp to all 60 ids
+  cropped to the prompt mapped every area to its disk in one look; previewing the whole plan caught 3 bad routes.
+- Friction: `play.py dump` JSON keys are unpadded hex (read as decimal, calls lost); no 6502 disassembler for
+  Apple II memory (installed py65, scratch script); `settle` on animated encounter screens changed a fight's
+  outcome while cachecheck still reported it reproducing; `play.py text` useless when text page 1 holds data.
+- Proposed rule change: apple2.md / backlog: dis6502.py on a dump or main/aux memory; dump keys are hex;
+  README: end checkpoints on animated encounter screens with a fixed wait or `!`, never `settle`.
+- Corrected: commits checked (d2b87ee, 39d28ea, 10f369d, only its folder); cachecheck rerun by the coordinator.
+- Status: dis6502 and dump keys -> backlog; settle rule -> docs/emulator/README.md (platform-independent tool
+  fact, added to the `!` row); logged.
+
 ### 2026-11-20 - Sword of Vermilion (Mega Drive, round 2)
 - Task: reach the overworld and the first battle as checkpoints; verify the buttons there.
 - Worked: a search snippet led to retrying the gate after Blade's speech; preview batches with --peek found

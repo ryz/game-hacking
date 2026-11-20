@@ -41,7 +41,7 @@ playbooks (committed) are not. That is why every state is defined by a route.
 | `w60` | wait 60 frames (1 s) | fades, animations, enemy movement |
 | `mash:a:600` | tap A every 8 frames for 600 frames | skipping text and intros |
 | `settle` | run until two frames 10 apart are identical (max 300) | before a capture |
-| `!` | last token: capture as is, no settle | auto-advancing messages, mid-animation |
+| `!` | last token: capture as is, no settle | auto-advancing messages, mid-animation; end checkpoints on animated encounter/battle screens with `!` or a fixed wait, never `settle` (it runs its 300 frames and the fight can start meanwhile; cachecheck still says "reproduces"; Might and Magic II Apple II, 2026-11-20) |
 | `change` / `change:N` | run until the picture differs from the one at the start of the token, then N more frames (error if nothing changes within 4x the settle limit) | after a key on screens that never settle (blinking cursor, animation) and in games that buffer keys: `key,change:20,key` instead of a guessed wait |
 | `rec:240:2` | last token of a shot: record 240 frames as a GIF clip (every 2nd kept); elsewhere a wait | clips (`play.py record`) |
 | `poke:C0A2=09` | write RAM bytes once | shortcuts (recorded in the route) |
