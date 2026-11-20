@@ -50,6 +50,35 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w1000",
+    "OPTIONS": "TITLE,space,w600",
+    "MENU": "OPTIONS,s,w600,disk:2,enter,w900",
+    "RYZ": "c,w400,d,w200,b,w200,1,w200,1,w200,1,w200,1,w200,type:ryz,w100,enter,w400,esc,w300",
+    "RENAME": "{0},w400,ctrl+n,w300,type:{1},w100,enter,w400,esc,w400",
+    "NAMES": "v,w400,RENAME:b:condi,RENAME:c:ebo,RENAME:f:cubi,RENAME:d:deddo,RENAME:e:mnz,esc,w300",
+    "JOIN": "g,w600,ctrl+g,w200,ctrl+b,w200,ctrl+c,w200,ctrl+f,w200,ctrl+d,w200,ctrl+e,w200,z,w900",
+    "PARTY": "MENU,RYZ,NAMES,JOIN",
+    "AT": "poke:0030={1}{0}{1}{0}",
+    "FN": "poke:0035=C003300C10FF01F0",
+    "FE": "poke:0035=30C00C030110F0FF",
+    "FS": "poke:0035=0C3003C0F001FF10",
+    "FW": "poke:0035=030CC030FFF01001",
+    "WARP": "poke:0110=A9A58D6DA1A9228D6EA1A9D08D6FA1A9{2}{1}85308531A9{0}2029BB4C7FA2,poke:A16D=4C1001,up,w600",
+    "DISK": "disk:{0},enter,w700",
+    "WARPD": "WARP:{0}:{1}:{2},DISK:{3}",
+    "RESUME": "MENU,g,w600,z,w900"
+  },
+  "ram": {
+    "yx": {
+      "addr": "0030",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "facing": {
+      "addr": "0035",
+      "size": 1,
+      "fmt": "hex"
+    }
+  }
 }
