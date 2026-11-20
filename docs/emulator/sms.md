@@ -23,7 +23,7 @@ cartridges have no header: register them with `--region jp --model ntsc-j`. A ca
 Gear is refused (not set up).
 
 ## Screenshots
-256x192, the raw frame, no filter, no border. The 3x copy is nearest neighbour.
+256x192, the raw frame, no filter, no border. Enlarged copies only on demand (`tools/x3.py`, nearest neighbour).
 - Games that hide the leftmost 8 pixels (VDP register 0 bit 5; most scrolling games) show an 8-pixel strip of
   the backdrop colour there, as on the console. It is part of the picture, do not crop it.
 - Games that switch to the 224- or 240-line mode give 256x224 / 256x240 frames.

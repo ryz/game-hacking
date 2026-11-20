@@ -4,6 +4,13 @@ Everything an agent needs to play this game efficiently: read it before playing,
 Status of each fact: **verified** (seen in the emulator, with the route) or **source** (manual/FAQ/wiki, not yet
 checked). Never delete a fact that turned out wrong: strike it and say what is true.
 
+## Read first
+At most 60 lines, kept current by every run: an agent reads this block, then only the sections its targets need.
+- **Start:** (the checkpoint or macro to begin from; model; what must be in `rom/`)
+- **Macros and checkpoints that matter:** (warp, party, fight setup; the chain to the late game)
+- **Traps that cost calls:** (lost keys, stale HUD, pokes that break something, slow loads)
+- **State:** (what is captured, what is open)
+
 ## Identity
 | Field | Value |
 |---|---|

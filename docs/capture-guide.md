@@ -79,7 +79,8 @@ Every image and GIF says what it shows without its folder, so a file keeps its c
   `jp`. `nes` covers NES and Famicom, `snes` SNES and Super Famicom: the region tells them apart. DOS games
   take the region of the release (`na` for a US release). `tools/intake.py --region` sets it.
 - An id that starts with its category repeats it (`..._battle_battle_slime`): accepted, ids are not shortened.
-- The 3x copy has the same name in `3x/`.
+- Sets hold native pictures only (owner's rule 2026-11-20). An enlarged copy is made on demand with
+  `python3 tools/x3.py FOLDER|FILE` (same name in `3x/`, ignored by git).
 - Files about the whole set use the area `set`: `<game>_<platform>_<region>_set_sheet[.<set>].png`, in a
   sequence `..._set_seq-<action>_strip.png`, `_steps.gif`, `_full.gif`. `index.json`, `index.md` and
   `shots.txt` keep their names.
@@ -100,9 +101,9 @@ Some actions are best shown as what happens, step by step (fishing, fast travel,
   and text box of the action is a step; captions say what the player did ("Select SUPER ROD, USE").
   shoot.py adds `..._strip.png` (all steps, numbered), `..._steps.gif` (stills only, 1.5 s each) and **`..._full.gif`**
   (owner's request: every step stitched in order - stills held 1.5 s, the first 2 s and the last 3 s, clips
-  played in full at game speed), each also as a 3x copy in `3x/`. They are rebuilt on every snap/record, full --verify and publish.
+  played in full at game speed). They are rebuilt on every snap/record, full --verify and publish.
 - **Clips** for the motion itself (an animation between two steps: casting, take-off, landing, a transition):
-  `play.py record ID CATEGORY FRAMES "caption" --every K --set seq-<action>` -> a `.gif` (and `3x/`) at game
+  `play.py record ID CATEGORY FRAMES "caption" --every K --set seq-<action>` -> a `.gif` at game
   speed (poster frame: the `.png` of the same name). Keep clips short (1-6 s: FRAMES 60-360) and K=2 (30 fps) for smooth motion,
   K=3-4 for slow scenes; a clip is part of the step order like any shot. A clip takes the category of what it
   shows (gameplay, battle, map); there is no `clip` category.

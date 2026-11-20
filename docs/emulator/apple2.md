@@ -62,6 +62,10 @@ Slots: Disk II in 6, hard disk in 7, Mockingboard in 4 (the core's defaults). NT
 ## Screenshots
 Always 560x384: the 280x192 screen with every pixel doubled, so 80-column text and double hi-res fit as well.
 The text cursor blinks, so text screens rarely `settle`; capture anyway.
+Text page 1 (40 columns) can be read as text: `python3 tools/play.py text`, `python3 tools/preview.py SLUG FILE
+--text`. Cheaper and more exact than a picture for castle, shop, camp and character screens. The soft switches
+cannot be read, so on a hi-res or 80-column screen the lines are leftovers of the last text screen: look at
+the picture there.
 
 ## Keys
 `a`-`z`, `0`-`9`, `enter esc space tab backspace delete left right up down`, `minus equals comma period slash

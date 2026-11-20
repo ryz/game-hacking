@@ -15,8 +15,8 @@ gbemu-cli, a headless SameBoy with a JSON-lines API, one process per game (`tool
 - Known problem: `--model sgb` hangs on the SGB transfer screen in some games (Pokémon Blue); capture in `dmg`.
 
 ## Screenshots
-160x144, the raw framebuffer (CGB colours 5->8 bit, no colour correction, no filter); the 3x copy (in the set's `3x/` folder) is nearest
-neighbour. Never resample by non-integer factors.
+160x144, the raw framebuffer (CGB colours 5->8 bit, no colour correction, no filter). Enlarged copies only on demand
+(`tools/x3.py`, nearest neighbour). Never resample by non-integer factors.
 
 ## Buttons
 `a b start select up down left right`.

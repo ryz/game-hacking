@@ -10,6 +10,8 @@ Output: <exact path(s) it may write; "none (report only)" for read-only skills>
 Context: <facts it cannot find in the repo: user report text, how to reach the screen, inputs used>
 Known issues: <things it must not re-report, with "mention only if worse">
 Stop when: <condition, e.g. "after 3 battles" or "once the hang is reproduced and explained">
+Budget: <tool calls, e.g. 250; database games: `play.py` prints call=N> (no time budgets: containers have no usable clock)
+Commits (agents that commit): <branch, attribution lines, the milestones at which to commit and push, by name>
 Report: per skills/<name>/skill.md, ending with the ## Feedback block.
 ```
 

@@ -23,7 +23,9 @@ playbooks (committed) are not. That is why every state is defined by a route.
   always gives the same frames. A route is the permanent record; a savestate is only a cache of it.
 - **Checkpoints** (`games/<platform>/<slug>/checkpoints.txt`, `name | description | route`) name the important points
   (title, first control, each world, each boss). Routes can start from another checkpoint (`@world2,...`).
-  They are built on demand and cached per exact ROM in `work/cache/`.
+  They are built on demand and cached per exact ROM in `work/cache/`. A checkpoint that starts from another is
+  built from that one's state, so a chain is played once however many links it has; `tools/cachecheck.py SLUG`
+  proves that every cached state equals a replay from power-on (run it after building or editing a chain).
 - Every capture keeps its full route, so `tools/shoot.py --verify` can prove it reproduces.
 - **RNG follows frame timing.** Different waits change encounters, drops and rolls. If a shot depends on luck,
   try `wN` variations before the deciding input and keep the one that works; it stays reproducible.
@@ -56,6 +58,8 @@ game polls slowly or ignores presses during a transition -> add `w30` before it 
 as one (edge-triggered input -> keep the release wait), a menu skips an entry (key repeat -> shorter hold,
 e.g. `down:4,w30` in a macro).
 **Sets:** remove a shot with `play.py unsnap ID`, never by deleting its PNG (a stale id breaks `--publish-only`).
+The order of a set is the order of its working `shots.txt`: move lines there, then `shoot.py SLUG SET --publish-only`
+(or `--verify`) rewrites the index and the sheets.
 End checkpoint routes that close a menu with a short wait (`w30`): some games drop the first presses after a menu
 change, and the next macro then lands in the wrong menu.
 
@@ -73,7 +77,32 @@ routes, choices after dialogue), and prefer fixed waits to `settle` there. `sett
 look at the screenshot before `play.py checkpoint`, or the state may be a page behind. `play.py peek ADDR LEN`
 takes LEN in decimal (or `0x800`).
 
-## The working loop (play.py)
+## Two loops: batches for capture, play.py for exploring
+Looking is the expensive part: every screenshot read costs far more than the command that made it. So:
+- **Known ground (most of a capture): work in batches.** Write the candidates as lines of a plan file in
+  shot-list format (`id | category | caption | route`, or just `name | route`), preview them all at once, fix
+  what the sheet shows, then shoot them. One call and one look for 10-30 routes instead of one of each per route.
+  ```sh
+  python3 tools/preview.py SLUG work/plan/town.txt --set main    # every line played as shoot.py plays it, 4 at a
+                                                                 # time -> work/preview/<platform>/<slug>/town.png
+  python3 tools/preview.py SLUG -r "fight | @cave,up*3" --timeline 12:40   # 12 more frames, 40 apart: pick the
+                                                                 # message frame; frame +K is `ROUTE,w40*(K/40),!`
+  python3 tools/preview.py SLUG work/plan/menus.txt --text       # text screens as text (DOS text modes, Apple II
+                                                                 # text page): captions without opening a picture
+  cat work/plan/town.txt >> work/shots/<platform>/<slug>/main/shots.txt
+  python3 tools/shoot.py SLUG main --only id,id,id               # shoots them; says at once if one repeats a picture
+  ```
+  The preview frame is the frame the shot will have (same checkpoint cache, same final `settle`), and the line
+  says `settled` or not, `= shot ID` when the set already has that picture, and the `--peek ADDR:LEN` bytes.
+  A `?` inside a route takes an extra frame there. Details: `python3 tools/preview.py -h`.
+- **Unknown ground: explore with `play.py`** in small steps (below), then write what you found as a macro, a
+  checkpoint or plan lines and go back to batches.
+- **Pictures are native size.** An enlarged picture costs several times more to look at and shows nothing more.
+  Only when small text cannot be read: `play.py shot --scale 2`, `preview.py --scale 2`, or `--crop` to the
+  part that matters. Read text screens as text (`play.py text`, `preview.py --text`) wherever the platform has them.
+- **Budgets are counted in calls.** `play.py` prints `call=N` with every status line; the dispatch names the limit.
+
+## The exploring loop (play.py)
 ```sh
 python3 tools/play.py start SLUG [--route @checkpoint]
 python3 tools/play.py do "TITLE"                 # play; prints screenshot path + PC + RAM watches
@@ -84,11 +113,14 @@ python3 tools/play.py snap menu_main menu "Main menu: New game / Continue / Opti
 python3 tools/play.py recaption menu_main "Main menu"   # fix a caption; `unsnap ID` removes a shot (no replay)
 python3 tools/play.py stop
 ```
-1. **Look at every screenshot** (Read the PNG) before the next input. Never chain long blind sequences in an
-   unknown game; once a sequence is known, put it in a macro or checkpoint.
+1. **Look at every screenshot** (Read the PNG) before the next input while the ground is unknown. Never chain
+   long blind sequences in an unknown game; once a sequence is known, put it in a macro or checkpoint and stop
+   looking at its steps. Where the RAM watch already answers the question (position, HP, a flag), read the
+   status line instead of the picture.
 2. **Checkpoint every milestone** (new area, before a boss, after a menu was reached). Cheap, and other agents
    reuse them.
-3. **Snap as you go**: when the screen is worth having, `snap` it now; do not plan to come back.
+3. **Snap as you go**: when the screen is worth having, `snap` it now; do not plan to come back. `snap` says
+   when the set already has the same picture under another id.
 4. After `goto` or `undo` the screen still shows an old frame: `snap` refuses until a `do` has run (`do settle`).
    `game.json` edits (macros, watches) are picked up by the next `do`, no restart needed.
    `undo` is one level deep: before a risky sequence make a `checkpoint` (or `do` it in smaller steps).
@@ -102,8 +134,9 @@ python3 tools/play.py stop
    (animated backgrounds, blinking cursors, moving enemies) report "still changing": that is normal in action
    games; use `do!` and exact `wN` to pick the frame you want.
 
-Pick animation frames (`do!` + `wN`) in `play.py`, not with `emu.py` montages: `shoot.py` reproduces play.py's
-timing, and a frame found with emu.py may not appear at the same `wN` there (seen with the Safari rock).
+Pick animation frames with `preview.py --timeline` (it prints the exact route of each frame) or with `do!` +
+`wN` in `play.py`, not with `emu.py` montages: a frame found with emu.py may not appear at the same `wN` in a
+shot (seen with the Safari rock). `w40*3` and `w120` are not the same route in every game: copy the route as printed.
 
 One-shot runs with a screenshot per token (good for finding timings): `python3 tools/emu.py SLUG --seq "@title,a,w10,a" --out work/x`
 -> `work/x/NN_token.png`, `sheet.png`, `log.txt` (PC per token, the full route).
@@ -192,14 +225,13 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
 - A macro used by published shots is never edited (the routes would change silently): add the corrected one
   under a new name and move the shots. The same goes for a checkpoint whose route uses the old macro.
 - First-person RPGs with plain wireframe or tiled views (Wizardry): corridor views on different floors can be
-  pixel-identical. Compare a new view with the shots you have before snapping it; `shoot.py --verify` finds
-  duplicates only at the end (Wizardry II DOS, 2026-11-19).
+  pixel-identical. `preview.py --set SET`, `snap` and `shoot.py --only` name the shot that already has the
+  picture: retake or drop it then, not at the final verify.
 - Screens drawn by the emulator front end (DOSBox Pure's start menu and its "press any key to return to start
   menu" line after a program quits) are not the game: do not snap them.
-- `play.py goto NAME` loads the state saved when the checkpoint was made, not one rebuilt from the current
-  macros. After editing a macro a checkpoint uses (before anything is published), run `play.py checkpoint NAME`
-  again or restart the session with `start --route`, or the session differs from what `shoot.py` replays
-  (Might and Magic II DOS, 2026-11-19).
+- After editing a macro that checkpoints use (before anything is published), the checkpoints' routes change and
+  `goto`, `preview.py` and `shoot.py` rebuild them from the new macro; states of the old route stay unused in
+  the cache. `python3 tools/cachecheck.py SLUG` afterwards shows each checkpoint's frame on one sheet.
 
 ## Hangs and dead ends
 - There is no generic hang detector. If several inputs change nothing: check `status` (PC moving?), wait 300
@@ -211,8 +243,11 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
   password; put the password and the tokens that type it into a macro (example: `games/nes/dragon-quest/tools/pw.py`).
 
 ## Speed
-`do` ~0.5-2 s; a cached checkpoint loads instantly; `shoot.py` replays ~1-5 s per shot. Long routes: make
-checkpoints so replays start late.
+`do` ~0.5-2 s; a cached checkpoint loads instantly; `shoot.py` replays ~1-5 s per shot, four shots at a time
+(`--jobs N`). Long routes: make checkpoints so replays start late; chain them (`@before,...`) so an empty cache
+is rebuilt in one pass. Run a full `--verify` of a big set in the background and keep working.
+Enlarged copies of a set (for a document, for the owner): `python3 tools/x3.py games/<platform>/<slug>/shots/main`
+writes `3x/` next to the originals; it is ignored by git (owner's rule 2026-11-20: native pictures only).
 
 ## Web research from the container
 - Use WebSearch/WebFetch. The environment allows: gamefaqs.gamespot.com, tcrf.net, datacrystal.tcrf.net,
