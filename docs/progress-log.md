@@ -2,6 +2,16 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Shin Megami Tensei (SNES) re-verified with the new tools
+- The owner uploaded `smte1.ips` and `smte2.ips` (SHA-1s as in `game.json` "source"); `tools/mkrom.py` rebuilt
+  the patched ROM with the expected SHA-1. `shoot.py snes/shin-megami-tensei main --verify --published` from an
+  empty cache: 56/56 identical to the committed pictures. 428 s with 4 processes; 41 of 45 checkpoints built.
+  The chain is one line 37 links deep, so one process builds it and the others wait: here the gain is from
+  building each link once, not from parallel replays. No cold figure from the old tools exists for this set.
+- Seen in the set (older than the tool changes, not changed): two captions over 80 characters,
+  `police_roadblock` (87) and `automap` (90).
+- Still to verify: `apple2/wizardry`, `amiga/dungeon-master`, `nes/megami-tensei-2`.
+
 ## 2026-11-20 - Wizardry III (DOS) re-verified with the new tools
 - First published set checked after the process review: the owner uploaded the dump (SHA-1 as in `game.json`).
   `shoot.py dos/wizardry-3 main --verify --published` from an empty cache: 228/228 identical to the committed

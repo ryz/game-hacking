@@ -46,9 +46,10 @@ from an empty cache against the committed pictures (`shoot.py SLUG SET --verify 
 | Set | Result | Cold verify |
 |---|---|---|
 | `dos/wizardry-3` main | 228/228 (2026-11-20) | 64 s with 4 processes, 201 s with 1 (the capture run reported about 15 minutes with the old tools) |
+| `snes/shin-megami-tensei` main | 56/56 (2026-11-20) | 428 s with 4 processes: 41 checkpoints in one line (depth 37), so the chain is built by one process while the others wait; no cold figure from the old tools to compare with |
 
 Still to do as dumps arrive: `apple2/wizardry` (main, start), `amiga/dungeon-master` (main, start),
-`snes/shin-megami-tensei`, `nes/megami-tensei-2`; optional `gb/pokemon-blue`, `sms/phantasy-star`. The Apple II
+`nes/megami-tensei-2`; optional `gb/pokemon-blue`, `sms/phantasy-star`. The Apple II
 and Amiga sets need their uncommitted save disks rebuilt first (routes in each `saves/README.md`).
 
 ## Games
