@@ -1,6 +1,6 @@
 # Might and Magic II: Gates to Another World - shots: main
 
-Platform apple2, region na, model iie, ROM SHA-1 `744bceee48f35ca29e2c227996f00652212e1b1d`. 216 shots. Contact sheet: [might-and-magic-2_apple2_na_set_sheet.png](might-and-magic-2_apple2_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform apple2, region na, model iie, ROM SHA-1 `744bceee48f35ca29e2c227996f00652212e1b1d`. 220 shots. Contact sheet: [might-and-magic-2_apple2_na_set_sheet.png](might-and-magic-2_apple2_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -78,6 +78,10 @@ Platform apple2, region na, model iie, ROM SHA-1 `744bceee48f35ca29e2c227996f006
 | system_rest_done | system | Rest complete, no encounters | no | [png](might-and-magic-2_apple2_na_system_system_rest_done.png) |
 | system_search_nothing | system | Search: nothing here | no | [png](might-and-magic-2_apple2_na_system_system_search_nothing.png) |
 | system_location | system | Location (M): coordinates (7,5) and an arrow, no map without Cartographer | no | [png](might-and-magic-2_apple2_na_system_system_location.png) |
+| automap_partial | system | Automap (M, Cartographer in the party): Middlegate after 18 squares walked | no | [png](might-and-magic-2_apple2_na_system_automap_partial.png) |
+| automap_middlegate | system | Automap of Middlegate, all squares marked by poke: the whole town | no | [png](might-and-magic-2_apple2_na_system_automap_middlegate.png) |
+| automap_c2 | system | Automap of outdoor area C2, all squares marked by poke | no | [png](might-and-magic-2_apple2_na_system_automap_c2.png) |
+| automap_cavern | system | Automap of the cavern under Middlegate, all squares marked by poke | no | [png](might-and-magic-2_apple2_na_system_automap_cavern.png) |
 | system_exchange | system | Exchange: swap two marching positions | no | [png](might-and-magic-2_apple2_na_system_system_exchange.png) |
 | system_exchange_done | system | Exchange 1 with 2: condi now leads the party, ryz second | no | [png](might-and-magic-2_apple2_na_system_system_exchange_done.png) |
 | system_dismiss | system | Dismiss whom (1-6)? | no | [png](might-and-magic-2_apple2_na_system_system_dismiss.png) |

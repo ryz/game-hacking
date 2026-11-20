@@ -74,6 +74,10 @@ system_rest_prompt | system | Rest here? (Y/N) | @middlegate,r,w300
 system_rest_done | system | Rest complete, no encounters | @vet,r,w300,y,w500
 system_search_nothing | system | Search: nothing here | @middlegate,s,w300
 system_location | system | Location (M): coordinates (7,5) and an arrow, no map without Cartographer | @middlegate,m,w300
+automap_partial | system | Automap (M, Cartographer in the party): Middlegate after 18 squares walked | @vet,AT:0:F,FN,left,w400,y,w300,1,w300,right,w200,right,w200,up,w300,up,w300,right,w200,up,w300,up,w300,up,w300,up,w300,left,w200,up,w300,up,w300,left,w200,up,w300,up,w300,right,w200,up,w300,left,w200,up,w300,right,w200,right,w200,up,w300,left,w200,up,w300,up,w300,up,w300,up,w300,left,w200,up,w300,up,w300,m,w300
+automap_middlegate | system | Automap of Middlegate, all squares marked by poke: the whole town | @vet,AT:0:F,FN,left,w400,y,w300,1,w300,AT:7:5,FN,poke:10200=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,m,w300
+automap_c2 | system | Automap of outdoor area C2, all squares marked by poke | @vet,AT:0:F,FN,left,w400,y,w300,1,w300,WARPD:0B:7:7:3,poke:10360=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,m,w300
+automap_cavern | system | Automap of the cavern under Middlegate, all squares marked by poke | @vet,AT:0:F,FN,left,w400,y,w300,1,w300,WARPD:11:7:7:4,poke:10420=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,m,w300
 system_exchange | system | Exchange: swap two marching positions | @middlegate,e,w300
 system_exchange_done | system | Exchange 1 with 2: condi now leads the party, ryz second | @vet,e,w300,1,w200,2,w300
 system_dismiss | system | Dismiss whom (1-6)? | @middlegate,d,w300

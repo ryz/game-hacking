@@ -973,6 +973,58 @@
    "pixel_sha1": "b5c300b063aaf939b5ce1baa5aab9a6bca1a7668"
   },
   {
+   "id": "automap_partial",
+   "category": "system",
+   "caption": "Automap (M, Cartographer in the party): Middlegate after 18 squares walked",
+   "route": "@vet,AT:0:F,FN,left,w400,y,w300,1,w300,right,w200,right,w200,up,w300,up,w300,right,w200,up,w300,up,w300,up,w300,up,w300,left,w200,up,w300,up,w300,left,w200,up,w300,up,w300,right,w200,up,w300,left,w200,up,w300,right,w200,right,w200,up,w300,left,w200,up,w300,up,w300,up,w300,up,w300,left,w200,up,w300,up,w300,m,w300",
+   "settled": false,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic-2_apple2_na_system_automap_partial.png",
+   "rom_sha1": "744bceee48f35ca29e2c227996f00652212e1b1d",
+   "captured": "2026-11-20",
+   "pixel_sha1": "32361168349fbab05365eb035f28d958e6c79252"
+  },
+  {
+   "id": "automap_middlegate",
+   "category": "system",
+   "caption": "Automap of Middlegate, all squares marked by poke: the whole town",
+   "route": "@vet,AT:0:F,FN,left,w400,y,w300,1,w300,AT:7:5,FN,poke:10200=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,m,w300",
+   "settled": false,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic-2_apple2_na_system_automap_middlegate.png",
+   "rom_sha1": "744bceee48f35ca29e2c227996f00652212e1b1d",
+   "captured": "2026-11-20",
+   "pixel_sha1": "92b104ac5eb11d88d49a51afceec8b0828f76578"
+  },
+  {
+   "id": "automap_c2",
+   "category": "system",
+   "caption": "Automap of outdoor area C2, all squares marked by poke",
+   "route": "@vet,AT:0:F,FN,left,w400,y,w300,1,w300,WARPD:0B:7:7:3,poke:10360=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,m,w300",
+   "settled": false,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic-2_apple2_na_system_automap_c2.png",
+   "rom_sha1": "744bceee48f35ca29e2c227996f00652212e1b1d",
+   "captured": "2026-11-20",
+   "pixel_sha1": "6d4c16ee0278005a22219ef59ec4af3516f5b0e0"
+  },
+  {
+   "id": "automap_cavern",
+   "category": "system",
+   "caption": "Automap of the cavern under Middlegate, all squares marked by poke",
+   "route": "@vet,AT:0:F,FN,left,w400,y,w300,1,w300,WARPD:11:7:7:4,poke:10420=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF,m,w300",
+   "settled": false,
+   "model": "iie",
+   "source": "shoot.py",
+   "file": "might-and-magic-2_apple2_na_system_automap_cavern.png",
+   "rom_sha1": "744bceee48f35ca29e2c227996f00652212e1b1d",
+   "captured": "2026-11-20",
+   "pixel_sha1": "442a9d13e746fe33a72af631b069f95bad969d7a"
+  },
+  {
    "id": "system_exchange",
    "category": "system",
    "caption": "Exchange: swap two marching positions",
