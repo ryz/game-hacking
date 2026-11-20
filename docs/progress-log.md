@@ -2,6 +2,11 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - rule: `start` sets in play order
+- Owner's rule: `start` set ids are numbered in play order (`01_<step>` ...) and listed in that order, so the
+  set reads as one playthrough. In `docs/capture-guide.md` ("Sets") and the game-capture skill. Dungeon Master's
+  set already follows it; Apple II Wizardry's (unnumbered, partly out of order) does not yet.
+
 ## 2026-11-20 - Dungeon Master (Amiga) captured to the ending
 - game-capture run: set `main` 111 shots (boot, Hall of Champions and five mirror panels, level 2 systems,
   inventories, statistics, spells and fireball, level-up, food and water, pit, fountain, champion death, 22
