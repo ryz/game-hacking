@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Sword of Vermilion (Mega Drive, run 4: town talk, encounters with map)
+- Task: outdoor talk shots with the hero and speaker side by side mid-screen (owner's Stow example) and overworld
+  encounters with the full area map in the panel (owner's example).
+- Worked: line text -> ROM pointer -> Stow's line selector named the raid flag (FFC75C); NPC table FFD0E0 + n*0x40
+  and the collision grid FF2000 (found via dis68k from FFC606) gave a BFS planner (tools/npcs.py --plan); one
+  preview of 23 routes gave 14 usable talks; panels chosen at an Aries arrival show map and stats without walking.
+- Friction: a `cat >` without heredoc hung ~10 calls; the Aries list ignores 8-frame taps and lands a row lower
+  from a checkpoint than in a flat route (fixed by checking FFC40C); EXP above the threshold opened a level-up
+  window (poke the whole stat block); `set:...:bcd` defaults to little-endian.
+- Proposed rule change: README RAM section: NPC table + collision grid early, per-game talk planner; check
+  menu-driven warps by RAM index.
+- Corrected: none; coordinator re-verified main from an empty cache: 136/136; talk and encounter shots checked on
+  a sheet (talk_stow_old_man matches the owner's example).
+- Status: both lessons open in feedback.md; `set:bcd` byte order on big-endian platforms: backlog.
+
 ### 2026-11-20 - Sword of Vermilion (Mega Drive, run 3: bosses and ending)
 - Task: first boss and the ending found through the code with dis68k, captured in main plus seq-boss and seq-ending.
 - Worked: dis68k --xref plus a ROM search for 4-byte pointers found both triggers in ~15 calls (ending text ->

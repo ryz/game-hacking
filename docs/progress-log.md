@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Sword of Vermilion: town talk and encounters with the map
+- Owner's examples: a talk shot with the hero and speaker side by side mid-screen (Stow during the monster raid,
+  found via the line table; flag FFC75C) and overworld encounters with the area map in the panel. `main`
+  113 -> 136: talk in 7 towns, 7 town views, the full Aries list, 4 encounters with the map. NPC table, collision
+  grid and a per-game talk planner (`games/md/sword-of-vermilion/tools/npcs.py`). Re-verified: 136/136.
+- Open: Malaga talk (people under the text box), Watling, Barrow, Tadcaster, Swaffham, Hastings.
+
 ## 2026-11-20 - Sword of Vermilion: bosses and ending
 - Found through the code with `tools/dis68k.py`: main state word `FFC400` (0x12 = ending; set in play after the
   Sixteen Rings are used at the right place, `FFC77E`), bosses requested by `FFC8NN=FF` + `FFC817=FF` (14 bosses,

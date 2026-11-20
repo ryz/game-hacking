@@ -29,3 +29,7 @@ Tool wishes are not listed here: `docs/backlog.md`.
 - **Scripts that play routes** use `emu.start(game, route)` and `emu.play(emu, game, rest)`; a hand-made token
   list needs `emu.expand(game, emu.split(...))` for macros (Dungeon Master, 2026-11-20). Prefer
   `tools/preview.py` to a script of your own.
+- **Townspeople to talk to:** find the NPC object table (position, line pointer) and the collision grid early and
+  plan a Talk route per person; trying waits against wandering people fails (Sword of Vermilion, 2026-11-20).
+- **Menu-driven warps (Aries-style lists):** check the destination by its RAM index, not by the keys sent
+  (Sword of Vermilion, 2026-11-20: three checkpoints reached the wrong towns).
