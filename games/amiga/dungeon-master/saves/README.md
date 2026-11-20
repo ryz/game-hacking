@@ -1,0 +1,7 @@
+# Dungeon Master - saves
+
+Made by the agents while playing (owner's rule 2026-11-15: committed so the owner can jump in). `.sav` = a ZIP of the disk images the game has written to (whole images, same names as in the game's ZIP): unzip it and use those images in place of the originals in any Amiga emulator. `.state` = PUAE libretro core savestate of the exact moment (that emulator only). In routes: `sav:NAME` prefix (power on with that save).
+
+| Save | Files | What it contains | Route at export | SHA-1 (.sav) | Date |
+|---|---|---|---|---|---|
+| 01_level2 | `rom/saves/amiga/dungeon-master/01_level2.sav` (not committed) | Party of four (ryz = Halk reincarnated, Tiggy, Wuuf, Stamm) on level 2 at the foot of the stairs, ryz holding a torch; saved in the game to a disk it formatted | `sav:blank,pow,w700,mouse1:10,w4000,settle,mouse1:10,w600,settle,w1500,settle,w3000,settle,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60,settle,TR,TR,FWD*3,TL,FWD*2,TR,FWD,TL,MIRROR,RESURRECT,w60,settle,TR,FWD*2,TL,FWD*2,TL,FWD,TR,FWD,TL,FWD,TL,MIRROR,RESURRECT,w60,settle,TL,FWD*2,TR,FWD,TL,MIRROR,RESURRECT,w60,settle,FORMATION,settle,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,TL,FWD*3,FWD,FWD,TR,settle,CLICK:1:1:100:42,w30,CLICK:0:0:22:32,w30,settle,TL,FWD,TR,FWD,w60,FWD,TR,settle,HIDE,settle,SAVENEW,settle,HIDE,settle` | `7b19b9b73f8f` | 2026-11-20 |

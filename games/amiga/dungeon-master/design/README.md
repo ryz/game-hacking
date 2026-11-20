@@ -23,8 +23,19 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Dungeon Master is a first-person dungeon crawler that runs in real time: monsters move and attack while the
+player decides (source: manual "Game Hints"; verified: `esc` freezes the game, "GAME FROZEN"). The player is
+Theron, apprentice of the Grey Lord, who frees up to four champions from mirrors in the Hall of Champions and
+leads them down through the dungeon to recover the Firestaff and defeat Lord Chaos (source: Wikipedia, manual).
+Everything is done with the mouse on one screen: party bars and hands at the top, the dungeon view at left, the
+spell runes, the champions' action buttons and six movement arrows at right; movement also works from the
+numeric keypad (verified). Champions are not created but chosen: resurrected as they were, or reincarnated with
+a new name and their skills turned into higher statistics (source: manual; verified: both work). Skills (fighter,
+ninja, priest, wizard) rise by use, spells are spoken as sequences of runes, light, food and water must be kept
+up (source: manual). The dungeon has 14 levels (source: search summaries); the first is the Hall of Champions
+(verified: 23 mirrors mapped). The game saves to a separate disk that it formats itself; a saved game is
+reloaded with RESUME at the entrance (verified). This is version 3.60 for the Amiga (Psygnosis, 1992), with
+English, French and German texts on the disk (verified: ROM text).
 
 ## Documents
 | Document | Covers |
@@ -40,3 +51,7 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Dungeon Master manual (archive.org text) | https://archive.org/stream/DungeonMasterManual/DungeonMasterManual_djvu.txt | controls, champions, magic, inventory, saving |
+| Wikipedia | https://en.wikipedia.org/wiki/Dungeon_Master_(video_game) | release, story, endings |
+| The game disk (ROM text) | `strings` on the dump | creature, item, action and skill names, dialog texts |
+| Playbook | [../playbook.md](../playbook.md) | everything verified in the emulator, with routes |

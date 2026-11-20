@@ -1,5 +1,10 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+# The entrance doors are the title screen (checkpoint entrance); dungeon = first control (no champions).
 entrance | Entrance doors with ENTER / RESUME / QUIT (pointer on ENTER) | pow,w700,mouse1:10,w4000,settle
 dungeon | In the dungeon at the start, movement arrows, no champions yet | @entrance,mouse1:10,w600,settle,w1500,settle,w3000,settle
+sd_dungeon | Same as dungeon, with a blank 880 KiB disk available as disk 2 (sav:blank) for in-game saves | sav:blank,pow,w700,mouse1:10,w4000,settle,mouse1:10,w600,settle,w1500,settle,w3000,settle
+party | Hall of Champions: ryz (Halk reincarnated), Tiggy, Wuuf, Stamm resurrected; Stamm moved to the front row | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60,settle,TR,TR,FWD*3,TL,FWD*2,TR,FWD,TL,MIRROR,RESURRECT,w60,settle,TR,FWD*2,TL,FWD*2,TL,FWD,TR,FWD,TL,FWD,TL,MIRROR,RESURRECT,w60,settle,TL,FWD*2,TR,FWD,TL,MIRROR,RESURRECT,w60,settle,FORMATION,settle
+level2 | Level 2 (dungeon proper) at the foot of the stairs, facing east; ryz holds a torch; pointer hidden | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,TL,FWD*3,FWD,FWD,TR,settle,CLICK:1:1:100:42,w30,CLICK:0:0:22:32,w30,settle,TL,FWD,TR,FWD,w60,FWD,TR,settle,HIDE,settle
+saved | level2 after an in-game save to the formatted save disk (disk 2, DungeonSave: DMGAME.DAT); game disk back in DF0: | @level2,SAVENEW,settle,HIDE,settle
+resumed | The save 01_level2 loaded with RESUME at the entrance (save disk = disk 2, then the game disk back); party on level 2, pointer hidden | sav:01_level2,pow,TITLE,settle,RESUME,HIDE,settle

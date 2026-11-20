@@ -26,6 +26,60 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "HOME": "mouse:-120:-120*6,w4",
+    "AT": "HOME,mouse:120:0*{0},mouse:0:120*{1},mouse:{2}:{3},w4",
+    "CLICK": "AT:{0}:{1}:{2}:{3},mouse1",
+    "FWD": "kp8,w30",
+    "BACK": "kp5,w30",
+    "TL": "kp7,w30",
+    "TR": "kp9,w30",
+    "SL": "kp4,w30",
+    "SR": "kp6,w30",
+    "MIRROR": "CLICK:1:1:100:42,w20",
+    "RESURRECT": "CLICK:2:1:20:106,w20",
+    "REINCARNATE": "CLICK:3:1:18:106,w20",
+    "NAMEOK": "CLICK:3:2:50:60,w20",
+    "PANELCANCEL": "CLICK:2:2:80:60,w20",
+    "HIDE": "mouse:120:120*6,w4",
+    "WALL": "CLICK:1:1:100:42,w20",
+    "FORMATION": "CLICK:5:0:18:8,w20,mouse:-40:34,w4,mouse1,w30",
+    "SAVEMENU": "f1,w30,CLICK:2:0:114:78,w60",
+    "FORMAT": "disk:2,w100,CLICK:0:2:114:48,w60,CLICK:1:1:98:94,w6000",
+    "SAVEBTN": "CLICK:0:1:114:94,w1000",
+    "SAVEDONE": "disk:1,w100,CLICK:2:2:88:48,w300,f1,w60",
+    "SAVENEW": "SAVEMENU,FORMAT,SAVEBTN,SAVEDONE",
+    "SAVEGAME": "SAVEMENU,disk:2,w100,SAVEBTN,SAVEDONE",
+    "TITLE": "w700,mouse1:10,w4000",
+    "RESUME": "CLICK:4:1:48:44,w300,disk:2,w1500,disk:1,w300,CLICK:2:2:78:46,w4000,CLICK:2:2:78:46,w300"
+  },
+  "ram": {
+    "facing": {
+      "addr": "C167CF",
+      "size": 1,
+      "note": "0 north, 1 east, 2 south, 3 west"
+    },
+    "x": {
+      "addr": "C167D0",
+      "size": 2,
+      "fmt": "be"
+    },
+    "y": {
+      "addr": "C167D2",
+      "size": 2,
+      "fmt": "be"
+    },
+    "level": {
+      "addr": "C167D4",
+      "size": 2,
+      "fmt": "be",
+      "note": "0 = Hall of Champions level, 1 = level 2"
+    },
+    "ryz_hp": {
+      "addr": "C1856C",
+      "size": 2,
+      "fmt": "be",
+      "note": "champion 1 health; records 0x140 apart from C18538"
+    }
+  }
 }

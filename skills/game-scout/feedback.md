@@ -9,6 +9,29 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Dungeon Master (Amiga)
+- Task: scout Dungeon Master v3.60 (Amiga, first game on the new backend): pointer positioning, controls, Hall of
+  Champions map, party of four on level 2, in-game save and RESUME, RAM map, shot plan, lenses started.
+- Worked: putting the pointer into a corner and moving by measured offsets (`HOME`/`AT`/`CLICK` macros plus a
+  pixel-to-token helper); finding the position bytes with a pattern script over RAM snapshots after `find`
+  stalled on noisy buffers; a depth-first explorer driven by the position bytes, which mapped 133 squares and all
+  mirrors without hand-walking; reading the save disk's AmigaDOS directory to confirm a save before exporting;
+  about 8 route variants in parallel tiled into one sheet.
+- Friction: `docs/emulator/amiga.md` was wrong about large mouse moves (cut at about 120 counts per token), which
+  cost a calibration round; `sav:` must start a checkpoint's own route, so the chain was rebuilt on a new
+  `sd_dungeon` base; most strategy sites refused automated access (dmweb.free.fr, dungeon-master.com, tcrf.net,
+  gamefaqs, aminet), so strategy rests on the manual; helper scripts calling `E.play` need `E.expand`; output
+  piped through `grep` to a file is block-buffered.
+- Proposed rule change: (1) amiga.md, Keys: per-token mouse limit and the corner-plus-offsets recipe; (2)
+  amiga.md, Saves: start the chain on a `sav:blank` base for games that save to their own disk; (3) skill step
+  3: for first-person games with position bytes, map a level with a depth-first walker before exploring by hand.
+- Corrected: coordinator measured the mouse limit on the test disk (up to about 128 counts arrive, the rest of a
+  larger step is lost) and changed the backend instead of only the doc: a long move now goes out at 120 counts a
+  frame (test in `test_amiga_backend`); the scout's macros use at most 120 per token, so its routes are
+  unchanged in principle; a cold rebuild of all 7 checkpoints against its cache is being run.
+- Status: (1) and (2) promoted 2026-11-20 into `docs/emulator/amiga.md` (owner-facing platform doc, not the
+  skill); (3) open.
+
 ### 2026-11-19 - Wizardry II (Apple II)
 - Task: scout Wizardry II (Apple II): boot, Wizardry I transfer through the game's utility, 39 checkpoints to the
   ending, RAM map, warp, saves, shot plan, lenses started, Wizardry III transfer disks.
