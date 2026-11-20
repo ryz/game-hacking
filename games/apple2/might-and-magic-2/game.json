@@ -67,7 +67,13 @@
     "WARP": "poke:0110=A9A58D6DA1A9228D6EA1A9D08D6FA1A9{2}{1}85308531A9{0}2029BB4C7FA2,poke:A16D=4C1001,up,w600",
     "DISK": "disk:{0},enter,w700",
     "WARPD": "WARP:{0}:{1}:{2},DISK:{3}",
-    "RESUME": "MENU,g,w600,z,w900"
+    "RESUME": "MENU,g,w600,z,w900",
+    "CAST": "{0},w300,c,w300,{1},w200,{2},w200,enter,w400",
+    "LIGHT": "CAST:5:1:5,esc,w300",
+    "HERO": "poke:0420=1F01,poke:0426=1F00,poke:0428=0000,poke:042E=1F,poke:0431=2B9B7A010000,poke:0438=70001F011F01,poke:043E=55BC00,poke:04A0=0801,poke:04A6=1E05,poke:04A8=3D00,poke:04AE=1E,poke:04B1=8D4B46013D00,poke:04B8=570008010801,poke:04BE=620C00,poke:0520=C600,poke:0526=1D05,poke:0528=3A00,poke:052E=1D,poke:0531=ED322F013A00,poke:0538=4000C600C600,poke:053E=900300,poke:05A0=B000,poke:05A6=1F00,poke:05A8=0000,poke:05AE=1F,poke:05B1=C64C76010000,poke:05B8=2900B000B000,poke:05BE=192F00,poke:0620=D500,poke:0626=1E09,poke:0628=D600,poke:062E=1E,poke:0631=62274001D600,poke:0638=8A00D500D500,poke:063E=C40800,poke:06A0=8400,poke:06A6=1D09,poke:06A8=F700,poke:06AE=1D,poke:06B1=8E1B2D01F700,poke:06B8=5F0084008400,poke:06BE=F01C00,poke:042F=22,poke:04AF=1F,poke:052F=1D,poke:05AF=24,poke:062F=21,poke:06AF=1E",
+    "VET": "poke:0420=6000,poke:0426=0B00,poke:0428=0000,poke:042E=0B,poke:0431=F92C09000000,poke:0438=0C0060006000,poke:043E=510700,poke:04A0=5100,poke:04A6=0A02,poke:04A8=0E00,poke:04AE=0A,poke:04B1=C61608000E00,poke:04B8=080051005100,poke:04BE=A60100,poke:0520=4D00,poke:0526=0A02,poke:0528=0C00,poke:052E=0A,poke:0531=381008000C00,poke:0538=05004D004D00,poke:053E=600000,poke:05A0=3A00,poke:05A6=0B00,poke:05A8=0000,poke:05AE=0B,poke:05B1=70FC08000000,poke:05B8=03003A003A00,poke:05BE=A20800,poke:0620=4000,poke:0626=0B05,poke:0628=2E00,poke:062E=0B,poke:0631=ED0009002E00,poke:0638=110040004000,poke:063E=3B0100,poke:06A0=2900,poke:06A6=0A05,poke:06A8=3400,poke:06AE=0A,poke:06B1=BCDE07003400,poke:06B8=090029002900,poke:06BE=E80200,poke:042F=16,poke:04AF=15,poke:052F=14,poke:05AF=18,poke:062F=17,poke:06AF=13",
+    "GOD": "freeze:2043A=1F01,freeze:204BA=0801,freeze:2053A=C600,freeze:205BA=B000,freeze:2063A=D500,freeze:206BA=8400",
+    "REDRAW": "e,w300,1,w200,2,w300,e,w300,1,w200,2,w300"
   },
   "ram": {
     "yx": {
@@ -79,6 +85,19 @@
       "addr": "0035",
       "size": 1,
       "fmt": "hex"
+    },
+    "area": {
+      "addr": "2FA00",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "hp1": {
+      "addr": "2043A",
+      "size": 2
+    },
+    "gold1": {
+      "addr": "2043E",
+      "size": 3
     }
   }
 }
