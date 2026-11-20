@@ -1257,6 +1257,71 @@
    "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
    "captured": "2026-11-20",
    "pixel_sha1": "7b2797138a5f2a64cee02839572032054f91c855"
+  },
+  {
+   "id": "ending_mother",
+   "category": "ending",
+   "caption": "Ending, white page: \"Mother, let's go back to the village where I was raised.\"",
+   "route": "@saved,poke:FFC400=0012,w60,w300*2,!",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_ending_ending_mother.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "c832285ba78a82b4d4ad51a9cb21b44448edd0e0"
+  },
+  {
+   "id": "ending_embrace",
+   "category": "ending",
+   "caption": "Ending: the prince and the princess, \"Whenever evil oversteps its bounds...\"",
+   "route": "@saved,poke:FFC400=0012,w60,w300*6,!",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_ending_ending_embrace.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "02cbd4bb5171d37ab4045d5c25f0040193b4509b"
+  },
+  {
+   "id": "credits_staff",
+   "category": "credits",
+   "caption": "Staff roll over a starry sky and the sea: STAFF, DIRECTOR SADA",
+   "route": "@saved,poke:FFC400=0012,w60,w300*16,!",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_credits_credits_staff.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "2dd391b0b51cde8e2944eb41e73033f8d8aea0ad"
+  },
+  {
+   "id": "credits_player",
+   "category": "credits",
+   "caption": "Staff roll: PLAYER ryz, the player's own name in the credits",
+   "route": "@saved,poke:FFC400=0012,w60,w300*30,!",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_credits_credits_player.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "21613646814436d1f07c8ef6587f061fc51f293f"
+  },
+  {
+   "id": "ending_end",
+   "category": "ending",
+   "caption": "END over the starry sky, the final screen",
+   "route": "@saved,poke:FFC400=0012,w60,w300*35,!",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_ending_ending_end.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "522a75d6f7717a99f804613253b7fb58173188aa"
   }
  ]
 }

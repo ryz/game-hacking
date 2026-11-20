@@ -1,6 +1,6 @@
 # Sword of Vermilion - shots: main
 
-Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2`. 96 shots. Contact sheet: [sword-of-vermilion_md_na_set_sheet.png](sword-of-vermilion_md_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2`. 101 shots. Contact sheet: [sword-of-vermilion_md_na_set_sheet.png](sword-of-vermilion_md_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -100,5 +100,10 @@ Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f
 | gameplay_cave_entrance | gameplay | Overworld east of Parma: a stone cave entrance across the road | yes | [png](sword-of-vermilion_md_na_gameplay_gameplay_cave_entrance.png) |
 | map_cave_east | map | Cave east of Parma: its map in the panel, the prince at the entrance | yes | [png](sword-of-vermilion_md_na_map_map_cave_east.png) |
 | map_area_east | map | East of Parma: area map with hills to the south, marker on the road | yes | [png](sword-of-vermilion_md_na_map_map_area_east.png) |
+| ending_mother | ending | Ending, white page: "Mother, let's go back to the village where I was raised." | yes | [png](sword-of-vermilion_md_na_ending_ending_mother.png) |
+| ending_embrace | ending | Ending: the prince and the princess, "Whenever evil oversteps its bounds..." | no | [png](sword-of-vermilion_md_na_ending_ending_embrace.png) |
+| credits_staff | credits | Staff roll over a starry sky and the sea: STAFF, DIRECTOR SADA | no | [png](sword-of-vermilion_md_na_credits_credits_staff.png) |
+| credits_player | credits | Staff roll: PLAYER ryz, the player's own name in the credits | no | [png](sword-of-vermilion_md_na_credits_credits_player.png) |
+| ending_end | ending | END over the starry sky, the final screen | no | [png](sword-of-vermilion_md_na_ending_ending_end.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

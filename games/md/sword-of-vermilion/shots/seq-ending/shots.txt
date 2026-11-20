@@ -1,0 +1,12 @@
+01_mother | ending | Ending, white page: "Mother, let's go back to the village where I was raised." | @saved,poke:FFC400=0012,w60,w300*2,!
+02_queen | ending | Ending: his mother answers, "It's time for you to visit Blade's grave." | @saved,poke:FFC400=0012,w60,w300*3,!
+03_embrace | ending | Ending: the prince and the princess, "Whenever evil oversteps its bounds..." | @saved,poke:FFC400=0012,w60,w300*6,!
+04_peace | ending | Ending: "Peace now reigns ... You married your Princess" | @saved,poke:FFC400=0012,w60,w300*8,!
+05_evil | ending | Ending: "Yet the wise say that evil can never be truly banished." | @saved,poke:FFC400=0012,w60,w300*10,!
+06_picture | ending | Ending: the embrace picture alone after the last page | @saved,poke:FFC400=0012,w60,w300*12,!
+07_staff | credits | Staff roll over a starry sky and the sea: STAFF, DIRECTOR SADA | @saved,poke:FFC400=0012,w60,w300*16,!
+08_design | credits | Staff roll: game design, chief programmer, chief designer | @saved,poke:FFC400=0012,w60,w300*18,!
+09_scroll_clip | credits | Clip: the staff roll scrolling up over the stars and the sea | @saved,poke:FFC400=0012,w60,w300*20,rec:240:3
+10_player | credits | Staff roll: PLAYER ryz, the player's own name in the credits | @saved,poke:FFC400=0012,w60,w300*30,!
+11_pad_hint | credits | Last credits: "Put in your pad on the 2P side and push A B C Start" | @saved,poke:FFC400=0012,w60,w300*32,!
+12_end | ending | END over the starry sky, the final screen | @saved,poke:FFC400=0012,w60,w300*35,!
