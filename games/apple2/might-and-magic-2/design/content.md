@@ -34,6 +34,7 @@ Notation: [README.md](README.md). Check: `python3 tools/lenses.py apple2/might-a
 | Elemental planes | Air: grey plain; Fire: orange plain under a sky (Earth and Water looked the same as Fire from their landing squares) | `env_plane_air`, `env_plane_fire` |
 | Keeps and castles outdoors | white castle against a mountain | `gameplay_mandagual_keep`, `gameplay_xabran_800`, `gameplay_ruins_900` |
 | Square Lake | the last cavern | `battle_sl_wizards`, `extra_just_kidding`, `boss_sheltem` |
+| Whole-area layouts (automap) | Middlegate's streets and shop doors; C2's forest, river, lake and mountain rim; the cavern under Middlegate's maze of corridors (all squares marked by poke) | `automap_middlegate`, `automap_c2`, `automap_cavern`, `automap_partial` |
 
 ## 3. Opponents (sample)
 | Group | Where | Shots |

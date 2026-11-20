@@ -38,7 +38,12 @@ services were all found unchanged here wherever they were tried (below); its RAM
   (no Return), `b` block, `q` quick reference, `v` view, `e` exchange, `d` controls, `p` protection. A fight to
   the end without looking: repeat `a,w300,b,w300` (victory route of `battle_victory`). Monster pictures and
   lists appear ~600 frames after "Encounter!" (they load from disk): shots use `w200*3,!` or `w200*4,!`.
-- **State (2026-11-20):** `start` 45 shots and `main` 216 shots published, both verified cold; lenses clean.
+- **Automap:** `CARTO` (from `@vet`/`@hero`: Otto Mapper at (0,15) teaches ryz Cartographer, party left at
+  (0,15) facing W), then `m` (not on the command list) = the 16x16 map of the squares walked, Esc back.
+  Visited bits: aux `10200 + 32*area` (2 bytes per row y, bit 80>>(x&7)); `MAPALL:<addr>` marks a whole area
+  (Middlegate `10200`, C2 `10360`, cavern 11 `10420`). Honest walks: `tools/automap_walk.py` (DFS from the
+  wall map `2F800`, skips event squares, prints the route).
+- **State (2026-11-20):** `start` 45 shots and `main` 220 shots published, both verified cold; lenses clean.
   Open: the Sheltem fight (not won, so no ending), Earth/Water plane looks, Unlock, Use, hirelings.
 
 ## Identity
@@ -135,6 +140,7 @@ Done: boot and menus, creation, inn and Middlegate (every service of the DOS tab
 Unlock and Use, combat (encounter options, every combat key, hits, spells, victory, two defeats), the other
 four towns, 12 outdoor views, caverns, dungeons, castles, Air and Fire planes, five bosses, Square Lake fights,
 year 800 (Xabran, Kalohn, Mega Dragon), Sheltem's encounter and fight, disk prompts B, C, A.
+Automap (2026-11-20, mm2map run): partly walked Middlegate and filled maps of Middlegate, C2 and the cavern 11.
 Missing: the Sheltem victory and the ending, Earth/Water plane looks, hireling, Unlock, Use, level-up at
 training (needs experience poke), the arena.
 
@@ -144,6 +150,9 @@ training (needs experience poke), the arena.
   fights `vet`. The fixed fight at Middlegate (8,1) (`combat`) is the cheapest combat screen.
 - The poked parties have the statistics of level 1 (Might 16 etc.) and no gear: equip by poking the backpack
   (`+4B..+50`, DOS item ids) and `e` in the profile before fight shots.
+- Walking in towns meets wandering monsters: the honest automap walk from Otto Mapper met 3 Winged Steeds,
+  3 Ghouls, 2 Orcs on its 19th square, (10,15); `automap_partial` stops at 18 squares (9,15). A town walk
+  of every square would also step on the service squares (prompts): the filled maps are poked instead.
 - Disk prompts appear on area loads and for some monster pictures (Sheltem's is on disk A): look at the frame
   after every new encounter before pressing keys.
 
@@ -167,6 +176,7 @@ Main character **ryz**, then condi, ebo, cubi, deddo, mnz (lower case: `type:ryz
 | Gold, gems, food, HP, SP, level, experience | record pokes (RAM map) | RAM | verified on the profile |
 | Century | `YEAR:nn` before a load from another disk (`WARPD`) | RAM | verified (year 800: Xabran, Kalohn) |
 | Gear for ryz | `GEAR` then `EQ5` (profile, equip A five times) | RAM + game | verified (AC 13) |
+| Cartographer + automap | `@vet,CARTO`, then walk or `MAPALL:<10200+32*area>`, `m,w300` | RAM + game | verified (`automap_*`) |
 | Debug features, cheat codes | none known (web search found none) | - | - |
 
 ### Saves (rom/saves/apple2/might-and-magic-2/, never committed)
@@ -211,6 +221,11 @@ None downloaded.
 | `B955`-`B970` | code | rest: outside century 9 a roll may write 09 to `F7C9` and move the party (return to the present) | code read |
 | `1050` | code | area load compares `F7C9` with the area's century `FA0F` | code read |
 | +43 | 1 | condition (00 good, 40 unconscious) | diff after a fight |
+| `10200 + 32*area` | 32 each | automap visited bits (aux RAM), one bitmap per area 00-3B (to `1097F`): byte `2*y + x/8`, bit `80 >> (x & 7)`; set by each step with a Cartographer in the party, kept across area changes; `m` expands it into main page 2 (`0200 + y*16+x` = 01) to draw | diff (aux), poke verified (`automap_middlegate`) |
+| `2F800` | 256 | wall map of the current area, square y*16+x, two bits per side N E S W from bit 7 (values as the facing masks `0035`): 0 open, 1 wall ("Solid!"), 2 passable (doors, open city-wall sides), 3 wall/edge | search, walked by `tools/automap_walk.py` |
+| `2F900` | 256 | second per-square map (walls without doors? not decoded) | search |
+| `2FA42`.. | 3 each | event squares of the area: square, event, facing mask (80 N 40 E 20 S 10 W, F0 = entering); Middlegate to `2FABF` | read (Otto `F0 21 10`, blacksmith `44 16 10`) |
+| `2F6FF` | 1 | step counter (+1 per step) | diff |
 | `A101` | 17 | exploration key table, handlers lo `A112` / hi `A123`: forward = `A16D` | code |
 Watches in `game.json`: `yx`, `facing`, `area`, `hp1`, `gold1`. Scratch disassembler used: py65 (`pip install py65`).
 

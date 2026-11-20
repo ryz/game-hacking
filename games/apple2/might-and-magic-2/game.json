@@ -75,7 +75,9 @@
     "REDRAW": "e,w300,1,w200,2,w300,e,w300,1,w200,2,w300",
     "GEAR": "poke:044B=1383749B5F00",
     "EQ5": "1,w300,e,w300,a,w300,e,w300,a,w300,e,w300,a,w300,e,w300,a,w300,e,w300,a,w300",
-    "YEAR": "poke:2F7C9={0}"
+    "YEAR": "poke:2F7C9={0}",
+    "CARTO": "AT:0:F,FN,left,w400,y,w300,1,w300",
+    "MAPALL": "poke:{0}=FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
   },
   "ram": {
     "yx": {
@@ -107,6 +109,6 @@
       "fmt": "hex"
     }
   },
-  "work": "captured 2026-11-20: main 216 shots (boot to Sheltem's fight, all towns, outdoors, caverns, dungeons, castles, year 800), start 45 shots (power-on to the first save), three lens documents; century byte found",
+  "work": "captured 2026-11-20: main 220 shots (boot to Sheltem's fight, all towns, outdoors, caverns, dungeons, castles, year 800), start 45 shots (power-on to the first save), automap (walked and filled: Middlegate, C2, cavern), three lens documents; century byte found",
   "open": "Sheltem fight not won (no ending shots); Earth/Water plane looks, Unlock, Use, hirelings, training level-up not shot"
 }
