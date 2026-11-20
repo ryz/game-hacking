@@ -30,6 +30,21 @@ Never delete entries.
 - Status: coordinator lesson in `skills/coordinator/feedback.md` (open); walk.py in `docs/backlog.md`; id
   repeat logged.
 
+### 2026-11-20 - Wizardry II (Apple II)
+- Task: capture `start` (35) and `main` (229) for apple2/wizardry-2, plus the three lens documents.
+- Worked: preview.py batches without a play.py session; `--text` captions for town screens; cropped
+  `--timeline` sheets with `--page 90` found every timed battle, chest and guardian message; a montage script
+  checked 58 new shots at once (caught captions where monsters struck first); a door-kick route generator from
+  the decoded map (tools/doors.py) gave 13 encounters in two previews.
+- Friction: captions edited in the work shots.txt do not reach index.json; --verify/--publish-only keep the old
+  caption (second pass with recaption, one commit with long captions); preview --set does not flag identical
+  frames inside an unshot plan.
+- Proposed rule change: backlog: shoot.py takes captions/categories from the work shots.txt or warns; apple2 /
+  Wizardry playbooks: after a poke warp the wireframe view is stale until a turn (`l,w200,r,w200`).
+- Corrected: coordinator deleted the cache and reran --verify: start 35/35, main 229/229; sheet 3 checked.
+- Status: caption sync and identical-frame flag -> backlog; stale view -> already in the game's playbook (Read
+  first, Shortcuts WARP row); logged.
+
 ### 2026-11-20 - Sword of Vermilion (Mega Drive, run 4: town talk, encounters with map)
 - Task: outdoor talk shots with the hero and speaker side by side mid-screen (owner's Stow example) and overworld
   encounters with the full area map in the panel (owner's example).

@@ -1,0 +1,36 @@
+# id | category | caption | route
+01_power_on | boot | Power-on: black screen with the cursor while Apple Pascal loads from disk 1 | pow,w300,!
+02_title | title | Title picture: Wizardry logo, a knight and a dragon, KNIGHT of DIAMONDS | @title
+03_menu | menu | Copyright screen, version PV3S2V1: S)TART GAME, U)TILITIES, T)ITLE PAGE | @menu
+04_utilities | menu | Wizardry Utilities: recover, transfer, backup, make scenario disk, change names | @s_util
+05_transfer_begin | system | T)ransfer: 'MOVE CHARS BETWEEN SCENARIOS - PRESS [RET] TO BEGIN' | @s_util,t,w400
+06_transfer_source | system | Transfer: 'INSERT SCENARIO WITH CHAR(S) TO BE MOVED' - the Wizardry I disk | @s_util,t,w400,enter,w300
+07_transfer_list | system | Wizardry I disk read: RYZ, CONDI, EBO, CUBI, DEDDO, MNZ by letter | @s_util,t,w400,enter,w300,disk:3,enter,w600
+08_transfer_password | system | Letter A: 'MOVING RYZ / PASSWORD >' | @s_util,t,w400,enter,w300,disk:3,enter,w600,a,w300
+09_transfer_target | system | 'INSERT SCENARIO TO MOVE CHAR(S) TO' - the Knight of Diamonds disk | @s_util,t,w400,enter,w300,disk:3,enter,w600,a,w300,enter,w400
+10_transfer_moved | system | 'CHAR HAS BEEN MOVED - PRESS [RET]': one character per pass | @s_util,t,w400,enter,w300,disk:3,enter,w600,a,w300,enter,w400,disk:2,enter,w600
+11_transfer_second | system | Second pass: RYZ is gone from the Wizardry I list, B - CONDI next | @s_util,XFER:a,t,w400,enter,w300,disk:3,enter,w600
+12_transfer_last | system | Sixth pass: only F - MNZ left on the Wizardry I disk | @s_util,XFER:a,XFER:b,XFER:c,XFER:d,XFER:e,t,w400,enter,w300,disk:3,enter,w600
+13_transfer_done | system | All six moved: the Wizardry I disk lists nobody | @s_imported,t,w400,enter,w300,disk:3,enter,w600
+14_leave_utilities | menu | L)eave: 'PLACE BOOT DISK IN DRIVE 1, PRESS RETURN' | @s_imported,l,w600
+15_start_master | menu | S)tart game: 'SCENARIO MASTER IN DRV 1, PRESS [RET]' | @s_imported,l,w600,disk:1,enter,w900,s,w400
+16_start_duplicate | menu | Second prompt: 'MASTER/DUPLICATE IN DRV 1, PRESS [RET]' | @s_imported,l,w600,disk:1,enter,w900,s,w400,disk:2,enter,w600
+17_castle_empty | menu | The Castle of Llylgamn (LLYLGAMN, MARKET), no party yet | @s_castle
+18_edge | menu | Edge of Town: T)raining Grounds, C)astle, L)eave the game | @s_castle,e,w300
+19_training | menu | Training Grounds: 'YOU CANNOT CREATE CHARACTERS IN LLYLGAMN' - name prompt | @s_training
+20_roster_original | inventory | *ROSTER: the six from Wizardry I among THUG, HALIG, KELRACH, FURY (L28-38) | @s_training,type:*ROSTER\n,w400
+21_thug_menu | menu | THUG chosen: I)nspect, D)elete, C)hange class, S)et new password | @s_training,type:THUG\n,w300,enter,w400
+22_thug_sheet | inventory | THUG, the earlier player's level 38 fighter: '>K', KOD's gauntlets worn | @s_training,type:THUG\n,w300,enter,w400,i,w600
+23_delete_confirm | menu | D)elete: 'ARE YOU SURE YOU WANT TO DELETE (Y/N) ?' | @s_training,type:THUG\n,w300,enter,w400,d,w200
+24_roster_after | inventory | *ROSTER after deleting the four: the six level-13 characters from Wizardry I | @s_training,WIPE,type:*ROSTER\n,w400
+25_tavern | menu | Gilgamesh' Tavern, empty party: A)dd a member | @s_wiped,g,w300
+26_tavern_add | menu | A)dd: 'WHO WILL JOIN ? >' - members are added by typed name | @s_wiped,g,w300,a,w200
+27_tavern_password | menu | RYZ typed: 'ENTER PASSWORD >' (none set: Return) | @s_wiped,g,w300,a,w200,type:RYZ\n,w300
+28_tavern_added | menu | RYZ joins: G-FIG, AC 10, 112 hits; add, remove, see a member | @s_wiped,g,w300,ADD:RYZ
+29_tavern_full | menu | Party of six: RYZ CONDI EBO CUBI DEDDO MNZ, all AC 10 with empty packs | @s_wiped,g,w300,ADDPARTY
+30_party_formed | menu | Back in the Castle with the party formed | @start
+31_ryz_sheet | inventory | RYZ's sheet: level 13 human fighter, 686327 E.P., 4817 gold, no items | @start,g,w300,1,w600
+32_inn_who | menu | Adventurer's Inn: 'WHO WILL STAY ([RETURN] EXITS) >' | @start,a,w300
+33_inn_rooms | menu | 'WELCOME RYZ': stables free, cots 10, economy 50, merchant 200, royal 500 | @start,a,w300,1,w300
+34_inn_stables | menu | A night in the stables: 'YOU NEED 3457 MORE EXPERIENCE POINTS TO MAKE LEVEL' | @start,a,w300,1,w300,a,w600
+35_leave_game | save | Edge of Town, L)eave the game (roster saved): 'PRESS [RETURN] FOR MORE WIZARDRY' | @start,e,w300,l,w900
