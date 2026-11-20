@@ -2314,7 +2314,7 @@
   {
    "id": "gameplay_luck_plaque",
    "category": "gameplay",
-   "caption": "Pinehurst Dungeon: a plaque on a platform, \"If you want to swap your luck, step right up\"",
+   "caption": "Pinehurst Dungeon: plaque \"If you want to swap your luck, step right up\"",
    "route": "@hero,WARPD:30:8:8:6,AT:8:6,FS,left,w400,!",
    "settled": true,
    "model": "iie",

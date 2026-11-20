@@ -86,8 +86,9 @@ semicolon quote leftbracket rightbracket backslash`, modifiers `shift` and `ctrl
 language card), ROM included, the soft switches `C000-C0FF` read as 0 (no side effects). `10000-1FFFF` is the
 auxiliary 64K of a //e wherever it is mapped. `20000-2FFFF` is the main 64K as stored, mapped or not
 (`2C000-2CFFF` = language card bank 1 of `D000`, `2D000-2FFFF` = bank 2 and the RAM under the ROM): games keep
-data there while ROM is mapped (Might and Magic's character records are at `2C000`). `poke` writes RAM only (ROM and I/O are refused). `find` covers
-`0000-BFFF`. Text page 1 is `0400-07FF` (screen codes: high bit set = normal), hi-res page 1 `2000-3FFF`.
+data there while ROM is mapped (Might and Magic's character records are at `2C000`). `poke` writes RAM only (ROM and I/O are refused). `find`, `dump` and `diff` cover
+`0000-BFFF` only, yet game state often lives in the language card (Might and Magic II: century, days and
+area at `2F7xx`/`2FA00`): when a search there finds nothing, read `20000-2FFFF` with `peek` (wider search: backlog). Text page 1 is `0400-07FF` (screen codes: high bit set = normal), hi-res page 1 `2000-3FFF`.
 `status` shows the program counter. 6502 code can be read with `tools/dis6502.py` only for NES files so far.
 
 ## Saves

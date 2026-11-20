@@ -12,6 +12,23 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Might and Magic II (Apple II)
+- Task: capture `main` and `start` for Might and Magic II (Apple II), solve the year variable, try the Sheltem fight.
+- Worked: converting the DOS set's routes with a script gave ~150 working Apple II routes in three preview
+  sheets; DOS event squares and start-set walking keys transfer one to one; `?` frames and `--timeline` found
+  combat and victory frames; diffing a counter the game advances (the day, by resting) led to the century byte.
+- Friction: `play.py dump`/`diff` cover only 0000-BFFF on the Apple II while this game keeps its state in the
+  language card (own 192K dump script); encounter pictures load ~600 frames after "Encounter!"; a `freeze`
+  cannot undo a condition set before it started.
+- Proposed rule change: apple2.md: search all of 0-2FFFF (state in the language card), tool wish for
+  find/dump/diff there; skill step 2: convert a captured port's routes with a script and preview in bulk.
+- Corrected: coordinator deleted the cache and reran --verify: start 45/45, main 216/216; one caption over 80
+  characters (gameplay_luck_plaque) shortened with recaption and republished; sheet 3 checked (Year= shows 900
+  on some year-800 shots: the display quirk is in findings.md).
+- Status: port-route conversion promoted 2026-11-20 into skill.md step 2 (second case: Might and Magic I Apple
+  II replayed the DOS routes); language card note -> apple2.md; find/dump/diff range -> backlog; encounter
+  load time already in the game's playbook.
+
 ### 2026-11-20 - Might and Magic II (DOS, set `start`)
 - Task: set `start` for an honest new party from power-on to the first inn sign-in.
 - Worked: decoding the area's wall map early (one dump, 161D6) plus a small BFS gave every walking route and

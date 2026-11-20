@@ -177,7 +177,7 @@ env_plane_air | gameplay | Elemental Plane of Air: a grey plain under an open sk
 env_plane_fire | gameplay | Elemental Plane of Fire: orange ground under an open sky | @hero,WARPD:2A:8:8:5,poke:044B=E9,AT:9:9,FE,left,w400
 dialogue_orc_joker | dialogue | Hillstone Dungeon: a prisoner of Lord Slayer offers a way to Woodhaven | @hero,WARPD:2D:8:8:6,AT:F:F,FS,left,w400
 gameplay_bottomless_pit | gameplay | Woodhaven Dungeon: a bottomless pit, toss all your gold in? | @hero,WARPD:2E:8:8:6,AT:9:F,FE,left,w400
-gameplay_luck_plaque | gameplay | Pinehurst Dungeon: a plaque, "If you want to swap your luck, step right up" | @hero,WARPD:30:8:8:6,AT:8:6,FS,left,w400,!
+gameplay_luck_plaque | gameplay | Pinehurst Dungeon: plaque "If you want to swap your luck, step right up" | @hero,WARPD:30:8:8:6,AT:8:6,FS,left,w400,!
 gameplay_giant_lever | gameplay | Luxus Dungeon: a giant lever, "actions are sluggish, but precise" | @hero,WARPD:31:8:8:6,AT:2:7,FW,left,w400
 gameplay_syrup_walls | gameplay | Luxus Dungeon 2: thick syrup drips from the walls, feel lucky? | @hero,WARPD:32:8:8:6,AT:4:F,FE,left,w400
 gameplay_magical_well | gameplay | Hillstone Dungeon 2: steam rises from a magical well | @hero,WARPD:33:8:8:6,AT:5:0,FN,left,w400

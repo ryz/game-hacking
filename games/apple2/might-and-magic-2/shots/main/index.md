@@ -181,7 +181,7 @@ Platform apple2, region na, model iie, ROM SHA-1 `744bceee48f35ca29e2c227996f006
 | env_plane_fire | gameplay | Elemental Plane of Fire: orange ground under an open sky | yes | [png](might-and-magic-2_apple2_na_gameplay_env_plane_fire.png) |
 | dialogue_orc_joker | dialogue | Hillstone Dungeon: a prisoner of Lord Slayer offers a way to Woodhaven | no | [png](might-and-magic-2_apple2_na_dialogue_dialogue_orc_joker.png) |
 | gameplay_bottomless_pit | gameplay | Woodhaven Dungeon: a bottomless pit, toss all your gold in? | yes | [png](might-and-magic-2_apple2_na_gameplay_gameplay_bottomless_pit.png) |
-| gameplay_luck_plaque | gameplay | Pinehurst Dungeon: a plaque on a platform, "If you want to swap your luck, step right up" | yes | [png](might-and-magic-2_apple2_na_gameplay_gameplay_luck_plaque.png) |
+| gameplay_luck_plaque | gameplay | Pinehurst Dungeon: plaque "If you want to swap your luck, step right up" | yes | [png](might-and-magic-2_apple2_na_gameplay_gameplay_luck_plaque.png) |
 | gameplay_giant_lever | gameplay | Luxus Dungeon: a giant lever, "actions are sluggish, but precise" | yes | [png](might-and-magic-2_apple2_na_gameplay_gameplay_giant_lever.png) |
 | gameplay_syrup_walls | gameplay | Luxus Dungeon 2: thick syrup drips from the walls, feel lucky? | yes | [png](might-and-magic-2_apple2_na_gameplay_gameplay_syrup_walls.png) |
 | gameplay_magical_well | gameplay | Hillstone Dungeon 2: steam rises from a magical well | yes | [png](might-and-magic-2_apple2_na_gameplay_gameplay_magical_well.png) |

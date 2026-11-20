@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-20 (batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
+updated: 2026-11-20 (routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -46,6 +46,9 @@ edit anything outside the game's folder.
      known yet (`--name SLUG` on every command so parallel captures do not collide); `snap ID CATEGORY "caption"
      --set SET` there is fine. Turn what you learn into a macro, a checkpoint or plan lines and return to batches.
    Small generators help: a script that writes plan lines for every shop, floor or monster from a decoded table.
+   **A port of the game is already captured** (another platform's set): convert its routes with a script
+   (position format, warp macro, waits) and preview them in bulk before exploring (Might and Magic I and II
+   Apple II, 2026-11-20).
 3. `checkpoint` at every milestone (new area, before a boss, a menu reached), with a description. At the bigger
    milestones also leave a save for the owner: save in the game, then `play.py export NN_place "contents"`
    (`docs/emulator/README.md`, "Saves for the owner").

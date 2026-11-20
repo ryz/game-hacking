@@ -20,8 +20,10 @@ Append-only, newest first.
 - Wizardry II: `start` 35 and `main` 229 shots, lenses, verified cold by the coordinator (35/35, 229/229).
 - Might and Magic II (Apple II, six nibble disks): registered (9759bd4), scouted: 16 checkpoints (16/16 cold),
   warp to all 60 areas, record layout, poked parties, save 01_start, 47 previewed shot lines.
-- Open: Wizardry II R)un/Q)uick/S)tatus, floor 6 fixed fights; MM2 year address and the Sheltem fight; MM2
-  capture next.
+- Might and Magic II (Apple II) captured: `start` 45 (honest), `main` 216 (to Sheltem, year 800 via the century
+  byte `2F7C9`), lenses; verified cold by the coordinator (45/45, 216/216).
+- Open: Wizardry II R)un/Q)uick/S)tatus, floor 6 fixed fights; Might and Magic II (Apple II) Sheltem fight not
+  won (no ending), Earth/Water planes, Unlock/Use, hirelings.
 
 ## 2026-11-20 - Sword of Vermilion: town talk and encounters with the map
 - Owner's examples: a talk shot with the hero and speaker side by side mid-screen (Stow during the monster raid,
