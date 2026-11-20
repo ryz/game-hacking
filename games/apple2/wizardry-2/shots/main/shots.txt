@@ -1,0 +1,67 @@
+# id | category | caption | route
+title_logo | title | Title picture: Wizardry logo, a knight and a dragon, KNIGHT of DIAMONDS | @title
+menu_copyright | menu | Copyright screen, version PV3S2V1 of 10-MAR-82: start, utilities, title page | @menu
+menu_utilities | menu | Wizardry Utilities: recover, transfer, backup, make scenario disk, update, names | @s_util
+util_recover | menu | R)ecover: 'CHAR RECOVERY - NO 10 YEAR PENALTY' | @s_util,r,w400
+util_backup | menu | B)ackup: 'CHAR BACKUP (INCOMPATIBLE WITH PREVIOUS VERSION)' | @s_util,b,w400
+util_make_scenario | menu | M)ake scenario disk: 'MAKE NEW SCENARIO DISKETTE' | @s_util,m,w400
+util_update | menu | U)pdate: 'UPDATE DISK - WARNING - FOLLOW DIRECTIONS CAREFULLY' | @s_util,u,w400
+util_change_names | menu | C)hange names: 'ENTER THE CURRENT NAME OF THE CHAR & THEN THE NEW NAME' | @s_util,c,w400,enter,w400,disk:2,enter,w600
+system_transfer_begin | system | T)ransfer: 'MOVE CHARS BETWEEN SCENARIOS' | @s_util,t,w400
+system_transfer_source | system | Transfer: 'INSERT SCENARIO WITH CHAR(S) TO BE MOVED' | @s_util,t,w400,enter,w300
+system_transfer_list | system | The Wizardry I disk (PROVING GROUNDS OF THE MAD OVERLORD!): six characters | @s_util,t,w400,enter,w300,disk:3,enter,w600
+system_transfer_password | system | Transfer: 'MOVING RYZ / PASSWORD >' | @s_util,t,w400,enter,w300,disk:3,enter,w600,a,w300
+system_transfer_target | system | Transfer: 'INSERT SCENARIO TO MOVE CHAR(S) TO' | @s_util,t,w400,enter,w300,disk:3,enter,w600,a,w300,enter,w400
+system_transfer_moved | system | 'CHAR HAS BEEN MOVED - PRESS [RET]' | @s_util,t,w400,enter,w300,disk:3,enter,w600,a,w300,enter,w400,disk:2,enter,w600
+system_transfer_second | system | Second pass: the list without RYZ, B - CONDI first | @s_util,XFER:a,t,w400,enter,w300,disk:3,enter,w600
+system_transfer_done | system | All six moved: the Wizardry I disk lists nobody | @s_imported,t,w400,enter,w300,disk:3,enter,w600
+boot_disk_prompt | boot | L)eave the Utilities: 'PLACE BOOT DISK IN DRIVE 1, PRESS RETURN' | @s_imported,l,w600
+boot_scenario_master | boot | S)tart game: 'SCENARIO MASTER IN DRV 1, PRESS [RET]' | @s_imported,l,w600,disk:1,enter,w900,s,w400
+boot_scenario_duplicate | boot | 'MASTER/DUPLICATE IN DRV 1, PRESS [RET]' | @s_imported,l,w600,disk:1,enter,w900,s,w400,disk:2,enter,w600
+menu_castle_empty | menu | Castle of Llylgamn (LLYLGAMN, MARKET) before a party is formed | @s_castle
+menu_training | menu | Training Grounds: no character creation in Llylgamn, name prompt | @s_training
+inventory_roster_original | inventory | *ROSTER as delivered: THUG, HALIG, KELRACH, FURY (L28-38) and the six | @s_training,type:*ROSTER\n,w400
+training_options | menu | Training, THUG: I)nspect, D)elete, C)hange class, S)et new password | @s_training,type:THUG\n,w300,enter,w400
+inventory_stock_thug | inventory | THUG: level 38 fighter, Knight '>K', 338 hits, AC -7, KOD's gauntlets | @s_training,type:THUG\n,w300,enter,w400,i,w600
+inventory_stock_kelrach | inventory | KELRACH: level 28 lord with KOD's armor | @s_training,type:KELRACH\n,w300,enter,w400,i,w600
+inventory_stock_fury | inventory | FURY: level 28 samurai '>G' with Hrathnir, KOD's helmet and KOD's shield | @s_training,type:FURY\n,w300,enter,w400,i,w600
+training_delete | menu | D)elete: 'ARE YOU SURE YOU WANT TO DELETE (Y/N) ?' | @s_training,type:THUG\n,w300,enter,w400,d,w200
+inventory_roster | inventory | *ROSTER after the four were deleted: the six level-13 veterans | @s_training,WIPE,type:*ROSTER\n,w400
+training_change_class | menu | C)hange class: 'PRESS [LETTER] TO CHANGE CLASS' | @start,TRAINING,type:RYZ\n,w300,enter,w400,c,w400
+training_password | menu | S)et new password: 'ENTER NEW PASSWORD ([RET] FOR NONE)' | @start,TRAINING,type:RYZ\n,w300,enter,w400,s,w400
+menu_tavern_empty | menu | Gilgamesh' Tavern with no party: A)dd a member | @s_wiped,g,w300
+tavern_password | menu | Tavern A)dd: 'WHO WILL JOIN ? >RYZ', 'ENTER PASSWORD >' | @s_wiped,g,w300,a,w200,type:RYZ\n,w300
+tavern_adding | menu | Forming the party: RYZ, CONDI and EBO added | @s_wiped,g,w300,ADD:RYZ,ADD:CONDI,ADD:EBO
+menu_tavern | menu | The Tavern with six: R)emove a member, #) see a member | @s_wiped,g,w300,ADDPARTY
+tavern_remove | menu | R)emove: 'WHO WILL LEAVE ([RETURN] EXITS) >' | @start,g,w300,r,w300
+menu_castle | menu | The Castle with the party from Wizardry I: AC 10, empty packs | @start
+inventory_sheet_import | inventory | RYZ as moved: level 13 fighter '>', 686327 E.P., 4817 gold, no items | @start,g,w300,1,w600
+menu_edge | menu | Edge of Town: M)aze, T)raining Grounds, C)astle, L)eave the game | @start,e,w300
+menu_inn_who | menu | Adventurer's Inn: 'WHO WILL STAY ([RETURN] EXITS) >' | @start,a,w300
+menu_inn | menu | Inn rooms for RYZ: stables free, cots 10 ... royal suites 500 gold a week | @start,a,w300,1,w300
+inn_stables | menu | Stables: 'YOU NEED 3457 MORE EXPERIENCE POINTS TO MAKE LEVEL' | @start,a,w300,1,w300,a,w600
+inn_healing | system | Cot for a wounded RYZ: 'RYZ IS HEALING UP', hit points rising, gold falling | @gcastle,poke:7404=2900,a,w300,1,w300,b,w600
+inn_levelup | system | RYZ has the E.P.: 'YOU MADE A LEVEL!' with I.Q., piety, vitality, luck gained | @gcastle,poke:73FA=B50445000000,a,w300,1,w300,a,w900
+shop_boltac_who | shop | Boltac's Trading Post: 'WHO WILL ENTER ([RETURN] EXITS) >' | @start,b,w300
+shop_boltac | shop | Boltac's for RYZ: buy, sell, uncurse, identify; 4817 gold | @start,b,w300,1,w400
+shop_buy_weapons | shop | Boltac's stock, page 1: long sword 25 ... dagger 5 | @gcastle,b,w300,1,w400,b,w400
+shop_buy_armor | shop | Stock: dagger, shields, robes, leather armor 50, chain mail 90 | @gcastle,b,w300,1,w400,b,w400,f,w400
+shop_buy_plate | shop | Stock: breast plate 200, plate mail 750, helm 100, Dios and Latumofis potions | @gcastle,b,w300,1,w400,b,w400,f,w400,f,w400
+shop_buy_magic | shop | Stock: long sword+1 10000, staff of Mogref (UNUSABLE for RYZ), scroll/Katino | @gcastle,b,w300,1,w400,b,w400,f,w400,f,w400,f,w400
+shop_buy_plus | shop | Stock: leather+1 to breast plate+1, 1500 each | @gcastle,b,w300,1,w400,b,w400,f,w400,f,w400,f,w400,f,w400
+shop_buy_rare | shop | Stock: scrolls, staff+2 2500, dragon slayer 10000, shield-1 | @gcastle,b,w300,1,w400,b,w400,f,w400,f,w400,f,w400,f,w400,f,w400
+shop_purchase | shop | P)urchase: 'PURCHASE WHICH ITEM ([RETURN] EXITS) ? >' | @gcastle,b,w300,1,w400,b,w400,p,w400
+shop_unusable | shop | CUBI (thief) picks chain mail: 'UNUSABLE ITEM - CONFIRM BUY (Y/N) ?' | @gcastle,b,w300,4,w400,b,w400,f,w400,f,w400,p,w400,1,w600
+shop_sell | shop | S)ell: EBO's pack at half price, 'WHICH DO YOU WISH TO SELL ?' | @gcastle,b,w300,3,w400,s,w400
+shop_sold | shop | EBO sold his Dios potion: the list without it | @gcastle,b,w300,3,w400,s,w400,4,w600
+shop_identify | shop | I)dentify: an unknown POTION in RYZ's pack, 750 gold | @gcastle,poke:73B8=0500,poke:73DA=0000000000002900,b,w300,1,w400,i,w400
+shop_identified | shop | Identified: the potion is named | @gcastle,poke:73B8=0500,poke:73DA=0000000000002900,b,w300,1,w400,i,w400,5,w900
+shop_uncurse | shop | U)ncurse: CONDI wears a CURSED ROBE, 4000 gold | @gcastle,poke:7488=0500,poke:74AA=0100010001004900,b,w300,2,w400,u,w400
+shop_uncursed | shop | Uncursed: the robe is gone from CONDI's pack | @gcastle,poke:7488=0500,poke:74AA=0100010001004900,b,w300,2,w400,u,w400,5,w900
+menu_temple | menu | Temple of Radiant Cant: 'WHO ARE YOU HELPING ? >' | @gcastle,c,w300
+temple_donation | menu | CONDI dead: 'THE DONATION WILL BE ...', 'WHO WILL TITHE' | @gcastle,poke:7476=0500,g,w300,r,w300,2,w400,enter,w300,c,w400,type:CONDI\n,w600
+temple_ritual | system | EBO pays, the ritual for CONDI: 'MURMUR - CHANT - PRAY -' | @gcastle,poke:7476=0500,g,w300,r,w300,2,w400,enter,w300,c,w400,type:CONDI\n,w600,2,w200,!
+temple_healed | system | 'MURMUR - CHANT - PRAY - INVOKE!' - '** CONDI IS WELL **' | @gcastle,poke:7476=0500,g,w300,r,w300,2,w400,enter,w300,c,w400,type:CONDI\n,w600,2,w320,!
+temple_cheap | menu | RYZ cannot pay the 3250: '** CHEAP APOSTATES! OUT! **' | @gcastle,poke:7476=0500,g,w300,r,w300,2,w400,enter,w300,c,w400,type:CONDI\n,w600,1,w20,!
+menu_castle_geared | menu | The Castle with the party equipped: AC 0 -1 3 5 9 5 | @gcastle
+save_leave_game | save | L)eave the game at the Edge of Town: 'PRESS [RETURN] FOR MORE WIZARDRY' | @start,e,w300,l,w900
