@@ -124,11 +124,12 @@ class Session:
         for k, v in self.game.ram().items():
             n = int(v.get("size", 1))
             b = self.emu.peek(int(v["addr"], 16), n)
-            fmt = v.get("fmt", "le")
+            endian = getattr(self.emu, "ENDIAN", "le")      # the CPU's byte order (68000: big-endian)
+            fmt = v.get("fmt", endian)
             if fmt == "bcd":          # packed BCD, most significant byte first (as most GB games store money)
                 out.append("%s=%s" % (k, b.hex().lstrip("0") or "0"))
-            elif fmt == "hex":        # as the playbook writes it (coordinates, ids, flags), little-endian
-                out.append("%s=$%0*X" % (k, 2 * n, int.from_bytes(b, "little")))
+            elif fmt == "hex":        # as the playbook writes it (coordinates, ids, flags), in the CPU's byte order
+                out.append("%s=$%0*X" % (k, 2 * n, int.from_bytes(b, "big" if endian == "be" else "little")))
             else:
                 out.append("%s=%d" % (k, int.from_bytes(b, "big" if fmt == "be" else "little")))
         r = self.emu.regs()

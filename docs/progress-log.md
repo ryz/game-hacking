@@ -2,6 +2,20 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Mega Drive / Genesis backend
+- New platform `md` on the Master System's core (Genesis Plus GX, same pinned commit and build;
+  `setup_emu.sh md` is an alias of `sms`). `tools/gpgx-debug.patch` gains `retro_gamedb_peek68k`/`poke68k`/`pc68k`:
+  side-effect-free reads of work RAM, ROM, Z80 RAM and mapped cartridge RAM (I/O, VDP and open bus are refused,
+  since reading them changes the hardware), writes to RAM only.
+- `platforms.MegaDrive` (subclass of `Sms`): header identification (titles, product code, I/O field and
+  six-button pad, old/new region field, `RA` backup RAM, checksum), models ntsc/ntsc-j/pal, fixed core options
+  (Mega Drive hardware whatever the extension, no TMSS, no add-on or lock-on), the 64 KiB cartridge RAM buffer
+  appended to savestates and exported as `.sav`, Pro Action Replay and Game Genie as the core decodes them.
+- 68000 values are big-endian: RAM watches and `set:` now default to the backend's byte order (`ENDIAN`,
+  little-endian everywhere else, so other platforms are unchanged); `find --wide` compares big-endian words.
+- Tests: `tests/make_md_rom.py` builds an original test ROM (hand-assembled 68000, V-blank loop, pad read,
+  cartridge RAM); 3 tests (header and cheats, backend, intake-to-shoot pipeline). Docs: `docs/emulator/md.md`.
+
 ## 2026-11-20 - rule: `start` sets in play order
 - Owner's rule: `start` set ids are numbered in play order (`01_<step>` ...) and listed in that order, so the
   set reads as one playthrough. In `docs/capture-guide.md` ("Sets") and the game-capture skill. Dungeon Master's

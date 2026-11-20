@@ -8,7 +8,7 @@ updated: 2026-11-20 (start set ids numbered in play order)
 
 # Game capture - play and photograph a game for the database
 
-> **Before you start:** paths are relative to the repo root. Read `docs/emulator/README.md` and the file for the game's platform (`docs/emulator/gb.md`, `nes.md`, `snes.md`, `sms.md`, `dos.md`, `apple2.md` or `amiga.md`), `docs/capture-guide.md`, the
+> **Before you start:** paths are relative to the repo root. Read `docs/emulator/README.md` and the file for the game's platform (`docs/emulator/gb.md`, `nes.md`, `snes.md`, `sms.md`, `md.md`, `dos.md`, `apple2.md` or `amiga.md`), `docs/capture-guide.md`, the
 > game's `games/<platform>/<slug>/playbook.md` (all of it: controls, strategy, shortcuts) and the open entries in this
 > skill's `feedback.md`. The playbook exists so you do not rediscover the game: use its macros, checkpoints and
 > RAM before experimenting.

@@ -726,6 +726,164 @@ def test_sms_pipeline(sms_selftest):
     e.close()
 
 
+# ------------------------------------------------------------------ Mega Drive / Genesis (Genesis Plus GX core)
+MD_SLUG = "zz-selftest-md"
+
+
+@pytest.fixture
+def md_selftest(tmp_path):
+    if not os.path.exists(platforms.MegaDrive.SO):
+        pytest.skip("Genesis Plus GX core not built (sh tools/setup_emu.sh md)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_md_rom
+    rom = tmp_path / "t.md"
+    rom.write_bytes(make_md_rom.build())
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", MD_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games/md", "work/shots/md", "work/cache/md", "work/intake/md", "work/play", "work/roms"):
+        shutil.rmtree(os.path.join(ROOT, sub, MD_SLUG), ignore_errors=True)
+    if os.path.exists(os.path.join(ROOT, "rom", MD_SLUG + ".md")):
+        os.remove(os.path.join(ROOT, "rom", MD_SLUG + ".md"))
+
+
+def test_md_header_and_cheats():
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_md_rom
+    M = platforms.MegaDrive
+    rom = make_md_rom.build()
+    h = M.identify(rom)
+    assert h["platform"] == "md" and h["model"] == "ntsc" and h["region"] == "Japan, North America, Europe"
+    assert h["header_checksum_ok"] and h["product_code"] == "GM 12345678-01" and h["rom_kib"] == 128
+    assert h["header_title"] == "GAMEDB SELFTEST" and not h["six_button"] and "200001-203FFF" in h["battery"]
+    for reg, region, model in ((b"J  ", "Japan", "ntsc-j"), (b"E  ", "Europe", "pal"), (b"4  ", "North America", "ntsc"),
+                               (b"9  ", "Japan, Europe", "ntsc-j")):
+        r = bytearray(rom)
+        r[0x1F0:0x1F3] = reg
+        assert (M.identify(bytes(r))["region"], M.identify(bytes(r))["model"]) == (region, model)
+    bad = bytearray(rom)
+    bad[0x300] ^= 1
+    assert not M.identify(bytes(bad))["header_checksum_ok"]
+    assert M.identify(bytes(0x8000))["header"] is False
+    with pytest.raises(SystemExit):
+        M.identify(bytes(8) + b"\xaa\xbb" + bytes(0x4200 - 10))          # interleaved .smd dump
+    assert platforms.by_extension("x/GAME.MD")[0] == "md" and platforms.by_extension("x/g.gen")[0] == "md"
+    assert platforms.by_extension("x/g.bin")[0] == "md"
+    assert M.gameshark("FF0200:1234") == (None, 0xFF0200, b"\x12\x34")     # even address: the word
+    assert M.gameshark("FF0301:0056") == (None, 0xFF0301, b"\x56")         # odd address: the byte
+    with pytest.raises(ValueError):
+        M.gameshark("FF0301:1234")
+    # Game Genie: same decoding as the core (checked against retro_cheat_set on the test ROM)
+    assert M.game_genie("RFAA-A6VR") == (0x402E, 0x4E71, None)
+    assert M.game_genie("BBCA-ABCD") == (0x4442, 0x8008, None)
+    r = bytearray(rom)
+    assert M.apply_game_genie(r, "RFAA-A6VR") == [0x402E] and r[0x402E:0x4030] == b"\x4e\x71"
+    with pytest.raises(ValueError):
+        M.game_genie("RFAA-A6VI")                                   # I is not a Game Genie letter
+
+
+def test_md_backend(md_selftest, tmp_path):
+    from PIL import Image
+    import io
+    M = platforms.MegaDrive
+    e = M().open(str(md_selftest))
+    e.frames(30)
+    img = lambda x: Image.open(io.BytesIO(x.screen())).convert("RGB")
+    assert img(e).size == (320, 224) and img(e).getpixel((100, 100)) == (0, 0, 238)
+    assert 25 <= e.peek(0xFF0010, 1)[0] <= 30 and e.peek(0xFF0012, 1) == b"\x00"
+    assert e.peek(0, 8) == bytes.fromhex("00fffe0000000200") and e.peek(0x10000, 4) == b"PG2!"
+    assert 0x200 <= int(e.regs()["pc"], 16) < 0x300 and len(e.regs()["pc"]) == 6
+    e.input(["a"])
+    e.frames(5)
+    assert img(e).getpixel((100, 100)) == (238, 0, 0) and e.peek(0xFF0011, 1) == b"\x01"
+    for key, bit in (("start", 2), ("b", 4), ("c", 8), ("up", 0x10), ("down", 0x20), ("left", 0x40), ("right", 0x80)):
+        e.input([key])
+        e.frames(2)
+        assert e.peek(0xFF0011, 1)[0] == bit, key
+    e.input([])
+    e.frames(2)
+    assert e.peek(0xFF0011, 2) == b"\x00\xff"
+    with pytest.raises(ValueError):
+        e.peek(0xC00004, 1)                                         # VDP: never read by peek (side effects)
+    st = str(tmp_path / "x.state")
+    e.save_state(st)
+    shot, count = e.screen(), e.peek(0xFF0010, 1)
+    b = M().open(str(md_selftest))                                  # two games at once; state keeps the frame
+    b.load_state(st)
+    assert b.screen() == shot and b.peek(0xFF0010, 1) == count
+    assert b.battery(0) == e.battery(0) and b.battery(0)[1] == count[0]    # the state carries cartridge RAM
+    e.frames(10); b.frames(10)
+    assert e.screen() == b.screen() and e.peek(0xFF0010, 1) == b.peek(0xFF0010, 1)
+    b.close()
+    with pytest.raises(SystemExit):
+        platforms.Sms().open(str(md_selftest)).load_state(st)      # another platform's state: refused
+    e.ram_search("new == old")
+    e.frames(3)
+    assert [x["addr"] for x in e.ram_search("new == old + 3")["results"]] == ["ff0010"]
+    e.poke(0xFF0010, b"\x80")
+    e.frames(1)
+    assert e.peek(0xFF0010, 1) == b"\x81" and e.peek(0x200001, 1) == b"\x81"   # cartridge RAM mapped at 200000
+    assert e.battery(0)[1] == 0x81 and len(e.battery(0)) == 0x10000 and e.battery(0)[2] == 0xFF
+    e.poke(0xFF0100, b"\x12\x34")
+    e.ram_search_reset()
+    e.poke(0xFF0100, b"\x12\x35")
+    assert "ff0100" in [x["addr"] for x in e.ram_search("new == old + 1", wide=True)["results"]]   # big-endian
+    e.poke(0xA00010, b"\x56")
+    assert e.peek(0xA02010, 1) == b"\x56"                           # Z80 RAM, mirrored
+    with pytest.raises(ValueError):
+        e.poke(0x000200, b"\x00")                                   # ROM
+    sav = tmp_path / "x.sav"
+    sav.write_bytes(e.battery(0))
+    e.close()
+    j = M().open(str(md_selftest), model="pal", sav=str(sav))
+    assert j.battery(0)[1] == 0x81
+    j.frames(50)
+    assert 45 <= j.peek(0xFF0010, 1)[0] <= 50                      # the counter starts again; the save is there
+    j.close()
+
+
+def test_md_pipeline(md_selftest):
+    run("tools/intake.py", str(md_selftest), "--slug", MD_SLUG, "--region", "na", "--probe", "120")
+    gj = os.path.join(ROOT, "games", "md", MD_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "md" and meta["model"] == "ntsc" and meta["header"]["product_code"] == "GM 12345678-01"
+    meta["macros"] = {"TITLE": "w60"}
+    meta["ram"] = {"pad": {"addr": "FF0012", "size": 1}, "w": {"addr": "FF0040", "size": 2, "fmt": "hex"},
+                   "n": {"addr": "FF0040", "size": 2}}
+    meta["rom_variants"] = {"gg": {"gg": ["RFAA-A6VR"]}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", MD_SLUG]
+    run(*P, "start", MD_SLUG)
+    run(*P, "do", "TITLE")
+    assert "saved" in run(*P, "checkpoint", "title", "after boot")
+    run(*P, "do", "a+right:20,poke:FF0020=2A,gs:FF0030:1234,set:FF0040=4660:2")
+    st = run(*P, "status")
+    assert "pad=129" in st                                          # the sticky pad byte: A and right
+    assert "w=$1234" in st and "n=4660" in st                       # 68000: big-endian by default
+    assert "2a" in run(*P, "peek", "FF0020", "1")
+    assert "12 34" in run(*P, "peek", "FF0030", "2")
+    run(*P, "snap", "held_a", "gameplay", "after button A was held")
+    assert "candidates" in run(*P, "find", "new == old")
+    assert "early.sav" in run(*P, "export", "early", "frame counter in cartridge RAM", "--state")
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", MD_SLUG, "main", "--verify")
+    run("tools/shoot.py", MD_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", "md", MD_SLUG, "shots", "main",
+                                 "zz-selftest-md_md_na_gameplay_held_a.png")).convert("RGB")
+    assert im.size == (320, 224) and im.getpixel((10, 10)) == (0, 0, 238)
+    d = os.path.join(ROOT, "games", "md", MD_SLUG, "saves")
+    assert os.path.getsize(os.path.join(d, "early.sav")) == 0x10000
+    assert "Genesis Plus GX" in open(os.path.join(d, "README.md")).read()
+    g = emu.Game(MD_SLUG)
+    e, rest, _ = emu.start(g, "sav:early")
+    assert e._sram()[1] == open(os.path.join(d, "early.sav"), "rb").read()[1] != 0xFF
+    e.close()
+    e, rest, _ = emu.start(g, "rom:gg")
+    assert e.peek(0x402E, 2) == b"\x4e\x71"
+    e.close()
+
+
 # ------------------------------------------------------------------ DOS (DOSBox Pure libretro core)
 DOS_SLUG = "zz-selftest-dos"
 DOS_BOOT = "w120,enter,w60"         # start menu (one program: KEYS.COM), Enter runs it

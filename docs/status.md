@@ -89,6 +89,17 @@ Current snapshot; history in `progress-log.md`.
   cast, a trap, milestone saves, battle retakes in the real boss rooms. Not set up: Game Gear,
   SG-1000, light gun/paddle, Reset button, Sega Card. Notes: `docs/emulator/sms.md`.
 
+- Mega Drive / Genesis backend (2026-11-20): the same Genesis Plus GX core and build (`sh tools/setup_emu.sh md`
+  = `sms`); `.md`/`.gen`/`.bin` cartridges (`games/md/<slug>/`), 320x224 (256x224 in H32), models
+  ntsc/ntsc-j/pal (from the header region; multi-region dumps need `--region`), keys `a b c start` plus
+  `x y z mode` for six-button games, savestates with the cartridge RAM, 64 KiB `.sav` export and `sav:`,
+  68000-space peek/poke and PC (`retro_gamedb_peek68k/poke68k/pc68k` in `tools/gpgx-debug.patch`; work RAM, Z80
+  RAM, mapped cartridge RAM; I/O and VDP refused), RAM search on work RAM (big-endian words), Pro Action Replay
+  (`gs:`), Game Genie (`rom:` variant, decoding checked against the core). RAM watches and `set:` follow the
+  CPU's byte order (new `ENDIAN` backend attribute). 3 tests on an original hand-assembled 68000 test ROM
+  (`tests/make_md_rom.py`). No game registered yet. Not set up: Mega-CD, 32X, lock-on, second pad, mouse,
+  light guns, `.smd` dumps. Notes: `docs/emulator/md.md`.
+
 - Apple II backend (2026-11-18): AppleWin libretro core (audetto's Linux port) at a pinned commit
   (`sh tools/setup_emu.sh apple2`, needs cmake), driven by `tools/lrcore.py`; a game is a disk image or a ZIP of
   disk images (`intake.py`; `games/apple2/<slug>/`), `disk:N` / `disk2:N` change disks, keyboard tokens and
