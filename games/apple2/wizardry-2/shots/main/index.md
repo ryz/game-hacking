@@ -219,7 +219,7 @@ Platform apple2, region na, model iiplus-wp1, ROM SHA-1 `87abc403fa9cab3711d2b2c
 | dialogue_gnilda_test | dialogue | RYZ alone with the five: 'A FIERY FACE ... WHAT IS THE ANSWER TO THE RIDDLE ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_gnilda_test.png) |
 | dialogue_gnilda_answer | dialogue | 'ANSWER ?' - THE KNIGHT OF DIAMONDS typed | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_gnilda_answer.png) |
 | dialogue_staff_gift | dialogue | 'A NOW FAMILIAR APPARITION APPEARS AND SAYS: THROUGH YOUR VALOR, WIT ...' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_staff_gift.png) |
-| dialogue_staff_gift_2 | dialogue | Gnilda's gift: 'FULL REGALIA OF THE LEGENDARY KNIGHT ... I SHALL RECLAIM THOSE ARTIFACTS' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_staff_gift_2.png) |
+| dialogue_staff_gift_2 | dialogue | Gnilda's gift: 'FULL REGALIA OF THE LEGENDARY KNIGHT ... RECLAIM THOSE ARTIFACTS' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_staff_gift_2.png) |
 | dialogue_staff_gift_3 | dialogue | Gnilda's gift, page 3: 'RECEIVE THE STAFF OF GNILDA!' | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_staff_gift_3.png) |
 | dialogue_staff_got | dialogue | 'RYZ GOT ITEM': the pieces are gone, AC still LO | yes | [png](wizardry-2_apple2_na_dialogue_dialogue_staff_got.png) |
 | inventory_staff | inventory | RYZ's sheet: STAFF OF GNILDA his only item | yes | [png](wizardry-2_apple2_na_inventory_inventory_staff.png) |
