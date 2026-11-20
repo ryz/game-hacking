@@ -2,6 +2,21 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Amiga: Kickstarts, Dungeon Master registered and played into the dungeon
+- Owner supplied Kickstart 1.3 (`kick34005.A500`) and 3.1 (`kick40068.A1200`); both match the SHA-1s in
+  `Amiga.KICKSTARTS`, copied to `rom/kickstart/` (uncommitted). The test disk boots on A500, A500OG and A1200 with
+  them; fire, keys and a disk write through trackdisk.device work on all three.
+- Dungeon Master v3.60 (owner's ZIP, one cracked ADF) registered as `games/amiga/dungeon-master/` (region eu,
+  model A500). Route: crack intro (left click), 80 s of loading on the logo, entrance doors, ENTER, 90 s of
+  loading, dungeon view; keypad 8 steps forward. Checkpoints `entrance` and `dungeon`; a cold rebuild from
+  power-on matches the checkpoint. The first attempt looked stuck on the logo: it was only loading at real floppy
+  speed (noted in `docs/emulator/amiga.md`, "Loading takes real time").
+- Core fix found on the way: the restore was deferred to the next frame, so right after a state load `peek`,
+  `find` and `status` read the old machine. `retro_unserialize` now restores at once and returns before the CPU
+  runs (`gamedb_restore_only` in `newcpu.c`); test `test_amiga_same_route_same_frames` checks memory and PC
+  right after the load. Amiga tests: 6 passed.
+- Open: a save disk (the game saves to a disk named `DungeonSave`; none in the owner's ZIP), scout and capture.
+
 ## 2026-11-20 - Amiga emulator set up (PUAE libretro core)
 - Owner's request: an Amiga emulator. PUAE (libretro-uae) at commit d366f77, built by `sh tools/setup_emu.sh
   amiga` (90 s, no extra packages), backend `Amiga` in `tools/platforms.py`, platform folder `games/amiga/`.

@@ -1,0 +1,5 @@
+# name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
+# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
+# title | Title screen, settled | TITLE,settle
+entrance | Entrance doors with ENTER / RESUME / QUIT (pointer on ENTER) | pow,w700,mouse1:10,w4000,settle
+dungeon | In the dungeon at the start, movement arrows, no champions yet | @entrance,mouse1:10,w600,settle,w1500,settle,w3000,settle

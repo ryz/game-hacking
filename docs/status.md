@@ -110,9 +110,12 @@ Current snapshot; history in `progress-log.md`.
   360x287 PAL), peek/poke/find on the 24-bit address space, exact savestates that carry what the game wrote to
   its disks, `play.py export` and `sav:` (6 tests, on the core's built-in AROS Kickstart with an A1200).
   `tools/puae-debug.patch` makes a loaded state continue on the exact frame (the core ran a frame inside its
-  state load) and fixes a crash of the core without a frontend log interface. No game registered yet; real
-  games need the owner's Kickstart ROMs in `rom/kickstart/` (1.3 for the A500). Not supported: `.ipf`, hard
-  disk/WHDLoad, CD32/CDTV, write-protected disks. Notes: `docs/emulator/amiga.md`.
+  state load) and fixes a crash of the core without a frontend log interface. Real games need the owner's
+  Kickstart ROMs in `rom/kickstart/` (1.3 and 3.1 A1200 supplied 2026-11-20, in this container only). First
+  game: Dungeon Master v3.60 (`games/amiga/dungeon-master/`, cracked ADF, A500): registered, plays into the
+  dungeon, checkpoints `entrance` and `dungeon` (cold rebuild verified); no save disk yet, not scouted, no
+  shots. Not supported: `.ipf`, hard disk/WHDLoad, CD32/CDTV, write-protected disks. Notes:
+  `docs/emulator/amiga.md`.
 
 - Wizardry I-V on the Apple II (2026-11-19, queue halted by the owner after two games' worth of work):
   **I** scouted and captured (`games/apple2/wizardry/`: `main` 304 shots to the ending incl. 13 plain maze views,

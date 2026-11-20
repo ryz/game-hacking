@@ -1,15 +1,20 @@
 # Amiga
 
 Platform notes for `amiga` games (Amiga 500 to 4000, floppy games). The general rules (routes, tokens, the
-working loop) are in [README.md](README.md). Added 2026-11-20. No real game registered yet: everything below
-was checked with the test disk `tests/make_amiga_adf.py` (tests `test_amiga_*`), not with a commercial game.
+working loop) are in [README.md](README.md). Added 2026-11-20 and checked with the test disk
+`tests/make_amiga_adf.py` (tests `test_amiga_*`). First game: Dungeon Master v3.60
+(`games/amiga/dungeon-master/`), played on the A500 with Kickstart 1.3 from power-on into the dungeon.
+The rest is not tried with a real game yet: reset keys, NTSC and AGA games, swaps in a multi-disk game, an
+in-game save to disk.
 
 ## Backend
 PUAE (libretro-uae), built as a libretro core and run inside the Python process by `tools/lrcore.py`. Built by
 `sh tools/setup_emu.sh amiga` (about 90 s) at a pinned commit into `tools/puae/`. `tools/puae-debug.patch`:
 - A loaded savestate continues exactly like the run that saved it. The core used to finish a restore by
   emulating inside `retro_unserialize` (the old machine up to its next vsync, then a frame of the loaded one), so
-  a loaded state ran one frame ahead. Now the restore happens at the start of the next frame, before the CPU runs.
+  a loaded state ran one frame ahead. Now `retro_unserialize` restores and returns before the CPU runs: memory
+  and registers are the loaded ones at once (`peek`, `find` and `status` right after `goto` are right), and the
+  next frame starts where the state was saved.
 - The battery-backed clock reads an emulated clock (1990-01-01 00:00:00 at power-on, following the frames), not
   the host's. The emulator's random seed is fixed (1) by the core already.
 - A restore takes its disk images from this machine's own folder (`retro_gamedb_disk_dir`): a state names the
@@ -71,6 +76,13 @@ not given. The game lands in `games/amiga/<slug>/`, the dump in `rom/<slug>.<ext
 - `aros`: the built-in AROS Kickstart instead of a real one (see Kickstart).
 - `dfN` (N = 1-3): drives DF0: to DFN:. Default DF0: only, like a stock A500/A1200. A savestate holds the
   machine with its drives: it loads only into a machine with the same number.
+
+## Loading takes real time
+The floppy runs at the real speed, so loads take as long as on the machine: Dungeon Master needs about 80 s of
+game time (4000 frames) from the click on its crack intro to the entrance, and as long again into the dungeon.
+Clicks and keys during a load are often lost: wait with `wN` (the screen does not change while the drive works)
+and look at the screenshot before the next input. Faster loading (a faster drive in the core) would change the
+game's timing and is not used.
 
 ## Screenshots
 The picture follows the screen mode: a lores game is 360x287 (PAL) with the overscan border, one pixel per
