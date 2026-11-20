@@ -50,6 +50,8 @@ The 68000 address space, six hex digits: `poke:FF0123=09`, `"addr": "FF0123"` in
   address on most cartridges: `200001`, `200003`, ...).
 - `peek` has no side effects and refuses I/O, VDP and open-bus addresses (reading those would change the
   hardware's state); `poke` writes work RAM, Z80 RAM and mapped cartridge RAM only (ROM is an error).
+- Maps can sit in work RAM as a plain byte grid (Sword of Vermilion: a 48x32 window at `FF9000`, one byte per
+  square): dump and look for low-variety blocks before mapping by hand; a path planner on it walks without frames.
 - `find` (RAM search) covers the 64 KiB of work RAM. `find --wide` compares 16-bit words, big-endian.
 - **Byte order is big-endian (68000).** RAM watches (`"size": 2`, `"fmt": "hex"`) and `set:FF0040=300:2` use it by
   default; write `:le` / `"fmt": "le"` only for the rare little-endian value.

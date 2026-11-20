@@ -12,6 +12,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Sword of Vermilion (Mega Drive)
+- Task: capture and publish `main` and `start` of Sword of Vermilion (md) with the three lenses.
+- Worked: preview.py with `?` markers gave whole dialogue/menu sequences on one sheet; the map as a 48x32 byte
+  window in RAM and a BFS walker (battles fought with HP frozen) reached Parma and two caves without frames;
+  item/spell lists found by diffing around one purchase.
+- Friction: cursor moves after `c,w60` dropped in preview/shoot but not in play.py (settles between calls);
+  the walker lost its place when the map window re-centred; town interiors have no readable map; enemies can
+  push the prince off the edge (battle ends as an escape). Playbook "Read first" 61 lines (limit 60).
+- Proposed rule change: (1) README "Two loops": routes copied from play.py need `settle` where calls were split;
+  (2) md.md: maps as byte grids in work RAM.
+- Corrected: none; coordinator re-verified from an empty cache: main 65/65, start 35/35; sheets checked.
+- Status: (1) promoted 2026-11-20 into docs/emulator/README.md (second case: the scout's round-1 friction);
+  (2) logged in md.md.
+
 ### 2026-11-20 - owner's rule: start sets in sequential order
 - Task: owner's request, not an agent run.
 - Worked: Dungeon Master's `start` set already used numbered ids (`01_crack_note` ...) in play order.

@@ -97,6 +97,9 @@ Looking is the expensive part: every screenshot read costs far more than the com
   A `?` inside a route takes an extra frame there. Details: `python3 tools/preview.py -h`.
 - **Unknown ground: explore with `play.py`** in small steps (below), then write what you found as a macro, a
   checkpoint or plan lines and go back to batches.
+- **`play.py` settles between calls; a route does not.** Keys that worked as separate `play.py` calls can fail
+  as one route (a cursor move right after a menu-opening press is dropped): put `settle` or a wait where the
+  calls were split (Sword of Vermilion scout and capture, 2026-11-20).
 - **Pictures are native size.** An enlarged picture costs several times more to look at and shows nothing more.
   Only when small text cannot be read: `play.py shot --scale 2`, `preview.py --scale 2`, or `--crop` to the
   part that matters. Read text screens as text (`play.py text`, `preview.py --text`) wherever the platform has them.

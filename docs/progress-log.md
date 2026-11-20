@@ -2,6 +2,20 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Sword of Vermilion: first Mega Drive game, scouted and captured
+- Owner uploaded the North American Genesis dump (SHA-1 `c18fc75e...`, header GM 00005502-00); registered as
+  `md/sword-of-vermilion`, region na, model ntsc. First real game on the md backend (Genesis Plus GX): no
+  friction with buttons, battery RAM, `export`/`sav:`, peek/poke or timing; H32 (256-wide) name keyboard.
+- Scout (2 rounds): 23 checkpoints to the first battle; the Wyclif gate opens only after Blade's speech.
+  Capture: `main` 65 and `start` 35 shots, both re-verified from an empty cache by the coordinator; lenses;
+  45 checkpoints to Parma and two caves.
+- Tools: `play.py diff --range LO-HI --max N` (second ask). Checked: a state loaded mid-battle differs from a
+  flat replay only in a dead stack word (`docs/emulator/md.md`). Promoted: routes copied from `play.py` need
+  `settle` where calls were split (`docs/emulator/README.md`). Backlog: `cachecheck --show-diff`,
+  `preview --repeat`.
+- Open: first boss, rings, later towns, Area Map, message-speed option; research hosts mostly blocked
+  (GameFAQs, tcrf, StrategyWiki 403; archive.org file hosts not allowed: manual scans unreachable).
+
 ## 2026-11-20 - Wizardry III (DOS) re-verified with the new tools
 - First published set checked after the process review: the owner uploaded the dump (SHA-1 as in `game.json`).
   `shoot.py dos/wizardry-3 main --verify --published` from an empty cache: 228/228 identical to the committed
