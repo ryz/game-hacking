@@ -47,8 +47,24 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
     replayed from power-on (same picture): the death/revival is a shot route (`gameover_revived`), not a
     checkpoint. Re-verify such shots with `shoot.py --verify`.
   - The title and most field screens never settle (blinking cursor, animated water/NPCs): "NOT settled" is normal.
-- **State:** scouted (two rounds). Reached: overworld, first battle, weapon shop. Not reached: a won battle
-  (with its reward screen, if any), the Area Map, the ring cave south of the village, magic, a boss, Parma.
+- **State:** captured 2026-11-20: sets `start` (35, honest, to the first save) and `main` (65) published and verified.
+  Reached: Parma, its inn and magic shop, the cave south of Wyclif, the entrance of the cave east of Parma.
+  Not reached: a boss, a ring, Watling, message-speed option.
+- **Main-set chain (capture 2026-11-20):** `m_strong` (from `@battle`: EXP poked to 2417, battle won with HP frozen
+  -> level 5, 162 HP, 3424 kims) -> `m_cave1` (cave south of Wyclif, dark) -> `m_cave_lit` (2 Herbs, Candle, Lantern
+  poked, Lantern used) -> `m_cave_door`/`m_cave_inner`/`m_cave_chest`/`m_cave_west`; `m_strong` -> `m_north1` ->
+  `m_north2` -> `m_parma` -> `m_parma_inn`, `m_inn_offer`; `m_magic_shop` -> `m_magic_list` -> `m_spells_bought` ->
+  `m_ferros_ready` -> `m_parma_out` -> `m_battle_parma` (Ferros readied), `m_east1` -> `m_cave2_gate` -> `m_cave2_lit`.
+  Start set: `s_saved` (first battle lost honestly, revived, saved in Saved Game 1).
+- **Walking the overworld and caves without looking:** the current 16x16 map sits in a 48x32 window of bytes at
+  FF9000 (row-major, 48 wide; 0 = open road/floor, 1 trees, 2 hills/water, 5 cave wall, 0F town, other values =
+  special squares: town/cave entrances, barred doors 6). `tools/go.py @CP 16 16 TX TY` (game folder) does a BFS
+  and prints a route, fighting battles on the way (SW macro, HP frozen). The window offset of the current map is
+  usually (16,16) but the window re-centres when a map edge is crossed: re-dump and re-plan at each new map.
+- **Battle:** `SW` = `up:10,c,w2,down:10,c,w2` (swing while dodging). A = cast the readied spell (Ferros 1 MP).
+  Battle flag: FFC550 = FF during a battle. Level-ups happen when the battle ends; the status window opens itself.
+- **Traps (capture):** menu cursor moves right after `c,w60` are dropped: put `settle` before `down*N` (Aries, Lantern).
+  The walker's battles sometimes end by the prince being pushed off the edge (an escape, no EXP).
 
 ## Identity
 | Field | Value |
@@ -142,12 +158,12 @@ Routes in `shots.txt` (22 lines verified by `preview.py`, the rest planned as co
 - [x] `hud_field_menu`, `inventory_status`, `shop_weapon`, `inventory_equip` (round 2)
 - [x] `env_overworld_road`, `env_overworld_trees`, `gameplay_encounter_slime`, `battle_first`, `battle_attack`,
   `gameover_revived` (round 2)
-- [ ] `cutscene_blade` - Blade's deathbed pages (from `t_blade_room`, route in `blade`; pick a page with `PAGE`)
+- [x] `cutscene_blade_deathbed` (2026-11-20) - Blade's deathbed pages (from `t_blade_room`, route in `blade`; pick a page with `PAGE`)
 - [ ] `env_wyclif_*` (2-3 plain street views), `env_graveyard`, Blade's grave
-- [ ] more `env_overworld_*` (other maps), `gameplay_cave_dark` / `gameplay_cave_lit` - first-person views
-- [ ] `battle_magic`, `battle_won`, `battle_escape` - more battles (several enemy types)
-- [ ] `map_area` (Area Map item), `system_magic` (a spell cast), `system_lantern`
-- [ ] `boss_first` - the first boss; `options_message_speed`; later towns (Parma, Watling ...)
+- [x] more `env_overworld_*` (other maps), `gameplay_cave_dark` / `gameplay_cave_lit` - first-person views
+- [x] `battle_magic`, `battle_levelup` (won), blue slimes, goblins (2026-11-20); `battle_escape` not shot (same frame as a road) - more battles (several enemy types)
+- [~] `system_aries_towns`, `system_lantern` done; `map_area` open (the Area Map is not in the item table), `system_magic` (a spell cast), `system_lantern`
+- [ ] `boss_first` - the first boss; `options_message_speed`; Watling ... (Parma done 2026-11-20)
 Fastest ways: the `saved` checkpoint for town shots; stats by poke (RAM map) before fights; town warps with
 the Aries spell once the spell slot RAM is known (Action Replay lists name "All Towns Available With Aries").
 
@@ -204,6 +220,12 @@ loaded by `@continue` (verified).
 | FFC634-FFC63C | 2 each | STR, AC, INT, DEX, LUK | read |
 | FFC64C | 4+ | name, ASCII, FF-terminated ("ryz") | read |
 | FFC662 / FFC664 | 2 / 2 | overworld square x / y within the current 16x16 map (hex); facing is FFC60D (0 N, 2 W, 4 S, 6 E) | diff over a step (round 2); the map number is open |
+| FFC443 / FFC444 | 2 + 2 each | item count word FFC442, then words: high byte flags (00), low byte = item index (0 Herbs, 1 Candle, 2 Lantern, 3 Poison Balm, ... table at ROM 0x25DB4) | poke + Item list, verified |
+| FFC462 / FFC464 | 2 + 2 each | spell count, then words: high byte 02 = combat spell (Ferros 0205), 00 = field spell (Sangua 0012); low byte = spell index (0 Aero, 2 Volti, 5 Ferros, 0E Aries, 12 Sangua) | bought in Parma, verified |
+| FFC482 / FFC484 | 2 + 2 each | weapon count, then words (Bronze Sword 0400, 8400 when readied: bit 15 = readied) | diff, verified |
+| FFC640 | 2 | level minus 1 | level-up diff, verified |
+| FFC550 | 1 | FF during a battle | diff, verified |
+| FF9000 | 0x600 | map window 48x32 (overworld/cave), see Read first | verified |
 | FFC685 | 1 | counts steps and turns on the overworld (reset by a battle); encounter counter? | diff, unconfirmed |
 | 200001 ... (odd bytes) | | Saved Game 1 starts with the name | peek after saving |
 
@@ -254,3 +276,14 @@ loaded by `@continue` (verified).
 - Real position variables (town and overworld), map id, encounter trigger, battle state, spell list slots.
 - Battle buttons; where Message Speed is set; Bronze Sword price; the inn and fortune teller interiors.
 - Whether the AR invincibility codes (ROM words) and the Game Genie codes work as `rom:` variants.
+
+## Capture 2026-11-20 (notes)
+- Cave south of Wyclif (overworld square 7,13 of the map below Wyclif's): one 16x16 map, entrance ladder, two barred
+  doors (Open raises the bars), one chest with a Candle. No boss and no Ring of Wisdom found there.
+- Road to Parma: from the gate west/north along the road, two maps north; Parma's entrance is a special square
+  (value 0x11) at window (23,5) of that map. Enemies: green and blue slimes near Wyclif, goblins near Parma.
+- Parma: inn 13 kims (east street, INN sign); magic shop (house with a wand sign, door 16,12 from the south lane):
+  Ferros 500, Sangua 800. Church: big stone building east of the main street (not entered).
+- East of Parma: a stone cave entrance on the overworld (`m_cave2_gate`), same stone tile set inside; a special
+  square value 2 at window (30,16) not reached (the walker got lost when the window re-centred).
+- No in-game save was made after Parma (no church visited there); `saves/01_start.sav` is still the only export.

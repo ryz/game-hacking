@@ -87,8 +87,17 @@
     "steps": {
       "addr": "FFC685",
       "size": 1
+    },
+    "battle": {
+      "addr": "FFC550",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "level": {
+      "addr": "FFC640",
+      "size": 2
     }
   },
-  "work": "scouted 2026-11-20 (2 rounds): boot, naming, Blade scene, church save, weapon shop, overworld, first battle; 23 checkpoints, RAM map, save 01_start; not captured",
-  "open": "a won battle and its reward, Area Map, ring cave south of Wyclif, magic and its battle button, first boss, Parma; overworld map-number RAM; cache divergence after a lost battle"
+  "work": "sets main (65) and start (35, to the first save) published and verified 2026-11-20; three lenses; 43 checkpoints to Parma and two caves; RAM map incl. items, spells, map window; save 01_start",
+  "open": "first boss, rings, Watling and later towns; Area Map; message-speed option; Sangua and other spells cast; a church save after Parma"
 }
