@@ -1,5 +1,5 @@
 """Platform registry: one entry per supported system. Everything platform-specific lives here, so another system
-(GBA, Mega Drive, ...) is added by writing one Backend subclass and one PLATFORMS entry; the tools above it
+(GBA, ...) is added by writing one Backend subclass and one PLATFORMS entry; the tools above it
 (emu.py, play.py, shoot.py, intake.py) only use the Backend interface.
 
 Backend interface (what the tools rely on):
@@ -19,7 +19,7 @@ Backend interface (what the tools rely on):
   regs() -> dict             at least {"pc": "..."} for logs
   close()
 """
-import os, sys, zlib
+import os, re, sys, zlib
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
@@ -29,6 +29,7 @@ class Backend:
     extensions = ()
     native_size = (0, 0)
     emulator = "emulator"      # named in saves/README.md: who can load the .state files
+    ENDIAN = "le"              # default byte order of multi-byte values (RAM watches, set:); "be" on the 68000
 
     def ram_search(self, expr, wide=False):
         raise NotImplementedError("RAM search is not available on this platform")
@@ -737,8 +738,8 @@ class Sms(Libretro):
     def load_state(self, path):
         data = open(os.path.abspath(path), "rb").read()
         if not data.endswith(self.SRAM_TRAILER):
-            raise SystemExit("%s is a Master System state without cartridge RAM (made before 2026-11-19): "
-                             "delete it, the route rebuilds it" % path)
+            raise SystemExit("%s is a state without this platform's cartridge RAM (a Master System state made "
+                             "before 2026-11-19?): delete it, the route rebuilds it" % path)
         end = len(data) - len(self.SRAM_TRAILER)
         self.c.unserialize(data[:end - self.SRAM])
         self._sram()[:] = data[end - self.SRAM:end]
@@ -749,6 +750,192 @@ class Sms(Libretro):
 
     def regs(self):
         return {"pc": "%04x" % self.c.L.retro_gamedb_pc()}
+
+
+# ------------------------------------------------------------------ Mega Drive / Genesis (Genesis Plus GX core)
+MD_GG = "ABCDEFGHJKLMNPRSTVWXYZ0123456789"
+MD_REGION = {"J": "Japan", "U": "North America", "E": "Europe"}
+
+
+class MegaDrive(Sms):
+    """Genesis Plus GX (the Master System core, same build) running Mega Drive / Genesis cartridges.
+    Models: ntsc (Genesis, North America, 60 Hz), ntsc-j (Japanese Mega Drive, 60 Hz), pal (European Mega Drive,
+    50 Hz); the model is the console region the game reads from the version register. No TMSS boot ROM.
+    Keys: a b c start up down left right, plus x y z mode on games whose header lists the six-button pad (the core
+    gives those games a six-button pad, every other game a three-button one, as the header's I/O field says).
+    Memory is the 68000 address space (24 bits): FF0000-FFFFFF work RAM (64 KiB), A00000-A03FFF Z80 RAM (8 KiB,
+    mirrored), 000000-3FFFFF ROM, cartridge RAM where the game maps it (usually 200000-20FFFF). peek has no side
+    effects and refuses I/O and VDP addresses; poke writes work RAM, Z80 RAM and mapped cartridge RAM only.
+    Multi-byte values are big-endian (68000): set:FF0010=300:2:be, find --wide compares big-endian words."""
+    keys = {"a", "b", "c", "start", "x", "y", "z", "mode", "up", "down", "left", "right"}
+    extensions = (".md", ".gen", ".bin")
+    native_size = (320, 224)
+    PAD = {"a": "y", "b": "b", "c": "a", "start": "start", "x": "l", "y": "x", "z": "r", "mode": "select",
+           "up": "up", "down": "down", "left": "left", "right": "right"}
+    SEARCH = [(0xFF0000, 0x10000)]
+    SRAM = 0x10000         # the core's whole cartridge RAM buffer (SRAM, EEPROM): 64 KiB
+    SRAM_TRAILER = b"GAMEDB-MD-SRAM-1"
+    PC_FORMAT = "%06x"
+    ENDIAN = "be"
+
+    @staticmethod
+    def header(data):
+        return 0x100 if data[0x100:0x104] == b"SEGA" or data[0x101:0x105] == b"SEGA" else None
+
+    @classmethod
+    def identify(cls, data):
+        if len(data) % 0x4000 == 0x200 and data[8:10] == b"\xaa\xbb":
+            raise SystemExit("this is an interleaved .smd dump: convert it to a plain .md/.bin first")
+        info = {"rom_kib": len(data) // 1024, "ram_kib": cls.SRAM // 1024, "platform": "md", "model": "ntsc"}
+        if cls.header(data) is None:
+            info.update({"header": False, "battery": "no header (the backend exports the 64 KiB cartridge RAM)"})
+            return info
+
+        def text(a, n):
+            return bytes(data[a:a + n]).decode("ascii", "replace").strip("\x00 ")
+        word = lambda a: data[a] << 8 | data[a + 1]
+        long_ = lambda a: word(a) << 16 | word(a + 2)
+        chk = sum(word(a) for a in range(0x200, len(data) - 1, 2)) & 0xFFFF
+        io = text(0x190, 16)
+        reg = text(0x1F0, 3)
+        if reg and set(reg) <= set("JUE"):
+            regions = [MD_REGION[c] for c in "JUE" if c in reg]      # old style: letters (E alone = Europe)
+        elif reg[:1] and reg[0] in "0123456789ABCDF" and len(reg.split()[0]) == 1:
+            bits = int(reg[0], 16)          # new style, one hex digit: bit 0 Japan, 2 Americas, 1 and 3 PAL
+            regions = [n for b, n in ((1, "Japan"), (4, "North America"), (10, "Europe")) if bits & b]
+        else:
+            regions = [MD_REGION[c] for c in "JUE" if c in reg]
+        battery = "not in the header (the backend exports the 64 KiB cartridge RAM)"
+        if data[0x1B0:0x1B2] == b"RA":
+            battery = "header: %s RAM %06X-%06X" % ("battery" if data[0x1B2] & 0x40 else "volatile",
+                                                      long_(0x1B4), long_(0x1B8))
+        info.update({
+            "header": True,
+            "console": text(0x100, 16),
+            "header_title": text(0x150, 48) or text(0x120, 48),
+            "title_domestic": text(0x120, 48),
+            "product_code": text(0x180, 14),
+            "io": io,
+            "six_button": "6" in io,
+            "region": ", ".join(regions) or reg,
+            "battery": battery,
+            "header_checksum_ok": chk == word(0x18E),
+            "model": "ntsc" if "North America" in regions or not regions else
+                     "ntsc-j" if "Japan" in regions else "pal",
+        })
+        return info
+
+    # ---- cheat formats (Mega Drive). Pro Action Replay AAAAAA:VVVV: RAM, held (gs: token; an even address takes the
+    # word VVVV, an odd one the byte VV). Game Genie ABCD-EFGH: a word patch at an even ROM address (rom: variant).
+    @staticmethod
+    def gameshark(code):
+        c = code.strip().upper()
+        if not re.fullmatch(r"[0-9A-F]{6}:[0-9A-F]{2,4}", c):
+            raise ValueError("Pro Action Replay code must be AAAAAA:VVVV: %r" % code)
+        addr, v = int(c[:6], 16), int(c[7:], 16)
+        if addr & 1:
+            if v > 0xFF:
+                raise ValueError("Pro Action Replay %s: a word value needs an even address" % code)
+            return None, addr, bytes([v])           # odd address: the byte
+        return None, addr, bytes([v >> 8, v & 0xFF])  # even address: the word, high byte included
+
+    @staticmethod
+    def game_genie(code):
+        """'ABCD-EFGH' -> (addr, word, None). Same decoding as Genesis Plus GX decode_cheat."""
+        c = code.strip().upper()
+        if len(c) != 9 or c[4] != "-":
+            raise ValueError("Mega Drive Game Genie code must be ABCD-EFGH: %r" % code)
+        addr = data = 0
+        for i, ch in enumerate(c[:4] + c[5:]):
+            if ch not in MD_GG:
+                raise ValueError("Game Genie code %r: %r is not a Game Genie letter" % (code, ch))
+            n = MD_GG.index(ch)
+            if i == 0:
+                data |= n << 3
+            elif i == 1:
+                data |= n >> 2
+                addr |= (n & 3) << 14
+            elif i == 2:
+                addr |= n << 9
+            elif i == 3:
+                addr |= (n & 0xF) << 20 | (n >> 4) << 8
+            elif i == 4:
+                data |= (n & 1) << 12
+                addr |= (n >> 1) << 16
+            elif i == 5:
+                data |= (n & 1) << 15 | (n >> 1) << 8
+            elif i == 6:
+                data |= (n >> 3) << 13
+                addr |= (n & 7) << 5
+            else:
+                addr |= n
+        return addr & 0xFFFFFE, data, None          # a word: the core patches the even address
+
+    @classmethod
+    def apply_game_genie(cls, rom, code):
+        addr, value, _ = cls.game_genie(code)
+        if addr + 1 >= len(rom):
+            raise ValueError("Game Genie address %06X is past the end of the ROM" % addr)
+        rom[addr:addr + 2] = bytes([value >> 8, value & 0xFF])
+        return [addr]
+
+    def _bind(self, L):
+        import ctypes
+        Sms._bind(self, L)
+        L.retro_gamedb_peek68k.restype, L.retro_gamedb_peek68k.argtypes = ctypes.c_int, [ctypes.c_uint32]
+        L.retro_gamedb_poke68k.restype, L.retro_gamedb_poke68k.argtypes = ctypes.c_int, [ctypes.c_uint32, ctypes.c_uint8]
+        L.retro_gamedb_pc68k.restype = ctypes.c_uint32
+
+    def open(self, rom, model="ntsc", seed=1, turbo=True, sav=None):
+        if (model or "ntsc") not in self.MODELS:
+            raise SystemExit("Mega Drive model %r unknown (have: %s)" % (model, ", ".join(sorted(self.MODELS))))
+        # fixed setup: Mega Drive hardware whatever the file extension, no TMSS, no add-on or lock-on cartridge,
+        # no borders or filters, the hardware sprite limit
+        self._open(rom, {
+            "genesis_plus_gx_system_hw": "mega drive / genesis",
+            "genesis_plus_gx_region_detect": self.MODELS[model or "ntsc"],
+            "genesis_plus_gx_vdp_mode": "auto", "genesis_plus_gx_bios": "disabled",
+            "genesis_plus_gx_add_on": "none", "genesis_plus_gx_lock_on": "disabled",
+            "genesis_plus_gx_overscan": "disabled", "genesis_plus_gx_left_border": "disabled",
+            "genesis_plus_gx_blargg_ntsc_filter": "disabled", "genesis_plus_gx_lcd_filter": "disabled",
+            "genesis_plus_gx_render": "single field", "genesis_plus_gx_no_sprite_limit": "disabled",
+            "genesis_plus_gx_overclock": "100", "genesis_plus_gx_force_dtack": "enabled",
+            "genesis_plus_gx_addr_error": "enabled"}, None)
+        if sav:
+            data = open(sav, "rb").read()
+            self._sram()[:len(data[:self.SRAM])] = data[:self.SRAM]
+        return self
+
+    def peek(self, addr, n, bank=None):
+        if bank is not None:
+            raise NotImplementedError("peek reads the mapped address space only (no bank argument)")
+        f, out = self.c.L.retro_gamedb_peek68k, bytearray()
+        for i in range(n):
+            v = f((addr + i) & 0xFFFFFF)
+            if v < 0:
+                raise ValueError("%06X is not memory (I/O, VDP or open bus)" % ((addr + i) & 0xFFFFFF))
+            out.append(v)
+        return bytes(out)
+
+    def poke(self, addr, data):
+        for i, b in enumerate(bytes(data)):
+            if not self.c.L.retro_gamedb_poke68k((addr + i) & 0xFFFFFF, b):
+                raise ValueError("%06X is not RAM (work RAM, Z80 RAM, mapped cartridge RAM)" % ((addr + i) & 0xFFFFFF))
+
+    def _snapshot(self, wide):
+        out = {}
+        for base, size in self.SEARCH:
+            data = self.peek(base, size)
+            for i in range(size - (1 if wide else 0)):
+                out[base + i] = (data[i] << 8 | data[i + 1]) if wide else data[i]      # 68000: big-endian
+        return out
+
+    def battery(self, size):
+        """The core's cartridge RAM buffer (64 KiB, unwritten bytes FF) as a .sav; Genesis Plus GX loads it as .srm."""
+        return bytes(self._sram())
+
+    def regs(self):
+        return {"pc": "%06x" % self.c.L.retro_gamedb_pc68k()}
 
 
 # ------------------------------------------------------------------ DOS (DOSBox Pure libretro core)
@@ -1711,7 +1898,7 @@ class Amiga(Libretro):
         return {"pc": self.PC_FORMAT % self.c.L.retro_gamedb_pc()}
 
 
-PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "sms": Sms, "dos": Dos, "apple2": Apple2,
+PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "sms": Sms, "md": MegaDrive, "dos": Dos, "apple2": Apple2,
              "amiga": Amiga}
 
 

@@ -1,8 +1,8 @@
 diff --git a/libretro/libretro.c b/libretro/libretro.c
-index 91efcf2..528be7e 100644
+index 91efcf2..08a8aa4 100644
 --- a/libretro/libretro.c
 +++ b/libretro/libretro.c
-@@ -1,4011 +1,4040 @@
+@@ -1,4011 +1,4084 @@
 -/****************************************************************************
 - *  libretro.c
 - *
@@ -8053,4 +8053,48 @@ index 91efcf2..528be7e 100644
 +RETRO_API uint8_t *retro_gamedb_sram(void)
 +{
 +   return sram.sram;
++}
++
++/* gamedb: side-effect-free access to the 68000 address space (Mega Drive / Genesis): work RAM, ROM, Z80 RAM
++   (A00000-A03FFF, 8 KiB mirrored) and cartridge RAM while it is mapped. -1 = not memory (I/O, VDP, open bus) */
++RETRO_API int retro_gamedb_peek68k(uint32_t addr)
++{
++   cpu_memory_map *m;
++   addr &= 0xFFFFFF;
++   if (addr >= 0xA00000 && addr < 0xA04000)
++      return zram[addr & 0x1FFF];
++   m = &m68k.memory_map[addr >> 16];
++   if (m->read8 == sram_read_byte)
++      return sram.sram[addr & 0xFFFF];
++   if (m->base && !m->read8)
++      return READ_BYTE(m->base, addr & 0xFFFF);
++   return -1;
++}
++
++RETRO_API int retro_gamedb_poke68k(uint32_t addr, uint8_t value)
++{
++   cpu_memory_map *m;
++   addr &= 0xFFFFFF;
++   if (addr >= 0xA00000 && addr < 0xA04000)
++   {
++      zram[addr & 0x1FFF] = value;
++      return 1;
++   }
++   m = &m68k.memory_map[addr >> 16];
++   if (m->write8 == sram_write_byte)
++   {
++      sram.sram[addr & 0xFFFF] = value;
++      return 1;
++   }
++   if (m->base == work_ram && !m->write8)
++   {
++      WRITE_BYTE(work_ram, addr & 0xFFFF, value);
++      return 1;
++   }
++   return 0;
++}
++
++RETRO_API uint32_t retro_gamedb_pc68k(void)
++{
++   return m68k.pc & 0xFFFFFF;
 +}
