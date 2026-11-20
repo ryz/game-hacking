@@ -1,0 +1,7 @@
+01_cast | menu | Overworld, Magic, Cast: "From which Book do you wish to cast a spell?" | @m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60
+02_towns | system | Aries chosen: the towns it can reach (only Wyclif so far) | @m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90
+03_fade | system | Wyclif chosen: the view and the menus fade out | @m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90,settle,c,!
+04_warp_clip | system | Clip: fade out, black screen, arrival at the gate of Wyclif | @m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90,settle,c,rec:120:2:33
+05_arrival | gameplay | In front of Wyclif's gate; the spell cost 13 MP (37 to 24) | @m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90,settle,c,w120
+06_enter_fade | gameplay | A step into the gate: the view fades to black again | @m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90,settle,c,w120,settle,FWD,!
+07_wyclif | gameplay | Inside Wyclif at the south gate | @m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90,settle,c,w120,settle,FWD,w150

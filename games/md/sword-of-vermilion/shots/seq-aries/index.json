@@ -1,0 +1,112 @@
+{
+ "game": {
+  "slug": "sword-of-vermilion",
+  "title": "Sword of Vermilion",
+  "platform": "md",
+  "region": "na",
+  "model": "ntsc",
+  "sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+  "crc32": "ea1bc9ab"
+ },
+ "set": "seq-aries",
+ "shots": [
+  {
+   "id": "01_cast",
+   "category": "menu",
+   "caption": "Overworld, Magic, Cast: \"From which Book do you wish to cast a spell?\"",
+   "route": "@m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_menu_seq-aries_01_cast.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "9093e2983286cfd79ef3961f8d31f5a0857780bd"
+  },
+  {
+   "id": "02_towns",
+   "category": "system",
+   "caption": "Aries chosen: the towns it can reach (only Wyclif so far)",
+   "route": "@m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_system_seq-aries_02_towns.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "bf95660b283e8087044d35e8a06def535be03453"
+  },
+  {
+   "id": "03_fade",
+   "category": "system",
+   "caption": "Wyclif chosen: the view and the menus fade out",
+   "route": "@m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90,settle,c,!",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_system_seq-aries_03_fade.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "b4a3b0af94ca259cdba70d969246b60d61e0bd05"
+  },
+  {
+   "id": "04_warp_clip",
+   "category": "system",
+   "caption": "Clip: fade out, black screen, arrival at the gate of Wyclif",
+   "route": "@m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90,settle,c,rec:120:2:33",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "clip": {
+    "frames": 120,
+    "every": 2,
+    "kept": 61,
+    "poster": 33,
+    "seconds": 2.01,
+    "file": "sword-of-vermilion_md_na_system_seq-aries_04_warp_clip.gif"
+   },
+   "file": "sword-of-vermilion_md_na_system_seq-aries_04_warp_clip.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20"
+  },
+  {
+   "id": "05_arrival",
+   "category": "gameplay",
+   "caption": "In front of Wyclif's gate; the spell cost 13 MP (37 to 24)",
+   "route": "@m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90,settle,c,w120",
+   "settled": true,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_gameplay_seq-aries_05_arrival.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "40661cab47df2dfc3d6f1d59a362e7904b1cdec8"
+  },
+  {
+   "id": "06_enter_fade",
+   "category": "gameplay",
+   "caption": "A step into the gate: the view fades to black again",
+   "route": "@m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90,settle,c,w120,settle,FWD,!",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_gameplay_seq-aries_06_enter_fade.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "c3f674dcb96f24504dfcecf8a1524be60726ac5d"
+  },
+  {
+   "id": "07_wyclif",
+   "category": "gameplay",
+   "caption": "Inside Wyclif at the south gate",
+   "route": "@m_strong,poke:FFC463=04,poke:FFC464=00000002000e0005,c,w30,right,w20,c,w60,c,w60,settle,down*2,c,w90,settle,c,w120,settle,FWD,w150",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "sword-of-vermilion_md_na_gameplay_seq-aries_07_wyclif.png",
+   "rom_sha1": "c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2",
+   "captured": "2026-11-20",
+   "pixel_sha1": "a2435a49255275fe288b22d0c778b2d43535e795"
+  }
+ ]
+}
