@@ -1,6 +1,6 @@
 # Sword of Vermilion - shots: main
 
-Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2`. 101 shots. Contact sheet: [sword-of-vermilion_md_na_set_sheet.png](sword-of-vermilion_md_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f73ef5d2`. 113 shots. Contact sheet: [sword-of-vermilion_md_na_set_sheet.png](sword-of-vermilion_md_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -100,6 +100,18 @@ Platform md, region na, model ntsc, ROM SHA-1 `c18fc75e0c5fa0e98c8664903e978ec4f
 | gameplay_cave_entrance | gameplay | Overworld east of Parma: a stone cave entrance across the road | yes | [png](sword-of-vermilion_md_na_gameplay_gameplay_cave_entrance.png) |
 | map_cave_east | map | Cave east of Parma: its map in the panel, the prince at the entrance | yes | [png](sword-of-vermilion_md_na_map_map_cave_east.png) |
 | map_area_east | map | East of Parma: area map with hills to the south, marker on the road | yes | [png](sword-of-vermilion_md_na_map_map_area_east.png) |
+| boss_dragon_appears | boss | First boss: a dragon fades in over the pillared boss hall | no | [png](sword-of-vermilion_md_na_boss_boss_dragon_appears.png) |
+| boss_dragon | boss | Boss fight, side view: the prince faces the dragon; magic can't be used | no | [png](sword-of-vermilion_md_na_boss_boss_dragon.png) |
+| boss_dragon_strike | boss | Boss fight: the prince's sword meets the dragon's lunging head | no | [png](sword-of-vermilion_md_na_boss_boss_dragon_strike.png) |
+| boss_dragon_collapse | boss | The dragon's neck collapses to the floor, its head turning pale | yes | [png](sword-of-vermilion_md_na_boss_boss_dragon_collapse.png) |
+| boss_dragon_dissolve | boss | The defeated dragon, greyed out, dissolves line by line | no | [png](sword-of-vermilion_md_na_boss_boss_dragon_dissolve.png) |
+| boss_reward | battle | After the boss: "ryz takes 500 kims and 500 EXP." | yes | [png](sword-of-vermilion_md_na_battle_boss_reward.png) |
+| boss_ogre | boss | Boss: a hunched ogre in the boss hall (mid-game HP and MP) | yes | [png](sword-of-vermilion_md_na_boss_boss_ogre.png) |
+| boss_twin_skull | boss | Boss: a two-skulled winged beast spits a fireball at the prince | no | [png](sword-of-vermilion_md_na_boss_boss_twin_skull.png) |
+| boss_skeletons | boss | Boss: two skeleton knights with shields and a hooded sorcerer | no | [png](sword-of-vermilion_md_na_boss_boss_skeletons.png) |
+| boss_winged_demon | boss | Boss: a blue winged demon breathes fire on the prince | no | [png](sword-of-vermilion_md_na_boss_boss_winged_demon.png) |
+| boss_red_dragon | boss | Boss: a red dragon, a late recolour of the first boss | no | [png](sword-of-vermilion_md_na_boss_boss_red_dragon.png) |
+| boss_last | boss | The last boss in the table: a writhing mass of flesh and roots | no | [png](sword-of-vermilion_md_na_boss_boss_last.png) |
 | ending_mother | ending | Ending, white page: "Mother, let's go back to the village where I was raised." | yes | [png](sword-of-vermilion_md_na_ending_ending_mother.png) |
 | ending_embrace | ending | Ending: the prince and the princess, "Whenever evil oversteps its bounds..." | no | [png](sword-of-vermilion_md_na_ending_ending_embrace.png) |
 | credits_staff | credits | Staff roll over a starry sky and the sea: STAFF, DIRECTOR SADA | no | [png](sword-of-vermilion_md_na_credits_credits_staff.png) |

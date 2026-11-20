@@ -1,0 +1,14 @@
+01_cave | gameplay | In the cave east of Parma, lit by a Lantern, before the boss | @m_cave2_lit
+02_fade | boss | The cave view fades to black as the boss fight begins | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*2,!
+03_silhouette | boss | The boss hall: the dragon's dark silhouette appears | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*5,!
+04_appears | boss | The dragon and the prince fade in | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*6,!
+05_fight | boss | Boss fight: the prince faces the dragon | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*8,!
+06_strike | boss | The prince's sword meets the dragon's lunging head | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*15,right:100,c,!
+07_collapse | boss | Last hit: the dragon's neck collapses to the floor | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*15,poke:FFD108=0031,right:100,c,w20*3,!
+08_grey | boss | The defeated dragon turns grey | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*15,poke:FFD108=0031,right:100,c,w20*10,!
+09_dissolve_clip | boss | Clip: the defeated dragon greys out and dissolves | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*15,poke:FFD108=0031,right:100,c,w20*8,rec:200:2
+10_dissolve | boss | The dragon dissolves line by line | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*15,poke:FFD108=0031,right:100,c,w20*12,!
+11_empty | boss | The hall is empty, the prince stands alone | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*15,poke:FFD108=0031,right:100,c,w20*15,!
+12_reward | battle | "ryz takes 500 kims and 500 EXP." | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*15,poke:FFD108=0031,right:100,c,w20*16,w40*4,!
+13_levelup | battle | Level up: the status window opens by itself, level 6 | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*15,poke:FFD108=0031,right:100,c,w20*30,c,w300,!
+14_back | gameplay | Back in the cave, the fight over | @m_cave2_lit,freeze:FFC62C=00A2,poke:FFC800=FF,poke:FFC817=FF,w20*15,poke:FFD108=0031,right:100,c,w20*30,c,w300,c,w60,!
