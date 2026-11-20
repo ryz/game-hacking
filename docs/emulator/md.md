@@ -56,7 +56,9 @@ The 68000 address space, six hex digits: `poke:FF0123=09`, `"addr": "FF0123"` in
   `FFC0A4`): find what the game reads before poking it.
 - Code: `python3 tools/dis68k.py SLUG ADDR [N]` disassembles the ROM (capstone, installed by `setup_emu.sh md`);
   `dis68k.py SLUG --xref FFC818` lists every instruction that names a variable: the way to the code that reads
-  a story flag or starts a scene.
+  a story flag or starts a scene. To find what starts a scene: search the ROM for the 4-byte big-endian address
+  of its text (or `--xref` the `lea`), then `--xref` the handler to reach the state dispatcher and poke its state
+  word (Sword of Vermilion: ending and bosses found in ~15 calls).
 - `find` (RAM search) covers the 64 KiB of work RAM. `find --wide` compares 16-bit words, big-endian.
 - **Byte order is big-endian (68000).** RAM watches (`"size": 2`, `"fmt": "hex"`) and `set:FF0040=300:2` use it by
   default; write `:le` / `"fmt": "le"` only for the rare little-endian value.

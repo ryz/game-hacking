@@ -63,7 +63,13 @@ def main(argv):
     rom, names = load(argv[0])
     md = engine()
     if argv[1] == "--xref":
-        want = {int(a, 16) & 0xFFFFFF for a in argv[2:]}
+        want = set()
+        for a in argv[2:]:
+            v = int(a, 16) & 0xFFFFFF
+            if len(a) <= 4 and v >= 0x8000:         # C400 means RAM FFC400 (absolute-short form)
+                print("; %s taken as %06X (RAM)" % (a, v | 0xFF0000))
+                v |= 0xFF0000
+            want.add(v)
         n = 0
         for ins in md.disasm(rom[0x200:], 0x200):
             if ins.mnemonic.startswith("."):

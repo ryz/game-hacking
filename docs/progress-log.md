@@ -2,6 +2,14 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Sword of Vermilion: bosses and ending
+- Found through the code with `tools/dis68k.py`: main state word `FFC400` (0x12 = ending; set in play after the
+  Sixteen Rings are used at the right place, `FFC77E`), bosses requested by `FFC8NN=FF` + `FFC817=FF` (14 bosses,
+  setup 0x2A92, boss HP `FFD108`). `main` 96 -> 113 (7 bosses, the first one's intro, strike, defeat and reward,
+  ending pages and staff roll), new sets `seq-boss` 14 and `seq-ending` 12. Re-verified from an empty cache.
+- Tools: `dis68k.py --xref` takes `C400` as `FFC400`; scene-finding recipe in `docs/emulator/md.md`.
+- Open: where each boss is met in play, the ring quest on foot, Watling, message speed.
+
 ## 2026-11-20 - 68000 disassembler
 - Owner: install capstone. `tools/dis68k.py SLUG ADDR [N]` disassembles Mega Drive code; `--xref ADDR` lists
   every instruction naming a variable (absolute-short `$c818.w` included), with `game.json` watch names as

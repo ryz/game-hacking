@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Sword of Vermilion (Mega Drive, run 3: bosses and ending)
+- Task: first boss and the ending found through the code with dis68k, captured in main plus seq-boss and seq-ending.
+- Worked: dis68k --xref plus a ROM search for 4-byte pointers found both triggers in ~15 calls (ending text ->
+  state dispatcher FFC400 = 0x12; battle flag -> field loop boss request FFC8NN/FFC817); one preview --timeline
+  sheet each for ending and boss intro/defeat; all 14 boss indices on one preview sheet.
+- Friction: `--xref C400` gave an unrelated hit (needed FFC400); the dispatch's text address was 4 bytes early
+  (0x17722 vs 0x17726); `play.py find` twice without play in between gives 0 candidates without a hint;
+  preview --timeline applies to every -r route.
+- Proposed rule change: (1) dis68k: 4-digit addresses as FFxxxx, hint when an address points inside an
+  instruction/string; (2) md.md: recipe for finding what starts a scene; (3) playbook facts (written).
+- Corrected: none; coordinator re-verified from an empty cache: main 113/113, seq-boss 14/14, seq-ending 12/12;
+  boss and ending frames checked on a sheet. Bosses and ending are poked; boss 0 is not confirmed as the first
+  met in play.
+- Status: (1) 4-digit form built 2026-11-20, inside-instruction hint not built (backlog); (2) logged in md.md;
+  (3) logged. find/timeline friction: backlog.
+
 ### 2026-11-20 - Sword of Vermilion (Mega Drive, run 2: area maps, presentations)
 - Task: extend main with presentations and area maps; republish, lenses, playbook.
 - Worked: preview --timeline found intro, prologue, Aries and battle-start frames in a few looks; RAM diff around

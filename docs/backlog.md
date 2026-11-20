@@ -18,6 +18,8 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `intake.py` records a DOS ZIP's `dosbox*.conf` autoexec lines and cycles in `game.json` | 1 | Might and Magic II scout |
 | `cachecheck.py --show-diff NAME`: the first differing addresses between flat and cached state | 1 | Sword of Vermilion scout (a stack word, found by hand) |
 | `preview.py --repeat TOKENS N`: a sheet of the route after 1..N repetitions | 1 | Sword of Vermilion scout (one more step per line) |
+| `play.py find` warns when nothing ran since the last narrowing (0 candidates without a hint); `preview.py --timeline` per route, not per call | 1 | Sword of Vermilion capture run 3 |
+| `dis68k.py`: hint when an address points inside an instruction or string (pointer searches off by a few bytes) | 1 | Sword of Vermilion capture run 3 |
 | `snap` warns when the route has `freeze:` before one long `wN` (freezes are applied between tokens) | 3 | the guide says `w10*N`; a warning would catch it |
 | Contact sheet labels when frame sizes are mixed (SNES hi-res rows) | 1 | Shin Megami Tensei run 1 |
 | Macros used by published shots change those routes when edited: store expanded routes in `index.json`, or refuse the edit | 2 | today a rule in the emulator guide (new macro name) |
