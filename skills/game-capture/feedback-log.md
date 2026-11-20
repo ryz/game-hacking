@@ -12,6 +12,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-20 - Might and Magic II (Apple II), automap
+- Task: add the Cartographer automap to the main set: one map partly walked, filled maps (Middlegate, C2, cavern).
+- Worked: snapshotting 10000-1FFFF and 20000-2FFFF with peek and diffing around one step found the visited bits
+  in auxiliary RAM in ~3 calls; a 256-byte block with walls on every edge found the wall map at once; a walker on
+  emu.start/emu.play checking each step against the position byte gave a reproducible honest walk in one call.
+- Friction: play.py find/dump/diff did not cover aux RAM or the language card (own peek-dump diff); a poke into
+  page 2 looked ineffective because `m` rebuilds it (3 calls); shoot.py reports "NOT settled" for every shot of
+  this game (all screens animate).
+- Proposed rule change: apple2.md Memory: diff 10000-1FFFF too; raise the find/diff backlog row.
+- Corrected: coordinator reran --verify --only on the 4 new ids from an empty cache (4/4), looked at all four
+  maps; ran gamestable.py (README/status were stale after the game.json change).
+- Status: find/dump/diff range asked twice -> built 2026-11-20 (Apple II SEARCH = mapped 48K + aux + language
+  card; apple2.md updated, backlog row moved to done); "NOT settled" noise logged.
+
 ### 2026-11-20 - Might and Magic II (Apple II)
 - Task: capture `main` and `start` for Might and Magic II (Apple II), solve the year variable, try the Sheltem fight.
 - Worked: converting the DOS set's routes with a script gave ~150 working Apple II routes in three preview

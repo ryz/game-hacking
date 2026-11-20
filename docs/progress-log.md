@@ -22,6 +22,8 @@ Append-only, newest first.
   warp to all 60 areas, record layout, poked parties, save 01_start, 47 previewed shot lines.
 - Might and Magic II (Apple II) captured: `start` 45 (honest), `main` 216 (to Sheltem, year 800 via the century
   byte `2F7C9`), lenses; verified cold by the coordinator (45/45, 216/216).
+- Owner asked for a filled map or automap of Might and Magic II (Apple II): main 216 -> 220 (automap walked,
+  three areas filled by poking the visited bits). Apple II find/dump/diff now cover aux RAM and the language card.
 - Open: Wizardry II R)un/Q)uick/S)tatus, floor 6 fixed fights; Might and Magic II (Apple II) Sheltem fight not
   won (no ending), Earth/Water planes, Unlock/Use, hirelings.
 
