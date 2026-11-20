@@ -1,0 +1,39 @@
+# id | category | caption | route
+# The early game played honestly from power-on to the first save (no pokes, no warps).
+01_crack_note | boot | Power-on: the crack note of this release, waiting for a click | w700
+02_logo | boot | The Dungeon Master logo while the game loads (about 80 seconds) | w700,mouse1:10,w2000
+03_entrance | title | The entrance: ENTER, RESUME, QUIT | @entrance,HIDE
+04_doors_open | cutscene | ENTER: the doors swing open onto the first corridor | @entrance,AT:4:0:48:104,mouse1:4,w50,!
+05_hall_first_view | gameplay | Inside the Hall of Champions, no champions yet | @sd_dungeon,HIDE
+06_hall_walk | gameplay | Four steps in: the first corridor ends at a wall | @sd_dungeon,FWD*4,HIDE
+07_hall_inscription | gameplay | HALL OF CHAMPIONS carved into a wall | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,HIDE
+08_mirror_halk | gameplay | A mirror: Halk the Barbarian looks out | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,HIDE
+09_panel_halk | system | Halk's panel: his things, health 90, stamina 75, no mana | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,HIDE
+10_reincarnate | system | REINCARNATE: the new name RYZ typed | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,HIDE
+11_ryz_joins | system | RYZ REINCARNATED: the first champion of the party | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60,settle,HIDE
+12_mirror_tiggy | gameplay | Tiggy Tamal's panel: the most mana in the hall | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60,settle,TR,TR,FWD*3,TL,FWD*2,TR,FWD,TL,MIRROR,HIDE
+13_tiggy_joins | system | TIGGY RESURRECTED | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60,settle,TR,TR,FWD*3,TL,FWD*2,TR,FWD,TL,MIRROR,RESURRECT,w60,settle,HIDE
+14_panel_wuuf | gameplay | Wuuf the Bika's panel: a flask among his things | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60,settle,TR,TR,FWD*3,TL,FWD*2,TR,FWD,TL,MIRROR,RESURRECT,w60,settle,TR,FWD*2,TL,FWD*2,TL,FWD,TR,FWD,TL,FWD,TL,MIRROR,HIDE
+15_wuuf_joins | system | WUUF RESURRECTED: three champions | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60,settle,TR,TR,FWD*3,TL,FWD*2,TR,FWD,TL,MIRROR,RESURRECT,w60,settle,TR,FWD*2,TL,FWD*2,TL,FWD,TR,FWD,TL,FWD,TL,MIRROR,RESURRECT,w60,settle,HIDE
+16_panel_stamm | gameplay | Stamm Bladecaster's panel: an axe | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60,settle,TR,TR,FWD*3,TL,FWD*2,TR,FWD,TL,MIRROR,RESURRECT,w60,settle,TR,FWD*2,TL,FWD*2,TL,FWD,TR,FWD,TL,FWD,TL,MIRROR,RESURRECT,w60,settle,TL,FWD*2,TR,FWD,TL,MIRROR,HIDE
+17_party_four | system | STAMM RESURRECTED: a party of four | @sd_dungeon,FWD*4,TL,FWD*3,TL,FWD*5,TR,FWD*2,TR,FWD,TL,FWD*2,TR,FWD,TL,FWD,TR,FWD*5,TR,FWD*2,TR,MIRROR,REINCARNATE,type:ryz,w30,NAMEOK,w60,settle,TR,TR,FWD*3,TL,FWD*2,TR,FWD,TL,MIRROR,RESURRECT,w60,settle,TR,FWD*2,TL,FWD*2,TL,FWD,TR,FWD,TL,FWD,TL,MIRROR,RESURRECT,w60,settle,TL,FWD*2,TR,FWD,TL,MIRROR,RESURRECT,w60,settle,HIDE
+18_formation | system | Stamm and Tiggy swapped in the formation icons | @party,HIDE
+19_gate_open | gameplay | The gate at the hall's west end stands open now | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,HIDE
+20_apple | gameplay | Behind the gate: shackles and an apple | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,HIDE
+21_sconce | system | A torch in a sconce | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,TL,FWD*3,FWD,FWD,TR,HIDE
+22_torch | system | The torch in RYZ's hand | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,TL,FWD*3,FWD,FWD,TR,WALL,CLICK:0:0:22:32,w30,HIDE
+23_stairs_down | gameplay | The stairs down | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,TL,FWD*3,FWD,FWD,TR,WALL,CLICK:0:0:22:32,w30,TL,FWD,TR,HIDE
+24_level2 | gameplay | Level 2, lit by the torch | @level2
+25_inventory | inventory | RYZ's inventory: food, water, load | @level2,f1,w30,HIDE
+26_gate_mummy | gameplay | An iron gate with a button; a Mummy waits behind it | @level2,FWD,FWD,FWD,TR,HIDE
+27_gate_opened | gameplay | The button pressed: the gate rises, the Mummy comes | @level2,FWD,FWD,FWD,TR,CLICK:2:1:98:38,w20,HIDE,w100
+28_mummy_close | battle | The Mummy at the gate, arms raised | @s_mummy
+29_bash_menu | battle | RYZ's club: THROW or BASH | @s_mummy,ACT:4,HIDE
+30_bash_hit | battle | BASH: 21 damage, the Mummy crumbles | @s_mummy,ACT:4,AT:4:1:22:86,mouse1:8,HIDE,w18,!
+31_victory | gameplay | The way is clear | @s_mummy,ACT:4,AT:4:1:22:86,mouse1:8,HIDE,w200
+32_beyond_gate | gameplay | Behind the gate: things lying on the floor | @s_mummy,ACT:4,AT:4:1:22:86,mouse1:8,HIDE,w200,FWD,FWD,HIDE
+33_save_menu | save | Saving: the disk icon in RYZ's inventory opens the save menu | @s_mummy,ACT:4,AT:4:1:22:86,mouse1:8,HIDE,w200,SAVEMENU,HIDE
+34_blank_disk | save | FORMAT FLOPPY asks for a blank disk | @s_mummy,ACT:4,AT:4:1:22:86,mouse1:8,HIDE,w200,SAVEMENU,disk:2,w100,CLICK:0:2:114:48,w60,HIDE
+35_formatting | save | FORMATTING DISK . . . | @s_mummy,ACT:4,AT:4:1:22:86,mouse1:8,HIDE,w200,SAVEMENU,disk:2,w100,CLICK:0:2:114:48,w60,CLICK:1:1:98:94,HIDE,w1500,!
+36_saving | save | SAVING GAME . . . | @s_mummy,ACT:4,AT:4:1:22:86,mouse1:8,HIDE,w200,SAVEMENU,FORMAT,CLICK:0:1:114:94,HIDE,w150,!
+37_saved | gameplay | Saved; game disk back in the drive, the party walks on through the gate | @s_mummy,ACT:4,AT:4:1:22:86,mouse1:8,HIDE,w200,SAVENEW,settle,FWD,HIDE

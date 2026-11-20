@@ -4,6 +4,12 @@ Everything an agent needs to play this game efficiently: read it before playing,
 Status of each fact: **verified** (seen in the emulator, with the route) or **source** (manual/FAQ/wiki, not yet
 checked). Never delete a fact that turned out wrong: strike it and say what is true.
 
+Captured 2026-11-20 (game-capture): set `main` (to the ending: Lord Chaos fused, the Grey Lord, the final
+roll) and set `start` (power-on to the first save, honest). New here: the whole dungeon read from RAM
+(`tools/dungeon.py`, `design/maps.md`), a level warp by the stairs (`DL3`..`DL14`, checkpoints `l3`..`l14`), a
+same-level warp that keeps the formation (`GO`), action macros (`ACT`, `DO1`-`DO3`), the ending recipe
+(`FUSE`). Read "Capture run 2026-11-20" below first.
+
 Scouted 2026-11-20 (game-scout): mouse positioning worked out and put into macros, controls verified, the Hall of
 Champions mapped (23 mirrors), a party of four recruited and taken down to level 2 with a torch, an in-game save
 to a disk the game formatted itself, RESUME from that save, RAM map. Helper scripts of the scout:
@@ -42,8 +48,9 @@ level depth-first by the position bytes, `path.py` turns the walked graph into k
 
 ## Pointer: how to put the mouse on a screen spot (verified 2026-11-20)
 Dungeon Master is played with the mouse. `mouse:DX:DY` is relative, so every click starts from a known corner:
-- One `mouse:` token moves the pointer **at most 120 counts** (larger values are cut to 120, not spread over
-  frames: `mouse:-1000:-1000` moved only 60 px). 2 counts = 1 pixel, linear, no acceleration.
+- ~~One `mouse:` token moves the pointer **at most 120 counts** (larger values are cut to 120, not spread over
+  frames: `mouse:-1000:-1000` moved only 60 px).~~ Fixed in the backend on 2026-11-20: longer moves now arrive
+  in full (verified by the capture run with `ACT:134`); the macros still use moves of at most 120. 2 counts = 1 pixel, linear, no acceleration.
 - `HOME` = `mouse:-120:-120*6,w4` pushes the pointer into the top-left corner: its tip is then at screenshot pixel
   **(21,19)** (the DM screen's 320x200 sits at about (20,18) in the 360x287 picture).
 - `AT:A:B:C:D` = HOME, A moves of 120 counts right, B moves of 120 down, then C, D counts: tip at
@@ -70,6 +77,22 @@ Dungeon Master is played with the mouse. `mouse:DX:DY` is relative, so every cli
 | Save dialog: SAVE / QUIT / FORMAT FLOPPY / CANCEL | (78,126) / (185,126) / (78,163) / (185,163) | `SAVEBTN`, -, `FORMAT`, `SAVEDONE` |
 | Entrance RESUME | (285,101) | in `RESUME` |
 | Load dialogs OK | (180,162) | in `RESUME` |
+
+More spots (verified 2026-11-20, capture):
+
+| Spot | Pixel | Token |
+|---|---|---|
+| Inventory eye / mouth | (39,71) / (84,71) | eye held: `AT:0:0:36:104,mouse1:60,!` (statistics, or an object's name and weight when one is carried); mouth: `AT:1:0:6:104` then `mouse1` |
+| Inventory action hand / ready hand / pouch | (90,112) / (34,112) / (34,132) | `CLICK:1:1:18:66` / `CLICK:0:1:26:66` / `CLICK:0:1:26:106` |
+| Inventory ZZZ | (216,58) | `CLICK:3:0:30:78` |
+| Action button of champion 1..4 | x 263 / 285 / 307 / 328, y 121 | `ACT:4`, `ACT:48`, `ACT:92`, `ACT:134` (macro `ACT:C` = `CLICK:4:1:C:84,w10`) |
+| Action list rows 1..3 | (272,109) / (272,122) / (272,134) | `DO1`, `DO2`, `DO3` (full clicks) |
+| Spell caster tabs: Tiggy / Wuuf | (306,63) / (321,63) | `CLICK:4:0:90:88` / `CLICK:5:0:0:88` |
+| Floor object, front-left corner of the party's square | about (87,178) | `CLICK:1:2:12:78` (the gold key, a Screamer slice at (93,152): `CLICK:1:2:24:26`) |
+| Door/gate button on the right of the frame, one square ahead | (190,98) | `CLICK:2:1:98:38` |
+| Wall lock (keyhole) in front | (132,98) | `CLICK:1:1:102:38` |
+| Fountain in front | (130,112) | `CLICK:1:1:98:66` (one drink per click) |
+| Party bar name of champion 2 | (110,22) | `CLICK:1:0:58:6` (makes Tiggy leader) |
 
 ## Controls
 | Context | Button | Action | Status |
@@ -151,25 +174,59 @@ Other hall features: the "HALL OF CHAMPIONS" inscription on the wall south of (8
 (16,6)/(14,9)/(11,14)). Explored: 116 squares of the hall plus 17 behind the gate.
 
 ## Shot plan
-See `shots.txt` (plan lines with routes where the scout verified them; ids and categories per
-`docs/capture-guide.md`). Summary by category (about 60 planned):
-- boot 2 (crack note, logo while loading), title 1 (entrance doors), cutscene 1 (doors opening, a clip).
-- Hall of Champions: gameplay/env 4 (start corridor, inscription, mirror wall, gate), system 6 (champion
-  panel, reincarnate name entry, resurrect message, formation, leader change, gate open), content: several mirrors
-  of different champions (inventory-style panels, one per family: barbarian, lizard, ninja, wizard).
-- hud 1 (party bars, hands, spell panel, actions, arrows on level 2, pointer hidden).
-- inventory 4 (inventory with food/water, statistics via the eye, an object examined, a chest/scroll), system:
-  eating and drinking, sleeping (ZZZ), spell runes being recited, a cast spell (light, fireball later), a potion
-  made (Wuuf with a flask: VI), throwing, action menus of several weapons, a level-up message, a lever/button
-  opening a door, a pit, a teleporter, a pressure plate.
-- battle 4+ (first monsters on level 2 and below: Mummy, Screamer, Rockpile, Giant Scorpion...), boss 1-2 (Lord
-  Chaos needs the full game; a Red Dragon, Animated Armour or Demon), gameover 1 (party dead).
-- save 5 (save menu, formatting, saving, RESUME prompt, "GAME LOADED, READY TO PLAY").
-- env: plain corridors on levels 1, 2 and as deep as reached (`env_<level>_<what>`).
-- `start` set: power-on to the first save, played as above (no pokes): crack note, logo, entrance, doors, hall,
-  mirrors, the four champions, gate, torch, stairs, level 2, save. All of it is in the checkpoints already.
-How to reach deeper levels: play down by the stairs from `saved`/`resumed`; there is no level warp yet (see
-Shortcuts). Fights: RYZ and Stamm in front with club and axe; heal and cheat with the champion records.
+Done 2026-11-20: `shots.txt` is the replayable list of set `main` (published in `shots/main/`), the set `start`
+is in `shots/start/shots.txt`. Ticked from the scout's plan: [x] boot, title, doors clip; [x] hall views,
+mirrors (Halk, Hissssa, Tiggy, Wu Tse, Chani, Gothmog), panel, reincarnation, resurrection, party, leader,
+gate closed/open; [x] torch, stairs, level 2 lit and dark, magic light; [x] HUD; [x] inventories, statistics
+(eye held), examine; [x] sleep, freeze, runes, potion, throw, action menus, level up, door button, key and lock,
+pit and fall, fountain and drinking, eating; [x] battles with 22 creature kinds, bosses Lord Chaos and Red
+Dragon; [x] champion death, game over, The End; [x] save menu, blank disk, formatting, saving, RESUME, loaded;
+[x] env views on levels 1-6, 8, 10, 12, 14; [x] the ending (fusion, Grey Lord, final roll).
+Not taken: a teleporter (the ones checked are invisible), a pressure plate (nothing to see), a chest or scroll,
+the formation icon while dragged (not drawn in a captured frame), Swamp Slime, Giant Scorpion, Black Flame.
+
+## Capture run 2026-11-20 (what works, read first)
+- **Warp on a level: `GO:XX:YY`** (hex) pokes X and Y, then TL,TR redraw; it keeps the facing, add turns for the
+  wanted one. Never poke the facing with champions in the party (old macro `WARP`, kept for the hall shots made
+  before any champion joined): the champions' cells are compass corners and only the game's turns rotate them,
+  so a poked facing puts the casters in front and the fighters' blows never land (findings.md).
+- **Level warp by the stairs: `STAIRS:XX:YY`** pokes the party onto a staircase square and turns (turning on
+  stairs takes them). `DL3` .. `DL14` take the party from level n-1 to level n by one down-staircase each
+  (`design/maps.md` lists every staircase); checkpoints `l3` .. `l14` chain them from `saved` with the party
+  raised to mid-game values (`MID2`: health/stamina/mana and the fighter, wizard and priest experience of the
+  four records). Arrival facing per level (needed for `GO` turns): L3 E, L4 N, L5 W, L6 S, L7 N, L8 E, L9 S,
+  L10 S, L11 W, L12 S, L13 S, L14 S. All verified (shots `env_l3_corridor` .. `boss_red_dragon`).
+- **Monsters:** `tools/dungeon.py ROUTE` prints every level with the first creature group of each square; a
+  viewing square two steps away in a straight open line gave a good battle picture for 22 kinds
+  (`work/dm/genviews.py` did this automatically in the capture run). Groups move once their level is visited.
+- **Fights:** `ACT:4,DO2` = RYZ BASH (club), `ACT:134,DO2` = Stamm CHOP (axe). The damage starburst shows about
+  15-21 frames after the click: `ACT:4,AT:4:1:22:86,mouse1:8,HIDE,w18,!` (start set) or with `mouse1:2` +
+  `HIDE,w10,!` (main). A click on the action list with a short press (`mouse1:2`, `mouse1:4`) is sometimes not
+  taken; `mouse1:8` or the full `DO2` is.
+- **Level up on demand:** RYZ's fighter experience at record +0x5E: `poke:C18596=00003E7B` (15995) and one
+  blow -> "RYZ JUST GAINED A FIGHTER LEVEL!" (ranks at 500 x 2^n, inferred).
+- **Food/water:** poke the bars low first (`poke:C1857A=0300` food, `poke:C1857C=0200` water), then eat a
+  Screamer slice or click a fountain (level 5 arrival square faces one).
+- **Spells:** Tiggy's tab, then runes by position: power row LO..MON = positions 1-6, element row (YA VI OH FUL
+  DES ZO), form row (VEN EW KATH IR BRO GOR): ON FUL = `CLICK:4:0:30:110,CLICK:4:0:86:110` lights a dark level;
+  ON FUL IR (+ `CLICK:4:0:86:110` again) = fireball; Wuuf LO VI with an empty flask in his hand = potion.
+- **Game over:** `poke:C1856C=0001,poke:C186AC=0001,poke:C187EC=0001,poke:C1892C=0001` next to a Trolin
+  (level 3 (0,13)): skulls after about 600 frames, "The End" after about 1000.
+- **The ending (verified): macro `FUSE` from `@l12`.** It turns RYZ's club into the complete Firestaff (item
+  type byte of weapon record 88: `poke:C72919=2D`; 07 is the plain Firestaff), goes down to level 13, opens the
+  action list over FUSE, then in one frame puts the party at (15,1) facing east of Lord Chaos (who is at (16,1)
+  at that frame in this route), turns his three other neighbours and the party's own square into walls, and
+  clicks. Chaos escapes a FUSE if any neighbouring square is open, the party's square included (findings.md);
+  he moves even when boxed in, so the pokes and the click must share a frame. From the click: w120 blast,
+  w180 Lord Order, w240 fusion, w720 / w1500 / w2340 / w3120 the Grey Lord's four messages, about w4800 the final
+  roll of champions. A different route before `FUSE` moves Chaos elsewhere: find him with
+  `work/dm/chaos.py ROUTE 105f` (his group thing is 0x105F) and adapt the coordinates.
+- **Start set, honest:** the first fight is the Mummy behind the east gate of level 2: from `level2`
+  `FWD,FWD,FWD,TR` faces the gate, its button `CLICK:2:1:98:38` opens it, the Mummy walks up in about 300
+  frames (checkpoint `s_mummy`), one BASH kills it. West of the start: the door button at (1,0), then a gold key
+  on the floor of (0,2) for the lock at (0,3) opens the iron gate (1,3) (checkpoint `l2_gate`); the next
+  wooden door (3,13) has a window with a Screamer behind it and a lock at (2,12) that the topaz key from (1,9)
+  does not open (checkpoint `l2_door`; the right key not found).
 
 ## Strategy and walkthrough notes
 - Party (chosen 2026-11-20 for capture variety): **ryz** = Halk the Barbarian reincarnated (front left, club;
@@ -202,7 +259,10 @@ NAMEOK`. If more are reincarnated: condi, ebo, cubi (dispatch 2026-11-20). The t
 | What | How (tokens / prefix / code) | Source | Status |
 |---|---|---|---|
 | Same-level warp | `poke:C167D0=00XX,poke:C167D2=00YY,poke:C167CE=000F,w2,TL,TR` (X, Y, facing F; the turns redraw the view) | RAM (found here) | verified on level 1 (to Halk's mirror at (7,9) N) |
-| Level warp | poking the level word C167D4 alone does not switch the map (view and moves stay on the old map) | RAM | failed; open |
+| Level warp | poking the level word C167D4 alone does not switch the map (view and moves stay on the old map) | RAM | failed |
+| Level warp by stairs | `STAIRS:XX:YY` onto a down staircase, `DL3`..`DL14`, checkpoints `l3`..`l14` | RAM map (tools/dungeon.py) | verified 2026-11-20 to level 14 |
+| Same-level warp keeping the formation | `GO:XX:YY` + turns | RAM | verified (use instead of the facing poke once champions have joined) |
+| Ending | `@l12,FUSE` | RAM + play | verified 2026-11-20 |
 | Health / stamina / mana | champion records (RAM map) | RAM | verified (health and mana pokes shown on the inventory) |
 | Freeze | `esc` | game | verified |
 | Ready-made Amiga save | Aminet `game/hint/DungeonMSave`: a DMGAME.DAT with four Artisan-level champions on level 1 near the stairs (search summary) | https://aminet.net/package/game/hint/DungeonMSave | not fetched (host blocked); it would have to be written into a DungeonSave disk image as `DMGAME.DAT` |
@@ -214,6 +274,8 @@ NAMEOK`. If more are reincarnated: condi, ebo, cubi (dispatch 2026-11-20). The t
 |---|---|---|---|---|
 | `blank` (rom/saves/dungeon-master/blank.sav) | ZIP with `savedisk.adf`: 901120 zero bytes (an unformatted disk); becomes disk 2 | made here (python, see below) | 6da3c85156b80b24d804ddba108b235e06c0eb32 | verified: the game formats it |
 | `01_level2` (rom/saves/amiga/dungeon-master/01_level2.sav) | the formatted save disk with DMGAME.DAT: party of four on level 2 with a torch | `play.py export` after `SAVENEW` | 7b19b9b73f8f... (saves/README.md) | verified: RESUME loads it (`resumed`) |
+| `02_first_fight` (rom/saves/amiga/dungeon-master/) | start-set party after the Mummy at the east gate of level 2, saved in the game | `play.py export` after `SAVENEW` (route in saves/README.md) | saves/README.md | made 2026-11-20 |
+| `03_level13_firestaff` (rom/saves/amiga/dungeon-master/) | MID2 party on level 13 at the stairs, RYZ with the complete Firestaff (RAM-set) | `SAVEGAME` from `l13` | saves/README.md | made 2026-11-20 |
 Rebuild `blank.sav`: `python3 -c "import zipfile;z=zipfile.ZipFile('rom/saves/dungeon-master/blank.sav','w',zipfile.ZIP_DEFLATED);i=zipfile.ZipInfo('savedisk.adf',(1990,1,1,0,0,0));i.compress_type=zipfile.ZIP_DEFLATED;z.writestr(i,bytes(901120));z.close()"`.
 
 ### Saving and loading (verified 2026-11-20)
@@ -247,11 +309,25 @@ move between boots of other routes, so re-check with `work/scout/dungeon-master/
 | record +0x34 / +0x36 | 2 / 2 | health current / maximum | poke 77 -> "77/ 90" |
 | record +0x38 / +0x3A | 2 / 2 | stamina x10 current / maximum (749 = "74") | values |
 | record +0x3C / +0x3E | 2 / 2 | mana current / maximum | poke 33 -> "33/ 36" |
-| C63A02 (candidate) | | level 1 square map, column x=1? (bytes 0x90 door, then 0x2x corridors) | pattern search, unconfirmed |
+| ~~C63A02 (candidate)~~ | | ~~level 1 square map~~: packed data, not the map (2026-11-20) | - |
+| record +0x1C / +0x1D | 1 / 1 | champion's own facing / cell (0 NW, 1 NE, 2 SE, 3 SW: compass corners) | RAM 2026-11-20 |
+| record +0x42 / +0x44 | 2 / 2 | food / water (RYZ 1611 / 1500 at level 2) | RAM, bars change |
+| record +0x46 | 7 x 3 | statistics luck, strength, dexterity, wisdom, vitality, anti-magic, anti-fire: [maximum, current, minimum 30] | values = eye panel |
+| record +0x5C | 20 x 6 | skills: 2 bytes temporary + 4 bytes experience; 0 fighter, 1 ninja, 2 priest, 3 wizard, 4-19 hidden sub-skills | level-up test |
+| record +0xD4 | 30 x 2 | slots (thing words): 0 ready hand, 1 action hand, ... | RAM |
+| C779A2 | 14 x 16 | map descriptors: +0 offset of the squares, +6/+7 offset X/Y, +8 word height-1 (bits 15-11), width-1 (10-6), level | tools/dungeon.py |
+| C6E88C | 12366 | square bytes of all levels, column by column (x * height + y); type in bits 7-5 (0 wall, 1 corridor, 2 pit, 3 stairs, bit 2 = up, 4 door, low bits = state, 4 closed, 5 teleporter, 6 fake wall), bit 4 = things on the square. Poking a byte changes the square at once (walls for `FUSE`) | RAM |
+| C7764E / C766D2 | words | things-per-column running count / first thing of each square that has things | RAM |
+| C72AF2 | 257 x 16 | creature groups: +4 creature type (0 Giant Scorpion .. 23 Lord Chaos, 24 Red Dragon), +6 four health words, +14 bits 6-5 = count-1 | RAM |
+| C727B6 | 207 x 4 | weapons: +2 bits 6-0 item type (2 torch, 7 Firestaff, 0x17 club, 0x12 axe, 0x23 wand, 0x2D complete Firestaff); RYZ's club is record 88 (C72916) | RAM + shots |
+| C77A82 | 44 | dungeon header (start position 0x0861 = (1,3) facing south, 14 maps) | RAM |
 
 ## Emulation notes
 - A500 (Kickstart 1.3, 512K + 512K): runs the game from power-on through saving and resuming; nothing broken.
-- Mouse: one `mouse:` token moves at most 120 counts (60 lores px); `docs/emulator/amiga.md` says large moves
+- Mouse (2026-11-20, capture): since the backend change of 2026-11-20 a move above 120 counts arrives in full
+  (verified: `ACT:134` = `CLICK:4:1:134:84` lands on Stamm's action button at x 328). The scout's note below
+  describes the old behaviour.
+- Mouse (scout): one `mouse:` token moves at most 120 counts (60 lores px); `docs/emulator/amiga.md` says large moves
   arrive over a few frames, but they are cut. Not the game: on the AmigaDOS screen of the crack note
   (`w700`, then `mouse:N:30,w12`) +50 and +100 counts moved Intuition's pointer 50 and 100 hires pixels, +200 and
   +400 both stopped at +120. So the limit is in the emulator or front end (PUAE's per-frame mouse delta), not a
@@ -270,6 +346,9 @@ move between boots of other routes, so re-check with `work/scout/dungeon-master/
 | `level2` | level 2 at (3,0) facing east, ryz holding the torch, pointer hidden |
 | `saved` | `level2` after `SAVENEW`: the save disk holds the game, disk 1 back in DF0:, pointer hidden |
 | `resumed` | power-on with `sav:01_level2`, RESUME: the same party and place, loaded from the save |
+| `l2_gate`, `l2_door` | level 2 west: first door and the gold-key gate opened; before the windowed door (honest) |
+| `s_mummy` | start set: the east gate of level 2 opened, its Mummy at the gate (honest) |
+| `l3` .. `l14` | each level by the stairs warp, party at mid-game values (`MID2`) |
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -281,10 +360,12 @@ move between boots of other routes, so re-check with `work/scout/dungeon-master/
 | Unavailable | dmweb.free.fr, dungeon-master.com, tcrf.net (403), gamefaqs.gamespot.com (403), strategywiki.org (403), mocagh.org, aminet.net, discmaster.textfiles.com, gamerwalkthroughs.com, web.archive.org | the DM Encyclopaedia, manual PDFs, cheats, maps | 2026-11-20 |
 
 ## Open questions
-- A level warp: the game's own level-change routine or the stairs coordinates of each level (decode the level
-  maps; candidate map bytes at C63A02). Until then deeper levels are played down by the stairs.
+Answered 2026-11-20: a level warp exists (stairs warp); the eye panel is shot with a held button
+(`mouse1:60,!`); LO/ON FUL lights a dark level (shot `system_magic_light`); the ending is reachable (`FUSE`).
+Still open:
 - Gando (the 24th champion) was not found in the explored hall.
-- The eye (statistics) shows only while the button is held: can a shot catch it (`mouse1:N` releases before the
-  frame is taken)? Try `AT..,mouse1:200,!` or a held-button token.
-- LO FUL: cast and mana spent, but its light effect was not measured (the view was already lit by the torch).
 - How long a torch lasts; the dungeon's light falloff on deeper levels.
+- The key for the lock at level 2 (2,12) beside the windowed door (the topaz key from (1,9) does not fit).
+- Swamp Slime, Giant Scorpion and Black Flame were not in view at the warp points (groups move); Gando's mirror.
+- The `MID` macro (removed before publishing) wrote Tiggy's wizard experience to record +0x30 by mistake;
+  `MID2` writes it to +0x70. Nothing published uses `MID`.

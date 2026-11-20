@@ -32,8 +32,10 @@ spell runes, the champions' action buttons and six movement arrows at right; mov
 numeric keypad (verified). Champions are not created but chosen: resurrected as they were, or reincarnated with
 a new name and their skills turned into higher statistics (source: manual; verified: both work). Skills (fighter,
 ninja, priest, wizard) rise by use, spells are spoken as sequences of runes, light, food and water must be kept
-up (source: manual). The dungeon has 14 levels (source: search summaries); the first is the Hall of Champions
-(verified: 23 mirrors mapped). The game saves to a separate disk that it formats itself; a saved game is
+up (source: manual). The dungeon has 14 levels (RAM: [maps.md](maps.md)); the first is the Hall of Champions
+(verified: 23 mirrors mapped). The quest ends when Lord Chaos, trapped so that he cannot move, is fused with the
+complete Firestaff; Chaos and Lord Order become the Grey Lord again and a final roll shows the champions with
+their ranks (verified: the ending reached in the emulator, shots `ending_*`). The game saves to a separate disk that it formats itself; a saved game is
 reloaded with RESUME at the entrance (verified). This is version 3.60 for the Amiga (Psygnosis, 1992), with
 English, French and German texts on the disk (verified: ROM text).
 
@@ -43,6 +45,7 @@ English, French and German texts on the disk (verified: ROM text).
 | [systems.md](systems.md) | game-design lens: index of every feature, system and mechanic, with rule, details and shots |
 | [interface.md](interface.md) | UI/UX lens: conventions, inventory of every screen, menu, prompt and element, screen flow |
 | [content.md](content.md) | content lens: a reasonable variety of environments, opponents, items, equipment, abilities, people |
+| [maps.md](maps.md) | all 14 levels from memory: squares, stairs, doors, pits, teleporters, creature groups |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),

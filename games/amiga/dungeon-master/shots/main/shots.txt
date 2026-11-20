@@ -75,7 +75,7 @@ system_pick_up | system | A killed Screamer left a slice: picked up, SCREAMER SL
 inventory_feed | inventory | The Screamer slice held over RYZ's mouth | @saved,GO:0E:04,TL,TL,poke:C18596=00003E7B,ACT:4,DO2,w40,ACT:4,DO2,w40,ACT:4,DO2,w40,CLICK:1:2:24:26,w20,poke:C1857A=0300,f1,w30,AT:1:0:6:104
 system_eat | system | Slice eaten: RYZ's food bar has grown | @saved,GO:0E:04,TL,TL,poke:C18596=00003E7B,ACT:4,DO2,w40,ACT:4,DO2,w40,ACT:4,DO2,w40,CLICK:1:2:24:26,w20,poke:C1857A=0300,f1,w30,AT:1:0:6:104,mouse1,w30,HIDE
 gameplay_pit | gameplay | Level 2: an open pit in the floor ahead | @saved,GO:07:07,TR,HIDE
-system_pit_fall | system | Through the pit onto level 3: every champion hurt by the fall (damage on bars) | @saved,MID,w10,GO:07:07,TR,kp8,w24,!
+system_pit_fall | system | Through the pit onto level 3: every champion hurt by the fall (damage on bars) | @saved,MID2,w10,GO:07:07,TR,kp8,w24,!
 gameplay_fountain | gameplay | Level 5: a lion-head fountain on the wall | @l5,TL,TR,HIDE
 system_drink | system | Three clicks on the fountain with an empty hand: RYZ's water bar refilled | @l5,TL,TR,poke:C1857C=0200,CLICK:1:1:98:66,w30,CLICK:1:1:98:66,w30,CLICK:1:1:98:66,w30,f1,w30,HIDE
 system_champion_dead | system | Level 3: a Trolin kills RYZ, his torch falls, bones on the floor | @l3,GO:00:0D,TR,poke:C1856C=0001,poke:C186AC=0001,poke:C187EC=0001,poke:C1892C=0001,w150,!
@@ -95,3 +95,18 @@ env_l8_corridor | gameplay | Level 8: a wide open area, the floor stretching int
 env_l10_corridor | gameplay | Level 10: a corridor opening into a wide room on the left | @l10,GO:1C:18,TR,HIDE
 env_l12_corridor | gameplay | Level 12: a long corridor, a small ornament on the left wall | @l12,GO:0F:05,TL,HIDE
 env_l14_corridor | gameplay | Level 14, the deepest: a long corridor | @l14,GO:0B:04,TR,HIDE
+boss_chaos_fused | boss | FUSE with the Firestaff: Lord Chaos, trapped, engulfed in its blast | @l12,FUSE,w120,!
+ending_lord_order | ending | Lord Order, the white half, appears where Chaos stood | @l12,FUSE,w180,!
+ending_fusion | ending | Chaos and Order merge in a whirl of runes | @l12,FUSE,w240,!
+ending_grey_lord | ending | The Grey Lord made whole: THANK YOU MY FRIENDS. YOU HAVE BANISHED CHAOS... | @l12,FUSE,w720,!
+ending_truth | ending | ONLY BY LEARNING THE TRUTH ... THE TRUE NATURE OF THE FIRESTAFF. | @l12,FUSE,w1500,!
+ending_harmony | ending | BY YOUR BRAVE DEEDS I AM MADE WHOLE AGAIN AND HARMONY IS RESTORED | @l12,FUSE,w2340,!
+ending_names | ending | YOUR NAMES WILL BE RECORDED IN THE GREAT HALL ... | @l12,FUSE,w3120,!
+ending_champions | ending | The final roll: the four champions with their portraits and skill ranks | @l12,FUSE,w5000
+gameplay_lock_key | gameplay | Level 2: a keyhole in the wall, a gold key on the floor, a gate to the left | @level2,TR,TR,FWD,CLICK:2:1:98:38,w60,FWD,FWD,TL,FWD,FWD,TL,FWD,TR,HIDE,settle,SL,HIDE,settle,SR,HIDE
+system_key_taken | system | The key picked up: GOLD KEY shown above the spell panel | @level2,TR,TR,FWD,CLICK:2:1:98:38,w60,FWD,FWD,TL,FWD,FWD,TL,FWD,TR,HIDE,settle,SL,HIDE,settle,SR,HIDE,settle,CLICK:1:2:12:78,w20
+system_key_used | system | The key turned in the lock: the gate on the left has opened | @l2_gate
+gameplay_door_window | gameplay | A wooden door with a barred window, a Screamer seen through it | @l2_door
+system_spell_fireball | system | Level 3: Tiggy has spoken ON FUL IR (fireball), a Trolin in front | @l3,GO:00:0E,TR,CLICK:4:0:90:88,w20,CLICK:4:0:30:110,w20,CLICK:4:0:86:110,w20,CLICK:4:0:86:110,w20,HIDE
+battle_spell_cast | battle | Fireball cast: the ball of flame flies at the Trolin, which hits Stamm for 12 | @l3,GO:00:0E,TR,CLICK:4:0:90:88,w20,CLICK:4:0:30:110,w20,CLICK:4:0:86:110,w20,CLICK:4:0:86:110,w20,AT:4:1:58:14,mouse1:8,HIDE,w4,!
+inventory_tiggy_late | inventory | Tiggy on level 12: health 93/97, stamina 86/96, mana 126/131 | @l12,f2,w30,HIDE

@@ -1,12 +1,13 @@
 # Dungeon Master - shots: main
 
-Platform amiga, region eu, model A500, ROM SHA-1 `8a45c26b29997e3d1351588420d3ea739d3851cd`. 96 shots. Contact sheet: [dungeon-master_amiga_eu_set_sheet.png](dungeon-master_amiga_eu_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform amiga, region eu, model A500, ROM SHA-1 `8a45c26b29997e3d1351588420d3ea739d3851cd`. 111 shots. Contact sheet: [dungeon-master_amiga_eu_set_sheet.png](dungeon-master_amiga_eu_set_sheet.png). Originals here, 3x nearest-neighbour copies with the same names in `3x/`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
 | boot_crack_note | boot | Crack note of this release in an AmigaDOS window, waiting for a click | yes | [png](dungeon-master_amiga_eu_boot_boot_crack_note.png) [3x](3x/dungeon-master_amiga_eu_boot_boot_crack_note.png) |
 | boot_logo | boot | Dungeon Master logo while the game loads from disk | yes | [png](dungeon-master_amiga_eu_boot_boot_logo.png) [3x](3x/dungeon-master_amiga_eu_boot_boot_logo.png) |
 | title_entrance | title | Entrance doors with ENTER, RESUME and QUIT | yes | [png](dungeon-master_amiga_eu_title_title_entrance.png) [3x](3x/dungeon-master_amiga_eu_title_title_entrance.png) |
+| cutscene_doors_open | cutscene | ENTER clicked: the entrance doors swing open onto the first corridor (clip) | clip | [png](dungeon-master_amiga_eu_cutscene_cutscene_doors_open.png) [3x](3x/dungeon-master_amiga_eu_cutscene_cutscene_doors_open.png) [gif](dungeon-master_amiga_eu_cutscene_cutscene_doors_open.gif) [gif 3x](3x/dungeon-master_amiga_eu_cutscene_cutscene_doors_open.gif) |
 | hall_start | gameplay | First view in the Hall of Champions: a corridor, no champions yet | yes | [png](dungeon-master_amiga_eu_gameplay_hall_start.png) [3x](3x/dungeon-master_amiga_eu_gameplay_hall_start.png) |
 | hall_inscription | gameplay | HALL OF CHAMPIONS carved into the wall | yes | [png](dungeon-master_amiga_eu_gameplay_hall_inscription.png) [3x](3x/dungeon-master_amiga_eu_gameplay_hall_inscription.png) |
 | hall_mirror | gameplay | A champion's portrait in its mirror: Halk the Barbarian | yes | [png](dungeon-master_amiga_eu_gameplay_hall_mirror.png) [3x](3x/dungeon-master_amiga_eu_gameplay_hall_mirror.png) |
@@ -59,8 +60,8 @@ Platform amiga, region eu, model A500, ROM SHA-1 `8a45c26b29997e3d1351588420d3ea
 | battle_fireball | battle | Level 9: a Vexirk after its fireball hit all four champions (damage on the bars) | yes | [png](dungeon-master_amiga_eu_battle_battle_fireball.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_fireball.png) |
 | battle_pain_rat | battle | Level 9: a Pain Rat | yes | [png](dungeon-master_amiga_eu_battle_battle_pain_rat.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_pain_rat.png) |
 | battle_ruster | battle | Level 9: a Ruster | yes | [png](dungeon-master_amiga_eu_battle_battle_ruster.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_ruster.png) |
-| battle_giggler | battle | Level 10: a Giggler beside two Skeletons | yes | [png](dungeon-master_amiga_eu_battle_battle_giggler.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_giggler.png) |
-| battle_trolins | battle | Level 11: two Trolins side by side | yes | [png](dungeon-master_amiga_eu_battle_battle_trolins.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_trolins.png) |
+| battle_giggler | battle | Level 10: a Giggler beside two Skeletons | no | [png](dungeon-master_amiga_eu_battle_battle_giggler.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_giggler.png) |
+| battle_trolins | battle | Level 11: two Trolins side by side | no | [png](dungeon-master_amiga_eu_battle_battle_trolins.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_trolins.png) |
 | battle_water_elemental | battle | Level 11: a Water Elemental, a pool on the floor | yes | [png](dungeon-master_amiga_eu_battle_battle_water_elemental.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_water_elemental.png) |
 | battle_giant_wasps | battle | Level 11: two Giant Wasps | no | [png](dungeon-master_amiga_eu_battle_battle_giant_wasps.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_giant_wasps.png) |
 | battle_animated_armour | battle | Level 12: two Animated Armours | yes | [png](dungeon-master_amiga_eu_battle_battle_animated_armour.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_animated_armour.png) |
@@ -69,6 +70,7 @@ Platform amiga, region eu, model A500, ROM SHA-1 `8a45c26b29997e3d1351588420d3ea
 | battle_demon | battle | Level 13: a Demon hurling a fireball down the corridor | no | [png](dungeon-master_amiga_eu_battle_battle_demon.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_demon.png) |
 | boss_lord_chaos | boss | Level 13: Lord Chaos, the final opponent, in his robe | yes | [png](dungeon-master_amiga_eu_boss_boss_lord_chaos.png) [3x](3x/dungeon-master_amiga_eu_boss_boss_lord_chaos.png) |
 | boss_red_dragon | boss | Level 14: the Red Dragon guarding the deepest level | yes | [png](dungeon-master_amiga_eu_boss_boss_red_dragon.png) [3x](3x/dungeon-master_amiga_eu_boss_boss_red_dragon.png) |
+| gameplay_door_closed | gameplay | Level 2: a closed wooden door, its button on the right of the frame | yes | [png](dungeon-master_amiga_eu_gameplay_gameplay_door_closed.png) [3x](3x/dungeon-master_amiga_eu_gameplay_gameplay_door_closed.png) |
 | system_door_opened | system | The button pressed: the door has slid up into the ceiling | yes | [png](dungeon-master_amiga_eu_system_system_door_opened.png) [3x](3x/dungeon-master_amiga_eu_system_system_door_opened.png) |
 | system_throw | system | RYZ throws his club at the Screamers: the club in flight | no | [png](dungeon-master_amiga_eu_system_system_throw.png) [3x](3x/dungeon-master_amiga_eu_system_system_throw.png) |
 | system_potion | system | Wuuf casts LO VI with an empty flask in hand: a healing potion | yes | [png](dungeon-master_amiga_eu_system_system_potion.png) [3x](3x/dungeon-master_amiga_eu_system_system_potion.png) |
@@ -90,7 +92,6 @@ Platform amiga, region eu, model A500, ROM SHA-1 `8a45c26b29997e3d1351588420d3ea
 | save_saving | save | SAVING GAME . . . | yes | [png](dungeon-master_amiga_eu_save_save_saving.png) [3x](3x/dungeon-master_amiga_eu_save_save_saving.png) |
 | save_resume_prompt | save | RESUME: PUT THE GAME SAVE DISK IN DF0: with LOAD SAVED GAME and CANCEL | yes | [png](dungeon-master_amiga_eu_save_save_resume_prompt.png) [3x](3x/dungeon-master_amiga_eu_save_save_resume_prompt.png) |
 | save_loaded | save | GAME LOADED, READY TO PLAY. | yes | [png](dungeon-master_amiga_eu_save_save_loaded.png) [3x](3x/dungeon-master_amiga_eu_save_save_loaded.png) |
-| gameplay_door_closed | gameplay | Level 2: a closed wooden door, its button on the right of the frame | yes | [png](dungeon-master_amiga_eu_gameplay_gameplay_door_closed.png) [3x](3x/dungeon-master_amiga_eu_gameplay_gameplay_door_closed.png) |
 | env_l3_corridor | gameplay | Level 3: a plain corridor with a side opening | yes | [png](dungeon-master_amiga_eu_gameplay_env_l3_corridor.png) [3x](3x/dungeon-master_amiga_eu_gameplay_env_l3_corridor.png) |
 | env_l4_corridor | gameplay | Level 4: a corridor with a small ornament on the right wall | yes | [png](dungeon-master_amiga_eu_gameplay_env_l4_corridor.png) [3x](3x/dungeon-master_amiga_eu_gameplay_env_l4_corridor.png) |
 | env_l5_shackles | gameplay | Level 5: shackles on the left wall of a corridor | yes | [png](dungeon-master_amiga_eu_gameplay_env_l5_shackles.png) [3x](3x/dungeon-master_amiga_eu_gameplay_env_l5_shackles.png) |
@@ -99,6 +100,20 @@ Platform amiga, region eu, model A500, ROM SHA-1 `8a45c26b29997e3d1351588420d3ea
 | env_l10_corridor | gameplay | Level 10: a corridor opening into a wide room on the left | yes | [png](dungeon-master_amiga_eu_gameplay_env_l10_corridor.png) [3x](3x/dungeon-master_amiga_eu_gameplay_env_l10_corridor.png) |
 | env_l12_corridor | gameplay | Level 12: a long corridor, a small ornament on the left wall | yes | [png](dungeon-master_amiga_eu_gameplay_env_l12_corridor.png) [3x](3x/dungeon-master_amiga_eu_gameplay_env_l12_corridor.png) |
 | env_l14_corridor | gameplay | Level 14, the deepest: a long corridor | yes | [png](dungeon-master_amiga_eu_gameplay_env_l14_corridor.png) [3x](3x/dungeon-master_amiga_eu_gameplay_env_l14_corridor.png) |
-| cutscene_doors_open | cutscene | ENTER clicked: the entrance doors swing open onto the first corridor (clip) | clip | [png](dungeon-master_amiga_eu_cutscene_cutscene_doors_open.png) [3x](3x/dungeon-master_amiga_eu_cutscene_cutscene_doors_open.png) [gif](dungeon-master_amiga_eu_cutscene_cutscene_doors_open.gif) [gif 3x](3x/dungeon-master_amiga_eu_cutscene_cutscene_doors_open.gif) |
+| boss_chaos_fused | boss | FUSE with the Firestaff: Lord Chaos, trapped, engulfed in its blast | yes | [png](dungeon-master_amiga_eu_boss_boss_chaos_fused.png) [3x](3x/dungeon-master_amiga_eu_boss_boss_chaos_fused.png) |
+| ending_lord_order | ending | Lord Order, the white half, appears where Chaos stood | yes | [png](dungeon-master_amiga_eu_ending_ending_lord_order.png) [3x](3x/dungeon-master_amiga_eu_ending_ending_lord_order.png) |
+| ending_fusion | ending | Chaos and Order merge in a whirl of runes | yes | [png](dungeon-master_amiga_eu_ending_ending_fusion.png) [3x](3x/dungeon-master_amiga_eu_ending_ending_fusion.png) |
+| ending_grey_lord | ending | The Grey Lord made whole: THANK YOU MY FRIENDS. YOU HAVE BANISHED CHAOS... | yes | [png](dungeon-master_amiga_eu_ending_ending_grey_lord.png) [3x](3x/dungeon-master_amiga_eu_ending_ending_grey_lord.png) |
+| ending_truth | ending | ONLY BY LEARNING THE TRUTH ... THE TRUE NATURE OF THE FIRESTAFF. | yes | [png](dungeon-master_amiga_eu_ending_ending_truth.png) [3x](3x/dungeon-master_amiga_eu_ending_ending_truth.png) |
+| ending_harmony | ending | BY YOUR BRAVE DEEDS I AM MADE WHOLE AGAIN AND HARMONY IS RESTORED | yes | [png](dungeon-master_amiga_eu_ending_ending_harmony.png) [3x](3x/dungeon-master_amiga_eu_ending_ending_harmony.png) |
+| ending_names | ending | YOUR NAMES WILL BE RECORDED IN THE GREAT HALL ... | yes | [png](dungeon-master_amiga_eu_ending_ending_names.png) [3x](3x/dungeon-master_amiga_eu_ending_ending_names.png) |
+| ending_champions | ending | The final roll: the four champions with their portraits and skill ranks | yes | [png](dungeon-master_amiga_eu_ending_ending_champions.png) [3x](3x/dungeon-master_amiga_eu_ending_ending_champions.png) |
+| gameplay_lock_key | gameplay | Level 2: a keyhole in the wall, a gold key on the floor, a gate to the left | yes | [png](dungeon-master_amiga_eu_gameplay_gameplay_lock_key.png) [3x](3x/dungeon-master_amiga_eu_gameplay_gameplay_lock_key.png) |
+| system_key_taken | system | The key picked up: GOLD KEY shown above the spell panel | yes | [png](dungeon-master_amiga_eu_system_system_key_taken.png) [3x](3x/dungeon-master_amiga_eu_system_system_key_taken.png) |
+| system_key_used | system | The key turned in the lock: the gate on the left has opened | yes | [png](dungeon-master_amiga_eu_system_system_key_used.png) [3x](3x/dungeon-master_amiga_eu_system_system_key_used.png) |
+| gameplay_door_window | gameplay | A wooden door with a barred window, a Screamer seen through it | yes | [png](dungeon-master_amiga_eu_gameplay_gameplay_door_window.png) [3x](3x/dungeon-master_amiga_eu_gameplay_gameplay_door_window.png) |
+| system_spell_fireball | system | Level 3: Tiggy has spoken ON FUL IR (fireball), a Trolin in front | no | [png](dungeon-master_amiga_eu_system_system_spell_fireball.png) [3x](3x/dungeon-master_amiga_eu_system_system_spell_fireball.png) |
+| battle_spell_cast | battle | Fireball cast: the ball of flame flies at the Trolin, which hits Stamm for 12 | no | [png](dungeon-master_amiga_eu_battle_battle_spell_cast.png) [3x](3x/dungeon-master_amiga_eu_battle_battle_spell_cast.png) |
+| inventory_tiggy_late | inventory | Tiggy on level 12: health 93/97, stamina 86/96, mana 126/131 | yes | [png](dungeon-master_amiga_eu_inventory_inventory_tiggy_late.png) [3x](3x/dungeon-master_amiga_eu_inventory_inventory_tiggy_late.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

@@ -8,7 +8,7 @@ party | Hall of Champions: ryz (Halk reincarnated), Tiggy, Wuuf, Stamm resurrect
 level2 | Level 2 (dungeon proper) at the foot of the stairs, facing east; ryz holds a torch; pointer hidden | @party,TR,FWD*2,TR,FWD*3,TL,FWD*2,TR,FWD*3,TL,FWD,FWD,FWD,TL,FWD*3,FWD,FWD,TR,settle,CLICK:1:1:100:42,w30,CLICK:0:0:22:32,w30,settle,TL,FWD,TR,FWD,w60,FWD,TR,settle,HIDE,settle
 saved | level2 after an in-game save to the formatted save disk (disk 2, DungeonSave: DMGAME.DAT); game disk back in DF0: | @level2,SAVENEW,settle,HIDE,settle
 resumed | The save 01_level2 loaded with RESUME at the entrance (save disk = disk 2, then the game disk back); party on level 2, pointer hidden | sav:01_level2,pow,TITLE,settle,RESUME,HIDE,settle
-l3 | Level 3 by the stairs warp (DL3) from saved, party raised to mid-game values (MID) | @saved,MID,w10,DL3
+l3 | Level 3 by the stairs warp (DL3) from saved, party raised to mid-game values (MID2) | @saved,MID2,w10,DL3
 l4 | Level 4 by the stairs warp | @l3,DL4
 l5 | Level 5 by the stairs warp | @l4,DL5
 l6 | Level 6 by the stairs warp | @l5,DL6
@@ -20,6 +20,6 @@ l11 | Level 11 by the stairs warp | @l10,DL11
 l12 | Level 12 by the stairs warp | @l11,DL12
 l13 | Level 13 (Lord Chaos's level) by the stairs warp | @l12,DL13
 l14 | Level 14 (the Red Dragon's level) by the stairs warp | @l13,DL14
-s_gate | Start set: level 2, the first door opened by its button, the gold key turned in the lock: the iron gate is open | @level2,TR,TR,FWD,CLICK:2:1:98:38,w60,FWD,FWD,TL,FWD,FWD,TL,FWD,TR,HIDE,settle,SL,HIDE,settle,SR,HIDE,settle,CLICK:1:2:12:78,w20,settle,CLICK:1:1:102:38,w60,HIDE,settle
-s_door | Start set: level 2, in front of a wooden door with a window, a Screamer behind it | @s_gate,SL,FWD,FWD,FWD,SR,FWD,FWD,SL,SL,SL,FWD,FWD,SR,SR,FWD,FWD,SR,FWD,FWD,TL,FWD,FWD,HIDE,settle
+l2_gate | Level 2, west: the first door opened by its button, the gold key turned in the lock: the iron gate is open | @level2,TR,TR,FWD,CLICK:2:1:98:38,w60,FWD,FWD,TL,FWD,FWD,TL,FWD,TR,HIDE,settle,SL,HIDE,settle,SR,HIDE,settle,CLICK:1:2:12:78,w20,settle,CLICK:1:1:102:38,w60,HIDE,settle
+l2_door | Level 2, in front of a wooden door with a window, a Screamer behind it | @l2_gate,SL,FWD,FWD,FWD,SR,FWD,FWD,SL,SL,SL,FWD,FWD,SR,SR,FWD,FWD,SR,FWD,FWD,TL,FWD,FWD,HIDE,settle
 s_mummy | Start set: level 2, east gate opened by its button, a Mummy has come up to the party | @level2,FWD,FWD,FWD,TR,CLICK:2:1:98:38,w20,HIDE,w100,settle,w200,settle
