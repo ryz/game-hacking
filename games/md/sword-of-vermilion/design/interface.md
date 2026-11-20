@@ -55,6 +55,10 @@ as **Observation:** with the reason, never as a fact.
 | Cave view | screen | cave square | explore | first-person stone walls, minimap icon | as overworld | black without light | `gameplay_cave_dark`, `gameplay_cave_lit`, `env_cave_corridor` | - |
 | Chest and door messages | message | Open / Take | loot | "You opened the chest. There's Candle inside!" | C | - | `system_open_chest`, `system_take`, `system_open_door`, `system_open_money`, `system_seek_chest`, `system_seek_person` | Seek names what stands in front |
 | Battle screen | screen | encounter -> overworld | fight | side view, HP/MP/MAGIC bar | D-pad, C, A | fade out at the end | `battle_start`, `battle_first`, `battle_attack`, `battle_magic`, `battle_goblins`, `battle_cyclopes` | - |
+| Boss screen | screen | boss square in a cave -> cave (won) | boss fight | the pillared hall, the boss in full size, the battle bar with MAGIC "CAN'T USE" | D-pad, C | fade through black, the boss rises as a silhouette; no boss HP bar; on defeat it greys and dissolves | `boss_dragon_appears`, `boss_dragon`, `boss_dragon_strike`, `boss_dragon_dissolve`, `seq-boss` | **Observation:** the only feedback of a hit is the boss's reaction; nothing shows how much is left |
+| Boss reward message | message | boss defeated -> status window (level-up) or cave | reward | "ryz takes 500 kims and 500 EXP." in a blue box over the hall | C | typed out; C goes on | `boss_reward` | - |
+| Ending pages | transition | ending -> staff roll | story close | black text on white (two pages), then the embrace picture with four text pages on the right | none (timed, about 300 frames a page) | - | `ending_mother`, `ending_embrace`, `seq-ending` | - |
+| Staff roll | transition | ending pages -> END | credits | names scrolling up over stars and the sea; the player's name under PLAYER; a pad-2 hint at the end; END | none | stays on END | `credits_staff`, `credits_player`, `ending_end` | the hint "put in your pad on the 2P side and push A B C Start" points at the hidden menu |
 | Revival | message | HP 0 -> church | failure | "Arise, brave warrior! ..." | C | - | `gameover_revived`, `31_revived` (start) | - |
 | HUD panels | hud element | always outside towns | state | KIM, EXP, HP/MHP, MP/MMP, MAGIC (readied spell) | - | MAGIC reads "nothing" with no spell readied | `env_overworld_road`, `env_overworld_parma` | - |
 
@@ -63,6 +67,8 @@ as **Observation:** with the reason, never as a fact.
   - title -> Continue -> slot list -> church of the save
 - Town <-> doors (houses, shops, inn, church) ; town gate <-> overworld
 - Overworld -> encounter -> battle -> overworld (win, escape) or church (death)
+- Cave boss square -> boss hall -> reward message -> (status window) -> cave
+- Sixteen Rings used at the last place -> ending pages -> staff roll -> END
 - Overworld <-> cave (entrance square / ladder) ; overworld -> town square of another town
 - Any field screen -> C -> command window -> sub-menus -> message box -> B back
 
@@ -74,4 +80,3 @@ field, the same bottom bar, no enemy names or HP shown **(verified)**.
 
 ## Open questions
 - Where Message Speed (ROM text) is set; whether Start does anything in the field.
-- The boss screen layout (not reached).

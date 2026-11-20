@@ -9,7 +9,7 @@ Check: `python3 tools/lenses.py md/sword-of-vermilion`. Shots: set `main` unless
 | Kind | In the game (count if known) | Shown here | Full list |
 |---|---|---|---|
 | Environments | 14 towns, overworld maps, caves **(ROM text: town table)** | 2 towns, 5 overworld views, 2 caves | [../playbook.md](../playbook.md) Game structure |
-| Opponents | not counted | green slimes, blue slimes, goblins | - |
+| Opponents | 86 encounter groups (0-0x55) and 14 bosses **(code)** | green slimes, blue slimes, goblins, 6 poked groups, 7 boss pictures | playbook code map |
 | Items | 44 named items **(ROM text, decoded table)** | Herbs, Candle, Lantern | playbook RAM map (item ids) |
 | Equipment | 20 swords, 20 shields, 17 armours incl. cursed and duplicates **(ROM text)** | Bronze Sword; shop list of 2 shields and 2 armours | - |
 | Abilities / spells | 23 spells **(ROM text)** | Aero, Volti, Aries, Ferros, Sangua | - |
@@ -25,6 +25,8 @@ Check: `python3 tools/lenses.py md/sword-of-vermilion`. Shots: set `main` unless
 | Overworld meadow | west of the cave turn-off | open grass, scattered pines, mountains | `env_overworld_meadow`, `env_overworld_north` |
 | Overworld hills | south of Parma | the road between hills | `env_overworld_hills`, `env_overworld_parma` |
 | Cave (stone) | south of Wyclif; east of Parma | rounded stone pillars, ladder, barred doors | `gameplay_cave_lit`, `gameplay_cave_door`, `env_cave_corridor`, `gameplay_cave_entrance` |
+| Boss hall | every boss fight | grey pillars over red brick, crouching gargoyle statues, the same hall for all 14 bosses | `boss_dragon`, `boss_ogre` |
+| Ending and staff roll | after the last boss | white text pages, the embrace picture in a stone arch, a starry sky over the sea | `ending_mother`, `ending_embrace`, `credits_staff`, `ending_end` |
 | Battle field (forest) | every battle so far | tree trunks at the top, grass | `battle_first`, `battle_goblins` |
 | Area maps (panel) | overworld and caves | the maps drawn small: pines, roads, hills, town icons; cave walls as stone | `map_area_wyclif`, `map_area_hills`, `map_area_east`, `map_cave_south`, `map_cave_east` |
 
@@ -40,6 +42,13 @@ Check: `python3 tools/lenses.py md/sword-of-vermilion`. Shots: set `main` unless
 | Mushroom creatures | (type 0x38 poked) | purple caps, 8 | spit spores **(verified)** | `battle_mushrooms` |
 | Beast-man with fire | (type 0x34 poked) | a lion-like creature, single | showers the field with fireballs **(verified)** | `battle_beast_fire` |
 | Giant crawlers | (type 0x50 poked) | spiked heads with long segmented bodies, 2 | crawl across the field **(verified)** | `battle_crawlers` |
+| Dragon (boss 0) | boss hall, first in the boss table | purple dragon with orange spines, long neck | lunges with its head; 1000 HP, 500 kims and 500 EXP **(RAM, verified)** | `boss_dragon`, `boss_dragon_strike`, `boss_reward` |
+| Ogre (boss 1; pink recolour boss 10) | boss hall | hunched pale ogre | stands at the right edge **(verified)** | `boss_ogre` |
+| Two-skulled beast (boss 2, 3; red recolour 11) | boss hall | winged body with two skulls | spits fireballs across the hall **(verified)** | `boss_twin_skull` |
+| Skeleton knights (boss 4; green recolour 12) | boss hall | two skeletons with round shields and a hooded sorcerer | the skeletons rise from the floor and advance **(verified)** | `boss_skeletons` |
+| Winged demons (boss 5, 6, 7) | boss hall | blue, red and green winged demons | breathe fire (red, purple, green) at the prince **(verified)** | `boss_winged_demon` |
+| Dragons (boss 8, 9) | boss hall | gold and red recolours of boss 0 | as boss 0 **(verified)** | `boss_red_dragon` |
+| Last boss (13) | boss hall, right after boss 12 | a mass of flesh and roots | stretches toward the prince **(verified picture)** | `boss_last` |
 
 ## 4. Items and equipment
 | Item | Type | Got from | What it does | Shots |
@@ -78,5 +87,5 @@ Check: `python3 tools/lenses.py md/sword-of-vermilion`. Shots: set `main` unless
 | Old man in the cave | kept the Ring of Wisdom for Blade | cave south of Wyclif | `dialogue_ring_keeper`, `gameplay_ring_keeper` |
 
 ## Open questions
-What exists but was not seen: bosses, rings, later towns (Watling and beyond), most equipment and spells. A
+What exists but was not seen: the bosses' real places, rings, later towns (Watling and beyond), most equipment and spells. A
 route east of Parma reaches the next cave (`m_cave2_lit`); poked money (FFC620) buys later gear.

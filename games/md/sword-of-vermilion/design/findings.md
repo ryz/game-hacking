@@ -41,3 +41,19 @@ is pressed (`save_church_menu`, `32_priest_menu` in set start).
 - Encounter types 0x56 and above (and 0x80-0xFF) crash or hang the battle loader **(verified)**: no range check.
 - The battle HP readout can show 0 while HP is frozen at 33: the panel is drawn from the value before the
   freeze is applied again **(verified: `w10*28` frames)**.
+
+## The boss-start routine clears the byte before the boss's flag
+**Behavior:** the code that starts a boss fight (ROM 0x2A92, again at 0xEB22) finds the first non-zero byte in
+FFC800-FFC80F (the boss index), then clears FFC817 and `-2(a0)`, which is the byte *before* the found one (a0
+points one past it), and then clears FFC800-FFC80F anyway. The extra write lands on FFC7FF for boss 0.
+**Intended:** probably `-1(a0)` (clear the found flag); harmless because the whole block is cleared next.
+**Confidence:** (code) read with `tools/dis68k.py`; not traced in play.
+**Impact:** none seen (FFC7FF's use is unknown).
+
+## Boss 3 is boss 2 again
+**Behavior:** poking boss index 2 and 3 gives the same two-skulled beast picture at the same moment (preview of
+all 14 indices, 2026-11-20); both point at the same setup routine (0x594) in the table at 0x3694.
+**Intended:** two placements of the same boss (the game has 14 table slots for fewer distinct bosses; 8-12 are
+recolours of 0, 1, 2 and 4).
+**Confidence:** (verified) picture; stats not compared.
+**Impact:** none.

@@ -14,42 +14,35 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   to first control (~4500 frames); `PAGE` = `c,w90` (one dialogue page at Normal speed); `CONTINUE` = title ->
   Continue -> Saved Game 1 -> "Your game is ready" -> in front of the priest.
 - **Overworld macros:** `FWD` = `up:8,w40` (one step forward), `TL` / `TR` = `left:8,w60` / `right:8,w60` (turn 90 degrees).
-- **Checkpoint chain:** title -> name -> start -> t_door -> t_church -> t_blade_in -> t_blade_room -> blade ->
-  wyclif -> tavern -> church -> church_menu -> saved; continue (from the .sav); wyclif -> t_north_road;
-  tavern -> t_south_west -> overworld (no weapon); t_south_west -> weapon_shop -> shop_list -> sword -> field
-  -> battle -> escaped. All 23 reproduce
-  (`tools/cachecheck.py`). The routes before `wyclif` are exploratory (they wander); they are correct, not short.
+- **Checkpoints:** 48, all reproduce (`tools/cachecheck.py`); boot chain title -> ... -> saved, sword -> field ->
+  battle (table "Checkpoints" below). Routes before `wyclif` wander: correct, not short.
 - **Controls:** C = confirm / field command window / **sword swing in battle** (one swing per press: holding
   C does nothing); B = back/close and delete on the keyboard; Start = title choice and ends naming. A and B do
   nothing in battle. Overworld: up = step forward, left/right = turn. Battle: D-pad moves freely; **walking off
   the left (or right) edge escapes** (verified left).
-- **Leaving Wyclif:** the south gate (tile 0D,2B) after Blade has spoken: stand on it, then a fresh `down`
-  (`w20,down:32,w300`). Before Blade it does nothing. A man by the well (west of the inn) says "Be sure to buy
-  armor, a weapon, and a shield before you leave the village."
-- **First battle:** `@field,FWD*8,TR,FWD*7,w100`: a green slime appears on the road at step 3 after the turn and
-  meets the prince at step 7; side-view battle with about eight slimes. Without a weapon (or pressing only
-  A/B) the prince dies in ~600 frames and is revived at the Wyclif church with half his money ("Arise, brave
-  warrior! Our world needs you! But half your money ...").
+- **Leaving Wyclif:** the south gate (tile 0D,2B) after Blade has spoken: stand on it, then a fresh `down`.
+- **First battle:** `@field,FWD*8,TR,FWD*7,w100` (green slimes); without a weapon the prince dies in ~600 frames
+  and wakes in the Wyclif church with half his money.
 - **Traps that cost calls:**
   - **Doors and stairs fire only on a fresh press** made while standing on the door/stair tile: walk onto it,
     then `w20,up:16` (or the direction of the exit) again. Holding the direction into the door does nothing.
-  - **Every door in Wyclif is locked** ("Sorry, you can't open that!") until Blade has spoken; Blade's house
-    is the only open doorway at first (top-left of the village, tile 09,0B; Blade is upstairs: ladder at the
-    top-left of the ground floor, out again: upstairs top tile + `left`, then the front door at the bottom).
-  - Town movement: 16 frames per tile; `play.py` settles between calls change routes: a route typed into
-    `preview.py` can stop elsewhere than the same keys in `play.py` (seen leaving the tavern). Copy routes
-    from `play.py route` / checkpoints.txt.
+  - **Every door in Wyclif is locked** until Blade has spoken (his house, tile 09,0B, is open; he is upstairs).
+  - Town movement: 16 frames per tile; copy routes from `play.py route` / checkpoints.txt (settles matter).
   - Text types slowly at Normal speed and C does not complete a page; `mash` lost pages. Use `PAGE*N`.
   - Position pokes (FFC606/FFC608) are overwritten at once: the real position lives elsewhere (open).
-  - **Shop dialogs:** after a purchase "Anything else for you today?" Yes returns to Buy / Sell / Stop with the
-    cursor where it was: a blind `down,c` sold the sword offer ("Is 30 kims all right?"). Look before each step.
-  - A state loaded mid-battle (`@battle`) and played on to a lost battle differed in memory from the same route
-    replayed from power-on (same picture): the death/revival is a shot route (`gameover_revived`), not a
-    checkpoint. Re-verify such shots with `shoot.py --verify`.
+  - **Shop dialogs:** after a purchase the cursor stays where it was: a blind `down,c` sold the sword. Look.
+  - End checkpoints outside battles (a state loaded mid-battle can differ from a replay in a stack word).
   - The title and most field screens never settle (blinking cursor, animated water/NPCs): "NOT settled" is normal.
-- **State:** captured 2026-11-20: sets `start` (35, honest, to the first save), `main` (96) and `seq-aries` (7: Aries
-  cast -> fade -> Wyclif gate, with a clip) published and verified. Reached: Parma, the Ring of Wisdom (old man,
-  cave south of Wyclif), the Cave of Troy entrance map. Not reached: a boss, Watling, the ending, message speed.
+- **State:** captured 2026-11-20: sets `start` (35, honest, to the first save), `main` (113), `seq-aries` (7),
+  `seq-ending` (12) and `seq-boss` (14) published and verified. Reached: Parma, the Ring of Wisdom, the Cave of Troy
+  entrance; every boss and the ending by poke (code map below). Not reached on foot: a boss square, Watling.
+- **Ending (round 4):** `@saved,poke:FFC400=0012,w60` then timed pages (`w300*N,!`: N=2 mother page, 6 embrace,
+  16 STAFF, 30 PLAYER ryz, 35 END). Start it from an interior (`@saved`): from the overworld a stray red sprite
+  (the map marker) stays on screen through the whole ending.
+- **Any boss (round 4):** in the overworld or a cave, `poke:FFC8NN=FF,poke:FFC817=FF` (NN = boss 00-0D); the field
+  loop starts the boss fight at once (~160 frames of fade-in; controls from ~300). Boss HP word at
+  FFD108 (= object at (FFCC14).l + 0x28; boss 0: 1000); `poke:FFD108=0031` then `right:100,c` from
+  `w20*15` kills boss 0 in one hit. Shots use `@m_cave2_lit` (cave east of Parma) as the place.
 - **Maps (round 3):** one flag byte per map, FFC820 + y*16 + x (map x/y = FFC666/FFC668; Wyclif's south map is
   (0,7), Parma (1,4)). Poke the byte *before* entering the map (inside a town, or before crossing an edge): the
   panel is drawn on map entry, not on a step. Mirror of Atlas (item 0x23) = all 256 flags; Titania's Mirror
@@ -63,17 +56,10 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   `@field,FWD*8,TR,FWD*6,poke:FFC68B=24,freeze:FFC62C=0021,FWD,w10*16,!`. 0x56 and above crash. At `m_strong`
   the group is fixed earlier (the poke before the last step did nothing). FFC0A4 looks like a mode byte
   (0 title, 1 name, 9 interior, 10 overworld, 11 battle, 12 cave) but poking it changes nothing.
-- **Main-set chain (capture 2026-11-20):** `m_strong` (from `@battle`: EXP poked to 2417, battle won with HP frozen
-  -> level 5, 162 HP, 3424 kims) -> `m_cave1` (cave south of Wyclif, dark) -> `m_cave_lit` (2 Herbs, Candle, Lantern
-  poked, Lantern used) -> `m_cave_door`/`m_cave_inner`/`m_cave_chest`/`m_cave_west`; `m_strong` -> `m_north1` ->
-  `m_north2` -> `m_parma` -> `m_parma_inn`, `m_inn_offer`; `m_magic_shop` -> `m_magic_list` -> `m_spells_bought` ->
-  `m_ferros_ready` -> `m_parma_out` -> `m_battle_parma` (Ferros readied), `m_east1` -> `m_cave2_gate` -> `m_cave2_lit`.
-  Start set: `s_saved` (first battle lost honestly, revived, saved in Saved Game 1).
-- **Walking the overworld and caves without looking:** the current 16x16 map sits in a 48x32 window of bytes at
-  FF9000 (row-major, 48 wide; 0 = open road/floor, 1 trees, 2 hills/water, 5 cave wall, 0F town, other values =
-  special squares: town/cave entrances, barred doors 6). `tools/go.py @CP 16 16 TX TY` (game folder) does a BFS
-  and prints a route, fighting battles on the way (SW macro, HP frozen). The window offset of the current map is
-  usually (16,16) but the window re-centres when a map edge is crossed: re-dump and re-plan at each new map.
+- **Main-set chain:** `m_strong` (level 5, 162 HP, 3424 kims; overworld) -> caves south of Wyclif (`m_cave*`),
+  Parma (`m_parma*`, magic shop, Ferros readied), `m_cave2_lit` (cave east of Parma, lit). Start set: `s_saved`.
+- **Walking without looking:** the map is a 48x32 byte window at FF9000 (0 open, 1 trees, 2 hills, 5 cave wall,
+  0F town, others special squares); `tools/go.py @CP 16 16 TX TY` (game folder) plans a BFS route; re-plan per map.
 - **Battle:** `SW` = `up:10,c,w2,down:10,c,w2` (swing while dodging). A = cast the readied spell (Ferros 1 MP).
   Battle flag: FFC550 = FF during a battle. Level-ups happen when the battle ends; the status window opens itself.
 - **Traps (capture):** menu cursor moves right after `c,w60` are dropped: put `settle` before `down*N` (Aries, Lantern).
@@ -178,7 +164,9 @@ Routes in `shots.txt` (22 lines verified by `preview.py`, the rest planned as co
 - [x] `system_aries_towns`, `system_lantern`; area maps (2026-11-20 round 3: `map_*`, mirrors, map gift); travel (`system_aries_arrival`, `system_griffin_wing`, set `seq-aries`)
 - [x] presentations: intro (`cutscene_intro_rise`, `cutscene_title_letters`), all four prologue pages, battle start fade, Ring of Wisdom scene
 - [ ] Sangua cast; town entry/exit and cave entry are plain fades (`seq-aries` 06 shows one), not shot separately
-- [ ] `boss_first` - the first boss (Cave of Troy guardians? trigger unknown); ending (text at ROM 0x17722, staff 0x179CA; trigger unknown); `options_message_speed`; Watling ...
+- [x] `boss_dragon*` (boss 0: appear, fight, strike, collapse, dissolve, reward), six more bosses, set `seq-boss` (2026-11-20 round 4, poked trigger)
+- [x] ending pages, staff roll, END (`ending_*`, `credits_*`, set `seq-ending`; poked state)
+- [ ] the real boss squares in caves; `options_message_speed`; Watling ...
 Fastest ways: the `saved` checkpoint for town shots; stats by poke (RAM map) before fights; town warps with
 the Aries spell once the spell slot RAM is known (Action Replay lists name "All Towns Available With Aries").
 
@@ -208,7 +196,7 @@ rows, nothing persists.
 | Money | `poke:FFC620=00000473` (4-byte BCD) | AR code FFC620/FFC622 (search snippet) | verified (status screen KIM 473) |
 | EXP | `poke:FFC624=00000062` (4-byte BCD); max EXP code FFC624:00FF "levels to 31 on the overworld" | snippet | verified (EXP 62 shown); level-up unverified |
 | HP / MHP | `FFC62C` / `FFC62E` words, binary | AR 270F codes | read verified (33/33), poke untested |
-| MP / MMP, STR, AC, INT, DEX, LUK | words at FFC630, FFC632, FFC634, FFC636, FFC638, FFC63A, FFC63C | AR list (snippet lists LUCK at FFC63E) | read verified at FFC630-FFC63C (1,1,4,8,7,103,6); FFC63E = 0 |
+| MMP / MP (FFC630 is the maximum: the battle bar shows FFC632 first), STR, AC, INT, DEX, LUK | words at FFC630, FFC632, FFC634, FFC636, FFC638, FFC63A, FFC63C | AR list (snippet lists LUCK at FFC63E) | read verified at FFC630-FFC63C (1,1,4,8,7,103,6); FFC63E = 0 |
 | Caves always lit | `gs:FFC560:0001` | AR (snippet) | unverified |
 | Invincible | Game Genie/ROM `01A242:4A78`, `01A20E:4A78` (ROM word patches) | snippet | unverified (needs a `rom:` variant with a raw word patch) |
 | Infinite HP GG | `AL4T-AA74` | snippet | unverified |
@@ -231,7 +219,7 @@ loaded by `@continue` (verified).
 | FFC624 | 4 | EXP, BCD | verified by poke |
 | FFC628 | 4 | Next level EXP, BCD (90 at level 1) | read |
 | FFC62C / FFC62E | 2 / 2 | HP / MHP | read |
-| FFC630 / FFC632 | 2 / 2 | MP / MMP | read |
+| FFC630 / FFC632 | 2 / 2 | MMP / MP (corrected round 4: poking 84 / 71 showed "MP. 71 / 84" in the boss bar) | poke, verified |
 | FFC634-FFC63C | 2 each | STR, AC, INT, DEX, LUK | read |
 | FFC64C | 4+ | name, ASCII, FF-terminated ("ryz") | read |
 | FFC662 / FFC664 | 2 / 2 | overworld square x / y within the current 16x16 map (hex); facing is FFC60D (0 N, 2 W, 4 S, 6 E) | diff over a step (round 2); the map number is open |
@@ -246,9 +234,32 @@ loaded by `@continue` (verified).
 | FFC55F | 1 | set to FF by a mirror use (meaning unknown) | diff |
 | FFC720 / FFC818 | 1 / 1 | story flags: Blade has spoken / Ring of Wisdom received (choose the town line tables) | ROM table 0x1EB0C + poke, verified |
 | FFC68B | 1 | enemy group type of the next encounter (0 green slime, 1 blue slime, 0x0A goblins, ... 0x55) | diff over three battles, verified by poke |
+| FFC400 | 2 | main state (dispatcher at ROM 0x1486, table 0x14A8, 0x16 entries): 0x0E/0x0F in the game (F runs the sub-state), 0x12 = start the ending, 0x13 = ending running | code + poke, verified |
+| FFC412 | 2 | field sub-state (table 0x183A, 0x2E entries): 0x12-0x13 overworld/cave walking, 0x15 cave entry, 0x14 town entry, 0x16 field loop, 0x18-0x1A battle, 0x1B level-up window, 0x21-0x22 boss fight | code + peek |
+| FFC800-FFC80F, FFC817 | 1 each | boss request: FFC8NN = FF (boss NN) plus FFC817 = FF; the field loop (0x275A) then starts boss NN (0x2A92) | code + poke, verified |
+| FFC534 | 2 | current boss index (0-13) | code + peek |
+| FFD108 | 2 | boss 0's HP (the boss object at (FFCC14).l, HP at +0x28, attack at +0x2C) | code + RAM, verified |
+| FFC77E | 1 | set when the Sixteen Rings are used at the last place (ROM 0x1B02A): starts the ending | code |
 | FFC0A4 | 1 | mode-like byte (0 title, 1 name, 6 town start, 9 interior, 10 overworld, 11 battle, 12 cave, 0x18 at a ladder); writes ignored | diff |
 | FFC685 | 1 | counts steps and turns on the overworld (reset by a battle); encounter counter? | diff, unconfirmed |
 | 200001 ... (odd bytes) | | Saved Game 1 starts with the name | peek after saving |
+
+## Code map (68000, `python3 tools/dis68k.py sword-of-vermilion ADDR`; round 4, 2026-11-20)
+| ROM | What |
+|---|---|
+| 0x1474 / 0x1486 | main state dispatcher on FFC400 (`andi #$1F`, `jsr (table 0x14A8, d0*4)`): 0 init, 1-4 SEGA/title/attract, 5-7 continue, 8-0x0A new game/prologue, 0x0B-0x0D, 0x15 (from the title, unknown: a hidden mode?), 0x0E/0x10 field init, 0x0F/0x11 field (sub-state dispatcher 0x181A), 0x12 ending start (0x17E6), 0x13/0x14 idle |
+| 0x181A | field sub-state dispatcher on FFC412 (table 0x183A) |
+| 0x273E | field loop (sub-state 0x16): checks FFC817 (boss request, -> 0x21), encounter counter FFC68E/FFC685 (-> 0x18 battle) |
+| 0x2832 | battle setup: encounter group from table 0x23A7C (overworld, by map y*16+x) or 0x23AFC (caves, by FFC556) into FFC684 |
+| 0x2A92 | boss setup: first non-zero FFC800+N -> FFC534, clears FFC800-80F, calls the per-boss routine (table 0x3694) |
+| 0xB7AC | boss stats by index (table 0xB7C4): HP into +0x28 of the boss object (boss 0: 1000, boss 8: 5000), attack +0x2C |
+| 0xD094 / 0xD116 | boss reward message, 8 bytes per boss (kims, EXP) |
+| 0xEB02-0xEB22 | after boss 12 (flag FFC777): boss 13 at once |
+| 0x21206-0x2126E | cave events that request bosses 5, 6, 7 unless FFC76D-FFC76F (their defeated flags) are set |
+| 0x4594 | overworld/cave special square: value 0x10-0x8F = cave (FFC556 = value-0x10, sub-state 0x15), 0x90+ = town (FFC40C = low nibble), FF = sub-state 0x17 |
+| 0x1B02A | Use of the Sixteen Rings in town 0x0F, building 0x0A, tile (0x15,4): message 0x26FC4, FFC77E = FF |
+| 0x1A44E | after that message: FFC77E set -> FFC400 = 0x12 |
+| 0x16F82 / 0x16FD8 | ending task: sub-steps on FFC390 (table 0x16FEC, 20 steps), timer FFC392; text 0x17726 (pages), staff roll 0x179CA |
 
 ## Emulation notes
 - Model `ntsc`; picture 320x224 for the game, **256x224 for the name keyboard** (H32).
@@ -322,3 +333,15 @@ loaded by `@continue` (verified).
 - NPCs walk: a Talk route only reproduces with the exact waits; the dialogue shot replays from `@overworld`.
 - Dead ends for the boss/ending: no 68000 disassembler in the container (installing capstone was refused); the
   encounter byte above 0x55 crashes (0x81 gives a green screen); FFC0A4 writes are ignored.
+
+## Capture 2026-11-20 round 4 (bosses and ending, through the code)
+- Method: the ending text at 0x17726 (not 0x17722: that is the end of a routine) is loaded by `lea` at 0x1709E inside
+  the ending task (0x16F82); `--xref 16F82` gave the handler of main state 0x12 (0x17E6), `--xref FFC400` the
+  dispatcher and the one real setter (0x1A46E, after the Sixteen Rings message). For bosses, `--xref FFC550`
+  (battle flag) led to the field loop 0x273E, which tests FFC817 before the encounter counter: the boss request.
+- `--xref` needs the full address (`FFC400`); `C400` finds nothing.
+- All 14 boss indices start cleanly from the overworld or a cave; the boss returns to where it was started. Boss
+  3 = boss 2; 8-12 are recolours. Boss names are not in the ROM text.
+- A boss started from `@m_cave2_lit` with HP frozen (`freeze:FFC62C=00A2`) never hurts the shot; the frozen HP
+  still shows hits between tokens (`boss_winged_demon` shows 313/512).
+- No in-game save was made this round (bosses and ending are poked; nothing to save for the owner).
