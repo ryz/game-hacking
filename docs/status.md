@@ -112,9 +112,11 @@ Current snapshot; history in `progress-log.md`.
   `tools/puae-debug.patch` makes a loaded state continue on the exact frame (the core ran a frame inside its
   state load) and fixes a crash of the core without a frontend log interface. Real games need the owner's
   Kickstart ROMs in `rom/kickstart/` (1.3 and 3.1 A1200 supplied 2026-11-20, in this container only). First
-  game: Dungeon Master v3.60 (`games/amiga/dungeon-master/`, cracked ADF, A500): registered, plays into the
-  dungeon, checkpoints `entrance` and `dungeon` (cold rebuild verified); no save disk yet, not scouted, no
-  shots. Not supported: `.ipf`, hard disk/WHDLoad, CD32/CDTV, write-protected disks. Notes:
+  game: Dungeon Master v3.60 (`games/amiga/dungeon-master/`, cracked ADF, A500): scouted 2026-11-20, playbook,
+  pointer macros, 7 checkpoints to a party of four on level 2 with an in-game save and RESUME (all rebuilt cold
+  and matching), save `01_level2` in `rom/saves/amiga/dungeon-master/` (uncommitted), 57-line shot plan; not
+  captured. Open there: level warp, Gando's mirror, the eye panel, strategy sources (fan sites refuse
+  automated access). Not supported: `.ipf`, hard disk/WHDLoad, CD32/CDTV, write-protected disks. Notes:
   `docs/emulator/amiga.md`.
 
 - Wizardry I-V on the Apple II (2026-11-19, queue halted by the owner after two games' worth of work):

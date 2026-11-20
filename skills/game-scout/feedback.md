@@ -28,7 +28,8 @@ Never delete entries.
 - Corrected: coordinator measured the mouse limit on the test disk (up to about 128 counts arrive, the rest of a
   larger step is lost) and changed the backend instead of only the doc: a long move now goes out at 120 counts a
   frame (test in `test_amiga_backend`); the scout's macros use at most 120 per token, so its routes are
-  unchanged in principle; a cold rebuild of all 7 checkpoints against its cache is being run.
+  unchanged: a cold rebuild of all 7 checkpoints with the new backend matched its cached frames and position
+  bytes; the `resumed` frame shows the four champions on level 2.
 - Status: (1) and (2) promoted 2026-11-20 into `docs/emulator/amiga.md` (owner-facing platform doc, not the
   skill); (3) open.
 

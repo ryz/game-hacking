@@ -40,7 +40,7 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | `games/apple2/wizardry-2/` | Apple II (1982, two disks) | scouted 2026-11-19: Wizardry I party moved over with the game's utility, 39 checkpoints to the ending, RAM map, floor warp, six floor maps; not captured |
 | `games/apple2/wizardry-3/`, `wizardry-4/`, `wizardry-5/` | Apple II | registered 2026-11-19 (2, 6 and 9 disk sides; all boot to the title); not scouted |
 | `games/sms/phantasy-star/` | Master System (US/EU release, v1.2 header) | screenshot set (109, all three planets and most bosses; ending not reached), battles set (12), four dungeon sequences, three lens documents, warp/dungeon/fight/party macros, ROM table tools, save |
-| `games/amiga/dungeon-master/` | Amiga (v3.60, cracked ADF, A500 with Kickstart 1.3) | registered 2026-11-20: plays from power-on into the dungeon, checkpoints `entrance` and `dungeon`; no save disk yet, not scouted |
+| `games/amiga/dungeon-master/` | Amiga (v3.60, cracked ADF, A500 with Kickstart 1.3) | scouted 2026-11-20: playbook, pointer macros, 7 checkpoints to a party of four on level 2 with in-game save and RESUME, RAM map, 57-line shot plan; not captured |
 | `games/nes/deep-dungeon-3/` | Famicom (Japanese) | screenshot set (74, to the ending), 16 floor maps + towns, design reference, saves |
 
 ## Rules (all work)

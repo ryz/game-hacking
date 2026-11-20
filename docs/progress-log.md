@@ -2,6 +2,19 @@
 
 Append-only, newest first.
 
+## 2026-11-20 - Dungeon Master (Amiga) scouted; Amiga mouse moves fixed
+- game-scout run: playbook, pointer macros `HOME`/`AT`/`CLICK` with `tools/at.py` (pointer pushed into a corner,
+  then measured offsets; 2 counts = 1 pixel), Hall of Champions mapped by a walker on the position bytes (23 of
+  24 mirrors), party ryz (Halk reincarnated), Tiggy, Wuuf, Stamm; the game formats a blank disk itself
+  (`sav:blank`), save and RESUME verified, export `01_level2`; RAM: position `C167CF`-`C167D4`, champion records
+  from `C18538` (0x140 apart); 57-line shot plan, lenses started. Checkpoints `sd_dungeon`, `party`, `level2`,
+  `saved`, `resumed`; all 7 rebuilt cold match.
+- Backend: one `mouse:` step above about 128 counts lost the rest (the machine takes about 120 a frame); long
+  moves now go out at 120 counts a frame. Moves up to 120 are unchanged, so the scout's routes are too (checked
+  by the cold rebuild). `docs/emulator/amiga.md` corrected, plus the corner recipe and the `sav:blank` base.
+- Open: capture, level warp, Gando, the eye panel; the strategy sites (dmweb.free.fr, dungeon-master.com,
+  tcrf.net, aminet) refuse automated access from here.
+
 ## 2026-11-20 - Amiga: Kickstarts, Dungeon Master registered and played into the dungeon
 - Owner supplied Kickstart 1.3 (`kick34005.A500`) and 3.1 (`kick40068.A1200`); both match the SHA-1s in
   `Amiga.KICKSTARTS`, copied to `rom/kickstart/` (uncommitted). The test disk boots on A500, A500OG and A1200 with
