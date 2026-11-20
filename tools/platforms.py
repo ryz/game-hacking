@@ -1606,8 +1606,8 @@ class Amiga(Libretro):
         wrote to the images so far is stored next to it (the changed blocks), so a state made after an in-game
         save still has that save on disk wherever it is loaded."""
         import json
-        if self._loaded is not None:            # loaded and not run since: the core restores only on its next
-            open(os.path.abspath(path), "wb").write(self._loaded)       # frame, so this is the same state
+        if self._loaded is not None:            # loaded and not run since: write the loaded file again, so
+            open(os.path.abspath(path), "wb").write(self._loaded)       # the two are the same bytes
             return
         raw = zlib.compress(self.c.serialize(), 1)
         head, blob = self._changed()
@@ -1644,7 +1644,7 @@ class Amiga(Libretro):
                 self.c.key(self.KEYS[k], False)
         self._down = set()
         self.c.keys = set()
-        self.c.unserialize(zlib.decompress(raw))    # done by the core at the start of the next frame; the
+        self.c.unserialize(zlib.decompress(raw))    # memory and registers are the loaded ones at once; the
         self.drives = head["drives"]                # disks come from self.dir (retro_gamedb_disk_dir)
         self._loaded = data
 

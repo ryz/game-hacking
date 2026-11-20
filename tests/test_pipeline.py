@@ -1398,6 +1398,7 @@ def test_amiga_same_route_same_frames(am_selftest, tmp_path):
     c = platforms.Amiga().open(str(am_selftest), model=AM_MODEL)
     c.load_state(st)
     assert c.screen() == a.screen()
+    assert c.peek(0, 0x80000) == a.peek(0, 0x80000) and c.regs() == a.regs()     # loaded at once, before a frame
     c.save_state(str(tmp_path / "y.state"))                             # not run since the load: same state
     assert open(st, "rb").read() == open(str(tmp_path / "y.state"), "rb").read()
     b.input(["fire"]); b.frames(7)

@@ -1,5 +1,5 @@
 diff --git a/libretro/libretro-core.c b/libretro/libretro-core.c
-index 0f6797e..4d2497e 100644
+index 0f6797e..3bbeda4 100644
 --- a/libretro/libretro-core.c
 +++ b/libretro/libretro-core.c
 @@ -5069,11 +5069,19 @@ static struct retro_disk_control_ext_callback disk_interface_ext = {
@@ -24,22 +24,22 @@ index 0f6797e..4d2497e 100644
  }
  
  void retro_init(void)
-@@ -8856,42 +8864,15 @@ bool retro_unserialize(const void *data_, size_t size)
+@@ -8856,42 +8864,20 @@ bool retro_unserialize(const void *data_, size_t size)
  
           if (len == size)
           {
 -            unsigned frame_counter = 0;
 -            unsigned max_frames    = 50;
 -
-+            /* gamedb: restore at the start of the next retro_run, before the CPU runs a cycle. The original
-+             * emulated frames here until the restore was done (the old machine up to its next vsync, where
-+             * the restore happened, then a frame of the loaded one), so a loaded state continued a frame
-+             * later than the run that saved it. m68k_go() restores at the top of its loop when quit_program
-+             * is set, exactly like the reset that the vsync check would have requested. */
++            /* gamedb: restore now, without running the CPU. The original emulated frames here until the
++             * restore was done (the old machine up to its next vsync, where the restore happened, then a frame
++             * of the loaded one), so a loaded state continued a frame later than the run that saved it.
++             * m68k_go() restores at the top of its loop when quit_program is set (like the reset the vsync
++             * check would have requested) and, with gamedb_restore_only, returns before the CPU runs. */
++            extern int gamedb_restore_only;
              zfile_fseek(retro_deserialize_file, 0, SEEK_SET);
-             savestate_state = STATE_DORESTORE;
-+            quit_program    = UAE_RESET;
- 
+-            savestate_state = STATE_DORESTORE;
+-
 -            /* For correct operation of the frontend,
 -             * the save state restore must be completed
 -             * by the time this function returns.
@@ -55,7 +55,10 @@ index 0f6797e..4d2497e 100644
 -             *   us call m68k_go() without accessing frontend
 -             *   features - specifically, it disables the audio
 -             *   callback functionality */
--            libretro_runloop_active = false;
++            savestate_state     = STATE_DORESTORE;
++            quit_program        = UAE_RESET;
++            gamedb_restore_only = 1;
+             libretro_runloop_active = false;
 -            while (savestate_state && (frame_counter < max_frames))
 -            {
 -               /* Note that retro_deserialize_file will be
@@ -64,8 +67,9 @@ index 0f6797e..4d2497e 100644
 -               restart_pending = m68k_go(1, 1);
 -               frame_counter++;
 -            }
--            libretro_runloop_active = true;
--
++            restart_pending = m68k_go(1, 1);
+             libretro_runloop_active = true;
+ 
 -            /* If the above while loop times out, then
 -             * everything is completely broken. We cannot
 -             * handle this here, so just assume the restore
@@ -73,7 +77,7 @@ index 0f6797e..4d2497e 100644
              request_reset_drawing = true;
              success               = true;
           }
-@@ -8928,3 +8909,83 @@ void retro_cheat_set(unsigned index, bool enabled, const char *code)
+@@ -8928,3 +8914,83 @@ void retro_cheat_set(unsigned index, bool enabled, const char *code)
     (void)enabled;
     (void)code;
  }
@@ -248,3 +252,31 @@ index d5e318e..2900a09 100644
 +	}
 +}
 +#endif
+diff --git a/sources/src/newcpu.c b/sources/src/newcpu.c
+index 0a194a8..ca0d474 100644
+--- a/sources/src/newcpu.c
++++ b/sources/src/newcpu.c
+@@ -22,6 +22,7 @@
+ 
+ #ifdef __LIBRETRO__
+ extern bool libretro_frame_end;
++int gamedb_restore_only;
+ #endif
+ 
+ #include "options.h"
+@@ -6868,6 +6869,15 @@ void m68k_go (int may_quit)
+ 				currprefs.cpu_model < 68020 ? m68k_run_2_000 : m68k_run_2_020;
+ #if 0
+ 		}
++#endif
++#ifdef __LIBRETRO__
++		/* gamedb (tools/puae-debug.patch): retro_unserialize restores here and returns before the CPU runs,
++		 * so memory and registers are the loaded ones at once and the next frame starts where the state was
++		 * saved. */
++		if (gamedb_restore_only) {
++			gamedb_restore_only = 0;
++			return 0;
++		}
+ #endif
+ 		run_func();
+ 
