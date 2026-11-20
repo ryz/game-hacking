@@ -226,6 +226,19 @@
    "file_3x": "3x/phantasy-star_sms_na_battle_corridor_skeleton.battles.png",
    "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
    "captured": "2026-11-19"
+  },
+  {
+   "id": "corridor_skeleton_clean",
+   "category": "battle",
+   "caption": "The Skeleton appears, one frame before the battle windows are drawn: no UI",
+   "route": "@start,PARTY4,INV4,DUN:16:E4:00,settle,w4,up:1,w40,up:1,w4,!",
+   "settled": false,
+   "model": "ntsc",
+   "source": "shoot.py",
+   "file": "phantasy-star_sms_na_battle_corridor_skeleton_clean.battles.png",
+   "file_3x": "3x/phantasy-star_sms_na_battle_corridor_skeleton_clean.battles.png",
+   "rom_sha1": "257ca76ebcd54c75a414ca7ce968fa59ea42f150",
+   "captured": "2026-11-20"
   }
  ]
 }

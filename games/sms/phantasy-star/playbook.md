@@ -304,3 +304,8 @@ in a corridor whose far end is out of view cycles every step: 6 pictures, 36-37 
 full rotation (194 frames), or every quarter turn (48 frames) where neighbouring corridors look the same, as at the
 crossroads 16:64 (blue) and 25:AC (yellow). Choose waits so no encounter starts; the tool stops with an error if one
 does. Long corridors: 16:E4, 2B:ED, 18:EE, 25:E8 (all facing 0).
+
+## Battle shots without UI
+When a dungeon encounter starts, the monster is drawn over the corridor first and the windows follow one per frame
+or two: exactly 5 frames after the step press that triggers the encounter (`up:1,w4,!`), the picture has no UI at
+all (`battles`: corridor_skeleton_clean). Find the frame with a frame-by-frame sample from the step before.
