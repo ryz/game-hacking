@@ -1,7 +1,7 @@
 # Emulator use - the general rules
 
 Platform specifics (models, memory layout, cheat formats, screenshot format, limits) are in one file per system:
-[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md), [SNES / Super Famicom](snes.md), [Master System / Mark III](sms.md), [DOS](dos.md), [Apple II](apple2.md) and [Amiga](amiga.md). Read this file and the one for your game's
+[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md), [SNES / Super Famicom](snes.md), [Master System / Mark III](sms.md), [Mega Drive / Genesis](md.md), [DOS](dos.md), [Apple II](apple2.md) and [Amiga](amiga.md). Read this file and the one for your game's
 platform.
 
 How agents drive games here, for any game. Game-specific facts (controls, routes, RAM) go into
@@ -9,7 +9,7 @@ How agents drive games here, for any game. Game-specific facts (controls, routes
 
 ## Setup (once per container)
 ```sh
-sh tools/setup_emu.sh                         # all emulators (~3.5 min); one platform is enough: `gb` 9 s, `nes` 57 s, `snes` 53 s, `sms` 11 s, `dos` 32 s, `apple2` 78 s, `amiga` 90 s
+sh tools/setup_emu.sh                         # all emulators (~3.5 min); one platform is enough: `gb` 9 s, `nes` 57 s, `snes` 53 s, `sms` 11 s, `md` (same core as `sms`) 15 s, `dos` 32 s, `apple2` 78 s, `amiga` 90 s
 python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<platform>/<slug>/, rom/<slug>.gbc (or .gb, .nes)
 #   + --slug might-and-magic-2 --region jp|na|eu  short game name without the platform, and where the dump was
 #     released (a translated Japanese ROM is jp); both go into every shot file name (docs/capture-guide.md)
@@ -43,7 +43,7 @@ playbooks (committed) are not. That is why every state is defined by a route.
 | `change` / `change:N` | run until the picture differs from the one at the start of the token, then N more frames (error if nothing changes within 4x the settle limit) | after a key on screens that never settle (blinking cursor, animation) and in games that buffer keys: `key,change:20,key` instead of a guessed wait |
 | `rec:240:2` | last token of a shot: record 240 frames as a GIF clip (every 2nd kept); elsewhere a wait | clips (`play.py record`) |
 | `poke:C0A2=09` | write RAM bytes once | shortcuts (recorded in the route) |
-| `set:C0B0=8973:2` | write a decimal value (N bytes; `:bcd`, `:be`) | money, score, EXP |
+| `set:C0B0=8973:2` | write a decimal value (N bytes; `:bcd`, `:be`, `:le`; default: the CPU's byte order, big-endian on the Mega Drive) | money, score, EXP |
 | `gs:0109A2C0` | RAM cheat code, held for the rest of the route (GameShark on Game Boy, Pro Action Replay on SNES; not on NES) | infinite health/lives, codes from the web |
 | `freeze:C0A2=09` / `unfreeze` | hold a raw value / drop all held values (re-applied after each token and each `settle` step, not inside one `wN`: in fights use `w10*N`, never one long wait) | same, own addresses |
 | `rom:NAME` | route prefix: patched ROM (Game Genie, IPS, bytes) | level select, debug menu, invincibility |
@@ -170,7 +170,7 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
 3. Record it in `game.json` "ram" (`"lives": {"addr": "C0A2", "size": 1}`: shown by every `do`; `"fmt": "hex"` to print it as hex
    (use it for coordinates, ids and flags that the playbook writes in hex; a decimal watch read as hex sent one
    capture run to the wrong map square), `"fmt": "bcd"`
-   for packed-BCD values such as money, `"be"` for big-endian) and the playbook RAM map.
+   for packed-BCD values such as money, `"be"` / `"le"` for the byte order, default the CPU's: big-endian on the Mega Drive) and the playbook RAM map.
 - A position poke does not redraw the map: the old background stays until the screen scrolls. For a clean warp
   poke during a map transition (door, stairs, town entry), or leave and re-enter the map before the shot.
 - A story event that will not fire: decode the script text next to the event in the ROM, then test the nearby
