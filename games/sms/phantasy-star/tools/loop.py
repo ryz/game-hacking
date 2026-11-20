@@ -71,13 +71,10 @@ def render(lid):
         d = int(round(acc / 10.0)) * 10 - done
         durs.append(d)
         done += d
-    os.makedirs(os.path.join(OUT, "3x"), exist_ok=True)
     path = os.path.join(OUT, NAME % lid)
     emu.write_gif([r[0] for r in runs], path, durations=durs)
-    emu.write_gif([r[0] for r in runs], os.path.join(OUT, "3x", NAME % lid), scale=3, durations=durs)
     poster = path[:-4] + ".png"
     open(poster, "wb").write(runs[0][0])
-    emu.enlarge(poster, os.path.join(OUT, "3x", os.path.basename(poster)))
     return {"id": lid, "caption": caption, "route": route, "hold": key, "cycle_start": i, "frames": p,
             "pictures": len(runs), "seconds": round(p / 59.92, 2), "file": os.path.basename(path),
             "sha1": hashlib.sha1(open(path, "rb").read()).hexdigest()}
@@ -99,7 +96,7 @@ def main():
           "first cycle that repeats exactly twice). The poster `.png` is the first picture of the cycle.", "",
           "| Clip | Caption | Length | Route, held key |", "|---|---|---|---|"]
     for r in rows:
-        md.append("| ![%s](3x/%s) | %s | %d frames, %s s | `%s`, hold `%s` |" % (
+        md.append("| ![%s](%s) | %s | %d frames, %s s | `%s`, hold `%s` |" % (
             r["id"], r["file"], r["caption"], r["frames"], r["seconds"], r["route"], r["hold"]))
     open(os.path.join(OUT, "index.md"), "w").write("\n".join(md) + "\n")
 

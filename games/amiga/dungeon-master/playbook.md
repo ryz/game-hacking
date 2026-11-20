@@ -4,6 +4,13 @@ Everything an agent needs to play this game efficiently: read it before playing,
 Status of each fact: **verified** (seen in the emulator, with the route) or **source** (manual/FAQ/wiki, not yet
 checked). Never delete a fact that turned out wrong: strike it and say what is true.
 
+> **Tools moved (2026-11-20).** Where this playbook says `try.py`, `cachecheck.py` or `screen.py` (copies that
+> lived in this game's `tools/`), use the shared tools: `python3 tools/preview.py amiga/dungeon-master FILE` (`--frames K` is now
+> a `?` mark inside the route or `--timeline N:STEP`; sheets in `work/preview/amiga/dungeon-master/`), `python3
+> tools/cachecheck.py amiga/dungeon-master` (`--after TOKENS` for a save in the game, `--peek ADDR:LEN` for party tables) and
+> `python3 tools/play.py text` / `preview.py --text` for text screens. Pictures are native size
+> (`play.py shot --scale N` on demand).
+
 Captured 2026-11-20 (game-capture): set `main` (to the ending: Lord Chaos fused, the Grey Lord, the final
 roll) and set `start` (power-on to the first save, honest). New here: the whole dungeon read from RAM
 (`tools/dungeon.py`, `design/maps.md`), a level warp by the stairs (`DL3`..`DL14`, checkpoints `l3`..`l14`), a

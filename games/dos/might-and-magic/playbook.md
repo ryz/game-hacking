@@ -4,6 +4,13 @@ Everything an agent needs to play this game efficiently: read it before playing,
 Status of each fact: **verified** (seen in the emulator, with the route) or **source** (manual/FAQ/wiki, not yet
 checked). Never delete a fact that turned out wrong: strike it and say what is true.
 
+> **Tools moved (2026-11-20).** Where this playbook says `try.py`, `cachecheck.py` or `screen.py` (copies that
+> lived in this game's `tools/`), use the shared tools: `python3 tools/preview.py dos/might-and-magic FILE` (`--frames K` is now
+> a `?` mark inside the route or `--timeline N:STEP`; sheets in `work/preview/dos/might-and-magic/`), `python3
+> tools/cachecheck.py dos/might-and-magic` (`--after TOKENS` for a save in the game, `--peek ADDR:LEN` for party tables) and
+> `python3 tools/play.py text` / `preview.py --text` for text screens. Pictures are native size
+> (`play.py shot --scale N` on demand).
+
 ## Identity
 | Field | Value |
 |---|---|

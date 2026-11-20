@@ -1,7 +1,7 @@
-"""survey.py FLOOR [x,y ...] [--pre TOKENS] [--ww TOKENS] [--after TOKENS]: try.py lines that step onto each square.
+"""survey.py FLOOR [x,y ...] [--pre TOKENS] [--ww TOKENS] [--after TOKENS]: tools/preview.py lines that step onto each square.
 
   python3 games/dos/wizardry-3/tools/survey.py 6 17,17 --pre "poke:DE86=0100,poke:DE88=000000000100EA03" > work/x.txt
-  python3 games/dos/wizardry-3/tools/try.py work/x.txt --frames 1
+  python3 tools/preview.py dos/wizardry-3 work/x.txt
 
 Without squares: every message, fight, trap and teleport square of the floor. For each square a neighbour whose wall
 towards it is open (or a door: `k`) is chosen; the line warps there from `start` (--pre tokens first, --ww after the

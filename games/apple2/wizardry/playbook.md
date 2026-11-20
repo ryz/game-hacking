@@ -8,6 +8,13 @@ The same game is documented in depth for its DOS port (`games/dos/wizardry/`: pl
 shot routes). This is the 1981 original: the scenario (floors, items, monsters, spells, quest) is the same data,
 the screens, keys, timing and memory are not. Section "The DOS material here" says how to carry routes over.
 
+> **Tools moved (2026-11-20).** Where this playbook says `try.py`, `cachecheck.py` or `screen.py` (copies that
+> lived in this game's `tools/`), use the shared tools: `python3 tools/preview.py apple2/wizardry FILE` (`--frames K` is now
+> a `?` mark inside the route or `--timeline N:STEP`; sheets in `work/preview/apple2/wizardry/`), `python3
+> tools/cachecheck.py apple2/wizardry` (`--after TOKENS` for a save in the game, `--peek ADDR:LEN` for party tables) and
+> `python3 tools/play.py text` / `preview.py --text` for text screens. Pictures are native size
+> (`play.py shot --scale N` on demand).
+
 ## Identity
 | Field | Value |
 |---|---|
@@ -351,8 +358,7 @@ slot n at `1D200 + (n div 4)*400 + (n mod 4)*D0`), EXP +114.
 - **Write protection.** The boot side must be write-protected (`wp1` in the model, Boot sequence). The
   scenario side must stay writable: the Tavern's "** WRITE-PROTECT CHEAT! **" (program text) is the opposite
   check; not met.
-- Text screens (Castle, Training, camp, sheets, shops) are text page 1: `python3
-  games/apple2/wizardry/tools/screen.py --name SESSION ["tokens"]` prints them, `tools/try.py FILE --text`
+- Text screens (Castle, Training, camp, sheets, shops) are text page 1: `python3 tools/play.py --name SESSION text` prints them, `tools/try.py FILE --text`
   prints the end screen of many routes run in parallel. The maze, fights and chests are hi-res: look at frames.
 - Text screens with a prompt never settle (blinking cursor): `settle` runs its 300 frames. The checkpoint
   routes contain those settles; the fights' outcomes depend on them. Do not edit a macro a checkpoint uses
@@ -376,7 +382,7 @@ slot n at `1D200 + (n div 4)*400 + (n mod 4)*D0`), EXP +114.
 | `ending_poke` | Congratulations by `AMULET` + `HOME` |
 | `gcamp`, `gcastle`, `gmaze`, `gwerdna_sign`, `gwerdna` | the veterans with gear: camp, Castle, floor 1, Werdna's sign and fight (Vampire Lord, Werdna, Vampire; not fought) |
 | `resume`, `resume_end` | Castle from `sav:01_start` / `sav:02_ending` (need the files in `rom/saves/apple2/wizardry/`) |
-Cold check: `python3 games/apple2/wizardry/tools/cachecheck.py` builds every checkpoint from an empty cache and
+Cold check: `python3 tools/cachecheck.py apple2/wizardry` builds every checkpoint from an empty cache and
 compares it with a cache hit in a fresh process (frame, memory 0000-BFFF, written disk). Last run 2026-11-19 on model
 `iiplus-wp1` after the Werdna route was re-timed: all 26 checkpoints identical cold and from the cache (frame,
 memory and written disk). Reproducing is not the same as being right: after any change earlier in the chain

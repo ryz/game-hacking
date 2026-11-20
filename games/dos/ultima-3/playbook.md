@@ -7,6 +7,13 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 EXODUS.BIN is loaded at CS = DS = 0198, offset 0x100 (a COM image): **physical address = 0x1980 + DS offset =
 0x1A80 + file offset**; code offsets below are DS/IP offsets (`ndisasm -b16 -o 0x100 EXODUS.BIN`).
 
+> **Tools moved (2026-11-20).** Where this playbook says `try.py`, `cachecheck.py` or `screen.py` (copies that
+> lived in this game's `tools/`), use the shared tools: `python3 tools/preview.py dos/ultima-3 FILE` (`--frames K` is now
+> a `?` mark inside the route or `--timeline N:STEP`; sheets in `work/preview/dos/ultima-3/`), `python3
+> tools/cachecheck.py dos/ultima-3` (`--after TOKENS` for a save in the game, `--peek ADDR:LEN` for party tables) and
+> `python3 tools/play.py text` / `preview.py --text` for text screens. Pictures are native size
+> (`play.py shot --scale N` on demand).
+
 ## Identity
 | Field | Value |
 |---|---|

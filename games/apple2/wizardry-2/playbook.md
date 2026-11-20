@@ -9,6 +9,13 @@ The same game is documented in depth for its DOS port (`games/dos/wizardry-2/`: 
 Controls table, it applies here). This file says what was checked here and what differs. For tools always write
 `apple2/wizardry-2` (the slug exists on dos and nes), and give `play.py` a session name (`--name wiz2`).
 
+> **Tools moved (2026-11-20).** Where this playbook says `try.py`, `cachecheck.py` or `screen.py` (copies that
+> lived in this game's `tools/`), use the shared tools: `python3 tools/preview.py apple2/wizardry-2 FILE` (`--frames K` is now
+> a `?` mark inside the route or `--timeline N:STEP`; sheets in `work/preview/apple2/wizardry-2/`), `python3
+> tools/cachecheck.py apple2/wizardry-2` (`--after TOKENS` for a save in the game, `--peek ADDR:LEN` for party tables) and
+> `python3 tools/play.py text` / `preview.py --text` for text screens. Pictures are native size
+> (`play.py shot --scale N` on demand).
+
 ## Identity
 | Field | Value |
 |---|---|
@@ -332,7 +339,7 @@ OBJECT +52 (130), CHAR +72 (20; slot n at `(148+72)*512 + (n div 4)*400 + (n mod
 - **Model `iiplus-wp1`**, for Wizardry I's reasons. `iie` and an unprotected disk 1 were **not tried here**
   (taken from Wizardry I; the dispatch said so).
 - Text screens (Castle, Tavern, Inn, Training, camp, sheets, the ending, Utilities) are text page 1:
-  `python3 games/apple2/wizardry-2/tools/screen.py --name SESSION ["tokens"]` prints them; `tools/try.py FILE
+  `python3 tools/play.py --name SESSION text` prints them; `tools/try.py FILE
   --text` prints the end screen of many routes run in parallel. The maze, fights, chests and maze messages are
   hi-res: look at frames (`try.py` sheets are 1x and cheap to read). After a hi-res screen the text page still
   holds the last text screen (the camp): `--text` shows stale text there.
@@ -362,7 +369,7 @@ OBJECT +52 (130), CHAR +72 (20; slot n at `(148+72)*512 + (n div 4)*400 + (n mod
 | `gnilda_test`, `gnilda_answer`, `staff_gift`, `staff` | RYZ alone with the five at the temple: the fiery face, "ANSWER ?", the gift's first page, "RYZ GOT ITEM" |
 | `ending`, `knights`, `final` | GAUDEAMOUS; Castle after the five awards; Castle with the party re-formed |
 | `resume`, `resume_end` | Castle from `sav:01_start` / `sav:02_ending` (need the files in `rom/saves/apple2/wizardry-2/`) |
-Cold check: `python3 games/apple2/wizardry-2/tools/cachecheck.py` builds every checkpoint from an empty cache
+Cold check: `python3 tools/cachecheck.py apple2/wizardry-2` builds every checkpoint from an empty cache
 and compares it with a cache hit in a fresh process (frame, memory 0000-BFFF, written disks), prints each
 checkpoint's floor, square, packs and marks, and writes each frame to `work/scout/apple2/wizardry-2/cc_NAME.png`.
 Last run 2026-11-19 on model `iiplus-wp1`: all 39 checkpoints identical cold, from the cache and against the
