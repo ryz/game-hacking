@@ -77,7 +77,8 @@ edit anything outside the game's folder.
    - **Standard environment shots** (owner's rule 2026-11-19, `docs/capture-guide.md`): a few plain views per
      kind of place with nothing happening (`env_...`), and the set `start`: the early game in play order to
      the first save, played honestly (capture guide, "Sets"). Its ids are numbered in play order
-     (`01_power_on`, `02_title`, ...) and its `shots.txt` lists them in that order (owner's rule 2026-11-20).
+     (`01_power_on`, `02_title`, ...) and its `shots.txt` lists them in that order; the tools put the number
+     in front of the category in the file names (owner's rule 2026-11-20).
    Add opportunistic shots of anything else distinctive (category `extra` or the right one).
    **Three lenses** (owner's request 2026-11-18, `docs/capture-guide.md` "Three lenses"): keep
    `design/systems.md` (game design: one row per feature, system, mechanic), `design/interface.md` (UI/UX:

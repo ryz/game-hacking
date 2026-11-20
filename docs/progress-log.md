@@ -6,6 +6,12 @@ Append-only, newest first.
 - Owner's rule: `start` set ids are numbered in play order (`01_<step>` ...) and listed in that order, so the
   set reads as one playthrough. In `docs/capture-guide.md` ("Sets") and the game-capture skill. Dungeon Master's
   set already follows it; Apple II Wizardry's (unnumbered, partly out of order) does not yet.
+- Follow-up the same day: in `start` sets the step number goes before the category in the file name
+  (`<game>_<platform>_<region>_<NN>_<area>_<step>.start.png`), so a folder listing is the play order.
+  `tools/shoot.py`: `stem()` builds it and refuses unnumbered `start` ids; `list_order()` sorts a set by its own
+  `shots.txt` (before: the game's main list, which put Apple II Wizardry's `start` index out of order). Both
+  `start` sets renamed without replaying (no ROMs here): Dungeon Master (37), Apple II Wizardry (47, ids
+  numbered `01_` to `47_` in the order of its shot list); index.md and contact sheets rebuilt.
 
 ## 2026-11-20 - Dungeon Master (Amiga) captured to the ending
 - game-capture run: set `main` 111 shots (boot, Hall of Champions and five mirror panels, level 2 systems,

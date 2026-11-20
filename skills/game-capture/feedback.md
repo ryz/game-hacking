@@ -17,6 +17,8 @@ Never delete entries.
 - Proposed rule change: `start` ids numbered `01_<step>` ... in play order, `shots.txt` in that order.
 - Corrected: -
 - Status: promoted 2026-11-20 (owner's rule; `docs/capture-guide.md` "Sets", skill step "Standard environment shots").
+  Same day, owner's follow-up: in `start` sets the number goes before the category in the file name
+  (`tools/shoot.py` `stem()`); both existing `start` sets renamed.
 
 ### 2026-11-20 - Dungeon Master (Amiga)
 - Task: Dungeon Master (Amiga v3.60) sets `main` (to the ending) and `start`, three lenses, from the scout's playbook.

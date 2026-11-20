@@ -31,6 +31,10 @@ def test_shot_file_names():
     assert shoot.stem(g, "main", "battle", "battle_slime") == "might-and-magic-2_nes_na_battle_battle_slime"
     assert shoot.stem(g, "compare-maze", "gameplay", "maze_f1") == "might-and-magic-2_nes_na_gameplay_maze_f1.compare-maze"
     assert shoot.stem(g, "seq-fly", "map", "05_town_map") == "might-and-magic-2_nes_na_map_seq-fly_05_town_map"
+    # set `start`: the step number before the area, so a folder listing is the play order
+    assert shoot.stem(g, "start", "boot", "01_crack_note") == "might-and-magic-2_nes_na_01_boot_crack_note.start"
+    with pytest.raises(SystemExit):
+        shoot.stem(g, "start", "boot", "crack_note")        # start ids are numbered
     assert shoot.set_file(g, "main", "sheet.png") == "might-and-magic-2_nes_na_set_sheet.png"
     assert shoot.set_file(g, "seq-fly", "full.gif") == "might-and-magic-2_nes_na_set_seq-fly_full.gif"
     # the first four fields hold no `_`: a name splits back into its parts

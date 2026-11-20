@@ -22,7 +22,9 @@ A route is played exactly, then `settle` is added unless it already ends with `s
 File names say what a file shows without its folder (docs/capture-guide.md, "File names"):
   <game>_<platform>_<region>_<area>_<id>[.<set>].png      might-and-magic_nes_na_battle_battle_sprites.png
 game, platform, region = game.json "slug", "platform", "region"; area = the shot's category; id = the shot id (in
-a `seq-<action>` set: `seq-<action>_<id>`); `.<set>` for every set but `main` and `seq-*`. Below, NAME is that name.
+a `seq-<action>` set: `seq-<action>_<id>`); `.<set>` for every set but `main` and `seq-*`. Set `start`: ids are
+`NN_<step>` in play order and the number goes before the area: <game>_<platform>_<region>_<NN>_<area>_<step>.start.png.
+Below, NAME is that name.
 Outputs per shot: NAME.png (native, framebuffer as is: no filter, no colour correction, no scaling),
 3x/NAME.png (nearest neighbour, same name in the 3x/ subfolder). Per set: index.json, index.md and the contact
 sheet <game>_<platform>_<region>_set_sheet[.<set>].png (all shots, captioned; `set` in the area field = a file about the whole set).
@@ -76,10 +78,18 @@ def head(g, set_name):
 
 
 def stem(g, set_name, category, sid):
-    """File name of a shot without the extension: <game>_<platform>_<region>_<area>_<id>[.<set>]."""
+    """File name of a shot without the extension: <game>_<platform>_<region>_<area>_<id>[.<set>].
+    Set `start` (played in order): ids are `NN_<step>` and the step number goes before the area, so a folder
+    listing is the play order: <game>_<platform>_<region>_<NN>_<area>_<step>.start."""
     if not re.match(r"^[a-z]+$", category) or category == "set":
         raise SystemExit("error: %s: category %r must be one lowercase word, not `set` (it is the area field of "
                          "the file name)" % (sid, category))
+    if set_name == "start":
+        m = re.match(r"^(\d{2,3})_(.+)$", sid)
+        if not m:
+            raise SystemExit("error: %s: ids in the set `start` are numbered in play order: 01_<step>, 02_<step> "
+                             "... (docs/capture-guide.md, \"Sets\")" % sid)
+        return "%s_%s_%s_%s%s" % (head(g, set_name), m.group(1), category, m.group(2), suffix(set_name))
     return "%s_%s_%s%s%s" % (head(g, set_name), category, prefix(set_name), sid, suffix(set_name))
 
 
@@ -139,9 +149,11 @@ def normalize(game, d, move=os.replace):
     return n
 
 
-def list_order(game, idx):
-    """Sort idx["shots"] by the game's shots.txt (game order); ids not in the list keep their place at the end."""
-    lst = os.path.join(game.dir, "shots.txt")
+def list_order(game, idx, d=None):
+    """Sort idx["shots"] by the set's own shots.txt (else the game's): list order; ids not in the list keep their
+    place at the end."""
+    lst = os.path.join(d, "shots.txt") if d and os.path.exists(os.path.join(d, "shots.txt")) else \
+        os.path.join(game.dir, "shots.txt")
     if not os.path.exists(lst):
         return idx
     pos = {r["id"]: i for i, r in enumerate(E.read_table(lst, ("id", "category", "caption", "route")))}
@@ -170,7 +182,7 @@ def index_update(game, d, entry, rom_sha1=None):
     if entry["id"] not in order:
         order.append(entry["id"])
     idx["shots"] = [shots[i] for i in order]
-    list_order(game, idx)
+    list_order(game, idx, d)
     json.dump(idx, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     write_md(idx, d)
     if os.path.basename(d).startswith("seq-"):
@@ -232,9 +244,10 @@ def write_md(idx, d):
     out = ["# %s - shots: %s" % (g["title"], idx["set"]), "",
            "Platform %s, region %s, model %s, ROM SHA-1 `%s`. %d shots. Contact sheet: [%s](%s). Originals "
            "here, 3x nearest-neighbour copies with the same names in `3x/`. File names: "
-           "`<game>_<platform>_<region>_<category>_<id>%s.png`." % (
+           "`<game>_<platform>_<region>_%s%s.png`." % (
                g["platform"], g["region"], g["model"], g["sha1"], len(idx["shots"]), sf("sheet.png"),
-               sf("sheet.png"), suffix(idx["set"])), "",
+               sf("sheet.png"), "<NN>_<category>_<step>" if idx["set"] == "start" else "<category>_<id>",
+               suffix(idx["set"])), "",
            "| id | category | caption | settled | image |", "|---|---|---|---|---|"]
     for s in idx["shots"]:
         clip = " [gif](%s) [gif 3x](%s)" % (s["clip"]["file"], s["clip"]["file_3x"]) if s.get("clip") else ""
@@ -358,7 +371,7 @@ def reindex(game, d):
         return
     normalize(game, d)              # a category edited by hand changes the file name
     idx = json.load(open(p, encoding="utf-8"))
-    list_order(game, idx)
+    list_order(game, idx, d)
     json.dump(idx, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     write_md(idx, d)
     if os.path.basename(d).startswith("seq-"):
