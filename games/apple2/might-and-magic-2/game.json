@@ -74,7 +74,8 @@
     "VET": "poke:0420=6000,poke:0426=0B00,poke:0428=0000,poke:042E=0B,poke:0431=F92C09000000,poke:0438=0C0060006000,poke:043E=510700,poke:04A0=5100,poke:04A6=0A02,poke:04A8=0E00,poke:04AE=0A,poke:04B1=C61608000E00,poke:04B8=080051005100,poke:04BE=A60100,poke:0520=4D00,poke:0526=0A02,poke:0528=0C00,poke:052E=0A,poke:0531=381008000C00,poke:0538=05004D004D00,poke:053E=600000,poke:05A0=3A00,poke:05A6=0B00,poke:05A8=0000,poke:05AE=0B,poke:05B1=70FC08000000,poke:05B8=03003A003A00,poke:05BE=A20800,poke:0620=4000,poke:0626=0B05,poke:0628=2E00,poke:062E=0B,poke:0631=ED0009002E00,poke:0638=110040004000,poke:063E=3B0100,poke:06A0=2900,poke:06A6=0A05,poke:06A8=3400,poke:06AE=0A,poke:06B1=BCDE07003400,poke:06B8=090029002900,poke:06BE=E80200,poke:042F=16,poke:04AF=15,poke:052F=14,poke:05AF=18,poke:062F=17,poke:06AF=13",
     "REDRAW": "e,w300,1,w200,2,w300,e,w300,1,w200,2,w300",
     "GEAR": "poke:044B=1383749B5F00",
-    "EQ5": "1,w300,e,w300,a,w300,e,w300,a,w300,e,w300,a,w300,e,w300,a,w300,e,w300,a,w300"
+    "EQ5": "1,w300,e,w300,a,w300,e,w300,a,w300,e,w300,a,w300,e,w300,a,w300,e,w300,a,w300",
+    "YEAR": "poke:2F7C9={0}"
   },
   "ram": {
     "yx": {
@@ -99,6 +100,11 @@
     "gold1": {
       "addr": "2043E",
       "size": 3
+    },
+    "century": {
+      "addr": "2F7C9",
+      "size": 1,
+      "fmt": "hex"
     }
   },
   "work": "scouted 2026-11-20: boot to the Middlegate inn (party of six), inn save, area warp to all 60 areas with the disk map, record layout, HERO/VET parties, 16 checkpoints to Sheltem; not captured",
