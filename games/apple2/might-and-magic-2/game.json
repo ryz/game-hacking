@@ -1,0 +1,55 @@
+{
+  "slug": "might-and-magic-2",
+  "title": "Might and Magic II: Gates to Another World",
+  "platform": "apple2",
+  "region": "na",
+  "model": "iie",
+  "rom": "rom/apple2/might-and-magic-2.zip",
+  "sha1": "744bceee48f35ca29e2c227996f00652212e1b1d",
+  "crc32": "a8f2c16d",
+  "size": 630990,
+  "header": {
+    "disks": [
+      {
+        "name": "1 Disk 1.nib",
+        "kind": "5.25 inch floppy, nibble image",
+        "sha1": "6a600fafcae1d48b430e7a8cec21bf53b14f4ad5"
+      },
+      {
+        "name": "2 Disk 2.nib",
+        "kind": "5.25 inch floppy, nibble image",
+        "sha1": "7a5b74d12e2efc8bc542fdc35ede16cd9076067e"
+      },
+      {
+        "name": "3 Disk 3.nib",
+        "kind": "5.25 inch floppy, nibble image",
+        "sha1": "d81ebb4d80349ea266bbe43a61bfe50985c6754e"
+      },
+      {
+        "name": "4 Disk 4.nib",
+        "kind": "5.25 inch floppy, nibble image",
+        "sha1": "ee567391413a5119aa31522623ace3ed927ccee0"
+      },
+      {
+        "name": "5 Disk 5.nib",
+        "kind": "5.25 inch floppy, nibble image",
+        "sha1": "95c3a07f019eafdc1e78261b0b3d4690ae0eab88"
+      },
+      {
+        "name": "6 Disk 6.nib",
+        "kind": "5.25 inch floppy, nibble image",
+        "sha1": "ede43a2adc6c784d5770d59b223b9ecfee039832"
+      }
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
