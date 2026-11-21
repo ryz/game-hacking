@@ -22,7 +22,7 @@ Each session builds only the emulator it needs (`sh tools/setup_emu.sh PLATFORM`
 | `dos` | DOSBox Pure libretro core | 32 s | a ZIP of the game's files | CD images and installers, mouse tokens, sound card choice; `cga`/`tandy` lose the palette on a state load (use `ega`) | [dos.md](emulator/dos.md) |
 | `apple2` | AppleWin libretro core (needs cmake) | 78 s | a disk image or a ZIP of disk images | reset keys, hard disk images with a real game, held keys / auto-repeat | [apple2.md](emulator/apple2.md) |
 | `amiga` | PUAE libretro core | 90 s | an ADF or a ZIP of ADFs; Kickstart ROMs in `rom/kickstart/` | `.ipf`, hard disk / WHDLoad, CD32 / CDTV, write-protected disks | [amiga.md](emulator/amiga.md) |
-| `c64` | VICE x64sc libretro core | 21 s | a D64/G64 (or a ZIP of them), PRG/T64, TAP or CRT | second drive, audio, paddles/mouse/light pen; G64, D71/D81, tapes and cartridges untested; no game registered yet (backend 2026-11-21) | [c64.md](emulator/c64.md) |
+| `c64` | VICE x64sc libretro core | 21 s | a D64/G64 (or a ZIP of them), PRG/T64, TAP or CRT | second drive, audio, paddles/mouse/light pen; G64, D71/D81, tapes and cartridges untested; first game Phantasie (2026-11-21) | [c64.md](emulator/c64.md) |
 
 ## Tools
 | Tool | State |
@@ -92,6 +92,7 @@ its lens documents. Do not edit between the markers.
 | Wizardry IV: The Return of Werdna | `games/apple2/wizardry-4/` | none | no | not scouted |
 | Wizardry V: Heart of the Maelstrom | `games/apple2/wizardry-5/` | none | no | not scouted |
 | Dungeon Master | `games/amiga/dungeon-master/` | [main](../games/amiga/dungeon-master/shots/main/index.md) 111, [start](../games/amiga/dungeon-master/shots/start/index.md) 37 | yes | a teleporter, pressure plate, chest, scroll, three creature kinds, Gando's mirror, a few actions (KICK, WAR CRY, CALM, INVOKE) |
+| Phantasie | `games/c64/phantasie/` | [main](../games/c64/phantasie/shots/main/index.md) 77, [start](../games/c64/phantasie/shots/start/index.md) 39 | yes | game over; other towns and wilderness sections; dungeon floors beyond the first rooms; scroll reading; spell names; greetings result |
 <!-- games:end -->
 
 ## Container notes

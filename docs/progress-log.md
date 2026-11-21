@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-21 - Phantasie (C64): first game on the C64 backend
+- Registered from the owner's upload (boot and dungeon D64, v1.4); scouted (10 checkpoints, party ryz/condi/ebo/
+  cubi/deddo/mnz, save 01_start) and captured: `start` 39 (honest to the first save, first fight included), `main`
+  77 (towns, guild, shops, wilderness, dungeon 1 with the disk swap, 28 battle shots), three lenses; cold verify
+  39/39 and 77/77. The game is a BASIC program: state found through the BASIC variable table (c64.md note).
+- `MACRO:args*N` repeats the filled-in macro (was passed as the argument). Backlog: `c64vars.py`, `?` inside a token.
+
 ## 2026-11-21 - Commodore 64 emulator: VICE x64sc libretro core, exact savestates
 - Owner asked for a C64 emulator. `sh tools/setup_emu.sh c64` builds VICE x64sc (vice-libretro, pinned) with
   `tools/vice-debug.patch` (21 s); backend `platforms.C64`: disks (D64/G64/D71/D81, ZIP of disks), PRG/T64, TAP, CRT;
