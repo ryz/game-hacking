@@ -89,7 +89,9 @@ auxiliary 64K of a //e wherever it is mapped. `20000-2FFFF` is the main 64K as s
 data there while ROM is mapped (Might and Magic's character records are at `2C000`). `poke` writes RAM only (ROM and I/O are refused). `find`, `dump` and `diff` cover
 `0000-BFFF` as mapped, the auxiliary `10000-1FFFF` (//e models) and the language card `2C000-2FFFF` as stored:
 games keep state there (Might and Magic II: automap bits at `10200`, century and days at `2F7xx`). Text page 1 is `0400-07FF` (screen codes: high bit set = normal), hi-res page 1 `2000-3FFF`.
-`status` shows the program counter. 6502 code can be read with `tools/dis6502.py` only for NES files so far.
+`status` shows the program counter. 6502 code: `python3 tools/dis6502.py SLUG --route @checkpoint ADDR [N]` disassembles live memory at
+the end of a route (same addresses as `peek`). A scan that pokes the position onto every square and groups the
+message-window bytes maps a first-person game's buildings and events in one run (`games/apple2/bards-tale/tools/cityscan.py`).
 
 ## Saves
 Apple II games save to the floppy (often to a scenario or character disk). A savestate holds the machine, the

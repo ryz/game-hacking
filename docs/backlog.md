@@ -20,7 +20,6 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `cachecheck.py --show-diff NAME`: the first differing addresses between flat and cached state | 1 | Sword of Vermilion scout (a stack word, found by hand) |
 | `preview.py --repeat TOKENS N`: a sheet of the route after 1..N repetitions | 1 | Sword of Vermilion scout (one more step per line) |
 | `play.py find` warns when nothing ran since the last narrowing (0 candidates without a hint); `preview.py --timeline` per route, not per call | 1 | Sword of Vermilion capture run 3 |
-| `dis6502.py` for Apple II: disassemble live memory (a `play.py dump` or main/aux `2xxxx` addresses), not only ROM banks | 1 | Might and Magic II Apple II scout (py65 + scratch script) |
 | `play.py dump` JSON: zero-padded hex keys or a note in the output that keys are hex | 1 | Might and Magic II Apple II scout (read as decimal, several calls lost) |
 | `shoot.py --verify`/`--publish-only` take captions and categories from the work `shots.txt` when they differ from `index.json` (or warn); `preview.py --set` flags identical frames within an unshot plan | 1 | Wizardry II Apple II capture (second `recaption` pass; stairs-down = dark warp found only at shoot) |
 | `dis68k.py`: hint when an address points inside an instruction or string (pointer searches off by a few bytes) | 1 | Sword of Vermilion capture run 3 |
@@ -50,4 +49,4 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `play.py diff`: more than 80 rows, an address range (Apple II screen memory, Mega Drive tile maps) | 2 | 2026-11-20 `diff A [B] --range LO-HI --max N` |
 | `preview.py --out` with a path doubled it; `--peek ADDR:0x10` refused | 1 | 2026-11-20 fixed (base name taken, hex lengths) |
 | `tools/dis68k.py`: 68000 disassembler (boss and ending triggers on the Mega Drive) | 1 | 2026-11-20 built on capstone (owner: install it), with `--xref` |
-| Earlier, by date | - | Apple II `find`/`dump`/`diff` over aux and language card (2026-11-20, asked twice), `unsnap`/`recaption` (2026-11-17), hex and BCD watches, `dis6502.py`, `dump`/`diff`, macros with arguments, sheets in pages, `--prune`, stale PNGs removed at publish (2026-11-18), `do` rollback, `export` route from power-on (2026-11-19) |
+| Earlier, by date | - | `dis6502.py --route` on live memory (2026-11-21, asked twice), Apple II `find`/`dump`/`diff` over aux and language card (2026-11-20, asked twice), `unsnap`/`recaption` (2026-11-17), hex and BCD watches, `dis6502.py`, `dump`/`diff`, macros with arguments, sheets in pages, `--prune`, stale PNGs removed at publish (2026-11-18), `do` rollback, `export` route from power-on (2026-11-19) |

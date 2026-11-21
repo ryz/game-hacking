@@ -256,6 +256,8 @@ writes `3x/` next to the originals; it is ignored by git (owner's rule 2026-11-2
 - Use WebSearch/WebFetch. The environment allows: gamefaqs.gamespot.com, tcrf.net, datacrystal.tcrf.net,
   strategywiki.org, en.wikipedia.org, gamehacking.org, doc.kodewerx.org, archive.org (owner approved 2026-11-15).
   Another host: ask the coordinator; it cannot be added from inside an agent.
+  archive.org file downloads redirect to a per-file `dnNNNN.*.archive.org` host that is not allowed: item
+  pages and metadata work, downloads do not (Bard's Tale scout, 2026-11-21); say so in the report.
 - A site that refuses automated access (403, captcha) is skipped and noted as unavailable in the playbook
   Sources; never work around bot protection.
 - Binary downloads (saves, patches) with `curl -L -o rom/saves/<slug>/NAME.sav URL` where the site serves the file

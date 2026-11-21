@@ -1,6 +1,11 @@
 """6502 disassembler for any registered NES game (or a ROM path): one PRG bank at its CPU address.
 
   python3 tools/dis6502.py SLUG|ROM BANK ADDR [N] [--bank-kib 16|8|32]
+  python3 tools/dis6502.py SLUG --route ROUTE ADDR [N]       (Apple II and any 6502 game: live memory)
+
+With --route the game is run to the end of ROUTE (a checkpoint `@name`, cached, plus tokens) and the code is
+read from memory as `play.py peek` reads it: ADDR 0000-FFFF as mapped right then, 1xxxx the auxiliary 64K,
+2xxxx the main 64K as stored (language card RAM at 2D000-2FFFF). Addresses print as the CPU sees them.
 
 BANK counts PRG banks of --bank-kib (default 16) after the iNES header; ADDR is the hex CPU address the bank is
 mapped at for this listing (e.g. C000 for the fixed last bank on MMC1, 8000 for a switchable one). The window base
@@ -54,7 +59,27 @@ def prg(rom_arg):
     return d[h:h + d[4] * 0x4000] if h else d
 
 
+def live(slug, route, a, n):
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import emu
+    game = emu.Game(slug)
+    e, rest, _ = emu.start(game, route)
+    emu.play(e, game, rest)
+    size = min(n * 3 + 3, 0x10000 - (a & 0xFFFF))
+    data = e.peek(a, size)
+    e.close()
+    return dis(data, a & 0xFFFF, n, a & 0xFFFF)
+
+
 def main():
+    if "--route" in sys.argv:
+        i = sys.argv.index("--route")
+        route = sys.argv[i + 1]
+        args = sys.argv[1:i] + sys.argv[i + 2:]
+        if len(args) < 2:
+            raise SystemExit(__doc__)
+        print("\n".join(live(args[0], route, int(args[1], 16), int(args[2]) if len(args) > 2 else 40)))
+        return
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     kib = 16
     if "--bank-kib" in sys.argv:
