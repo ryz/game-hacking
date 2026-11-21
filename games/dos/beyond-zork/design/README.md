@@ -37,7 +37,10 @@ COLOR (six palettes), ZOOM, PRIORITY, NOTIFY and MONITOR change the display **(v
 SAVE/RESTORE to a named file **(verified)**. Parts of the world are generated per game: the moors south of the
 village change their room names and layout with the route taken **(verified: Mud Flats/Eyes in one run,
 Deep Mist/Odors/Noises in another)**; the goal is to recover the Coconut of Quendor from the Ur-Grues
-**(source: Wikipedia, manual)**.
+**(source: Wikipedia, manual)**. Past the moors lies the seaport Mizniaport with a boutique that buys found
+items and sells armour (cloak 30 zorkmids) **(verified, `shop_buy`)**, and Gurth City beyond it; a character
+dies when Endurance reaches 0 or in the dark (a grue), with RESTORE, RESTART or QUIT offered **(verified,
+`gameover_ratant`, `gameover_grue`)**. Details: [systems.md](systems.md), [findings.md](findings.md).
 
 ## Documents
 | Document | Covers |

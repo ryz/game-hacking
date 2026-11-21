@@ -26,11 +26,23 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   monster depend on everything typed before (the route is deterministic, so keep routes exact; a changed
   earlier command moves the vapor). Bandits in the Rusty Lantern refuse a fight ("Suicide"). The cook cannot be
   attacked. `play.py` reports "NOT settled" on every frame (blinking cursor): normal.
-- **Shot plan:** `shots.txt` holds 33 previewed lines (opening area, menus, options, first fight, save, Frotz
-  comparison) ready for `shoot.py dos/beyond-zork main --only ...`. The `start` set can use the honest chain
-  as it is (list below).
-- **Open:** death screen, a shop, a magic item (wand/scroll/potion) used, the lighthouse upper floors, other
-  regions beyond the moors (no walkthrough host is reachable: see Sources), Endurance bar shot with NOTIFY.
+- **Sets (2026-11-21):** `main` 87 shots and `start` 34 shots, both verified from an empty cache and published;
+  `games/dos/beyond-zork/shots.txt` holds the main lines. Checkpoints `s_*` = the start chain, `m_*` = main:
+  `m_ratant` (Level 0 losing to the rat-ant), `m_cellar`/`m_darkness` (strong character in the Wine Cellar /
+  the dark beyond it), `m_odors` (moors, strong), `m_mizniaport`, `m_boutique` (shop), `m_ryz` (created
+  character Ryz on the Hilltop).
+- **Money:** `MONEY:n` macro (zorkmids at `0D20C`, 2 bytes **big-endian**: object data is not byte-swapped,
+  unlike the attribute block). `ATTRS:47:31:28:22:14:29` is the strong character used in `main`.
+- **Way to the seaport:** from `@vapor_won` `sw` (Odors, gray potion), `sw` (Gasses, rumpled scroll), `sw`
+  (Bluffs), `w` = Mizniaport. Boutique: `open door`, `n`. Gurth City: Mizniaport `nw` (Intersection), `n`.
+- **Traps (new):** going `u` from the Wine Cellar locks you in ("an unseen hand slams the cellar door"); moving
+  on in the Darkness can kill (grue). A Level 0 peasant dies to the rat-ant (`m_ratant` + five F7). Scroll
+  words are random per route. `tools/gamestable.py` rewrites README.md/docs/status.md: leave that to the
+  coordinator.
+- **Open:** Level 2 (37 experience still Level 1), the cellar after the lock (light? the cook wants the old
+  bottle of wine for the giant onion), lighthouse upper floors (1st Level has no stairs up in daylight),
+  Fields of Frotzen past the lightning, the Skyway ride, Gurth City beyond the South Market, potion and scroll
+  effects (USE SCROLL: "How do you intend to do it?").
 
 ## Identity
 | Field | Value |
@@ -99,19 +111,20 @@ Prologue -> Character Setup -> Hilltop above a village by the Great Sea. Opening
 Beyond that: not explored (source for the plot only: recover the Coconut from the Ur-Grues).
 
 ## Shot plan
-33 lines in `shots.txt`, all previewed 2026-11-21 (`work/preview/dos/beyond-zork/plan.png`), category counts:
-boot 1, menu 5, cutscene 1, title 1, gameplay 7 (`env_` 4), system 2, inventory 2, dialogue 2, battle 3, map 1,
-options 3, save 2, extra 3. Still to add by the capture agent: gameover (death), shop, magic item used, the
-lighthouse floors, more regions and monsters, NOTIFY messages, a NAME (weapon) use, UNDO.
-
-`start` set (played honestly, power-on to the first save), routes from the chain: boot prompt (`@boot`),
-prologue page (`@boot,type:begin\n,w300`), title card (`@title`), Character Setup (`@setup`), the story starts
-(`@setup,enter,w300`), Hilltop (`@start`), STATUS F3 (`@start,f3,w200`), Cove (`@cove`), Wharf, driftwood,
-`@shillelagh`, Outside Pub, Moor's Edge, the moors, `@vapor`, the fight (`@vapor,type:attack vapor\n,w200`,
-then `f7,w200` twice), `@vapor_won`, STATUS, SAVE prompt, `@saved1`. Name its checkpoints `s_...` (copies of
-these routes).
+Done 2026-11-21: `main` 87 (battle 9, boot 1, cutscene 1, dialogue 7, extra 4, gameover 2, gameplay 20 (env_ 10),
+inventory 7, map 1, menu 11, options 9, save 3, shop 5, system 6, title 1)
+and `start` 34 (power-on to the first SAVE, all honest, checkpoints `s_*`). Scout lines all kept (captions
+fixed where the frame said otherwise). Still wanted: Level 2, a magic item with a visible effect, the
+lighthouse floors, the Skyway ride, Gurth City, the cellar puzzle solved (wine for the onion).
 
 ## Strategy and walkthrough notes
+- Moors from `@vapor_won` (layout of this route): Noises; `w` Deep Mist (guttersnipe); `sw` Odors (gray potion,
+  guttersnipe); from Odors `se` Eyes, `se`,`e` Mud Flats (wounded pterodactyl, whistle, stave), `sw` Gasses
+  (rumpled scroll, word Macuga), `sw` Bluffs, `w` Mizniaport. Mizniaport: `ne` Private Way, `n` Stablehouse
+  (unicorn, saddle, horseshoe); `w` Skyway Entrance (gondola; `enter gondola`: "Wait yer turn"); `nw`
+  Intersection, `n` South Market of Gurth City (hawker, fish cake); `s`/`sw`/`se` "You'd fall in the bay".
+- Kitchen: `open door` (cellar door) makes the cook ask for the old bottle of wine downstairs in exchange for
+  the giant onion; `d` Wine Cellar (rat-ant, crinkly scroll); `n` Darkness; `u` locks you in.
 - First weapon: Wharf, `z` once, `take driftwood`, `wield shillelagh` (checkpoint `shillelagh`).
 - First fight: from `@shillelagh` `w,s,s,s,e` meets an eldritch vapor at Noises; three or four attacks win
   (Level 1, Endurance 23). Other routes give other moor layouts.
@@ -121,8 +134,11 @@ these routes).
 ## Naming
 The preset character is named by the game (Frank Booth for the default preset). `name me ryz` is refused
 ("The word "ryz" isn't in the vocabulary"); NAME is for weapons and creatures, with vocabulary words only
-(manual). No naming of the character found; Create your own character asks no name before play (not checked
-to the end).
+(manual). ~~Create your own character asks no name before play~~: it does (verified 2026-11-21): after the
+attributes, YES, then "Shall your character be male or female?", then "By what Name shall your character be
+known?" (any text: `ryz` becomes "Ryz"), YES, "Are you sure Ryz is the character you want?" YES, "Do you want
+to save this character before you proceed?" NO, any key -> Hilltop (checkpoint `m_ryz`). The sets use the
+preset Frank Booth because the whole chain (moors layout) was built on it; Ryz appears in the creation shots.
 
 ## Shortcuts
 | What | How (tokens / prefix / code) | Source | Status |
@@ -142,7 +158,8 @@ Bzork.exe keeps words **little-endian** (byte-swapped story).
 |---|---|---|---|
 | 0CDB0 | - | Z-machine address 0 (header); globals at Z 02B6 = `0D066` | story header search |
 | 1454A | 2 LE | Endurance (current), then 1454C ST, 1454E DX, 14550 IQ, 14552 CM, 14554 LK, 14556 AC | search for 23,8,8,8,1,25; pokes shown on STATUS |
-| 14558 | 2 LE | 9 after the first fight (experience? not confirmed) | diff |
+| 14558 | 2 LE | experience: 0 at the start, 9 after the vapor (Level 1), 16 after a guttersnipe; poked to 37 still Level 1 | diff, preview --peek |
+| 0D20C | 2 BE | zorkmids (`MONEY:n`); found by selling a scroll (1 -> 6) | find |
 | 1455A | 2 LE | maximum Endurance, then 1455C... the other maxima in the same order | poke |
 
 ## Emulation notes
@@ -168,8 +185,8 @@ also with the same save file on disk.
 | Walkthroughs (cyberly.org, the-spoiler.com, walkthroughking.com, ifarchive solutions) | search results only | not fetched: hosts not on the approved list (ask the coordinator) | 2026-11-21 |
 
 ## Open questions
-- Death screen and its options (RESTART/RESTORE/QUIT?): no safe death found in the opening area.
-- Shops (the manual mentions CASH; you start with 1 zorkmid): where is the first one?
-- What 14558 counts (experience?); where the level is stored.
-- Create your own character: does it end with a name prompt?
+- ~~Death screen~~: found 2026-11-21 (rat-ant at Level 0: RESTORE/RESTART/QUIT; grue: also UNDO).
+- ~~Shops~~: the Boutique in Mizniaport (cloak 30 zorkmids; sells a scroll for 5).
+- Where the level is stored and what Level 2 needs (14558 is experience).
+- ~~Create your own: name prompt~~: yes (see Naming).
 - Mouse on the map (manual): not tried; DOSBox Pure mouse tokens exist.
