@@ -9,6 +9,8 @@ Append-only, newest first.
   58 decoded level maps. Verified cold by the coordinator (54/54, 110/110).
 - Tools: `tools/hirestext.py` reads text drawn on the Apple II hi-res screen with a font taught per game
   (Bard's Tale I and III; not Might and Magic II's wide letters); `play.py text` / `preview.py --text` use it.
+- Owner asked for a dungeon walk and more automap: `seq-dungeon-walk` 29 steps and `seq-automap` 18 steps on
+  UnterBrae, honest walks with fight-free waits per step (verified 29/29, 18/18).
 - Open: Bard's Tale III won fight, game over, ending; level-map wall decoding outside the catacombs.
 
 ## 2026-11-21 - Beyond Zork in palette 6; Frotz comparison
