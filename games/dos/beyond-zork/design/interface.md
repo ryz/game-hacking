@@ -19,7 +19,8 @@ as **Observation:** with the reason, never as a fact.
   room name, a framed room window with the room description, the auto-map at the right, the scrolling
   transcript and prompt below **(verified, `gameplay_hilltop`)**. Standard mode (MODE): one status line with
   every attribute and the exits over a plain scrolling transcript **(verified, `system_mode_standard`)**.
-- **Text:** one fixed-width font in light gray on blue (default palette); words that a scroll or a sound
+- **Text:** one fixed-width font; the default palette is light grey on blue (`options_color_default`), the
+  database shows palette 6, black on light grey, in every Bzork.exe shot (owner's choice, set at boot: playbook "Look"); words that a scroll or a sound
   makes are underlined (Blarn, Macuga, Kerblam, Bang, snap) **(verified, `inventory_scroll_blarn`,
   `system_cellar_locked`)**. Game messages about the interface come in square brackets ("[SAVE
   completed.]", "[Color pallette 4 of 6.]") **(verified)**.
@@ -54,13 +55,28 @@ as **Observation:** with the reason, never as a fact.
 | Standard mode | screen | MODE | plain display | status line EN ST DX IQ CM LK AC, exits | MODE again | "[Normal display mode.]" | `system_mode_standard` | - |
 | SETTINGS | menu | `settings` | all display options in one place | Display Mode, Descriptions, Transcripting, Status Notify, Map View, Display Priority, Combat Monitor | arrows, Enter | - | `options_settings` | - |
 | DEFINE | menu | `define` | function keys | F1-F10 texts, Restore Defaults, Exit | arrows, typing | - | `options_define_keys` | - |
-| COLOR | message | `color` | palette | "[Color pallette N of 6.]" | - | - | `options_color_palette`, `options_color_4`, `options_color_5`, `options_color_6`; monochrome: `options_monochrome` | the game spells "pallette"; palettes 1 and 2 look like the default (blue) on the EGA used here (verified 2026-11-21); "Do you want color?" N at boot gives grey on black |
+| COLOR | message | `color` | palette | "[Color pallette N of 6.]" | - | - | `options_color_default` (1, white on blue), `options_color_palette` (3, blue with green map), `options_color_4` (red title bar on black), `options_color_5` (black background), `options_color_6` (black on light grey); monochrome: `options_monochrome` | the game spells "pallette"; palette 1 = the interpreter's default colours, palette 2 the same white on blue set explicitly (verified 2026-11-21); the first COLOR shows palette 1, then 2..6; "Do you want color?" N at boot gives grey on black; Frotz offers 4 palettes (`extra_frotz_color`) |
 | NOTIFY, PRIORITY | message | commands | options without the menu | bracketed confirmation | - | - | `options_notify`, `options_priority` | - |
 | UNDO | message | F9 | take back a move | "[UNDO completed.]" | - | "[UNDO failed.]" when nothing to undo | `system_undo` | - |
 | SAVE / RESTORE | prompt | `save` / `restore` | files | "You mumble the Spell of Saving. Enter save file name. (Default is data\\beyondzo.sav):" | file name | "[SAVE completed.]" | `save_prompt`, `save_done`, `save_restore` | - |
 | Death screen | screen | Endurance 0, grue | end of a life | title bar "Death", "You are dead.", choices | RESTORE, RESTART, QUIT (and UNDO when allowed) | - | `gameover_ratant`, `gameover_grue` | UNDO is offered only for a death outside combat |
 | Nymph messages | message | first use of some commands | interface hints | a nymph speaks and vanishes | - | - | `inventory_list`, `extra_technical_nymph` | - |
-| Frotz 2.32 display | screen | the bundle's .bat | comparison | title picture, proportional font, red frames | - | - | `extra_frotz_title`, `extra_frotz_cove` | not Infocom's interpreter |
+| Frotz 2.32 display | screen | the bundle's .bat | comparison | title picture, proportional font, red frames | - | - | `extra_frotz_title`, `extra_frotz_begin`, `extra_frotz_prologue`, `extra_frotz_hilltop`, `extra_frotz_cove`, `extra_frotz_fight` | not Infocom's interpreter; differences below |
+| Frotz menus | menu | `settings`, `define`, F3, F2 | the game's own menus as Frotz draws them | Character Setup, SETTINGS, DEFINE, STATUS, INVENTORY | as in Bzork.exe | - | `extra_frotz_setup`, `extra_frotz_settings`, `extra_frotz_define`, `extra_frotz_status`, `extra_frotz_inventory` | red highlights and boxes instead of inverse video |
+| Frotz COLOR | message | `color` | palette | "[Color pallette N of 4.]" | - | - | `extra_frotz_color` | Frotz reports itself as a machine with 4 palettes |
+| Frotz hot keys | help | Alt-H | interpreter functions | "Hot key -- Help": Alt-D debugging options, Alt-H help, Alt-N new game, Alt-P playback on, Alt-R recording on/off, Alt-S seed random numbers, Alt-U undo one turn, Alt-X exit game, [MORE] | Alt+letter | - | `extra_frotz_hotkeys` | Bzork.exe has no hot keys of its own |
+
+### Frotz 2.32 compared with Bzork.exe (verified, `extra_frotz_*`)
+- 640x400 VGA instead of 640x200 EGA; a title picture from `Beyondzo.mg1` before the opening prompt (Bzork.exe
+  has none).
+- Two fonts: transcript, prompts and prologue in a proportional font; the title bar, room window, menus and
+  map in a fixed-width font. Bzork.exe uses one fixed-width font for everything.
+- White text on black, typed commands in cyan; title bar, frames, map rooms, attribute bars and menu
+  highlights in red (Bzork.exe: everything in the two colours of the palette, highlights in inverse video).
+- COLOR has 4 palettes, not 6 (`extra_frotz_color`, palette 3 = white on blue).
+- Added: Alt hot keys (Alt-H help lists them) and DOSBox's mouse pointer drawn in the picture.
+- The random moors are laid out differently from the same commands: `s,s,s,e` from the Wharf ends at Gasses
+  with the vapor (Bzork.exe: Noises).
 
 ## 3. Screen flow
 - DOSBox start menu -> BZORK.EXE -> colour question -> opening prompt (BEGIN / RESTORE / QUIT)
