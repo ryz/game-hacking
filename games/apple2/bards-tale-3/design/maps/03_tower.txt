@@ -1,0 +1,16 @@
+Tower (level 03, dungeon disk side A, 5x5)
+North is up; columns = east, rows = north. Walls | ---, doors D, other S (secret door or special wall);
+cell text: flag byte 2 in hex when not zero, + = flag byte 3 set, * = visited (automap bit), nothing else.
+   +---+---+---+---+---+
+ 4 | +   08D 80| 80D + |
+   +---+---+   +-D-+-D-+
+ 3 | 80|     + | 05| 84|
+   +---+---+-D-+---+-D-+
+ 2 | 01|   D + D   | 80|
+   +   +   +-D-+-D-+-D-+
+ 1 |       |   | 08  80|
+   +-D-+-D-+-D-+-D-+-D-+
+ 0 | * | 84|   | 80  80|
+   +---+---+---+---+---+
+    0   1   2   3   4   
+route: @cat_stairs,LV:03:<index>

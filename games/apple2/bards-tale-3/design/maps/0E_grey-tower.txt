@@ -1,0 +1,16 @@
+Grey Tower (level 0E, dungeon disk side A, 5x5)
+North is up; columns = east, rows = north. Walls | ---, doors D, other S (secret door or special wall);
+cell text: flag byte 2 in hex when not zero, + = flag byte 3 set, * = visited (automap bit), nothing else.
+   +---+---+---+---+---+
+ 4 | 80  10  80  10  01|
+   +---+   +   +   +   +
+ 3 | 80 08+| 80| + | + |
+   +   +   +   +   +---+
+ 2 | 80  10|80+  10| + |
+   +---+   +---+   +---+
+ 1 | 80|   | 80| 08| + |
+   +---+   +---+   +---+
+ 0 | 01  +   80  +   + |
+   +---+---+---+---+---+
+    0   1   2   3   4   
+route: @cat_stairs,LV:0E:<index>

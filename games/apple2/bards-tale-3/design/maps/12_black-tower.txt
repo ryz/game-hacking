@@ -1,0 +1,16 @@
+Black Tower (level 12, dungeon disk side A, 5x5)
+North is up; columns = east, rows = north. Walls | ---, doors D, other S (secret door or special wall);
+cell text: flag byte 2 in hex when not zero, + = flag byte 3 set, * = visited (automap bit), nothing else.
+   +---+---+---+---+---+
+ 4 | 08S +   88S 08  80|
+   +   +   +   +---+   +
+ 3 |   |80+  + | 01| + |
+   +-S-+   +   +   +   +
+ 2 | 01      80  + | 80|
+   +---+   +   +   +   +
+ 1 |08+S80+     80+| + |
+   +   +---+---+---+   +
+ 0 | 08      +  80+    |
+   +---+---+---+---+---+
+    0   1   2   3   4   
+route: @cat_stairs,LV:12:<index>

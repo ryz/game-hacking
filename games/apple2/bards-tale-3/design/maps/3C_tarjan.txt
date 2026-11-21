@@ -1,0 +1,18 @@
+Tarjan (level 3C, dungeon disk side B, 6x6)
+North is up; columns = east, rows = north. Walls | ---, doors D, other S (secret door or special wall);
+cell text: flag byte 2 in hex when not zero, + = flag byte 3 set, * = visited (automap bit), nothing else.
+   +---+---+---+---+---+---+
+ 5 | +   +   +   +   +   + |
+   +   +---+---+---+---+   +
+ 4 |   | +           + | + |
+   +   +   +---+---+   +   +
+ 3 |   | + |       |   | + |
+   +   +   +   +   +   +   +
+ 2 |   | + |   |   |   | + |
+   +   +   +   +---+   +   +
+ 1 | 10| + |           | + |
+   +   +   +---+---+---+   +
+ 0 | * | +   +   +   +   + |
+   +---+---+---+---+---+---+
+    0   1   2   3   4   5   
+route: @cat_stairs,LVB:3C:<index>
