@@ -97,7 +97,8 @@ vectors, BIOS data area at `00400`, DOS, then the game), extended memory from `1
 (`A0000-BFFFF`) and ROM are not readable through `peek`. `find` covers `00500-9FFFF`. `status` shows CS:IP.
 A game's addresses depend on where DOS loads it, which is the same on every boot with the same ZIP and model.
 Z-machine games (Infocom): search for the story file's first header bytes to find the base of the game's
-memory; Infocom's DOS interpreter keeps 2-byte words little-endian there (Beyond Zork, 2026-11-21).
+memory; Infocom's DOS interpreter keeps its own 2-byte word tables little-endian there, while object data (properties,
+money) stays big-endian as in the story file (Beyond Zork, 2026-11-21).
 
 ## Saves
 DOS games save to files on `C:`. DOSBox Pure keeps the changed files in a save ZIP; the backend gives every

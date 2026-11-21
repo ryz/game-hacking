@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-20 (batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
+updated: 2026-11-21 (gamestable left to the coordinator)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -119,7 +119,8 @@ edit anything outside the game's folder.
    they are, strategy that worked, RAM found, timing quirks, dead ends. Keep its **Read first** block current
    (at most 60 lines at the top: how to start, the macros and checkpoints that matter, the traps that cost
    calls, what is still open); write it if the playbook has none. Tick the Shot plan. Set `game.json` "work"
-   (one line: what exists, as the README table shows it) and "open" (what is still missing).
+   (one line: what exists, as the README table shows it) and "open" (what is still missing). Do not run `tools/gamestable.py`: the coordinator does (it writes
+   `README.md` and `docs/status.md`).
 
 ## Guardrails
 - Write only `work/`, `rom/saves/SLUG/`, `rom/patches/SLUG/` and `games/PLATFORM/SLUG/` (playbook.md, design/, saves/,

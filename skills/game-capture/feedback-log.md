@@ -12,6 +12,24 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-21 - Beyond Zork (DOS, first text adventure)
+- Task: sets `main` (87) and `start` (34) with the three lenses, from the scout's chain.
+- Worked: `preview.py` sheets of 9-12 exploration routes explored an unknown text adventure (one look per 12
+  commands) far better than `play.py` steps; the scout's chain and plan lines used as they were; `find "new == 6"`
+  after a sale found the money at once.
+- Friction: `play.py` restarts `call=N` with every `start` (no budget count across sessions); `gamestable.py`
+  writes outside the game folder; `unsnap` also removes the line from the working `shots.txt`; routes differing
+  only in typed commands change random layouts and scroll words (captions from the frame); "NOT settled" on every
+  line from the blinking cursor buries real warnings.
+- Proposed rule change: skill step 8: leave `gamestable.py` to the coordinator; dos.md: Z-machine object data
+  stays big-endian.
+- Corrected: no separate first-half commit (main shot in one batch): accepted. Coordinator re-verified from an
+  empty cache: start 34/34, main 87/87; lenses clean; main sheet looked at (variety, deaths, shop, options, Frotz
+  comparison). About 95 of 280 calls used.
+- Status: gamestable rule promoted into skill.md 2026-11-21 (second case: the scout skill already has it); dos.md
+  note extended; the settle noise is now a second case -> backlog row; `call=N` across sessions and `unsnap`
+  editing shots.txt logged.
+
 ### 2026-11-20 - Might and Magic II (DOS, set `start`)
 - Task: set `start` for an honest new party from power-on to the first inn sign-in.
 - Worked: decoding the area's wall map early (one dump, 161D6) plus a small BFS gave every walking route and

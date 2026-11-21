@@ -2,6 +2,20 @@
 
 Append-only, newest first.
 
+## 2026-11-21 - Beyond Zork (DOS): first text adventure, scouted and captured
+- Owner uploaded `beyond_zork.zip` (SHA-1 `498c08e5...`): story file Z-machine v5 release 57 / 871221 with
+  Infocom's own `Bzork.exe` and DOS Frotz 2.32 (the bundle's `.bat`). Registered as `dos/beyond-zork`, region na.
+- Scout: `Bzork.exe` chosen (original look, 640x200 16-colour graphics, so no `play.py text`); start deterministic
+  from power-on, the moors randomised by the typed route; 11 honest checkpoints to the first save; Z-machine base
+  0CDB0, attributes 1454A. Coordinator: 11/11 cold.
+- Capture: `start` 34 (honest, power-on to SAVE) and `main` 87 (setup screens, options and palettes, village,
+  cellar deaths, moors fights, Mizniaport shop, Frotz comparison); lenses; `ATTRS`/`MONEY` pokes in `main` only.
+  Coordinator: 34/34 and 87/87 from an empty cache.
+- Rules: game-capture leaves `gamestable.py` to the coordinator (promoted); dos.md: commas in `type:`, Z-machine
+  memory layout. Backlog: text reading for graphics-mode text games, a settle that ignores a blinking cursor.
+- Open: level 2, a magic item with a visible effect, the cellar solution, Skyway, Gurth City, Fields of Frotzen;
+  walkthrough hosts are blocked by the network.
+
 ## 2026-11-20 - Might and Magic II (DOS): new rules applied, set `start`
 - Owner re-uploaded the GOG ZIP (SHA-1 matches). `main` re-verified with the new tools from an empty cache:
   228/228, 213 s with 4 processes.
