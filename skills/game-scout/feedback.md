@@ -28,3 +28,5 @@ Tool wishes are not listed here: `docs/backlog.md`.
 - **Doors that ignore walking into them:** test "step onto the tile, release, press again" in one preview batch
   before trying Open/Seek or other doors (Sword of Vermilion, 2026-11-20, ~40 calls). An exit that does nothing
   before a story event: retry it after the event before searching elsewhere (same game, the south gate).
+- **Dungeon games: load every level through the game's own level-change code** (a script around it) before
+  writing warps; it doubles as the dump check (Bard's Tale III Apple II, 2026-11-21).

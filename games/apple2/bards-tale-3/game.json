@@ -1,0 +1,124 @@
+{
+  "slug": "bards-tale-3",
+  "title": "The Bard's Tale III: Thief of Fate",
+  "platform": "apple2",
+  "region": "na",
+  "model": "iie",
+  "rom": "rom/bards-tale-3.zip",
+  "sha1": "62ec96ba230da37e7adbc14bd8cb135207b5a698",
+  "crc32": "8025294f",
+  "size": 423754,
+  "header": {
+    "disks": [
+      {
+        "name": "1 Program.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "3879c48268ae45e7847372baa66c97c082325279"
+      },
+      {
+        "name": "2 Character.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "c86bbb3ed120c07bd81ad8e39c5a6ff1ff75ba81"
+      },
+      {
+        "name": "3 Dungeon 1.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "5321b9decaf2f2aa4846d9b7a643fcdf6f492481"
+      },
+      {
+        "name": "4 Dungeon 2.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "6b7d97b179cca5d4f6cc5ef93488f8e79f7f7c03"
+      }
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {
+    "TITLE": "w900",
+    "CHARDISK": "TITLE,space,w1200,disk:2,space,w900",
+    "CAMP": "CHARDISK,n,w900",
+    "RESTORE": "CHARDISK,y,w600,disk:4,space,w1200",
+    "PARTY": "a,w300,down*6,enter,w600",
+    "WILD": "e,w900",
+    "AT": "poke:0009={0},poke:000A={1},l,j,w60",
+    "FACE": "poke:000B={0},l,j,w60",
+    "MAKE": "c,w300,{0},w300,{1},w400,{2},w400,type:{3}\\n,w600",
+    "MAKE6": "MAKE:m:1:0:RYZ,MAKE:f:3:7:CONDI,MAKE:m:4:5:EBO,MAKE:f:5:6:CUBI,MAKE:m:2:3:DEDDO,MAKE:f:7:4:MNZ",
+    "ADD": "a,w300,down*{0},enter,w600",
+    "ADD6": "ADD:15,ADD:16,ADD:17,ADD:18,ADD:19,ADD:20,esc,w300",
+    "LV": "poke:000D=01,poke:1052={0},disk:3,y,w1200,poke:000D={1}",
+    "LVB": "poke:000D=01,poke:1052={0},disk:4,y,w1500,poke:000D={1}",
+    "CITY": "poke:000D=00,poke:105A={1},poke:105B={2},poke:105C={0},disk:2,y,w1500",
+    "LIGHT": "c,w200,5,w300,type:MAFL\\n,w600,space,w300"
+  },
+  "ram": {
+    "north": {
+      "addr": "0009",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "east": {
+      "addr": "000A",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "facing": {
+      "addr": "000B",
+      "size": 1
+    },
+    "mapfile": {
+      "addr": "0003",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "city": {
+      "addr": "000C",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "dlev": {
+      "addr": "000D",
+      "size": 1,
+      "fmt": "hex"
+    }
+  },
+  "source": {
+    "note": "Owner's second upload 2026-11-21 (thief_of_fate-apple_ii-dsk.zip). Boot, character and dungeon side 2 are identical to the first upload; dungeon side 1 is a full 143360-byte image (the first upload's was 165 bytes short and differed from track 23 on, 191 of 560 sectors). The 143358-byte images were padded with two zero bytes at the end to 143360 (zeros there in both uploads: harmless) and renamed so the disks sort in play order; the padded images are the registered dump. Nothing of this is committed.",
+    "uploaded": [
+      {
+        "name": "Bard's Tale III (Boot Disk).dsk",
+        "size": 143358,
+        "sha1": "dfc3fd97c3abc209ddf170538af97f4848a26d4f"
+      },
+      {
+        "name": "Bard's Tale III (Character Disk).dsk",
+        "size": 143358,
+        "sha1": "e7ca50fd58df7d136c5c42710f1901d1b0e01b93"
+      },
+      {
+        "name": "Bard's Tale III (Dungeon Disk side 1).dsk",
+        "size": 143360,
+        "sha1": "5321b9decaf2f2aa4846d9b7a643fcdf6f492481"
+      },
+      {
+        "name": "Bard's Tale III (Dungeon Disk side 2).dsk",
+        "size": 143358,
+        "sha1": "a25d0dbebbf9767785115829c6cc624a81eb11dc"
+      }
+    ],
+    "superseded": {
+      "name": "first upload, Disk 3 of 4 (Dungeon 1)",
+      "size": 143195,
+      "sha1": "cd65428c5365f89e457adae867a970fbad47243e"
+    }
+  },
+  "work": "scouted 2026-11-21: boot, 22 checkpoints, party records, city and level warps (all 61 levels load), automap; not captured",
+  "open": "capture main and start sets; encounter suppression (random fights in the wilderness and cities); Chronomancer gate travel in play; level-up at the Review Board in play"
+}
