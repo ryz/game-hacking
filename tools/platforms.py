@@ -2017,7 +2017,7 @@ class C64(Libretro):
                                len(data), "D64 of unusual size, %d bytes" % len(data))
             bam = data[_d64_offset(18, 0):_d64_offset(18, 0) + 256]
             if len(bam) == 256:
-                out["volume"] = bam[0x90:0xA0].rstrip(b"\xA0").decode("latin-1")
+                out["volume"] = bam[0x90:0xA0].rstrip(b"\xA0").decode("latin-1").strip()
                 files, t, s, seen = [], bam[0], bam[1], set()
                 while t and (t, s) not in seen and t <= 40 and len(files) < 144:
                     seen.add((t, s))
