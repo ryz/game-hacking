@@ -12,3 +12,12 @@ saved1 | Noises after the first fight: SAVE completed (DATA\BEYONDZO.SAV) | @vap
 cove | Cove (village street), first step east from Hilltop | @start,GO:e,settle
 lighthouse | Lighthouse plateau: riddle at the Ledge answered (SAY LIGHTNING), ENTER OPENING | @shillelagh,GO:w,GO:ne,GO:say lightning,GO:enter opening,settle
 kitchen | Rusty Lantern kitchen: dagger taken from the wall, cook and giant onion | @shillelagh,GO:w,GO:s,GO:open door,GO:w,GO:w,GO:take dagger,GO:w,settle
+# start set (honest play, power-on to the first save): copies of the chain above
+s_boot | start set: opening prompt BEGIN/RESTORE/QUIT | pow,BOOT,settle
+s_title | start set: title card after the prologue | @s_boot,type:begin\n,w300,space,w200,space,w300,settle
+s_setup | start set: Character Setup menu | @s_title,space,w300,settle
+s_start | start set: Hilltop, preset character Frank Booth | @s_setup,enter,w300,space,w300,settle
+s_shillelagh | start set: Wharf, driftwood taken and wielded | @s_start,type:e\n,w200,type:e\n,w200,type:z\n,w200,type:take driftwood\n,w200,type:wield shillelagh\n,w200,settle
+s_vapor | start set: moors (Noises), eldritch vapor attacks | @s_shillelagh,type:w\n,w200,type:s\n,w200,type:s\n,w200,type:s\n,w200,type:e\n,w200,settle
+s_vapor_won | start set: eldritch vapor beaten, Level 1 | @s_vapor,type:attack vapor\n,w200,settle,f7,w200,f7,w200,settle,f7,w200,settle
+s_saved1 | start set: SAVE completed after the first fight | @s_vapor_won,f3,w200,type:save\n,w200,enter,w300,settle

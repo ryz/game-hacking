@@ -1,0 +1,34 @@
+01_power_on | boot | DOSBox Pure start menu: BZORK.BAT, BZORK.EXE, FROTZ.EXE, command line | w120
+02_color_prompt | boot | BZORK.EXE asks: Do you want color? | w120,down,enter,w600
+03_begin_prompt | menu | Copyright 1987 Infocom; type BEGIN, RESTORE or QUIT | @s_boot
+04_prologue_council | cutscene | Prologue: Y'Gael before the Guildmaster's council, [MORE] | @s_boot,type:begin\n,w300
+05_prologue_coconut | cutscene | Prologue, second page: Y'Gael hides the Coconut of Quendor | @s_boot,type:begin\n,w300,space,w200
+06_title_card | title | Title card: BEYOND ZORK, The Coconut of Quendor | @s_title
+07_character_setup | menu | Character Setup: preset, select, random, create your own, quit | @s_setup
+08_preset_chosen | menu | Preset Frank Booth, Level 0 Male Peasant: press any key to begin | @s_setup,enter,w300
+09_hilltop | gameplay | Hilltop: first prompt, room window, auto-map | @s_start
+10_status | inventory | STATUS (F3): Frank Booth, Level 0 Male Peasant, attribute bars | @s_start,f3,w200
+11_inventory | inventory | INVENTORY (F2): a pack, 1 zorkmid; a nymph explains CASH | @s_start,f2,w200
+12_cash | inventory | $ (CASH): one zorkmid | @s_start,GO:$
+13_examine_oak | gameplay | EXAMINE OAK on the Hilltop: gnarled roots | @s_start,GO:examine oak
+14_edge_of_storms | gameplay | Edge of Storms: gray fields, thunderclouds, a billboard | @s_start,GO:nw
+15_cove | gameplay | Cove: the village street of shanties | @s_start,GO:e
+16_wharf | gameplay | Wharf: an old sailor at his easel | @s_start,GO:e,GO:e
+17_driftwood | gameplay | Z (wait): a piece of driftwood bobs on the waves | @s_start,GO:e,GO:e,GO:z
+18_take_driftwood | system | TAKE DRIFTWOOD: the sailor calls it a shillelagh | @s_start,GO:e,GO:e,GO:z,GO:take driftwood
+19_wield_shillelagh | system | WIELD SHILLELAGH | @s_shillelagh
+20_examine_shillelagh | inventory | EXAMINE SHILLELAGH: a formidable skull-thrasher | @s_shillelagh,GO:examine shillelagh
+21_back_to_cove | gameplay | Leaving the Wharf: "See y'later," chuckles the salt | @s_shillelagh,type:w\n,w200
+22_ledge_riddle | dialogue | Ledge: the riddle carved upon the cliff | @s_shillelagh,GO:w,GO:ne,GO:read inscription
+23_outside_pub | gameplay | Outside Pub: Ye Rusty Lantern, A Publick House | @s_shillelagh,type:w\n,w200,type:s\n,w200
+24_rusty_lantern | gameplay | The Rusty Lantern: bandits by the fireplace | @s_shillelagh,GO:w,GO:s,GO:open door,GO:w
+25_moors_edge | gameplay | Moor's Edge south of the pub | @s_shillelagh,type:w\n,w200,type:s\n,w200,type:s\n,w200
+26_deep_mist | gameplay | Deep Mist on the moors | @s_shillelagh,type:w\n,w200,type:s\n,w200,type:s\n,w200,type:s\n,w200
+27_vapor_appears | battle | Noises: an eldritch vapor coalesces out of the mist | @s_vapor
+28_attack_miss | battle | ATTACK VAPOR: a miss; the vapor tickles, Endurance 14% | @s_vapor,type:attack vapor\n,w200
+29_attack_wound | battle | ATTACK MONSTER (F7): the shillelagh dangerously wounds the vapor | @s_vapor,type:attack vapor\n,w200,settle,f7,w200
+30_attack_serious | battle | Second F7: the vapor seriously wounded tries to snatch the club | @s_vapor,type:attack vapor\n,w200,settle,f7,w200,f7,w200
+31_vapor_won | battle | Decisive blow: the vapor vanishes, Level 1 Male Peasant | @s_vapor_won
+32_status_level1 | inventory | STATUS after the fight: Level 1, Endurance 23% | @s_vapor_won,f3,w200
+33_save_prompt | save | SAVE: the Spell of Saving asks for a file name | @s_vapor_won,f3,w200,type:save\n,w200
+34_save_done | save | SAVE completed | @s_saved1
