@@ -23,8 +23,14 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+A first-person party role-playing game: up to six characters (plus one summoned or hired companion) walk a
+grid of squares in cities, the wilderness and dungeons, fight turn-based battles chosen member by member, and
+grow through experience, gold and spells **(verified)**. Skara Brae lies in ruins; the party starts at the refugee
+camp, gets its quest from the Review Board, and travels through seven dimensions (Arboria, Gelidia, Lucencia,
+Kinestia, Tenebrosia, Tarmitia, Malefia) to defeat the mad god Tarjan **(source)**. Distinctive: a built-in
+automap of every dungeon level (`?`), save anywhere to the character disk, new caster classes (Geomancer,
+Chronomancer) and travel between dimensions **(source; automap and save verified)**. Ten city and wilderness
+maps and 61 dungeon levels **(verified: loaded one by one)**.
 
 ## Documents
 | Document | Covers |

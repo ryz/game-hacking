@@ -2,7 +2,7 @@
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # Plan for the main set written by the scout 2026-11-21 (routes previewed; the capture agent adds and adjusts).
-boot_prodos | boot | ProDOS 8 V1.4 boot banner | w60,!
+boot_prodos | boot | ProDOS 8 V1.4 boot banner | w330,!
 title_screen | title | Title screen: The Bard's Tale III, The Thief of Fate, the bard with his lute | @title,!
 menu_chardisk | menu | "Please insert your Character disk", empty party window | TITLE,space,w1200
 menu_restore | menu | "Do you wish to restore your last saved game?" | @restore_prompt
@@ -39,3 +39,15 @@ gameplay_tower_valarian | gameplay | Valarian's tower | @cat_stairs,LV:03:00,w30
 gameplay_ice_keep | gameplay | Gelidia: Ice Keep | @cat_stairs,LV:16:00,w30
 gameplay_berlin | gameplay | Tarmitia: Berlin | @cat_stairs,LVB:21:00,w30
 gameplay_tarjan_end | gameplay | The restored save: Tarjan's level, "very close to the source of all evil" | @tarjan_save,!
+env_catacombs_lit | gameplay | Catacombs lit by a Mage Flame: corridor | @catacombs,LIGHT,AT:06:06,w60
+env_unterbrae | gameplay | UnterBrae level 1, lit | @cat_stairs,LV:34:00,LIGHT
+env_ice_keep | gameplay | Gelidia, Ice Keep level 1, lit | @cat_stairs,LV:16:00,LIGHT
+env_berlin | gameplay | Tarmitia: Berlin, lit | @cat_stairs,LVB:21:00,LIGHT
+system_cast_light | system | Morganna casts MAFL (Mage Flame): light icon appears | @catacombs,c,w200,5,w300,type:MAFL\n,w600
+save_prompt | save | "Do you wish to save your game?" | @ryz_wild,s,w300
+env_gelidia | gameplay | Gelidia: snowfield | @gelidia,w30
+env_lucencia | gameplay | Lucencia: trees | @lucencia,w30
+env_black_scar | gameplay | Black Scar: street | @blackscar,w30
+# To do (routes not settled yet): automap of the Tunnels (@cat_stairs,LV:29:01,AT:05:0A,... met Magic-eaters:
+#   vary the wait); Ciera Brannia Wizard's Guild hall and King's Court (scan said east,north 6,6 and 8,12 from
+#   the old arrival square; from @ciera AT:06:06 gives "To the south you see the Wizard's Guild": try FACE first).

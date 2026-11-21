@@ -15,13 +15,13 @@ cat_stairs | Catacombs level 1 arrival: "There are stairs here, going up. Do you
 ryz_party | Camp: new party RYZ CONDI EBO CUBI DEDDO MNZ created (Human Warrior, Dwarf Paladin, Hobbit Rogue, Half-Elf Bard, Elf Conjurer, Gnome Magician) and added | @camp,MAKE6,ADD6
 ryz_wild | Wilderness one pace south of the camp with the RYZ party, facing south | @ryz_party,WILD
 arboria | Arboria (city map 2) by the stairs warp, square 2,2 | @cat_stairs,CITY:02:02:02
-ciera | Ciera Brannia (city map 3), square 2,2 | @cat_stairs,CITY:03:02:02
+ciera | Ciera Brannia (city map 3), street at square 1,1 | @cat_stairs,CITY:03:01:01
 gelidia | Gelidia (city map 4), square 2,2 | @cat_stairs,CITY:04:02:02
-lucencia | Lucencia (city map 5), square 2,2 | @cat_stairs,CITY:05:02:02
-celaria | Celaria Bree (city map 6), square 2,2 | @cat_stairs,CITY:06:02:02
+lucencia | Lucencia (city map 5), square 5,5 | @cat_stairs,CITY:05:05:05
+celaria | Celaria Bree (city map 6), square 1,1 | @cat_stairs,CITY:06:01:01
 nowhere | Nowhere (Tenebrosia, city map 7), square 2,2 | @cat_stairs,CITY:07:02:02
-darkcopse | Dark Copse (city map 8), square 2,2 | @cat_stairs,CITY:08:02:02
-blackscar | Black Scar (city map 9), square 2,2 | @cat_stairs,CITY:09:02:02
+darkcopse | Dark Copse (city map 8), square 5,5: the black door in the ashes (message) | @cat_stairs,CITY:08:05:05
+blackscar | Black Scar (city map 9), street at square 5,5 | @cat_stairs,CITY:09:05:05
 review_board | Skara Brae: Review Board menu (Advancement / Spell Acquiring / Class Change / Talk to the elder / Exit the guild) after the elder's speech, factory party | @skara,AT:0E:0F,w400,space,w300,space,w300,space,w300,space,w300
 storage | Skara Brae: storage building (free starting gear): "Pick up..." list for Ironpants | @skara,AT:0A:03,w300,1,w400
 temple | Skara Brae: Temple of the Mad God, "What wilt thou say?" prompt (answer TARJAN for the catacombs) | @skara,AT:0C:0B,w300,y,w400

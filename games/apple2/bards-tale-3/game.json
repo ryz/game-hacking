@@ -72,6 +72,21 @@
     "facing": {
       "addr": "000B",
       "size": 1
+    },
+    "mapfile": {
+      "addr": "0003",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "city": {
+      "addr": "000C",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "dlev": {
+      "addr": "000D",
+      "size": 1,
+      "fmt": "hex"
     }
   },
   "source": {
@@ -103,5 +118,7 @@
       "size": 143195,
       "sha1": "cd65428c5365f89e457adae867a970fbad47243e"
     }
-  }
+  },
+  "work": "scouted 2026-11-21: boot, 22 checkpoints, party records, city and level warps (all 61 levels load), automap; not captured",
+  "open": "capture main and start sets; encounter suppression (random fights in the wilderness and cities); Chronomancer gate travel in play; level-up at the Review Board in play"
 }
