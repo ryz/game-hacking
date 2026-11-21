@@ -42,6 +42,14 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Maps:** `tools/maps.py [LEVEL ...]` writes `design/maps/` (58 levels; 2A-2C Malefia not loaded).
   Full automap: `tools/fill.py ROUTE`: poke every row of the level with byte 4 bit 0 set (shot
   `map_mountain_full`).
+- **Sequences (2026-11-21):** `seq-dungeon-walk` (29) from `w_stairs34` (UnterBrae 1 stairs down at E12 N14,
+  dark) -> `w_lit35` (UnterBrae 2 arrival on the stairs up, lit); `seq-automap` (18) from `m_lit35` (UnterBrae 2 by
+  `LV:35:01`, arrival 0,0, automap empty). **Doors are passed with `k`**, `i` only faces them. A Mage Flame lasts
+  ~30 moves. Fight-free walking: `tools/safewalk.py @cp "l,w60;i,w60;..."` picks a wait before each step;
+  routes between squares from the decoded map: `tools/mazeroute.py`. UnterBrae 2 squares (east,north): stairs up
+  12,14, stairs down 0,5 (sealed pocket), messages 12,13 (dry rot, drains SP), 14,10, 10,0, 1,3 (riddle), 0,4;
+  forced fights 1,11 3,2 4,5 4,6 4,8 5,14 6,14 7,13 8,10 9,8 11,11 13,0 13,3 13,9 13,11; darkness 8-10,11.
+  UnterBrae 1: stairs down 12,14, up 14,0, magic mouth 11,14 (scans: `work/scout/bards-tale-3/scan34|35`).
 - **State (2026-11-21 capture):** `start` 54 shots and `main` 110 shots published; saves `01_start`,
   `02_shrine_saved`. Open: won fight with rewards, game over, the ending, encounter switch, Chronomancer travel.
 
@@ -89,7 +97,7 @@ Death. New characters are added at the end (RYZ is entry 15). The restorable sav
 | Camp | A R C D S L E | add member (scroll list, Return), remove, create, delete, save the party, leave the game, enter wilderness (with a party) | A C E verified |
 | Create | M/F, race 1-7, class 0 3-9, name + Return; ESC rerolls | Human Elf Dwarf Hobbit Half-Elf Half-Orc Gnome; Warrior Conjurer Magician Rogue Bard Paladin Hunter Monk | verified |
 | Walking | `i` forward, `j`/`l` turn left/right | trees, walls and buildings block | verified |
-| Walking | `k` (or Return) | enter the building or gate square ahead (`i` only bumps) | verified |
+| Walking | `k` (or Return) | enter the building or gate square ahead, pass a dungeon door (`i` only bumps) | verified (doors: seq-dungeon-walk) |
 | Walking | `?` (shift+slash) | outdoors: position and time of day; in a dungeon: the automap | verified |
 | Walking | `1`-`7` | view a member (stats, exp, gold; Pool gold, Trade gold) | verified |
 | Walking | `b` `c` `u` `d` `n` `p` `s` | bard plays, cast (4-letter code + Return), use item, drop member, new order, party (Defend / Party attack / Use), save game | verified (prompts) |
@@ -142,6 +150,7 @@ Gelidia -> Lucencia -> Kinestia -> Tenebrosia -> Tarmitia -> Malefia (Tarjan).
 Board menu, storage gear, temple, tavern, shrine, Puma fight, catacombs automap, Arboria, four dungeons, the
 endgame save, lit dungeons, cities). Still to add by the capture agent:
 - [x] lit dungeon views (`LIGHT`) on 16 levels of both sides (`env_lvXX`, XX = level id)
+- [x] sequence sets `seq-dungeon-walk` (29 steps) and `seq-automap` (18 steps), UnterBrae 2
 - [x] automap: Mountain as found, after a walk, and filled by poke (`map_mountain_*`); UnterBrae 1 walk
 - [ ] a won fight with its reward text (Puma and Black Dragon outlast 2+ rounds; find the monster HP/count bytes)
 - [x] spell casting in combat (start set: ARFI), bard song in combat (start set)
@@ -204,6 +213,7 @@ rolled from the frame, verified). Names are typed with `type:NAME\n`; the game s
 Capture 2026-11-21: start set chain `s_review` (Review Board) -> `s_temple` -> `s_cat_lit` -> `s_fight1`
 (Nefastmaster) -> `s_fight1_cmds` -> `s_fled` -> `s_shrine` -> `s_save_prompt` -> `s_saved` (all honest walking
 from `ryz_wild`); endgame `tarjan_meet`, `tarjan_fight`, `tarjan_cmds`, `dragon_cmds` (Black Dragon at 2,0).
+Sequences 2026-11-21: `w_stairs34`, `w_lit35` (dungeon walk), `m_lit35` (automap).
 
 ## Sources
 | Source | URL | Used for | Accessed |
