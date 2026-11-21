@@ -48,7 +48,15 @@
     "PARTY": "a,w300,down*6,enter,w600",
     "WILD": "e,w900",
     "AT": "poke:0009={0},poke:000A={1},l,j,w60",
-    "FACE": "poke:000B={0},l,j,w60"
+    "FACE": "poke:000B={0},l,j,w60",
+    "MAKE": "c,w300,{0},w300,{1},w400,{2},w400,type:{3}\\n,w600",
+    "MAKE6": "MAKE:m:1:0:RYZ,MAKE:f:3:7:CONDI,MAKE:m:4:5:EBO,MAKE:f:5:6:CUBI,MAKE:m:2:3:DEDDO,MAKE:f:7:4:MNZ",
+    "ADD": "a,w300,down*{0},enter,w600",
+    "ADD6": "ADD:15,ADD:16,ADD:17,ADD:18,ADD:19,ADD:20,esc,w300",
+    "LV": "poke:000D=01,poke:1052={0},disk:3,y,w1200,poke:000D={1}",
+    "LVB": "poke:000D=01,poke:1052={0},disk:4,y,w1500,poke:000D={1}",
+    "CITY": "poke:000D=00,poke:105A={1},poke:105B={2},poke:105C={0},disk:2,y,w1500",
+    "LIGHT": "c,w200,5,w300,type:MAFL\\n,w600,space,w300"
   },
   "ram": {
     "north": {

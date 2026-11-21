@@ -1,6 +1,41 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/apple2/bards-tale-3/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Plan for the main set written by the scout 2026-11-21 (routes previewed; the capture agent adds and adjusts).
+boot_prodos | boot | ProDOS 8 V1.4 boot banner | w60,!
+title_screen | title | Title screen: The Bard's Tale III, The Thief of Fate, the bard with his lute | @title,!
+menu_chardisk | menu | "Please insert your Character disk", empty party window | TITLE,space,w1200
+menu_restore | menu | "Do you wish to restore your last saved game?" | @restore_prompt
+menu_camp | menu | The Camp of Skara Brae: add, remove, create, delete, save, leave | @camp,!
+menu_roster | menu | "Who shall join?": the character disk roster | @camp,a,w300,!
+menu_create_race | menu | Create a member: race list | @camp,c,w300,m,w300,!
+menu_create_class | menu | Rolled statistics and the class list | @camp,c,w300,m,w300,1,w400,!
+menu_create_name | menu | Name entry for a new character | @camp,c,w300,m,w300,1,w400,0,w400,type:RYZ,w60,!
+menu_party_ryz | menu | Camp with the new party RYZ CONDI EBO CUBI DEDDO MNZ | @ryz_party,!
+env_wild_camp | gameplay | Wilderness by the refugee camp: the camp tent | @ryz_wild,l,l,w60
+env_wild_trees | gameplay | Wilderness south of the camp: trees | @ryz_wild,w30
+hud_party | hud | Wilderness view with the factory party's statistics | @wild,w30
+system_whereami | system | "?" outdoors: position and time of day | @wild,shift+slash,w300
+gameplay_skara_gates | gameplay | Skara Brae ruins: the city gates | @skara,w30
+gameplay_statue | gameplay | Skara Brae: statue of the Mad God Tarjan | @skara,AT:0C:08,w300
+dialogue_review_hint | dialogue | Review Board: the elder sends the party after Brilhasti ap Tarj | @skara,AT:0E:0F,w400
+menu_review_board | menu | Review Board: Advancement, Spell Acquiring, Class Change | @review_board,!
+inventory_storage | inventory | Storage building in the ruins: free gear to pick up | @storage,!
+dialogue_temple | dialogue | Temple of the Mad God: the priest asks for the name | @temple,!
+extra_interplay | extra | Interplay building: credits in the ruins | @skara,AT:0E:0D,w300,space,w600
+gameplay_tavern | shop | Scrapwood tavern: order a drink, talk to barkeep | @wild,AT:0C:11,w300
+gameplay_shrine | gameplay | The Shrine: heal a character, pool gold | @wild,AT:08:01,w300
+battle_puma | battle | Leaving the tavern: one Puma, Fight / Advance / Run | @fight_puma,!
+battle_options | battle | Battle options for Ironpants: attack, defend, party attack, use | @fight_puma,f,w200,!
+battle_round | battle | Combat round text: Gwendolyn hits the Puma | @fight_confirm,y,w300,!
+gameplay_catacombs | gameplay | Catacombs arrival: stairs going up | @cat_stairs,!
+map_catacombs | map | Automap of the catacombs (?), party in the middle | @catacombs,AT:06:06,shift+slash,w300
+inventory_view_char | inventory | Character view: Ironpants, level 2 dwarf paladin | @wild,1,w300
+gameplay_arboria_tower | gameplay | Arboria: the old battered tower | @arboria,AT:04:01,w300
+gameplay_arboria_lake | gameplay | Arboria: the lake | @arboria,AT:0A:01,w300
+gameplay_hawkslayer | dialogue | Arboria: Hawkslayer greets the party | @arboria,AT:0B:0A,w400
+gameplay_unterbrae | gameplay | UnterBrae level 1 | @cat_stairs,LV:34:00,w30
+gameplay_tower_valarian | gameplay | Valarian's tower | @cat_stairs,LV:03:00,w30
+gameplay_ice_keep | gameplay | Gelidia: Ice Keep | @cat_stairs,LV:16:00,w30
+gameplay_berlin | gameplay | Tarmitia: Berlin | @cat_stairs,LVB:21:00,w30
+gameplay_tarjan_end | gameplay | The restored save: Tarjan's level, "very close to the source of all evil" | @tarjan_save,!
