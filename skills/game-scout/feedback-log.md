@@ -12,6 +12,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-21 - The Bard's Tale (Apple II)
+- Task: scout The Bard's Tale (Apple II, 4 disks): boot, party, city, dungeons, RAM, warp, automap answer, shot plan.
+- Worked: poking the position onto every square and grouping the message-window bytes (cityscan.py) mapped all
+  of Skara Brae's buildings and a dungeon level's events in one unattended run and gave the GO warp table;
+  three-way dumps (city / cellar / sewers) narrowed the level candidates to five bytes.
+- Friction: manual and FAQ hosts blocked (403; archive.org downloads redirect to dn*.archive.org, not allowed),
+  spell codes found by trying; no 6502 disassembler for Apple II memory (dis6502.dis over a dump by hand);
+  status lines not redrawn after a poke (fixed with New order); scan output lost once by piping to tail.
+- Proposed rule change: README Web research: archive.org downloads need other hosts; backlog: dis6502 on an
+  Apple II dump or checkpoint; apple2.md: the poke-every-square scan for buildings and events.
+- Corrected: coordinator reran cachecheck: 16/16, sheet checked (dungeon views dark without light).
+- Status: dis6502 asked twice -> built 2026-11-21 (`--route`); archive.org note -> docs/emulator/README.md;
+  square scan -> apple2.md; logged.
+
 ### 2026-11-20 - Might and Magic II (Apple II)
 - Task: scout Apple II Might and Magic II (boot, party, warp, RAM, checkpoints, shot plan).
 - Worked: matching the DOS port's area-neighbour bytes (07 22 0E 0A) found the area header in language-card RAM
