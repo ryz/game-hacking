@@ -94,6 +94,9 @@ class Game:
         st = self.meta.get("settle", {})
         self.settle_step, self.settle_limit = st.get("step", 10), st.get("limit", 300)
         self.keys = platforms.PLATFORMS[self.platform].keys
+        self.aspect = self.meta.get("aspect")
+        if self.aspect not in (None,) + platforms.ASPECTS:
+            raise SystemExit("game.json \"aspect\" must be one of %s" % ", ".join(platforms.ASPECTS))
 
     def check_rom(self):
         if not os.path.exists(self.rom):
@@ -429,6 +432,7 @@ def open_game(game, model=None, state=None, opts=None):
     sav = game.sav_file(opts["sav"]) if opts.get("sav") else None
     emu = platforms.backend(game.platform).open(rom, model=model or game.model, seed=1, sav=sav)
     emu.freezes = []
+    emu.aspect = game.aspect
     if state:
         emu.load_state(state)
     return emu

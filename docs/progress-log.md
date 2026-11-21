@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-21 - Aspect rule for flattened frames; Beyond Zork row-doubled, monochrome shot
+- Owner: Beyond Zork's 640x200 frames looked 3.2:1. Rule (owner, 2026-11-21): decided per game in `game.json`
+  "aspect" (`rowdouble` = each row twice, 640x400, lossless; `native` = as drawn). Tools: `platforms.Libretro.shaped()`
+  applies it to every frame (play, preview, shoot, cachecheck); undecided flattened frames (width >= 3 x height)
+  warn and `shoot.py --publish` refuses (exit 5); test added. No other published set has such frames.
+- Beyond Zork: `aspect: rowdouble`; both sets republished at 640x400 and re-verified from an empty cache (start
+  34/34, main 88/88). New shot `options_monochrome` (N at "Do you want color?"); palettes 1 and 2 checked: same
+  as the default blue on this EGA.
+
 ## 2026-11-21 - Beyond Zork (DOS): first text adventure, scouted and captured
 - Owner uploaded `beyond_zork.zip` (SHA-1 `498c08e5...`): story file Z-machine v5 release 57 / 871221 with
   Infocom's own `Bzork.exe` and DOS Frotz 2.32 (the bundle's `.bat`). Registered as `dos/beyond-zork`, region na.

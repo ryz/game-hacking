@@ -114,3 +114,38 @@ def test_dis68k_decodes_and_finds_references():
     assert [i.mnemonic for i in ins] == ["tst.b", "rts"]
     assert dis68k.targets(ins[0].op_str) == [0xFFC818]
     assert "; flag" in dis68k.line(ins[0], {0xFFC818: "flag"})
+
+
+def test_aspect_rule_rowdoubles_flattened_frames(tmp_path, capsys):
+    """game.json "aspect" (owner's rule 2026-11-21, per game): 640x200 is row-doubled with "rowdouble", kept with
+    "native", and warned about with no decision; square-pixel frames are never touched; shoot.py spots them."""
+    import platforms, shoot
+    from PIL import Image
+
+    class Fake(platforms.Libretro):
+        def __init__(self, size):
+            self.size = size
+
+        def image(self):
+            im = Image.new("RGB", self.size)
+            im.putpixel((0, 1), (255, 0, 0))
+            return im
+
+    e = Fake((640, 200))
+    e.aspect = "rowdouble"
+    im = e.shaped()
+    assert im.size == (640, 400)
+    assert im.getpixel((0, 2)) == im.getpixel((0, 3)) == (255, 0, 0) and im.getpixel((0, 1)) == (0, 0, 0)
+    e.aspect = "native"
+    assert e.shaped().size == (640, 200)
+    e.aspect = None
+    assert e.shaped().size == (640, 200)
+    assert "ask the owner" in capsys.readouterr().err
+    sq = Fake((320, 200))
+    sq.aspect = "rowdouble"
+    assert sq.shaped().size == (320, 200)
+    p = tmp_path / "a.png"
+    Image.new("RGB", (640, 200)).save(p)
+    assert shoot.flattened(str(p))
+    Image.new("RGB", (640, 400)).save(p)
+    assert not shoot.flattened(str(p))

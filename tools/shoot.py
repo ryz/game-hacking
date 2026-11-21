@@ -52,6 +52,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, ".."))
 sys.path.insert(0, HERE)
 import emu as E  # noqa: E402
+import platforms  # noqa: E402
 
 # Database categories (docs/capture-guide.md). Others are allowed but warned about.
 CATEGORIES = ["boot", "title", "menu", "options", "cutscene", "gameplay", "hud", "system", "map", "inventory",
@@ -447,6 +448,13 @@ def run_jobs(jobs, n):
             yield r
 
 
+def flattened(path):
+    """True for a picture with non-square pixels (width >= 3 x height: DOS 640x200)."""
+    from PIL import Image
+    w, h = Image.open(path).size
+    return w >= platforms.FLAT * h
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("game")
@@ -551,6 +559,12 @@ def main():
             print("not published: %d group(s) of identical pictures (retake or drop one of each, or "
                   "--allow-duplicates)" % len(dup))
             return 4
+        if not game.aspect:
+            flat = [s["id"] for s in idx["shots"] if s.get("file") and flattened(os.path.join(d, s["file"]))]
+            if flat:
+                print("not published: %d flattened frame(s) (non-square pixels, e.g. %s): ask the owner, then set "
+                      "game.json \"aspect\" to \"rowdouble\" or \"native\" (docs/capture-guide.md)" % (len(flat), flat[0]))
+                return 5
         os.makedirs(pub, exist_ok=True)
         for s in idx["shots"]:
             for f in files_of(s):

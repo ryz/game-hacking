@@ -83,6 +83,8 @@ Every image and GIF says what it shows without its folder, so a file keeps its c
   (`dungeon-master_amiga_eu_01_boot_crack_note.start.png`). Here `name.split("_", 5)` gives game, platform,
   region, number, area and step. `tools/shoot.py` refuses an unnumbered id in this set.
 - An id that starts with its category repeats it (`..._battle_battle_slime`): accepted, ids are not shortened.
+- Flattened frames (non-square pixels, e.g. DOS 640x200): the owner decides per game, `game.json` "aspect"
+  `rowdouble` or `native` (owner's rule 2026-11-21); `shoot.py --publish` refuses until it is set.
 - Sets hold native pictures only (owner's rule 2026-11-20). An enlarged copy is made on demand with
   `python3 tools/x3.py FOLDER|FILE` (same name in `3x/`, ignored by git).
 - Files about the whole set use the area `set`: `<game>_<platform>_<region>_set_sheet[.<set>].png`, in a

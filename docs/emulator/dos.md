@@ -69,7 +69,10 @@ change.
 
 ## Screenshots
 The picture has the size of the video mode: text mode 640x400, a 320x200 game 320x200 (that is what `emu.py`,
-`shoot.py` and `play.py` write); it can change during a route. No aspect correction (320x200 was shown 4:3 on a real monitor).
+`shoot.py` and `play.py` write); it can change during a route. No aspect correction for 320x200 (shown 4:3 on a real monitor, close enough).
+640x200 graphics (Infocom interpreters, CGA high resolution) is flattened 3.2:1: decided per game in `game.json`
+"aspect" (owner's rule 2026-11-21): `rowdouble` writes 640x400 (each row twice, lossless), `native` keeps it. Without
+a decision the tools warn and `shoot.py --publish` refuses: ask the owner. Beyond Zork: `rowdouble`.
 The text cursor blinks, so text screens rarely `settle`; capture anyway.
 
 ## Keys

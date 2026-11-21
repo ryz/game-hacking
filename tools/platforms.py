@@ -21,6 +21,9 @@ Backend interface (what the tools rely on):
 """
 import os, re, sys, zlib
 
+FLAT = 3          # a frame this many times wider than high has non-square pixels (DOS 640x200)
+ASPECTS = ("rowdouble", "native")
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -235,14 +238,31 @@ class Libretro(Backend):
         """The current frame as a PIL image (subclasses crop or convert here)."""
         return self.c.image()
 
+    aspect = None                   # game.json "aspect", set by emu.open_game
+
+    def shaped(self):
+        """The frame every tool writes: image() with the game's aspect rule (game.json "aspect", owner's rule
+        2026-11-21, decided per game). A flattened frame (width >= 3 x height, e.g. DOS 640x200, shown 4:3 on
+        a real monitor) is row-doubled with "rowdouble" (lossless, 640x400), kept with "native"; with no
+        decision a warning asks for one (shoot.py --publish refuses)."""
+        im = self.image()
+        if im.width >= FLAT * im.height:
+            if self.aspect == "rowdouble":
+                return im.resize((im.width, im.height * 2), 0)      # 0 = Image.NEAREST: each row twice
+            if self.aspect is None and not getattr(self, "_aspect_warned", False):
+                self._aspect_warned = True
+                sys.stderr.write("warning: %dx%d frame is flattened (non-square pixels): ask the owner, then set "
+                                 "game.json \"aspect\" to \"rowdouble\" or \"native\"\n" % im.size)
+        return im
+
     def screen(self):
         import io
         b = io.BytesIO()
-        self.image().save(b, "PNG")
+        self.shaped().save(b, "PNG")
         return b.getvalue()
 
     def screen_png(self, path):
-        self.image().save(os.path.abspath(path), "PNG")
+        self.shaped().save(os.path.abspath(path), "PNG")
 
     def save_state(self, path):
         open(os.path.abspath(path), "wb").write(self.c.serialize())
