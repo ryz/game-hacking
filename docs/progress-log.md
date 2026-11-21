@@ -2,6 +2,24 @@
 
 Append-only, newest first.
 
+## 2026-11-21 - Phantasie (C64): first game on the C64 backend
+- Registered from the owner's upload (boot and dungeon D64, v1.4); scouted (10 checkpoints, party ryz/condi/ebo/
+  cubi/deddo/mnz, save 01_start) and captured: `start` 39 (honest to the first save, first fight included), `main`
+  77 (towns, guild, shops, wilderness, dungeon 1 with the disk swap, 28 battle shots), three lenses; cold verify
+  39/39 and 77/77. The game is a BASIC program: state found through the BASIC variable table (c64.md note).
+- `MACRO:args*N` repeats the filled-in macro (was passed as the argument). Backlog: `c64vars.py`, `?` inside a token.
+
+## 2026-11-21 - Commodore 64 emulator: VICE x64sc libretro core, exact savestates
+- Owner asked for a C64 emulator. `sh tools/setup_emu.sh c64` builds VICE x64sc (vice-libretro, pinned) with
+  `tools/vice-debug.patch` (21 s); backend `platforms.C64`: disks (D64/G64/D71/D81, ZIP of disks), PRG/T64, TAP, CRT;
+  models `c64`/`c64c`, `-ntsc`, `-port1`; C64 keyboard by key names, joystick, `type:`, `disk:N`, disk writes kept in
+  states and exported, `text()` for the text screen. Power-on = the game started by autostart (not counted in routes).
+- VICE's snapshots were not exact (a run after a load drifted from the original in drive, CIA, SID, keyboard and
+  joystick state); found by stepping both machines frame by frame and diffing the core's static memory against
+  symbols of an unstripped link. Fixed in the patch, listed in `docs/emulator/c64.md`; checked over 1500-3000 frames
+  with input, fresh and busy machines, saves at every phase of the boot.
+- `lrcore.Core(defaults=True, av_info=True)`: option defaults from SET_VARIABLES and the av_info call, opt-in (other
+  cores unchanged). Tests `test_c64_*` (5) on a generated test disk; suite 34 passed, other cores skipped (not built).
 ## 2026-11-21 - The Bard's Tale III (Apple II); hi-res text reader
 - Owner's upload had a short Dungeon 1 image (165 bytes missing, differing from track 23 on); the owner's second
   dump has it whole and is registered. Scout: every level and city map loads (dump check), 25 checkpoints,

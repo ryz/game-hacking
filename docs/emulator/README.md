@@ -1,7 +1,7 @@
 # Emulator use - the general rules
 
 Platform specifics (models, memory layout, cheat formats, screenshot format, limits) are in one file per system:
-[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md), [SNES / Super Famicom](snes.md), [Master System / Mark III](sms.md), [Mega Drive / Genesis](md.md), [DOS](dos.md), [Apple II](apple2.md) and [Amiga](amiga.md). Read this file and the one for your game's
+[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md), [SNES / Super Famicom](snes.md), [Master System / Mark III](sms.md), [Mega Drive / Genesis](md.md), [DOS](dos.md), [Apple II](apple2.md), [Amiga](amiga.md) and [Commodore 64](c64.md). Read this file and the one for your game's
 platform.
 
 How agents drive games here, for any game. Game-specific facts (controls, routes, RAM) go into
@@ -9,7 +9,7 @@ How agents drive games here, for any game. Game-specific facts (controls, routes
 
 ## Setup (once per container)
 ```sh
-sh tools/setup_emu.sh                         # all emulators (~3.5 min); one platform is enough: `gb` 9 s, `nes` 57 s, `snes` 53 s, `sms` 11 s, `md` (same core as `sms`) 15 s, `dos` 32 s, `apple2` 78 s, `amiga` 90 s
+sh tools/setup_emu.sh                         # all emulators (~3.5 min); one platform is enough: `gb` 9 s, `nes` 57 s, `snes` 53 s, `sms` 11 s, `md` (same core as `sms`) 15 s, `dos` 32 s, `apple2` 78 s, `amiga` 90 s, `c64` 21 s
 python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<platform>/<slug>/, rom/<slug>.gbc (or .gb, .nes)
 #   + --slug might-and-magic-2 --region jp|na|eu  short game name without the platform, and where the dump was
 #     released (a translated Japanese ROM is jp); both go into every shot file name (docs/capture-guide.md)

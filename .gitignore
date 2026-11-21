@@ -18,6 +18,14 @@
 *.dms
 *.ipf
 *.hdf
+*.d64
+*.g64
+*.d71
+*.d81
+*.t64
+*.tap
+*.crt
+*.prg
 *.sav
 *.state
 rom/
@@ -30,6 +38,7 @@ work/
 **/tools/dosbox-pure/
 **/tools/applewin/
 **/tools/puae/
+**/tools/vice/
 __pycache__/
 *.bps
 *.ips

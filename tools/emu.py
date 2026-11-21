@@ -17,8 +17,8 @@ Routes are comma-separated tokens:
   mash:KEY:N                            tap KEY every 8 frames for N frames (skip text, mash through intros)
   poke:ADDR=HEX                         write bytes (poke:C0A2=09)
   type:TEXT   mouse:DX:DY               computers: type a string (no comma inside; \\n = Enter); move the mouse
-  disk:N   disk2:N                      Apple II, Amiga: put disk N of the game into drive 1 / drive 2 (Amiga:
-                                        DF0: / DF1:; 0 = none)
+  disk:N   disk2:N                      Apple II, Amiga, C64: put disk N of the game into drive 1 / drive 2
+                                        (Amiga: DF0: / DF1:; C64: drive 8 only; 0 = none)
   settle                                run until the screen is stable (two identical frames `settle.step`
                                         apart, at most `settle.limit` frames); deterministic like any token
   !                                     last token only (shoot.py): take the frame as is, no final settle
@@ -214,14 +214,17 @@ def split(route):
 
 
 def expand(game, toks, depth=0):
-    """Expand macros (UPPERCASE names in game.json) recursively; NAME*N repeats a macro."""
+    """Expand macros (UPPERCASE names in game.json) recursively; NAME*N and NAME:args*N repeat a macro."""
     if depth > 20:
         raise ValueError("macro recursion too deep")
     out = []
     for t in toks:
         name, _, rep = t.partition("*")
         head, _, args = t.partition(":")
-        if t in game.macros:
+        m = re.match(r"^([^:*]+:[^*]+)\*(\d+)$", t)
+        if m and head in game.macros:                         # MACRO:a:b*N (an argument never ends in *N)
+            out += expand(game, [m.group(1)], depth + 1) * int(m.group(2))
+        elif t in game.macros:
             out += expand(game, split(game.macros[t]), depth + 1)
         elif args and head in game.macros:                    # MACRO:a:b -> {0} {1} filled in
             body = game.macros[head]

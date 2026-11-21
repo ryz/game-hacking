@@ -1,0 +1,23 @@
+# name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
+# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
+title | Title picture (Phantasie logo, sword), shown while the game loads | TITLE,settle
+menu | Start menu: 1 Start in Pelnor / 2 Continue saved game | pow,w4900,settle
+pelnor_new | Pelnor town screen, new game, no party (cursor on GUILD) | @menu,1,w3200,settle,w600,settle
+guild_created | Guild menu, six new characters created (ryz condi ebo cubi deddo mnz), no party yet | @pelnor_new,GUILDNEW,ROLL:0:3:1,REROLL,ROLL:0:3:1,KEEP:ryz,MORE,ROLL:1:3:1,KEEP:condi,MORE,ROLL:0:4:1,KEEP:ebo,MORE,ROLL:2:5:1,KEEP:cubi,MORE,ROLL:3:0:1,REROLL,ROLL:3:0:1,REROLL,ROLL:3:0:1,KEEP:deddo,MORE,ROLL:0:1:1,REROLL,ROLL:0:1:1,KEEP:mnz,right,return,w60,settle
+party | Guild menu, party of six formed (ryz condi ebo cubi deddo mnz), 0 gold carried | @guild_created,down*2,return,w60,settle,down*5,return,w60,settle,return,w60,settle,ADDNEXT*4,down,return,w60,settle,right,return,w60,settle
+pelnor_party | Pelnor town screen with the party of six, cursor on GUILD | @party,up,return,w120,settle
+pelnor_gold | Pelnor town, party carrying 1536 gold (all bank gold withdrawn), cursor on BANK | @pelnor_party,right*2,return,w120,settle,return,w60,settle,WD:256,WD:256,WD:256,WD:256,WD:256,WD:256,settle,return,w60,settle,up,return,w120,settle
+outdoors_pelnor | Outside Pelnor (after a look at the Armory) after declining 'A town. Enter?': move compass shown | @pelnor_gold,left,return,w120,settle,return,w120,settle,right*2,return,w120,settle,down,LEAVE,right,settle,return,settle
+saved_start | Pelnor town right after the first GAME SAVE (party of six, gold divided back into the bank, 256 each) | @pelnor_gold,SAVE
+pineville_old | 'Continue saved game' on the original disk: the dump's own saved party (grunt, hit, scott, borack) in Pineville (town 2) | @menu,2,w3900,settle
+enc_bantir | Wilderness east of Pelnor: encounter with 3 bantirs, party options menu (fight highlighted) | @outdoors_pelnor,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,w200,settle,w300,settle
+bantir_set | Bantir fight: individual options set (thrust x5, cubi cast 5), cursor on go on fighting | @enc_bantir,FIGHT,IO0,IO0,IO0,settle,return,w30,settle,down,settle,down,settle,down,settle,down,settle,settle,return,w60,settle,5,w30,settle,return,w60,settle,down,settle,IO0,IO0,settle
+s_won | Wilderness east of Pelnor after winning the first fight (3 bantirs; 73 XP and 17 GP each) | @bantir_set,return,w1200,settle,return,w100,settle,return,w1200,settle,settle
+s_pelnor_back | Pelnor town after the first fight: gold and XP divided into shares (71 XP, 273 gold each, in the bank) | @s_won,STEP:w*7,return,w3600,settle,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w60,settle,settle,return,w120,settle,settle,w1500,settle,w600,settle,settle
+s_saved | Pelnor after the first game save following the first fight (start set end) | @s_pelnor_back,SAVE,settle
+w_inn | Wilderness: on the independent inn west of Pelnor, 'An inn. Stay? yes/no' | @outdoors_pelnor,STEP:w*8,STEP:n,settle,STEP:n,settle
+w_dungeon_door | Wilderness north of Pelnor: 'A dungeon. Enter? yes/no' at the small door in the hillside (warped by POS) | @outdoors_pelnor,POS:8410000000:8420000000,STEP:n,settle,STEP:n,settle,STEP:n,settle
+d1_entry | Dungeon 1 north of Pelnor (disk 2): first square, 'An exit. Take it?' | @w_dungeon_door,return,w1300,disk:2,w50,return,w3000,settle
+d1_ants | Dungeon 1: encounter with 5 giant ants, 5 giant bees and 1 giant ant in three ranks, party options | @d1_entry,up,settle,return,w100,settle,down,settle,return,w60,settle,DSTEP:s*20,DSTEP:e*8,DSTEP:w*16,DSTEP:s*6,DSTEP:n*4,DSTEP:e*8,DSTEP:s*20,DSTEP:e*8,DSTEP:w*16,w600
+d1_ants_r2 | Dungeon 1 ants fight after round 1: five giant bees and one giant ant left, party options | @d1_ants,OPTS2,return,w2400,settle,settle
+d1_won | Dungeon 1 after beating the giant ants and bees (166 XP each), crumbling stone hallway | @d1_ants_r2,return,w100,settle,return,w2200,settle,return,w100,settle,return,w1100,settle,settle

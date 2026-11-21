@@ -12,6 +12,17 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-21 - Phantasie (C64)
+- Task: capture the Phantasie (C64) start and main sets, write the lenses, update the playbook.
+- Worked: decoding the BASIC variable table (VARTAB at 2D/2E) found position, party and combat state at once after
+  per-byte RAM searches found nothing; float pokes gave a clean warp; a background walk script stopping on a map
+  change found encounters without looking at frames; `--timeline` previews picked combat message frames.
+- Friction: routes need `settle` after every menu key (presses during busy BASIC are dropped; same keys as separate
+  `play.py` calls worked), ~15 calls to diagnose; first press after a message only clears it; `find` cannot find
+  BASIC floats.
+- Proposed rule change: c64.md note on BASIC games (variable table, floats); backlog `tools/c64vars.py`.
+- Corrected: coordinator cold verify 39/39 and 77/77, lenses clean, contact sheet checked.
+- Status: logged (platform fact -> c64.md; tool wish -> backlog)
 ### 2026-11-21 - The Bard's Tale III (Apple II)
 - Task: capture `main` (110) and `start` (54) sets, 58 level maps, three lenses.
 - Worked: preview batches (25 lit dungeon lines on one sheet showed which levels arrive in a fight, dark or on a

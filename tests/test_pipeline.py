@@ -1788,3 +1788,217 @@ def test_amiga_pipeline(am_selftest, tmp_path):
                                  "zz-selftest-amiga_amiga_eu_gameplay_key.png")).convert("RGB")
     r, g, b = im.getpixel((100, 100))
     assert (r, g) == (0xA * 17, 0)                                       # A up: $A0 -> red A, green 0
+
+
+# ------------------------------------------------------------------ Commodore 64 (VICE x64sc libretro core)
+C64_SLUG = "zz-selftest-c64"
+
+
+@pytest.fixture
+def c64_selftest(tmp_path):
+    if not os.path.exists(platforms.C64.SO):
+        pytest.skip("VICE core not built (sh tools/setup_emu.sh c64)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_c64_d64
+    rom = tmp_path / "t.d64"
+    rom.write_bytes(make_c64_d64.build())
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", C64_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games/c64", "work/shots/c64", "work/cache/c64", "work/intake/c64", "work/play"):
+        shutil.rmtree(os.path.join(ROOT, sub, C64_SLUG), ignore_errors=True)
+    for ext in (".d64", ".zip"):
+        if os.path.exists(os.path.join(ROOT, "rom", C64_SLUG + ext)):
+            os.remove(os.path.join(ROOT, "rom", C64_SLUG + ext))
+    if os.path.isdir(os.path.join(ROOT, "games", "c64")) and not os.listdir(os.path.join(ROOT, "games", "c64")):
+        os.rmdir(os.path.join(ROOT, "games", "c64"))
+
+
+def _c64_zip(path):
+    """Two disks: the test program first, an empty formatted disk second."""
+    import zipfile
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_c64_d64
+    with zipfile.ZipFile(path, "w") as z:
+        z.writestr("Disk 1.d64", make_c64_d64.build())
+        z.writestr("Disk 2.d64", make_c64_d64.build("SAVE DISK", b"SD", files=()))
+    return path
+
+
+def _c64_counter(e):
+    return int.from_bytes(e.peek(0xC000, 2), "little")
+
+
+def test_c64_identify(tmp_path):
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_c64_d64
+    h = platforms.C64.identify(make_c64_d64.build())
+    assert h["platform"] == "c64" and h["model"] == "c64" and h["header_title"] == "GAMEDB TEST"
+    assert h["disks"][0]["kind"] == "D64, 35 tracks" and h["disks"][0]["files"] == ["TEST"]
+    z = _c64_zip(str(tmp_path / "two.zip"))
+    h = platforms.C64.identify(open(z, "rb").read())
+    assert [d["name"] for d in h["disks"]] == ["Disk 1.d64", "Disk 2.d64"] and h["disks"][1]["files"] == []
+    assert platforms.by_extension(z)[0] == "c64"                         # a ZIP of C64 disk images
+    assert platforms.by_extension("x/GAME.D64")[0] == "c64" and platforms.by_extension("x/g.crt")[0] == "c64"
+    assert platforms.C64.identify(b"C64 CARTRIDGE   " + bytes(16) + b"TEST CART" + bytes(64))["header_title"] \
+        == "TEST CART"
+    assert "load address $0801" in platforms.C64.identify(make_c64_d64.program())["disks"][0]["kind"]
+    assert {"a", "1", "return", "runstop", "restore", "commodore", "ctrl", "shift", "f1", "f8", "up", "pound",
+            "joyup", "fire"} <= platforms.C64.keys
+
+
+def test_c64_backend(c64_selftest, tmp_path):
+    e = platforms.C64().open(str(c64_selftest))
+    e.frames(400)                                                        # autostart: LOAD"*",8,1 and RUN
+    assert e.image().size == (384, 272) and _c64_counter(e) > 100 and e.regs()["pc"] < "0840"
+    assert "RUN" in e.text() and e.peek(0xC003, 1) == b"\x40"            # no key: matrix code 64
+    e.input(["fire"]); e.frames(3)
+    assert e.peek(0xC002, 1)[0] & 0x1F == 0x0F                           # port 2 fire (active low)
+    e.input(["joyleft"]); e.frames(3)
+    assert e.peek(0xC002, 1)[0] & 0x1F == 0x1B
+    e.input(["a"]); e.frames(5)
+    assert e.peek(0xC003, 1) == b"\x0a"                                  # A: matrix code 10
+    e.input(["f1"]); e.frames(5)
+    assert e.peek(0xC003, 1) == b"\x04"
+    e.input([]); e.frames(5)
+    assert e.peek(0xA000, 2) == b"\x94\xe3" and e.peek(0x1A000, 2) != b"\x94\xe3"   # BASIC ROM over RAM
+    e.poke(0x1A000, b"\x12\x34")
+    assert e.peek(0x1A000, 2) == b"\x12\x34" and e.peek(0xA000, 2) == b"\x94\xe3"
+    e.poke(0xD020, b"\x02")                                              # a CPU write: the border register
+    assert e.peek(0xD020, 1)[0] & 0x0F == 0x02
+    with pytest.raises(ValueError):
+        e.poke(0x20000, b"\x00")
+    st = str(tmp_path / "x.state")
+    e.save_state(st)
+    shot = e.screen()
+    e.frames(30)
+    e.load_state(st)
+    assert e.screen() == shot
+    assert e.ram_search("new == old")["count"] > 0
+    e.close()
+    with pytest.raises(SystemExit, match="unknown C64 model"):
+        platforms.C64().open(str(c64_selftest), model="vic20")
+    n = platforms.C64().open(str(c64_selftest), model="c64-ntsc")
+    n.frames(400)
+    assert n.image().size[1] < 272 and _c64_counter(n) > 50             # 60 Hz machine: fewer lines
+    n.close()
+    for at in (0, 20, 150):                                              # power-on, autostart typing, loading
+        b = platforms.C64().open(str(c64_selftest))
+        b.frames(at)
+        b.save_state(st)
+        b.frames(400)
+        f = platforms.C64().open(str(c64_selftest))
+        f.load_state(st)
+        f.frames(400)
+        assert f.screen() == b.screen() and f.peek(0x10000, 0x10000) == b.peek(0x10000, 0x10000)
+        assert _c64_counter(f) > 100                                     # the game was started all the same
+        b.close(); f.close()
+
+
+def test_c64_same_route_same_frames(c64_selftest, tmp_path):
+    """Nothing depends on the host, and a run continued after save_state equals one loaded from that state, into
+    a machine that has not run yet or one that is busy, also after keys and the drive were used (VICE's own
+    snapshots left out or re-timed drive, CIA, SID, keyboard and joystick state: tools/vice-debug.patch)."""
+    st = str(tmp_path / "x.state")
+
+    def boot():
+        e = platforms.C64().open(str(c64_selftest))
+        e.frames(400)
+        return e
+
+    def play(e):
+        out = []
+        for k, w in (("g", 3), ("fire", 17), ("m", 5), ("joyup", 29), ("e", 11), ("g", 7)):
+            e.input([k]); e.frames(3); e.input([]); e.frames(w)
+            out.append((e.screen(), _c64_counter(e)))
+        return out, e.peek(0x10000, 0x10000)
+
+    a, b = boot(), boot()
+    assert a.screen() == b.screen() and a.peek(0x10000, 0x10000) == b.peek(0x10000, 0x10000)
+    assert play(a) == play(b)
+    a.save_state(st)
+    c = platforms.C64().open(str(c64_selftest))
+    c.load_state(st)
+    assert c.screen() == a.screen() and c.regs() == a.regs()
+    c.save_state(str(tmp_path / "y.state"))                             # not run since the load: same state
+    assert open(st, "rb").read() == open(str(tmp_path / "y.state"), "rb").read()
+    b.input(["fire"]); b.frames(7)
+    b.load_state(st)
+    for _ in range(4):
+        want = play(a)
+        assert play(c) == want and play(b) == want
+    assert a.c.serialize() == b.c.serialize() == c.c.serialize()        # the whole machine, drive included
+    for e in (a, b, c):
+        e.close()
+
+
+def test_c64_disks(c64_selftest, tmp_path):
+    """Disk swaps, and games that save by writing to a disk: the export is the written images, a savestate
+    carries them into a fresh machine."""
+    import io, zipfile
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_c64_d64
+    z = _c64_zip(str(tmp_path / "two.zip"))
+    e = platforms.C64().open(z)
+    assert e.disks == ["Disk 1.d64", "Disk 2.d64"] and e.drives == ["Disk 1.d64"]
+    e.frames(400)
+    e.input(["runstop", "restore"]); e.frames(10); e.input([]); e.frames(60)   # stop the test program
+    e.disk(2); e.frames(50)
+    with pytest.raises(ValueError):
+        e.disk(3)
+    with pytest.raises(ValueError):
+        e.disk(1, drive=2)                                               # one drive (8)
+    e.type_text('SAVE"HELLO",8\n')
+    e.frames(1200)
+    assert "SAVING HELLO" in e.text()
+    sav = e.battery(0)
+    written = zipfile.ZipFile(io.BytesIO(sav))
+    assert written.namelist() == ["Disk 2.d64"] and make_c64_d64.files(written.read("Disk 2.d64")) == [(0x82, "HELLO")]
+    st = str(tmp_path / "w.state")
+    e.save_state(st)
+    f = platforms.C64().open(z)                                          # fresh machine, pristine disks
+    assert f.battery(0) == b""
+    f.load_state(st)
+    assert f.drives == ["Disk 2.d64"] and f.battery(0) == sav
+    f.frames(10)
+    assert f.screen() == (e.frames(10) or e.screen())
+    open(str(tmp_path / "x.sav"), "wb").write(sav)
+    g = platforms.C64().open(z, sav=str(tmp_path / "x.sav"))             # power on with the export
+    assert g.battery(0) == sav
+    for x in (e, f, g):
+        x.close()
+
+
+def test_c64_pipeline(c64_selftest):
+    rom = os.path.join(os.path.dirname(str(c64_selftest)), C64_SLUG + ".d64")
+    shutil.copy(str(c64_selftest), rom)
+    run("tools/intake.py", rom, "--slug", C64_SLUG, "--region", "eu", "--probe", "120")
+    gj = os.path.join(ROOT, "games", "c64", C64_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "c64" and meta["model"] == "c64" and meta["rom"].endswith(".d64")
+    meta["macros"] = {"BOOT": "w400"}
+    meta["ram"] = {"counter": {"addr": "C000", "size": 2}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", C64_SLUG]
+    run(*P, "start", C64_SLUG)
+    run(*P, "do", "BOOT")
+    assert "saved" in run(*P, "checkpoint", "ready", "test program running")
+    run(*P, "do!", "fire:4,type:a,w10")
+    assert "counter=" in run(*P, "status")
+    assert "RUN" in run(*P, "text")
+    run(*P, "snap", "key", "gameplay", "test program after a key")
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", C64_SLUG, "main", "--verify")
+    run("tools/shoot.py", C64_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", "c64", C64_SLUG, "shots", "main",
+                                 "zz-selftest-c64_c64_eu_gameplay_key.png"))
+    assert im.size == (384, 272)
+
+
+def test_macro_with_arguments_repeats():
+    """MACRO:args*N repeats the filled-in macro (it used to pass "256*6" as the last argument: Phantasie scout)."""
+    class G:
+        macros = {"WD": "w{0},a", "TWO": "b,b"}
+    assert emu.expand(G(), ["WD:5*3"]) == ["w5", "a"] * 3
+    assert emu.expand(G(), ["WD:5", "TWO*2"]) == ["w5", "a", "b", "b", "b", "b"]

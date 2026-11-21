@@ -41,6 +41,7 @@ reverse-engineering notes. No game data is included: everything runs from your o
 | [Wizardry IV: The Return of Werdna](games/apple2/wizardry-4/playbook.md) | Apple II (6 disk sides) | registered 2026-11-19 (boots to the title); not scouted |
 | [Wizardry V: Heart of the Maelstrom](games/apple2/wizardry-5/playbook.md) | Apple II (9 disk sides) | registered 2026-11-19 (boots to the title); not scouted |
 | [Dungeon Master](games/amiga/dungeon-master/playbook.md) | Amiga (v3.60, cracked ADF, A500 with Kickstart 1.3) | screenshot set (111, to the ending: all 14 levels, 22 creature kinds, Lord Chaos fused, the Grey Lord), `start` set (37, played honestly to the first save), three lens documents, maps of all 14 levels, level warp, pointer macros, saves |
+| [Phantasie](games/c64/phantasie/playbook.md) | c64 | captured 2026-11-21: main set 77 shots (town, guild, wilderness, dungeon 1, three fights), start set 39 shots (power-on to the first save), three lenses, 21 checkpoints, BASIC-variable RAM map with a position warp |
 <!-- games:end -->
 
 This table is written by `python3 tools/gamestable.py` from each game's `game.json`; sets, lens documents and

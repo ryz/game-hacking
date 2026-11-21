@@ -30,7 +30,14 @@
 #              the battery clock follows retro_gamedb_set_time, a restore takes its disks from the folder set
 #              with retro_gamedb_disk_dir, retro_gamedb_peek/poke/pc/insert/flush; it also fixes the core's
 #              fallback logger (it wrote to a NULL stderr and crashed without a frontend log interface).
-# sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga]   (default: all)
+#   vice       VICE x64sc (cycle-exact C64) as a libretro core (same driver). Backend for c64 (a game = a disk image,
+#              a ZIP of disk images, a program, tape or cartridge file). tools/vice-debug.patch makes a loaded
+#              savestate continue exactly like the run that made it (VICE's snapshots ran an instruction, rescaled
+#              the drive head, mixed up VIA line bits, re-timed the CIA clocks and reset the drive's rotation and
+#              CPU sync; state outside the snapshots is handed to the frontend: retro_gamedb_hidden_*), fixes the
+#              random seed (VICE seeded from the host clock), clocks the SID without producing audio, and adds
+#              retro_gamedb_peek/poke/pc/insert/flush/busy; the core's fallback logger is silenced as in puae.
+# sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga|c64]   (default: all)
 set -e
 cd "$(dirname "$0")"
 want=${1:-all}
@@ -102,4 +109,13 @@ if [ "$want" = all ] || [ "$want" = amiga ]; then
       git apply ../puae-debug.patch)
   fi
   make -C puae -j"$(nproc 2>/dev/null || echo 2)"
+fi
+if [ "$want" = all ] || [ "$want" = c64 ]; then
+  if [ ! -d vice ]; then
+    mkdir vice
+    (cd vice && git init -q && git remote add origin https://github.com/libretro/vice-libretro.git &&
+      git fetch -q --depth 1 origin 76cde0b2cc4e52106618f2cc5d9d1112d9205c89 && git checkout -q FETCH_HEAD &&
+      git apply ../vice-debug.patch)
+  fi
+  make -C vice EMUTYPE=x64sc -j"$(nproc 2>/dev/null || echo 2)"
 fi
