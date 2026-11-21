@@ -32,8 +32,18 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Traps that cost calls:** a level warp that changes disk needs the disk in the drive *before* `y` (the macros
   do it); city maps are on disk 2, not disk 1; `play.py checkpoint` output piped to /dev/null hid a failure once:
   read it. The scan tool (`tools/scan.py`) groups random fights too: look at the sheet.
-- **State:** scouted 2026-11-21: 22 checkpoints, shot plan of 46 previewed lines in `shots.txt`, save
-  `01_start`. Open: encounter switch, Review Board advancement in play, Chronomancer travel, shops by dimension.
+- **Enter with `k`:** `i` only bumps a gate or building square; `k` (or Return) enters (verified 2026-11-21).
+- **Endgame:** Tarjan stands at east 3, north 2 of his realm: `@tarjan_save,AT:02:03` = checkpoint
+  `tarjan_meet` (speech, 3 pages) -> `tarjan_fight` (2 High Priestesses, 30 Black Slayers, 30 Rock Demons,
+  1 Lorini) -> `tarjan_cmds`. Not won: the veteran party loses two members per round and the monster counts
+  were not found in RAM (searched 0000-BFFF, aux, LC for 2,30,30,1): the ending is still open.
+- **Hi-res text:** `games/apple2/bards-tale-3/font.json` (taught 2026-11-21): `play.py text` / `preview.py
+  --text` read message windows (a few `?` left: grow it with `tools/hirestext.py learn`).
+- **Maps:** `tools/maps.py [LEVEL ...]` writes `design/maps/` (58 levels; 2A-2C Malefia not loaded).
+  Full automap: `tools/fill.py ROUTE`: poke every row of the level with byte 4 bit 0 set (shot
+  `map_mountain_full`).
+- **State (2026-11-21 capture):** `start` 54 shots and `main` 110 shots published; saves `01_start`,
+  `02_shrine_saved`. Open: won fight with rewards, game over, the ending, encounter switch, Chronomancer travel.
 
 ## Identity
 | Field | Value |
@@ -79,6 +89,7 @@ Death. New characters are added at the end (RYZ is entry 15). The restorable sav
 | Camp | A R C D S L E | add member (scroll list, Return), remove, create, delete, save the party, leave the game, enter wilderness (with a party) | A C E verified |
 | Create | M/F, race 1-7, class 0 3-9, name + Return; ESC rerolls | Human Elf Dwarf Hobbit Half-Elf Half-Orc Gnome; Warrior Conjurer Magician Rogue Bard Paladin Hunter Monk | verified |
 | Walking | `i` forward, `j`/`l` turn left/right | trees, walls and buildings block | verified |
+| Walking | `k` (or Return) | enter the building or gate square ahead (`i` only bumps) | verified |
 | Walking | `?` (shift+slash) | outdoors: position and time of day; in a dungeon: the automap | verified |
 | Walking | `1`-`7` | view a member (stats, exp, gold; Pool gold, Trade gold) | verified |
 | Walking | `b` `c` `u` `d` `n` `p` `s` | bard plays, cast (4-letter code + Return), use item, drop member, new order, party (Defend / Party attack / Use), save game | verified (prompts) |
@@ -130,12 +141,15 @@ Gelidia -> Lucencia -> Kinestia -> Tenebrosia -> Tarmitia -> Malefia (Tarjan).
 `shots.txt` holds 46 previewed lines (title, camp and creation menus, wilderness, Skara Brae landmarks, Review
 Board menu, storage gear, temple, tavern, shrine, Puma fight, catacombs automap, Arboria, four dungeons, the
 endgame save, lit dungeons, cities). Still to add by the capture agent:
-- [ ] lit dungeon views (`LIGHT`) on several levels: catacombs, UnterBrae, Ice Keep, Berlin, Malefia, Tarjan (`env_...`)
-- [ ] automap of a larger level: Tunnels (109 visited), Sceadu's Demense 2 (165) or poke byte 4 of every square
-- [ ] a won fight with its reward text; spell casting in combat; a party wipe (`gameover`)
-- [ ] Wizard's Guild in Ciera Brannia (spells for sale), King's Court, Hawkslayer joining
-- [ ] the save prompt (`s`) and restore at boot (`save`)
-- [ ] `start` set: boot -> camp -> create RYZ party -> wilderness -> Skara Brae -> storage gear -> Review Board -> temple -> catacombs -> first fight -> save (all honest; checkpoints `ryz_party`, `ryz_wild`)
+- [x] lit dungeon views (`LIGHT`) on 16 levels of both sides (`env_lvXX`, XX = level id)
+- [x] automap: Mountain as found, after a walk, and filled by poke (`map_mountain_*`); UnterBrae 1 walk
+- [ ] a won fight with its reward text (Puma and Black Dragon outlast 2+ rounds; find the monster HP/count bytes)
+- [x] spell casting in combat (start set: ARFI), bard song in combat (start set)
+- [ ] a party wipe (`gameover`): HP pokes at 0422.. changed only Ironpants's Hits column; find the condition byte
+- [x] Ciera Brannia Wizard's Guild and King's Court from the street (not entered); [ ] Hawkslayer joining
+- [x] save prompt, silent save, restore at boot (start set)
+- [x] `start` set: power-on -> camp -> RYZ party -> walk to Skara Brae -> storage -> Review Board -> temple ->
+  catacombs -> Nefastmaster (fled, EBO dead) -> shrine (900 gold) -> save (54 shots, honest)
 
 ## Strategy and walkthrough notes
 - The new party has no gold and level 1; the storage building in the ruins gives free starting gear (Plate
@@ -164,6 +178,7 @@ rolled from the frame, verified). Names are typed with `type:NAME\n`; the game s
 | Name | Contents | Status |
 |---|---|---|
 | 01_start | RYZ party level 1 saved in the wilderness by the camp (export; restored with `sav:01_start,CHARDISK,y,w1200`) | verified |
+| 02_shrine_saved | RYZ party after the catacombs (EBO dead, no gold) saved by the Shrine; `sav:02_shrine_saved,CHARDISK,y,w1200` | verified (start `54_restored`) |
 
 ## RAM map (for `game.json` "ram" watches and pokes)
 | Address | Size | Meaning | How found |
@@ -186,6 +201,9 @@ rolled from the frame, verified). Names are typed with `type:NAME\n`; the game s
 `title`, `restore_prompt`, `camp`, `party` (factory), `wild`, `ryz_party`, `ryz_wild`, `tarjan_save`, `skara`,
 `review_board`, `storage`, `temple`, `sideA_prompt`, `cat_stairs` (warp base), `catacombs`, `fight_puma`,
 `fight_confirm`, city bases `arboria` `ciera` `gelidia` `lucencia` `celaria` `nowhere` `darkcopse` `blackscar`.
+Capture 2026-11-21: start set chain `s_review` (Review Board) -> `s_temple` -> `s_cat_lit` -> `s_fight1`
+(Nefastmaster) -> `s_fight1_cmds` -> `s_fled` -> `s_shrine` -> `s_save_prompt` -> `s_saved` (all honest walking
+from `ryz_wild`); endgame `tarjan_meet`, `tarjan_fight`, `tarjan_cmds`, `dragon_cmds` (Black Dragon at 2,0).
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -197,6 +215,9 @@ rolled from the frame, verified). Names are typed with `type:NAME\n`; the game s
 | ROM/RAM | this dump | maps, warps, records | 2026-11-21 |
 
 ## Open questions
+- Wilderness walk camp -> Skara Brae gate: S, W x5, N x3, W x2, N x2, E, E, then `k` (route in checkpoint `s_review`).
+- Square bytes 0-1 (walls) decode as nibbles N E S W, side & 3 = wall/door/other; bit 3 meaning unknown (Tarjan's level uses 8/9). Flag bytes 2-3 not decoded; events are elsewhere.
+- `LV:00` (Festering Pit 1) from `@cat_stairs` stays on the stairs prompt; `LVB:1A` asks for the character disk; `LV:08`/`10` arrive dark or on a passage prompt.
 - Random encounter switch (no NOFIGHT yet). The wilderness scan met 15 kinds of monsters.
 - Review Board Advancement with enough exp (not tried); Wizard's Guild prices.
 - Shops: none seen in Skara Brae; spells are bought in Ciera Brannia's Wizard's Guild.

@@ -119,6 +119,6 @@
       "sha1": "cd65428c5365f89e457adae867a970fbad47243e"
     }
   },
-  "work": "scouted 2026-11-21: boot, 22 checkpoints, party records, city and level warps (all 61 levels load), automap; not captured",
-  "open": "capture main and start sets; encounter suppression (random fights in the wilderness and cities); Chronomancer gate travel in play; level-up at the Review Board in play"
+  "work": "captured 2026-11-21: main 110 shots (camp, ruins and services, 16 lit dungeon levels on both sides, cities, automap partial and full, fights, the endgame at Tarjan), start 54 shots (honest RYZ party to the first save), 58 decoded level maps, three lenses",
+  "open": "a won fight with its rewards; game over (party wipe); the ending (Tarjan's fight not won: monster counts not found in RAM); encounter switch; Chronomancer travel; Hawkslayer joining; Malefia 2A-2C maps; square flag bytes"
 }
