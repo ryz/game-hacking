@@ -1,0 +1,29 @@
+{
+  "slug": "beyond-zork",
+  "title": "Beyond Zork: The Coconut of Quendor (DOS)",
+  "platform": "dos",
+  "region": "na",
+  "model": "svga-7800",
+  "rom": "rom/beyond-zork.zip",
+  "sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+  "crc32": "5566864f",
+  "size": 248589,
+  "header": {
+    "files": 7,
+    "programs": [
+      "beyond_zork/Bzork.bat",
+      "beyond_zork/Bzork.exe",
+      "beyond_zork/Frotz.exe"
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
