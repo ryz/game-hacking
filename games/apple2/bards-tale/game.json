@@ -1,0 +1,45 @@
+{
+  "slug": "bards-tale",
+  "title": "The Bard's Tale: Tales of the Unknown",
+  "platform": "apple2",
+  "region": "na",
+  "model": "iie",
+  "rom": "rom/bards-tale.zip",
+  "sha1": "8ebca6e4f1f5bc442a665b6d64bcc4865c85d905",
+  "crc32": "a023f01e",
+  "size": 225568,
+  "header": {
+    "disks": [
+      {
+        "name": "1 Program.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "2ee23f0c2a0a5bab3b823316802d158bcb5870af"
+      },
+      {
+        "name": "2 Character.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "38070c64a5c8343976c9cfd60a2ccab5b6eda7e8"
+      },
+      {
+        "name": "3 Dungeon 1.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "08e4e5178be609d7f2ba04c0940dd8e71783df33"
+      },
+      {
+        "name": "4 Dungeon 2.dsk",
+        "kind": "5.25 inch floppy, 140 KiB sector image",
+        "sha1": "f6b6d6e6ceac0c4b5950a1401a763e178a1493bd"
+      }
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
