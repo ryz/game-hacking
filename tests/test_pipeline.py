@@ -1994,3 +1994,11 @@ def test_c64_pipeline(c64_selftest):
     im = Image.open(os.path.join(ROOT, "games", "c64", C64_SLUG, "shots", "main",
                                  "zz-selftest-c64_c64_eu_gameplay_key.png"))
     assert im.size == (384, 272)
+
+
+def test_macro_with_arguments_repeats():
+    """MACRO:args*N repeats the filled-in macro (it used to pass "256*6" as the last argument: Phantasie scout)."""
+    class G:
+        macros = {"WD": "w{0},a", "TWO": "b,b"}
+    assert emu.expand(G(), ["WD:5*3"]) == ["w5", "a"] * 3
+    assert emu.expand(G(), ["WD:5", "TWO*2"]) == ["w5", "a", "b", "b", "b", "b"]

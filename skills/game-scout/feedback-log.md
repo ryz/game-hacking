@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-21 - Phantasie (C64)
+- Task: scout Phantasie (C64, first real game on the VICE backend): boot, party creation, first save, RAM map,
+  shot plan.
+- Worked: `preview.py --text` with `?` markers to compare stat rolls and bank withdrawals in one call;
+  `--timeline` with long steps (300-600 frames) for load times on a slow drive; archive.org `/stream/.../_djvu.txt`
+  for manual text when the PDF host is blocked; "Continue saved game" on the dump found a ready-made second party.
+- Friction: slow disk loads make `settle` useless (static frames for thousands of frames), every load needed a
+  timeline; macro arguments plus `*N` failed silently; outdoor moves lose presses unless the wait is long (three
+  previews); about 25 calls on encounter hunting found nothing.
+- Proposed rule change: c64.md note on load times and fixed waits, and on previous owners' saves on used disks;
+  emu.py: reject or support `MACRO:args*N`.
+- Corrected: coordinator verified cachecheck 10/10. `MACRO:args*N` now repeats the filled-in macro (emu.py, test
+  `test_macro_with_arguments_repeats`). c64.md got the load-time note.
+- Status: logged (platform fact -> c64.md; tool wish built 2026-11-21; `?` inside a token -> backlog)
+
 ### 2026-11-21 - Beyond Zork (DOS)
 - Task: scout Beyond Zork (DOS): interpreter, boot macros, controls, first save and RESTORE, checkpoints to the
   first save, shot plan.

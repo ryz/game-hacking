@@ -214,14 +214,17 @@ def split(route):
 
 
 def expand(game, toks, depth=0):
-    """Expand macros (UPPERCASE names in game.json) recursively; NAME*N repeats a macro."""
+    """Expand macros (UPPERCASE names in game.json) recursively; NAME*N and NAME:args*N repeat a macro."""
     if depth > 20:
         raise ValueError("macro recursion too deep")
     out = []
     for t in toks:
         name, _, rep = t.partition("*")
         head, _, args = t.partition(":")
-        if t in game.macros:
+        m = re.match(r"^([^:*]+:[^*]+)\*(\d+)$", t)
+        if m and head in game.macros:                         # MACRO:a:b*N (an argument never ends in *N)
+            out += expand(game, [m.group(1)], depth + 1) * int(m.group(2))
+        elif t in game.macros:
             out += expand(game, split(game.macros[t]), depth + 1)
         elif args and head in game.macros:                    # MACRO:a:b -> {0} {1} filled in
             body = game.macros[head]
