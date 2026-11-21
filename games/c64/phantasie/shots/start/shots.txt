@@ -1,0 +1,39 @@
+01_boot_ssi | boot | SSI "proudly presents" screen with the C64 version 1.4 credits | w700
+02_title_logo | title | Title picture: the Phantasie logo with a sword, shown while the game loads | @title
+03_menu_start | menu | Start menu: 1 Start in Pelnor, 2 Continue saved game | @menu
+04_town_pelnor | gameplay | Pelnor, the first town, before a party exists: Guild, Armory, Bank, Inn, Mystic | @pelnor_new
+05_guild_menu | menu | Guild menu: spells, training, add, new, drop, rename, inspect, purge, exit | @pelnor_new,return,w60
+06_guild_race | menu | New character: choose a race (human, dwarf, elf, halfling, gnome, random) | @pelnor_new,GUILDNEW
+07_guild_class | menu | New character: choose a class (thief, monk, ranger, fighter, priest, wizard) | @pelnor_new,GUILDNEW,return,w60
+08_guild_roll | system | Rolled attributes for a human fighter: keep this character? | @pelnor_new,GUILDNEW,ROLL:0:3:1,REROLL,ROLL:0:3:1
+09_guild_name | menu | Name entry for the new character | @pelnor_new,GUILDNEW,ROLL:0:3:1,REROLL,ROLL:0:3:1,return,w60
+10_char_sheet_ryz | inventory | Character sheet of ryz, level 1 human fighter: attributes, skills, equipment | @pelnor_new,GUILDNEW,ROLL:0:3:1,REROLL,ROLL:0:3:1,return,w60,settle,type:ryz,settle,return,w100
+11_guild_roster | menu | Adding members to the party: the Guild roster with the six new characters | @guild_created,down*2,return,w60
+12_guild_party | menu | Party of six formed in the Guild | @party
+13_town_party | gameplay | Pelnor with the party of six listed above the town | @pelnor_party
+14_bank_menu | shop | Bank: withdraw, deposit, exit | @pelnor_party,right*2,return,w120
+15_bank_withdraw | shop | Bank withdrawal: how much? with the +10/-10/+1/-1 selector | @pelnor_party,right*2,return,w120,settle,return,w60,settle,return,w60
+16_armory | shop | Armory stock for ryz: only a small shield and scroll 8, cash 1536 | @pelnor_gold,left,return,w120,settle,return,w120
+17_leaving_pelnor | gameplay | Leaving Pelnor: the wilderness loads from disk | @pelnor_gold,left,return,w120,settle,return,w120,settle,right*2,return,w120,settle,down,return,w300
+18_world_town_prompt | dialogue | First view of the wilderness, on Pelnor's square: A town. Enter? yes/no | @pelnor_gold,left,return,w120,settle,return,w120,settle,right*2,return,w120,settle,down,LEAVE
+19_world_compass | gameplay | Outside Pelnor: the move compass (north, west, east, south) and the map | @outdoors_pelnor
+20_world_path | dialogue | First step west: you are on a path, to the east lies a small town | @outdoors_pelnor,STEP:w
+21_world_east | gameplay | Walking east of Pelnor: path, grassland, forest, lake | @outdoors_pelnor,STEP:e,STEP:e
+22_encounter | battle | An encounter: the map gives way to the combat screen | @outdoors_pelnor,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,!
+23_battle_monsters | battle | Three bantirs face the party of six | @outdoors_pelnor,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,w200,!
+24_battle_party_options | battle | Party options: beg mercy, threaten, greetings, fight, flee | @enc_bantir
+25_battle_individual | battle | Individual options set: five thrust, cubi casts spell 5 | @bantir_set
+26_battle_hit | battle | Round 1: condi hits a bantir | @bantir_set,return,w60*2,!
+27_battle_cast | battle | Cubi casts a spell | @bantir_set,return,w60*5,!
+28_battle_spell_damage | battle | The spell burns a bantir: bantir takes 5 damage | @bantir_set,return,w60*6,!
+29_battle_round2 | battle | Round 2: party options again, two bantirs left | @bantir_set,return,w1200,settle
+30_battle_killed | battle | Monsters killed | @bantir_set,return,w1200,settle,return,w100,settle,return,w60*9,!
+31_battle_reward | battle | Each survivor gets 73 XP and 17 GP | @bantir_set,return,w1200,settle,return,w100,settle,return,w60*10,!
+32_world_after_fight | gameplay | Back on the wilderness map after the fight | @s_won
+33_world_health | hud | Party health after the fight: hit points and magic of the six | @s_won,return,w60,settle,up*2,return,w100
+34_world_return_prompt | dialogue | Back at Pelnor: A town. Enter? | @s_won,STEP:w*7
+35_town_shares | system | Entering town: gold and experience divided into shares, 71 XP and 273 gold each | @s_won,STEP:w*7,return,w3600,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w60,settle
+36_inn | menu | The Pelnor Inn after the fight: exit, distribute | @s_pelnor_back,down,return,w200
+37_guild_training | menu | Guild training for ryz: you need 401 more experience points | @s_pelnor_back,return,w120,settle,down,settle,return,w100,settle,return,w100
+38_mystic | system | The Mystic after the first fight: the party's score | @s_pelnor_back,right,settle,right,settle,down,settle,return,w200
+39_save_saving | save | Game save from the town screen: SAVING, the party is written to the boot disk | @s_pelnor_back,g,w60

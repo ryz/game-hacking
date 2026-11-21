@@ -312,7 +312,14 @@
     "WD": "return,w60,settle,type:{0},return,w60,settle",
     "SAVE": "g,w60,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w60,settle,return,w120,settle,w2100,settle",
     "LEAVE": "return,w300,settle,return,w300,settle,w1500,settle,w2100,settle",
-    "STEP": "{0}:20,w100"
+    "STEP": "{0}:20,w100",
+    "FIGHT": "return,w100,settle,up*6,settle",
+    "IO0": "settle,return,w30,settle,return,w60,settle,down,settle",
+    "IO1": "settle,return,w30,settle,down,settle,return,w60,settle,down,settle",
+    "IO2": "settle,return,w30,settle,down,settle,down,settle,return,w60,settle,down,settle",
+    "IO3": "settle,return,w30,settle,down,settle,down,settle,down,settle,return,w60,settle,down,settle",
+    "IO4": "settle,return,w30,settle,down,settle,down,settle,down,settle,down,settle,return,w60,settle,down,settle",
+    "IO5": "settle,return,w30,settle,down,settle,down,settle,down,settle,down,settle,down,settle,return,w60,settle,down,settle"
   },
   "ram": {
     "gold": {
