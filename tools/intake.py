@@ -163,6 +163,7 @@ def main():
                 open(p, "w", encoding="utf-8").write(txt)
     print(json.dumps({k: meta.get(k) for k in ("slug", "title", "platform", "region", "model", "sha1")}, indent=2))
     print("header:", json.dumps(meta["header"]))
+    print("next: python3 tools/vault.py push %s/%s  (game data goes to the private vault)" % (platform, slug))
 
     if a.probe:
         sys.path.insert(0, HERE)
