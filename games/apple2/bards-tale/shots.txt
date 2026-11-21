@@ -1,6 +1,52 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/apple2/bards-tale/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# The plan for the main set (scout 2026-11-21, previewed: work/preview/apple2/bards-tale/shots.png).
+# play.py snap writes captured shots to work/shots/apple2/bards-tale/<set>/shots.txt; copy finished lines back here.
+boot_crack | boot | Crack intro "Soft-cracked by Number 6", EA logo, "Thanks to the artist 08/12/85" | w250,!
+title_bw | title | Title: "The Bard's Tale / By Michael Cranford", bard and drinker in black and white | @title,!
+title_colour | title | Title in colour: "The song I sing / Will tell the tale / Of a cold and wintery day" | @title,w300,!
+menu_utilities | menu | Utilities menu: Start game, Copy chars, Make a disk, Transfer chars | @title,space,w900,disk:2,space,w600
+menu_guild | menu | Guild of Adventurers: Check roster, Add, Remove, Disk options, New order, View, Exit | @guild
+menu_disk_options | menu | Guild Disk options: Create member, Save party, Delete member, Leave the game | @guild,d,w300
+system_race | system | Character creation: choose one of seven races | @guild,d,w300,c,w600
+system_class | system | Character creation: rolled attributes and the classes open to a Human | @guild,d,w300,c,w600,1,w400
+menu_roster | menu | Roster on the character disk (end of the list, new characters and *RYZ PARTY) | sav:01_start,GUILD,c,w1500
+inventory_stats | inventory | RYZ, level-1 Human Warrior: attributes, level, experience, gold | @city,1,w400
+inventory_items | inventory | ALFAR's items (Mace, Leather Gloves, Mthr Dagger, Mandolin) and spell levels | @city_parker,1,w400,space,w300
+hud_city | hud | Skara Brae with the new party: view, location name, message window, party roster | @city
+env_city_street | gameplay | Skara Brae: a street looking north | @city,j,w300
+env_city_houses | gameplay | Skara Brae: houses along a street | @city,j,w200,i,w200,i,w200,i,w300
+gameplay_where | gameplay | "?" location: "You are on Main Street. It's now early morning." | @city,shift+slash,w300
+shop_garth | shop | Garth's Equipment Shoppe: greeting | @city,GO:1A:12
+shop_menu | shop | Garth's: Buy, Sell, Identify, Pool gold | @city,GO:1A:12,1,w400
+shop_buy | shop | Garth's price list: Torch 5, Lamp 15, Broadsword 80 ... | @city,GO:1A:12,1,w400,b,w600
+system_review | system | Review Board: Advancement, Spell acquiring, Class change | @city,GO:17:14
+system_review_xp | system | Review Board: RYZ still needs 2000 experience to advance | @city,GO:17:14,a,w400,1,w400
+system_roscoe | system | Roscoe's Energy Emporium: spell points restored for gold | @city,GO:0C:15
+system_temple | system | Temple of 100 Blessings: healing | @city,GO:08:19
+dialogue_tavern | dialogue | Skull Tavern: order a drink, talk to the barkeep | @city,GO:01:08
+dialogue_drinks | dialogue | Scarlet Bard: Ale, Beer, Mead, Foul spirits, Ginger Ale, Wine | @city,GO:1C:05,o,w400,1,w400
+dialogue_madgod | dialogue | Temple of the Mad God: "Only those who know the name of the Mad one ..." | @city,GO:12:0D,s,w400
+gameplay_gate | gameplay | City gate blocked by a gigantic snow drift | @city,GO:00:0F
+gameplay_guardian | gameplay | Gate guarded by the statue of a Stone Golem: Attack or Leave | @city,GO:06:16
+gameplay_iron_gate | gameplay | Iron gate of Kylearan's tower | @city,GO:19:1B
+gameplay_magic_mouth | gameplay | Magic mouth: "none save Mangar may enter his desmesnes" | @city,GO:02:02
+gameplay_castle_entry | gameplay | Entry chamber of Harkyn's Castle | @city,GO:04:18
+extra_credits | extra | Building with Michael Cranford's portrait: "THE BARD'S TALE was designed and programmed by ..." | @city,k,w400
+battle_encounter | battle | Encounter: 4 Skeletons and 1 Kobold, Fight or Run | @fight1,!
+battle_options | battle | Battle round options for RYZ: Attack, Party attack, Defend, Use | @fight1,f,w600,!
+battle_target | battle | Attack target: group A 4 Skeletons, group B 1 Kobold | @fight1,f,w600,a,w300,!
+battle_confirm | battle | "Use these attack commands?" after all six orders | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI\n,w400,a,w300,d,w300,!
+battle_round | battle | Round report: skeletons claw, RYZ chops, CONDI killed | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI\n,w400,a,w300,d,w300,y,w300,w300,!
+gameplay_cellar_dark | gameplay | Wine cellar, unlit, at the stairs up | @cellar_hero
+system_mafl | system | MAFL (Mage Flame) cast: light icon, the cellar wall shows | @cellar_hero_lit
+env_sewers | gameplay | Sewers: lit corridor | @sewers_portal_lit
+gameplay_sewers_inscription | gameplay | Sewers inscription: "Seek the Snare from behind the scenes" | @sewers_portal_lit,GO:05:00
+gameplay_sewers_trap | gameplay | Sewers trap: a tripwire, a stone block falls | @sewers_portal_lit,GO:03:06
+battle_spinners | battle | Fixed encounter in the sewers: 3 Spinners | @sewers_portal_lit,GO:01:06,!
+battle_humans | battle | Sewers ambush: 1 Bladesman, 2 Wizards, 6 Magicians and 1 Assassin | @sewers_portal_lit,GO:02:09,!
+gameplay_sewers_inscription2 | gameplay | Sewers inscription: "The hand of time writes and cannot erase." | @sewers_portal_lit,GO:07:0D
+gameplay_catacombs | gameplay | Catacombs, level 1 at the stairs up | @catacombs_parker
+gameplay_castle | gameplay | Harkyn's Castle, at the stairs | @castle_parker
+gameplay_tower | gameplay | Kylearan's Amber Tower | @tower_parker

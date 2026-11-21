@@ -49,7 +49,35 @@
     "ADD": "a,w300,type:{0}\\n,w900",
     "ADD6": "ADD:RYZ,ADD:CONDI,ADD:EBO,ADD:CUBI,ADD:DEDDO,ADD:MNZ",
     "AT": "poke:0001={0},poke:0000={1}",
-    "GO": "AT:{0}:{1},j,w400"
+    "GO": "AT:{0}:{1},j,w400",
+    "PACE": "i,w300,i,w300,i,w300,j,w200,j,w200,i,w300,i,w300,i,w300,l,w200,l,w200",
+    "HERO": "poke:2CAA0=00090009,poke:2CAB0=0057005700000000,poke:2CAAA=000001040103,poke:2CA9A=000601070400,poke:2CB20=00090009,poke:2CB30=004A004A00000000,poke:2CB2A=000000090602,poke:2CB1A=000508020102,poke:2CBA0=00080008,poke:2CBB0=003F003F00290029,poke:2CBAA=000001020008,poke:2CB9A=000409030707,poke:2CC20=00090009,poke:2CC30=0045004500000000,poke:2CC2A=000000070404,poke:2CC1A=000600010005,poke:2CCA0=00090009,poke:2CCB0=0026002600390039,poke:2CCAA=000001050300,poke:2CC9A=000507070108,poke:2CD20=00080008,poke:2CD30=0021002100340034,poke:2CD2A=000000080801,poke:2CD1A=000407090300",
+    "REORDER": "n,w300,1,w200,2,w200,3,w200,4,w200,5,w600",
+    "HEROP": "HERO,REORDER",
+    "FACE": "poke:0002={0}",
+    "WARPC": "AT:{0}:{1},FACE:{2},j,w300,l,w300",
+    "MAFL": "c,w300,{0},w300,type:MAFL\\n,w600"
   },
-  "ram": {}
+  "ram": {
+    "y_north": {
+      "addr": "0000",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "x_east": {
+      "addr": "0001",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "facing": {
+      "addr": "0002",
+      "size": 1
+    },
+    "level": {
+      "addr": "2FC10",
+      "size": 1
+    }
+  },
+  "work": "scouted 2026-11-21: boot, guild, new party, city scan (every building located), 16 checkpoints, party records, dungeon map decoder; not captured",
+  "open": "dungeon-level warp (no level variable found yet: stairs only); Mangar's Tower entry and disk 4 untested; 0x08/0x20/0x40/0x80 dungeon flags unverified; spell list from memory only (manual hosts blocked)"
 }

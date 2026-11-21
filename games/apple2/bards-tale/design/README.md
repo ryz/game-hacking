@@ -23,8 +23,19 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+A first-person party role-playing game (Interplay, designed and programmed by Michael Cranford; published by
+Electronic Arts, Apple II, 1985) **(source)** [Wikipedia]. Up to six characters made in the Guild of Adventurers
+(seven races, eight starting classes: Warrior, Paladin, Rogue, Bard, Hunter, Monk, Conjurer, Magician)
+**(verified: checkpoints guild, party)** walk the snow-bound city of Skara Brae, a 30 by 30 street grid with
+houses, taverns, temples, Garth's Equipment Shoppe, Roscoe's Energy Emporium (spell points for gold) and the
+Review Board (level advancement, spells, class change) **(verified: city scan, plan lines shop_*, system_*)**.
+Fights are text rounds against up to four groups of monsters, with one order per character (Attack only from
+the first three places) **(verified: fight1)**. Spells are cast by typing four-letter codes (MAFL, ARFI
+verified). The dungeons are 22 by 22 levels in a fixed order (Wine cellar, Sewers, Catacombs, Harkyn's Castle,
+Kylearan's Tower, Mangar's Tower) **(source)** [Wikipedia]; entrances seen: the Scarlet Bard's wine, the
+sewer portal, the Mad God's temple (name TARJAN), the castle and tower entry chambers **(verified)**. Saving
+is per character on the character disk and per party name ("Save party" in the Guild) **(verified)**. There
+is no automap **(verified: no map command; source: era)**.
 
 ## Documents
 | Document | Covers |
@@ -40,3 +51,4 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Wikipedia | https://en.wikipedia.org/wiki/The_Bard's_Tale_(1985_video_game) | release, classes, dungeon order and level counts |
