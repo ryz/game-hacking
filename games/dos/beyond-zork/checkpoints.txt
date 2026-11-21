@@ -1,3 +1,7 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+boot | Game prompt: Type BEGIN, RESTORE or QUIT (Bzork.exe, colour yes) | pow,BOOT,settle
+title | Title card BEYOND ZORK after the prologue | @boot,type:begin\n,w300,space,w200,space,w300,settle
+setup | Character Setup menu | @title,space,w300,settle
+start | Hilltop, preset character, first prompt | @setup,enter,w300,space,w300,settle

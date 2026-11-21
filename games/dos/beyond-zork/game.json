@@ -24,6 +24,12 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
+  "macros": {
+    "BOOT": "w120,down,enter,w600,y,w300",
+    "TITLE": "BOOT,type:begin\\n,w300,space,w200,space,w300",
+    "SETUP": "TITLE,space,w300",
+    "NEWGAME": "SETUP,enter,w300,space,w300",
+    "FROTZ": "w120,enter,w600"
+  },
   "ram": {}
 }
