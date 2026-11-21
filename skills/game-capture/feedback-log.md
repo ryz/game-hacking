@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-21 - Beyond Zork (DOS, palette 6 retake and Frotz shots)
+- Task: retake main (88) and start (34) in COLOR palette 6 (owner's choice) and add Frotz comparison shots.
+- Worked: a memory diff over repeated `color` commands plus the published ZIL source found the colour globals in 3
+  calls; two pokes in BOOT (`GREYPC` interpreter defaults, `GREY` game globals) give grey from the first prompt;
+  recolouring the old PNGs and comparing proved 122/122 routes unchanged; one preview sheet for 12 Frotz candidates.
+- Friction: scripts get the game from `emu.Game(name)`, not `find_game`; the set index has no notes field (note
+  went to a `#` line in shots.txt); plain `sleep` blocked (until-loop on a done file worked).
+- Proposed rule change: README "RAM": for a restyle that must not change routes, copy the published PNGs first and
+  compare each retake through a colour map; backlog: `shoot.py --verify --published --map OLD=NEW`, a notes field
+  in the set index.
+- Corrected: none. Coordinator: cold verify start 34/34, main 100/100; lenses clean; sheet looked at (grey except
+  the palette and Frotz shots); four moors/shop shots compared with d8587ce0 through a colour map: consistent.
+  About 50 of 180 calls.
+- Status: restyle check -> open lesson in `feedback.md`; both tool wishes -> `docs/backlog.md`.
+
 ### 2026-11-21 - Beyond Zork (DOS, first text adventure)
 - Task: sets `main` (87) and `start` (34) with the three lenses, from the scout's chain.
 - Worked: `preview.py` sheets of 9-12 exploration routes explored an unknown text adventure (one look per 12

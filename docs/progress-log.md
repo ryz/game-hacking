@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-21 - Beyond Zork in palette 6; Frotz comparison
+- Owner: palette 6 (black on light grey) as the default look. No interpreter option exists; two pokes in `BOOT`
+  (Bzork.exe's default colours, then the game's colour globals found via a memory diff and the ZIL source) give
+  grey from the first prompt. Both sets retaken: `start` 34, `main` 100 (+`options_color_default` with the original
+  white on blue, +11 Frotz shots). Routes unchanged (old and new pictures map one-to-one by colour, 122/122;
+  coordinator spot check agrees). Cold verify by the coordinator: 34/34, 100/100.
+- Frotz 2.32 (the bundle's launch) documented against Bzork.exe in `design/interface.md`: 640x400, title picture,
+  proportional font, red on black, 4 palettes, Alt hot keys, different moors.
+
 ## 2026-11-21 - Aspect rule for flattened frames; Beyond Zork row-doubled, monochrome shot
 - Owner: Beyond Zork's 640x200 frames looked 3.2:1. Rule (owner, 2026-11-21): decided per game in `game.json`
   "aspect" (`rowdouble` = each row twice, 640x400, lossless; `native` = as drawn). Tools: `platforms.Libretro.shaped()`

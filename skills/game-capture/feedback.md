@@ -33,3 +33,5 @@ Tool wishes are not listed here: `docs/backlog.md`.
   plan a Talk route per person; trying waits against wandering people fails (Sword of Vermilion, 2026-11-20).
 - **Menu-driven warps (Aries-style lists):** check the destination by its RAM index, not by the keys sent
   (Sword of Vermilion, 2026-11-20: three checkpoints reached the wrong towns).
+- **Restyles that must not change routes** (palette, font, display option): copy the published PNGs before the
+  retake and compare each retake with its old picture through a colour map (Beyond Zork palette 6, 2026-11-21).
