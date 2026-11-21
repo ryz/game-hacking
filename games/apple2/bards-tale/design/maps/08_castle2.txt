@@ -1,6 +1,6 @@
 Harkyn's Castle level 2 (level id 08, in-game name "Castle", monster level 4)
-route: @stairs_hero,LV:00:1:08
-North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! event, F fixed fight, a anti-magic?, k darkness/smoke?, ^ portal up, v portal down
+route: @stairs_hero,KEEPFLAGS,LV:00:1:08
+North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! special (message/event), F forced fight (once), T trap (once), k darkness, ^ portal up, v portal down
    +---+---+   +   +   +   +   +   +   +   +   +   +   +   +   +-D-+   +---+---+---+---+   +
 21                     |           |                           |   |                        
    +---+   +---+---+---+---+---+---+   +   +   +   +   +   +   +   +   +---+---+---+---+   +
@@ -8,7 +8,7 @@ North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! event, 
    +   +   +   +   +   +---+---+---+   +   +---+---+---+---+   +   +---+   +   +   +   +   +
 19 | U     |   |       D !   !     D   |   |               |               |     ^     |   |
    +   +   +   +   +   +---+---+---+   +   +   +---+---+   +   +   +---+---+---+---+-D-+   +
-18 |       |   |       | !   !     D   |   |   | F     |   |                           |   |
+18 |       |   |       | !   !   T D   |   |   | F     |   |                           |   |
    +---+---+-D-+   +   +---+---+---+   +   +   +   +   +   +   +   +   +   +---+---+---+---+
 17 |                   | !   !   F D   |   |   |   | ! |   |                               |
    +   +   +   +   +   +---+---+---+   +   +   +   +---+   +   +   +   +   +   +   +   +   +
@@ -16,11 +16,11 @@ North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! event, 
    +---+   +   +   +   +---+---+---+   +   +   +---+---+---+   +---+   +   +-D-+---+-D-+---+
 15 D F D                             F                         |   |   |                   D
    +---+---+---+---+---+---+   +   +   +   +   +   +   +   +   +   +---+-D-+   +   +---+---+
-14         | k   a   a S   |                                         F     |   D            
+14         | T   k   k S   |                                         F     |   D            
    +   +   +---+-D-+-D-+   +-D-+---+-D-+-D-+-D-+-D-+-D-+-D-+-D-+   +   +   +   +   +   +   +
-13     |                           |   | F |   | F |   |   | F |           D   |         a  
+13     |                           |   | F |   | F |   |   | F |           D   |         k  
    +   +---+---+---+   +---+---+   +---+---+---+---+---+---+---+   +   +---+   +---+   +   +
-12         |       |   D   D F D   |   | F | F | F |   | F | F |       D       |     a   a  
+12         |       |   D   D F D   |   | F | F | F |   | F | F |       D       |     k   k  
    +   +   +---+---+   +---+---+   +-D-+-D-+-D-+-D-+-D-+-D-+-D-+   +   +---+---+   +   +   +
 11           F |                                                     F         |       |    
    +   +   +---+-D-+   +   +---+   +   +   +   +   +   +   +   +   +   +   +---+   +---+   +
@@ -34,7 +34,7 @@ North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! event, 
    +   +   +   +   +   +   +   +   +---+-D-+-D-+-D-+---+---+   +---+   +---+   +   +   +   +
  6     |   |       |           | ! | ! D     !   F D       |   |   D   |       |   |        
    +---+   +   +   +   +   +   +   +---+---+   +---+---+   +---+   +   +---+   +   +---+---+
- 5         |       |         !           F |   | !           k         |     ! |            
+ 5         |       |         !           F |   | !           T         |     ! |            
    +---+---+   +   +---+---+---+---+---+---+   +---+---+---+---+---+---+---+   +---+---+---+
  4                                         | ! |         ! D !             |                
    +---+---+---+---+   +   +   +   +   +   +   +   +   +   +---+   +   +   +   +   +---+---+

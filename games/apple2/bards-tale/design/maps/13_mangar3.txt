@@ -1,49 +1,49 @@
 Mangar's Tower level 3 (level id 0D, in-game name "The Tower", monster level 6)
-route: @stairs_hero,LV:01:2:0D
-North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! event, F fixed fight, a anti-magic?, k darkness/smoke?, ^ portal up, v portal down
+route: @stairs_hero,KEEPFLAGS,LV:01:2:0D
+North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! special (message/event), F forced fight (once), T trap (once), k darkness, ^ portal up, v portal down
    +---+---+---+---+---+   +   +---+---+   +   +---+---+   +   +---+---+   +   +---+---+---+
-21 | !FD !FD ! D ! D !a|       | a   a |     F | a   a | F     | a   a |     F | a D !     |
+21 | !FD !FD ! D ! D !k|       | k   k |     F | k   k | F     | k   k |     F | k D !     |
    +---+---+---+---+   +---+---+   +   +---+-S-+   +   +-S-+---+   +   +---+---+   +   +   +
-20 | a   a   a   a   ak  a   a   a   a   a   ak  a   a   a   a   a   ak  a   a   a |       |
+20 | k   k   k   k   Tk  k   k   k   k   k   Tk  k   k   k   k   k   Tk  k   k   k |       |
    +   +---+---+---+   +---+---+---+---+---+   +---+---+---+-D-+---+   +---+---+---+---+---+
-19 | a | !F| F     | a D       |           | a | F | F D F D   D   | a D   |       |       |
+19 | k | !F| F     | k D       |           | k | F | F D F D   D   | k D   |       |       |
    +   +-S-+-D-+---+   +   +---+---+   +   +   +-D-+-D-+---+-D-+---+   +-D-+   +   +   +   +
-18 | a |           | a |   |       |     ! D a |   D   D F | F S   | a |   D F     | F     |
+18 | k |           | k |   |       |     ! D k |   D   D F | F S   | k |   D F     | F     |
    +   +   +   +   +   +-D-+   +   +---+---+   +-D-+-D-+---+---+---+   +---+---+---+-D-+---+
-17 | a |           | a | F D F     |       | a |   | F D   D F D   | a |           |       |
+17 | k |           | k | F D F     |       | k |   | F D   D F D   | k |           |       |
    +   +---+-D-+-S-+   +---+---+---+   +   +   +-D-+-S-+-D-+---+---+   +   +   +   +   +   +
-16 | a |       | F | a | F D     F D       | a | ! | F | F |   D   D a D           | F     |
+16 | k |       | F | k | F D     F D       | k | ! | F | F |   D   D k D           | F     |
    +   +---+-D-+---+   +---+---+---+---+-D-+   +-D-+---+---+---+---+   +---+---+---+-D-+---+
-15 | a   a   a   a   ak  a   a   a   a   a  !ak  a   a   a   a   a  !ak  a   a   a   a S ! |
+15 | k   k   k   k   Tk  k   k   k   k   k  !Tk  k   k   k   k   k  !Tk  k   k   k   k S ! |
    +   +---+---+---+   +---+---+-D-+-D-+---+   +---+---+---+---+---+   +---+---+---+---+---+
-14 | a |           | a |         F | F     | a D F         |     ! D a | a   a   a   a   a |
+14 | k |           | k |         F | F     | k D F         |     ! D k | k   k   k   k   k |
    +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +---+---+---+   +
-13 | a D F         | a |           |       | a |           |       | a | a | a   a   a | a |
+13 | k D F         | k |           |       | k |           |       | k | k | k   k   k | k |
    +   +---+---+---+   +---+---+---+---+---+   +---+---+---+---+---+   +   +   +---+   +   +
-12 | a |         ! D a |       |           | a | ! D       |       | a | a | a | ! D !a| a |
+12 | k |         ! D k |       |           | k | ! D       |       | k | k | k | ! D !k| k |
    +   +   +   +   +   +   +   +   +   +   +   +---+   +   +   +   +   +   +   +---+---+   +
-11 | a |           | a | F     |         F D a |   D       |       D a | a | a   a   a   a |
+11 | k |           | k | F     |         F D k |   D       |       D k | k | k   k   k   k |
    +   +---+---+---+   +-D-+---+---+---+---+   +---+---+-D-+---+---+   +-D-+---+---+---+---+
-10   ak  a   a   a  !ak  a   a   a   a   a  !ak  a   a   a   a   a   ak  a   a   !a  a   a  
+10   Tk  k   k   k  !Tk  k   k   k   k   k  !Tk  k   k   k   k   k   Tk  k   k   !k  k   k  
    +   +---+---+---+   +-D-+---+---+---+-D-+   +-D-+---+---+-D-+---+   +---+---+---+---+---+
- 9 | a |           | a |       |           | a | F         | !     | a |       D ! |       |
+ 9 | k |           | k |       |           | k | F         | !     | k |       D ! |       |
    +   +   +   +   +   +---+-S-+   +   +   +   +   +   +-D-+   +   +   +-D-+---+---+   +   +
- 8 | a | F         | a |     F |           | a |       | !F|       | a |           D !     |
+ 8 | k | F         | k |     F |           | k |       | !F|       | k |           D !     |
    +   +-D-+---+---+   +---+---+---+---+-S-+   +---+---+---+   +   +   +   +   +   +---+---+
- 7 | a |         F D a   a   a |       | !F| a |         F D       | a |           D       |
+ 7 | k |         F D k   k   k |       | !F| k |         F D       | k |           D       |
    +   +---+---+---+---+---+   +   +   +---+-D-+---+   +   +---+---+-S-+-D-+---+---+   +   +
- 6 | a   a   a   a   a   a | a |       |           |       |       D   | a   a   a |       |
+ 6 | k   k   k   k   k   k | k |       |           |       |       D   | k   k   k |       |
    +---+---+   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +---+---+
- 5         | a   a   a   a | a D       |           |       |       |   | a   a   a |        
+ 5         | k   k   k   k | k D       |           |       |       |   | k   k   k |        
    +   +   +   +   +---+---+---+---+---+---+-S-+---+---+---+---+---+---+---+   +   +   +   +
- 4         D a   a D       D F     D F     | !     |     F D       D       D a   a D !      
+ 4         D k   k D       D F     D F     | !     |     F D       D       D k   k D !      
    +   +   +   +   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+   +   +   +   +
- 3         | a   a   a   a   !a  a   a   a   a   a   a   a   a   a   a   a   a   a |        
+ 3         | k   k   k   k   !k  k   k   k   k   k   k   k   k   k   k   k   k   k |        
    +---+---+   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +---+---+
- 2 | a   a   a   a   a   a   a   a   a   a   a   Ua  a   a   a   a   a   a   a   a   a   a |
+ 2 | k   k   k   k   k   k   k   k   k   k   k   Uk  k   k   k   k   k   k   k   k   k   k |
    +   +   +   +---+-D-+-D-+---+---+-D-+-D-+---+---+-D-+-D-+---+---+-D-+-D-+---+   +   +   +
- 1 | a   a   a |     F |       |     F |       |     F |       |       | F     | a   a   a |
+ 1 | k   k   k |     F |       |     F |       |     F |       |       | F     | k   k   k |
    +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +
- 0 | a   a   a |       |       |       |       |       |       |       |       | a   a   a |
+ 0 | k   k   k |       |       |       |       |       |       |       |       | k   k   k |
    +---+---+---+---+---+   +   +---+---+   +   +---+---+   +   +---+---+   +   +---+---+---+
     0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20  21  

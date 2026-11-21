@@ -1,6 +1,6 @@
 Harkyn's Castle level 3 (level id 09, in-game name "Castle", monster level 4)
-route: @stairs_hero,LV:01:2:09
-North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! event, F fixed fight, a anti-magic?, k darkness/smoke?, ^ portal up, v portal down
+route: @stairs_hero,KEEPFLAGS,LV:01:2:09
+North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! special (message/event), F forced fight (once), T trap (once), k darkness, ^ portal up, v portal down
    +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 21 |   D F D           |       |           | ! |                               D           |
    +   +   +   +   +   +   +   +   +   +---+   +---+   +   +   +   +   +   +   +   +   +   +
@@ -32,18 +32,18 @@ North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! event, 
    +-D-+-D-+   +-D-+---+   +   +   +   +   +   +   +---+---+---+---+---+---+---+---+---+---+
  7 |   | F |   |       |   |     F |   |   |       |                                   D   |
    +---+---+   +   +   +   +-D-+-D-+   +   +   +   +   +   +   +   +   +   +   +   +   +---+
- 6 | !   a   a |       |               |   |       |                                       |
+ 6 | !   k   k |       |               |   |       |                                       |
    +---+---+---+   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +   +
  5 |             !     |               |   D     ! D !                                     |
    +---+---+---+---+---+---+---+---+---+   +---+---+   +   +   +   +   +   +   +   +   +   +
- 4 | a D a | a D a | a D a | ! |     F D   D F     |                                       |
+ 4 | k D k | k D k | k D k | ! |     F D   D F     |                                       |
    +---+   +   +   +   +   +-D-+---+---+   +---+---+   +   +   +   +   +   +   +   +   +   +
- 3 |     F D   | FaD F | Fa  a |       D   D       |                                       |
+ 3 |     F D   | FkD F | Fk  k |       D   D       |                                       |
    +---+---+   +-S-+   +-D-+---+---+---+   +---+---+-S-+---+---+---+---+---+---+---+---+---+
- 2 | k       a | ! | k       k |       D   D F     |       |                     !   !     |
+ 2 | T       k | ! | T       T |       D   D F     |       |                     !   !     |
    +---+---+   +---+   +---+---+---+---+   +---+---+   +   +   +   +   +   +   +   +   +   +
- 1 | k   a | a | Fa| Fa| Fa  k |       D   D       D       S !               !   !   !   ! |
+ 1 | T   k | k | Fk| Fk| Fk  T |       D   D       D       S !               !   !   !   ! |
    +---+   +   +   +   +   +---+---+---+---+---+---+   +   +   +   +   +   +   +   +   +   +
- 0 | F | F | Fk| a | a |   |   |     F D   D F     D       |                 !   !   !     |
+ 0 | F | F | FT| k | k |   |   |     F D   D F     D       |                 !   !   !     |
    +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
     0   1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20  21  

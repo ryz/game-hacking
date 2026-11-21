@@ -1,6 +1,6 @@
 Wine cellar (level id 00, in-game name "Cellars", monster level 0)
-route: @stairs_hero,LV:FF:0:00
-North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! event, F fixed fight, a anti-magic?, k darkness/smoke?, ^ portal up, v portal down
+route: @stairs_hero,KEEPFLAGS,LV:FF:0:00
+North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! special (message/event), F forced fight (once), T trap (once), k darkness, ^ portal up, v portal down
    +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
 21 |                                                                                       |
    +   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+   +
@@ -12,7 +12,7 @@ North is up; x = east (columns), y = north (rows). U/D stairs up/down, ! event, 
    +   +   +---+---+   +---+---+-D-+   +   +   +   +   +   +   +---+   +---+   +   +   +   +
 17 |   |   |   |   |           |   |   |           |   |   |   |   |   |   |   |   |   |   |
    +   +   +   +   +   +---+   +   +   +   +   +   +   +   +   +---+   +---+   +   +   +   +
-16 |   |   |   |   |   |   |   D F |   |           |   |   |         k         |   |   |   |
+16 |   |   |   |   |   |   |   D F |   |           |   |   |         T         |   |   |   |
    +   +   +---+---+   +   +   +---+   +   +   +   +   +   +   +---+   +   +---+   +   +   +
 15 |   |   |       |   |   |   |   |   |           |   |   |   |   |   |   |       |   |   |
    +   +   +---+   +   +   +   +   +   +   +   +   +   +   +   +---+   +   +   +   +   +   +

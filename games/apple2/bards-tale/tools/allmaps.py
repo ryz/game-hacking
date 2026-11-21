@@ -2,7 +2,7 @@
 playbook "Level warp") and write design/maps/<nn>_<name>.txt (text map, as tools/maps.py) and .png (rendered).
 Usage: python3 games/apple2/bards-tale/tools/allmaps.py [ID ...]   (ids hex 00-0F; default all)
 Legend: walls white, doors orange (D), secret doors (3) red dashed; U/D stairs up/down, ! special event,
-F fixed fight, a anti-magic?, k darkness/smoke?, ^ portal up, v portal down (see design/maps/README.md)."""
+F forced fight (once), T trap (once), k darkness (puts out light), ^ portal up, v portal down (see design/maps/README.md)."""
 import sys, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, "..", "..", "..", ".."))
@@ -19,13 +19,13 @@ LEVELS = {0: (0, "cellar", "Wine cellar"), 1: (1, "sewers1", "Sewers level 1"), 
           11: (0, "mangar1", "Mangar's Tower level 1"), 12: (1, "mangar2", "Mangar's Tower level 2"),
           13: (2, "mangar3", "Mangar's Tower level 3"), 14: (3, "mangar4", "Mangar's Tower level 4"),
           15: (4, "mangar5", "Mangar's Tower level 5")}
-FL = [(0x01, "U"), (0x02, "D"), (0x04, "!"), (0x80, "F"), (0x08, "a"), (0x10, "k"), (0x40, "^"), (0x20, "v")]
+FL = [(0x01, "U"), (0x02, "D"), (0x04, "!"), (0x80, "F"), (0x10, "T"), (0x08, "k"), (0x40, "^"), (0x20, "v")]
 H = {0: "   ", 1: "---", 2: "-D-", 3: "-S-"}
 V = {0: " ", 1: "|", 2: "D", 3: "S"}
 
 def text(w, f, title):
     out = [title, "North is up; x = east (columns), y = north (rows). " +
-           "U/D stairs up/down, ! event, F fixed fight, a anti-magic?, k darkness/smoke?, ^ portal up, v portal down"]
+           "U/D stairs up/down, ! special (message/event), F forced fight (once), T trap (once), k darkness, ^ portal up, v portal down"]
     for y in range(21, -1, -1):
         top = "+"; mid = ""
         for x in range(22):
@@ -50,9 +50,9 @@ def png(w, f, path, title):
     for y in range(22):
         for x in range(22):
             fl = f[y * 22 + x]
-            if fl & 0x10: d.rectangle([X(x) + 1, Y(y) + 1, X(x) + C - 1, Y(y) + C - 1], fill=(48, 48, 64))
+            if fl & 0x08: d.rectangle([X(x) + 1, Y(y) + 1, X(x) + C - 1, Y(y) + C - 1], fill=(48, 48, 64))
             if fl & 0x80: d.rectangle([X(x) + 1, Y(y) + 1, X(x) + C - 1, Y(y) + C - 1], fill=(90, 20, 20))
-            if fl & 0x08: d.rectangle([X(x) + 1, Y(y) + 1, X(x) + C - 1, Y(y) + C - 1], outline=(120, 60, 160))
+            if fl & 0x10: d.rectangle([X(x) + 1, Y(y) + 1, X(x) + C - 1, Y(y) + C - 1], outline=(220, 200, 40))
             s = "".join(t for k, t in FL if fl & k and t not in "k")[:3]
             if s: d.text((X(x) + 4, Y(y) + 6), s, fill=(120, 255, 120))
             b = w[y * 22 + x]
@@ -73,7 +73,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     for lid in ids:
         idx, fname, title = LEVELS[lid]
-        route = "@stairs_hero,LV:%02X:%d:%02X" % ((idx - 1) & 0xFF, idx, lid)
+        route = "@stairs_hero,KEEPFLAGS,LV:%02X:%d:%02X" % ((idx - 1) & 0xFF, idx, lid)
         emu, rest, _ = E.start(game, route)
         E.play(emu, game, E.expand(game, rest) if rest else [])
         w = emu.peek(0x2F800, 484); f = emu.peek(0x2FA00, 484)
