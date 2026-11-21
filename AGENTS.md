@@ -27,7 +27,9 @@ documents, open items). Both are written by `python3 tools/gamestable.py` from e
   documented in its `README.md`. Downloaded saves are never committed.
 - Game data lives in the private vault `ryz/game-hacking-r` (owner's rule 2026-11-21): whenever the owner drops a
   ROM, disk image, patch, save or Kickstart, register it (`tools/intake.py`) and then `python3 tools/vault.py push
-  GAME [PATH ...]` in the same session, without being asked; exported saves (`rom/saves/`) are pushed too. A fresh
+  GAME [PATH ...] --booted "what it showed"` in the same session, without being asked. Only working ROMs go in
+  (owner's rule 2026-11-21): push runs a boot check (SHA-1, power-on, blank or frozen screen refused; sheet in
+  `work/vault/smoke/`), look at the sheet and name what the game showed; a ROM that does not boot is reported, not pushed; exported saves (`rom/saves/`) are pushed too. A fresh
   session restores a game's files with `python3 tools/vault.py pull GAME` (or `--all`). Cloud sessions attach the
   vault first (`add_repo` ryz/game-hacking-r); `vault.py` commits to the vault's `main` directly. Layout: its `README.md`.
 - Patches supplied by the owner (IPS, BPS, UPS: translations, bug fixes, restorations) are always used (owner's
@@ -61,7 +63,7 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
 - Setup: `sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga|c64]` builds one emulator (9-90 s; backends, what a
   game file is and what is not supported per platform: `docs/status.md`, "Platforms"). Amiga Kickstart ROMs go
   into `rom/kickstart/` (never committed).
-- Vault (private game data): `python3 tools/vault.py push GAME [PATH ...]`, `pull GAME|--all`, `list`.
+- Vault (private game data): `python3 tools/vault.py push GAME [PATH ...] --booted "title screen" [--frames N]`, `pull GAME|--all`, `list`.
 - Register a ROM: `python3 tools/intake.py ROM [--slug NAME] [--region jp|na|eu] [--patch PATCH[:headered|unheadered] ...]` -> `games/<platform>/<slug>/` +
   `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`; 6502 code:
   `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]` (NES) or `SLUG --route @cp ADDR [N]` (live memory, Apple II); 68000 code: `python3 tools/dis68k.py SLUG ADDR [N]`,

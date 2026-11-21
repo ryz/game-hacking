@@ -2,6 +2,12 @@
 
 Append-only, newest first.
 
+## 2026-11-21 - Vault takes working ROMs only
+- Owner's rule: only ROMs that were at least smoke-tested go into the vault. `vault.py push` now checks the SHA-1
+  against game.json, powers the game on for `--frames` (3600) and refuses a blank or unchanging screen (checked on
+  the NES test ROM, which is one colour by design: refused); `--booted "..."` (what the sheet showed) is required
+  and kept in files.json "check". Saves, patches and extras alone need no check.
+
 ## 2026-11-21 - Private vault for game data
 - Owner created the private repository `ryz/game-hacking-r` for everything that must not be public. `tools/vault.py`
   pushes a game's files (what `game.json` names: ROM, unpatched dump, patches; plus `rom/saves/`, extra paths) into

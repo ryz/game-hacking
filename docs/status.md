@@ -27,7 +27,7 @@ Each session builds only the emulator it needs (`sh tools/setup_emu.sh PLATFORM`
 ## Tools
 | Tool | State |
 |---|---|
-| `vault.py` | game data (ROMs, dumps, patches, saves, Kickstarts) to and from the private repository `ryz/game-hacking-r`, one folder per game, SHA-1 checked (2026-11-21) |
+| `vault.py` | game data (ROMs, dumps, patches, saves, Kickstarts) to and from the private repository `ryz/game-hacking-r`, one folder per game, SHA-1 checked; ROMs only after a boot check (2026-11-21) |
 | `intake.py`, `patch.py` | register a ROM (header, hashes, boot probe), owner's patches applied in order (IPS, BPS, UPS) |
 | `emu.py` | tokens, macros with arguments, checkpoints; a checkpoint chain is built once, each link cached, under a lock (2026-11-20) |
 | `play.py` | persistent session for exploring: do / undo / snap / checkpoint / goto / find / dump / diff / sample / record / export / text; native pictures, `call=N` in every status line (2026-11-20) |
