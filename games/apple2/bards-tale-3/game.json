@@ -5,9 +5,9 @@
   "region": "na",
   "model": "iie",
   "rom": "rom/bards-tale-3.zip",
-  "sha1": "776de18513b09e25f338b849e5050f19a86e3445",
-  "crc32": "465e66c5",
-  "size": 456492,
+  "sha1": "62ec96ba230da37e7adbc14bd8cb135207b5a698",
+  "crc32": "8025294f",
+  "size": 423754,
   "header": {
     "disks": [
       {
@@ -23,7 +23,7 @@
       {
         "name": "3 Dungeon 1.dsk",
         "kind": "5.25 inch floppy, 140 KiB sector image",
-        "sha1": "8a005c5448bfeba5b016911fcf1897de650282d2"
+        "sha1": "5321b9decaf2f2aa4846d9b7a643fcdf6f492481"
       },
       {
         "name": "4 Dungeon 2.dsk",
@@ -43,28 +43,33 @@
   "macros": {},
   "ram": {},
   "source": {
-    "note": "Owner's upload 2026-11-21: four .dsk files shorter than a 140 KiB image (143360 bytes). Each was padded with zero bytes at the end to 143360 and renamed so the disks sort in play order; the padded images are the registered dump. Disks 1, 2 and 4 lacked 2 bytes (zeros at the end: harmless). Disk 3 lacked 165 bytes with data up to its end: the missing bytes may be anywhere, so parts of Dungeon 1 can be damaged (check every level it holds). Nothing of this is committed.",
+    "note": "Owner's second upload 2026-11-21 (thief_of_fate-apple_ii-dsk.zip). Boot, character and dungeon side 2 are identical to the first upload; dungeon side 1 is a full 143360-byte image (the first upload's was 165 bytes short and differed from track 23 on, 191 of 560 sectors). The 143358-byte images were padded with two zero bytes at the end to 143360 (zeros there in both uploads: harmless) and renamed so the disks sort in play order; the padded images are the registered dump. Nothing of this is committed.",
     "uploaded": [
       {
-        "name": "Bard's Tale III - The Thief of Fate, The (1988)(Interplay)(Disk 1 of 4).dsk",
+        "name": "Bard's Tale III (Boot Disk).dsk",
         "size": 143358,
         "sha1": "dfc3fd97c3abc209ddf170538af97f4848a26d4f"
       },
       {
-        "name": "Bard's Tale III - The Thief of Fate, The (1988)(Interplay)(Disk 2 of 4)(Character).dsk",
+        "name": "Bard's Tale III (Character Disk).dsk",
         "size": 143358,
         "sha1": "e7ca50fd58df7d136c5c42710f1901d1b0e01b93"
       },
       {
-        "name": "Bard's Tale III - The Thief of Fate, The (1988)(Interplay)(Disk 3 of 4)(Dungeon 1).dsk",
-        "size": 143195,
-        "sha1": "cd65428c5365f89e457adae867a970fbad47243e"
+        "name": "Bard's Tale III (Dungeon Disk side 1).dsk",
+        "size": 143360,
+        "sha1": "5321b9decaf2f2aa4846d9b7a643fcdf6f492481"
       },
       {
-        "name": "Bard's Tale III - The Thief of Fate, The (1988)(Interplay)(Disk 4 of 4)(Dungeon 2).dsk",
+        "name": "Bard's Tale III (Dungeon Disk side 2).dsk",
         "size": 143358,
         "sha1": "a25d0dbebbf9767785115829c6cc624a81eb11dc"
       }
-    ]
+    ],
+    "superseded": {
+      "name": "first upload, Disk 3 of 4 (Dungeon 1)",
+      "size": 143195,
+      "sha1": "cd65428c5365f89e457adae867a970fbad47243e"
+    }
   }
 }
