@@ -41,7 +41,7 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   monster depend on everything typed before (the route is deterministic, so keep routes exact; a changed
   earlier command moves the vapor). Bandits in the Rusty Lantern refuse a fight ("Suicide"). The cook cannot be
   attacked. `play.py` reports "NOT settled" on every frame (blinking cursor): normal.
-- **Sets (2026-11-21):** `main` 87 shots and `start` 34 shots, both verified from an empty cache and published;
+- **Sets (2026-11-21, retaken in palette 6):** `main` 100 shots (13 of them Frotz) and `start` 34, verified from an empty cache, published;
   `games/dos/beyond-zork/shots.txt` holds the main lines. Checkpoints `s_*` = the start chain, `m_*` = main:
   `m_ratant` (Level 0 losing to the rat-ant), `m_cellar`/`m_darkness` (strong character in the Wine Cellar /
   the dark beyond it), `m_odors` (moors, strong), `m_mizniaport`, `m_boutique` (shop), `m_ryz` (created
@@ -88,8 +88,11 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   menus, function keys, save/restore all verified). The bundle's `Bzork.bat` runs `frotz data\Beyondzo.dat`:
   Frotz 2.32 shows a title picture from `Beyondzo.mg1` (the Beyond Zork logo over rock pillars), then the same
   game in a 640x400 VGA mode, black background, red frames, a proportional font, and DOSBox's mouse pointer
-  drawn over the screen. Comparison: plan lines `extra_frotz_title`, `extra_frotz_cove` (routes `FROTZ`,
-  `FZNEWGAME,GO:e`). `FROTZ.EXE` alone prints its usage and quits.
+  drawn over the screen. Comparison: 13 shots `extra_frotz_*` in `main` (2026-11-21; routes from `FROTZ`,
+  `FZSETUP`, `FZNEWGAME`; verified: F2/F3 function keys, DEFINE, SETTINGS, COLOR = 4 palettes, Alt-H = Frotz's
+  hot key help (Alt-D/H/N/P/R/S/U/X), the moors differ from Bzork.exe: `FZNEWGAME,GO:e,GO:e,GO:z,GO:take
+  driftwood,GO:wield shillelagh,GO:w,GO:s,GO:s,GO:s,GO:e` = Gasses with the vapor). What Frotz draws differently:
+  `design/interface.md`, "Frotz 2.32 compared". The palette pokes are for Bzork.exe only (Frotz keeps its look). `FROTZ.EXE` alone prints its usage and quits.
 
 ## Controls
 | Context | Key | Action | Status |

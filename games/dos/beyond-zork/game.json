@@ -4,7 +4,7 @@
   "platform": "dos",
   "region": "na",
   "edition": "DOS, Release 57 / 871221, Infocom's own interpreter BZORK.EXE (Frotz 2.32 in the bundle for comparison)",
-  "work": "sets main 88 and start 34 (verified, published 2026-11-21; 640x200 row-doubled to 640x400, owner's rule): menus, character creation, options incl. monochrome, village, cellar, moors, Mizniaport shop, two deaths; three lenses clean",
+  "work": "sets main 100 and start 34 (verified, published 2026-11-21; Bzork.exe in palette 6, black on light grey, set at boot; 640x200 row-doubled to 640x400): menus, character creation, all six palettes and monochrome, village, cellar, moors, Mizniaport shop, two deaths, 13 Frotz 2.32 comparison shots; three lenses clean",
   "open": "level 2 and beyond, the cellar after the door locks (light, wine for the cook), lighthouse upper floors, Fields of Frotzen, Skyway and Gurth City beyond the market, potion and scroll effects",
   "model": "svga-7800",
   "aspect": "rowdouble",

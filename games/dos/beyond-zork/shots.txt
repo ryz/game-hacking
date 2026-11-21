@@ -2,7 +2,8 @@
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# main set as shot 2026-11-21 (87 lines, verify 87/87)
+# main set as shot 2026-11-21 (100 lines, verify 100/100; palette 6 via BOOT)
+# Look: palette 6 (black on light grey) via the BOOT pokes GREYPC + GREY (playbook "Look"); options_color_* and options_monochrome show the other looks.
 boot_color_prompt | boot | Bzork.exe asks "Do you want color?" before the story loads | w120,down,enter,w600
 menu_begin | menu | Opening prompt: Type BEGIN, RESTORE or QUIT | @boot
 cutscene_prologue | cutscene | Prologue: Y'Gael and the Guildmaster's council, first [MORE] page | @boot,type:begin\n,w300
@@ -22,6 +23,7 @@ gameplay_hilltop | gameplay | Hilltop, first prompt: room window, auto-map, prom
 inventory_status | inventory | STATUS (F3): Frank Booth, Level 0 Male Peasant, six attributes and AC | @start,f3,w200
 options_define_keys | options | DEFINE: function key definitions F1-F10 | @start,type:define\n,w200
 options_settings | options | SETTINGS: display mode, descriptions, notify, map view, priority, monitor | @start,type:settings\n,w300
+options_color_default | options | COLOR: palette 1 of 6, the original white on blue (no grey poke) | BOOTBLUE,type:begin\n,w300,space,w200,space,w300,space,w300,enter,w300,space,w300,type:color\n,w200
 options_color_palette | options | COLOR: palette 3 of 6 | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200
 options_color_4 | options | COLOR: palette 4 of 6, red title bar on black | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200
 options_color_5 | options | COLOR: palette 5 of 6, black background | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200
@@ -90,4 +92,15 @@ gameplay_skyway | gameplay | Skyway Entrance: the gondola of the Miznia Jungle S
 env_intersection | gameplay | Intersection: gray fields, the peaks of Southern Mithicus | @m_mizniaport,GO:nw
 gameplay_south_market | gameplay | South Market of Gurth City: a hawker bumps into you | @m_mizniaport,GO:nw,GO:n,GO:n
 extra_frotz_title | extra | The bundle's Frotz 2.32 launch: title picture from Beyondzo.mg1 | FROTZ
+extra_frotz_begin | extra | Frotz: opening prompt in a proportional font, white on black | FROTZ,space,w300
+extra_frotz_prologue | extra | Frotz: the prologue page set in Frotz's proportional font | FROTZ,space,w300,type:begin\n,w300
+extra_frotz_setup | extra | Frotz: Character Setup, choices in red on black | FZSETUP
+extra_frotz_hilltop | extra | Frotz: Hilltop, red title bar and frames, map in red | FZNEWGAME
+extra_frotz_status | extra | Frotz: STATUS (F3), attribute bars in red | FZNEWGAME,f3,w200
+extra_frotz_inventory | extra | Frotz: INVENTORY (F2) in the room window, the nymph on CASH | FZNEWGAME,f2,w200
+extra_frotz_define | extra | Frotz: DEFINE, the function key list in a red box | FZNEWGAME,type:define\n,w200
+extra_frotz_settings | extra | Frotz: SETTINGS, display options in white on black | FZNEWGAME,type:settings\n,w300
+extra_frotz_color | extra | Frotz: COLOR offers 4 palettes; palette 3 of 4, white on blue | FZNEWGAME,type:color\n,w200,type:color\n,w200,type:color\n,w200
+extra_frotz_hotkeys | extra | Frotz: Alt-H, the interpreter's own hot key help | FZNEWGAME,alt+h,w100
 extra_frotz_cove | extra | The bundle's Frotz 2.32 launch: Cove in Frotz's VGA proportional font | FZNEWGAME,GO:e
+extra_frotz_fight | extra | Frotz: Gasses on the moors, the eldritch vapor fight, Endurance bar | FZNEWGAME,GO:e,GO:e,GO:z,GO:take driftwood,GO:wield shillelagh,GO:w,GO:s,GO:s,GO:s,GO:e,GO:attack vapor

@@ -1,3 +1,4 @@
+# Look: palette 6 (black on light grey), set by two pokes in BOOT (GREYPC at the colour question, GREY after the opening prompt): a display setting, not a game value (owner, 2026-11-21); the play itself is honest.
 01_power_on | boot | DOSBox Pure start menu: BZORK.BAT, BZORK.EXE, FROTZ.EXE, command line | w120
 02_color_prompt | boot | BZORK.EXE asks: Do you want color? | w120,down,enter,w600
 03_begin_prompt | menu | Copyright 1987 Infocom; type BEGIN, RESTORE or QUIT | @s_boot

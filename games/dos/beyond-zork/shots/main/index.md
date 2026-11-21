@@ -1,6 +1,6 @@
 # Beyond Zork: The Coconut of Quendor (DOS) - shots: main
 
-Platform dos, region na, model svga-7800, ROM SHA-1 `498c08e5838c51d64a5b5786fb41dab82c5f3865`. 88 shots. Contact sheet: [beyond-zork_dos_na_set_sheet.png](beyond-zork_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model svga-7800, ROM SHA-1 `498c08e5838c51d64a5b5786fb41dab82c5f3865`. 100 shots. Contact sheet: [beyond-zork_dos_na_set_sheet.png](beyond-zork_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -23,6 +23,7 @@ Platform dos, region na, model svga-7800, ROM SHA-1 `498c08e5838c51d64a5b5786fb4
 | inventory_status | inventory | STATUS (F3): Frank Booth, Level 0 Male Peasant, six attributes and AC | no | [png](beyond-zork_dos_na_inventory_inventory_status.png) |
 | options_define_keys | options | DEFINE: function key definitions F1-F10 | no | [png](beyond-zork_dos_na_options_options_define_keys.png) |
 | options_settings | options | SETTINGS: display mode, descriptions, notify, map view, priority, monitor | no | [png](beyond-zork_dos_na_options_options_settings.png) |
+| options_color_default | options | COLOR: palette 1 of 6, the original white on blue (no grey poke) | no | [png](beyond-zork_dos_na_options_options_color_default.png) |
 | options_color_palette | options | COLOR: palette 3 of 6 | no | [png](beyond-zork_dos_na_options_options_color_palette.png) |
 | options_color_4 | options | COLOR: palette 4 of 6, red title bar on black | no | [png](beyond-zork_dos_na_options_options_color_4.png) |
 | options_color_5 | options | COLOR: palette 5 of 6, black background | no | [png](beyond-zork_dos_na_options_options_color_5.png) |
@@ -91,6 +92,17 @@ Platform dos, region na, model svga-7800, ROM SHA-1 `498c08e5838c51d64a5b5786fb4
 | env_intersection | gameplay | Intersection: gray fields, the peaks of Southern Mithicus | no | [png](beyond-zork_dos_na_gameplay_env_intersection.png) |
 | gameplay_south_market | gameplay | South Market of Gurth City: a hawker bumps into you | no | [png](beyond-zork_dos_na_gameplay_gameplay_south_market.png) |
 | extra_frotz_title | extra | The bundle's Frotz 2.32 launch: title picture from Beyondzo.mg1 | yes | [png](beyond-zork_dos_na_extra_extra_frotz_title.png) |
+| extra_frotz_begin | extra | Frotz: opening prompt in a proportional font, white on black | yes | [png](beyond-zork_dos_na_extra_extra_frotz_begin.png) |
+| extra_frotz_prologue | extra | Frotz: the prologue page set in Frotz's proportional font | yes | [png](beyond-zork_dos_na_extra_extra_frotz_prologue.png) |
+| extra_frotz_setup | extra | Frotz: Character Setup, choices in red on black | yes | [png](beyond-zork_dos_na_extra_extra_frotz_setup.png) |
+| extra_frotz_hilltop | extra | Frotz: Hilltop, red title bar and frames, map in red | yes | [png](beyond-zork_dos_na_extra_extra_frotz_hilltop.png) |
+| extra_frotz_status | extra | Frotz: STATUS (F3), attribute bars in red | yes | [png](beyond-zork_dos_na_extra_extra_frotz_status.png) |
+| extra_frotz_inventory | extra | Frotz: INVENTORY (F2) in the room window, the nymph on CASH | yes | [png](beyond-zork_dos_na_extra_extra_frotz_inventory.png) |
+| extra_frotz_define | extra | Frotz: DEFINE, the function key list in a red box | yes | [png](beyond-zork_dos_na_extra_extra_frotz_define.png) |
+| extra_frotz_settings | extra | Frotz: SETTINGS, display options in white on black | yes | [png](beyond-zork_dos_na_extra_extra_frotz_settings.png) |
+| extra_frotz_color | extra | Frotz: COLOR offers 4 palettes; palette 3 of 4, white on blue | yes | [png](beyond-zork_dos_na_extra_extra_frotz_color.png) |
+| extra_frotz_hotkeys | extra | Frotz: Alt-H, the interpreter's own hot key help | yes | [png](beyond-zork_dos_na_extra_extra_frotz_hotkeys.png) |
 | extra_frotz_cove | extra | The bundle's Frotz 2.32 launch: Cove in Frotz's VGA proportional font | yes | [png](beyond-zork_dos_na_extra_extra_frotz_cove.png) |
+| extra_frotz_fight | extra | Frotz: Gasses on the moors, the eldritch vapor fight, Endurance bar | yes | [png](beyond-zork_dos_na_extra_extra_frotz_fight.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

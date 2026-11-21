@@ -34,7 +34,7 @@
    "file": "beyond-zork_dos_na_menu_menu_begin.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "89a54277a0bf303f3de7a1a301215d26da6c7fd6"
+   "pixel_sha1": "c326339abff1945b4fa6da1fba536a175eb5a97f"
   },
   {
    "id": "cutscene_prologue",
@@ -47,7 +47,7 @@
    "file": "beyond-zork_dos_na_cutscene_cutscene_prologue.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "19c5724025ad2e98cccd07412c94a1a98af037c3"
+   "pixel_sha1": "788bf10a03bd4bdfaed05db2030e5bc9c8a5a302"
   },
   {
    "id": "title_card",
@@ -60,7 +60,7 @@
    "file": "beyond-zork_dos_na_title_title_card.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "224c27fb8037828ab040eb902603c0afff82d95f"
+   "pixel_sha1": "d7b35bac6df7917da753bf7401759be4da8aa9b6"
   },
   {
    "id": "menu_character_setup",
@@ -73,7 +73,7 @@
    "file": "beyond-zork_dos_na_menu_menu_character_setup.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "dd1b7a409ef5104857df01ee03552fa2c48505f2"
+   "pixel_sha1": "51ac4ec967f0317e67c4ab16db6297c3b8daeb6e"
   },
   {
    "id": "menu_select_preset",
@@ -86,7 +86,7 @@
    "file": "beyond-zork_dos_na_menu_menu_select_preset.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "ac658ceca478abb06094d4594f6eb1ee0aecc0e5"
+   "pixel_sha1": "ab10af838c3904e7ef9a6d95e9bd7b498872d942"
   },
   {
    "id": "menu_random_character",
@@ -99,7 +99,7 @@
    "file": "beyond-zork_dos_na_menu_menu_random_character.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "19009398899d4ddc2bc2aee6b69e5b23bdc0abf3"
+   "pixel_sha1": "9dfcd93b749245e8b677ef6c6c01088421c947b4"
   },
   {
    "id": "menu_random_reroll",
@@ -112,7 +112,7 @@
    "file": "beyond-zork_dos_na_menu_menu_random_reroll.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "778853589be475126c149fc101480e1a91f13429"
+   "pixel_sha1": "455a56452452ed025916653a4e50b7ca12c744ae"
   },
   {
    "id": "menu_create_character",
@@ -125,7 +125,7 @@
    "file": "beyond-zork_dos_na_menu_menu_create_character.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "7ccff43b4b302a4f6cf2322091e1b730cbb10cc7"
+   "pixel_sha1": "a8fb34a1539187e0ffae27ac30497984d8dc4e3d"
   },
   {
    "id": "menu_create_adjust",
@@ -138,7 +138,7 @@
    "file": "beyond-zork_dos_na_menu_menu_create_adjust.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "a9adfef06b3b5921bfd6ce1004d30ae7736abe3d"
+   "pixel_sha1": "e5c5d0b254cfc1edbf16ec2612f95d5d5ca5011a"
   },
   {
    "id": "menu_create_confirm",
@@ -151,7 +151,7 @@
    "file": "beyond-zork_dos_na_menu_menu_create_confirm.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "191aefd94fb0c69b50d112ce78d08b7125b296c8"
+   "pixel_sha1": "5b057e86e8ac4858cde5bf88f9c1055ea7394cd1"
   },
   {
    "id": "menu_create_name",
@@ -164,7 +164,7 @@
    "file": "beyond-zork_dos_na_menu_menu_create_name.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "2dc56ef4617121766b690b1d0d842ad64a2f6ddc"
+   "pixel_sha1": "c209a91ee65dac8b16c5cc817f128bdbf8b3e2e1"
   },
   {
    "id": "menu_create_done",
@@ -177,7 +177,7 @@
    "file": "beyond-zork_dos_na_menu_menu_create_done.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "ca819dc46ccca29ce74605b4c6d2f9492af181dc"
+   "pixel_sha1": "669d98c26ad96fee100f324781752ce2a380e976"
   },
   {
    "id": "menu_create_begin",
@@ -190,7 +190,7 @@
    "file": "beyond-zork_dos_na_menu_menu_create_begin.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "d87fa094455e0defd0fad085d2e025cb3f9b90b0"
+   "pixel_sha1": "3c2ae0fb1f50125e73705ea4fcf8df426d41de44"
   },
   {
    "id": "inventory_ryz_status",
@@ -203,7 +203,7 @@
    "file": "beyond-zork_dos_na_inventory_inventory_ryz_status.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "7feefbc5abc1123df9cef0b9ff6ef743dc30c10d"
+   "pixel_sha1": "b77cba2f954be1e969716c8abe04c6b52b940086"
   },
   {
    "id": "gameplay_hilltop",
@@ -216,7 +216,7 @@
    "file": "beyond-zork_dos_na_gameplay_gameplay_hilltop.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "0638f2e63eef63a2140a03adf3a337f33fc02ed4"
+   "pixel_sha1": "52b77cd3070e5ef10e6dadad428819968e4342bd"
   },
   {
    "id": "inventory_status",
@@ -229,7 +229,7 @@
    "file": "beyond-zork_dos_na_inventory_inventory_status.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "d560ab8381f629f566be96f1357d14112088435a"
+   "pixel_sha1": "9d2c3fc367e74ba364c495b1a9984fcb46e3355a"
   },
   {
    "id": "options_define_keys",
@@ -242,7 +242,7 @@
    "file": "beyond-zork_dos_na_options_options_define_keys.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "2f9c7e341a452e3822c330459be9268f336c5ad9"
+   "pixel_sha1": "3a5fe5f1a927103eb076f6c3cee25a5a73eea2b7"
   },
   {
    "id": "options_settings",
@@ -255,7 +255,20 @@
    "file": "beyond-zork_dos_na_options_options_settings.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "7d3001927c894dd242aca5ad6edeeebc327daa42"
+   "pixel_sha1": "562e6165cf53936e70ab191ef2e4133a7bdd98b8"
+  },
+  {
+   "id": "options_color_default",
+   "category": "options",
+   "caption": "COLOR: palette 1 of 6, the original white on blue (no grey poke)",
+   "route": "BOOTBLUE,type:begin\\n,w300,space,w200,space,w300,space,w300,enter,w300,space,w300,type:color\\n,w200",
+   "settled": false,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_options_options_color_default.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "7067a499fece8aa35f6e4e3d71f10df899aac99f"
   },
   {
    "id": "options_color_palette",
@@ -333,7 +346,7 @@
    "file": "beyond-zork_dos_na_options_options_notify.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "2ddbd84409070b9839830a66784424840c2f80df"
+   "pixel_sha1": "18ace39e848284569babaa4f87bd05861a46c9d6"
   },
   {
    "id": "options_priority",
@@ -346,7 +359,7 @@
    "file": "beyond-zork_dos_na_options_options_priority.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "a792ba9cbb6d05cd692e78d9f8b017354b092361"
+   "pixel_sha1": "a8753fa165977e794cb84247541424e85c35a979"
   },
   {
    "id": "extra_version",
@@ -359,7 +372,7 @@
    "file": "beyond-zork_dos_na_extra_extra_version.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "23a9bfb36e66503c15d27ae50dcba2918b092f6e"
+   "pixel_sha1": "4cebb729cecaaa8bc21c982ba087247a4737f033"
   },
   {
    "id": "system_lightning",
@@ -372,7 +385,7 @@
    "file": "beyond-zork_dos_na_system_system_lightning.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "b57ab60ad0fea207941ad9cdee3d14a2e85b1b91"
+   "pixel_sha1": "c283c87f091f8271e9ec4c89031df03d3ee73662"
   },
   {
    "id": "env_edge_of_storms",
@@ -385,7 +398,7 @@
    "file": "beyond-zork_dos_na_gameplay_env_edge_of_storms.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "b21ca8f39e634c55eb40ab3522dfbb0058e8552b"
+   "pixel_sha1": "7d6d0095ad09eef18c33b9f9d7be3809223f53cd"
   },
   {
    "id": "env_cove_street",
@@ -398,7 +411,7 @@
    "file": "beyond-zork_dos_na_gameplay_env_cove_street.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "dd4b241ade1c262a57b8aa97394ba8517258313e"
+   "pixel_sha1": "6c366a77a0f1b6a0f27affbfa5ffdb5a4e1e9771"
   },
   {
    "id": "system_undo",
@@ -411,7 +424,7 @@
    "file": "beyond-zork_dos_na_system_system_undo.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "76e8976e4f188321bfb7aabb2fb8e762c7786ed3"
+   "pixel_sha1": "0890836e4638bfcb4d3369b6be3f6a6d72e5b434"
   },
   {
    "id": "gameplay_wharf_sailor",
@@ -424,7 +437,7 @@
    "file": "beyond-zork_dos_na_gameplay_gameplay_wharf_sailor.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "dace33eccb7e99918602792a6050ef22e94bc369"
+   "pixel_sha1": "82c155f9f0deef5aff9ea07ca0779f28fee5dde4"
   },
   {
    "id": "system_driftwood",
@@ -437,7 +450,7 @@
    "file": "beyond-zork_dos_na_system_system_driftwood.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "5b2a98ac8ff56c1e641d36470196411103775977"
+   "pixel_sha1": "15dfd3b11e4eff6d4f51fb14056e8fad8992cad7"
   },
   {
    "id": "dialogue_sailor",
@@ -450,7 +463,7 @@
    "file": "beyond-zork_dos_na_dialogue_dialogue_sailor.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "122574412fe8158824454dcb16738ae4da072095"
+   "pixel_sha1": "151816d65274bbe01746193c8e515c5a1902a10d"
   },
   {
    "id": "inventory_list",
@@ -463,7 +476,7 @@
    "file": "beyond-zork_dos_na_inventory_inventory_list.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "af9842ea3e192829c3bfa910e61655336199fa75"
+   "pixel_sha1": "363177f7fb5bdd6688b54c32b1aa5f174371e4bd"
   },
   {
    "id": "system_mode_standard",
@@ -476,7 +489,7 @@
    "file": "beyond-zork_dos_na_system_system_mode_standard.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "10692ea7e981ce3d35c124f879e9751d4261d7cb"
+   "pixel_sha1": "e02462a4352899825c5c595a12ba6ad0b88c2baa"
   },
   {
    "id": "env_outside_pub",
@@ -489,7 +502,7 @@
    "file": "beyond-zork_dos_na_gameplay_env_outside_pub.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "c0e7e5d086006b0fbfae578ba535a351c48aaa53"
+   "pixel_sha1": "82bbcfe05bd0c78002bd0c0f85be34ce2bc3e6c9"
   },
   {
    "id": "env_rusty_lantern",
@@ -502,7 +515,7 @@
    "file": "beyond-zork_dos_na_gameplay_env_rusty_lantern.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "fa7b2204d6372e28c078499a35c78c1a539774bb"
+   "pixel_sha1": "c5196b1afedf4c608ede73686ffcdd7481cac44a"
   },
   {
    "id": "dialogue_kitchen_cook",
@@ -515,7 +528,7 @@
    "file": "beyond-zork_dos_na_dialogue_dialogue_kitchen_cook.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "b870016f39da1dfe60a5e3751b28205299c45974"
+   "pixel_sha1": "9af1199a093a2e7b3ea8e3dc81a02e2bfc3d9b1a"
   },
   {
    "id": "dialogue_cook_busy",
@@ -528,7 +541,7 @@
    "file": "beyond-zork_dos_na_dialogue_dialogue_cook_busy.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "12840fbc766b3942ef755d15aa24935a2c5ec782"
+   "pixel_sha1": "7800fd6f4c7c866724dc69548b1d71e946dc99a5"
   },
   {
    "id": "dialogue_cook_wine",
@@ -541,7 +554,7 @@
    "file": "beyond-zork_dos_na_dialogue_dialogue_cook_wine.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "c22f1993aafb27d8fcf4c7c563ab780611134be8"
+   "pixel_sha1": "3250fb84df7392cf44b881b8b68cbcda7acb3c0e"
   },
   {
    "id": "battle_ratant",
@@ -554,7 +567,7 @@
    "file": "beyond-zork_dos_na_battle_battle_ratant.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "59f957568074ed813141cb4823c3eb531c6d16a3"
+   "pixel_sha1": "5e8ee17d9567135333d3c5cff4b9e9133290b887"
   },
   {
    "id": "gameover_ratant",
@@ -567,7 +580,7 @@
    "file": "beyond-zork_dos_na_gameover_gameover_ratant.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "f177033fbd41d244ed7c5f542c698dba887083ae"
+   "pixel_sha1": "465a876aad12363a625304b8ff361d95a0f9b79a"
   },
   {
    "id": "battle_ratant_flees",
@@ -580,7 +593,7 @@
    "file": "beyond-zork_dos_na_battle_battle_ratant_flees.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "d06bed8cd0c452e7b71ea93d5ed692d34a5fcc88"
+   "pixel_sha1": "77386161a53cb4389c71396532a7a787297aef2a"
   },
   {
    "id": "inventory_scroll_blarn",
@@ -593,7 +606,7 @@
    "file": "beyond-zork_dos_na_inventory_inventory_scroll_blarn.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "7921d2f6d90e53471f8211aef42fa3dd3c4f62d5"
+   "pixel_sha1": "e62eaf352396164f88f42d76caa642c6d79b4491"
   },
   {
    "id": "system_cellar_locked",
@@ -606,7 +619,7 @@
    "file": "beyond-zork_dos_na_system_system_cellar_locked.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "1e450e639f337d8e697de7fc976eb4f599fb651c"
+   "pixel_sha1": "b0e6fc60883dda93b82658ee316e2e5bf645593d"
   },
   {
    "id": "env_darkness",
@@ -619,7 +632,7 @@
    "file": "beyond-zork_dos_na_gameplay_env_darkness.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "3e9a8ee43e6b2d62f84873aff91868b60571807a"
+   "pixel_sha1": "1671a97a9053bef96700a52fcb3d1afa40c7c312"
   },
   {
    "id": "gameover_grue",
@@ -632,7 +645,7 @@
    "file": "beyond-zork_dos_na_gameover_gameover_grue.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "1000ad043bf8c1ccb6a93cac7eea8d9048c7429e"
+   "pixel_sha1": "25a0bbbf4b1a09e844b5d6dd448bfeba4b12938b"
   },
   {
    "id": "dialogue_riddle",
@@ -645,7 +658,7 @@
    "file": "beyond-zork_dos_na_dialogue_dialogue_riddle.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "7cd796aaa2d8a3fe7469eb929a1cfdec273bda62"
+   "pixel_sha1": "b7dbb19550f0bdf9c30a9ca9dfc81847698f7caa"
   },
   {
    "id": "env_lighthouse",
@@ -658,7 +671,7 @@
    "file": "beyond-zork_dos_na_gameplay_env_lighthouse.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "757ebebfc68d59b9040315e9ddb27186a71f7f80"
+   "pixel_sha1": "100bef7cacd551434ee03be9bcdc91e50a4d0169"
   },
   {
    "id": "gameplay_lighthouse_1st",
@@ -671,7 +684,7 @@
    "file": "beyond-zork_dos_na_gameplay_gameplay_lighthouse_1st.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "8136df3adad461acd9636aa2e08567d6dcb544fa"
+   "pixel_sha1": "1119fb9176b4467300e1719e728353b58b47369f"
   },
   {
    "id": "battle_vapor_appears",
@@ -684,7 +697,7 @@
    "file": "beyond-zork_dos_na_battle_battle_vapor_appears.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "ee159aa6cc4d068d3f3a56fb7014887deab1d68c"
+   "pixel_sha1": "10157f5c8d9a8a5ed79b8a2535e6abb0258f1aae"
   },
   {
    "id": "options_monitor",
@@ -697,7 +710,7 @@
    "file": "beyond-zork_dos_na_options_options_monitor.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "13b070fee802dc199c628fac5b17d9c41261bf92"
+   "pixel_sha1": "99f6d54ab907fafa5e71e049045a84238c290dc4"
   },
   {
    "id": "battle_vapor_attack",
@@ -710,7 +723,7 @@
    "file": "beyond-zork_dos_na_battle_battle_vapor_attack.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "bc0d9aefa750cbc12d084648a777c82192965b9c"
+   "pixel_sha1": "cef9c70d0a6f3b2ddd56a406ce78b5ea8ea8eaf3"
   },
   {
    "id": "battle_vapor_won",
@@ -723,7 +736,7 @@
    "file": "beyond-zork_dos_na_battle_battle_vapor_won.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "2c8b25eede1adfac8cf574da08a02015b8de9b8d"
+   "pixel_sha1": "45a49612935d597f63f59f947c54486279119901"
   },
   {
    "id": "system_zoom_map",
@@ -736,7 +749,7 @@
    "file": "beyond-zork_dos_na_map_system_zoom_map.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "450c174748abf71baa1d7a60dabc5709e02d3635"
+   "pixel_sha1": "560de45e8c22e68688d461f599bcf1d01007a63b"
   },
   {
    "id": "save_prompt",
@@ -749,7 +762,7 @@
    "file": "beyond-zork_dos_na_save_save_prompt.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "347412d48530309003214ba33e204907c6fcfdd6"
+   "pixel_sha1": "6144816f289b87219b6d1ca8b6b6f44eb176fa6b"
   },
   {
    "id": "save_done",
@@ -762,7 +775,7 @@
    "file": "beyond-zork_dos_na_save_save_done.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "bb0224cbf738bbe9e1d1f0f52c689953508bf03d"
+   "pixel_sha1": "6cf56ab63c3d18f160e4b19af7629373c0825ed2"
   },
   {
    "id": "save_restore",
@@ -775,7 +788,7 @@
    "file": "beyond-zork_dos_na_save_save_restore.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "d5f756bb63ac8e077737bbdd5a4ae0fb8aa7f115"
+   "pixel_sha1": "790ca8a1714ed1b4e13c6f4f7bac42720e0af8d7"
   },
   {
    "id": "battle_guttersnipe",
@@ -788,7 +801,7 @@
    "file": "beyond-zork_dos_na_battle_battle_guttersnipe.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "3079113c997068ad7559923a1b6da8257a64aa3e"
+   "pixel_sha1": "fa9fe8dd501addfdab9fcfc8377c0a04211a53f0"
   },
   {
    "id": "battle_guttersnipe_strong",
@@ -801,7 +814,7 @@
    "file": "beyond-zork_dos_na_battle_battle_guttersnipe_strong.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "9b35207332c0f8e6c36ce3d10f8808fd06987f70"
+   "pixel_sha1": "1fe18fb3be740f86d88034f49b6ed621a1c4f2f0"
   },
   {
    "id": "battle_guttersnipe_won",
@@ -814,7 +827,7 @@
    "file": "beyond-zork_dos_na_battle_battle_guttersnipe_won.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "c58900ce9a38d470e4edbd8618152b9c81c7f530"
+   "pixel_sha1": "48b90afacbffcb49dfc4263fb5beda10e5747118"
   },
   {
    "id": "battle_guttersnipe_odors",
@@ -827,7 +840,7 @@
    "file": "beyond-zork_dos_na_battle_battle_guttersnipe_odors.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "26aec00033f77b853c49dc49cbdacb2bc18cf3c8"
+   "pixel_sha1": "1245bfbe6df9f84eb0864fc9fd96b97ceabf1e8c"
   },
   {
    "id": "inventory_potion_examine",
@@ -840,7 +853,7 @@
    "file": "beyond-zork_dos_na_inventory_inventory_potion_examine.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "ebab706bc4b6b2eb3063ff2c37ff948b2110ed28"
+   "pixel_sha1": "ba8c0d8e6d406eb160020ba9a8d7544295f64c4e"
   },
   {
    "id": "system_potion_drink",
@@ -853,7 +866,7 @@
    "file": "beyond-zork_dos_na_system_system_potion_drink.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "c25af442ab3e438e89c903caf6eff901625d175b"
+   "pixel_sha1": "bf2e731b61f5451fbe3b46d9c6d9272df53b2eee"
   },
   {
    "id": "gameplay_eyes",
@@ -866,7 +879,7 @@
    "file": "beyond-zork_dos_na_gameplay_gameplay_eyes.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "9248768ab0f57b4c99bd2e340f5b7ecccc481382"
+   "pixel_sha1": "ed0abc0f70fd6c87c96d5441a4b7daf346559bb4"
   },
   {
    "id": "extra_technical_nymph",
@@ -879,7 +892,7 @@
    "file": "beyond-zork_dos_na_extra_extra_technical_nymph.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "71d7ebbabd767d22761ebfbdfee2fc05174ee88c"
+   "pixel_sha1": "d761c74100bd886235a9474229d3ec69ac223ddf"
   },
   {
    "id": "gameplay_mud_flats",
@@ -892,7 +905,7 @@
    "file": "beyond-zork_dos_na_gameplay_gameplay_mud_flats.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "9101c2d139c7028cb76b665219f22632bdf4de14"
+   "pixel_sha1": "806a2c9aac2178ed4edfcc29bcce9b4e89a6e138"
   },
   {
    "id": "gameplay_pterodactyl",
@@ -905,7 +918,7 @@
    "file": "beyond-zork_dos_na_gameplay_gameplay_pterodactyl.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "bc5bbf9330cfcf4585b70901b83267b3164bb77b"
+   "pixel_sha1": "b8fe8e69ec4d8d6464df87a1d3cb915057fe591b"
   },
   {
    "id": "gameplay_gasses",
@@ -918,7 +931,7 @@
    "file": "beyond-zork_dos_na_gameplay_gameplay_gasses.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "b0ddd6dd36a905589af3fb2e1213a8a0041ede68"
+   "pixel_sha1": "e9fc51b0f46ea26219bd35f8a866aa8edf549b9b"
   },
   {
    "id": "inventory_scroll_macuga",
@@ -931,7 +944,7 @@
    "file": "beyond-zork_dos_na_inventory_inventory_scroll_macuga.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "7a70957a2cfa6f25c697227dd13892a59d9097a2"
+   "pixel_sha1": "981710065ee4c5de17530370e102c4f558b72f46"
   },
   {
    "id": "env_bluffs",
@@ -944,7 +957,7 @@
    "file": "beyond-zork_dos_na_gameplay_env_bluffs.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "aae3f8316509406474c564af184db795540d3fcb"
+   "pixel_sha1": "04b2541716711deda68da101d2395cd40e31eae3"
   },
   {
    "id": "env_mizniaport",
@@ -957,7 +970,7 @@
    "file": "beyond-zork_dos_na_gameplay_env_mizniaport.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "872797d4db89569555b421c23aeb56512668ea6e"
+   "pixel_sha1": "4734abb81104e27c5a16d56d319df1f84dce5bbf"
   },
   {
    "id": "shop_boutique",
@@ -970,7 +983,7 @@
    "file": "beyond-zork_dos_na_shop_shop_boutique.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "73cd4fea120d1d9bdf40f3ac19aeaf4623a91471"
+   "pixel_sha1": "83e9b9d7548685bf00c7df51a19c1ebf514be042"
   },
   {
    "id": "shop_display_case",
@@ -983,7 +996,7 @@
    "file": "beyond-zork_dos_na_shop_shop_display_case.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "c6063661d37513809ae2536b3829da6cf9634e6a"
+   "pixel_sha1": "c348e8d3544f6e6eeaa5c49ef8306433d8b48e42"
   },
   {
    "id": "dialogue_woman",
@@ -996,7 +1009,7 @@
    "file": "beyond-zork_dos_na_dialogue_dialogue_woman.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "a734075a7341db0ed7f377b42259ec98c6a58e6f"
+   "pixel_sha1": "73abb57b1857efe88eb3b5e916724c5d8bf88172"
   },
   {
    "id": "shop_price",
@@ -1009,7 +1022,7 @@
    "file": "beyond-zork_dos_na_shop_shop_price.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "1c5b70dc838cae1e95d48bea828c8ea7dd4e6596"
+   "pixel_sha1": "bb58747e429807ed602716232955296f054bc269"
   },
   {
    "id": "shop_sell",
@@ -1022,7 +1035,7 @@
    "file": "beyond-zork_dos_na_shop_shop_sell.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "badf131d034ec7af440cbee26ad423d199e28030"
+   "pixel_sha1": "18c1e3bb2ada2508648bc489d2a372ec48d486ad"
   },
   {
    "id": "shop_buy",
@@ -1035,7 +1048,7 @@
    "file": "beyond-zork_dos_na_shop_shop_buy.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "05e8eb685910943b0de37f47bca6bad3cadad98f"
+   "pixel_sha1": "1d167b093f71fdb60b95a1d5a082c80d91deb028"
   },
   {
    "id": "inventory_cloak_worn",
@@ -1048,7 +1061,7 @@
    "file": "beyond-zork_dos_na_inventory_inventory_cloak_worn.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "f856f2a496bc85614d8aee1d7844e692ad99c232"
+   "pixel_sha1": "964db70fd51141c4648a5539d955b1dc0214f88b"
   },
   {
    "id": "env_private_way",
@@ -1061,7 +1074,7 @@
    "file": "beyond-zork_dos_na_gameplay_env_private_way.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "d389c9915e343dc7b44cb103b8e37413edc68e60"
+   "pixel_sha1": "1df86ef8d7c39ebe1e5da6fe237dfc37a9176ce7"
   },
   {
    "id": "gameplay_stablehouse",
@@ -1074,7 +1087,7 @@
    "file": "beyond-zork_dos_na_gameplay_gameplay_stablehouse.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "b7cb79e5b3a98cb580c4f251ac0ae331b097acf7"
+   "pixel_sha1": "4adaeeb5e6c8cfd81018c6ccf19bc3d9f48e7b1f"
   },
   {
    "id": "dialogue_unicorn",
@@ -1087,7 +1100,7 @@
    "file": "beyond-zork_dos_na_dialogue_dialogue_unicorn.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "8ef3fed77782f664e3982257affebfa4c92fffed"
+   "pixel_sha1": "12c1761ffe02da62cfc8c32829f717fe3e693d39"
   },
   {
    "id": "gameplay_skyway",
@@ -1100,7 +1113,7 @@
    "file": "beyond-zork_dos_na_gameplay_gameplay_skyway.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "3638246a3e47a30cd48fd98b6bf9aea0db38697b"
+   "pixel_sha1": "157f41b86edf677a634e7b343a40667bf0f3c83b"
   },
   {
    "id": "env_intersection",
@@ -1113,7 +1126,7 @@
    "file": "beyond-zork_dos_na_gameplay_env_intersection.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "b782f2aecf73259ddb13db4147828d388490389a"
+   "pixel_sha1": "0fe354e79bed8d185ecdbdb035ceaa5bcd8f5853"
   },
   {
    "id": "gameplay_south_market",
@@ -1126,7 +1139,7 @@
    "file": "beyond-zork_dos_na_gameplay_gameplay_south_market.png",
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
-   "pixel_sha1": "841b60f06808f4ce3c6eeb8559ad448ab06f6625"
+   "pixel_sha1": "0eee74bc06123e227aab22661ff5df975953b9fc"
   },
   {
    "id": "extra_frotz_title",
@@ -1142,6 +1155,136 @@
    "pixel_sha1": "da11de6f455ddccdf59fdeb10d4b46a6c0a2ae6e"
   },
   {
+   "id": "extra_frotz_begin",
+   "category": "extra",
+   "caption": "Frotz: opening prompt in a proportional font, white on black",
+   "route": "FROTZ,space,w300",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_begin.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "94a0367216bd53ddd3d5e99f642b67634b0cfd07"
+  },
+  {
+   "id": "extra_frotz_prologue",
+   "category": "extra",
+   "caption": "Frotz: the prologue page set in Frotz's proportional font",
+   "route": "FROTZ,space,w300,type:begin\\n,w300",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_prologue.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "1c6787515f13f01a93d9c275dcc5df4e34c057e0"
+  },
+  {
+   "id": "extra_frotz_setup",
+   "category": "extra",
+   "caption": "Frotz: Character Setup, choices in red on black",
+   "route": "FZSETUP",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_setup.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "a5121dfedfc1a394d0e6ed5756617c001dd60a20"
+  },
+  {
+   "id": "extra_frotz_hilltop",
+   "category": "extra",
+   "caption": "Frotz: Hilltop, red title bar and frames, map in red",
+   "route": "FZNEWGAME",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_hilltop.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "26b2d0a2980f80ebb13d422fd47ae327d629ecc4"
+  },
+  {
+   "id": "extra_frotz_status",
+   "category": "extra",
+   "caption": "Frotz: STATUS (F3), attribute bars in red",
+   "route": "FZNEWGAME,f3,w200",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_status.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "841c1827987793e2a314242d193cf897ab3ed1b6"
+  },
+  {
+   "id": "extra_frotz_inventory",
+   "category": "extra",
+   "caption": "Frotz: INVENTORY (F2) in the room window, the nymph on CASH",
+   "route": "FZNEWGAME,f2,w200",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_inventory.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "29d326f40fc819c854250fdc78aa463a079ca737"
+  },
+  {
+   "id": "extra_frotz_define",
+   "category": "extra",
+   "caption": "Frotz: DEFINE, the function key list in a red box",
+   "route": "FZNEWGAME,type:define\\n,w200",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_define.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "2590ad5e464dde070265710db25bd45565a178af"
+  },
+  {
+   "id": "extra_frotz_settings",
+   "category": "extra",
+   "caption": "Frotz: SETTINGS, display options in white on black",
+   "route": "FZNEWGAME,type:settings\\n,w300",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_settings.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "e342b914807ed0cb26ba3e8b9a7003b233a9bb3f"
+  },
+  {
+   "id": "extra_frotz_color",
+   "category": "extra",
+   "caption": "Frotz: COLOR offers 4 palettes; palette 3 of 4, white on blue",
+   "route": "FZNEWGAME,type:color\\n,w200,type:color\\n,w200,type:color\\n,w200",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_color.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "5aabae1f5cc57fe1f80cd147358f751bd0e059bc"
+  },
+  {
+   "id": "extra_frotz_hotkeys",
+   "category": "extra",
+   "caption": "Frotz: Alt-H, the interpreter's own hot key help",
+   "route": "FZNEWGAME,alt+h,w100",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_hotkeys.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "cca3031aa0b61f48fe14ccf79cb850d0bcb0856e"
+  },
+  {
    "id": "extra_frotz_cove",
    "category": "extra",
    "caption": "The bundle's Frotz 2.32 launch: Cove in Frotz's VGA proportional font",
@@ -1153,6 +1296,19 @@
    "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
    "captured": "2026-11-21",
    "pixel_sha1": "26c1883e19370075d28ab0ca0c1e9cc71c40f94a"
+  },
+  {
+   "id": "extra_frotz_fight",
+   "category": "extra",
+   "caption": "Frotz: Gasses on the moors, the eldritch vapor fight, Endurance bar",
+   "route": "FZNEWGAME,GO:e,GO:e,GO:z,GO:take driftwood,GO:wield shillelagh,GO:w,GO:s,GO:s,GO:s,GO:e,GO:attack vapor",
+   "settled": true,
+   "model": "svga-7800",
+   "source": "shoot.py",
+   "file": "beyond-zork_dos_na_extra_extra_frotz_fight.png",
+   "rom_sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
+   "captured": "2026-11-21",
+   "pixel_sha1": "13bb6b1624bbbff27257f6a5cde701d9039aded8"
   }
  ]
 }
