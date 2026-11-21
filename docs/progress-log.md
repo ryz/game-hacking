@@ -2,6 +2,14 @@
 
 Append-only, newest first.
 
+## 2026-11-21 - Private vault for game data
+- Owner created the private repository `ryz/game-hacking-r` for everything that must not be public. `tools/vault.py`
+  pushes a game's files (what `game.json` names: ROM, unpatched dump, patches; plus `rom/saves/`, extra paths) into
+  `<platform>/<slug>/` there with a `files.json` (local path, SHA-1, role) and pulls them back into `rom/`. Rule in
+  `AGENTS.md`: every ROM the owner drops is pushed in the same session. intake prints the push command; a missing ROM
+  names the pull command. The vault starts empty: no earlier dump was in this container (sessions are ephemeral),
+  so the 32 registered games need their files uploaded once more. Test `test_vault.py` (local bare remote).
+
 ## 2026-11-21 - Phantasie (C64): first game on the C64 backend
 - Registered from the owner's upload (boot and dungeon D64, v1.4); scouted (10 checkpoints, party ryz/condi/ebo/
   cubi/deddo/mnz, save 01_start) and captured: `start` 39 (honest to the first save, first fight included), `main`

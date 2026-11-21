@@ -7,7 +7,8 @@ Adds to the repository rules in the root `AGENTS.md` (read those first). Everyth
 Run from `games/gbc/wizardry-empire/translation/`:
 - Setup emulator: `sh tools/setup_emu.sh` (calls the shared setup: gbemu-cli, a headless SameBoy with a JSON-lines
   API, built once into `tools/gbemu-cli` at the repo root; Python client in its `cli/py/gbemu.py`).
-- ROM: copy your dump of the Japanese **Rev 1** to `rom/wizardry_empire_j.gbc` (`rom.sha1`); v1.0 only as
+- ROM: copy your dump of the Japanese **Rev 1** to `rom/wizardry_empire_j.gbc` (`rom.sha1`; kept in the private vault:
+  `python3 tools/vault.py pull gbc/wizardry-empire` from the repository root); v1.0 only as
   `rom/wizardry_empire_j_v10.gbc` for `tools/revmap.py` (old addresses -> Rev 1).
 - Build: `python3 tools/build.py` -> `build/wizardry_empire_en.gbc` + `.ips`. The build fails loudly when a
   translated line is wider than its box.

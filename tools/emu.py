@@ -100,8 +100,8 @@ class Game:
 
     def check_rom(self):
         if not os.path.exists(self.rom):
-            raise SystemExit("ROM missing: %s (copy your dump there; SHA-1 %s)" % (
-                os.path.relpath(self.rom, ROOT), self.meta.get("sha1")))
+            raise SystemExit("ROM missing: %s (python3 tools/vault.py pull %s, or copy your dump there; SHA-1 %s)" % (
+                os.path.relpath(self.rom, ROOT), self.id, self.meta.get("sha1")))
         data = open(self.rom, "rb").read()
         sha = hashlib.sha1(data).hexdigest()
         if self.meta.get("sha1") and sha != self.meta["sha1"]:
