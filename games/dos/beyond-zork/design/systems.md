@@ -69,7 +69,7 @@ the world grows: the village, the moors, the seaport, Gurth City beyond **(verif
 ## Options (system side)
 | Group | System / mechanic | Rule in one line | Player's inputs | Numbers known | Details | Shots | Status |
 |---|---|---|---|---|---|---|---|
-| Display | Palettes | COLOR cycles six palettes | `color` | 6 (verified) | [interface.md](interface.md) | `options_color_palette`, `options_color_4`, `options_color_5`, `options_color_6` | shown |
+| Display | Palettes | COLOR cycles six palettes (1 and 2 look like the default here); a monochrome mode is chosen at boot | `color`; N at "Do you want color?" | 6 + mono (verified) | [interface.md](interface.md) | `options_color_palette`, `options_color_4`, `options_color_5`, `options_color_6`, `options_monochrome` | shown |
 | Display | Settings | SETTINGS menu; NOTIFY, PRIORITY as commands | `settings`, `notify`, `priority` | - | [interface.md](interface.md) | `options_settings`, `options_notify`, `options_priority` | shown |
 
 ## Open questions

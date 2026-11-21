@@ -1,6 +1,6 @@
 # Beyond Zork: The Coconut of Quendor (DOS) - shots: main
 
-Platform dos, region na, model svga-7800, ROM SHA-1 `498c08e5838c51d64a5b5786fb41dab82c5f3865`. 87 shots. Contact sheet: [beyond-zork_dos_na_set_sheet.png](beyond-zork_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model svga-7800, ROM SHA-1 `498c08e5838c51d64a5b5786fb41dab82c5f3865`. 88 shots. Contact sheet: [beyond-zork_dos_na_set_sheet.png](beyond-zork_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -27,6 +27,7 @@ Platform dos, region na, model svga-7800, ROM SHA-1 `498c08e5838c51d64a5b5786fb4
 | options_color_4 | options | COLOR: palette 4 of 6, red title bar on black | no | [png](beyond-zork_dos_na_options_options_color_4.png) |
 | options_color_5 | options | COLOR: palette 5 of 6, black background | no | [png](beyond-zork_dos_na_options_options_color_5.png) |
 | options_color_6 | options | COLOR: palette 6 of 6, black on light gray | no | [png](beyond-zork_dos_na_options_options_color_6.png) |
+| options_monochrome | options | Monochrome mode ("Do you want color?" answered N): Hilltop in grey on black | no | [png](beyond-zork_dos_na_options_options_monochrome.png) |
 | options_notify | options | NOTIFY: [Status notification is now off.] | no | [png](beyond-zork_dos_na_options_options_notify.png) |
 | options_priority | options | PRIORITY: display priority set to Room Descriptions | no | [png](beyond-zork_dos_na_options_options_priority.png) |
 | extra_version | extra | VERSION: Release 57 / Serial 871221, IBM/MS-DOS Color Version J | no | [png](beyond-zork_dos_na_extra_extra_version.png) |

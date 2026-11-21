@@ -8,6 +8,9 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Interpreter:** Infocom's own `BZORK.EXE` (start-menu entry 2), not the bundle's `.bat` (= Frotz 2.32).
   It runs correctly: colour prompt in 80x25 text mode, then the whole game in a **640x200 16-colour graphics
   mode** (8-pixel text rows; `play.py text` / `preview.py --text` do not work: look at sheets).
+- **Aspect (owner's rule 2026-11-21):** `game.json` "aspect": "rowdouble": every tool writes the 640x200 frames as
+  640x400 (each row twice). Colours: COLOR cycles palettes 1-6 (1 and 2 look like the default blue here), and N at
+  "Do you want color?" gives monochrome, grey on black (`options_monochrome`).
 - **Start:** `@start` (Hilltop, preset character Frank Booth, Level 0 Male Peasant). Chain, all honest and
   reproducing from power-on (`cachecheck.py`: 11/11): `boot` (BEGIN/RESTORE/QUIT prompt) -> `title` (title card
   after the prologue) -> `setup` (Character Setup menu) -> `start` -> `cove` / `shillelagh` (driftwood taken and

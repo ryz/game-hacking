@@ -54,7 +54,7 @@ as **Observation:** with the reason, never as a fact.
 | Standard mode | screen | MODE | plain display | status line EN ST DX IQ CM LK AC, exits | MODE again | "[Normal display mode.]" | `system_mode_standard` | - |
 | SETTINGS | menu | `settings` | all display options in one place | Display Mode, Descriptions, Transcripting, Status Notify, Map View, Display Priority, Combat Monitor | arrows, Enter | - | `options_settings` | - |
 | DEFINE | menu | `define` | function keys | F1-F10 texts, Restore Defaults, Exit | arrows, typing | - | `options_define_keys` | - |
-| COLOR | message | `color` | palette | "[Color pallette N of 6.]" | - | - | `options_color_palette`, `options_color_4`, `options_color_5`, `options_color_6` | the game spells "pallette" |
+| COLOR | message | `color` | palette | "[Color pallette N of 6.]" | - | - | `options_color_palette`, `options_color_4`, `options_color_5`, `options_color_6`; monochrome: `options_monochrome` | the game spells "pallette"; palettes 1 and 2 look like the default (blue) on the EGA used here (verified 2026-11-21); "Do you want color?" N at boot gives grey on black |
 | NOTIFY, PRIORITY | message | commands | options without the menu | bracketed confirmation | - | - | `options_notify`, `options_priority` | - |
 | UNDO | message | F9 | take back a move | "[UNDO completed.]" | - | "[UNDO failed.]" when nothing to undo | `system_undo` | - |
 | SAVE / RESTORE | prompt | `save` / `restore` | files | "You mumble the Spell of Saving. Enter save file name. (Default is data\\beyondzo.sav):" | file name | "[SAVE completed.]" | `save_prompt`, `save_done`, `save_restore` | - |

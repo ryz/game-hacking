@@ -26,6 +26,7 @@ options_color_palette | options | COLOR: palette 3 of 6 | @start,type:color\n,w2
 options_color_4 | options | COLOR: palette 4 of 6, red title bar on black | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200
 options_color_5 | options | COLOR: palette 5 of 6, black background | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200
 options_color_6 | options | COLOR: palette 6 of 6, black on light gray | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200
+options_monochrome | options | Monochrome mode ("Do you want color?" answered N): Hilltop in grey on black | w120,down,enter,w600,n,w300,type:begin\n,w300,space,w200,space,w300,space,w300,enter,w300,space,w300
 options_notify | options | NOTIFY: [Status notification is now off.] | @start,GO:notify
 options_priority | options | PRIORITY: display priority set to Room Descriptions | @start,GO:priority
 extra_version | extra | VERSION: Release 57 / Serial 871221, IBM/MS-DOS Color Version J | @start,type:version\n,w200
