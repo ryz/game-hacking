@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-21 - The Bard's Tale III (Apple II)
+- Task: scout The Bard's Tale III (Apple II): dump check of disk 3, boot, party, RAM, warps, automap,
+  checkpoints and a shot plan.
+- Worked: loading every level through the game's own stairs code made a complete dump check possible in one
+  background run (tools/levels.py: 34 + 27 levels, 10 city maps); the BT1 approach (cityscan -> scan.py, warps
+  through the stairs code) carried over almost unchanged; preview `-r` variants in parallel kept looks low.
+- Friction: random encounters spoil scans and routes; position scans depend on the facing at arrival;
+  `play.py checkpoint ... >/dev/null` hid a lost checkpoint and the session crashed once without a reason; city
+  maps live on the character disk (found only through the prompt). Coordinator swapped disk 3 mid-run (second
+  upload); the agent redid the check on the new image.
+- Proposed rule change: skill step 3: load every level through the game's level code before writing warps (dump
+  check too); backlog: shared position-scan tool with a fight filter.
+- Corrected: coordinator reran cachecheck: 25/25, sheet checked.
+- Status: level-load lesson -> feedback.md (open); scan tool -> backlog row "Shared module ..." Asked 6 -> 7;
+  logged.
+
 ### 2026-11-21 - Beyond Zork (DOS)
 - Task: scout Beyond Zork (DOS): interpreter, boot macros, controls, first save and RESTORE, checkpoints to the
   first save, shot plan.

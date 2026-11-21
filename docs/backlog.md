@@ -8,7 +8,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 ## Open
 | Wish | Asked | Notes |
 |---|---|---|
-| Shared module for series on one engine (Wizardry I-III on DOS and Apple II: `maps.py`, `roster.py`, `transfer.py`; survey / event scan / text scan for first-person RPGs: `scan.py`, `survey.py`, `eventscan`, `mapgrab`, `textscan`, `explore`) | 6 | 12 `maps.py`, 4 `roster.py`, 4 `transfer.py` live per game and differ by 30-60 lines. Needs the dumps to test against; do it at the next Wizardry or Might and Magic run |
+| Shared module for series on one engine (Wizardry I-III on DOS and Apple II: `maps.py`, `roster.py`, `transfer.py`; survey / event scan / text scan for first-person RPGs: `scan.py`, `survey.py`, `eventscan`, `mapgrab`, `textscan`, `explore`; a position scan that retries a square with another wait when it lands in a fight) | 7 | 12 `maps.py`, 4 `roster.py`, 4 `transfer.py` live per game and differ by 30-60 lines. Needs the dumps to test against; do it at the next Wizardry or Might and Magic run |
 | `play.py checkpoint`: scratch checkpoints kept out of `checkpoints.txt` (`--scratch`), a replaced line stays in place instead of moving to the end | 3 | Megami Tensei scout, Wizardry II DOS scout, Might and Magic II scout |
 | Deeper `undo` (more than one level) | 3 | Pokémon Blue, Megami Tensei, Ultima III; a `checkpoint` before a risky step is the workaround |
 | `tools/walk.py SLUG FROM TO`: walking routes for first-person RPGs from a wall-map decoder named in `game.json` | 1 | Might and Magic II DOS start set (per-run BFS script) |
