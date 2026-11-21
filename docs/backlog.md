@@ -22,6 +22,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `play.py find` warns when nothing ran since the last narrowing (0 candidates without a hint); `preview.py --timeline` per route, not per call | 1 | Sword of Vermilion capture run 3 |
 | `play.py dump` JSON: zero-padded hex keys or a note in the output that keys are hex | 1 | Might and Magic II Apple II scout (read as decimal, several calls lost) |
 | `shoot.py --verify`/`--publish-only` take captions and categories from the work `shots.txt` when they differ from `index.json` (or warn); `preview.py --set` flags identical frames within an unshot plan | 1 | Wizardry II Apple II capture (second `recaption` pass; stairs-down = dark warp found only at shoot) |
+| Apple II hi-res text reader: messages drawn in a hi-res font (Bard's Tale, Might and Magic II) read as text, like `play.py text` for the text page | 2 | Might and Magic II scout (text page holds data), Bard's Tale capture (every message read from a picture). Needs a glyph table per game font; build before the next Apple II dispatch or drop |
 | `dis68k.py`: hint when an address points inside an instruction or string (pointer searches off by a few bytes) | 1 | Sword of Vermilion capture run 3 |
 | `set:ADDR=N:bcd` follows the platform's byte order (big-endian on md; today little-endian unless told) | 1 | Sword of Vermilion capture run 4 |
 | `snap` warns when the route has `freeze:` before one long `wN` (freezes are applied between tokens) | 3 | the guide says `w10*N`; a warning would catch it |

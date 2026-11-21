@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-21 - The Bard's Tale (Apple II)
+- Task: capture `main` and `start` sets, lenses and dungeon maps for Bard's Tale (Apple II), including the open
+  level warp and Mangar's Tower.
+- Worked: `dis6502.py --route` plus a byte-pattern search over live memory found the level-change code in ~6
+  calls; the warp opened every level, the final boss and the ending. `preview.py --crop` over the message
+  window (38 special squares on one sheet) found Kylearan, Mangar and the riddles in one call. Varying the wait
+  before a forced fight gave a different monster group each time (cheap portrait gallery).
+- Friction: `play.py text` useless on Apple II hi-res screens (every message read from a picture); forced-fight
+  flags are cleared on use, so the first map dumps lost the arrival square's flag; one wrong LV argument.
+- Proposed rule change: README RAM: one-time square flags are cleared as they fire; dump before stepping on
+  the arrival square or patch out the write-back.
+- Corrected: coordinator deleted the cache and reran --verify: start 45/45, main 132/132; sheet 2 and the
+  Mangar level 5 map checked. No honest won fight in main (ending by group-count poke, captioned).
+- Status: one-time flags -> docs/emulator/README.md; hi-res text reader -> backlog (asked twice, with the
+  Might and Magic II scout's text-page friction); logged.
+
 ### 2026-11-20 - Might and Magic II (Apple II), automap
 - Task: add the Cartographer automap to the main set: one map partly walked, filled maps (Middlegate, C2, cavern).
 - Worked: snapshotting 10000-1FFFF and 20000-2FFFF with peek and diffing around one step found the visited bits
