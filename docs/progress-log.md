@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-21 - The Bard's Tale III (Apple II); hi-res text reader
+- Owner's upload had a short Dungeon 1 image (165 bytes missing, differing from track 23 on); the owner's second
+  dump has it whole and is registered. Scout: every level and city map loads (dump check), 25 checkpoints,
+  warps, automap visited bit. Capture: `start` 54 (honest), `main` 110 (to Tarjan's fight; not won), lenses,
+  58 decoded level maps. Verified cold by the coordinator (54/54, 110/110).
+- Tools: `tools/hirestext.py` reads text drawn on the Apple II hi-res screen with a font taught per game
+  (Bard's Tale I and III; not Might and Magic II's wide letters); `play.py text` / `preview.py --text` use it.
+- Open: Bard's Tale III won fight, game over, ending; level-map wall decoding outside the catacombs.
+
 ## 2026-11-21 - Beyond Zork in palette 6; Frotz comparison
 - Owner: palette 6 (black on light grey) as the default look. No interpreter option exists; two pokes in `BOOT`
   (Bzork.exe's default colours, then the game's colour globals found via a memory diff and the ZIL source) give

@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-21 (gamestable left to the coordinator; 2026-11-20: routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
+updated: 2026-11-21 (won fights: group record first; gamestable left to the coordinator; 2026-11-20: routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -72,6 +72,9 @@ edit anything outside the game's folder.
 4. Stuck for more than ~10 calls: re-read the playbook strategy and shortcuts, `undo`/`goto`, look up the
    specific problem (a FAQ section, a code list), or poke/code past it. Never grind. Code reading is boxed to
    about 20 calls per question; a target not reached by then goes into the report as open.
+   **A won fight, a boss or an ending:** find the monster group record first (search for the monster's name or
+   its count, dump around it, poke the count to 0) before playing rounds; budget it like code reading (Might and
+   Magic II and Bard's Tale III Apple II, 2026-11-21: 20-25 calls each on fights that never ended).
 5. **Document the game as you play** in `games/PLATFORM/SLUG/design/` (notation in its README): every rule, number and
    system you observe (prices, damage, timers, unlock conditions, enemy behaviour, menus and what they do),
    tagged (verified) with the shot id or checkpoint that shows it, or (RAM) when measured through memory;

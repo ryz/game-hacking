@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-21 - The Bard's Tale III (Apple II)
+- Task: capture `main` (110) and `start` (54) sets, 58 level maps, three lenses.
+- Worked: preview batches (25 lit dungeon lines on one sheet showed which levels arrive in a fight, dark or on a
+  prompt); start-set lines built from prefixes of the checkpoint routes by a script; scan.py found Tarjan on his
+  6x6 level in one run; hirestext.py: two `learn` calls read message windows with few `?` (party roster
+  unreadable).
+- Friction: `preview.py --text` printed the text page until font.json existed; no monster group counts found
+  for a won fight or the ending (~25 calls on fights that did not end); tall contact sheets downscale in Read.
+- Proposed rule change: README: find the monster group record before playing rounds for a won fight or ending
+  (~10 calls); backlog: contact sheet with 6 columns of half-size tiles for sets over 60 shots.
+- Corrected: coordinator deleted the cache and reran --verify: start 54/54, main 110/110; sheet 2 checked.
+  Level maps: wall decoding checked only against the catacombs automap (doubtful on UnterBrae 4, Sceadu).
+- Status: group-record lesson promoted 2026-11-21 into skill.md step 4 (second case: Might and Magic II Apple
+  II, Sheltem); contact-sheet wish -> backlog; logged.
+
 ### 2026-11-21 - Beyond Zork (DOS, palette 6 retake and Frotz shots)
 - Task: retake main (88) and start (34) in COLOR palette 6 (owner's choice) and add Frotz comparison shots.
 - Worked: a memory diff over repeated `color` commands plus the published ZIL source found the colour globals in 3
