@@ -1,7 +1,9 @@
 """The private vault: game data (ROMs, unpatched dumps, patches, downloaded and exported saves, Kickstarts) kept in
 the private repository ryz/game-hacking-r, so a fresh session can restore what this public repository never holds.
 
-  python3 tools/vault.py push GAME [PATH ...] [-m MSG]   copy GAME's data from rom/ into the vault, commit, push
+  python3 tools/vault.py push GAME [PATH ...] --booted "what the boot check showed" [--frames N] [-m MSG]
+                                                          smoke-test GAME's ROM, then copy its data from rom/ into
+                                                          the vault, commit, push
   python3 tools/vault.py push system/PLATFORM PATH ...    platform files (Amiga Kickstarts: rom/kickstart/...)
   python3 tools/vault.py pull GAME|system/PLATFORM|--all  put the vault's files back where the tools expect them
   python3 tools/vault.py list                             what the vault holds
@@ -9,6 +11,12 @@ the private repository ryz/game-hacking-r, so a fresh session can restore what t
 GAME is the slug or platform/slug (as for play.py). push collects what game.json names: "rom", "source"
 base_copy / patch_copy / patches[].copy, plus rom/saves/<platform>/<slug>/ and rom/saves/<slug>/; extra PATHs
 (any file under the repository, e.g. games/gbc/wizardry-empire/translation/rom/wizardry_empire_j.gbc) are added.
+
+Only working ROMs go in (owner's rule 2026-11-21). Before a ROM is pushed, push checks that its SHA-1 matches
+game.json, powers it on and runs N frames (default 3600; longer for slow loaders), and refuses it when the screen
+stays blank or never changes. The pictures go to work/vault/smoke/<platform>/<slug>/sheet.png: look at them, and
+say with --booted what the game showed (title, menu...): an emulator that runs is not yet a game that boots. The
+result is kept in files.json ("check"). Saves, patches and extra files on their own need no check.
 
 Vault layout (one folder per game, as games/ here):
   <platform>/<slug>/files.json         every file: vault name, local path (relative to this repository), SHA-1, role
@@ -119,12 +127,48 @@ def collect(platform, slug, meta, extra, root=ROOT):
     return [x for x in out if x not in missing]
 
 
+def smoke(name, frames=3600, every=300, root=ROOT):
+    """Power the game on and run FRAMES frames: (distinct pictures, colours in the richest picture, sheet path).
+    Refuses a ROM whose SHA-1 differs from game.json, a blank screen and a screen that never changes."""
+    sys.path.insert(0, HERE)
+    import emu
+    from PIL import Image
+    g = emu.Game(name)
+    g.check_rom()
+    out = os.path.join(root, "work", "vault", "smoke", g.id)
+    os.makedirs(out, exist_ok=True)
+    e = emu.open_game(g)
+    paths, seen, colours = [], set(), 0
+    try:
+        for f in range(every, frames + 1, every):
+            e.frames(every)
+            p = os.path.join(out, "f%05d.png" % f)
+            e.screen_png(p)
+            paths.append(p)
+            im = Image.open(p).convert("RGB")
+            seen.add(hashlib.sha1(im.tobytes()).hexdigest())
+            colours = max(colours, len(im.getcolors(1 << 16) or range(1 << 16)))
+    finally:
+        e.close()
+    sheet = os.path.join(out, "sheet.png")
+    emu.sheet(paths, sheet, cols=6, labels=["f%d" % int(os.path.basename(p)[1:6]) for p in paths])
+    rel = os.path.relpath(sheet, root)
+    if colours < 2:
+        raise SystemExit("smoke test: the screen stayed blank for %d frames (%s): not pushed" % (frames, rel))
+    if len(seen) < 3:
+        raise SystemExit("smoke test: only %d different pictures in %d frames (%s): not booting? Not pushed; "
+                         "--frames N for a slow loader" % (len(seen), frames, rel))
+    print("smoke test: %d different pictures, up to %d colours in %d frames; look at %s" % (
+        len(seen), colours, frames, rel))
+    return len(seen), colours, rel
+
+
 def load_index(vdir):
     p = os.path.join(vdir, "files.json")
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {"files": []}
 
 
-def push(name, extra=(), message=None, root=ROOT, vault=None, remote=True):
+def push(name, extra=(), message=None, root=ROOT, vault=None, remote=True, booted=None, frames=3600, check=smoke):
     vault = vault or vault_dir(root)
     folder, platform, slug, meta = resolve(name, root)
     files = collect(platform, slug, meta, extra, root)
@@ -133,6 +177,16 @@ def push(name, extra=(), message=None, root=ROOT, vault=None, remote=True):
     vdir = os.path.join(vault, folder)
     index = load_index(vdir)
     by_local = {e["local"]: e for e in index["files"]}
+    result = None
+    for role, rel in files:
+        old = by_local.get(rel)
+        if role == "rom" and not (old and old["sha1"] == sha1(os.path.join(root, rel))):
+            if not booted:
+                raise SystemExit("%s: only working ROMs go into the vault: run the boot check with --booted "
+                                 "\"what the game showed\" (after looking at the sheet)" % rel)
+            distinct, colours, sheet = check(folder, frames=frames, root=root)
+            result = {"frames": frames, "pictures": distinct, "colours": colours, "booted": booted,
+                      "date": time.strftime("%Y-%m-%d")}
     changed = []
     for role, rel in files:
         full = os.path.join(root, rel)
@@ -152,6 +206,8 @@ def push(name, extra=(), message=None, root=ROOT, vault=None, remote=True):
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         shutil.copyfile(full, dst)
         entry = {"vault": vname, "local": rel, "sha1": h, "size": os.path.getsize(full), "role": role}
+        if role == "rom" and result:
+            entry["check"] = result
         if old:
             index["files"][index["files"].index(old)] = entry
         else:
@@ -231,13 +287,15 @@ def main():
     p.add_argument("game")
     p.add_argument("paths", nargs="*")
     p.add_argument("-m", "--message")
+    p.add_argument("--booted", help="what the game showed in the boot check (title, menu...)")
+    p.add_argument("--frames", type=int, default=3600, help="frames the boot check runs (default 3600)")
     p = sub.add_parser("pull")
     p.add_argument("game")
     p.add_argument("--force", action="store_true")
     sub.add_parser("list")
     a = ap.parse_args()
     if a.cmd == "push":
-        push(a.game, a.paths, a.message)
+        push(a.game, a.paths, a.message, booted=a.booted, frames=a.frames)
     elif a.cmd == "pull":
         pull(a.game, force=a.force)
     else:

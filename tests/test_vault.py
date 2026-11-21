@@ -32,9 +32,14 @@ def test_push_pull_roundtrip(tmp_path):
              "rom/saves/nes/demo/a.sav": b"save"}
     a = tmp_path / "a"
     tree(str(a), files, meta)
-    done = vault.push("demo", root=str(a), vault=str(vdir))
+    with pytest.raises(SystemExit):                                       # a ROM needs the boot check
+        vault.push("demo", root=str(a), vault=str(vdir), check=lambda *a, **k: (3, 4, "s.png"))
+    calls = []
+    fake = lambda folder, frames, root: calls.append(folder) or (5, 16, "sheet.png")
+    done = vault.push("demo", root=str(a), vault=str(vdir), booted="title", check=fake)
+    assert calls == ["nes/demo"] and done[0]["check"]["booted"] == "title"
     assert sorted(e["vault"] for e in done) == ["base/demo-base.nes", "demo.nes", "patches/fix.ips", "saves/a.sav"]
-    assert vault.push("demo", root=str(a), vault=str(vdir)) == []          # unchanged: nothing new
+    assert vault.push("demo", root=str(a), vault=str(vdir)) == []          # unchanged: no check, nothing new
     out = subprocess.run(["git", "-C", str(bare), "log", "--oneline", "main"], capture_output=True, text=True).stdout
     assert out.count("\n") == 1
 
