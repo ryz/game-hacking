@@ -1934,8 +1934,444 @@ class Amiga(Libretro):
         return {"pc": self.PC_FORMAT % self.c.L.retro_gamedb_pc()}
 
 
+# ------------------------------------------------------------------ Commodore 64 (VICE x64sc libretro core)
+def _d64_offset(track, sector):
+    per = lambda t: 21 if t <= 17 else 19 if t <= 24 else 18 if t <= 30 else 17
+    return (sum(per(t) for t in range(1, track)) + sector) * 256
+
+
+class C64(Libretro):
+    """VICE x64sc (cycle-exact C64, libretro core, in-process through tools/lrcore.py, patched with
+    tools/vice-debug.patch: fixed random seed, savestates that run no instruction, peek/poke/pc, disk
+    insert/flush). True drive emulation (1541-II) is on: loads take their real time.
+    A game is a disk image (.d64 .g64 .d71 .d81), a ZIP of disk images (the disks in name order), a program
+    file (.prg .t64), a tape (.tap) or a cartridge (.crt). At power-on the core autostarts it (types
+    LOAD"*",8,1 and RUN for a disk); emu.disk(n) swaps disks in drive 8.
+    Model: MACHINE[-ntsc][-port1]: machines c64 (breadbin, 6581 SID, default) and c64c (8580 SID); ntsc = 60 Hz
+    NTSC machine (default PAL); port1 = the joystick in port 1 (default port 2).
+    Keys are the C64's (KEYS: return runstop restore commodore ctrl shift rshift shiftlock clrhome instdel pound
+    leftarrow uparrow plus minus asterisk at colon semicolon equals comma period slash space, the cursor keys
+    up down left right, f1-f8, letters, digits), the joystick joyup joydown joyleft joyright fire.
+    Memory: 0000-FFFF is what the CPU sees now (ROM and I/O as banked; I/O read without side effects), a poke
+    there is a CPU write (RAM, the RAM under a ROM, I/O registers); 10000-1FFFF is the 64K RAM as stored,
+    whatever is mapped over it. find/dump search the RAM as stored."""
+    KEYS = {"return": 13, "enter": 13, "runstop": 27, "restore": 280, "commodore": 306, "ctrl": 9, "shift": 304,
+            "rshift": 303, "shiftlock": 301, "clrhome": 278, "home": 278, "instdel": 8, "del": 8, "pound": 277,
+            "leftarrow": 96, "uparrow": 127, "plus": 45, "minus": 61, "asterisk": 93, "at": 91, "colon": 59,
+            "semicolon": 39, "equals": 92, "comma": 44, "period": 46, "slash": 47, "space": 32,
+            "up": 273, "down": 274, "right": 275, "left": 276}
+    KEYS.update({chr(c): c for c in range(ord("a"), ord("z") + 1)})
+    KEYS.update({str(d): 48 + d for d in range(10)})
+    KEYS.update({"f%d" % d: 281 + d for d in range(1, 9)})
+    JOY = {"joyup": "up", "joydown": "down", "joyleft": "left", "joyright": "right", "fire": "b"}
+    keys = set(KEYS) | set(JOY)
+    DISKS = (".d64", ".g64", ".d71", ".d81")
+    extensions = DISKS + (".prg", ".t64", ".tap", ".crt")
+    native_size = (384, 272)
+    emulator = "VICE x64sc libretro core"
+    SO = os.path.join(HERE, "vice", "vice_x64sc_libretro.so")
+    MACHINES = {"c64": "C64", "c64c": "C64C"}
+    SEARCH = [(0x0000, 0x10000)]
+    PC_FORMAT = "%04x"
+    BLOCK = 4096                # changed parts of a disk image are kept in blocks of this size
+    STATE = b"GAMEDB-C64-STATE-1\n"
+    FILE_SAVES = True
+    SAVES_ARE_DUMPS = True      # play.py export keeps them in rom/saves/<platform>/<slug>/ (game data)
+    SAVE_HELP = ("`.sav` = a ZIP of the disk images the game has written to (whole images, same names as in the "
+                 "game's ZIP): unzip it and use those images in place of the originals in any C64 emulator.")
+    # Typing: character -> (key, shift) on the C64 keyboard (letters type as capitals in the power-on mode).
+    TYPE = {" ": ("space", 0), "\n": ("return", 0), "+": ("plus", 0), "-": ("minus", 0), "*": ("asterisk", 0),
+            "@": ("at", 0), ":": ("colon", 0), ";": ("semicolon", 0), "=": ("equals", 0), ",": ("comma", 0),
+            ".": ("period", 0), "/": ("slash", 0), "!": ("1", 1), '"': ("2", 1), "#": ("3", 1), "$": ("4", 1),
+            "%": ("5", 1), "&": ("6", 1), "'": ("7", 1), "(": ("8", 1), ")": ("9", 1), "<": ("comma", 1),
+            ">": ("period", 1), "?": ("slash", 1), "[": ("colon", 1), "]": ("semicolon", 1), "^": ("uparrow", 0)}
+    HOTKEYS = ("vkbd", "statusbar", "joyport_switch", "turbo_fire_toggle", "save_disk_toggle",
+               "aspect_ratio_toggle", "crop_toggle", "datasette_toggle_hotkeys", "datasette_start",
+               "datasette_stop", "datasette_rewind", "datasette_forward", "datasette_reset", "reset", "warp_mode",
+               "up", "down", "left", "right", "b", "a", "y", "x", "select", "start", "l", "r", "l2", "r2", "l3",
+               "r3", "lu", "ld", "ll", "lr", "ru", "rd", "rl", "rr")
+
+    @staticmethod
+    def zip_disks(data):
+        """Names of the disk images in a ZIP, in play order (sorted by name, case ignored); [] if it is not a
+        ZIP of C64 disk images."""
+        import io, zipfile
+        try:
+            names = [n for n in zipfile.ZipFile(io.BytesIO(data)).namelist() if not n.endswith("/")]
+        except zipfile.BadZipFile:
+            return []
+        if not names or not all(os.path.splitext(n)[1].lower() in C64.DISKS for n in names):
+            return []
+        if len({os.path.basename(n).lower() for n in names}) != len(names):
+            raise SystemExit("two disk images in the ZIP have the same file name")
+        return sorted(names, key=lambda n: os.path.basename(n).lower())
+
+    @staticmethod
+    def image_kind(name, data):
+        """What a file is, with the disk name and directory of a D64."""
+        ext = os.path.splitext(name)[1].lower()
+        out = {}
+        if ext == ".d64" or (not ext and len(data) in (174848, 175531, 196608, 197376)):
+            out["kind"] = {174848: "D64, 35 tracks", 175531: "D64, 35 tracks with error bytes",
+                           196608: "D64, 40 tracks", 197376: "D64, 40 tracks with error bytes"}.get(
+                               len(data), "D64 of unusual size, %d bytes" % len(data))
+            bam = data[_d64_offset(18, 0):_d64_offset(18, 0) + 256]
+            if len(bam) == 256:
+                out["volume"] = bam[0x90:0xA0].rstrip(b"\xA0").decode("latin-1")
+                files, t, s, seen = [], bam[0], bam[1], set()
+                while t and (t, s) not in seen and t <= 40 and len(files) < 144:
+                    seen.add((t, s))
+                    sec = data[_d64_offset(t, s):_d64_offset(t, s) + 256]
+                    if len(sec) < 256:
+                        break
+                    for e in range(8):
+                        ent = sec[e * 32:e * 32 + 32]
+                        if ent[2] & 7:
+                            files.append(ent[5:21].rstrip(b"\xA0").decode("latin-1"))
+                    t, s = sec[0], sec[1]
+                out["files"] = files
+        elif ext == ".g64" or data[:8] == b"GCR-1541":
+            out["kind"] = "G64 (GCR-level 1541 disk)"
+        elif ext == ".d71":
+            out["kind"] = "D71 (1571 double-sided disk)"
+        elif ext == ".d81":
+            out["kind"] = "D81 (1581 3.5 inch disk)"
+        elif ext == ".crt" or data[:16] == b"C64 CARTRIDGE   ":
+            out["kind"] = "cartridge"
+            out["volume"] = data[0x20:0x40].split(b"\0")[0].decode("latin-1").strip()
+        elif ext == ".tap" or data[:12] == b"C64-TAPE-RAW":
+            out["kind"] = "tape (raw pulses), %d KiB" % (len(data) // 1024)
+        elif ext == ".t64" or data[:3] == b"C64":
+            out["kind"] = "T64 tape archive"
+            out["volume"] = data[0x28:0x40].decode("latin-1").strip()
+        else:
+            out["kind"] = "program file, load address $%04X, %d bytes" % (
+                int.from_bytes(data[:2], "little"), len(data) - 2)
+        return out
+
+    @classmethod
+    def identify(cls, data):
+        import hashlib, io, zipfile
+        names = cls.zip_disks(data)
+        if names:
+            z = zipfile.ZipFile(io.BytesIO(data))
+            disks = [dict(name=os.path.basename(n), sha1=hashlib.sha1(z.read(n)).hexdigest(),
+                          **cls.image_kind(n, z.read(n))) for n in names]
+        elif data[:2] == b"PK":
+            raise SystemExit("this ZIP is not a set of C64 disk images (%s)" % " ".join(cls.DISKS))
+        else:
+            disks = [cls.image_kind("", data)]
+        info = {"platform": "c64", "model": "c64", "disks": disks}
+        if disks[0].get("volume"):
+            info["header_title"] = disks[0]["volume"]
+        return info
+
+    def open(self, rom, model=None, seed=1, turbo=True, sav=None):
+        import ctypes, io, tempfile, zipfile
+        import lrcore
+        if not os.path.exists(self.SO):
+            raise SystemExit("%s missing: run sh tools/setup_emu.sh c64" % self.emulator)
+        parts = (model or "c64").split("-")
+        machine, ntsc, port = parts[0], False, "2"
+        for p in parts[1:]:
+            if p == "ntsc":
+                ntsc = True
+            elif p == "port1":
+                port = "1"
+            else:
+                machine = None
+        if machine not in self.MACHINES:
+            raise SystemExit("unknown C64 model %r (MACHINE[-ntsc][-port1]; machines: %s)" % (
+                model, " ".join(self.MACHINES)))
+        # Private copies of the game's files: the game writes to them, the registered dump is never touched.
+        self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
+        self.dir = os.path.join(self.tmp, "disks")
+        os.makedirs(self.dir)
+        data = open(rom, "rb").read()
+        names = self.zip_disks(data)
+        if names:
+            z = zipfile.ZipFile(io.BytesIO(data))
+            self._orig = {os.path.basename(n): z.read(n) for n in names}
+            self.disks = [os.path.basename(n) for n in names]
+        else:
+            self.disks = ["disk" + os.path.splitext(rom)[1].lower()]
+            self._orig = {self.disks[0]: data}
+        start = dict(self._orig)
+        if sav:                                             # a save = ZIP of whole images: a game disk under its
+            z = zipfile.ZipFile(sav)                        # own name replaces it; any other name is an extra
+            for n in sorted(z.namelist(), key=str.lower):   # disk after the game's own (a save disk)
+                if n.endswith("/"):
+                    continue
+                if os.path.splitext(n)[1].lower() not in self.DISKS or "/" in n:
+                    raise SystemExit("%s holds %s, which is not a disk image" % (sav, n))
+                if n not in start:
+                    self.disks.append(n)
+                    self._orig[n] = z.read(n)
+                start[n] = z.read(n)
+        for n, d in start.items():
+            open(os.path.join(self.dir, n), "wb").write(d)
+        self.is_disk = os.path.splitext(self.disks[0])[1].lower() in self.DISKS
+        options = {"vice_c64_model": "%s %s" % (self.MACHINES[machine], "NTSC" if ntsc else "PAL"),
+                   "vice_autostart": "enabled", "vice_autoloadwarp": "disabled", "vice_warp_boost": "disabled",
+                   "vice_drive_true_emulation": "enabled", "vice_virtual_device_traps": "disabled",
+                   "vice_floppy_write_protection": "disabled", "vice_floppy_multidrive": "disabled",
+                   "vice_jiffydos": "disabled", "vice_read_vicerc": "disabled", "vice_work_disk": "disabled",
+                   "vice_crop": "disabled", "vice_gfx_colors": "24bit", "vice_external_palette": "colodore",
+                   "vice_vicii_filter": "disabled", "vice_statusbar": "disabled", "vice_drive_sound_emulation": "0",
+                   "vice_datasette_sound": "disabled", "vice_sound_sample_rate": "22050",
+                   "vice_keyboard_keymap": "positional", "vice_physical_keyboard_pass_through": "enabled",
+                   "vice_joyport": port, "vice_joyport_type": "1", "vice_retropad_options": "disabled",
+                   "vice_turbo_fire": "disabled", "vice_reset": "autostart"}
+        options.update({"vice_mapper_" + h: "---" for h in self.HOTKEYS})
+        self._start, self._options, self._usec = start, options, 16715 if ntsc else 19950
+        self._down, self._search = set(), None
+        self._power_on()
+        return self
+
+    def _power_on(self):
+        """A new machine with the game's disks as they were at open() (the core cannot be reset to exactly its
+        power-on state, so a power-on is a new core)."""
+        import ctypes
+        import lrcore
+        if getattr(self, "c", None) is not None:
+            self.c.close()
+        for n, d in self._start.items():
+            open(os.path.join(self.dir, n), "wb").write(d)
+        self.c = lrcore.Core(self.SO, os.path.join(self.dir, self.disks[0]), system_dir=self.tmp, save_dir=self.tmp,
+                             options=self._options, frame_usec=self._usec, private=True, defaults=True,
+                             av_info=True)
+        L = self.c.L
+        L.retro_gamedb_pc.restype = ctypes.c_uint
+        L.retro_gamedb_peek.restype, L.retro_gamedb_peek.argtypes = ctypes.c_uint, [ctypes.c_uint]
+        L.retro_gamedb_poke.restype, L.retro_gamedb_poke.argtypes = ctypes.c_int, [ctypes.c_uint, ctypes.c_uint]
+        L.retro_gamedb_insert.restype, L.retro_gamedb_insert.argtypes = ctypes.c_int, [ctypes.c_int, ctypes.c_char_p]
+        L.retro_gamedb_hidden_size.restype = ctypes.c_int
+        L.retro_gamedb_busy.restype = ctypes.c_int
+        L.retro_set_controller_port_device(0, lrcore.DEVICE_JOYPAD)
+        self.c.size = self.native_size
+        self.drives = [self.disks[0] if self.is_disk else None]
+        self.booted, self._fresh = False, True
+        ram = self.c.memory(lrcore.MEM_SYSTEM_RAM)
+        self._ram = (ctypes.addressof(ram), len(ram))
+
+    BOOT_LIMIT = 90000          # frames autostart may take (a tape: minutes)
+
+    def _boot(self):
+        """Power-on is the game started: the first frames() runs the core's autostart (LOAD"*",8,1 and RUN for
+        a disk, the tape loaded, the cartridge started) until RUN is typed, keys released meanwhile. Those
+        frames are not counted in the route: VICE keeps parts of the machine's start-up outside its snapshots,
+        so states are only taken from there on."""
+        held, self._down = set(self._down), set()
+        n = 0
+        while True:
+            self.c.run(10)
+            n += 10
+            if not self.c.L.retro_gamedb_busy():
+                break
+            if n >= self.BOOT_LIMIT:
+                raise RuntimeError("autostart did not finish in %d frames" % n)
+        self.booted = True
+        self.input(held)
+
+    def frames(self, n):
+        if n > 0:
+            if not self.booted:
+                self._boot()
+            self._fresh = False
+            self.c.run(n)
+
+    # ---- disks
+    def disk(self, n, drive=1):
+        """Put disk n (1 = first image of the game; 0 = none) into drive 8 (the only drive: drive 1)."""
+        if drive != 1 or not 0 <= n <= len(self.disks):
+            raise ValueError("disk:%d in drive %d: this game has disks 1-%d (%s), the machine one drive (8)" % (
+                n, drive, len(self.disks), ", ".join(self.disks)))
+        name = self.disks[n - 1] if n else None
+        if name and os.path.splitext(name)[1].lower() not in self.DISKS:
+            raise ValueError("%s is not a disk image" % name)
+        self.c.L.retro_gamedb_flush()
+        path = os.path.join(self.dir, name).encode() if name else None
+        if not self.c.L.retro_gamedb_insert(8, path):
+            raise ValueError("the emulator refused the disk image %s" % name)
+        self.drives = [name]
+
+    def _changed(self):
+        """{name: {"size": n, "blocks": [offsets]}}, payload: the parts of the images that differ from the dump."""
+        self.c.L.retro_gamedb_flush()
+        head, blob = {}, []
+        for n in self.disks:
+            cur, orig = open(os.path.join(self.dir, n), "rb").read(), self._orig[n]
+            if cur == orig:
+                continue
+            offs = [o for o in range(0, len(cur), self.BLOCK) if cur[o:o + self.BLOCK] != orig[o:o + self.BLOCK]]
+            head[n] = {"size": len(cur), "blocks": offs}
+            blob += [cur[o:o + self.BLOCK] for o in offs]
+        return head, b"".join(blob)
+
+    def save_state(self, path):
+        """The core's state holds the machine and the disk in the drive (its GCR data); what the game wrote to
+        the image files so far and the emulator state VICE's snapshots leave out (random generator, drive
+        wobble and rotation model, keyboard queue, joystick values, autostart's progress: retro_gamedb_hidden_*)
+        are stored next to it, so a state can be saved at any time, power-on and autostart included."""
+        import ctypes, json
+        if not self.booted:                     # before the game was started: a power-on (a new core)
+            open(os.path.abspath(path), "wb").write(self.STATE + b'{"power_on": true}\n')
+            return
+        raw = zlib.compress(self.c.serialize(), 1)
+        head, blob = self._changed()
+        hidden = ctypes.create_string_buffer(self.c.L.retro_gamedb_hidden_size())
+        self.c.L.retro_gamedb_hidden_get(hidden)
+        head = json.dumps({"drives": self.drives, "disks": head, "blob": len(blob),
+                           "hidden": hidden.raw.hex()}).encode()
+        open(os.path.abspath(path), "wb").write(self.STATE + head + b"\n" + blob + raw)
+
+    def load_state(self, path):
+        import json
+        data = open(os.path.abspath(path), "rb").read()
+        if not data.startswith(self.STATE):
+            raise RuntimeError("not a C64 savestate of this tool version (delete work/cache): %s" % path)
+        head, rest = data[len(self.STATE):].split(b"\n", 1)
+        head = json.loads(head)
+        if head.get("power_on"):
+            if not self._fresh:
+                self._power_on()
+            self._down = set()
+            return
+        blob, raw = rest[:head["blob"]], rest[head["blob"]:]
+        self.c.L.retro_gamedb_flush()           # nothing of this machine's writes may land after the restore
+        if self.drives[0]:
+            self.c.L.retro_gamedb_insert(8, None)
+        pos = 0
+        for n in self.disks:
+            img = bytearray(self._orig[n])
+            if n in head["disks"]:
+                d = head["disks"][n]
+                img = img[:d["size"]] + bytes(max(0, d["size"] - len(img)))
+                for o in d["blocks"]:
+                    k = min(self.BLOCK, d["size"] - o)
+                    img[o:o + k] = blob[pos:pos + k]
+                    pos += k
+            p = os.path.join(self.dir, n)
+            if open(p, "rb").read() != img:
+                open(p, "wb").write(img)
+        if head["drives"][0]:                   # the drive writes back to this file; its contents come from
+            self.c.L.retro_gamedb_insert(8, os.path.join(self.dir, head["drives"][0]).encode())   # the state
+        for k in sorted(self._down):            # keys held here are not held in the state
+            if k in self.KEYS:
+                self.c.key(self.KEYS[k], False)
+        self._down = set()
+        self.c.keys = set()
+        self.c.unserialize(zlib.decompress(raw))
+        self.c.L.retro_gamedb_hidden_set(bytes.fromhex(head["hidden"]))
+        self.drives = head["drives"]
+        self.booted, self._fresh = True, False
+
+    def battery(self, size):
+        """The disk images the game has written to, whole, as a ZIP (b"" when it has written nothing)."""
+        import io, zipfile
+        self.c.L.retro_gamedb_flush()
+        out = io.BytesIO()
+        with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
+            for n in self.disks:
+                cur = open(os.path.join(self.dir, n), "rb").read()
+                if cur != self._orig[n]:
+                    info = zipfile.ZipInfo(n, (1985, 1, 1, 0, 0, 0))
+                    info.compress_type = zipfile.ZIP_DEFLATED
+                    z.writestr(info, cur)
+            count = len(z.namelist())
+        return out.getvalue() if count else b""
+
+    # ---- input
+    def input(self, keys):
+        keys = set(keys)
+        if not self.booted:                     # held from the first frame after the boot on
+            self._down = keys
+            return
+        for k in sorted(self._down - keys):
+            if k in self.KEYS:
+                self.c.key(self.KEYS[k], False)
+        for k in sorted(keys - self._down):
+            if k in self.KEYS:
+                self.c.key(self.KEYS[k], True)
+        self._down = keys
+        self.c.keys = {self.JOY[k] for k in keys if k in self.JOY}
+
+    def type_text(self, text, hold=4, gap=4):
+        """Type text on the C64 keyboard: letters as the plain keys (capitals in the power-on mode), symbols with
+        shift where the C64 has them (" = shift+2, ( = shift+8, ...)."""
+        for ch in text:
+            if ch.isascii() and (ch.isalnum()):
+                key, shift = ch.lower(), 0
+            elif ch in self.TYPE:
+                key, shift = self.TYPE[ch]
+            else:
+                raise ValueError("cannot type %r on a C64" % ch)
+            if shift:
+                self.input(["shift"])
+                self.frames(2)
+            self.input(["shift", key] if shift else [key])
+            self.frames(hold)
+            self.input([])
+            self.frames(gap)
+
+    # ---- memory
+    def peek(self, addr, n, bank=None):
+        import ctypes
+        if bank is not None:
+            raise NotImplementedError("use 10000+ADDR for the RAM under ROM and I/O")
+        base, size = self._ram
+        if 0x10000 <= addr and addr + n <= 0x10000 + size:
+            return ctypes.string_at(base + addr - 0x10000, n)
+        f = self.c.L.retro_gamedb_peek
+        return bytes(f((addr + i) & 0xFFFF if addr + i < 0x10000 else addr + i) & 0xFF for i in range(n))
+
+    def poke(self, addr, data):
+        for i, b in enumerate(bytes(data)):
+            if not self.c.L.retro_gamedb_poke(addr + i, b):
+                raise ValueError("%X is not C64 memory (0000-FFFF, RAM 10000-1FFFF)" % (addr + i))
+
+    def _snapshot(self, wide):
+        """RAM search over the 64K RAM as stored (the RAM under ROM and I/O included), at CPU addresses."""
+        import ctypes
+        base, size = self._ram
+        data = ctypes.string_at(base, size)
+        return {i: data[i] | (data[i + 1] << 8 if wide else 0) for i in range(size - (1 if wide else 0))}
+
+    def text(self):
+        """The 40x25 text screen as a list of lines (screen memory where the VIC-II reads it, upper case /
+        graphics or lower case set by $D018; inverse characters read as plain ones). Only meaningful while the
+        screen is in text mode: in bitmap mode the lines are leftovers, look at the picture then."""
+        vic = self.peek(0xD000, 0x19)
+        bank = (3 - (self.peek(0xDD00, 1)[0] & 3)) * 0x4000
+        mem = self.peek(0x10000 + bank + (vic[0x18] >> 4) * 0x400, 1000)
+        lower = vic[0x18] & 2
+        out = []
+        for r in range(25):
+            line = ""
+            for c in mem[r * 40:r * 40 + 40]:
+                c &= 0x7F
+                if c == 0:
+                    ch = "@"
+                elif c < 27:
+                    ch = chr(c + (96 if lower else 64))
+                elif c < 32:
+                    ch = "[#]^<"[c - 27]
+                elif c < 64:
+                    ch = chr(c)
+                elif lower and 64 < c < 91:
+                    ch = chr(c)
+                else:
+                    ch = " "
+                line += ch
+            out.append(line.rstrip())
+        return out
+
+    def regs(self):
+        return {"pc": self.PC_FORMAT % self.c.L.retro_gamedb_pc()}
+
+
 PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "sms": Sms, "md": MegaDrive, "dos": Dos, "apple2": Apple2,
-             "amiga": Amiga}
+             "amiga": Amiga, "c64": C64}
 
 
 def backend(platform):
@@ -1950,6 +2386,8 @@ def by_extension(path):
         return "apple2", Apple2                 # a ZIP of disk images; any other ZIP is a DOS game
     if ext == ".zip" and os.path.exists(path) and Amiga.zip_disks(open(path, "rb").read()):
         return "amiga", Amiga
+    if ext == ".zip" and os.path.exists(path) and C64.zip_disks(open(path, "rb").read()):
+        return "c64", C64
     for name, cls in PLATFORMS.items():
         if ext in cls.extensions:
             return name, cls

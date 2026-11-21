@@ -2,6 +2,18 @@
 
 Append-only, newest first.
 
+## 2026-11-21 - Commodore 64 emulator: VICE x64sc libretro core, exact savestates
+- Owner asked for a C64 emulator. `sh tools/setup_emu.sh c64` builds VICE x64sc (vice-libretro, pinned) with
+  `tools/vice-debug.patch` (21 s); backend `platforms.C64`: disks (D64/G64/D71/D81, ZIP of disks), PRG/T64, TAP, CRT;
+  models `c64`/`c64c`, `-ntsc`, `-port1`; C64 keyboard by key names, joystick, `type:`, `disk:N`, disk writes kept in
+  states and exported, `text()` for the text screen. Power-on = the game started by autostart (not counted in routes).
+- VICE's snapshots were not exact (a run after a load drifted from the original in drive, CIA, SID, keyboard and
+  joystick state); found by stepping both machines frame by frame and diffing the core's static memory against
+  symbols of an unstripped link. Fixed in the patch, listed in `docs/emulator/c64.md`; checked over 1500-3000 frames
+  with input, fresh and busy machines, saves at every phase of the boot.
+- `lrcore.Core(defaults=True, av_info=True)`: option defaults from SET_VARIABLES and the av_info call, opt-in (other
+  cores unchanged). Tests `test_c64_*` (5) on a generated test disk; suite 34 passed, other cores skipped (not built).
+
 ## 2026-11-21 - Beyond Zork in palette 6; Frotz comparison
 - Owner: palette 6 (black on light grey) as the default look. No interpreter option exists; two pokes in `BOOT`
   (Bzork.exe's default colours, then the game's colour globals found via a memory diff and the ZIL source) give

@@ -22,6 +22,7 @@ Each session builds only the emulator it needs (`sh tools/setup_emu.sh PLATFORM`
 | `dos` | DOSBox Pure libretro core | 32 s | a ZIP of the game's files | CD images and installers, mouse tokens, sound card choice; `cga`/`tandy` lose the palette on a state load (use `ega`) | [dos.md](emulator/dos.md) |
 | `apple2` | AppleWin libretro core (needs cmake) | 78 s | a disk image or a ZIP of disk images | reset keys, hard disk images with a real game, held keys / auto-repeat | [apple2.md](emulator/apple2.md) |
 | `amiga` | PUAE libretro core | 90 s | an ADF or a ZIP of ADFs; Kickstart ROMs in `rom/kickstart/` | `.ipf`, hard disk / WHDLoad, CD32 / CDTV, write-protected disks | [amiga.md](emulator/amiga.md) |
+| `c64` | VICE x64sc libretro core | 21 s | a D64/G64 (or a ZIP of them), PRG/T64, TAP or CRT | second drive, audio, paddles/mouse/light pen; G64, D71/D81, tapes and cartridges untested; no game registered yet (backend 2026-11-21) | [c64.md](emulator/c64.md) |
 
 ## Tools
 | Tool | State |

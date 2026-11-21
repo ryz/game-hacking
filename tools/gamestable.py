@@ -18,7 +18,7 @@ sys.path.insert(0, HERE)
 import lenses  # noqa: E402
 
 BEGIN, END = "<!-- games:begin -->", "<!-- games:end -->"
-ORDER = ["gbc", "gb", "nes", "snes", "sms", "md", "dos", "apple2", "amiga"]
+ORDER = ["gbc", "gb", "nes", "snes", "sms", "md", "dos", "apple2", "amiga", "c64"]
 
 
 def games():
