@@ -6,30 +6,30 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 
 ## Read first
 - **Start:** `rom/phantasie.zip` (disk 1 = PHANT1A boot disk, disk 2 = PHANT1B dungeon disk), model `c64` (PAL).
-  Power-on to start menu takes 4900 frames (`MENU`), Pelnor after "1" another ~3800. Begin from a checkpoint:
-  `@pelnor_party` (party of six in town), `@pelnor_gold` (same, 1536 gold carried), `@outdoors_pelnor`
-  (wilderness, standing on Pelnor's square, move compass active), `@saved_start` (after the first save).
-- **Party:** ryz human fighter, condi dwarf fighter, ebo human priest, cubi elf wizard, deddo halfling thief, mnz
-  human monk (guild #6-11). Made by macros `GUILDNEW`, `ROLL:race:class:1`, `REROLL`, `KEEP:name`, `MORE`
-  (route of `guild_created`). Attribute rolls do NOT depend on timing: only the number of rolls so far changes
-  them, so a different roll = one more `REROLL,ROLL:...`.
-- **Menus:** cursor keys move the highlight, `return` selects (space did not leave the character sheet).
-  Town: buildings in a 3x2 grid (top: Guild, Armory, Bank; bottom: Inn, gate = exit, Mystic), cursor wraps;
-  letters `c` cast, `u` use items, `g` game save, `p` printout. Number prompts: type the digits (`type:256`).
-- **Wilderness:** direction keys `3`/`n` north, `w`, `e`, `s` (also cursor keys / joystick). Use `STEP:e` etc.
-  (`e:20,w100`): with shorter waits a press during the step animation is lost, and the first press after a
-  message only clears the message. `return` opens the command menu (Inspect, Use potion, Health, Cast spell,
-  Move). Stepping on a town square asks "A town. Enter? yes/no": answer `right,return` (no) or `return` (yes).
-- **Loads are slow (real 1541, KERNAL loader):** "Leaving Pelnor" waits for `return`, then ~3600 frames to the
-  map (macro `LEAVE`); game save ~2100 frames (`SAVE`, from the town screen). Do not `settle` through a load:
-  the screens are black or static for long stretches; use the waits in the macros.
-- **Shortcut:** `@pineville_old` = "Continue saved game" on the untouched dump: the previous owner's saved party
-  (grunt fighter, hit thief, scott priest, borack wizard) in Pineville, town 2. Levels not checked yet.
-- **Saves:** game save divides all carried gold back into the bank (shares 0-3 per member) and writes to the boot
-  disk (disk 1). "Continue saved game" loads the last saved party straight into its town (no guild number asked,
-  unlike the Apple manual). Export `01_start` (rom/saves, not committed) tested through Continue: verified.
-- **Open:** no random encounter met in ~80 steps around Pelnor (combat screens not seen); dungeon entry and the
-  disk swap (`disk:2`) not tried; outdoor position bytes not found; HP byte order (current/max) unclear.
+  Power-on to start menu 4900 frames (`MENU`), Pelnor after "1" another ~3800. The game is a BASIC program
+  (PC in A000-BFFF): its state is in BASIC variables (decode the variable table at 2D/2F, see RAM map).
+- **Checkpoints that matter:** `@pelnor_party`, `@pelnor_gold` (1536 gold carried), `@outdoors_pelnor`
+  (wilderness on Pelnor's square), `@enc_bantir` (first random encounter, party options), `@bantir_set`
+  (options set), `@s_won` / `@s_pelnor_back` / `@s_saved` (start set: after the fight, back in town, saved),
+  `@w_inn` (independent inn), `@w_dungeon_door` (dungeon prompt), `@d1_entry` (inside dungeon 1),
+  `@d1_ants` / `@d1_ants_r2` / `@d1_won` (dungeon fight: ants and bees), `@pineville_old`.
+- **Warp:** `POS:XX:YY` pokes the wilderness position (X, Y as 5-byte C64 floats, e.g. 14 = `8460000000`;
+  table in RAM map), then step with `STEP:dir` to trigger the square. Dungeon door = `POS:8410000000:8420000000`
+  then `STEP:n` twice (square 9,8).
+- **Keys are dropped unless the game is idle:** in routes put `settle` between every cursor key in menus
+  (`down,settle,down,settle`); `down*3` and `up*5,return` lose presses. Macros `IO0`..`IO5` (individual
+  option 0-5 for the highlighted member, then next member), `IOSP:n` (spell n), `IOR:r` (thief: thrust at rank r),
+  `FIGHT` (party options -> individual options, cursor on the first member), `OPTS`/`OPTS2` (whole party).
+- **Wilderness:** `STEP:e` etc. (`e:20,w100`); the first press after a message only clears it, so counts are
+  not exact: check the position watch (`x`, `y`). Dungeon: `DSTEP:s` (`w150`), same caveat.
+- **Combat:** party options (beg mercy, threaten, greetings, fight, flee) -> FIGHT -> per member option ->
+  "go on fighting" (cursor lands there after the last member) -> return. A round takes ~1100-2400 frames;
+  options are kept, so the next round is `return,w100,settle,return`.
+- **Cheats used for `main`:** `RICH1` (XP 476-511 and bank gold 690-867 per member, 2-byte big-endian in the
+  party records) + `set:9ED2=1247:2` (carried gold) before Guild training/spells.
+- **Loads:** "Leaving" ~3600 frames (`LEAVE`); town entry from the map ~3600 then shares; dungeon entry:
+  `return,w1300` (disk request) `disk:2,w50,return,w3000`; game save ~2100 (`SAVE`).
+- **Open:** game over, other towns/sections, dungeon floors beyond the first rooms, scroll reading, spell names.
 
 ## Identity
 | Field | Value |
@@ -64,7 +64,8 @@ Verified (`work/preview/c64/phantasie/routes.png`):
 | Yes/No | `right` = no, `return` | answer | verified |
 | Wilderness | `3`/`n`, `w`, `e`, `s`; cursor keys; joystick | move one square | verified (`e`, `w`, `3`, `s`, right, left, joyright) |
 | Wilderness | `return` | command menu: Inspect, Use potion, Health, Cast spell, Move | verified |
-| Dungeon | `l` | look at a larger area | source (manual) |
+| Dungeon | `return` menu (cast, inspect, use, health, look, move); Move then `n` `s` `e` `w` | explore; Look on the first square showed nothing new | verified |
+| Combat | cursor `up`/`down` + `return` with `settle` between keys | party options, member list, option list; spell/rank: type the digit then `return` | verified |
 
 Input timing: the default press (hold 8, wait 40) works in menus inside `play.py`; in one route add `settle` or
 `w60` after a screen change (the macros do). Outdoors a move takes ~100 frames.
@@ -84,13 +85,13 @@ Input timing: the default press (hold 8, wait 40) works in menus inside `play.py
 - Experience is only turned into levels by training at a Guild (source).
 
 ## Shot plan
-31 lines in `shots.txt`, all previewed (`work/preview/c64/phantasie/plan.png`): boot 1, title 1, menu 8,
-gameplay 5 (2 env), system 2, inventory 2, shop 3, save 2, dialogue 2, hud 1, extra 1. Still to add by playing:
-- [ ] `battle_encounter` "An encounter" + party/monster pictures; `battle_party_options`; `battle_member_options`;
-      `battle_spell`; `battle_result` (XP/gold) - walk the wilderness farther from Pelnor until an encounter.
-- [ ] `dungeon_enter` prompt, `dungeon_disk` (swap request, `disk:2`), `env_dungeon_*` corridors, `dungeon_look`.
-- [ ] `inn_rest`, `guild_spells` (wizard cubi), `guild_train_level` after a fight, `armory_buy`, `scroll_read`.
-- [ ] other towns, an independent inn, `gameover` (party dead), `map` of a second section.
+Sets published 2026-11-21: `start` (39 shots, power-on to the first save after the first fight, honest) and
+`main` (77 shots). Plan lines: `work/plan/phantasie/` (not committed); the set lists are `shots/*/shots.txt`.
+- [x] battles (wilderness bantirs, dungeon ants and bees), party options incl. beg/threaten/flee, individual
+  options, spell and rank selectors, rewards
+- [x] dungeon entry, disk swap, exit prompt, dungeon menu, four room types
+- [x] inn (town, independent), guild spells/training/inspect/drop/rename, armory buy, bank deposit
+- [ ] game over, scroll reading (use items), other towns and wilderness sections, deeper dungeon, greetings result
 
 ## Strategy and walkthrough notes
 - Recommended party (manual): 2 spellcasters, 1 healer, 1 thief type, 2 fighters - the party above follows it.
@@ -120,12 +121,16 @@ No downloadable saves found.
 ## RAM map (for `game.json` "ram" watches and pokes)
 | Address | Size | Meaning | How found |
 |---|---|---|---|
-| 9ED2 | 2 LE | party gold carried (0-65000) | search 0 -> 1536 after withdrawals; watch `gold` |
+| 9ED2 | 2 LE | party gold carried (0-65000); a winning fight's gold did not add up exactly in this watch (1536 -> 1579 for 6 x 17) | search 0 -> 1536 after withdrawals; watch `gold` |
 | 9A25 + n*0xAA | 6 | party member n (0-5): strength, intelligence, dexterity, constitution, charisma, luck | stats search; poke 9A25=10 showed STR 16 in Inspect |
 | 9A2E / 9A2F + n*0xAA | 1+1 | magic: shown as [9A2F]/[9A2E] on Health | poke 9A2E=3 -> "5/3" |
 | 9A30 / 9A31 + n*0xAA | 1+1 | hit points: shown as [9A31]/[9A30] on Health (which is current: open) | poke 9A30=9 -> "11/9"; slot 2 (9ADA) checked |
 | 9AA7 + n*0xAA | 12 | party member name (PETSCII capitals, space-padded), 0x82 after the stats | name search |
 | 8A0D + k*0xAA | - | guild roster copy (same layout; grunt = roster #1) | name search |
+| 9A32 + n*0xAA | 2 BE | gold in bank of member n | 256 -> 273 after the first town entry; RICH1 shown on Inspect |
+| 9A58 + n*0xAA | 2 BE | experience points of member n | 0 -> 71 (0x47); RICH1 483 shown on Inspect |
+| 7488 / 7506 | 5 | wilderness X / Y (BASIC float variables X and Y; also CX/CY at 7537/753E, OX/OY at 7545/754C) | variable-table decode; Pelnor 14,15, inn 7,13, dungeon door 9,8 |
+| 2D/2E, 2F/30 | 2 | BASIC VARTAB / ARYTAB: the whole game state is BASIC variables (dungeon program has its own layout: X at 744B, CY at 74FA) | scratch script decoding the table |
 
 ## Emulation notes
 - Loads use the drive in real time (the "Drive Technology" credit is a fast loader for the boot; later loads sit in
@@ -137,9 +142,11 @@ No downloadable saves found.
 - In the town screen the red "ENTER" marker can lag behind the highlighted building after a save (cosmetic).
 
 ## Checkpoints
-`title`, `menu`, `pelnor_new` (town, no party), `guild_created` (six characters made), `party` (formed, guild
-menu), `pelnor_party`, `pelnor_gold`, `outdoors_pelnor` (via a look into the Armory), `saved_start` (after the
-first save), `pineville_old`. `tools/cachecheck.py phantasie`: 10/10 reproduce (2026-11-21).
+Scout: `title`, `menu`, `pelnor_new`, `guild_created`, `party`, `pelnor_party`, `pelnor_gold`, `outdoors_pelnor`,
+`saved_start`, `pineville_old`. Capture 2026-11-21: `enc_bantir`, `bantir_set`, `s_won`, `s_pelnor_back`,
+`s_saved` (start set chain, all honest play), `w_inn`, `w_dungeon_door`, `d1_entry`, `d1_ants`, `d1_ants_r2`,
+`d1_won` (main: POS warp to the door, then plain walking; the ants were met after ~100 dungeon steps of a fixed
+pattern, route in `checkpoints.txt`).
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -151,9 +158,8 @@ first save), `pineville_old`. `tools/cachecheck.py phantasie`: 10/10 reproduce (
 | GameFAQs / TCRF | - | no Phantasie (C64) pages found | 2026-11-21 |
 
 ## Open questions
-- Where do encounters happen? None in ~80 steps around Pelnor on paths and grass.
-- Dungeon entry: does the game ask for disk 2 by a prompt, and does `disk:2` + `return` work? Dungeon saves go to
-  which disk?
+- ~~Where do encounters happen?~~ Random: the first came after 28 steps east of Pelnor (e,e,e,w,w pattern), the dungeon's after ~100 steps.
+- ~~Dungeon entry~~: "A dungeon. Enter?" -> "Insert dungeon disk and press a key" -> `disk:2,w50,return` works (verified). Leaving a dungeon (disk 1 back) not tried.
 - Which HP/magic byte is current and which is max.
 - Outdoor position: candidates 7506/753E changed with a south step; not confirmed.
 - Levels and equipment of the old Pineville party (useful for late-game shots).

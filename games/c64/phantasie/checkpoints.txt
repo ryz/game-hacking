@@ -16,3 +16,8 @@ s_won | Wilderness east of Pelnor after winning the first fight (3 bantirs; 73 X
 s_pelnor_back | Pelnor town after the first fight: gold and XP divided into shares (71 XP, 273 gold each, in the bank) | @s_won,STEP:w*7,return,w3600,settle,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w60,settle,settle,return,w120,settle,settle,w1500,settle,w600,settle,settle
 s_saved | Pelnor after the first game save following the first fight (start set end) | @s_pelnor_back,SAVE,settle
 w_inn | Wilderness: on the independent inn west of Pelnor, 'An inn. Stay? yes/no' | @outdoors_pelnor,STEP:w*8,STEP:n,settle,STEP:n,settle
+w_dungeon_door | Wilderness north of Pelnor: 'A dungeon. Enter? yes/no' at the small door in the hillside (warped by POS) | @outdoors_pelnor,POS:8410000000:8420000000,STEP:n,settle,STEP:n,settle,STEP:n,settle
+d1_entry | Dungeon 1 north of Pelnor (disk 2): first square, 'An exit. Take it?' | @w_dungeon_door,return,w1300,disk:2,w50,return,w3000,settle
+d1_ants | Dungeon 1: encounter with 5 giant ants, 5 giant bees and 1 giant ant in three ranks, party options | @d1_entry,up,settle,return,w100,settle,down,settle,return,w60,settle,DSTEP:s*20,DSTEP:e*8,DSTEP:w*16,DSTEP:s*6,DSTEP:n*4,DSTEP:e*8,DSTEP:s*20,DSTEP:e*8,DSTEP:w*16,w600
+d1_ants_r2 | Dungeon 1 ants fight after round 1: five giant bees and one giant ant left, party options | @d1_ants,OPTS2,return,w2400,settle,settle
+d1_won | Dungeon 1 after beating the giant ants and bees (166 XP each), crumbling stone hallway | @d1_ants_r2,return,w100,settle,return,w2200,settle,return,w100,settle,return,w1100,settle,settle

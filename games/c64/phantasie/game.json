@@ -319,7 +319,14 @@
     "IO2": "settle,return,w30,settle,down,settle,down,settle,return,w60,settle,down,settle",
     "IO3": "settle,return,w30,settle,down,settle,down,settle,down,settle,return,w60,settle,down,settle",
     "IO4": "settle,return,w30,settle,down,settle,down,settle,down,settle,down,settle,return,w60,settle,down,settle",
-    "IO5": "settle,return,w30,settle,down,settle,down,settle,down,settle,down,settle,down,settle,return,w60,settle,down,settle"
+    "IO5": "settle,return,w30,settle,down,settle,down,settle,down,settle,down,settle,down,settle,return,w60,settle,down,settle",
+    "POS": "poke:7488={0},poke:7537={0},poke:7545={0},poke:7506={1},poke:753E={1},poke:754C={1}",
+    "DSTEP": "{0}:20,w150",
+    "RICH1": "poke:9A58=01E3,poke:9A32=032C,poke:9B02=01F6,poke:9ADC=02E9,poke:9BAC=01EF,poke:9B86=02B2,poke:9C56=01E8,poke:9C30=0363,poke:9D00=01FF,poke:9CDA=02DD,poke:9DAA=01DC,poke:9D84=030A",
+    "IOSP": "settle,return,w30,settle,down,settle,down,settle,down,settle,down,settle,return,w60,settle,{0},w30,settle,return,w60,settle,down,settle",
+    "OPTS": "FIGHT,IO0,IO0,IO0,IOSP:5,IO0,IO0",
+    "IOR": "settle,return,w30,settle,return,w60,settle,{0},w30,settle,return,w60,settle,down,settle",
+    "OPTS2": "FIGHT,IO0,IO0,IO0,IOSP:5,IOR:1,IO0"
   },
   "ram": {
     "gold": {
@@ -327,15 +334,21 @@
       "size": 2,
       "fmt": "le"
     },
+    "x": {
+      "addr": "7488",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "y": {
+      "addr": "7506",
+      "size": 2,
+      "fmt": "hex"
+    },
     "ryz_hp": {
       "addr": "9A30",
       "size": 1
-    },
-    "ryz_str": {
-      "addr": "9A25",
-      "size": 1
     }
   },
-  "work": "scouted 2026-11-21: boot, party of six, first save, 11 checkpoints, RAM map, 31-line plan; not captured",
-  "open": "no encounter met yet (combat screens unseen); dungeon disk swap untried; outdoor position bytes not found"
+  "work": "captured 2026-11-21: main set 77 shots (town, guild, wilderness, dungeon 1, three fights), start set 39 shots (power-on to the first save), three lenses, 21 checkpoints, BASIC-variable RAM map with a position warp",
+  "open": "game over; other towns and wilderness sections; dungeon floors beyond the first rooms; scroll reading; spell names; greetings result"
 }
