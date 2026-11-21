@@ -300,6 +300,24 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w3000",
+    "MENU": "w4900",
+    "GUILDNEW": "return,settle,down*3,return,settle",
+    "ROLL": "down*{0},return,settle,down*{1},w{2},return,w100,settle",
+    "KEEP": "return,w60,settle,type:{0},settle,return,w100,settle,w60,return,w60,settle",
+    "MORE": "return,w60,settle",
+    "REROLL": "right,return,w60,settle,return,w60,settle",
+    "ADDNEXT": "down,return,w60,settle,return,w60,settle",
+    "WD": "return,w60,settle,type:{0},return,w60,settle",
+    "SAVE": "g,w60,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w60,settle,return,w120,settle,w2100,settle",
+    "LEAVE": "return,w300,settle,return,w300,settle,w1500,settle,w2100,settle"
+  },
+  "ram": {
+    "gold": {
+      "addr": "9ED2",
+      "size": 2,
+      "fmt": "le"
+    }
+  }
 }
