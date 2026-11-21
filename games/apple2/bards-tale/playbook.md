@@ -16,12 +16,19 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Warp in the city (verified):** `GO:XX:YY` = poke east coordinate (0001) and north coordinate (0000) in hex,
   then `j` (turn left) so the game evaluates the square: stand inside any building or on any special square.
   Building table below (City map). Facing: `FACE:n` (0 N, 1 E, 2 S, 3 W).
-- **In a dungeon** the same `AT`/`GO` pokes move the party on the current level (22x22, wraps). There is **no
-  level warp yet**: reach levels by their entrances and stairs (checkpoints below). Stairs prompts appear when
-  you **step** onto the stairs square (`k`), not on a turn.
+- **In a dungeon** the same `AT`/`GO` pokes move the party on the current level (22x22, wraps). Stairs prompts
+  appear when you **step** onto the stairs square (`k`), not on a turn.
+- **Level warp (verified 2026-11-21):** `@stairs_hero,LV:I-1:I:ID` loads level ID (hex) as index I of its
+  dungeon (I-1 = FF for I = 0). IDs: 00 cellar, 01-03 Sewers, 04-06 Catacombs, 07-09 Castle, 0A Kylearan's
+  tower, 0B-0F Mangar's Tower 1-5 (all on disk 3; disk 4 is never asked for). Add `NOFIGHT` before `LV` when
+  the arrival square forces a fight (Catacombs 2, Castle 1, Mangar 1); then `GO:XX:YY` onto any square.
+  Every level: `design/maps/` (`tools/allmaps.py`).
+- **Final fight and ending:** `GO:0A:14` on Mangar 5, `space`x2 -> 2 Greater demons, 3 Vampire lords, Mangar;
+  `poke:0408=000000` (group counts) + `f` + six `d` + `y` -> Treasure, Kylearan, 300,000 bonus (main set
+  `ending_*`). Party wipe: poke HP low (`gameover_party_dead`).
 - **Movement keys (verified):** `i` forward (bumps doors: "Ouch!"), `k` kick = forward through doors and into
   buildings, `j`/`l` (or `left`/`right`) turn, `shift+slash` (?) = where am I and time of day, `c` cast,
-  `u` use item, `n` new order, `1`-`6` view a character, `p` party? (untested). `up` does nothing in a dungeon.
+  `u` use item, `n` new order, `1`-`6` view a character, `p` party attack (attack own party), `b` bard plays a tune (needs an instrument). `up` does nothing in a dungeon.
 - **Party records (verified):** 2CA80 + 0x80*n. HERO pokes them; the status lines redraw only after a change:
   `HEROP` = HERO + New order 1-5 (redraws). Gold and experience are decimal digits, one per byte.
 - **Fights:** `@fight1` = 4 Skeletons + 1 Kobold on Main Street for the new party (honest, level 1: CONDI dies
@@ -29,8 +36,10 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Traps that cost calls:** `n` is New order (do not answer a Y-N prompt that is already gone with `n`);
   the title animates (never `settle` on it); the battle text scrolls by itself (pick frames with `w60` steps);
   scanning tools take 3-5 minutes (run in background).
-- **State:** scouted 2026-11-21: 16 checkpoints reproduce (`cachecheck --flat leaves`), 48-line main plan
-  previewed, `01_start` export (new party saved). Open: level warp, Mangar's Tower entry, disk 4, dungeon flags.
+- **More macros:** `SPELLS` (DEDDO Conjurer 4, MNZ Magician 4 + Conjurer 2), `ITEMS` (gear for the HERO party,
+  EBO's Mandolin: bard songs need an equipped instrument), `KEEPFLAGS` (arrival square keeps its flags, maps).
+- **State:** captured 2026-11-21: main 132 shots and start 45 published and verified, 16 level maps. Open:
+  riddle answers and quest objects in play, bard tune effects, an honest won fight with rewards.
 
 ## Identity
 | Field | Value |
@@ -126,13 +135,12 @@ boot 1, title 2, menu 4 (utilities, guild, disk options, roster), system 8 (race
 temple, MAFL, ...), inventory 2, hud 1, gameplay ~17 (env city x2, where, gate, guardian, iron gate, magic mouth,
 castle entry, cellar, sewers env/inscriptions/trap, catacombs, castle, tower), shop 3, dialogue 3, battle 8,
 extra 1 (credits room). Still to add by the capture run:
-- [ ] env shots in every dungeon, lit (cast MAFL first: `MAFL:5` for DEDDO in the hero party), first and last levels
-- [ ] a won fight with the HERO party (experience and gold report), a lost fight / party dead (gameover)
-- [ ] a bard song in a fight (EBO needs an instrument: buy one at Garth's?), spell list via the Review Board
-- [ ] map: `tools/maps.py` text map of a level (document, not a shot) - no in-game map exists
-- [ ] Mangar's Tower and later levels (needs the route or a level warp)
-- [ ] `start` set: title -> guild -> race -> class -> name x6 -> add -> city -> Garth's (buy) -> Review Board ->
-      first fight (`@fight1`) -> Guild "Save party" (the first save) - all honest, routes in checkpoints.
+- [x] env shots in every dungeon, lit (all 16 levels except Sewers 1 and Mangar 4: `env_*`)
+- [x] victory report (`ending_treasure`, counts poked), party dead (`gameover_party_dead`); [ ] an honest won fight
+- [x] bard song prompt (EBO with the poked Mandolin); [ ] a song in a fight and its effect
+- [x] maps: `design/maps/` (16 levels, text + PNG, `tools/allmaps.py`)
+- [x] Mangar's Tower, Mangar, ending (`boss_*`, `ending_*`)
+- [x] `start` set: 45 shots, honest, ends with Save party (`s_saved`, export `02_first_save`)
 
 ## Strategy and walkthrough notes
 - A level-1 party dies in the first city fight (4 Skeletons kill CONDI with 8 points); use `@city_hero`
@@ -159,7 +167,9 @@ the checkpoint). There is no re-roll key: ESC and create again.
 | Strong party | `HEROP` (levels, HP, SP, gold, exp of all six; redrawn by New order) | RAM | verified |
 | Played party on the disk | `LOAD:*PARKER SS MGC` in the Guild (`@city_parker`) | archive | verified |
 | Skip gates/statues | `GO` onto the castle/tower entry chambers | RAM | verified |
-| Level warp | none found: `0015`, `0018`, `0042` (= level index 0/1/2 in cellar/sewers 1/portal sewers), `03B8`, `2FC10` follow the level but poking them before the stairs changes nothing; `0042` changes the monster groups met | RAM | open |
+| Level warp | `@stairs_hero,LV:I-1:I:ID` (+`NOFIGHT`): pokes the level index `001E` and the dungeon's level table `2FC00+I`, then takes the cellar stairs; the stairs code (A7D3: INC 1E, LDA FC00,X -> E0, JMP 08B1 loader) loads the level | code | verified (all 16 levels) |
+| No forced fight on arrival | `NOFIGHT` = `poke:A830=EAEA` (the INC $ED of the forced-fight square check) | code | verified |
+| End the final fight | `poke:0408=000000` (counts of the up-to-four monster groups, text page memory) before the round | RAM | verified |
 | Cheat codes | none known for the Apple II version; the web hosts with the manual and editors were not reachable | - | - |
 
 ### Saves (rom/saves/bards-tale/, never committed)
@@ -173,11 +183,17 @@ None downloaded. Own export: `01_start` (see `saves/README.md`), loads with `sav
 | 0001 | 1 | east coordinate | diff + poke, verified |
 | 0002 | 1 | facing 0 N, 1 E, 2 S, 3 W | poke + "Facing" message, verified |
 | 0007 / 0008 | 1 | view-drawing scratch copies of y / x | code at AB34 |
-| 0042 | 1 | level index for monster groups (cellar 0, sewers 1 = 1, portal sewers = 2) | diff, poke changed the encounter |
-| 2CA80 + 0x80*n | 0x80 | party member n (0-5) record, also the roster buffer: +00 name (high ASCII, FF padded, 16), +10 4 bytes packed attributes, +1A..1F experience (6 decimal digits, one per byte; more digits may start at +14), +20 level, +22 max level (16-bit big-endian), +2A..2F gold (6 decimal digits), +30 max HP, +32 HP, +34 max SP, +36 SP (16-bit BE), +38 class (0 Warrior, 3 Conj, 4 Magi, 6 Bard, 7 Pala, 9 Monk; 1,2,5,8 by elimination: ?), +39 race (0 Human, 1 Elf, 2 Dwarf ...), +40.. items (not decoded) | records compared, pokes viewed, verified (gold, level, exp, HP, SP) |
+| 0042 | 1 | monster level of the current level (copied from 2FC10 at A62D) | code |
+| 001E | 1 | index of the current level in its dungeon (FC00 table); FF/below 0 -> back to the city at 2FC13/14 | code A7D3-A7F5, verified |
+| 00E0 | 1 | level id handed to the level loader `08B1` | code |
+| 0408 | 4 | monster group counts in a fight (Mangar: 02 03 01) | find, poke verified |
+| 2CA80 + 0x80*n | 0x80 | party member n (0-5) record, also the roster buffer: +00 name (high ASCII, FF padded, 16), +10 4 bytes packed attributes, +1A..1F experience (6 decimal digits, one per byte; more digits may start at +14), +20 level, +22 max level (16-bit big-endian), +2A..2F gold (6 decimal digits), +30 max HP, +32 HP, +34 max SP, +36 SP (16-bit BE), +38 class (0 Warrior, 3 Conj, 4 Magi, 6 Bard, 7 Pala, 9 Monk; 1,2,5,8 by elimination: ?), +39 race (0 Human, 1 Elf, 2 Dwarf ...), +40..43 spell levels Sorc, Conj, Magi, Wizd (verified: Review Board purchase), +50..5F eight item slots of (status, id): status 0 carried, 1 equipped, 2 unusable; ids follow Garth's list (01 Torch .. 09 Staff), 08 Mace, 12 Leather Gloves, 14 Mandolin, 20 Mithril Dagger | records compared, pokes viewed, verified (gold, level, exp, HP, SP, items, spell levels) |
 | 2F803 | 900 | city: building type per square (1-4 houses, others special), index uncertain | dump |
 | 2F800 | 484 | dungeon walls, index y*22+x: bits 7-6 west, 5-4 east, 3-2 south, 1-0 north; 0 open, 1 wall, 2 door, 3 secret door? | verified against bumps at the cellar stairs |
-| 2FA00 | 484 | dungeon square flags: 01 stairs up, 02 stairs down, 04 special event, 10 darkness (verified); 08 (an 11-square block in the sewers), 20, 40, 80 (squares inside rooms) unknown | scan + maps.py |
+| 2FA00 | 484 | dungeon square flags (dungeon code A80C, mask table B0B8): 01 stairs up, 02 stairs down, 04 special event, 08 darkness ("Darkness!", puts out light), 10 trap (cleared when it fires), 20 portal down (key D), 40 portal up (key E, needs levitation), 80 forced fight (cleared). ~~10 darkness~~ was wrong (scout) | code + verified |
+| 2FC00 | 8 | level ids of this dungeon (cellar/sewers 00 01 02 03, Catacombs 04-06, Castle 07-09, Kylearan 0A, Mangar 0B-0F) | dump, verified |
+| 2FC13 / 2FC14 | 1+1 | city y / x to return to when the party leaves upwards | code A7E9 |
+| 2FC15 | 1 | stairs direction parity (0 dungeons go down, 3 towers and castle go up) | code A7A3 |
 | 2FC10 | 1 | level number in the dungeon file (cellar 0, sewers 1 = 1, portal sewers 2; city 03 = other data) | dump |
 | 2FC16 | 10 | level name, high ASCII ("Sewers", "Cellars") | dump |
 
@@ -201,6 +217,8 @@ None downloaded. Own export: `01_start` (see `saves/README.md`), loads with `sav
 | city_parker, cellar_parker, sewers1_parker | archive party; Cellars; Sewers level 1 from the cellar |
 | sewers_portal, sewers_portal_lit | Sewers via the city portal (level byte 2) |
 | catacombs_parker, castle_parker, tower_parker | Catacombs 1 (TARJAN), Harkyn's Castle, Kylearan's tower |
+| stairs_hero | HERO party lit, facing the cellar stairs down: base of the level warp `LV` |
+| s_fled, s_healed, s_bought, s_saved | start set: first fight run from, temple, Garth's, party saved (export `02_first_save`) |
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -211,10 +229,10 @@ None downloaded. Own export: `01_start` (see `saves/README.md`), loads with `sav
 | comp.sys.apple2 thread (search snippet) | groups.google.com | names on the character disk are high ASCII | 2026-11-21 |
 
 ## Open questions
-- Level warp: which byte the stairs code reads for the next level (try a code search for the disk loader, or
-  the 0x40 squares of the portal sewers at 21,11 and 5,21, which may be portals down).
-- Which level of the Sewers the city portal leads to (level byte 2, stairs "a long way up"): Sewers 2 or 3?
-- Mangar's Tower: entry route (Kylearan's tower teleport / master key) and whether disk 4 is asked for.
+- ~~Level warp~~ solved (LV). ~~Which Sewers level the portal leads to~~: Sewers 3 (walls identical).
+- Mangar's Tower: the honest entry route (Kylearan's tower, the three shapes) not played; disk 4 was never
+  asked for (Mangar's Tower is on disk 3): what disk 4 holds is unknown.
+- Riddle answers (Kylearan's magic mouths, "What can bind the mightiest foes?" = Spectre Snare per the rumour).
 - Class codes 1, 2, 5, 8 and race codes 3-6 in the record; item list format at +40.
 - Spell codes beyond MAFL and ARFI (manual not reachable); bard songs need an instrument?
 - The five blank-message city squares (3,6 3,14 6,6 22,3 27,6).

@@ -56,7 +56,13 @@
     "HEROP": "HERO,REORDER",
     "FACE": "poke:0002={0}",
     "WARPC": "AT:{0}:{1},FACE:{2},j,w300,l,w300",
-    "MAFL": "c,w300,{0},w300,type:MAFL\\n,w600"
+    "MAFL": "c,w300,{0},w300,type:MAFL\\n,w600",
+    "LV": "poke:001E={0},poke:2FC0{1}={2},k,w600,y,w1200",
+    "NOENC": "poke:A6D0=09",
+    "NOFIGHT": "poke:A830=EAEA",
+    "KEEPFLAGS": "poke:A838=EAEA,poke:A854=EAEA",
+    "SPELLS": "poke:2CCC1=04,poke:2CD42=04,poke:2CD41=02",
+    "ITEMS": "poke:2CAD0=010301120001,poke:2CB50=01060002,poke:2CBD0=01140104,poke:2CC50=0112,poke:2CCD0=0109,poke:2CD50=0105"
   },
   "ram": {
     "y_north": {
@@ -76,8 +82,13 @@
     "level": {
       "addr": "2FC10",
       "size": 1
+    },
+    "dlevel_index": {
+      "addr": "001E",
+      "size": 1,
+      "fmt": "hex"
     }
   },
-  "work": "scouted 2026-11-21: boot, guild, new party, city scan (every building located), 16 checkpoints, party records, dungeon map decoder; not captured",
-  "open": "dungeon-level warp (no level variable found yet: stairs only); Mangar's Tower entry and disk 4 untested; 0x08/0x20/0x40/0x80 dungeon flags unverified; spell list from memory only (manual hosts blocked)"
+  "work": "captured 2026-11-21: main 132 shots (city, every service, all 16 dungeon levels lit, 25 monster groups, spells, Mangar, game over, ending), start 45 (honest new party to the first save), 16 decoded level maps, three lenses",
+  "open": "riddle answers and Kylearan's tower quest objects not played; bard tune effects and most spell codes unmeasured (manual unreachable); a fight won honestly with real rewards; disk 4 never asked for (Mangar's Tower is on disk 3)"
 }

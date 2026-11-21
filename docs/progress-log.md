@@ -16,6 +16,16 @@ Append-only, newest first.
 - Open: level 2, a magic item with a visible effect, the cellar solution, Skyway, Gurth City, Fields of Frotzen;
   walkthrough hosts are blocked by the network.
 
+## 2026-11-21 - The Bard's Tale (Apple II) registered, scouted and captured
+- Owner's upload (four disks, cracked release; the character disk holds a played roster). Scout: 16
+  checkpoints, city warp, records, dungeon walls and flags. Capture: `start` 45 (honest), `main` 132 to Mangar
+  and the ending (final fight by poke, captioned), lenses, a decoded map of all 16 dungeon levels in
+  `design/maps/` (the game has no automap). Verified cold by the coordinator (45/45, 132/132).
+- Tools: `dis6502.py --route` disassembles live memory at a checkpoint (asked twice); docs: archive.org
+  downloads blocked, one-time square flags.
+- Open: an honest won fight, bard song effects, riddle answers, what disk 4 holds; Apple II hi-res text reader
+  (backlog, asked twice).
+
 ## 2026-11-20 - Might and Magic II (DOS): new rules applied, set `start`
 - Owner re-uploaded the GOG ZIP (SHA-1 matches). `main` re-verified with the new tools from an empty cache:
   228/228, 213 s with 4 processes.

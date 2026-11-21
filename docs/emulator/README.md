@@ -29,6 +29,8 @@ playbooks (committed) are not. That is why every state is defined by a route.
 - Every capture keeps its full route, so `tools/shoot.py --verify` can prove it reproduces.
 - **RNG follows frame timing.** Different waits change encounters, drops and rolls. If a shot depends on luck,
   try `wN` variations before the deciding input and keep the one that works; it stays reproducible.
+- **One-time squares clear their flags as they fire** (forced fights, traps): dump a level's map before stepping
+  on its arrival square, or patch out the write-back (Bard's Tale Apple II, 2026-11-21).
 
 ## Tokens (comma-separated; full list in `tools/emu.py`)
 | Token | Effect | Use for |

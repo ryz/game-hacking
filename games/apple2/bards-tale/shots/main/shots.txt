@@ -1,0 +1,132 @@
+boot_crack | boot | Crack intro "Soft-cracked by Number 6", EA logo, "Thanks to the artist 08/12/85" | w250,!
+title_bw | title | Title: "The Bard's Tale / By Michael Cranford" in black and white | @title,!
+title_colour | title | Title in colour: "The song I sing / Will tell the tale ..." | @title,w300,!
+menu_utilities | menu | Utilities menu: Start game, Copy chars, Make a disk, Transfer chars | @title,space,w900,disk:2,space,w600
+menu_guild | menu | Guild of Adventurers: Check roster, Add, Remove, Disk options, New order, View | @guild
+menu_disk_options | menu | Guild Disk options: Create member, Save party, Delete member, Leave the game | @guild,d,w300
+system_race | system | Character creation: choose one of seven races | @guild,d,w300,c,w600
+system_class | system | Character creation: rolled attributes and the classes open to a Human | @guild,d,w300,c,w600,1,w400
+menu_roster | menu | Roster on the character disk (end of the list, new characters and *RYZ PARTY) | sav:01_start,GUILD,c,w1500
+inventory_stats | inventory | RYZ, level-1 Human Warrior: attributes, level, experience, gold | @city,1,w400
+inventory_items | inventory | ALFAR's items (Mace, Leather Gloves, Mthr Dagger, Mandolin) and spell levels | @city_parker,1,w400,space,w300
+hud_city | hud | Skara Brae with the new party: view, location name, message window, party roster | @city
+env_city_street | gameplay | Skara Brae: a street looking north | @city,j,w300
+env_city_houses | gameplay | Skara Brae: houses along a street | @city,j,w200,i,w200,i,w200,i,w300
+gameplay_where | gameplay | "?" location: "You are on Main Street. It's now early morning." | @city,shift+slash,w300
+shop_garth | shop | Garth's Equipment Shoppe: greeting | @city,GO:1A:12
+shop_menu | shop | Garth's: Buy, Sell, Identify, Pool gold | @city,GO:1A:12,1,w400
+shop_buy | shop | Garth's price list: Torch 5, Lamp 15, Broadsword 80 ... | @city,GO:1A:12,1,w400,b,w600
+system_review | system | Review Board: Advancement, Spell acquiring, Class change | @city,GO:17:14
+system_review_xp | system | Review Board: RYZ still needs 2000 experience to advance | @city,GO:17:14,a,w400,1,w400
+system_roscoe | system | Roscoe's Energy Emporium: spell points restored for gold | @city,GO:0C:15
+system_temple | system | Temple of 100 Blessings: healing | @city,GO:08:19
+dialogue_tavern | dialogue | Skull Tavern: order a drink, talk to the barkeep | @city,GO:01:08
+dialogue_drinks | dialogue | Scarlet Bard: Ale, Beer, Mead, Foul spirits, Ginger Ale, Wine | @city,GO:1C:05,o,w400,1,w400
+dialogue_madgod | dialogue | Temple of the Mad God: "Only those who know the name of the Mad one ..." | @city,GO:12:0D,s,w400
+gameplay_gate | gameplay | City gate blocked by a gigantic snow drift | @city,GO:00:0F
+gameplay_guardian | gameplay | Gate guarded by the statue of a Stone Golem: Attack or Leave | @city,GO:06:16
+gameplay_iron_gate | gameplay | Iron gate of Kylearan's tower | @city,GO:19:1B
+gameplay_magic_mouth | gameplay | Magic mouth: "none save Mangar may enter his desmesnes" | @city,GO:02:02
+gameplay_castle_entry | gameplay | Entry chamber of Harkyn's Castle | @city,GO:04:18
+extra_credits | extra | Room with Michael Cranford's portrait: "THE BARD'S TALE was designed ..." | @city,k,w400
+battle_encounter | battle | Encounter: 4 Skeletons and 1 Kobold, Fight or Run | @fight1,!
+battle_target | battle | Attack target: group A 4 Skeletons, group B 1 Kobold | @fight1,f,w600,a,w300,!
+battle_round | battle | Round report: skeletons claw, RYZ chops, CONDI killed | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI\n,w400,a,w300,d,w300,y,w300,w300,!
+inventory_hero_stats | inventory | MNZ, level-8 Elf Magician: 52 spell points, 47930 experience, 881 gold | @city_hero,SPELLS,ITEMS,6,w400
+inventory_hero_spells | inventory | MNZ's items: a Dagger equipped, Magician spell level 4, Conjurer 2 (poked) | @city_hero,SPELLS,ITEMS,6,w400,space,w300
+inventory_bard_items | inventory | EBO the Bard: Mandolin and Short Sword equipped | @city_hero,SPELLS,ITEMS,3,w400,space,w300
+shop_buy2 | shop | Garth's price list, next page: Buckler and more | @city,GO:1A:12,1,w400,b,w600,f,w400
+shop_sell | shop | Garth's: ALFAR sells an item, his list with prices | @city_parker,GO:1A:12,1,w400,s,w400
+shop_identify | shop | Garth's: identify an item, ALFAR's list | @city_parker,GO:1A:12,1,w400,i,w400
+shop_pool | shop | Garth's after Pool gold: RYZ now holds the party's 6738 gold | @city_hero,GO:1A:12,1,w400,p,w400
+system_spell_buy | system | Review Board: Conjurer spell level 2 costs DEDDO 1000 gold | @city_hero,GO:17:14,s,w400,5,w400
+system_class_change | system | Review Board class change: at least 3 spell levels needed first | @city_hero,GO:17:14,c,w400,6,w400
+system_advance | system | Review Board: RYZ, level 9, still needeth 18260 experience points | @city_hero,GO:17:14,a,w400,1,w400
+system_roscoe_price | system | Roscoe's: DEDDO's spell points (poked low) restored for 600 gold | @city_hero,poke:2CCB6=0011,GO:0C:15,5,w400
+dialogue_barkeep | dialogue | Skull Tavern: who will talk to the barkeeper? | @city_hero,GO:01:08,t,w400
+dialogue_barkeep_tip | dialogue | "Talk ain't cheap," the barkeep says: how much will you tip him? | @city_hero,GO:01:08,t,w400,1,w400
+dialogue_rumour | dialogue | Rumour after a 100 gold tip: "The Spectre Snare can draw in even the mightiest" | @city_hero,GO:01:08,t,w400,1,w400,type:100\n,w600
+battle_golem | battle | The Stone Golem statue comes to life: Fight or Run | @city_hero,GO:06:16,a,w600,!
+gameplay_tower_entry | gameplay | Entry chamber of Kylearan's Amber Tower | @city,GO:1B:1B
+gameplay_sewer_portal | gameplay | The sewer portal at the north-west corner of the city | @city,GO:01:01
+menu_new_order | menu | New order: the party reorders its six places | @city_hero,n,w300
+system_party_attack | system | P outside a fight: RYZ attacks his own party (Party attack, Defend, Use) | @cellar_hero_lit,p,w400
+system_use | system | U: who will use an item? | @cellar_hero_lit,u,w300
+system_mafl | system | MAFL (Mage Flame) cast: light icon, the cellar wall shows | @cellar_hero_lit
+spell_cast_prompt | system | C: who will cast a spell? | @cellar_hero_lit,c,w300
+spell_scsi | system | SCSI (Scry Site): levels below and squares from the entry stairs | @cellar_hero_lit,SPELLS,c,w300,6,w300,type:SCSI\n,w600
+spell_maco | system | MACO (Magic Compass): compass icon beside the torch | @cellar_hero_lit,SPELLS,c,w300,5,w300,type:MACO\n,w600
+spell_lere | system | LERE (Lesser Revelation): the light icon turns blue | @cellar_hero_lit,SPELLS,c,w300,5,w300,type:LERE\n,w600
+spell_levi | system | LEVI (Levitation): levitation icon under the light | @cellar_hero_lit,SPELLS,c,w300,5,w300,type:LEVI\n,w600
+spell_aren | system | AREN: eye icon (trap and secret detection) | @cellar_hero_lit,SPELLS,c,w300,6,w300,type:AREN\n,w600
+spell_wohl | system | WOHL (Word of Healing): cast at member # | @cellar_hero_lit,SPELLS,c,w300,5,w300,type:WOHL\n,w600
+song_no_instrument | system | B: EBO the Bard plays, "He is not using an instrument!" | @cellar_hero_lit,b,w300,3,w40,!
+song_prompt | system | EBO with a Mandolin: "Play tune #[1-6]" | @cellar_hero_lit,ITEMS,b,w300,3,w300
+env_cellar_corridor | gameplay | Wine cellar: corridor at 4,1 looking east | @stairs_hero,NOFIGHT,LV:FF:0:00,n,w300,AT:04:01,FACE:01,j,w300,l,w300
+env_cellar_door | gameplay | Wine cellar: a door ahead at 18,7 looking north | @stairs_hero,NOFIGHT,LV:FF:0:00,n,w300,AT:12:07,FACE:00,j,w300,l,w300
+env_sewers2_corridor | gameplay | Sewers level 2: corridor at 20,5 looking south | @stairs_hero,NOFIGHT,LV:01:2:02,AT:14:05,FACE:02,j,w300,l,w300
+env_sewers3_corridor | gameplay | Sewers level 3: corridor at 5,8 looking west | @stairs_hero,NOFIGHT,LV:02:3:03,AT:05:08,FACE:03,j,w300,l,w300
+env_catacombs1_corridor | gameplay | Catacombs level 1: corridor at 8,3 looking east | @stairs_hero,NOFIGHT,LV:FF:0:04,AT:08:03,FACE:01,j,w300,l,w300
+env_catacombs1_door | gameplay | Catacombs level 1: a door ahead at 10,3 looking west | @stairs_hero,NOFIGHT,LV:FF:0:04,AT:0A:03,FACE:03,j,w300,l,w300
+env_catacombs2_corridor | gameplay | Catacombs level 2: corridor at 12,9 looking east | @stairs_hero,NOFIGHT,LV:00:1:05,AT:0C:09,FACE:01,j,w300,l,w300
+env_catacombs3_corridor | gameplay | Catacombs level 3: corridor at 12,1 looking north | @stairs_hero,NOFIGHT,LV:01:2:06,AT:0C:01,FACE:00,j,w300,l,w300
+env_castle1_corridor | gameplay | Harkyn's Castle level 1: corridor at 18,4 looking north | @stairs_hero,NOFIGHT,LV:FF:0:07,AT:12:04,FACE:00,j,w300,l,w300
+env_castle1_door | gameplay | Harkyn's Castle level 1: a door ahead at 8,6 looking west | @stairs_hero,NOFIGHT,LV:FF:0:07,AT:08:06,FACE:03,j,w300,l,w300
+env_castle2_corridor | gameplay | Harkyn's Castle level 2: corridor at 2,4 looking west | @stairs_hero,NOFIGHT,LV:00:1:08,AT:02:04,FACE:03,MAFL:5,j,w300,l,w300
+env_castle3_corridor | gameplay | Harkyn's Castle level 3: corridor at 9,1 looking north | @stairs_hero,NOFIGHT,LV:01:2:09,AT:09:01,FACE:00,j,w300,l,w300
+env_kylearan_corridor | gameplay | Kylearan's Amber Tower: corridor at 6,1 looking north | @stairs_hero,NOFIGHT,LV:FF:0:0A,AT:06:01,FACE:00,j,w300,l,w300
+env_kylearan_door | gameplay | Kylearan's Amber Tower: a door ahead at 17,10 looking north | @stairs_hero,NOFIGHT,LV:FF:0:0A,AT:11:0A,FACE:00,j,w300,l,w300
+env_mangar1_corridor | gameplay | Mangar's Tower level 1: corridor at 9,1 looking north | @stairs_hero,NOFIGHT,LV:FF:0:0B,AT:09:01,FACE:00,j,w300,l,w300
+env_mangar2_corridor | gameplay | Mangar's Tower level 2: corridor at 15,12 looking north | @stairs_hero,NOFIGHT,LV:00:1:0C,AT:0F:0C,FACE:00,MAFL:5,j,w300,l,w300
+env_mangar3_corridor | gameplay | Mangar's Tower level 3: corridor at 1,3 looking west | @stairs_hero,NOFIGHT,LV:01:2:0D,AT:01:03,FACE:03,j,w300,l,w300
+env_mangar3_door | gameplay | Mangar's Tower level 3: a door ahead at 4,4 looking east | @stairs_hero,NOFIGHT,LV:01:2:0D,AT:04:04,FACE:01,j,w300,l,w300
+env_mangar5_corridor | gameplay | Mangar's Tower level 5: corridor at 5,8 looking north | @stairs_hero,NOFIGHT,LV:03:4:0F,AT:05:08,FACE:00,MAFL:5,j,w300,l,w300
+env_sewers | gameplay | Sewers: lit corridor | @sewers_portal_lit
+gameplay_sewers_inscription | gameplay | Sewers inscription: "Seek the Snare from behind the scenes" | @sewers_portal_lit,GO:05:00
+gameplay_sewers_trap | gameplay | Sewers trap: a tripwire, a stone block falls | @sewers_portal_lit,GO:03:06
+battle_spinners | battle | Fixed encounter in the sewers: 3 Spinners | @sewers_portal_lit,GO:01:06,!
+battle_humans | battle | Sewers ambush: 1 Bladesman, 2 Wizards, 6 Magicians and 1 Assassin | @sewers_portal_lit,GO:02:09,!
+gameplay_sewers_inscription2 | gameplay | Sewers inscription: "The hand of time writes and cannot erase." | @sewers_portal_lit,GO:07:0D
+gameplay_stairs | gameplay | Wine cellar: "There are stairs here, going down. Take them?" | @cellar_hero_lit,AT:07:11,FACE:00,j,w300,l,w300,k,w600
+gameplay_sewers_arrival | gameplay | Sewers level 1: "The shallow water holds unknown terrors" | @stairs_hero,NOFIGHT,LV:00:1:01,n,w300
+gameplay_trap | gameplay | Harkyn's Castle level 2: "TRAP! You've hit a tripwire" | @stairs_hero,NOFIGHT,LV:00:1:08
+gameplay_darkness | gameplay | Mangar's Tower level 2: "Darkness!" puts out the light | @stairs_hero,NOFIGHT,LV:00:1:0C
+gameplay_smoke | gameplay | Mangar's Tower level 5: "Smoke in your eyes!" | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:09:01
+gameplay_ky_statue | gameplay | Kylearan's Tower: a crystal statue comes to life, Fight or Exit | @stairs_hero,NOFIGHT,LV:FF:0:0A,GO:04:01
+gameplay_ky_riddle | gameplay | Magic mouth: "Name the endless byway and your path shall be guaranteed" | @stairs_hero,NOFIGHT,LV:FF:0:0A,GO:0C:02
+gameplay_ky_voice | gameplay | A voice: "Beware the sting at the tail (south) of the serpent-way." | @stairs_hero,NOFIGHT,LV:FF:0:0A,GO:05:04
+gameplay_ky_inscription | gameplay | Inscription: "As a guardian he must walk ... his name means rock" | @stairs_hero,NOFIGHT,LV:FF:0:0A,GO:09:0A
+gameplay_ky_riddle2 | gameplay | Magic mouth: "Name the one of cold, foretold twofold" | @stairs_hero,NOFIGHT,LV:FF:0:0A,GO:0D:0A
+dialogue_kylearan | dialogue | Kylearan: "Put away your weapons, for I am your ally, not an enemy" | @stairs_hero,NOFIGHT,LV:FF:0:0A,GO:11:0D
+gameplay_ky_inscription2 | gameplay | Inscription: "Made of earth, yet without soul, as living statue he is whole" | @stairs_hero,NOFIGHT,LV:FF:0:0A,GO:0D:0E
+gameplay_silver_triangle | gameplay | Kylearan's Tower: RYZ has found a silver triangle | @stairs_hero,NOFIGHT,LV:FF:0:0A,GO:02:14
+gameplay_m5_mouth | gameplay | Magic mouth: "Death to those who would attack the mighty one!" | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:01
+gameplay_m5_pool | gameplay | Mangar's Tower: a pool of boiling liquid, Dive in or Exit | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:15:0A
+gameplay_m5_shapes | gameplay | Etched on the wall: a square, a circle and a triangle | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:0F
+gameplay_m5_treasure | gameplay | "This is Mangar's treasure trove. Two dragons are here ..." | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:00:11
+gameplay_m5_bind | gameplay | Magic mouth: "What can bind the mightiest foes?" | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:15
+battle_green_dragons | battle | Kylearan's Tower: "You face death itself, in the form of 6 Green dragons" | @stairs_hero,NOFIGHT,LV:FF:0:0A,GO:06:0F,!
+battle_storm_giants | battle | Mangar's Tower: 5 Storm giants assault without warning | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0D:00,w60,!
+battle_ancient_enemies | battle | Mangar's Tower: 3 Ancient enemies | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:11:03,w60,!
+battle_balrogs | battle | Mangar's Tower: 4 Balrogs | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:14:05,w60,!
+battle_spectres | battle | Mangar's Tower: 4 Spectres | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:0A,w60,!
+battle_archmage | battle | Mangar's Tower: 1 Archmage | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:12:0D,w60,!
+battle_ogre_magi | battle | Catacombs level 2: 7 Ogre magi advance | @stairs_hero,LV:00:1:05,w60,!
+battle_magicians | battle | Catacombs level 2: a Wight, 6 Magicians and a Sorcerer | @stairs_hero,w25,LV:00:1:05,w60,!
+battle_blue_dragons | battle | Harkyn's Castle: 3 Blue dragons | @stairs_hero,w35,LV:FF:0:07,w60,!
+battle_stone_giants | battle | Harkyn's Castle: Stone giants, Black widows and Goblin lords | @stairs_hero,w50,LV:FF:0:07,w60,!
+battle_xorns | battle | Mangar's Tower level 1: Lurkers, 5 Magicians and 2 Xorns | @stairs_hero,LV:FF:0:0B,w60,!
+battle_fred | battle | Mangar's Tower level 1: "You face 1 Fred" | @stairs_hero,w35,LV:FF:0:0B,w60,!
+battle_phantoms | battle | Mangar's Tower level 1: Shadows and Phantoms | @stairs_hero,w50,LV:FF:0:0B,w60,!
+battle_fire_giant | battle | Mangar's Tower level 1: a Fire giant, 6 Magicians and a Wizard | @stairs_hero,w25,LV:FF:0:0B,w60,!
+battle_ivory_monks | battle | Mangar's Tower level 1: Ivory monks advance | @stairs_hero,w70,LV:FF:0:0B,w60,!
+boss_mangar | boss | Mangar's antechamber: "Die, mortals!" he screams | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:14,w60,!
+boss_mangar_friends | boss | "With a wave of his hand a few of his close friends drop by" | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:14,space,w600,w60,!
+boss_mangar_group | boss | 2 Greater demons, 3 Vampire lords and 1 Mangar | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:14,space,w600,space,w600,w60,!
+boss_mangar_spell | boss | Mangar casts a spell at the party; MNZ and DEDDO fried (hit points poked low) | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:14,space,w600,space,w600,poke:2CAB2=0003,poke:2CB32=0002,poke:2CBB2=0004,poke:2CC32=0001,poke:2CCB2=0002,poke:2CD32=0003,f,w600,d,w300,d,w300,d,w300,d,w300,d,w300,d,w300,y,w300,w150*4,!
+gameover_party_dead | gameover | "Alas, your party has expired, but gone to adventurer heaven." | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:14,space,w600,space,w600,poke:2CAB2=0003,poke:2CB32=0002,poke:2CBB2=0004,poke:2CC32=0001,poke:2CCB2=0002,poke:2CD32=0003,f,w600,d,w300,d,w300,d,w300,d,w300,d,w300,d,w300,y,w300,w150*9,!
+ending_treasure | ending | Mangar's group defeated (group counts poked to 0): Treasure! | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:14,space,w600,space,w600,poke:0408=000000,f,w600,d,w300,d,w300,d,w300,d,w300,d,w300,d,w300,y,w300,w120,!
+ending_kylearan | ending | Kylearan: "Well done! Your quest in Skara Brae is now finished!" | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:14,space,w600,space,w600,poke:0408=000000,f,w600,d,w300,d,w300,d,w300,d,w300,d,w300,d,w300,y,w300,w120*4,!
+ending_winter | ending | "The evil one is now defeated, and his spell of winter will soon end." | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:14,space,w600,space,w600,poke:0408=000000,f,w600,d,w300,d,w300,d,w300,d,w300,d,w300,d,w300,y,w300,w720,space,w300,w150,!
+ending_bonus | ending | "You will all receive a gold and experience bonus of 300,000 units." | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:14,space,w600,space,w600,poke:0408=000000,f,w600,d,w300,d,w300,d,w300,d,w300,d,w300,d,w300,y,w300,w720,space,w300,space,w600,!
+ending_vanishes | ending | "Fare well and live long!" Kylear vanishes; the party stands in the tower | @stairs_hero,NOFIGHT,LV:03:4:0F,GO:0A:14,space,w600,space,w600,poke:0408=000000,f,w600,d,w300,d,w300,d,w300,d,w300,d,w300,d,w300,y,w300,w720,space,w300,space,w600,space,w600,!
