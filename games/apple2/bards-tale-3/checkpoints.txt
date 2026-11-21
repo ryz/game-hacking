@@ -40,3 +40,4 @@ tarjan_cmds | Endgame fight: commands set (3 attack, casters defend): Use these 
 dragon_cmds | Endgame party vs 1 Black Dragon (50') in Tarjan's realm: commands chosen | @tarjan_save,AT:00:02,w600,f,w300,a,w300,settle,a,w300,a,w300,d,w300,d,w300,d,w300,settle
 w_stairs34 | UnterBrae 1 (dungeon side A), on the stairs down at 12,14 (dark): There are stairs here, going down. Take them? | @cat_stairs,LV:34:00,AT:0E:0C,w300,settle,w100,settle
 w_lit35 | UnterBrae 2 arrival on the stairs up at 12,14 facing east, Morganna's Mage Flame lit (from w_stairs34: Yes, No, MAFL) | @w_stairs34,y,w600,settle,n,w300,settle,c,w200,settle,5,w300,settle,type:MAFL\n,w600,settle,space,w300,settle
+m_lit35 | UnterBrae 2 by the level warp: arrival at 0,0 facing north, Mage Flame lit; automap empty but for this square (automap sequence start) | @cat_stairs,LV:35:01,LIGHT,w60,settle
