@@ -1,3 +1,14 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+title | Title screen (bard with lute; animated, never settle) | TITLE
+restore_prompt | Character disk in: "Do you wish to restore your last saved game? Yes/No" | CHARDISK
+camp | Camp of Skara Brae menu, empty party (No to restore) | CAMP
+party | Camp: factory party *Interplayers added (Ironpants Greenbolt Gwendolyn Shadow Morganna Runeflinger) | @camp,PARTY
+wild | Wilderness one pace south of the refugee camp, facing south: first control | @party,WILD
+tarjan_save | Restored saved game from the character disk (dungeon side B): veteran party + Vampire Lord in Tarjan's realm | RESTORE
+fight_puma | Leaving the Scrapwood tavern: 1 Puma (20') - Fight / Advance / Run | @wild,AT:0C:11,w300,e,w300,settle
+fight_confirm | Puma fight: all commands chosen (attack x4, defend x2): Use these commands? Yes/No | @fight_puma,f,w200,settle,a,w100,a,w100,a,w100,a,w100,a,w100,a,w100,settle,w600,settle,d,w100,d,w100,settle,w400,settle,w400,settle
+skara | Skara Brae ruins, inside the city gates (west edge), facing west | @wild,AT:0F:0A,w60,shift+slash,w200,space,w200,settle
+catacombs | Catacombs level 1 (dungeon side A), arrival on the up stairs, facing north | @skara,AT:0C:0B,w300,y,w400,type:TARJAN\n,w600,settle,space,w600,settle,disk:3,space,w900,settle,n,w200,settle
+sideA_prompt | Temple of the Mad God: TARJAN spoken, the priest sends the party into the catacombs: "Please insert your Dungeon Disk Side A" | @skara,AT:0C:0B,w300,y,w400,type:TARJAN\n,w600,settle,space,w600,settle
+cat_stairs | Catacombs level 1 arrival: "There are stairs here, going up. Do you wish to take them?" (warp base: LV) | @sideA_prompt,disk:3,space,w900,settle

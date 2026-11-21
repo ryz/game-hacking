@@ -40,8 +40,32 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {},
+  "macros": {
+    "TITLE": "w900",
+    "CHARDISK": "TITLE,space,w1200,disk:2,space,w900",
+    "CAMP": "CHARDISK,n,w900",
+    "RESTORE": "CHARDISK,y,w600,disk:4,space,w1200",
+    "PARTY": "a,w300,down*6,enter,w600",
+    "WILD": "e,w900",
+    "AT": "poke:0009={0},poke:000A={1},l,j,w60",
+    "FACE": "poke:000B={0},l,j,w60"
+  },
+  "ram": {
+    "north": {
+      "addr": "0009",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "east": {
+      "addr": "000A",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "facing": {
+      "addr": "000B",
+      "size": 1
+    }
+  },
   "source": {
     "note": "Owner's second upload 2026-11-21 (thief_of_fate-apple_ii-dsk.zip). Boot, character and dungeon side 2 are identical to the first upload; dungeon side 1 is a full 143360-byte image (the first upload's was 165 bytes short and differed from track 23 on, 191 of 560 sectors). The 143358-byte images were padded with two zero bytes at the end to 143360 (zeros there in both uploads: harmless) and renamed so the disks sort in play order; the padded images are the registered dump. Nothing of this is committed.",
     "uploaded": [
