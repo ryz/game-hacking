@@ -23,8 +23,16 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Phantasie is a party role-playing game: the player creates up to six adventurers in a town Guild (five races
+plus "random creature", six classes, rolled attributes) **(verified: route of `guild_created`)**, equips them in
+town (Armory, Bank, Inn, Mystic) **(verified)** and leads them square by square across the top-down wilderness
+of the Isle of Gelnor **(verified)** and through dungeons **(source)**. Fights are menu-driven: the party first
+chooses an approach (beg mercy, threaten, greet, fight, flee), then each member an attack style or a spell
+**(source)**. Experience becomes levels only by paid training at a Guild **(source)**. The goal is to defeat
+the Black Knights and their master Nikademus; 20 scrolls tell the story **(source)**. Saving happens only in
+towns and divides the carried gold back into the members' bank accounts **(verified: `saved_start`)**. Several
+parties can exist side by side in different towns **(source; verified: the disk holds a second party in
+Pineville)**.
 
 ## Documents
 | Document | Covers |
@@ -40,3 +48,4 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Commodore 64 manual with supplement | https://archive.org/details/Phantasie_I_1986_SSI | races, classes, towns, combat options, saving (scout 2026-11-21) |

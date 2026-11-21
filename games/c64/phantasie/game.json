@@ -311,13 +311,24 @@
     "ADDNEXT": "down,return,w60,settle,return,w60,settle",
     "WD": "return,w60,settle,type:{0},return,w60,settle",
     "SAVE": "g,w60,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w60,settle,return,w120,settle,w2100,settle",
-    "LEAVE": "return,w300,settle,return,w300,settle,w1500,settle,w2100,settle"
+    "LEAVE": "return,w300,settle,return,w300,settle,w1500,settle,w2100,settle",
+    "STEP": "{0}:20,w100"
   },
   "ram": {
     "gold": {
       "addr": "9ED2",
       "size": 2,
       "fmt": "le"
+    },
+    "ryz_hp": {
+      "addr": "9A30",
+      "size": 1
+    },
+    "ryz_str": {
+      "addr": "9A25",
+      "size": 1
     }
-  }
+  },
+  "work": "scouted 2026-11-21: boot, party of six, first save, 11 checkpoints, RAM map, 31-line plan; not captured",
+  "open": "no encounter met yet (combat screens unseen); dungeon disk swap untried; outdoor position bytes not found"
 }
