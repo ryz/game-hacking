@@ -89,6 +89,6 @@
       "fmt": "hex"
     }
   },
-  "work": "scouted 2026-11-21: boot, guild, new party, city scan (every building located), 16 checkpoints, party records, dungeon map decoder; not captured",
-  "open": "dungeon-level warp (no level variable found yet: stairs only); Mangar's Tower entry and disk 4 untested; 0x08/0x20/0x40/0x80 dungeon flags unverified; spell list from memory only (manual hosts blocked)"
+  "work": "captured 2026-11-21: main 132 shots (city, every service, all 16 dungeon levels lit, 25 monster groups, spells, Mangar, game over, ending), start 45 (honest new party to the first save), 16 decoded level maps, three lenses",
+  "open": "riddle answers and Kylearan's tower quest objects not played; bard tune effects and most spell codes unmeasured (manual unreachable); a fight won honestly with real rewards; disk 4 never asked for (Mangar's Tower is on disk 3)"
 }
