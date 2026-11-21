@@ -29,6 +29,36 @@ Never delete entries.
 - Status: gamestable rule promoted into skill.md 2026-11-21 (second case: the scout skill already has it); dos.md
   note extended; the settle noise is now a second case -> backlog row; `call=N` across sessions and `unsnap`
   editing shots.txt logged.
+### 2026-11-20 - Might and Magic II (Apple II), automap
+- Task: add the Cartographer automap to the main set: one map partly walked, filled maps (Middlegate, C2, cavern).
+- Worked: snapshotting 10000-1FFFF and 20000-2FFFF with peek and diffing around one step found the visited bits
+  in auxiliary RAM in ~3 calls; a 256-byte block with walls on every edge found the wall map at once; a walker on
+  emu.start/emu.play checking each step against the position byte gave a reproducible honest walk in one call.
+- Friction: play.py find/dump/diff did not cover aux RAM or the language card (own peek-dump diff); a poke into
+  page 2 looked ineffective because `m` rebuilds it (3 calls); shoot.py reports "NOT settled" for every shot of
+  this game (all screens animate).
+- Proposed rule change: apple2.md Memory: diff 10000-1FFFF too; raise the find/diff backlog row.
+- Corrected: coordinator reran --verify --only on the 4 new ids from an empty cache (4/4), looked at all four
+  maps; ran gamestable.py (README/status were stale after the game.json change).
+- Status: find/dump/diff range asked twice -> built 2026-11-20 (Apple II SEARCH = mapped 48K + aux + language
+  card; apple2.md updated, backlog row moved to done); "NOT settled" noise logged.
+
+### 2026-11-20 - Might and Magic II (Apple II)
+- Task: capture `main` and `start` for Might and Magic II (Apple II), solve the year variable, try the Sheltem fight.
+- Worked: converting the DOS set's routes with a script gave ~150 working Apple II routes in three preview
+  sheets; DOS event squares and start-set walking keys transfer one to one; `?` frames and `--timeline` found
+  combat and victory frames; diffing a counter the game advances (the day, by resting) led to the century byte.
+- Friction: `play.py dump`/`diff` cover only 0000-BFFF on the Apple II while this game keeps its state in the
+  language card (own 192K dump script); encounter pictures load ~600 frames after "Encounter!"; a `freeze`
+  cannot undo a condition set before it started.
+- Proposed rule change: apple2.md: search all of 0-2FFFF (state in the language card), tool wish for
+  find/dump/diff there; skill step 2: convert a captured port's routes with a script and preview in bulk.
+- Corrected: coordinator deleted the cache and reran --verify: start 45/45, main 216/216; one caption over 80
+  characters (gameplay_luck_plaque) shortened with recaption and republished; sheet 3 checked (Year= shows 900
+  on some year-800 shots: the display quirk is in findings.md).
+- Status: port-route conversion promoted 2026-11-20 into skill.md step 2 (second case: Might and Magic I Apple
+  II replayed the DOS routes); language card note -> apple2.md; find/dump/diff range -> backlog; encounter
+  load time already in the game's playbook.
 
 ### 2026-11-20 - Might and Magic II (DOS, set `start`)
 - Task: set `start` for an honest new party from power-on to the first inn sign-in.
@@ -47,6 +77,21 @@ Never delete entries.
   games use them, so it would be noise.
 - Status: coordinator lesson in `skills/coordinator/feedback.md` (open); walk.py in `docs/backlog.md`; id
   repeat logged.
+
+### 2026-11-20 - Wizardry II (Apple II)
+- Task: capture `start` (35) and `main` (229) for apple2/wizardry-2, plus the three lens documents.
+- Worked: preview.py batches without a play.py session; `--text` captions for town screens; cropped
+  `--timeline` sheets with `--page 90` found every timed battle, chest and guardian message; a montage script
+  checked 58 new shots at once (caught captions where monsters struck first); a door-kick route generator from
+  the decoded map (tools/doors.py) gave 13 encounters in two previews.
+- Friction: captions edited in the work shots.txt do not reach index.json; --verify/--publish-only keep the old
+  caption (second pass with recaption, one commit with long captions); preview --set does not flag identical
+  frames inside an unshot plan.
+- Proposed rule change: backlog: shoot.py takes captions/categories from the work shots.txt or warns; apple2 /
+  Wizardry playbooks: after a poke warp the wireframe view is stale until a turn (`l,w200,r,w200`).
+- Corrected: coordinator deleted the cache and reran --verify: start 35/35, main 229/229; sheet 3 checked.
+- Status: caption sync and identical-frame flag -> backlog; stale view -> already in the game's playbook (Read
+  first, Shortcuts WARP row); logged.
 
 ### 2026-11-20 - Sword of Vermilion (Mega Drive, run 4: town talk, encounters with map)
 - Task: outdoor talk shots with the hero and speaker side by side mid-screen (owner's Stow example) and overworld

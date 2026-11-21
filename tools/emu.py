@@ -99,10 +99,27 @@ class Game:
         if not os.path.exists(self.rom):
             raise SystemExit("ROM missing: %s (copy your dump there; SHA-1 %s)" % (
                 os.path.relpath(self.rom, ROOT), self.meta.get("sha1")))
-        sha = hashlib.sha1(open(self.rom, "rb").read()).hexdigest()
+        data = open(self.rom, "rb").read()
+        sha = hashlib.sha1(data).hexdigest()
         if self.meta.get("sha1") and sha != self.meta["sha1"]:
+            if self.same_disks(data):
+                return self.meta["sha1"]
             raise SystemExit("ROM %s has SHA-1 %s, game.json expects %s" % (self.rom, sha, self.meta["sha1"]))
         return sha
+
+    def same_disks(self, data):
+        """A ZIP of disk images packed again (other timestamps or compression, so other bytes) is the same dump
+        when every disk named in game.json "header" "disks" is in it under that name with that SHA-1."""
+        import io, zipfile
+        disks = (self.meta.get("header") or {}).get("disks") or []
+        if not disks or not all(d.get("name") and d.get("sha1") for d in disks):
+            return False
+        try:
+            z = zipfile.ZipFile(io.BytesIO(data))
+        except zipfile.BadZipFile:
+            return False
+        have = {os.path.basename(n): hashlib.sha1(z.read(n)).hexdigest() for n in z.namelist() if not n.endswith("/")}
+        return have == {d["name"]: d["sha1"] for d in disks}
 
     def rom_file(self, variant=None):
         """The ROM to load: the dump, or a patched copy built from game.json "rom_variants" (work/roms/)."""

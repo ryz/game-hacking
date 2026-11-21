@@ -40,3 +40,11 @@ sphinx_answer | Floor 6 (1,2): 'ANSWER ?' after the riddle's five pages | @sphin
 sphinx_right | Floor 6 (1,2): 'RIGHT!' after typing THE KNIGHT OF DIAMONDS (the party stays on the square; a wrong answer says WRONG! and puts it back on (1,1)) | @sphinx_answer,type:THE KNIGHT OF DIAMONDS\n,w600,settle
 one_alone | Floor 6 (1,3), kicked north from the sphinx: 'THE APPARITION REAPPEARS AND INTONES: "ONE ALONE."' | @sphinx_right,k,w900,settle
 temple_door | Floor 1 (9,9) facing north, teleported from floor 6 (1,4): the door of Gnilda's temple ahead (party of six) | @one_alone,k,w900,settle
+s_util | Start set: Wizardry Utilities menu with the Wizardry I scenario disk at hand as disk 3 (sav:00_transfer) | pow,sav:00_transfer,MENU,u,w600,settle
+s_imported | Start set: Utilities menu after T)RANSFER of all six (RYZ CONDI EBO CUBI DEDDO MNZ, one pass each) | @s_util,XFER:a,XFER:b,XFER:c,XFER:d,XFER:e,XFER:f,settle
+s_castle | Start set: Castle before any party is formed (after L)eave of the Utilities and S)tart) | @s_imported,l,w600,disk:1,enter,w900,START,settle
+s_training | Start set: Training Grounds name prompt (Castle, Edge of Town, T) | @s_castle,TRAINING,settle
+s_wiped | Start set: Castle after the four characters of the earlier player were deleted in the Training Grounds | @s_training,WIPE,enter,w400,settle
+b_mant | Floor 3 (5,13): 4 MANTICORES, RYZ'S OPTIONS (kicked into the room) | @gmaze,WARP:03:04:0D,poke:730E=0100,l,w200,r,w200,k,w600,w900,settle
+b_demons | Floor 6 (17,0): 4 GREATER DEMONS, 4 LVL 8 NINJAS, 9 DEMONIC FIGURES, RYZ'S OPTIONS | @gmaze,WARP:06:10:00,poke:730E=0100,l,w200,r,w200,k,w600,w900,settle
+b_skulls | Floor 6 (3,17): 2 EVIL EYES, 2 SKULLS, RYZ'S OPTIONS | @gmaze,WARP:06:02:11,poke:730E=0100,l,w200,r,w200,w5,k,w600,w900,settle

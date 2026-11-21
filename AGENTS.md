@@ -17,7 +17,7 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 
 Games: the table in `README.md` (what is here) and the one in `docs/status.md` (sets with shot counts, lens
 documents, open items). Both are written by `python3 tools/gamestable.py` from each game's `game.json` fields
-"edition", "work" and "open": change those, never the tables. 29 games on 9 platforms as of 2026-11-21.
+"edition", "work" and "open": change those, never the tables. 31 games on 9 platforms as of 2026-11-21.
 
 ## Rules (all work)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`, `*.sfc`, `*.smc`,
@@ -58,7 +58,7 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
   into `rom/kickstart/` (never committed).
 - Register a ROM: `python3 tools/intake.py ROM [--slug NAME] [--region jp|na|eu] [--patch PATCH[:headered|unheadered] ...]` -> `games/<platform>/<slug>/` +
   `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`; 6502 code:
-  `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]`; 68000 code: `python3 tools/dis68k.py SLUG ADDR [N]`,
+  `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]` (NES) or `SLUG --route @cp ADDR [N]` (live memory, Apple II); 68000 code: `python3 tools/dis68k.py SLUG ADDR [N]`,
   `--xref ADDR` (who reads a variable).
 - SLUG is the game's folder name; write `PLATFORM/SLUG` (`dos/might-and-magic`) when two platforms have the
   same slug. Work files follow the same shape: `work/shots/<platform>/<slug>/`, `work/cache/...`, `work/intake/...`.
