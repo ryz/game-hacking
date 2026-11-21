@@ -1,3 +1,11 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+title | Title: "The Bard's Tale / By Michael Cranford", the bard animated (fixed wait, no settle) | TITLE
+guild | Guild of Adventurers menu, no party, character disk in drive 1 | GUILD
+party | Guild: six new level-1 characters RYZ CONDI EBO CUBI DEDDO MNZ created on the character disk and added | @guild,MAKE6,ADD6,w30
+city | Skara Brae, Main Street outside the Guild, new party, facing east (early morning) | @party,e,w900
+city_parker | Skara Brae outside the Guild with the roster's played party *PARKER SS MGC (level-13 monk ALFAR etc.) | @guild,LOAD:*PARKER SS MGC,e,w900
+sewers_portal | Sewers, the level the city portal at (1,1) leads to (level byte 2), at the stairs "a long way up" (dark), *PARKER party, dungeon disk 1 in drive | @city_parker,GO:01:01,y,w600,disk:3,space,w900,settle,n,w300,settle
+sewers_portal_lit | Same, lit by PARKER's MAFL, *PARKER party | @sewers_portal,c,w300,settle,5,w300,type:MAFL\n,w600,settle,n,w300,settle
+cellar_parker | Wine cellar ("Cellars") at the stairs up, entered by ordering Wine at the Scarlet Bard (28,5), *PARKER party, dungeon disk (disk 3) | @city_parker,GO:1C:05,o,w400,1,w400,w,w600,disk:3,space,w900
+sewers1_parker | Sewers level 1 at the stairs up from the cellar (7,18), dark, *PARKER party | @cellar_parker,n,w300,AT:07:11,poke:0002=00,j,w300,l,w300,k,w600,y,w900,n,w300

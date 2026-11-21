@@ -40,6 +40,16 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
+  "macros": {
+    "TITLE": "w1100",
+    "GUILD": "TITLE,space,w900,disk:2,space,w600,s,w600",
+    "LOAD": "a,w300,type:{0}\\n,w1500",
+    "MAKE": "c,w600,{0},w400,{1},w400,type:{2}\\n,w900",
+    "MAKE6": "d,w300,MAKE:1:0:RYZ,MAKE:3:7:CONDI,MAKE:1:6:EBO,MAKE:1:9:CUBI,MAKE:2:3:DEDDO,MAKE:2:4:MNZ,e,w300",
+    "ADD": "a,w300,type:{0}\\n,w900",
+    "ADD6": "ADD:RYZ,ADD:CONDI,ADD:EBO,ADD:CUBI,ADD:DEDDO,ADD:MNZ",
+    "AT": "poke:0001={0},poke:0000={1}",
+    "GO": "AT:{0}:{1},j,w400"
+  },
   "ram": {}
 }
