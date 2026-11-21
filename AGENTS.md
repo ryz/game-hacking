@@ -17,7 +17,7 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 
 Games: the table in `README.md` (what is here) and the one in `docs/status.md` (sets with shot counts, lens
 documents, open items). Both are written by `python3 tools/gamestable.py` from each game's `game.json` fields
-"edition", "work" and "open": change those, never the tables. 28 games on 9 platforms as of 2026-11-20.
+"edition", "work" and "open": change those, never the tables. 29 games on 9 platforms as of 2026-11-21.
 
 ## Rules (all work)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`, `*.sfc`, `*.smc`,

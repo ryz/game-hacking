@@ -12,6 +12,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `play.py checkpoint`: scratch checkpoints kept out of `checkpoints.txt` (`--scratch`), a replaced line stays in place instead of moving to the end | 3 | Megami Tensei scout, Wizardry II DOS scout, Might and Magic II scout |
 | Deeper `undo` (more than one level) | 3 | Pokémon Blue, Megami Tensei, Ultima III; a `checkpoint` before a risky step is the workaround |
 | `tools/walk.py SLUG FROM TO`: walking routes for first-person RPGs from a wall-map decoder named in `game.json` | 1 | Might and Magic II DOS start set (per-run BFS script) |
+| `play.py text` / `preview.py --text` for graphics-mode text games (OCR of the game's 8x8 font, or the Z-machine's output stream) | 1 | Beyond Zork scout (640x200 graphics, no text to read) |
 | Z80 disassembler like `dis6502.py` | 1 | Phantasy Star part 2 |
 | `sample` leaves the screen stale so `record` refuses; `record` taking leading tokens | 1 | Phantasy Star early game |
 | `lenses.py SLUG SET --work` (check the working set, not the published one) | 1 | Might and Magic 1 DOS fix-up |

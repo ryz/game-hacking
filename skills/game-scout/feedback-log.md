@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-21 - Beyond Zork (DOS)
+- Task: scout Beyond Zork (DOS): interpreter, boot macros, controls, first save and RESTORE, checkpoints to the
+  first save, shot plan.
+- Worked: `preview.py -r` batches of 8 routes found the start-menu order, the interpreter choice, all ten function
+  keys and the opening map in 4 sheets; the Z-machine base found by searching DOS memory for the story header,
+  then attributes by value (3 calls, any Z-machine game).
+- Friction: `type:` cannot hold a comma (the `comma` token workaround was not documented); "NOT settled" on every
+  frame of a blinking-cursor graphics game hides real settle problems; no approved walkthrough host, so the plan
+  stops at the opening; Infocom's DOS interpreter stores words little-endian (easy to misread).
+- Proposed rule change: dos.md comma note and Z-machine note; backlog: `--text` for graphics-mode text games
+  (OCR of the 8x8 font or Z-machine output).
+- Corrected: none. Coordinator: `cachecheck.py dos/beyond-zork` from an empty cache 11/11, sheet matches the
+  descriptions; `gamestable.py` run (the scout left the table test failing, by design).
+- Status: both notes in `docs/emulator/dos.md` (platform facts); text-reading wish in `docs/backlog.md`; the
+  settle noise logged (second case would make it a backlog row).
+
 ### 2026-11-20 - Sword of Vermilion (Mega Drive, round 2)
 - Task: reach the overworld and the first battle as checkpoints; verify the buttons there.
 - Worked: a search snippet led to retrying the gate after Blade's speech; preview batches with --peek found

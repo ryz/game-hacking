@@ -78,7 +78,7 @@ pageup pagedown up down left right`, `shift ctrl alt` (left) and `rshift rctrl r
 slash semicolon quote leftbracket rightbracket backslash backquote`, keypad `kp0`-`kp9 kpplus kpminus kpmultiply
 kpdivide kpperiod kpenter`. Chords as on consoles: `shift+a`, `alt>f4`.
 - `w30` is still "wait 30 frames"; the W key is `w`, held longer `w:30`.
-- `type:Some Text` types a string (US layout, shift handled; no comma inside, `\n` = Enter).
+- `type:Some Text` types a string (US layout, shift handled; `\n` = Enter). A comma ends the token: `type:sailor,comma,type: hello\n`.
 - Mouse: `mouse1 mouse2 mouse3` are buttons (tokens like keys), `mouse:DX:DY` moves the pointer relatively.
 
 ## Reading the screen as text
@@ -96,6 +96,8 @@ The physical address space, address = segment * 16 + offset: `00000-9FFFF` conve
 vectors, BIOS data area at `00400`, DOS, then the game), extended memory from `100000`. Video memory
 (`A0000-BFFFF`) and ROM are not readable through `peek`. `find` covers `00500-9FFFF`. `status` shows CS:IP.
 A game's addresses depend on where DOS loads it, which is the same on every boot with the same ZIP and model.
+Z-machine games (Infocom): search for the story file's first header bytes to find the base of the game's
+memory; Infocom's DOS interpreter keeps 2-byte words little-endian there (Beyond Zork, 2026-11-21).
 
 ## Saves
 DOS games save to files on `C:`. DOSBox Pure keeps the changed files in a save ZIP; the backend gives every
