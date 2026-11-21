@@ -5,3 +5,10 @@ boot | Game prompt: Type BEGIN, RESTORE or QUIT (Bzork.exe, colour yes) | pow,BO
 title | Title card BEYOND ZORK after the prologue | @boot,type:begin\n,w300,space,w200,space,w300,settle
 setup | Character Setup menu | @title,space,w300,settle
 start | Hilltop, preset character, first prompt | @setup,enter,w300,space,w300,settle
+shillelagh | Wharf, driftwood (shillelagh) taken and wielded | @start,type:e\n,w200,type:e\n,w200,type:z\n,w200,type:take driftwood\n,w200,type:wield shillelagh\n,w200,settle
+vapor | Moors (random layout), Noises: eldritch vapor attacks | @shillelagh,type:w\n,w200,type:s\n,w200,type:s\n,w200,type:s\n,w200,type:e\n,w200,settle
+vapor_won | Noises: eldritch vapor beaten, Level 1 | @vapor,type:attack vapor\n,w200,settle,f7,w200,f7,w200,settle,f7,w200,settle
+saved1 | Noises after the first fight: SAVE completed (DATA\BEYONDZO.SAV) | @vapor_won,f3,w200,type:save\n,w200,enter,w300,settle
+cove | Cove (village street), first step east from Hilltop | @start,GO:e,settle
+lighthouse | Lighthouse plateau: riddle at the Ledge answered (SAY LIGHTNING), ENTER OPENING | @shillelagh,GO:w,GO:ne,GO:say lightning,GO:enter opening,settle
+kitchen | Rusty Lantern kitchen: dagger taken from the wall, cook and giant onion | @shillelagh,GO:w,GO:s,GO:open door,GO:w,GO:w,GO:take dagger,GO:w,settle

@@ -3,6 +3,9 @@
   "title": "Beyond Zork: The Coconut of Quendor (DOS)",
   "platform": "dos",
   "region": "na",
+  "edition": "DOS, Release 57 / 871221, Infocom's own interpreter BZORK.EXE (Frotz 2.32 in the bundle for comparison)",
+  "work": "scouted 2026-11-21: boot via BZORK.EXE, 11 checkpoints to the first fight and save, attribute RAM, 33 previewed plan lines; not captured",
+  "open": "death screen, a shop, magic items, regions past the moors and the lighthouse, character naming",
   "model": "svga-7800",
   "rom": "rom/beyond-zork.zip",
   "sha1": "498c08e5838c51d64a5b5786fb41dab82c5f3865",
@@ -29,7 +32,52 @@
     "TITLE": "BOOT,type:begin\\n,w300,space,w200,space,w300",
     "SETUP": "TITLE,space,w300",
     "NEWGAME": "SETUP,enter,w300,space,w300",
-    "FROTZ": "w120,enter,w600"
+    "FROTZ": "w120,enter,w600",
+    "FZSETUP": "FROTZ,space,w300,type:begin\\n,w300,space,w300,space,w300,space,w300",
+    "FZNEWGAME": "FZSETUP,enter,w300,space,w300",
+    "GO": "type:{0}\\n,w200",
+    "ATTRS": "set:1454A={0}:2:le,set:1455A={0}:2:le,set:1454C={1}:2:le,set:1455C={1}:2:le,set:1454E={2}:2:le,set:1455E={2}:2:le,set:14550={3}:2:le,set:14560={3}:2:le,set:14552={4}:2:le,set:14562={4}:2:le,set:14554={5}:2:le,set:14564={5}:2:le"
   },
-  "ram": {}
+  "ram": {
+    "en": {
+      "addr": "1454A",
+      "size": 2,
+      "fmt": "le"
+    },
+    "st": {
+      "addr": "1454C",
+      "size": 2,
+      "fmt": "le"
+    },
+    "dx": {
+      "addr": "1454E",
+      "size": 2,
+      "fmt": "le"
+    },
+    "iq": {
+      "addr": "14550",
+      "size": 2,
+      "fmt": "le"
+    },
+    "cm": {
+      "addr": "14552",
+      "size": 2,
+      "fmt": "le"
+    },
+    "lk": {
+      "addr": "14554",
+      "size": 2,
+      "fmt": "le"
+    },
+    "ac": {
+      "addr": "14556",
+      "size": 2,
+      "fmt": "le"
+    },
+    "en_max": {
+      "addr": "1455A",
+      "size": 2,
+      "fmt": "le"
+    }
+  }
 }

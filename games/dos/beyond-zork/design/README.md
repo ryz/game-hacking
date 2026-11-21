@@ -23,8 +23,21 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Beyond Zork is a parser text adventure (Infocom, 1987, Brian Moriarty) with role-playing rules on top: the
+player types commands at a `>` prompt, and a character with six attributes (Endurance, Strength, Dexterity,
+Intelligence, Compassion, Luck) and an Armor Class fights monsters, gains experience and rises in level
+(Level 0 Male Peasant at the start, Level 1 after the first won fight) **(verified, checkpoints `start`,
+`vapor_won`)**. The character is chosen in a Character Setup menu before play: a preset, one of six named
+presets (Lucky, Tank, Muscles, Nimble, Genius, Saint), a random roll (SPACE rolls again) or points spread by
+hand from a 60% potential **(verified, checkpoint `setup`)**. The "enhanced" screen keeps the current room's
+description in a framed window under a title bar, draws an auto-map of nearby rooms at the right and shows an
+Endurance bar while fighting; MODE switches to a standard screen with a one-line status of all attributes and
+exits **(verified)**. Ten function keys are command macros that the player can redefine (DEFINE); SETTINGS,
+COLOR (six palettes), ZOOM, PRIORITY, NOTIFY and MONITOR change the display **(verified)**; DEFINE, UNDO and
+SAVE/RESTORE to a named file **(verified)**. Parts of the world are generated per game: the moors south of the
+village change their room names and layout with the route taken **(verified: Mud Flats/Eyes in one run,
+Deep Mist/Odors/Noises in another)**; the goal is to recover the Coconut of Quendor from the Ur-Grues
+**(source: Wikipedia, manual)**.
 
 ## Documents
 | Document | Covers |
@@ -40,3 +53,7 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Source | URL | Used for |
+|---|---|---|
+| Wikipedia | https://en.wikipedia.org/wiki/Beyond_Zork | releases (47, 49, 51, 57 of 1987-12-21), author, features |
+| Manual (archive.org full text) | https://archive.org/stream/vgmuseum_infocom_beyondzork-manual/beyondzork-manual_djvu.txt | special commands, function keys, combat, SAVE/UNDO rules |
