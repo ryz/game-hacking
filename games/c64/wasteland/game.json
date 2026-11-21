@@ -1,0 +1,97 @@
+{
+  "slug": "wasteland",
+  "title": "WASTELAND",
+  "platform": "c64",
+  "region": "na",
+  "model": "c64",
+  "rom": "rom/wasteland.zip",
+  "sha1": "ea87866d2b11a103f9c9dd641d8117ba368c6d83",
+  "crc32": "a91de263",
+  "size": 800586,
+  "header": {
+    "disks": [
+      {
+        "name": "WASTLND0.D64",
+        "sha1": "949aefbf56190e72e602604f11cddbf8bfbaa650",
+        "kind": "D64, 35 tracks",
+        "volume": "WASTELAND",
+        "files": [
+          "PRODOS",
+          "2.0"
+        ]
+      },
+      {
+        "name": "WASTLND1.D64",
+        "sha1": "0c02c50a05ba61ad304caf097fd323bba375e07f",
+        "kind": "D64, 35 tracks",
+        "volume": "WASTELAND",
+        "files": []
+      },
+      {
+        "name": "WASTLND2.D64",
+        "sha1": "b97374623eaeba1d7efe7418608160b08e408922",
+        "kind": "D64, 35 tracks",
+        "volume": "WASTELAND",
+        "files": [
+          "PRODOS",
+          "2.0"
+        ]
+      },
+      {
+        "name": "WASTLND3.D64",
+        "sha1": "04537484095f1a22f7361e614f8ca05074ca9421",
+        "kind": "D64, 35 tracks",
+        "volume": "WASTELAND",
+        "files": []
+      },
+      {
+        "name": "WASTLND4.D64",
+        "sha1": "f3737d11c39f945e6f679611d5fe299ecc89f1cf",
+        "kind": "D64, 35 tracks",
+        "volume": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+        "files": []
+      },
+      {
+        "name": "WASTLND5.D64",
+        "sha1": "2c05ad4a2fbae69c528b462094d354689abc860a",
+        "kind": "D64, 35 tracks",
+        "volume": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+        "files": []
+      },
+      {
+        "name": "WASTLND6.D64",
+        "sha1": "04350602d141c0eb5ad1bebaf70ae4ec48837d07",
+        "kind": "D64, 35 tracks",
+        "volume": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+        "files": []
+      },
+      {
+        "name": "WASTLND7.D64",
+        "sha1": "ce6d91206b6c2d61911d509a9022e96e476d486d",
+        "kind": "D64, 35 tracks",
+        "volume": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+        "files": []
+      },
+      {
+        "name": "WASTLND8.D64",
+        "sha1": "5056d9a55f1dd6b23ea5298484020bd796f8ac9d",
+        "kind": "D64, 35 tracks",
+        "volume": "ASS PRESENTS:",
+        "files": [
+          "WASTELAND EDITOR"
+        ]
+      }
+    ],
+    "header_title": "WASTELAND"
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
