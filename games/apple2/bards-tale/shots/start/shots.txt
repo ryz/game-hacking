@@ -1,0 +1,45 @@
+01_power_on | boot | Power-on: crack banner "Soft-cracked by Number 6", EA logo | w250,!
+02_title | title | Title in black and white: "The Bard's Tale / By Michael Cranford" | @title,!
+03_title_song | title | Title in colour: "The song I sing / Will tell the tale ..." | @title,w300,!
+04_disk_prompt | menu | Space at the title: "Insert CHARACTER disk and press a key" | @title,space,w900
+05_utilities | menu | Utilities: Start game, Copy chars, Make a disk, Transfer chars | @title,space,w900,disk:2,space,w600
+06_guild | menu | Thou art in the Guild of Adventurers: the Guild menu, no party yet | @guild
+07_roster | menu | Check roster: the characters on the character disk | @guild,c,w1500
+08_disk_options | menu | Disk options: Create member, Save party, Delete member, Leave the game | @guild,d,w300
+09_race | system | Create member: select a race for the new character | @guild,d,w300,c,w600
+10_class | system | Human rolled: St 16 IQ 7 Dx 12 Cn 9 Lk 5 HP 17, classes 0-9 | @guild,d,w300,c,w600,1,w400
+11_name | system | Warrior chosen: "Enter a name--" | @guild,d,w300,c,w600,1,w400,0,w400
+12_name_ryz | system | Name typed: RYZ | @guild,d,w300,c,w600,1,w400,0,w400,type:RYZ
+13_dwarf | system | Second character, a Dwarf: rolled attributes and the classes open to a Dwarf | @guild,d,w300,MAKE:1:0:RYZ,c,w600,3,w400
+14_roster_new | menu | Roster after creating six: RYZ CONDI EBO CUBI DEDDO MNZ at the end | @guild,MAKE6,c,w1500
+15_add | menu | Add member: "Load Character", enter a name (a character or a *party) | @guild,MAKE6,a,w300
+16_party | menu | The Guild with the party of six added | @party
+17_view_ryz | inventory | View member 1: RYZ, Human Warrior, level 1, 176 gold | @party,1,w400
+18_view_items | inventory | RYZ's items page: empty, spell levels 0, Equip Trade Drop Pool | @party,1,w400,space,w300
+19_city | gameplay | Leaving the Guild: Skara Brae, Main Street, facing east | @city
+20_where | gameplay | "?": "You are on Main Street. It's now early morning." | @city,shift+slash,w300
+21_street | gameplay | Turn left: a street of Skara Brae looking north | @city,j,w300
+22_encounter | battle | First encounter: 4 Skeletons and 1 Kobold, Fight or Run | @fight1,w60,!
+23_orders | battle | Fight: round orders for RYZ: Attack, Party attack, Defend, Use | @fight1,f,w600,!
+24_target | battle | Attack: choose a group, A 4 Skeletons or B 1 Kobold | @fight1,f,w600,a,w300,!
+25_cast | battle | DEDDO's options include Cast a spell: "Spell to cast: ARFI" | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI,w60,!
+26_confirm | battle | All six orders given: "Use these attack commands? (Y-N)" | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI\n,w400,a,w300,d,w300,!
+27_round_hits | battle | Round: a Skeleton claws RYZ for 7, RYZ chops a Skeleton for 2 | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI\n,w400,a,w300,d,w300,y,w300,w60,!
+28_condi_killed | battle | A Skeleton claws CONDI for 8 points of damage, killing him | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI\n,w400,a,w300,d,w300,y,w300,w90*3,!
+29_arfi_miss | battle | DEDDO's spell fries a Skeleton for 0 points of damage | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI\n,w400,a,w300,d,w300,y,w300,w90*9,!
+30_ebo_killed | battle | A Skeleton tears at EBO for 9, killing him; a Kobold swings at RYZ | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI\n,w400,a,w300,d,w300,y,w300,w90*13,!
+31_fight_or_run | battle | Kobold hits RYZ for 2; "You still face 4 Skeletons and 1 Kobold" | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI\n,w400,a,w300,d,w300,y,w300,w90*16,!
+32_fled | gameplay | The party runs away: back on the street, CONDI and EBO dead | @s_fled
+33_temple | system | Temple of the Great gods: "Who needeth healing?" | @s_fled,GO:0E:12
+34_raise_price | system | Temple: CONDI is in bad shape, raising him costs 900 gold | @s_fled,GO:0E:12,settle,5,w400
+35_heal_price | system | Temple: RYZ has wounds, healing costs 90 gold | @s_fled,GO:0E:12,settle,5,w400,settle,1,w400,settle,w300,settle,e,w400,1,w400
+36_healed | system | RYZ paid and healed to 17 hit points | @s_healed
+37_garth | shop | Garth's Equipment Shoppe: "Which of you is interested in my fine wares?" | @s_healed,e,w400,settle,GO:1A:12
+38_garth_menu | shop | Garth's: Buy, Sell, Identify, Pool gold; RYZ has 86 gold | @s_healed,e,w400,settle,GO:1A:12,1,w400
+39_garth_list | shop | Price list: Torch 5 ... Broadsword 80 ... Halbard 200, "Purchase #(1-9)" | @s_healed,e,w400,settle,GO:1A:12,1,w400,b,w600,p,w400
+40_bought | shop | Broadsword bought: 6 gold left | @s_bought
+41_equip_prompt | inventory | RYZ's items: "Equip #(1-8)", the Broadsword in slot 1 | @s_bought,esc,w400,settle,e,w400,1,w400,space,w300,settle,e,w400,e,w600,settle,1,w400,space,w300,e,w300
+42_equipped | inventory | Broadsword equipped (mark before the name) | @s_bought,esc,w400,settle,e,w400,1,w400,space,w300,settle,e,w400,e,w600,settle,1,w400,space,w300,e,w300,settle,1,w400
+43_guild_return | menu | Back in the Guild of Adventurers | @s_bought,esc,w400,settle,e,w400,1,w400,space,w300,settle,e,w400,e,w600,settle,1,w400,space,w300,e,w300,settle,1,w400,settle,space,w300,GO:18:0F,w600
+44_save_party | save | Disk options, Save party: "Enter a name--" | @s_bought,esc,w400,settle,e,w400,1,w400,space,w300,settle,e,w400,e,w600,settle,1,w400,space,w300,e,w300,settle,1,w400,settle,space,w300,GO:18:0F,w600,settle,d,w300,s,w400
+45_saved_roster | save | Roster after saving: *RYZ PARTY at the end of the list | @s_saved,e,w300,c,w1500

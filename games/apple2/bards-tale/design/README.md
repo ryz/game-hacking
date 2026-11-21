@@ -35,7 +35,8 @@ verified). The dungeons are 22 by 22 levels in a fixed order (Wine cellar, Sewer
 Kylearan's Tower, Mangar's Tower) **(source)** [Wikipedia]; entrances seen: the Scarlet Bard's wine, the
 sewer portal, the Mad God's temple (name TARJAN), the castle and tower entry chambers **(verified)**. Saving
 is per character on the character disk and per party name ("Save party" in the Guild) **(verified)**. There
-is no automap **(verified: no map command; source: era)**.
+is no automap **(verified: no map command)**; the decoded maps are in [maps/](maps/README.md). The game ends
+when Mangar falls in his tower and Kylearan rewards the party (verified: main set `ending_*`).
 
 ## Documents
 | Document | Covers |
@@ -44,6 +45,7 @@ is no automap **(verified: no map command; source: era)**.
 | [interface.md](interface.md) | UI/UX lens: conventions, inventory of every screen, menu, prompt and element, screen flow |
 | [content.md](content.md) | content lens: a reasonable variety of environments, opponents, items, equipment, abilities, people |
 | [findings.md](findings.md) | quirks, exploits, likely bugs |
+| [maps/README.md](maps/README.md) | decoded maps of all 16 dungeon levels (text and PNG), legend |
 <!-- Add one document per system, e.g. controls-and-feel.md (movement, physics, input), progression.md (levels,
      unlocks, difficulty curve), combat.md, characters.md (stats, leveling), items.md (+ an items table),
      enemies.md (+ table), economy.md (money, shops, prices), world.md (areas, map, secrets), modes.md. -->
