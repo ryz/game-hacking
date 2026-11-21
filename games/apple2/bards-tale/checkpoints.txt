@@ -16,3 +16,8 @@ tower_parker | Kylearan's Amber Tower at the stairs down (entry chamber poked pa
 city_hero | Skara Brae outside the Guild, new party raised to levels 8-9 by poking the records (HERO) and redrawn by a New order 1-5 | @city,HEROP,w30
 cellar_hero | Wine cellar at the stairs up with the HERO party (Wine at the Scarlet Bard) | @city_hero,GO:1C:05,o,w400,1,w400,w,w600,disk:3,space,w900
 cellar_hero_lit | Wine cellar with the HERO party, lit by DEDDO's MAFL (cellar map, first dungeon) | @cellar_hero,n,w300,MAFL:5,w30
+stairs_hero | Wine cellar, HERO party lit by MAFL, facing the stairs down at 7,18 from 7,17: start of the level warp LV:index-1:index:id | @cellar_hero_lit,AT:07:11,FACE:00,j,w300,l,w300,settle
+s_fled | Start set: first fight (4 Skeletons, 1 Kobold) fought one round (CONDI and EBO killed), then the party runs; Main Street | @fight1,f,w600,a,w300,a,w300,a,w300,a,w300,a,w300,a,w300,d,w300,c,w300,type:ARFI\n,w400,a,w300,d,w300,y,w300,w90*18,r,w600,settle
+s_healed | Start set: Temple of the Great gods (14,18; position poked): raising CONDI asked 900 gold, RYZ healed for 90 | @s_fled,GO:0E:12,settle,5,w400,settle,1,w400,settle,w300,settle,e,w400,1,w400,settle,1,w400,settle
+s_bought | Start set: Garth's Equipment Shoppe, RYZ bought a Broadsword (80 of his 86 gold) | @s_healed,e,w400,settle,GO:1A:12,1,w400,b,w600,p,w400,settle,3,w600,settle
+s_saved | Start set: Broadsword equipped, back in the Guild, party saved as *RYZ PARTY (the first save) | @s_bought,esc,w400,settle,e,w400,1,w400,space,w300,settle,e,w400,e,w600,settle,1,w400,space,w300,e,w300,settle,1,w400,settle,space,w300,GO:18:0F,w600,settle,d,w300,s,w400,settle,type:RYZ PARTY\n,w1500,settle

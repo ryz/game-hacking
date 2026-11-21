@@ -56,7 +56,9 @@
     "HEROP": "HERO,REORDER",
     "FACE": "poke:0002={0}",
     "WARPC": "AT:{0}:{1},FACE:{2},j,w300,l,w300",
-    "MAFL": "c,w300,{0},w300,type:MAFL\\n,w600"
+    "MAFL": "c,w300,{0},w300,type:MAFL\\n,w600",
+    "LV": "poke:001E={0},poke:2FC0{1}={2},k,w600,y,w1200",
+    "NOENC": "poke:A6D0=09"
   },
   "ram": {
     "y_north": {
@@ -76,6 +78,11 @@
     "level": {
       "addr": "2FC10",
       "size": 1
+    },
+    "dlevel_index": {
+      "addr": "001E",
+      "size": 1,
+      "fmt": "hex"
     }
   },
   "work": "scouted 2026-11-21: boot, guild, new party, city scan (every building located), 16 checkpoints, party records, dungeon map decoder; not captured",
