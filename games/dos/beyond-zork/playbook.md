@@ -9,8 +9,20 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   It runs correctly: colour prompt in 80x25 text mode, then the whole game in a **640x200 16-colour graphics
   mode** (8-pixel text rows; `play.py text` / `preview.py --text` do not work: look at sheets).
 - **Aspect (owner's rule 2026-11-21):** `game.json` "aspect": "rowdouble": every tool writes the 640x200 frames as
-  640x400 (each row twice). Colours: COLOR cycles palettes 1-6 (1 and 2 look like the default blue here), and N at
-  "Do you want color?" gives monochrome, grey on black (`options_monochrome`).
+  640x400 (each row twice). Colours: COLOR cycles palettes 1-6, and N at "Do you want color?" gives monochrome,
+  grey on black (`options_monochrome`).
+- **Look (owner's decision 2026-11-21): palette 6, black on light grey, in every Bzork.exe shot.** `BOOT` sets it
+  with two pokes, so every route and checkpoint inherits it: `GREYPC` (`poke:9A37=00,poke:9A38=07`, at the colour
+  question before `y`: Bzork.exe's own default text/background colours, EGA numbers, normally 07 on 01 = grey on
+  blue; this makes even the opening prompt grey) and `GREY` (after the opening prompt: the game globals FORE
+  `0D06C`=2, INCOLOR `0D0EA`=2, BGND `0D14C`=9, GCOLOR `0D1D4`=2, words big-endian = exactly what COLOR palette 6
+  writes; PALLETTE `0D122` stays 1). A display palette is a presentation setting, not a game value (owner), so
+  `start` uses it too. Proven harmless: every old shot recoloured blue->grey, grey->black equals its retake
+  pixel for pixel (routes, random moors, fights unchanged). `BOOTBLUE` = the original boot (white on blue,
+  `options_color_default`). With `GREYPC` palette 1 (all colours "default") is grey too; palette 2 is the
+  explicit white on blue. Palette table in the story: IBM entry `0xD416` (6 pointers to BGND/FORE/INCOLOR/GCOLOR
+  byte records: p1 1,1,1,1; p2 6,9,9,9; p3 6,9,9,4; p4 2,9,8,3; p5 2,9,9,9; p6 9,2,2,2); the story is loaded and
+  STARTUP has run within one frame after `y`, so the table cannot be poked before STARTUP.
 - **Start:** `@start` (Hilltop, preset character Frank Booth, Level 0 Male Peasant). Chain, all honest and
   reproducing from power-on (`cachecheck.py`: 11/11): `boot` (BEGIN/RESTORE/QUIT prompt) -> `title` (title card
   after the prologue) -> `setup` (Character Setup menu) -> `start` -> `cove` / `shillelagh` (driftwood taken and
@@ -19,7 +31,7 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Typing:** `GO:text` = `type:text\n,w200` (one command, answer drawn). Commas: `type:sailor,comma,type: hello\n`.
   `$` (CASH) types fine. Function keys F1-F10 are the game's command macros (F7 = ATTACK MONSTER). Waits: 200
   frames per command is enough everywhere seen; `w300` after BEGIN/the prologue pages.
-- **Macros:** `BOOT`, `TITLE`, `SETUP`, `NEWGAME` (Bzork.exe); `FROTZ`, `FZSETUP`, `FZNEWGAME` (Frotz comparison);
+- **Macros:** `BOOT` (grey, see Look), `BOOTBLUE`, `GREYPC`, `GREY`, `TITLE`, `SETUP`, `NEWGAME` (Bzork.exe); `FROTZ`, `FZSETUP`, `FZNEWGAME` (Frotz comparison);
   `GO:cmd`; `ATTRS:en:st:dx:iq:cm:lk` (sets current and maximum of the six attributes; verified on STATUS).
 - **Saving:** `type:save\n,w200,enter,w300` -> "[SAVE completed.]" (default file `DATA\BEYONDZO.SAV`).
   RESTORE: at the opening prompt `type:restore\n,w200,enter,w300`, or in play the same. `play.py export`
@@ -61,7 +73,7 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 ## Boot sequence
 - Intake probe (`work/intake/dos/beyond-zork/sheet.png`): DOSBox Pure's start menu only. Its entries, in order:
   `BEYOZORK\BZORK.BAT`, `BZORK.EXE`, `FROTZ.EXE`, Go to Command Line (verified).
-- **`BOOT`** = `w120,down,enter,w600,y,w300` (verified as one route): `BZORK.EXE` loads
+- **`BOOT`** = `w120,down,enter,w600,GREYPC,y,w300,GREY` (until 2026-11-21 without the two palette pokes, now `BOOTBLUE`; verified as one route): `BZORK.EXE` loads
   `data\beyondzo.dat` by itself (default path in the program), asks "Do you want color?" (80x25 text mode,
   640x400 frame), `y` -> 640x200 colour graphics, "Copyright (C)1987 Infocom ... Do you want to begin a new game,
   restore a saved game, or quit? [Type BEGIN, RESTORE or QUIT.] >". `n` gives a monochrome (grey on black)
@@ -91,7 +103,7 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 | Play | F1 LOOK AROUND, F2 INVENTORY, F3 STATUS, F4 EXAMINE _, F5 TAKE _, F6 DROP _, F7 ATTACK MONSTER, F8 AGAIN, F9 UNDO, F10 OOPS _ | defaults; `_` = waits for the object | verified (all ten) |
 | Play | DEFINE | function-key editor (Restore Defaults, Exit) | verified |
 | Play | SETTINGS | Display Mode, Descriptions, Transcripting, Status Notify, Map View, Display Priority, Combat Monitor | verified |
-| Play | MODE, ZOOM, COLOR (6 palettes), MONITOR, VERSION, `$` (cash) | display / info | verified |
+| Play | MODE, ZOOM, COLOR (6 palettes; 4 under Frotz), MONITOR, VERSION, `$` (cash) | display / info | verified |
 | Play | keypad (kp6) | nothing (manual: keypad not supported on IBM PC) | verified |
 | Play | up arrow | no command history | verified |
 | Play | mouse on the map | source (manual); not tried | source |

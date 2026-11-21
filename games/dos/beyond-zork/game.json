@@ -29,7 +29,10 @@
     "limit": 300
   },
   "macros": {
-    "BOOT": "w120,down,enter,w600,y,w300",
+    "GREYPC": "poke:9A37=00,poke:9A38=07",
+    "GREY": "set:0D06C=2:2:be,set:0D0EA=2:2:be,set:0D14C=9:2:be,set:0D1D4=2:2:be",
+    "BOOT": "w120,down,enter,w600,GREYPC,y,w300,GREY",
+    "BOOTBLUE": "w120,down,enter,w600,y,w300",
     "TITLE": "BOOT,type:begin\\n,w300,space,w200,space,w300",
     "SETUP": "TITLE,space,w300",
     "NEWGAME": "SETUP,enter,w300,space,w300",
