@@ -433,6 +433,8 @@ def open_game(game, model=None, state=None, opts=None):
     emu = platforms.backend(game.platform).open(rom, model=model or game.model, seed=1, sav=sav)
     emu.freezes = []
     emu.aspect = game.aspect
+    font = os.path.join(game.dir, "font.json")              # Apple II hi-res text (tools/hirestext.py)
+    emu.hires_font = font if os.path.exists(font) else None
     if state:
         emu.load_state(state)
     return emu

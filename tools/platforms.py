@@ -1283,7 +1283,13 @@ class Apple2(Libretro):
     def text(self):
         """The 40x24 text page 1 (0400-07FF) as a list of lines; inverse and flashing characters read as plain
         ones. The soft switches cannot be read without side effects, so this does not know whether the text
-        page is on screen: on a hi-res or 80-column screen the lines are leftovers, look at the picture then."""
+        page is on screen: on a hi-res or 80-column screen the lines are leftovers, look at the picture then.
+        A game with a font table (games/<platform>/<slug>/font.json, tools/hirestext.py) reads its hi-res screen."""
+        if getattr(self, "hires_font", None):
+            import hirestext
+            if getattr(self, "_font", (None,))[0] != self.hires_font:
+                self._font = (self.hires_font, hirestext.load_font(self.hires_font))
+            return hirestext.read(self, self._font[1])
         mem = bytes(self.peek(0x0400, 0x400))
         out = []
         for r in range(24):

@@ -64,7 +64,7 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
   same slug. Work files follow the same shape: `work/shots/<platform>/<slug>/`, `work/cache/...`, `work/intake/...`.
 - Explore: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
   `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `dump A` / `diff A [B]`, `sample "TOKS" N`,
-  `text`, `stop`. Pictures are native size; every status line carries `call=N` (budgets are counted in calls).
+  `text` (Apple II hi-res games: a font taught with `tools/hirestext.py`), `stop`. Pictures are native size; every status line carries `call=N` (budgets are counted in calls).
 - Capture in batches (the default once a route is known, `docs/emulator/README.md` "Two loops"):
   `python3 tools/preview.py SLUG PLANFILE [--set SET] [--timeline N:STEP] [--text]` shows many candidate routes
   on one sheet exactly as they will be shot; then the lines go into the set's `shots.txt` and

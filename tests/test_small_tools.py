@@ -149,3 +149,31 @@ def test_aspect_rule_rowdoubles_flattened_frames(tmp_path, capsys):
     assert shoot.flattened(str(p))
     Image.new("RGB", (640, 400)).save(p)
     assert not shoot.flattened(str(p))
+
+
+def test_hirestext_learn_and_read():
+    """Hi-res text: a line taught at one place and pixel phase is read back at another (tools/hirestext.py)."""
+    import random
+    import hirestext as H
+    H.H = 8
+    rnd = random.Random(5)
+    shapes = {ch: bytes([0x00] + [rnd.randrange(1, 0x7F) | 0x01 for _ in range(6)] + [0x00]) for ch in "abcdeHlo"}
+
+    def draw(rows, y, x, text):
+        for i, ch in enumerate(text):
+            if ch != " ":
+                for r, b in enumerate(shapes[ch]):
+                    rows[y + r] |= b << (x + 7 * i)
+
+    rows = [0] * 192
+    draw(rows, 40, 15, "Hello abc")
+    draw(rows, 100, 70, "cab ode")
+    font = {}
+    rep = H.learn(rows, font, ["Hello abc", "cab ode"])
+    assert rep[0].startswith("row  41 x  15") and rep[1].startswith("row 101 x  70"), rep     # top row with ink
+    rows2 = [0] * 192
+    draw(rows2, 17, 3, "a bead")
+    draw(rows2, 150, 141, "Hello")
+    assert [(y, H.clean(s)) for y, s in H.read_rows(rows2, font)] == [(18, "a bead"), (151, "Hello")]
+    inverse = [r ^ ((1 << 280) - 1) for r in rows2]                 # dark letters on a light window
+    assert [H.clean(s) for _, s in H.read_rows(inverse, font)] == ["a bead", "Hello"]
