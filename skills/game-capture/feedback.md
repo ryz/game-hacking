@@ -35,3 +35,5 @@ Tool wishes are not listed here: `docs/backlog.md`.
   (Sword of Vermilion, 2026-11-20: three checkpoints reached the wrong towns).
 - **Restyles that must not change routes** (palette, font, display option): copy the published PNGs before the
   retake and compare each retake with its old picture through a colour map (Beyond Zork palette 6, 2026-11-21).
+- **Walks without random fights:** search a fight-free wait per step (check a fight indicator after each step)
+  instead of previewing whole routes (Bard's Tale III Apple II, 2026-11-21: `tools/safewalk.py`).

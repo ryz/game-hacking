@@ -1,0 +1,29 @@
+01_stairs_down | gameplay | UnterBrae 1, dark: stairs going down. I step on them: take them? Yes/No | @w_stairs34,w30,!
+02_yes | gameplay | Y: down the stairs to UnterBrae 2: here are stairs going up. Take them? | @w_stairs34,w30,y,w600,settle
+03_no_dark | gameplay | N: stay. The new level is pitch dark | @w_stairs34,w30,y,w600,settle,n,w300,settle
+04_cast | gameplay | C: cast a spell. Who will cast a spell? | @w_stairs34,w30,y,w600,settle,n,w300,settle,c,w200,settle
+05_spell | gameplay | 5: Morganna casts. Spell to cast? | @w_stairs34,w30,y,w600,settle,n,w300,settle,c,w200,settle,5,w300,settle
+06_mafl | gameplay | Type MAFL, Return: Morganna casts a spell (Mage Flame) | @w_stairs34,w30,y,w600,settle,n,w300,settle,c,w200,settle,5,w300,settle,type:MAFL\n,w600,settle
+07_lit | gameplay | Any key: the Mage Flame lights the corridor ahead (facing east) | @w_stairs34,w30,y,w600,settle,n,w300,settle,c,w200,settle,5,w300,settle,type:MAFL\n,w600,settle,space,w300,settle
+08_turn_south | gameplay | L: turn right, a corridor leads south | @w_lit35,l,w60,!
+09_message | gameplay | I: step forward. A message: the air smells of dry rot | @w_lit35,l,w60,i,w300,!
+10_door_west | gameplay | L: turn right, a door in the west wall | @w_lit35,l,w60,i,w300,l,w60,!
+11_through_door | gameplay | K: through the door, into a corridor | @w_lit35,l,w60,i,w300,l,w60,k,w60,!
+12_step_w | gameplay | I: step forward (west) | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,!
+13_door_north | gameplay | L: turn right, a door to the north | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,!
+14_through_door2 | gameplay | K: through the door into the north corridor, a wall ahead | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,!
+15_turn_west | gameplay | J: turn left, the corridor runs west | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,!
+16_step_w2 | gameplay | I: step forward | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,!
+17_door_south | gameplay | J: turn left, a door to the south | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,!
+18_through_door3 | gameplay | K: through the door; the dry air drains spell points (SpPt 21 to 14) | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,!
+19_step_s | gameplay | I: step forward (south) to a crossing | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,!
+20_turn_east | gameplay | J: turn left, a long corridor east | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,j,w60,!
+21_step_e1 | gameplay | I: step forward | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,j,w60,i,w60,!
+22_step_e2 | gameplay | I: step forward | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,j,w60,i,w60,i,w60,!
+23_step_e3 | gameplay | I: step forward | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,j,w60,i,w60,i,w60,i,w60,!
+24_step_e4 | gameplay | I: step forward to the end of the corridor | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,j,w60,i,w60,i,w60,i,w60,w20,i,w60,!
+25_turn_north | gameplay | J: turn left (north) | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,j,w60,i,w60,i,w60,i,w60,w20,i,w60,j,w60,!
+26_step_n1 | gameplay | I: step forward | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,j,w60,i,w60,i,w60,i,w60,w20,i,w60,j,w60,i,w60,!
+27_step_n2 | gameplay | I: step forward | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,j,w60,i,w60,i,w60,i,w60,w20,i,w60,j,w60,i,w60,i,w60,!
+28_turn_west2 | gameplay | J: turn left: the stairs square is ahead | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,j,w60,i,w60,i,w60,i,w60,w20,i,w60,j,w60,i,w60,i,w60,j,w60,!
+29_stairs_up | gameplay | I: back on the stairs: going up. Take them? Yes/No | @w_lit35,l,w60,i,w300,l,w60,k,w60,w5,i,w60,l,w60,k,w60,j,w60,i,w60,j,w60,k,w60,i,w60,j,w60,i,w60,i,w60,i,w60,w20,i,w60,j,w60,i,w60,i,w60,j,w60,i,w300,!

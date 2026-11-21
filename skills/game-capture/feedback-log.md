@@ -23,6 +23,23 @@ Never delete entries.
 - Proposed rule change: c64.md note on BASIC games (variable table, floats); backlog `tools/c64vars.py`.
 - Corrected: coordinator cold verify 39/39 and 77/77, lenses clean, contact sheet checked.
 - Status: logged (platform fact -> c64.md; tool wish -> backlog)
+
+### 2026-11-21 - The Bard's Tale III (Apple II), sequences
+- Task: seq-dungeon-walk (29) and seq-automap (18), honest walks on UnterBrae 1-2 (owner: dungeon walk, more
+  automap).
+- Worked: scan.py on both levels plus a tiled crop of the message windows gave every stairs, message and fight
+  square in one look; BFS over the decoded map planned the routes (tools/mazeroute.py); a per-step fight-free
+  wait search (tools/safewalk.py) replaced trial previews; both sets in ~60 calls.
+- Friction: doors need `k` (playbook said buildings only); scan.py's "name plate" rows were the roster, so the
+  fight check missed fights until moved to rows 98-110; lenses.py does not take a whole seq set named in a row;
+  the Mage Flame ran out mid-sequence without warning.
+- Proposed rule change: README "Two loops": per-step wait search for fight-free walks; backlog: shared safewalk,
+  lenses.py accepting `seq-NAME`.
+- Corrected: coordinator deleted the cache and reran --verify: 29/29, 18/18; automap strip checked (the map
+  grows modestly: small window, walls and doors only). No clips (the game redraws each step at once).
+- Status: fight-free walk lesson -> feedback.md (open); safewalk -> backlog row "Shared module" Asked 8;
+  lenses seq row -> backlog; logged.
+
 ### 2026-11-21 - The Bard's Tale III (Apple II)
 - Task: capture `main` (110) and `start` (54) sets, 58 level maps, three lenses.
 - Worked: preview batches (25 lit dungeon lines on one sheet showed which levels arrive in a fight, dark or on a
