@@ -21,3 +21,11 @@ s_shillelagh | start set: Wharf, driftwood taken and wielded | @s_start,type:e\n
 s_vapor | start set: moors (Noises), eldritch vapor attacks | @s_shillelagh,type:w\n,w200,type:s\n,w200,type:s\n,w200,type:s\n,w200,type:e\n,w200,settle
 s_vapor_won | start set: eldritch vapor beaten, Level 1 | @s_vapor,type:attack vapor\n,w200,settle,f7,w200,f7,w200,settle,f7,w200,settle
 s_saved1 | start set: SAVE completed after the first fight | @s_vapor_won,f3,w200,type:save\n,w200,enter,w300,settle
+m_ratant | Wine Cellar: rat-ant fight under way, Level 0 (two misses) | @kitchen,GO:open door,GO:d,GO:d,GO:attack rat-ant,GO:attack rat-ant,settle
+m_darkness | Cellar north: Darkness, grue warning; scroll taken, strong character (ATTRS) | @kitchen,ATTRS:47:31:28:22:14:29,GO:open door,GO:d,GO:d,GO:attack rat-ant,f7,w200,f7,w200,settle,GO:take scroll,GO:examine scroll,GO:n,settle
+m_cellar | Wine Cellar: rat-ant driven off, crinkly scroll taken (strong character, ATTRS) | @kitchen,ATTRS:47:31:28:22:14:29,GO:open door,GO:d,GO:d,GO:attack rat-ant,f7,w200,f7,w200,GO:take scroll
+# main set (strengthened character: ATTRS pokes, see playbook)
+m_odors | Moors, Odors: gray potion in the mud (strong character, ATTRS) | @vapor_won,ATTRS:47:31:28:22:14:29,GO:sw,GO:attack guttersnipe,f7,w200,f7,w200,f7,w200,settle
+m_mizniaport | Mizniaport: seaport street, swank boutique, Private Way (rumpled scroll taken in Gasses) | @m_odors,GO:sw,GO:take scroll,GO:sw,GO:w,settle
+m_boutique | Mizniaport Boutique: old woman, glass display case | @m_mizniaport,GO:open door,GO:n,settle
+m_ryz | Created character Ryz, Level 0 Female Peasant (Create your own, 21/21/21/1/1/1): the story starts | @setup,down,down,down,enter,w300,right*20,down,right*20,down,right*20,enter,w300,type:yes\n,w300,type:female\n,w300,type:ryz\n,w300,type:yes\n,w300,type:yes\n,w300,type:no\n,w300,space,w300,settle

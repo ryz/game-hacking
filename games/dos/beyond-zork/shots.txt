@@ -2,9 +2,7 @@
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/dos/beyond-zork/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
-# Previewed 2026-11-21 by the scout (work/preview/dos/beyond-zork/plan.png): routes ready for shoot.py main.
+# main set as shot 2026-11-21 (87 lines, verify 87/87)
 boot_color_prompt | boot | Bzork.exe asks "Do you want color?" before the story loads | w120,down,enter,w600
 menu_begin | menu | Opening prompt: Type BEGIN, RESTORE or QUIT | @boot
 cutscene_prologue | cutscene | Prologue: Y'Gael and the Guildmaster's council, first [MORE] page | @boot,type:begin\n,w300
@@ -12,29 +10,83 @@ title_card | title | Title card: BEYOND ZORK, The Coconut of Quendor, An Interac
 menu_character_setup | menu | Character Setup: preset, select, random, create your own, quit | @setup
 menu_select_preset | menu | Select a preset character: Lucky, Tank, Muscles, Nimble, Genius, Saint | @setup,down,enter,w300
 menu_random_character | menu | Randomly generate a new character: SPACE rolls a new set | @setup,down,down,enter,w300
+menu_random_reroll | menu | Random character: SPACE rolled a second set | @setup,down,down,enter,w300,space,w300
 menu_create_character | menu | Create your own character: 60% potential to spread over six attributes | @setup,down,down,down,enter,w300
+menu_create_adjust | menu | Create your own: Endurance and Strength raised, 55% potential left | @setup,down,down,down,enter,w300,right,right,right,down,right,right
+menu_create_confirm | menu | Create your own: 60% spread, "Are you sure these are the attributes you want?" | @setup,down,down,down,enter,w300,right*20,down,right*20,down,right*20,enter,w300
+menu_create_name | menu | Create your own: female, name Ryz typed, "Is "Ryz" correct?" | @setup,down,down,down,enter,w300,right*20,down,right*20,down,right*20,enter,w300,type:yes\n,w300,type:female\n,w300,type:ryz\n,w300
+menu_create_done | menu | Ryz, Level 0 Female Peasant: confirm, then "save this character?" | @setup,down,down,down,enter,w300,right*20,down,right*20,down,right*20,enter,w300,type:yes\n,w300,type:female\n,w300,type:ryz\n,w300,type:yes\n,w300,type:yes\n,w300
+menu_create_begin | menu | Character not saved (NO): press any key to begin the story | @setup,down,down,down,enter,w300,right*20,down,right*20,down,right*20,enter,w300,type:yes\n,w300,type:female\n,w300,type:ryz\n,w300,type:yes\n,w300,type:yes\n,w300,type:no\n,w300
+inventory_ryz_status | inventory | STATUS of Ryz, Level 0 Female Peasant | @m_ryz,f3,w200
 gameplay_hilltop | gameplay | Hilltop, first prompt: room window, auto-map, prompt below | @start
+inventory_status | inventory | STATUS (F3): Frank Booth, Level 0 Male Peasant, six attributes and AC | @start,f3,w200
+options_define_keys | options | DEFINE: function key definitions F1-F10 | @start,type:define\n,w200
+options_settings | options | SETTINGS: display mode, descriptions, notify, map view, priority, monitor | @start,type:settings\n,w300
+options_color_palette | options | COLOR: palette 3 of 6 | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200
+options_color_4 | options | COLOR: palette 4 of 6, red title bar on black | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200
+options_color_5 | options | COLOR: palette 5 of 6, black background | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200
+options_color_6 | options | COLOR: palette 6 of 6, black on light gray | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200,type:color\n,w200
+options_notify | options | NOTIFY: [Status notification is now off.] | @start,GO:notify
+options_priority | options | PRIORITY: display priority set to Room Descriptions | @start,GO:priority
+extra_version | extra | VERSION: Release 57 / Serial 871221, IBM/MS-DOS Color Version J | @start,type:version\n,w200
+system_lightning | system | Edge of Storms, going west: forks of lightning bar the path | @start,GO:nw,GO:w
+env_edge_of_storms | gameplay | Edge of Storms: gray fields, billboard, thunderclouds | @start,GO:nw
 env_cove_street | gameplay | Cove: the village street, map with Hilltop, Wharf, Ledge and pub | @cove
-env_outside_pub | gameplay | Outside Pub: Ye Rusty Lantern, A Publick House | @cove,GO:s
+system_undo | system | UNDO (F9) after a step east: [UNDO completed.], back on the Cove | @cove,GO:e,f9,w200
 gameplay_wharf_sailor | gameplay | Wharf: an old sailor painting at an easel | @cove,GO:e
 system_driftwood | system | Wharf: the driftwood becomes a shillelagh | @start,GO:e,GO:e,GO:z,GO:take driftwood
+dialogue_sailor | dialogue | ASK SAILOR ABOUT PAINTING: "Like it? Reminds me o' the good old days." | @shillelagh,GO:ask sailor about painting
 inventory_list | inventory | INVENTORY (F2) in the room window: shillelagh, pack, 1 zorkmid | @shillelagh,f2,w200
-inventory_status | inventory | STATUS (F3): Frank Booth, Level 0 Male Peasant, six attributes and AC | @start,f3,w200
-dialogue_riddle | dialogue | Ledge: the riddle carved upon the cliff | @shillelagh,GO:w,GO:ne,GO:read inscription
-env_lighthouse | gameplay | Lighthouse plateau: an ancient lighthouse; map arrow for UP | @lighthouse
+system_mode_standard | system | MODE: standard display, one-line status with all attributes and exits | @shillelagh,type:mode\n,w200
+env_outside_pub | gameplay | Outside Pub: Ye Rusty Lantern, A Publick House | @cove,GO:s
 env_rusty_lantern | gameplay | The Rusty Lantern: bandits hogging the fireplace, bearskin rug | @shillelagh,GO:w,GO:s,GO:open door,GO:w
 dialogue_kitchen_cook | dialogue | Kitchen: skinny old cook, giant onion, door "Keepeth Out" | @kitchen
-env_edge_of_storms | gameplay | Edge of Storms: gray fields, billboard, thunderclouds | @start,GO:nw
+dialogue_cook_busy | dialogue | COOK, HELLO: "Don't bother me now, I'm busy!" | @kitchen,type:cook,comma,type: hello\n,w200
+dialogue_cook_wine | dialogue | Cellar door open: the cook wants an old bottle of wine for the onion | @kitchen,GO:open door,GO:d
+battle_ratant | battle | Wine Cellar: a rat-ant attacks; a crinkly scroll lies in the dust | @kitchen,GO:open door,GO:d,GO:d
+gameover_ratant | gameover | Death: the rat-ant's teeth; RESTORE, RESTART or QUIT | @m_ratant,f7,w200,f7,w200,f7,w200,settle,f7,w200,settle,f7,w200
+battle_ratant_flees | battle | A decisive blow: the mortally wounded rat-ant retreats | @kitchen,ATTRS:47:31:28:22:14:29,GO:open door,GO:d,GO:d,GO:attack rat-ant,f7,w200,f7,w200
+inventory_scroll_blarn | inventory | READ SCROLL: the crinkly scroll, the word Blarn, something about refreshment | @m_cellar,GO:read scroll
+system_cellar_locked | system | Climbing back up: an unseen hand slams and locks the cellar door | @m_cellar,GO:u
+env_darkness | gameplay | Darkness: it is completely dark, likely to be eaten by a grue | @m_cellar,GO:n
+gameover_grue | gameover | Death in the dark: a deadly presence; UNDO, RESTORE, RESTART or QUIT | @m_darkness,GO:s,GO:u,GO:e
+dialogue_riddle | dialogue | Ledge: the riddle carved upon the cliff | @shillelagh,GO:w,GO:ne,GO:read inscription
+env_lighthouse | gameplay | Lighthouse plateau: an ancient lighthouse; map arrow for UP | @lighthouse
+gameplay_lighthouse_1st | gameplay | Lighthouse, 1st Level: daylight at the bottom of the stairway | @lighthouse,GO:u
 battle_vapor_appears | battle | Moors (Noises): an eldritch vapor coalesces out of the mist | @vapor
+options_monitor | options | MONITOR: [Combat monitor off.] during the vapor attack | @vapor,type:monitor\n,w200
 battle_vapor_attack | battle | Fighting the eldritch vapor: combat monitor shows Endurance | @vapor,type:attack vapor\n,w200
 battle_vapor_won | battle | Eldritch vapor beaten: experience up, Level 1 Male Peasant | @vapor_won
 system_zoom_map | map | ZOOM: the wider partial map of the moors | @vapor_won,type:zoom\n,w200
-options_define_keys | options | DEFINE: function key definitions F1-F10 | @start,type:define\n,w200
-options_settings | options | SETTINGS: display mode, descriptions, notify, map view, priority, monitor | @start,type:settings\n,w300
-system_mode_standard | system | MODE: standard display, one-line status with all attributes and exits | @shillelagh,type:mode\n,w200
-options_color_palette | options | COLOR: palette 3 of 6 | @start,type:color\n,w200,type:color\n,w200,type:color\n,w200
 save_prompt | save | SAVE: "You mumble the Spell of Saving", file name prompt | @vapor_won,type:save\n,w200
 save_done | save | SAVE completed after the first fight | @saved1
-extra_version | extra | VERSION: Release 57 / Serial 871221, IBM/MS-DOS Color Version J | @start,type:version\n,w200
+save_restore | save | RESTORE at the opening prompt: [RESTORE completed.] at Noises | sav:02_first_fight,BOOT,type:restore\n,w200,enter,w300
+battle_guttersnipe | battle | Deep Mist: a guttersnipe streaks out of the mist | @vapor_won,GO:w
+battle_guttersnipe_strong | battle | Deep Mist: a stronger character fights the guttersnipe | @vapor_won,ATTRS:47:31:28:22:14:29,GO:w,GO:attack guttersnipe,f7,w200,f7,w200
+battle_guttersnipe_won | battle | Battered beyond endurance, the guttersnipe retreats into the fog | @vapor_won,ATTRS:47:31:28:22:14:29,GO:w,GO:attack guttersnipe,f7,w200,f7,w200,f7,w200
+battle_guttersnipe_odors | battle | Odors: fighting a guttersnipe beside a gray potion | @vapor_won,GO:sw,GO:attack guttersnipe,f7,w200,f7,w200
+inventory_potion_examine | inventory | EXAMINE POTION: Shake before using, Frobozz Magic Potion Company | @m_odors,GO:take potion,GO:examine potion
+system_potion_drink | system | DRINK POTION: gloop, gloop, the container melts | @m_odors,GO:take potion,GO:shake potion,GO:drink potion
+gameplay_eyes | gameplay | Eyes: unblinking eyes peer down from fog-shrouded trees | @m_odors,GO:se
+extra_technical_nymph | extra | EXAMINE EYES: a technical nymph appears on the keyboard | @m_odors,GO:se,GO:examine eyes
+gameplay_mud_flats | gameplay | Mud Flats: a pterodactyl with an arrow in its wing snaps at you | @m_odors,GO:se,GO:se,GO:e
+gameplay_pterodactyl | gameplay | EXAMINE PTERODACTYL: wounded, a whistle hung around his neck | @m_odors,GO:se,GO:se,GO:e,GO:examine pterodactyl
+gameplay_gasses | gameplay | Gasses: rotting vegetable matter, a rumpled scroll in the mud | @m_odors,GO:sw
+inventory_scroll_macuga | inventory | READ SCROLL: the rumpled scroll, Macuga, something about weaponry | @m_odors,GO:sw,GO:take scroll,GO:read scroll
+env_bluffs | gameplay | Bluffs: gulls and a forest of masts, a seaport to the west | @m_odors,GO:sw,GO:sw
+env_mizniaport | gameplay | Mizniaport: a swank boutique and the Private Way | @m_mizniaport
+shop_boutique | shop | Boutique: an old woman and a glass display case | @m_boutique
+shop_display_case | shop | EXAMINE CASE: a cloak, a leather tunic, scale mail and plate mail | @m_boutique,GO:examine case
+dialogue_woman | dialogue | ASK WOMAN ABOUT CASE: "Best selection in the Southlands." | @m_boutique,GO:ask woman about case
+shop_price | shop | BUY CLOAK with 1 zorkmid: "My price is 30 zorkmids, dear." | @m_boutique,GO:examine case,GO:buy cloak
+shop_sell | shop | SELL SCROLL: the woman pays 5 zorkmids for the rumpled scroll | @m_boutique,GO:sell scroll
+shop_buy | shop | BUY CLOAK: "Done," the woman sets the cloak on the case; 13 zorkmids left | @m_boutique,MONEY:43,GO:buy cloak,GO:$
+inventory_cloak_worn | inventory | WEAR CLOAK: armor class up; INVENTORY shows the cloak worn | @m_boutique,MONEY:43,GO:buy cloak,GO:take cloak,GO:wear cloak,f2,w200
+env_private_way | gameplay | Private Way: flower beds up to a little red stablehouse | @m_mizniaport,GO:ne
+gameplay_stablehouse | gameplay | Stablehouse: a unicorn in the closed stall, a saddle, a horseshoe | @m_mizniaport,GO:ne,GO:n
+dialogue_unicorn | dialogue | EXAMINE UNICORN: "She's just a pony." The unicorn whinnies sadly | @m_mizniaport,GO:ne,GO:n,GO:examine unicorn
+gameplay_skyway | gameplay | Skyway Entrance: the gondola of the Miznia Jungle Skyway docks | @m_mizniaport,GO:w
+env_intersection | gameplay | Intersection: gray fields, the peaks of Southern Mithicus | @m_mizniaport,GO:nw
+gameplay_south_market | gameplay | South Market of Gurth City: a hawker bumps into you | @m_mizniaport,GO:nw,GO:n,GO:n
 extra_frotz_title | extra | The bundle's Frotz 2.32 launch: title picture from Beyondzo.mg1 | FROTZ
 extra_frotz_cove | extra | The bundle's Frotz 2.32 launch: Cove in Frotz's VGA proportional font | FZNEWGAME,GO:e
