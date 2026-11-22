@@ -154,6 +154,12 @@ battle_mind_whipper | battle | Level 10: a Mind whipper | @mdungeon,poke:19CA2=0
 battle_zorn | battle | Level 10: a Zorn | @mdungeon,poke:19CA2=02,poke:19CA0=0A,poke:19D60=1600,poke:19D64=6000,TPOS2:01:01,space,w60
 battle_daemon | battle | Level 10: a Daemon | @mdungeon,poke:19CA2=02,poke:19CA0=0A,poke:19D60=1700,poke:19D64=6400,TPOS2:01:01,space,w60
 battle_balron | battle | Level 10: the Balron, deepest of the dungeon monsters | @mdungeon,poke:19CA2=02,poke:19CA0=0A,poke:19D60=1800,poke:19D64=6800,TPOS2:01:01,space,w60
+env_dungeon_doors | gameplay | Dungeon corridor, level 1: doors on both sides, a wall ahead | @mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=01,TPOS2:05:06,space,w60,settle
+env_dungeon_passage | gameplay | Dungeon corridor, level 1: doors on the left, a side passage on the right | @mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=01,TPOS2:07:05,space,w60,settle
+battle_balron_approach | battle | Level 10: a Balron two squares down the corridor, coming closer | @mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=0A,poke:19E78=1800,poke:19E7C=F401,TPOS2:05:07,space,w60,settle
+battle_balron_corridor | battle | Level 10: Attacked by Balron! in a corridor lined with doors | @mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=0A,poke:19E88=1800,poke:19E8C=F401,TPOS2:05:06,space,w60,settle
+battle_minotaur_corridor | battle | Level 6: Attacked by Minotaur! beside a door | @mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=06,poke:19E88=0D00,poke:19E8C=F401,TPOS2:05:06,space,w60,settle
+battle_orc_corridor | battle | Level 4: Attacked by Orc! Hit! 53 damage, mid-corridor | @mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=04,poke:19E88=0700,poke:19E8C=6400,TPOS2:05:06,space,w60,settle
 system_spell_ladder_down | system | Cast Ladder Down "INFERUS!": Ladder created! | @mdungeon,poke:19CA2=02,TPOS2:01:01,space,w60,r,w60,s,w60,f,w60,c,w100
 system_spell_ladder_up | system | Cast Ladder Up "ASCENDO!": Ladder created! | @mdungeon,poke:19CA2=02,TPOS2:01:01,space,w60,r,w60,s,w60,g,w60,c,w100
 system_spell_blink | system | Cast Blink "DUCIS-EDUCO!": Teleported! | @mdungeon,poke:19CA2=02,TPOS2:01:01,space,w60,r,w60,s,w60,h,w60,c,w100
