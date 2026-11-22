@@ -190,6 +190,11 @@ Create and Destroy fail ("Failed!") when the square ahead is not an open corrido
   level ("Thou hast set off a trap!", `system_chest_trap`); otherwise gold, up to level squared + 9
   (`system_chest_gold`) **(code / verified)**. Thieves never trigger traps **(code)**.
 - Coffins (opened with Open, `gameplay_coffin`) may release a monster **(code)**.
+- Honest first trip (set `start`, Mines of Mt. Drash II level 1, two coffins in the west corridor): the first
+  gave "Thou dost find: 5 copper!" (`40_coffin_copper`); right after opening the second a Skeleton stood on the
+  next square and hit for 2 (`41_skeleton`). Three kills on level 1 (two Skeletons, a Thief) paid "Thou dost gain
+  54 hit points" on K-limb out (`45_klimb_out`); a Thief cost one of the two starting daggers on the way
+  (Ztats `14_ztats` vs `50_ztats_after`) **(verified)**.
 - Monsters by depth: [content.md](content.md) §3.
 
 ### 3.9 Space
@@ -213,6 +218,10 @@ Create and Destroy fail ("Failed!") when the square ahead is not an open corrido
 ### 3.10 Castles, quests, princess
 - Each castle has a king, guards, a jester, a prison with a princess and three storerooms (armour, food,
   weaponry) **(verified in Lord British's castle)**.
+- Songs: on a walk through Lord British's castle the jester's line appeared in the log, "Gwino the jester sings:
+  I've got the key!" (set `start`, `17_jester_sings`), and on leaving Britian "Iolo the Bard sings: Ho eyoh he
+  hum!" (`31_iolo_sings`); both came by themselves while walking, so they are rolls on a move, not a command
+  **(verified; trigger rule not read from the code)**.
 - T beside the king: "Dost thou offer pence or service" (`dialogue_king_offer`). Service gives a quest: odd
   castles send the hero to a landmark (`dialogue_king_quest`), even castles to kill a dungeon monster
   (`dialogue_king_kill_quest`); asking again: "Thou art on a quest for me already!" (`dialogue_king_busy`). The

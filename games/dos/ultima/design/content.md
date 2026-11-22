@@ -15,7 +15,7 @@ Shot ids are those of set `main`.
 | Equipment | 16 weapons, 6 armours **(verified)** | 12 weapons, 6 armours | playbook RAM map |
 | Abilities / spells | 11 spells **(verified)** | 10 | §5 |
 | Vehicles | horse, cart, raft, frigate, aircar, shuttle, time machine **(verified)** | all 7 | §4 |
-| Characters and people | 8 kings, 8 princesses (Julia, Cassandra, Marsha, Donna, Kristen, Beth, Lori, Dianne), merchants, tavern keepers, guards, jesters, Iolo the Bard, wenches, Mondain **(ROM text / verified)** | 6 | §6 |
+| Characters and people | 8 kings, 8 princesses (Julia, Cassandra, Marsha, Donna, Kristen, Beth, Lori, Dianne), merchants, tavern keepers, guards, jesters, Iolo the Bard (sings outside Britian: set `start` `31_iolo_sings`), wenches, Mondain **(ROM text / verified)** | 6 | §6 |
 
 ## 2. Environments
 | Environment | Where | What sets it apart | Shots |
