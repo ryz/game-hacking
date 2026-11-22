@@ -503,7 +503,11 @@ def at_checkpoint(game, name, model, cache=True):
         tmp = "%s.%d.tmp" % (path, os.getpid())
         emu.save_state(tmp)
         os.replace(tmp, path)       # atomic: a reader never sees half a state
-    return emu, base
+        emu.close()
+    # Continue from the saved file, not from the machine that built it: where a restore is not bit-exact
+    # (Amiga, docs/emulator/amiga.md) a hit and a miss would otherwise go on differently, and a set's pictures
+    # would depend on which process built which checkpoint first.
+    return load(), base
 
 
 def start(game, route, model=None, cache=True):

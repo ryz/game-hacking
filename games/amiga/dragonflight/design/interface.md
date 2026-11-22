@@ -52,7 +52,7 @@ as **Observation:** with the reason, never as a fact.
 | Status page | screen | portrait | one hero's values | hit points, magic, experience, character, weapon, armour, weapon points, armour points, food, gold | icons: inventory (?), spells (pentagram), back | - | `inventory_status`, `inventory_status_dobranur`, `inventory_weapon` | - |
 | Inventory page | list | status page | items | gold, food, item pictures with counts | Examine, Use, Prepare, drop; click an item's picture | "Examine which item?", "It is a Sword", "Can't use this item!" | `inventory_items`, `inventory_map_piece`, `inventory_examine`, `map_worldmap_added` | - |
 | Spells page | list | status page | known spells | empty at the start | - | - | `inventory_spells` | - |
-| Cast prompt | prompt | magic icon | choose the caster | "Who should cast ?" | portrait | "No spell prepared" | `system_cast_no_spell` | - |
+| Cast prompt | prompt | magic icon | choose the caster | "Who should cast ?" | portrait | "No spell prepared" or "You have no spell ready" | `system_cast_no_spell` | - |
 | Speak window | screen | lips icon next to a person | conversation | a description of the person and what he says | up/down scroll, show, deliver | "Who should show something?" | `dialogue_redhair`, `dialogue_show` | - |
 | Camp scene | screen | campfire icon | rest | the party at a campfire | - | "zzz..." | `system_camp` | - |
 | Disk menu | menu | disk icon (land) | save, load, exit | two disk icons and an exit icon on a red grid | left button | "Gamesave?", "Gameload?", "Game saved" | `save_prompt`, `save_done`, `save_load_prompt` | - |

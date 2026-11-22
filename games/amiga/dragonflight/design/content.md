@@ -61,7 +61,7 @@ magicians: In the desert, Dorinthannon North and South, the island between the c
 
 | Ability | Who | Cost | What it does | Shots |
 |---|---|---|---|---|
-| (none known at the start) | Rinakles, Bladus, Andariel have magic points | - | "No spell prepared" **(verified)** | `inventory_spells`, `system_cast_no_spell` |
+| (none known at the start) | Rinakles, Bladus, Andariel have magic points | - | "No spell prepared" or "You have no spell ready" **(verified)** | `inventory_spells`, `system_cast_no_spell` |
 
 ## 6. Characters and people
 | Who | Role | Where | Shots |

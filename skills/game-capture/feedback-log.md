@@ -12,6 +12,25 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-22 - Dragonflight (Amiga)
+- Task: capture the Dragonflight (Amiga) start and main sets with the three lenses; find fights, shops,
+  dungeon and magic.
+- Worked: a random-walk script comparing part of the screen with the normal panel found the first encounter
+  in one run; RAM string dumps (items, monsters, spells, shops) gave the content lens and item indexes; preview
+  batches covered 12 unknown commands in one look.
+- Friction: restores not exact on this core, so pictures depended on the order the checkpoint cache was built:
+  four-job verifies from an empty cache disagreed, only `--jobs 1` full runs were stable (~30 calls); combat
+  frames (Disk A load) never reproduced; watches printed byte-swapped on the Amiga; `play.py checkpoint` writes
+  checkpoints.txt lines silently.
+- Proposed rule change: Amiga sets shot and verified as full `--jobs 1` runs from an empty cache; tool wish:
+  build every checkpoint as a flat replay from power-on where restores are not exact.
+- Corrected: cause found in `tools/emu.py` `at_checkpoint`: on a cache miss it returned the machine that had
+  just built the checkpoint, on a hit a machine loaded from the file; on an inexact platform the two go on
+  differently. Fixed 2026-11-22: a miss now saves, then continues from the loaded file, so build order and
+  `--jobs` no longer matter (verify result in the progress log). Watches: `Amiga.ENDIAN = "be"` was missing,
+  added. The proposed `--jobs 1` rule is not needed after the fix.
+- Status: tool wishes built (at_checkpoint reload, Amiga byte order); `play.py checkpoint` silence -> logged.
+
 ### 2026-11-22 - Wasteland (C64)
 - Task: publish the Wasteland C64 `start` and `main` sets with the three lens documents.
 - Worked: zero-page map size ($55/$56 = 64x64) led to the world map byte grid at $3C00 in about 5 calls; a search

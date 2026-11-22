@@ -26,8 +26,9 @@ PUAE (libretro-uae), built as a libretro core and run inside the Python process 
 
 Not exact in every game (2026-11-22, Dragonflight on A500/A500OG/A500ECS): a loaded state gives the same
 frame, but game RAM differs from a run that never saved some frames later, so `cachecheck.py` says DIFFERS
-with matching frames. Shots are not affected (`shoot.py`/`preview.py` rebuild checkpoints through the same
-chain every time); a random outcome seen in live `play.py` play can come out differently in a replay: check a
+with matching frames. Sets are not affected: a checkpoint always continues from its saved file, also in the
+process that built it (`tools/emu.py` `at_checkpoint`, 2026-11-22; before, build order and `--jobs` changed
+pictures). A random outcome seen in live `play.py` play can still come out differently in a replay: check a
 route with `preview.py` before building on it. Causes found so far: `docs/backlog.md`.
 
 Checked (tests `test_amiga_*`): two power-ons give the same frames and chip RAM; a run continued after a

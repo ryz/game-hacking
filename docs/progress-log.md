@@ -2,6 +2,21 @@
 
 Append-only, newest first.
 
+## 2026-11-22 - Dragonflight (Amiga): registered, scouted, captured; checkpoint reload fix
+- Owner's upload: six TOSEC ADFs. Disk 1 `[cr CLS]` used (`[h Spaikers]` = same crack with a hacked boot block
+  and intro text); disk 2 = the uncracked original (`[cr CLS]`, `[a]`, `[a2]` differ only in leftover blocks,
+  no saved game on any). Registered as `amiga/dragonflight` (eu, A500). Kickstart 1.3 uploaded and pushed to the
+  vault (`_system/amiga`), with the game zip and save 01_start.
+- Scout: boot to Pegana, poked pointer (3BCA/3BCC), icon grid, party RAM, save/Old game. Capture: `start` 24,
+  `main` 33, three lenses; combat found (random on the land) but the fight loads from Disk A and was left out.
+- Amiga restores are not bit-exact (same frame, game RAM drifts). Causes found in PUAE (restore at beam line 0,
+  states saved ~3 lines later; `cia_reset` zeroes the keyboard handshake counter); fixes tried and reverted
+  (no effect on the drift seen), backlog row. Consequence fixed in `tools/emu.py`: `at_checkpoint` now always
+  continues from the saved file, so set pictures no longer depend on build order or `--jobs` (two four-job
+  verifies from an empty cache: identical pictures). Both sets republished on the fixed path (13 main shots
+  and the start title changed: other random rolls, captions checked, one fixed); verify 24/24, 33/33
+  (`--published`). `Amiga.ENDIAN = "be"` added (RAM watches printed byte-swapped).
+
 ## 2026-11-22 - Wasteland (C64): registered, scouted, captured
 - Owner's upload: GameBase64 set (9 D64, PAL). Disks 1-4 are the master sides, 5-8 the play copies the game wants
   (factory state), 9 a cracker's character editor (untried). Registered as `c64/wasteland` (region na), dump and

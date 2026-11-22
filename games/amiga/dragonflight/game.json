@@ -106,5 +106,5 @@
     }
   },
   "work": "start set (24 shots) and main set published 2026-11-22: boot, menus, intro, Pegana, land, camp, status/inventory/map piece, talk, a land fight (orders, arrows, approach), save/load; three lenses",
-  "open": "no shop, won fight, game over, dungeon, spell in use, ship or dragon; fights after a random encounter do not reproduce across checkpoint-cache histories (savestates not bit-exact on this core): verify with --jobs 1 from an empty cache; manual not reachable"
+  "open": "combat shots (fight checkpoints enc_snake/fight_* to re-check with preview.py: combat loads from Disk A), no shop, game over, dungeon, spell in use, ship or dragon, Drindil; manual not reachable"
 }

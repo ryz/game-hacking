@@ -73,7 +73,7 @@
    "file": "dragonflight_amiga_eu_menu_menu_main.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "f59770bb6d216584c120c9f55ce6d974e42767f2"
+   "pixel_sha1": "2c78ae9d48a2e5363fdee749413efa3e94610b7f"
   },
   {
    "id": "menu_backup",
@@ -125,7 +125,7 @@
    "file": "dragonflight_amiga_eu_cutscene_cutscene_sage.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "63e0b3a4a7435470d769fe9276c9e2c2408be88e"
+   "pixel_sha1": "103ceac36fbd2356bb6ac27fcf064a69ee0bedf1"
   },
   {
    "id": "env_pegana_square",
@@ -145,13 +145,13 @@
    "category": "gameplay",
    "caption": "Pegana: the road along the town's western edge",
    "route": "@pegana_road,S,N,w30",
-   "settled": false,
+   "settled": true,
    "model": "A500",
    "source": "shoot.py",
    "file": "dragonflight_amiga_eu_gameplay_env_pegana_road.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "f096b18dcc594134e956e68e21bb4f3f309c0171"
+   "pixel_sha1": "8f06523a585509a8b0da0ecd978755d273037dc9"
   },
   {
    "id": "env_land_river",
@@ -177,7 +177,7 @@
    "file": "dragonflight_amiga_eu_gameplay_env_land_forest.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "fc2f1a87669eafaf7534abd48a97afbc368a466c"
+   "pixel_sha1": "ffc296f74c06c9839b0e256cdc3304906176aec7"
   },
   {
    "id": "env_land_bridge",
@@ -203,7 +203,7 @@
    "file": "dragonflight_amiga_eu_hud_hud_land.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "0c27616049e40201022f69a457d2f31cb2a3cc44"
+   "pixel_sha1": "aafcbffe16a401d1e7c3d99364afce84e48ebb26"
   },
   {
    "id": "system_arrows",
@@ -338,7 +338,7 @@
   {
    "id": "system_cast_no_spell",
    "category": "system",
-   "caption": "Magic icon: \"Who should cast?\" Rinakles: \"No spell prepared\"",
+   "caption": "Magic icon: \"Who should cast?\" Rinakles: \"You have no spell ready\"",
    "route": "@start,MAGIC,w40,CLK:0050:0096,w100",
    "settled": false,
    "model": "A500",
@@ -346,7 +346,7 @@
    "file": "dragonflight_amiga_eu_system_system_cast_no_spell.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "d8b2e50ae7e49931a292a52094a5e577b82224cb"
+   "pixel_sha1": "045685e9eed7c5b29d31834751210c7664f74970"
   },
   {
    "id": "gameplay_door_nobody",
@@ -359,7 +359,7 @@
    "file": "dragonflight_amiga_eu_gameplay_gameplay_door_nobody.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "3cf42f05fb7221aa82a541eca6e8d2758c2d55f0"
+   "pixel_sha1": "94423f8ef3c006cf83a55a6e0b8f62db08b5b975"
   },
   {
    "id": "dialogue_redhair",
@@ -372,7 +372,7 @@
    "file": "dragonflight_amiga_eu_dialogue_dialogue_redhair.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "bbae7cf9a58b450d445e58927526bec43cf0fca2"
+   "pixel_sha1": "052b2bdc70f96e9c6fa5a2490302f49f09522be5"
   },
   {
    "id": "dialogue_show",
@@ -385,7 +385,7 @@
    "file": "dragonflight_amiga_eu_dialogue_dialogue_show.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "eb293a34692c8d311571df51a936740f0acc9428"
+   "pixel_sha1": "6b0088fe64053f2ccb5d78ed2fcbf13226d5f6b0"
   },
   {
    "id": "save_prompt",
@@ -411,7 +411,7 @@
    "file": "dragonflight_amiga_eu_save_save_done.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "38ba5146ef4fbfab320245818bfb5553355b72ed"
+   "pixel_sha1": "e82b42abdd6bfd01ecef7842fc9e7b433f151fc0"
   },
   {
    "id": "save_load_prompt",
@@ -424,7 +424,7 @@
    "file": "dragonflight_amiga_eu_save_save_load_prompt.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "b3e26bf590c93110caf571a05111811ad0624c5b"
+   "pixel_sha1": "b1e96548c03e820b532182cd1e0e4cd6e55a0ca7"
   },
   {
    "id": "menu_oldgame",
@@ -437,7 +437,7 @@
    "file": "dragonflight_amiga_eu_save_menu_oldgame.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "680c242a2b4599dd53f4566faf8ceb915a68088f"
+   "pixel_sha1": "9c6e3be5cd9e7e32b38be034001d471dedf36776"
   }
  ]
 }

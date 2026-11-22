@@ -191,11 +191,12 @@ No cheat codes, saves or debug menus found (no source reachable).
 | 0D6D1, 11C9E, 20318... | | hero names and game text in plain ASCII (messages, opponents) | dump |
 
 ## Emulation notes
-- **Capture 2026-11-22: shots after a random event do not reproduce across cache histories.** The same
-  route gave a snake fight in live play, blue-robed figures in a forest in a cold `shoot.py`, and a third
-  verify from an empty cache with four jobs disagreed with the second on 16 of 37 shots (the town walkers,
-  the sage text scroll, the fight). Only one job at a time from an empty cache (`--jobs 1`) is a fixed build
-  order; see the final verify result in the capture report. Plain screens (title, menus, status) are safe.
+- ~~Capture 2026-11-22: shots after a random event do not reproduce across cache histories; verify with
+  `--jobs 1` only.~~ Cause was in `tools/emu.py` (a checkpoint built in a process continued from the machine
+  that built it, a cached one from the loaded file). Fixed 2026-11-22: every checkpoint now continues from its
+  saved file, so two four-job verifies from an empty cache give identical pictures. Live `play.py` play still
+  continues without a reload: a random outcome seen there (the snake fight) can differ in a replay, so confirm
+  every route with `preview.py`. The fight checkpoints (`enc_snake`, `fight_*`) still need a fresh check.
 - A500 (Kickstart 1.3, 512K + 512K). Loads at real speed: crack intro to Thalion logo about 2400 frames, the
   logo click to the menu about 3400, new game to Pegana about 4000.
 - **Savestates do not continue bit-exactly in this game** (scout 2026-11-22): a state saved at any point and
