@@ -244,6 +244,9 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
 - There is no generic hang detector. If several inputs change nothing: check `status` (PC moving?), wait 300
   frames, try Start/B. A PC stuck in one tight loop with no screen change across inputs is a hang: report the
   route, PC and bank.
+- Mouse-driven games: when clicks on a list or a screen element do nothing, read the game's click-zone routine
+  (the event wait that turns pointer x/y into a zone index) before trying more positions: drawn elements and
+  click zones can differ (Dragonflight 2026-11-22: list zones 16 pixels above the lines, three rounds lost).
 - A softlock or a lost fight: `undo`, or `goto` the last checkpoint. Never grind: poke, use a code or a save.
 - Battery saves live in the savestate (SRAM included). In-game save/load screens are worth a shot (`save`).
 - Games without a battery (passwords): make a "save" by poking the state you want and asking the game for its

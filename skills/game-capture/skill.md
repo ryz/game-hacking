@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-21 (won fights: group record first; gamestable left to the coordinator; 2026-11-20: routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
+updated: 2026-11-22 (captions from the frame; 2026-11-21: won fights: group record first; gamestable left to the coordinator; 2026-11-20: routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -136,6 +136,9 @@ edit anything outside the game's folder.
 - Never commit ROMs, states or saves (`work/` is ignored; `--publish` copies only PNGs and the catalogue).
 - Cheated values that show on screen are realistic (below the cap, not round, varied); captions describe the
   screen, they need not mention the cheat.
+- Captions come from the frame, never from the keys sent: read the message line, and after a list re-sorts
+  check which item a line holds before naming it (promoted 2026-11-22: Ultima II command log, Dragonflight
+  mixed potion).
 - Stop at the call budget with what you have: a verified partial set beats an unverified full one. At 80% of
   the budget stop adding targets: verify, publish, commit, write the playbook.
 - Pictures are native size; enlarge only when small text cannot be read (`--scale 2`, `--crop`). Do not print

@@ -18,7 +18,6 @@ Tool wishes are not listed here: `docs/backlog.md`.
 - **Special squares:** one route per open side, taken from the decoded walls (Wizardry I DOS, 2026-11-19).
 - **Item powers can hide behind Equip as well as Use:** read the item records before calling a quest item
   inert (Wizardry III DOS, 2026-11-19).
-- **Scrolling command logs:** write the caption from the frame, not from the keys sent (Ultima II, 2026-11-19).
 - **Check the must-have list** (title, menu, first control, HUD, game over: `docs/capture-guide.md`) before
   the first full verify, not after (Ultima II, 2026-11-19).
 - **First-person RPGs: survey first.** A per-game script that steps onto every event square and reads the

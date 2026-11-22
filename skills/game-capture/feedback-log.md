@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-22 - Dragonflight (Amiga) round 4
+- Task: Dragonflight Amiga capture round 4: shops (buy, sell) and potion mixing appended to `main`, lenses.
+- Worked: reading code from a chip dump from the message index (count strings from the start of the message
+  bank, search `move.w #idx`) led to the door lookup, the shop loop and the mix screen; the click-zone routine
+  (5EA0) explained three rounds of failed list clicks; preview batches of 4-11 lines found the mixing sequence
+  and nine recipes in about 6 looks.
+- Friction: a poked pointer plus `at.py` (calibrated on icons) mapped list zones wrongly; two rounds blamed
+  "only slot +F4 takes clicks"; a caption ("the mix is drunk") was written from the keys sent and was wrong
+  until a recipe batch exposed it (retaken).
+- Proposed rule change: emulator README (mouse games): when clicks on a list do nothing, read the game's
+  click-zone routine before trying more positions. Lesson: a drink/use/select shot on a list line: check
+  which item the line holds after the list re-sorts before writing the caption.
+- Corrected: coordinator verify 113/113 and 24/24 from an empty cache; save 04_drombul pushed.
+- Status: click-zone rule -> docs/emulator/README.md (applies to every mouse game); caption lesson is the
+  second case of "caption from the frame, not the keys" (Ultima II 2026-11-19) -> promoted into skill.md.
+
 ### 2026-11-22 - Dragonflight (Amiga) round 3
 - Task: Dragonflight Amiga capture round 3 (dungeon, Great Map, magic/potions) appended to `main`.
 - Worked: rendering the suspected land grid as an image showed the whole world and its place icons in one

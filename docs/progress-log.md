@@ -32,6 +32,10 @@ Append-only, newest first.
   behind a cave arch (dark until a torch or Light), the Great Map (Examine on the Worldmap item), six potions
   drunk, Light cast, Magic arrow in a fight, two temples, Drombul and the Orc Village. Verify 93/93 and 24/24
   from an empty cache; save 03_dungeon in the vault. Open: won fight, shop, ship, dragon, Healing, mixing.
+- Capture round 4 (owner: shop and potions): `main` 93 -> 113: Drombul's blacksmith (buy, not enough money,
+  sell list and offer), healer (healing bought), inn; potion mixing (cells to cauldron, flask, outlet; a full
+  heal recipe, liquor + wine). Verify 113/113 and 24/24 from an empty cache; save 04_drombul in the vault.
+  Caption-from-frame lesson promoted into game-capture; click-zone rule in the emulator README.
 
 ## 2026-11-22 - Wasteland (C64): registered, scouted, captured
 - Owner's upload: GameBase64 set (9 D64, PAL). Disks 1-4 are the master sides, 5-8 the play copies the game wants
