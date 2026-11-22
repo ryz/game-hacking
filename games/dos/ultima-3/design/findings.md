@@ -109,3 +109,18 @@ Dungeon of Fire, `system_fountain_*`); the scout's note had another order.
 **Intended:** a compact way to vary fountains.
 **Confidence:** (verified).
 **Impact:** a player can learn a fountain's kind from its position.
+
+## Wandering monsters stall at brush
+**Behavior:** a monster spawned west of LCB walked diagonally towards the party at (2E,13) and stopped at (20,13) for over
+200 turns, with brush and the Yew mountains between (start-set scan from `s_out`, 2026-11-22); another run's monster
+walked straight in over grass. They seem to step only onto open grass in the party's direction, with no way around.
+**Intended:** unclear (simple chase).
+**Confidence:** (RAM) positions read each turn; the movement code not read.
+**Impact:** a party can wait safely behind brush; to meet a monster early, walk towards it.
+
+## The first chest of a new game can be trapped
+**Behavior:** the ghoul's chest opened by ryz (Dex 10) at the start: "Bomb trap!" hurt all four (150 -> 94, 91, 126, 128)
+and gave Gold+59 (`s_chest`, start shot `54_chest_bomb`). Nothing protects a new party from traps.
+**Intended:** yes (thieves and Appar Unem exist for this).
+**Confidence:** (verified).
+**Impact:** a new party should open chests with its thief or skip them while hurt.

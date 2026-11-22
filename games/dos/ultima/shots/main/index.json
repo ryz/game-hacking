@@ -5,8 +5,8 @@
   "platform": "dos",
   "region": "na",
   "model": "svga-500",
-  "sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
-  "crc32": "aa06a7ae"
+  "sha1": "4b820a487f9c7161a0e6baacc7843a2aec4b6e3a",
+  "crc32": "bdbed0fd"
  },
  "set": "main",
  "shots": [
@@ -2037,6 +2037,84 @@
    "rom_sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
    "captured": "2026-11-19",
    "pixel_sha1": "502b8d61949587b7e8e2a74676925d23d5a3e4ec"
+  },
+  {
+   "id": "env_dungeon_doors",
+   "category": "gameplay",
+   "caption": "Dungeon corridor, level 1: doors on both sides, a wall ahead",
+   "route": "@mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=01,TPOS2:05:06,space,w60,settle",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_gameplay_env_dungeon_doors.png",
+   "rom_sha1": "4b820a487f9c7161a0e6baacc7843a2aec4b6e3a",
+   "captured": "2026-11-22",
+   "pixel_sha1": "b314b9a111f22e54d023f16a463b9889c2b9fbb3"
+  },
+  {
+   "id": "env_dungeon_passage",
+   "category": "gameplay",
+   "caption": "Dungeon corridor, level 1: doors on the left, a side passage on the right",
+   "route": "@mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=01,TPOS2:07:05,space,w60,settle",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_gameplay_env_dungeon_passage.png",
+   "rom_sha1": "4b820a487f9c7161a0e6baacc7843a2aec4b6e3a",
+   "captured": "2026-11-22",
+   "pixel_sha1": "4252164f3fe82dbfb632ef971a2e31232d9414cb"
+  },
+  {
+   "id": "battle_balron_approach",
+   "category": "battle",
+   "caption": "Level 10: a Balron two squares down the corridor, coming closer",
+   "route": "@mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=0A,poke:19E78=1800,poke:19E7C=F401,TPOS2:05:07,space,w60,settle",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_battle_battle_balron_approach.png",
+   "rom_sha1": "4b820a487f9c7161a0e6baacc7843a2aec4b6e3a",
+   "captured": "2026-11-22",
+   "pixel_sha1": "cad0daa3b0ba9c86bc9d47abd37e164b4447113e"
+  },
+  {
+   "id": "battle_balron_corridor",
+   "category": "battle",
+   "caption": "Level 10: Attacked by Balron! in a corridor lined with doors",
+   "route": "@mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=0A,poke:19E88=1800,poke:19E8C=F401,TPOS2:05:06,space,w60,settle",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_battle_battle_balron_corridor.png",
+   "rom_sha1": "4b820a487f9c7161a0e6baacc7843a2aec4b6e3a",
+   "captured": "2026-11-22",
+   "pixel_sha1": "28cb6559240341844ef8035499c40f72dff740eb"
+  },
+  {
+   "id": "battle_minotaur_corridor",
+   "category": "battle",
+   "caption": "Level 6: Attacked by Minotaur! beside a door",
+   "route": "@mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=06,poke:19E88=0D00,poke:19E8C=F401,TPOS2:05:06,space,w60,settle",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_battle_battle_minotaur_corridor.png",
+   "rom_sha1": "4b820a487f9c7161a0e6baacc7843a2aec4b6e3a",
+   "captured": "2026-11-22",
+   "pixel_sha1": "47268a1a3cfa9c403c4c443cb8cf39fd7e88a08f"
+  },
+  {
+   "id": "battle_orc_corridor",
+   "category": "battle",
+   "caption": "Level 4: Attacked by Orc! Hit! 53 damage, mid-corridor",
+   "route": "@mdungeon,poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF,poke:19CA2=03,poke:19CA0=04,poke:19E88=0700,poke:19E8C=6400,TPOS2:05:06,space,w60,settle",
+   "settled": false,
+   "model": "svga-500",
+   "source": "shoot.py",
+   "file": "ultima_dos_na_battle_battle_orc_corridor.png",
+   "rom_sha1": "4b820a487f9c7161a0e6baacc7843a2aec4b6e3a",
+   "captured": "2026-11-22",
+   "pixel_sha1": "56740c6e76a38932dc0448a3eaf88c5894810926"
   },
   {
    "id": "system_spell_ladder_down",

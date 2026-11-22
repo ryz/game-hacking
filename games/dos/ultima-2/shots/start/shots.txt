@@ -1,0 +1,49 @@
+# Set start: the early game in play order, played honestly from creation to the first Q save (2026-11-22).
+01_boot_origin | boot | Intro text: ORIGIN PROUDLY PRESENTS | pow,w60,!
+02_boot_part2 | boot | Intro text: Part II of the #1 best selling fantasy role-playing game | pow,w130,!
+03_title_screen | title | Title picture: Ultima II, the dragon, Revenge of the Enchantress | @title
+04_menu_main | menu | Main menu: D demonstration, P play a game, C create a new character | @menu
+05_cutscene_demo | cutscene | D: demonstration, BATTLE STRANGE CREATURES ACROSS THE FACE OF THE EARTH | @menu,d,w50,!
+06_menu_generation | menu | C: player generation, 90 points to distribute, Strength asked first | @gen
+07_menu_gen_strength | menu | Strength 25 typed: 65 points left, Agility asked | @gen,2,5,enter,w60
+08_menu_gen_stats | menu | Six statistics typed (25 20 15 10 10 10): no points left | @gen,STATS
+09_menu_gen_male | menu | M: male, Strength 25 -> 30; race asked | @gen,STATS,m,w60
+10_menu_gen_human | menu | 1: human, Intelligence 10 -> 15; type asked | @gen,STATS,m,w60,1,w60
+11_menu_gen_fighter | menu | 1: fighter, Strength 30 -> 45; name asked | @gen,STATS,m,w60,1,w60,1,w60
+12_menu_gen_done | menu | Name RYZ: SATISFACTORY (Y/N) | @gen,STATS,m,w60,1,w60,1,w60,r,y,z,enter,w60
+13_gameplay_first_view | gameplay | P: ryz in the woods of 1423 B.C., H.P. 400, food 399, gold 400 | @menu,CREATE,p,w40,!
+14_gameplay_pass | gameplay | No key pressed: turns pass by themselves (CMD: PASS) | @start,w200,!
+15_inventory_ztats_new | inventory | Z: Ztats, a level 00 male human fighter, hands, skin, nothing owned | @start,z,w120
+16_gameplay_first_step | gameplay | First steps west through the woods | @start,left,left,left,w20,!
+17_gameplay_walk_coast | gameplay | North-west: mountains and the water's edge | @start,left,left,left,left,left,left,left,left,up,up,left,up,left,up,left,up,up,left,up,up,left,up,w20,!
+18_gameplay_walk_wrap | gameplay | Past the west edge of the map ryz walks on in the far east | @start,left,left,left,left,left,left,left,left,up,up,left,up,left,up,left,up,up,left,up,up,left,up,settle,left,left,left,left,left,left,left,left,left,left,left,w20,!
+19_gameplay_walk_west | gameplay | West along the coast: grassland, woods and water | @start,left,left,left,left,left,left,left,left,up,up,left,up,left,up,left,up,up,left,up,up,left,up,settle,left,left,left,left,left,left,left,left,left,left,left,left,left,left,left,left,left,left,left,left,w20,!
+20_battle_devil | battle | A devil steps into the way south and strikes (H.P. 396) | @s_first_monster
+21_battle_miss | battle | A, south, bare hands: ATTACK--SOUTH--MISS | @s_first_monster,a,w30,down,w40,!
+22_battle_kill | battle | Fourth swing: HIT!!! KILLED--GOLD+11--EXP.+02 | @s_first_monster,a,w30,down,w40,a,w30,down,w40,a,w30,down,w40,a,w30,down,w40,!
+23_gameplay_towne_ahead | gameplay | The way is clear: Towne Linda ahead to the south | @s_fight_won,down,down,w20,!
+24_gameplay_towne_beside | gameplay | Beside Towne Linda (the square west of ryz) | @s_fight_won,down,down,right,down,down,w20,!
+25_gameplay_linda | gameplay | E: ENTER-TOWN, Towne Linda's gate with two guards | @s_linda
+26_gameplay_linda_street | gameplay | North into Towne Linda along the road | @s_linda,up,up,up,up,up,up,w20,!
+27_shop_weapons | shop | T over the counter: THE WEAPONS SHOPPE, 1-DA .. 8-PH, YOUR INTEREST? | @s_linda,POS:0E:0A,t,w30,down,w150,!
+28_shop_weapons_price | shop | 5: AH! YES! A SWORD FOR YOU ONLY 0136 HOW 'BOUT IT? | @s_linda,POS:0E:0A,t,w30,down,w150,5,w150,!
+29_shop_weapons_sold | shop | Y: SOLD! (gold 411 -> 275) | @s_linda,POS:0E:0A,t,w30,down,w150,5,w150,y,w150,!
+30_shop_armour | shop | The Armour Shoppe: 1-CLOTH .. 6-POWER, YOUR INTEREST? | @s_linda,POS:0E:0A,t,w30,down,w150,5,w150,y,w150,w60,POS:32:0E,t,w30,up,w150,!
+31_shop_armour_price | shop | 2: AH! YES! LEATHER FOR YOU ONLY 0084 | @s_linda,POS:0E:0A,t,w30,down,w150,5,w150,y,w150,w60,POS:32:0E,t,w30,up,w150,2,w150,!
+32_shop_armour_sold | shop | Y: SOLD! (gold 275 -> 191) | @s_linda,POS:0E:0A,t,w30,down,w150,5,w150,y,w150,w60,POS:32:0E,t,w30,up,w150,2,w150,y,w150,!
+33_dialogue_ithilian | dialogue | Pub de Varg: Ithilian the Wench calls: Make me an offer sailor! | @s_linda,POS:0E:0A,t,w30,down,w150,5,w150,y,w150,w60,POS:32:0E,t,w30,up,w150,2,w150,y,w150,w60,POS:0A:30,t,w30,down,w150,!
+34_system_ready_refused | system | R, 5: SWORD <-THOU ART NOT AGILE ENOUGH TO WIELD! | @s_linda,POS:0E:0A,t,w30,down,w150,5,w150,y,w150,w60,POS:32:0E,t,w30,up,w150,2,w150,y,w150,w60,POS:0A:30,t,w30,down,w150,r,w30,5,w60,!
+35_system_wear | system | W, 2: LEATHER READY. | @s_linda,POS:0E:0A,t,w30,down,w150,5,w150,y,w150,w60,POS:32:0E,t,w30,up,w150,2,w150,y,w150,w60,POS:0A:30,t,w30,down,w150,r,w30,5,w60,w,w30,2,w60,!
+36_shop_weapons_axe | shop | Back at the weapons shoppe: 3: A AXE FOR YOU ONLY 0052 | @s_linda,POS:0E:0A,t,w30,down,w150,5,w150,y,w150,w60,POS:32:0E,t,w30,up,w150,2,w150,y,w150,w60,POS:0A:30,t,w30,down,w150,r,w30,5,w60,w,w30,2,w60,POS:0B:0A,t,w30,down,w150,3,w150,!
+37_system_ready_axe | system | Bought; R, 3: AXE READY. (gold 191 -> 139) | @s_equipped,w20,!
+38_inventory_ztats | inventory | Ztats after shopping: axe readied, leather worn, sword and axe owned | @s_equipped,z,w120
+39_gameplay_linda_leave | gameplay | Out of Towne Linda by its south edge, back on the surface | @s_equipped,LEAVE,!
+40_gameplay_village_ahead | gameplay | South-east from Linda: the village just south of ryz | @s_equipped,LEAVE,right,up,up,right,right,right,down,down,left,down,down,left,down,down,down,down,down,down,down,down,down,down,down,down,down,down,w20,!
+41_gameplay_village | gameplay | E: ENTER-VILLAGE, the village of 1423 B.C. | @s_village,w20,!
+42_shop_food | shop | Alfreds Fish n Chips: THE FOOD HERE COSTS 0052 PER 100, WANT ONE? | @s_village,POS:2E:12,t,w30,up,w150,!
+43_shop_food_buy | shop | Y: NO ONIONS AND TO GO PLEASE! Food 377 -> 477, gold 87 | @s_village,POS:2E:12,t,w30,up,w150,y,w150,!
+44_shop_oracle | shop | The oracle: TIME AND TRAVEL MADE ME WISE ... HOW MUCH WILL YOU PAY *100? | @s_village,POS:2E:12,t,w30,up,w150,y,w150,w60,POS:10:0E,w300,t,w30,down,w150,!
+45_shop_oracle_0 | shop | 0: ASK ME NO QUESTIONS, I'LL TELL YOU NO LIES. | @s_village,POS:2E:12,t,w30,up,w150,y,w150,w60,POS:10:0E,w300,t,w30,down,w150,0,w200,!
+46_dialogue_grendel | dialogue | Grendel the Bum says: Masters of riddle are masters indeed! | @s_village,POS:2E:12,t,w30,up,w150,y,w150,w60,POS:10:0E,w300,t,w30,down,w150,0,w200,w60,POS:05:06,t,w30,up,w150,!
+47_gameplay_village_leave | gameplay | Out of the village, back on the surface of 1423 B.C. | @s_village,POS:2E:12,t,w30,up,w150,y,w150,w60,POS:10:0E,w300,t,w30,down,w150,0,w200,w60,POS:05:06,t,w30,up,w150,w60,LEAVE,!
+48_save_quit | save | Q: QUIT OR SAVE GAME. ONE MOMENT PLEASE! (play goes on) | @s_village,POS:2E:12,t,w30,up,w150,y,w150,w60,POS:10:0E,w300,t,w30,down,w150,0,w200,w60,POS:05:06,t,w30,up,w150,w60,LEAVE,q,w120,!

@@ -42,7 +42,7 @@ there, overlap is intended. Notation: [README.md](README.md). Check: `python3 to
 ## 3. Opponents
 | Opponent | Where met | Picture | What it does | Shots |
 |---|---|---|---|---|
-| Devil | surface grass (kind 1 of the creation cycle, 16 H.P.) | horned beast | melee; 3 gold, 4 experience (verified) | `battle_devil`, `battle_hit_kill`, `battle_land_monsters` |
+| Devil | surface grass (kind 1 of the creation cycle, 16 H.P.) | horned beast | melee; 3 gold, 4 experience (verified); the start set's devil (met in play on the walk to Towne Linda) gave 11 gold, 2 experience and took 4 swings with bare hands at Agility 20 (start set `20`-`22`) | `battle_devil`, `battle_hit_kill`, `battle_land_monsters` |
 | Thief | surface (kind 2, 32 H.P.), towns | cloaked figure | steals from ryz when adjacent (verified) | `battle_thief_stole`, `dialogue_thief` |
 | Hooded man | surface (kind 3, 64 H.P.) | figure with a staff | paralyses legs from up to 3 squares (verified) | `battle_legs_boots` |
 | Sea serpent | water (kind 4, 64 H.P.) | coiled serpent | melee from the water (code) | `battle_sea_monsters`, `battle_frigate_cannon` |

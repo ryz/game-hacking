@@ -63,3 +63,18 @@ def test_outside_path_refused(tmp_path):
     other.write_bytes(b"y")
     with pytest.raises(SystemExit):
         vault.collect("nes", "demo", {"rom": "rom/demo.nes"}, [str(other)], root=str(a))
+
+
+def test_push_route_reaches_check(tmp_path):
+    bare = tmp_path / "remote.git"
+    sh("git", "init", "-q", "--bare", "-b", "main", str(bare))
+    vdir = tmp_path / "vault"
+    sh("git", "clone", "-q", str(bare), str(vdir))
+    for k, v in (("user.name", "t"), ("user.email", "t@example.invalid")):
+        sh("git", "-C", str(vdir), "config", k, v)
+    a = tmp_path / "a"
+    tree(str(a), {"rom/demo.nes": b"rom"}, {"rom": "rom/demo.nes"})
+    got = {}
+    fake = lambda folder, frames, root, **kw: got.update(kw) or (5, 16, "sheet.png")
+    done = vault.push("demo", root=str(a), vault=str(vdir), booted="title", check=fake, route="BOOT,enter")
+    assert got == {"route": "BOOT,enter"} and done[0]["check"]["route"] == "BOOT,enter"

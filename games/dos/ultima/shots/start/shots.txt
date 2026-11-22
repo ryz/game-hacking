@@ -1,0 +1,54 @@
+# id | category | caption | route
+# Set start: the early game as a new player meets it, played honestly from power-on to the first Q save (checkpoints s_*).
+01_title_text | boot | Text title: Ultima I, The First Age of Darkness, Copyright 1987 Origin | BOOT,w200
+02_origin_presents | boot | Origin Systems logo: Presents... | BOOT,w1050
+03_title_castle | title | Ultima I: castle title picture | @title
+04_credits | boot | Credits card after a key: trademarks, Conversion by John Fachini | @title,space,w150
+05_main_menu | menu | Main menu: a) Generate new character, b) Continue previous game | @menu
+06_gen_points | menu | Character Generation: 30 points to distribute over six statistics | @gen
+07_gen_stats | menu | All 30 points spent: Str 20 Agi 18 Sta 17 Cha 13 Wis 10 Int 12 | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2
+08_gen_race | menu | Select thy race: Human, Elf, Dwarf, Bobbit | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60
+09_gen_sex | menu | Human chosen (Intelligence +5): select thy sex | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,a,w60
+10_gen_class | menu | Select thy class: Fighter, Cleric, Wizard, Thief | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,a,w60,a,w60
+11_gen_name | menu | Fighter (Strength and Agility +10): Enter thy name: ryz | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,a,w60,a,w60,a,w60,r,y,z,w30
+12_gen_save | menu | Save this character? (Y-N) | @gen,right*10,down,right*8,down,right*7,down,right*3,down,down,right*2,space,w60,a,w60,a,w60,a,w60,r,y,z,w30,enter,w60
+13_char_select | menu | Character Selection: 1) ryz, slots 2-4 empty | @gen,CREATE,b,w200
+14_first_view | gameplay | First view: ryz on the overworld east of the Castle of Lord British | @start
+15_ztats | inventory | Ztats: level 1 human fighter, 150 hit points, leather armour, two daggers | @start,z,w60
+16_castle_enter | gameplay | Entering... The Castle of Lord British: halls, pools, guards, the king | @s_castle_in
+17_jester_sings | dialogue | Gwino the jester sings: I've got the key! A guard blocks the way | @s_castle_in,up,w30,up,w30,right,w30,up,w30,up,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,down,w30,down,w30,down,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,right,w30,up,w30,up,w30,up,w30,right,w30,right,w30,right,w30
+18_king_offer | dialogue | Lord British: Dost thou offer pence or service? | @s_king
+19_king_quest | dialogue | Service: Go forth and find The Grave of the Lost Soul | @s_king,s,w150
+20_britian | gameplay | The city of Britian, entered on foot: six shops, a pond, guards | @s_britian
+21_weapon_shop | shop | Weapon shop: Mace 8, Rope & Spikes 19 | @s_weapons
+22_mace_sold | shop | Mace bought: Sold! (Coin 92) | @s_weapons,c,w100
+23_ready_weapon | inventory | Ready weapon: a) Hands, b) Dagger, c) Mace | @s_weapons,c,w100,settle,space,w60,r,w60,w,w60
+24_mace_readied | gameplay | Ready weapon: Mace; ryz at the weapon counter in Britian | @s_mace
+25_armour_shop | shop | Armour shop: Leather armor 45, Chain mail 90, Plate mail 135 | @s_armour
+26_buy_nothing | shop | Leaving the armour shop without buying: Transact-Buy: nothing | @s_armour,space,w100
+27_food_shop | shop | Li'l Karelia's Finnish Grocery: packs of 10 food for 5 pence | @s_food
+28_food_sold | shop | 6 packs of food bought: Sold! (Food 253, Coin 62) | @s_food,6,enter,w100
+29_magic_shop | shop | Mad Chad's Magic Shoppe: Open 5, Magic Missile 15, Ladder Down 25 | @s_magic
+30_pub_ale | shop | Pub de Varg: an ale for 1 pence, Here, have a cold one! | @s_pub
+31_iolo_sings | dialogue | Outside Britian: Iolo the Bard sings: Ho eyoh he hum! | @s_iolo
+32_monster_seen | gameplay | South-east of Britian: a monster appears to the east | @s_monster_seen
+33_monster_near | battle | The Necromancer steps up beside ryz | @s_monster_adjacent
+34_necro_attack | battle | Missed the Necromancer! Necromancer attacks! Hit! 3 damage | @s_monster_adjacent,a,w30,right,w100
+35_necro_killed | battle | Killed the Necromancer! 6 copper! 2 silver! (Exp. 17) | @s_necro_killed
+36_env_grassland | gameplay | Open grassland south of Britian, mountains ahead | @s_grass
+37_dungeon_square | gameplay | On the entrance of the Mines of Mt. Drash II among the mountains | @s_at_dungeon
+38_dungeon_level1 | gameplay | Entering... The Mines of Mt. Drash II: level 1, ladder up overhead | @s_dungeon
+39_coffin_ahead | gameplay | Level 1 corridor: a coffin on the next square, another beyond | @s_coffin_ahead
+40_coffin_copper | system | Open coffin: Thou dost find: 5 copper! | @s_coffin_open
+41_skeleton | battle | A Skeleton attacks beside the second coffin: Hit! 2 damage! | @s_skeleton
+42_skeleton_killed | battle | Hit! Skeleton killed! Thou dost find: 1 copper! 1 silver! | @s_skel_hit1,a,w100,settle,a,!
+43_thief | battle | Back at the ladder: Attacked by Thief! Missed! | @s_thief
+44_thief_killed | battle | Hit! Thief killed! Thou dost find: 8 copper! Under the ladder up | @s_ladder
+45_klimb_out | system | K-limb up to level 0: Thou dost gain 54 hit points | @s_out_dungeon
+46_evil_ranger | battle | Blocked by an Evil ranger! Evil ranger attacks! Missed! | @s_ranger
+47_ranger_killed | battle | Killed the Evil ranger! 3 copper! 1 silver! (Exp. 74) | @s_ranger_killed
+48_return_north | gameplay | Back north: the Castle of Lord British and Britian to the west | @s_return
+49_king_pence | dialogue | Lord British again: pence, How much? | @s_king_pence
+50_king_hits | dialogue | 60 pence: In return I give unto thee 90 hit points (Hits 206) | @s_king_hits
+51_ztats_after | inventory | Ztats after the trip: 206 hit points, mace readied, one dagger left | @s_king_hits,z,w60
+52_quit_saved | save | Quit - saving game...saved. (outside the castle) | @s_saved

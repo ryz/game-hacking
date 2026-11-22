@@ -6,6 +6,14 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 "ROM text" = read from ULTIMAII.EXE or the TLK files; "code" = read from ULTIMAII.EXE with ndisasm (offsets are
 code offsets = file offset - 0x200; the program is a COM-style EXE: CS = load segment 01A8, IP = code offset).
 
+> **Read first (updated 2026-11-22).** Start: `python3 tools/play.py start dos/ultima-2 --name ultima-2 --route @start`
+> (new ryz, 1423 B.C.); late game: `@hero`. Macros `NEWGAME`, `POS:x:y`, `ENTER:x:y`, `LEAVE`, `TIME:0q`, `HERO`
+> (Shortcuts). Sets: `main` (226) and `start` (48, honest, checkpoints `s_first_monster` .. `s_saved`, section
+> "Start set"). Traps: the command log scrolls (caption from the frame); town merchants wander, so a Transact
+> route needs the merchant behind the counter at that moment (`tools/u2objs.py ROUTE X,Y`, or wait `w300` at the
+> counter); a key pressed during an automatic PASS can be lost on long walks (check x/y after a walk);
+> the start continent holds Towne Linda, the village and the tower only (castle, dungeon: other land).
+
 > **Tools moved (2026-11-20).** Where this playbook says `try.py`, `cachecheck.py` or `screen.py` (copies that
 > lived in this game's `tools/`), use the shared tools: `python3 tools/preview.py dos/ultima-2 FILE` (`--frames K` is now
 > a `?` mark inside the route or `--timeline N:STEP`; sheets in `work/preview/dos/ultima-2/`), `python3
@@ -178,6 +186,7 @@ Facts from the code and the map/talk files, checked in play where marked.
   (inferred from the 4,096-byte maps).
 
 ## Shot plan
+**Done 2026-11-22:** set `start`, 48 shots (section "Start set").
 **Done 2026-11-19 (capture):** set `main`, 226 shots from power-on to the ending, all plan groups covered; the
 finished list is `shots.txt` (game order). Not captured: see the end of this section.
 
@@ -246,6 +255,27 @@ How the set was made; reuse these before experimenting.
 - **Unlock** works east/west only; the jail cells of Lord British's castle ((0E,27) (0E,2B) (0E,2F), stand east)
   are reachable doors.
 
+## Start set (capture 2026-11-22)
+Set `start` (48 shots, `shots/start/`), played honestly from `@start` (the `NEWGAME` character: Str 45 Agi 20
+Sta 15 Cha 10 Wis 10 Int 15, a human fighter). No value pokes; `POS` only inside towns (from the gate to a
+counter or a person) and `LEAVE` back to the gate.
+- **On foot from the start** (BFS over MAPX20, grass/marsh/woods walkable, the map wraps): Towne Linda (24,1D)
+  is 77 steps (west across the wrap), the village (26,2E) 27 steps further, the tower (18,28) too. Lord
+  British's castle (23,16) and the dungeon (19,05) are not reachable on foot: no healing at the start.
+  Path finder: a 20-line BFS over the map bytes (`u2map.zfiles()`), kept in `work/u2path.py` (not committed).
+- **The walk** (checkpoint `s_first_monster`): one `left` was lost during the 34-key second chunk (an automatic
+  PASS in between), so the route is the recorded one with `settle` steps; a devil (picture 30, 16 H.P., slot
+  31) came out of the woods at (24,1A) and blocked the way south. Bare hands at Agility 20: miss, miss, miss,
+  kill on the 4th swing from `s_first_monster` (KILLED--GOLD+11--EXP.+02), `s_fight_won`. H.P. 400 -> 391.
+- **Towne Linda** (`s_linda`): weapons merchant behind the counter at (0E,0B) on entry (`POS:0E:0A`, `t`,
+  `down`), later at (0B,0C) (`POS:0B:0A`); armour merchant at (32,0C) (`POS:32:0E`, `t`, `up`); Ithilian
+  `POS:0A:30`, `t`, `down`. Prices at Cha 10 + Int 15: dagger 20, mace 32, axe 52, sword 136; leather 84,
+  chain 220. **The sword cannot be readied at Agility 20** ("SWORD <-THOU ART NOT AGILE ENOUGH TO WIELD!"); the
+  axe can (`s_equipped`: sword, leather worn, axe readied, gold 139).
+- **The village** (`s_village`): food merchant at (2E,10) (`POS:2E:12`, `t`, `up`: 52 per 100, food 377 -> 477);
+  the oracle merchant wanders: at the counter (`POS:10:0E`) wait `w300` before `t`, `down`; Grendel
+  `POS:05:06`, `t`, `up`. Then `LEAVE` and `q` on the surface (`s_saved`, save `04_start_village`).
+
 ## Strategy and walkthrough notes
 - **Fastest route to the ending (verified, all checkpoints):** `hero` (late character by poke) -> `TIME:03`,
   `ENTER:0F:1A` (New San Antonio) -> `SANTRE` (quicksword) -> `LEAVE`, `ROCKET`, `LAUNCH`, `WARP:9:9:9`, `l`,
@@ -284,7 +314,8 @@ shows names in capitals ("RYZ"). No other names.
 
 ### Saves (rom/saves/ultima-2/, never committed)
 None downloaded (web hosts unreachable). Made here (committed): `saves/01_start.sav` (new ryz, Q at the start),
-`saves/02_endgame.sav` (late ryz with Enilno, the ring and the blessing outside New San Antonio), see
+`saves/02_endgame.sav` (late ryz with Enilno, the ring and the blessing outside New San Antonio),
+`saves/03_legends.sav`, `saves/04_start_village.sav` (honest new ryz after the start set: axe, leather, gold 87), see
 `saves/README.md`.
 
 ## RAM map (for `game.json` "ram" watches and pokes)
@@ -354,7 +385,8 @@ BCD = packed decimal, high byte first (the status panel shows the digits). The *
 `space`, `orbit_x`, `landed_x`, `ozys`, `blessing`, `earth_2112`, `ring`, `endgame` (save 02_endgame),
 `shadowguard`, `field`, `minax`, `minax_dead`, `ending`. Added by the capture: `hero_dungeon` (late ryz in the
 1423 B.C. dungeon, torch lit), `legends`, `pangea`, `y1990`, `y2112` (late ryz at (17,12) of each period),
-`mx1`, `minax_honest`, `ending_honest` (the honest Minax fight and its ending).
+`mx1`, `minax_honest`, `ending_honest` (the honest Minax fight and its ending). Start set (2026-11-22):
+`s_first_monster`, `s_fight_won`, `s_at_linda`, `s_linda`, `s_equipped`, `s_village`, `s_saved`.
 
 ## Tools
 - `tools/try.py FILE [--frames K] [--peek ADDR:LEN] [--crop x0,y0,x1,y1] [--cols N]`: many routes in parallel, one

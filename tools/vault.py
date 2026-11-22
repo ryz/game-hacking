@@ -1,7 +1,7 @@
 """The private vault: game data (ROMs, unpatched dumps, patches, downloaded and exported saves, Kickstarts) kept in
 the private repository ryz/game-hacking-r, so a fresh session can restore what this public repository never holds.
 
-  python3 tools/vault.py push GAME [PATH ...] --booted "what the boot check showed" [--frames N] [-m MSG]
+  python3 tools/vault.py push GAME [PATH ...] --booted "what the boot check showed" [--frames N] [--route TOKS] [-m MSG]
                                                           smoke-test GAME's ROM, then copy its data from rom/ into
                                                           the vault, commit, push
   python3 tools/vault.py push system/PLATFORM PATH ...    platform files (Amiga Kickstarts: rom/kickstart/...)
@@ -127,8 +127,9 @@ def collect(platform, slug, meta, extra, root=ROOT):
     return [x for x in out if x not in missing]
 
 
-def smoke(name, frames=3600, every=300, root=ROOT):
-    """Power the game on and run FRAMES frames: (distinct pictures, colours in the richest picture, sheet path).
+def smoke(name, frames=3600, every=300, root=ROOT, route=None):
+    """Power the game on (then play ROUTE, tokens as for play.py do, for a game that waits at a menu) and run
+    FRAMES frames: (distinct pictures, colours in the richest picture, sheet path).
     Refuses a ROM whose SHA-1 differs from game.json, a blank screen and a screen that never changes."""
     sys.path.insert(0, HERE)
     import emu
@@ -140,6 +141,8 @@ def smoke(name, frames=3600, every=300, root=ROOT):
     e = emu.open_game(g)
     paths, seen, colours = [], set(), 0
     try:
+        if route:
+            emu.play(e, g, emu.expand(g, emu.split(route)))
         for f in range(every, frames + 1, every):
             e.frames(every)
             p = os.path.join(out, "f%05d.png" % f)
@@ -157,7 +160,7 @@ def smoke(name, frames=3600, every=300, root=ROOT):
         raise SystemExit("smoke test: the screen stayed blank for %d frames (%s): not pushed" % (frames, rel))
     if len(seen) < 3:
         raise SystemExit("smoke test: only %d different pictures in %d frames (%s): not booting? Not pushed; "
-                         "--frames N for a slow loader" % (len(seen), frames, rel))
+                         "--frames N for a slow loader, --route TOKENS for a game that waits for a key" % (len(seen), frames, rel))
     print("smoke test: %d different pictures, up to %d colours in %d frames; look at %s" % (
         len(seen), colours, frames, rel))
     return len(seen), colours, rel
@@ -168,7 +171,8 @@ def load_index(vdir):
     return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {"files": []}
 
 
-def push(name, extra=(), message=None, root=ROOT, vault=None, remote=True, booted=None, frames=3600, check=smoke):
+def push(name, extra=(), message=None, root=ROOT, vault=None, remote=True, booted=None, frames=3600, check=smoke,
+         route=None):
     vault = vault or vault_dir(root)
     folder, platform, slug, meta = resolve(name, root)
     files = collect(platform, slug, meta, extra, root)
@@ -184,9 +188,11 @@ def push(name, extra=(), message=None, root=ROOT, vault=None, remote=True, boote
             if not booted:
                 raise SystemExit("%s: only working ROMs go into the vault: run the boot check with --booted "
                                  "\"what the game showed\" (after looking at the sheet)" % rel)
-            distinct, colours, sheet = check(folder, frames=frames, root=root)
+            distinct, colours, sheet = check(folder, frames=frames, root=root, **({"route": route} if route else {}))
             result = {"frames": frames, "pictures": distinct, "colours": colours, "booted": booted,
                       "date": time.strftime("%Y-%m-%d")}
+            if route:
+                result["route"] = route
     changed = []
     for role, rel in files:
         full = os.path.join(root, rel)
@@ -289,13 +295,15 @@ def main():
     p.add_argument("-m", "--message")
     p.add_argument("--booted", help="what the game showed in the boot check (title, menu...)")
     p.add_argument("--frames", type=int, default=3600, help="frames the boot check runs (default 3600)")
+    p.add_argument("--route", help="tokens played after power-on, before the check counts pictures (a game that "
+                   "waits at a menu: DOSBox Pure's program menu, a still title)")
     p = sub.add_parser("pull")
     p.add_argument("game")
     p.add_argument("--force", action="store_true")
     sub.add_parser("list")
     a = ap.parse_args()
     if a.cmd == "push":
-        push(a.game, a.paths, a.message, booted=a.booted, frames=a.frames)
+        push(a.game, a.paths, a.message, booted=a.booted, frames=a.frames, route=a.route)
     elif a.cmd == "pull":
         pull(a.game, force=a.force)
     else:

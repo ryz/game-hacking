@@ -15,7 +15,7 @@ Shot ids are those of set `main`.
 | Equipment | 16 weapons, 6 armours **(verified)** | 12 weapons, 6 armours | playbook RAM map |
 | Abilities / spells | 11 spells **(verified)** | 10 | §5 |
 | Vehicles | horse, cart, raft, frigate, aircar, shuttle, time machine **(verified)** | all 7 | §4 |
-| Characters and people | 8 kings, 8 princesses (Julia, Cassandra, Marsha, Donna, Kristen, Beth, Lori, Dianne), merchants, tavern keepers, guards, jesters, Iolo the Bard, wenches, Mondain **(ROM text / verified)** | 6 | §6 |
+| Characters and people | 8 kings, 8 princesses (Julia, Cassandra, Marsha, Donna, Kristen, Beth, Lori, Dianne), merchants, tavern keepers, guards, jesters, Iolo the Bard (sings outside Britian: set `start` `31_iolo_sings`), wenches, Mondain **(ROM text / verified)** | 6 | §6 |
 
 ## 2. Environments
 | Environment | Where | What sets it apart | Shots |
@@ -36,7 +36,7 @@ Shot ids are those of set `main`.
 | Castle: Lord British plan | odd castles | pools, armour, food and weaponry rooms, throne, prison **(verified)** | `gameplay_castle` |
 | Castle: Lost King plan | even castles | mess hall, stables, prison, F W A rooms **(verified)** | `gameplay_castle_lost_king` |
 | Landmark | 8 on the map | a sign, a pillar, a tower or a grave on the map, an inscription box inside **(verified)** | `gameplay_landmark_tower`, `system_landmark_grave` |
-| Dungeon | 36 entrances | white wireframe on black; doors, ladders, force fields; deeper is deadlier **(verified)** | `gameplay_dungeon`, `gameplay_dungeon_door`, `gameplay_dungeon_ladder`, `system_spell_create` |
+| Dungeon | 36 entrances | white wireframe on black; doors, ladders, force fields; deeper is deadlier **(verified)** | `gameplay_dungeon`, `gameplay_dungeon_door`, `gameplay_dungeon_ladder`, `env_dungeon_doors`, `env_dungeon_passage`, `system_spell_create` |
 | Space | 49 sectors | planet, sun, starbases; starfield front view; hyperspace streaks; the sun burns ships **(verified)** | `gameplay_space_top`, `gameplay_space_front`, `system_hyperjump`, `gameover_sun` |
 | Mondain's chamber | after the time machine | red brick walls on black **(verified)** | `boss_mondain` |
 | Ending | | white text on black **(verified)** | `ending_text` |
@@ -70,7 +70,7 @@ Dungeon (25 kinds, white line drawings; stronger kinds deeper; the level shown i
 | Gelatinous cube | 4 | invisible; destroys armour; Lost King's quest monster | `battle_gelatinous_cube`, `system_quest_kill` |
 | Ettin | 5 | 105 damage | `battle_ettin` |
 | Mimic | 5 | looks like a chest | `battle_mimic` |
-| Lizard man, Minotaur | 6 | Minotaur 175 damage | `battle_lizard_man`, `battle_minotaur` |
+| Lizard man, Minotaur | 6 | Minotaur 175 damage | `battle_lizard_man`, `battle_minotaur`, `battle_minotaur_corridor` |
 | Carrion creeper | 7 | Rondorin's quest monster | `battle_carrion_creeper` |
 | Tangler | 7 | | `battle_tangler` |
 | Gremlin | 8 | steals food | `battle_gremlin` |
@@ -80,7 +80,7 @@ Dungeon (25 kinds, white line drawings; stronger kinds deeper; the level shown i
 | Invisible seeker | 9 | not drawn | none: an empty corridor picture, like the cube |
 | Mind whipper | 10 | mental attack, 197 damage | `battle_mind_whipper` |
 | Zorn, Daemon | 10 | | `battle_zorn`, `battle_daemon` |
-| Balron | 10 | Shamino's quest monster | `battle_balron` |
+| Balron | 10 | Shamino's quest monster | `battle_balron`, `battle_balron_approach`, `battle_balron_corridor` |
 
 Others: castle guards (`battle_guard`), the jester (`system_jester_key`), enemy fighters in space
 (`gameplay_space_enemy`, `battle_space_hit`, `battle_alien_fires`), Mondain and his bat form (`boss_mondain`,

@@ -14,6 +14,18 @@ EXODUS.BIN is loaded at CS = DS = 0198, offset 0x100 (a COM image): **physical a
 > `python3 tools/play.py text` / `preview.py --text` for text screens. Pictures are native size
 > (`play.py shot --scale N` on demand).
 
+## Read first
+- Start: `python3 tools/play.py start ultima-3 --name ultima-3 --route @start` (new party on Sosaria) or `@hero` (late
+  party by poke). Menus: letter + Enter. Sets: `main` (260, everything) and `start` (60, played honestly to the first save).
+- Macros that matter: `NEWGAME`/`PARTY` (honest creation), `POS`, `ENTER`, `SHOP`, `HERO`, `MON`, `FOE`; routes in
+  game.json. Checkpoints: `start`, `towne`, `castle`, `hero`, the endgame chain; the honest chain `s_*` (Start set).
+- Traps: the play screen never settles (idle Pass every 5 s): use `do!` / `w`N, previews say "NOT settled", that is normal.
+  Shops end with `q,w30,enter` (Q or Esc at "Your interest?"); Enter alone repeats the question.
+  Walking in towns: BFS over the town file (tiles 04 grass, 08 brush, 0C forest, 20 floor are walkable), then fix the
+  last steps by the position watch (wandering people block a square now and then).
+  A new game has no monsters on Sosaria; they spawn ~1 in 19 turns and walk in (Start set below).
+- Open: party hit/damage formulas, monster hit points per kind, starvation, which of a monster's two names a fight uses.
+
 ## Identity
 | Field | Value |
 |---|---|
@@ -270,6 +282,23 @@ message area of each frame tiled (pick the frame with the line wanted, then `do!
 - **Not captured:** Ready in combat (not a combat command), Surmandum's failure into ashes (the forcing poke did
   not hold), lava damage without the Mark of Fire (no damage seen in one step), the alternate-name rule.
 
+## Start set (2026-11-22)
+`shots/start/` (60): power-on, title, menu, creating the four (`C_*` steps), Form, Register, Look, Journey Onward, Ztats,
+Look, LCB (walked: talk, pub, weapons, armoury, grocer), the first fight, the chest, the castle healer, Lord British,
+Quit & Save. No pokes; every step walked (`work/plan/ultima-3/` had the BFS helper `tmap.py`, not committed).
+- Chain `s_talk` (thief in the pub, "Exodus lies beyond the Silver Snake!") -> `s_weapons` (pub drink 10 g.p.: tip
+  "Ambrosia, ever heard of it?") -> `s_armed` (Axe 125 for ryz, Ready E + Enter, Join gold to 1) -> `s_armour` (Leather
+  195, Wear C + Enter) -> `s_food` (40 rations from (30,31) down) -> `s_out` (west gate: "Exit to Sosaria!" on (2E,13)) ->
+  `s_skeleton` (`w20` + 84 x `space,w30`: a ghoul beside the party, west) -> `s_melee` (A + West: "Conflict!! ->Ghouls",
+  one ghoul of 15 H.P.) -> `s_victory` (ryz misses with the axe, cubi's Pontori fails, cubi's bare hands kill it: Exp.+04)
+  -> `s_chest` (Get Chest by ryz: Bomb trap!, Gold+59) -> `s_healer` (castle, counter (2E,1A)) -> `s_lordbritish`
+  (healing 200 for ryz, "Experience more!") -> `s_back` (south gate) -> `s_saved` (Q: 00001932 moves; save `04_first_fight`).
+- The fight depends on the turn timing from `s_out`: `w20` gives the ghoul at pass 84; `w90` a giant from the south at pass
+  41 (too strong for a new party); other waits gave monsters stuck behind brush (findings.md). Search script pattern:
+  play the route, then `space,w30` per turn and read the objects at 2C00/2C40/2C60 and 2E3C (80 = combat).
+- Monster spawn code: 0x22A5 (EXODUS.BIN, see design/systems.md).
+- Gold of a new party: 150 each; after the towne visit ryz holds 230 (joined), 89 after the healer.
+
 ## Strategy and walkthrough notes
 - **Fastest route to the ending (verified, all checkpoints):** `hero` -> `POS:0A:3B,SHIP` -> `EVOCARE:1` ->
   `up,w60,up,w60,x,w60,up,w60,e,w300` -> `NOFLOORS,POS:1E:0C` -> `INSERT:1:l`, `right`, `INSERT:1:s`, `right`,
@@ -321,7 +350,7 @@ Everyone wears Exotic armour and readies an Exotic weapon and owns a few ordinar
 
 ### Saves (rom/saves/ultima-3/, never committed)
 None downloaded (web hosts unreachable). Made here (committed): `saves/01_start.sav` (new party, Quit & Save at
-the start), `saves/02_endgame.sav` (`HERO` party in a frigate south of the Silver Snake), `saves/03_pirate_frigate.sav`
+the start), `saves/02_endgame.sav` (`HERO` party in a frigate south of the Silver Snake), `saves/04_first_fight.sav` (honest new party after the start set's first fight, Quit & Save on the castle square), `saves/03_pirate_frigate.sav`
 (`HERO` party in a frigate east of LCB after beating a pirate crew, the captured frigate beside it), see
 `saves/README.md`.
 
@@ -392,7 +421,7 @@ late party (`HERO`): `hero`, `fight`, `dungeon`, `rod`, `moongate`, `time`, `tim
 `shrine`, `card`, `serpent`, `evocare`, `exodus`, `exodus_slots`, `ending`. Added by the capture (30 in all):
 `won` (orcs beaten with Mittar and Repond, a chest south of the party), `pirates` (boarding fight on two decks),
 `pirates_won` (pirates beaten, Quit & Save: save 03), `thieves` (Cutpurses on brush), `pinchers` (Snatches on
-grass), `condi_dead` (after the pinchers, condi D), `dfight` (Goblins in Dardin's Pit level 1).
+grass), `condi_dead` (after the pinchers, condi D), `dfight` (Goblins in Dardin's Pit level 1). Start set (44 in all): the honest `s_*` chain, see "Start set".
 
 ## Tools
 - `tools/try.py FILE [--frames K] [--peek ADDR:LEN] [--crop x0,y0,x1,y1] [--cols N]`: many routes in parallel,

@@ -61,7 +61,7 @@ leaves the fantasy loop for space combat, a princess rescue and the time machine
 | Conflict | Space combat | front view, gun sight, enemy fighters weave; a hit kills; aliens fire back **(verified)** | f, arrows | +100 experience per kill **(verified)** | §3.9 | `gameplay_space_enemy`, `battle_space_hit`, `battle_alien_fires` | shown |
 | Conflict | Town guards | turn hostile after a theft is caught or a person is attacked **(verified)** | | 7 damage per hit seen | §3.10 | `battle_guard`, `system_steal_caught` | shown |
 | Opponents | Overworld monsters | wander as map pieces and attack when adjacent; land and sea kinds; one kind is invisible **(verified)** | | 15 kinds | [content.md](content.md) §3 | `battle_orc_hit`, `battle_evil_trent`, `battle_hidden_archer`, `battle_ness_creature` | shown |
-| Opponents | Dungeon monsters | 25 kinds; deeper levels hold stronger kinds; quest monsters Gelatinous Cube, Carrion Creeper, Lich, Balron **(verified)** | | | [content.md](content.md) §3 | `battle_skeleton`, `battle_balron`, `battle_lich`, `battle_carrion_creeper` | shown |
+| Opponents | Dungeon monsters | 25 kinds; deeper levels hold stronger kinds; quest monsters Gelatinous Cube, Carrion Creeper, Lich, Balron **(verified)** | | | [content.md](content.md) §3 | `battle_skeleton`, `battle_balron`, `battle_lich`, `battle_carrion_creeper`, `battle_orc_corridor` | shown |
 | Opponents | Mondain | 1,000 hit points; a bat below 500; dies at 0 only when the gem is destroyed **(code, verified)** | a, g | 1,000 / 500 | §3.11 | `boss_mondain`, `boss_hit_mondain`, `boss_mondain_bat`, `ending_victorious` | shown |
 | Items and equipment | Weapons | 16 from hands to blaster; towns sell up to 5, the rest is stolen from castle storerooms **(verified)** | r, w | prices 5 to 94 | §3.5 | `inventory_ready_weapon`, `shop_weapons_late`, `system_steal_storeroom` | shown |
 | Items and equipment | Armour | skin, leather, chain, plate, vacuum suit, reflect suit; a vacuum suit is needed to dock in space **(verified / code)** | r, a | 45 / 90 / 135; suits 172 / 215 (Charisma 19) | §3.5 | `shop_armour`, `shop_armour_late`, `inventory_ready_armour` | shown |
@@ -70,7 +70,7 @@ leaves the fantasy loop for space combat, a princess rescue and the time machine
 | Abilities and magic | Spells | 11: Prayer (always known), Open, Unlock, Magic Missile, Steal, Ladder Down, Ladder Up, Blink, Create, Destroy, Kill; each cast uses one bought charge **(verified)** | r, s, c | 5 to 30 pence | §3.7 | `shop_magic`, `battle_magic_missile`, `system_spell_kill`, `system_spell_blink`, `system_spell_create`, `system_spell_destroy`, `system_spell_open`, `system_spell_unlock`, `system_spell_ladder_up` | shown |
 | World and navigation | Overworld | 168x156 squares, four continents, 84 places **(verified data)** | | | §3.1 | `gameplay_lands_lord_british`, `gameplay_lands_feudal_lords`, `gameplay_lands_dark_unknown`, `gameplay_lands_danger_despair` | shown |
 | World and navigation | Towns and castles | one-screen maps; 8 town plans and 2 castle plans, each used once per continent **(verified)** | | | §3.1 | `gameplay_britian`, `gameplay_town_montor`, `gameplay_castle`, `gameplay_castle_lost_king` | shown |
-| World and navigation | Dungeons | first-person, 10 levels of 11x11 squares, doors, ladders, force fields, chests and coffins **(verified)** | | | §3.8 | `gameplay_dungeon`, `gameplay_dungeon_door`, `gameplay_dungeon_ladder` | shown |
+| World and navigation | Dungeons | first-person, 10 levels of 11x11 squares, doors, ladders, force fields, chests and coffins **(verified)** | | | §3.8 | `gameplay_dungeon`, `gameplay_dungeon_door`, `gameplay_dungeon_ladder`, `env_dungeon_doors`, `battle_balron_approach` | shown |
 | World and navigation | Space | 7x7 sectors, sector scan, hyperjump, starbases, landing only by shuttle **(verified)** | | | §3.9 | `map_sector_scan`, `gameplay_space_top`, `system_landing` | shown |
 | Goals and gating | King quests | odd castles: find a landmark (Strength); even: kill a monster (gem); one quest per king at a time **(verified)** | t, s | | §3.10 | `dialogue_king_quest`, `dialogue_king_kill_quest`, `dialogue_king_busy`, `dialogue_king_olympus`, `system_landmark_grave` | shown |
 | Goals and gating | Space Ace | 20 enemy vessels destroyed **(verified)** | f | 20 | §3.9 | `system_space_ace`, `battle_space_hit` | shown |
@@ -190,6 +190,11 @@ Create and Destroy fail ("Failed!") when the square ahead is not an open corrido
   level ("Thou hast set off a trap!", `system_chest_trap`); otherwise gold, up to level squared + 9
   (`system_chest_gold`) **(code / verified)**. Thieves never trigger traps **(code)**.
 - Coffins (opened with Open, `gameplay_coffin`) may release a monster **(code)**.
+- Honest first trip (set `start`, Mines of Mt. Drash II level 1, two coffins in the west corridor): the first
+  gave "Thou dost find: 5 copper!" (`40_coffin_copper`); right after opening the second a Skeleton stood on the
+  next square and hit for 2 (`41_skeleton`). Three kills on level 1 (two Skeletons, a Thief) paid "Thou dost gain
+  54 hit points" on K-limb out (`45_klimb_out`); a Thief cost one of the two starting daggers on the way
+  (Ztats `14_ztats` vs `50_ztats_after`) **(verified)**.
 - Monsters by depth: [content.md](content.md) §3.
 
 ### 3.9 Space
@@ -213,6 +218,10 @@ Create and Destroy fail ("Failed!") when the square ahead is not an open corrido
 ### 3.10 Castles, quests, princess
 - Each castle has a king, guards, a jester, a prison with a princess and three storerooms (armour, food,
   weaponry) **(verified in Lord British's castle)**.
+- Songs: on a walk through Lord British's castle the jester's line appeared in the log, "Gwino the jester sings:
+  I've got the key!" (set `start`, `17_jester_sings`), and on leaving Britian "Iolo the Bard sings: Ho eyoh he
+  hum!" (`31_iolo_sings`); both came by themselves while walking, so they are rolls on a move, not a command
+  **(verified; trigger rule not read from the code)**.
 - T beside the king: "Dost thou offer pence or service" (`dialogue_king_offer`). Service gives a quest: odd
   castles send the hero to a landmark (`dialogue_king_quest`), even castles to kill a dungeon monster
   (`dialogue_king_kill_quest`); asking again: "Thou art on a quest for me already!" (`dialogue_king_busy`). The

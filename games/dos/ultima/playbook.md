@@ -13,6 +13,22 @@ from OUT.EXE / MONDAIN.EXE with ndisasm (offsets are file offsets after the 512-
 > `python3 tools/play.py text` / `preview.py --text` for text screens. Pictures are native size
 > (`play.py shot --scale N` on demand).
 
+## Read first
+- Start: `python3 tools/play.py start ultima --name ultima --route @start` (ryz on the overworld, level 1). Boot
+  macros `BOOT`, `TITLE`, `MENU`, `CREATE`, `RYZ`, `PLAY`, `NEWGAME` (Boot sequence below). Late states:
+  checkpoints `mid` (save 03_midgame), `endgame` (save 02_endgame).
+- Sets: `main` (201 shots, power-on to the ending, cheats allowed) and `start` (52 shots, the early game played
+  honestly to the first Q save, checkpoints `s_*`, save 04_first_trip; section "Start set" below).
+- Shortcuts for `main`-style shots: `WARP`, `GO`, `TPOS`/`TPOS2`, `SPAWN`, dungeon monster pokes (Shortcuts).
+  Honest walking instead: `games/dos/ultima/tools/walk.py town X Y` (walks the live session to a town or castle
+  square around the people) and `walk.py over X0 Y0 X1 Y1` (overworld tokens over grass and woods).
+- Traps that cost calls: the status panel is not redrawn after pokes (save with Q, start from `sav:`); `type:`
+  drops letters (one key per token); after a kill keep attacking only as often as needed (each extra `a` is a
+  turn in which new monsters hit); `undo` is one level, checkpoint before each fight.
+- Text: graphics mode only (no `play.py text`); the message log keeps three lines, so the player's own line
+  ("Hit! Skeleton killed!") is scrolled away by the monster's answer: take frame `ROUTE,a,!` for it.
+- Open: starbase docking, pub seduction, Steal spell (game.json "open").
+
 ## Identity
 | Field | Value |
 |---|---|
@@ -149,6 +165,7 @@ switch (shuttle, time machine): `w300` then the next key; space lift-off countdo
   CONTROL-ALT-DEL to Restart").
 
 ## Shot plan
+**Set `start` (capture 2026-11-22): 52 shots, done** (section "Start set" in Strategy below; `shots/start/`).
 **Done (capture 2026-11-19): set `main`, 195 shots, power-on to the ending text**; the replayable list is
 `shots.txt` (game order), the published set `shots/main/`. Every target of the scout's 73-id plan was taken
 except `system_starbase` (below); grouped ids got real names (`gameplay_continents` -> `gameplay_lands_*`,
@@ -178,6 +195,34 @@ dungeon (no visible effect), Steal spell (not sold anywhere seen), "Crunch!" aga
 play, not reproduced in a route).
 Ideas for a next round: the other 32 dungeon entrances look identical (fixed wireframe); a female or non-human
 hero on the overworld looks the same (one hero picture).
+
+### Start set (capture 2026-11-22, set `start`, 52 shots)
+Played honestly from `@start` (no pokes, no warps; every step walked), the route is the chain of checkpoints
+`s_castle_in` -> `s_king` -> `s_quest` -> `s_britian` -> `s_weapons` -> `s_mace` -> `s_armour` -> `s_food` -> `s_magic`
+-> `s_pub` -> `s_iolo` -> `s_monster_seen` -> `s_monster_adjacent` -> `s_necro_killed` -> `s_grass` -> `s_at_dungeon`
+-> `s_dungeon` -> `s_coffin_ahead` -> `s_coffin_open` -> `s_skeleton` -> `s_skel_hit1` -> `s_skel_killed` -> `s_thief`
+-> `s_thief_killed` -> `s_ladder` -> `s_out_dungeon` -> `s_ranger` -> `s_ranger_hit` -> `s_ranger_killed` -> `s_return`
+-> `s_king_pence` -> `s_king_hits` -> `s_left_castle` -> `s_saved` (verified: 52/52 reproduce from an empty cache).
+What a new player meets (all verified on that route):
+- Start (31,28): the castle is 2 up, 9 left (28,26); Britian is beside it at (27,27) (from the castle: left,
+  down). Entering the castle puts ryz at its west gate (0,9); the king stands at (21,05) (walk.py town 21 5,
+  about 45 steps; a guard at (1,6) blocks the first path). Leave by walking off the west edge from (0,9).
+- On the walk through the castle "Gwino the jester sings: I've got the key!" appeared; leaving Britian by the
+  south gate (13,11) "Iolo the Bard sings: Ho eyoh he hum!". Both are the songs the main capture never saw.
+- Britian on foot: entry at the south gate (13,11); counters weapons (0C,0C), armour (06,0C), food (17,0C),
+  magic (17,03), pub (20,05) (pub door 3F at (1D-1E,07)). Here the weapon shop is called "The Weapon Shop of Lord
+  Eldric D'Charbonneux" and sells Mace 8, Rope & Spikes 19; the armour shop has the same name. Space at a
+  Buy list leaves it ("Transact-Buy: nothing"). Bought: mace (100 -> 92), 6 packs of food (Food 193 -> 253,
+  Coin 92 -> 62), an ale (1 pence, no tip on two tries).
+- Overworld fights: 10 steps from Britian (right 5, down 5, to (2C,2C)) a Necromancer appears 7 squares east and
+  walks up in 6 passes; 8 blows with the mace (many misses) kill it: "Killed the Necromancer! 6 copper! 2
+  silver!", Exp. 17. On the way back (right of the dungeon, (29,3D)) an Evil ranger blocks: 3 blows, "3 copper!
+  1 silver!", Exp. 74.
+- The Mines of Mt. Drash II (27,3C), entered from the south (path `walk.py over 2C 2C 27 3C`): level 1 facing
+  south, coffins at (1,6) (5 copper) and (1,8) (a Skeleton attacks right after the Open); a second Skeleton and
+  a Thief (it took a dagger) come on the way back to the ladder (1,1); K-limb facing north: "Thou dost gain 54
+  hit points".
+- Lord British for pence: 60 pence -> 90 hit points (Hits 116 -> 206). Q outside the castle saves.
 
 ## Strategy and walkthrough notes
 - **Cheat freely, but through the game's own transitions.** Values on the status panel (Hits, Food, Exp., Coin)
@@ -224,6 +269,7 @@ Main character **ryz** (owner's rule): typed in GEN.EXE's name prompt one key pe
 | Mid-game character | `MIDGAME` (level 5, 1487 hits, sword, chain mail, spells, horse and frigate, 2417 moves), then `q`: save `03_midgame`, checkpoint `mid` | RAM | verified |
 | Position in a town, castle or dungeon for a character whose Ztats has two pages | `TPOS2:x:y` (= `TPOS` with a second space) | RAM | verified |
 | A dungeon monster of any kind | facing east from (1,1): `poke:19CA2=02,poke:19CA0=LL,poke:19D60=KK00,poke:19D64=HHHH,TPOS2:01:01,space,w60` (LL level, KK monster id, HHHH its hit points). Ids: 0 Ranger, 1 Skeleton, 2 Thief, 3 Giant rat, 4 Bat, 5 Spider, 6 Viper, 7 Orc, 8 Cyclops, 9 Gelatinous cube, 10 Ettin, 11 Mimic, 12 Lizard man, 13 Minatour, 14 Carrion creeper, 15 Tangler, 16 Gremlin, 17 Wandering eyes, 18 Wraith, 19 Lich, 20 Invisible seeker, 21 Mind whipper, 22 Zorn, 23 Daemon, 24 Balron | RAM | verified (all 25) |
+| A dungeon fight away from the entry ladder | the (1,1) shortcut shows the ladder up through the ceiling in every frame. Mt. Drash II level 1 map (`mdungeon`): clear its three monsters (`poke:19FE0=FFFF,poke:19FA0=FFFF,poke:1A000=FFFF`), face north (`poke:19CA2=03`), stand at (5,6) (`TPOS2:05:06`: doors both sides, wall ahead) with the monster at (5,5) (`poke:19E88=KK00,poke:19E8C=HHHH`), or at (5,7) to see it two squares off (`19E78`/`19E7C`). Cell address: 19CA6 + x*0x58 + y*8. A kill frame mid-corridor cannot be caught: a new monster is placed and attacks in the same turn | RAM | verified (`battle_*_corridor`, `env_dungeon_*`) |
 | Chest or coffin under the hero in a dungeon | `poke:19D0A=0400` (chest) / `0500` (coffin) before `TPOS2:01:01` | RAM | verified |
 | Choose a roll | `poke:115CC=XXXX` right before the key that rolls (pub tips: 00F0 space, 0030 princess, 0050 Mondain, 0010 lakes; castle weaponry theft: 0060 Light Sword, 0080 Blaster; jester hit: 0000) | RAM, code | verified |
 | Kill a castle person in one blow | the people table 19C1C + 8*i (hit points, type, x, y; jester in Lord British's castle i = 7: `poke:19C54=0100`, `freeze:19C58=24000700` keeps him beside the hero at (23,07)) | RAM | verified |
@@ -233,7 +279,7 @@ Main character **ryz** (owner's rule): typed in GEN.EXE's name prompt one key pe
 
 ### Saves (rom/saves/ultima/, never committed)
 None downloaded (GameFAQs refuses automated access). Made here: `saves/01_start.sav`, `saves/02_endgame.sav`,
-`saves/03_midgame.sav` (capture)
+`saves/03_midgame.sav` (capture), `saves/04_first_trip.sav` (start set, honest)
 (see `saves/README.md`).
 
 ## RAM map (for `game.json` "ram" watches and pokes)
@@ -344,5 +390,6 @@ the set uses the late-character versions.
 - ~~Which towns sell which weapons and spells~~ done: by town parity and game time (design/systems.md 3.5).
 - ~~The king's pence offer, landmark statistics~~ done: 3 hits per 2 pence; (value + 8) / 10 per landmark. The
   Eastern Sign Post gave nothing seen; Lord British's 8 Strength may be a formula too (one sample).
-- Thieves stealing on the overworld, Iolo the Bard's and the jester's songs, the pub seduction: not seen.
+- Thieves stealing on the overworld, the pub seduction: not seen. ~~Iolo the Bard's and the jester's songs~~ seen
+  in set `start` (`17_jester_sings`, `31_iolo_sings`); what triggers them is not read from the code.
 - Where the jester stands in every castle and which cell holds the princess (random per entry: two cells).

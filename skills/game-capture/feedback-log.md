@@ -27,6 +27,48 @@ Never delete entries.
 - Corrected: coordinator verify 113/113 and 24/24 from an empty cache; save 04_drombul pushed.
 - Status: click-zone rule -> docs/emulator/README.md (applies to every mouse game); caption lesson is the
   second case of "caption from the frame, not the keys" (Ultima II 2026-11-19) -> promoted into skill.md.
+### 2026-11-22 - Ultima I (DOS) set start
+- Task: Ultima I DOS, set `start`, the early game played honestly to the first save (52 shots).
+- Worked: a walker planning a path around the people (read from RAM), a few steps per `play.py do`, crossed
+  castle and town at about one call per destination; a path search on MAP.BIN did the same outdoors; a
+  checkpoint before each fight plus `goto` and the exact number of blows kept routes free of extra turns;
+  `ROUTE,a,!` caught "Killed!" before the monster's answer scrolled it away.
+- Friction: the walker's `play.py peek` calls count toward `call=` (~5x the agent's own calls); extra blows
+  after a kill needed a `goto` (undo is one level).
+- Proposed rule change: skill.md line for top-down `start` sets: walk with a path-search helper instead of
+  position pokes; checkpoint before each fight, replay the exact blows. Backlog: peek counts toward `call=`.
+- Corrected: none; sheet checked by the coordinator. Wrote games/dos/ultima/tools/walk.py (per game: the shared
+  walk tool is on the backlog, now asked four times).
+- Status: promoted 2026-11-22 (walk-helper lesson, three start-set runs: skill.md); backlog (walk tool, peek count).
+
+### 2026-11-22 - Ultima III (DOS) set start
+- Task: capture the Ultima III DOS `start` set (60 shots, honest play to the first Quit & Save).
+- Worked: a BFS path script over the town file (moves joined by `w20`) gave walking routes in one call; a
+  headless script passing turns and reading the object table found an honest first fight (eight wait variants
+  in parallel, no pokes); branch shots built by splitting checkpoint routes at `,settle,` reproduced first try.
+- Friction: renumbering ids after dropping shots made `shoot.py --prune` delete every renamed shot, so the
+  whole set was reshot (the capture guide says renumbered files are renamed on the next run; they were not);
+  the shop exit key was missing from the playbook (~4 calls).
+- Proposed rule change: `shoot.py SLUG start --renumber` (rewrite `NN_` ids in play order, rename files
+  instead of pruning); in `docs/emulator/README.md`: scan turn variants headless for honest fights on maps
+  with wandering monsters.
+- Corrected: none; four shots checked against captions by the coordinator. 60/60 verified by the agent,
+  cachecheck 44/44.
+- Status: backlog (renumber; walk/path tool third ask); headless fight scan logged (open lesson).
+
+### 2026-11-22 - Ultima II (DOS) set start
+- Task: Ultima II DOS set `start`, honest play from creation to the first Q save (48 shots).
+- Worked: a short breadth-first search over the map bytes told at once which places are reachable on foot and
+  gave exact key lists; walking them produced a real first fight with no setup. Previewing shop/talk lines in
+  batches and checking merchant squares with `u2objs.py` fixed every failed Transact in one round.
+- Friction: preview and the play session disagreed about the fight until the agent saw that settles between
+  calls had moved the RNG (fight shots built in preview from a clean route); wandering merchants made each
+  Transact timing-dependent; one key dropped during an automatic PASS on a long walk.
+- Proposed rule change: a shared `tools/path.py SLUG MAP FROM TO` (map bytes + walkable tiles from game.json)
+  for reachability and key routes on top-down maps.
+- Corrected: none; sheet checked by the coordinator (48 shots in play order). Lord British's healing not
+  reachable on foot (castle on an island), recorded in game.json "open".
+- Status: backlog (walk/path tool, second ask: `docs/backlog.md`); RNG-moved-by-settles lesson logged.
 
 ### 2026-11-22 - Dragonflight (Amiga) round 3
 - Task: Dragonflight Amiga capture round 3 (dungeon, Great Map, magic/potions) appended to `main`.
