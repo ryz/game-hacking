@@ -29,7 +29,7 @@ Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8
 | inventory_map_piece | inventory | Rinakles carries piece 02 of the Great Map | yes | [png](dragonflight_amiga_eu_inventory_inventory_map_piece.png) |
 | inventory_examine | inventory | Examine: "That is a part of the world-map!" | yes | [png](dragonflight_amiga_eu_inventory_inventory_examine.png) |
 | map_worldmap_added | map | Use: "You added the piece of map to the world-map!" | yes | [png](dragonflight_amiga_eu_map_map_worldmap_added.png) |
-| system_cast_no_spell | system | Magic icon: "Who should cast?" Rinakles: \"You have no spell ready\" | no | [png](dragonflight_amiga_eu_system_system_cast_no_spell.png) |
+| system_cast_no_spell | system | Magic icon: "Who should cast?" Rinakles: "You have no spell ready" | no | [png](dragonflight_amiga_eu_system_system_cast_no_spell.png) |
 | gameplay_door_nobody | gameplay | Hand icon at a house door in Pegana: "Nobody at home." | no | [png](dragonflight_amiga_eu_gameplay_gameplay_door_nobody.png) |
 | dialogue_redhair | dialogue | Speak: a red-haired young man tells of his brother, the torch trader in Drombul | yes | [png](dragonflight_amiga_eu_dialogue_dialogue_redhair.png) |
 | dialogue_show | dialogue | In a talk: "Who should show something?" | yes | [png](dragonflight_amiga_eu_dialogue_dialogue_show.png) |

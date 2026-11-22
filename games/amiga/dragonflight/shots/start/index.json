@@ -60,7 +60,7 @@
    "file": "dragonflight_amiga_eu_04_title_title.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "1313de3d5acaa571b36a4c2bc6e70a7bcc028af5"
+   "pixel_sha1": "de03453665ed41e877702ae67195e3a3f0221a3c"
   },
   {
    "id": "05_main_menu",
@@ -73,7 +73,7 @@
    "file": "dragonflight_amiga_eu_05_menu_main_menu.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "2c78ae9d48a2e5363fdee749413efa3e94610b7f"
+   "pixel_sha1": "60a636dca80d30d153a32a11fc8842df2f294a29"
   },
   {
    "id": "06_sage_page1",
@@ -86,7 +86,7 @@
    "file": "dragonflight_amiga_eu_06_cutscene_sage_page1.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "103ceac36fbd2356bb6ac27fcf064a69ee0bedf1"
+   "pixel_sha1": "09c82a86bc2f84786993b6d30a93fb763342ae48"
   },
   {
    "id": "07_sage_page2",
@@ -99,7 +99,7 @@
    "file": "dragonflight_amiga_eu_07_cutscene_sage_page2.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "2a88fdf8796a047c3882204c963963010682046c"
+   "pixel_sha1": "935a3f7b32f5bc1472ba6b6bfc1540bb9925aead"
   },
   {
    "id": "08_sage_page3",
@@ -112,7 +112,7 @@
    "file": "dragonflight_amiga_eu_08_cutscene_sage_page3.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "56291d6ffb9dc5b479e9ed0eaf5c9564cd2bf33e"
+   "pixel_sha1": "b836060828c78e5e0b2a8541d1fd0b8a5b951709"
   },
   {
    "id": "09_sage_page4",
@@ -125,7 +125,7 @@
    "file": "dragonflight_amiga_eu_09_cutscene_sage_page4.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "cb97fee6261534994a26ed630039fede5e00e9ba"
+   "pixel_sha1": "212a6628ccf3921acd0f690f9762ce40f9e09262"
   },
   {
    "id": "10_insert_disk_b",
@@ -138,7 +138,7 @@
    "file": "dragonflight_amiga_eu_10_system_insert_disk_b.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "3a28eb45596ee385d1e6d738801739c3754fd0f8"
+   "pixel_sha1": "9e09b153cf7c3f33f1771d63ba74f45457e5641d"
   },
   {
    "id": "11_pegana_arrival",
@@ -151,7 +151,7 @@
    "file": "dragonflight_amiga_eu_11_gameplay_pegana_arrival.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "2f87bc640336f4a550223448cba58fdb752ac25e"
+   "pixel_sha1": "d565939b78473cbc35e1667305002a795186927f"
   },
   {
    "id": "12_first_steps",
@@ -164,7 +164,7 @@
    "file": "dragonflight_amiga_eu_12_gameplay_first_steps.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "d483e7c5544ce1d57fede7f15ee758a618710f05"
+   "pixel_sha1": "aef510fe409762a240baf2a867f948907f226a7d"
   },
   {
    "id": "13_look_house",
@@ -177,7 +177,7 @@
    "file": "dragonflight_amiga_eu_13_gameplay_look_house.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "2223d6f7617a938e42a82d5ac945c9608c491f8e"
+   "pixel_sha1": "1caa59b03eca0290e92d939ece3ec4aa659395ab"
   },
   {
    "id": "14_status_bladus",
@@ -190,7 +190,7 @@
    "file": "dragonflight_amiga_eu_14_inventory_status_bladus.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "b84e0d4323ae824678817916c1c715af5fc172d3"
+   "pixel_sha1": "a2766412a2e1b6581b326e83905d0da46f40f1c9"
   },
   {
    "id": "15_inventory",
@@ -203,7 +203,7 @@
    "file": "dragonflight_amiga_eu_15_inventory_inventory.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "75c82855b7449bf6bc4115d4ef23e0168e488707"
+   "pixel_sha1": "0b1c7e1e66e24aaccc64d0a4c65df65cf6e6e6a8"
   },
   {
    "id": "16_spells",
@@ -216,7 +216,7 @@
    "file": "dragonflight_amiga_eu_16_inventory_spells.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "f4915d734d948b1b4e7dd75d7c5a04f89ef6d7e8"
+   "pixel_sha1": "2c14e94a1c3e6d16353c6c9391a2f4487a026434"
   },
   {
    "id": "17_status_andariel",
@@ -229,7 +229,7 @@
    "file": "dragonflight_amiga_eu_17_inventory_status_andariel.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "8991a49e526e7e52f475ed692943c50327e8ed53"
+   "pixel_sha1": "19708778cbb84c8a47edb926112eecbbebb3be0a"
   },
   {
    "id": "18_leave_prompt",
@@ -242,7 +242,7 @@
    "file": "dragonflight_amiga_eu_18_gameplay_leave_prompt.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "9effa7be271dccb2696d5d5ecadeab45f3542006"
+   "pixel_sha1": "f0af719ed03ad485cf454b6eaaae243a13008932"
   },
   {
    "id": "19_land",
@@ -255,7 +255,7 @@
    "file": "dragonflight_amiga_eu_19_gameplay_land.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "be739c167d38a40049ea34053419957595488f15"
+   "pixel_sha1": "cb18eaa9dd8cd111f9bb3948939892657b5a1df6"
   },
   {
    "id": "20_land_walk",
@@ -268,7 +268,7 @@
    "file": "dragonflight_amiga_eu_20_gameplay_land_walk.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "3c3cbcbffd67a91bd2f9f718255dccb749996869"
+   "pixel_sha1": "e0232a66a9122d5de5cac18aecb74b3aeb22ca2f"
   },
   {
    "id": "21_camp",
@@ -281,7 +281,7 @@
    "file": "dragonflight_amiga_eu_21_system_camp.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "cfee6f0d0609f09978e25b8610699f10c8d48e89"
+   "pixel_sha1": "c99466f0b7b5c67b4b75a49aca857044ee9f4dfb"
   },
   {
    "id": "22_disk_menu",
@@ -294,7 +294,7 @@
    "file": "dragonflight_amiga_eu_22_save_disk_menu.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "967390ae75bef9ad90cd2f387eb36d5130d950c9"
+   "pixel_sha1": "944bd1ef9fa7ab075a726e411dafcc02be423568"
   },
   {
    "id": "23_save_prompt",
@@ -307,7 +307,7 @@
    "file": "dragonflight_amiga_eu_23_save_save_prompt.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "121935faa686bf902e1994aefc96f53008519513"
+   "pixel_sha1": "52eef6d36d7eae32ba6e03c93ebc03087625421e"
   },
   {
    "id": "24_game_saved",
@@ -320,7 +320,7 @@
    "file": "dragonflight_amiga_eu_24_save_game_saved.start.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "e82b42abdd6bfd01ecef7842fc9e7b433f151fc0"
+   "pixel_sha1": "f11eddf30de226b65b4d440547ba22518be03983"
   }
  ]
 }

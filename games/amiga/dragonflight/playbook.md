@@ -11,8 +11,8 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   `loaded` (Old game from the save `01_start`). Boot to first control is about 12000 frames (real floppy speed).
 - **Everything is a mouse click on a poked pointer.** The pointer position is chip RAM `3BCA` (x) / `3BCC` (y),
   game pixels; `PT:XXXX:YYYY` pokes it, `CLK:XXXX:YYYY` pokes + left click + `w60`.
-  `python3 games/amiga/dragonflight/tools/at.py SX SY c` turns a pixel of the 720x287 screenshot into the token
-  (SX = 2x + 35, SY = y + 15). Do **not** steer with large `mouse:` moves: the game reads the counters only every
+  `python3 games/amiga/dragonflight/tools/at.py SX SY c` turns a pixel of the 360x287 screenshot into the token
+  (SX = x + 17, SY = y + 15). Do **not** steer with large `mouse:` moves: the game reads the counters only every
   few frames and big moves wrap (the pointer lands anywhere).
 - **Icon grid** (bottom right, 3 x 3; the set of icons changes with the place): columns x `00E6`/`0106`/`0127`,
   rows y `008F`/`00A5`/`00B7`. Macros: `MAGIC` (pentagram, "Who should cast ?"), `SPEAK` (town: lips, "Speak to
@@ -90,8 +90,9 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
     Bengiur in Drindil, "Good luck!"). `space`, `esc` and the right button do not turn the page. Then the panel
     alone: "Insert disk B please" (checkpoint `diskb`). `disk:2` -> "Thank You!", loading, "Loading...
     Pegana", the town at +2800 (checkpoint `start`). `NEWGAME` = all of it from the menu.
-- Screen modes: title and menus lores (360 wide), the game screen hires (720x287). No interlace on the A500
-  (the coordinator saw 720x574 with AROS).
+- Screen modes: everything is lores, 360x287. ~~The game screen hires (720x287).~~ The core delivered the game
+  screens 720 wide with every column twice (its automatic resolution saw hires somewhere); the backend halves
+  such frames since 2026-11-22 and both sets were reshot (same content, native width).
 
 ## Controls
 | Context | Input | Action | Status |

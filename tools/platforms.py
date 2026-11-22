@@ -1795,6 +1795,24 @@ class Amiga(Libretro):
                     out.append((a, step))
         return out
 
+    def image(self):
+        """The frame at the screen's real resolution. The core's automatic resolution switches the whole frame to
+        hires (720 wide) or doubles its lines when it detects hires or interlace anywhere in it, also where
+        nothing visible uses them (Dragonflight: a lores game delivered 720 wide, every column twice). A frame
+        whose columns (lines) all come in identical pairs carries no hires (interlace) detail: it is halved,
+        losslessly, to its native size; real hires or interlaced content keeps the full size."""
+        im = self.c.image().convert("RGB")
+        w, h = im.size
+        b = im.tobytes()
+        if w > self.native_size[0] and w % 2 == 0 and all(b[k::6] == b[k + 3::6] for k in range(3)):
+            im = im.resize((w // 2, h), 0)          # 0 = Image.NEAREST: one of each identical pair
+            w, b = w // 2, im.tobytes()
+        r = 3 * w
+        if h > self.native_size[1] and h % 2 == 0 and all(
+                b[2 * i * r:(2 * i + 1) * r] == b[(2 * i + 1) * r:(2 * i + 2) * r] for i in range(h // 2)):
+            im = im.resize((w, h // 2), 0)
+        return im
+
     MOUSE_STEP = 120            # counts the machine takes from the mouse in one frame (more is lost)
 
     def frames(self, n):

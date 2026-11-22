@@ -16,6 +16,10 @@ Append-only, newest first.
   verifies from an empty cache: identical pictures). Both sets republished on the fixed path (13 main shots
   and the start title changed: other random rolls, captions checked, one fixed); verify 24/24, 33/33
   (`--published`). `Amiga.ENDIAN = "be"` added (RAM watches printed byte-swapped).
+- Owner: shots after the intro were stretched. The core's auto resolution delivered the lores game screens
+  720 wide (every column twice). `Amiga.image()` now halves a frame whose columns (or lines) all come in
+  identical pairs; real hires detail keeps 720. Both sets reshot (49 pictures, same content at 360x287),
+  verify 24/24, 33/33 `--published`; the pointer helper `tools/at.py` takes 360-wide coordinates.
 
 ## 2026-11-22 - Wasteland (C64): registered, scouted, captured
 - Owner's upload: GameBase64 set (9 D64, PAL). Disks 1-4 are the master sides, 5-8 the play copies the game wants

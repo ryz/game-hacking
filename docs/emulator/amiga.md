@@ -93,7 +93,10 @@ game's timing and is not used.
 
 ## Screenshots
 The picture follows the screen mode: a lores game is 360x287 (PAL) with the overscan border, one pixel per
-Amiga pixel; a hires screen (Workbench, some menus) is 720 wide; interlaced screens have twice the lines. NTSC
+Amiga pixel; a hires screen (Workbench, some menus) is 720 wide; interlaced screens have twice the lines. The core switches a whole frame to hires or doubled lines when it
+detects them anywhere, also where nothing visible uses them; the backend halves such a frame back when all its
+columns (lines) come in identical pairs (2026-11-22, Dragonflight: its game screens came out 720 wide,
+stretched). NTSC
 machines have fewer lines. 24-bit colour, so the Amiga's 12-bit colours are exact (channel x 17). The status
 bar, floppy sounds and the core's hotkeys are switched off.
 
