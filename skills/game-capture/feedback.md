@@ -37,3 +37,5 @@ Tool wishes are not listed here: `docs/backlog.md`.
   retake and compare each retake with its old picture through a colour map (Beyond Zork palette 6, 2026-11-21).
 - **Walks without random fights:** search a fight-free wait per step (check a fight indicator after each step)
   instead of previewing whole routes (Bard's Tale III Apple II, 2026-11-21: `tools/safewalk.py`).
+- **A first-person view that stays black after entering** may be darkness, not a load hang: click once or
+  light a torch/spell before waiting longer (Dragonflight, 2026-11-22).

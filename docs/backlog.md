@@ -8,6 +8,8 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 ## Open
 | Wish | Asked | Notes |
 |---|---|---|
+| `dis68k.py` for Amiga: disassemble a chip-RAM dump (`play.py dump`) at Amiga addresses, `--xref` with a branch-target scan (today it maps addresses as Mega Drive, FF....) | 1 | Dragonflight capture 2026-11-22 |
+| `play.py dump --bin`: write a raw binary dump (today JSON keyed by address) | 1 | Dragonflight capture 2026-11-22 |
 | Amiga: exact savestate restore (PUAE). A loaded state gives the same frame but game RAM drifts (Dragonflight on A500/A500OG/A500ECS; 10 bytes of slow RAM already 60 frames into the Kickstart boot). Found: the core restores at beam line 0, hpos 0, while our states are saved about 3 lines after the vsync (VHPOSR in the CHIP chunk, ignored by `restore_custom`); `cia_reset` (run by `custom_reset` during a restore) zeroes `kblostsynccnt`; CIA `tol`, BLTX, REFPTR and an INTREQ bit also come back different. Tried 2026-11-22: keep `kblostsynccnt`, and put the beam back (by running chips: double-counts CIA timers; by moving the counters): neither changed the drift in the crack intro, the keyboard fix made the Kickstart boot worse. Shots are unaffected (checkpoints are always rebuilt through the same chain); live play may roll differently from a replay | 1 | Dragonflight scout 2026-11-22 |
 | Research hosts for Amiga scouts: `thalion.exotica.org.uk` (Thalion manuals), `amiga.abime.net` (Hall of Light) not reachable from sessions | 1 | Dragonflight scout 2026-11-22 |
 | `play.py dump` without a name crashes ("list index out of range"): default a name or print the usage | 1 | Dragonflight scout 2026-11-22 |

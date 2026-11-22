@@ -28,6 +28,10 @@ Append-only, newest first.
 - Tools: the checkpoint cache key includes the checkpoint a route is built from (`emu.checkpoint_cache`, also
   used by cachecheck and play.py); `play.py checkpoint` on platforms without exact restores (Amiga) rebuilds
   the checkpoint and continues from it instead of storing the live machine.
+- Capture round 3 (owner: dungeon, Great Map, magic/potions required): `main` 58 -> 93: a first-person dungeon
+  behind a cave arch (dark until a torch or Light), the Great Map (Examine on the Worldmap item), six potions
+  drunk, Light cast, Magic arrow in a fight, two temples, Drombul and the Orc Village. Verify 93/93 and 24/24
+  from an empty cache; save 03_dungeon in the vault. Open: won fight, shop, ship, dragon, Healing, mixing.
 
 ## 2026-11-22 - Wasteland (C64): registered, scouted, captured
 - Owner's upload: GameBase64 set (9 D64, PAL). Disks 1-4 are the master sides, 5-8 the play copies the game wants

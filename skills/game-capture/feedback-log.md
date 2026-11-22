@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-22 - Dragonflight (Amiga) round 3
+- Task: Dragonflight Amiga capture round 3 (dungeon, Great Map, magic/potions) appended to `main`.
+- Worked: rendering the suspected land grid as an image showed the whole world and its place icons in one
+  look; one preview batch of Search+Enter per icon found two temples, two towns and the dungeon; a short
+  disassembly (`moveq #msg` of a message index, then branches) answered "how to drink a potion" in ~5 calls
+  after ~10 calls of UI guessing.
+- Friction: `dis68k.py` treats an Amiga dump as Mega Drive (`--xref` maps to FF....); `play.py dump` writes
+  JSON, not binary; preview label bars misled y offsets once; a black dungeon view looked like a disk hang.
+- Proposed rule change: emulator README: a first-person view that stays black: try a click or a light
+  before suspecting a load hang. Backlog: `dis68k.py` for Amiga dumps; `play.py dump --bin`.
+- Corrected: the report called the red symbol after "Potion" a stray glyph from a poked suffix 00; the item
+  names in RAM are "Potion " + character 88-91 (the game's marks), the suffix changes nothing: shots kept,
+  playbook corrected. Coordinator verify 93/93 and 24/24 from an empty cache; save 03_dungeon pushed.
+- Status: darkness lesson -> open lesson in feedback.md; two tool wishes -> backlog.
+
 ### 2026-11-22 - Dragonflight (Amiga) round 2
 - Task: Dragonflight Amiga round 2: combat, magic and other systems, appended to `main`.
 - Worked: `preview.py` with `?` frames and sheets to compare restore points; a flat route against chained

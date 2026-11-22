@@ -87,6 +87,9 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   - **Great Map:** Use the piece (Rinakles: `poke:2EF4=00000000` removes the torch so the piece is on line 3),
     then Examine (`CLK:0101:0055`) the Worldmap at line 3: full-screen map. More parts: poke `0053NN01` into
     the slots and Use line 3 once per part (`map_great_map`).
+  - **Potion names:** the inventory shows "Potion" and a red symbol, one per kind (item names in RAM at
+    `209D6`: "Potion " + character 88-91): the game's own marks for unidentified potions, not a poke error
+    (the suffix byte does not change them; coordinator 2026-11-22).
   - **Potions:** click the potion picture -> "Give to whom?" -> the drinker's own small portrait
     (`CLK:0101:0015` = Bladus) = drink. Use on a potion opens the Mix potions screen (not solved).
   - **Magic:** known spells = long at record +0C (bit N); Light needs no target and succeeds in the dungeon;
