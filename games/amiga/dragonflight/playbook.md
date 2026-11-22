@@ -37,9 +37,29 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   normal. Loads are long: wait, do not click (clicks during a load are lost or act later). A cached checkpoint
   does not continue bit-exactly (Emulation notes): `cachecheck.py` says DIFFERS for every checkpoint although the
   frames match; build shots through the checkpoint chain and verify with `shoot.py --verify`.
-- **State:** scouted 2026-11-22: boot, new game, Old game, save, controls, position and party RAM. Not reached:
-  a fight (no random encounter in about 150 steps on the land near Pegana), a dungeon, a shop, a dialogue with a
-  person, magic in use, the dragon. Their routes are the capture run's first job (see Shot plan).
+- **State:** captured 2026-11-22 (game-capture): `start` set (24) and `main` set published. Found this run:
+  - **Fights** come at random on the land, not near Pegana: a random walk of 162 steps from a poked spot
+    (y A0 x A0) met one (`enc_walk`). The encounter screen ("Loading..." + three icons) loads about 2000 frames,
+    then a message ("Your opponents' attack surprises you. They are Snakes!"), left click = fight.
+    **Which monster comes depends on how the checkpoint chain was built** (live play: snakes on a meadow; a
+    cold `shoot.py`: blue-robed figures in a forest), see Emulation notes.
+  - **Combat:** per hero one order, then all are carried out. Right button = arrows (move: "Forward"); icon
+    grid: pentagram (cast), sword = Attack (only next to an enemy; far away it is a shooting hand: "Has no
+    longrange weapon!"), shield = Parry. The icon grid is drawn one hero late. Messages fill the panel; left
+    click continues. Heroes start **unarmed**: poke the weapon word `2A12 + n*400` (item index, Sword = 5)
+    **before** the fight loads; HP `2A00 + n*400`. Seen live: "Bladus hit a Snake (27)!", "Bladus has been
+    mortually wounded! Andariel took the Ring of Bladus." (not reproducible, see below).
+  - **Inventory:** item slots `2AF4 + 4*k` (word item index, word count; Torch = 0x35). Item indexes = the
+    name list in RAM from Gold = 0 (Food 1, Dagger 2, Sword 5, Bow 0x0D, Leather 0x11, Torch 0x35). Icons on
+    the inventory page: `CLK:0101:0055` Examine, `CLK:0124:0055` Use, `CLK:0101:006E` Prepare, `0124:006E`
+    drop?; then click the item's **picture** (`CLK:0027:0059` = 4th line), not its name.
+  - **Speak:** stand next to the person, facing them, click the lips: a text window (`talk_redhair`). Doors:
+    the hand icon in town (`CLK:00E6:00A5`) says "Nobody at home." at the doors tried.
+  - **Land position** mirror is not fixed: `118B2` in town after a new game, `11AB2` on the land here; poke
+    `3BF4` and the mirror (find it with `find` after a step), else the step reverts the warp.
+  - Not reached: a shop (no shop door found), a won fight, game over, a dungeon (the arch east of Pegana at
+    y 5B x F1 does not open with Enter or Search), spells (nobody knows one at the start: "No spell
+    prepared"), ship, dragon, the Worldmap view (Use on it: "Can't use this item!").
 
 ## Identity
 | Field | Value |
@@ -122,10 +142,10 @@ Must-haves first; ids are the `main` set. Route status: R = route known (in `sho
 - [R] `inventory_spells` inventory - Spells page (empty at the start; a filled one later)
 - [R] `save_prompt` save - "Gamesave? Left YES Right NO", and `save_done` "Game saved"
 - [R] `menu_oldgame` save - Old game disk prompts / "Game loaded"
-- [?] `dialogue_*` dialogue - speak to a townsperson in Pegana (SPEAK, then click the person on the map: pointer
+- [x] `dialogue_redhair`, `dialogue_show` (was: `dialogue_*`) - speak to a townsperson in Pegana (SPEAK, then click the person on the map: pointer
   on the map is untested; the hand icon at a door gave "Nobody at home.")
 - [?] `shop_*` shop - a shop or inn in Pegana (houses: try the hand icon at each door, see Strategy)
-- [?] `battle_*` battle x 3-5 - grid combat with side view: no encounter found yet
+- [x] `battle_encounter`, `battle_no_weapon`, `battle_arrows`, `battle_close` (hit and death seen live only)
 - [?] `gameplay_dungeon_*` gameplay - first-person dungeon views (2-3 places), `env_dungeon_*`
 - [?] `system_magic` system - casting a spell; `system_potion` mixing potions; Staff of Stone
 - [?] `map_great_map` map - the Great Map part, if the game shows it
@@ -171,6 +191,11 @@ No cheat codes, saves or debug menus found (no source reachable).
 | 0D6D1, 11C9E, 20318... | | hero names and game text in plain ASCII (messages, opponents) | dump |
 
 ## Emulation notes
+- **Capture 2026-11-22: shots after a random event do not reproduce across cache histories.** The same
+  route gave a snake fight in live play, blue-robed figures in a forest in a cold `shoot.py`, and a third
+  verify from an empty cache with four jobs disagreed with the second on 16 of 37 shots (the town walkers,
+  the sage text scroll, the fight). Only one job at a time from an empty cache (`--jobs 1`) is a fixed build
+  order; see the final verify result in the capture report. Plain screens (title, menus, status) are safe.
 - A500 (Kickstart 1.3, 512K + 512K). Loads at real speed: crack intro to Thalion logo about 2400 frames, the
   logo click to the menu about 3400, new game to Pegana about 4000.
 - **Savestates do not continue bit-exactly in this game** (scout 2026-11-22): a state saved at any point and
@@ -199,7 +224,7 @@ the exported save `01_start` and needs `rom/saves/amiga/dragonflight/01_start.sa
 | Game text in RAM | dump of `@start` | commands, messages, opponents | 2026-11-22 |
 
 ## Open questions
-- Where are fights? No encounter in about 150 land steps near Pegana; are they place-bound or time-bound?
+- ~~Where are fights?~~ Random on the land away from Pegana (capture 2026-11-22); rate unknown.
 - The land sword icon: what does it do (the cell became a hand-with-item icon)?
 - The disk menu's top-left icon (load?) and how SPEAK picks a person (click on the map?).
 - Disks C and D in the game text: does the game ever ask for them with this two-disk release?

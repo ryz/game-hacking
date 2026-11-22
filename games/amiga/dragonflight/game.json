@@ -98,8 +98,13 @@
     "bladus_gold": {
       "addr": "2A22",
       "size": 2
+    },
+    "bladus_weapon": {
+      "addr": "2A12",
+      "size": 2,
+      "note": "weapon item index (Sword 5); records 0x400 apart"
     }
   },
-  "work": "scouted 2026-11-22: boot to first control, new game and Old game, in-game save, mouse by poked pointer, position and party RAM, 7 checkpoints, 21 planned shots with routes; not captured",
-  "open": "no fight, dungeon, shop, dialogue or spell reached yet; manual and walkthrough not reachable (Thalion Webshrine host not allowed, GameFAQs 403); savestates not bit-exact on this game (cachecheck DIFFERS)"
+  "work": "start set (24 shots) and main set published 2026-11-22: boot, menus, intro, Pegana, land, camp, status/inventory/map piece, talk, a land fight (orders, arrows, approach), save/load; three lenses",
+  "open": "no shop, won fight, game over, dungeon, spell in use, ship or dragon; fights after a random encounter do not reproduce across checkpoint-cache histories (savestates not bit-exact on this core): verify with --jobs 1 from an empty cache; manual not reachable"
 }
