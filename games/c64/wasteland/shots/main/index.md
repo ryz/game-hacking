@@ -1,6 +1,6 @@
 # Wasteland - shots: main
 
-Platform c64, region na, model c64, ROM SHA-1 `ea87866d2b11a103f9c9dd641d8117ba368c6d83`. 101 shots. Contact sheet: [wasteland_c64_na_set_sheet.png](wasteland_c64_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform c64, region na, model c64, ROM SHA-1 `ea87866d2b11a103f9c9dd641d8117ba368c6d83`. 124 shots. Contact sheet: [wasteland_c64_na_set_sheet.png](wasteland_c64_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -105,5 +105,28 @@ Platform c64, region na, model c64, ROM SHA-1 `ea87866d2b11a103f9c9dd641d8117ba3
 | ct_guardians | battle | "Guardians leap up from behind the table and attack!" | yes | [png](wasteland_c64_na_battle_ct_guardians.png) |
 | ct_chef | battle | "A huge chef leaps out and attacks screaming": Brother James | yes | [png](wasteland_c64_na_battle_ct_chef.png) |
 | ct_museum | battle | "From deep inside the museum shots ring out.": Brother Kenneth | yes | [png](wasteland_c64_na_battle_ct_museum.png) |
+| save_town | save | Saving in Quartz: "INSERT SIDE 1." (the party is kept on side 1) | yes | [png](wasteland_c64_na_save_save_town.png) |
+| menu_insert_side4 | menu | Travelling to Darwin through the radiation belt: "INSERT SIDE 4. [RETURN]" | yes | [png](wasteland_c64_na_menu_menu_insert_side4.png) |
+| env_world_radiation | gameplay | World map: the radiation belt around Darwin Village | yes | [png](wasteland_c64_na_gameplay_env_world_radiation.png) |
+| dw_arrival | gameplay | Darwin Village: arrival at the south-west edge | yes | [png](wasteland_c64_na_gameplay_dw_arrival.png) |
+| env_dw_village | gameplay | Darwin Village: houses on Base Road | yes | [png](wasteland_c64_na_gameplay_env_dw_village.png) |
+| dw_password | dialogue | Darwin gate: "Gimme the password." with a text prompt | yes | [png](wasteland_c64_na_dialogue_dw_password.png) |
+| dw_black_market | gameplay | "Entering the Black Market." | yes | [png](wasteland_c64_na_gameplay_dw_black_market.png) |
+| dw_lab | gameplay | Darwin: "The Lab." | yes | [png](wasteland_c64_na_gameplay_dw_lab.png) |
+| dw_delicious | dialogue | "This man is delicious, sweat drips down his face with a flushed complexion." | yes | [png](wasteland_c64_na_dialogue_dw_delicious.png) |
+| dw_library | gameplay | "Entering the Darwin Branch Library." | yes | [png](wasteland_c64_na_gameplay_dw_library.png) |
+| dw_store | shop | "The Darwin general store. Who wants to enter?" with the trader portrait | no | [png](wasteland_c64_na_shop_dw_store.png) |
+| dw_jekyll | gameplay | "Entering Dr. Jekyll's body shop." | yes | [png](wasteland_c64_na_gameplay_dw_jekyll.png) |
+| sl_arrival | gameplay | Sleeper Base: arrival in the purple-floored halls | yes | [png](wasteland_c64_na_gameplay_sl_arrival.png) |
+| env_sl_halls | gameplay | Sleeper Base: corridors and doors | yes | [png](wasteland_c64_na_gameplay_env_sl_halls.png) |
+| sl_wolves | battle | Sleeper Base: "Low growls rumble from the corner": 3 Nailed Wolves | yes | [png](wasteland_c64_na_battle_sl_wolves.png) |
+| sl_debris | dialogue | Sleeper Base: "The debris is a collection of odds and ends" | yes | [png](wasteland_c64_na_dialogue_sl_debris.png) |
+| sl_shining | dialogue | Sleeper Base: a shining object jammed into a crevasse, out of reach | yes | [png](wasteland_c64_na_dialogue_sl_shining.png) |
+| sl_door_slot | dialogue | Sleeper Base: "The door has no handle or sign on it, just a narrow slot" | yes | [png](wasteland_c64_na_dialogue_sl_door_slot.png) |
+| cb_arrival | gameplay | Base Cochise grounds: arrival in the desert south of the base | yes | [png](wasteland_c64_na_gameplay_cb_arrival.png) |
+| cb_gate_robots | battle | Base Cochise: robots at the gate: 2 Chopters and 2 Silicon Snipers | yes | [png](wasteland_c64_na_battle_cb_gate_robots.png) |
+| cb_weapon_pod | battle | Base Cochise: "A weapon pod rises up from the base dome" | yes | [png](wasteland_c64_na_battle_cb_weapon_pod.png) |
+| cb_plasma | battle | Base Cochise: "A glowing ball of energy unfolds": 5 Plasma Constrictors | yes | [png](wasteland_c64_na_battle_cb_plasma.png) |
+| cb_robots | battle | Base Cochise: "a mechanical horror attacks!" Chopter, VTOL Robot | yes | [png](wasteland_c64_na_battle_cb_robots.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

@@ -99,3 +99,26 @@ ct_brother_austin | battle | A Guardian sighs, "Why does it always happen in my 
 ct_guardians | battle | "Guardians leap up from behind the table and attack!" | @citadel,WARP:14:03,S,w300
 ct_chef | battle | "A huge chef leaps out and attacks screaming": Brother James | @citadel,WARP:1A:02,N,w300
 ct_museum | battle | "From deep inside the museum shots ring out.": Brother Kenneth | @citadel,WARP:1D:0E,S,w300
+save_town | save | Saving in Quartz: "INSERT SIDE 1." (the party is kept on side 1) | @quartz,WARP:14:0D,s,w300,y,w3000
+menu_insert_side4 | menu | Travelling to Darwin through the radiation belt: "INSERT SIDE 4. [RETURN]" | @start,WARP:39:26,N,w100,y,w1500
+env_world_radiation | gameplay | World map: the radiation belt around Darwin Village | @start,WARP:39:26
+dw_arrival | gameplay | Darwin Village: arrival at the south-west edge | @darwin
+env_dw_village | gameplay | Darwin Village: houses on Base Road | @darwin,WARP:10:12
+dw_password | dialogue | Darwin gate: "Gimme the password." with a text prompt | @darwin,WARP:1A:02,N,w300
+dw_black_market | gameplay | "Entering the Black Market." | @darwin,WARP:1A:02,S,w300
+dw_lab | gameplay | Darwin: "The Lab." | @darwin,WARP:18:0A,S,w300
+dw_delicious | dialogue | "This man is delicious, sweat drips down his face with a flushed complexion." | @darwin,WARP:0B:08,S,w300
+dw_library | gameplay | "Entering the Darwin Branch Library." | @darwin,WARP:18:13,S,w300
+dw_store | shop | "The Darwin general store. Who wants to enter?" with the trader portrait | @darwin,WARP:02:14,S,w300,y,w2000
+dw_jekyll | gameplay | "Entering Dr. Jekyll's body shop." | @darwin,WARP:18:1A,S,w300
+sl_arrival | gameplay | Sleeper Base: arrival in the purple-floored halls | @sleeper
+env_sl_halls | gameplay | Sleeper Base: corridors and doors | @sleeper,WARP:11:08
+sl_wolves | battle | Sleeper Base: "Low growls rumble from the corner": 3 Nailed Wolves | @sleeper,WARP:04:01,N,w300
+sl_debris | dialogue | Sleeper Base: "The debris is a collection of odds and ends" | @sleeper,WARP:02:00,S,w300
+sl_shining | dialogue | Sleeper Base: a shining object jammed into a crevasse, out of reach | @sleeper,WARP:11:08,S,w300
+sl_door_slot | dialogue | Sleeper Base: "The door has no handle or sign on it, just a narrow slot" | @sleeper,WARP:1B:09,S,w300
+cb_arrival | gameplay | Base Cochise grounds: arrival in the desert south of the base | @cochise
+cb_gate_robots | battle | Base Cochise: robots at the gate: 2 Chopters and 2 Silicon Snipers | @cochise,WARP:16:12
+cb_weapon_pod | battle | Base Cochise: "A weapon pod rises up from the base dome" | @cochise,WARP:10:0E,N,w300
+cb_plasma | battle | Base Cochise: "A glowing ball of energy unfolds": 5 Plasma Constrictors | @cochise,WARP:01:01,N,w300
+cb_robots | battle | Base Cochise: "a mechanical horror attacks!" Chopter, VTOL Robot | @cochise,WARP:0C:01,S,w300
