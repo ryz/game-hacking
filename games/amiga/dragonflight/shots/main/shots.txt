@@ -27,6 +27,25 @@ system_cast_no_spell | system | Magic icon: "Who should cast?" Rinakles: "You ha
 gameplay_door_nobody | gameplay | Hand icon at a house door in Pegana: "Nobody at home." | @start,N,w20,CLK:00E6:00A5,w300
 dialogue_redhair | dialogue | Speak: a red-haired young man tells of his brother, the torch trader in Drombul | @talk_redhair,w10
 dialogue_show | dialogue | In a talk: "Who should show something?" | @talk_redhair,CLK:0106:008F,w100
+battle_encounter | battle | "Your opponents' attack surprises you. They are Snakes!" | @enc_snake,w10
+battle_start | battle | Fight with a snake: side view, overhead grid, orders for Bladus | @enc_armed,mouse1,w600
+battle_arrows | battle | Right button in a fight: arrows to move, Zz to wait | @enc_armed,mouse1,w600,mouse2,w60
+battle_orders | battle | Orders given in turn: Bladus and Rinakles parry, Dobranur next | @enc_armed,mouse1,w600,CLK:0127:008F,w60,CLK:0127:008F,w60
+battle_hit | battle | Bladus, next to the snake, hits it with his sword: "Bladus hit a Snake (27)!" | @enc_armed,mouse1,w600,freeze:2A00=0052,freeze:2E00=0021,freeze:3200=004B,freeze:3600=0027,CLK:0127:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w400,settle,CLK:0127:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w400,settle,CLK:0127:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w400,settle,CLK:0127:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w400,settle,mouse2,w60,CLK:0106:00B7,w60,mouse2,w60,CLK:0127:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w400,settle,mouse1,w200,settle,CLK:0106:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w60,CLK:0127:008F,w300
+battle_msg_orcs | battle | Encounter message: "They are Orcs!" | @enc_orcs,w10
+battle_orcs | battle | A band of orcs on the meadow | @enc_orcs,mouse1,w600
+battle_skeleton | battle | A skeleton | @enc_skeletons,mouse1,w600
+battle_ghost | battle | A ghost | @enc_ghost,mouse1,w600
+battle_bear | battle | A bear | @enc_bear,mouse1,w600
+battle_beast | battle | A beast | @enc_beast,mouse1,w600
+battle_ghoul | battle | A ghoul in a blue robe | @enc_ghoul,mouse1,w600
+battle_gnoll | battle | A gnoll | @enc_gnolls,mouse1,w600
+battle_troll | battle | A troll | @enc_trolls,mouse1,w600
+battle_balron | battle | A balron | @enc_balron,mouse1,w600
+battle_energyball | battle | An energyball | @enc_energyball,mouse1,w600
+battle_statue | battle | A statue strikes first: "Bladus has been mortually wounded!" | @enc_statue,mouse1,w600
+battle_wounded | battle | Guardians: heroes fall one by one and pass on their Rings of Stasis | @enc_guardian,mouse1,w600,PT:0080:0020,mouse1,w300
+gameover | gameover | The party is dead: "Is this the end of all hope?" | @enc_guardian,mouse1,w600,PT:0080:0020,mouse1,w300,mouse1,w300,mouse1,w300,mouse1,w600,!
 save_prompt | save | Disk menu: "Gamesave? Left YES Right NO" | @world,DISK,CLK:0127:008F,w40
 save_done | save | "Game saved" after saving to Disk B | @world,DISK,CLK:0127:008F,w40,mouse1,w1500
 save_load_prompt | save | Disk menu, other disk: "Gameload? Left YES Right NO" | @world,DISK,CLK:00E6:008F,w60

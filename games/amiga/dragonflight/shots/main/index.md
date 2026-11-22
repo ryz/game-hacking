@@ -1,6 +1,6 @@
 # Dragonflight - shots: main
 
-Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8a73b1d7c1b`. 33 shots. Contact sheet: [dragonflight_amiga_eu_set_sheet.png](dragonflight_amiga_eu_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8a73b1d7c1b`. 52 shots. Contact sheet: [dragonflight_amiga_eu_set_sheet.png](dragonflight_amiga_eu_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -33,6 +33,25 @@ Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8
 | gameplay_door_nobody | gameplay | Hand icon at a house door in Pegana: "Nobody at home." | no | [png](dragonflight_amiga_eu_gameplay_gameplay_door_nobody.png) |
 | dialogue_redhair | dialogue | Speak: a red-haired young man tells of his brother, the torch trader in Drombul | yes | [png](dragonflight_amiga_eu_dialogue_dialogue_redhair.png) |
 | dialogue_show | dialogue | In a talk: "Who should show something?" | yes | [png](dragonflight_amiga_eu_dialogue_dialogue_show.png) |
+| battle_encounter | battle | "Your opponents' attack surprises you. They are Snakes!" | yes | [png](dragonflight_amiga_eu_battle_battle_encounter.png) |
+| battle_start | battle | Fight with a snake: side view, overhead grid, orders for Bladus | no | [png](dragonflight_amiga_eu_battle_battle_start.png) |
+| battle_arrows | battle | Right button in a fight: arrows to move, Zz to wait | yes | [png](dragonflight_amiga_eu_battle_battle_arrows.png) |
+| battle_orders | battle | Orders given in turn: Bladus and Rinakles parry, Dobranur next | yes | [png](dragonflight_amiga_eu_battle_battle_orders.png) |
+| battle_hit | battle | Bladus, next to the snake, hits it with his sword: "Bladus hit a Snake (27)!" | yes | [png](dragonflight_amiga_eu_battle_battle_hit.png) |
+| battle_msg_orcs | battle | Encounter message: "They are Orcs!" | yes | [png](dragonflight_amiga_eu_battle_battle_msg_orcs.png) |
+| battle_orcs | battle | A band of orcs on the meadow | yes | [png](dragonflight_amiga_eu_battle_battle_orcs.png) |
+| battle_skeleton | battle | A skeleton | no | [png](dragonflight_amiga_eu_battle_battle_skeleton.png) |
+| battle_ghost | battle | A ghost | yes | [png](dragonflight_amiga_eu_battle_battle_ghost.png) |
+| battle_bear | battle | A bear | yes | [png](dragonflight_amiga_eu_battle_battle_bear.png) |
+| battle_beast | battle | A beast | yes | [png](dragonflight_amiga_eu_battle_battle_beast.png) |
+| battle_ghoul | battle | A ghoul in a blue robe | no | [png](dragonflight_amiga_eu_battle_battle_ghoul.png) |
+| battle_gnoll | battle | A gnoll | no | [png](dragonflight_amiga_eu_battle_battle_gnoll.png) |
+| battle_troll | battle | A troll | yes | [png](dragonflight_amiga_eu_battle_battle_troll.png) |
+| battle_balron | battle | A balron | yes | [png](dragonflight_amiga_eu_battle_battle_balron.png) |
+| battle_energyball | battle | An energyball | no | [png](dragonflight_amiga_eu_battle_battle_energyball.png) |
+| battle_statue | battle | A statue strikes first: "Bladus has been mortually wounded!" | yes | [png](dragonflight_amiga_eu_battle_battle_statue.png) |
+| battle_wounded | battle | Guardians: heroes fall one by one and pass on their Rings of Stasis | yes | [png](dragonflight_amiga_eu_battle_battle_wounded.png) |
+| gameover | gameover | The party is dead: "Is this the end of all hope?" | yes | [png](dragonflight_amiga_eu_gameover_gameover.png) |
 | save_prompt | save | Disk menu: "Gamesave? Left YES Right NO" | no | [png](dragonflight_amiga_eu_save_save_prompt.png) |
 | save_done | save | "Game saved" after saving to Disk B | no | [png](dragonflight_amiga_eu_save_save_done.png) |
 | save_load_prompt | save | Disk menu, other disk: "Gameload? Left YES Right NO" | no | [png](dragonflight_amiga_eu_save_save_load_prompt.png) |

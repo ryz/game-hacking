@@ -75,7 +75,11 @@
     "RINAKLES": "STATUS:0050:0096",
     "DOBRANUR": "STATUS:001E:00B0",
     "ANDARIEL": "STATUS:0050:00B0",
-    "LEAVE": "WARP:0005:0005,kp6,w60,mouse1,w1200"
+    "LEAVE": "WARP:0005:0005,kp6,w60,mouse1,w1200",
+    "FLATLAND": "TITLE,w900,n,w1200,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100,disk:2,w100,w2800,LEAVE",
+    "WALK162": "poke:3BF4=00A000A0,poke:11AB2=00A000A0,kp2,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp8,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp6,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp6,w30,kp6,w30,kp8,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp2,w30,kp2,w30,kp8,w30,kp6,w30,kp6,w30,kp6,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp6,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp6,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp4,w30,kp4,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp6,w30,kp6,w30",
+    "ARM": "poke:2A12=0005,poke:2E12=0002,poke:3212=0009,poke:3612=000D,poke:2AF8=00050001",
+    "FOE": "kp6,w30,w200,poke:13B58={0},poke:13B5A={1},w1900"
   },
   "ram": {
     "y": {
