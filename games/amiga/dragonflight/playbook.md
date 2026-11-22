@@ -8,7 +8,7 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Start:** `rom/dragonflight.zip` (Disk 1 = CLS crack, Disk 2 = original Disk B; `python3 tools/vault.py pull
   dragonflight`), `rom/kickstart/kick34005.A500`, model `A500`. Checkpoints: `title`, `menu`, `diskb`, `start`
   (Pegana, first control), `world` (land outside Pegana), `pegana_road` (Pegana re-entered from the land),
-  `loaded` (Old game from the save `01_start`). Boot to first control is about 12000 frames (real floppy speed).
+  `loaded` (Old game from the save `01_start`), `dun_dark` / `dun_lit` (dungeon behind the cave arch, dark / torch lit). Boot to first control is about 12000 frames (real floppy speed).
 - **Everything is a mouse click on a poked pointer.** The pointer position is chip RAM `3BCA` (x) / `3BCC` (y),
   game pixels; `PT:XXXX:YYYY` pokes it, `CLK:XXXX:YYYY` pokes + left click + `w60`.
   `python3 games/amiga/dragonflight/tools/at.py SX SY c` turns a pixel of the 360x287 screenshot into the token
@@ -37,6 +37,13 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   normal. Loads are long: wait, do not click (clicks during a load are lost or act later). A cached checkpoint
   does not continue bit-exactly (Emulation notes): `cachecheck.py` says DIFFERS for every checkpoint although the
   frames match; build shots through the checkpoint chain and verify with `shoot.py --verify`.
+- **Details below ("Fights, magic, dungeon, map"):** fights are built flat from power-on (`FLATLAND,ARM,
+  WALK162,FOE:N:KIND`); `WARPL:YYYY:XXXX` + one step warps on the land; the dungeon is `@dun_lit`; the Great Map
+  is Examine on the Worldmap; potions are drunk by giving them to oneself; only the first inventory slot (`+F4`,
+  y `004B`, picture x `0017`) takes clicks reliably.
+- Open: won fight, shop, ship, dragon, Healing cast, potion mixing, other towns, dungeon stairs.
+
+## Fights, magic, dungeon, map (details)
 - **Fights (capture round 2, 2026-11-22): build every encounter checkpoint from power-on.** A state restored
   anywhere before the encounter load (even `@title`) makes the load ask for "Insert disk A please", and Disk 1
   then resets to the title; a flat route loads the fight from memory/Disk B. Checkpoints `enc_snake`,
@@ -62,7 +69,32 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
     then the spell's star (`CLK:0017:002D`, first line). See `magic_*` shots.
   - **Towns:** building records in RAM after their title ("AT THE UNIVERSITY", "IN THE TOWNHALL"); the hand at
     y 5A x 6A says "Here is no door!". Shops not found; the temple is "northeast of Pegana" on the land.
-  - Not reached: won fight, shop, dungeon, ship, dragon, other towns, magic in combat, potions in use.
+- **Round 3 (2026-11-22): dungeon, Great Map, magic, potions.**
+  - **Land grid:** chip `40000`, 256 bytes a row, byte = tile, index `y*256+x` (party y/x). Places are icons of
+    unique tiles: Pegana 3x3 at y 5F-61 x D6-D8; hidden 2x2 icons that look like terrain: temple Stormwind 3D,2E,
+    temple Gemshine 58,F7, Drombul 40,FA, Orc Village 58,16, a house 23,9C (blocked), a castle 4x4 27,E2 (did not
+    open). Cave arches (tiles 1B 1C / 43 44) at 2D,E1 31,E5 3B,25 4B,C3 5A,F1: **Enter only on the top-left tile.**
+  - **Land warp:** `WARPL:YYYY:XXXX` pokes `3BF4` and the land mirror `11AB2` (`118B2` is not the mirror on the
+    land), then one step: `@world,WARPL:005B:00F1,kp8,w30,w20,ENTER` = the dungeon. Works from a restored state.
+  - **Dungeon** (`dun_dark`, `dun_lit`): black until a torch is used (Bladus: Status, Inventory, Use, torch picture
+    `CLK:0017:004A`) or Light is cast. Keypad 8 forward, 2 back, 4/6 turn (7/9 nothing). Icons: hand at door
+    `CLK:00E6:00A5` opens it, ear `0127:008F` listen, eye `0127:00A5`, key `00E6:00B7`, chest `0106:00A5`, take
+    `0106:008F`. Dungeon position RAM not found (land y/x stay at the arch).
+  - **Inventory clicks:** click the item *picture* (x `0017`); only the first slot (record `+F4`, line 3, y `004B`)
+    answers reliably, line 4 (y 59-6F) was never taken: poke the item you need into `+F4` (2AF4 Bladus, 2EF4
+    Rinakles; 2EF8 is the second slot). Item ids: list in `design/content.md` (Gold 0 ... Torch 35, Scroll 50,
+    Worldmap 51, Levelmap 52, Piece of map 53, Potion(mixed) 54; potions 1B-24).
+  - **Great Map:** Use the piece (Rinakles: `poke:2EF4=00000000` removes the torch so the piece is on line 3),
+    then Examine (`CLK:0101:0055`) the Worldmap at line 3: full-screen map. More parts: poke `0053NN01` into
+    the slots and Use line 3 once per part (`map_great_map`).
+  - **Potions:** click the potion picture -> "Give to whom?" -> the drinker's own small portrait
+    (`CLK:0101:0015` = Bladus) = drink. Use on a potion opens the Mix potions screen (not solved).
+  - **Magic:** known spells = long at record +0C (bit N); Light needs no target and succeeds in the dungeon;
+    combat spells (Magic arrow) fail outside fights; Healing's "Cast spell on whom?" never took the portrait
+    click (8 tries; code C62C/C6A0: event wait 975E, zone 5E48 - 10 = hero). Spells to use in a fight must be
+    known and prepared on the land before the flat encounter route (`battle_magic_*`).
+  - Levelmap (item 52, suffix 00,00) Examine in the dungeon draws garbage; Healing scroll: "couldn't learn".
+  - Not reached: won fight, shop, ship, dragon, Healing cast, potion mixing, dungeon stairs.
 
 ## Identity
 | Field | Value |
@@ -150,12 +182,12 @@ Must-haves first; ids are the `main` set. Route status: R = route known (in `sho
   on the map is untested; the hand icon at a door gave "Nobody at home.")
 - [?] `shop_*` shop - a shop or inn in Pegana (houses: try the hand icon at each door, see Strategy)
 - [x] `battle_*` (round 2: 13 opponent kinds, orders, arrows, hit, deaths), `gameover`; a won fight is open
-- [?] `gameplay_dungeon_*` gameplay - first-person dungeon views (2-3 places), `env_dungeon_*`
-- [x] `magic_*` learn a scroll, prepare, cast (fails); [?] `system_potion` mixing potions; Staff of Stone
-- [?] `map_great_map` map - the Great Map part, if the game shows it
+- [x] `dungeon_*`, `env_dungeon_*` - first-person dungeon behind the cave arch (round 3); other dungeons open
+- [x] `magic_*` learn, prepare, cast (Light succeeds, `magic_light`), `battle_magic_*` (Magic arrow in a fight), `potion_*` (ten potions drunk); [?] mixing potions, Healing, Staff of Stone
+- [x] `map_great_map`, `map_great_map_one` - Examine on the Worldmap item
 - [?] `gameplay_ship` gameplay - on a ship; `gameplay_dragon` - dragon flight if reachable
 - [x] `gameover` - Guardians (`enc_guardian`)
-- [?] `town_drindil` gameplay - a second town (Drindil)
+- [x] `town_drombul`, `town_orc_village`, `temple_*` (round 3); [?] Brindil-Bun and the other towns (positions not decoded)
 `start` set: power-on, crack intro, logo, dragon, title, menu, the four sage pages, disk B prompt, Pegana, the
 first steps, status/inventory, leaving the town, the land, a camp, the first fight (when found), saving.
 
@@ -225,6 +257,7 @@ the exported save `01_start` and needs `rom/saves/amiga/dragonflight/01_start.sa
 |---|---|---|---|
 | Wikipedia | https://en.wikipedia.org/wiki/Dragonflight_(video_game) | credits, platforms, views, combat style, mouse control | 2026-11-22 |
 | Thalion Webshrine | http://thalion.exotica.org.uk/games/dragonflight/df.html | not reachable (host not allowed in this session) | 2026-11-22 |
+| thalion.atari.org | https://thalion.atari.org/news.html | not reachable (host not allowed; German manual PDF said to be there) | 2026-11-22 |
 | GameFAQs | https://gamefaqs.gamespot.com/amiga/952681-dragonflight/faqs | 403 (refuses automated access) | 2026-11-22 |
 | archive.org search | advancedsearch "dragonflight" | no manual or guide found | 2026-11-22 |
 | Disk 1 text (strings) | `rom/dragonflight.zip` | Backup Menu texts, crack note | 2026-11-22 |
@@ -233,6 +266,8 @@ the exported save `01_start` and needs `rom/saves/amiga/dragonflight/01_start.sa
 ## Open questions
 - ~~Where are fights?~~ Random on the land away from Pegana (capture 2026-11-22); rate unknown.
 - The land sword icon: what does it do (the cell became a hand-with-item icon)?
+- Healing's target prompt; potion mixing; the castle at 27,E2 and the house at 23,9C; where Brindil-Bun and the
+  other eleven towns are (more hidden icons in the land grid); dungeon position and stairs.
 - The disk menu's top-left icon (load?) and how SPEAK picks a person (click on the map?).
 - Disks C and D in the game text: does the game ever ask for them with this two-disk release?
 - Does `c` Credits show anything after a longer wait? Does `s` Sequences play the intro scenes with disk B?

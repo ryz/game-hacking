@@ -29,6 +29,12 @@ each visual family. A complete table belongs in its own document (items.md, enem
 | Land: forest | south of Pegana | dense trees | `env_land_forest` |
 | Land: bridge and mountains | east of Pegana | wooden bridge, grey mountains with a cave arch, the sea | `env_land_bridge` |
 | Camp | anywhere on the land | night scene with a campfire | `system_camp` |
+| Cave arch | eastern mountains of the land | grey arch in the rock face | `env_land_cave_arch` |
+| Dungeon corridor | cave east of Pegana | grey-green stone blocks, cobbled floor, wooden doors, torchlight; grey under the Light spell | `env_dungeon_corridor`, `env_dungeon_side_doors`, `dungeon_door`, `magic_light` |
+| Temples | hidden icons: Stormwind (west), Gemshine (north-east of Pegana) | pillared hall, blue basin, red or green walls | `temple_stormwind`, `temple_gemshine` |
+| Forest town and orc village | Drombul (north-east), Orc Village (west) | towns in forest and meadow with a grey stone border | `town_drombul`, `town_orc_village` |
+| Combat forest | land fights in forest | side view under tall trees | `battle_magic_order`, `battle_magic_cast` |
+| Great Map | Examine on the Worldmap | painted chart of coasts, rivers and towns | `map_great_map` |
 | Combat meadow | land fights | side view: flowered meadow under a blue sky | `battle_start`, `battle_hit` |
 | Sage's room | intro | stone room, fireplace, the sage | `cutscene_sage` |
 
@@ -57,6 +63,8 @@ Balron, Statue, Guardian, Unicorn (a banned unicorn, freed in a story scene), Sh
 | Item | Type | Got from | What it does | Shots |
 |---|---|---|---|---|
 | Torch | light | every hero at the start | "The torch has been lighted!" **(RAM)** | `inventory_items` |
+| Potions 1B-24 | potion | shops, chests **(inferred)**; poked here | drunk via "Give to whom?" on oneself: healing +25, power, magic, poison -25, sour, miserable -20, cheated, old wine, alcohol, nothing **(verified)** | `potion_heal`, `potion_power`, `potion_magic`, `potion_poison`, `potion_miserable`, `potion_wine` |
+| Worldmap | quest | made by adding map pieces | Examine shows the Great Map **(verified)** | `map_great_map_one`, `map_great_map` |
 | Piece of map 02 | quest | Rinakles at the start | added to the Worldmap with Use **(verified)** | `inventory_map_piece`, `inventory_examine`, `map_worldmap_added` |
 | Sword | weapon | Blacksmith **(inferred)**; poked here | melee weapon, 27 damage seen **(verified)** | `inventory_weapon`, `battle_hit` |
 | Weapons | Dagger, magic Dagger, short Sword, Sword, Broadsword, Crystalblade, Stiletto, Battleaxe, Battlehatchet, mag. Battlehatchet, Battlehammer, Bow, Longbow, Elvenbow, Staff of Stone **(RAM)** | - | - | - |
@@ -73,6 +81,8 @@ magicians: In the desert, Dorinthannon North and South, the island between the c
 
 | Ability | Who | Cost | What it does | Shots |
 |---|---|---|---|---|
+| Light (w) | Rinakles (scroll 00) | 2 | lights a dark dungeon: "Gloomy lights appear!" **(verified)** | `magic_light` |
+| Magic arrow (w) | Rinakles | 8 | a spark shot at an opponent in a fight **(verified)** | `battle_magic_arrow`, `battle_magic_cast` |
 | (none known at the start) | Rinakles, Bladus, Andariel have magic points | - | "No spell prepared" or "You have no spell ready" **(verified)** | `inventory_spells`, `system_cast_no_spell` |
 
 ## 6. Characters and people

@@ -79,7 +79,8 @@
     "FLATLAND": "TITLE,w900,n,w1200,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100,disk:2,w100,w2800,LEAVE",
     "WALK162": "poke:3BF4=00A000A0,poke:11AB2=00A000A0,kp2,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp8,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp6,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp6,w30,kp6,w30,kp8,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp2,w30,kp2,w30,kp8,w30,kp6,w30,kp6,w30,kp6,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp6,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp6,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp4,w30,kp4,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp6,w30,kp6,w30",
     "ARM": "poke:2A12=0005,poke:2E12=0002,poke:3212=0009,poke:3612=000D,poke:2AF8=00050001",
-    "FOE": "kp6,w30,w200,poke:13B58={0},poke:13B5A={1},w1900"
+    "FOE": "kp6,w30,w200,poke:13B58={0},poke:13B5A={1},w1900",
+    "WARPL": "poke:3BF4={0}{1},poke:11AB2={0}{1}"
   },
   "ram": {
     "y": {
@@ -119,6 +120,6 @@
       "note": "combat: opponent kind, index into the plural list Energyballs=0, Balrons 1, Orcs 2, Skeletons 3, Snakes 4, Ghosts 5, Bears 6, Beasts 7, Ghouls 8, Gnolls 9, Trolls 10, Statues 11, Guardians 12; poke it 200 frames into the load (macro FOE)"
     }
   },
-  "work": "start set (24 shots) and main set (58) published 2026-11-22: boot, menus, intro, Pegana, land, camp, status/inventory/map piece, talk, combat (13 opponent kinds, orders, hit, deaths, game over), scroll learned and spell prepared/cast, save/load; three lenses",
-  "open": "won fight (opponent hit points not found), magic in combat, potions, shops (no shop door found), first-person dungeon, ship, dragon, Drindil and other towns, Great Map view; manual not reachable"
+  "work": "start set (24 shots) and main set (93) published 2026-11-22: boot, menus, intro, Pegana, land, camp, status/inventory, talk, combat (13 opponent kinds, orders, hit, deaths, game over), magic (Light succeeds in a dungeon, Magic arrow in a fight), ten potions drunk, the Great Map, a first-person dungeon (torch, doors), two temples, Drombul, Orc Village, save/load; three lenses",
+  "open": "won fight (opponent hit points not found), shops (no shop door found), Healing cast (target click not taken), potion mixing, dungeon stairs and other dungeons, ship, dragon, Brindil-Bun and the other towns; manual not reachable"
 }

@@ -40,3 +40,26 @@ hand still answers "Has no longrange weapon!" (live play, 2026-11-22, capture ro
 ## Opponent hit points not found
 **Behavior:** a snake took 27, 24, 21 and more damage from Bladus's sword and stayed; no RAM value fell by the
 damage dealt (chip and slow RAM searched across a hit). Victory was not reached (capture round 2).
+
+## Inventory clicks below the first item line are not taken
+**Behavior:** in the inventory, a click on the item picture of the first slot (record +F4, line 3, pointer y
+004B) works for Use, Examine, Prepare and Give; clicks on line 4 (pointer y 59, 5B, 5D, 63, 69, 6F tried, from
+cached and live states) never answered (capture round 3, 2026-11-22).
+**Likely cause:** unknown (hit test per line, or the emulator's pointer poke); not traced.
+**Confidence:** (verified) for the symptom.
+**Impact:** routes poke the item they need into the first slot.
+
+## Healing never finds its target
+**Behavior:** Healing (w), prepared by Rinakles, asks "Cast spell on whom?" and then says "Spell has failed!"
+(5 magic points spent) whatever portrait is clicked; eight wait and Character variants gave the same result.
+**Likely cause:** the target picker (code C6A0) waits for an input event (975E) and maps the pointer to a zone
+(5E48, minus 10 = hero); the poked pointer and click are evidently not seen as a portrait zone. Not traced.
+**Confidence:** (verified) symptom, (RAM) code path.
+**Impact:** no successful Healing shot; Light (no target) succeeds.
+
+## A Levelmap item with suffix 00,00 draws garbage
+**Behavior:** Examine on a poked Levelmap (item 52, shown "Levelmap 00,00") in the dungeon fills the screen
+with striped grey, beige and red garbage (round 3).
+**Likely cause:** the suffix names a level whose map is not loaded.
+**Confidence:** (verified) symptom.
+**Impact:** none; a real Levelmap (found in a dungeon) is open.

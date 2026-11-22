@@ -56,3 +56,38 @@ save_prompt | save | Disk menu: "Gamesave? Left YES Right NO" | @world,DISK,CLK:
 save_done | save | "Game saved" after saving to Disk B | @world,DISK,CLK:0127:008F,w40,mouse1,w1500
 save_load_prompt | save | Disk menu, other disk: "Gameload? Left YES Right NO" | @world,DISK,CLK:00E6:008F,w60
 menu_oldgame | save | Old game loaded: "Thank You! Game loaded" on the land | @loaded,w10
+env_land_cave_arch | gameplay | The land: a cave arch in the eastern mountains, a dungeon entrance | @world,WARPL:005D:00F1,kp8,w30,kp8,w30,w20
+dungeon_dark | gameplay | Entered the cave: without light the dungeon view stays black | @dun_dark,w10
+dungeon_torch | gameplay | Bladus uses his torch: "The torch has been lighted!" | @dun_dark,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004A,w300
+env_dungeon_corridor | gameplay | First-person dungeon: a long stone corridor by torchlight | @dun_lit,w10
+dungeon_forward | gameplay | Three steps forward along the corridor | @dun_lit,kp8,w60,kp8,w60,kp8,w60
+env_dungeon_side_doors | gameplay | Further on: doors in the side walls | @dun_lit,kp8,w60,kp8,w60,kp8,w60,kp8,w60,kp8,w60,kp8,w60
+dungeon_turn | gameplay | Turn right: a wooden door at the end of the corridor | @dun_lit,kp6,w60
+dungeon_blocked | gameplay | Backward into the wall: "Blocked" | @dun_lit,kp6,w60,kp2,w60
+dungeon_door | gameplay | Turned round and stepped up to a wooden door | @dun_lit,kp4,w60,kp4,w60,kp8,w100
+dungeon_look_door | gameplay | The eye icon: "It is a Door!" | @dun_lit,kp4,w60,kp4,w60,CLK:0127:00A5,w200
+dungeon_open | gameplay | The hand icon at the door: it swings open onto a passage | @dun_lit,kp4,w60,kp4,w60,kp8,w100,CLK:00E6:00A5,w300
+dungeon_listen | gameplay | Listen at the door: "Bladus: I can hear nothing!" | @dun_lit,kp4,w60,kp4,w60,kp8,w100,CLK:0127:008F,w100,CLK:001E:0096,w300
+dungeon_key | gameplay | Key icon at the door: "The door is already open!" | @dun_lit,kp4,w60,kp4,w60,kp8,w100,CLK:00E6:00B7,w300
+dungeon_chest | gameplay | Chest icon in a corridor: "There is no chest!" | @dun_lit,kp4,w60,kp4,w60,kp8,w100,CLK:0106:00A5,w300
+magic_light_prompt | system | Casting in the dark: "Who should cast ?" | @dun_dark,poke:2EF4=00500001,RINAKLES,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0120:0015,w300,CLK:0124:006E,w100,CLK:0124:0055,w100,CLK:0101:006E,w100,CLK:0017:002D,w200,CLK:0124:006E,w100,CLK:0124:006E,w100,MAGIC,w60
+magic_light | system | Rinakles casts Light: "Gloomy lights appear! Spell has succeeded!" | @dun_dark,poke:2EF4=00500001,RINAKLES,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0120:0015,w300,CLK:0124:006E,w100,CLK:0124:0055,w100,CLK:0101:006E,w100,CLK:0017:002D,w200,CLK:0124:006E,w100,CLK:0124:006E,w100,MAGIC,w60,CLK:0050:0096,w300
+map_piece_added | map | Use on a map piece: "You added the piece of map to the world-map!" | @world,poke:2EF4=00000000,RINAKLES,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300
+map_great_map_one | map | Examine the Worldmap: the Great Map with one piece, the west coast | @world,poke:2EF4=00000000,RINAKLES,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0101:0055,w100,CLK:0017:004B,w600
+map_great_map | map | The Great Map with five of its twelve pieces | @world,poke:2EF4=00530101,poke:2EFC=00530401,poke:2F00=00530501,poke:2F04=00530601,RINAKLES,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0101:0055,w100,CLK:0017:004B,w600
+potion_mix | system | Use on a potion: the Mix potions screen with cauldron and flask | @world,poke:2AF4=001B0001,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300
+potion_give | system | Click a potion: "Give to whom?" (to oneself = drink) | @world,set:2A00=37:2,poke:2AF4=001B0001,BLADUS,CLK:0101:0055,w60,CLK:0017:004B,w200
+potion_heal | system | Bladus drinks a healing potion: "Healing power streams through the body!" | @world,set:2A00=37:2,poke:2AF4=001B0001,BLADUS,CLK:0101:0055,w60,CLK:0017:004B,w200,CLK:0101:0015,w400
+potion_heal_status | system | After the healing potion: Bladus has 62 of 100 hit points (was 37) | @world,set:2A00=37:2,poke:2AF4=001B0001,BLADUS,CLK:0101:0055,w60,CLK:0017:004B,w200,CLK:0101:0015,w400,PT:0080:0020,mouse1,w200,CLK:0124:006E,w100
+potion_power | system | Potion of power: "Heat is spreading the body. Powers beyond belief..." | @world,set:2A00=37:2,poke:2AF4=001C0001,BLADUS,CLK:0101:0055,w60,CLK:0017:004B,w200,CLK:0101:0015,w400
+potion_magic | system | Magic potion: "The coolness of the liquid clears heads..." | @world,set:2A00=37:2,poke:2AF4=001D0001,BLADUS,CLK:0101:0055,w60,CLK:0017:004B,w200,CLK:0101:0015,w400
+potion_poison | system | Poison: "A bad and awful taste... It is poison!" | @world,set:2A00=37:2,poke:2AF4=001E0001,BLADUS,CLK:0101:0055,w60,CLK:0017:004B,w200,CLK:0101:0015,w400
+potion_miserable | system | "Despite the oily smell Bladus drinks... he feels miserable." | @world,set:2A00=37:2,poke:2AF4=00200001,BLADUS,CLK:0101:0055,w60,CLK:0017:004B,w200,CLK:0101:0015,w400
+potion_wine | system | "The taste of the potion is just great! ... an extremely old wine" | @world,set:2A00=37:2,poke:2AF4=00220001,BLADUS,CLK:0101:0055,w60,CLK:0017:004B,w200,CLK:0101:0015,w400
+battle_magic_order | battle | Forest fight: Rinakles is ordered to cast "MAGIC ARROW!" | FLATLAND,ARM,poke:2E0C=00000004,RINAKLES,CLK:0124:0055,w100,CLK:0101:006E,w100,CLK:0017:002D,w200,CLK:0124:006E,w100,CLK:0124:006E,w100,WALK162,FOE:0002:0002,mouse1,w600,CLK:0127:008F,w60,CLK:00E6:008F,w100
+battle_magic_arrow | battle | The magic arrow, a small spark, flies toward the snake | FLATLAND,ARM,poke:2E0C=00000004,RINAKLES,CLK:0124:0055,w100,CLK:0101:006E,w100,CLK:0017:002D,w200,CLK:0124:006E,w100,CLK:0124:006E,w100,WALK162,FOE:0002:0002,mouse1,w600,CLK:0127:008F,w60,CLK:00E6:008F,w100,PT:0080:0020,mouse1,w100,CLK:0127:008F,w60,CLK:0127:008F,w60,w25,w25,!
+battle_magic_cast | battle | "Rinakles casted a spell!": his magic points fell from 10 to 2 | FLATLAND,ARM,poke:2E0C=00000004,RINAKLES,CLK:0124:0055,w100,CLK:0101:006E,w100,CLK:0017:002D,w200,CLK:0124:006E,w100,CLK:0124:006E,w100,WALK162,FOE:0002:0002,mouse1,w600,CLK:0127:008F,w60,CLK:00E6:008F,w100,PT:0080:0020,mouse1,w100,CLK:0127:008F,w60,CLK:0127:008F,w60,w300
+temple_stormwind | gameplay | Temple of Stormwind: "The temple shows no effect!" | @world,WARPL:003F:002E,kp8,w30,kp8,w30,w20,ENTER
+temple_gemshine | gameplay | Temple of Gemshine, a hidden icon north-east of Pegana | @world,WARPL:005A:00F7,kp8,w30,kp8,w30,w20,ENTER
+town_drombul | gameplay | Drombul, the town in the north-eastern forest | @world,WARPL:0042:00FA,kp8,w30,kp8,w30,w20,ENTER
+town_orc_village | gameplay | The Orc Village in the west | @world,WARPL:005A:0016,kp8,w30,kp8,w30,w20,ENTER
