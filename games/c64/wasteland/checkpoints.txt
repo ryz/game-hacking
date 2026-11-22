@@ -1,3 +1,8 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+title | Title: Earth globe, Place/Year/Status typed, Start / Utils bar (S = Start, U = Utils) | TITLE
+rangers | Ranger Center: default party Hell Razor, Angela Deth, Thrasher, Snake Vargas; Create / Delete / Start | @title,NEWGAME,settle
+party | Ranger Center: RYZ created in place of Hell Razor (Angela Deth, Thrasher, Snake Vargas, RYZ), party ready, RYZ stats poked | @rangers,RYZ,RYZSTATS
+start | World map at the Ranger Center (x55 y62), first control, party RYZ, Angela Deth, Thrasher, Snake Vargas, roster shown | TITLE,NEWGAME,settle,RYZ,RYZSTATS,LEAVE,ORDER4,settle
+step1 | World map: first step east of the Ranger Center (x56 y62), RC building one square west | TITLE,NEWGAME,settle,RYZ,RYZSTATS,LEAVE,ORDER4,settle,E
+fight | Random encounter on the world map at the Ranger Center: "3 Animals appear at 14 feet" [RETURN] (waiting 1000 frames at start; full route from power-on, see Emulation notes) | TITLE,NEWGAME,settle,RYZ,RYZSTATS,LEAVE,ORDER4,settle,w1000

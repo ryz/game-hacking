@@ -30,3 +30,6 @@ Tool wishes are not listed here: `docs/backlog.md`.
   before a story event: retry it after the event before searching elsewhere (same game, the south gate).
 - **Dungeon games: load every level through the game's own level-change code** (a script around it) before
   writing warps; it doubles as the dump check (Bard's Tale III Apple II, 2026-11-21).
+- **C64 chance-dependent chains:** if a `play.py` session rolls differently from a replay, reproduce it with
+  `cachecheck.py` (a test checkpoint built on the cached parent) before switching to full routes: the coordinator
+  could not reproduce it there (Wasteland, 2026-11-21).

@@ -17,10 +17,10 @@ Go through every group; write "none" where the game has nothing, do not drop the
 
 | Group | System / mechanic | Rule in one line | Player's inputs | Numbers known | Details | Shots | Status |
 |---|---|---|---|---|---|---|---|
-| Player verbs | (every command, action, menu entry the player can use, minor ones included) | | | | | | |
-| Characters and progression | (creation, classes, statistics, levels, abilities, ageing) | | | | | | |
+| Player verbs | Field commands | one key each: U Use, E Enc, O Order, D Disband, V View, S Save, R Radio; I/J/K/L step; digit = character sheet **(verified)** | keyboard | | playbook Controls | | described |
+| Characters and progression | Ranger creation | roll seven attributes and max CON (SPACE rerolls), name, sex, nationality (U.S., Russian, Mexican, Indian, Chinese), spend skill points on skills **(verified)** | Ranger Center C | skill points 14-17 seen (from IQ, inferred) | | | described |
 | Resources and economy | (money, food, ammunition, time; sources and sinks, prices) | | | | | | |
-| Conflict | (turn order, hit and damage rules, defences, status conditions, death, fleeing, bargaining) | | | | | | |
+| Conflict | Combat rounds | enemies appear at a distance in feet; each member chooses an action, then the round plays out; experience per survivor **(verified, 5 each vs 3 Animals)** | R U H E A W L, Y | | | | described |
 | Opponents | (kinds, group rules, special attacks, behaviour, where they appear) | | | | | | |
 | Items and equipment | (kinds, slots, restrictions, charges, identification) | | | | | | |
 | Abilities and magic | (lists, costs, learning, restrictions) | | | | | | |
@@ -28,7 +28,7 @@ Go through every group; write "none" where the game has nothing, do not drop the
 | Goals and gating | (quests, keys, what opens what, optional content, endings) | | | | | | |
 | Chance | (what is random, what is fixed, what the player can influence) | | | | | | |
 | Failure and recovery | (ways to lose, penalties, how to come back) | | | | | | |
-| Saving and sessions | (where, when, what is kept, what is lost) | | | | | | |
+| Saving and sessions | Disk saves | Save command writes the party to play side 1; locations are saved on entry/exit (source); Continue = Y at "Use last saved game" **(verified)** | S, Y | | | | described |
 | Pacing and difficulty | (how it ramps, where it gates, what it asks of a new player) | | | | | | |
 
 ## 3. How the systems feed each other

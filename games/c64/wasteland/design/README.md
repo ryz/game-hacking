@@ -23,8 +23,18 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Wasteland is a post-apocalyptic party role-playing game: a squad of up to four created Desert Rangers (seven
+with hired followers) explores a top-down world map of the American south-west in 2087 and enters towns and
+buildings drawn as top-down maps **(source)**. Play is keyboard-driven: one key per step and one letter per
+command (Use, Enc, Order, Disband, View, Save, Radio) **(verified, checkpoint `start`)**. Characters have seven
+attributes (ST, IQ, LK, SP, AGL, DEX, CHR), CON as hit points, a rank and bought skills such as Clip pistol,
+Rifle and Perception **(verified, `party`)**; skills are used on the world as well as in fights (source).
+Combat is menu-driven in rounds: each member picks Run, Use, Hire, Evade, Attack, Weapon or Load/Unjam, then the
+round is played out as text **(verified, `fight`)**. A game clock runs in the corner and advances with steps and
+rests **(verified)**. The game saves to its play disks: by command, and when a location is entered or left
+**(source)**; the C64 release needs play copies of its four disk sides, made by its own Utils menu
+**(verified: the masters are refused as play disks)**. Length: a dozen major areas from Highpool to Base Cochise
+**(source)**.
 
 ## Documents
 | Document | Covers |

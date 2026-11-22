@@ -12,6 +12,23 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-21 - Wasteland (C64)
+- Task: scout Wasteland (C64, 9 D64 images, EA/Interplay 1988): boot and disk swaps, controls, RAM map,
+  checkpoints up to the world map and a first fight.
+- Worked: byte comparison of the D64 images settled masters (disk:1-4) vs play copies (disk:5-8) in one call;
+  preview.py batches of 4-12 key variants found movement keys, Esc, field commands and combat; dump/diff over
+  three steps found the party block (F400) and character records (F500 + 0x100 each).
+- Friction: play continued from a loaded state seemed to roll differently from a power-on replay (encounters,
+  creation rolls), about 15 calls; `play.py goto` piped to /dev/null once seemed not to take effect; about 20
+  calls walking around Highpool's mountain ring; mocagh.org unreachable.
+- Proposed rule change: c64.md: savestates not exact for every game, write chance-dependent checkpoints from
+  power-on; backlog: find the C64 random source missing from the state; c64.md: Esc is usually `leftarrow`.
+- Corrected: coordinator could not reproduce the state divergence: `@start,w1000` and `@party,LEAVE,ORDER4,
+  settle,w1000` match the power-on replay (same "3 Animals" frame) in two cachecheck runs; suspect is the
+  interactive `play.py` session (goto/do between calls), not the savestate. Not written into c64.md. Cachecheck
+  6/6 verified; save 01_start pushed to the vault.
+- Status: open (state divergence in play.py sessions: waiting for a second case with a reproduction); Esc ->
+  game playbook (C64 games differ)
 ### 2026-11-21 - Phantasie (C64)
 - Task: scout Phantasie (C64, first real game on the VICE backend): boot, party creation, first save, RAM map,
   shot plan.

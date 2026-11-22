@@ -1,6 +1,6 @@
 {
   "slug": "wasteland",
-  "title": "WASTELAND",
+  "title": "Wasteland",
   "platform": "c64",
   "region": "na",
   "model": "c64",
@@ -92,6 +92,42 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w1900",
+    "NEWGAME": "s,w300,y,w1500,disk:5,w50,return,w2000,y,w2000",
+    "RYZ": "d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300,m,w300,1,w300,3,w200,6,w200,9,w200,return,w300,y,w400",
+    "LEAVE": "s,w1600",
+    "ORDER4": "o,w200,y,w300,4,w100,1,w100,2,w300",
+    "ROLL": "space,w150",
+    "RYZSTATS": "poke:F80E=0e100c0d0f100b,poke:F81B=1f00,poke:F81D=1f00",
+    "N": "i,w200",
+    "S": "k,w200",
+    "E": "l,w200",
+    "W": "j,w200",
+    "CONT": "s,w300,y,w1500,disk:5,w50,return,w2000",
+    "SAVE": "s,w300,y,w3000",
+    "NEWFRESH": "s,w300,n,w1500,disk:5,w50,return,w1500,disk:6,w50,return,w1500,disk:7,w50,return,w1500,disk:8,w50,return,w2500,disk:5,w50,return,w2000,y,w2000"
+  },
+  "ram": {
+    "x": {
+      "addr": "F408",
+      "size": 1
+    },
+    "y": {
+      "addr": "F409",
+      "size": 1
+    },
+    "order": {
+      "addr": "F401",
+      "size": 4,
+      "fmt": "hex"
+    },
+    "money_ryz": {
+      "addr": "F815",
+      "size": 3,
+      "fmt": "le"
+    }
+  },
+  "work": "scouted 2026-11-21: boot and disk swaps (master side 1 boots, play copies disk:5-8), 6 checkpoints to a first fight, RAM map (party, records, money); not captured",
+  "open": "Highpool entrance and other locations not reached; no world-map warp; loaded states drift from power-on replays (encounters, rolls); Utils Copy/Restart and the disk-9 editor not tried"
 }
