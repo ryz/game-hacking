@@ -120,6 +120,6 @@
       "note": "combat: opponent kind, index into the plural list Energyballs=0, Balrons 1, Orcs 2, Skeletons 3, Snakes 4, Ghosts 5, Bears 6, Beasts 7, Ghouls 8, Gnolls 9, Trolls 10, Statues 11, Guardians 12; poke it 200 frames into the load (macro FOE)"
     }
   },
-  "work": "start set (24 shots) and main set (93) published 2026-11-22: boot, menus, intro, Pegana, land, camp, status/inventory, talk, combat (13 opponent kinds, orders, hit, deaths, game over), magic (Light succeeds in a dungeon, Magic arrow in a fight), ten potions drunk, the Great Map, a first-person dungeon (torch, doors), two temples, Drombul, Orc Village, save/load; three lenses",
-  "open": "won fight (opponent hit points not found), shops (no shop door found), Healing cast (target click not taken), potion mixing, dungeon stairs and other dungeons, ship, dragon, Brindil-Bun and the other towns; manual not reachable"
+  "work": "start set (24 shots) and main set (111) published 2026-11-22: boot, menus, intro, Pegana, land, camp, status/inventory, talk, combat (13 opponent kinds, orders, hit, deaths, game over), magic (Light succeeds in a dungeon, Magic arrow in a fight), ten potions drunk, potion mixing, shops (Drombul blacksmith, healer, inn: buy, sell, healing), the Great Map, a first-person dungeon (torch, doors), two temples, Drombul, Orc Village, save/load; three lenses",
+  "open": "won fight (opponent hit points not found), Healing cast (target click not taken), potion recipes beyond one, shops of Pegana and other towns, dungeon stairs and other dungeons, ship, dragon, Brindil-Bun and the other towns; manual not reachable"
 }

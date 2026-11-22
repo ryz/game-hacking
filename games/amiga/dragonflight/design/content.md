@@ -18,7 +18,7 @@ each visual family. A complete table belongs in its own document (items.md, enem
 | Items | 79 names incl. 10 potions, gems, quest letters and notes **(RAM)** | torch, piece of map, Worldmap | section 4 |
 | Equipment | 15 weapons, 6 armours, 4 rings **(RAM)** | sword | section 4 |
 | Abilities / spells | 29 spells in three schools **(RAM)** | none known at the start | section 5 |
-| Characters and people | 4 fixed heroes; towns with named residents | the heroes, a red-haired young man | section 6 |
+| Characters and people | 4 fixed heroes; towns with named residents | the heroes, a red-haired young man, three shopkeepers | section 6 |
 | Places | 17 place names in the game text: Stormwind, Clearlight, Gemshine, Farout, Crystaleye, Thunderroar, Deepsea, Darkmoon, Pegana, Port Pylon, Brindil-Bun, Nimraviel, Scatterbone, Drombul, Bagnol, Luthag, Trolian, Negame, Sotul, Orc Village **(RAM)** | Pegana | - |
 
 ## 2. Environments
@@ -32,7 +32,8 @@ each visual family. A complete table belongs in its own document (items.md, enem
 | Cave arch | eastern mountains of the land | grey arch in the rock face | `env_land_cave_arch` |
 | Dungeon corridor | cave east of Pegana | grey-green stone blocks, cobbled floor, wooden doors, torchlight; grey under the Light spell | `env_dungeon_corridor`, `env_dungeon_side_doors`, `dungeon_door`, `magic_light` |
 | Temples | hidden icons: Stormwind (west), Gemshine (north-east of Pegana) | pillared hall, blue basin, red or green walls | `temple_stormwind`, `temple_gemshine` |
-| Forest town and orc village | Drombul (north-east), Orc Village (west) | towns in forest and meadow with a grey stone border | `town_drombul`, `town_orc_village` |
+| Forest town and orc village | Drombul (north-east), Orc Village (west) | towns in forest and meadow with a grey stone border | `town_drombul`, `town_orc_village`, `env_drombul_smithy` |
+| Shops | Drombul | full-screen list on dark blue; panel pictures per trade: forge with a smith (blacksmith), shelf of jars (healer), tavern hands with mugs (inn) | `shop_blacksmith`, `shop_healer`, `shop_inn` |
 | Combat forest | land fights in forest | side view under tall trees | `battle_magic_order`, `battle_magic_cast` |
 | Great Map | Examine on the Worldmap | painted chart of coasts, rivers and towns | `map_great_map` |
 | Combat meadow | land fights | side view: flowered meadow under a blue sky | `battle_start`, `battle_hit` |
@@ -66,7 +67,11 @@ Balron, Statue, Guardian, Unicorn (a banned unicorn, freed in a story scene), Sh
 | Potions 1B-24 | potion | shops, chests **(inferred)**; poked here | drunk via "Give to whom?" on oneself: healing +25, power, magic, poison -25, sour, miserable -20, cheated, old wine, alcohol, nothing **(verified)** | `potion_heal`, `potion_power`, `potion_magic`, `potion_poison`, `potion_miserable`, `potion_wine` |
 | Worldmap | quest | made by adding map pieces | Examine shows the Great Map **(verified)** | `map_great_map_one`, `map_great_map` |
 | Piece of map 02 | quest | Rinakles at the start | added to the Worldmap with Use **(verified)** | `inventory_map_piece`, `inventory_examine`, `map_worldmap_added` |
-| Sword | weapon | Blacksmith **(inferred)**; poked here | melee weapon, 27 damage seen **(verified)** | `inventory_weapon`, `battle_hit` |
+| Sword | weapon | Blacksmith, 240 gold **(verified)**; poked here | melee weapon, 27 damage seen **(verified)** | `inventory_weapon`, `battle_hit` |
+| short Sword | weapon | Blacksmith Renday (Drombul), 77 gold; sold back for 24 **(verified)** | melee weapon | `shop_bought`, `shop_inventory`, `shop_sell_offer` |
+| Mushroom 1, Mushroom 2 | herb | Healer Gormen (Drombul), 22 and 34 gold **(verified)** | "Healers are very fond of mushrooms" (Drombul talk, RAM); use unknown | `shop_healer` |
+| Beer, Mead, Food | provisions | The Oak Arbor (Drombul): Mead 2, Beer 4, Food 6 **(verified)** | Firtul the inn-keeper is said to talk when offered wine (RAM) | `shop_inn` |
+| Own potion (item 54) | potion | Mix potions **(verified)** | effect by recipe: 1B + 1C = miserable, -20 HP **(verified)** | `potion_mixed`, `potion_mixed_drink` |
 | Weapons | Dagger, magic Dagger, short Sword, Sword, Broadsword, Crystalblade, Stiletto, Battleaxe, Battlehatchet, mag. Battlehatchet, Battlehammer, Bow, Longbow, Elvenbow, Staff of Stone **(RAM)** | - | - | - |
 | Armour | Leather, studded Leather, light/medium/heavy/magic Chainmail **(RAM)** | - | - | - |
 | Others | rings (small, medium, large, Dragonring), 10 potions, Phial, Mushrooms, gems, jewellery, Flute, Compass, Key, Book, Sphere, Treaty, letters and notes, Beer, Mead, scrolls, Levelmap, +1 to +5 weapon oils **(RAM)** | - | - | - |
@@ -94,8 +99,11 @@ magicians: In the desert, Dorinthannon North and South, the island between the c
 | Andariel | elf, 60 HP, 8 magic **(verified)** | party | `17_status_andariel` (start set) |
 | The sage | gives the Rings of Stasis and a map part | intro | `cutscene_sage` |
 | Red-haired young man | brother of the torch trader in Drombul (north-eastern forest) | Pegana | `dialogue_redhair`, `dialogue_show` |
+| Renday | blacksmith (his apprentice in house 3 sends you to him) | Drombul | `shop_blacksmith`, `shop_bought` |
+| Gormen | healer | Drombul | `shop_healer`, `shop_healing` |
+| Firtul | inn-keeper of The Oak Arbor | Drombul | `shop_inn` |
 | Erik Simon, Udo Fischer, Jochen Hippel | authors | credits | `credits_team` |
 
 ## Open questions
-What exists but was not seen: Unicorn and Shadow (special opponents), a won fight, the shops, dungeons, the ship, the
-dragon. Encounters come at random on the land; shops sit behind town doors not yet found.
+What exists but was not seen: Unicorn and Shadow (special opponents), a won fight, other dungeons, the ship, the
+dragon. Encounters come at random on the land; shops sit behind the doors in each town's shop list (Drombul: three).

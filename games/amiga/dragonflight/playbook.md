@@ -39,9 +39,14 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   frames match; build shots through the checkpoint chain and verify with `shoot.py --verify`.
 - **Details below ("Fights, magic, dungeon, map"):** fights are built flat from power-on (`FLATLAND,ARM,
   WALK162,FOE:N:KIND`); `WARPL:YYYY:XXXX` + one step warps on the land; the dungeon is `@dun_lit`; the Great Map
-  is Examine on the Worldmap; potions are drunk by giving them to oneself; only the first inventory slot (`+F4`,
-  y `004B`, picture x `0017`) takes clicks reliably.
-- Open: won fight, shop, ship, dragon, Healing cast, potion mixing, other towns, dungeon stairs.
+  is Examine on the Worldmap; potions are drunk by giving them to oneself.
+- **List clicks (inventory, shop goods): the click zones are not where the lines are drawn** (code 5EA0): line 1
+  x < 20 y 28-2F, line 2 x 20-2F y 38-3F, line 3 x < 20 y 48-4F, line 4 x 20-2F y 58-5F, line 5 x < 20 y 68-6F
+  (game pixels: `CLK:0010:002C`, `CLK:0028:003C`, `CLK:0010:004C`, `CLK:0028:005C`, `CLK:0010:006C`). Round 3's
+  "only line 3 works" was this. Item id k lives at hero record + 20 + 4k (word id, byte suffix, byte count).
+- **Shops (round 4):** checkpoints `shop_smith`, `shop_healer`, `shop_inn` (Drombul); buy = goods line, then a
+  portrait; sell = portrait, line, Yes. **Potion mixing:** "Shops and potion mixing" below.
+- Open: won fight, ship, dragon, Healing cast, shops of other towns, dungeon stairs.
 
 ## Fights, magic, dungeon, map (details)
 - **Fights (capture round 2, 2026-11-22): build every encounter checkpoint from power-on.** A state restored
@@ -98,6 +103,32 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
     known and prepared on the land before the flat encounter route (`battle_magic_*`).
   - Levelmap (item 52, suffix 00,00) Examine in the dungeon draws garbage; Healing scroll: "couldn't learn".
   - Not reached: won fight, shop, ship, dragon, Healing cast, potion mixing, dungeon stairs.
+
+## Shops and potion mixing (round 4, 2026-11-22)
+- **Town data** (loaded at chip `2C000` per town): word offsets at +0 (shop list), +2 (house list), +4, +6 (a
+  3-byte list), then the town name ("DROMBUL"). List records: byte x, byte y, word length, data. x/y are the
+  square the party stands on, facing north to the door above. Hand icon code E2A0 -> 10292: shop list match =
+  "You enter." (shop, unless record byte +6 is 8), house list = a resident if at home ("It opens!" and his talk,
+  else "Nobody at home."), no match = "Here is no door!". Record +6 = shop type (3 Blacksmith, 4 Healer, 5 inn;
+  game text Drugstore, Grocery, Blacksmith, Healer, -, Shipping company).
+- **Drombul shops** (from `@world,WARPL:0042:00FA,kp8,w30,kp8,w30,w20,ENTER`, then `WARP:(y+1):x,kp8,w60,
+  CLK:00E6:00A5,w400`): Blacksmith Renday y 3A x 24 (Dagger 20, short Sword 77, Sword 240, Battleaxe 380,
+  Leather 22), Healer Gormen y 11 x 6C (Healing 18, Mushroom 1 22, Mushroom 2 34), The Oak Arbor (inn, Firtul)
+  y 58 x 1D (Mead 2, Beer 4, Food 6). Checkpoints `shop_smith`, `shop_healer`, `shop_inn`. Houses with residents:
+  x/y 27,11 1B,1C 41,32 3E,48 (house 3, Renday's apprentice) 64,31 49,48 60,61 (most "Nobody at home.").
+- **Shop screen clicks:** goods lines at the list zones (Read first); a click = "Sell to whom?", then a portrait
+  in the top-right 2 x 2 (`CLK:0102:0019` Bladus, `CLK:0120:0019` Rinakles, `0102:002F` Dobranur, `0120:002F`
+  Andariel) = bought, gold from that hero (+22). A portrait without a goods click = "List of: <hero>" (sell): a
+  line = "Therefore I pay N GS." Yes `CLK:003A:0058` / No. Exit (bottom-right icon) `CLK:0120:006A`. The `?`
+  icon `CLK:00FF:0052` showed nothing. Shop event loop: EE18 (codes 0-3 portraits, 4 ?, 7 exit, 10/11 arrows,
+  12+ goods -> F32C).
+- **Potion mixing** (code B854): give the hero potions in his own slots (`poke:2A8C=001B0002` = two of kind 1B;
+  kind 1B+N at 2A8C+4N), open Status, Inventory, Use `CLK:0124:0055`, the first potion line `CLK:0017:004B`
+  (w300). Cells: x 38/48/58/68/78, row 1 y 1C, row 2 y 30 (cell N = kind 1B+N). Click a cell (take, w100), the
+  cauldron `CLK:0098:0022` (pour, w150), more potions the same way, then the flask `CLK:00D8:0026` (w100) and
+  the outlet `CLK:0099:005E` (w300): "Own potion mixed!", back in the inventory with a new "Potion" (item 54,
+  word 8000 + a bit per kind). It is drunk like any potion (its line, then `CLK:0101:0015`). 1B + 1C =
+  "miserable" (-20 HP). Right button probably leaves the screen without mixing (code 991E negative -> BB30, not tried).
 
 ## Identity
 | Field | Value |
@@ -183,10 +214,10 @@ Must-haves first; ids are the `main` set. Route status: R = route known (in `sho
 - [R] `menu_oldgame` save - Old game disk prompts / "Game loaded"
 - [x] `dialogue_redhair`, `dialogue_show` (was: `dialogue_*`) - speak to a townsperson in Pegana (SPEAK, then click the person on the map: pointer
   on the map is untested; the hand icon at a door gave "Nobody at home.")
-- [?] `shop_*` shop - a shop or inn in Pegana (houses: try the hand icon at each door, see Strategy)
+- [x] `shop_*` (round 4: Drombul blacksmith, healer, inn; buy, no money, sell list, offer, sold, healing), `env_drombul_smithy`; Pegana's shops not looked for
 - [x] `battle_*` (round 2: 13 opponent kinds, orders, arrows, hit, deaths), `gameover`; a won fight is open
 - [x] `dungeon_*`, `env_dungeon_*` - first-person dungeon behind the cave arch (round 3); other dungeons open
-- [x] `magic_*` learn, prepare, cast (Light succeeds, `magic_light`), `battle_magic_*` (Magic arrow in a fight), `potion_*` (ten potions drunk); [?] mixing potions, Healing, Staff of Stone
+- [x] `magic_*` learn, prepare, cast (Light succeeds, `magic_light`), `battle_magic_*` (Magic arrow in a fight), `potion_*` (ten potions drunk); [x] mixing (`potion_mix_*`, `potion_mixed*`, round 4); [?] Healing, Staff of Stone
 - [x] `map_great_map`, `map_great_map_one` - Examine on the Worldmap item
 - [?] `gameplay_ship` gameplay - on a ship; `gameplay_dragon` - dragon flight if reachable
 - [x] `gameover` - Guardians (`enc_guardian`)
@@ -269,7 +300,7 @@ the exported save `01_start` and needs `rom/saves/amiga/dragonflight/01_start.sa
 ## Open questions
 - ~~Where are fights?~~ Random on the land away from Pegana (capture 2026-11-22); rate unknown.
 - The land sword icon: what does it do (the cell became a hand-with-item icon)?
-- Healing's target prompt; potion mixing; the castle at 27,E2 and the house at 23,9C; where Brindil-Bun and the
+- Healing's target prompt; potion recipes; the castle at 27,E2 and the house at 23,9C; where Brindil-Bun and the
   other eleven towns are (more hidden icons in the land grid); dungeon position and stairs.
 - The disk menu's top-left icon (load?) and how SPEAK picks a person (click on the map?).
 - Disks C and D in the game text: does the game ever ask for them with this two-disk release?

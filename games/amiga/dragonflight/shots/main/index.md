@@ -1,6 +1,6 @@
 # Dragonflight - shots: main
 
-Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8a73b1d7c1b`. 93 shots. Contact sheet: [dragonflight_amiga_eu_set_sheet.png](dragonflight_amiga_eu_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8a73b1d7c1b`. 111 shots. Contact sheet: [dragonflight_amiga_eu_set_sheet.png](dragonflight_amiga_eu_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -90,12 +90,30 @@ Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8
 | potion_poison | system | Poison: "A bad and awful taste... It is poison!" | yes | [png](dragonflight_amiga_eu_system_potion_poison.png) |
 | potion_miserable | system | "Despite the oily smell Bladus drinks... he feels miserable." | yes | [png](dragonflight_amiga_eu_system_potion_miserable.png) |
 | potion_wine | system | "The taste of the potion is just great! ... an extremely old wine" | yes | [png](dragonflight_amiga_eu_system_potion_wine.png) |
+| potion_mix_ready | system | Mix potions with four kinds of potion: the cells hold Bladus's potions | yes | [png](dragonflight_amiga_eu_system_potion_mix_ready.png) |
+| potion_mix_one | system | A potion taken from a cell and poured into the cauldron | no | [png](dragonflight_amiga_eu_system_potion_mix_one.png) |
+| potion_mix_two | system | Two potions in the cauldron, their marks in the pipe below | no | [png](dragonflight_amiga_eu_system_potion_mix_two.png) |
+| potion_mixed | system | The flask filled at the outlet: "Own potion mixed!", the new potion listed | yes | [png](dragonflight_amiga_eu_system_potion_mixed.png) |
+| potion_mixed_give | system | Click on the mixed potion: "Give to whom?" | yes | [png](dragonflight_amiga_eu_system_potion_mixed_give.png) |
+| potion_mixed_drink | system | Bladus drinks the mix of two potions and feels miserable | yes | [png](dragonflight_amiga_eu_system_potion_mixed_drink.png) |
 | battle_magic_order | battle | Forest fight: Rinakles is ordered to cast "MAGIC ARROW!" | no | [png](dragonflight_amiga_eu_battle_battle_magic_order.png) |
 | battle_magic_arrow | battle | The magic arrow, a small spark, flies toward the snake | no | [png](dragonflight_amiga_eu_battle_battle_magic_arrow.png) |
 | battle_magic_cast | battle | "Rinakles casted a spell!": his magic points fell from 10 to 2 | yes | [png](dragonflight_amiga_eu_battle_battle_magic_cast.png) |
 | temple_stormwind | gameplay | Temple of Stormwind: "The temple shows no effect!" | yes | [png](dragonflight_amiga_eu_gameplay_temple_stormwind.png) |
 | temple_gemshine | gameplay | Temple of Gemshine, a hidden icon north-east of Pegana | yes | [png](dragonflight_amiga_eu_gameplay_temple_gemshine.png) |
 | town_drombul | gameplay | Drombul, the town in the north-eastern forest | no | [png](dragonflight_amiga_eu_gameplay_town_drombul.png) |
+| env_drombul_smithy | gameplay | Drombul: the party at the blacksmith's door | yes | [png](dragonflight_amiga_eu_gameplay_env_drombul_smithy.png) |
+| shop_blacksmith | shop | Hand at the door: "You enter." Renday's blacksmith, weapons and prices | yes | [png](dragonflight_amiga_eu_shop_shop_blacksmith.png) |
+| shop_buy_prompt | shop | Click on an item (short Sword, 77): "Sell to whom?" | yes | [png](dragonflight_amiga_eu_shop_shop_buy_prompt.png) |
+| shop_bought | shop | Click on Bladus's portrait: the short sword is "sold to Bladus" | yes | [png](dragonflight_amiga_eu_shop_shop_bought.png) |
+| shop_no_money | shop | A sword for 240 to Rinakles: "Rinakles doesn't have enough money!" | yes | [png](dragonflight_amiga_eu_shop_shop_no_money.png) |
+| shop_sell_list | shop | A portrait in the shop: "List of: Bladus", what he can sell here | yes | [png](dragonflight_amiga_eu_shop_shop_sell_list.png) |
+| shop_sell_offer | shop | Click on his short sword: "Therefore I pay 24 GS. Yes / No" | yes | [png](dragonflight_amiga_eu_shop_shop_sell_offer.png) |
+| shop_sold | shop | Yes: the sword is sold, Bladus's list is empty again | yes | [png](dragonflight_amiga_eu_shop_shop_sold.png) |
+| shop_inventory | inventory | Bladus's inventory after buying: 796 gold and the short sword | yes | [png](dragonflight_amiga_eu_inventory_shop_inventory.png) |
+| shop_healer | shop | Gormen's healer: Bladus buys Mushroom 1 for 22 gold | yes | [png](dragonflight_amiga_eu_shop_shop_healer.png) |
+| shop_healing | shop | Healing (18 gold) bought for Bladus: hit points 37 -> 75 | yes | [png](dragonflight_amiga_eu_shop_shop_healing.png) |
+| shop_inn | shop | The Oak Arbor, Firtul's inn: a beer for Bladus (4 gold) | yes | [png](dragonflight_amiga_eu_shop_shop_inn.png) |
 | town_orc_village | gameplay | The Orc Village in the west | no | [png](dragonflight_amiga_eu_gameplay_town_orc_village.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

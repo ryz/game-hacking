@@ -66,7 +66,9 @@ as **Observation:** with the reason, never as a fact.
 | Dungeon view | screen | Enter on a cave arch | first-person walking | stone corridor between two amulet medallions; black without light | keypad 8 2 4 6, icons | "Forward", "Turn left", "Blocked" | `dungeon_dark`, `env_dungeon_corridor`, `dungeon_forward`, `dungeon_turn`, `dungeon_blocked`, `dungeon_door` | the panel sits about 10 pixels higher than on the land |
 | Dungeon icon grid | hud element | dungeon view | commands below ground | pentagram (cast), hand with item (take: "WHAT to take?"), ear (listen), hand at door (open), chest, eye, torch and key, disk | left button | "There is no door!", "There is no chest!", "It is a Door!", "I can hear nothing!", "The door is already open!" | `dungeon_look_door`, `dungeon_open`, `dungeon_listen`, `dungeon_key`, `dungeon_chest` | - |
 | Great Map | screen | Examine on the Worldmap item | the world chart | the parts added so far on black, a compass rose (N E S W) | - | - | `map_great_map_one`, `map_great_map` | full screen, no panel |
-| Mix potions | screen | Use on a potion | mixing | ten green ingredient cells, a cauldron, the flask, a T-shaped tray | item pointer | - | `potion_mix` | how a mixture is made is open |
+| Mix potions | screen | Use on a potion -> inventory | mixing | ten cells with the hero's potions (empty cells green), a cauldron, the flask, a T-shaped tray with an outlet | click a cell (take), the cauldron (pour), the flask (take), the outlet (fill) | "Mix potions", "Own potion mixed!" | `potion_mix`, `potion_mix_ready`, `potion_mix_one`, `potion_mix_two`, `potion_mixed` | **Observation:** nothing on screen says what to click; the pointer does not show what it carries, only the tray marks change |
+| Shop | screen | hand icon at a shop door ("You enter.") -> exit icon back to the town | buy and sell | shop type, "Owner: <name>", goods with picture and price (five lines, scroll arrow), the four portraits, ? icon and exit icon; the panel shows the shop's own pictures (forge, healer's shelf, inn) | click goods, portrait, scroll arrows, exit | "Sell to whom?", "sold to Bladus", "Rinakles doesn't have enough money!" | `shop_blacksmith`, `shop_buy_prompt`, `shop_bought`, `shop_no_money`, `shop_healer`, `shop_inn` | **Observation:** the message is the shop's view ("Sell to whom?" when the party buys); the ? icon showed nothing in two tries |
+| Sell list and offer | list + dialog | portrait click in a shop | sell | "List of: Bladus" with what the shop takes; a framed offer "Therefore I pay 24 GS." with Yes and No | item, Yes / No | "sold" | `shop_sell_list`, `shop_sell_offer`, `shop_sold` | - |
 | Give / drink prompt | prompt | click an item picture in the inventory | give an item; to oneself = eat or drink | "Give to whom?" | top-right 2 x 2 portraits | a full-width text of the potion's taste and effect | `potion_give`, `potion_heal`, `potion_poison` | - |
 | Temple view | screen | Enter on a temple icon | revive and bless | a pillared hall with a blue basin, the temple's name | - | "The temple shows no effect!" | `temple_stormwind`, `temple_gemshine` | each temple has its own colours |
 
@@ -76,7 +78,7 @@ power-on -> crack intro -> Thalion logo -> dragon -> title <-> Main Menu
 Main Menu: N -> intro pages x4 -> "Insert disk B" -> town (Pegana)
            O -> disk swaps -> land (saved place);  B -> Backup Menu;  S -> Sequences;  C -> Credits
 town/land view -> portrait -> status -> inventory / spells -> back
-town: lips -> speak window -> right button back;  hand -> door;  eye -> look;  edge -> "Leave this place?" -> land
+town: lips -> speak window -> right button back;  hand -> door ("Nobody at home." / talk / "You enter." -> shop -> exit icon);  eye -> look;  edge -> "Leave this place?" -> land
 land: enter -> town;  campfire -> camp;  disk -> disk menu (save / load / exit);  random -> encounter -> combat
 combat: orders per hero -> results -> next round ... -> defeat: "Is this the end of all hope?" -> Insert disk A (victory not reached)
 ```
@@ -90,4 +92,4 @@ combat: orders per hero -> results -> next round ... -> defeat: "Is this the end
 
 ## Open questions
 - The disk menu's third icon and the land's sword icon; the talk window's "deliver" icon.
-- Shop screens (the game text names the list header "List of:" and "Owner:").
+- The shop's ? icon (no visible answer); grocery quantity arrows (code: count up/down for shop type 2).
