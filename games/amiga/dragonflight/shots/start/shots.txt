@@ -1,0 +1,24 @@
+01_crack_intro | boot | CLASSIC crack intro: vector letters spell out the game's name | w1080,!
+02_thalion_logo | boot | THALION logo over raining coloured drops | w300,mouse1:10,w2300,!
+03_dragon | cutscene | The red dragon spreads its wings on a rock at sunset | w300,mouse1:10,w2400,mouse1:10,w1500,!
+04_title | title | DRAGONFLIGHT title logo | @title
+05_main_menu | menu | Main Menu: New game, Old game, Backup gamedisk, Sequences, Credits | @menu
+06_sage_page1 | cutscene | New game: the sage shows the Rings of Stasis (intro page 1) | @menu,n,w1200
+07_sage_page2 | cutscene | Intro page 2: a part of the Great Map, eleven more to find | @menu,n,w1200,mouse1:10,w100
+08_sage_page3 | cutscene | Intro page 3: contact Benglur in Brindil-Bun | @menu,n,w1200,mouse1:10,w100,mouse1:10,w100
+09_sage_page4 | cutscene | Intro page 4: monsters unknown and dungeons uncharted, good luck | @menu,n,w1200,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100
+10_insert_disk_b | system | The panel asks for Disk B | @diskb
+11_pegana_arrival | gameplay | First control: the party in the town of Pegana | @start,w10
+12_first_steps | gameplay | First steps through Pegana's streets | @start,S,S,E,E,w30
+13_look_house | gameplay | The eye icon names the building in front: "It's Housens." | @start,CLK:0106:00A5,w60
+14_status_bladus | inventory | Status screen of Bladus, the human fighter | @start,BLADUS
+15_inventory | inventory | Inventory at the start: gold, food and a torch | @start,BLADUS,CLK:0101:0055,w60
+16_spells | inventory | Spells page: no spells known yet | @start,BLADUS,CLK:0124:0055,w60
+17_status_andariel | inventory | Status screen of Andariel, the elf | @start,ANDARIEL
+18_leave_prompt | gameplay | At the town's edge: "Leave this place? Left YES Right NO" | @start,WARP:0005:0005,kp6,w60
+19_land | gameplay | The land outside Pegana: river, road and the town icon | @world,w10
+20_land_walk | gameplay | Walking south through the forest | @world,S*6,w60
+21_camp | system | Camp on the land: the party around a campfire | @world,S*3,CAMP,w200
+22_disk_menu | save | The disk menu on the land | @world,DISK
+23_save_prompt | save | "Gamesave? Left YES Right NO" | @world,DISK,CLK:0127:008F,w40
+24_game_saved | save | "Game saved" on Disk B | @world,DISK,CLK:0127:008F,w40,mouse1,w1500
