@@ -27,3 +27,10 @@ pass north is open (checkpoints `step1`, `start`, route of `highpool`).
 **Intended:** probably (locations are not walked through).
 **Confidence:** (verified).
 **Impact:** a new player who steps east first (as the scout did) seems trapped: about 20 calls lost.
+- (RAM, 2026-11-22 run 2) World special values without a record of their own misbehave when poked onto the map:
+  value 0x16 and 0x17 print scrambled text (a message index past the world's message table), 0x18 prints
+  "You see a broken down jeep. You have no idea what is wrong with it." (the jeep north of Quartz), 0x15 does nothing.
+- (RAM) Location 0x17 (side 4) opened on a black-and-white checkerboard with coloured squares and "No fair, that's
+  out of bounds." twice: arriving at the wrong coordinates of a puzzle map (not captured).
+- (verified) Warping (playbook WARP) onto a location's robot or event squares fires the fixed encounter at once:
+  every square tried round the Base Cochise dome started a robot fight, so the set has no quiet view of the dome.

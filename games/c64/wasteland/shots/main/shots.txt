@@ -60,3 +60,65 @@ battle_radrat | battle | Weak party (CON 1) vs Radioactive Vermin: RYZ and Thras
 hp_creek_slip | dialogue | "...splash. Your face burns with embarrassment. You hear children's laughter." | @highpool,S*18,settle,W*3,S,settle,return,w600
 hp_creek_kid | gameplay | A Highpool kid has appeared on the creek bank next to the party | @highpool,S*18,settle,W*3,S,settle,return,w600,return,w600
 save_load | menu | Continue from the exported save 02_highpool: the party back in Highpool | sav:02_highpool,TITLE,CONT
+menu_insert_side2 | menu | Travelling to Quartz: "INSERT SIDE 2. [RETURN]" under the world map | @start,WARP:1D:2C,N,w100,y,w1500
+qz_arrival | gameplay | Quartz: arrival on the north edge, houses west of the road | @quartz
+env_qz_houses | gameplay | Quartz: blocks of houses between the streets | @quartz,WARP:0C:15
+env_qz_park | gameplay | Quartz: a walled park with shrubs and cacti | @quartz,WARP:1B:09
+qz_street_sign | dialogue | Quartz street corner: "N-S Hell's Highway / E-W Devastation Row" | @quartz,WARP:14:0B,S,w300
+qz_manhole | dialogue | Quartz: "This manhole leads South and West." | @quartz,WARP:13:01,S,w300
+qz_ghouls | battle | Quartz graveyard: "Spirits pop out from a grave. 3 Shambler Ghouls" | @quartz,WARP:1C:1A,S,w300
+qz_shop_closed | gameplay | Quartz: "This small business has been closed a long time." | @quartz,WARP:0B:02,N,w300,y,w2000
+qz_stagecoach | gameplay | Quartz: "Welcome to Stagecoach Inn." | @quartz,WARP:0F:0F,E,w300,y,w2000
+qz_scotts_bar | gameplay | Scott's Bar: "noisy and smoky with many people and tables" | @quartz,WARP:15:1B,S,w300,y,w2000
+nd_arrival | gameplay | Needles: arrival in the desert at the south-west corner of the map | @needles
+env_nd_radiation | gameplay | Needles: a field of radiation symbols in the desert | @needles,WARP:0B:0F
+env_nd_railway | gameplay | Needles: the railway line crossing the town | @needles,WARP:0D:28
+env_nd_walls | gameplay | Needles: stone walls and houses in the north of the town | @needles,WARP:34:06
+nd_waste_pit | gameplay | Needles: "Entering the town waste pit." | @needles,WARP:0C:36,S,w300
+menu_insert_side3 | menu | Travelling to Las Vegas: "INSERT SIDE 3. [RETURN]" | @start,WARP:17:13,N,w100,y,w1500
+vg_arrival | gameplay | Las Vegas: arrival on a street in the north-west of the city | @vegas
+env_vg_streets | gameplay | Las Vegas: city blocks and an empty street | @vegas,WARP:33:0A
+env_vg_golf | gameplay | Las Vegas: the golf course and its pond | @vegas,WARP:04:1E
+vg_golf_pond | dialogue | Las Vegas: "Many errant golf balls have been hit into the pond." | @vegas,WARP:04:1E,S,w300
+vg_hospital | gameplay | "Entering the Vegas Hospital where the rich get well, and the poor die young." | @vegas,WARP:15:02,S,w300
+vg_casino_door | gameplay | "Step inside Spade's Casino, high roller." | @vegas,WARP:0B:26,N,w300
+vg_casino | gameplay | Spade's Casino: inside | @vegas,WARP:0B:26,N,w300,y,w2000
+vg_warroids | battle | "Warroids! 4 Warroid Mark 2s, 4 Warroid Mark 1s appear at 71 feet." | @vegas,WARP:2B:01,N,w300
+vg_scorpitron | battle | "It looks like a tank with an armored warrior": 1 Scorpitron | @vegas,WARP:28:0B,N,w300
+vg_cyborgs | battle | "You see a party of heavily armed men": 10 Cyborg Commandos | @vegas,WARP:39:06,S,w300
+vg_freddy | battle | Fat Freddy's thugs boil out of the building: 2 Humanoids and 1 Humanoid | @vegas,WARP:12:18,S,w300
+vg_glowing | battle | "She's beautiful, and she glows.": 1 Humanoid | @vegas,WARP:39:19,S,w300
+vg_death_machines | battle | "Death Machines!": Slicerdicers, Chopters and Sniperdroids | @vegas,WARP:23:3B,S,w300
+ct_arrival | gameplay | Guardian Citadel: arrival in the desert south of the walls | @citadel
+ct_sisters | battle | Citadel: Sister Theodosia, Sister Lucretia and Sister Ursula appear at 41 feet | @citadel,WARP:08:18
+env_ct_hall | gameplay | Guardian Citadel: the Grand Hallway with its benches | @citadel,WARP:0A:02
+ct_grand_hallway | dialogue | "This is the Guardian's Grand Hallway. The vaulted ceiling is lost in darkness" | @citadel,WARP:0A:02,N,w300
+ct_wall_writing | dialogue | "Piously written on this wall is the saying, 'Reach out and touch someone.'" | @citadel,WARP:18:01,S,w300
+ct_ovens | dialogue | Citadel kitchen: "A bank of soot-stained ovens stands here." | @citadel,WARP:1E:05,S,w300
+ct_brother_austin | battle | A Guardian sighs, "Why does it always happen in my shift?": Brother Austin | @citadel,WARP:02:01,E,w300
+ct_guardians | battle | "Guardians leap up from behind the table and attack!" | @citadel,WARP:14:03,S,w300
+ct_chef | battle | "A huge chef leaps out and attacks screaming": Brother James | @citadel,WARP:1A:02,N,w300
+ct_museum | battle | "From deep inside the museum shots ring out.": Brother Kenneth | @citadel,WARP:1D:0E,S,w300
+save_town | save | Saving in Quartz: "INSERT SIDE 1." (the party is kept on side 1) | @quartz,WARP:14:0D,s,w300,y,w3000
+menu_insert_side4 | menu | Travelling to Darwin through the radiation belt: "INSERT SIDE 4. [RETURN]" | @start,WARP:39:26,N,w100,y,w1500
+env_world_radiation | gameplay | World map: the radiation belt around Darwin Village | @start,WARP:39:26
+dw_arrival | gameplay | Darwin Village: arrival at the south-west edge | @darwin
+env_dw_village | gameplay | Darwin Village: houses on Base Road | @darwin,WARP:10:12
+dw_password | dialogue | Darwin gate: "Gimme the password." with a text prompt | @darwin,WARP:1A:02,N,w300
+dw_black_market | gameplay | "Entering the Black Market." | @darwin,WARP:1A:02,S,w300
+dw_lab | gameplay | Darwin: "The Lab." | @darwin,WARP:18:0A,S,w300
+dw_delicious | dialogue | "This man is delicious, sweat drips down his face with a flushed complexion." | @darwin,WARP:0B:08,S,w300
+dw_library | gameplay | "Entering the Darwin Branch Library." | @darwin,WARP:18:13,S,w300
+dw_store | shop | "The Darwin general store. Who wants to enter?" with the trader portrait | @darwin,WARP:02:14,S,w300,y,w2000
+dw_jekyll | gameplay | "Entering Dr. Jekyll's body shop." | @darwin,WARP:18:1A,S,w300
+sl_arrival | gameplay | Sleeper Base: arrival in the purple-floored halls | @sleeper
+env_sl_halls | gameplay | Sleeper Base: corridors and doors | @sleeper,WARP:11:08
+sl_wolves | battle | Sleeper Base: "Low growls rumble from the corner": 3 Nailed Wolves | @sleeper,WARP:04:01,N,w300
+sl_debris | dialogue | Sleeper Base: "The debris is a collection of odds and ends" | @sleeper,WARP:02:00,S,w300
+sl_shining | dialogue | Sleeper Base: a shining object jammed into a crevasse, out of reach | @sleeper,WARP:11:08,S,w300
+sl_door_slot | dialogue | Sleeper Base: "The door has no handle or sign on it, just a narrow slot" | @sleeper,WARP:1B:09,S,w300
+cb_arrival | gameplay | Base Cochise grounds: arrival in the desert south of the base | @cochise
+cb_gate_robots | battle | Base Cochise: robots at the gate: 2 Chopters and 2 Silicon Snipers | @cochise,WARP:16:12
+cb_weapon_pod | battle | Base Cochise: "A weapon pod rises up from the base dome" | @cochise,WARP:10:0E,N,w300
+cb_plasma | battle | Base Cochise: "A glowing ball of energy unfolds": 5 Plasma Constrictors | @cochise,WARP:01:01,N,w300
+cb_robots | battle | Base Cochise: "a mechanical horror attacks!" Chopter, VTOL Robot | @cochise,WARP:0C:01,S,w300

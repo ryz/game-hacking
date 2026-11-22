@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-22 (captions from the frame; start sets: path-search walks, headless fight scan; 2026-11-21: won fights: group record first; gamestable left to the coordinator; 2026-11-20: routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
+updated: 2026-11-22 (survey first promoted; captions from the frame; start sets: path-search walks, headless fight scan; 2026-11-21: won fights: group record first; gamestable left to the coordinator; 2026-11-20: routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -46,6 +46,10 @@ edit anything outside the game's folder.
      known yet (`--name SLUG` on every command so parallel captures do not collide); `snap ID CATEGORY "caption"
      --set SET` there is fine. Turn what you learn into a macro, a checkpoint or plan lines and return to batches.
    Small generators help: a script that writes plan lines for every shop, floor or monster from a decoded table.
+   **Survey first** when a level or town map is in RAM: write one plan line per event square (stepped onto from an
+   open neighbour, or a warp) and preview them as one `--crop` sheet: every fight, message and door of the area
+   in one look, captions straight off the sheet (Might and Magic I DOS 2026-11-18; Wasteland C64 2026-11-22:
+   four towns in four calls).
    **A port of the game is already captured** (another platform's set): convert its routes with a script
    (position format, warp macro, waits) and preview them in bulk before exploring (Might and Magic I and II
    Apple II, 2026-11-20).

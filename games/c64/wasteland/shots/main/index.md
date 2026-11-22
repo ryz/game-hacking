@@ -1,6 +1,6 @@
 # Wasteland - shots: main
 
-Platform c64, region na, model c64, ROM SHA-1 `ea87866d2b11a103f9c9dd641d8117ba368c6d83`. 62 shots. Contact sheet: [wasteland_c64_na_set_sheet.png](wasteland_c64_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform c64, region na, model c64, ROM SHA-1 `ea87866d2b11a103f9c9dd641d8117ba368c6d83`. 124 shots. Contact sheet: [wasteland_c64_na_set_sheet.png](wasteland_c64_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -66,5 +66,67 @@ Platform c64, region na, model c64, ROM SHA-1 `ea87866d2b11a103f9c9dd641d8117ba3
 | hp_creek_slip | dialogue | "...splash. Your face burns with embarrassment. You hear children's laughter." | yes | [png](wasteland_c64_na_dialogue_hp_creek_slip.png) |
 | hp_creek_kid | gameplay | A Highpool kid has appeared on the creek bank next to the party | yes | [png](wasteland_c64_na_gameplay_hp_creek_kid.png) |
 | save_load | menu | Continue from the exported save 02_highpool: the party back in Highpool | yes | [png](wasteland_c64_na_menu_save_load.png) |
+| menu_insert_side2 | menu | Travelling to Quartz: "INSERT SIDE 2. [RETURN]" under the world map | yes | [png](wasteland_c64_na_menu_menu_insert_side2.png) |
+| qz_arrival | gameplay | Quartz: arrival on the north edge, houses west of the road | yes | [png](wasteland_c64_na_gameplay_qz_arrival.png) |
+| env_qz_houses | gameplay | Quartz: blocks of houses between the streets | yes | [png](wasteland_c64_na_gameplay_env_qz_houses.png) |
+| env_qz_park | gameplay | Quartz: a walled park with shrubs and cacti | yes | [png](wasteland_c64_na_gameplay_env_qz_park.png) |
+| qz_street_sign | dialogue | Quartz street corner: "N-S Hell's Highway / E-W Devastation Row" | yes | [png](wasteland_c64_na_dialogue_qz_street_sign.png) |
+| qz_manhole | dialogue | Quartz: "This manhole leads South and West." | yes | [png](wasteland_c64_na_dialogue_qz_manhole.png) |
+| qz_ghouls | battle | Quartz graveyard: "Spirits pop out from a grave. 3 Shambler Ghouls" | yes | [png](wasteland_c64_na_battle_qz_ghouls.png) |
+| qz_shop_closed | gameplay | Quartz: "This small business has been closed a long time." | yes | [png](wasteland_c64_na_gameplay_qz_shop_closed.png) |
+| qz_stagecoach | gameplay | Quartz: "Welcome to Stagecoach Inn." | yes | [png](wasteland_c64_na_gameplay_qz_stagecoach.png) |
+| qz_scotts_bar | gameplay | Scott's Bar: "noisy and smoky with many people and tables" | yes | [png](wasteland_c64_na_gameplay_qz_scotts_bar.png) |
+| nd_arrival | gameplay | Needles: arrival in the desert at the south-west corner of the map | yes | [png](wasteland_c64_na_gameplay_nd_arrival.png) |
+| env_nd_radiation | gameplay | Needles: a field of radiation symbols in the desert | yes | [png](wasteland_c64_na_gameplay_env_nd_radiation.png) |
+| env_nd_railway | gameplay | Needles: the railway line crossing the town | yes | [png](wasteland_c64_na_gameplay_env_nd_railway.png) |
+| env_nd_walls | gameplay | Needles: stone walls and houses in the north of the town | yes | [png](wasteland_c64_na_gameplay_env_nd_walls.png) |
+| nd_waste_pit | gameplay | Needles: "Entering the town waste pit." | yes | [png](wasteland_c64_na_gameplay_nd_waste_pit.png) |
+| menu_insert_side3 | menu | Travelling to Las Vegas: "INSERT SIDE 3. [RETURN]" | yes | [png](wasteland_c64_na_menu_menu_insert_side3.png) |
+| vg_arrival | gameplay | Las Vegas: arrival on a street in the north-west of the city | yes | [png](wasteland_c64_na_gameplay_vg_arrival.png) |
+| env_vg_streets | gameplay | Las Vegas: city blocks and an empty street | yes | [png](wasteland_c64_na_gameplay_env_vg_streets.png) |
+| env_vg_golf | gameplay | Las Vegas: the golf course and its pond | yes | [png](wasteland_c64_na_gameplay_env_vg_golf.png) |
+| vg_golf_pond | dialogue | Las Vegas: "Many errant golf balls have been hit into the pond." | yes | [png](wasteland_c64_na_dialogue_vg_golf_pond.png) |
+| vg_hospital | gameplay | "Entering the Vegas Hospital where the rich get well, and the poor die young." | yes | [png](wasteland_c64_na_gameplay_vg_hospital.png) |
+| vg_casino_door | gameplay | "Step inside Spade's Casino, high roller." | yes | [png](wasteland_c64_na_gameplay_vg_casino_door.png) |
+| vg_casino | gameplay | Spade's Casino: inside | yes | [png](wasteland_c64_na_gameplay_vg_casino.png) |
+| vg_warroids | battle | "Warroids! 4 Warroid Mark 2s, 4 Warroid Mark 1s appear at 71 feet." | yes | [png](wasteland_c64_na_battle_vg_warroids.png) |
+| vg_scorpitron | battle | "It looks like a tank with an armored warrior": 1 Scorpitron | yes | [png](wasteland_c64_na_battle_vg_scorpitron.png) |
+| vg_cyborgs | battle | "You see a party of heavily armed men": 10 Cyborg Commandos | yes | [png](wasteland_c64_na_battle_vg_cyborgs.png) |
+| vg_freddy | battle | Fat Freddy's thugs boil out of the building: 2 Humanoids and 1 Humanoid | yes | [png](wasteland_c64_na_battle_vg_freddy.png) |
+| vg_glowing | battle | "She's beautiful, and she glows.": 1 Humanoid | yes | [png](wasteland_c64_na_battle_vg_glowing.png) |
+| vg_death_machines | battle | "Death Machines!": Slicerdicers, Chopters and Sniperdroids | yes | [png](wasteland_c64_na_battle_vg_death_machines.png) |
+| ct_arrival | gameplay | Guardian Citadel: arrival in the desert south of the walls | yes | [png](wasteland_c64_na_gameplay_ct_arrival.png) |
+| ct_sisters | battle | Citadel: Sister Theodosia, Sister Lucretia and Sister Ursula appear at 41 feet | yes | [png](wasteland_c64_na_battle_ct_sisters.png) |
+| env_ct_hall | gameplay | Guardian Citadel: the Grand Hallway with its benches | yes | [png](wasteland_c64_na_gameplay_env_ct_hall.png) |
+| ct_grand_hallway | dialogue | "This is the Guardian's Grand Hallway. The vaulted ceiling is lost in darkness" | yes | [png](wasteland_c64_na_dialogue_ct_grand_hallway.png) |
+| ct_wall_writing | dialogue | "Piously written on this wall is the saying, 'Reach out and touch someone.'" | yes | [png](wasteland_c64_na_dialogue_ct_wall_writing.png) |
+| ct_ovens | dialogue | Citadel kitchen: "A bank of soot-stained ovens stands here." | yes | [png](wasteland_c64_na_dialogue_ct_ovens.png) |
+| ct_brother_austin | battle | A Guardian sighs, "Why does it always happen in my shift?": Brother Austin | yes | [png](wasteland_c64_na_battle_ct_brother_austin.png) |
+| ct_guardians | battle | "Guardians leap up from behind the table and attack!" | yes | [png](wasteland_c64_na_battle_ct_guardians.png) |
+| ct_chef | battle | "A huge chef leaps out and attacks screaming": Brother James | yes | [png](wasteland_c64_na_battle_ct_chef.png) |
+| ct_museum | battle | "From deep inside the museum shots ring out.": Brother Kenneth | yes | [png](wasteland_c64_na_battle_ct_museum.png) |
+| save_town | save | Saving in Quartz: "INSERT SIDE 1." (the party is kept on side 1) | yes | [png](wasteland_c64_na_save_save_town.png) |
+| menu_insert_side4 | menu | Travelling to Darwin through the radiation belt: "INSERT SIDE 4. [RETURN]" | yes | [png](wasteland_c64_na_menu_menu_insert_side4.png) |
+| env_world_radiation | gameplay | World map: the radiation belt around Darwin Village | yes | [png](wasteland_c64_na_gameplay_env_world_radiation.png) |
+| dw_arrival | gameplay | Darwin Village: arrival at the south-west edge | yes | [png](wasteland_c64_na_gameplay_dw_arrival.png) |
+| env_dw_village | gameplay | Darwin Village: houses on Base Road | yes | [png](wasteland_c64_na_gameplay_env_dw_village.png) |
+| dw_password | dialogue | Darwin gate: "Gimme the password." with a text prompt | yes | [png](wasteland_c64_na_dialogue_dw_password.png) |
+| dw_black_market | gameplay | "Entering the Black Market." | yes | [png](wasteland_c64_na_gameplay_dw_black_market.png) |
+| dw_lab | gameplay | Darwin: "The Lab." | yes | [png](wasteland_c64_na_gameplay_dw_lab.png) |
+| dw_delicious | dialogue | "This man is delicious, sweat drips down his face with a flushed complexion." | yes | [png](wasteland_c64_na_dialogue_dw_delicious.png) |
+| dw_library | gameplay | "Entering the Darwin Branch Library." | yes | [png](wasteland_c64_na_gameplay_dw_library.png) |
+| dw_store | shop | "The Darwin general store. Who wants to enter?" with the trader portrait | no | [png](wasteland_c64_na_shop_dw_store.png) |
+| dw_jekyll | gameplay | "Entering Dr. Jekyll's body shop." | yes | [png](wasteland_c64_na_gameplay_dw_jekyll.png) |
+| sl_arrival | gameplay | Sleeper Base: arrival in the purple-floored halls | yes | [png](wasteland_c64_na_gameplay_sl_arrival.png) |
+| env_sl_halls | gameplay | Sleeper Base: corridors and doors | yes | [png](wasteland_c64_na_gameplay_env_sl_halls.png) |
+| sl_wolves | battle | Sleeper Base: "Low growls rumble from the corner": 3 Nailed Wolves | yes | [png](wasteland_c64_na_battle_sl_wolves.png) |
+| sl_debris | dialogue | Sleeper Base: "The debris is a collection of odds and ends" | yes | [png](wasteland_c64_na_dialogue_sl_debris.png) |
+| sl_shining | dialogue | Sleeper Base: a shining object jammed into a crevasse, out of reach | yes | [png](wasteland_c64_na_dialogue_sl_shining.png) |
+| sl_door_slot | dialogue | Sleeper Base: "The door has no handle or sign on it, just a narrow slot" | yes | [png](wasteland_c64_na_dialogue_sl_door_slot.png) |
+| cb_arrival | gameplay | Base Cochise grounds: arrival in the desert south of the base | yes | [png](wasteland_c64_na_gameplay_cb_arrival.png) |
+| cb_gate_robots | battle | Base Cochise: robots at the gate: 2 Chopters and 2 Silicon Snipers | yes | [png](wasteland_c64_na_battle_cb_gate_robots.png) |
+| cb_weapon_pod | battle | Base Cochise: "A weapon pod rises up from the base dome" | yes | [png](wasteland_c64_na_battle_cb_weapon_pod.png) |
+| cb_plasma | battle | Base Cochise: "A glowing ball of energy unfolds": 5 Plasma Constrictors | yes | [png](wasteland_c64_na_battle_cb_plasma.png) |
+| cb_robots | battle | Base Cochise: "a mechanical horror attacks!" Chopter, VTOL Robot | yes | [png](wasteland_c64_na_battle_cb_robots.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

@@ -15,3 +15,10 @@ s_party | start set: Ranger Center with RYZ created from the first roll (no poke
 s_world | start set: world map at the Ranger Center after Start, RYZ put first with Order (no pokes) | @s_party,LEAVE,settle,ORDER4,settle
 s_highpool | start set: Highpool, desert north of the settlement, walked from the Ranger Center after the first fight (no pokes) | @s_won,W*3,S,settle,S,w100,settle,y,w2000,settle
 s_won | start set: world map after the first fight (4 Animals / Wild Canines won, Snake Vargas unconscious) | @s_world,N*4,W*2,N,W*3,settle,w1000*10,return,w300,settle,w,w300,settle,1,w300,settle,a,w300,a,w300,a,w300,settle,y,w1500,a,w300,a,w300,a,w300,a,w300,y,w2500,settle,a,w300,a,w300,a,w300,settle,y,w2500,settle,return,w1000,settle
+quartz | Quartz: arrival on the north edge (x19 y1) after Insert side 2 (disk:6); warped next to the world icon at x29 y44 | @start,WARP:1D:2C,N,w100,y,w1500,disk:6,w50,return,w2500
+needles | Needles: arrival in the desert outside town after Insert side 2 (disk:6); warped south of the world icon at x24 y31 | @start,WARP:18:20,N,w100,y,w1500,disk:6,w50,return,w2500
+vegas | Las Vegas: arrival on a street after Insert side 3 (disk:7); warped south of the 3x3 world icon (x21-23 y16-18) | @start,WARP:17:13,N,w100,y,w1500,disk:7,w50,return,w2500
+citadel | Guardian Citadel: arrival in the desert below the battlements after Insert side 3 (disk:7); world icon x36 y48 | @start,WARP:24:31,N,w100,y,w1500,disk:7,w50,return,w2500
+darwin | Darwin Village: arrival after Insert side 4 (disk:8); entered from the south through the radiation belt, world icon x57-58 y36-37 | @start,WARP:39:26,N,w100,y,w1500,disk:8,w50,return,w2500
+sleeper | Location 07 on side 4 (taken to be Sleeper Base, hidden on the world map until Max talks): Darwin's world entry record poked to location 07, arrival x14 y1 | @start,WARP:39:26,poke:4E7E=0e0107,N,w100,y,w1500,disk:8,w50,return,w2500
+cochise | Location 10 on side 4 (taken to be the Base Cochise grounds, hidden until Max talks): Darwin's world entry record poked to location 10, arrival x16 y30 | @start,WARP:39:26,poke:4E7E=101e10,N,w100,y,w1500,disk:8,w50,return,w2500
