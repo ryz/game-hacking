@@ -12,6 +12,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-22 - Ultima I (DOS) set start
+- Task: Ultima I DOS, set `start`, the early game played honestly to the first save (52 shots).
+- Worked: a walker planning a path around the people (read from RAM), a few steps per `play.py do`, crossed
+  castle and town at about one call per destination; a path search on MAP.BIN did the same outdoors; a
+  checkpoint before each fight plus `goto` and the exact number of blows kept routes free of extra turns;
+  `ROUTE,a,!` caught "Killed!" before the monster's answer scrolled it away.
+- Friction: the walker's `play.py peek` calls count toward `call=` (~5x the agent's own calls); extra blows
+  after a kill needed a `goto` (undo is one level).
+- Proposed rule change: skill.md line for top-down `start` sets: walk with a path-search helper instead of
+  position pokes; checkpoint before each fight, replay the exact blows. Backlog: peek counts toward `call=`.
+- Corrected: none; sheet checked by the coordinator. Wrote games/dos/ultima/tools/walk.py (per game: the shared
+  walk tool is on the backlog, now asked four times).
+- Status: promoted 2026-11-22 (walk-helper lesson, three start-set runs: skill.md); backlog (walk tool, peek count).
+
 ### 2026-11-22 - Ultima III (DOS) set start
 - Task: capture the Ultima III DOS `start` set (60 shots, honest play to the first Quit & Save).
 - Worked: a BFS path script over the town file (moves joined by `w20`) gave walking routes in one call; a

@@ -2,6 +2,20 @@
 
 Append-only, newest first.
 
+## 2026-11-22 - Ultima I-III (DOS): vault, U1 dungeon shots, three start sets
+- Owner re-uploaded the three GOG zips, flat (no folder): repacked into `Ultima I/`, `Ultima II/`, `Ultima III/`
+  so programs, routes and saves stay valid; same file counts and programs; the committed sets replay
+  pixel-exact (195, 226, 260); `game.json` SHA-1s updated with a note. Pushed to the vault (first time).
+- `vault.py push --route TOKENS`: the boot check plays keys before counting pictures (U1 stops at DOSBox Pure's
+  program menu, U2's title never changes; both were refused as "not booting"). Test added; `dos.md` note.
+- Ultima I `main` 195 -> 201: six dungeon shots mid-corridor (every earlier dungeon fight was staged on the
+  entry square with the ladder in view); method in the playbook.
+- Start sets (three game-capture agents in parallel, honest play to the first save): U1 52, U2 48, U3 60,
+  all verified `--published`; saves 04_* exported; U2 cannot reach Lord British on foot (game.json "open").
+- Lessons: path-search walks and headless fight scans promoted into game-capture `skill.md`; backlog:
+  shared walk tool (asked four times, build before the next capture dispatch), `shoot.py --renumber`,
+  peek not counting toward `call=`.
+
 ## 2026-11-22 - Dragonflight (Amiga): registered, scouted, captured; checkpoint reload fix
 - Owner's upload: six TOSEC ADFs. Disk 1 `[cr CLS]` used (`[h Spaikers]` = same crack with a hacked boot block
   and intro text); disk 2 = the uncracked original (`[cr CLS]`, `[a]`, `[a2]` differ only in leftover blocks,

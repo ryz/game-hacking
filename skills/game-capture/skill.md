@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-21 (won fights: group record first; gamestable left to the coordinator; 2026-11-20: routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
+updated: 2026-11-22 (start sets: path-search walks, headless fight scan; 2026-11-21: won fights: group record first; gamestable left to the coordinator; 2026-11-20: routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -100,6 +100,9 @@ edit anything outside the game's folder.
      the first save, played honestly (capture guide, "Sets"). Its ids are numbered in play order
      (`01_power_on`, `02_title`, ...) and its `shots.txt` lists them in that order; the tools put the number
      in front of the category in the file names (owner's rule 2026-11-20).
+     Walk it honestly with a path search over the map in RAM or the game's map file (people from the object
+     table), a few steps per `do`, not position pokes; find an honest first fight by scanning turn-count
+     variants headless; checkpoint before each fight and replay the exact blows (three start sets, 2026-11-22).
    Add opportunistic shots of anything else distinctive (category `extra` or the right one).
    **Three lenses** (owner's request 2026-11-18, `docs/capture-guide.md` "Three lenses"): keep
    `design/systems.md` (game design: one row per feature, system, mechanic), `design/interface.md` (UI/UX:
