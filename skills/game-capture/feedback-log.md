@@ -12,6 +12,18 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-22 - Wasteland (C64)
+- Task: publish the Wasteland C64 `start` and `main` sets with the three lens documents.
+- Worked: zero-page map size ($55/$56 = 64x64) led to the world map byte grid at $3C00 in about 5 calls; a search
+  over it found the route to Highpool the scout missed. `--timeline` batch found the honest first fight in one call.
+- Friction: C64 `play.py export` writes to `rom/saves/` (whole images), unclear whether owner milestone saves are
+  committed; a repeated combat macro goes out of step as rangers fall (game over needs a poke, not input); the
+  scout's `shots.txt` at the game root duplicates `shots/main/shots.txt` and goes stale.
+- Proposed rule change: docs/emulator/README.md RAM: look for a byte grid of a top-down map's size before walking.
+- Corrected: coordinator verify from an empty cache 49/49 and 62/62, both sheets looked at. README rule added
+  (RAM, item 3). Save 02_highpool pushed to the vault (C64 saves are game data: vault, README row in saves/ only,
+  as c64.md says). shots.txt duplication -> backlog. No state divergence seen (the scout's claim stays unconfirmed).
+- Status: logged (README rule; backlog row)
 ### 2026-11-21 - Phantasie (C64)
 - Task: capture the Phantasie (C64) start and main sets, write the lenses, update the playbook.
 - Worked: decoding the BASIC variable table (VARTAB at 2D/2E) found position, party and combat state at once after

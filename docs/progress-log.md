@@ -2,6 +2,17 @@
 
 Append-only, newest first.
 
+## 2026-11-22 - Wasteland (C64): registered, scouted, captured
+- Owner's upload: GameBase64 set (9 D64, PAL). Disks 1-4 are the master sides, 5-8 the play copies the game wants
+  (factory state), 9 a cracker's character editor (untried). Registered as `c64/wasteland` (region na), dump and
+  saves 01_start / 02_highpool in the vault.
+- Scout: boot and play-disk route, I/J/K/L movement, Esc = leftarrow, party block F400, records F500. Capture:
+  world map byte grid at $3C00 (route to Highpool), `start` 49 (honest to the first save in Highpool), `main` 62,
+  three lenses. Cold verify 49/49 and 62/62.
+- The scout's claim that C64 states diverge from power-on replays did not reproduce (two cachecheck runs, chains
+  through cached parents); not written into c64.md. README: top-down map grids (RAM, item 3). Backlog: scout plan
+  vs set list duplication.
+
 ## 2026-11-21 - Vault takes working ROMs only
 - Owner's rule: only ROMs that were at least smoke-tested go into the vault. `vault.py push` now checks the SHA-1
   against game.json, powers the game on for `--frames` (3600) and refuses a blank or unchanging screen (checked on

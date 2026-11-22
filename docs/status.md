@@ -95,6 +95,7 @@ its lens documents. Do not edit between the markers.
 | Wizardry V: Heart of the Maelstrom | `games/apple2/wizardry-5/` | none | no | not scouted |
 | Dungeon Master | `games/amiga/dungeon-master/` | [main](../games/amiga/dungeon-master/shots/main/index.md) 111, [start](../games/amiga/dungeon-master/shots/start/index.md) 37 | yes | a teleporter, pressure plate, chest, scroll, three creature kinds, Gando's mirror, a few actions (KICK, WAR CRY, CALM, INVOKE) |
 | Phantasie | `games/c64/phantasie/` | [main](../games/c64/phantasie/shots/main/index.md) 77, [start](../games/c64/phantasie/shots/start/index.md) 39 | yes | game over; other towns and wilderness sections; dungeon floors beyond the first rooms; scroll reading; spell names; greetings result |
+| Wasteland | `games/c64/wasteland/` | [main](../games/c64/wasteland/shots/main/index.md) 62, [start](../games/c64/wasteland/shots/start/index.md) 49 | yes | game over not reached; later towns (disk sides 2-4) not visited; Highpool cave/Jackie/Red Ryder events, NPC talk; Utils Copy/Restart and the disk-9 editor not tried |
 <!-- games:end -->
 
 ## Container notes

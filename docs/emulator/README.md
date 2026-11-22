@@ -159,7 +159,9 @@ ROM whenever it is faster than playing. Prefer, in this order, whatever reaches 
    (`"ips": ["rom/patches/x.ips"]`; patches are not committed either).
 3. **RAM:** stage/level number, position, items, flags (see below).
    First-person dungeons: the current floor is often a plain 16x16 or 32x32 block in RAM; dump it and search the ROM
-   for it to find the stored maps (floor maps for design/). Decode the exit/warp table early: writing the game's own
+   for it to find the stored maps (floor maps for design/). Top-down maps likewise: look for a byte grid of the map's
+   size (the width is often in zero page), compare it with one screenshot to learn which values block, then plan
+   paths by search (Wasteland C64: a scout lost about 20 calls to a dead end the grid showed at once). Decode the exit/warp table early: writing the game's own
    pending-transition variables warps more cleanly than position pokes (Dungeon Magic). Controls not obvious after a few tries: find the joypad
    read (`LDA $4016` on NES) with `tools/dis6502.py SLUG BANK ADDR` before guessing combinations.
    Put the game's warp recipe into game.json as a macro with arguments (`"WARP": "poke:...={0},..."`, token

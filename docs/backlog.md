@@ -8,6 +8,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 ## Open
 | Wish | Asked | Notes |
 |---|---|---|
+| Scout plan vs set list: `games/<platform>/<slug>/shots.txt` (scout plan) and `shots/main/shots.txt` duplicate each other and go stale; one source, or `shoot.py` warning when they differ | 1 | Wasteland capture 2026-11-22 |
 | `tools/c64vars.py SLUG ROUTE...`: the C64 BASIC variables (VARTAB 2D/2E, 7-byte entries, 5-byte floats) that change between routes; `find` for BASIC floats | 1 | Phantasie capture 2026-11-21 |
 | `preview.py`: `?` (extra frame) accepted inside a token (`X ?`), not only as a token of its own | 1 | Phantasie scout 2026-11-21 |
 | Shared module for series on one engine (Wizardry I-III on DOS and Apple II: `maps.py`, `roster.py`, `transfer.py`; survey / event scan / text scan for first-person RPGs: `scan.py`, `survey.py`, `eventscan`, `mapgrab`, `textscan`, `explore`; a position scan that retries a square with another wait when it lands in a fight; a per-step fight-free wait search for walks, `games/apple2/bards-tale-3/tools/safewalk.py`) | 8 | 12 `maps.py`, 4 `roster.py`, 4 `transfer.py` live per game and differ by 30-60 lines. Needs the dumps to test against; do it at the next Wizardry or Might and Magic run |
