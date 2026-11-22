@@ -1,6 +1,6 @@
 # Wasteland - shots: main
 
-Platform c64, region na, model c64, ROM SHA-1 `ea87866d2b11a103f9c9dd641d8117ba368c6d83`. 62 shots. Contact sheet: [wasteland_c64_na_set_sheet.png](wasteland_c64_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform c64, region na, model c64, ROM SHA-1 `ea87866d2b11a103f9c9dd641d8117ba368c6d83`. 101 shots. Contact sheet: [wasteland_c64_na_set_sheet.png](wasteland_c64_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -66,5 +66,44 @@ Platform c64, region na, model c64, ROM SHA-1 `ea87866d2b11a103f9c9dd641d8117ba3
 | hp_creek_slip | dialogue | "...splash. Your face burns with embarrassment. You hear children's laughter." | yes | [png](wasteland_c64_na_dialogue_hp_creek_slip.png) |
 | hp_creek_kid | gameplay | A Highpool kid has appeared on the creek bank next to the party | yes | [png](wasteland_c64_na_gameplay_hp_creek_kid.png) |
 | save_load | menu | Continue from the exported save 02_highpool: the party back in Highpool | yes | [png](wasteland_c64_na_menu_save_load.png) |
+| menu_insert_side2 | menu | Travelling to Quartz: "INSERT SIDE 2. [RETURN]" under the world map | yes | [png](wasteland_c64_na_menu_menu_insert_side2.png) |
+| qz_arrival | gameplay | Quartz: arrival on the north edge, houses west of the road | yes | [png](wasteland_c64_na_gameplay_qz_arrival.png) |
+| env_qz_houses | gameplay | Quartz: blocks of houses between the streets | yes | [png](wasteland_c64_na_gameplay_env_qz_houses.png) |
+| env_qz_park | gameplay | Quartz: a walled park with shrubs and cacti | yes | [png](wasteland_c64_na_gameplay_env_qz_park.png) |
+| qz_street_sign | dialogue | Quartz street corner: "N-S Hell's Highway / E-W Devastation Row" | yes | [png](wasteland_c64_na_dialogue_qz_street_sign.png) |
+| qz_manhole | dialogue | Quartz: "This manhole leads South and West." | yes | [png](wasteland_c64_na_dialogue_qz_manhole.png) |
+| qz_ghouls | battle | Quartz graveyard: "Spirits pop out from a grave. 3 Shambler Ghouls" | yes | [png](wasteland_c64_na_battle_qz_ghouls.png) |
+| qz_shop_closed | gameplay | Quartz: "This small business has been closed a long time." | yes | [png](wasteland_c64_na_gameplay_qz_shop_closed.png) |
+| qz_stagecoach | gameplay | Quartz: "Welcome to Stagecoach Inn." | yes | [png](wasteland_c64_na_gameplay_qz_stagecoach.png) |
+| qz_scotts_bar | gameplay | Scott's Bar: "noisy and smoky with many people and tables" | yes | [png](wasteland_c64_na_gameplay_qz_scotts_bar.png) |
+| nd_arrival | gameplay | Needles: arrival in the desert at the south-west corner of the map | yes | [png](wasteland_c64_na_gameplay_nd_arrival.png) |
+| env_nd_radiation | gameplay | Needles: a field of radiation symbols in the desert | yes | [png](wasteland_c64_na_gameplay_env_nd_radiation.png) |
+| env_nd_railway | gameplay | Needles: the railway line crossing the town | yes | [png](wasteland_c64_na_gameplay_env_nd_railway.png) |
+| env_nd_walls | gameplay | Needles: stone walls and houses in the north of the town | yes | [png](wasteland_c64_na_gameplay_env_nd_walls.png) |
+| nd_waste_pit | gameplay | Needles: "Entering the town waste pit." | yes | [png](wasteland_c64_na_gameplay_nd_waste_pit.png) |
+| menu_insert_side3 | menu | Travelling to Las Vegas: "INSERT SIDE 3. [RETURN]" | yes | [png](wasteland_c64_na_menu_menu_insert_side3.png) |
+| vg_arrival | gameplay | Las Vegas: arrival on a street in the north-west of the city | yes | [png](wasteland_c64_na_gameplay_vg_arrival.png) |
+| env_vg_streets | gameplay | Las Vegas: city blocks and an empty street | yes | [png](wasteland_c64_na_gameplay_env_vg_streets.png) |
+| env_vg_golf | gameplay | Las Vegas: the golf course and its pond | yes | [png](wasteland_c64_na_gameplay_env_vg_golf.png) |
+| vg_golf_pond | dialogue | Las Vegas: "Many errant golf balls have been hit into the pond." | yes | [png](wasteland_c64_na_dialogue_vg_golf_pond.png) |
+| vg_hospital | gameplay | "Entering the Vegas Hospital where the rich get well, and the poor die young." | yes | [png](wasteland_c64_na_gameplay_vg_hospital.png) |
+| vg_casino_door | gameplay | "Step inside Spade's Casino, high roller." | yes | [png](wasteland_c64_na_gameplay_vg_casino_door.png) |
+| vg_casino | gameplay | Spade's Casino: inside | yes | [png](wasteland_c64_na_gameplay_vg_casino.png) |
+| vg_warroids | battle | "Warroids! 4 Warroid Mark 2s, 4 Warroid Mark 1s appear at 71 feet." | yes | [png](wasteland_c64_na_battle_vg_warroids.png) |
+| vg_scorpitron | battle | "It looks like a tank with an armored warrior": 1 Scorpitron | yes | [png](wasteland_c64_na_battle_vg_scorpitron.png) |
+| vg_cyborgs | battle | "You see a party of heavily armed men": 10 Cyborg Commandos | yes | [png](wasteland_c64_na_battle_vg_cyborgs.png) |
+| vg_freddy | battle | Fat Freddy's thugs boil out of the building: 2 Humanoids and 1 Humanoid | yes | [png](wasteland_c64_na_battle_vg_freddy.png) |
+| vg_glowing | battle | "She's beautiful, and she glows.": 1 Humanoid | yes | [png](wasteland_c64_na_battle_vg_glowing.png) |
+| vg_death_machines | battle | "Death Machines!": Slicerdicers, Chopters and Sniperdroids | yes | [png](wasteland_c64_na_battle_vg_death_machines.png) |
+| ct_arrival | gameplay | Guardian Citadel: arrival in the desert south of the walls | yes | [png](wasteland_c64_na_gameplay_ct_arrival.png) |
+| ct_sisters | battle | Citadel: Sister Theodosia, Sister Lucretia and Sister Ursula appear at 41 feet | yes | [png](wasteland_c64_na_battle_ct_sisters.png) |
+| env_ct_hall | gameplay | Guardian Citadel: the Grand Hallway with its benches | yes | [png](wasteland_c64_na_gameplay_env_ct_hall.png) |
+| ct_grand_hallway | dialogue | "This is the Guardian's Grand Hallway. The vaulted ceiling is lost in darkness" | yes | [png](wasteland_c64_na_dialogue_ct_grand_hallway.png) |
+| ct_wall_writing | dialogue | "Piously written on this wall is the saying, 'Reach out and touch someone.'" | yes | [png](wasteland_c64_na_dialogue_ct_wall_writing.png) |
+| ct_ovens | dialogue | Citadel kitchen: "A bank of soot-stained ovens stands here." | yes | [png](wasteland_c64_na_dialogue_ct_ovens.png) |
+| ct_brother_austin | battle | A Guardian sighs, "Why does it always happen in my shift?": Brother Austin | yes | [png](wasteland_c64_na_battle_ct_brother_austin.png) |
+| ct_guardians | battle | "Guardians leap up from behind the table and attack!" | yes | [png](wasteland_c64_na_battle_ct_guardians.png) |
+| ct_chef | battle | "A huge chef leaps out and attacks screaming": Brother James | yes | [png](wasteland_c64_na_battle_ct_chef.png) |
+| ct_museum | battle | "From deep inside the museum shots ring out.": Brother Kenneth | yes | [png](wasteland_c64_na_battle_ct_museum.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
