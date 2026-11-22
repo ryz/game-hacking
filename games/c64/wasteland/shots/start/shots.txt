@@ -1,0 +1,49 @@
+01_power_on | boot | Loading: WASTELAND logo over the Start / Utils bar, "Written by Alan Pavlish" | w900
+02_credits | boot | Earth globe with the Electronic Arts and Interplay credit lines | w1250
+03_title | title | Title: Place EARTH, Year 1998, Status DEFCON 1 typed under the globe | @title
+04_continue | menu | Start: "Use last saved game (Y/N)?" | @title,s,w300
+05_insert_side | menu | "Insert side 1. [RETURN]": the play copy of side 1 goes in | @title,s,w300,y,w1500
+06_enter_rc | gameplay | World map, "Entering Ranger Center. Enter new location (Y/N)?" | @title,s,w300,y,w1500,disk:5,w50,return,w2000
+07_rc_roster | menu | Ranger Center: the four pre-made rangers; Create / Delete / Start | @rangers
+08_rc_delete | menu | Delete: which ranger leaves the party | @rangers,d,w200
+09_rc_delete_confirm | menu | Delete Hell Razor: confirm (Y/N) | @rangers,d,w200,1,w300
+10_rc_three | menu | Three rangers left: Create a new one | @rangers,d,w200,1,w300,y,w300
+11_rc_roll | system | Create: rolled attributes and CON; SPACE rerolls, RETURN keeps | @rangers,d,w200,1,w300,y,w300,c,w300
+12_rc_name | menu | Name prompt for the new ranger | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300
+13_rc_name_typed | menu | Name typed: RYZ (upper case only) | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60
+14_rc_sex | menu | Sex: M or F | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300
+15_rc_nation | menu | Nationality: U.S., Russian, Mexican, Indian, Chinese | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300,m,w300
+16_rc_skills | system | Skill list with costs and skill points to spend | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300,m,w300,1,w300
+17_rc_skills_taken | system | Clip pistol, Rifle and Perception bought | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300,m,w300,1,w300,3,w200,6,w200,9,w200
+18_rc_keep | menu | "Keep this char (Y/N)?" with RYZ's sheet | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300,m,w300,1,w300,3,w200,6,w200,9,w200,return,w300
+19_rc_party | menu | Ranger Center: Angela Deth, Thrasher, Snake Vargas and RYZ | @s_party
+20_world_first | gameplay | Start: the world map at the Ranger Center, first control | @s_party,LEAVE,settle
+21_order | menu | Order: "Order (Y/N)?" | @s_party,LEAVE,settle,o,w200
+22_order_pick | menu | Order: pick the rangers in their new order | @s_party,LEAVE,settle,o,w200,y,w300
+23_world_ordered | hud | RYZ at the head of the roster: AC, AMM, MAX, CON, weapon | @s_world
+24_char_stats | inventory | RYZ's sheet: rank, attributes, CON, money, experience | @s_world,1,w300
+25_char_items | inventory | RYZ's items: fists in hand, .45 pistol and clips in the pack | @s_world,1,w300,return,w300
+26_char_skills | inventory | RYZ's skills: Clip pistol, Rifle, Perception at level 1 | @s_world,1,w300,return,w300,return,w300
+27_walk_north | gameplay | Walking north from the Ranger Center between mountain ridges | @s_world,N*4,settle
+28_walk_west | gameplay | Heading west toward Highpool along the mountains | @s_world,N*4,W*2,N,W*3,settle
+29_fight | battle | "From the depths of the wasteland appears a hostile adversary. 4 Animals" | @s_world,N*4,W*2,N,W*3,settle,w1000*10
+30_battle_menu | battle | Wild canine portrait; RYZ, choose: Run Use Hire Evade Attack Weapon Load | @s_world,N*4,W*2,N,W*3,settle,w1000*10,return,w300,settle
+31_battle_weapon | battle | Weapon: RYZ readies the M1911A1 .45 pistol from his items | @s_world,N*4,W*2,N,W*3,settle,w1000*10,return,w300,settle,w,w300,settle
+32_battle_confirm | battle | Orders given: "Use these options (Y/N)?" | @s_world,N*4,W*2,N,W*3,settle,w1000*10,return,w300,settle,w,w300,settle,1,w300,settle,a,w300,a,w300,a,w300,settle
+33_battle_round | battle | Round messages: Angela Deth hits a Wild Canine for 15, killing it | @s_world,N*4,W*2,N,W*3,settle,w1000*10,return,w300,settle,w,w300,settle,1,w300,settle,a,w300,a,w300,a,w300,settle,y,w300,!
+34_battle_hurt | battle | Round 2: Snake Vargas is down (UNC), RYZ holds the pistol | @s_world,N*4,W*2,N,W*3,settle,w1000*10,return,w300,settle,w,w300,settle,1,w300,settle,a,w300,a,w300,a,w300,settle,y,w1500,a,w300,a,w300,a,w300,a,w300,y,w2500,settle
+35_battle_won | battle | Fight won: Angela Deth gains 42 experience, Snake Vargas 14 | @s_world,N*4,W*2,N,W*3,settle,w1000*10,return,w300,settle,w,w300,settle,1,w300,settle,a,w300,a,w300,a,w300,settle,y,w1500,a,w300,a,w300,a,w300,a,w300,y,w2500,settle,a,w300,a,w300,a,w300,settle,y,w2500,settle
+36_highpool_near | gameplay | Back on the road: Highpool's icon south-west of the party | @s_won,W*3,settle
+37_highpool_prompt | gameplay | "Entering Highpool. Enter new location (Y/N)?" | @s_won,W*3,S,settle,S,w100,settle
+38_highpool_desert | gameplay | Highpool: the desert north of the settlement | @s_highpool
+39_highpool_creek | gameplay | Highpool: a creek and huts in the valley | @s_highpool,S*11,settle
+40_dorm | dialogue | "This is a dorm for teens. Nothing much of interest here." | @s_highpool,S*17,settle,E*5,settle
+41_store_entry | gameplay | Store building: "The entry is cool. A store counter is nearby..." | @s_highpool,S*17,settle,E*4,S*3,E,settle
+42_shop_prompt | gameplay | "Entering the shop. Enter new location (Y/N)?" | @s_highpool,S*17,settle,E*4,S*3,E,settle,E*3,N*2,settle,N,E,w1500,settle,N,w1500,settle
+43_shop | shop | Shop: "Welcome to the shop. Who wants to enter?" | @s_highpool,S*17,settle,E*4,S*3,E,settle,E*3,N*2,settle,N,E,w1500,settle,N,w1500,settle,y,w2000,settle
+44_shop_buy | shop | Buy list: Book 10, Canteen 10, Crowbar 15, Gas mask 150 ... Pool money $0 | @s_highpool,S*17,settle,E*4,S*3,E,settle,E*3,N*2,settle,N,E,w1500,settle,N,w1500,settle,y,w2000,settle,1,w400,b,w600
+45_wall_note | dialogue | Note on the store wall: cave, adults: raid outlaws, jackie, Bobby's dog? | @s_highpool,S*17,settle,E*4,S*3,E,settle,E*3,N*2,settle,N,E,w1500,settle,N,w1500,settle,y,w2000,settle,leftarrow,w300,leftarrow,w2000,settle,n,w300,settle,W,S*2,W*4,settle
+46_infirmary | shop | Infirmary: "Welcome to the infirmary. Who wants treatment?" | @s_highpool,S*5,settle,S*6,settle,S*4,settle,S*3,settle,N,E*5,settle,S*2,W,S*4,settle,S*5,settle,E*4,S,settle,S,settle,W,S,settle,y,w2000,settle
+47_infirmary_price | shop | Snake Vargas at the doctor: treatment price with pool money $0 | @s_highpool,S*5,settle,S*6,settle,S*4,settle,S*3,settle,N,E*5,settle,S*2,W,S*4,settle,S*5,settle,E*4,S,settle,S,settle,W,S,settle,y,w2000,settle,4,w300
+48_save_prompt | save | Back on Highpool's street: Save, "Save game (Y/N)?" | @s_highpool,S*5,settle,S*6,settle,S*4,settle,S*3,settle,N,E*5,settle,S*2,W,S*4,settle,S*5,settle,E*4,S,settle,S,settle,W,S,settle,y,w2000,settle,4,w300,leftarrow,w300,leftarrow,w2000,settle,n,w300,settle,N,settle,s,w300
+49_saved | save | Saved: back on the Highpool map, no message, the clock at 3:29 | @s_highpool,S*5,settle,S*6,settle,S*4,settle,S*3,settle,N,E*5,settle,S*2,W,S*4,settle,S*5,settle,E*4,S,settle,S,settle,W,S,settle,y,w2000,settle,4,w300,leftarrow,w300,leftarrow,w2000,settle,n,w300,settle,N,settle,s,w300,y,w3000
