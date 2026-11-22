@@ -8,6 +8,9 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 ## Open
 | Wish | Asked | Notes |
 |---|---|---|
+| Amiga: exact savestate restore (PUAE). A loaded state gives the same frame but game RAM drifts (Dragonflight on A500/A500OG/A500ECS; 10 bytes of slow RAM already 60 frames into the Kickstart boot). Found: the core restores at beam line 0, hpos 0, while our states are saved about 3 lines after the vsync (VHPOSR in the CHIP chunk, ignored by `restore_custom`); `cia_reset` (run by `custom_reset` during a restore) zeroes `kblostsynccnt`; CIA `tol`, BLTX, REFPTR and an INTREQ bit also come back different. Tried 2026-11-22: keep `kblostsynccnt`, and put the beam back (by running chips: double-counts CIA timers; by moving the counters): neither changed the drift in the crack intro, the keyboard fix made the Kickstart boot worse. Shots are unaffected (checkpoints are always rebuilt through the same chain); live play may roll differently from a replay | 1 | Dragonflight scout 2026-11-22 |
+| Research hosts for Amiga scouts: `thalion.exotica.org.uk` (Thalion manuals), `amiga.abime.net` (Hall of Light) not reachable from sessions | 1 | Dragonflight scout 2026-11-22 |
+| `play.py dump` without a name crashes ("list index out of range"): default a name or print the usage | 1 | Dragonflight scout 2026-11-22 |
 | Scout plan vs set list: `games/<platform>/<slug>/shots.txt` (scout plan) and `shots/main/shots.txt` duplicate each other and go stale; one source, or `shoot.py` warning when they differ | 1 | Wasteland capture 2026-11-22 |
 | `tools/c64vars.py SLUG ROUTE...`: the C64 BASIC variables (VARTAB 2D/2E, 7-byte entries, 5-byte floats) that change between routes; `find` for BASIC floats | 1 | Phantasie capture 2026-11-21 |
 | `preview.py`: `?` (extra frame) accepted inside a token (`X ?`), not only as a token of its own | 1 | Phantasie scout 2026-11-21 |

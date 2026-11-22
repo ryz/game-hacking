@@ -12,6 +12,24 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-22 - Dragonflight (Amiga)
+- Task: scout Dragonflight (Amiga, Thalion 1990): boot, controls, RAM, save/load, shot plan.
+- Worked: placing the mouse by poking the game's own pointer variable (found with `find` after two relative
+  moves) instead of HOME-plus-offset moves; `preview.py --timeline` mapped the long loads; plain-ASCII game text
+  in a RAM dump replaced the missing manual (commands, messages, opponents).
+- Friction: (1) every cachecheck line DIFFERS: a loaded state gives the same frame but 30-45 bytes of game RAM
+  differ 60 frames later, already in the Kickstart boot on A500; (2) large `mouse:` moves wrap in this game
+  (it reads the counters every few frames); (3) web research empty (Thalion Webshrine host not allowed, GameFAQs
+  403); (4) `play.py dump` without a name crashes.
+- Proposed rule change: amiga.md Keys: look for the game's pointer variable first; amiga.md Backend: restores
+  are not exact in every game; backlog: exact restore, research hosts, `play.py dump` default.
+- Corrected: coordinator reproduced the drift (w100 on A500: slow RAM differs after 60 frames). Causes found:
+  the core restores at beam line 0 while states are saved about 3 lines after the vsync, and `cia_reset`
+  zeroes the keyboard handshake counter after a restore. Neither fix removed the drift in the crack intro
+  (same bytes with and without them); core left unchanged, findings in `docs/backlog.md`.
+- Status: pointer lesson -> `docs/emulator/amiga.md` (platform fact); restore -> amiga.md + backlog; research
+  hosts and `play.py dump` -> backlog.
+
 ### 2026-11-21 - Wasteland (C64)
 - Task: scout Wasteland (C64, 9 D64 images, EA/Interplay 1988): boot and disk swaps, controls, RAM map,
   checkpoints up to the world map and a first fight.

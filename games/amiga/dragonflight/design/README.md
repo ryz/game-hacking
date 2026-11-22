@@ -23,8 +23,24 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Dragonflight is a party role-playing game for four fixed heroes (Bladus, Rinakles, Dobranur, Andariel)
+**(verified)**: towns and the land are shown from above, a square at a time, and dungeons in first person
+("Forward", "Turn left", "Upstairs", "Downstairs" messages in the game text) **(RAM, inferred for dungeons)**.
+Fights are turn-based on a grid with a side view of the combatants **(source: Wikipedia)**. The game is played
+with the mouse: four portraits (status), a message scroll and an icon grid of commands that changes with the
+place (town: magic, speak, use/open, look; land: magic, a second sword command, ship, enter, camp, search,
+disk) **(verified)**; the right button swaps the icon grid for eight direction arrows and a rest icon
+**(verified)**, the numeric keypad moves too **(verified)**. Time passes while the player waits ("Pass")
+**(verified)**. The quest: an old sage gives the party a Ring of Stasis (it revives its bearer) and one part of
+the Great Map; the other eleven parts must be found, and magic and the dragons, which have left the world,
+brought back **(verified intro text; source: Wikipedia for the dragons)**. Saving: the disk icon on the land
+writes one saved game to Disk B; "Old game" on the Main Menu loads it **(verified)**.
+
+Systems named in the game text **(RAM)**: spells learned from scrolls and prepared before use, potions that can
+be mixed ("Own potion mixed!"), the Staff of Stone loaded with gems, the ELTAM, doors to listen at, trapped
+chests (poisoned needle, bolt of lightning), fleeing monsters (killing one costs character points), gold and
+experience after a fight, ships, camps, food. Opponents named: Orc, Skeleton, Ghost, Bear, Snake, Beast,
+Gnoll, Troll, Ghoul, Energyball, Balron, Statue, Guardian, Unicorn, Shadow **(RAM)**.
 
 ## Documents
 | Document | Covers |
@@ -40,3 +56,8 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Source | Used for |
+|---|---|
+| [Wikipedia: Dragonflight (video game)](https://en.wikipedia.org/wiki/Dragonflight_(video_game)) | credits, platforms, view types, combat style, premise |
+| Game text read from memory in the emulator (scout 2026-11-22) | command names, messages, opponent names |
+

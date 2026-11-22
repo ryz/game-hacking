@@ -1,3 +1,11 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+# Amiga A500: a loaded state does not continue bit-exactly here (see playbook, Emulation notes): cachecheck
+# reports DIFFERS for every checkpoint although the frames agree; shots are built through the cache chain.
+title | DRAGONFLIGHT title logo (the attract cycle alternates it with the Main Menu) | TITLE
+menu | Main Menu: (N) New game, (O) Old game, (B) Backup gamedisk, (S) Sequences, (C) Credits | @title,w900
+diskb | New game: after the four intro pages, panel prompt "Insert disk B please" (Disk 1 still in DF0:) | @menu,n,w1200,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100
+start | First control: the party in the town of Pegana, top-down view, "Loading... Pegana" | @diskb,disk:2,w100,w2800
+world | Overworld next to the Pegana town icon (town corner poked, "Leave this place?" answered YES) | @start,LEAVE
+pegana_road | Pegana entered from the land with the Enter icon: a road at the town's west edge | @world,ENTER
+loaded | Old game: save 01_start loaded from Disk B ("Game loaded"), party on the land outside Pegana | sav:01_start,MENU,OLDGAME
