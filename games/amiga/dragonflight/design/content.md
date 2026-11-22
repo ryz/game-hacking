@@ -71,7 +71,7 @@ Balron, Statue, Guardian, Unicorn (a banned unicorn, freed in a story scene), Sh
 | short Sword | weapon | Blacksmith Renday (Drombul), 77 gold; sold back for 24 **(verified)** | melee weapon | `shop_bought`, `shop_inventory`, `shop_sell_offer` |
 | Mushroom 1, Mushroom 2 | herb | Healer Gormen (Drombul), 22 and 34 gold **(verified)** | "Healers are very fond of mushrooms" (Drombul talk, RAM); use unknown | `shop_healer` |
 | Beer, Mead, Food | provisions | The Oak Arbor (Drombul): Mead 2, Beer 4, Food 6 **(verified)** | Firtul the inn-keeper is said to talk when offered wine (RAM) | `shop_inn` |
-| Own potion (item 54) | potion | Mix potions **(verified)** | effect by recipe: 1B + 1C = miserable, -20 HP **(verified)** | `potion_mixed`, `potion_mixed_drink` |
+| Own potion (item 54) | potion | Mix potions **(verified)** | effect by recipe: 1B + 1C + 1D heals fully, wine + alcohol -2 HP, most pairs nothing **(verified)** | `potion_mixed`, `potion_mixed_drink`, `potion_mixed_health`, `potion_mixed_liquor` |
 | Weapons | Dagger, magic Dagger, short Sword, Sword, Broadsword, Crystalblade, Stiletto, Battleaxe, Battlehatchet, mag. Battlehatchet, Battlehammer, Bow, Longbow, Elvenbow, Staff of Stone **(RAM)** | - | - | - |
 | Armour | Leather, studded Leather, light/medium/heavy/magic Chainmail **(RAM)** | - | - | - |
 | Others | rings (small, medium, large, Dragonring), 10 potions, Phial, Mushrooms, gems, jewellery, Flute, Compass, Key, Book, Sphere, Treaty, letters and notes, Beer, Mead, scrolls, Levelmap, +1 to +5 weapon oils **(RAM)** | - | - | - |

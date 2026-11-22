@@ -1,6 +1,6 @@
 # Dragonflight - shots: main
 
-Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8a73b1d7c1b`. 111 shots. Contact sheet: [dragonflight_amiga_eu_set_sheet.png](dragonflight_amiga_eu_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8a73b1d7c1b`. 113 shots. Contact sheet: [dragonflight_amiga_eu_set_sheet.png](dragonflight_amiga_eu_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -93,9 +93,11 @@ Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8
 | potion_mix_ready | system | Mix potions with four kinds of potion: the cells hold Bladus's potions | yes | [png](dragonflight_amiga_eu_system_potion_mix_ready.png) |
 | potion_mix_one | system | A potion taken from a cell and poured into the cauldron | no | [png](dragonflight_amiga_eu_system_potion_mix_one.png) |
 | potion_mix_two | system | Two potions in the cauldron, their marks in the pipe below | no | [png](dragonflight_amiga_eu_system_potion_mix_two.png) |
-| potion_mixed | system | The flask filled at the outlet: "Own potion mixed!", the new potion listed | yes | [png](dragonflight_amiga_eu_system_potion_mixed.png) |
+| potion_mixed | system | "Own potion mixed!": the new potion, with the marks of both, ends the list | yes | [png](dragonflight_amiga_eu_system_potion_mixed.png) |
 | potion_mixed_give | system | Click on the mixed potion: "Give to whom?" | yes | [png](dragonflight_amiga_eu_system_potion_mixed_give.png) |
-| potion_mixed_drink | system | Bladus drinks the mix of two potions and feels miserable | yes | [png](dragonflight_amiga_eu_system_potion_mixed_drink.png) |
+| potion_mixed_drink | system | Bladus drinks a mix of two potions: stale, no effect | yes | [png](dragonflight_amiga_eu_system_potion_mixed_drink.png) |
+| potion_mixed_health | system | A mix of three potions: "An unbelievable power of health" (37 -> 100 HP) | yes | [png](dragonflight_amiga_eu_system_potion_mixed_health.png) |
+| potion_mixed_liquor | system | Old wine mixed with alcohol: "not to mix liquor with wine!" | yes | [png](dragonflight_amiga_eu_system_potion_mixed_liquor.png) |
 | battle_magic_order | battle | Forest fight: Rinakles is ordered to cast "MAGIC ARROW!" | no | [png](dragonflight_amiga_eu_battle_battle_magic_order.png) |
 | battle_magic_arrow | battle | The magic arrow, a small spark, flies toward the snake | no | [png](dragonflight_amiga_eu_battle_battle_magic_arrow.png) |
 | battle_magic_cast | battle | "Rinakles casted a spell!": his magic points fell from 10 to 2 | yes | [png](dragonflight_amiga_eu_battle_battle_magic_cast.png) |

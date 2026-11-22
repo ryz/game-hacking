@@ -63,3 +63,21 @@ with striped grey, beige and red garbage (round 3).
 **Likely cause:** the suffix names a level whose map is not loaded.
 **Confidence:** (verified) symptom.
 **Impact:** none; a real Levelmap (found in a dungeon) is open.
+
+## List click zones lie above and beside the drawn lines
+**Behavior:** in the inventory and the shop lists a click on a line's picture or name often does nothing; the
+zones (code 5EA0) are 8 x 8 boxes that zig-zag: line 1 x < 20 y 28-2F, line 2 x 20-2F y 38-3F, line 3 x < 20
+y 48-4F, line 4 x 20-2F y 58-5F, line 5 x < 20 y 68-6F (game pixels), while the lines are drawn about 16 pixels
+lower and the pictures all in the left column (`shop_buy_prompt`, round 4).
+**Intended:** probably zones that match the item pictures; the alternating columns look like a leftover of
+an earlier two-column layout.
+**Confidence:** (verified) by clicks on all five lines; zones read from the code.
+**Impact:** on a real Amiga the pointer's hot spot may sit so that the drawn pictures still work; under
+emulation with a poked pointer, use the zone coordinates.
+
+## Mixing is blind
+**Behavior:** the Mix potions screen gives no hint of what a mixture will do; most pairs of potions give "stale,
+no effect", while potions 1B + 1C + 1D together heal a hero fully (`potion_mixed_drink`, `potion_mixed_health`).
+**Intended:** yes, recipes are meant to be learned from people and books (inferred).
+**Confidence:** (verified) for nine recipes; (inferred) for the intent.
+**Impact:** three cheap potions make one full heal; poured potions are lost on a failed mix.

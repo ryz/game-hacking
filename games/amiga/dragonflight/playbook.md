@@ -46,6 +46,7 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   "only line 3 works" was this. Item id k lives at hero record + 20 + 4k (word id, byte suffix, byte count).
 - **Shops (round 4):** checkpoints `shop_smith`, `shop_healer`, `shop_inn` (Drombul); buy = goods line, then a
   portrait; sell = portrait, line, Yes. **Potion mixing:** "Shops and potion mixing" below.
+- Saves: `01_start`, `02_armed`, `03_dungeon`, `04_drombul` (after shopping) in `rom/saves/amiga/dragonflight/`.
 - Open: won fight, ship, dragon, Healing cast, shops of other towns, dungeon stairs.
 
 ## Fights, magic, dungeon, map (details)
@@ -127,8 +128,9 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   (w300). Cells: x 38/48/58/68/78, row 1 y 1C, row 2 y 30 (cell N = kind 1B+N). Click a cell (take, w100), the
   cauldron `CLK:0098:0022` (pour, w150), more potions the same way, then the flask `CLK:00D8:0026` (w100) and
   the outlet `CLK:0099:005E` (w300): "Own potion mixed!", back in the inventory with a new "Potion" (item 54,
-  word 8000 + a bit per kind). It is drunk like any potion (its line, then `CLK:0101:0015`). 1B + 1C =
-  "miserable" (-20 HP). Right button probably leaves the screen without mixing (code 991E negative -> BB30, not tried).
+  word 8000 + a bit per kind). It sorts after the torch: with all ingredients used up it is line 4 (`CLK:0028:005C`), else
+  further down; drink = its line, then `CLK:0101:0015`. Recipes: 1B+1C+1D = full health; 22+23 = -2 HP
+  "not to mix liquor with wine"; seven other pairs/singles = "stale, no effect" (routes: shots `potion_mixed_health`, `potion_mixed_liquor`). Right button probably leaves the screen without mixing (code 991E negative -> BB30, not tried).
 
 ## Identity
 | Field | Value |
@@ -248,6 +250,7 @@ No cheat codes, saves or debug menus found (no source reachable).
 ### Saves (rom/saves/amiga/dragonflight/, never committed)
 | Name | Contents | URL | SHA-1 | Status |
 |---|---|---|---|---|
+| `04_drombul` | party on the land at Drombul after buying a short sword for Bladus (796 gold) at Renday's, saved with the disk icon | made here (round 4) | see `saves/README.md` | exported, not loaded back |
 | `02_armed` | armed party on the land outside Pegana, scroll of Magic arrow with Rinakles, saved with the disk icon | made here | see `saves/README.md` | exported, not loaded back |
 | `01_start` | new game, party just outside Pegana, saved with the disk icon (export from play.py) | made here | `ae07f47d0aa1` (prefix) | verified: Old game loads it ("Game loaded", same position) |
 

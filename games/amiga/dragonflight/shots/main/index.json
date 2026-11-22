@@ -1170,41 +1170,67 @@
   {
    "id": "potion_mixed",
    "category": "system",
-   "caption": "The flask filled at the outlet: \"Own potion mixed!\", the new potion listed",
-   "route": "@world,set:2A00=37:2,poke:2A8C=001B0002,poke:2A90=001C0001,poke:2A94=001D0001,poke:2AA0=00200001,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0038:001C,w100,CLK:0098:0022,w150,CLK:0048:001C,w100,CLK:0098:0022,w150,CLK:00D8:0026,w100,CLK:0099:005E,w300",
+   "caption": "\"Own potion mixed!\": the new potion, with the marks of both, ends the list",
+   "route": "@world,set:2A00=37:2,poke:2A8C=001B0001,poke:2A90=001C0001,poke:2A94=001D0001,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0038:001C,w100,CLK:0098:0022,w150,CLK:0048:001C,w100,CLK:0098:0022,w150,CLK:00D8:0026,w100,CLK:0099:005E,w300",
    "settled": true,
    "model": "A500",
    "source": "shoot.py",
    "file": "dragonflight_amiga_eu_system_potion_mixed.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "74892123a061c2d6e9002ed33f51a5bcb07c2ba0"
+   "pixel_sha1": "a3e70cb6526862b90c9aafdbeaaf35920ca4cfad"
   },
   {
    "id": "potion_mixed_give",
    "category": "system",
    "caption": "Click on the mixed potion: \"Give to whom?\"",
-   "route": "@world,set:2A00=37:2,poke:2A8C=001B0002,poke:2A90=001C0001,poke:2A94=001D0001,poke:2AA0=00200001,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0038:001C,w100,CLK:0098:0022,w150,CLK:0048:001C,w100,CLK:0098:0022,w150,CLK:00D8:0026,w100,CLK:0099:005E,w300,CLK:0017:006B,w200",
+   "route": "@world,set:2A00=37:2,poke:2A8C=001B0001,poke:2A90=001C0001,poke:2A94=001D0001,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0038:001C,w100,CLK:0098:0022,w150,CLK:0048:001C,w100,CLK:0098:0022,w150,CLK:00D8:0026,w100,CLK:0099:005E,w300,CLK:0010:006C,w200",
    "settled": true,
    "model": "A500",
    "source": "shoot.py",
    "file": "dragonflight_amiga_eu_system_potion_mixed_give.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "0a458a506b0cad9e1617be8daaf34f9b0715e9a9"
+   "pixel_sha1": "a9307840423eb2327112e0f790aa858fc08524d0"
   },
   {
    "id": "potion_mixed_drink",
    "category": "system",
-   "caption": "Bladus drinks the mix of two potions and feels miserable",
-   "route": "@world,set:2A00=37:2,poke:2A8C=001B0002,poke:2A90=001C0001,poke:2A94=001D0001,poke:2AA0=00200001,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0038:001C,w100,CLK:0098:0022,w150,CLK:0048:001C,w100,CLK:0098:0022,w150,CLK:00D8:0026,w100,CLK:0099:005E,w300,CLK:0017:006B,w200,CLK:0101:0015,w400",
+   "caption": "Bladus drinks a mix of two potions: stale, no effect",
+   "route": "@world,set:2A00=37:2,poke:2A8C=001B0001,poke:2A90=001C0001,poke:2A94=001D0001,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0038:001C,w100,CLK:0098:0022,w150,CLK:0048:001C,w100,CLK:0098:0022,w150,CLK:00D8:0026,w100,CLK:0099:005E,w300,CLK:0010:006C,w200,CLK:0101:0015,w400",
    "settled": true,
    "model": "A500",
    "source": "shoot.py",
    "file": "dragonflight_amiga_eu_system_potion_mixed_drink.png",
    "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
    "captured": "2026-11-22",
-   "pixel_sha1": "a9b512b212b0d0483c535a36c286e05415ef6e50"
+   "pixel_sha1": "814268576f421eaafc2c71d04378ee0ad518f68c"
+  },
+  {
+   "id": "potion_mixed_health",
+   "category": "system",
+   "caption": "A mix of three potions: \"An unbelievable power of health\" (37 -> 100 HP)",
+   "route": "@world,set:2A00=37:2,poke:2A8C=001B0001,poke:2A90=001C0001,poke:2A94=001D0001,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0038:001C,w100,CLK:0098:0022,w150,CLK:0048:001C,w100,CLK:0098:0022,w150,CLK:0058:001C,w100,CLK:0098:0022,w150,CLK:00D8:0026,w100,CLK:0099:005E,w300,CLK:0028:005C,w200,CLK:0101:0015,w400",
+   "settled": true,
+   "model": "A500",
+   "source": "shoot.py",
+   "file": "dragonflight_amiga_eu_system_potion_mixed_health.png",
+   "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
+   "captured": "2026-11-22",
+   "pixel_sha1": "1a610d557ea111cb3b65ce8e7f8a64b23ac43a72"
+  },
+  {
+   "id": "potion_mixed_liquor",
+   "category": "system",
+   "caption": "Old wine mixed with alcohol: \"not to mix liquor with wine!\"",
+   "route": "@world,set:2A00=37:2,poke:2AA8=00220001,poke:2AAC=00230001,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004B,w300,CLK:0058:0030,w100,CLK:0098:0022,w150,CLK:0068:0030,w100,CLK:0098:0022,w150,CLK:00D8:0026,w100,CLK:0099:005E,w300,CLK:0028:005C,w200,CLK:0101:0015,w400",
+   "settled": true,
+   "model": "A500",
+   "source": "shoot.py",
+   "file": "dragonflight_amiga_eu_system_potion_mixed_liquor.png",
+   "rom_sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
+   "captured": "2026-11-22",
+   "pixel_sha1": "f3926825f16685daec4595bd3349b66ffa49dbdb"
   },
   {
    "id": "battle_magic_order",
