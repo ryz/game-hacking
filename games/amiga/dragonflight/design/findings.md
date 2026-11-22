@@ -30,3 +30,13 @@ while the next hero is not next to an enemy, and the reverse) (live play, `battl
 **Intended:** "mortally", "embarrassed", "Too far", "Dispel".
 **Confidence:** (RAM).
 **Impact:** none.
+
+## A poked bow does not count as a longrange weapon
+**Behavior:** with the Bow (item 0x0D) poked into Andariel's weapon word 3612 before the fight, the shooting
+hand still answers "Has no longrange weapon!" (live play, 2026-11-22, capture round 2).
+**Likely cause:** arrows or a second weapon slot are needed; not checked.
+**Impact:** none in the shots; open question for a ranged attack shot.
+
+## Opponent hit points not found
+**Behavior:** a snake took 27, 24, 21 and more damage from Bladus's sword and stayed; no RAM value fell by the
+damage dealt (chip and slow RAM searched across a hit). Victory was not reached (capture round 2).

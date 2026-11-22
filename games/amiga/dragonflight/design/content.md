@@ -29,7 +29,7 @@ each visual family. A complete table belongs in its own document (items.md, enem
 | Land: forest | south of Pegana | dense trees | `env_land_forest` |
 | Land: bridge and mountains | east of Pegana | wooden bridge, grey mountains with a cave arch, the sea | `env_land_bridge` |
 | Camp | anywhere on the land | night scene with a campfire | `system_camp` |
-| Combat meadow | land fights | side view: flowered meadow under a blue sky | battle_start (live play only, not in the set: fights do not reproduce, see playbook), battle_hit (live play only, not in the set: fights do not reproduce, see playbook) |
+| Combat meadow | land fights | side view: flowered meadow under a blue sky | `battle_start`, `battle_hit` |
 | Sage's room | intro | stone room, fireplace, the sage | `cutscene_sage` |
 
 ## 3. Opponents
@@ -39,14 +39,26 @@ Balron, Statue, Guardian, Unicorn (a banned unicorn, freed in a story scene), Sh
 
 | Opponent | Where met | Family / picture | What it does | Shots |
 |---|---|---|---|---|
-| Snake | land south-east of Pegana | green snake | ambushes ("surprises you"), no weapons; took several rounds to wound a hero at 1 hit point **(verified)** | battle_encounter (live play only, not in the set: fights do not reproduce, see playbook), battle_close (live play only, not in the set: fights do not reproduce, see playbook), battle_wounded (live play only, not in the set: fights do not reproduce, see playbook) |
+| Snake | land south-east of Pegana | green snake | ambushes ("surprises you"), no weapons; took several rounds to wound a hero at 1 hit point **(verified)** | `battle_encounter`, `battle_msg_orcs`, `battle_orders`, `battle_wounded`, `battle_statue` |
+| Orc | three on the meadow | brown humanoid | - | `battle_msg_orcs`, `battle_orcs` |
+| Skeleton | poked | white skeleton | - | `battle_skeleton` |
+| Ghost | poked | white sheet ghost | - | `battle_ghost` |
+| Bear | poked | brown bear on its hind legs | - | `battle_bear` |
+| Beast | poked | pink crouching beast | - | `battle_beast` |
+| Ghoul | poked | figure in a blue robe (the "blue-robed figures" of round 1) | - | `battle_ghoul` |
+| Gnoll | poked | yellow dog-man | - | `battle_gnoll` |
+| Troll | poked | green troll | - | `battle_troll` |
+| Balron | poked | red winged demon | - | `battle_balron` |
+| Energyball | poked | green floating ball | - | `battle_energyball` |
+| Statue | poked | green stone figure | strikes first: Bladus mortally wounded at once **(verified)** | `battle_statue` |
+| Guardian | poked | not drawn on the meadow | kills the whole party in its first round **(verified)** | `battle_wounded`, `gameover` |
 
 ## 4. Items and equipment
 | Item | Type | Got from | What it does | Shots |
 |---|---|---|---|---|
 | Torch | light | every hero at the start | "The torch has been lighted!" **(RAM)** | `inventory_items` |
 | Piece of map 02 | quest | Rinakles at the start | added to the Worldmap with Use **(verified)** | `inventory_map_piece`, `inventory_examine`, `map_worldmap_added` |
-| Sword | weapon | Blacksmith **(inferred)**; poked here | melee weapon, 27 damage seen **(verified)** | `inventory_weapon`, battle_hit (live play only, not in the set: fights do not reproduce, see playbook) |
+| Sword | weapon | Blacksmith **(inferred)**; poked here | melee weapon, 27 damage seen **(verified)** | `inventory_weapon`, `battle_hit` |
 | Weapons | Dagger, magic Dagger, short Sword, Sword, Broadsword, Crystalblade, Stiletto, Battleaxe, Battlehatchet, mag. Battlehatchet, Battlehammer, Bow, Longbow, Elvenbow, Staff of Stone **(RAM)** | - | - | - |
 | Armour | Leather, studded Leather, light/medium/heavy/magic Chainmail **(RAM)** | - | - | - |
 | Others | rings (small, medium, large, Dragonring), 10 potions, Phial, Mushrooms, gems, jewellery, Flute, Compass, Key, Book, Sphere, Treaty, letters and notes, Beer, Mead, scrolls, Levelmap, +1 to +5 weapon oils **(RAM)** | - | - | - |
@@ -75,5 +87,5 @@ magicians: In the desert, Dorinthannon North and South, the island between the c
 | Erik Simon, Udo Fischer, Jochen Hippel | authors | credits | `credits_team` |
 
 ## Open questions
-What exists but was not seen: every opponent but the Snake, the shops, spells in use, dungeons, the ship, the
+What exists but was not seen: Unicorn and Shadow (special opponents), a won fight, the shops, dungeons, the ship, the
 dragon. Encounters come at random on the land; shops sit behind town doors not yet found.

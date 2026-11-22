@@ -107,8 +107,18 @@
       "addr": "2A12",
       "size": 2,
       "note": "weapon item index (Sword 5); records 0x400 apart"
+    },
+    "foe_count": {
+      "addr": "13B58",
+      "size": 2,
+      "note": "combat: number of opponents (1-4); set by the combat program about 190 frames into the encounter load"
+    },
+    "foe_kind": {
+      "addr": "13B5A",
+      "size": 2,
+      "note": "combat: opponent kind, index into the plural list Energyballs=0, Balrons 1, Orcs 2, Skeletons 3, Snakes 4, Ghosts 5, Bears 6, Beasts 7, Ghouls 8, Gnolls 9, Trolls 10, Statues 11, Guardians 12; poke it 200 frames into the load (macro FOE)"
     }
   },
-  "work": "start set (24 shots) and main set published 2026-11-22: boot, menus, intro, Pegana, land, camp, status/inventory/map piece, talk, a land fight (orders, arrows, approach), save/load; three lenses",
-  "open": "combat shots (fight checkpoints enc_snake/fight_* to re-check with preview.py: combat loads from Disk A), no shop, game over, dungeon, spell in use, ship or dragon, Drindil; manual not reachable"
+  "work": "start set (24 shots) and main set (58) published 2026-11-22: boot, menus, intro, Pegana, land, camp, status/inventory/map piece, talk, combat (13 opponent kinds, orders, hit, deaths, game over), scroll learned and spell prepared/cast, save/load; three lenses",
+  "open": "won fight (opponent hit points not found), magic in combat, potions, shops (no shop door found), first-person dungeon, ship, dragon, Drindil and other towns, Great Map view; manual not reachable"
 }

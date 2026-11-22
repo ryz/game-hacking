@@ -37,29 +37,32 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   normal. Loads are long: wait, do not click (clicks during a load are lost or act later). A cached checkpoint
   does not continue bit-exactly (Emulation notes): `cachecheck.py` says DIFFERS for every checkpoint although the
   frames match; build shots through the checkpoint chain and verify with `shoot.py --verify`.
-- **State:** captured 2026-11-22 (game-capture): `start` set (24) and `main` set published. Found this run:
-  - **Fights** come at random on the land, not near Pegana: a random walk of 162 steps from a poked spot
-    (y A0 x A0) met one (`enc_walk`). The encounter screen ("Loading..." + three icons) loads about 2000 frames,
-    then a message ("Your opponents' attack surprises you. They are Snakes!"), left click = fight.
-    **Which monster comes depends on how the checkpoint chain was built** (live play: snakes on a meadow; a
-    cold `shoot.py`: blue-robed figures in a forest), see Emulation notes.
-  - **Combat:** per hero one order, then all are carried out. Right button = arrows (move: "Forward"); icon
-    grid: pentagram (cast), sword = Attack (only next to an enemy; far away it is a shooting hand: "Has no
-    longrange weapon!"), shield = Parry. The icon grid is drawn one hero late. Messages fill the panel; left
-    click continues. Heroes start **unarmed**: poke the weapon word `2A12 + n*400` (item index, Sword = 5)
-    **before** the fight loads; HP `2A00 + n*400`. Seen live: "Bladus hit a Snake (27)!", "Bladus has been
-    mortually wounded! Andariel took the Ring of Bladus." (not reproducible, see below).
-  - **Inventory:** item slots `2AF4 + 4*k` (word item index, word count; Torch = 0x35). Item indexes = the
-    name list in RAM from Gold = 0 (Food 1, Dagger 2, Sword 5, Bow 0x0D, Leather 0x11, Torch 0x35). Icons on
-    the inventory page: `CLK:0101:0055` Examine, `CLK:0124:0055` Use, `CLK:0101:006E` Prepare, `0124:006E`
-    drop?; then click the item's **picture** (`CLK:0027:0059` = 4th line), not its name.
-  - **Speak:** stand next to the person, facing them, click the lips: a text window (`talk_redhair`). Doors:
-    the hand icon in town (`CLK:00E6:00A5`) says "Nobody at home." at the doors tried.
-  - **Land position** mirror is not fixed: `118B2` in town after a new game, `11AB2` on the land here; poke
-    `3BF4` and the mirror (find it with `find` after a step), else the step reverts the warp.
-  - Not reached: a shop (no shop door found), a won fight, game over, a dungeon (the arch east of Pegana at
-    y 5B x F1 does not open with Enter or Search), spells (nobody knows one at the start: "No spell
-    prepared"), ship, dragon, the Worldmap view (Use on it: "Can't use this item!").
+- **Fights (capture round 2, 2026-11-22): build every encounter checkpoint from power-on.** A state restored
+  anywhere before the encounter load (even `@title`) makes the load ask for "Insert disk A please", and Disk 1
+  then resets to the title; a flat route loads the fight from memory/Disk B. Checkpoints `enc_snake`,
+  `enc_armed` and `enc_<kind>` are flat (`FLATLAND,ARM,WALK162,FOE:COUNT:KIND`, about 1 min to build each);
+  restoring them at the encounter message and fighting on is fine. Never end a checkpoint during a disk load.
+  - **Opponent kind and count:** combat RAM `13B5A` (kind) / `13B58` (count, 1-4) are set about 190 frames into
+    the load; macro `FOE:000N:00KK` pokes them 200 frames in, so the message and the pictures follow. Kinds =
+    the plural list: Energyballs 0, Balrons 1, Orcs 2, Skeletons 3, Snakes 4, Ghosts 5, Bears 6, Beasts 7,
+    Ghouls 8, Gnolls 9, Trolls 10, Statues 11, Guardians 12 (Guardians kill the party at once: `gameover`).
+    Poking 13B5A after the load only recolours the loaded picture.
+  - **Combat controls:** per hero one order: icon grid pentagram (cast), sword = Attack (only orthogonally next
+    to an enemy; else the shooting hand), shield = Parry `CLK:0127:008F`; right button = arrows (`0127:00A5`
+    forward, `0106:00B7` down, `0106:00A5` Zz). Park the pointer (`PT:0080:0020`) before `mouse1` on a message,
+    or the click lands on an icon and gives an order. Weapons must be poked before the load (`ARM`).
+    Positions: words (x, y) at `114E6` (4 heroes, then opponents; display copy at `13D4E`); poking them moves
+    only the drawing (a phantom second snake), not the opponent.
+  - **Not found:** opponent hit points (a won fight); a poked Bow is not a longrange weapon.
+  - **Magic:** inventory slot = word item, byte suffix, byte count: `poke:2EF8=00500301` = 01 Scroll 03,
+    `00540501` = Potion 05. Scroll N teaches spell N of the list (Light 0, Dispell undead 1, Magic arrow 2,
+    Dazzle 3, Speed 4, Protect Player 5, Protect Party 6, Healing 7 ...). Inventory: Use `CLK:0124:0055`, the
+    item picture `CLK:0027:0059` (4th line), then the hero in the **top-right** portraits (`CLK:0120:0015` =
+    Rinakles). Down arrow `CLK:0124:006E` cancels a prompt / goes back. Spells page: Prepare `CLK:0101:006E`,
+    then the spell's star (`CLK:0017:002D`, first line). See `magic_*` shots.
+  - **Towns:** building records in RAM after their title ("AT THE UNIVERSITY", "IN THE TOWNHALL"); the hand at
+    y 5A x 6A says "Here is no door!". Shops not found; the temple is "northeast of Pegana" on the land.
+  - Not reached: won fight, shop, dungeon, ship, dragon, other towns, magic in combat, potions in use.
 
 ## Identity
 | Field | Value |
@@ -146,12 +149,12 @@ Must-haves first; ids are the `main` set. Route status: R = route known (in `sho
 - [x] `dialogue_redhair`, `dialogue_show` (was: `dialogue_*`) - speak to a townsperson in Pegana (SPEAK, then click the person on the map: pointer
   on the map is untested; the hand icon at a door gave "Nobody at home.")
 - [?] `shop_*` shop - a shop or inn in Pegana (houses: try the hand icon at each door, see Strategy)
-- [x] `battle_encounter`, `battle_no_weapon`, `battle_arrows`, `battle_close` (hit and death seen live only)
+- [x] `battle_*` (round 2: 13 opponent kinds, orders, arrows, hit, deaths), `gameover`; a won fight is open
 - [?] `gameplay_dungeon_*` gameplay - first-person dungeon views (2-3 places), `env_dungeon_*`
-- [?] `system_magic` system - casting a spell; `system_potion` mixing potions; Staff of Stone
+- [x] `magic_*` learn a scroll, prepare, cast (fails); [?] `system_potion` mixing potions; Staff of Stone
 - [?] `map_great_map` map - the Great Map part, if the game shows it
 - [?] `gameplay_ship` gameplay - on a ship; `gameplay_dragon` - dragon flight if reachable
-- [?] `gameover` gameover - the party dead (poke HP 0 before a fight)
+- [x] `gameover` - Guardians (`enc_guardian`)
 - [?] `town_drindil` gameplay - a second town (Drindil)
 `start` set: power-on, crack intro, logo, dragon, title, menu, the four sage pages, disk B prompt, Pegana, the
 first steps, status/inventory, leaving the town, the land, a camp, the first fight (when found), saving.
@@ -179,6 +182,7 @@ No cheat codes, saves or debug menus found (no source reachable).
 ### Saves (rom/saves/amiga/dragonflight/, never committed)
 | Name | Contents | URL | SHA-1 | Status |
 |---|---|---|---|---|
+| `02_armed` | armed party on the land outside Pegana, scroll of Magic arrow with Rinakles, saved with the disk icon | made here | see `saves/README.md` | exported, not loaded back |
 | `01_start` | new game, party just outside Pegana, saved with the disk icon (export from play.py) | made here | `ae07f47d0aa1` (prefix) | verified: Old game loads it ("Game loaded", same position) |
 
 ## RAM map (for `game.json` "ram" watches and pokes)
@@ -197,7 +201,8 @@ No cheat codes, saves or debug menus found (no source reachable).
   that built it, a cached one from the loaded file). Fixed 2026-11-22: every checkpoint now continues from its
   saved file, so two four-job verifies from an empty cache give identical pictures. Live `play.py` play still
   continues without a reload: a random outcome seen there (the snake fight) can differ in a replay, so confirm
-  every route with `preview.py`. The fight checkpoints (`enc_snake`, `fight_*`) still need a fresh check.
+  every route with `preview.py`. Round 2: restoring any state before an encounter load breaks that load
+  ("Insert disk A please"); encounter checkpoints are therefore built flat from power-on (Read first).
 - A500 (Kickstart 1.3, 512K + 512K). Loads at real speed: crack intro to Thalion logo about 2400 frames, the
   logo click to the menu about 3400, new game to Pegana about 4000.
 - **Savestates do not continue bit-exactly in this game** (scout 2026-11-22): a state saved at any point and

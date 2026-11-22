@@ -46,19 +46,23 @@ as **Observation:** with the reason, never as a fact.
 | Disk prompts | message | new game, old game | swap floppies | "Insert disk B please", "Thank You!" | disk change | - | `menu_oldgame` | - |
 | Town / land view | screen | the main view | walking | top-down map with the party | keypad, arrows, icons | "Blocked", "Pass" | `env_pegana_square`, `env_land_river`, `hud_land` | - |
 | Command grid | hud element | always | commands of the place | 3 x 3 icons, different in town, land, combat, talk, inventory | left button | "Icon not available!" **(RAM)** | `hud_land`, `env_pegana_road` | **Observation:** icons only, no labels; the first click is guesswork |
-| Arrow panel | hud element | right button | moving by mouse | 8 arrows + rest (Zz) | left button | - | `system_arrows`, battle_arrows (live play only, not in the set: fights do not reproduce, see playbook) | - |
+| Arrow panel | hud element | right button | moving by mouse | 8 arrows + rest (Zz) | left button | - | `system_arrows`, `battle_arrows` | - |
 | Message scroll | hud element | always | echoes and results | last five messages | - | - | `gameplay_door_nobody` | - |
 | Leave prompt | prompt | town edge | confirm leaving | "Leave this place? Left YES Right NO" | left / right button | - | `18_leave_prompt` (start set) | - |
 | Status page | screen | portrait | one hero's values | hit points, magic, experience, character, weapon, armour, weapon points, armour points, food, gold | icons: inventory (?), spells (pentagram), back | - | `inventory_status`, `inventory_status_dobranur`, `inventory_weapon` | - |
 | Inventory page | list | status page | items | gold, food, item pictures with counts | Examine, Use, Prepare, drop; click an item's picture | "Examine which item?", "It is a Sword", "Can't use this item!" | `inventory_items`, `inventory_map_piece`, `inventory_examine`, `map_worldmap_added` | - |
-| Spells page | list | status page | known spells | empty at the start | - | - | `inventory_spells` | - |
+| Spells page | list | status page | known spells | spell names with school, a check mark when prepared | Prepare icon (bottom left), then the spell's star | "Prepare which spell?" -> "Spell ready" | `inventory_spells`, `magic_spells_known`, `magic_prepared` | - |
+| Read a scroll | prompt | Use on a scroll | who learns | "Who should read this scroll?", then a click on a portrait in the top-right 2 x 2 (the main panel portraits do not answer) | portrait | "learned this spell" | `inventory_scroll`, `magic_read_scroll`, `magic_learned` | **Observation:** two sets of portraits, only one answers this prompt |
+| Cast result | message | magic icon -> hero | outcome | message scroll line | - | "Spell has failed!" | `magic_cast_failed` | - |
+| Game over | screen | last hero falls | defeat | dark blue: "Is this THE END of all hope?" and the four faces | - | then "Insert disk A please" | `gameover` | - |
+| Opponent views | screen | fight start | who you fight | one picture per kind on the side view, grid dots per opponent | - | - | `battle_orcs`, `battle_troll`, `battle_balron`, `battle_energyball` | - |
 | Cast prompt | prompt | magic icon | choose the caster | "Who should cast ?" | portrait | "No spell prepared" or "You have no spell ready" | `system_cast_no_spell` | - |
 | Speak window | screen | lips icon next to a person | conversation | a description of the person and what he says | up/down scroll, show, deliver | "Who should show something?" | `dialogue_redhair`, `dialogue_show` | - |
 | Camp scene | screen | campfire icon | rest | the party at a campfire | - | "zzz..." | `system_camp` | - |
 | Disk menu | menu | disk icon (land) | save, load, exit | two disk icons and an exit icon on a red grid | left button | "Gamesave?", "Gameload?", "Game saved" | `save_prompt`, `save_done`, `save_load_prompt` | - |
-| Encounter message | message | random on the land -> combat | who attacks | "Your opponents' attack surprises you. They are Snakes!" | left button | - | battle_encounter (live play only, not in the set: fights do not reproduce, see playbook) | - |
-| Combat screen | screen | encounter | orders | side view of the selected hero and the enemies, overhead grid, "Bladus 1. Move(1):" | arrows, icons (magic, attack or shoot, parry) | "Has no longrange weapon!" | battle_start (live play only, not in the set: fights do not reproduce, see playbook), battle_close (live play only, not in the set: fights do not reproduce, see playbook), battle_attack_order (live play only, not in the set: fights do not reproduce, see playbook), battle_no_weapon (live play only, not in the set: fights do not reproduce, see playbook), battle_round2 (live play only, not in the set: fights do not reproduce, see playbook) | **Observation:** the icon grid shows a hero's options one step late, so the sword appears after the order is due |
-| Combat result | message | carrying out orders | blow by blow | full-width side view, message line | left button | "Bladus hit a Snake (27)!", "mortually wounded" | battle_hit (live play only, not in the set: fights do not reproduce, see playbook), battle_wounded (live play only, not in the set: fights do not reproduce, see playbook) | - |
+| Encounter message | message | random on the land -> combat | who attacks | "Your opponents' attack surprises you. They are Snakes!" | left button | - | `battle_encounter`, `battle_msg_orcs` | - |
+| Combat screen | screen | encounter | orders | side view of the selected hero and the enemies, overhead grid, "Bladus 1. Move(1):" | arrows, icons (magic, attack or shoot, parry) | "Has no longrange weapon!" | `battle_start`, `battle_orders`, `battle_orders`, none (seen live: "Has no longrange weapon!"), `gameover` | **Observation:** the icon grid shows a hero's options one step late, so the sword appears after the order is due |
+| Combat result | message | carrying out orders | blow by blow | full-width side view, message line | left button | "Bladus hit a Snake (27)!", "mortually wounded" | `battle_hit`, `battle_wounded`, `battle_statue` | - |
 
 ## 3. Screen flow
 ```
@@ -68,7 +72,7 @@ Main Menu: N -> intro pages x4 -> "Insert disk B" -> town (Pegana)
 town/land view -> portrait -> status -> inventory / spells -> back
 town: lips -> speak window -> right button back;  hand -> door;  eye -> look;  edge -> "Leave this place?" -> land
 land: enter -> town;  campfire -> camp;  disk -> disk menu (save / load / exit);  random -> encounter -> combat
-combat: orders per hero -> results -> next round ... (victory / defeat not reached)
+combat: orders per hero -> results -> next round ... -> defeat: "Is this the end of all hope?" -> Insert disk A (victory not reached)
 ```
 
 ## 4. Elements in detail
@@ -76,7 +80,7 @@ combat: orders per hero -> results -> next round ... (victory / defeat not reach
   each), the message scroll in the middle, the command grid at the right **(verified: `hud_land`)**.
 - **Combat screen:** the top-left grid (12 x 8 squares) marks heroes and enemies and highlights the hero whose
   order is due; the side view shows that hero's surroundings; the scroll prints "<hero> 1. Move(1):" and each
-  order given ("Forward", "Attack.", "Parry.") **(verified: battle_start (live play only, not in the set: fights do not reproduce, see playbook), battle_attack_order (live play only, not in the set: fights do not reproduce, see playbook))**.
+  order given ("Forward", "Attack.", "Parry.") **(verified: `battle_start`, `battle_orders`)**.
 
 ## Open questions
 - The disk menu's third icon and the land's sword icon; the talk window's "deliver" icon.

@@ -24,6 +24,12 @@ inventory_map_piece | inventory | Rinakles carries piece 02 of the Great Map | @
 inventory_examine | inventory | Examine: "That is a part of the world-map!" | @start,RINAKLES,CLK:0101:0055,w60,CLK:0101:0055,w100,CLK:0027:0059,w200
 map_worldmap_added | map | Use: "You added the piece of map to the world-map!" | @start,RINAKLES,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0027:0059,w300
 system_cast_no_spell | system | Magic icon: "Who should cast?" Rinakles: "You have no spell ready" | @start,MAGIC,w40,CLK:0050:0096,w100
+inventory_scroll | inventory | Inventory of Rinakles with a scroll and a potion | @start,poke:2EF8=00500301,poke:2EFC=00540501,RINAKLES,CLK:0101:0055,w60,settle
+magic_read_scroll | system | Use on a scroll: "Who should read this scroll?" | @start,poke:2EF8=00500301,poke:2EFC=00540501,RINAKLES,CLK:0101:0055,w60,settle,CLK:0124:0055,w100,CLK:0027:0059,w300,settle
+magic_learned | system | "Rinakles learned this spell": the scroll is gone | @start,poke:2EF8=00500301,poke:2EFC=00540501,RINAKLES,CLK:0101:0055,w60,settle,CLK:0124:0055,w100,CLK:0027:0059,w300,settle,CLK:0120:0015,w300,settle
+magic_spells_known | inventory | Spells page of Rinakles: Dazzle (w), a white spell | @start,poke:2EF8=00500301,poke:2EFC=00540501,RINAKLES,CLK:0101:0055,w60,settle,CLK:0124:0055,w100,CLK:0027:0059,w300,settle,CLK:0120:0015,w300,settle,CLK:0124:006E,w100,settle,CLK:0124:0055,w100,settle
+magic_prepared | system | Prepare: Dazzle marked ready ("Spell ready") | @start,poke:2EF8=00500301,poke:2EFC=00540501,RINAKLES,CLK:0101:0055,w60,settle,CLK:0124:0055,w100,CLK:0027:0059,w300,settle,CLK:0120:0015,w300,settle,CLK:0124:006E,w100,settle,CLK:0124:0055,w100,settle,CLK:0101:006E,w100,CLK:0017:002D,w200,settle
+magic_cast_failed | system | Rinakles casts in Pegana: "Spell has failed!" | @start,poke:2EF8=00500301,poke:2EFC=00540501,RINAKLES,CLK:0101:0055,w60,settle,CLK:0124:0055,w100,CLK:0027:0059,w300,settle,CLK:0120:0015,w300,settle,CLK:0124:006E,w100,settle,CLK:0124:0055,w100,settle,CLK:0101:006E,w100,CLK:0017:002D,w200,settle,CLK:0124:006E,w100,CLK:0124:006E,w100,MAGIC,w60,CLK:0050:0096,w300
 gameplay_door_nobody | gameplay | Hand icon at a house door in Pegana: "Nobody at home." | @start,N,w20,CLK:00E6:00A5,w300
 dialogue_redhair | dialogue | Speak: a red-haired young man tells of his brother, the torch trader in Drombul | @talk_redhair,w10
 dialogue_show | dialogue | In a talk: "Who should show something?" | @talk_redhair,CLK:0106:008F,w100

@@ -1,6 +1,6 @@
 # Dragonflight - shots: main
 
-Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8a73b1d7c1b`. 52 shots. Contact sheet: [dragonflight_amiga_eu_set_sheet.png](dragonflight_amiga_eu_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8a73b1d7c1b`. 58 shots. Contact sheet: [dragonflight_amiga_eu_set_sheet.png](dragonflight_amiga_eu_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -30,6 +30,12 @@ Platform amiga, region eu, model A500, ROM SHA-1 `23f7859f099a71575e7af2519ca5a8
 | inventory_examine | inventory | Examine: "That is a part of the world-map!" | yes | [png](dragonflight_amiga_eu_inventory_inventory_examine.png) |
 | map_worldmap_added | map | Use: "You added the piece of map to the world-map!" | yes | [png](dragonflight_amiga_eu_map_map_worldmap_added.png) |
 | system_cast_no_spell | system | Magic icon: "Who should cast?" Rinakles: "You have no spell ready" | no | [png](dragonflight_amiga_eu_system_system_cast_no_spell.png) |
+| inventory_scroll | inventory | Inventory of Rinakles with a scroll and a potion | yes | [png](dragonflight_amiga_eu_inventory_inventory_scroll.png) |
+| magic_read_scroll | system | Use on a scroll: "Who should read this scroll?" | yes | [png](dragonflight_amiga_eu_system_magic_read_scroll.png) |
+| magic_learned | system | "Rinakles learned this spell": the scroll is gone | yes | [png](dragonflight_amiga_eu_system_magic_learned.png) |
+| magic_spells_known | inventory | Spells page of Rinakles: Dazzle (w), a white spell | yes | [png](dragonflight_amiga_eu_inventory_magic_spells_known.png) |
+| magic_prepared | system | Prepare: Dazzle marked ready ("Spell ready") | yes | [png](dragonflight_amiga_eu_system_magic_prepared.png) |
+| magic_cast_failed | system | Rinakles casts in Pegana: "Spell has failed!" | no | [png](dragonflight_amiga_eu_system_magic_cast_failed.png) |
 | gameplay_door_nobody | gameplay | Hand icon at a house door in Pegana: "Nobody at home." | no | [png](dragonflight_amiga_eu_gameplay_gameplay_door_nobody.png) |
 | dialogue_redhair | dialogue | Speak: a red-haired young man tells of his brother, the torch trader in Drombul | yes | [png](dragonflight_amiga_eu_dialogue_dialogue_redhair.png) |
 | dialogue_show | dialogue | In a talk: "Who should show something?" | yes | [png](dragonflight_amiga_eu_dialogue_dialogue_show.png) |
