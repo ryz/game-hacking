@@ -8,7 +8,17 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Start:** `python3 tools/play.py start wasteland --route @start` (world map ON the Ranger Center square x55 y62,
   party RYZ, Angela Deth, Thrasher, Snake Vargas, RYZ first, RYZ stats poked). Model `c64` (PAL). Needs
   `rom/wasteland.zip` (9 D64s). Boot from master side 1 (automatic); play happens on the play copy `disk:5`.
-- **Captured 2026-11-22:** sets `start` (49, honest) and `main` (62) published; lenses written.
+- **Captured 2026-11-22:** sets `start` (49, honest) and `main` (124: run 1 62, run 2 added the side 2-4 towns) published; lenses written.
+- **WARP (real warp, 2026-11-22 run 2):** `WARP:XX:YY` (hex) moves the party to square XX,YY of the CURRENT map
+  (world or town) and redraws (V): pokes $57/$58, the code operands 09EC/09EE/09FB and F408/F409 together.
+  Then one step onto an icon or event square. World entries: Quartz `WARP:1D:2C,N`; Needles `WARP:18:20,N`;
+  Las Vegas `WARP:17:13,N`; Citadel `WARP:24:31,N`; Darwin `WARP:39:26,N` (through the radiation belt);
+  Highpool `WARP:2F:3A,S`; mine shaft (32,52); Savage Village (13,58). Then `w100,y,w1500` -> "INSERT SIDE N."
+  -> `disk:6|7|8,w50,return,w2500` (checkpoints `quartz`, `needles`, `vegas`, `citadel`, `darwin`).
+- **Hidden locations:** poke Darwin's world entry record `poke:4E7E=XXYYLL` (arrival x, y, location) before
+  stepping on Darwin: `0e0107` = Sleeper Base, `101e10` = Base Cochise grounds (checkpoints `sleeper`, `cochise`).
+  F40A = current location number. Town specials survey: `work/plan/wasteland/specials.py` (town maps at $3600,
+  32x32; 64x64 maps at $3C00) writes one plan line per event square: the fastest way to find a town's content.
 - **World map is in RAM:** 64x64 bytes at $3C00 (row-major, x + 64*y): 0 open ground, 1 mountain (blocks),
   2/3 other passable terrain, 6 water, 13 river current (hurts 1 CON each), single values 7-31 are location
   icons (7 Agricultural Center x36 y55, 8 Highpool x47 y59; list below). BFS over it: `work/plan/wasteland/bfs.py`
@@ -22,7 +32,7 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   infirmary at x13 y29 (from x10 y28: `E*3,S`); workshop interior via the infirmary exit `N,W*4,S`; creek:
   `S*18,W*3,S` (slip event, a kid appears).
 - **Checkpoints:** `title`, `rangers`, `party`, `start`, `step1`, `fight`, `highpool`, `infirmary`, `workshop`,
-  `store`, `shop` (poked chain); `s_party`, `s_world`, `s_won`, `s_highpool` (honest chain of the start set).
+  `store`, `shop`, `quartz`, `needles`, `vegas`, `citadel`, `darwin`, `sleeper`, `cochise` (poked chain); `s_party`, `s_world`, `s_won`, `s_highpool` (honest chain of the start set).
 - **Keys:** I/J/K/L move; U Use, E Enc, O Order, D Disband, V View, S Save, R Radio, digits = sheet, SPACE =
   roster; Esc = `leftarrow`. Combat R U H E A W L then Y. The W key alone is `w` (Weapon); `wN` is a wait.
 - **Money:** `set:F815=1287:3` (RYZ) works on the map; shops and doctors show the pooled money.
@@ -32,7 +42,8 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Determinism:** no divergence seen this run: every checkpoint built on a parent reproduced (start 49/49,
   main from an empty cache).
 - **Open:** game over (CON 1 party survived 4 rounds); MORE: in the shop list; Utils Copy/Restart; disk:9 editor;
-  later towns (other disk sides).
+  NPC talk and shop lists in the later towns; Quartz Emporium not found; Savage Village, mine shaft, Desert Nomads not shot.
+- **Saving in a town** asks side 1 then the town's side: `s,w300,y,w3000,disk:5,w50,return,w3000,disk:N,w50,return,w3000`.
 
 ## Identity
 | Field | Value |
@@ -127,7 +138,8 @@ Targets for `main` (ids, category):
 - [x] `field_use`, `field_order`, `field_radio`, `field_enc` menu (prompts); `map_edge_message` dialogue
 - [x] `battle_appears` battle (`@fight`); `battle_menu` battle; `battle_weapon` battle; `battle_round_msgs` battle (timeline); `battle_xp` battle
 - [x] `loc_enter_prompt` gameplay ("Enter new location (Y/N)?"); Highpool town, a shop, an NPC talk, the library/doctor (play)
-- [ ] later towns (Quartz, Needles, Las Vegas) by play or by the disk-swap trick (below); `save_prompt` save; `gameover` (party dead)
+- [x] later towns: Quartz, Needles, Las Vegas, Guardian Citadel, Darwin Village, Sleeper Base, Base Cochise (run 2, by WARP); `menu_insert_side2/3/4`, `save_town`
+- [ ] `gameover` (party dead); NPC talk; later shop lists
 `start` set: power-on, title, continue prompt, insert side, Ranger Center, create RYZ (roll, name, sex,
 nationality, skills), Start, world map, first steps, first save (`SAVE`).
 
@@ -167,6 +179,10 @@ The party save lands on track 35 of side 1 (sectors 0-2, 6-8, 12-13), not as pla
 | F4D1 | 12 | current location name ("Ranger Ctr.") | dump |
 | F500 + 0x100*(n-1) | 256 | character record n (record numbers as in F401): name 0x00 (14 bytes, ASCII, 0-terminated), ST IQ LK SP AGL DEX CHR 0x0E-0x14, money 0x15 (3 bytes LE), sex 0x18 (1 = female), max CON 0x1B (2), CON 0x1D (2), skill points 0x20, rank text 0x33 ("Private"), skills 0x80 (pairs: skill number, level), items from about 0xBD (pairs) | dump + pokes (verified: stats, money, CON) |
 | 0057/0058 | 1+1 | x/y working copy (zero page); poking it alone does not move the party either | diff |
+| 09EC/09EE, 09FB | 1 each | x/y as operands of LDX#/LDY# and LDY# (self-modifying code); with $57/$58 and F408/F409 they make the warp | find + poke (verified, `WARP`) |
+| F40A | 1 | current location number (0 world, 1 Quartz, 0C Las Vegas, 15 Darwin, 1A Needles, 23 Citadel, 07 Sleeper Base, 10 Cochise); F40B/F40C world square entered from | dump diff (verified) |
+| 4DEA-4E9E | | world entry records `4N XX YY LL` (action, arrival x, y, location), `ff`-separated; Darwin's first at 4E7D; hidden ones `4b 0e 01 07 0a 29`, `4b 10 1e 10 0a 2a` | dump (RAM, poke verified) |
+| 3600 / 3C00 | 1024 / 4096 | current map: 32x32 locations at $3600, 64x64 (world, Needles, Las Vegas) at $3C00; values 0 open, 1 wall, others event squares | dump + specials survey (verified) |
 Pokes into a record before LEAVE are written with the party (RYZSTATS survives LEAVE and a save/load).
 
 ## Emulation notes
@@ -205,7 +221,7 @@ change, a stale state in your own cache shows as "yours DIFFERS").
 
 ## Open questions
 - ~~Highpool's entrance: no world-map decoding yet~~ solved 2026-11-22: the map is the 64x64 grid at $3C00 (Read first).
-- A real warp: F408/F409 and $57/$58 are copies; find the master position (or the location-entry code).
+- ~~A real warp~~ solved 2026-11-22: poke all copies together (macro `WARP`, Read first); $5D/$5E is not a row pointer to poke.
 - What the Utils Copy / Restart screens look like; what N at "Use last saved game" writes to the sides.
 - The editor on disk:9 (would need a boot from disk 9).
 - Hidden RNG state not in savestates (above).
@@ -222,3 +238,15 @@ change, a stale state in your own cache shows as "yours DIFFERS").
 - Infirmary: `1,w300` shows the recommendation (Exam $25; Healing for the wounded).
 - Highpool workshop: Perception on the cot found nothing (both on it and eastwards).
 - Saves: `02_highpool` (rom/saves, honest party after the start set, in Highpool) loads with `sav:02_highpool,TITLE,CONT`.
+
+## Capture notes (2026-11-22, run 2: sides 2-4)
+- Location numbers by side (from the Insert prompt with Darwin's record poked): side 1 (no prompt) 08 09 0A 1D 2B 31;
+  side 2 01 02-06 1A 1B 1C 1F 20 21 22; side 3 0B 0C 18 19 23 24 26-2A; side 4 07 0D 0F 10-17; 0E, 1E, 25, 2C ask for "side 0" (unused).
+- Identification of 07 (Sleeper Base: purple halls, Nailed Wolves, slot doors) and 10 (Base Cochise grounds: "A weapon pod
+  rises up from the base dome", robot groups) is by content, not by a name on screen (F4D1 is not updated).
+- Quartz specials: six manholes, street signs, Stagecoach Inn (x16 y15), Scott's Bar (x21 y28, rear x22 y29), the graveyard
+  ghouls (x27-28 y25-27), closed businesses; the Emporium (bottom left, guide) was not found among them.
+- Needles: the 64x64 map's event squares mostly show nothing; only the waste pit (x12 y55) and "Leaving Needles" found.
+- Every warp target on the Cochise grounds starts a robot fight (no quiet dome view).
+- Saves: `03_quartz` (party saved in Quartz x20 y13), `04_cochise` (party saved on the Cochise grounds); load with
+  `sav:NAME,TITLE,CONT` (not tried).

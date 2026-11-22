@@ -36,7 +36,7 @@ as **Observation:** with the reason, never as a fact.
 | Title | screen | loading -> Start / Utils | choose to play or to copy disks | Place EARTH, Year 1998, Status DEFCON 1 typed over the globe | S, U | | `title_screen` | **Observation:** the lines keep typing, so the title never stands still |
 | Utils | menu | title -> Copy, Restart, Start | make play copies of the four sides | menu bar only, empty window | C, R, S | | `title_utils` | |
 | Use last saved game | prompt | Start -> insert side | continue or start over | one line under the title | Y, N | | `menu_continue` | |
-| Insert side | prompt | continue -> world map | ask for a play disk | "Insert side 1. [RETURN]" | RETURN | a master disk is refused and asked again **(verified)** | `menu_insert_side` | |
+| Insert side | prompt | continue -> world map | ask for a play disk | "Insert side 1. [RETURN]"; the same line under the map when a location on another side is entered, and twice during a save in a town (side 1, then the town's side) | RETURN | a master disk is refused and asked again **(verified)** | `menu_insert_side`, `menu_insert_side2`, `menu_insert_side3`, `menu_insert_side4`, `save_town` | |
 | Ranger Center | screen | entering the Ranger Center -> Create, Delete, Start | manage the party | building picture, roster, empty text window | C, D, S | Create with four rangers asks to delete first **(verified)** | `rc_roster`, `rc_party` | |
 | Create a character | screen | Create -> name | roll the attributes | seven attributes, skill points, rank, MAXCON, money | SPACE, RETURN | | `rc_roll`, `rc_reroll` | |
 | Name, sex, nationality | prompt | roll -> skills | identity | "Enter name", "Enter sex (M/F)", list of five nationalities | text, M/F, 1-5 | | `rc_nation` | |
@@ -57,6 +57,15 @@ as **Observation:** with the reason, never as a fact.
 | Round report | message | confirm -> next round or result | play out the round | scrolling lines: attacks, hits, damage, kills, experience | RETURN at the end | | `battle_round`, `battle_xp`, `battle_radrat` | **Observation:** older lines scroll out of the window before the [RETURN] stop, so a long round cannot be read back |
 | Clock | hud element | always | game time | hours:minutes in the top border | | | `world_start` | |
 | Roster | hud element | always (map: SPACE toggles) | party state | number, name, AC, AMM, MAX, CON, weapon | digit | UNC for unconscious | `world_start`, `battle_radrat` | |
+| Town map | screen | entering a town -> streets, buildings | walk a town | the same window as the world map, 16-pixel squares: houses as purple and blue blocks, walls as white lines | I J K L, command letters | "Ouch!" for a wall | `qz_arrival`, `env_qz_houses`, `env_qz_park`, `vg_arrival`, `env_vg_streets`, `env_vg_golf`, `dw_arrival`, `env_dw_village`, `nd_arrival`, `env_nd_walls`, `env_nd_railway` | |
+| Interior map | screen | walk-in building | rooms | brick walls, doors, tables, ovens, people as figures | I J K L | | `ct_arrival`, `env_ct_hall`, `sl_arrival`, `env_sl_halls`, `cb_arrival` | |
+| Street sign | message | street corner | orientation | "N-S <street> / E-W <street>" | | | `qz_street_sign` | **Observation:** the only orientation aid in towns; there is no automap |
+| Building prompt | prompt | door square -> sub-location | confirm entry with a line of flavour | "Entering the Vegas Hospital where the rich get well, and the poor die young." + (Y/N) | Y, N | | `vg_hospital`, `vg_casino_door`, `dw_black_market`, `dw_library`, `dw_jekyll`, `nd_waste_pit` | |
+| Description on stepping (later towns) | message | stepping | flavour, hints | two to four lines; some end in [RETURN] | RETURN | | `qz_manhole`, `qz_shop_closed`, `qz_stagecoach`, `qz_scotts_bar`, `vg_golf_pond`, `ct_grand_hallway`, `ct_wall_writing`, `ct_ovens`, `dw_lab`, `dw_delicious`, `sl_debris`, `sl_shining`, `sl_door_slot` | |
+| Text entry | prompt | talking to a guard | type a word | the speaker's line and a ">" cursor | typed text, RETURN | | `dw_password` | |
+| Store (trader) | screen | store door -> Buy/Sell | trade | trader portrait with the shop's name, "Who wants to enter?" | digit | | `dw_store` | |
+| Fixed encounter | message | event square -> combat | announce a set fight | flavour line, then each named member or group with distance in feet, [RETURN] | RETURN | | `qz_ghouls`, `vg_warroids`, `vg_scorpitron`, `vg_cyborgs`, `vg_freddy`, `vg_glowing`, `vg_death_machines`, `ct_brother_austin`, `ct_guardians`, `ct_chef`, `ct_museum`, `ct_sisters`, `sl_wolves`, `cb_weapon_pod`, `cb_plasma`, `cb_robots`, `cb_gate_robots` | |
+| World map hazards | screen | world map | show danger | yellow radiation symbols round Darwin | | | `env_world_radiation` | |
 
 ## 3. Screen flow
 ```
@@ -68,6 +77,8 @@ world map -(Ranger Center, Y)-> Ranger Center -(C)-> create -> name -> sex -> na
 world map -(random)-> encounter -> orders per ranger -> Use these options? -> round report -> ... -> map
 world map -(digit)-> character sheet: stats -> items -> skills -> map
 world map -(S, Y)-> saved, map
+world map -(icon on another side, Y)-> Insert side N -> RETURN -> location map
+location -(S, Y)-> Insert side 1 -> Insert side N (the location's) -> map
 ```
 
 ## 4. Elements in detail

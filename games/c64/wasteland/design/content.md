@@ -32,6 +32,15 @@ each visual family. A complete table belongs in its own document (items.md, enem
 | Store and gaming hall | Highpool | red-brown walls, counter, purple bed, door | `hp_store_entry` |
 | Workshop | Highpool, bottom left building | small room with machine parts, pump and cot | `hp_workshop`, `hp_workshop_parts`, `hp_workshop_pump` |
 | Agricultural Center | west of Highpool | adobe walls with scorch marks, sales booth, farmers | `ag_center`, `ag_center_walk`, `loc_agcenter` |
+| Quartz | side 2, world x29-30 y43 | grid of streets with purple and blue houses, a walled park, a graveyard | `qz_arrival`, `env_qz_houses`, `env_qz_park`, `qz_ghouls` |
+| Quartz interiors | side 2 | brick rooms: a long-closed business, Stagecoach Inn, Scott's Bar with its stage | `qz_shop_closed`, `qz_stagecoach`, `qz_scotts_bar` |
+| Needles | side 2, world x24-25 y30-31 | desert with stone walls, a railway line, radiation fields, the waste pit | `nd_arrival`, `env_nd_walls`, `env_nd_railway`, `env_nd_radiation`, `nd_waste_pit` |
+| Las Vegas | side 3, world x21-23 y16-18 (3 by 3) | large city of diagonal streets, golf course with pond, hospital, casino | `vg_arrival`, `env_vg_streets`, `env_vg_golf`, `vg_golf_pond`, `vg_hospital`, `vg_casino` |
+| Guardian Citadel | side 3, world x36 y48 | brick fortress: grand hallway with benches, dining hall, kitchen, museum | `ct_arrival`, `env_ct_hall`, `ct_grand_hallway`, `ct_ovens`, `ct_wall_writing` |
+| Darwin Village | side 4, world x57-58 y36-37 | green village on a grid of roads, walled Lab with water-filled pens | `dw_arrival`, `env_dw_village`, `dw_lab`, `dw_delicious` |
+| Radiation belt | world map round Darwin | yellow radiation symbols on the grass | `env_world_radiation`, `menu_insert_side4` |
+| Sleeper Base | side 4 (location 7) | purple patterned floors, blue-white walls, slot doors | `sl_arrival`, `env_sl_halls`, `sl_debris` |
+| Base Cochise grounds | side 4 (location 16) | dark desert, striped fence, dome with weapon pods | `cb_arrival`, `cb_gate_robots` |
 
 ## 3. Opponents
 | Opponent | Where met | Family / picture | What it does | Shots |
@@ -39,6 +48,15 @@ each visual family. A complete table belongs in its own document (items.md, enem
 | Animals / Radioactive Vermin | world map at the Ranger Center | brown rodent portrait | groups of 3, bites for about 7 **(verified)** | `battle_appears`, `battle_menu`, `battle_round`, `battle_radrat` |
 | Animals / Wild Canine | world map north-west of the Ranger Center | grey wolf portrait | groups of 4, bites for 5 to 13, pounces **(verified)** | start set `29_fight`, `33_battle_round`, `35_battle_won` |
 | Highpool kid | Highpool creek | a small blue figure | appears after the party slips in the creek; more kids, a Chubby Kid and the Red Ryder follow (source) | `hp_creek_kid` |
+| Shambler Ghouls | Quartz graveyard | undead | "Spirits pop out from a grave": 2-3 at 2-10 feet | `qz_ghouls` |
+| Warroids Mark 1-3 | Las Vegas streets | robots | mixed groups of up to 8 at 10-82 feet | `vg_warroids` |
+| Scorpitron | Las Vegas | robot tank | "It looks like a tank with an armored warrior"; alone | `vg_scorpitron` |
+| Cyborg Commandos | Las Vegas | cyborgs | a party of ten heavily armed men | `vg_cyborgs` |
+| Slicerdicers, Chopters, Sniperdroids | Las Vegas | robots ("Death Machines!") | three groups at once | `vg_death_machines` |
+| Fat Freddy's thugs, glowing woman | Las Vegas | Humanoids | ambush from a building; a single radioactive woman | `vg_freddy`, `vg_glowing` |
+| Guardians (Brothers and Sisters) | Guardian Citadel | named monks with weapons | single guards, table ambushes, the chef, a museum sniper | `ct_brother_austin`, `ct_guardians`, `ct_chef`, `ct_museum`, `ct_sisters` |
+| Nailed Wolves | Sleeper Base | animals | "Low growls rumble from the corner" | `sl_wolves` |
+| Cochise robots | Base Cochise grounds | Chopters, VTOL Auto-fire Robots, Silicon Snipers, Laser Hypermortar, Plasma Constrictors, Wire-guided Missile, X-ray Laser Projector | groups by position on the grounds; a weapon pod rises from the dome | `cb_robots`, `cb_plasma`, `cb_weapon_pod`, `cb_gate_robots` |
 
 ## 4. Items and equipment
 | Item | Type | Got from | What it does | Shots |
@@ -65,7 +83,11 @@ each visual family. A complete table belongs in its own document (items.md, enem
 | Doctor | infirmary | Highpool | `hp_infirmary`, `hp_infirmary_exam` |
 | Farmers | ten men with axes, hoes and shovels, in despair | Agricultural Center sales booth | `ag_center` |
 | Teens, children | heard and seen in Highpool | dorm, creek | `hp_dorm`, `hp_creek_slip` |
+| Scott's Bar patrons | bar with stage | Quartz | `qz_scotts_bar` |
+| Darwin trader | general store | Darwin | `dw_store` |
+| Darwin gate guard | wants a password | Darwin | `dw_password` |
+| The delicious man | Lab inmate | Darwin Lab | `dw_delicious` |
 
 ## Open questions
-- Later towns (Quartz, Needles, Las Vegas) and their opponents: not reached in this run.
+- ~~Later towns not reached~~ captured 2026-11-22 (second capture run); shops' stock and NPC talk in them still open.
 - Whether the Sell list shows the shop's buying offers for any item or only for items the party carries.
