@@ -1595,6 +1595,7 @@ class Amiga(Libretro):
     native_size = (360, 287)
     emulator = "PUAE libretro core"
     ENDIAN = "be"              # 68000: RAM watches and set: read multi-byte values big-endian
+    EXACT_RESTORE = False      # a loaded state drifts from a run that never saved (amiga.md, Backend)
     SO = os.path.join(HERE, "puae", "puae_libretro.so")
     KICKDIR = os.path.join(HERE, "..", "rom", "kickstart")
     MACHINES = ("A500", "A500OG", "A500ECS", "A500PLUS", "A600", "A600OG", "A1200", "A1200OG", "A2000", "A2000OG",

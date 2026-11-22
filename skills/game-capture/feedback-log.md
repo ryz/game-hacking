@@ -12,6 +12,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-22 - Dragonflight (Amiga) round 2
+- Task: Dragonflight Amiga round 2: combat, magic and other systems, appended to `main`.
+- Worked: `preview.py` with `?` frames and sheets to compare restore points; a flat route against chained
+  routes isolated the restore problem in about 6 calls; poking the opponent kind/count during the load gave
+  every monster picture; `--only` batches.
+- Friction: the checkpoint cache is keyed by the expanded flat route, so a checkpoint rewritten from
+  `@world,...` to the same tokens from power-on silently reused the state built through restores (file deleted
+  by hand); a restore before a disk load changed what the load did, unflagged; ~30 calls hunting opponent HP.
+- Proposed rule change: amiga.md: a state restored before a disk load can make the load fail; build such a
+  checkpoint flat from power-on and checkpoint only after the load. Tool wish: cache key includes the build
+  path (chained or flat).
+- Corrected: coordinator verified 58 shots from an empty cache (result in progress log); pushed save 02_armed.
+- Status: amiga.md note added (platform fact); cache key wish built 2026-11-22 (parent in the key).
+
 ### 2026-11-22 - Dragonflight (Amiga)
 - Task: capture the Dragonflight (Amiga) start and main sets with the three lenses; find fights, shops,
   dungeon and magic.

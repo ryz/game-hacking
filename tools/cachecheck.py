@@ -37,7 +37,7 @@ def probe(job):
         E.CACHE_DIR = None if mode == "yours" else cache_dir
         game = E.Game(game_id)
         if mode == "yours":
-            if not os.path.exists(E.cache_path(game, E.resolve(game, "@" + name), model)):
+            if not os.path.exists(E.checkpoint_cache(game, name, model)):
                 return name, mode, None, None, ""
         emu, _ = E.at_checkpoint(game, name, model, cache=mode != "flat")
         E.play(emu, game, E.expand(game, E.split(after)))
@@ -158,7 +158,7 @@ def main(argv=None):
     if stale:
         if a.fix:
             for n in stale:
-                os.remove(E.cache_path(game, E.resolve(game, "@" + n), model))
+                os.remove(E.checkpoint_cache(game, n, model))
             print("removed %d stale state(s) from your cache: %s" % (len(stale), " ".join(stale)))
         else:
             print("your cache holds %d state(s) that their routes do not produce: %s (--fix deletes them)" % (

@@ -454,6 +454,16 @@ def cache_path(game, toks, model):
     return os.path.join(CACHE_DIR or os.path.join(WORK, "cache"), game.id, key + ".state")
 
 
+def checkpoint_cache(game, name, model):
+    """Cache file of checkpoint NAME: the flat route from power-on plus the checkpoint it is built from. Where
+    restores are not bit-exact (Amiga) a checkpoint built through its parent's state and the same tokens played
+    from power-on are different states (Dragonflight 2026-11-22: a checkpoint rewritten flat silently reused the
+    chained one)."""
+    own = expand(game, split({c["name"]: c for c in game.checkpoints()}[name]["route"]))
+    via = own[0] if own and own[0].startswith("@") else "@"
+    return cache_path(game, resolve(game, "@" + name) + ["via" + via], model)
+
+
 def _lock(path):
     """Exclusive lock for building one cache file: parallel runs that need the same checkpoint wait for the
     first one instead of replaying the route several times (shoot.py --jobs, preview.py)."""
@@ -482,7 +492,8 @@ def at_checkpoint(game, name, model, cache=True):
         emu = open_game(game, model, opts=opts)
         play(emu, game, base_toks)
         return emu, base
-    path = cache_path(game, base, model)
+    own = expand(game, split({c["name"]: c for c in game.checkpoints()}[name]["route"]))
+    path = checkpoint_cache(game, name, model)
 
     def load():
         emu = open_game(game, model, path, opts)
@@ -493,7 +504,6 @@ def at_checkpoint(game, name, model, cache=True):
     with _lock(path):
         if os.path.exists(path):                # built by another process while this one waited
             return load(), base
-        own = expand(game, split({c["name"]: c for c in game.checkpoints()}[name]["route"]))
         if own and own[0].startswith("@"):
             emu, _ = at_checkpoint(game, own[0][1:], model)
             play(emu, game, own[1:])

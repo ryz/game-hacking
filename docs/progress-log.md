@@ -20,6 +20,14 @@ Append-only, newest first.
   720 wide (every column twice). `Amiga.image()` now halves a frame whose columns (or lines) all come in
   identical pairs; real hires detail keeps 720. Both sets reshot (49 pictures, same content at 360x287),
   verify 24/24, 33/33 `--published`; the pointer helper `tools/at.py` takes 360-wide coordinates.
+- Capture round 2 (owner: combat and more): `main` 33 -> 58: combat (encounter, orders, a hit, 13 opponent kinds
+  via the `FOE` poke during the load, deaths, game over), magic (scroll learned, spell prepared, cast fails).
+  Fights load only on routes played from power-on (a restore before the load breaks it): encounter checkpoints
+  are flat. Coordinator verify 58/58 from an empty cache; save 02_armed in the vault. Open: a won fight
+  (opponent HP not found), shop, dungeon, ship, dragon, other towns, Great Map view.
+- Tools: the checkpoint cache key includes the checkpoint a route is built from (`emu.checkpoint_cache`, also
+  used by cachecheck and play.py); `play.py checkpoint` on platforms without exact restores (Amiga) rebuilds
+  the checkpoint and continues from it instead of storing the live machine.
 
 ## 2026-11-22 - Wasteland (C64): registered, scouted, captured
 - Owner's upload: GameBase64 set (9 D64, PAL). Disks 1-4 are the master sides, 5-8 the play copies the game wants

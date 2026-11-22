@@ -29,7 +29,11 @@ frame, but game RAM differs from a run that never saved some frames later, so `c
 with matching frames. Sets are not affected: a checkpoint always continues from its saved file, also in the
 process that built it (`tools/emu.py` `at_checkpoint`, 2026-11-22; before, build order and `--jobs` changed
 pictures). A random outcome seen in live `play.py` play can still come out differently in a replay: check a
-route with `preview.py` before building on it. Causes found so far: `docs/backlog.md`.
+route with `preview.py` before building on it. A state restored before a disk load can change what the load does (Dragonflight:
+a fight's load then asks for another disk and resets the game): build such a checkpoint flat from power-on
+and checkpoint only after the load. The checkpoint cache key names the checkpoint a route is built from (`emu.checkpoint_cache`),
+and `play.py checkpoint` rebuilds the checkpoint from its route and continues from that instead of storing
+the live machine (`EXACT_RESTORE = False`): look at its picture, a random outcome may differ. Causes found so far: `docs/backlog.md`.
 
 Checked (tests `test_amiga_*`): two power-ons give the same frames and chip RAM; a run continued after a
 savestate equals one loaded from it, into a machine that has not run yet and into a busy one; a state saved
