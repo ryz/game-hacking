@@ -1,0 +1,53 @@
+{
+  "slug": "dragonflight",
+  "title": "Dragonflight",
+  "platform": "amiga",
+  "region": "eu",
+  "edition": "Amiga (English, CLS crack, A500 with Kickstart 1.3)",
+  "model": "A500",
+  "rom": "rom/dragonflight.zip",
+  "sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
+  "crc32": "adaf6733",
+  "size": 1539777,
+  "source": {
+    "note": "TOSEC set of 6 ADFs uploaded 2026-11-22; zip built from two of them. Not used: Disk 1 [cr CLS][h Spaikers] (same crack, hacked boot block and intro message, 10 blocks differ); Disk 2 [cr CLS], [a], [a2] (13-36 blocks of leftover data near the end of the disk, no saved game on any of them). Disk 2 has no copy protection, so the uncracked original is used.",
+    "disks": [
+      {
+        "zip_name": "Disk 1.adf",
+        "from": "Dragonflight (1990)(Thalion)(Disk 1 of 2)[cr CLS].adf",
+        "sha1": "99b59181fe34532963379aaf6934c709354c4d2f"
+      },
+      {
+        "zip_name": "Disk 2.adf",
+        "from": "Dragonflight (1990)(Thalion)(Disk 2 of 2).adf",
+        "sha1": "a05357366aa8d1c80dd7a5d8976dde4cff5a7700"
+      }
+    ]
+  },
+  "header": {
+    "disks": [
+      {
+        "name": "Disk 1.adf",
+        "sha1": "99b59181fe34532963379aaf6934c709354c4d2f",
+        "kind": "3.5 inch DD floppy, 880 KiB",
+        "boot": "AmigaDOS OFS"
+      },
+      {
+        "name": "Disk 2.adf",
+        "sha1": "a05357366aa8d1c80dd7a5d8976dde4cff5a7700",
+        "kind": "3.5 inch DD floppy, 880 KiB",
+        "boot": "not an AmigaDOS disk (own bootblock or track format)"
+      }
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
