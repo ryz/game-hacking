@@ -8,9 +8,12 @@
   "open": "Up ladder and Blink spells, fleeing, natural-kill loot",
   "model": "svga-500",
   "rom": "rom/ultima-2.zip",
-  "sha1": "1f5f28cb10922da3a2c006c89a3df52323857a29",
-  "crc32": "fb7dbe8c",
-  "size": 77262,
+  "sha1": "03d2c6b6b36ab500e02ba4c9015f6942450e2412",
+  "crc32": "8228c09f",
+  "size": 74937,
+  "source": {
+    "note": "rom/ultima-2.zip is the owner's Ultima_II.zip (uploaded 2026-11-22, flat, no folder) repacked into the folder 'Ultima II/' (zip -rX), because the first upload (SHA-1 1f5f28cb10922da3a2c006c89a3df52323857a29, folder inside) is lost and routes, program menu and saves use the folder; same file count and programs, committed set replayed pixel-exact (shoot.py --verify --published)."
+  },
   "header": {
     "files": 111,
     "programs": [

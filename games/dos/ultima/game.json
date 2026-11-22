@@ -8,9 +8,12 @@
   "open": "starbase docking and ship choice, pub seduction, bard/jester songs, Steal spell",
   "model": "svga-500",
   "rom": "rom/ultima.zip",
-  "sha1": "19a3c1ed6697fc84e9ee3c5460397c807ae1188a",
-  "crc32": "aa06a7ae",
-  "size": 147322,
+  "sha1": "4b820a487f9c7161a0e6baacc7843a2aec4b6e3a",
+  "crc32": "bdbed0fd",
+  "size": 149676,
+  "source": {
+    "note": "rom/ultima.zip is the owner's Ultima_I.zip (uploaded 2026-11-22, flat, no folder) repacked into the folder 'Ultima I/' (zip -rX), because the first upload (SHA-1 19a3c1ed6697fc84e9ee3c5460397c807ae1188a, folder inside) is lost and routes, program menu and saves use the folder; same file count and programs, committed set replayed pixel-exact (shoot.py --verify --published)."
+  },
   "header": {
     "files": 28,
     "programs": [
