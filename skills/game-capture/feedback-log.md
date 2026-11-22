@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-22 - Ultima III (DOS) set start
+- Task: capture the Ultima III DOS `start` set (60 shots, honest play to the first Quit & Save).
+- Worked: a BFS path script over the town file (moves joined by `w20`) gave walking routes in one call; a
+  headless script passing turns and reading the object table found an honest first fight (eight wait variants
+  in parallel, no pokes); branch shots built by splitting checkpoint routes at `,settle,` reproduced first try.
+- Friction: renumbering ids after dropping shots made `shoot.py --prune` delete every renamed shot, so the
+  whole set was reshot (the capture guide says renumbered files are renamed on the next run; they were not);
+  the shop exit key was missing from the playbook (~4 calls).
+- Proposed rule change: `shoot.py SLUG start --renumber` (rewrite `NN_` ids in play order, rename files
+  instead of pruning); in `docs/emulator/README.md`: scan turn variants headless for honest fights on maps
+  with wandering monsters.
+- Corrected: none; four shots checked against captions by the coordinator. 60/60 verified by the agent,
+  cachecheck 44/44.
+- Status: backlog (renumber; walk/path tool third ask); headless fight scan logged (open lesson).
+
 ### 2026-11-22 - Ultima II (DOS) set start
 - Task: Ultima II DOS set `start`, honest play from creation to the first Q save (48 shots).
 - Worked: a short breadth-first search over the map bytes told at once which places are reachable on foot and

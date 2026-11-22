@@ -39,3 +39,5 @@ Tool wishes are not listed here: `docs/backlog.md`.
   instead of previewing whole routes (Bard's Tale III Apple II, 2026-11-21: `tools/safewalk.py`).
 - **A first-person view that stays black after entering** may be darkness, not a load hang: click once or
   light a torch/spell before waiting longer (Dragonflight, 2026-11-22).
+- **Honest fights on maps with wandering monsters:** scan turn-count variants headless (object table + combat
+  flag) before playing, instead of passing turns in the session (Ultima III start set, 2026-11-22).
