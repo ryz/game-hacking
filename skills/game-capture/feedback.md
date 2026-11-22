@@ -21,9 +21,6 @@ Tool wishes are not listed here: `docs/backlog.md`.
 - **Scrolling command logs:** write the caption from the frame, not from the keys sent (Ultima II, 2026-11-19).
 - **Check the must-have list** (title, menu, first control, HUD, game over: `docs/capture-guide.md`) before
   the first full verify, not after (Ultima II, 2026-11-19).
-- **First-person RPGs: survey first.** A per-game script that steps onto every event square and reads the
-  encounter from memory gives the monster groups and messages of all areas in one run (Might and Magic 1 DOS
-  round 2, 2026-11-18; a shared version is in `docs/backlog.md`).
 - **Shots added during a run:** `shoot.py SLUG SET --verify --only id,id` checks just those (Shin Megami
   Tensei run 2, 2026-11-17).
 - **Scripts that play routes** use `emu.start(game, route)` and `emu.play(emu, game, rest)`; a hand-made token

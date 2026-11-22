@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-22 - Wasteland (C64), sides 2-4
+- Task: add the locations on disk sides 2-4 (Quartz, Needles, Las Vegas, Guardian Citadel, Darwin, Sleeper Base,
+  Base Cochise) to `main`, plus the disk prompts and the lenses.
+- Worked: survey by preview: a script writes one plan line per event square of a town map from a RAM dump, one
+  `preview.py --crop` sheet shows the whole town (four towns in four calls); the warp by poking all position copies
+  at once, self-modifying code operands included (~10 calls).
+- Friction: reading big preview sheets costs per call; bare `sleep` blocked, waiting on a background verify needed
+  a `timeout bash -c 'until grep ...'` loop; world tile values are event indexes, not location ids (wrong town
+  base addresses at first).
+- Proposed rule change: skill step 2: survey event squares as one cropped preview before exploring by hand;
+  shared `tools/eventsurvey.py` (map base, width, open values).
+- Corrected: coordinator verify from an empty cache 124/124, both sheets looked at; saves 03_quartz and 04_cochise
+  pushed to the vault (not loaded by the agent). Sleeper Base / Base Cochise names inferred from content (not shown
+  in game), recorded in "open". Survey lesson was a second case (Might and Magic I DOS): promoted into skill.md
+  step 2, line removed from feedback.md. Tool wish: "Asked" raised on the shared survey row in the backlog.
+- Status: promoted 2026-11-22 (survey first); backlog (eventsurvey)
 ### 2026-11-22 - Wasteland (C64)
 - Task: publish the Wasteland C64 `start` and `main` sets with the three lens documents.
 - Worked: zero-page map size ($55/$56 = 64x64) led to the world map byte grid at $3C00 in about 5 calls; a search

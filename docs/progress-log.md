@@ -2,6 +2,13 @@
 
 Append-only, newest first.
 
+## 2026-11-22 - Wasteland (C64): later towns (disk sides 2-4)
+- `main` grown from 62 to 124 shots: Quartz, Needles, Las Vegas, Guardian Citadel, Darwin, Sleeper Base and Base
+  Cochise (the last two reached through a poked entry record; names inferred, the game does not show them), the
+  side 2-4 disk prompts and saving in a town. Cold verify 124/124. `WARP:XX:YY` macro (all position copies incl.
+  code operands), location number F40A, entry records 4DEA-4E9E, town maps at $3600. Saves 03_quartz, 04_cochise
+  in the vault. game-capture skill: "survey first" promoted (second case).
+
 ## 2026-11-22 - Wasteland (C64): registered, scouted, captured
 - Owner's upload: GameBase64 set (9 D64, PAL). Disks 1-4 are the master sides, 5-8 the play copies the game wants
   (factory state), 9 a cracker's character editor (untried). Registered as `c64/wasteland` (region na), dump and
