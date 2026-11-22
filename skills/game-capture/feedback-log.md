@@ -12,6 +12,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-22 - Ultima II (DOS) set start
+- Task: Ultima II DOS set `start`, honest play from creation to the first Q save (48 shots).
+- Worked: a short breadth-first search over the map bytes told at once which places are reachable on foot and
+  gave exact key lists; walking them produced a real first fight with no setup. Previewing shop/talk lines in
+  batches and checking merchant squares with `u2objs.py` fixed every failed Transact in one round.
+- Friction: preview and the play session disagreed about the fight until the agent saw that settles between
+  calls had moved the RNG (fight shots built in preview from a clean route); wandering merchants made each
+  Transact timing-dependent; one key dropped during an automatic PASS on a long walk.
+- Proposed rule change: a shared `tools/path.py SLUG MAP FROM TO` (map bytes + walkable tiles from game.json)
+  for reachability and key routes on top-down maps.
+- Corrected: none; sheet checked by the coordinator (48 shots in play order). Lord British's healing not
+  reachable on foot (castle on an island), recorded in game.json "open".
+- Status: backlog (walk/path tool, second ask: `docs/backlog.md`); RNG-moved-by-settles lesson logged.
+
 ### 2026-11-22 - Dragonflight (Amiga) round 3
 - Task: Dragonflight Amiga capture round 3 (dungeon, Great Map, magic/potions) appended to `main`.
 - Worked: rendering the suspected land grid as an image showed the whole world and its place icons in one
