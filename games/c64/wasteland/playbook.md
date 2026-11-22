@@ -5,34 +5,34 @@ Status of each fact: **verified** (seen in the emulator, with the route) or **so
 checked). Never delete a fact that turned out wrong: strike it and say what is true.
 
 ## Read first
-- **Start:** `python3 tools/play.py start wasteland --route @start` (world map at the Ranger Center, party RYZ,
-  Angela Deth, Thrasher, Snake Vargas, ryz first). Model `c64` (PAL). Needs `rom/wasteland.zip` (9 D64s,
-  `disk:1`..`disk:9` = WASTLND0..8). Boot is from master side 1 (disk:1, automatic); **play happens on the
-  play copy of side 1, `disk:5`** (WASTLND4): the masters (disk:1-4) are refused as play disks.
-- **Macros:** `TITLE` (w1900, title with Place/Year/Status typed), `NEWGAME` (title -> Ranger Center screen with
-  the four default rangers), `RYZ` (delete Hell Razor, create RYZ), `RYZSTATS` (pokes realistic stats),
-  `LEAVE` (Ranger Center Start -> world map), `ORDER4` (put member 4 first), `N S E W` (one step, keys I K L J),
-  `SAVE` (field Save), `CONT` (title -> continue a saved game), `NEWFRESH` (title -> new game through the
-  N answer, all four sides), `ROLL` (reroll at character creation).
-- **Checkpoints:** `title`, `rangers` (Ranger Center, default party), `party` (RYZ created), `start` (world map,
-  first control), `step1` (one step east), `fight` (random encounter "3 Animals"); the last three are full
-  routes from power-on (see Checkpoints).
-- **Keys:** keyboard only (cursor keys and joystick do nothing on the map, verified). Move I/J/K/L =
-  north/west/south/east. Field: U Use, E Enc, O Order, D Disband, V View, S Save, R Radio, digits 1-7 = character
-  sheet (RETURN pages stats -> items -> skills -> map), SPACE toggles the roster, **Esc = `leftarrow`** (closes
-  windows; on the map it passes time). Combat: R)un U)se H)ire E)vade A)ttack W)eapon L)oad/Unjam, then
-  "Use these options (Y/N)?" Y.
-- **Traps that cost calls:**
-  - **Loaded states drift from power-on replays** (random encounters, rolls): `@start,w1000` meets "3 Animals"
-    when replayed from power-on but not when built from the cached `start` (cachecheck: memory and frame
-    differ). Every checkpoint that depends on chance must be written as a full route from power-on (like
-    `fight`), and checked with `cachecheck.py`. See Emulation notes.
-  - Character creation rolls change with any timing change: that is why `RYZSTATS` pokes the stats.
-  - Names are upper case only (the game shows RYZ; shift does not help).
-  - Loads are long and silent: the waits in the macros are measured (`NEWGAME` about 6000 frames).
-  - Map positions F408/F409 are a copy: poking them does not move the party (no warp yet).
-- **State:** scouted 2026-11-21, nothing captured. Highpool (first town, just west of the Ranger Center) not
-  reached yet: it is ringed by mountains on the screens seen; finding its entrance is the capture's first job.
+- **Start:** `python3 tools/play.py start wasteland --route @start` (world map ON the Ranger Center square x55 y62,
+  party RYZ, Angela Deth, Thrasher, Snake Vargas, RYZ first, RYZ stats poked). Model `c64` (PAL). Needs
+  `rom/wasteland.zip` (9 D64s). Boot from master side 1 (automatic); play happens on the play copy `disk:5`.
+- **Captured 2026-11-22:** sets `start` (49, honest) and `main` (62) published; lenses written.
+- **World map is in RAM:** 64x64 bytes at $3C00 (row-major, x + 64*y): 0 open ground, 1 mountain (blocks),
+  2/3 other passable terrain, 6 water, 13 river current (hurts 1 CON each), single values 7-31 are location
+  icons (7 Agricultural Center x36 y55, 8 Highpool x47 y59; list below). BFS over it: `work/plan/wasteland/bfs.py`
+  (scratch, rebuild from this note). Zero page $55/$56 = map size.
+- **Ways out of the Ranger Center:** leave with Start, then walk NORTH from the RC square. The two squares east
+  of it are a dead end (mountains); declining a location prompt puts the party back where it came from.
+- **Paths (tokens, from `@start` / `@s_world`):** Highpool `N*4,W*2,N,W*6,S,settle,S,w100,settle,y,w2000`;
+  Agricultural Center `N*4,W*2,N,W*3,N,W*3,N,W*10,W,w100,y,w2000`; lake `N*4,W*2,N,W*12,S,W,S,W*6`.
+- **Highpool (location coords, F408/F409 follow them):** arrive x7 y1; `S*17` to the dorm row; store door
+  `S*17,E*4,S*3,E` (interior x26 y27, counter N of x30 y25: `E*3,N*2,N,E,w1500,N,w1500,y,w2000` = shop);
+  infirmary at x13 y29 (from x10 y28: `E*3,S`); workshop interior via the infirmary exit `N,W*4,S`; creek:
+  `S*18,W*3,S` (slip event, a kid appears).
+- **Checkpoints:** `title`, `rangers`, `party`, `start`, `step1`, `fight`, `highpool`, `infirmary`, `workshop`,
+  `store`, `shop` (poked chain); `s_party`, `s_world`, `s_won`, `s_highpool` (honest chain of the start set).
+- **Keys:** I/J/K/L move; U Use, E Enc, O Order, D Disband, V View, S Save, R Radio, digits = sheet, SPACE =
+  roster; Esc = `leftarrow`. Combat R U H E A W L then Y. The W key alone is `w` (Weapon); `wN` is a wait.
+- **Money:** `set:F815=1287:3` (RYZ) works on the map; shops and doctors show the pooled money.
+- **Traps:** each menu key needs 200-400 frames; location loads ~2000; save ~3000. Leaving a shop/infirmary:
+  `leftarrow,w300,leftarrow,w2000,settle,n,w300` (it re-asks "Enter new location": answer N). A save on a
+  location square re-asks too: step off first.
+- **Determinism:** no divergence seen this run: every checkpoint built on a parent reproduced (start 49/49,
+  main from an empty cache).
+- **Open:** game over (CON 1 party survived 4 rounds); MORE: in the shop list; Utils Copy/Restart; disk:9 editor;
+  later towns (other disk sides).
 
 ## Identity
 | Field | Value |
@@ -116,16 +116,17 @@ normal).
   appear at 14 feet. [RETURN]", an animated enemy portrait, then a per-member command menu (verified, `fight`).
 
 ## Shot plan
+Captured 2026-11-22 (ticked): all but game over, the Utils sub-screens, later towns and the NPC talk.
 Targets for `main` (ids, category):
-- [ ] `title_screen` title (`@title`); `title_globe_credits` boot (intake frame f1200); `title_utils` menu (U)
-- [ ] `menu_continue` menu ("Use last saved game (Y/N)?"); `menu_insert_side` menu ("Insert side 1")
-- [ ] `rc_roster` menu (`@rangers`); `rc_create_roll` system; `rc_skills` system; `rc_nationality` menu; `rc_delete` menu
-- [ ] `world_start` gameplay (`@start`); `env_world_mountains`, `env_world_lake`, `env_world_desert` gameplay
-- [ ] `hud_world_roster` hud (map + roster + clock + command bar)
-- [ ] `char_stats`, `char_items`, `char_skills` inventory (digit, RETURN, RETURN)
-- [ ] `field_use`, `field_order`, `field_radio`, `field_enc` menu (prompts); `map_edge_message` dialogue
-- [ ] `battle_appears` battle (`@fight`); `battle_menu` battle; `battle_weapon` battle; `battle_round_msgs` battle (timeline); `battle_xp` battle
-- [ ] `loc_enter_prompt` gameplay ("Enter new location (Y/N)?"); Highpool town, a shop, an NPC talk, the library/doctor (play)
+- [x] `title_screen` title (`@title`); `title_globe_credits` boot (intake frame f1200); `title_utils` menu (U)
+- [x] `menu_continue` menu ("Use last saved game (Y/N)?"); `menu_insert_side` menu ("Insert side 1")
+- [x] `rc_roster` menu (`@rangers`); `rc_create_roll` system; `rc_skills` system; `rc_nationality` menu; `rc_delete` menu
+- [x] `world_start` gameplay (`@start`); `env_world_mountains`, `env_world_lake`, `env_world_desert` gameplay
+- [x] `hud_world_roster` hud (map + roster + clock + command bar)
+- [x] `char_stats`, `char_items`, `char_skills` inventory (digit, RETURN, RETURN)
+- [x] `field_use`, `field_order`, `field_radio`, `field_enc` menu (prompts); `map_edge_message` dialogue
+- [x] `battle_appears` battle (`@fight`); `battle_menu` battle; `battle_weapon` battle; `battle_round_msgs` battle (timeline); `battle_xp` battle
+- [x] `loc_enter_prompt` gameplay ("Enter new location (Y/N)?"); Highpool town, a shop, an NPC talk, the library/doctor (play)
 - [ ] later towns (Quartz, Needles, Las Vegas) by play or by the disk-swap trick (below); `save_prompt` save; `gameover` (party dead)
 `start` set: power-on, title, continue prompt, insert side, Ranger Center, create RYZ (roll, name, sex,
 nationality, skills), Start, world map, first steps, first save (`SAVE`).
@@ -181,6 +182,10 @@ Pokes into a record before LEAVE are written with the party (RYZSTATS survives L
   from `@checkpoint` routes to differ from shots in encounters and rolls.
 - The title screen keeps typing new lines after "Status: DEFCON 1"; `TITLE` stops at f1900.
 
+- 2026-11-22 capture: no divergence between cached and power-on states seen (start set 49/49 and main set
+  verified from an empty cache; checkpoints built on parents, including chance-dependent ones such as `s_won`).
+  The macro `EVY` mentioned in Capture notes was removed again.
+
 ## Checkpoints
 `title` -> `rangers` -> `party` is a chain; `start`, `step1` and `fight` are full routes from power-on
 (`TITLE,NEWGAME,settle,RYZ,RYZSTATS,LEAVE,ORDER4,settle` + `E` / `w1000`), because built on the cached `party`
@@ -199,9 +204,21 @@ change, a stale state in your own cache shows as "yours DIFFERS").
 | wasteland.fandom.com, mocagh.org | | not reachable from this container (DNS) | 2026-11-21 |
 
 ## Open questions
-- Highpool's entrance (and every other location's square): no world-map decoding yet; the map is drawn from
-  data that is not a plain 64x64 grid in RAM (row pointer $5D/$5E, data around $4B00-$4F00 looked at).
+- ~~Highpool's entrance: no world-map decoding yet~~ solved 2026-11-22: the map is the 64x64 grid at $3C00 (Read first).
 - A real warp: F408/F409 and $57/$58 are copies; find the master position (or the location-entry code).
 - What the Utils Copy / Restart screens look like; what N at "Use last saved game" writes to the sides.
 - The editor on disk:9 (would need a boot from disk 9).
 - Hidden RNG state not in savestates (above).
+
+## Capture notes (2026-11-22)
+- World map icons in the $3C00 grid (x, y, value): (36,55) 7 Agricultural Center; (47,59) 8 Highpool; (24,30)-(25,31)
+  9-12 a 2x2 town; (21-23,16-18) 13-20 a 3x3 place; (57-58,36-37) 28-31 a 2x2 place; (36,48) 27; (32,52) 25;
+  (13,58) 26; 13 = river current squares along x25-28; 4/5/14/15 scattered (unidentified).
+- Encounters: the honest chain met 4 Animals (Wild Canines) after `w1000*10` at x50 y57 (`s_won`); the poked
+  chain meets 3 Animals (Radioactive Vermin) after w1000 at the Ranger Center (`fight`).
+- Battle round: orders per conscious ranger, then `y`; give `w2500`-`w3000` for the report. One `y` too many in
+  a repeated macro desynchronises the orders (a macro `EVY` = `e,w300,y,w600` repeated stalled at the last ranger; removed).
+- Shop: `1,w400` picks the ranger, `b,w600` Buy list, `s,w600` Sell list, a digit buys at once.
+- Infirmary: `1,w300` shows the recommendation (Exam $25; Healing for the wounded).
+- Highpool workshop: Perception on the cot found nothing (both on it and eastwards).
+- Saves: `02_highpool` (rom/saves, honest party after the start set, in Highpool) loads with `sav:02_highpool,TITLE,CONT`.

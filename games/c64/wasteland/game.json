@@ -128,6 +128,6 @@
       "fmt": "le"
     }
   },
-  "work": "scouted 2026-11-21: boot and disk swaps (master side 1 boots, play copies disk:5-8), 6 checkpoints to a first fight, RAM map (party, records, money); not captured",
-  "open": "Highpool entrance and other locations not reached; no world-map warp; loaded states drift from power-on replays (encounters, rolls); Utils Copy/Restart and the disk-9 editor not tried"
+  "work": "captured 2026-11-22: start set (49 shots, power-on to the first save in Highpool, honest) and main set (62: title, Ranger Center, creation, world map, field commands, Highpool shop/infirmary/workshop, Agricultural Center, combat to result); lenses written; world map decoded in RAM",
+  "open": "game over not reached; later towns (disk sides 2-4) not visited; Highpool cave/Jackie/Red Ryder events, NPC talk; Utils Copy/Restart and the disk-9 editor not tried"
 }

@@ -1,0 +1,62 @@
+boot_globe | boot | Loading: the Earth globe with the Electronic Arts and Interplay credits | w1250
+title_screen | title | Title: Place EARTH, Year 1998, Status DEFCON 1; Start / Utils | @title
+title_utils | menu | Utils menu: Copy / Restart / Start | @title,u,w600
+menu_continue | menu | "Use last saved game (Y/N)?" after Start | @title,s,w300
+menu_insert_side | menu | "Insert side 1. [RETURN]" | @title,s,w300,y,w1500
+rc_roster | menu | Ranger Center: the four pre-made rangers, Create / Delete / Start | @rangers
+rc_roll | system | Create a character: attributes, rank Private, MAXCON; SPACE rerolls | @rangers,d,w200,1,w300,y,w300,c,w300
+rc_reroll | system | Another roll after SPACE: every attribute rolled again | @rangers,d,w200,1,w300,y,w300,c,w300,ROLL
+rc_nation | menu | Nationality: U.S., Russian, Mexican, Indian, Chinese | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300,m,w300
+rc_skills | system | Skill list: IQ needed, point cost and level of each skill | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300,m,w300,1,w300
+rc_party | menu | Ranger Center with RYZ in the party, ready to Start | @party
+world_start | hud | World map at the Ranger Center: clock, party roster, command bar | @start
+world_full | gameplay | Roster hidden (SPACE): the whole map window | @start,space,w300
+char_stats | inventory | RYZ's sheet: attributes, CON, rank, money $1287 | @start,set:F815=1287:3,1,w300
+char_items | inventory | RYZ's items: M1911A1 .45 pistol and eight .45 clips | @start,set:F815=1287:3,1,w300,return,w300
+char_skills | inventory | RYZ's skills: Clip pistol, Rifle, Perception | @start,set:F815=1287:3,1,w300,return,w300,return,w300
+field_use | menu | Use: "Which player?" | @start,u,w200
+field_use_kind | menu | Use: Item, Skill or Attribute? | @start,u,w200,1,w300
+field_use_skill | menu | Use a skill: RYZ's skill list | @start,u,w200,1,w300,s,w300
+field_which_way | menu | Perception: "Which way?" I J K L, SPACE for here | @start,u,w200,1,w300,s,w300,3,w400
+field_perception | dialogue | Perception result: "You see nothing special." | @start,u,w200,1,w300,s,w300,3,w400,space,w400
+field_enc | menu | Enc: "This party is not being attacked..." battle round (Y/N)? | @start,e,w300
+field_disband | menu | Disband: "Who wants to disband?" | @start,d,w300
+field_radio | menu | Radio: "Radio (Y/N)?" | @start,r,w300
+field_save | save | Save: "Save game (Y/N)?" | @start,s,w300
+map_edge | dialogue | South edge: "You see miles and miles of endless wasteland..." | @start,S
+map_mountain | dialogue | "This mountain is in your way. Go around." | @step1,N
+env_world_valley | gameplay | World map: grass valley between mountain ridges north of the Ranger Center | @start,N*4,W*2,N,W*3
+env_world_lake | gameplay | World map: the lake west of Highpool | @start,N*4,W*2,N,W*12,S,W,S,W*6
+env_world_lake_south | gameplay | World map: the lake's south shore | @start,N*4,W*2,N,W*12,S,W,S,W*2,S*2,W*5
+world_river_current | system | River current: "You are caught by the river's current", 1 damage each | @start,N*4,W*2,N,W*12,S,W*7,N,W*2,N,W*2,N*3,W,N,W*2
+loc_agcenter | gameplay | "Entering Agricultural Center. Enter new location (Y/N)?" | @start,N*4,W*2,N,W*3,N,W*3,N,W*10,W,w100
+ag_center | gameplay | Agricultural Center: the farm fields on arrival | @start,N*4,W*2,N,W*3,N,W*3,N,W*10,W,w100,settle,y,w2000
+ag_center_walk | gameplay | Agricultural Center: a few steps in | @start,N*4,W*2,N,W*3,N,W*3,N,W*10,W,w100,settle,y,w2000,settle,S*2,E*2
+hp_desert | gameplay | Highpool: the desert north of the settlement, walls on both sides | @highpool
+env_hp_creek | gameplay | Highpool: the creek and huts in the valley | @highpool,S*11
+env_hp_pool | gameplay | Highpool: the pool and the huts of the settlement | @highpool,S*17,settle,E*4,S*2,W,S*4
+hp_creek_wade | dialogue | Creek: "the rocks are slippery. You slip and fall into the water..." | @highpool,S*18,settle,W*3,S
+hp_dorm | dialogue | "This is a dorm for teens. Nothing much of interest here." | @highpool,S*17,settle,E*5
+hp_store_entry | gameplay | Store building: "The entry is cool. A store counter is nearby..." | @store
+hp_shop | shop | Highpool shop: storekeeper portrait, "Who wants to enter?" | @shop
+hp_shop_buysell | shop | "Do you want to Buy or Sell?" | @shop,set:F815=1287:3,1,w400
+hp_shop_buy | shop | Buy list with pool money: Book, Canteen, Crowbar, Gas mask, Geiger counter | @shop,set:F815=1287:3,1,w400,b,w600
+hp_shop_bought | shop | Bought a Crowbar: pool money $1287 drops to $1272 | @shop,set:F815=1287:3,1,w400,b,w600,3,w400
+hp_shop_sell | shop | Sell list: prices offered for Rope, Canteen, Crowbar, Hand mirror, Match | @shop,set:F815=1287:3,1,w400,s,w600
+hp_infirmary | shop | Highpool infirmary: the doctor, "Who wants treatment?" | @infirmary
+hp_infirmary_exam | shop | Doctor's offer for RYZ: Exam $25 | @infirmary,set:F815=1287:3,1,w300
+hp_workshop | gameplay | Workshop interior: old machinery and a cot in the back | @workshop
+hp_workshop_parts | dialogue | "Old machine parts lie on the floor, surrounded by a scatter of tools." | @workshop,E,N
+hp_workshop_pump | dialogue | "This big contraption is a patchwork machine. You recognize a pump." | @workshop,E,N,E
+battle_appears | battle | "From the depths of the wasteland appears a hostile adversary. 3 Animals" | @fight
+battle_menu | battle | Rodent portrait; "RYZ, choose:" Run Use Hire Evade Attack Weapon Load/Unjam | @fight,return,w300
+battle_weapon | battle | Weapon: RYZ's items, the M1911A1 .45 pistol and clips | @fight,return,w300,w,w300
+battle_use | battle | Use in combat: Item, Skill or Attribute? | @fight,return,w300,u,w300
+battle_hire | battle | Hire: "Which group?" 1> 3 Animals at 14 feet | @fight,return,w300,h,w300
+battle_confirm | battle | Orders given: "Use these options (Y/N)?" | @fight,return,w300,w,w300,1,w300,a,w300,a,w300,a,w300
+battle_round | battle | Round messages: attacks, hits and misses scroll in the window | @fight,return,w300,w,w300,1,w300,a,w300,a,w300,a,w300,y,w300,!
+battle_xp | battle | Round over: Angela Deth, Thrasher, Snake Vargas gain 5 experience | @fight,return,w300,a,w300,a,w300,a,w300,a,w300,y,w1500
+battle_radrat | battle | Weak party (CON 1) vs Radioactive Vermin: RYZ and Thrasher unconscious | @fight,poke:F51D=0100,poke:F61D=0100,poke:F71D=0100,poke:F81D=0100,return,w300,e,w300,e,w300,e,w300,e,w300,y,w3000,settle,e,w300,e,w300,e,w300,y,w3000,settle,a,w300,a,w300,a,w300,y,w3000
+hp_creek_slip | dialogue | "...splash. Your face burns with embarrassment. You hear children's laughter." | @highpool,S*18,settle,W*3,S,settle,return,w600
+hp_creek_kid | gameplay | A Highpool kid has appeared on the creek bank next to the party | @highpool,S*18,settle,W*3,S,settle,return,w600,return,w600
+save_load | menu | Continue from the exported save 02_highpool: the party back in Highpool | sav:02_highpool,TITLE,CONT
