@@ -1,0 +1,18 @@
+# id | category | caption | route
+# Quake start set: power-on to the first save, played honestly (Normal skill; no console, no pokes, no warps).
+01_command_line | boot | DOS prompt: quake -nocdaudio -nosound, Quake v1.06 locking memory | BOOT,w10,!
+02_console | boot | Start-up console over the Quake backdrop: hardware, configs, 3 demos in loop | BOOT,w100,!
+03_demo_start | title | Attract demo 1 (E1M3 The Necropolis): the demo player walks to a box of shells | BOOT,w160,w20,w20,w20,!
+04_demo_play | title | Attract demo 1 in a crypt: "You got the shells", "You got the Grenade Launcher" | BOOT,w330,!
+05_main | menu | Main menu over the running demo: Single Player highlighted | MENU,!
+06_single_player | menu | Single Player menu: New Game, Load, Save | MENU,enter,w40,!
+07_ordering | menu | Help/Ordering opens on the ordering page: all four episodes, 1-800-idGAMES | MENU,down*3,enter,w40,!
+08_help_movement | menu | Help page: basic movement and looking around | MENU,down*3,enter,w40,right,w40,!
+09_start_spawn | gameplay | New game, start map: first control, the skill halls ahead | @s_startmap
+10_normal_hall | gameplay | Normal hall: "This hall selects NORMAL skill" over the slipgate | @s_startmap,up:70,w20,up:70,w20,up:70,w20,!
+11_hub_arrival | gameplay | Episode hub: arrival from the skill slipgate | @s_hub
+12_env_hub_west | gameplay | Episode hub, looking west: stairs and episode signs | @s_hub,left:46,w20
+13_hub_shareware | gameplay | Episodes 2-4 closed: "This is the shareware version. Please register!" | @s_hub,left:46,w5,up:50,w5,up:50,w5,up:50,w5,up:50,w5,up:15,w5,!
+14_hub_e1_gate | gameplay | Episode 1 slipgate: "Walk into the Slipgate to start playing Quake!" | @s_hub,left:46,w5,up:50,w5,up:50,w5,up:50,w5,up:50,w5,up:15,w5,left:46,w5,!
+15_loading | system | Walking into the slipgate: Loading plaque | @s_hub,left:46,w5,up:50,w5,up:50,w5,up:50,w5,up:50,w5,up:15,w5,left:46,w5,up:30,w5,!
+16_e1m1_start | gameplay | E1M1 The Slipgate Complex: start, health 100, 25 shells | @s_e1m1
