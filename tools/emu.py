@@ -469,7 +469,8 @@ def _lock(path):
 def at_checkpoint(game, name, model, cache=True):
     """Emulator at checkpoint NAME. Cache hit: power on, load the state. Miss: go to the checkpoint its route
     starts from (cached the same way) and play only this checkpoint's own tokens, then save the state: a chain
-    of N checkpoints costs one pass over its tokens, not N boots. cache=False plays the whole flat route from
+    of N checkpoints costs one pass over its tokens, not N boots; a miss then reloads the state it saved, so
+    a miss and a hit continue identically. cache=False plays the whole flat route from
     power-on and touches no file: the reference that tools/cachecheck.py compares the cache against."""
     base = resolve(game, "@" + name)                # flat route from power-on: the cache key (and loop check)
     opts, base_toks = prefix(base)
@@ -498,7 +499,10 @@ def at_checkpoint(game, name, model, cache=True):
         tmp = "%s.%d.tmp" % (path, os.getpid())
         emu.save_state(tmp)
         os.replace(tmp, path)       # atomic: a reader never sees half a state
-    return emu, base
+        emu.close()
+    # Continue from the saved state, not from the run that built it: on a game whose savestate misses some
+    # timing (DOS Quake: input/event timing) a miss would otherwise give another picture than every later hit.
+    return load(), base
 
 
 def start(game, route, model=None, cache=True):
