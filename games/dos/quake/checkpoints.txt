@@ -6,3 +6,8 @@ menu | Main menu over the running demo (Single Player highlighted) | MENU
 s_startmap | New game: start map (Introduction), player at the spawn (544 288 28) facing the Normal hall | NEWGAME
 s_hub | Through the Normal skill slipgate: episode hub arrival (544 1597 24) facing north, skill 1 | NEWGAME,NORMAL
 s_e1m1 | Walked west and up into the Episode 1 slipgate: E1M1 The Slipgate Complex, player at its spawn (480 -352 88) facing north | NEWGAME,NORMAL,TOE1
+s_e1m1_door | E1M1: walked north and west to the sliding door (298 570 24) facing west; it has opened, the first Grunt (Normal) stands in the corridor beyond | NEWGAME,NORMAL,TOE1,E1DOOR
+s_e1m1_lift | E1M1: Grunt killed with two shotgun shots (23 shells), walked onto the lift by the red button, rode it down (-47 570 -208) | NEWGAME,NORMAL,TOE1,E1DOOR,E1GRUNT,E1LIFT
+s_e1m1_yard | E1M1: turned north and walked out into the open yard (-62 1072 -200); a Grunt and a Rottweiler attack (health 88) | NEWGAME,NORMAL,TOE1,E1DOOR,E1GRUNT,E1LIFT,E1YARD
+s_e1m1_clear | E1M1: yard fight won with three shotgun shots (health 88, 20 shells) | NEWGAME,NORMAL,TOE1,E1DOOR,E1GRUNT,E1LIFT,E1YARD,E1FIGHT
+s_e1m1_saved | E1M1 after the yard fight: saved in the game to slot 1 (F2, Enter): writes ID1/S0.SAV, "Saving game to C:/ID1/s0.sav... done." | NEWGAME,NORMAL,TOE1,E1DOOR,E1GRUNT,E1LIFT,E1YARD,E1FIGHT,SAVE0

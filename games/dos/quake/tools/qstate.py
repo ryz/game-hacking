@@ -1,6 +1,8 @@
 """Quake (DOS shareware 1.06): play routes and print the player's state from the server entity (floats).
 
   python3 games/dos/quake/tools/qstate.py "ROUTE" ["ROUTE" ...] [--png DIR]
+  python3 games/dos/quake/tools/qstate.py --warm     build every checkpoint into the cache (do this before
+      preview.py / shoot.py on an empty cache: see the playbook, "Determinism")
   python3 games/dos/quake/tools/qstate.py --chain "ROUTE" "TOKENS" "TOKENS" ... [--png DIR]
       one machine: the route, then each TOKENS group in turn (state and frame after each); with --png also
       DIR/sheet.png (all frames, labelled)
@@ -50,6 +52,13 @@ def main():
         i = args.index("--png"); png = args[i + 1]; del args[i:i + 2]
         os.makedirs(png, exist_ok=True)
     g = E.Game("dos/quake")
+    if args and args[0] == "--warm":
+        # build every checkpoint into the cache from power-on (each one's own process): a shot taken right
+        # after a cache miss continues the live run, which differs from every later run that loads the state
+        import subprocess
+        for c in g.checkpoints():
+            subprocess.run([sys.executable, os.path.abspath(__file__), "@" + c["name"]], check=True)
+        return
     if args and args[0] == "--find":
         emu, rest, _ = E.start(g, args[1])
         E.play(emu, g, rest)

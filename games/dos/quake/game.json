@@ -1,8 +1,11 @@
 {
   "slug": "quake",
-  "title": "Quake (DOS, shareware 1.06)",
+  "title": "Quake",
   "platform": "dos",
   "region": "na",
+  "edition": "DOS shareware 1.06 (Episode 1), booted from the command line with -nocdaudio -nosound",
+  "work": "scouted 2026-11-23: boot, model svga-80000, 10 flat checkpoints from power-on to the first save in E1M1 (cachecheck 10/10), player-entity RAM, start plan of 34 previewed lines, save 01_start; not captured",
+  "open": "start set to shoot; first weapon pickup (Nailgun) and first secret in E1M1 not routed; console cheats untested; a loaded state plus keys diverges from the flat replay (DOSBox Pure core: flat checkpoint routes and a warm cache needed)",
   "model": "svga-80000",
   "rom": "rom/quake.zip",
   "sha1": "58cd0c811ab428ebe916ee9fb61d91d867be92c9",
@@ -32,9 +35,34 @@
     "MENU": "BOOT,w300,esc,w40",
     "NEWGAME": "MENU,enter,w40,enter,w600",
     "NORMAL": "up:70,w20,up:70,w20,up:70,w20,up:10,space+up:10,up:50,w10,up:70,w10",
-    "TOE1": "left:46,w5,up:50,w5,up:50,w5,up:50,w5,up:50,w5,up:15,w5,left:46,w5,up:30,w200"
+    "TOE1": "left:46,w5,up:50,w5,up:50,w5,up:50,w5,up:50,w5,up:15,w5,left:46,w5,up:30,w200",
+    "E1DOOR": "up:70,w10,up:40,w10,up:40,w10,up:40,w10,up:40,w10,up:30,w10,up:20,w10,left:46,w10,up:30,w10,up:20,w20,w30",
+    "E1GRUNT": "ctrl:8,w40,ctrl:8,w40",
+    "E1LIFT": "w30,up:40,w10,up:40,w10,up:40,w10,w200",
+    "E1YARD": "right:46,w10,up:40,w10,up:40,w10,up:40,w10,up:40,w10",
+    "E1FIGHT": "right:6,ctrl:8,w30,ctrl:8,w30,ctrl:8,w30,w60",
+    "SAVE0": "f2,w40,enter,w60"
   },
-  "ram": {},
+  "ram": {
+    "player_origin_x": {
+      "addr": "371D70",
+      "size": 4,
+      "fmt": "hex",
+      "note": "float; read with games/dos/quake/tools/qstate.py"
+    },
+    "player_health": {
+      "addr": "371E08",
+      "size": 4,
+      "fmt": "hex",
+      "note": "float (100.0 = 42C80000)"
+    },
+    "player_shells": {
+      "addr": "371E20",
+      "size": 4,
+      "fmt": "hex",
+      "note": "float"
+    }
+  },
   "source": {
     "name": "msdos_Quake106_shareware.zip",
     "from": "archive.org item msdos_Quake106_shareware (id Software shareware 1.06, freely redistributable non-commercially: SLICNSE.TXT)",

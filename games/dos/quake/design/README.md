@@ -23,8 +23,17 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Quake is a real-time first-person shooter in a fully 3D world: the player runs, jumps, swims and turns
+freely, shoots monsters with a growing arsenal, presses buttons and rides lifts, and looks for secrets on
+the way to each level's exit (verified for movement, shooting, a door, a button and a lift in E1M1 on
+Normal). A new game starts in a playable start map where the difficulty is chosen by walking into one of
+three halls (Easy, Normal, Hard; a hidden fourth for Nightmare) that end in slipgates (teleporters) to a hub
+with one slipgate per episode (verified for Normal; map data for the others). The shareware version holds
+Episode 1, Dimension of the Doomed, eight levels from The Slipgate Complex to the boss level and a secret
+level; the other episode gates show a "please register" message (verified on screen). The game can be saved
+anywhere in twelve slots and quicksaved (verified: slot 1); dying restarts the level (source). Health,
+armor and the current ammunition are always on the status bar; the score overlay (TAB) gives monsters
+killed, secrets found and time (verified).
 
 ## Documents
 | Document | Covers |
@@ -40,3 +49,7 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| id Software README.TXT, HELP.TXT, CONFIG.CFG | in the shareware ZIP | controls, switches, version notes |
+| Map entities in ID1/PAK0.PAK (start.bsp, e1m1.bsp) | in the shareware ZIP | skill halls, episode gates, E1M1 monsters and items per skill |
+| Wikipedia, Quake (video game) | https://en.wikipedia.org/wiki/Quake_(video_game) | release, publisher, episode name, save system |
+
