@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-23 - Quake (DOS shareware 1.06, set `start`)
+- Task: `start` set from the scout's 34 lines; verify cold, publish, two milestone commits.
+- Worked: the `at_checkpoint` fix made cold and warm runs identical (both verifies passed first time, no
+  warming); `qstate.py --chain --png` gave position, yaw and frames for 8-10 steps per call; `preview.py` with
+  several `?` marks per route answered six questions on one sheet.
+- Friction: start ids repeating the category (`01_boot_command_line`) and no tool flagging it; 3D map geometry
+  only through hand-written readers, walking exploration costs many calls (no floor heights or reachability
+  without a BSP tool).
+- Proposed rule change: `shoot.py` warns in `start` when a step begins with its category; backlog: a per-engine
+  map reader (entities plus brush boxes) as the first step for 3D games.
+- Corrected: none. Coordinator: cold verify 35/35; lenses clean; sheet looked at. Not reached: Nailgun pickup,
+  first secret (dead ends in the playbook). 46 of 150 calls.
+- Status: repeat-category warning built 2026-11-23 (second case after Might and Magic II DOS; new ids only,
+  test added); map-reader wish in `docs/backlog.md`.
+
 ### 2026-11-21 - Beyond Zork (DOS, palette 6 retake and Frotz shots)
 - Task: retake main (88) and start (34) in COLOR palette 6 (owner's choice) and add Frotz comparison shots.
 - Worked: a memory diff over repeated `color` commands plus the published ZIL source found the colour globals in 3

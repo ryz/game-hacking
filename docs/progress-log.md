@@ -2,6 +2,18 @@
 
 Append-only, newest first.
 
+## 2026-11-23 - Quake (DOS shareware 1.06): first real-time 3D game, `start` set
+- Owner: a starter set of shareware Quake. Downloaded `msdos_Quake106_shareware.zip` from archive.org (two storage
+  hosts added to the environment with the owner's approval); PAK0.PAK is the stock shareware file (md5
+  5906e599...); registered as `dos/quake`.
+- Scout: command-line boot `quake -nocdaudio -nosound`, model `svga-80000`, 10 flat checkpoints to the first save.
+  Found: DOS savestates miss input timing for a real-time game (state + key differs from the flat replay; with
+  sound even without keys) -> flat checkpoints; backlog: core fix.
+- Tools: `emu.at_checkpoint` reloads the state it just built, so a cache miss and a hit continue identically
+  (was: miss continued live; different pictures on Quake). `shoot.py` warns about new `start` ids whose step
+  repeats the category (second case). Tests 37 passed.
+- Capture: `start` 35 shots, honest; coordinator cold verify 35/35. Open: Nailgun pickup, first secret, a `main` set.
+
 ## 2026-11-21 - Beyond Zork in palette 6; Frotz comparison
 - Owner: palette 6 (black on light grey) as the default look. No interpreter option exists; two pokes in `BOOT`
   (Bzork.exe's default colours, then the game's colour globals found via a memory diff and the ZIL source) give
