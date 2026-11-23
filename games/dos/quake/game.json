@@ -1,0 +1,37 @@
+{
+  "slug": "quake",
+  "title": "Quake (DOS, shareware 1.06)",
+  "platform": "dos",
+  "region": "na",
+  "model": "svga-7800",
+  "rom": "rom/quake.zip",
+  "sha1": "58cd0c811ab428ebe916ee9fb61d91d867be92c9",
+  "crc32": "5a916675",
+  "size": 9050608,
+  "header": {
+    "files": 18,
+    "programs": [
+      "CWSDPMI.EXE",
+      "PDIPX.COM",
+      "Q95.BAT",
+      "QLAUNCH.EXE",
+      "QUAKE.EXE"
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {},
+  "source": {
+    "name": "msdos_Quake106_shareware.zip",
+    "from": "archive.org item msdos_Quake106_shareware (id Software shareware 1.06, freely redistributable non-commercially: SLICNSE.TXT)",
+    "sha1": "58cd0c811ab428ebe916ee9fb61d91d867be92c9",
+    "pak0_md5": "5906e5998fc3d896ddaf5e6a62e03abb (stock shareware 1.06 PAK0.PAK)"
+  }
+}
