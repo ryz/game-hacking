@@ -448,6 +448,21 @@ def run_jobs(jobs, n):
             yield r
 
 
+def start_ids_repeating_category(shots, pub):
+    """New ids of the set `start` whose step begins with the shot's category (`01_boot_logo` in category boot):
+    the file name would read `..._01_boot_boot_logo`. Ids already in the published set are not reported."""
+    done = set()
+    p = os.path.join(pub, "index.json")
+    if os.path.exists(p):
+        done = {s["id"] for s in json.load(open(p, encoding="utf-8")).get("shots", [])}
+    out = []
+    for s in shots:
+        m = re.match(r"^\d{2,3}_(.+)$", s["id"])
+        if m and s["id"] not in done and m.group(1).startswith(s["category"] + "_"):
+            out.append(s["id"])
+    return out
+
+
 def flattened(path):
     """True for a picture with non-square pixels (width >= 3 x height: DOS 640x200)."""
     from PIL import Image
@@ -510,6 +525,10 @@ def main():
         shots, a.publish = [], True     # skip the replay loop, go straight to the copy
     sha = game.check_rom()
     bad = 0
+    if a.set == "start" and not a.verify:
+        for sid in start_ids_repeating_category(shots, pub):
+            print("warning: %s: the step repeats its category (file name ..._NN_<category>_<category>_...): "
+                  "drop it from the id (published ids keep their names)" % sid)
     for s in shots:
         if s["category"] not in CATEGORIES:
             print("warning: %s: category %r not in %s" % (s["id"], s["category"], ", ".join(CATEGORIES)))

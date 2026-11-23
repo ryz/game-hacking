@@ -149,3 +149,11 @@ def test_aspect_rule_rowdoubles_flattened_frames(tmp_path, capsys):
     assert shoot.flattened(str(p))
     Image.new("RGB", (640, 400)).save(p)
     assert not shoot.flattened(str(p))
+
+
+def test_start_ids_repeating_category(tmp_path):
+    import json, shoot
+    (tmp_path / "index.json").write_text(json.dumps({"shots": [{"id": "02_menu_old"}]}))
+    shots = [{"id": "01_boot_logo", "category": "boot"}, {"id": "02_menu_old", "category": "menu"},
+             {"id": "03_logo", "category": "boot"}, {"id": "04_menus", "category": "menu"}]
+    assert shoot.start_ids_repeating_category(shots, str(tmp_path)) == ["01_boot_logo"]
