@@ -3,7 +3,7 @@
   "title": "Quake (DOS, shareware 1.06)",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "svga-80000",
   "rom": "rom/quake.zip",
   "sha1": "58cd0c811ab428ebe916ee9fb61d91d867be92c9",
   "crc32": "5a916675",
@@ -26,7 +26,14 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
+  "macros": {
+    "BOOT": "w120,down*5,enter,w120,type:quake -nocdaudio -nosound\\n",
+    "DEMO": "BOOT,w300",
+    "MENU": "BOOT,w300,esc,w40",
+    "NEWGAME": "MENU,enter,w40,enter,w600",
+    "NORMAL": "up:70,w20,up:70,w20,up:70,w20,up:10,space+up:10,up:50,w10,up:70,w10",
+    "TOE1": "left:46,w5,up:50,w5,up:50,w5,up:50,w5,up:50,w5,up:15,w5,left:46,w5,up:30,w200"
+  },
   "ram": {},
   "source": {
     "name": "msdos_Quake106_shareware.zip",

@@ -1,3 +1,8 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
 # title | Title screen, settled | TITLE,settle
+demo | Attract demo 1 (E1M3 The Necropolis) running under the console-free screen, 300 frames after the command line | DEMO
+menu | Main menu over the running demo (Single Player highlighted) | MENU
+s_startmap | New game: start map (Introduction), player at the spawn (544 288 28) facing the Normal hall | NEWGAME
+s_hub | Through the Normal skill slipgate: episode hub arrival (544 1597 24) facing north, skill 1 | NEWGAME,NORMAL
+s_e1m1 | Walked west and up into the Episode 1 slipgate: E1M1 The Slipgate Complex, player at its spawn (480 -352 88) facing north | NEWGAME,NORMAL,TOE1
