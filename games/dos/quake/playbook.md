@@ -22,9 +22,11 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   `s_hub` (through the Normal slipgate), `s_e1m1` (E1M1 spawn), `s_e1m1_door` (first Grunt in view),
   `s_e1m1_lift` (rode the lift down), `s_e1m1_yard` (Grunt + Rottweiler attack), `s_e1m1_clear` (after the
   fight), `s_e1m1_saved` (saved to slot 1 = `ID1/S0.SAV`; exported as `saves/01_start.sav`).
-- **Start set plan:** 34 previewed lines in `shots.txt` (section "set start"), power-on to the first save.
-  Copy them into `work/shots/dos/quake/start/shots.txt` and `python3 tools/shoot.py dos/quake start`.
-  Several lines end in `!`: Quake never settles (torches, demo, enemies); keep the `!`.
+- **Set `start` is published** (2026-11-23): 35 shots `01_command_line` ... `35_load_menu` in
+  `shots/start/` (its `shots.txt` is the source; `--verify` 35/35 from an empty cache). To retake:
+  copy it to `work/shots/dos/quake/start/shots.txt`. Lines end in `!`: Quake never settles; keep the `!`.
+  Shot routes may be `@checkpoint,keys` (load + keys is reproducible by itself, cold or warm, since the
+  2026-11-23 `at_checkpoint` fix); only checkpoint routes must be flat.
 - **Movement is key holds:** `up:40` walks ~130 units, `left:46`/`right:46` turn ~90 degrees (1.9-2.0
   degrees per frame, it varies a few degrees with the frame rate, so check the yaw with `qstate.py`),
   `ctrl:8,w40` fires the shotgun once, `a:N`/`z:N` look up/down, `tab:40,!` shows the score overlay.
@@ -36,9 +38,10 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Traps:** `-nosound` is required (with the Sound Blaster on, a loaded state diverges from the flat run on
   the very next frame). The DOSBox Pure start menu and the blue DOSBox banner are front-end screens (the
   banner shows above the command line in shot 01; acceptable as the DOS boot, do not take more).
-- **Open:** first weapon pickup (Nailgun at 112 2352, far into E1M1) and the first secret (shoot the panel
-  at 657-719, 49-63 near the start) are not routed; armor not picked up; console cheats untested beyond
-  `timedemo` (the console opens with the backquote key).
+- **Open:** first weapon pickup (Nailgun at 112 2352, far into E1M1) and the first secret are not routed
+  (dead ends tried: "Strategy" below); armor not picked up; console cheats untested beyond `timedemo`
+  (the console opens with the backquote key).
+- **Map entities:** `python3 games/dos/quake/tools/ents.py e1m1 "secret|weapon|monster"` (brush boxes too).
 
 ## Identity
 | Field | Value |
@@ -126,9 +129,15 @@ Rottweiler (88 1520 -200), Green Armor (688 480 80, behind the "Shoot this secre
 (verified).
 
 ## Shot plan
-Set `start` (owner's request: the early game in play order to the first save, honest play): 34 lines,
-previewed 2026-11-23 (sheets `work/preview/dos/quake/start.png`, `start_2.png`, `fix1.png`, `fix2.png`),
-in `shots.txt` under "set start". Ids and categories:
+- [x] Set `start`: captured 2026-11-23, 35 shots, published in `shots/start/` (verified 35/35 cold).
+  Changes from the scout's 34 lines: ids without the repeated category (`01_command_line`, not
+  `01_boot_command_line`); 03 later frame (`BOOT,w160,w20,w20,w20,!`, the old one was nearly black); the
+  near-duplicate slipgate shot dropped (the slipgate never gets closer than the hall text frame); added
+  `08_help_movement` (Help page 1), `26_e1m1_yard_fire` now the muzzle-flash frame (`@s_e1m1_yard,right:6,
+  ctrl:8,!`), `35_load_menu` (slot 1 "The Slipgate Complex kills: 2/23"); `12_env_hub_west` as an env view.
+  Frames tried and left out: the lift ride (black for 200 frames), the Grunt firing at the player
+  (`@s_e1m1_yard,right:6,w9*10,!`: red flash, health 88 -> 76; a branch where the player does not shoot).
+The scout's plan, for reference (ids then still carried the category):
 - boot (2): 01 command line, 02 start-up console
 - title (2): 03 demo 1 begins, 04 demo play
 - menu (3 + 1): 05 main, 06 single player, 07 help/ordering, 29 escape menu in play
@@ -149,7 +158,19 @@ Pentagram, Ring, Biosuit), underwater, intermission screen after a level, death 
 - Aim by turning; the shotgun's spread hits at corridor range. A fight is 3-5 `ctrl:8,w30` groups; check
   ammo/health with `qstate.py` instead of looking.
 - Enemies react to frame timing: changing a wait before a fight changes who shoots first. Keep the macros.
-- E1M1 continues north from the yard (water channel, bridges) toward the Nailgun room; read the map entities.
+- E1M1 continues north from the yard toward the Nailgun room; read the map entities.
+- **Dead ends (capture 2026-11-23, about 15 calls):** the yard after the fight (-62 1084 -200) is closed at
+  x -80 and x 48; north of it a water channel (y ~1150-1310, swimming at z ~-297) ends at a wall: the far
+  bank (floor -224, where the yard Grunt and Rottweiler stood at y 1520) is too high to climb out of the
+  water (`space+up:60` against it does nothing). The way on is not across the channel from the yard
+  surface; try swimming under water along it (`c` swims down) or another exit of the yard. The start hall
+  has no way east at floor level (blocked at x 528 at y -230 and y 10, also with a jump).
+- **Secrets near the start (map data):** the "Shoot this secret door..." panel (657-719, 49-63, z 49-111)
+  has its trigger_secret just south of it (y 33-47) and shells (672 -40 48) behind it, so it is shot from
+  the north, from a raised walkway east of the hall (shells 528 720 80, Hard Grunt 648 736 104); the Green
+  Armor (688 480 80) is on that walkway too, next to a lift (func_plat 753-831, 481-543, height 400) that
+  comes up from below and opens a secret door (737-751) as it passes. How to reach the walkway from the
+  start hall was not found: probably from the lower level up that lift.
 
 ## Naming
 Quake asks for no name in single player (the multiplayer setup has a player name, default "player").
@@ -222,8 +243,9 @@ every map. Pokes not tested (the start set needs none).
 | StrategyWiki E1M1 | https://strategywiki.org/wiki/Quake/E1M1:_The_Slipgate_Complex | - | 403, unavailable |
 
 ## Open questions
-- First weapon pickup (Nailgun, E1M1 112 2352 16) and the first secret (Green Armor panel) are not routed;
-  the start set ends before them. Both are worth adding before the save if the capture has calls left.
-- Did the yard fight kill the Rottweiler? TAB shows 2 of 23 monsters killed after it (Grunt 1 + one more).
+- First weapon pickup (Nailgun, E1M1 112 2352 16) and the first secret are not routed (dead ends in
+  "Strategy"); the start set ends with the save after the yard fight.
+- Did the yard fight kill the Rottweiler? TAB shows 2 of 23 monsters killed after it (Grunt 1 + one more);
+  the dog is never clearly in frame in the start shots, a corpse lies north-west of the player (c7 look-around).
 - Console cheats untested; quicksave (F6) and F3 untested.
 - Platform: fix the state-load/key timing difference in the core patch (then `@parent` chains would work).

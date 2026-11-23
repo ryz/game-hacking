@@ -1,6 +1,6 @@
 # Quake - shots: start
 
-Platform dos, region na, model svga-80000, ROM SHA-1 `58cd0c811ab428ebe916ee9fb61d91d867be92c9`. 16 shots. Contact sheet: [quake_dos_na_set_sheet.start.png](quake_dos_na_set_sheet.start.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<NN>_<category>_<step>.start.png`.
+Platform dos, region na, model svga-80000, ROM SHA-1 `58cd0c811ab428ebe916ee9fb61d91d867be92c9`. 35 shots. Contact sheet: [quake_dos_na_set_sheet.start.png](quake_dos_na_set_sheet.start.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<NN>_<category>_<step>.start.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -20,5 +20,24 @@ Platform dos, region na, model svga-80000, ROM SHA-1 `58cd0c811ab428ebe916ee9fb6
 | 14_hub_e1_gate | gameplay | Episode 1 slipgate: "Walk into the Slipgate to start playing Quake!" | yes | [png](quake_dos_na_14_gameplay_hub_e1_gate.start.png) |
 | 15_loading | system | Walking into the slipgate: Loading plaque | yes | [png](quake_dos_na_15_system_loading.start.png) |
 | 16_e1m1_start | gameplay | E1M1 The Slipgate Complex: start, health 100, 25 shells | no | [png](quake_dos_na_16_gameplay_e1m1_start.start.png) |
+| 17_env_e1m1_corridor | gameplay | E1M1: start corridor down into the base | no | [png](quake_dos_na_17_gameplay_env_e1m1_corridor.start.png) |
+| 18_env_e1m1_computers | gameplay | E1M1: hall with computer rooms behind windows | yes | [png](quake_dos_na_18_gameplay_env_e1m1_computers.start.png) |
+| 19_env_e1m1_ledge | gameplay | E1M1: north end of the hall, a lit ledge above dark openings | yes | [png](quake_dos_na_19_gameplay_env_e1m1_ledge.start.png) |
+| 20_e1m1_door_grunt | gameplay | The door slides open: first Grunt at the far end | no | [png](quake_dos_na_20_gameplay_e1m1_door_grunt.start.png) |
+| 21_e1m1_grunt_hit | battle | Shotgun hit: the Grunt staggers, 24 shells left | no | [png](quake_dos_na_21_battle_e1m1_grunt_hit.start.png) |
+| 22_e1m1_grunt_dead | battle | Grunt dead after two shots; the red button on the far wall | no | [png](quake_dos_na_22_battle_e1m1_grunt_dead.start.png) |
+| 23_e1m1_backpack | gameplay | The Grunt's corpse and backpack in front of the button | no | [png](quake_dos_na_23_gameplay_e1m1_backpack.start.png) |
+| 24_e1m1_button | gameplay | The red button: walking into it starts the lift | no | [png](quake_dos_na_24_gameplay_e1m1_button.start.png) |
+| 25_e1m1_yard_attack | battle | Yard by the water: a Grunt attacks beside the crate, health down to 88 | no | [png](quake_dos_na_25_battle_e1m1_yard_attack.start.png) |
+| 26_e1m1_yard_fire | battle | Shotgun blast at the Grunt: muzzle flash, 22 shells left | no | [png](quake_dos_na_26_battle_e1m1_yard_fire.start.png) |
+| 27_e1m1_yard_clear | battle | Fight over: the Grunt lies dead by the crate, health 88, 20 shells | no | [png](quake_dos_na_27_battle_e1m1_yard_clear.start.png) |
+| 28_e1m1_scores | hud | TAB scores: Monsters 2/23, Secrets 0/6, Time 0:24, The Slipgate Complex | no | [png](quake_dos_na_28_hud_e1m1_scores.start.png) |
+| 29_ingame | menu | Escape in play: the main menu over the paused game | no | [png](quake_dos_na_29_menu_ingame.start.png) |
+| 30_options | options | Options menu: controls, console, screen size, brightness, volumes | yes | [png](quake_dos_na_30_options_options.start.png) |
+| 31_keys | options | Customize controls: the key bindings | yes | [png](quake_dos_na_31_options_keys.start.png) |
+| 32_video | options | Video Modes: the DOS video mode list, 320x200 current | no | [png](quake_dos_na_32_options_video.start.png) |
+| 33_menu | save | Save Game menu (F2): twelve unused slots | no | [png](quake_dos_na_33_save_menu.start.png) |
+| 34_saved | save | Saved: "Saving game to C:/ID1/s0.sav... done." and play goes on | no | [png](quake_dos_na_34_save_saved.start.png) |
+| 35_load_menu | save | Load menu after the save: slot 1 holds The Slipgate Complex, kills 2/23 | no | [png](quake_dos_na_35_save_load_menu.start.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.

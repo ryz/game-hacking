@@ -5,39 +5,5 @@
 # work/shots/dos/quake/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
 # (main set: not planned yet; see playbook "Shot plan")
 
-# ---- set start (owner's request 2026-11-19): copy these lines into work/shots/dos/quake/start/shots.txt and run
-# python3 games/dos/quake/tools/qstate.py --warm; python3 tools/shoot.py dos/quake start   (previewed 2026-11-23, all 34 frames looked at)
-01_boot_command_line | boot | DOS prompt: quake -nocdaudio -nosound, Quake v1.06 locking memory | BOOT,w10,!
-02_boot_console | boot | Start-up console over the Quake backdrop: hardware, configs, 3 demos in loop | BOOT,w100,!
-03_title_demo_start | title | Attract demo 1 begins: E1M3 The Necropolis, console rolled up | BOOT,w160,!
-04_title_demo_play | title | Attract demo 1 (E1M3 The Necropolis): demo player fights in a crypt | BOOT,w330,!
-05_menu_main | menu | Main menu over the running demo: Single Player highlighted | MENU,!
-06_menu_single_player | menu | Single Player menu: New Game, Load, Save | MENU,enter,w40,!
-07_menu_help | menu | Help/Ordering: the ordering page (all four episodes, 1-800-idGAMES) | MENU,down*3,enter,w40,!
-08_gameplay_start_spawn | gameplay | Start map: first control, three skill halls ahead | @s_startmap
-09_gameplay_normal_hall | gameplay | Normal hall: "This hall selects NORMAL skill" | @s_startmap,up:70,w20,up:70,w20,up:70,w20,!
-10_gameplay_skill_slipgate | gameplay | End of the Normal hall: the slipgate (teleporter) up close | @s_startmap,up:70,w20,up:70,w20,up:70,w20,up:10,space+up:10,up:20,!
-11_gameplay_hub_arrival | gameplay | Episode hub: arrival from the skill slipgate | @s_hub
-12_gameplay_hub_west | gameplay | Episode hub, looking west: stairs and episode signs | @s_hub,left:46,w20
-13_gameplay_hub_shareware | gameplay | Episodes 2-4 closed: "This is the shareware version. Please register!" | @s_hub,left:46,w5,up:50,w5,up:50,w5,up:50,w5,up:50,w5,up:15,w5,!
-14_gameplay_hub_e1_gate | gameplay | Episode 1 slipgate: "Walk into the Slipgate to start playing Quake!" | @s_hub,left:46,w5,up:50,w5,up:50,w5,up:50,w5,up:50,w5,up:15,w5,left:46,w5,!
-15_gameplay_loading | system | Walking into the slipgate: Loading plaque | @s_hub,left:46,w5,up:50,w5,up:50,w5,up:50,w5,up:50,w5,up:15,w5,left:46,w5,up:30,w5,!
-16_gameplay_e1m1_start | gameplay | E1M1 The Slipgate Complex: start | @s_e1m1
-17_gameplay_env_e1m1_corridor | gameplay | E1M1: start corridor down into the base | @s_e1m1,up:70,w10
-18_gameplay_env_e1m1_computers | gameplay | E1M1: hall with computer rooms behind windows | @s_e1m1,up:70,w10,up:40,w10
-19_gameplay_env_e1m1_ledge | gameplay | E1M1: hall with a lit ledge, sliding door to the west | @s_e1m1,up:70,w10,up:40,w10,up:40,w10,up:40,w10,up:40,w10,up:30,w10
-20_gameplay_e1m1_door_grunt | gameplay | The door slides open: first Grunt at the far end | @s_e1m1_door,!
-21_battle_e1m1_grunt_hit | battle | Shotgun hit: the Grunt staggers | @s_e1m1_door,ctrl:8,w40,!
-22_battle_e1m1_grunt_dead | battle | Grunt dead (two shots); the red button on the far wall | @s_e1m1_door,E1GRUNT,!
-23_gameplay_e1m1_backpack | gameplay | Grunt's corpse and backpack in front of the button | @s_e1m1_door,E1GRUNT,w30,up:40,w10,!
-24_gameplay_e1m1_button | gameplay | The red button: walking into it starts the lift | @s_e1m1_door,E1GRUNT,w30,up:40,w10,up:40,w10,!
-25_battle_e1m1_yard_attack | battle | Yard: a Grunt and a Rottweiler attack, health 88 | @s_e1m1_yard,!
-26_battle_e1m1_yard_fire | battle | Shotgun fire at the Grunt | @s_e1m1_yard,right:6,ctrl:8,w30,!
-27_battle_e1m1_yard_clear | battle | After three shots: a dead Grunt by the water, health 88 | @s_e1m1_clear,!
-28_hud_e1m1_scores | hud | Status bar and the TAB overlay: level, kills, secrets, time | @s_e1m1_clear,tab:40,!
-29_menu_ingame | menu | Escape in play: the main menu, game paused | @s_e1m1_clear,esc,w40,!
-30_options_options | options | Options menu | @s_e1m1_clear,esc,w40,down*2,enter,w40,!
-31_options_keys | options | Customize controls | @s_e1m1_clear,esc,w40,down*2,enter,w40,enter,w40,!
-32_options_video | options | Video Options: the DOS video mode list | @s_e1m1_clear,esc,w40,down*2,enter,w40,up,enter,w60,!
-33_save_menu | save | Save Game menu (F2): twelve slots | @s_e1m1_clear,f2,w40,!
-34_save_saved | save | Saved: the game goes on, console line at the top | @s_e1m1_clear,f2,w40,enter,w20,!
+# ---- set start: captured and published 2026-11-23 (35 shots). Its shot list is shots/start/shots.txt; copy that
+# to work/shots/dos/quake/start/shots.txt to retake (python3 tools/shoot.py dos/quake start --verify).
