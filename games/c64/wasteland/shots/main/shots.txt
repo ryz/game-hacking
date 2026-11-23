@@ -1,0 +1,124 @@
+boot_globe | boot | Loading: the Earth globe with the Electronic Arts and Interplay credits | w1250
+title_screen | title | Title: Place EARTH, Year 1998, Status DEFCON 1; Start / Utils | @title
+title_utils | menu | Utils menu: Copy / Restart / Start | @title,u,w600
+menu_continue | menu | "Use last saved game (Y/N)?" after Start | @title,s,w300
+menu_insert_side | menu | "Insert side 1. [RETURN]" | @title,s,w300,y,w1500
+rc_roster | menu | Ranger Center: the four pre-made rangers, Create / Delete / Start | @rangers
+rc_roll | system | Create a character: attributes, rank Private, MAXCON; SPACE rerolls | @rangers,d,w200,1,w300,y,w300,c,w300
+rc_reroll | system | Another roll after SPACE: every attribute rolled again | @rangers,d,w200,1,w300,y,w300,c,w300,ROLL
+rc_nation | menu | Nationality: U.S., Russian, Mexican, Indian, Chinese | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300,m,w300
+rc_skills | system | Skill list: IQ needed, point cost and level of each skill | @rangers,d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300,m,w300,1,w300
+rc_party | menu | Ranger Center with RYZ in the party, ready to Start | @party
+world_start | hud | World map at the Ranger Center: clock, party roster, command bar | @start
+world_full | gameplay | Roster hidden (SPACE): the whole map window | @start,space,w300
+char_stats | inventory | RYZ's sheet: attributes, CON, rank, money $1287 | @start,set:F815=1287:3,1,w300
+char_items | inventory | RYZ's items: M1911A1 .45 pistol and eight .45 clips | @start,set:F815=1287:3,1,w300,return,w300
+char_skills | inventory | RYZ's skills: Clip pistol, Rifle, Perception | @start,set:F815=1287:3,1,w300,return,w300,return,w300
+field_use | menu | Use: "Which player?" | @start,u,w200
+field_use_kind | menu | Use: Item, Skill or Attribute? | @start,u,w200,1,w300
+field_use_skill | menu | Use a skill: RYZ's skill list | @start,u,w200,1,w300,s,w300
+field_which_way | menu | Perception: "Which way?" I J K L, SPACE for here | @start,u,w200,1,w300,s,w300,3,w400
+field_perception | dialogue | Perception result: "You see nothing special." | @start,u,w200,1,w300,s,w300,3,w400,space,w400
+field_enc | menu | Enc: "This party is not being attacked..." battle round (Y/N)? | @start,e,w300
+field_disband | menu | Disband: "Who wants to disband?" | @start,d,w300
+field_radio | menu | Radio: "Radio (Y/N)?" | @start,r,w300
+field_save | save | Save: "Save game (Y/N)?" | @start,s,w300
+map_edge | dialogue | South edge: "You see miles and miles of endless wasteland..." | @start,S
+map_mountain | dialogue | "This mountain is in your way. Go around." | @step1,N
+env_world_valley | gameplay | World map: grass valley between mountain ridges north of the Ranger Center | @start,N*4,W*2,N,W*3
+env_world_lake | gameplay | World map: the lake west of Highpool | @start,N*4,W*2,N,W*12,S,W,S,W*6
+env_world_lake_south | gameplay | World map: the lake's south shore | @start,N*4,W*2,N,W*12,S,W,S,W*2,S*2,W*5
+world_river_current | system | River current: "You are caught by the river's current", 1 damage each | @start,N*4,W*2,N,W*12,S,W*7,N,W*2,N,W*2,N*3,W,N,W*2
+loc_agcenter | gameplay | "Entering Agricultural Center. Enter new location (Y/N)?" | @start,N*4,W*2,N,W*3,N,W*3,N,W*10,W,w100
+ag_center | gameplay | Agricultural Center: the farm fields on arrival | @start,N*4,W*2,N,W*3,N,W*3,N,W*10,W,w100,settle,y,w2000
+ag_center_walk | gameplay | Agricultural Center: a few steps in | @start,N*4,W*2,N,W*3,N,W*3,N,W*10,W,w100,settle,y,w2000,settle,S*2,E*2
+hp_desert | gameplay | Highpool: the desert north of the settlement, walls on both sides | @highpool
+env_hp_creek | gameplay | Highpool: the creek and huts in the valley | @highpool,S*11
+env_hp_pool | gameplay | Highpool: the pool and the huts of the settlement | @highpool,S*17,settle,E*4,S*2,W,S*4
+hp_creek_wade | dialogue | Creek: "the rocks are slippery. You slip and fall into the water..." | @highpool,S*18,settle,W*3,S
+hp_dorm | dialogue | "This is a dorm for teens. Nothing much of interest here." | @highpool,S*17,settle,E*5
+hp_store_entry | gameplay | Store building: "The entry is cool. A store counter is nearby..." | @store
+hp_shop | shop | Highpool shop: storekeeper portrait, "Who wants to enter?" | @shop
+hp_shop_buysell | shop | "Do you want to Buy or Sell?" | @shop,set:F815=1287:3,1,w400
+hp_shop_buy | shop | Buy list with pool money: Book, Canteen, Crowbar, Gas mask, Geiger counter | @shop,set:F815=1287:3,1,w400,b,w600
+hp_shop_bought | shop | Bought a Crowbar: pool money $1287 drops to $1272 | @shop,set:F815=1287:3,1,w400,b,w600,3,w400
+hp_shop_sell | shop | Sell list: prices offered for Rope, Canteen, Crowbar, Hand mirror, Match | @shop,set:F815=1287:3,1,w400,s,w600
+hp_infirmary | shop | Highpool infirmary: the doctor, "Who wants treatment?" | @infirmary
+hp_infirmary_exam | shop | Doctor's offer for RYZ: Exam $25 | @infirmary,set:F815=1287:3,1,w300
+hp_workshop | gameplay | Workshop interior: old machinery and a cot in the back | @workshop
+hp_workshop_parts | dialogue | "Old machine parts lie on the floor, surrounded by a scatter of tools." | @workshop,E,N
+hp_workshop_pump | dialogue | "This big contraption is a patchwork machine. You recognize a pump." | @workshop,E,N,E
+battle_appears | battle | "From the depths of the wasteland appears a hostile adversary. 3 Animals" | @fight
+battle_menu | battle | Rodent portrait; "RYZ, choose:" Run Use Hire Evade Attack Weapon Load/Unjam | @fight,return,w300
+battle_weapon | battle | Weapon: RYZ's items, the M1911A1 .45 pistol and clips | @fight,return,w300,w,w300
+battle_use | battle | Use in combat: Item, Skill or Attribute? | @fight,return,w300,u,w300
+battle_hire | battle | Hire: "Which group?" 1> 3 Animals at 14 feet | @fight,return,w300,h,w300
+battle_confirm | battle | Orders given: "Use these options (Y/N)?" | @fight,return,w300,w,w300,1,w300,a,w300,a,w300,a,w300
+battle_round | battle | Round messages: attacks, hits and misses scroll in the window | @fight,return,w300,w,w300,1,w300,a,w300,a,w300,a,w300,y,w300,!
+battle_xp | battle | Round over: Angela Deth, Thrasher, Snake Vargas gain 5 experience | @fight,return,w300,a,w300,a,w300,a,w300,a,w300,y,w1500
+battle_radrat | battle | Weak party (CON 1) vs Radioactive Vermin: RYZ and Thrasher unconscious | @fight,poke:F51D=0100,poke:F61D=0100,poke:F71D=0100,poke:F81D=0100,return,w300,e,w300,e,w300,e,w300,e,w300,y,w3000,settle,e,w300,e,w300,e,w300,y,w3000,settle,a,w300,a,w300,a,w300,y,w3000
+hp_creek_slip | dialogue | "...splash. Your face burns with embarrassment. You hear children's laughter." | @highpool,S*18,settle,W*3,S,settle,return,w600
+hp_creek_kid | gameplay | A Highpool kid has appeared on the creek bank next to the party | @highpool,S*18,settle,W*3,S,settle,return,w600,return,w600
+save_load | menu | Continue from the exported save 02_highpool: the party back in Highpool | sav:02_highpool,TITLE,CONT
+menu_insert_side2 | menu | Travelling to Quartz: "INSERT SIDE 2. [RETURN]" under the world map | @start,WARP:1D:2C,N,w100,y,w1500
+qz_arrival | gameplay | Quartz: arrival on the north edge, houses west of the road | @quartz
+env_qz_houses | gameplay | Quartz: blocks of houses between the streets | @quartz,WARP:0C:15
+env_qz_park | gameplay | Quartz: a walled park with shrubs and cacti | @quartz,WARP:1B:09
+qz_street_sign | dialogue | Quartz street corner: "N-S Hell's Highway / E-W Devastation Row" | @quartz,WARP:14:0B,S,w300
+qz_manhole | dialogue | Quartz: "This manhole leads South and West." | @quartz,WARP:13:01,S,w300
+qz_ghouls | battle | Quartz graveyard: "Spirits pop out from a grave. 3 Shambler Ghouls" | @quartz,WARP:1C:1A,S,w300
+qz_shop_closed | gameplay | Quartz: "This small business has been closed a long time." | @quartz,WARP:0B:02,N,w300,y,w2000
+qz_stagecoach | gameplay | Quartz: "Welcome to Stagecoach Inn." | @quartz,WARP:0F:0F,E,w300,y,w2000
+qz_scotts_bar | gameplay | Scott's Bar: "noisy and smoky with many people and tables" | @quartz,WARP:15:1B,S,w300,y,w2000
+nd_arrival | gameplay | Needles: arrival in the desert at the south-west corner of the map | @needles
+env_nd_radiation | gameplay | Needles: a field of radiation symbols in the desert | @needles,WARP:0B:0F
+env_nd_railway | gameplay | Needles: the railway line crossing the town | @needles,WARP:0D:28
+env_nd_walls | gameplay | Needles: stone walls and houses in the north of the town | @needles,WARP:34:06
+nd_waste_pit | gameplay | Needles: "Entering the town waste pit." | @needles,WARP:0C:36,S,w300
+menu_insert_side3 | menu | Travelling to Las Vegas: "INSERT SIDE 3. [RETURN]" | @start,WARP:17:13,N,w100,y,w1500
+vg_arrival | gameplay | Las Vegas: arrival on a street in the north-west of the city | @vegas
+env_vg_streets | gameplay | Las Vegas: city blocks and an empty street | @vegas,WARP:33:0A
+env_vg_golf | gameplay | Las Vegas: the golf course and its pond | @vegas,WARP:04:1E
+vg_golf_pond | dialogue | Las Vegas: "Many errant golf balls have been hit into the pond." | @vegas,WARP:04:1E,S,w300
+vg_hospital | gameplay | "Entering the Vegas Hospital where the rich get well, and the poor die young." | @vegas,WARP:15:02,S,w300
+vg_casino_door | gameplay | "Step inside Spade's Casino, high roller." | @vegas,WARP:0B:26,N,w300
+vg_casino | gameplay | Spade's Casino: inside | @vegas,WARP:0B:26,N,w300,y,w2000
+vg_warroids | battle | "Warroids! 4 Warroid Mark 2s, 4 Warroid Mark 1s appear at 71 feet." | @vegas,WARP:2B:01,N,w300
+vg_scorpitron | battle | "It looks like a tank with an armored warrior": 1 Scorpitron | @vegas,WARP:28:0B,N,w300
+vg_cyborgs | battle | "You see a party of heavily armed men": 10 Cyborg Commandos | @vegas,WARP:39:06,S,w300
+vg_freddy | battle | Fat Freddy's thugs boil out of the building: 2 Humanoids and 1 Humanoid | @vegas,WARP:12:18,S,w300
+vg_glowing | battle | "She's beautiful, and she glows.": 1 Humanoid | @vegas,WARP:39:19,S,w300
+vg_death_machines | battle | "Death Machines!": Slicerdicers, Chopters and Sniperdroids | @vegas,WARP:23:3B,S,w300
+ct_arrival | gameplay | Guardian Citadel: arrival in the desert south of the walls | @citadel
+ct_sisters | battle | Citadel: Sister Theodosia, Sister Lucretia and Sister Ursula appear at 41 feet | @citadel,WARP:08:18
+env_ct_hall | gameplay | Guardian Citadel: the Grand Hallway with its benches | @citadel,WARP:0A:02
+ct_grand_hallway | dialogue | "This is the Guardian's Grand Hallway. The vaulted ceiling is lost in darkness" | @citadel,WARP:0A:02,N,w300
+ct_wall_writing | dialogue | "Piously written on this wall is the saying, 'Reach out and touch someone.'" | @citadel,WARP:18:01,S,w300
+ct_ovens | dialogue | Citadel kitchen: "A bank of soot-stained ovens stands here." | @citadel,WARP:1E:05,S,w300
+ct_brother_austin | battle | A Guardian sighs, "Why does it always happen in my shift?": Brother Austin | @citadel,WARP:02:01,E,w300
+ct_guardians | battle | "Guardians leap up from behind the table and attack!" | @citadel,WARP:14:03,S,w300
+ct_chef | battle | "A huge chef leaps out and attacks screaming": Brother James | @citadel,WARP:1A:02,N,w300
+ct_museum | battle | "From deep inside the museum shots ring out.": Brother Kenneth | @citadel,WARP:1D:0E,S,w300
+save_town | save | Saving in Quartz: "INSERT SIDE 1." (the party is kept on side 1) | @quartz,WARP:14:0D,s,w300,y,w3000
+menu_insert_side4 | menu | Travelling to Darwin through the radiation belt: "INSERT SIDE 4. [RETURN]" | @start,WARP:39:26,N,w100,y,w1500
+env_world_radiation | gameplay | World map: the radiation belt around Darwin Village | @start,WARP:39:26
+dw_arrival | gameplay | Darwin Village: arrival at the south-west edge | @darwin
+env_dw_village | gameplay | Darwin Village: houses on Base Road | @darwin,WARP:10:12
+dw_password | dialogue | Darwin gate: "Gimme the password." with a text prompt | @darwin,WARP:1A:02,N,w300
+dw_black_market | gameplay | "Entering the Black Market." | @darwin,WARP:1A:02,S,w300
+dw_lab | gameplay | Darwin: "The Lab." | @darwin,WARP:18:0A,S,w300
+dw_delicious | dialogue | "This man is delicious, sweat drips down his face with a flushed complexion." | @darwin,WARP:0B:08,S,w300
+dw_library | gameplay | "Entering the Darwin Branch Library." | @darwin,WARP:18:13,S,w300
+dw_store | shop | "The Darwin general store. Who wants to enter?" with the trader portrait | @darwin,WARP:02:14,S,w300,y,w2000
+dw_jekyll | gameplay | "Entering Dr. Jekyll's body shop." | @darwin,WARP:18:1A,S,w300
+sl_arrival | gameplay | Sleeper Base: arrival in the purple-floored halls | @sleeper
+env_sl_halls | gameplay | Sleeper Base: corridors and doors | @sleeper,WARP:11:08
+sl_wolves | battle | Sleeper Base: "Low growls rumble from the corner": 3 Nailed Wolves | @sleeper,WARP:04:01,N,w300
+sl_debris | dialogue | Sleeper Base: "The debris is a collection of odds and ends" | @sleeper,WARP:02:00,S,w300
+sl_shining | dialogue | Sleeper Base: a shining object jammed into a crevasse, out of reach | @sleeper,WARP:11:08,S,w300
+sl_door_slot | dialogue | Sleeper Base: "The door has no handle or sign on it, just a narrow slot" | @sleeper,WARP:1B:09,S,w300
+cb_arrival | gameplay | Base Cochise grounds: arrival in the desert south of the base | @cochise
+cb_gate_robots | battle | Base Cochise: robots at the gate: 2 Chopters and 2 Silicon Snipers | @cochise,WARP:16:12
+cb_weapon_pod | battle | Base Cochise: "A weapon pod rises up from the base dome" | @cochise,WARP:10:0E,N,w300
+cb_plasma | battle | Base Cochise: "A glowing ball of energy unfolds": 5 Plasma Constrictors | @cochise,WARP:01:01,N,w300
+cb_robots | battle | Base Cochise: "a mechanical horror attacks!" Chopter, VTOL Robot | @cochise,WARP:0C:01,S,w300

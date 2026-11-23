@@ -4,13 +4,16 @@
   "platform": "dos",
   "region": "na",
   "edition": "DOS (GOG)",
-  "work": "screenshot set (260, to the ending text: party of four, nine combat fields, Ambrosia, moongates, dungeon rods, Time Lord, Exodus), three lens documents plus rules.md, warps, town/dungeon/RNG tools, saves",
+  "work": "screenshot sets main (260, to the ending text: party of four, nine combat fields, Ambrosia, moongates, dungeon rods, Time Lord, Exodus) and start (60, played honestly from power-on to the first fight and Quit & Save), three lens documents plus rules.md, warps, town/dungeon/RNG tools, saves",
   "open": "Surmandum failing into ashes, lava damage without the Mark of Fire, starvation and poison per turn",
   "model": "svga-300",
   "rom": "rom/ultima-3.zip",
-  "sha1": "934c23a8be23fab2c539c445cf94b5c93bc123af",
-  "crc32": "328f9200",
-  "size": 69889,
+  "sha1": "5df864ae11cb23e6b5e44c5a387b9652464015fc",
+  "crc32": "c9bf8806",
+  "size": 69357,
+  "source": {
+    "note": "rom/ultima-3.zip is the owner's Ultima_III.zip (uploaded 2026-11-22, flat, no folder) repacked into the folder 'Ultima III/' (zip -rX), because the first upload (SHA-1 934c23a8be23fab2c539c445cf94b5c93bc123af, folder inside) is lost and routes, program menu and saves use the folder; same file count and programs, committed set replayed pixel-exact (shoot.py --verify --published)."
+  },
   "header": {
     "files": 51,
     "programs": [

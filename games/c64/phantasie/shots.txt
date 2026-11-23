@@ -1,0 +1,38 @@
+# id | category | caption | route
+# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
+#             minigame ending credits gameover save extra   (docs/capture-guide.md)
+# The plan for the main set. play.py snap writes captured shots (with exact routes) to
+# work/shots/c64/phantasie/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
+# Scout plan 2026-11-21: every line previewed (work/preview/c64/phantasie/plan.png). Still to add by the capture run:
+# battle_* (encounter, party options, individual options), dungeon_* (disk 2), inn rest, guild spells/training with XP, armory buy, scroll use, other towns.
+boot_ssi | boot | SSI "proudly presents" screen with the C64 version 1.4 credits | w700
+title_logo | title | Title picture: the Phantasie logo with a sword, shown while the game loads | @title
+menu_start | menu | Start menu: 1 Start in Pelnor, 2 Continue saved game | @menu
+env_town_pelnor | gameplay | Pelnor town screen before a party exists: Guild, Armory, Bank, Inn, gate, Mystic | @pelnor_new
+guild_menu | menu | Guild menu: spells, training, add, new, drop, rename, inspect, purge, exit | @pelnor_new,return,w60
+guild_new_race | menu | New character: choose a race (human, dwarf, elf, halfling, gnome, random) | @pelnor_new,GUILDNEW
+guild_new_class | menu | New character: choose a class (thief, monk, ranger, fighter, priest, wizard) | @pelnor_new,GUILDNEW,return,w60
+guild_roll | system | Rolled attributes for a human fighter: keep this character? | @pelnor_new,GUILDNEW,ROLL:0:3:1,REROLL,ROLL:0:3:1
+guild_name | menu | Name entry for the new character | @pelnor_new,GUILDNEW,ROLL:0:3:1,REROLL,ROLL:0:3:1,return,w60
+char_sheet_ryz | inventory | Character sheet of ryz, level 1 human fighter: attributes, skills, equipment | @pelnor_new,GUILDNEW,ROLL:0:3:1,REROLL,ROLL:0:3:1,return,w60,settle,type:ryz,settle,return,w100
+guild_roster | menu | Guild roster when adding members to the party (old Pineville party listed too) | @guild_created,down*2,return,w60
+guild_party | menu | Party of six formed in the Guild | @party
+town_pelnor_party | gameplay | Pelnor with the party of six listed above the town | @pelnor_party
+bank_menu | shop | Bank: withdraw, deposit, exit | @pelnor_party,right*2,return,w120
+bank_withdraw | shop | Bank withdrawal: how much? with the +10/-10/+1/-1 selector | @pelnor_party,right*2,return,w120,settle,return,w60,settle,return,w60
+armory | shop | Armory stock for ryz: small shield and scroll 8, cash 1536 | @pelnor_gold,left,return,w120,settle,return,w120
+mystic | system | The Mystic gives the party score: novice adventurers | @pelnor_gold,down,return,w200
+inn | menu | The Pelnor Inn: exit, distribute | @pelnor_gold,down,right,return,w200
+guild_training | menu | Guild training: who will train? | @pelnor_party,return,w120,settle,down,return,w100
+use_items | menu | Town Use items: who will use? | @pelnor_gold,u,w100
+printout | extra | Printout option: prepare printer and press P | @pelnor_gold,p,w100
+save_shares | save | Game save: dividing gold and experience, shares per member | @pelnor_gold,g,w60
+save_saving | save | Game save: each share is 0 XP and 256 gold, saving to disk | @pelnor_gold,g,w60,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w60,settle,return,w120,!
+leaving_pelnor | gameplay | Leaving Pelnor message before the wilderness loads | @pelnor_gold,left,return,w120,settle,return,w120,settle,right*2,return,w120,settle,down,return,w300
+world_town_prompt | dialogue | Wilderness next to Pelnor: A town. Enter? yes/no | @pelnor_gold,left,return,w120,settle,return,w120,settle,right*2,return,w120,settle,down,LEAVE
+env_world_pelnor | gameplay | Wilderness east of Pelnor: path, grassland, forest, lake | @outdoors_pelnor,STEP:e,STEP:e
+world_path_message | dialogue | You are on a path, to the east lies a small town | @outdoors_pelnor,STEP:w
+world_cmd_menu | menu | Wilderness command menu: inspect, use potion, health, cast spell, move | @outdoors_pelnor,return,w60
+world_health | hud | Party health: hit points and magic of the six members | @outdoors_pelnor,return,w60,settle,up*2,return,w100
+world_status | inventory | Party status report: days out, experience, gold, items acquired | @outdoors_pelnor,return,w60,settle,up*4,return,w100
+town_pineville_old | gameplay | Pineville (town 2) with the party saved on the original disk | @pineville_old

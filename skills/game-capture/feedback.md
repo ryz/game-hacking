@@ -18,12 +18,8 @@ Tool wishes are not listed here: `docs/backlog.md`.
 - **Special squares:** one route per open side, taken from the decoded walls (Wizardry I DOS, 2026-11-19).
 - **Item powers can hide behind Equip as well as Use:** read the item records before calling a quest item
   inert (Wizardry III DOS, 2026-11-19).
-- **Scrolling command logs:** write the caption from the frame, not from the keys sent (Ultima II, 2026-11-19).
 - **Check the must-have list** (title, menu, first control, HUD, game over: `docs/capture-guide.md`) before
   the first full verify, not after (Ultima II, 2026-11-19).
-- **First-person RPGs: survey first.** A per-game script that steps onto every event square and reads the
-  encounter from memory gives the monster groups and messages of all areas in one run (Might and Magic 1 DOS
-  round 2, 2026-11-18; a shared version is in `docs/backlog.md`).
 - **Shots added during a run:** `shoot.py SLUG SET --verify --only id,id` checks just those (Shin Megami
   Tensei run 2, 2026-11-17).
 - **Scripts that play routes** use `emu.start(game, route)` and `emu.play(emu, game, rest)`; a hand-made token
@@ -35,3 +31,7 @@ Tool wishes are not listed here: `docs/backlog.md`.
   (Sword of Vermilion, 2026-11-20: three checkpoints reached the wrong towns).
 - **Restyles that must not change routes** (palette, font, display option): copy the published PNGs before the
   retake and compare each retake with its old picture through a colour map (Beyond Zork palette 6, 2026-11-21).
+- **Walks without random fights:** search a fight-free wait per step (check a fight indicator after each step)
+  instead of previewing whole routes (Bard's Tale III Apple II, 2026-11-21: `tools/safewalk.py`).
+- **A first-person view that stays black after entering** may be darkness, not a load hang: click once or
+  light a torch/spell before waiting longer (Dragonflight, 2026-11-22).

@@ -1,0 +1,125 @@
+{
+  "slug": "dragonflight",
+  "title": "Dragonflight",
+  "platform": "amiga",
+  "region": "eu",
+  "edition": "Amiga (English, CLS crack, A500 with Kickstart 1.3)",
+  "model": "A500",
+  "rom": "rom/dragonflight.zip",
+  "sha1": "23f7859f099a71575e7af2519ca5a8a73b1d7c1b",
+  "crc32": "adaf6733",
+  "size": 1539777,
+  "source": {
+    "note": "TOSEC set of 6 ADFs uploaded 2026-11-22; zip built from two of them. Not used: Disk 1 [cr CLS][h Spaikers] (same crack, hacked boot block and intro message, 10 blocks differ); Disk 2 [cr CLS], [a], [a2] (13-36 blocks of leftover data near the end of the disk, no saved game on any of them). Disk 2 has no copy protection, so the uncracked original is used.",
+    "disks": [
+      {
+        "zip_name": "Disk 1.adf",
+        "from": "Dragonflight (1990)(Thalion)(Disk 1 of 2)[cr CLS].adf",
+        "sha1": "99b59181fe34532963379aaf6934c709354c4d2f"
+      },
+      {
+        "zip_name": "Disk 2.adf",
+        "from": "Dragonflight (1990)(Thalion)(Disk 2 of 2).adf",
+        "sha1": "a05357366aa8d1c80dd7a5d8976dde4cff5a7700"
+      }
+    ]
+  },
+  "header": {
+    "disks": [
+      {
+        "name": "Disk 1.adf",
+        "sha1": "99b59181fe34532963379aaf6934c709354c4d2f",
+        "kind": "3.5 inch DD floppy, 880 KiB",
+        "boot": "AmigaDOS OFS"
+      },
+      {
+        "name": "Disk 2.adf",
+        "sha1": "a05357366aa8d1c80dd7a5d8976dde4cff5a7700",
+        "kind": "3.5 inch DD floppy, 880 KiB",
+        "boot": "not an AmigaDOS disk (own bootblock or track format)"
+      }
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {
+    "TITLE": "w300,mouse1:10,w2400,mouse1:10,w2600",
+    "MENU": "TITLE,w900",
+    "NEWGAME": "n,w1200,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100,settle,disk:2,w100,w2800",
+    "OLDGAME": "o,w300,disk:2,w900,disk:1,w1300,disk:2,w2100",
+    "PT": "poke:3BCA={0}{1},w4",
+    "CLK": "PT:{0}:{1},mouse1,w60",
+    "ICON": "CLK:{0}:{1}",
+    "MAGIC": "CLK:00E6:008F",
+    "SPEAK": "CLK:0106:008F",
+    "SHIP": "CLK:0127:008F",
+    "ENTER": "CLK:00E6:00A5,w1200",
+    "CAMP": "CLK:0106:00A5",
+    "SEARCH": "CLK:0127:00A5",
+    "DISK": "CLK:0127:00B7,w40",
+    "SAVEGAME": "DISK,CLK:0127:008F,w40,mouse1,w1500,CLK:0127:00B7,w40",
+    "STATUS": "CLK:{0}:{1},w40",
+    "ARROWS": "mouse2,w40",
+    "WARP": "poke:3BF4={0}{1},poke:118B2={0}{1}",
+    "N": "kp8,w30",
+    "S": "kp2,w30",
+    "E": "kp6,w30",
+    "W": "kp4,w30",
+    "BLADUS": "STATUS:001E:0096",
+    "RINAKLES": "STATUS:0050:0096",
+    "DOBRANUR": "STATUS:001E:00B0",
+    "ANDARIEL": "STATUS:0050:00B0",
+    "LEAVE": "WARP:0005:0005,kp6,w60,mouse1,w1200",
+    "FLATLAND": "TITLE,w900,n,w1200,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100,disk:2,w100,w2800,LEAVE",
+    "WALK162": "poke:3BF4=00A000A0,poke:11AB2=00A000A0,kp2,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp8,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp6,w30,kp2,w30,kp4,w30,kp4,w30,kp4,w30,kp6,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp6,w30,kp6,w30,kp8,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp2,w30,kp2,w30,kp8,w30,kp6,w30,kp6,w30,kp6,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp6,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp6,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp4,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp8,w30,kp4,w30,kp4,w30,kp8,w30,kp8,w30,kp2,w30,kp2,w30,kp2,w30,kp8,w30,kp6,w30,kp6,w30",
+    "ARM": "poke:2A12=0005,poke:2E12=0002,poke:3212=0009,poke:3612=000D,poke:2AF8=00050001",
+    "FOE": "kp6,w30,w200,poke:13B58={0},poke:13B5A={1},w1900",
+    "WARPL": "poke:3BF4={0}{1},poke:11AB2={0}{1}"
+  },
+  "ram": {
+    "y": {
+      "addr": "3BF4",
+      "size": 2,
+      "fmt": "hex",
+      "note": "party row on the current map (word); mirror at 118B2"
+    },
+    "x": {
+      "addr": "3BF6",
+      "size": 2,
+      "fmt": "hex",
+      "note": "party column (word); mirror at 118B4"
+    },
+    "bladus_hp": {
+      "addr": "2A00",
+      "size": 2,
+      "note": "member 1 hit points; records 0x400 apart (2A00, 2E00, 3200, 3600): +2 max HP, +4 magic, +6 max magic, +8 character, +A experience, +22 gold, +24 level?, +26 food"
+    },
+    "bladus_gold": {
+      "addr": "2A22",
+      "size": 2
+    },
+    "bladus_weapon": {
+      "addr": "2A12",
+      "size": 2,
+      "note": "weapon item index (Sword 5); records 0x400 apart"
+    },
+    "foe_count": {
+      "addr": "13B58",
+      "size": 2,
+      "note": "combat: number of opponents (1-4); set by the combat program about 190 frames into the encounter load"
+    },
+    "foe_kind": {
+      "addr": "13B5A",
+      "size": 2,
+      "note": "combat: opponent kind, index into the plural list Energyballs=0, Balrons 1, Orcs 2, Skeletons 3, Snakes 4, Ghosts 5, Bears 6, Beasts 7, Ghouls 8, Gnolls 9, Trolls 10, Statues 11, Guardians 12; poke it 200 frames into the load (macro FOE)"
+    }
+  },
+  "work": "start set (24 shots) and main set (111) published 2026-11-22: boot, menus, intro, Pegana, land, camp, status/inventory, talk, combat (13 opponent kinds, orders, hit, deaths, game over), magic (Light succeeds in a dungeon, Magic arrow in a fight), ten potions drunk, potion mixing, shops (Drombul blacksmith, healer, inn: buy, sell, healing), the Great Map, a first-person dungeon (torch, doors), two temples, Drombul, Orc Village, save/load; three lenses",
+  "open": "won fight (opponent hit points not found), Healing cast (target click not taken), potion recipes beyond one, shops of Pegana and other towns, dungeon stairs and other dungeons, ship, dragon, Brindil-Bun and the other towns; manual not reachable"
+}

@@ -1,0 +1,43 @@
+# name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
+# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
+title | Title screen (bard with lute; animated, never settle) | TITLE
+restore_prompt | Character disk in: "Do you wish to restore your last saved game? Yes/No" | CHARDISK
+camp | Camp of Skara Brae menu, empty party (No to restore) | CAMP
+party | Camp: factory party *Interplayers added (Ironpants Greenbolt Gwendolyn Shadow Morganna Runeflinger) | @camp,PARTY
+wild | Wilderness one pace south of the refugee camp, facing south: first control | @party,WILD
+tarjan_save | Restored saved game from the character disk (dungeon side B): veteran party + Vampire Lord in Tarjan's realm | RESTORE
+fight_puma | Leaving the Scrapwood tavern: 1 Puma (20') - Fight / Advance / Run | @wild,AT:0C:11,w300,e,w300,settle
+fight_confirm | Puma fight: all commands chosen (attack x4, defend x2): Use these commands? Yes/No | @fight_puma,f,w200,settle,a,w100,a,w100,a,w100,a,w100,a,w100,a,w100,settle,w600,settle,d,w100,d,w100,settle,w400,settle,w400,settle
+skara | Skara Brae ruins, inside the city gates (west edge), facing west | @wild,AT:0F:0A,w60,shift+slash,w200,space,w200,settle
+catacombs | Catacombs level 1 (dungeon side A), arrival on the up stairs, facing north | @skara,AT:0C:0B,w300,y,w400,type:TARJAN\n,w600,settle,space,w600,settle,disk:3,space,w900,settle,n,w200,settle
+sideA_prompt | Temple of the Mad God: TARJAN spoken, the priest sends the party into the catacombs: "Please insert your Dungeon Disk Side A" | @skara,AT:0C:0B,w300,y,w400,type:TARJAN\n,w600,settle,space,w600,settle
+cat_stairs | Catacombs level 1 arrival: "There are stairs here, going up. Do you wish to take them?" (warp base: LV) | @sideA_prompt,disk:3,space,w900,settle
+ryz_party | Camp: new party RYZ CONDI EBO CUBI DEDDO MNZ created (Human Warrior, Dwarf Paladin, Hobbit Rogue, Half-Elf Bard, Elf Conjurer, Gnome Magician) and added | @camp,MAKE6,ADD6
+ryz_wild | Wilderness one pace south of the camp with the RYZ party, facing south | @ryz_party,WILD
+arboria | Arboria (city map 2) by the stairs warp, square 2,2 | @cat_stairs,CITY:02:02:02
+ciera | Ciera Brannia (city map 3), street at square 1,1 | @cat_stairs,CITY:03:01:01
+gelidia | Gelidia (city map 4), square 2,2 | @cat_stairs,CITY:04:02:02
+lucencia | Lucencia (city map 5), square 5,5 | @cat_stairs,CITY:05:05:05
+celaria | Celaria Bree (city map 6), square 1,1 | @cat_stairs,CITY:06:01:01
+nowhere | Nowhere (Tenebrosia, city map 7), square 2,2 | @cat_stairs,CITY:07:02:02
+darkcopse | Dark Copse (city map 8), square 5,5: the black door in the ashes (message) | @cat_stairs,CITY:08:05:05
+blackscar | Black Scar (city map 9), street at square 5,5 | @cat_stairs,CITY:09:05:05
+review_board | Skara Brae: Review Board menu (Advancement / Spell Acquiring / Class Change / Talk to the elder / Exit the guild) after the elder's speech, factory party | @skara,AT:0E:0F,w400,space,w300,space,w300,space,w300,space,w300
+storage | Skara Brae: storage building (free starting gear): "Pick up..." list for Ironpants | @skara,AT:0A:03,w300,1,w400
+temple | Skara Brae: Temple of the Mad God, "What wilt thou say?" prompt (answer TARJAN for the catacombs) | @skara,AT:0C:0B,w300,y,w400
+s_review | Start set: RYZ party walked from the camp into Skara Brae (storage: Plate Armor), at the Review Board, elder's first page | @ryz_wild,i,w60,l,w60,i,w60,i,w60,i,w60,settle,i,w60,i,w60,l,w60,i,w60,i,w60,i,w60,settle,j,w60,i,w60,i,w60,l,w60,i,w60,i,w60,settle,l,w60,i,w60,settle,i,w300,settle,i,w100,i,w300,settle,k,w300,settle,i,w60,i,w60,i,w300,settle,k,w300,settle,1,w400,settle,enter,w400,settle,space,w300,e,w300,settle,esc,w300,e,w300,settle,l,w60,i,w60,i,w60,l,w60,i,w60,i,w60,l,w60,i,w60,j,w60,i,w60,l,w60,i,w60,j,w60,settle,i,w60,i,w60,i,w60,i,w60,i,w60,j,w60,i,w60,i,w60,settle,i,w60,i,w60,l,w60,i,w60,i,w60,l,w60,i,w60,j,w60,i,w60,i,w60,j,w60,i,w60,l,w60,settle,k,w400,settle
+s_temple | Start set: RYZ party at the Temple of the Mad God, Speak to priest? Yes/No (after the Review Board) | @s_review,space,w300,space,w300,space,w300,space,w300,space,w300,a,w300,1,w300,space,w300,e,w300,settle,esc,w300,e,w300,settle,j,w60,i,w60,l,w60,i,w60,i,w60,l,w60,i,w60,j,w60,i,w60,i,w60,j,w60,i,w60,i,w60,j,w60,settle,k,w400,settle
+s_cat_lit | Start set: catacombs level 1 arrival, DEDDO's Mage Flame lit, facing east | @s_temple,y,w400,type:TARJAN\n,w600,settle,space,w600,settle,disk:3,space,w900,settle,n,w200,settle,c,w200,5,w300,type:MAFL\n,w600,settle,space,w300,settle
+s_fight1 | Start set: catacombs 6,1: 1 Nefastmaster (10'), Fight bravely / Run away | @s_cat_lit,i,w60,i,w60,i,w60,i,w60,settle,i,w60,i,w60,j,w60,i,w60,settle,i,w100,settle,w300,settle
+s_fight1_cmds | Start set: Nefastmaster fight, commands chosen (RYZ CONDI EBO attack, CUBI Sanctuary Score, DEDDO ARFI, MNZ defends): Use these commands? | @s_fight1,f,w200,a,w100,a,w100,a,w100,settle,b,w200,settle,3,w200,c,w200,settle,type:ARFI\n,w300,settle,a,w200,d,w300,settle
+s_fled | Start set: the party ran from the Nefastmaster, EBO dead, catacombs 6,1 in the dark | @s_fight1_cmds,y,w30,settle,w800,f,w200,a,w100,a,w100,a,w100,a,w100,c,w200,type:ARFI\n,w300,a,w200,d,w300,y,w30,settle,w300,r,w300,settle,a,w100,a,w100,d,w100,a,w100,c,w200,type:ARFI\n,w300,a,w200,d,w300,y,w1500,settle,f,w200,a,w100,a,w100,d,w100,a,w100,c,w200,type:ARFI\n,w300,a,w200,d,w300,y,w1500,settle,f,w200,a,w100,a,w100,a,w100,c,w200,type:ARFI\n,w300,a,w200,d,w300,y,w1500,settle,r,w600,settle
+s_shrine | Start set: the Shrine in the wilderness (Heal / Pool gold / Exit), EBO dead after the Nefastmaster | @s_fled,l,w60,l,w60,i,w60,l,w60,i,w60,i,w60,i,w60,i,w60,i,w60,i,w300,settle,y,w1200,settle,disk:2,space,w1200,settle,i,w60,j,w60,i,w60,i,w60,l,w60,i,w60,i,w60,i,w60,i,w60,i,w60,l,w60,i,w60,j,w60,i,w60,l,w60,i,w60,j,w60,i,w60,i,w60,j,w60,i,w60,i,w60,l,w60,i,w60,i,w300,settle,n,w300,settle,j,w60,i,w60,i,w60,l,w60,i,w60,i,w60,i,w60,i,w60,i,w60,l,w60,i,w60,j,w60,i,w60,l,w60,i,w60,j,w60,i,w60,i,w60,j,w60,i,w60,i,w60,l,w60,i,w60,i,w300,settle,i,w600,settle,i,w60,i,w60,i,w60,l,w60,i,w60,j,w60,i,w60,i,w60,j,w60,i,w60,i,w60,i,w60,i,w60,i,w60,settle,j,w60,i,w60,l,w60,i,w60,i,w60,i,w60,i,w60,l,w60,i,w60,j,w60,i,w60,l,w60,i,w60,i,w60,l,w60,i,w60,i,w60,j,w60,settle,k,w400,settle
+s_save_prompt | Start set: wilderness by the Shrine, Do you wish to save your game? | @s_shrine,h,w300,6,w400,1,w400,space,w400,settle,esc,w400,settle,1,w400,settle,esc,w400,esc,w400,settle,s,w300,settle
+s_saved | Start set: game saved by the Shrine (RYZ party after the catacombs, EBO dead) | @s_save_prompt,y,w900,settle
+tarjan_meet | Endgame save: Tarjan appears at 3,2: 'Now I'll have my revenge on you...' | @tarjan_save,AT:02:03,w300,settle
+tarjan_fight | Endgame: Tarjan's friends (Rock Demons, Black Slayers, High Priestess, ...): fight or run | @tarjan_meet,space,w600,settle,space,w600,settle,space,w600,settle,space,w600,settle
+tarjan_cmds | Endgame fight: commands set (3 attack, casters defend): Use these commands? | @tarjan_fight,f,w300,a,w300,settle,a,w300,a,w300,b,w300,a,w300,c,w300,settle,d,w300,d,w300,d,w300,settle
+dragon_cmds | Endgame party vs 1 Black Dragon (50') in Tarjan's realm: commands chosen | @tarjan_save,AT:00:02,w600,f,w300,a,w300,settle,a,w300,a,w300,d,w300,d,w300,d,w300,settle
+w_stairs34 | UnterBrae 1 (dungeon side A), on the stairs down at 12,14 (dark): There are stairs here, going down. Take them? | @cat_stairs,LV:34:00,AT:0E:0C,w300,settle,w100,settle
+w_lit35 | UnterBrae 2 arrival on the stairs up at 12,14 facing east, Morganna's Mage Flame lit (from w_stairs34: Yes, No, MAFL) | @w_stairs34,y,w600,settle,n,w300,settle,c,w200,settle,5,w300,settle,type:MAFL\n,w600,settle,space,w300,settle
+m_lit35 | UnterBrae 2 by the level warp: arrival at 0,0 facing north, Mage Flame lit; automap empty but for this square (automap sequence start) | @cat_stairs,LV:35:01,LIGHT,w60,settle

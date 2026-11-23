@@ -1,0 +1,110 @@
+boot_prodos | boot | ProDOS 8 V1.4 boot banner | w330,!
+title_screen | title | Title screen: The Bard's Tale III, The Thief of Fate, the bard with his lute | @title,!
+menu_chardisk | menu | "Please insert your Character disk", empty party window | TITLE,space,w1200
+menu_restore | menu | "Do you wish to restore your last saved game?" | @restore_prompt
+menu_camp | menu | The Camp of Skara Brae: add, remove, create, delete, save, leave | @camp,!
+menu_roster | menu | "Who shall join?": the character disk roster | @camp,a,w300,!
+menu_create_race | menu | Create a member: race list | @camp,c,w300,m,w300,!
+menu_create_class | menu | Rolled statistics and the class list | @camp,c,w300,m,w300,1,w400,!
+menu_create_name | menu | Name entry for a new character | @camp,c,w300,m,w300,1,w400,0,w400,type:RYZ,w60,!
+menu_party_ryz | menu | Camp with the new party RYZ CONDI EBO CUBI DEDDO MNZ | @ryz_party,!
+camp_remove | menu | Camp: remove a member, or remove them all | @party,r,w300,!
+camp_delete | menu | Camp: delete a member from the disk | @camp,d,w300,!
+camp_save_party | menu | Camp: save the party under a name | @party,s,w300,!
+camp_leave | menu | Camp: leave the game? | @camp,l,w300,!
+env_wild_camp | gameplay | Wilderness by the refugee camp: the camp tent | @ryz_wild,l,l,w60
+env_wild_trees | gameplay | Wilderness south of the camp: trees | @ryz_wild,w30
+hud_party | hud | Wilderness view with the factory party's statistics | @wild,w30
+system_whereami | system | "?" outdoors: position and time of day | @wild,shift+slash,w300
+inventory_view_char | inventory | Character view: Ironpants, level 2 dwarf paladin | @wild,1,w300
+inv_ironpants | inventory | Ironpants's items, the equipped ones marked | @wild,1,w300,space,w300
+inv_item_menu | inventory | An item picked: equip, unequip, trade, drop | @wild,1,w300,space,w300,enter,w300
+view_morganna | inventory | Morganna, the factory party's conjurer: statistics and spell points | @wild,5,w300
+party_menu | menu | "p": party options (defend, party attack, use) | @wild,p,w300
+use_item | menu | "u": who will use an item? | @wild,u,w300
+bard_walk | system | Out of combat, Gwendolyn's bard songs | @wild,b,w300
+cast_walk | system | Cast outside combat: "Spell to cast:" | @wild,c,w300,5,w300
+order | menu | "n": new marching order | @wild,n,w300
+pause | menu | ESC: the game is paused | @wild,esc,w300
+save_prompt | save | "Do you wish to save your game?" | @ryz_wild,s,w300
+gameplay_tavern | shop | Scrapwood tavern: order a drink, talk to barkeep | @wild,AT:0C:11,w300
+tavern_order | shop | Scrapwood tavern: order a drink | @wild,AT:0C:11,w300,o,w300
+tavern_drinks | shop | Scrapwood tavern: the drinks | @wild,AT:0C:11,w300,o,w300,1,w400
+tavern_talk | dialogue | Scrapwood tavern: talk to the barkeep | @wild,AT:0C:11,w300,t,w300
+tavern_talk2 | dialogue | The barkeep's rumour | @wild,AT:0C:11,w300,t,w300,1,w400
+tavern_tip | dialogue | Tipped 10 gold, the barkeep tells of the storage building | @wild,AT:0C:11,w300,set:0419=1873:4:le,t,w300,1,w400,type:10\n,w600
+gameplay_shrine | gameplay | The Shrine: heal a character, pool gold | @wild,AT:08:01,w300
+shrine_pool | gameplay | Shrine: pool thy gold | @wild,AT:08:01,w300,p,w300
+battle_puma | battle | Leaving the tavern: one Puma, Fight / Advance / Run | @fight_puma,!
+battle_options | battle | Battle options for Ironpants: attack, defend, party attack, use | @fight_puma,f,w200,!
+battle_round | battle | Combat round text: Gwendolyn hits the Puma | @fight_confirm,y,w300,!
+gameplay_skara_gates | gameplay | Skara Brae ruins: the city gates | @skara,w30
+gameplay_statue | gameplay | Skara Brae: statue of the Mad God Tarjan | @skara,AT:0C:08,w300
+dialogue_review_hint | dialogue | Review Board: the elder sends the party after Brilhasti ap Tarj | @skara,AT:0E:0F,w400
+menu_review_board | menu | Review Board: Advancement, Spell Acquiring, Class Change | @review_board,!
+adv_no | system | Advancement: Ironpants needs more experience | @review_board,a,w300,1,w400
+adv_yes | system | Advancement: Ironpants rises a level, +1 intelligence, more hit points | @review_board,set:0415=6233:4:le,a,w300,1,w400
+spell_acq | system | Spell Acquiring for Morganna | @review_board,s,w300,5,w400
+spell_acq_yes | system | Spell Acquiring: conjurer spell level 2 costs 1000 gold | @review_board,set:0615=6233:4:le,a,w300,5,w400,space,w400,esc,w300,s,w300,5,w400
+class_change | system | Class Change: who? | @review_board,c,w300
+class_change2 | system | Class Change for Runeflinger | @review_board,c,w300,6,w400
+talk_elder | dialogue | Talk to the elder | @review_board,t,w300
+inventory_storage | inventory | Storage building in the ruins: free gear to pick up | @storage,!
+dialogue_temple | dialogue | Temple of the Mad God: the priest asks for the name | @temple,!
+extra_interplay | extra | Interplay building: credits in the ruins | @skara,AT:0E:0D,w300,space,w600
+credits1 | credits | Interplay building in the ruins: credits page 1 | @skara,AT:0E:0D,w300
+credits3 | credits | Credits page 3 | @skara,AT:0E:0D,w300,space,w600,space,w600
+credits4 | credits | Credits page 4 | @skara,AT:0E:0D,w300,space,w600,space,w600,space,w600
+gameplay_catacombs | gameplay | Catacombs arrival: stairs going up | @cat_stairs,!
+system_cast_light | system | Morganna casts MAFL (Mage Flame): light icon appears | @catacombs,c,w200,5,w300,type:MAFL\n,w600
+env_catacombs_lit | gameplay | Catacombs lit by a Mage Flame: corridor | @catacombs,LIGHT,AT:06:06,w60
+map_catacombs | map | Automap of the catacombs (?), party in the middle | @catacombs,AT:06:06,shift+slash,w300
+env_lv34 | gameplay | UnterBrae, lit by a Mage Flame (dungeon side A) | @cat_stairs,LV:34:00,LIGHT,w60
+unter_walk | map | UnterBrae automap after a few steps (honest walk) | @cat_stairs,LV:34:00,LIGHT,i,w60,i,w60,i,w60,j,w60,i,w60,i,w60,shift+slash,w300
+battle_death_adder | battle | UnterBrae level 4: "Not again!" 1 Death Adder and 1 Daemongari | @cat_stairs,LV:37:03,LIGHT,i,w60,i,w60,l,w60,i,w60,i,w60,i,w60,shift+slash,w300
+battle_magic_eaters | battle | Tunnels: Magic-eaters; Ironpants's options this round | @cat_stairs,LV:29:00,LIGHT,w60
+gameplay_arboria_tower | gameplay | Arboria: the old battered tower | @arboria,AT:04:01,w300
+gameplay_arboria_lake | gameplay | Arboria: the lake | @arboria,AT:0A:01,w300
+gameplay_hawkslayer | dialogue | Arboria: Hawkslayer greets the party | @arboria,AT:0B:0A,w400
+arboria_env | gameplay | Arboria street | @arboria,w30
+battle_palace | battle | The Palace: 23 Shade Piranhas, 3 Lochliches and 21 Flying Fish | @cat_stairs,LV:02:00,LIGHT,w60
+battle_cougars | battle | Valarian's Tower: 3 Shade Cougars and 8 Avians advance | @cat_stairs,LV:03:00,LIGHT,w60
+env_lv07 | gameplay | Sacred Grove, lit by a Mage Flame (dungeon side A) | @cat_stairs,LV:07:00,LIGHT,w60
+ciera_guild | gameplay | Ciera Brannia: the Wizard's Guild hall | @ciera,AT:06:06,FACE:00,w300
+ciera_court | gameplay | Ciera Brannia: the King's Court | @ciera,AT:0C:08,w300
+city_where | system | "?" in Ciera Brannia: location and time | @ciera,shift+slash,w300
+env_lv0c | gameplay | Grey Tower, lit by a Mage Flame (dungeon side A) | @cat_stairs,LV:0C:00,LIGHT,w60
+env_gelidia | gameplay | Gelidia: snowfield | @gelidia,w30
+battle_ice_reaver | battle | Ice Dungeon: "Enjoy your next life!" 1 Ice Reaver (10') | @cat_stairs,LV:14:00,LIGHT,w60
+env_lv16 | gameplay | Ice Keep, lit by a Mage Flame (dungeon side A) | @cat_stairs,LV:16:00,LIGHT,w60
+env_lucencia | gameplay | Lucencia: trees | @lucencia,w30
+env_lv1d | gameplay | Alliria's Tomb, lit by a Mage Flame (dungeon side A) | @cat_stairs,LV:1D:00,LIGHT,w60
+env_lv18 | gameplay | the Mountain, lit by a Mage Flame (dungeon side A) | @cat_stairs,LV:18:00,LIGHT,w60
+map_mountain_seen | map | The Mountain automap as the dump left it: the squares visited so far | @cat_stairs,LV:18:00,LIGHT,shift+slash,w300
+map_mountain_walk | map | The Mountain automap after a few more steps | @cat_stairs,LV:18:00,LIGHT,i,w60,i,w60,j,w60,i,w60,i,w60,shift+slash,w300
+map_mountain_full | map | The Mountain automap, all squares marked by poke | @cat_stairs,LV:18:00,poke:1682=009000000909900000010099000001009000010109900000010099000001009000010109900000010199000001099101000100990000010990800001009900000100900001019090000001909080010109900000010099000401,poke:1628=990000400190090040010900000001090910000109090000010909000001990980000109098000010109000001090100000109090000010009000001990000400190090040010090000001099000000190090000010000000001,poke:15CE=009080040100900000010900000001090900040109090000019009000001099000000109090004010009000001090000000109098004010009000001009000000109900000019009800001990000000100990000010000000001,poke:1574=990900000109090008019909800001090900000190090000019090000001990000000109090800019009000001990000000109090800019909800001990910000190090000010990800001009908000190000008010900000001,poke:151A=009900000109000000010999000001900900000190900000019090000001099008000190098000019090000041B09000004199008000019099000001009000000109900000010909000001090900000190990000019900000001,poke:14C0=09000000019009000801900080000199900000010099000001009000000100008000019990002001009900002109B000022190990020010990000001990910000190090000010900000001000900000100900008010090000101,poke:1466=000000010109900008019099100001099000000109090000019009000001900000000199900020019009010021990000006100990020019000000001909000000190900000019900000001900980000199000000010009000001,poke:140C=990000000190090000010090000001090080000190090000010090000001009080000109900000010099000001099000000100090000010090000001009000000109900000010099000001099000000190990008010000000101,poke:13B2=009000010190908000010000000001990000000190990004410900000001900900000199000000010009001001090000100190090000019900000041000900000199000000010909000001990910000190990008010000000001,poke:1358=990000400190990040010000000001999000040190990004010900000001009900000190900000019900880001900908000190900000010990000001000900000109908000010009000001009000000100900000019000000101,poke:12FE=099900400100990040010000000001999000000100990000019900000001000900000100900000010990000001009900000100908000010900000001900900000109000000019009000001990000000100090800010990000001,poke:12A4=000900000190008000010900000001909900000100008010019090000201900080000199000020010909000801090900080190090020019000800001909000020199000000010099001001009080000190000000019900000001,poke:124A=900900000100900000019900000001099910040100090000010990000001009900000109900020010909000001090900000100999020019090000001909000000100900000010900000001990910000100990000010990000001,poke:11F0=009900000100000000019990000001900900000199000000010909000001090980004190090000019900000001900900000199000000010099000041099000000100090000019000000001999000000190090000010900000001,poke:1196=990900000190098000010090000001909000000109900000010009000001990000000100990000019990004001909900400100908000010900000001990900000109090000010099000001909080000199900000010909000001,poke:113C=009900000190900000010000000001009010000199000000010009000001909000000100000000010990004001009900400199000040019009004001099000000190090000010000000001909000000190900000019900000001,poke:10E2=990900000100998004019900004001900900400109900000019009000001099000000109090004010009000001900000000109908040010099004001900000000109900000010009100001099000000100990000010990000401,poke:1088=909900000190000000019990004001909980400190000000019090000001990000000199098000019009000001999000000190090000019900000001909900000190008000019900000001900900000199000000019909000001,LIGHT,shift+slash,w300
+celaria | gameplay | Celaria Bree street | @celaria,w30
+env_lv2e | gameplay | Ferofist's Workshop, lit: "The ground seems well worn here." | @cat_stairs,LVB:2E:00,LIGHT,w60
+env_lv31 | gameplay | Urmech's Paradise: "An explosion!" | @cat_stairs,LVB:31:00,LIGHT,w60
+env_lv32 | gameplay | the Viscous Plane, lit by a Mage Flame (dungeon side B) | @cat_stairs,LVB:32:00,LIGHT,w60
+nowhere | gameplay | Nowhere (Tenebrosia) | @nowhere,w30
+darkcopse | gameplay | Dark Copse: the black door in the ashes | @darkcopse
+env_lv39 | gameplay | Shadow Canyon, lit by a Mage Flame (dungeon side B) | @cat_stairs,LVB:39:00,LIGHT,w60
+env_lv3a | gameplay | Sceadu's Demense, lit by a Mage Flame (dungeon side B) | @cat_stairs,LVB:3A:00,LIGHT,w60
+env_lv1f | gameplay | the Wasteland, lit by a Mage Flame (dungeon side B) | @cat_stairs,LVB:1F:00,LIGHT,w60
+gameplay_berlin | gameplay | Tarmitia: Berlin | @cat_stairs,LVB:21:00,w30
+env_lv21 | gameplay | Berlin, lit: "The ground seems well worn here." | @cat_stairs,LVB:21:00,LIGHT,w60
+env_lv24 | gameplay | Troy, lit by a Mage Flame (dungeon side B) | @cat_stairs,LVB:24:00,LIGHT,w60
+env_lv26 | gameplay | Nottingham: Lincoln green warriors lead a mob against Norman knights | @cat_stairs,LVB:26:00,LIGHT,w60
+env_black_scar | gameplay | Black Scar: street | @blackscar,w30
+env_lv2a | gameplay | Malefia, lit by a Mage Flame (dungeon side B) | @cat_stairs,LVB:2A:00,LIGHT,w60
+gameplay_tarjan_end | gameplay | The restored save: Tarjan's level, "very close to the source of all evil" | @tarjan_save,!
+battle_dragon | battle | Tarjan's realm: 1 Black Dragon (50') meets the endgame party | @tarjan_save,AT:00:02,w300
+battle_dragon_round | battle | The Black Dragon breathes; Sir Jason repels an attack | @dragon_cmds,y,w30,w150,!
+tarjan_meet | boss | Tarjan: "Now I'll have my revenge on you ..." | @tarjan_meet
+tarjan_2 | boss | Tarjan: "I will possess control over all space and time" | @tarjan_meet,space,w600
+tarjan_3 | boss | Tarjan waves his arms and conjures up some friends | @tarjan_meet,space,w600,space,w600
+tarjan_4 | boss | Tarjan: "time for target practice" | @tarjan_meet,space,w600,space,w600,space,w600
+tarjan_fight | boss | Tarjan's friends: High Priestesses, Black Slayers, Rock Demons, Lorini | @tarjan_fight
+tarjan_target | boss | Attack: choose a group A-D | @tarjan_fight,f,w300,a,w300
+tarjan_round | boss | After a round: two of the veteran party dead, 2+30+30+1 foes left | @tarjan_cmds,y,w2500

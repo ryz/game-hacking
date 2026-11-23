@@ -89,7 +89,12 @@ auxiliary 64K of a //e wherever it is mapped. `20000-2FFFF` is the main 64K as s
 data there while ROM is mapped (Might and Magic's character records are at `2C000`). `poke` writes RAM only (ROM and I/O are refused). `find`, `dump` and `diff` cover
 `0000-BFFF` as mapped, the auxiliary `10000-1FFFF` (//e models) and the language card `2C000-2FFFF` as stored:
 games keep state there (Might and Magic II: automap bits at `10200`, century and days at `2F7xx`). Text page 1 is `0400-07FF` (screen codes: high bit set = normal), hi-res page 1 `2000-3FFF`.
-`status` shows the program counter. 6502 code: `python3 tools/dis6502.py SLUG --route @checkpoint ADDR [N]` disassembles live memory at
+`status` shows the program counter. Hi-res text (games that print in their own font: Bard's Tale I and III): teach the game's font once with
+`python3 tools/hirestext.py learn SLUG --route @cp "line" ...` (lines read off the picture, exact spaces; `ignore`
+for frame cells), until `read` shows no `?`. With `games/apple2/<slug>/font.json` present, `play.py text` and
+`preview.py --text` read the hi-res screen. Cells are 7 pixels wide at any pixel phase, 8 rows high (`--height`);
+wide or proportional fonts are not covered (Might and Magic II draws ~10-12 pixel letters).
+6502 code: `python3 tools/dis6502.py SLUG --route @checkpoint ADDR [N]` disassembles live memory at
 the end of a route (same addresses as `peek`). A scan that pokes the position onto every square and groups the
 message-window bytes maps a first-person game's buildings and events in one run (`games/apple2/bards-tale/tools/cityscan.py`).
 

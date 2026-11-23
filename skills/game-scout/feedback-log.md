@@ -28,6 +28,70 @@ Never delete entries.
   sheet matches.
 - Status: dos.md note added (platform fact); at_checkpoint built 2026-11-23; core input timing and f32 watch in
   `docs/backlog.md`.
+### 2026-11-22 - Dragonflight (Amiga)
+- Task: scout Dragonflight (Amiga, Thalion 1990): boot, controls, RAM, save/load, shot plan.
+- Worked: placing the mouse by poking the game's own pointer variable (found with `find` after two relative
+  moves) instead of HOME-plus-offset moves; `preview.py --timeline` mapped the long loads; plain-ASCII game text
+  in a RAM dump replaced the missing manual (commands, messages, opponents).
+- Friction: (1) every cachecheck line DIFFERS: a loaded state gives the same frame but 30-45 bytes of game RAM
+  differ 60 frames later, already in the Kickstart boot on A500; (2) large `mouse:` moves wrap in this game
+  (it reads the counters every few frames); (3) web research empty (Thalion Webshrine host not allowed, GameFAQs
+  403); (4) `play.py dump` without a name crashes.
+- Proposed rule change: amiga.md Keys: look for the game's pointer variable first; amiga.md Backend: restores
+  are not exact in every game; backlog: exact restore, research hosts, `play.py dump` default.
+- Corrected: coordinator reproduced the drift (w100 on A500: slow RAM differs after 60 frames). Causes found:
+  the core restores at beam line 0 while states are saved about 3 lines after the vsync, and `cia_reset`
+  zeroes the keyboard handshake counter after a restore. Neither fix removed the drift in the crack intro
+  (same bytes with and without them); core left unchanged, findings in `docs/backlog.md`.
+- Status: pointer lesson -> `docs/emulator/amiga.md` (platform fact); restore -> amiga.md + backlog; research
+  hosts and `play.py dump` -> backlog.
+
+### 2026-11-21 - Wasteland (C64)
+- Task: scout Wasteland (C64, 9 D64 images, EA/Interplay 1988): boot and disk swaps, controls, RAM map,
+  checkpoints up to the world map and a first fight.
+- Worked: byte comparison of the D64 images settled masters (disk:1-4) vs play copies (disk:5-8) in one call;
+  preview.py batches of 4-12 key variants found movement keys, Esc, field commands and combat; dump/diff over
+  three steps found the party block (F400) and character records (F500 + 0x100 each).
+- Friction: play continued from a loaded state seemed to roll differently from a power-on replay (encounters,
+  creation rolls), about 15 calls; `play.py goto` piped to /dev/null once seemed not to take effect; about 20
+  calls walking around Highpool's mountain ring; mocagh.org unreachable.
+- Proposed rule change: c64.md: savestates not exact for every game, write chance-dependent checkpoints from
+  power-on; backlog: find the C64 random source missing from the state; c64.md: Esc is usually `leftarrow`.
+- Corrected: coordinator could not reproduce the state divergence: `@start,w1000` and `@party,LEAVE,ORDER4,
+  settle,w1000` match the power-on replay (same "3 Animals" frame) in two cachecheck runs; suspect is the
+  interactive `play.py` session (goto/do between calls), not the savestate. Not written into c64.md. Cachecheck
+  6/6 verified; save 01_start pushed to the vault.
+- Status: open (state divergence in play.py sessions: waiting for a second case with a reproduction); Esc ->
+  game playbook (C64 games differ)
+### 2026-11-21 - Phantasie (C64)
+- Task: scout Phantasie (C64, first real game on the VICE backend): boot, party creation, first save, RAM map,
+  shot plan.
+- Worked: `preview.py --text` with `?` markers to compare stat rolls and bank withdrawals in one call;
+  `--timeline` with long steps (300-600 frames) for load times on a slow drive; archive.org `/stream/.../_djvu.txt`
+  for manual text when the PDF host is blocked; "Continue saved game" on the dump found a ready-made second party.
+- Friction: slow disk loads make `settle` useless (static frames for thousands of frames), every load needed a
+  timeline; macro arguments plus `*N` failed silently; outdoor moves lose presses unless the wait is long (three
+  previews); about 25 calls on encounter hunting found nothing.
+- Proposed rule change: c64.md note on load times and fixed waits, and on previous owners' saves on used disks;
+  emu.py: reject or support `MACRO:args*N`.
+- Corrected: coordinator verified cachecheck 10/10. `MACRO:args*N` now repeats the filled-in macro (emu.py, test
+  `test_macro_with_arguments_repeats`). c64.md got the load-time note.
+- Status: logged (platform fact -> c64.md; tool wish built 2026-11-21; `?` inside a token -> backlog)
+### 2026-11-21 - The Bard's Tale III (Apple II)
+- Task: scout The Bard's Tale III (Apple II): dump check of disk 3, boot, party, RAM, warps, automap,
+  checkpoints and a shot plan.
+- Worked: loading every level through the game's own stairs code made a complete dump check possible in one
+  background run (tools/levels.py: 34 + 27 levels, 10 city maps); the BT1 approach (cityscan -> scan.py, warps
+  through the stairs code) carried over almost unchanged; preview `-r` variants in parallel kept looks low.
+- Friction: random encounters spoil scans and routes; position scans depend on the facing at arrival;
+  `play.py checkpoint ... >/dev/null` hid a lost checkpoint and the session crashed once without a reason; city
+  maps live on the character disk (found only through the prompt). Coordinator swapped disk 3 mid-run (second
+  upload); the agent redid the check on the new image.
+- Proposed rule change: skill step 3: load every level through the game's level code before writing warps (dump
+  check too); backlog: shared position-scan tool with a fight filter.
+- Corrected: coordinator reran cachecheck: 25/25, sheet checked.
+- Status: level-load lesson -> feedback.md (open); scan tool -> backlog row "Shared module ..." Asked 6 -> 7;
+  logged.
 
 ### 2026-11-21 - Beyond Zork (DOS)
 - Task: scout Beyond Zork (DOS): interpreter, boot macros, controls, first save and RESTORE, checkpoints to the

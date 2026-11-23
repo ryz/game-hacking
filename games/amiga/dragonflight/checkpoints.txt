@@ -1,0 +1,31 @@
+# name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
+# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
+# Amiga A500: a loaded state does not continue bit-exactly here (see playbook, Emulation notes): cachecheck
+# reports DIFFERS for every checkpoint although the frames agree; shots are built through the cache chain.
+title | DRAGONFLIGHT title logo (the attract cycle alternates it with the Main Menu) | TITLE
+menu | Main Menu: (N) New game, (O) Old game, (B) Backup gamedisk, (S) Sequences, (C) Credits | @title,w900
+diskb | New game: after the four intro pages, panel prompt "Insert disk B please" (Disk 1 still in DF0:) | @menu,n,w1200,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100,mouse1:10,w100
+start | First control: the party in the town of Pegana, top-down view, "Loading... Pegana" | @diskb,disk:2,w100,w2800
+world | Overworld next to the Pegana town icon (town corner poked, "Leave this place?" answered YES) | @start,LEAVE
+pegana_road | Pegana entered from the land with the Enter icon: a road at the town's west edge | @world,ENTER
+loaded | Old game: save 01_start loaded from Disk B ("Game loaded"), party on the land outside Pegana | sav:01_start,MENU,OLDGAME
+enc_snake | Encounter message after a 162-step walk south-east of Pegana: "Your opponents' attack surprises you. They are Snakes! They have no weapons!". Route from power-on on purpose: after any restore before it (even @title) the encounter load asks for Disk A and inserting Disk 1 resets to the title | FLATLAND,WALK162,kp6,w30,w60,w2000
+enc_armed | The same snake encounter with weapons poked on the land before the walk (Bladus sword, Rinakles dagger, Dobranur battleaxe, Andariel bow): the combat program copies the heroes when it loads | FLATLAND,ARM,WALK162,kp6,w30,w60,w2000
+enc_orcs | Encounter message, armed party, three Orcs: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0003:0002
+enc_skeletons | Encounter message, armed party, two Skeletons: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0002:0003
+enc_ghost | Encounter message, armed party, a Ghost: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0001:0005
+enc_bear | Encounter message, armed party, a Bear: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0001:0006
+enc_beast | Encounter message, armed party, a Beast: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0001:0007
+enc_ghoul | Encounter message, armed party, a Ghoul: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0001:0008
+enc_gnolls | Encounter message, armed party, two Gnolls: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0002:0009
+enc_trolls | Encounter message, armed party, two Trolls: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0002:000A
+enc_balron | Encounter message, armed party, a Balron: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0001:0001
+enc_energyball | Encounter message, armed party, an Energyball: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0001:0000
+enc_statue | Encounter message, armed party, a Statue: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0001:000B
+enc_guardian | Encounter message, armed party, a Guardian: count (13B58) and kind (13B5A, index into the plural list Energyballs=0 ... Snakes=4 ... Trolls=10) poked 200 frames into the load, before the pictures load | FLATLAND,ARM,WALK162,FOE:0001:000C
+talk_redhair | Pegana: talking to the red-haired young man (brother of the torch trader in Drombul) | @start,N,w20,settle,CLK:00E6:00A5,w300,settle,SPEAK,w40,CLK:010F:0067,w300,settle,S,S,E*12,w20,settle,S,E,w20,settle,SPEAK,w300,settle
+dun_dark | Dungeon behind the cave arch in the eastern mountains (land y 5A x F1, its top-left tile; ENTER): pitch dark, dungeon icon grid, "Loading..." | @world,WARPL:005B:00F1,kp8,w30,w20,ENTER,w600
+dun_lit | The same dungeon after Bladus used his torch (Status, Inventory, Use, torch picture): "The torch has been lighted!", first-person corridor | @dun_dark,BLADUS,CLK:0101:0055,w60,CLK:0124:0055,w100,CLK:0017:004A,w300,CLK:0124:006E,w200
+shop_smith | Drombul: inside the BLACKSMITH of Renday (hand icon at the door, standing at y 3A x 24 facing north) | @world,WARPL:0042:00FA,kp8,w30,kp8,w30,w20,ENTER,WARP:003B:0024,kp8,w60,CLK:00E6:00A5,w400
+shop_healer | Drombul: inside the HEALER of Gormen (Healing 18, Mushroom 1 22, Mushroom 2 34); door at y 11 x 6C, hand icon facing north | @world,WARPL:0042:00FA,kp8,w30,kp8,w30,w20,ENTER,WARP:0012:006C,kp8,w60,CLK:00E6:00A5,w400
+shop_inn | Drombul: inside The Oak Arbor, the inn of Firtul (Mead 2, Beer 4, Food 6); door at y 58 x 1D, hand icon facing north | @world,WARPL:0042:00FA,kp8,w30,kp8,w30,w20,ENTER,WARP:0059:001D,kp8,w60,CLK:00E6:00A5,w400

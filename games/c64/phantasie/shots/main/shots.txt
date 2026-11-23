@@ -1,0 +1,77 @@
+boot_ssi | boot | SSI "proudly presents" screen with the C64 version 1.4 credits | w700
+title_logo | title | Title picture: the Phantasie logo with a sword, shown while the game loads | @title
+menu_start | menu | Start menu: 1 Start in Pelnor, 2 Continue saved game | @menu
+env_town_pelnor | gameplay | Pelnor town screen: Guild, Armory, Bank, Inn, gate and Mystic | @pelnor_new
+guild_menu | menu | Guild menu: spells, training, add, new, drop, rename, inspect, purge, exit | @pelnor_new,return,w60
+guild_new_race | menu | New character: choose a race (human, dwarf, elf, halfling, gnome, random) | @pelnor_new,GUILDNEW
+guild_new_class | menu | New character: choose a class (thief, monk, ranger, fighter, priest, wizard) | @pelnor_new,GUILDNEW,return,w60
+guild_roll | system | Rolled attributes for a human fighter: keep this character? | @pelnor_new,GUILDNEW,ROLL:0:3:1,REROLL,ROLL:0:3:1
+guild_name | menu | Name entry for the new character | @pelnor_new,GUILDNEW,ROLL:0:3:1,REROLL,ROLL:0:3:1,return,w60
+char_sheet_ryz | inventory | Character sheet of ryz, level 1 human fighter: attributes, skills, equipment | @pelnor_new,GUILDNEW,ROLL:0:3:1,REROLL,ROLL:0:3:1,return,w60,settle,type:ryz,settle,return,w100
+guild_roster | menu | Guild roster when adding members: old Pineville characters and the new six | @guild_created,down*2,return,w60
+guild_party | menu | Party of six formed in the Guild | @party
+town_pelnor_party | gameplay | Pelnor with the party of six listed above the town | @pelnor_party
+guild_inspect_cubi | inventory | Inspect: cubi, level 1 elf wizard, knows spell 5; club, robes, small shield | @pelnor_party,return,w120,settle,down,settle,down,settle,down,settle,down,settle,down,settle,down,settle,return,w100,settle,down,settle,down,settle,down,settle,down,settle,down,settle,down,settle,down,settle,down,settle,return,w100
+guild_drop | menu | Guild drop: who leaves the party? | @pelnor_party,return,w120,settle,down,settle,down,settle,down,settle,down,settle,return,w100
+guild_rename | menu | Guild rename: choose the character to rename | @pelnor_party,return,w120,settle,down,settle,down,settle,down,settle,down,settle,down,settle,return,w100
+guild_spells | menu | Guild spells for cubi: 1 more spell, 10 gold per try, possible spell 9 | @s_pelnor_back,RICH1,set:9ED2=1247:2,return,w120,settle,return,w100,settle,down,settle,down,settle,down,settle,return,w100
+guild_spell_learned | system | Cubi tries spell 9 at the Pelnor temple: you learned | @s_pelnor_back,RICH1,set:9ED2=1247:2,return,w120,settle,return,w100,settle,down,settle,down,settle,down,settle,return,w100,settle,9,w30,settle,return,w40,!
+guild_training_cost | system | Training ryz to level 2 at the fighter's guild: it will cost 6 gp. Okay? | @s_pelnor_back,RICH1,set:9ED2=1247:2,return,w120,settle,down,settle,return,w100,settle,return,w100
+char_sheet_level2 | inventory | Ryz after training: level 2 fighter | @s_pelnor_back,RICH1,set:9ED2=1247:2,return,w120,settle,down,settle,return,w100,settle,return,w100,settle,return,w150,settle,down,settle,down,settle,down,settle,down,settle,down,settle,down,settle,return,w100,settle,down,settle,down,settle,down,settle,down,settle,down,settle,return,w100
+bank_menu | shop | Bank: withdraw, deposit, exit | @pelnor_party,right*2,return,w120
+bank_withdraw | shop | Bank withdrawal: how much? with the +10/-10/+1/-1 selector | @pelnor_party,right*2,return,w120,settle,return,w60,settle,return,w60
+bank_deposit | shop | Bank deposit: the carried gold is divided into shares per member | @pelnor_gold,return,w120,settle,down,settle,return,w60
+armory | shop | Armory stock for ryz: a small shield and scroll 8, cash 1536 | @pelnor_gold,left,return,w120,settle,return,w120
+armory_buy | shop | Ryz buys scroll 8 for 121 gold: cash 1415 | @pelnor_gold,left,return,w120,settle,return,w120,settle,down,settle,return,w100
+mystic | system | The Mystic gives the party score: 2, novice adventurers | @pelnor_gold,down,return,w200
+inn | menu | The Pelnor Inn: exit, distribute | @pelnor_gold,down,right,return,w200
+town_cast | menu | Town cast: who will cast a spell? | @pelnor_gold,c,w100
+use_items | menu | Town use items: who will use? | @pelnor_gold,u,w100
+printout | extra | Printout option: prepare printer and press P | @pelnor_gold,p,w100
+save_saving | save | Game save: each share is 0 XP and 256 gold, saving to disk | @pelnor_gold,g,w60,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w60,settle,return,w120,!
+town_shares_return | system | Entering town after a fight: 71 XP and 273 gold per share | @s_won,STEP:w*7,return,w3600,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w40,settle,return,w60,settle
+town_pineville_old | gameplay | Pineville (town 2) with the party saved on the original disk | @pineville_old
+leaving_pelnor | gameplay | Leaving Pelnor message before the wilderness loads | @pelnor_gold,left,return,w120,settle,return,w120,settle,right*2,return,w120,settle,down,return,w300
+world_town_prompt | dialogue | Wilderness on Pelnor's square: A town. Enter? yes/no | @pelnor_gold,left,return,w120,settle,return,w120,settle,right*2,return,w120,settle,down,LEAVE
+env_world_pelnor | gameplay | Wilderness east of Pelnor: path, grassland, forest, lake | @outdoors_pelnor,STEP:e,STEP:e
+env_world_west | gameplay | Wilderness west of Pelnor: the party on the path near the inn | @outdoors_pelnor,STEP:w*4
+world_path_message | dialogue | You are on a path, to the east lies a small town | @outdoors_pelnor,STEP:w
+world_red_pony | dialogue | To the west is a building called 'The Red Pony Inn' | @w_inn,right,settle,return,w60,STEP:e
+world_inn_prompt | dialogue | An independent inn in the wilderness: An inn. Stay? yes/no | @w_inn
+world_inn_rest | system | Staying at the inn: the members rest (256 gold for the party) | @w_inn,return,w100
+world_cmd_menu | menu | Wilderness command menu: inspect, use potion, health, cast spell, move | @outdoors_pelnor,return,w60
+world_health | hud | Party health: hit points and magic of the six members | @outdoors_pelnor,return,w60,settle,up*2,return,w100
+world_status | inventory | Party status report: days out, experience, gold, items acquired | @outdoors_pelnor,return,w60,settle,up*4,return,w100
+world_hillside_door | dialogue | You are near a small door set into the hillside | @outdoors_pelnor,POS:8410000000:8420000000,STEP:n
+world_dungeon_prompt | dialogue | At the hillside door: A dungeon. Enter? yes/no | @w_dungeon_door
+dungeon_disk | system | Entering the dungeon: insert dungeon disk and press a key | @w_dungeon_door,return,w1300
+dungeon_exit_prompt | dialogue | First square of the dungeon: An exit. Take it? | @d1_entry
+dungeon_menu | menu | Dungeon command menu: cast, inspect, use, health, look, move | @d1_entry,up,settle,return,w100
+env_dungeon_passage | gameplay | Dungeon: a passage with torches on the wall, explored squares in black | @d1_entry,up,settle,return,w100,settle,down,settle,return,w60,settle,DSTEP:s*8
+env_dungeon_guardroom | gameplay | Dungeon: an abandoned guard room | @d1_entry,up,settle,return,w100,settle,down,settle,return,w60,settle,STEP:s*3,STEP:e*4
+env_dungeon_hall | gameplay | Dungeon: a large hall with great columns | @d1_entry,up,settle,return,w100,settle,down,settle,return,w60,settle,DSTEP:s*16
+env_dungeon_hallway | gameplay | Dungeon: an old crumbling stone hallway, the explored map so far | @d1_won
+world_encounter | battle | An encounter: the wilderness map gives way to the combat screen | @outdoors_pelnor,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,!
+battle_bantirs | battle | Three bantirs face the party of six | @outdoors_pelnor,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,STEP:w,STEP:w,STEP:e,STEP:e,STEP:e,w200,!
+battle_party_options | battle | Party options: beg mercy, threaten, greetings, fight, flee | @enc_bantir
+battle_spell_select | battle | Cubi's spell: cast 1 with the +10/-1/+1/-10 number selector | @enc_bantir,FIGHT,IO0,IO0,IO0,settle,return,w30,settle,down,settle,down,settle,down,settle,down,settle,return,w60
+battle_individual | battle | Individual options set: five thrust, cubi casts spell 5 | @bantir_set
+battle_hit | battle | Round 1: condi hits a bantir | @bantir_set,return,w60*2,!
+battle_cast | battle | Cubi casts a spell | @bantir_set,return,w60*5,!
+battle_spell_damage | battle | The spell burns a bantir: bantir takes 5 damage | @bantir_set,return,w60*6,!
+battle_killed | battle | Monsters killed | @bantir_set,return,w1200,settle,return,w100,settle,return,w60*9,!
+battle_reward | battle | Each survivor gets 73 XP and 17 GP | @bantir_set,return,w1200,settle,return,w100,settle,return,w60*10,!
+battle_ants | battle | Dungeon fight: five giant ants, five giant bees and a giant ant in three ranks | @d1_entry,up,settle,return,w100,settle,down,settle,return,w60,settle,DSTEP:s*20,DSTEP:e*8,DSTEP:w*16,DSTEP:s*6,DSTEP:n*4,DSTEP:e*8,DSTEP:s*20,DSTEP:e*8,DSTEP:w*16,w150*2,!
+battle_ants_options | battle | Party options against three ranks of giant ants and bees | @d1_ants
+battle_beg_mercy | battle | Beg mercy: the monsters stop and take your gold | @d1_ants,up,settle,up,settle,up,settle,return,!
+battle_beg_result | battle | After begging mercy: each survivor gets 0 XP and -256 GP | @d1_ants,up,settle,up,settle,up,settle,return,w100*2,!
+battle_threaten | battle | Threaten: monsters don't respond | @d1_ants,up,settle,up,settle,return,!
+battle_flee | battle | Flee succeeds: each survivor gets 0 XP and 0 GP | @d1_ants,down,settle,return,w100*2,!
+battle_thief_rank | battle | Deddo the thief may thrust at any rank: rank selector | @d1_ants,FIGHT,IO0,IO0,IO0,IOSP:5,settle,return,w30,settle,return,w60
+battle_member_hurt | battle | A giant ant bites: cubi takes 1 damage | @d1_ants,OPTS2,return,w80*2,!
+battle_ant_dies | battle | Giant ant dies | @d1_ants,OPTS2,return,w80*5,!
+battle_bee_hits | battle | Giant bee hits | @d1_ants,OPTS2,return,w80*14,!
+battle_fire_rank3 | battle | Cubi's spell strikes the giant ant in rank 3 | @d1_ants,OPTS2,return,w80*22,!
+battle_round2_options | battle | Round 2: five giant bees and one giant ant left, cubi hurt (4/7) | @d1_ants_r2
+battle_bee_dies | battle | Giant bee dies | @d1_ants_r2,return,w100,settle,return,w2200,settle,return,w100,settle,return,w80*2,!
+battle_ants_reward | battle | Ants and bees beaten: each survivor gets 166 XP and 0 GP | @d1_ants_r2,return,w100,settle,return,w2200,settle,return,w100,settle,return,w80*9,!

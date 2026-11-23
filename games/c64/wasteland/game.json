@@ -1,0 +1,134 @@
+{
+  "slug": "wasteland",
+  "title": "Wasteland",
+  "platform": "c64",
+  "region": "na",
+  "model": "c64",
+  "rom": "rom/wasteland.zip",
+  "sha1": "ea87866d2b11a103f9c9dd641d8117ba368c6d83",
+  "crc32": "a91de263",
+  "size": 800586,
+  "header": {
+    "disks": [
+      {
+        "name": "WASTLND0.D64",
+        "sha1": "949aefbf56190e72e602604f11cddbf8bfbaa650",
+        "kind": "D64, 35 tracks",
+        "volume": "WASTELAND",
+        "files": [
+          "PRODOS",
+          "2.0"
+        ]
+      },
+      {
+        "name": "WASTLND1.D64",
+        "sha1": "0c02c50a05ba61ad304caf097fd323bba375e07f",
+        "kind": "D64, 35 tracks",
+        "volume": "WASTELAND",
+        "files": []
+      },
+      {
+        "name": "WASTLND2.D64",
+        "sha1": "b97374623eaeba1d7efe7418608160b08e408922",
+        "kind": "D64, 35 tracks",
+        "volume": "WASTELAND",
+        "files": [
+          "PRODOS",
+          "2.0"
+        ]
+      },
+      {
+        "name": "WASTLND3.D64",
+        "sha1": "04537484095f1a22f7361e614f8ca05074ca9421",
+        "kind": "D64, 35 tracks",
+        "volume": "WASTELAND",
+        "files": []
+      },
+      {
+        "name": "WASTLND4.D64",
+        "sha1": "f3737d11c39f945e6f679611d5fe299ecc89f1cf",
+        "kind": "D64, 35 tracks",
+        "volume": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+        "files": []
+      },
+      {
+        "name": "WASTLND5.D64",
+        "sha1": "2c05ad4a2fbae69c528b462094d354689abc860a",
+        "kind": "D64, 35 tracks",
+        "volume": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+        "files": []
+      },
+      {
+        "name": "WASTLND6.D64",
+        "sha1": "04350602d141c0eb5ad1bebaf70ae4ec48837d07",
+        "kind": "D64, 35 tracks",
+        "volume": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+        "files": []
+      },
+      {
+        "name": "WASTLND7.D64",
+        "sha1": "ce6d91206b6c2d61911d509a9022e96e476d486d",
+        "kind": "D64, 35 tracks",
+        "volume": "\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000",
+        "files": []
+      },
+      {
+        "name": "WASTLND8.D64",
+        "sha1": "5056d9a55f1dd6b23ea5298484020bd796f8ac9d",
+        "kind": "D64, 35 tracks",
+        "volume": "ASS PRESENTS:",
+        "files": [
+          "WASTELAND EDITOR"
+        ]
+      }
+    ],
+    "header_title": "WASTELAND"
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {
+    "TITLE": "w1900",
+    "NEWGAME": "s,w300,y,w1500,disk:5,w50,return,w2000,y,w2000",
+    "RYZ": "d,w200,1,w300,y,w300,c,w300,return,w300,type:ryz,w60,return,w300,m,w300,1,w300,3,w200,6,w200,9,w200,return,w300,y,w400",
+    "LEAVE": "s,w1600",
+    "ORDER4": "o,w200,y,w300,4,w100,1,w100,2,w300",
+    "ROLL": "space,w150",
+    "RYZSTATS": "poke:F80E=0e100c0d0f100b,poke:F81B=1f00,poke:F81D=1f00",
+    "N": "i,w200",
+    "S": "k,w200",
+    "E": "l,w200",
+    "W": "j,w200",
+    "CONT": "s,w300,y,w1500,disk:5,w50,return,w2000",
+    "SAVE": "s,w300,y,w3000",
+    "NEWFRESH": "s,w300,n,w1500,disk:5,w50,return,w1500,disk:6,w50,return,w1500,disk:7,w50,return,w1500,disk:8,w50,return,w2500,disk:5,w50,return,w2000,y,w2000",
+    "WARP": "poke:0057={0}{1},poke:09EC={0},poke:09EE={1},poke:09FB={0},poke:F408={0}{1},v,w600"
+  },
+  "ram": {
+    "x": {
+      "addr": "F408",
+      "size": 1
+    },
+    "y": {
+      "addr": "F409",
+      "size": 1
+    },
+    "order": {
+      "addr": "F401",
+      "size": 4,
+      "fmt": "hex"
+    },
+    "money_ryz": {
+      "addr": "F815",
+      "size": 3,
+      "fmt": "le"
+    }
+  },
+  "work": "captured 2026-11-22: start set (49 shots, power-on to the first save in Highpool, honest) and main set (124: title, Ranger Center, creation, world map, field commands, Highpool, Agricultural Center, combat, and the side 2-4 locations Quartz, Needles, Las Vegas, Guardian Citadel, Darwin Village, Sleeper Base, Base Cochise); lenses written; world map decoded, WARP macro",
+  "open": "game over not reached; NPC talk and shop lists in the later towns, Quartz Emporium; Savage Village, mine shaft, Desert Nomads not shot; Sleeper Base/Base Cochise identified by content (reached by a poked entry record); Utils Copy/Restart and the disk-9 editor not tried"
+}

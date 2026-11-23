@@ -8,7 +8,7 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | Path | What |
 |---|---|
 | `games/<platform>/<slug>/` | everything about one game: `game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt`, `shots/<set>/`, `design/`, `saves/`, `tools/` (game-specific helpers); optional `translation/` and `tech/` |
-| `games/<platform>/` | one folder per platform, named like `game.json` "platform": `gb`, `gbc`, `nes` (NES and Famicom), `snes` (SNES and Super Famicom), `sms` (Master System and Mark III), `md` (Mega Drive and Genesis), `dos`, `apple2`, `amiga` |
+| `games/<platform>/` | one folder per platform, named like `game.json` "platform": `gb`, `gbc`, `nes` (NES and Famicom), `snes` (SNES and Super Famicom), `sms` (Master System and Mark III), `md` (Mega Drive and Genesis), `dos`, `apple2`, `amiga`, `c64` (Commodore 64) |
 | `games/_template/` | starting files for a new game (used by `tools/intake.py`) |
 | `tools/`, `tests/` | shared tooling for all games (emulators, play, capture) and its tests |
 | `docs/` | shared tooling docs: `emulator/` (general rules + one file per platform), `capture-guide.md`, `status.md` (snapshot), `backlog.md` (tool wishes), `progress-log.md` (history) |
@@ -17,7 +17,7 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 
 Games: the table in `README.md` (what is here) and the one in `docs/status.md` (sets with shot counts, lens
 documents, open items). Both are written by `python3 tools/gamestable.py` from each game's `game.json` fields
-"edition", "work" and "open": change those, never the tables. 31 games on 9 platforms as of 2026-11-21.
+"edition", "work" and "open": change those, never the tables. 36 games on 10 platforms as of 2026-11-23.
 
 ## Rules (all work)
 - Never commit game data: ROMs, savestates, save files, patched builds (`.gitignore` covers `*.gb[c]`, `*.nes`, `*.sfc`, `*.smc`,
@@ -25,6 +25,13 @@ documents, open items). Both are written by `python3 tools/gamestable.py` from e
   `rom.sha1` for the Wizardry Empire translation). Exceptions (owner's decisions 2026-11-12 and 2026-11-15):
   saves made by a game's own tools or by the capture agents while playing, in `games/<platform>/<slug>/saves/`, each
   documented in its `README.md`. Downloaded saves are never committed.
+- Game data lives in the private vault `ryz/game-hacking-r` (owner's rule 2026-11-21): whenever the owner drops a
+  ROM, disk image, patch, save or Kickstart, register it (`tools/intake.py`) and then `python3 tools/vault.py push
+  GAME [PATH ...] --booted "what it showed"` in the same session, without being asked. Only working ROMs go in
+  (owner's rule 2026-11-21): push runs a boot check (SHA-1, power-on, blank or frozen screen refused; sheet in
+  `work/vault/smoke/`), look at the sheet and name what the game showed; a ROM that does not boot is reported, not pushed; exported saves (`rom/saves/`) are pushed too. A fresh
+  session restores a game's files with `python3 tools/vault.py pull GAME` (or `--all`). Cloud sessions attach the
+  vault first (`add_repo` ryz/game-hacking-r); `vault.py` commits to the vault's `main` directly. Layout: its `README.md`.
 - Patches supplied by the owner (IPS, BPS, UPS: translations, bug fixes, restorations) are always used (owner's
   rule 2026-11-17): register the ROM with them applied, in the order given (`tools/intake.py ROM --patch P ...`),
   so screenshots, playbook and design reference describe the patched game. Header-only differences are handled
@@ -53,9 +60,10 @@ documents, open items). Both are written by `python3 tools/gamestable.py` from e
 ## Shared tooling quick reference
 Run from the repo root (how to drive any game: `docs/emulator/README.md`, then the platform file
 `docs/emulator/<platform>.md`; what to capture: `docs/capture-guide.md`):
-- Setup: `sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga]` builds one emulator (9-90 s; backends, what a
+- Setup: `sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga|c64]` builds one emulator (9-90 s; backends, what a
   game file is and what is not supported per platform: `docs/status.md`, "Platforms"). Amiga Kickstart ROMs go
   into `rom/kickstart/` (never committed).
+- Vault (private game data): `python3 tools/vault.py push GAME [PATH ...] --booted "title screen" [--frames N]`, `pull GAME|--all`, `list`.
 - Register a ROM: `python3 tools/intake.py ROM [--slug NAME] [--region jp|na|eu] [--patch PATCH[:headered|unheadered] ...]` -> `games/<platform>/<slug>/` +
   `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`; 6502 code:
   `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]` (NES) or `SLUG --route @cp ADDR [N]` (live memory, Apple II); 68000 code: `python3 tools/dis68k.py SLUG ADDR [N]`,
@@ -64,7 +72,7 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
   same slug. Work files follow the same shape: `work/shots/<platform>/<slug>/`, `work/cache/...`, `work/intake/...`.
 - Explore: `python3 tools/play.py start SLUG`, `do "tokens"`, `undo`, `snap ID CATEGORY "caption"`,
   `checkpoint NAME "desc"`, `goto NAME`, `find "new == old - 1"`, `dump A` / `diff A [B]`, `sample "TOKS" N`,
-  `text`, `stop`. Pictures are native size; every status line carries `call=N` (budgets are counted in calls).
+  `text` (Apple II hi-res games: a font taught with `tools/hirestext.py`), `stop`. Pictures are native size; every status line carries `call=N` (budgets are counted in calls).
 - Capture in batches (the default once a route is known, `docs/emulator/README.md` "Two loops"):
   `python3 tools/preview.py SLUG PLANFILE [--set SET] [--timeline N:STEP] [--text]` shows many candidate routes
   on one sheet exactly as they will be shot; then the lines go into the set's `shots.txt` and

@@ -1,6 +1,6 @@
 # Ultima I: The First Age of Darkness (DOS) - shots: main
 
-Platform dos, region na, model svga-500, ROM SHA-1 `19a3c1ed6697fc84e9ee3c5460397c807ae1188a`. 195 shots. Contact sheet: [ultima_dos_na_set_sheet.png](ultima_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model svga-500, ROM SHA-1 `4b820a487f9c7161a0e6baacc7843a2aec4b6e3a`. 201 shots. Contact sheet: [ultima_dos_na_set_sheet.png](ultima_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -160,6 +160,12 @@ Platform dos, region na, model svga-500, ROM SHA-1 `19a3c1ed6697fc84e9ee3c546039
 | battle_zorn | battle | Level 10: a Zorn | no | [png](ultima_dos_na_battle_battle_zorn.png) |
 | battle_daemon | battle | Level 10: a Daemon | no | [png](ultima_dos_na_battle_battle_daemon.png) |
 | battle_balron | battle | Level 10: the Balron, deepest of the dungeon monsters | no | [png](ultima_dos_na_battle_battle_balron.png) |
+| env_dungeon_doors | gameplay | Dungeon corridor, level 1: doors on both sides, a wall ahead | no | [png](ultima_dos_na_gameplay_env_dungeon_doors.png) |
+| env_dungeon_passage | gameplay | Dungeon corridor, level 1: doors on the left, a side passage on the right | no | [png](ultima_dos_na_gameplay_env_dungeon_passage.png) |
+| battle_balron_approach | battle | Level 10: a Balron two squares down the corridor, coming closer | no | [png](ultima_dos_na_battle_battle_balron_approach.png) |
+| battle_balron_corridor | battle | Level 10: Attacked by Balron! in a corridor lined with doors | no | [png](ultima_dos_na_battle_battle_balron_corridor.png) |
+| battle_minotaur_corridor | battle | Level 6: Attacked by Minotaur! beside a door | no | [png](ultima_dos_na_battle_battle_minotaur_corridor.png) |
+| battle_orc_corridor | battle | Level 4: Attacked by Orc! Hit! 53 damage, mid-corridor | no | [png](ultima_dos_na_battle_battle_orc_corridor.png) |
 | system_spell_ladder_down | system | Cast Ladder Down "INFERUS!": Ladder created! | no | [png](ultima_dos_na_system_system_spell_ladder_down.png) |
 | system_spell_ladder_up | system | Cast Ladder Up "ASCENDO!": Ladder created! | no | [png](ultima_dos_na_system_system_spell_ladder_up.png) |
 | system_spell_blink | system | Cast Blink "DUCIS-EDUCO!": Teleported! | no | [png](ultima_dos_na_system_system_spell_blink.png) |

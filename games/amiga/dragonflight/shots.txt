@@ -1,0 +1,34 @@
+# id | category | caption | route
+# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
+#             minigame ending credits gameover save extra   (docs/capture-guide.md)
+# The plan for the main set (scout 2026-11-22: routes previewed, nothing shot). Lines starting "# ?" still need a
+# route (playbook, Shot plan). play.py snap writes captured shots to work/shots/amiga/dragonflight/<set>/shots.txt.
+boot_crack | boot | CLASSIC crack intro: "DRAGON FL..." in turning vector letters | w1080,!
+boot_thalion | boot | THALION logo over raining coloured drops | w300,mouse1:10,w2300,!
+title_dragon | cutscene | The red dragon spreads its wings on a rock at sunset | w300,mouse1:10,w2400,mouse1:10,w1500,!
+title_screen | title | DRAGONFLIGHT title logo | @title
+menu_main | menu | Main Menu: New game, Old game, Backup gamedisk, Sequences, Credits | @menu
+menu_backup | menu | Backup Menu: Format Disk, Copy Disk, Help, Exit to Main Menu | @menu,b,w300
+cutscene_sage | cutscene | The sage holds the Rings of Stasis: first page of the intro | @menu,n,w1200
+env_pegana_square | gameplay | Pegana: the square where the party starts | @start,w10
+env_pegana_road | gameplay | Pegana: the road along the town's western edge | @pegana_road,w10
+env_land_river | gameplay | The land outside Pegana: river, road and the town icon | @world,w10
+env_land_forest | gameplay | Deep forest south of Pegana | @world,S*20,w60
+env_land_bridge | gameplay | River bridge and a grey mountain east of Pegana | @world,S*3,E*40,N*10,w60
+hud_land | hud | Panel on the land: four portraits, message scroll, command icons | @world,W*3,w10
+system_arrows | system | Right button: the direction arrows replace the command icons | @world,ARROWS
+system_camp | system | Camp on the land: the party around a campfire | @world,S*3,CAMP,w200
+inventory_status | inventory | Status of Bladus: hit points, magic, experience, food, gold | @start,BLADUS
+inventory_items | inventory | Inventory: gold, food and a torch | @start,BLADUS,CLK:0101:0055,w60
+inventory_spells | inventory | Spells page, empty at the start | @start,BLADUS,CLK:0124:0055,w60
+save_prompt | save | Disk menu: "Gamesave? Left YES Right NO" | @world,DISK,CLK:0127:008F,w40
+save_done | save | "Game saved" after saving to Disk B | @world,DISK,CLK:0127:008F,w40,mouse1,w1500
+menu_oldgame | save | Old game loaded: "Thank You! Game loaded" on the land | @loaded,w10
+# ? dialogue_townsperson | dialogue | SPEAK to a person in Pegana | @start,...
+# ? shop_pegana | shop | a shop in Pegana | @start,...
+# ? battle_command, battle_attack, battle_magic, battle_won | battle | grid combat | (no encounter found yet)
+# ? gameplay_dungeon_corridor, env_dungeon_* | gameplay | first-person dungeon | (no dungeon found yet)
+# ? system_magic, system_potion | system | casting, mixing potions | (no spell yet)
+# ? map_great_map | map | the part of the Great Map | ?
+# ? gameplay_ship, gameplay_dragon | gameplay | ship, dragon flight | ?
+# ? gameover | gameover | party dead | poke HP before a fight

@@ -1,0 +1,16 @@
+Ice Dungeon (level 15, dungeon disk side A, 5x5)
+North is up; columns = east, rows = north. Walls | ---, doors D, other S (secret door or special wall);
+cell text: flag byte 2 in hex when not zero, + = flag byte 3 set, * = visited (automap bit), nothing else.
+   +---+---+---+---+---+
+ 4 | 01  80| +   +   + |
+   +   +   +   +   +   +
+ 3 | 80  80| +   +   + |
+   +-S-+---+-S-+---+   +
+ 2 |10+  + |08+|       |
+   +   +   +   +-S-+---+
+ 1 |10+ 10+|08+|       |
+   +   +   +   +   +   +
+ 0 |10+  + S08+|       |
+   +---+---+---+---+---+
+    0   1   2   3   4   
+route: @cat_stairs,LV:15:<index>

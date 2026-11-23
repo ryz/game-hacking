@@ -335,11 +335,20 @@ class Session:
         lines.append("%s | %s | %s" % (name, desc.replace("|", "/"), route))
         open(path, "w", encoding="utf-8").write("\n".join(lines) + "\n")
         full = self.E.resolve(self.game, "@" + name)
-        cp = self.E.cache_path(self.game, full, self.model)
-        os.makedirs(os.path.dirname(cp), exist_ok=True)
-        self.emu.save_state(cp)
+        if getattr(self.emu, "EXACT_RESTORE", True):
+            cp = self.E.checkpoint_cache(self.game, name, self.model)
+            os.makedirs(os.path.dirname(cp), exist_ok=True)
+            self.emu.save_state(cp)
+            note = ""
+        else:
+            # A restore is not bit-exact here: this session's machine is not the state a replay builds. Build
+            # the checkpoint as every tool will, and go on from it (random outcomes may differ from what this
+            # session showed: look at the picture).
+            self.emu.close()
+            self.emu, _ = self.E.at_checkpoint(self.game, name, self.model)
+            note = "; rebuilt from its route (restores are not exact on this platform): check the picture"
         self.base, self.toks = "@" + name, []
-        return "checkpoint %s saved (%d tokens from power-on)" % (name, len(full))
+        return "checkpoint %s saved (%d tokens from power-on)%s" % (name, len(full), note)
 
     def export(self, name, desc, state=False):
         if not re.match(r"^[a-z0-9_]+$", name):

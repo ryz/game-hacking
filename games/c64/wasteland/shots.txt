@@ -1,0 +1,18 @@
+# id | category | caption | route
+# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
+#             minigame ending credits gameover save extra   (docs/capture-guide.md)
+# The plan for the main set. play.py snap writes captured shots (with exact routes) to
+# work/shots/c64/wasteland/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
+# title_screen | title | Title screen | @title
+title_screen | title | Title: Earth globe, Place EARTH, Year 1998, Status DEFCON 1; Start / Utils | @title
+title_utils | menu | Utils menu: Copy / Restart / Start | @title,u,w600
+menu_continue | menu | "Use last saved game (Y/N)?" after Start | @title,s,w300
+menu_insert_side | menu | "Insert side 1. [RETURN]" | @title,s,w300,y,w1500
+rc_roster | menu | Ranger Center: the four pre-made rangers, Create / Delete / Start | @rangers
+world_start | gameplay | World map at the Ranger Center, party roster under the map | @start
+world_step | gameplay | World map one step east of the Ranger Center | @step1
+battle_appears | battle | "3 Animals appear at 14 feet" | @fight
+battle_menu | battle | RYZ, choose: Run Use Hire Evade Attack Weapon Load/Unjam | @fight,return,w300
+battle_xp | battle | Round over: Angela Deth, Thrasher, Snake Vargas gain 5 experience | @fight,return,w300,a,w300,a,w300,a,w300,a,w300,y,w1500
+# Plan without routes yet (see playbook Shot plan): rc_create_roll, rc_skills, rc_nationality, char_stats,
+# char_items, char_skills, field_* prompts, env_world_*, Highpool and later towns, shop, NPC talk, save_prompt, gameover.

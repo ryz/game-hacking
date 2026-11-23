@@ -17,8 +17,8 @@ Routes are comma-separated tokens:
   mash:KEY:N                            tap KEY every 8 frames for N frames (skip text, mash through intros)
   poke:ADDR=HEX                         write bytes (poke:C0A2=09)
   type:TEXT   mouse:DX:DY               computers: type a string (no comma inside; \\n = Enter); move the mouse
-  disk:N   disk2:N                      Apple II, Amiga: put disk N of the game into drive 1 / drive 2 (Amiga:
-                                        DF0: / DF1:; 0 = none)
+  disk:N   disk2:N                      Apple II, Amiga, C64: put disk N of the game into drive 1 / drive 2
+                                        (Amiga: DF0: / DF1:; C64: drive 8 only; 0 = none)
   settle                                run until the screen is stable (two identical frames `settle.step`
                                         apart, at most `settle.limit` frames); deterministic like any token
   !                                     last token only (shoot.py): take the frame as is, no final settle
@@ -100,8 +100,8 @@ class Game:
 
     def check_rom(self):
         if not os.path.exists(self.rom):
-            raise SystemExit("ROM missing: %s (copy your dump there; SHA-1 %s)" % (
-                os.path.relpath(self.rom, ROOT), self.meta.get("sha1")))
+            raise SystemExit("ROM missing: %s (python3 tools/vault.py pull %s, or copy your dump there; SHA-1 %s)" % (
+                os.path.relpath(self.rom, ROOT), self.id, self.meta.get("sha1")))
         data = open(self.rom, "rb").read()
         sha = hashlib.sha1(data).hexdigest()
         if self.meta.get("sha1") and sha != self.meta["sha1"]:
@@ -214,14 +214,17 @@ def split(route):
 
 
 def expand(game, toks, depth=0):
-    """Expand macros (UPPERCASE names in game.json) recursively; NAME*N repeats a macro."""
+    """Expand macros (UPPERCASE names in game.json) recursively; NAME*N and NAME:args*N repeat a macro."""
     if depth > 20:
         raise ValueError("macro recursion too deep")
     out = []
     for t in toks:
         name, _, rep = t.partition("*")
         head, _, args = t.partition(":")
-        if t in game.macros:
+        m = re.match(r"^([^:*]+:[^*]+)\*(\d+)$", t)
+        if m and head in game.macros:                         # MACRO:a:b*N (an argument never ends in *N)
+            out += expand(game, [m.group(1)], depth + 1) * int(m.group(2))
+        elif t in game.macros:
             out += expand(game, split(game.macros[t]), depth + 1)
         elif args and head in game.macros:                    # MACRO:a:b -> {0} {1} filled in
             body = game.macros[head]
@@ -433,6 +436,8 @@ def open_game(game, model=None, state=None, opts=None):
     emu = platforms.backend(game.platform).open(rom, model=model or game.model, seed=1, sav=sav)
     emu.freezes = []
     emu.aspect = game.aspect
+    font = os.path.join(game.dir, "font.json")              # Apple II hi-res text (tools/hirestext.py)
+    emu.hires_font = font if os.path.exists(font) else None
     if state:
         emu.load_state(state)
     return emu
@@ -447,6 +452,16 @@ def cache_path(game, toks, model):
         h.update(open(game.sav_file(opts["sav"]), "rb").read())
     key = hashlib.sha1((h.hexdigest() + "|" + model + "|" + ",".join(toks)).encode()).hexdigest()[:16]
     return os.path.join(CACHE_DIR or os.path.join(WORK, "cache"), game.id, key + ".state")
+
+
+def checkpoint_cache(game, name, model):
+    """Cache file of checkpoint NAME: the flat route from power-on plus the checkpoint it is built from. Where
+    restores are not bit-exact (Amiga) a checkpoint built through its parent's state and the same tokens played
+    from power-on are different states (Dragonflight 2026-11-22: a checkpoint rewritten flat silently reused the
+    chained one)."""
+    own = expand(game, split({c["name"]: c for c in game.checkpoints()}[name]["route"]))
+    via = own[0] if own and own[0].startswith("@") else "@"
+    return cache_path(game, resolve(game, "@" + name) + ["via" + via], model)
 
 
 def _lock(path):
@@ -478,7 +493,8 @@ def at_checkpoint(game, name, model, cache=True):
         emu = open_game(game, model, opts=opts)
         play(emu, game, base_toks)
         return emu, base
-    path = cache_path(game, base, model)
+    own = expand(game, split({c["name"]: c for c in game.checkpoints()}[name]["route"]))
+    path = checkpoint_cache(game, name, model)
 
     def load():
         emu = open_game(game, model, path, opts)
@@ -489,7 +505,6 @@ def at_checkpoint(game, name, model, cache=True):
     with _lock(path):
         if os.path.exists(path):                # built by another process while this one waited
             return load(), base
-        own = expand(game, split({c["name"]: c for c in game.checkpoints()}[name]["route"]))
         if own and own[0].startswith("@"):
             emu, _ = at_checkpoint(game, own[0][1:], model)
             play(emu, game, own[1:])
@@ -500,8 +515,9 @@ def at_checkpoint(game, name, model, cache=True):
         emu.save_state(tmp)
         os.replace(tmp, path)       # atomic: a reader never sees half a state
         emu.close()
-    # Continue from the saved state, not from the run that built it: on a game whose savestate misses some
-    # timing (DOS Quake: input/event timing) a miss would otherwise give another picture than every later hit.
+    # Continue from the saved file, not from the machine that built it: where a restore is not bit-exact
+    # (Amiga, docs/emulator/amiga.md; DOS Quake: input timing) a hit and a miss would otherwise go on differently,
+    # and a set's pictures would depend on which process built which checkpoint first.
     return load(), base
 
 

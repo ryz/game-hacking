@@ -1,0 +1,109 @@
+# Dragonflight - content (variety lens)
+
+What the game is filled with: its places, opponents, things and people, shown as a reasonable variety rather
+than a full list. Read it to see the range of what a player meets. The rules behind the content are in
+[systems.md](systems.md), the screens it appears on in [interface.md](interface.md); the same shots appear
+there, overlap is intended. Notation: [README.md](README.md). Check: `python3 tools/lenses.py PLATFORM/SLUG`.
+
+Which kinds exist depends on the game, its genre and structure: keep the kinds this game has, drop the rest,
+add its own (vehicles, tracks, puzzles, levels, minigames ...). For each kind say how many there are in total
+if known, then show a sample that spans the range: early and late, common and rare, plain and strange, one of
+each visual family. A complete table belongs in its own document (items.md, enemies.md) and is linked here.
+
+## 1. Kinds of content
+| Kind | In the game (count if known) | Shown here | Full list |
+|---|---|---|---|
+| Environments | land (forest, river, road, mountains), walled towns, first-person dungeons, combat side views **(verified / RAM for dungeons)** | land, Pegana, a combat meadow | - |
+| Opponents | 15 kinds named in the game text **(RAM)** | Snake | section 3 |
+| Items | 79 names incl. 10 potions, gems, quest letters and notes **(RAM)** | torch, piece of map, Worldmap | section 4 |
+| Equipment | 15 weapons, 6 armours, 4 rings **(RAM)** | sword | section 4 |
+| Abilities / spells | 29 spells in three schools **(RAM)** | none known at the start | section 5 |
+| Characters and people | 4 fixed heroes; towns with named residents | the heroes, a red-haired young man, three shopkeepers | section 6 |
+| Places | 17 place names in the game text: Stormwind, Clearlight, Gemshine, Farout, Crystaleye, Thunderroar, Deepsea, Darkmoon, Pegana, Port Pylon, Brindil-Bun, Nimraviel, Scatterbone, Drombul, Bagnol, Luthag, Trolian, Negame, Sotul, Orc Village **(RAM)** | Pegana | - |
+
+## 2. Environments
+| Environment | Where | What sets it apart | Shots |
+|---|---|---|---|
+| Town streets | Pegana | grey cobbles, red-roofed timber houses, a blue fountain, grey city wall | `env_pegana_square`, `env_pegana_road`, `gameplay_door_nobody` |
+| Land: river and road | around Pegana | grass, roads, a winding river, the town icon | `env_land_river`, `hud_land` |
+| Land: forest | south of Pegana | dense trees | `env_land_forest` |
+| Land: bridge and mountains | east of Pegana | wooden bridge, grey mountains with a cave arch, the sea | `env_land_bridge` |
+| Camp | anywhere on the land | night scene with a campfire | `system_camp` |
+| Cave arch | eastern mountains of the land | grey arch in the rock face | `env_land_cave_arch` |
+| Dungeon corridor | cave east of Pegana | grey-green stone blocks, cobbled floor, wooden doors, torchlight; grey under the Light spell | `env_dungeon_corridor`, `env_dungeon_side_doors`, `dungeon_door`, `magic_light` |
+| Temples | hidden icons: Stormwind (west), Gemshine (north-east of Pegana) | pillared hall, blue basin, red or green walls | `temple_stormwind`, `temple_gemshine` |
+| Forest town and orc village | Drombul (north-east), Orc Village (west) | towns in forest and meadow with a grey stone border | `town_drombul`, `town_orc_village`, `env_drombul_smithy` |
+| Shops | Drombul | full-screen list on dark blue; panel pictures per trade: forge with a smith (blacksmith), shelf of jars (healer), tavern hands with mugs (inn) | `shop_blacksmith`, `shop_healer`, `shop_inn` |
+| Combat forest | land fights in forest | side view under tall trees | `battle_magic_order`, `battle_magic_cast` |
+| Great Map | Examine on the Worldmap | painted chart of coasts, rivers and towns | `map_great_map` |
+| Combat meadow | land fights | side view: flowered meadow under a blue sky | `battle_start`, `battle_hit` |
+| Sage's room | intro | stone room, fireplace, the sage | `cutscene_sage` |
+
+## 3. Opponents
+Named in the game text **(RAM)**: Orc, Skeleton, Ghost, Bear, Snake, Beast, Gnoll, Troll, Ghoul, Energyball,
+Balron, Statue, Guardian, Unicorn (a banned unicorn, freed in a story scene), Shadow. Groups carry weapons
+(no weapons, thorns, daggers, short swords, swords, broadswords, battleaxes, battlehammers) **(RAM)**.
+
+| Opponent | Where met | Family / picture | What it does | Shots |
+|---|---|---|---|---|
+| Snake | land south-east of Pegana | green snake | ambushes ("surprises you"), no weapons; took several rounds to wound a hero at 1 hit point **(verified)** | `battle_encounter`, `battle_msg_orcs`, `battle_orders`, `battle_wounded`, `battle_statue` |
+| Orc | three on the meadow | brown humanoid | - | `battle_msg_orcs`, `battle_orcs` |
+| Skeleton | poked | white skeleton | - | `battle_skeleton` |
+| Ghost | poked | white sheet ghost | - | `battle_ghost` |
+| Bear | poked | brown bear on its hind legs | - | `battle_bear` |
+| Beast | poked | pink crouching beast | - | `battle_beast` |
+| Ghoul | poked | figure in a blue robe (the "blue-robed figures" of round 1) | - | `battle_ghoul` |
+| Gnoll | poked | yellow dog-man | - | `battle_gnoll` |
+| Troll | poked | green troll | - | `battle_troll` |
+| Balron | poked | red winged demon | - | `battle_balron` |
+| Energyball | poked | green floating ball | - | `battle_energyball` |
+| Statue | poked | green stone figure | strikes first: Bladus mortally wounded at once **(verified)** | `battle_statue` |
+| Guardian | poked | not drawn on the meadow | kills the whole party in its first round **(verified)** | `battle_wounded`, `gameover` |
+
+## 4. Items and equipment
+| Item | Type | Got from | What it does | Shots |
+|---|---|---|---|---|
+| Torch | light | every hero at the start | "The torch has been lighted!" **(RAM)** | `inventory_items` |
+| Potions 1B-24 | potion | shops, chests **(inferred)**; poked here | drunk via "Give to whom?" on oneself: healing +25, power, magic, poison -25, sour, miserable -20, cheated, old wine, alcohol, nothing **(verified)** | `potion_heal`, `potion_power`, `potion_magic`, `potion_poison`, `potion_miserable`, `potion_wine` |
+| Worldmap | quest | made by adding map pieces | Examine shows the Great Map **(verified)** | `map_great_map_one`, `map_great_map` |
+| Piece of map 02 | quest | Rinakles at the start | added to the Worldmap with Use **(verified)** | `inventory_map_piece`, `inventory_examine`, `map_worldmap_added` |
+| Sword | weapon | Blacksmith, 240 gold **(verified)**; poked here | melee weapon, 27 damage seen **(verified)** | `inventory_weapon`, `battle_hit` |
+| short Sword | weapon | Blacksmith Renday (Drombul), 77 gold; sold back for 24 **(verified)** | melee weapon | `shop_bought`, `shop_inventory`, `shop_sell_offer` |
+| Mushroom 1, Mushroom 2 | herb | Healer Gormen (Drombul), 22 and 34 gold **(verified)** | "Healers are very fond of mushrooms" (Drombul talk, RAM); use unknown | `shop_healer` |
+| Beer, Mead, Food | provisions | The Oak Arbor (Drombul): Mead 2, Beer 4, Food 6 **(verified)** | Firtul the inn-keeper is said to talk when offered wine (RAM) | `shop_inn` |
+| Own potion (item 54) | potion | Mix potions **(verified)** | effect by recipe: 1B + 1C + 1D heals fully, wine + alcohol -2 HP, most pairs nothing **(verified)** | `potion_mixed`, `potion_mixed_drink`, `potion_mixed_health`, `potion_mixed_liquor` |
+| Weapons | Dagger, magic Dagger, short Sword, Sword, Broadsword, Crystalblade, Stiletto, Battleaxe, Battlehatchet, mag. Battlehatchet, Battlehammer, Bow, Longbow, Elvenbow, Staff of Stone **(RAM)** | - | - | - |
+| Armour | Leather, studded Leather, light/medium/heavy/magic Chainmail **(RAM)** | - | - | - |
+| Others | rings (small, medium, large, Dragonring), 10 potions, Phial, Mushrooms, gems, jewellery, Flute, Compass, Key, Book, Sphere, Treaty, letters and notes, Beer, Mead, scrolls, Levelmap, +1 to +5 weapon oils **(RAM)** | - | - | - |
+
+## 5. Abilities and spells
+White (w): Light, Dispell undead, Magic arrow, Dazzle, Speed, Protect Player, Protect Party, Healing, Healing
+trance, Templeteleport, Teleportation. Black (b): Light, Magic arrow, Fire-ball, Lightning, Fear, Shockwave,
+Area of lightning, Nameless spell, Leave dungeon. (c): Heal a tree, Wood hardening, Fertility, Moulded stones,
+Glowing stone, Stone hardening, Feeling ore, Conservation, Clearing fog **(RAM)**. Passwords to the schools of
+magicians: In the desert, Dorinthannon North and South, the island between the claws, the desert of ice
+**(RAM: in-game note)**.
+
+| Ability | Who | Cost | What it does | Shots |
+|---|---|---|---|---|
+| Light (w) | Rinakles (scroll 00) | 2 | lights a dark dungeon: "Gloomy lights appear!" **(verified)** | `magic_light` |
+| Magic arrow (w) | Rinakles | 8 | a spark shot at an opponent in a fight **(verified)** | `battle_magic_arrow`, `battle_magic_cast` |
+| (none known at the start) | Rinakles, Bladus, Andariel have magic points | - | "No spell prepared" or "You have no spell ready" **(verified)** | `inventory_spells`, `system_cast_no_spell` |
+
+## 6. Characters and people
+| Who | Role | Where | Shots |
+|---|---|---|---|
+| Bladus | human fighter, 100 HP, 5 magic **(verified)** | party | `inventory_status` |
+| Rinakles | human wizard, 50 HP max, 10 magic **(RAM)**, carries the map part | party | `inventory_map_piece` |
+| Dobranur | dwarf fighter, 120 HP, no magic **(verified)** | party | `inventory_status_dobranur` |
+| Andariel | elf, 60 HP, 8 magic **(verified)** | party | `17_status_andariel` (start set) |
+| The sage | gives the Rings of Stasis and a map part | intro | `cutscene_sage` |
+| Red-haired young man | brother of the torch trader in Drombul (north-eastern forest) | Pegana | `dialogue_redhair`, `dialogue_show` |
+| Renday | blacksmith (his apprentice in house 3 sends you to him) | Drombul | `shop_blacksmith`, `shop_bought` |
+| Gormen | healer | Drombul | `shop_healer`, `shop_healing` |
+| Firtul | inn-keeper of The Oak Arbor | Drombul | `shop_inn` |
+| Erik Simon, Udo Fischer, Jochen Hippel | authors | credits | `credits_team` |
+
+## Open questions
+What exists but was not seen: Unicorn and Shadow (special opponents), a won fight, other dungeons, the ship, the
+dragon. Encounters come at random on the land; shops sit behind the doors in each town's shop list (Drombul: three).

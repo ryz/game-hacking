@@ -1,7 +1,7 @@
 # Emulator use - the general rules
 
 Platform specifics (models, memory layout, cheat formats, screenshot format, limits) are in one file per system:
-[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md), [SNES / Super Famicom](snes.md), [Master System / Mark III](sms.md), [Mega Drive / Genesis](md.md), [DOS](dos.md), [Apple II](apple2.md) and [Amiga](amiga.md). Read this file and the one for your game's
+[Game Boy / Game Boy Color](gb.md), [NES / Famicom](nes.md), [SNES / Super Famicom](snes.md), [Master System / Mark III](sms.md), [Mega Drive / Genesis](md.md), [DOS](dos.md), [Apple II](apple2.md), [Amiga](amiga.md) and [Commodore 64](c64.md). Read this file and the one for your game's
 platform.
 
 How agents drive games here, for any game. Game-specific facts (controls, routes, RAM) go into
@@ -9,7 +9,7 @@ How agents drive games here, for any game. Game-specific facts (controls, routes
 
 ## Setup (once per container)
 ```sh
-sh tools/setup_emu.sh                         # all emulators (~3.5 min); one platform is enough: `gb` 9 s, `nes` 57 s, `snes` 53 s, `sms` 11 s, `md` (same core as `sms`) 15 s, `dos` 32 s, `apple2` 78 s, `amiga` 90 s
+sh tools/setup_emu.sh                         # all emulators (~3.5 min); one platform is enough: `gb` 9 s, `nes` 57 s, `snes` 53 s, `sms` 11 s, `md` (same core as `sms`) 15 s, `dos` 32 s, `apple2` 78 s, `amiga` 90 s, `c64` 21 s
 python3 tools/intake.py /path/to/game.gbc     # registers the ROM -> games/<platform>/<slug>/, rom/<slug>.gbc (or .gb, .nes)
 #   + --slug might-and-magic-2 --region jp|na|eu  short game name without the platform, and where the dump was
 #     released (a translated Japanese ROM is jp); both go into every shot file name (docs/capture-guide.md)
@@ -159,7 +159,9 @@ ROM whenever it is faster than playing. Prefer, in this order, whatever reaches 
    (`"ips": ["rom/patches/x.ips"]`; patches are not committed either).
 3. **RAM:** stage/level number, position, items, flags (see below).
    First-person dungeons: the current floor is often a plain 16x16 or 32x32 block in RAM; dump it and search the ROM
-   for it to find the stored maps (floor maps for design/). Decode the exit/warp table early: writing the game's own
+   for it to find the stored maps (floor maps for design/). Top-down maps likewise: look for a byte grid of the map's
+   size (the width is often in zero page), compare it with one screenshot to learn which values block, then plan
+   paths by search (Wasteland C64: a scout lost about 20 calls to a dead end the grid showed at once). Decode the exit/warp table early: writing the game's own
    pending-transition variables warps more cleanly than position pokes (Dungeon Magic). Controls not obvious after a few tries: find the joypad
    read (`LDA $4016` on NES) with `tools/dis6502.py SLUG BANK ADDR` before guessing combinations.
    Put the game's warp recipe into game.json as a macro with arguments (`"WARP": "poke:...={0},..."`, token
@@ -242,6 +244,9 @@ Most shortcuts come from a few addresses: lives, health, money, level/stage, pos
 - There is no generic hang detector. If several inputs change nothing: check `status` (PC moving?), wait 300
   frames, try Start/B. A PC stuck in one tight loop with no screen change across inputs is a hang: report the
   route, PC and bank.
+- Mouse-driven games: when clicks on a list or a screen element do nothing, read the game's click-zone routine
+  (the event wait that turns pointer x/y into a zone index) before trying more positions: drawn elements and
+  click zones can differ (Dragonflight 2026-11-22: list zones 16 pixels above the lines, three rounds lost).
 - A softlock or a lost fight: `undo`, or `goto` the last checkpoint. Never grind: poke, use a code or a save.
 - Battery saves live in the savestate (SRAM included). In-game save/load screens are worth a shot (`save`).
 - Games without a battery (passwords): make a "save" by poking the state you want and asking the game for its

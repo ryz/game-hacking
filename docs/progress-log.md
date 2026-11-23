@@ -9,10 +9,118 @@ Append-only, newest first.
 - Scout: command-line boot `quake -nocdaudio -nosound`, model `svga-80000`, 10 flat checkpoints to the first save.
   Found: DOS savestates miss input timing for a real-time game (state + key differs from the flat replay; with
   sound even without keys) -> flat checkpoints; backlog: core fix.
-- Tools: `emu.at_checkpoint` reloads the state it just built, so a cache miss and a hit continue identically
+- Tools: `emu.at_checkpoint` reloads the state it just built (made the same day in parallel for Amiga; merged), so a cache miss and a hit continue identically
   (was: miss continued live; different pictures on Quake). `shoot.py` warns about new `start` ids whose step
   repeats the category (second case). Tests 37 passed.
 - Capture: `start` 35 shots, honest; coordinator cold verify 35/35. Open: Nailgun pickup, first secret, a `main` set.
+## 2026-11-22 - Wasteland (C64): later towns (disk sides 2-4)
+- `main` grown from 62 to 124 shots: Quartz, Needles, Las Vegas, Guardian Citadel, Darwin, Sleeper Base and Base
+  Cochise (the last two reached through a poked entry record; names inferred, the game does not show them), the
+  side 2-4 disk prompts and saving in a town. Cold verify 124/124. `WARP:XX:YY` macro (all position copies incl.
+  code operands), location number F40A, entry records 4DEA-4E9E, town maps at $3600. Saves 03_quartz, 04_cochise
+  in the vault. game-capture skill: "survey first" promoted (second case).
+## 2026-11-22 - Ultima I-III (DOS): vault, U1 dungeon shots, three start sets
+- Owner re-uploaded the three GOG zips, flat (no folder): repacked into `Ultima I/`, `Ultima II/`, `Ultima III/`
+  so programs, routes and saves stay valid; same file counts and programs; the committed sets replay
+  pixel-exact (195, 226, 260); `game.json` SHA-1s updated with a note. Pushed to the vault (first time).
+- `vault.py push --route TOKENS`: the boot check plays keys before counting pictures (U1 stops at DOSBox Pure's
+  program menu, U2's title never changes; both were refused as "not booting"). Test added; `dos.md` note.
+- Ultima I `main` 195 -> 201: six dungeon shots mid-corridor (every earlier dungeon fight was staged on the
+  entry square with the ladder in view); method in the playbook.
+- Start sets (three game-capture agents in parallel, honest play to the first save): U1 52, U2 48, U3 60,
+  all verified `--published`; saves 04_* exported; U2 cannot reach Lord British on foot (game.json "open").
+- Lessons: path-search walks and headless fight scans promoted into game-capture `skill.md`; backlog:
+  shared walk tool (asked four times, build before the next capture dispatch), `shoot.py --renumber`,
+  peek not counting toward `call=`.
+
+## 2026-11-22 - Dragonflight (Amiga): registered, scouted, captured; checkpoint reload fix
+- Owner's upload: six TOSEC ADFs. Disk 1 `[cr CLS]` used (`[h Spaikers]` = same crack with a hacked boot block
+  and intro text); disk 2 = the uncracked original (`[cr CLS]`, `[a]`, `[a2]` differ only in leftover blocks,
+  no saved game on any). Registered as `amiga/dragonflight` (eu, A500). Kickstart 1.3 uploaded and pushed to the
+  vault (`_system/amiga`), with the game zip and save 01_start.
+- Scout: boot to Pegana, poked pointer (3BCA/3BCC), icon grid, party RAM, save/Old game. Capture: `start` 24,
+  `main` 33, three lenses; combat found (random on the land) but the fight loads from Disk A and was left out.
+- Amiga restores are not bit-exact (same frame, game RAM drifts). Causes found in PUAE (restore at beam line 0,
+  states saved ~3 lines later; `cia_reset` zeroes the keyboard handshake counter); fixes tried and reverted
+  (no effect on the drift seen), backlog row. Consequence fixed in `tools/emu.py`: `at_checkpoint` now always
+  continues from the saved file, so set pictures no longer depend on build order or `--jobs` (two four-job
+  verifies from an empty cache: identical pictures). Both sets republished on the fixed path (13 main shots
+  and the start title changed: other random rolls, captions checked, one fixed); verify 24/24, 33/33
+  (`--published`). `Amiga.ENDIAN = "be"` added (RAM watches printed byte-swapped).
+- Owner: shots after the intro were stretched. The core's auto resolution delivered the lores game screens
+  720 wide (every column twice). `Amiga.image()` now halves a frame whose columns (or lines) all come in
+  identical pairs; real hires detail keeps 720. Both sets reshot (49 pictures, same content at 360x287),
+  verify 24/24, 33/33 `--published`; the pointer helper `tools/at.py` takes 360-wide coordinates.
+- Capture round 2 (owner: combat and more): `main` 33 -> 58: combat (encounter, orders, a hit, 13 opponent kinds
+  via the `FOE` poke during the load, deaths, game over), magic (scroll learned, spell prepared, cast fails).
+  Fights load only on routes played from power-on (a restore before the load breaks it): encounter checkpoints
+  are flat. Coordinator verify 58/58 from an empty cache; save 02_armed in the vault. Open: a won fight
+  (opponent HP not found), shop, dungeon, ship, dragon, other towns, Great Map view.
+- Tools: the checkpoint cache key includes the checkpoint a route is built from (`emu.checkpoint_cache`, also
+  used by cachecheck and play.py); `play.py checkpoint` on platforms without exact restores (Amiga) rebuilds
+  the checkpoint and continues from it instead of storing the live machine.
+- Capture round 3 (owner: dungeon, Great Map, magic/potions required): `main` 58 -> 93: a first-person dungeon
+  behind a cave arch (dark until a torch or Light), the Great Map (Examine on the Worldmap item), six potions
+  drunk, Light cast, Magic arrow in a fight, two temples, Drombul and the Orc Village. Verify 93/93 and 24/24
+  from an empty cache; save 03_dungeon in the vault. Open: won fight, shop, ship, dragon, Healing, mixing.
+- Capture round 4 (owner: shop and potions): `main` 93 -> 113: Drombul's blacksmith (buy, not enough money,
+  sell list and offer), healer (healing bought), inn; potion mixing (cells to cauldron, flask, outlet; a full
+  heal recipe, liquor + wine). Verify 113/113 and 24/24 from an empty cache; save 04_drombul in the vault.
+  Caption-from-frame lesson promoted into game-capture; click-zone rule in the emulator README.
+
+## 2026-11-22 - Wasteland (C64): registered, scouted, captured
+- Owner's upload: GameBase64 set (9 D64, PAL). Disks 1-4 are the master sides, 5-8 the play copies the game wants
+  (factory state), 9 a cracker's character editor (untried). Registered as `c64/wasteland` (region na), dump and
+  saves 01_start / 02_highpool in the vault.
+- Scout: boot and play-disk route, I/J/K/L movement, Esc = leftarrow, party block F400, records F500. Capture:
+  world map byte grid at $3C00 (route to Highpool), `start` 49 (honest to the first save in Highpool), `main` 62,
+  three lenses. Cold verify 49/49 and 62/62.
+- The scout's claim that C64 states diverge from power-on replays did not reproduce (two cachecheck runs, chains
+  through cached parents); not written into c64.md. README: top-down map grids (RAM, item 3). Backlog: scout plan
+  vs set list duplication.
+
+## 2026-11-21 - Vault takes working ROMs only
+- Owner's rule: only ROMs that were at least smoke-tested go into the vault. `vault.py push` now checks the SHA-1
+  against game.json, powers the game on for `--frames` (3600) and refuses a blank or unchanging screen (checked on
+  the NES test ROM, which is one colour by design: refused); `--booted "..."` (what the sheet showed) is required
+  and kept in files.json "check". Saves, patches and extras alone need no check.
+
+## 2026-11-21 - Private vault for game data
+- Owner created the private repository `ryz/game-hacking-r` for everything that must not be public. `tools/vault.py`
+  pushes a game's files (what `game.json` names: ROM, unpatched dump, patches; plus `rom/saves/`, extra paths) into
+  `<platform>/<slug>/` there with a `files.json` (local path, SHA-1, role) and pulls them back into `rom/`. Rule in
+  `AGENTS.md`: every ROM the owner drops is pushed in the same session. intake prints the push command; a missing ROM
+  names the pull command. The vault starts empty: no earlier dump was in this container (sessions are ephemeral),
+  so the 32 registered games need their files uploaded once more. Test `test_vault.py` (local bare remote).
+
+## 2026-11-21 - Phantasie (C64): first game on the C64 backend
+- Registered from the owner's upload (boot and dungeon D64, v1.4); scouted (10 checkpoints, party ryz/condi/ebo/
+  cubi/deddo/mnz, save 01_start) and captured: `start` 39 (honest to the first save, first fight included), `main`
+  77 (towns, guild, shops, wilderness, dungeon 1 with the disk swap, 28 battle shots), three lenses; cold verify
+  39/39 and 77/77. The game is a BASIC program: state found through the BASIC variable table (c64.md note).
+- `MACRO:args*N` repeats the filled-in macro (was passed as the argument). Backlog: `c64vars.py`, `?` inside a token.
+
+## 2026-11-21 - Commodore 64 emulator: VICE x64sc libretro core, exact savestates
+- Owner asked for a C64 emulator. `sh tools/setup_emu.sh c64` builds VICE x64sc (vice-libretro, pinned) with
+  `tools/vice-debug.patch` (21 s); backend `platforms.C64`: disks (D64/G64/D71/D81, ZIP of disks), PRG/T64, TAP, CRT;
+  models `c64`/`c64c`, `-ntsc`, `-port1`; C64 keyboard by key names, joystick, `type:`, `disk:N`, disk writes kept in
+  states and exported, `text()` for the text screen. Power-on = the game started by autostart (not counted in routes).
+- VICE's snapshots were not exact (a run after a load drifted from the original in drive, CIA, SID, keyboard and
+  joystick state); found by stepping both machines frame by frame and diffing the core's static memory against
+  symbols of an unstripped link. Fixed in the patch, listed in `docs/emulator/c64.md`; checked over 1500-3000 frames
+  with input, fresh and busy machines, saves at every phase of the boot.
+- `lrcore.Core(defaults=True, av_info=True)`: option defaults from SET_VARIABLES and the av_info call, opt-in (other
+  cores unchanged). Tests `test_c64_*` (5) on a generated test disk; suite 34 passed, other cores skipped (not built).
+## 2026-11-21 - The Bard's Tale III (Apple II); hi-res text reader
+- Owner's upload had a short Dungeon 1 image (165 bytes missing, differing from track 23 on); the owner's second
+  dump has it whole and is registered. Scout: every level and city map loads (dump check), 25 checkpoints,
+  warps, automap visited bit. Capture: `start` 54 (honest), `main` 110 (to Tarjan's fight; not won), lenses,
+  58 decoded level maps. Verified cold by the coordinator (54/54, 110/110).
+- Tools: `tools/hirestext.py` reads text drawn on the Apple II hi-res screen with a font taught per game
+  (Bard's Tale I and III; not Might and Magic II's wide letters); `play.py text` / `preview.py --text` use it.
+- Owner asked for a dungeon walk and more automap: `seq-dungeon-walk` 29 steps and `seq-automap` 18 steps on
+  UnterBrae, honest walks with fight-free waits per step (verified 29/29, 18/18).
+- Open: Bard's Tale III won fight, game over, ending; level-map wall decoding outside the catacombs.
 
 ## 2026-11-21 - Beyond Zork in palette 6; Frotz comparison
 - Owner: palette 6 (black on light grey) as the default look. No interpreter option exists; two pokes in `BOOT`

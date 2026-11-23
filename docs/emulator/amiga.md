@@ -24,6 +24,17 @@ PUAE (libretro-uae), built as a libretro core and run inside the Python process 
 - The core's fallback logger crashed (it wrote to `stderr`, which the core's VFS build defines as 0) whenever the
   frontend offers no log interface; it is silent now unless `GAMEDB_CORE_LOG` is set.
 
+Not exact in every game (2026-11-22, Dragonflight on A500/A500OG/A500ECS): a loaded state gives the same
+frame, but game RAM differs from a run that never saved some frames later, so `cachecheck.py` says DIFFERS
+with matching frames. Sets are not affected: a checkpoint always continues from its saved file, also in the
+process that built it (`tools/emu.py` `at_checkpoint`, 2026-11-22; before, build order and `--jobs` changed
+pictures). A random outcome seen in live `play.py` play can still come out differently in a replay: check a
+route with `preview.py` before building on it. A state restored before a disk load can change what the load does (Dragonflight:
+a fight's load then asks for another disk and resets the game): build such a checkpoint flat from power-on
+and checkpoint only after the load. The checkpoint cache key names the checkpoint a route is built from (`emu.checkpoint_cache`),
+and `play.py checkpoint` rebuilds the checkpoint from its route and continues from that instead of storing
+the live machine (`EXACT_RESTORE = False`): look at its picture, a random outcome may differ. Causes found so far: `docs/backlog.md`.
+
 Checked (tests `test_amiga_*`): two power-ons give the same frames and chip RAM; a run continued after a
 savestate equals one loaded from it, into a machine that has not run yet and into a busy one; a state saved
 again before any frame has run is the same file. Speed: about 330 frames per second on the A1200 test machine
@@ -86,7 +97,10 @@ game's timing and is not used.
 
 ## Screenshots
 The picture follows the screen mode: a lores game is 360x287 (PAL) with the overscan border, one pixel per
-Amiga pixel; a hires screen (Workbench, some menus) is 720 wide; interlaced screens have twice the lines. NTSC
+Amiga pixel; a hires screen (Workbench, some menus) is 720 wide; interlaced screens have twice the lines. The core switches a whole frame to hires or doubled lines when it
+detects them anywhere, also where nothing visible uses them; the backend halves such a frame back when all its
+columns (lines) come in identical pairs (2026-11-22, Dragonflight: its game screens came out 720 wide,
+stretched). NTSC
 machines have fewer lines. 24-bit colour, so the Amiga's 12-bit colours are exact (channel x 17). The status
 bar, floppy sounds and the core's hotkeys are switched off.
 
@@ -102,7 +116,9 @@ bar, floppy sounds and the core's hotkeys are switched off.
   the Amiga's mouse counter. The machine takes at most 120 counts per frame and axis (it drops the rest of a
   larger step), so the backend sends a longer move out over several frames, 120 a frame (2026-11-20; before,
   everything above about 128 counts of one token was lost). How far a count moves the pointer is up to the game
-  (Dungeon Master: 2 counts = 1 lores pixel). The pointer position itself is not known to the tools: to put the
+  (Dungeon Master: 2 counts = 1 lores pixel). Many games keep the pointer position in a variable: find it (`find` after two relative moves of known size)
+  and poke it (Dragonflight: chip RAM `3BCA`/`3BCC`); some games read the mouse only every few frames, so large
+  relative moves wrap there. Otherwise, the pointer position is not known to the tools: to put the
   pointer on a spot, push it into a corner with a large move (the game stops it at the edge), then move by
   measured offsets, and keep that as macros plus a pixel-to-token helper in the game's `tools/` (Dungeon
   Master: `HOME`, `AT`, `CLICK`, `tools/at.py`).

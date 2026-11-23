@@ -1,0 +1,20 @@
+Cyanis' Tower (level 1C, dungeon disk side B, 7x7)
+North is up; columns = east, rows = north. Walls | ---, doors D, other S (secret door or special wall);
+cell text: flag byte 2 in hex when not zero, + = flag byte 3 set, * = visited (automap bit), nothing else.
+   +---+---+---+---+---+---+---+
+ 6 | 80          80| +   +   + |
+   +   +---+   +   +   +---+   +
+ 5 |       |   | 01| +   + | + |
+   +---+   +---+---+---+   +   +
+ 4 | 80    |           | + | + |
+   +   +---+   +   +   +   +   +
+ 3 |       |           |   | + |
+   +---+   +   +-D-+   +   +   +
+ 2 | 10| 08|   D   D   |   | + |
+   +   +   +---+-D-+---+   +   +
+ 1 |     80| + |           | + |
+   +---+   +   +---+---+---+   +
+ 0 | +               +   +   + |
+   +---+---+---+---+---+---+---+
+    0   1   2   3   4   5   6   
+route: @cat_stairs,LVB:1C:<index>

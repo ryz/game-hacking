@@ -1,0 +1,795 @@
+diff --git a/libretro/libretro-core.c b/libretro/libretro-core.c
+index c3f3c27..145c954 100644
+--- a/libretro/libretro-core.c
++++ b/libretro/libretro-core.c
+@@ -1,3 +1,4 @@
++#include <unistd.h>
+ #include "libretro.h"
+ #include "libretro-core.h"
+ #include "libretro-mapper.h"
+@@ -77,6 +78,10 @@ struct vice_raster_s vice_raster;
+ static snapshot_stream_t* snapshot_stream = NULL;
+ static int load_trap_happened = 0;
+ static int save_trap_happened = 0;
++/* gamedb (tools/vice-debug.patch): set by a trap of the frontend; the CPU core returns from maincpu_mainloop
++ * right after the trap, before the next opcode, so saving or loading a state runs no instruction of the
++ * machine (a saved state continues exactly like the run that saved it). */
++int gamedb_trap_return = 0;
+ 
+ unsigned int retro_devices[RETRO_DEVICES] = {0};
+ unsigned int opt_video_options_display = 0;
+@@ -7770,11 +7775,19 @@ void retro_reset(void)
+ 
+ static void fallback_log(enum retro_log_level level, const char *fmt, ...)
+ {
+-   (void)level;
++   /* gamedb: stderr is #defined to 0 with USE_LIBRETRO_VFS, so the original vfprintf(stderr) crashed in a
++    * frontend without a log interface. Silent unless GAMEDB_CORE_LOG is set. */
++   char buf[1024];
++   int n;
+    va_list va;
++   (void)level;
++   if (!getenv("GAMEDB_CORE_LOG"))
++      return;
+    va_start(va, fmt);
+-   vfprintf(stderr, fmt, va);
++   n = vsnprintf(buf, sizeof(buf), fmt, va);
+    va_end(va);
++   if (n > 0 && write(2, buf, n < (int)sizeof(buf) ? n : (int)sizeof(buf) - 1) < 0)
++      return;
+ }
+ 
+ void retro_init(void)
+@@ -8735,6 +8748,15 @@ static void dc_sync_index(void)
+    Without this, savestate corruption occurs.
+ */
+ 
++static int gamedb_nop_happened = 0;
++
++static void gamedb_nop_trap(uint16_t addr, void *data)
++{
++   (void)addr; (void)data;
++   gamedb_nop_happened = 1;
++   gamedb_trap_return = 1;
++}
++
+ static void save_trap(uint16_t addr, void *success)
+ {
+    int save_disks;
+@@ -8744,6 +8766,7 @@ static void save_trap(uint16_t addr, void *success)
+     * for syncing disk index on state load */
+    resources_get_int("Drive8Type", &drive_type);
+    save_disks = (drive_type == DRIVE_TYPE_1541II && !tape_enabled) ? 1 : 0;
++   save_disks = 1;   /* gamedb: always keep the disks in the drives (their GCR data) in the state */
+ 
+    /* params: stream, save_roms, save_disks, event_mode */
+    if (machine_write_snapshot_to_stream(snapshot_stream, 0, save_disks, 0) >= 0)
+@@ -8751,6 +8774,7 @@ static void save_trap(uint16_t addr, void *success)
+    else
+       *((int *)success) = 0;
+    save_trap_happened = 1;
++   gamedb_trap_return = 1;   /* gamedb: return before the next opcode */
+ }
+ 
+ static void load_trap(uint16_t addr, void *success)
+@@ -8761,6 +8785,7 @@ static void load_trap(uint16_t addr, void *success)
+    else
+       *((int *)success) = 0;
+    load_trap_happened = 1;
++   gamedb_trap_return = 1;
+ }
+ 
+ static void retro_unserialize_post(void)
+@@ -8871,6 +8896,16 @@ bool retro_unserialize(const void *data_, size_t size)
+          autostart_reset();
+       /* Don't stop and start audio on every frame while rewinding */
+       retro_sound_keep_alive = true;
++      {
++         /* gamedb (tools/vice-debug.patch): a machine that has not run yet resets its CPU on the first
++          * instruction; let that happen now (no instruction runs), not right after the load */
++         extern int sound_gamedb_open(void);
++         sound_gamedb_open();
++         gamedb_nop_happened = 0;
++         interrupt_maincpu_trigger_trap(gamedb_nop_trap, NULL);
++         while (!gamedb_nop_happened)
++            maincpu_mainloop();
++      }
+       snapshot_stream = snapshot_memory_read_fopen(data_, size);
+       int success = 0;
+       interrupt_maincpu_trigger_trap(load_trap, (void *)&success);
+@@ -8916,3 +8951,130 @@ void retro_cheat_set(unsigned index, bool enabled, const char *code)
+    (void)code;
+ }
+ 
++
++/* ---- gamedb additions (tools/vice-debug.patch): memory, program counter, disks, random state ---- */
++#include "lib.h"
++
++/* 0000-FFFF: what the CPU sees now (ROM, I/O and cartridge banking followed; I/O read without side effects);
++ * 10000-1FFFF: the 64K RAM as stored, whatever is mapped over it. */
++unsigned retro_gamedb_peek(unsigned addr)
++{
++   if (addr >= 0x10000 && addr < 0x20000)
++      return mem_ram[addr - 0x10000];
++   return mem_bank_peek(0, (uint16_t)addr, NULL);
++}
++
++/* 0000-FFFF: a write as the CPU does it (RAM, the RAM under ROM, I/O registers); 10000-1FFFF: RAM. */
++int retro_gamedb_poke(unsigned addr, unsigned value)
++{
++   if (addr >= 0x10000 && addr < 0x20000)
++      mem_ram[addr - 0x10000] = (uint8_t)value;
++   else if (addr < 0x10000)
++      mem_bank_poke(0, (uint16_t)addr, (uint8_t)value, NULL);
++   else
++      return 0;
++   return 1;
++}
++
++extern unsigned int reg_pc;
++unsigned retro_gamedb_pc(void)
++{
++   return reg_pc & 0xffff;
++}
++
++/* Disk into drive unit 8-11 (path NULL = take it out). 1 = done. */
++int retro_gamedb_insert(int unit, const char *path)
++{
++   if (unit < 8 || unit > 11)
++      return 0;
++   if (!path)
++   {
++      file_system_detach_disk(unit, 0);
++      return 1;
++   }
++   return file_system_attach_disk(unit, 0, path) == 0;
++}
++
++/* Write what the drives changed on their disks to the image files now. */
++void retro_gamedb_flush(void)
++{
++   drive_gcr_data_writeback_all();
++}
++
++/* 1 until the content is started: the first-frame restart pending, autostart loading, or its typed text
++ * (LOAD, RUN) not consumed yet. */
++int retro_gamedb_busy(void)
++{
++   return request_restart || autostart_in_progress() || !kbdbuf_queue_is_empty();
++}
++
++/* State outside VICE's snapshots that changes what the machine does next: the shared random generator (CIA,
++ * SID, keyboard delays, ...), drive 8's speed wobble and rotation model (the simple one, or the full circuit
++ * simulation for G64 and any disk once written to; a snapshot load always switched to the full one), the
++ * keyboard queue, the joystick values, autostart's progress with the text it types, and the restart a new core
++ * does on its first frame. The frontend stores it next to each state (retro_gamedb_hidden_*). */
++extern int keyboard_gamedb_state(unsigned char *buf, int set);
++extern int joystick_gamedb_state(unsigned char *buf, int set);
++extern int kbdbuf_gamedb_state(unsigned char *buf, int set);
++extern int autostart_gamedb_state(unsigned char *buf, int set);
++
++static int gamedb_hidden(unsigned char *buf, int set)
++{
++   drive_t *drive = diskunit_context[0]->drives[0];
++   uint64_t rnd;
++   int n = 8 + 12;
++   if (buf)
++   {
++      if (set)
++      {
++         memcpy(&rnd, buf, 8);
++         lib_rand_set_state(rnd);
++         memcpy(&drive->wobble_sin_count, buf + 8, 4);
++         memcpy(&drive->wobble_factor, buf + 12, 4);
++         memcpy(&drive->complicated_image_loaded, buf + 16, 4);
++      }
++      else
++      {
++         rnd = lib_rand_get_state();
++         memcpy(buf, &rnd, 8);
++         memcpy(buf + 8, &drive->wobble_sin_count, 4);
++         memcpy(buf + 12, &drive->wobble_factor, 4);
++         memcpy(buf + 16, &drive->complicated_image_loaded, 4);
++      }
++   }
++   n += keyboard_gamedb_state(buf ? buf + n : NULL, set);
++   n += joystick_gamedb_state(buf ? buf + n : NULL, set);
++   n += kbdbuf_gamedb_state(buf ? buf + n : NULL, set);
++   n += autostart_gamedb_state(buf ? buf + n : NULL, set);
++   if (buf)
++   {
++      /* the restart (autostart of the content) a just-loaded core does on its first frame */
++      if (set)
++      {
++         request_restart = buf[n] != 0;
++         runstate = buf[n + 1];
++      }
++      else
++      {
++         buf[n] = request_restart ? 1 : 0;
++         buf[n + 1] = (unsigned char)runstate;
++      }
++   }
++   n += 2;
++   return n;
++}
++
++int retro_gamedb_hidden_size(void)
++{
++   return gamedb_hidden(NULL, 0);
++}
++
++void retro_gamedb_hidden_get(unsigned char *buf)
++{
++   gamedb_hidden(buf, 0);
++}
++
++void retro_gamedb_hidden_set(const unsigned char *buf)
++{
++   gamedb_hidden((unsigned char *)buf, 1);
++}
+diff --git a/vice/src/6510dtvcore.c b/vice/src/6510dtvcore.c
+index d00e6ba..987a22f 100644
+--- a/vice/src/6510dtvcore.c
++++ b/vice/src/6510dtvcore.c
+@@ -1768,6 +1768,16 @@ static const uint8_t fetch_tab[] = {
+             while (CLK >= alarm_context_next_pending_clk(ALARM_CONTEXT)) {
+                 alarm_context_dispatch(ALARM_CONTEXT, CLK);
+             }
++#if defined(__LIBRETRO__) && !defined(DRIVE_CPU)
++            {
++                /* gamedb (tools/vice-debug.patch): a frontend trap (savestate) ran: stop before the opcode */
++                extern int gamedb_trap_return;
++                if (gamedb_trap_return) {
++                    gamedb_trap_return = 0;
++                    return;
++                }
++            }
++#endif
+         }
+     }
+ 
+diff --git a/vice/src/alarm.c b/vice/src/alarm.c
+index 48f5663..a2eac9b 100644
+--- a/vice/src/alarm.c
++++ b/vice/src/alarm.c
+@@ -164,6 +164,22 @@ void alarm_destroy(alarm_t *alarm)
+     lib_free(alarm);
+ }
+ 
++/* gamedb (tools/vice-debug.patch): the clock an alarm is pending for (0 = not pending), and setting it back;
++ * for alarms of parts whose state the frontend keeps outside VICE's snapshots */
++CLOCK alarm_gamedb_get(alarm_t *alarm)
++{
++    return alarm->pending_idx < 0 ? 0 : alarm->context->pending_alarms[alarm->pending_idx].clk;
++}
++
++void alarm_gamedb_set(alarm_t *alarm, CLOCK clk)
++{
++    if (clk) {
++        alarm_set(alarm, clk);
++    } else {
++        alarm_unset(alarm);
++    }
++}
++
+ void alarm_unset(alarm_t *alarm)
+ {
+     alarm_context_t *context;
+diff --git a/vice/src/alarm.h b/vice/src/alarm.h
+index 993ae41..f8a98d8 100644
+--- a/vice/src/alarm.h
++++ b/vice/src/alarm.h
+@@ -96,6 +96,8 @@ void alarm_context_time_warp(alarm_context_t *context, CLOCK warp_amount, int wa
+ alarm_t *alarm_new(alarm_context_t *context, const char *name, alarm_callback_t callback, void *data);
+ void alarm_destroy(alarm_t *alarm);
+ void alarm_unset(alarm_t *alarm);
++CLOCK alarm_gamedb_get(alarm_t *alarm);
++void alarm_gamedb_set(alarm_t *alarm, CLOCK clk);
+ void alarm_log_too_many_alarms(void);
+ 
+ /* ------------------------------------------------------------------------- */
+diff --git a/vice/src/autostart.c b/vice/src/autostart.c
+index 4919e74..b8c8907 100644
+--- a/vice/src/autostart.c
++++ b/vice/src/autostart.c
+@@ -2322,3 +2322,49 @@ void autostart_shutdown(void)
+ 
+     autostart_prg_shutdown();
+ }
++
++/* gamedb (tools/vice-debug.patch): autostart's progress is not in a snapshot: the frontend keeps it, so a
++ * state saved while a game is still being loaded and started goes on the same way. buf NULL: size only. */
++int autostart_gamedb_state(unsigned char *buf, int set)
++{
++    int mode = (int)autostartmode;
++    unsigned char *p = buf;
++    int n = (int)(17 * sizeof(int) + sizeof(CLOCK) + sizeof(unsigned int) + sizeof(size_t) + 256);
++    if (!buf) {
++        return n;
++    }
++#define GD(x) do { if (set) { memcpy(&(x), p, sizeof(x)); } else { memcpy(p, &(x), sizeof(x)); } p += sizeof(x); } while (0)
++    GD(mode);
++    GD(orig_drive_true_emulation_state);
++    GD(orig_device_traps_state);
++    GD(orig_bus_device_state);
++    GD(orig_warp_mode);
++    GD(orig_FileSystemDevice8);
++    GD(orig_FSDevice8ConvertP00);
++    GD(orig_FSDeviceLongNames);
++    GD(handle_drive_true_emulation_overridden);
++    GD(handle_drive_true_emulation_by_machine);
++    GD(autostart_enabled);
++    GD(autostart_wait_for_reset);
++    GD(entered_rom);
++    GD(trigger_monitor);
++    GD(autostart_disk_unit);
++    GD(autostart_disk_drive);
++    GD(autostart_type);
++    GD(autostart_initial_delay_cycles);
++    GD(autostart_run_mode);
++    GD(tap_initial_raw_offset);
++#undef GD
++    if (set) {      /* the program name autostart types (LOAD"NAME",8,1); 255 characters at most, "" = none */
++        autostartmode = mode;
++        lib_free(autostart_program_name);
++        autostart_program_name = p[0] ? lib_strdup((const char *)p + 1) : NULL;
++    } else {
++        memset(p, 0, 256);
++        if (autostart_program_name) {
++            p[0] = 1;
++            strncpy((char *)p + 1, autostart_program_name, 254);
++        }
++    }
++    return n;
++}
+diff --git a/vice/src/core/ciacore.c b/vice/src/core/ciacore.c
+index c8a431d..a4e4004 100644
+--- a/vice/src/core/ciacore.c
++++ b/vice/src/core/ciacore.c
+@@ -2351,6 +2351,23 @@ int ciacore_snapshot_write_module(cia_context_t *cia_context, snapshot_t *s)
+ 
+     snapshot_module_close(m);
+ 
++    {
++        /* gamedb (tools/vice-debug.patch): the power tick counters that time the TOD clock, in a module of
++         * their own (the reader above does not read every byte the writer writes) */
++        char name[SNAPSHOT_MODULE_NAME_LEN];
++        snprintf(name, sizeof(name), "GD%s", cia_context->myname);
++        m = snapshot_module_create(s, name, 1, 0);
++        if (m == NULL) {
++            return -1;
++        }
++        SMW_DW(m, (uint32_t)cia_context->power_tickcounter);
++        SMW_CLOCK(m, cia_context->power_ticks);
++        SMW_CLOCK(m, cia_context->todticks);
++        SMW_DW(m, (uint32_t)cia_context->ticks_per_sec);
++        SMW_DW(m, (uint32_t)cia_context->power_freq);
++        snapshot_module_close(m);
++    }
++
+     return 0;
+ }
+ 
+@@ -2555,6 +2572,33 @@ int ciacore_snapshot_read_module(cia_context_t *cia_context, snapshot_t *s)
+         return -1;
+     }
+ 
++    {
++        /* gamedb (tools/vice-debug.patch): see the writer */
++        char name[SNAPSHOT_MODULE_NAME_LEN];
++        uint32_t dword;
++        CLOCK qword;
++        snprintf(name, sizeof(name), "GD%s", cia_context->myname);
++        m = snapshot_module_open(s, name, &vmajor, &vminor);
++        if (m != NULL) {
++            if (SMR_DW(m, &dword) >= 0) {
++                cia_context->power_tickcounter = (int)dword;
++            }
++            if (SMR_CLOCK(m, &qword) >= 0) {
++                cia_context->power_ticks = qword;
++            }
++            if (SMR_CLOCK(m, &qword) >= 0) {
++                cia_context->todticks = qword;
++            }
++            if (SMR_DW(m, &dword) >= 0) {
++                cia_context->ticks_per_sec = dword;
++            }
++            if (SMR_DW(m, &dword) >= 0) {
++                cia_context->power_freq = dword;
++            }
++            snapshot_module_close(m);
++        }
++    }
++
+     return 0;
+ }
+ 
+diff --git a/vice/src/core/viacore.c b/vice/src/core/viacore.c
+index 406a847..3b81add 100644
+--- a/vice/src/core/viacore.c
++++ b/vice/src/core/viacore.c
+@@ -1982,11 +1982,13 @@ int viacore_snapshot_write_module(via_context_t *via_context, snapshot_t *s)
+         || SMW_B(m, byte4) < 0
+         /* SRHBITS */
+         || SMW_B(m, (uint8_t)via_context->shift_state) < 0
++        /* gamedb (tools/vice-debug.patch): the bits the read below expects (cb2_in, cb1_in and cb1_out
++         * were written on top of each other and came back wrong) */
+         || SMW_B(m, (uint8_t)((via_context->ca2_out_state ? 0x80 : 0) |
+                               (via_context->cb2_out_state ? 0x40 : 0) |
+-                              (via_context->cb2_in_state ? 0x40 : 0)  |
+-                              (via_context->cb1_in_state ? 0x20 : 0)  |
+-                              (via_context->cb1_out_state ? 0x20 : 0))) < 0
++                              (via_context->cb2_in_state ? 0x20 : 0)  |
++                              (via_context->cb1_in_state ? 0x10 : 0)  |
++                              (via_context->cb1_out_state ? 0x08 : 0))) < 0
+         || SMW_B(m, via_context->ila) < 0
+         || SMW_B(m, via_context->ilb) < 0) {
+         snapshot_module_close(m);
+diff --git a/vice/src/drive/drive-snapshot.c b/vice/src/drive/drive-snapshot.c
+index 91a2949..f3ee915 100644
+--- a/vice/src/drive/drive-snapshot.c
++++ b/vice/src/drive/drive-snapshot.c
+@@ -315,6 +315,8 @@ int drive_snapshot_write_module(snapshot_t *s, int save_disks, int save_roms)
+     return 0;
+ }
+ 
++static unsigned int gamedb_head_offset[NUM_DISK_UNITS];   /* gamedb: as read, set last */
++
+ int drive_snapshot_read_module(snapshot_t *s)
+ {
+     uint8_t major_version, minor_version;
+@@ -398,7 +400,7 @@ int drive_snapshot_read_module(snapshot_t *s)
+                     || SMR_W_INT(m, &half_track[unr]) < 0
+                     || SMR_CLOCK(m, &(detach_clk[unr])) < 0
+                     || SMR_B_INT(m, &(drive->extend_image_policy)) < 0
+-                    || SMR_DW_UINT(m, &(drive->GCR_head_offset)) < 0
++                    || SMR_DW_UINT(m, &(gamedb_head_offset[unr])) < 0
+                     || SMR_B(m, &(drive->GCR_read)) < 0
+                     || SMR_B(m, &(drive->GCR_write_value)) < 0
+                     || SMR_B_INT(m, &(unit->idling_method)) < 0
+@@ -567,7 +569,19 @@ int drive_snapshot_read_module(snapshot_t *s)
+ 
+         if (unit->type != DRIVE_TYPE_NONE) {
+             DBG(("enable drive %d\n", 8 + unr));
+-            drive_enable(diskunit_context[unr]);
++            {
++                /* gamedb (tools/vice-debug.patch): drive_enable resyncs the drive CPU to its clock and
++                 * re-attaches the image; keep the snapshot's values (the drive may be a cycle ahead of where
++                 * it stops) */
++                CLOCK keep_stop = unit->cpu->stop_clk, keep_last = unit->cpu->last_clk;
++                CLOCK keep_accum = unit->cpu->cycle_accum;
++                unsigned int keep_head = drive->GCR_head_offset;    /* re-attaching the image rescales it */
++                drive_enable(diskunit_context[unr]);
++                unit->cpu->stop_clk = keep_stop;
++                unit->cpu->last_clk = keep_last;
++                unit->cpu->cycle_accum = keep_accum;
++                drive->GCR_head_offset = keep_head;
++            }
+             drive->attach_clk = attach_clk[unr];
+             drive->detach_clk = detach_clk[unr];
+             drive->attach_detach_clk = attach_detach_clk[unr];
+@@ -590,11 +604,32 @@ int drive_snapshot_read_module(snapshot_t *s)
+             }
+             DBG(("set half track for drive %d\n", 8 + unr));
+             /* FIXME: what about the second drive of a unit? */
+-            drive_set_half_track(half_track[unr], side, drive);
+-            resources_set_int("MachineVideoStandard", sync_factor);
++            {
++                /* gamedb (tools/vice-debug.patch): drive_set_half_track scales the head offset by the size
++                 * of the track the drive was on before the load; the offset in the snapshot is already the
++                 * one on the loaded track. */
++                unsigned int keep = drive->GCR_head_offset;
++                drive_set_half_track(half_track[unr], side, drive);
++                drive->GCR_head_offset = keep;
++            }
++            {
++                /* gamedb (tools/vice-debug.patch): setting the video standard re-times the whole machine
++                 * (CIA TOD counters restart, ...): only when it really changes */
++                int cur;
++                if (resources_get_int("MachineVideoStandard", &cur) < 0 || cur != sync_factor) {
++                    resources_set_int("MachineVideoStandard", sync_factor);
++                }
++            }
+         }
+     }
+ 
++    /* gamedb (tools/vice-debug.patch): enabling the drives above resets their rotation state and moves the
++     * head (re-attaching rescales it, port updates rotate the disk): restore both from the snapshot, last */
++    rotation_table_set(rotation_table_ptr);
++    for (unr = 0; unr < NUM_DISK_UNITS; unr++) {
++        diskunit_context[unr]->drives[0]->GCR_head_offset = gamedb_head_offset[unr];
++    }
++
+     /* stop currently active drive sounds (bug #3539422)
+      * FIXME: when the drive sound emulation becomes more precise, we might
+      *        want/need to save a snapshot of its current state too
+diff --git a/vice/src/drive/rotation.c b/vice/src/drive/rotation.c
+index a2594e4..ad07913 100644
+--- a/vice/src/drive/rotation.c
++++ b/vice/src/drive/rotation.c
+@@ -207,7 +207,7 @@ void rotation_table_set(uint32_t *rotation_table_ptr)
+         rotation[dnr].fr_randcount = drive->snap_fr_randcount;
+         rotation[dnr].filter_counter = drive->snap_filter_counter;
+         rotation[dnr].filter_state = drive->snap_filter_state;
+-        rotation[dnr].filter_last_state = drive->snap_filter_state;
++        rotation[dnr].filter_last_state = drive->snap_filter_last_state;   /* gamedb: was snap_filter_state */
+         rotation[dnr].write_flux = drive->snap_write_flux;
+         rotation[dnr].PulseHeadPosition = drive->snap_PulseHeadPosition;
+         rotation[dnr].xorShift32 = drive->snap_xorShift32;
+diff --git a/vice/src/joyport/joystick.c b/vice/src/joyport/joystick.c
+index de0d53b..ff7bd01 100644
+--- a/vice/src/joyport/joystick.c
++++ b/vice/src/joyport/joystick.c
+@@ -4529,3 +4529,26 @@ void joystick_ui_poll(void)
+         joy_driver.poll(ui_joydev);
+     }
+ }
++
++/* gamedb (tools/vice-debug.patch): the joystick values (latched and the ones the machine reads) are not in a
++ * snapshot: the frontend keeps them. buf NULL: size only; set: restore from buf, else copy to buf. */
++int joystick_gamedb_state(unsigned char *buf, int set)
++{
++    int n = (int)(sizeof(joystick_value) + sizeof(latch_joystick_value) + sizeof(CLOCK));
++    unsigned char *p = buf ? buf + sizeof(joystick_value) + sizeof(latch_joystick_value) : NULL;
++    CLOCK clk;
++    if (buf) {
++        if (set) {
++            memcpy(joystick_value, buf, sizeof(joystick_value));
++            memcpy(&latch_joystick_value, buf + sizeof(joystick_value), sizeof(latch_joystick_value));
++            memcpy(&clk, p, sizeof(CLOCK));
++            alarm_gamedb_set(joystick_alarm, clk);
++        } else {
++            memcpy(buf, joystick_value, sizeof(joystick_value));
++            memcpy(buf + sizeof(joystick_value), &latch_joystick_value, sizeof(latch_joystick_value));
++            clk = alarm_gamedb_get(joystick_alarm);
++            memcpy(p, &clk, sizeof(CLOCK));
++        }
++    }
++    return n;
++}
+diff --git a/vice/src/kbdbuf.c b/vice/src/kbdbuf.c
+index c676084..d2c803a 100644
+--- a/vice/src/kbdbuf.c
++++ b/vice/src/kbdbuf.c
+@@ -408,3 +408,36 @@ void kbdbuf_flush(void)
+     kbd_buf_cmdline = false;
+     prevent_recursion = false;
+ }
++
++/* gamedb (tools/vice-debug.patch): text being typed into the keyboard buffer (autostart's LOAD and RUN) is not
++ * in a snapshot: the frontend keeps it. buf NULL: size only; set: restore from buf, else copy to buf. */
++int kbdbuf_gamedb_state(unsigned char *buf, int set)
++{
++    int n = (int)(sizeof(queue) + 3 * sizeof(int) + 3 * sizeof(CLOCK));
++    unsigned char *p = buf;
++    CLOCK clk;
++    if (!buf) {
++        return n;
++    }
++#define GD(x) do { if (set) { memcpy(&(x), p, sizeof(x)); } else { memcpy(p, &(x), sizeof(x)); } p += sizeof(x); } while (0)
++    if (set) {
++        memcpy(queue, p, sizeof(queue));
++    } else {
++        memcpy(p, queue, sizeof(queue));
++    }
++    p += sizeof(queue);
++    GD(head_idx);
++    GD(num_pending);
++    GD(use_kbdbuf_flush_alarm);
++    GD(kernal_init_cycles);
++    GD(kbdbuf_flush_alarm_time);
++    if (set) {
++        memcpy(&clk, p, sizeof(CLOCK));
++        alarm_gamedb_set(kbdbuf_flush_alarm, clk);
++    } else {
++        clk = alarm_gamedb_get(kbdbuf_flush_alarm);
++        memcpy(p, &clk, sizeof(CLOCK));
++    }
++#undef GD
++    return n;
++}
+diff --git a/vice/src/keyboard.c b/vice/src/keyboard.c
+index 146dc8e..dbcef84 100644
+--- a/vice/src/keyboard.c
++++ b/vice/src/keyboard.c
+@@ -273,9 +273,11 @@ static void kbd_retrigger_alarm(void)
+ 
+ /* push one (host) key to the processing queue.
+    returns 0 on error (queue full) or 1 on success */
++static int last_key = -1, last_mod =-1, last_pressed = -1;   /* gamedb: file scope, kept with a state */
++static int restore1_oldpressed = -1, restore2_oldpressed = -1;   /* gamedb: as well */
++
+ static int kbd_queue_pushkey(int key, int mod, int pressed)
+ {
+-    static int last_key = -1, last_mod =-1, last_pressed = -1;
+     if ((key != last_key) ||
+         (mod != last_mod) ||
+         (pressed != last_pressed)) {
+@@ -702,6 +704,46 @@ static void kbd_key_pressed(signed long key, int mod, int pressed)
+     }
+ }
+ 
++/* gamedb (tools/vice-debug.patch): the host key queue (with its history, which the "release older" hack below
++ * looks back into), the last pushed key and the latch timestamp are not in a snapshot: the frontend keeps
++ * them. buf NULL: size only; set: restore from buf, else copy to buf. */
++int keyboard_gamedb_state(unsigned char *buf, int set)
++{
++    int n = (int)(sizeof(kbd_queue) + 7 * sizeof(int) + 2 * sizeof(CLOCK));
++    int *v[7];
++    int i;
++    unsigned char *p = buf;
++    CLOCK clk;
++    v[0] = &kbd_queue_read; v[1] = &kbd_queue_write; v[2] = &last_key; v[3] = &last_mod; v[4] = &last_pressed;
++    v[5] = &restore1_oldpressed; v[6] = &restore2_oldpressed;
++    if (!buf) {
++        return n;
++    }
++    if (set) {
++        memcpy(kbd_queue, p, sizeof(kbd_queue));
++    } else {
++        memcpy(p, kbd_queue, sizeof(kbd_queue));
++    }
++    p += sizeof(kbd_queue);
++    for (i = 0; i < 7; i++, p += sizeof(int)) {
++        if (set) {
++            memcpy(v[i], p, sizeof(int));
++        } else {
++            memcpy(p, v[i], sizeof(int));
++        }
++    }
++    if (set) {
++        memcpy(&keyboard_latch_timestamp, p, sizeof(CLOCK));
++        memcpy(&clk, p + sizeof(CLOCK), sizeof(CLOCK));
++        alarm_gamedb_set(keyboard_alarm, clk);
++    } else {
++        memcpy(p, &keyboard_latch_timestamp, sizeof(CLOCK));
++        clk = alarm_gamedb_get(keyboard_alarm);
++        memcpy(p + sizeof(CLOCK), &clk, sizeof(CLOCK));
++    }
++    return n;
++}
++
+ /* keyboard alarm handler, this consumes the host keyboard queue */
+ static void keyboard_alarm_handler(CLOCK offset, void *data)
+ {
+@@ -1003,7 +1045,7 @@ static int keyboard_restore_released(void)
+ 
+ static int key_restore1_pressed(int pressed)
+ {
+-    static int oldpressed = -1;
++#define oldpressed restore1_oldpressed
+     DBGKEY(("key_restore1_pressed: %d", pressed));
+     if (machine_has_restore_key()) {
+         if (pressed != oldpressed) {
+@@ -1015,11 +1057,12 @@ static int key_restore1_pressed(int pressed)
+         }
+     }
+     return pressed;
++#undef oldpressed
+ }
+ 
+ static int key_restore2_pressed(int pressed)
+ {
+-    static int oldpressed = -1;
++#define oldpressed restore2_oldpressed
+     DBGKEY(("key_restore2_pressed: %d", pressed));
+     if (machine_has_restore_key()) {
+         if (pressed != oldpressed) {
+@@ -1031,6 +1074,7 @@ static int key_restore2_pressed(int pressed)
+         }
+     }
+     return pressed;
++#undef oldpressed
+ }
+ 
+ /*-----------------------------------------------------------------------*/
+diff --git a/vice/src/lib.c b/vice/src/lib.c
+index f6c07b8..25dd38d 100644
+--- a/vice/src/lib.c
++++ b/vice/src/lib.c
+@@ -1042,7 +1042,22 @@ void lib_init(void)
+      * like random startup delay are actually random, ie different on each
+      * startup, at all.
+      */
++#ifdef __LIBRETRO__
++    lib_rand_seed(1);       /* gamedb: the same machine on every power-on */
++#else
+     lib_rand_seed((uint64_t)time(NULL));
++#endif
++}
++
++/* gamedb: the generator's state, kept by the frontend next to a snapshot */
++uint64_t lib_rand_get_state(void)
++{
++    return rand_state;
++}
++
++void lib_rand_set_state(uint64_t state)
++{
++    rand_state = state;
+ }
+ 
+ 
+diff --git a/vice/src/lib.h b/vice/src/lib.h
+index 5693328..9cdd7af 100644
+--- a/vice/src/lib.h
++++ b/vice/src/lib.h
+@@ -63,6 +63,8 @@ float lib_float_rand(float min, float max);
+ double lib_double_rand_unit(void);
+ 
+ void lib_rand_seed(uint64_t seed);
++uint64_t lib_rand_get_state(void);
++void lib_rand_set_state(uint64_t state);
+ void lib_rand_printseed(log_t log);
+ 
+ char *lib_msprintf(const char *fmt, ...) VICE_ATTR_PRINTF;
+diff --git a/vice/src/resid/sid.cc b/vice/src/resid/sid.cc
+index cf90da6..630cf50 100644
+--- a/vice/src/resid/sid.cc
++++ b/vice/src/resid/sid.cc
+@@ -455,6 +455,9 @@ void SID::write_state(const State& state)
+     voice[i].envelope.hold_zero = state.hold_zero[i];
+     voice[i].envelope.envelope_pipeline = state.envelope_pipeline[i];
+   }
++  // gamedb (tools/vice-debug.patch): the read values of OSC3 and ENV3 are cached apart from the voice state
++  voice[2].wave.osc3 = state.sid_register[0x1b];
++  voice[2].envelope.env3 = state.sid_register[0x1c];
+ }
+ 
+ 
+diff --git a/vice/src/sid/resid.cc b/vice/src/sid/resid.cc
+index b684212..2000a74 100644
+--- a/vice/src/sid/resid.cc
++++ b/vice/src/sid/resid.cc
+@@ -267,6 +267,14 @@ static void resid_reset(sound_t *psid, CLOCK cpu_clk)
+ /* FIXME */
+ static int resid_calculate_samples(sound_t *psid, float *pbuf, int nr, CLOCK *delta_t)
+ {
++    /* gamedb (tools/vice-debug.patch): no audio. The SID is clocked by exactly the cycles due, in one piece:
++     * clocked sample by sample, how the cycles were split depended on the sub-sample phase, which is not in a
++     * snapshot (a loaded state then went on differently). */
++    if (*delta_t > 0) {
++        psid->sid->clock((reSID::cycle_count)*delta_t);
++    }
++    *delta_t = 0;
++    return 0;
+     short *tmp_buf;
+     int retval;
+     int int_delta_t_original = (int)*delta_t;
+@@ -297,6 +305,14 @@ static int resid_calculate_samples(sound_t *psid, float *pbuf, int nr, CLOCK *de
+ #else
+ static int resid_calculate_samples(sound_t *psid, short *pbuf, int nr, int interleave, CLOCK *delta_t)
+ {
++    /* gamedb (tools/vice-debug.patch): no audio. The SID is clocked by exactly the cycles due, in one piece:
++     * clocked sample by sample, how the cycles were split depended on the sub-sample phase, which is not in a
++     * snapshot (a loaded state then went on differently). */
++    if (*delta_t > 0) {
++        psid->sid->clock((reSID::cycle_count)*delta_t);
++    }
++    *delta_t = 0;
++    return 0;
+     short *tmp_buf;
+     int retval;
+     int int_delta_t_original = (int)*delta_t;
+diff --git a/vice/src/sound.c b/vice/src/sound.c
+index 22eb78c..41fb939 100644
+--- a/vice/src/sound.c
++++ b/vice/src/sound.c
+@@ -1349,6 +1349,16 @@ static void sounddev_close(const sound_device_t **dev)
+     }
+ }
+ 
++/* gamedb (tools/vice-debug.patch): open the sound device (and with it the SID engine) now if it is not open:
++ * it is opened on the first frame otherwise, which rebuilt the SID of a state loaded before that frame. */
++int sound_gamedb_open(void)
++{
++    if (playback_enabled && !snddata.playdev) {
++        return sound_open();
++    }
++    return 0;
++}
++
+ /* close sid */
+ void sound_close(void)
+ {

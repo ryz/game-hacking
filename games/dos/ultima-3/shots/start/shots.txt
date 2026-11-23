@@ -1,0 +1,60 @@
+01_power_on | title | Power-on: ULTIMA.COM starts at once, the Exodus logo drawn line by line | w200,!
+02_title_screen | title | Title screen: Exodus, Ultima III by Lord British, Copyright 1983 | @title
+03_title_demo | title | Attract demo: a strip of Sosaria with monsters and ships, Press <Space> | @title,w1500,!
+04_menu_main | menu | Main menu after Space: Return to the View, Organize a Party, Journey Onward | @menu
+05_menu_organize | menu | Organize a Party (O + Enter): register, create, form, disperse, terminate, look | @menu,ORGANIZE
+06_create_entry | menu | Create a Character: Entry# asks for a roster slot (1-20) | @menu,ORGANIZE,c,w60,enter,w200
+07_create_name | menu | Entry#01, 50 points to spend: the name ryz typed | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,w60
+08_create_sex | menu | Name entered; Sex asked (M, F or O, no list shown) | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60
+09_create_race | menu | Male chosen; Race asked (Human, Elf, Dwarf, Bobbit, Fuzzy by letter) | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60
+10_create_type | menu | Human chosen; Type asked (eleven classes by letter) | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60,h,w30,enter,w60
+11_create_str | menu | Paladin chosen; the four statistics follow, Strength first | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60,h,w30,enter,w60,p,w30,enter,w60
+12_create_ok | menu | Strength 20, Dexterity 10, Intelligence 05, Wisdom 15: Points:00, O.K.? | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60,h,w30,enter,w60,p,w30,enter,w60,2,0,enter,w60,1,0,enter,w60,0,5,enter,w60,1,5,enter,w60
+13_create_done | menu | O.K.?Yes: ryz the Male Human Paladin is saved, Press <Space> | @menu,ORGANIZE,c,w60,enter,w200,1,w60,enter,w200,r,y,z,enter,w60,m,w30,enter,w60,h,w30,enter,w60,p,w30,enter,w60,2,0,enter,w60,1,0,enter,w60,0,5,enter,w60,1,5,enter,w60,y,w60,enter,w200
+14_create_condi | menu | Entry#02 condi, Female Elf Wizard, Intelligence 25: O.K.? | @menu,ORGANIZE,C_RYZ,c,w60,enter,w200,2,w60,enter,w200,c,o,n,d,i,enter,w60,f,w30,enter,w60,e,w30,enter,w60,w,w30,enter,w60,0,5,enter,w60,1,5,enter,w60,2,5,enter,w60,0,5,enter,w60
+15_create_ebo | menu | Entry#03 ebo, Male Dwarf Fighter, Strength 25: O.K.? | @menu,ORGANIZE,C_RYZ,C_CONDI,c,w60,enter,w200,3,w60,enter,w200,e,b,o,enter,w60,m,w30,enter,w60,d,w30,enter,w60,f,w30,enter,w60,2,5,enter,w60,1,5,enter,w60,0,5,enter,w60,0,5,enter,w60
+16_create_cubi | menu | Entry#04 cubi, Female Bobbit Cleric, Wisdom 25: O.K.? | @menu,ORGANIZE,C_RYZ,C_CONDI,C_EBO,c,w60,enter,w200,4,w60,enter,w200,c,u,b,i,enter,w60,f,w30,enter,w60,b,w30,enter,w60,c,w30,enter,w60,1,0,enter,w60,1,0,enter,w60,0,5,enter,w60,2,5,enter,w60
+17_menu_form | menu | Form the Party: Player-1..4 = entries 1-4, (Formed) | @menu,ORGANIZE,C_RYZ,C_CONDI,C_EBO,C_CUBI,f,w60,enter,w300,1,w30,enter,w100,2,w30,enter,w100,3,w30,enter,w100,4,w30,enter,w300
+18_menu_register | menu | Examine the Register: the four in entries 01-04, * marks the party | @party,o,w60,enter,w300,e,w60,enter,w300
+19_menu_look | menu | Look at a Character: ryz, Hand and Skin, 150 hit points, food and gold | @party,o,w60,enter,w300,l,w60,enter,w200,1,enter,w200
+20_first_view | gameplay | Journey Onward: the party on Sosaria beside Lord British's castle and LCB | @start,w30,!
+21_ztats | inventory | Ztats for #1: ryz, Str 20 Dex 10 Int 05 Wis 15, H.P. 150 | @start,z,w30,1,w60,!
+22_ztats_arms | inventory | Ztats, last lines: a Dagger and bare Hands, Cloth and Skin | @start,z,w30,1,w60,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,!
+23_look | system | Look North: ->Castle; Look East: ->Towne (Lord British's castle and LCB) | @start,up,w30,right,w30,l,w30,up,w30,l,w30,right,w60,!
+24_enter_lcb | gameplay | On the towne square, E: Enter Towne! Please wait... | @start,right,w30,right,w30,up,w30,e,w120,!
+25_lcb_walk | gameplay | Towne LCB: walking in from the west gate past the pond | @start,right,w30,right,w30,up,w30,e,w300,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,w20,!
+26_talk_thief | dialogue | Transact with a thief in the pub: Exodus lies beyond the Silver Snake! | @s_talk,w10,!
+27_pub_welcome | shop | Welcome to the Pub! Here, friend, have a drink! It costs 7 g.p. You pay? | @s_talk,right,w20,right,w20,right,w20,up,w20,up,w20,up,w20,up,w20,t,w30,1,w30,up,w200,!
+28_pub_tip | shop | 10 g.p. paid, the tip with it: Ambrosia, ever heard of it? Another? | @s_talk,right,w20,right,w20,right,w20,up,w20,up,w20,up,w20,up,w20,t,w30,1,w30,up,w200,settle,1,0,enter,w150,!
+29_weapons_welcome | shop | Transact over the counter: Welcome to the Weapons Shop! List? | @s_weapons,t,w30,1,w30,up,w200,!
+30_weapons_list | shop | List? Yes: Dagger 5gp, Mace 30, Sling 60, Axe 125, Bow 350, Sword 200 | @s_weapons,t,w30,1,w30,up,w200,y,w30,enter,w200,!
+31_weapons_list2 | shop | Second page: up to the 2H Swd for 250gp; Buy or sell? | @s_weapons,t,w30,1,w30,up,w200,y,w30,enter,w200,space,w200,!
+32_weapons_buy | shop | Buy, Your interest? E: Axe, Here you are. May it serve you well. | @s_weapons,t,w30,1,w30,up,w200,y,w30,enter,w200,space,w200,b,w30,enter,w100,e,w30,enter,w150,!
+33_ready_axe | inventory | Quit the shop; R: Ready for #1, Weapon: Axe, Readied! | @s_weapons,t,w30,1,w30,up,w200,y,w30,enter,w200,space,w200,b,w30,enter,w100,e,w30,enter,w150,q,w30,enter,w150,settle,r,w30,1,w30,e,w100,settle,enter,w60,j,w30,1,w100,settle,!
+34_join_gold | system | J: Join gold to:1, the whole party's gold to ryz | @s_armed,w20,!
+35_armour_list | shop | Armoury, List? Yes: Cloth 75gp, Leather 195, Chain 575, Plate 2500 | @s_armed,right,w20,right,w20,down,w20,right,w20,right,w20,down,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,up,w20,settle,right,w20,right,w20,settle,t,w30,1,w30,up,w200,y,w30,enter,w200,!
+36_armour_buy | shop | Buy C: Leather, Here you are. May it serve you well. | @s_armed,right,w20,right,w20,down,w20,right,w20,right,w20,down,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,right,w20,up,w20,settle,right,w20,right,w20,settle,t,w30,1,w30,up,w200,y,w30,enter,w200,settle,space,w200,b,w30,enter,w100,c,w30,enter,w150,!
+37_wear_leather | inventory | W: Wear for #1, Armour: Leather, Readied! | @s_armour,w20,!
+38_grocer | shop | Ye local Grocer: Rations 1 g.p. each. How many would you like? | @s_armour,left,w20,down,w20,down,w20,down,w20,down,w20,left,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,down,w20,settle,down,w20,down,w20,left,w20,settle,t,w30,1,w30,down,w200,!
+39_grocer_buy | shop | 40 rations bought: Thank you, Come again! (ryz's food 146 -> 186) | @s_food,w20,!
+40_ztats_gold | inventory | Ztats for ryz after shopping: H.P. 150, Gold 0230, Exp. 0000 | @s_food,z,w30,1,w60,space,w30,space,w30,space,w30,space,w30,!
+41_ztats_arms | inventory | Ztats, arms: Axe readied, Dagger, Hands; Leather worn, Cloth | @s_food,z,w30,1,w60,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,!
+42_exit_lcb | gameplay | Walking off the west edge: Exit to Sosaria! Back on the towne square | @s_out,w10,!
+43_skeleton_near | gameplay | Waiting on the towne square: a ghoul (skeleton figure) walks up from the west | @s_out,w20,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,space,w30,!
+44_skeleton_beside | gameplay | 84 turns later the ghoul stands beside the party | @s_skeleton,w10,!
+45_conflict | battle | A + West attacks it: ---Conflict!!--- ->Ghouls, the combat field drawn | @s_skeleton,a,w30,left,w100,!
+46_combat_field | battle | Combat field: the party at the bottom, one ghoul at the top, Player 1 first | @s_skeleton,a,w30,left,w100,!,settle,w200,!
+47_ghoul_hits | battle | The party closes in; the ghoul strikes: Plr 1 Hit! (ryz 150 -> 145) | @s_melee,w10,!
+48_axe_miss | battle | ryz: Axe Attack, Dir-East, Missed! | @s_melee,a,w30,right,w100,!
+49_cast_prompt | battle | condi passes, ebo moves East; cubi: Cast Spell!, Cleric spell- | @s_melee,a,w30,right,w100,settle,space,w60,right,w60,c,w60,!
+50_pontori_failed | battle | Pontori (cleric A, against the undead): Failed!; the ghoul hits ryz again | @s_melee,a,w30,right,w100,settle,space,w60,right,w60,c,w60,settle,a,w150,!
+51_hand_hit | battle | cubi with bare hands: Hand Attack, Dir-North, Ghoul Hit! | @s_melee,a,w30,right,w100,settle,space,w60,right,w60,c,w60,settle,a,w150,settle,a,w30,right,w100,space,w60,up,w60,a,w30,up,w150,!
+52_victory | battle | cubi's next blow: Killed! Exp.+04, ****Victory!**** | @s_victory,w10,!
+53_chest_left | gameplay | Back on Sosaria: the ghoul left a chest beside the party | @s_victory,w300,!
+54_chest_bomb | gameplay | G: Get Chest, Plr to search-1: Bomb trap! (all four hurt), Gold+59 | @s_chest,w10,!
+55_enter_castle | gameplay | North onto Lord British's castle, E: Enter Castle! Please wait... | @s_chest,up,w30,e,w120,!
+56_healer | shop | The castle healer: Clerical Healing Sacraments 1-4, Your needs: | @s_healer,w10,!
+57_healed | shop | 2, Healing: 200 g.p. Wilt thou pay? Yes, Heal whom? 1: ryz back to 150 | @s_healer,2,enter,w100,y,enter,w60,1,w600,!
+58_lordbritish | dialogue | Transact with Lord British: Welcome my child, Experience more! | @s_lordbritish,w10,!
+59_exit_castle | gameplay | Out of the south gate: Exit to Sosaria!, on the castle square | @s_back,w10,!
+60_quit_save | save | Q: Quit & Save, 00001932 moves, Please wait... (play goes on) | @s_back,q,w300,!

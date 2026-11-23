@@ -1,5 +1,5 @@
 """Minimal headless libretro frontend (ctypes): loads one core, feeds it a ROM and joypad input, collects frames.
-No window, no audio, no SDL. Used by the NES, SNES, DOS, Apple II and Amiga backends in platforms.py (cores built by tools/setup_emu.sh).
+No window, no audio, no SDL. Used by the NES, SNES, DOS, Apple II, Amiga and C64 backends in platforms.py (cores built by tools/setup_emu.sh).
 
   c = Core("tools/mesen/Libretro/mesen_libretro.so", "rom/game.nes", options={"mesen_region": "NTSC"})
   c.keys = {"a", "right"}; c.run(60); c.png("x.png"); s = c.serialize(); c.unserialize(s); c.close()
@@ -30,7 +30,7 @@ INPUT = C.CFUNCTYPE(C.c_int16, C.c_uint, C.c_uint, C.c_uint, C.c_uint)
 # RETRO_DEVICE_ID_JOYPAD_*
 JOYPAD = {"b": 0, "y": 1, "select": 2, "start": 3, "up": 4, "down": 5, "left": 6, "right": 7, "a": 8, "x": 9,
           "l": 10, "r": 11}
-ENV_GET_SYSTEM_DIRECTORY, ENV_SET_PIXEL_FORMAT, ENV_GET_VARIABLE = 9, 10, 15
+ENV_GET_SYSTEM_DIRECTORY, ENV_SET_PIXEL_FORMAT, ENV_GET_VARIABLE, ENV_SET_VARIABLES = 9, 10, 15, 16
 ENV_GET_VARIABLE_UPDATE, ENV_GET_SAVE_DIRECTORY = 17, 31
 ENV_SET_KEYBOARD_CALLBACK, ENV_GET_PERF_INTERFACE, ENV_SET_MEMORY_MAPS, ENV_GET_THROTTLE_STATE = 12, 28, 36, 71
 DEVICE_JOYPAD, DEVICE_MOUSE, DEVICE_KEYBOARD = 1, 2, 3
@@ -85,7 +85,7 @@ def _close_all():
 
 class Core:
     def __init__(self, so, rom, options=None, system_dir=None, save_dir=None, frame_usec=None, epoch=None,
-                 private=False):
+                 private=False, defaults=False, av_info=False):
         """frame_usec: give the core a virtual clock that advances this many microseconds per run() frame
         (computer cores read the host clock for pacing; with the virtual one a route does not depend on how
         fast the host is). None = the core's own clock (consoles).
@@ -93,7 +93,12 @@ class Core:
         the emulated machine's date and time start there and follow the virtual clock.
         private: always load a private copy of the library (cores that cannot load a second game after
         unloading the first: DOSBox Pure crashes on its first frame then; AppleWin keeps its cycle counter).
-        rom None: start the core without content."""
+        rom None: start the core without content.
+        defaults: answer options the backend does not set with the core's own default (the first value it
+        announces with SET_VARIABLES), as a real frontend does; without it such options are left unanswered
+        (the VICE core then sets the picture's brightness, contrast and gamma to 0: a black screen).
+        av_info: ask the core for its audio/video timing after loading, as a real frontend does (VICE sets
+        its sample rate and frame rate there)."""
         so = os.path.abspath(so)
         self.so = so
         if private or so in _in_use:            # second instance: private copy of the library
@@ -108,6 +113,7 @@ class Core:
             self._shared = True
         self.L = L = C.CDLL(path)
         self.options = {k.encode(): v.encode() for k, v in (options or {}).items()}
+        self._defaults = {} if defaults else None       # key -> c_char_p of the core's default value
         self._dirs = {ENV_GET_SYSTEM_DIRECTORY: (system_dir or tempfile.gettempdir()).encode(),
                       ENV_GET_SAVE_DIRECTORY: (save_dir or tempfile.gettempdir()).encode()}
         self.fmt, self.keys, self._held, self.frame, self.open = 0, set(), set(), None, False
@@ -146,6 +152,9 @@ class Core:
         if not ok:
             self._release()
             raise RuntimeError("the core refused %s (unsupported mapper or bad dump?)" % rom)
+        if av_info:
+            self.av = C.create_string_buffer(64)        # struct retro_system_av_info (40 bytes)
+            L.retro_get_system_av_info(self.av)
         self.open = True
         _live.add(self)
 
@@ -163,8 +172,20 @@ class Core:
             if v.key in self.options:
                 v.value = self.options[v.key]
                 return True
+            if self._defaults and v.key in self._defaults:
+                v.value = self._defaults[v.key]
+                return True
             v.value = None                      # the core keeps its default
             return False
+        if cmd == ENV_SET_VARIABLES and self._defaults is not None:
+            arr = C.cast(data, C.POINTER(Variable))
+            i = 0
+            while arr[i].key:
+                desc = arr[i].value or b""
+                if b"; " in desc:               # "Description; default|other|other"
+                    self._defaults[arr[i].key] = desc.split(b"; ", 1)[1].split(b"|")[0]
+                i += 1
+            return True
         if cmd == ENV_SET_KEYBOARD_CALLBACK:
             self._key_event = KEY_EVENT(C.cast(data, C.POINTER(C.c_void_p))[0])
             return True

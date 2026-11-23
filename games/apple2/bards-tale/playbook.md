@@ -4,6 +4,11 @@ Everything an agent needs to play this game efficiently: read it before playing,
 Status of each fact: **verified** (seen in the emulator, with the route) or **source** (manual/FAQ/wiki, not yet
 checked). Never delete a fact that turned out wrong: strike it and say what is true.
 
+
+> **Text (2026-11-21).** `font.json` (tools/hirestext.py) knows 50 glyphs taught on the cellar stairs, the first
+> fight and the Guild: `play.py text` and `preview.py --text` read message windows. Teach more with
+> `python3 tools/hirestext.py learn apple2/bards-tale --route @cp "line" ...` when `?` remain.
+
 ## Read first
 - **Start:** `python3 tools/play.py --name bt start apple2/bards-tale --route @city` (new party RYZ CONDI EBO
   CUBI DEDDO MNZ outside the Guild) or `@city_hero` (same party poked to levels 8-9, status redrawn) or

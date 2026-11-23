@@ -3,7 +3,7 @@ skill: game-capture
 project: all games (shared tools at the repo root)
 summary: Play a scouted game from its playbook and capture the database screenshot set (gameplay, systems, screens).
 access: write (work/, games/<platform>/<slug>/ checkpoints.txt, shots.txt, playbook.md, game.json)
-updated: 2026-11-21 (gamestable left to the coordinator; 2026-11-20: routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
+updated: 2026-11-22 (survey first promoted; captions from the frame; start sets: path-search walks, headless fight scan; 2026-11-21: won fights: group record first; gamestable left to the coordinator; 2026-11-20: routes converted from a captured port; batches with preview.py as the default loop; native pictures; budget in calls; shared cachecheck; start set ids numbered in play order)
 ---
 
 # Game capture - play and photograph a game for the database
@@ -46,6 +46,10 @@ edit anything outside the game's folder.
      known yet (`--name SLUG` on every command so parallel captures do not collide); `snap ID CATEGORY "caption"
      --set SET` there is fine. Turn what you learn into a macro, a checkpoint or plan lines and return to batches.
    Small generators help: a script that writes plan lines for every shop, floor or monster from a decoded table.
+   **Survey first** when a level or town map is in RAM: write one plan line per event square (stepped onto from an
+   open neighbour, or a warp) and preview them as one `--crop` sheet: every fight, message and door of the area
+   in one look, captions straight off the sheet (Might and Magic I DOS 2026-11-18; Wasteland C64 2026-11-22:
+   four towns in four calls).
    **A port of the game is already captured** (another platform's set): convert its routes with a script
    (position format, warp macro, waits) and preview them in bulk before exploring (Might and Magic I and II
    Apple II, 2026-11-20).
@@ -72,6 +76,9 @@ edit anything outside the game's folder.
 4. Stuck for more than ~10 calls: re-read the playbook strategy and shortcuts, `undo`/`goto`, look up the
    specific problem (a FAQ section, a code list), or poke/code past it. Never grind. Code reading is boxed to
    about 20 calls per question; a target not reached by then goes into the report as open.
+   **A won fight, a boss or an ending:** find the monster group record first (search for the monster's name or
+   its count, dump around it, poke the count to 0) before playing rounds; budget it like code reading (Might and
+   Magic II and Bard's Tale III Apple II, 2026-11-21: 20-25 calls each on fights that never ended).
 5. **Document the game as you play** in `games/PLATFORM/SLUG/design/` (notation in its README): every rule, number and
    system you observe (prices, damage, timers, unlock conditions, enemy behaviour, menus and what they do),
    tagged (verified) with the shot id or checkpoint that shows it, or (RAM) when measured through memory;
@@ -97,6 +104,9 @@ edit anything outside the game's folder.
      the first save, played honestly (capture guide, "Sets"). Its ids are numbered in play order
      (`01_power_on`, `02_title`, ...) and its `shots.txt` lists them in that order; the tools put the number
      in front of the category in the file names (owner's rule 2026-11-20).
+     Walk it honestly with a path search over the map in RAM or the game's map file (people from the object
+     table), a few steps per `do`, not position pokes; find an honest first fight by scanning turn-count
+     variants headless; checkpoint before each fight and replay the exact blows (three start sets, 2026-11-22).
    Add opportunistic shots of anything else distinctive (category `extra` or the right one).
    **Three lenses** (owner's request 2026-11-18, `docs/capture-guide.md` "Three lenses"): keep
    `design/systems.md` (game design: one row per feature, system, mechanic), `design/interface.md` (UI/UX:
@@ -133,6 +143,9 @@ edit anything outside the game's folder.
 - Never commit ROMs, states or saves (`work/` is ignored; `--publish` copies only PNGs and the catalogue).
 - Cheated values that show on screen are realistic (below the cap, not round, varied); captions describe the
   screen, they need not mention the cheat.
+- Captions come from the frame, never from the keys sent: read the message line, and after a list re-sorts
+  check which item a line holds before naming it (promoted 2026-11-22: Ultima II command log, Dragonflight
+  mixed potion).
 - Stop at the call budget with what you have: a verified partial set beats an unverified full one. At 80% of
   the budget stop adding targets: verify, publish, commit, write the playbook.
 - Pictures are native size; enlarge only when small text cannot be read (`--scale 2`, `--crop`). Do not print

@@ -26,6 +26,182 @@ Never delete entries.
   first secret (dead ends in the playbook). 46 of 150 calls.
 - Status: repeat-category warning built 2026-11-23 (second case after Might and Magic II DOS; new ids only,
   test added); map-reader wish in `docs/backlog.md`.
+### 2026-11-22 - Wasteland (C64), sides 2-4
+- Task: add the locations on disk sides 2-4 (Quartz, Needles, Las Vegas, Guardian Citadel, Darwin, Sleeper Base,
+  Base Cochise) to `main`, plus the disk prompts and the lenses.
+- Worked: survey by preview: a script writes one plan line per event square of a town map from a RAM dump, one
+  `preview.py --crop` sheet shows the whole town (four towns in four calls); the warp by poking all position copies
+  at once, self-modifying code operands included (~10 calls).
+- Friction: reading big preview sheets costs per call; bare `sleep` blocked, waiting on a background verify needed
+  a `timeout bash -c 'until grep ...'` loop; world tile values are event indexes, not location ids (wrong town
+  base addresses at first).
+- Proposed rule change: skill step 2: survey event squares as one cropped preview before exploring by hand;
+  shared `tools/eventsurvey.py` (map base, width, open values).
+- Corrected: coordinator verify from an empty cache 124/124, both sheets looked at; saves 03_quartz and 04_cochise
+  pushed to the vault (not loaded by the agent). Sleeper Base / Base Cochise names inferred from content (not shown
+  in game), recorded in "open". Survey lesson was a second case (Might and Magic I DOS): promoted into skill.md
+  step 2, line removed from feedback.md. Tool wish: "Asked" raised on the shared survey row in the backlog.
+- Status: promoted 2026-11-22 (survey first); backlog (eventsurvey)
+### 2026-11-22 - Dragonflight (Amiga) round 4
+- Task: Dragonflight Amiga capture round 4: shops (buy, sell) and potion mixing appended to `main`, lenses.
+- Worked: reading code from a chip dump from the message index (count strings from the start of the message
+  bank, search `move.w #idx`) led to the door lookup, the shop loop and the mix screen; the click-zone routine
+  (5EA0) explained three rounds of failed list clicks; preview batches of 4-11 lines found the mixing sequence
+  and nine recipes in about 6 looks.
+- Friction: a poked pointer plus `at.py` (calibrated on icons) mapped list zones wrongly; two rounds blamed
+  "only slot +F4 takes clicks"; a caption ("the mix is drunk") was written from the keys sent and was wrong
+  until a recipe batch exposed it (retaken).
+- Proposed rule change: emulator README (mouse games): when clicks on a list do nothing, read the game's
+  click-zone routine before trying more positions. Lesson: a drink/use/select shot on a list line: check
+  which item the line holds after the list re-sorts before writing the caption.
+- Corrected: coordinator verify 113/113 and 24/24 from an empty cache; save 04_drombul pushed.
+- Status: click-zone rule -> docs/emulator/README.md (applies to every mouse game); caption lesson is the
+  second case of "caption from the frame, not the keys" (Ultima II 2026-11-19) -> promoted into skill.md.
+### 2026-11-22 - Ultima I (DOS) set start
+- Task: Ultima I DOS, set `start`, the early game played honestly to the first save (52 shots).
+- Worked: a walker planning a path around the people (read from RAM), a few steps per `play.py do`, crossed
+  castle and town at about one call per destination; a path search on MAP.BIN did the same outdoors; a
+  checkpoint before each fight plus `goto` and the exact number of blows kept routes free of extra turns;
+  `ROUTE,a,!` caught "Killed!" before the monster's answer scrolled it away.
+- Friction: the walker's `play.py peek` calls count toward `call=` (~5x the agent's own calls); extra blows
+  after a kill needed a `goto` (undo is one level).
+- Proposed rule change: skill.md line for top-down `start` sets: walk with a path-search helper instead of
+  position pokes; checkpoint before each fight, replay the exact blows. Backlog: peek counts toward `call=`.
+- Corrected: none; sheet checked by the coordinator. Wrote games/dos/ultima/tools/walk.py (per game: the shared
+  walk tool is on the backlog, now asked four times).
+- Status: promoted 2026-11-22 (walk-helper lesson, three start-set runs: skill.md); backlog (walk tool, peek count).
+
+### 2026-11-22 - Ultima III (DOS) set start
+- Task: capture the Ultima III DOS `start` set (60 shots, honest play to the first Quit & Save).
+- Worked: a BFS path script over the town file (moves joined by `w20`) gave walking routes in one call; a
+  headless script passing turns and reading the object table found an honest first fight (eight wait variants
+  in parallel, no pokes); branch shots built by splitting checkpoint routes at `,settle,` reproduced first try.
+- Friction: renumbering ids after dropping shots made `shoot.py --prune` delete every renamed shot, so the
+  whole set was reshot (the capture guide says renumbered files are renamed on the next run; they were not);
+  the shop exit key was missing from the playbook (~4 calls).
+- Proposed rule change: `shoot.py SLUG start --renumber` (rewrite `NN_` ids in play order, rename files
+  instead of pruning); in `docs/emulator/README.md`: scan turn variants headless for honest fights on maps
+  with wandering monsters.
+- Corrected: none; four shots checked against captions by the coordinator. 60/60 verified by the agent,
+  cachecheck 44/44.
+- Status: backlog (renumber; walk/path tool third ask); headless fight scan logged (open lesson).
+
+### 2026-11-22 - Ultima II (DOS) set start
+- Task: Ultima II DOS set `start`, honest play from creation to the first Q save (48 shots).
+- Worked: a short breadth-first search over the map bytes told at once which places are reachable on foot and
+  gave exact key lists; walking them produced a real first fight with no setup. Previewing shop/talk lines in
+  batches and checking merchant squares with `u2objs.py` fixed every failed Transact in one round.
+- Friction: preview and the play session disagreed about the fight until the agent saw that settles between
+  calls had moved the RNG (fight shots built in preview from a clean route); wandering merchants made each
+  Transact timing-dependent; one key dropped during an automatic PASS on a long walk.
+- Proposed rule change: a shared `tools/path.py SLUG MAP FROM TO` (map bytes + walkable tiles from game.json)
+  for reachability and key routes on top-down maps.
+- Corrected: none; sheet checked by the coordinator (48 shots in play order). Lord British's healing not
+  reachable on foot (castle on an island), recorded in game.json "open".
+- Status: backlog (walk/path tool, second ask: `docs/backlog.md`); RNG-moved-by-settles lesson logged.
+
+### 2026-11-22 - Dragonflight (Amiga) round 3
+- Task: Dragonflight Amiga capture round 3 (dungeon, Great Map, magic/potions) appended to `main`.
+- Worked: rendering the suspected land grid as an image showed the whole world and its place icons in one
+  look; one preview batch of Search+Enter per icon found two temples, two towns and the dungeon; a short
+  disassembly (`moveq #msg` of a message index, then branches) answered "how to drink a potion" in ~5 calls
+  after ~10 calls of UI guessing.
+- Friction: `dis68k.py` treats an Amiga dump as Mega Drive (`--xref` maps to FF....); `play.py dump` writes
+  JSON, not binary; preview label bars misled y offsets once; a black dungeon view looked like a disk hang.
+- Proposed rule change: emulator README: a first-person view that stays black: try a click or a light
+  before suspecting a load hang. Backlog: `dis68k.py` for Amiga dumps; `play.py dump --bin`.
+- Corrected: the report called the red symbol after "Potion" a stray glyph from a poked suffix 00; the item
+  names in RAM are "Potion " + character 88-91 (the game's marks), the suffix changes nothing: shots kept,
+  playbook corrected. Coordinator verify 93/93 and 24/24 from an empty cache; save 03_dungeon pushed.
+- Status: darkness lesson -> open lesson in feedback.md; two tool wishes -> backlog.
+
+### 2026-11-22 - Dragonflight (Amiga) round 2
+- Task: Dragonflight Amiga round 2: combat, magic and other systems, appended to `main`.
+- Worked: `preview.py` with `?` frames and sheets to compare restore points; a flat route against chained
+  routes isolated the restore problem in about 6 calls; poking the opponent kind/count during the load gave
+  every monster picture; `--only` batches.
+- Friction: the checkpoint cache is keyed by the expanded flat route, so a checkpoint rewritten from
+  `@world,...` to the same tokens from power-on silently reused the state built through restores (file deleted
+  by hand); a restore before a disk load changed what the load did, unflagged; ~30 calls hunting opponent HP.
+- Proposed rule change: amiga.md: a state restored before a disk load can make the load fail; build such a
+  checkpoint flat from power-on and checkpoint only after the load. Tool wish: cache key includes the build
+  path (chained or flat).
+- Corrected: coordinator verified 58 shots from an empty cache (result in progress log); pushed save 02_armed.
+- Status: amiga.md note added (platform fact); cache key wish built 2026-11-22 (parent in the key).
+
+### 2026-11-22 - Dragonflight (Amiga)
+- Task: capture the Dragonflight (Amiga) start and main sets with the three lenses; find fights, shops,
+  dungeon and magic.
+- Worked: a random-walk script comparing part of the screen with the normal panel found the first encounter
+  in one run; RAM string dumps (items, monsters, spells, shops) gave the content lens and item indexes; preview
+  batches covered 12 unknown commands in one look.
+- Friction: restores not exact on this core, so pictures depended on the order the checkpoint cache was built:
+  four-job verifies from an empty cache disagreed, only `--jobs 1` full runs were stable (~30 calls); combat
+  frames (Disk A load) never reproduced; watches printed byte-swapped on the Amiga; `play.py checkpoint` writes
+  checkpoints.txt lines silently.
+- Proposed rule change: Amiga sets shot and verified as full `--jobs 1` runs from an empty cache; tool wish:
+  build every checkpoint as a flat replay from power-on where restores are not exact.
+- Corrected: cause found in `tools/emu.py` `at_checkpoint`: on a cache miss it returned the machine that had
+  just built the checkpoint, on a hit a machine loaded from the file; on an inexact platform the two go on
+  differently. Fixed 2026-11-22: a miss now saves, then continues from the loaded file, so build order and
+  `--jobs` no longer matter (verify result in the progress log). Watches: `Amiga.ENDIAN = "be"` was missing,
+  added. The proposed `--jobs 1` rule is not needed after the fix.
+- Status: tool wishes built (at_checkpoint reload, Amiga byte order); `play.py checkpoint` silence -> logged.
+
+### 2026-11-22 - Wasteland (C64)
+- Task: publish the Wasteland C64 `start` and `main` sets with the three lens documents.
+- Worked: zero-page map size ($55/$56 = 64x64) led to the world map byte grid at $3C00 in about 5 calls; a search
+  over it found the route to Highpool the scout missed. `--timeline` batch found the honest first fight in one call.
+- Friction: C64 `play.py export` writes to `rom/saves/` (whole images), unclear whether owner milestone saves are
+  committed; a repeated combat macro goes out of step as rangers fall (game over needs a poke, not input); the
+  scout's `shots.txt` at the game root duplicates `shots/main/shots.txt` and goes stale.
+- Proposed rule change: docs/emulator/README.md RAM: look for a byte grid of a top-down map's size before walking.
+- Corrected: coordinator verify from an empty cache 49/49 and 62/62, both sheets looked at. README rule added
+  (RAM, item 3). Save 02_highpool pushed to the vault (C64 saves are game data: vault, README row in saves/ only,
+  as c64.md says). shots.txt duplication -> backlog. No state divergence seen (the scout's claim stays unconfirmed).
+- Status: logged (README rule; backlog row)
+### 2026-11-21 - Phantasie (C64)
+- Task: capture the Phantasie (C64) start and main sets, write the lenses, update the playbook.
+- Worked: decoding the BASIC variable table (VARTAB at 2D/2E) found position, party and combat state at once after
+  per-byte RAM searches found nothing; float pokes gave a clean warp; a background walk script stopping on a map
+  change found encounters without looking at frames; `--timeline` previews picked combat message frames.
+- Friction: routes need `settle` after every menu key (presses during busy BASIC are dropped; same keys as separate
+  `play.py` calls worked), ~15 calls to diagnose; first press after a message only clears it; `find` cannot find
+  BASIC floats.
+- Proposed rule change: c64.md note on BASIC games (variable table, floats); backlog `tools/c64vars.py`.
+- Corrected: coordinator cold verify 39/39 and 77/77, lenses clean, contact sheet checked.
+- Status: logged (platform fact -> c64.md; tool wish -> backlog)
+
+### 2026-11-21 - The Bard's Tale III (Apple II), sequences
+- Task: seq-dungeon-walk (29) and seq-automap (18), honest walks on UnterBrae 1-2 (owner: dungeon walk, more
+  automap).
+- Worked: scan.py on both levels plus a tiled crop of the message windows gave every stairs, message and fight
+  square in one look; BFS over the decoded map planned the routes (tools/mazeroute.py); a per-step fight-free
+  wait search (tools/safewalk.py) replaced trial previews; both sets in ~60 calls.
+- Friction: doors need `k` (playbook said buildings only); scan.py's "name plate" rows were the roster, so the
+  fight check missed fights until moved to rows 98-110; lenses.py does not take a whole seq set named in a row;
+  the Mage Flame ran out mid-sequence without warning.
+- Proposed rule change: README "Two loops": per-step wait search for fight-free walks; backlog: shared safewalk,
+  lenses.py accepting `seq-NAME`.
+- Corrected: coordinator deleted the cache and reran --verify: 29/29, 18/18; automap strip checked (the map
+  grows modestly: small window, walls and doors only). No clips (the game redraws each step at once).
+- Status: fight-free walk lesson -> feedback.md (open); safewalk -> backlog row "Shared module" Asked 8;
+  lenses seq row -> backlog; logged.
+
+### 2026-11-21 - The Bard's Tale III (Apple II)
+- Task: capture `main` (110) and `start` (54) sets, 58 level maps, three lenses.
+- Worked: preview batches (25 lit dungeon lines on one sheet showed which levels arrive in a fight, dark or on a
+  prompt); start-set lines built from prefixes of the checkpoint routes by a script; scan.py found Tarjan on his
+  6x6 level in one run; hirestext.py: two `learn` calls read message windows with few `?` (party roster
+  unreadable).
+- Friction: `preview.py --text` printed the text page until font.json existed; no monster group counts found
+  for a won fight or the ending (~25 calls on fights that did not end); tall contact sheets downscale in Read.
+- Proposed rule change: README: find the monster group record before playing rounds for a won fight or ending
+  (~10 calls); backlog: contact sheet with 6 columns of half-size tiles for sets over 60 shots.
+- Corrected: coordinator deleted the cache and reran --verify: start 54/54, main 110/110; sheet 2 checked.
+  Level maps: wall decoding checked only against the catacombs automap (doubtful on UnterBrae 4, Sceadu).
+- Status: group-record lesson promoted 2026-11-21 into skill.md step 4 (second case: Might and Magic II Apple
+  II, Sheltem); contact-sheet wish -> backlog; logged.
 
 ### 2026-11-21 - Beyond Zork (DOS, palette 6 retake and Frotz shots)
 - Task: retake main (88) and start (34) in COLOR palette 6 (owner's choice) and add Frotz comparison shots.
