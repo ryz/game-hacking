@@ -8,10 +8,10 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Start:** `rom/quake.zip` (shareware 1.06, SHA-1 in `game.json`), model `svga-80000`. Boot = DOSBox Pure's
   "Go to Command Line", then `quake -nocdaudio -nosound` (macro `BOOT`). No title screen: the start-up
   console rolls up into attract demo 1 (E1M3); Escape gives the main menu (`MENU`).
-- **Before any preview/shoot on an empty cache: `python3 games/dos/quake/tools/qstate.py --warm`** (builds all
-  checkpoints into the cache). Reason in "Determinism" below: a run that loads a state and then presses keys
-  is not the same as the flat replay, so a shot taken in the run that *built* its checkpoint differs from every
-  later run of the same line. Once the cache is warm, preview, shoot and verify all agree.
+- ~~Before any preview/shoot on an empty cache: `qstate.py --warm`~~ No longer needed (coordinator, 2026-11-23):
+  `emu.at_checkpoint` now reloads the state it just built, so a cache miss and a hit continue identically
+  (checked on `@s_e1m1,up:40,...`: same picture). Still true: a loaded state plus keys is not the flat replay
+  (see "Determinism"), so checkpoints stay flat.
 - **Every checkpoint route is flat (macros from power-on, no `@parent`)** for the same reason. Keep it so:
   a checkpoint built on `@another` does not reproduce (`cachecheck` says cold/hit DIFFERS).
 - **Do not use `play.py undo`/`goto` mid-exploration and then snap:** the snapped route replays without the

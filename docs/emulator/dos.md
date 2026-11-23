@@ -73,6 +73,11 @@ The picture has the size of the video mode: text mode 640x400, a 320x200 game 32
 640x200 graphics (Infocom interpreters, CGA high resolution) is flattened 3.2:1: decided per game in `game.json`
 "aspect" (owner's rule 2026-11-21): `rowdouble` writes 640x400 (each row twice, lossless), `native` keeps it. Without
 a decision the tools warn and `shoot.py --publish` refuses: ask the owner. Beyond Zork: `rowdouble`.
+
+Real-time games (Quake, 2026-11-23): start with no sound device (`-nosound`; with the Sound Blaster a loaded
+state drifts on the next frame). Even then a loaded state followed by a key continues differently from the flat
+replay (input timing not in the core's savestate): make checkpoint routes flat (no `@parent`) and check
+`cachecheck` on a two-link chain before building more.
 The text cursor blinks, so text screens rarely `settle`; capture anyway.
 
 ## Keys

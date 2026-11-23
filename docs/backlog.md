@@ -16,6 +16,8 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `settle` / `snap`: ignore a blinking text cursor (or a per-game mask) so "NOT settled" means something in cursor-driven games | 2 | Beyond Zork scout and capture (every frame reported) |
 | `shoot.py --verify --published --map OLD=NEW`: compare a restyled retake with the committed set through a colour map | 1 | Beyond Zork palette 6 retake (one-off script) |
 | Notes field in a set's index (how a set was made, e.g. a display poke), shown in `index.md` | 1 | Beyond Zork palette 6 (note went into a `#` line in shots.txt) |
+| DOS core: serialise keyboard/event timing in savestates, so a loaded state plus keys equals the flat replay (real-time games; today Quake needs flat checkpoints) | 1 | Quake scout |
+| `"fmt": "f32"` RAM watch (float game state: Quake player entity) | 1 | Quake scout (`games/dos/quake/tools/qstate.py` reads floats meanwhile) |
 | Z80 disassembler like `dis6502.py` | 1 | Phantasy Star part 2 |
 | `sample` leaves the screen stale so `record` refuses; `record` taking leading tokens | 1 | Phantasy Star early game |
 | `lenses.py SLUG SET --work` (check the working set, not the published one) | 1 | Might and Magic 1 DOS fix-up |

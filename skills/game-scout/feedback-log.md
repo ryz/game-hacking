@@ -12,6 +12,23 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-23 - Quake (DOS shareware 1.06)
+- Task: scout Quake for a `start` set: boot, model, controls, determinism, checkpoints to the first in-game save,
+  previewed plan.
+- Worked: the map entity lump from PAK0.PAK gave exact positions (skill triggers, gates, monsters with skill flags,
+  secrets): cheap routing in 3D; a game-specific chain helper (`tools/qstate.py`) replaced dozens of play.py
+  calls; finding the player entity by a field pattern (hull mins/maxs, view height) beat a float diff search.
+- Friction: DOS savestates are not exact for a real-time game (state + key diverges from flat; with sound even
+  without keys), ~15 calls to isolate; a cache miss gave other pictures than a hit (`at_checkpoint` continued
+  live); no float RAM watch; nothing warns that undo/goto make the next snapped route unrepeatable here.
+- Proposed rule change: dos.md real-time note; backlog: core patch serialising input timing, `at_checkpoint`
+  reloading what it saved, `"fmt": "f32"` watch.
+- Corrected: coordinator fixed `at_checkpoint` (a miss reloads the state it saved; checked miss == hit on
+  `@s_e1m1,up:40,...`), so `qstate.py --warm` is no longer needed (playbook struck). Cold `cachecheck` 10/10;
+  sheet matches.
+- Status: dos.md note added (platform fact); at_checkpoint built 2026-11-23; core input timing and f32 watch in
+  `docs/backlog.md`.
+
 ### 2026-11-21 - Beyond Zork (DOS)
 - Task: scout Beyond Zork (DOS): interpreter, boot macros, controls, first save and RESTORE, checkpoints to the
   first save, shot plan.
