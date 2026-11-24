@@ -3,7 +3,8 @@
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
 # The plan for the main set. play.py snap writes captured shots (with exact routes) to
 # work/shots/dos/quake/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# (main set: not planned yet; see playbook "Shot plan")
+# ---- set main: captured and published 2026-11-24 (47 shots). Its shot list is shots/main/shots.txt; copy that
+# to work/shots/dos/quake/main/shots.txt to retake (python3 tools/shoot.py dos/quake main --verify).
 
 # ---- set start: captured and published 2026-11-23 (35 shots). Its shot list is shots/start/shots.txt; copy that
 # to work/shots/dos/quake/start/shots.txt to retake (python3 tools/shoot.py dos/quake start --verify).

@@ -1,0 +1,48 @@
+# id | category | caption | route
+title_demo | title | Attract demo: a corpse by the wall, "You receive 25 health", "You get 2 rockets" | BOOT,w900,!
+menu_main | menu | Main menu over the running demo | MENU,!
+console | system | Console over E1M1: god, notarget, give s 43, skill is 1 | MAP:e1m1,backquote,w30,type:god\n,w10,type:notarget\n,w10,type:give s 43\n,w10,type:skill\n,w10,!
+e1m1_start | gameplay | E1M1 The Slipgate Complex: first control, health 100, 25 shells | @s_e1m1
+env_e1m3_crypt | gameplay | E1M3 The Necropolis: stone crypt hall with a doorway | MAP:e1m3,CON:notarget,TP:000098C4000068C4000000C1:000000800000704200000000,w60,!
+env_e1m4_grotto | gameplay | E1M4 The Grisly Grotto: mossy stone, a demon-face panel and bars | MAP:e1m4,CON:notarget,TP:0000304400801B4500006C44:000000800000524300000000,w60,!
+env_e1m5_hall | gameplay | E1M5 Gloom Keep: long hall under a purple sky | MAP:e1m5,CON:notarget,TP:0080BFC40000C84400001843:000000800000964200000000,w60,!
+env_e1m7_lava | gameplay | E1M7 The House of Chthon: lava pit below stone arches | MAP:e1m7,CON:notarget,TP:000000430000B4C300006042:000000800000704200000000,w60,!
+env_e1m8_lava | gameplay | E1M8 Ziggurat Vertigo: lava pool in a dark stone room | MAP:e1m8,CON:notarget,TP:0000C043000080C3000032C4:000000800000704300000000,w60,!
+weapon_axe | inventory | Axe in hand, E1M1 start corridor; all weapons in the row above | MAP:e1m1,ARMS,1,w40,!
+weapon_shotgun | inventory | Shotgun in hand, E1M2 Castle of the Damned entrance | MAP:e1m2,ARMS,2,w40,!
+weapon_ssg | inventory | Double-barreled Shotgun in hand, E1M3 start | MAP:e1m3,ARMS,3,w40,!
+weapon_nailgun | inventory | Nailgun in hand, E1M4 start: 87 nails | MAP:e1m4,ARMS,4,w40,!
+weapon_sng | inventory | Super Nailgun in hand, E1M5 start | MAP:e1m5,ARMS,5,w40,!
+weapon_gl | inventory | Grenade Launcher in hand, E1M6 start: 14 rockets | MAP:e1m6,ARMS,6,w40,!
+weapon_rl | inventory | Rocket Launcher in hand, E1M7 start: lava ahead | MAP:e1m7,ARMS,7,w40,!
+weapon_lg | inventory | Thunderbolt in hand, E1M8 start: 62 cells | MAP:e1m8,ARMS,8,w40,!
+fire_axe | battle | Axe swing at a Rottweiler in the E1M1 yard | MAP:e1m1,ARMS,TP:0000A9430000BE44000048C3:0000A0400000344300000000,w20,1,w5,ctrl:12,!
+fire_shotgun | battle | Shotgun at a Grunt in the yard: 42 shells | MAP:e1m1,ARMS,TP:000081430000BE44000048C3:0000A0400000344300000000,w20,2,w5,ctrl:12,!
+fire_ssg | battle | Double-barreled Shotgun hits a Grunt: blood, 41 shells | MAP:e1m1,ARMS,TP:000081430000BE44000048C3:0000A0400000344300000000,w20,3,w5,ctrl:12,!
+fire_nailgun | battle | Nailgun firing at a Grunt: muzzle flash, 86 nails | MAP:e1m1,ARMS,TP:000081430000BE44000048C3:0000A0400000344300000000,w20,4,w5,ctrl:8,!
+fire_sng | battle | Super Nailgun at a leaping Fiend in E1M3 | MAP:e1m3,ARMS,TP:0040B8440000404400000C44:0000A0400000344300000000,w10,5,w5,ctrl:12,!
+fire_gl | battle | Grenade Launcher: a grenade in flight in E1M3 | MAP:e1m3,ARMS,TP:00401644000063C3000090C3:CDCC4C4066E6514300000000,w20,6,w5,ctrl:12,!
+fire_rl | battle | Rocket Launcher: a rocket flies toward a Shambler in E1M8 | MAP:e1m8,ARMS,TP:0000044300C02EC400005843:CDCC8CC00000F04100000000,7,w5,ctrl:4,w15,!
+fire_rl_hit | battle | Rocket explodes on the Shambler | MAP:e1m8,ARMS,TP:0000044300C02EC400005843:CDCC8CC00000F04100000000,7,w5,ctrl:4,w30,!
+fire_lg | battle | Thunderbolt beam into a Shambler, arms raised | MAP:e1m8,ARMS,TP:00004D44000054C300008C43:666686400000614300000000,8,w5,ctrl:10,!
+gib_rocket | battle | Rocket explodes on a Grunt in the yard | MAP:e1m1,ARMS,TP:000081430000BE44000048C3:0000A0400000344300000000,w20,7,w5,ctrl:4,w20,!
+gib_pieces | battle | Gibs fly from the Grunt after the rocket | MAP:e1m1,ARMS,TP:000081430000BE44000048C3:0000A0400000344300000000,w20,7,w5,ctrl:4,w35,!
+armor_green | inventory | Green armor picked up in E1M1: armor 100, green icon | MAP:e1m1,ARMS,TP:00002C440000F0430000D042:9A9939400000B44200000000,w90,!
+armor_yellow | hud | Yellow armor in E1M1: armor 150, all weapons and ammo on the HUD | MAP:e1m1,ARMS,TP:0000A444000083440000CCC3:CDCC0C409A198E4300000000,w90,!
+armor_red | inventory | Red armor (deathmatch item, start map): armor 200, red icon | MAPDM:start,ARMS,TP:00008A440000D84400002042:CDCC4C400000000000000000,w20,TP:00000844000090430000E041:3333B33F0000B44200000000,w70,!
+power_quad | system | Quad Damage picked up: blue tint, secret area found | MAP:e1m1,ARMS,TP:0000084400001B450000B0C2:333333BF0000874300000000,w90,!
+power_pentagram | system | Pentagram of Protection: gold tint, armor shows 666 | MAP:e1m8,ARMS,TP:0000284400000644000032C4:00000080CDCC784300000000,w90,!
+power_ring | system | Ring of Shadows: grey tint, eyes face on the status bar | MAP:e1m3,ARMS,TP:0000D9C400000AC40000A8C3:000080BF0040AE4300000000,w90,!
+power_biosuit | system | Biosuit in E1M1 slime: green tint, suit icon | MAP:e1m1,ARMS,TP:000032440000FF440000CCC3:CDCC8CBF0000000000000000,w30,TP:0000A64400801E450000FCC3:000000800000344300000000,w60,!
+act_rottweiler | battle | A Rottweiler crosses the E1M1 yard toward the player | MAP:e1m1,CON:god,TP:0000A9430000BE44000048C3:0000A0400000344300000000,w60,!
+act_ogre | battle | Ogre with its chainsaw in E1M6 | MAP:e1m6,CON:god,TP:00005D4300C07F440000C041:0000A040CD8C8E4300000000,w40,!
+act_fiend | battle | Fiend leaps in E1M3 The Necropolis | MAP:e1m3,CON:god,TP:0040B8440000404400000C44:0000A0400000344300000000,w60,!
+act_scrag | battle | Scrag floats in the E1M4 grotto | MAP:e1m4,CON:god,TP:00C03B440020E74400006E44:333343C100809D4300000000,w60,!
+act_knight | battle | Knight swings its sword in E1M4: red damage flash | MAP:e1m4,CON:god,TP:00C02F440010164500000644:0000A04000809D4300000000,w60,!
+act_shambler | battle | Shambler walks forward in an E1M8 hall | MAP:e1m8,CON:god,TP:00004D44000054C300008C43:666686400000614300000000,w120,!
+act_shambler_charge | battle | Shambler raises its arms, lightning sparking | MAP:e1m8,CON:god,TP:0000044300C02EC400005843:CDCC8CC00000F04100000000,w100,!
+act_shambler_lightning | battle | Shambler's lightning strikes the player | MAP:e1m8,CON:god,TP:0000044300C02EC400005843:CDCC8CC00000F04100000000,w130,!
+boss_chthon | boss | Chthon rises from the lava in E1M7 | MAP:e1m7,CON:god,up:120,w200,!
+boss_chthon_lava | boss | Chthon's lava ball bursts at the player | MAP:e1m7,CON:god,up:120,w300,!
+intermission | system | E1M1 exit: Completed, time, secrets 0/6, kills 0/23 | MAP:e1m1,CON:notarget,TP:0000A44400000844000070C3:000080C00000B44200000000,w100,!
+gameover | gameover | Dead: "player was smashed by a Shambler", scores shown | MAP:e1m8,TP:0000044300C02EC400005843:CDCC8CC00000F04100000000,w800,!
