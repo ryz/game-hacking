@@ -1,6 +1,7 @@
 """Check a game's three design lenses against its published shot set.
 
-  python3 tools/lenses.py GAME [SET]      (GAME = slug or platform/slug; SET default main)
+  python3 tools/lenses.py GAME [SET] [--work]   (GAME = slug or platform/slug; SET default main; --work checks
+                                                the working set work/shots/PLATFORM/GAME/SET/ before publishing)
 
 design/systems.md (game design), design/interface.md (UI/UX) and design/content.md (variety of content) are
 the three indexes over a game's shots (docs/capture-guide.md, "Three lenses"). This lists:
@@ -43,10 +44,11 @@ def empty_rows(text):
     return out
 
 
-def check(game, set_="main"):
-    idx = os.path.join(game.dir, "shots", set_, "index.json")
+def check(game, set_="main", work=False):
+    idx = os.path.join(emu.ROOT, "work", "shots", game.id, set_, "index.json") if work else \
+        os.path.join(game.dir, "shots", set_, "index.json")
     if not os.path.exists(idx):
-        return 2, ["no published set: %s" % os.path.relpath(idx, emu.ROOT)]
+        return 2, ["no %s set: %s" % ("working" if work else "published", os.path.relpath(idx, emu.ROOT))]
     shots = json.load(open(idx, encoding="utf-8"))["shots"]
     lines, texts = [], {}
     for d in DOCS:
@@ -73,6 +75,8 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(2)
-    code, out = check(emu.Game(sys.argv[1]), sys.argv[2] if len(sys.argv) > 2 else "main")
+    work = "--work" in sys.argv
+    args = [a for a in sys.argv[1:] if a != "--work"]
+    code, out = check(emu.Game(args[0]), args[1] if len(args) > 1 else "main", work)
     print("\n".join(out))
     sys.exit(code)
