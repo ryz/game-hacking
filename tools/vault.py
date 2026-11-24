@@ -140,21 +140,33 @@ def smoke(name, frames=3600, every=300, root=ROOT, route=None):
     os.makedirs(out, exist_ok=True)
     e = emu.open_game(g)
     paths, seen, colours = [], set(), 0
+
+    def keep(p):
+        nonlocal colours
+        e.screen_png(p)
+        paths.append(p)
+        im = Image.open(p).convert("RGB")
+        seen.add(hashlib.sha1(im.tobytes()).hexdigest())
+        colours = max(colours, len(im.getcolors(1 << 16) or range(1 << 16)))
     try:
-        if route:
-            emu.play(e, g, emu.expand(g, emu.split(route)))
+        if route:       # `!` in the route takes a picture there: a text game that waits for typing shows its answers
+            part, n = [], 0
+            for t in emu.expand(g, emu.split(route)) + [None]:
+                if t in ("!", None):
+                    emu.play(e, g, part)
+                    part = []
+                    if t:
+                        n += 1
+                        keep(os.path.join(out, "r%02d.png" % n))
+                else:
+                    part.append(t)
         for f in range(every, frames + 1, every):
             e.frames(every)
-            p = os.path.join(out, "f%05d.png" % f)
-            e.screen_png(p)
-            paths.append(p)
-            im = Image.open(p).convert("RGB")
-            seen.add(hashlib.sha1(im.tobytes()).hexdigest())
-            colours = max(colours, len(im.getcolors(1 << 16) or range(1 << 16)))
+            keep(os.path.join(out, "f%05d.png" % f))
     finally:
         e.close()
     sheet = os.path.join(out, "sheet.png")
-    emu.sheet(paths, sheet, cols=6, labels=["f%d" % int(os.path.basename(p)[1:6]) for p in paths])
+    emu.sheet(paths, sheet, cols=6, labels=[os.path.basename(p)[:-4] for p in paths])
     rel = os.path.relpath(sheet, root)
     if colours < 2:
         raise SystemExit("smoke test: the screen stayed blank for %d frames (%s): not pushed" % (frames, rel))
@@ -296,7 +308,8 @@ def main():
     p.add_argument("--booted", help="what the game showed in the boot check (title, menu...)")
     p.add_argument("--frames", type=int, default=3600, help="frames the boot check runs (default 3600)")
     p.add_argument("--route", help="tokens played after power-on, before the check counts pictures (a game that "
-                   "waits at a menu: DOSBox Pure's program menu, a still title)")
+                   "waits at a menu: DOSBox Pure's program menu, a still title); `!` takes a picture at that point (a text "
+                   "game that waits for typing: the answers count as pictures)")
     p = sub.add_parser("pull")
     p.add_argument("game")
     p.add_argument("--force", action="store_true")
