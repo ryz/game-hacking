@@ -41,7 +41,12 @@
     "E1LIFT": "w30,up:40,w10,up:40,w10,up:40,w10,w200",
     "E1YARD": "right:46,w10,up:40,w10,up:40,w10,up:40,w10,up:40,w10",
     "E1FIGHT": "right:6,ctrl:8,w30,ctrl:8,w30,ctrl:8,w30,w60",
-    "SAVE0": "f2,w40,enter,w60"
+    "SAVE0": "f2,w40,enter,w60",
+    "MAP": "DEMO,backquote,w30,type:map {0}\\n,w150",
+    "CON": "backquote,w30,type:{0}\\n,w10,backquote,w30",
+    "TP": "poke:371D70={0},poke:371D94={1},poke:371E5C=0000803F,w20",
+    "MAPDM": "DEMO,backquote,w30,type:deathmatch 1\\n,w10,type:map {0}\\n,w150",
+    "ARMS": "CON:god,CON:impulse 9,CON:give s 43,CON:give n 87,CON:give r 14,CON:give c 62"
   },
   "ram": {
     "player_origin_x": {

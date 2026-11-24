@@ -38,9 +38,28 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Traps:** `-nosound` is required (with the Sound Blaster on, a loaded state diverges from the flat run on
   the very next frame). The DOSBox Pure start menu and the blue DOSBox banner are front-end screens (the
   banner shows above the command line in shot 01; acceptable as the DOS boot, do not take more).
+- **Set `main` (2026-11-24): console cheats are the way in.** Macros: `MAP:e1m6` (demo, console, `map e1m6`:
+  the level at its start, Normal skill), `MAPDM:start` (same with `deathmatch 1`: deathmatch-only items such
+  as the start map's Red Armor spawn), `CON:god` (backquote, type the command, Enter, backquote: any console
+  command), `ARMS` (god, `impulse 9`, then `give s 43`, `give n 87`, `give r 14`, `give c 62`: all eight
+  weapons, realistic ammo, Rocket Launcher in hand), `TP:ORIGIN:ANGLES` (pokes origin, angles and fixangle of
+  the player entity: a teleport with a view direction). Keys `1`-`8` pick a weapon, `ctrl:N` fires N frames.
+- **`games/dos/quake/tools/qpos.py MAP X Y Z`** reads the BSP and prints `TP:` tokens for spots where the
+  player's hull fits, on the floor, with a clear line of sight to the point (a monster from `ents.py`);
+  `--here [--open]` for one spot (facing the longest free view). Every action shot of `main` came from it.
+  A TP into a spot that does not fit is undone by the game (the player stays put): check with qpos first.
+- **Console commands verified (1.06 shareware):** `god`, `notarget`, `noclip`, `give s|n|r|c|h N` (sets the
+  value), `impulse 9` (all weapons incl. Thunderbolt, 100/200/100/200 ammo), `impulse 255` ("Quad cheat"),
+  `map eXmY`, `skill` (prints "skill" is "1"), `deathmatch 1`. `give a N` does nothing in 1.06 (no armor
+  cheat). **Impulses run only after the console closes** (single player pauses while it is open): one
+  `CON:impulse N` per impulse, never two typed in one console session (only the last one acts).
+- **Checkpoints `m_e1m1` ... `m_e1m8`:** `MAP:e1mN`, flat. Shot routes of `main` start with `MAP:` themselves
+  (flat from power-on), so they never load a state.
+- **Damage flash:** under `god` a hit still tints the screen red: fire before a monster closes in
+  (Shambler: from 550+ units, `TP` then `w15`-`w30`), or the frame is red.
 - **Open:** first weapon pickup (Nailgun at 112 2352, far into E1M1) and the first secret are not routed
-  (dead ends tried: "Strategy" below); armor not picked up; console cheats untested beyond `timedemo`
-  (the console opens with the backquote key).
+  honestly (only by TP); Zombies: no close spot found (two tries in E1M3 show them tiny); the E1M7 end text
+  (Chthon killed by the lightning buttons) not reached.
 - **Map entities:** `python3 games/dos/quake/tools/ents.py e1m1 "secret|weapon|monster"` (brush boxes too).
 
 ## Identity
@@ -178,8 +197,9 @@ Quake asks for no name in single player (the multiplayer setup has a player name
 ## Shortcuts
 | What | How (tokens / prefix / code) | Source | Status |
 |---|---|---|---|
-| Console | backquote, then type a command and `\n` (`type:map e1m2\n`) | CONFIG.CFG bind | console verified; `map`, `god`, `give`, `noclip`, `notarget`, `impulse 9` untested (fine for `main`, not for `start`) |
-| Level select | console `map e1m1`...`e1m8` | source | not tried |
+| Console | `CON:command` (backquote, type, Enter, backquote) | CONFIG.CFG bind | verified 2026-11-24: god, notarget, noclip, give s/n/r/c/h, impulse 9, impulse 255, map, skill, deathmatch; `give a` ignored (Read first) |
+| Level select | `MAP:e1m1` ... `MAP:e1m8` (console `map`), checkpoints `m_e1m1`...`m_e1m8` | console | verified |
+| Teleport | `TP:ORIGIN:ANGLES` from `tools/qpos.py` (pokes 371D70 origin, 371D94 angles, 371E5C fixangle = 1.0) | RAM | verified |
 | Saves | `sav:01_start` + Single Player, Load, slot 1 | made here | verified (loads at -62 1084 -200, health 88) |
 | Timedemo | console `timedemo demo1` (frame-rate test) | README | verified |
 
@@ -197,7 +217,9 @@ Floats; `play.py` watches show integers only, so the values are read with `qstat
 | 371E08 | 4 | health (field 48) | 100 -> 88 when hit (verified) |
 | 371E20 | 4 x 4 | shells, nails, rockets, cells (fields 54-57) | 25 -> 24 per shot (verified) |
 | 371E30 | 4 | items bits (field 58; 4353 = shotgun + axe + ...) | read |
-| 371E94 | 4 | armor value (field 83) | read 0 (not tested with armor) |
+| 371E8C | 4 | armortype (field 81): 0.3 green, 0.6 yellow, 0.8 red | read 0.3 after the Green Armor (verified 2026-11-24) |
+| 371E90 | 4 | armorvalue (field 82) | 100 after the Green Armor (verified 2026-11-24); ~~371E94 field 83~~ is waterlevel |
+| 371E5C | 4 | fixangle (field 69): 1.0 makes the server send `angles` to the view (used by `TP`) | verified |
 Same address in the start map and E1M1 (verified): the entity block is allocated at the same place for
 every map. Pokes not tested (the start set needs none).
 

@@ -11,3 +11,11 @@ s_e1m1_lift | E1M1: Grunt killed with two shotgun shots (23 shells), walked onto
 s_e1m1_yard | E1M1: turned north and walked out into the open yard (-62 1072 -200); a Grunt and a Rottweiler attack (health 88) | NEWGAME,NORMAL,TOE1,E1DOOR,E1GRUNT,E1LIFT,E1YARD
 s_e1m1_clear | E1M1: yard fight won with three shotgun shots (health 88, 20 shells) | NEWGAME,NORMAL,TOE1,E1DOOR,E1GRUNT,E1LIFT,E1YARD,E1FIGHT
 s_e1m1_saved | E1M1 after the yard fight: saved in the game to slot 1 (F2, Enter): writes ID1/S0.SAV, "Saving game to C:/ID1/s0.sav... done." | NEWGAME,NORMAL,TOE1,E1DOOR,E1GRUNT,E1LIFT,E1YARD,E1FIGHT,SAVE0
+m_e1m1 | Console from the attract demo: map e1m1 (The Slipgate Complex), Normal skill, player at the level's start; no cheats yet | MAP:e1m1
+m_e1m2 | Console from the attract demo: map e1m2 (Castle of the Damned), Normal skill, player at the level's start; no cheats yet | MAP:e1m2
+m_e1m3 | Console from the attract demo: map e1m3 (The Necropolis), Normal skill, player at the level's start; no cheats yet | MAP:e1m3
+m_e1m4 | Console from the attract demo: map e1m4 (The Grisly Grotto), Normal skill, player at the level's start; no cheats yet | MAP:e1m4
+m_e1m5 | Console from the attract demo: map e1m5 (Gloom Keep), Normal skill, player at the level's start; no cheats yet | MAP:e1m5
+m_e1m6 | Console from the attract demo: map e1m6 (The Door to Chthon), Normal skill, player at the level's start; no cheats yet | MAP:e1m6
+m_e1m7 | Console from the attract demo: map e1m7 (The House of Chthon), Normal skill, player at the level's start; no cheats yet | MAP:e1m7
+m_e1m8 | Console from the attract demo: map e1m8 (Ziggurat Vertigo), Normal skill, player at the level's start; no cheats yet | MAP:e1m8

@@ -20,7 +20,7 @@ import emu as E
 
 V = 0x371D48
 FIELDS = {"origin": (10, 3), "velocity": (16, 3), "angles": (19, 3), "health": (48, 1), "shells": (54, 4),
-          "items": (58, 1), "armor": (83, 1), "frags": (49, 1)}
+          "items": (58, 1), "armor": (82, 1), "frags": (49, 1)}
 
 
 def find_player(emu):
