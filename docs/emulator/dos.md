@@ -79,7 +79,9 @@ a decision the tools warn and `shoot.py --publish` refuses: ask the owner. Beyon
 Real-time games (Quake, 2026-11-23): start with no sound device (`-nosound`; with the Sound Blaster a loaded
 state drifts on the next frame). Even then a loaded state followed by a key continues differently from the flat
 replay (input timing not in the core's savestate): make checkpoint routes flat (no `@parent`) and check
-`cachecheck` on a two-link chain before building more.
+`cachecheck` on a two-link chain before building more. Placing the player in a 3D level: build a spot finder from
+the level data (fits, stands on the floor, line of sight) first; a teleport into a spot that does not fit is undone
+by the game (Quake `tools/qpos.py`).
 The text cursor blinks, so text screens rarely `settle`; capture anyway.
 
 ## Keys

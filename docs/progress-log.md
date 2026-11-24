@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-24 - Quake `main` (weapons, armor, power-ups, action); vault pushes
+- Owner: shots with all weapons, armor, power-ups active and action with enemies (Shambler). `main` 47 shots,
+  console allowed (god, notarget, give, impulse 9/255, map, deathmatch for the red armor) plus a BSP spot finder
+  (`games/dos/quake/tools/qpos.py`) for teleports. Coordinator cold verify 47/47. The shareware maps hold Shamblers;
+  on Normal only E1M8's is reachable. Not in shareware: Enforcer, Death Knight, Spawn, Vore, Rotfish.
+- Vault: Might and Magic II, Beyond Zork and Quake pushed after boot checks (first two pushes carried a placeholder
+  boot note, fixed in vault commit ced228d). `vault.py push --route` takes pictures at `!` marks, so a text game
+  waiting for typing passes. `lenses.py --work` checks a set before publishing (second ask).
+
 ## 2026-11-23 - Quake (DOS shareware 1.06): first real-time 3D game, `start` set
 - Owner: a starter set of shareware Quake. Downloaded `msdos_Quake106_shareware.zip` from archive.org (two storage
   hosts added to the environment with the owner's approval); PAK0.PAK is the stock shareware file (md5

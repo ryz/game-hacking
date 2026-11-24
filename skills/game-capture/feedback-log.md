@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-24 - Quake (DOS shareware 1.06, set `main`: weapons, armor, power-ups, action)
+- Task: `main` with every weapon, the three armors, the four power-ups active, monster action (Shambler) and the
+  must-haves.
+- Worked: the level BSP (`tools/qpos.py`: hull fit, drop to floor, line of sight) plus a pokeable teleport put a
+  monster in frame on most placements; large flat preview batches (up to 38 lines) in the background; teleporting
+  onto real pickups avoided cheat messages.
+- Friction: foreground Bash stops at 120 s (long preview/shoot moved to the background); `lenses.py` only reads
+  the published set; a wrong RAM field in the playbook (armor) caught only by a check.
+- Proposed rule change: dos.md "Real-time games": a spot finder from the level data before placing by hand;
+  `lenses.py` on the work set.
+- Corrected: none. Coordinator: cold verify 47/47, lenses clean, sheet looked at (weapons, armors, four tints,
+  Shambler walk/charge/lightning, Chthon, gibs, game over). Shambler: reachable on Normal only in E1M8. Not shot:
+  Zombie (too small), E1M7 ending, underwater. About 60 of 220 calls.
+- Status: dos.md note added (platform fact); `lenses.py --work` built 2026-11-24 (second ask); spot finder in
+  `docs/backlog.md`.
+
 ### 2026-11-23 - Quake (DOS shareware 1.06, set `start`)
 - Task: `start` set from the scout's 34 lines; verify cold, publish, two milestone commits.
 - Worked: the `at_checkpoint` fix made cold and warm runs identical (both verifies passed first time, no
