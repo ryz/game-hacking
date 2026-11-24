@@ -172,6 +172,19 @@ standard Quake console commands (source: general knowledge, untested here)), Nig
 monsters per level (Knight, Ogre, Fiend, Shambler in later E1 maps), weapons, power-ups (Quad,
 Pentagram, Ring, Biosuit), underwater, intermission screen after a level, death screen.
 
+- [x] Set `main`: captured 2026-11-24, 47 shots (its `shots.txt` in `shots/main/`). Every route is flat:
+  `MAP:eXmY` (or `MAPDM:start`, `BOOT`, `MENU`, `@s_e1m1`), then `CON:god`/`ARMS`, a `TP:` from `qpos.py`,
+  a weapon key, `ctrl:N` and a wait. Scenes: Grunt and Rottweiler in the E1M1 yard (axe, shotgun,
+  double-barreled, nailgun, rocket gibs), Fiend E1M3 (super nailgun), Ogre E1M6, Scrag and Knight E1M4,
+  Shambler E1M8 at 608 -424 280 (the only Normal-skill Shambler that can be reached: E1M6's at 1048 288 sits in
+  a closed closet, TP refused; E1M3/E1M5 ones are Hard only); Chthon: `MAP:e1m7,CON:god,up:120,w200`.
+  Armor: Green 688 480 and Yellow 1312 1048 in E1M1; Red only with `MAPDM:start` (deathmatch item at 1104
+  1728, in a pool: TP back to the spawn for the shot). Power-ups: Quad E1M1 544 2480, Pentagram E1M8 672 536,
+  Ring E1M3 -1736 -552, Biosuit E1M1 712 2040 then TP into slime at 1328 2536. Intermission: TP into the E1M1
+  exit (1312 544). Death: no god, TP 550 units from the E1M8 Shambler, `w800`.
+  Tried and left out: zombies (E1M3, tiny at 150-250 units), underwater in E1M4 (928 2664 348: plain brown
+  murk), `quad_fire` (no visible flash), pent in lava (same picture as the pickup).
+
 ## Strategy and walkthrough notes
 - Normal skill: the yard fight costs 12 health with the route as is; the first Grunt dies before it shoots.
 - Aim by turning; the shotgun's spread hits at corridor range. A fight is 3-5 `ctrl:8,w30` groups; check
