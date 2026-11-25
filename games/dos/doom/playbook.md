@@ -20,8 +20,8 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Determinism:** cachecheck: frames and memory agree for all 17 (cold == hit); 16 report "DIFFERS (save)"
   only because 1.1 creates an empty folder `C:\DOOMDATA` at every start and a state does not carry an empty
   folder (s_saved, with a file in it, is "same"). Shots on any checkpoint reproduce.
-- **Plans:** `shots.txt`: `main` 28 active lines (menus, Read This!, help, automap, five powers, cheats, env
-  starts; previewed) + a comment list of what remains (weapons, monsters, bosses, end texts, face stages,
+- **Plans:** `shots.txt`: `main` 34 active lines (menus, Read This!, help, automap, five powers, cheats, env
+  starts, Cyberdemon, Spider Mastermind with BFG, shotgun at E1M3, two no-god fist frames; all previewed) + a comment list of what remains (weapons, monsters, bosses, end texts, face stages,
   death); `start` 31 `#start ` lines (power-on to "game saved." at E1M2, previewed in full).
 - **Tools** (`tools/`, copied from ultimate-doom and changed for 1.1): `wadmap.py` (reads `DOOM/DOOM.WAD`
   from `rom/doom.zip`), `dstate.py` (1.1 player_t offsets, map at 20BAC0), `dnav.py` (mobjs searched at
@@ -114,8 +114,10 @@ Input timing: default press (hold 8, wait 40) works in menus and play; nothing l
 See `shots.txt`. `start` (31, previewed): boot 1, title 1, menus 3, gameplay 13 (melt, reduced and full view,
 start room, door, zigzag room, MegaArmor, exit switch, tally counting and done, E1M2), battle 6 (third
 zombieman, hit flash, nukage zombieman, ledge imp, imp fireball, imp hit), map 2 (automap, Entering Nuclear
-Plant), options 2, help 2 (order page, keys), save 3. `main` (28 previewed): title, menus 7 (main, episode,
-skill x4), Read This! 2, quit, load, save refused, help, automap 2, powers 5, cheats 2, env 6. To plan: see the
+Plant), options 2, help 2 (order page, keys), save 3. `main` (34 previewed): title, menus 7 (main, episode,
+skill x4), Read This! 2, quit, load, save refused, help, automap 2, powers 5, cheats 2, env 6, bosses 3
+(Cyberdemon, Spider Mastermind, BFG shot), shotgun, face 2 (TP spots of 1.9 work: E2M8 -1000 100 135, E3M8 1250
+-1100 43, E1M3 -1504 -1904 90). To plan: see the
 comment block in `shots.txt` (weapons x8, monsters, bosses, three end texts, face stages, death, pickups).
 
 ## Strategy and walkthrough notes
