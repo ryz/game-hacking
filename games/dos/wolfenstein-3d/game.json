@@ -3,7 +3,7 @@
   "title": "Wolfenstein 3D (DOS)",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "svga-15000",
   "rom": "rom/wolfenstein-3d.zip",
   "sha1": "5fc240b5631acc48da75724db9f69ef2eed2bd93",
   "crc32": "37c56b96",
@@ -26,7 +26,10 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
+  "macros": {
+    "BOOT": "w120,down*5,enter,w120,type:wolf3d\\n",
+    "BOOTQ": "w120,down*5,enter,w120,type:wolf3d noal nosb noss nopro\\n"
+  },
   "ram": {},
   "edition": "DOS, Activision release 1.4 (six episodes, .WL6); the bundle also holds Spear of Destiny (m1/, not registered)",
   "work": "registered 2026-11-25; not scouted yet",

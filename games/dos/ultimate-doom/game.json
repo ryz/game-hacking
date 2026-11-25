@@ -1,0 +1,48 @@
+{
+  "slug": "ultimate-doom",
+  "title": "The Ultimate Doom (DOS)",
+  "platform": "dos",
+  "region": "na",
+  "model": "svga-7800",
+  "rom": "rom/ultimate-doom.zip",
+  "sha1": "054bef8ec2c4a4297fd82aca28faecee64554f21",
+  "crc32": "080a63c2",
+  "size": 28531763,
+  "header": {
+    "files": 64,
+    "programs": [
+      "DOOM.EXE",
+      "SETUP.EXE",
+      "doom2/DOOM2.EXE",
+      "master/DMLOAD.EXE",
+      "master/DOOMIT.BAT",
+      "master/SETPATH.EXE",
+      "plutonia/final.exe",
+      "start.bat",
+      "tnt/final.exe"
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {},
+  "edition": "DOS, Steam bundle: The Ultimate Doom 1.9 with Doom II 1.9, Final Doom (TNT: Evilution, The Plutonia Experiment) and the 20 Master Levels for Doom II",
+  "work": "registered 2026-11-25, in the vault; boots to the title and the attract demo; not scouted",
+  "open": "scout, sets (Doom II, Final Doom and the Master Levels are in the same ZIP: separate slugs if they get sets)",
+  "source": {
+    "name": "ultimate-doom.zip (owner's upload)",
+    "wad_md5": {
+      "DOOM.WAD": "c4fe9fd920207691a9f493668e0a2083 (Ultimate Doom 1.9)",
+      "doom2/DOOM2.WAD": "25e1459ca71d321525f84628f45ca8cd (Doom II 1.9)",
+      "tnt/TNT.WAD": "4e158d9953c79ccf97bd0663244cc6b6 (TNT: Evilution)",
+      "plutonia/PLUTONIA.WAD": "75c8cf89566741fa9d22447604053bd7 (Plutonia)"
+    },
+    "launcher": "start.bat menu (1 Ultimate Doom, 2 Doom II, 3 Master Levels, 4 TNT, 5 Plutonia, 6 Setup)"
+  }
+}
