@@ -35,3 +35,5 @@ Tool wishes are not listed here: `docs/backlog.md`.
   instead of previewing whole routes (Bard's Tale III Apple II, 2026-11-21: `tools/safewalk.py`).
 - **A first-person view that stays black after entering** may be darkness, not a load hang: click once or
   light a torch/spell before waiting longer (Dragonflight, 2026-11-22).
+- **Boss hit points in real-time games:** snapshot memory, fire, keep the 2-byte words that keep falling; search under
+  the same boot route the shots use (actor order differs between `tedlevel` and a menu start) (Spear of Destiny, 2026-11-25).

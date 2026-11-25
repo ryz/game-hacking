@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-25 - Spear of Destiny (DOS, sets `start` and `main`)
+- Task: `start` (24) and `main` (95) with the ending, face stages and lenses.
+- Worked: the scout's plan and the Wolfenstein recipes carried over almost unchanged; a 20-line script found the
+  Angel's hit points in one call (snapshot, fire, keep the words that keep falling); the whole ending followed with
+  `?` marks in one preview; the copied fight scan gave the face-stage table in one background run.
+- Friction: the hit-points address differs between `tedlevel` and DNEW+warp starts (actor order), one preview
+  lost; a guessed end-page count typed a space into the name field (seen only on the sheet); the tall sheet
+  (1600x4028) had to be cut to be looked at.
+- Proposed rule change: skill step 4: find a boss's hit points by snapshot-fire-keep-falling, under the same boot
+  route as the shots; backlog: paged set sheets.
+- Corrected: none. Coordinator: cold verify 24/24 and 95/95, lenses clean, both halves of the sheet looked at
+  (all five bosses, Spear taken, real face stages to death, full ending, high score as ryz). Pokes: Angel HP 64 then
+  real fire, tally table, score (plausible). About 70 of 220 calls.
+- Status: boss-HP search -> open lesson in `feedback.md`; paged sheets -> `docs/backlog.md`.
+
 ### 2026-11-25 - Wolfenstein 3D (DOS, `main` additions: difficulty faces, face stages, real victory)
 - Task: the three other difficulty highlights, a real fight showing every status-bar face stage down to a real
   death, a real "You Win!" with totals.

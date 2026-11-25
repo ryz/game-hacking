@@ -31,6 +31,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | 3D map reader per engine (entities, brush boxes, floor heights, reachability) as the first exploration step for 3D games | 1 | Quake capture (`games/dos/quake/tools/ents.py` meanwhile) |
 | 3D spot finder from the level data (player fits, floor, line of sight to a target) shared per engine | 1 | Quake main (`games/dos/quake/tools/qpos.py`); goes with the 3D map reader row |
 | `preview.py --cycle "TOKS" N`: repeat a key group and log the peeks per step (fight scan; `games/dos/wolfenstein-3d/tools/fightscan.py` meanwhile) | 1 | Wolfenstein 3D capture |
+| `shoot.py` set sheets in pages of about 50 shots (a 95-shot sheet is 1600x4028 and must be cut to be looked at) | 1 | Spear of Destiny capture |
 | Z80 disassembler like `dis6502.py` | 1 | Phantasy Star part 2 |
 | `sample` leaves the screen stale so `record` refuses; `record` taking leading tokens | 1 | Phantasy Star early game |
 | `"fmt": "bcd-le"` RAM watch (`set:...:bcd` already writes it) | 1 | Ultima III scout |
