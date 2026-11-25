@@ -1,6 +1,6 @@
 {
   "slug": "wolfenstein-3d",
-  "title": "Wolfenstein 3D (DOS)",
+  "title": "Wolfenstein 3D",
   "platform": "dos",
   "region": "na",
   "model": "svga-15000",
@@ -41,7 +41,9 @@
     "E1GUARD3": "ctrl:6,w30,w10,w:18,w20",
     "E1PUSH": "w:20,space,w20",
     "E1SECRET": "w260,w:24,a:51,w:12,d:51,w:12,a:51,w:24,w30,d:51,d:51,w30",
-    "SAVE1": "esc,w60,down*4,enter,w60,enter,w60,type:{0},w20,enter,w120,down*3,enter,w60"
+    "SAVE1": "esc,w60,down*4,enter,w60,enter,w60,type:{0},w20,enter,w120,down*3,enter,w60",
+    "GOD": "tab+g:10,w60,enter,w30",
+    "MLI": "m+l+i:10,w60,enter,w30"
   },
   "ram": {
     "score": {
@@ -79,7 +81,7 @@
       "note": "player angle in degrees, 0 = east, 90 = north (counter-clockwise)"
     }
   },
-  "edition": "DOS, Activision release 1.4 (six episodes, .WL6); the bundle also holds Spear of Destiny (m1/, not registered)",
-  "work": "registered 2026-11-25; not scouted yet",
-  "open": "scout, sets main and start"
+  "edition": "DOS v1.4, Activision release (GT/Activision build: no Read This!, Gravis GamePad option; six episodes, .WL6); bundle config binds W/A/S/D; Spear of Destiny in m1/ is registered separately",
+  "work": "scouted 2026-11-25: boot, model svga-15000, controls, 11 flat checkpoints to the first save in E1M1 (save 01_start), RAM (gamestate, player position/angle), map reader, debug keys verified; not captured",
+  "open": "sets start and main; a loaded state diverges from the flat replay in actor memory (start-set routes stay flat); treasure, elevator and level tally not routed honestly yet"
 }
