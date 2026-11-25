@@ -183,3 +183,11 @@ def test_start_ids_repeating_category(tmp_path):
     shots = [{"id": "01_boot_logo", "category": "boot"}, {"id": "02_menu_old", "category": "menu"},
              {"id": "03_logo", "category": "boot"}, {"id": "04_menus", "category": "menu"}]
     assert shoot.start_ids_repeating_category(shots, str(tmp_path)) == ["01_boot_logo"]
+
+
+def test_cachecheck_mem_diff():
+    import cachecheck
+    a = [(0x100, bytes(64))]
+    b = [(0x100, bytes(4) + b"\x01" + bytes(10) + b"\x02" + bytes(40) + b"\x03" + bytes(7))]
+    assert cachecheck.mem_diff(a, b, 5) == [[0x104, 0x10F], [0x138, 0x138]]
+    assert cachecheck.mem_diff(a, b, 1) == [[0x104, 0x10F]]

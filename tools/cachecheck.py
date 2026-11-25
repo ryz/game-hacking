@@ -32,13 +32,13 @@ import emu as E  # noqa: E402
 
 def probe(job):
     """(name, mode) -> hashes of frame / memory / save data after the --after tokens, the frame, the peeks."""
-    game_id, model, name, mode, cache_dir, after, peeks = job
+    game_id, model, name, mode, cache_dir, after, peeks, keep_mem = job
     try:
         E.CACHE_DIR = None if mode == "yours" else cache_dir
         game = E.Game(game_id)
         if mode == "yours":
             if not os.path.exists(E.checkpoint_cache(game, name, model)):
-                return name, mode, None, None, ""
+                return name, mode, None, None, "", []
         emu, _ = E.at_checkpoint(game, name, model, cache=mode != "flat")
         E.play(emu, game, E.expand(game, E.split(after)))
         png = emu.screen()
@@ -46,9 +46,12 @@ def probe(job):
         import io
         frame = hashlib.sha1(Image.open(io.BytesIO(png)).convert("RGB").tobytes()).hexdigest()[:10]
         ranges = getattr(emu, "SEARCH", None) or [(0xC000, 0x2000), (0xA000, 0x2000), (0xFF80, 0x7F)]
-        h = hashlib.sha1()
+        h, raw = hashlib.sha1(), []
         for base, size in ranges:
-            h.update(bytes(emu.peek(base, size)))
+            b = bytes(emu.peek(base, size))
+            h.update(b)
+            if keep_mem:
+                raw.append((base, b))
         mem = h.hexdigest()[:10]
         try:
             kib = game.meta.get("header", {}).get("ram_kib") or 0
@@ -63,11 +66,26 @@ def probe(job):
             save = "n/a:" + type(e).__name__
         pk = " ".join("%s=%s" % (a, bytes(emu.peek(int(a, 16), n)).hex()) for a, n in peeks)
         emu.close()
-        return name, mode, (frame, mem, save), png, pk
+        return name, mode, (frame, mem, save), png, pk, raw
     except BaseException as e:
-        return name, mode, ("ERROR %s: %s" % (type(e).__name__, e),), None, ""
+        return name, mode, ("ERROR %s: %s" % (type(e).__name__, e),), None, "", []
     finally:
         E.CACHE_DIR = None              # jobs=1 runs in this process: leave the module as it was
+
+
+def mem_diff(a, b, limit, gap=16):
+    """Differing address ranges between two [(base, bytes)] lists (ranges closer than GAP bytes merged)."""
+    out = []
+    for (base, x), (_, y) in zip(a, b):
+        for i in range(min(len(x), len(y))):
+            if x[i] != y[i]:
+                if out and base + i - out[-1][1] <= gap:
+                    out[-1][1] = base + i
+                elif len(out) < limit:
+                    out.append([base + i, base + i])
+                else:
+                    return out
+    return out
 
 
 def chain(game, names):
@@ -99,6 +117,8 @@ def main(argv=None):
     ap.add_argument("--after", default="w60")
     ap.add_argument("--peek", action="append", default=[])
     ap.add_argument("--fix", action="store_true")
+    ap.add_argument("--show-diff", type=int, default=0, metavar="N",
+                    help="where memory differs: print the first N differing address ranges per checkpoint")
     ap.add_argument("--model")
     ap.add_argument("--jobs", type=int, default=min(4, os.cpu_count() or 1))
     a = ap.parse_args(argv)
@@ -114,7 +134,7 @@ def main(argv=None):
     import multiprocessing
 
     def run(mode, which):
-        jobs = [(game.id, model, n, mode, tmp, a.after, peeks) for n in which]
+        jobs = [(game.id, model, n, mode, tmp, a.after, peeks, a.show_diff > 0) for n in which]
         if a.jobs > 1 and len(jobs) > 1:
             with multiprocessing.get_context("fork").Pool(min(a.jobs, len(jobs))) as pool:
                 res = pool.map(probe, jobs, chunksize=1)
@@ -140,6 +160,9 @@ def main(argv=None):
             if r[2] != ref:
                 what = [k for k, x, y in zip(("frame", "memory", "save"), r[2], ref) if x != y] or [r[2][0]]
                 diffs.append("%s DIFFERS from %s (%s)" % (mode, ref_mode, ", ".join(what)))
+                if a.show_diff and "memory" in what:
+                    rng = mem_diff(got[ref_mode][n][5], r[5], a.show_diff)
+                    diffs[-1] += " at " + ", ".join("%X-%X" % (lo, hi) for lo, hi in rng)
                 if mode == "yours":
                     stale.append(n)
         if ref[0].startswith("ERROR"):
