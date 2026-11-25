@@ -45,7 +45,10 @@
     "GOD": "tab+g:10,w60,enter,w30",
     "MLI": "m+l+i:10,w60,enter,w30",
     "DNEW": "WOLF:goobers nowait,w300,enter,w120,{0},enter,w120,enter,w400,shift+alt+backspace:10,w60,enter,w60",
-    "TP": "poke:4687C={0},poke:46884={1},poke:46896={2},w2"
+    "TP": "poke:4687C={0},poke:46884={1},poke:46896={2},w2",
+    "HANSFIGHT": "LEVEL:8,MLI,TP:0080220000801000:22001000:5A00,w20,space,w30,s:70,ctrl:12",
+    "HF": "ctrl:4,s:3,w10",
+    "E1RATIOS": "poke:44C56=460028003D00D40000003A0021002F0031010000420032003A00550100003D0019002C002A01000048002800370092010000370021003100790100003C00320034009A0100003E00210032006F010000"
   },
   "ram": {
     "score": {

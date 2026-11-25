@@ -16,6 +16,9 @@ demo | gameplay | Attract demo on floor 38: bodies in a yellow-stone corridor, h
 menu_options | menu | Options menu before a game: New Game, Sound, Control, Load Game | MENU
 menu_episodes | menu | Which episode to play? The six episodes with their pictures | MENU,enter,w120
 menu_difficulty | menu | How tough are you? Four skills, Bring 'em on! chosen, with its face | MENU,enter,w120,enter,w120
+menu_difficulty_daddy | menu | How tough are you? Can I play, Daddy? chosen: grey-haired B.J. with a pacifier | MENU,enter,w120,enter,w120,up*2,w30
+menu_difficulty_hurt | menu | How tough are you? Don't hurt me. chosen: B.J.'s plain face | MENU,enter,w120,enter,w120,up,w30
+menu_difficulty_death | menu | How tough are you? I am Death incarnate! chosen: scowling, red-eyed B.J. | MENU,enter,w120,enter,w120,down,w30
 options_sound | options | Sound menu: sound effects, digitized sound and music devices | MENU,down,enter,w60
 options_control | options | Control menu: mouse, joystick, Gravis GamePad, customize | MENU,down*2,enter,w60
 menu_load | save | Load Game: ten empty slots | MENU,down*3,enter,w60
@@ -41,6 +44,8 @@ weapon_machine_gun | battle | Machine gun firing at SS in the E1M2 cross room | 
 enemy_ss | battle | E1M2: SS and guards in the cross room | LEVEL:1,GOD,MLI,2,TP:0080100000800300:10000300:0000,w30,!
 weapon_chain_gun | battle | Chain gun firing at an officer between two SS in E5M1 | LEVEL:40,GOD,MLI,TP:00802C0000801C00:2C001C00:B400,w20,ctrl:4*3,!
 enemy_officer_dies | battle | The officer falls: score 400 | LEVEL:40,GOD,MLI,TP:00802C0000801C00:2C001C00:B400,w20,ctrl:4*6,w10*2,!
+chaingun_floor | gameplay | E1M2 secret nook: a chain gun on the floor, the pistol in hand | LEVEL:1,TP:0080240000801E00:24001E00:B400,w20
+chaingun_grin | hud | Chain gun picked up: gold flash, B.J. grins on the status bar, ammo 14 | LEVEL:1,TP:0080240000801E00:24001E00:B400,w20,w:8,!
 enemy_dogs | battle | E1M1: two guard dogs run at the player | LEVEL:0,GOD,TP:0080330000802C00:33002C00:0000,w40,!
 enemy_guard_fires | battle | E1M1 hall: a guard turns and fires at the player | NEWGAME,E1HALL,a:8,ctrl:6,set:4491A=12650:4,poke:44922=0000,poke:44924=0100,w40*2,!
 damage_flash | battle | Hit: the screen flashes red, health 0% | NEWGAME,E1HALL,a:8,ctrl:6,set:4491A=12650:4,poke:44922=0000,poke:44924=0100,w40*3,!
@@ -49,6 +54,17 @@ highscore_entry | gameover | Out of lives: High Scores, new entry at the top wit
 highscore_ryz | gameover | Name entered: ryz, E1/L1, 12650 | NEWGAME,E1HALL,a:8,ctrl:6,set:4491A=12650:4,poke:44922=0000,poke:44924=0100,w40*14,type:ryz,w30,!
 boss_hans | boss | E1M9: chain gun at Hans Grosse behind the door | LEVEL:8,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:4*4,!
 boss_hans_hit | boss | Hans Grosse's chain guns hit: the screen turns red | LEVEL:8,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:4*6,w10*4,!
+face_100 | battle | E1M9, no god mode: chain gun fire at Hans Grosse in the far doorway, 100% | HANSFIGHT,HF*34,!
+face_80 | battle | Hans's bullets hit: red flash, health 80%, a cut on the cheek | HANSFIGHT,HF*36,!
+face_60 | battle | Hans walks up the hall past eagle banners: health 60%, blood under the nose | HANSFIGHT,HF*45,!
+face_43 | battle | Firing back at Hans, health 43%: the face bleeds from the mouth | HANSFIGHT,HF*48,!
+face_34 | battle | Hit again: red flash, health 34%, blood on nose and mouth | HANSFIGHT,HF*55,!
+face_6 | battle | Health 6%: face swollen, eyes half shut; Hans comes on between the lamps | HANSFIGHT,HF*57,!
+face_1 | battle | Health 1%: last bursts at Hans, eyes almost shut, face bloodied | HANSFIGHT,HF*58,!
+face_1_hans_near | battle | Hans Grosse closes in, health 1%, ammo 19 | HANSFIGHT,HF*79,!
+death_by_hans | gameover | Killed by Hans: health 0%, the dead face, the view starts to dissolve red | HANSFIGHT,HF*80,!
+death_by_hans_red | gameover | The red death dissolve swallows Hans and the hall | HANSFIGHT,HF*86,!
+death_restart | gameover | Floor 9 restarts: health 100%, pistol, ammo 8, fading in from red | HANSFIGHT,HF*90,!
 boss_schabbs | boss | E2M9: chain gun fire into Dr. Schabbs at close range | LEVEL:18,GOD,MLI,TP:00801F0000801300:1F001300:5A00,w10,ctrl:12,!
 boss_schabbs_walks | boss | Dr. Schabbs in his blood-spattered coat comes at the player | LEVEL:18,GOD,MLI,TP:00801F0000801300:1F001300:5A00,w10,ctrl:12,w10*3,w20,!
 boss_hitler | boss | E3M9: Hitler in his mech suit fires both chain guns | LEVEL:28,GOD,MLI,TP:0080310000802100:31002100:5A00,w20,ctrl:12,w10*6,!
@@ -57,7 +73,7 @@ boss_gretel | boss | E5M9: Gretel Grosse walks up with two chain guns | LEVEL:48
 boss_fett | boss | E6M9: General Fettgesicht fires, an officer at his side | LEVEL:58,GOD,MLI,TP:0080200000801500:20001500:B400,w20,ctrl:12,w10*5,!
 e1m9_exit | gameplay | E1M9 after Hans: the gold door open, daylight outside, score 5000 | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,!
 victory_run | ending | Episode 1 won: B.J. runs out of the castle | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,w60,w120,!
-victory_win | ending | You Win! Total time, kill, secret and treasure averages | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,w60,w120,w200,w300,!
+victory_win | ending | You Win! Total time 45:12; averages: kill 63%, secret 38%, treasure 52% | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,set:4491A=43270:4,set:4491E=80000:4,E1RATIOS,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,w60,w120,w200,w300,!
 episode_end_text | ending | Congratulations! Episode 1 end text, page 1 of 2 | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,w60,w120,w200,w300*7,space,w200,!
 episode_end_text_2 | ending | More Wolfenstein: episode 1 end text, page 2 of 2 | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,w60,w120,w200,w300*7,space,w200,right,w60,!
 treasure_room | gameplay | E1M1: treasure room, gold chalices by an eagle picture | LEVEL:0,GOD,TP:0080290000800B00:29000B00:0000,w20
