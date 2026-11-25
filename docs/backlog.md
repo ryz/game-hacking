@@ -30,11 +30,11 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `"fmt": "f32"` RAM watch (float game state: Quake player entity) | 1 | Quake scout (`games/dos/quake/tools/qstate.py` reads floats meanwhile) |
 | 3D map reader per engine (entities, brush boxes, floor heights, reachability) as the first exploration step for 3D games | 1 | Quake capture (`games/dos/quake/tools/ents.py` meanwhile) |
 | 3D spot finder from the level data (player fits, floor, line of sight to a target) shared per engine | 1 | Quake main (`games/dos/quake/tools/qpos.py`); goes with the 3D map reader row |
+| `preview.py --peek` values at every `?` frame, not only after the last token | 1 | Wolfenstein 3D scout |
 | Z80 disassembler like `dis6502.py` | 1 | Phantasy Star part 2 |
 | `sample` leaves the screen stale so `record` refuses; `record` taking leading tokens | 1 | Phantasy Star early game |
 | `"fmt": "bcd-le"` RAM watch (`set:...:bcd` already writes it) | 1 | Ultima III scout |
 | `intake.py` records a DOS ZIP's `dosbox*.conf` autoexec lines and cycles in `game.json` | 1 | Might and Magic II scout |
-| `cachecheck.py --show-diff NAME`: the first differing addresses between flat and cached state | 1 | Sword of Vermilion scout (a stack word, found by hand) |
 | `preview.py --repeat TOKENS N`: a sheet of the route after 1..N repetitions | 1 | Sword of Vermilion scout (one more step per line) |
 | `play.py find` warns when nothing ran since the last narrowing (0 candidates without a hint); `preview.py --timeline` per route, not per call | 1 | Sword of Vermilion capture run 3 |
 | `play.py dump` JSON: zero-padded hex keys or a note in the output that keys are hex | 1 | Might and Magic II Apple II scout (read as decimal, several calls lost) |
@@ -55,6 +55,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 ## Done
 | Wish | Asked | Done |
 |---|---|---|
+| `cachecheck.py --show-diff`: the differing address ranges between flat and cached state | 2 | 2026-11-25 `cachecheck.py --show-diff N` (Sword of Vermilion, Wolfenstein 3D) |
 | `lenses.py SLUG SET --work` (check the working set before publishing) | 2 | 2026-11-24 `tools/lenses.py --work` (Might and Magic 1 DOS fix-up, Quake main) |
 | Boot check for a text game that waits for typing | 1 | 2026-11-24 `vault.py push --route` with `!` marks (Beyond Zork) |
 | Shared previewer (parallel runs, shoot.py's settle, plan-file input, frames from a marker, paged timelines, text screens, checkpoint-only lines) | 6 | 2026-11-20 `tools/preview.py` |

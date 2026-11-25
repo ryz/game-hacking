@@ -25,8 +25,12 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Determinism (trap):** a flat route from power-on is reproducible (same frames twice; with and without sound).
   A loaded state (cached checkpoint) continues with the same frame and player position, but the guards' memory
   differs from the flat run within 60 frames (`cachecheck`: "cold/hit DIFFERS from flat (memory)" for every
-  in-game checkpoint after `s_e1m1`). So: **`start` shot routes are flat macro chains (no `@`)**, as in
-  `shots.txt`; `main` lines also start from macros (`LEVEL:`, `NEWGAME`), never from `@s_...`.
+  in-game checkpoint after `s_e1m1`; `cachecheck --show-diff 6`: a few ranges at 48BA6-48D02, 4B294-4B2ED).
+  **Coordinator, 2026-11-25:** that is "not equal to the flat replay", not "not reproducible": a cache miss
+  reloads the state it saved (`emu.at_checkpoint`), so miss and hits continue identically. Checked on
+  `@s_guard2,w:40,ctrl:6,w60,d:30,w60`: three runs from an empty cache, same frame and same actor memory. So shot
+  routes may start from `@s_...` (faster); the flat macro chains in `shots.txt` stay valid too. Checkpoint
+  routes themselves stay flat.
 - **Maps:** `python3 games/dos/wolfenstein-3d/tools/wlmap.py list` (all 60 floors), `wlmap.py E1M1 --skill 2`
   (ASCII map + objects: enemies by skill, keys, treasure, weapons, pushwalls, start). Coordinates = tiles,
   same as the RAM position (x east, y south).

@@ -12,6 +12,23 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-25 - Wolfenstein 3D (DOS, Activision 1.4)
+- Task: boot, model, controls, determinism, checkpoints to the first save, RAM, `start` and `main` plans with
+  action shots.
+- Worked: dumping conventional memory after the EXE unpacked gave every parameter, debug message and menu string
+  in one call (`goobers`, `tedlevel`, `nowait`, no "Read This!"); CONFIG.WL6 explained the dead arrow keys (WASD);
+  long preview routes with `?` frames and `--peek` found each E1M1 leg in one call; `tools/wlmap.py` map reader.
+- Friction: `cachecheck` said "DIFFERS (memory)" with hashes only (scratch script needed); even flat checkpoints
+  differ after a load; `w30` (wait) vs `w:30` (W key) easy to confuse in WASD games; `preview --peek` reads only
+  after the last token.
+- Proposed rule change: dos.md note for Wolfenstein; backlog: `cachecheck --diff`, `preview --peek` at every `?`.
+- Corrected: the flat-only rule for shot routes was too strict: coordinator checked miss vs hits on
+  `@s_guard2,...` (identical frame and actor memory three times), so `@s_...` shot routes reproduce; playbook
+  corrected. Stop condition "checkpoints reproduce" is met in the sense that matters (cold == hit; only flat
+  differs, in memory).
+- Status: `cachecheck --show-diff N` built 2026-11-25 (second ask after Sword of Vermilion; test added); dos.md
+  note added; `preview --peek` at `?` frames -> `docs/backlog.md`; WASD wait/key confusion logged.
+
 ### 2026-11-23 - Quake (DOS shareware 1.06)
 - Task: scout Quake for a `start` set: boot, model, controls, determinism, checkpoints to the first in-game save,
   previewed plan.
