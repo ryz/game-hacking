@@ -80,8 +80,8 @@
     }
   },
   "edition": "DOS, registered v1.1 (December 1993; three episodes, DOOM.WAD md5 981b03e6...), booted from the command line with -nosound, view enlarged once with =",
-  "work": "scouted 2026-11-25: boot, LEVEL warp (-episode + idclev), 17 checkpoints (honest E1M1 to the first save), 1.1 RAM map, cheats verified, plans start 31 and main 34 previewed; not captured",
-  "open": "capture start and main; main still needs weapons, monsters, bosses (E1M8 barons, Cyberdemon, Spider Mastermind), E1-E3 end texts, face stages and a death",
+  "work": "start 30 and main 64 published 2026-11-25 (verified from an empty cache): menus incl. 1.1 differences, eight weapons firing, monsters, power-ups, barons, Cyberdemon and Spider Mastermind killed, E1-E3 end texts and pictures, face stages and death; three lenses",
+  "open": "key doors and keycards, the secret ninth maps and their tallies, sound on",
   "source": {
     "name": "Doom_1993Id_Softwarev1.1.zip (owner's upload: DEICE installer, DOOM1_1R.1-.4, DOOM1_1R.DAT, INSTALL.BAT), SHA-1 479bd3dcc600d9a7301f818f0f4a695c2d3dce1b",
     "base_copy": "rom/src/doom-1.1-disks.zip",

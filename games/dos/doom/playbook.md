@@ -20,9 +20,9 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Determinism:** cachecheck: frames and memory agree for all 17 (cold == hit); 16 report "DIFFERS (save)"
   only because 1.1 creates an empty folder `C:\DOOMDATA` at every start and a state does not carry an empty
   folder (s_saved, with a file in it, is "same"). Shots on any checkpoint reproduce.
-- **Plans:** `shots.txt`: `main` 34 active lines (menus, Read This!, help, automap, five powers, cheats, env
-  starts, Cyberdemon, Spider Mastermind with BFG, shotgun at E1M3, two no-god fist frames; all previewed) + a comment list of what remains (weapons, monsters, bosses, end texts, face stages,
-  death); `start` 31 `#start ` lines (power-on to "game saved." at E1M2, previewed in full).
+- **Captured 2026-11-25:** `start` 30 and `main` 64 published, both verified from an empty cache
+  (`shots/start/`, `shots/main/`; the main lines are in `shots.txt`). Recipes for every action line: "Recipes"
+  below. Specs for `tools/dplan.py` are written inline there.
 - **Tools** (`tools/`, copied from ultimate-doom and changed for 1.1): `wadmap.py` (reads `DOOM/DOOM.WAD`
   from `rom/doom.zip`), `dstate.py` (1.1 player_t offsets, map at 20BAC0), `dnav.py` (mobjs searched at
   every byte alignment, mobjinfo records 88 bytes, monsters named by editor number), `bosskill.py` (1.1
@@ -34,8 +34,11 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   20B558 and byte-packed: conversion in RAM map); never copy a 1.9 `poke`/`set`/`TP` line. Menu presses after
   ~BOOT+300 land in the title-to-demo wipe: use short presses (`TITLE,esc:4,w6,...`) for deep menu shots.
   The help key F1 first shows the order page. Saves go to `C:\DOOMDATA\`, not the game folder.
-- **Open:** every action line of `main` (weapons, monsters, bosses, end texts E1-E3, death, face stages);
-  sound on not tried; `menu_skill_*` skull rows to be read on the capture sheet.
+- **Traps found in capture:** key `1` gives the chainsaw when it is owned (idkfa): for the fist poke
+  `20B5F6=00000000` (chainsaw not owned) first. The skill menu drops a single `up` after `w8`: `menu_skill_hntr`
+  goes up twice, then down. `help_keys` (F1 in play) is pixel-identical to Read This! page 2: one shot only.
+  The E2M8 Cyberdemon outlasts 296 cells (pillars eat balls): `bosskill.py --refill` types idkfa when cells < 40.
+- **Open:** key doors, secret maps 9 and their tallies; sound on not tried.
 
 ## Differences from The Ultimate Doom 1.9
 | Area | 1.1 (this game) | Ultimate Doom 1.9 | Status |
@@ -49,6 +52,9 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 | Skills | four: no Nightmare! | five | verified |
 | Maps | E1M1 differs (452 lines, 2 secrets, "blue armor" thing called MegaArmor), also E1M4, E1M5, E1M8, E2M2, E2M4-E2M7, E3M6 map data; E2M3, E3M2, E3M5 identical; things in E3M3 differ | | verified (lump compare) |
 | F1 | order page ("To order DOOM: call 1-800-IDGAMES, $40.00") first, Enter: help page; Read This! menu shows the same two | help pages | verified |
+| E1 end | text, then the order page (`ending_e1_order`) | text, then the id credits | verified |
+| E2/E3 ends | text complete +3000 / +3300 frames after the death, Deimos picture +3600, rabbit +3600, scroll +4200 | same pictures | verified |
+| Menus | episode and skill menus drawn over the DOOM logo; quit line "don't leave yet -- there's a demon around that corner!" | lower | verified |
 | Intermission | Hangar tally with Time and Par (:30) | same | verified |
 | Saves | `C:\DOOMDATA\DOOMSAV0.DSG` .. `5` (folder made at every start) | `DOOMSAVn.DSG` in the game folder | verified slot 0 |
 | Cheats | iddqd, idkfa, idbehold(v s i r a l), iddt, idspispopd, idchoppers, idmypos, idclev all work; idclip does nothing | same (idclip is Doom II) | verified |
@@ -111,16 +117,32 @@ Input timing: default press (hold 8, wait 40) works in menus and play; nothing l
   sector 27; green armor -224 -3232; exit switch 2912 -4768; 2 secrets.
 
 ## Shot plan
-See `shots.txt`. `start` (31, previewed): boot 1, title 1, menus 3, gameplay 13 (melt, reduced and full view,
-start room, door, zigzag room, MegaArmor, exit switch, tally counting and done, E1M2), battle 6 (third
-zombieman, hit flash, nukage zombieman, ledge imp, imp fireball, imp hit), map 2 (automap, Entering Nuclear
-Plant), options 2, help 2 (order page, keys), save 3. `main` (34 previewed): title, menus 7 (main, episode,
-skill x4), Read This! 2, quit, load, save refused, help, automap 2, powers 5, cheats 2, env 6, bosses 3
-(Cyberdemon, Spider Mastermind, BFG shot), shotgun, face 2 (TP spots of 1.9 work: E2M8 -1000 100 135, E3M8 1250
--1100 43, E1M3 -1504 -1904 90). To plan: see the
-comment block in `shots.txt` (weapons x8, monsters, bosses, three end texts, face stages, death, pickups).
+Done 2026-11-25: `start` 30 (power-on to "game saved." at E1M2) and `main` 64 (`shots/*/index.md`). Not shot:
+key doors, secret maps, Read This! help as an in-play shot (identical to `readthis_help`).
 
 ## Strategy and walkthrough notes
+- **Recipes (capture 2026-11-25; specs = `tools/dplan.py` lines `id | cat | cap | PREFIX | SPOT | CMDS | SUFFIX`):**
+  - E3M3 skull corridor (1.1 things differ, the lost soul at 704 192 is still there): `LEVEL:3:3,ARMS,N,w40 |
+    auto 704 192 | fire 4; wait 20; seek 300 300; aimv | ctrl:8,?,...`: demons charge with lost souls
+    (chainsaw, pistol, chaingun, lost soul). Fist: prefix `LEVEL:3:3,ARMS,poke:20B5F6=00000000,
+    poke:20B592=00000000,type:idbeholds,w20,1,w40`, `seek 300 90`. Plasma bursts at the muzzle there (lost
+    soul in the face): shot instead at the E1M8 barons (prefix below + `wait 60; aim 15`).
+  - Rocket: `LEVEL:3:1,ARMS,5,w40 | 224 -800 90 | fire 4; wait 120; seek 300 900; aimv` (imp). BFG: `LEVEL:3:1,
+    ARMS,7,w40 | auto -16 928`. Imp fireball: `LEVEL:1:1,ARMS,3,w40 | auto 3008 -4416`. Cacodemon: `LEVEL:3:3,
+    ARMS,3,w40 | 1350 450 @1152,416 | fire 4 | w10 x 12` (autospot 1494 758 walks onto the berserk).
+    Shotgun guys: `LEVEL:1:7,ARMS,3,w40 | auto 192 -192`. Spectre: `LEVEL:1:9,ARMS,3,w40 | auto 960 960`
+    (frame ?7). No autospot: E3M1 demon 928 832, E1M6 spectre, E2M3 spectre, E3M3 baron.
+  - E1M8 barons (1.1 positions as 1.9): `LEVEL:1:8,ARMS,6,w40 | 416 2250 90 | keys up:60+w4+space+w40+up:20+
+    w10+w150+up:30+w10+up:30+w10`, frames w20 apart: both out at the 6th. Kill: `bosskill.py PREFIX 15 OUT`
+    (BFG, 5 shots). The level does not end on their death: TP 448 4960 facing 90, `up:60,w4,up:40,w4`
+    (teleporter ring into the dark exit room, -10% health): text complete +2700 (`w300*9`), order page +3300.
+  - Cyberdemon: `bosskill.py "LEVEL:2:8,ARMS,set:20B602=296:4" 21 OUT --go -852 576 --refill --rounds 50`
+    (10 rounds); death burst found with `?` after every token of the last rounds (`boss_cyber_dies`).
+  - Spider: `bosskill.py "LEVEL:3:8,ARMS,set:20B602=296:4" 19 OUT --go 1600 -148` (7 rounds); it dies from the
+    spray while the marine turns: corpse in view ~20 tokens later (`boss_spider_dead`).
+  - Faces and death: `LEVEL:1:3,1,w40 | auto -1504 -1700 | wait 30; fight 120 1500 | w200,w40,w60,!`, `?` after
+    each `ctrl:20`, `preview.py --peek 20B582:1`: 100, 67, 28, 16, 16, 16, 16, 7, 0; 40 and 25 from
+    `--timeline 15:3` after the second blow (+24, +45).
 - The ultimate-doom recipes (playbook "Strategy") apply, with 1.1 addresses: E1M8 barons (re-check: E1M8's
   map data differs), E2M8/E3M8 boss kills with `tools/bosskill.py` (BFG, `set:` cells at 20B602), face stages
   in E1M3 without god (1.1 E1M3 differs only in LINEDEFS), E3M3 corridor for weapons (things differ in 1.1:
@@ -198,7 +220,6 @@ See Read first; `s_*` = the `start` chain (honest), `m_*` = `LEVEL` starts for `
 | id Software's released source (knowledge, not fetched) | - | player_t/mobj_t field order | 2026-11-25 |
 
 ## Open questions
-- Skill menu: which entry the skull rests on after `up`/`down` in `menu_skill_*` lines (read on the sheet).
-- E1M8 baron recipe on 1.1's E1M8 (map data differs); E3M3 weapon spot (things differ).
-- End texts and end pictures of E1-E3 in 1.1 vs 1.9 (not reached yet).
+- ~~Skill menu skull rows~~ read 2026-11-25 (hntr needed up, up, down). ~~E1M8, E3M3 recipes, end texts~~ done
+  2026-11-25 (Recipes).
 - Sound on: drift after a state load? Not tried.
