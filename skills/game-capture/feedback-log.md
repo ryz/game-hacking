@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-25 - The Ultimate Doom (DOS 1.9, sets `start` and `main`)
+- Task: `start` (33) and `main` (56: weapons, monsters, power-ups, bosses, faces, death, E1 end), lenses, playbook.
+- Worked: a spec-to-plan generator (`tools/dplan.py`: teleport or walk to a spot, wait for a monster in line of
+  sight, aim) plus `?` marks and a picker (`tools/dpick.py`) gave 8-12 action shots per sheet; the face-stage scan
+  with `--peek` at `?` found a run through all five bands in two calls; every `@checkpoint` route reproduced first time.
+- Friction: ~15 calls on boss kills that never took damage (E2M8, E3M8: health stayed 4000/3000, a poke to 40 did
+  not help); the scout's TP recipe breaks missiles (one shot dropped); `dnav`'s memory scan returns ghost
+  monsters; a multiprocessing pool around the emulator hung silently; the attract-demo trap also hits sub-menus.
+- Proposed rule change: dos.md: teleport ghosts, test a projectile after a teleport, walk the last steps; skill
+  step 4: a boss whose health does not move after visible hits: stop after two variants and report.
+- Corrected: coordinator's reading of the boss failure: the bosses were shot from teleported spots and the health
+  poke probably hit a ghost copy (the same scan returned ghosts); the barons, reached on foot, died normally. A
+  follow-up walks to the bosses instead. Cold verify start 33/33, main 56/56; lenses clean; sheet looked at.
+- Status: dos.md teleport note added (platform fact); "stop after two variants" -> open lesson in `feedback.md`.
+
 ### 2026-11-25 - Spear of Destiny (DOS, sets `start` and `main`)
 - Task: `start` (24) and `main` (95) with the ending, face stages and lenses.
 - Worked: the scout's plan and the Wolfenstein recipes carried over almost unchanged; a 20-line script found the

@@ -2,6 +2,17 @@
 
 Append-only, newest first.
 
+## 2026-11-25 - Spear of Destiny and The Ultimate Doom scouted and captured
+- Spear of Destiny: `start` 24 (honest floor 1 to the save), `main` 95 (all five bosses, the Spear, a real fight
+  with face stages to death, the Angel killed (HP poke then real fire), the full ending with You Win! and ryz in
+  the high scores). Coordinator cold verify 24/24, 95/95.
+- The Ultimate Doom: fully deterministic on DOSBox Pure (cachecheck "same" incl. memory); `start` 33 (honest E1M1
+  to the E1M2 save), `main` 56 (eight weapons, monsters, power-ups, barons, Cyberdemon, Spider, five face bands in
+  a real fight, real deaths, E1 end). Cold verify 33/33, 56/56. Open: E2-E4 end texts (bosses shot from
+  teleported spots took no damage; follow-up walks to them).
+- Tools: `cachecheck` reports "cold == hit"; dos.md notes on map readers and navigators, real-time `!` lines,
+  teleport ghosts.
+
 ## 2026-11-25 - Wolfenstein 3D: difficulty faces, damage faces in a real fight, real victory screen
 - Owner: the other difficulty selections, real combat with the status-bar face's damage stages including death,
   a real Episode 1 victory screen. `main` 64 -> 80: three difficulty highlights; a real fight against Hans
