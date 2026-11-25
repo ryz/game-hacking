@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-25 - Doom (DOS registered 1.1, `start` and `main`)
+- Task: capture `start` (honest) and `main` (Ultimate Doom mirror plus 1.1 differences), verify, publish, lenses.
+- Worked: dplan spec -> `?`-frame preview -> dpick, 8-12 action lines per look; `bosskill.py` for real kills of
+  barons, Cyberdemon and Spider; `?` after every token of a boss's last rounds finds the death frame without
+  guessing waits; `preview --peek` gave health for the face fight.
+- Friction: `preview --timeline` prints `--peek` only for the final frame; Cyberdemon fight stalled on pillars
+  (added `bosskill.py --refill`, `--rounds`, line-of-sight wait); `help_keys` duplicated `readthis_help`, seen only
+  at verify; three planned commits became two (bosses finished before weapons).
+- Proposed rule change: backlog: `--timeline` prints `--peek` per frame; dos.md: 1.1 end-text timings and the E1M8
+  teleporter walk; find death frames with `?` per token.
+- Corrected: nothing wrong in the claims. Coordinator: cold verify start 30/30, main 64/64, lenses clean, both
+  sheets looked at; weak frames `env_e3m1` (wall close-up) and `mon_spectre` (barely visible) put in "open".
+  ~108 of 220 calls.
+- Status: tool wish -> backlog; 1.1 timings are game facts -> playbook (already there); "`?` per token for death
+  frames" -> open lesson (first case).
+
 ### 2026-11-25 - The Ultimate Doom (DOS 1.9, `main` follow-up: boss deaths and E2-E4 end texts)
 - Task: kill the Cyberdemon and both Spider Masterminds for real and capture the E2-E4 end texts, after testing
   the coordinator's teleport-ghost hypothesis.

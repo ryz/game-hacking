@@ -2,6 +2,14 @@
 
 Append-only, newest first.
 
+## 2026-11-25 - Doom (registered 1.1) vaulted, scouted and captured
+- Owner's 1.1 disk set rebuilt into `rom/doom.zip` (DEICE install unpacked) and pushed to the vault with the disks.
+- Scout: 1.1 differs from 1.9 in map data (E1M1/4/5/8), packed structs, `-warp` needing `-devparm`, the reduced
+  default view and the order page; tools copied from ultimate-doom and adapted. `cachecheck` now compares save
+  files only (Doom 1.1 makes an empty `DOOMDATA` folder a state cannot carry): 17/17 "same".
+- Capture: `start` 30 (honest), `main` 64 (weapons, power-ups, monsters, bosses killed for real, E1-E3 ends with
+  1.1's order page after E1, face stages to death). Coordinator cold verify 30/30, 64/64; lenses clean.
+
 ## 2026-11-25 - Spear of Destiny and The Ultimate Doom scouted and captured
 - Spear of Destiny: `start` 24 (honest floor 1 to the save), `main` 95 (all five bosses, the Spear, a real fight
   with face stages to death, the Angel killed (HP poke then real fire), the full ending with You Win! and ryz in

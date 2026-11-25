@@ -8,6 +8,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 ## Open
 | Wish | Asked | Notes |
 |---|---|---|
+| `preview.py --timeline` prints the `--peek` values for every frame, not only the last (face stages, boss health per frame) | 1 | Doom 1.1 capture 2026-11-25 |
 | `shoot.py SLUG start --renumber`: rewrite `NN_` ids in play order and rename the files; today renumbered ids plus `--prune` delete the renamed shots and the set is reshot (the capture guide promises a rename) | 1 | Ultima III DOS start set 2026-11-22 |
 | `play.py peek` counts toward `call=`: helper scripts that peek inflate the budget counter (~5x); a peek that does not count, or a separate counter | 1 | Ultima I DOS start set 2026-11-22 |
 | `dis68k.py` for Amiga: disassemble a chip-RAM dump (`play.py dump`) at Amiga addresses, `--xref` with a branch-target scan (today it maps addresses as Mega Drive, FF....) | 1 | Dragonflight capture 2026-11-22 |

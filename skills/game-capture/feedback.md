@@ -40,3 +40,5 @@ Tool wishes are not listed here: `docs/backlog.md`.
 - **A boss whose health does not move after visible hits:** stop after two variants; find where the projectile
   stopped and what map lines are there (Doom E2M8: the firing spot was inside a solid column), not more ammunition
   (Doom, 2026-11-25).
+- **Death or end frames of a boss:** put `?` after every token of its last rounds in one preview instead of guessing
+  fixed waits (Doom 1.1, 2026-11-25).
