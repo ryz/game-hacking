@@ -1,6 +1,6 @@
 # The Ultimate Doom - shots: main
 
-Platform dos, region na, model svga-40000, ROM SHA-1 `054bef8ec2c4a4297fd82aca28faecee64554f21`. 50 shots. Contact sheet: [ultimate-doom_dos_na_set_sheet.png](ultimate-doom_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model svga-40000, ROM SHA-1 `054bef8ec2c4a4297fd82aca28faecee64554f21`. 56 shots. Contact sheet: [ultimate-doom_dos_na_set_sheet.png](ultimate-doom_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -8,6 +8,12 @@ Platform dos, region na, model svga-40000, ROM SHA-1 `054bef8ec2c4a4297fd82aca28
 | menu_main | menu | Main menu over the title | no | [png](ultimate-doom_dos_na_menu_menu_main.png) |
 | menu_episode | menu | Which Episode? the four episodes | no | [png](ultimate-doom_dos_na_menu_menu_episode.png) |
 | menu_skill | menu | Choose Skill Level | no | [png](ultimate-doom_dos_na_menu_menu_skill.png) |
+| menu_skill_itytd | menu | Choose Skill Level: I'm too young to die selected | no | [png](ultimate-doom_dos_na_menu_menu_skill_itytd.png) |
+| menu_skill_hntr | menu | Choose Skill Level: Hey, not too rough selected | no | [png](ultimate-doom_dos_na_menu_menu_skill_hntr.png) |
+| menu_skill_uv | menu | Choose Skill Level: Ultra-Violence selected | no | [png](ultimate-doom_dos_na_menu_menu_skill_uv.png) |
+| menu_skill_nm | menu | Choose Skill Level: Nightmare! selected | no | [png](ultimate-doom_dos_na_menu_menu_skill_nm.png) |
+| menu_nightmare_confirm | menu | Nightmare!: are you sure? this skill level isn't even remotely fair. | yes | [png](ultimate-doom_dos_na_menu_menu_nightmare_confirm.png) |
+| quit_prompt | menu | Quit Game: you're trying to say you like DOS better than me, right? | yes | [png](ultimate-doom_dos_na_menu_quit_prompt.png) |
 | help_keys | menu | Help screen: keys and weapons | yes | [png](ultimate-doom_dos_na_menu_help_keys.png) |
 | automap_full | map | Automap with the computer map cheat: all of E1M1 Hangar | yes | [png](ultimate-doom_dos_na_map_automap_full.png) |
 | automap_things | map | Automap with iddt twice: every thing marked | yes | [png](ultimate-doom_dos_na_map_automap_things.png) |

@@ -40,9 +40,15 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   route: never reuse a `TP:` call on another route (regenerate). Walking without fighting gets you shot to
   pieces (hp 76 -> 11 on one stretch): `dnav.py fight N` at each room. `use` needs to stand within 64 units
   of the line. Solid decorations (lamps, columns, barrels) block walking.
-- **Open:** barons on E1M8 (sealed closets behind walk triggers at 416 2496 and 304 2752; the TP into the
-  pit faced a wall), episode end texts (kill a boss: E2M8/E3M8 end on the boss's death), a real death, face
-  stages by real damage (`s_e1m1_exit` route shows 19% with the bloodied face), most `main` action shots.
+- **Captured 2026-11-25:** `start` 33 and `main` 56 published, verified from an empty cache. Plan helpers:
+  `tools/dplan.py SPEC OUT` (lines `id | cat | caption | PREFIX | X Y ANG / auto MX MY / - | dnav-like
+  commands incl. seek N R, aimv, tp X Y A, hp TYPE V | SUFFIX with ? marks`) and `tools/dpick.py` (turn the
+  K-th `?` frame into a shot line). Recipes in "Strategy" below.
+- **Traps found in capture:** never fire right after `TP` (rockets/BFG balls burst at the muzzle: findings);
+  `dnav` monster lists hold stale copies (aim picks a spawn-spot ghost; `aimv` checks line of sight); menu
+  shots after the skill menu need short presses (`TITLE,esc:4,w6,enter:4,w6,enter:4,w8,up:4,w8`) or they land
+  over the attract demo; the E1M8 corridor needs the lift (Space at 416 2416, wait 150) before the baron trigger.
+- **Open:** E2/E3/E4 end texts (bosses took no damage: findings), spectre in view, key doors.
 
 ## Identity
 | Field | Value |
@@ -118,6 +124,8 @@ invulnerability, berserk, computer map, soulsphere, spectre, lost soul, cacodemo
 invisibility E1M3 256 -2752; radiation suit E1M4 128 176 (skills 1-2 only there; E2M2 -48 16 HMP).
 
 ## Shot plan
+Captured 2026-11-25 (see `shots/start/index.md`, `shots/main/index.md`); still missing: E2-E4 end texts, spectre, key doors, secret map tally.
+
 `shots.txt`: set `start` (33 lines, honest play, previewed 2026-11-25) and the first 19 `main` lines.
 - `start` (33): boot 1 (start-up text), title 1, menu 4 (main, episode, skill, help), gameplay 13 (melt wipe,
   first control, corridor, door, zigzag room, secret closet, yard, MegaArmor, medikit, exit room, tally
@@ -134,6 +142,20 @@ invisibility E1M3 256 -2752; radiation suit E1M4 128 176 (skills 1-2 only there;
   doors, a teleporter, the secret level tally, Read This! pages, quit prompt.
 
 ## Strategy and walkthrough notes
+- **Recipes that worked (capture 2026-11-25):**
+  - Weapon/monster action: the E3M3 corridor south of the lost souls (`dplan` spot `auto 704 192` after
+    `LEVEL:3:3,ARMS,N,w40`, then `fire 4; seek 300 R; aimv`): a demon charges with lost souls behind; fist
+    (berserk: `poke:22B2E0=00000000,type:idbeholds,w20,1`), chainsaw, pistol, chaingun, plasma all shot there.
+  - E1M8 barons: `LEVEL:1:8,ARMS,6,w40`, TP 416 2250 facing 90, `up:60,w4,space,w40,up:20,w10,w150,up:30,w10,
+    up:30,w10` (lift up, trigger at y 2496 crossed): both barons step out about 60-100 frames later.
+    Killing them (plasma, `fight` rounds), then TP 448 4960 facing 90 and `up:60,w4,up:40,w4`: the W1 teleport
+    takes the marine to the dark room; its floor removes god mode and ends the level at 10% health; the E1 end
+    text is complete 2400 frames after, the id credits 3000 (`ending_e1`, `credits_id`).
+  - Face stages and a real death: `LEVEL:1:3,1,w40` (fist, no god, 100%, no armor), spot `auto -1504 -1700`,
+    `wait 30; fight 120 1500`: health 100, 76, 61, 55, 43, 40, 28, 16, 0 (scan of waits 6/14/22/30/44:
+    only 30 passed all five bands). `?` marks after every `ctrl:20` and `w6` with `--peek 22B26C:1`.
+  - Pickups: no ARMS (armor 0): E1M8 TP 416 700 facing 90, walk: green armor; E1M1 TP 1824 -3080 facing 270:
+    MegaArmor.
 - **Build action shots with `TP`:** `python3 games/dos/ultimate-doom/tools/dstate.py --tp "LEVEL:2:8,ARMS,5"
   -1000 100 135` prints `TP:...` for that route; append it, then weapon key, `ctrl:N`, a wait, `!`. Spots:
   check the sector with `wadmap.py MAP --at X Y` (floor/ceiling) and pick an open area 400-700 units from the
@@ -217,8 +239,9 @@ See Read first; `s_*` are the `start` chain (honest), `m_*` are `-warp` starts f
 | Wikipedia, Doom (1993 video game) | https://en.wikipedia.org/wiki/Doom_(1993_video_game) | release dates, publisher, episode names | 2026-11-25 |
 
 ## Open questions
-- Barons of Hell in action (E1M8 closets behind W1 door triggers, or another map), episode end texts, a real
-  death, face stages by damage: routes not made yet.
+- ~~Barons, a real death, face stages~~ done 2026-11-25 (Strategy, recipes). E2/E3 end texts: the bosses took
+  no damage in any route tried (findings.md); next try: plain warp, walk without no clipping (dnav `path`
+  did not move from the E2M8 start: plan the walk by hand), no ARMS, IDKFA only.
 - Sound on: does a loaded state drift as in Quake? Not tested (`-nosound` used throughout).
 - Teleport side effect on monsters near the spot (blockmap) not observed in play yet.
 - comma/period strafe, F2-F11 keys not tried.

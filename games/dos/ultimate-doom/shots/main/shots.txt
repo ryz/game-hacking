@@ -2,6 +2,12 @@ title_screen | title | Title picture: The Ultimate Doom, id Software 1993 | TITL
 menu_main | menu | Main menu over the title | MENU
 menu_episode | menu | Which Episode? the four episodes | MENU,enter,w20
 menu_skill | menu | Choose Skill Level | MENU,enter,w20,enter,w20
+menu_skill_itytd | menu | Choose Skill Level: I'm too young to die selected | TITLE,esc:4,w6,enter:4,w6,enter:4,w8,up:4,w6,up:4,w8
+menu_skill_hntr | menu | Choose Skill Level: Hey, not too rough selected | TITLE,esc:4,w6,enter:4,w6,enter:4,w8,up:4,w8
+menu_skill_uv | menu | Choose Skill Level: Ultra-Violence selected | TITLE,esc:4,w6,enter:4,w6,enter:4,w8,down:4,w8
+menu_skill_nm | menu | Choose Skill Level: Nightmare! selected | TITLE,esc:4,w6,enter:4,w6,enter:4,w8,down:4,w6,down:4,w8
+menu_nightmare_confirm | menu | Nightmare!: are you sure? this skill level isn't even remotely fair. | TITLE,esc:4,w6,enter:4,w6,enter:4,w8,down:4,w6,down:4,w6,enter:4,w10
+quit_prompt | menu | Quit Game: you're trying to say you like DOS better than me, right? | TITLE,esc:4,w6,up:4,w8,enter:4,w10
 help_keys | menu | Help screen: keys and weapons | LEVEL:1:1,f1,w20,!
 automap_full | map | Automap with the computer map cheat: all of E1M1 Hangar | LEVEL:1:1,type:idbeholda,w300,tab,w20,!
 automap_things | map | Automap with iddt twice: every thing marked | LEVEL:1:1,tab,w10,type:iddt,w10,type:iddt,w300,!

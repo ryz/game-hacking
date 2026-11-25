@@ -27,7 +27,9 @@ Shot ids are from the `main` set unless marked `start`.
 | Title picture | attract loop | the marine, logo, id Software | any key / Esc | menu | main menu, demos | `title_screen` |
 | Main menu | top level | New Game, Options, Load Game, Save Game, Read This!, Quit Game | up/down, Enter, Esc | skull cursor | the sub-menus | `menu_main` |
 | Episode menu | choose episode | the four episode names | up/down, Enter | | skill menu | `menu_episode` |
-| Skill menu | choose difficulty | five skills, Hurt me plenty preselected | up/down, Enter | | first map | `menu_skill` |
+| Skill menu | choose difficulty | five skills, Hurt me plenty preselected | up/down, Enter | skull moves | first map | `menu_skill`, `menu_skill_itytd`, `menu_skill_hntr`, `menu_skill_uv`, `menu_skill_nm` |
+| Nightmare! confirmation | warn before the hardest skill | "are you sure? this skill level isn't even remotely fair. press y or n." | Y / N | | first map or back | `menu_nightmare_confirm` |
+| Quit prompt | leave the game | one of several joke lines, "(press y to quit to dos.)" | Y / other key | | DOS or back | `quit_prompt` |
 | Options | settings | End Game, Messages, Graphic Detail, Screen Size, Mouse Sensitivity, Sound Volume | arrows, Enter | sliders | Sound Volume | start `28_options`, `29_sound` |
 | Save Game | save | six slots, name entry | Enter, letters | "game saved." | play | start `31_save_menu`, `32_save_name`, `33_saved` |
 | Help screen (F1) | keys | function keys, automap keys, weapons, movement | any key | | play | `help_keys` |
@@ -56,4 +58,4 @@ game; F1 the help screen; Tab toggles the automap **(verified, start set)**.
   number lags the face by a frame or two (`face_4` shows 4% while health in memory was already 0).
 
 ## Open questions
-- Read This! pages, the quit prompt and the Nightmare! confirmation are not shot yet.
+- Read This! opened the same help page as F1 in this build (one page; a second Enter returned to the main menu): not shot separately.

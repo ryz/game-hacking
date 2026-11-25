@@ -53,7 +53,7 @@ text **(verified, `ending_e1`)**.
 | Chance | Damage rolls | Every attack rolls its damage; Doom's random table restarts on every level, so the same keys repeat a fight exactly **(verified: routes reproduce)** | timing | | findings.md | `face_28` | shown |
 | Failure and recovery | Death | At 0% the view drops to the floor and the face turns to the dead face; Space restarts the map with a pistol | space | | | `death_floor`, `death_barons` | shown |
 | Saving and sessions | Save anywhere | Six named slots, any time in a map | Esc, Save Game, F2 | 6 slots (verified) | | start `31_save_menu`, `33_saved` | shown |
-| Pacing and difficulty | Skill levels | Five skills; Hurt me plenty is the default; Nightmare! respawns monsters and asks for confirmation (source) | menu | | | `menu_skill` | shown |
+| Pacing and difficulty | Skill levels | Five skills; Hurt me plenty is the default; Nightmare! respawns monsters and asks for confirmation (source) | menu | | | `menu_skill`, `menu_skill_nm`, `menu_nightmare_confirm` | shown |
 
 ## 3. How the systems feed each other
 - Exploring finds weapons and ammunition -> stronger weapons kill tougher monsters faster -> fewer hits taken.
