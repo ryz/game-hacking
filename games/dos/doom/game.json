@@ -1,9 +1,9 @@
 {
   "slug": "doom",
-  "title": "Doom (DOS, registered 1.1)",
+  "title": "Doom",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "svga-40000",
   "rom": "rom/doom.zip",
   "sha1": "fdf6486c836c558232188047362bfb10b15bf73b",
   "crc32": "11957c15",
@@ -27,11 +27,61 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {},
-  "edition": "DOS, registered v1.1 (December 1993; three episodes, DOOM.WAD md5 981b03e6...)",
-  "work": "registered 2026-11-25 from the original install disks, in the vault; boots to the title and the attract demo; not scouted",
-  "open": "scout, sets main and start",
+  "macros": {
+    "BOOT": "w120,down*6,enter,w120,type:cd doom\\n,w30,type:doom -nosound\\n",
+    "TITLE": "BOOT,w90",
+    "MENU": "TITLE,esc,w20",
+    "NEWGAME": "MENU,enter,w20,enter,w20,enter,w120",
+    "WARP": "w120,down*6,enter,w120,type:cd doom\\n,w30,type:doom -nosound -skill 3 -episode {0}\\n,w300,type:idclev{0}{1},w20,equals,w280",
+    "E1DOOR": "left:31,w4,up:40,w6,up:40,w6,up:33,w6,right:104,w4,up:10,w6,up:22,w6,left:54,w4,up:40,w6,up:40,w6,up:40,w6,up:40,w6,up:8,w6,left:38,w4,left:33,w4,left:6,w4,up:16,w6,right:45,w4,up:40,w6,right:9,w4,right:31,w4,right:72,w4,up:9,w6,left:79,w4,left:7,w4,up:40,w6,up:16,w6,right:32,w4,right:32,w4,right:9,w4,up:17,w6,left:40,w4,up:35,w6,right:16,w4,right:13,w4,up:10,w6,left:14,w4,left:11,w4,left:6,w4,up:7,w6,up:7,w6,space,w40,up:7,w6,left:50,w4,left:14,w4,space,w30,w40",
+    "E1FIGHT1": "w30,right:64,w4,ctrl:20,w6,ctrl:20,w6,left:5,w4,ctrl:20,w6,ctrl:20,w6,right:5,w4,up:39,w6,right:5,w4,right:21,w4,right:85,w4,up:7,w6,left:78,w4,up:40,w6,up:40,w6,right:13,w4,right:42,w4,right:51,w4,up:10,w6,right:94,w4,up:40,w6,up:40,w6,right:6,w4,up:40,w6,up:40,w6,right:103,w4,up:9,w6,up:13,w6,right:84,w4,right:11,w4,up:28,w6,up:14,w6,right:31,w4,right:45,w4,right:14,w4,up:13,w6,left:54,w4,ctrl:20,w6,left:14,w4,right:2,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,right:31,w4,up:40,w6,right:19,w4,right:57,w4,right:24,w4,up:9,w6,right:102,w4,up:36,w6,up:10,w6,right:36,w4,right:27,w4,up:19,w6,left:19,w4,right:4,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6",
+    "E1ZIGZAG": "left:29,w4,up:16,w6,up:8,w6,up:18,w6,right:41,w4,right:34,w4,up:15,w6,left:7,w4,up:27,w6,left:60,w4,left:13,w4,up:40,w6,up:17,w6,left:102,w4,left:7,w4,up:6,w6,up:19,w6,left:49,w4,left:20,w4,up:29,w6,left:41,w4,left:8,w4,up:40,w6,up:40,w6,right:56,w4,right:14,w4,up:40,w6,left:6,w4,left:5,w4,up:28,w6,left:97,w4,left:13,w4,right:5,w4,up:8,w6,up:18,w6,right:50,w4,right:16,w4,up:35,w6,left:6,w4,left:35,w4,left:72,w4,up:6,w6,right:30,w4,ctrl:20,w6,right:38,w4,left:3,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,left:3,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6",
+    "E1ARMOR": "3,w20,right:94,w4,up:34,w6,left:31,w4,left:11,w4,up:40,w6,right:38,w4,right:17,w4,up:40,w6,right:13,w4,right:6,w4,up:27,w6,right:5,w4,up:27,w6,space,w40,up:27,w6,right:5,w4,right:12,w4,right:92,w4,right:7,w4,up:7,w6,left:107,w4,up:40,w6,up:26,w6,right:108,w4,up:8,w6,up:40,w6,left:11,w4,left:83,w4,left:21,w4,up:6,w6,up:6,w6,left:27,w4,left:15,w4,left:7,w4,up:19,w6,right:26,w4,right:48,w4,right:42,w4,up:14,w6,left:98,w4,up:29,w6,left:6,w4,left:5,w4,left:8,w4,left:15,w4,up:13,w6,left:78,w4,up:6,w6,up:12,w6,left:103,w4,up:10,w6,up:13,w6,left:15,w4,up:19,w6,up:15,w6,right:24,w4,right:11,w4,up:28,w6,right:29,w4,right:6,w4,up:40,w6,up:40,w6,right:29,w4,up:40,w6,left:12,w4,left:11,w4,left:17,w4,left:20,w4,up:16,w6,left:104,w4,up:7,w6,up:14,w6,left:101,w4,up:40,w6,right:5,w4,up:40,w6,up:40,w6,right:57,w4,right:20,w4,left:6,w4,up:38,w6,left:7,w4,left:23,w4,left:82,w4,up:8,w6",
+    "E1EXIT": "left:27,w4,up:34,w6,left:52,w4,left:5,w4,up:40,w6,up:40,w6,up:40,w6,right:30,w4,right:9,w4,up:40,w6,right:9,w4,right:74,w4,right:34,w4,up:6,w6,up:19,w6,right:108,w4,up:12,w6,up:19,w6,left:33,w4,left:9,w4,up:40,w6,left:6,w4,up:40,w6,left:12,w4,left:65,w4,left:36,w4,up:8,w6,right:49,w4,right:17,w4,up:14,w6,right:45,w4,right:17,w4,up:22,w6,left:46,w4,left:16,w4,up:18,w6,right:16,w4,right:7,w4,up:20,w6,left:16,w4,up:15,w6,left:5,w4,up:27,w6,right:17,w4,right:22,w4,right:25,w4,right:13,w4,up:14,w6,left:62,w4,up:18,w6,up:6,w6,right:22,w4,up:40,w6,right:5,w4,up:40,w6,up:17,w6,up:17,w6,left:8,w4,up:17,w6,space,w40,up:17,w6,right:52,w4,right:12,w4,up:40,w6,up:9,w6,up:7,w6,left:5,w4,space,w40,up:7,w6,left:28,w4,left:7,w4,up:23,w6,right:29,w4,right:5,w4,ctrl:20,w6,right:5,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,right:28,w4,up:40,w6,up:23,w6,left:61,w4,left:17,w4,up:28,w6,right:42,w4,right:33,w4,up:15,w6,up:6,w6,right:6,w4,up:35,w6,right:76,w4,right:26,w4,up:9,w6,up:18,w6,right:69,w4,right:8,w4,up:37,w6,up:6,w6,right:28,w4,right:38,w4,right:14,w4,up:12,w6,left:77,w4,left:9,w4,up:20,w6,up:8,w6,right:44,w4,up:25,w6,left:12,w4,up:20,w6,left:11,w4,up:20,w6,right:5,w4,right:2,w4,space,w40,up:20,w6,right:29,w4,right:11,w4,up:32,w6,right:15,w4,right:14,w4,right:4,w4,space,w30,w120",
+    "E1TALLY": "w300,space,w60,space,w60,space,w200",
+    "SAVE1": "esc,w20,down*3,w10,enter,w30,enter,w20,type:{0},w20,enter,w60",
+    "GOD": "type:iddqd,w10",
+    "IDKFA": "type:idkfa,w10",
+    "ARMS": "type:iddqd,w10,type:idkfa,w10,set:20B586=143:4,set:20B5FA=137:4,set:20B5FE=38:4,set:20B602=212:4,set:20B606=27:4,w300",
+    "LEVEL": "WARP:{0}:{1}",
+    "TP": "poke:{0}={1},poke:{2}={3},poke:{4}={5},w2,up:2,w10",
+    "BIGVIEW": "equals,w10"
+  },
+  "ram": {
+    "health": {
+      "addr": "20B582",
+      "size": 4,
+      "note": "player_t.health (players[0] at 20B558, packed: 1.1 layout, see playbook RAM map); the status bar number"
+    },
+    "armor": {
+      "addr": "20B586",
+      "size": 4,
+      "note": "armorpoints; armortype at 20B58A (1 green, 2 blue)"
+    },
+    "bullets": {
+      "addr": "20B5FA",
+      "size": 4,
+      "note": "ammo[0]; shells 20B5FE, cells 20B602, rockets 20B606"
+    },
+    "weapon": {
+      "addr": "20B5D2",
+      "size": 4,
+      "note": "readyweapon 0 fist 1 pistol 2 shotgun 3 chaingun 4 rocket 5 plasma 6 BFG 7 chainsaw"
+    },
+    "kills": {
+      "addr": "20B62A",
+      "size": 4,
+      "note": "killcount (player+210); items 20B62E, secrets 20B632"
+    },
+    "map": {
+      "addr": "20BAC0",
+      "size": 4,
+      "note": "gamemap; gameepisode at 20BAD4"
+    }
+  },
+  "edition": "DOS, registered v1.1 (December 1993; three episodes, DOOM.WAD md5 981b03e6...), booted from the command line with -nosound, view enlarged once with =",
+  "work": "scouted 2026-11-25: boot, LEVEL warp (-episode + idclev), 17 checkpoints (honest E1M1 to the first save), 1.1 RAM map, cheats verified, plans start 31 and main 28 previewed; not captured",
+  "open": "capture start and main; main still needs weapons, monsters, bosses (E1M8 barons, Cyberdemon, Spider Mastermind), E1-E3 end texts, face stages and a death",
   "source": {
     "name": "Doom_1993Id_Softwarev1.1.zip (owner's upload: DEICE installer, DOOM1_1R.1-.4, DOOM1_1R.DAT, INSTALL.BAT), SHA-1 479bd3dcc600d9a7301f818f0f4a695c2d3dce1b",
     "base_copy": "rom/src/doom-1.1-disks.zip",

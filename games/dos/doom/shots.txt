@@ -1,6 +1,71 @@
 # id | category | caption | route
-# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
-#             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/dos/doom/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Scouted 2026-11-25 (not shot yet). Set main = the active lines; set start = the "#start " lines (strip the
+# prefix into work/shots/dos/doom/start/shots.txt). Both previewed in full as written here.
+# In-game lines end in "!". LEVEL:E:M = -episode E + idclevEM + "=" (full view). TP pokes hold mobj addresses
+# valid only for the exact route before them (regenerate with tools/dstate.py --tp). 1.1 RAM differs from 1.9:
+# never copy 22B... pokes from ultimate-doom lines (playbook, RAM map, has the conversion).
+title_screen | title | Title picture: DOOM, id Software 1993 | TITLE
+menu_main | menu | Main menu over the title | MENU
+menu_episode | menu | Which Episode? three episodes (no Thy Flesh Consumed in 1.1) | MENU,enter,w20
+menu_skill | menu | Choose Skill Level: four skills (no Nightmare! in 1.1) | MENU,enter,w20,enter,w20
+menu_skill_itytd | menu | Choose Skill Level: I'm too young to die selected | TITLE,esc:4,w6,enter:4,w6,enter:4,w8,up:4,w6,up:4,w8
+menu_skill_hntr | menu | Choose Skill Level: Hey, not too rough selected | TITLE,esc:4,w6,enter:4,w6,enter:4,w8,up:4,w8
+menu_skill_uv | menu | Choose Skill Level: Ultra-Violence selected (the last entry) | TITLE,esc:4,w6,enter:4,w6,enter:4,w8,down:4,w8
+readthis_order | menu | Read This! page 1: how to order DOOM | TITLE,esc:4,w6,down:4,w6,down:4,w6,down:4,w6,down:4,w6,enter:4,w10
+readthis_help | menu | Read This! page 2: the help page | TITLE,esc:4,w6,down:4,w6,down:4,w6,down:4,w6,down:4,w6,enter:4,w10,enter:4,w10
+quit_prompt | menu | Quit Game: the quit question | TITLE,esc:4,w6,up:4,w8,enter:4,w10
+load_empty | save | Load Game: six empty slots | TITLE,esc:4,w6,down:4,w6,down:4,w6,enter:4,w10
+save_refused | save | Save Game outside a game: You can't save if you aren't playing! | TITLE,esc:4,w6,down:4,w6,down:4,w6,down:4,w6,enter:4,w10
+help_keys | menu | Help screen in play: keys and weapons | LEVEL:1:1,f1,w20,enter,w20,!
+automap_full | map | Automap with the computer map cheat: all of E1M1 Hangar | LEVEL:1:1,type:idbeholda,w300,tab,w20,!
+automap_things | map | Automap with iddt twice: every thing marked | LEVEL:1:1,tab,w10,type:iddt,w10,type:iddt,w300,!
+power_invuln | system | Invulnerability active: the world in inverted grey | LEVEL:1:1,type:idbeholdv,w300,!
+power_berserk | system | Berserk active: red tint | LEVEL:1:1,type:idbeholds,w300,!
+power_invis | system | Partial invisibility: the pistol drawn as a fuzz | LEVEL:1:1,type:idbeholdi,w300,!
+power_radsuit | system | Radiation suit active: green tint | LEVEL:1:1,type:idbeholdr,w300,!
+power_liteamp | system | Light amplification: every room at full brightness | LEVEL:1:1,type:idbeholdl,w300,!
+cheat_god | system | iddqd: Degreelessness Mode On, the god face | LEVEL:1:1,type:iddqd,w10,!
+cheat_idkfa | system | idkfa: Very Happy Ammo Added, all weapons, keys and 200% armor | LEVEL:1:1,type:idkfa,w10,!
+env_e1m1 | gameplay | E1M1 Hangar: the start room, nukage pool behind the pillars | @m_e1m1,!
+env_e2m1 | gameplay | E2M1 Deimos Anomaly: the start | @m_e2m1,!
+env_e2m2 | gameplay | E2M2 Containment Area: the start | LEVEL:2:2,!
+env_e3m1 | gameplay | E3M1 Hell Keep: the start, facing a flesh wall | @m_e3m1,!
+env_e3m3 | gameplay | E3M3 Pandemonium: the start | LEVEL:3:3,!
+env_e3m8 | gameplay | E3M8 Dis: the start | @m_e3m8,!
+# main, still to plan (capture), mirroring ultimate-doom/shots/main: every weapon firing at a monster (fist with
+# berserk, chainsaw, pistol, shotgun, chaingun, rocket, plasma, BFG), monsters in action (zombieman, shotgun guy,
+# imp, demon, spectre, lost soul, cacodemon, baron), gibs, E1M8 barons and their death -> E1 end text + picture,
+# E2M8 Cyberdemon killed -> E2 end text, E3M8 Spider Mastermind killed -> E3 end text, face stages to a real death
+# (E1M3, no god), armor pickups (green, MegaArmor), soulsphere, tally of E1M1 (the start set has it), secret level.
+# Recipes: ultimate-doom playbook "Strategy"; tools here are parametrised for 1.1 (dnav, dstate --tp, bosskill).
+#start 01_startup | boot | DOOM.EXE start-up text: DOOM Operating System v1.1, commercial version | BOOT,!
+#start 02_title | title | Title picture: DOOM, the marine with his rifle, id Software 1993 | TITLE
+#start 03_main_menu | menu | Main menu over the title: New Game, Options, Load, Save, Read This!, Quit | MENU
+#start 04_episode | menu | Which Episode? three episodes, Knee-Deep in the Dead first | MENU,enter,w20
+#start 05_skill | menu | Choose Skill Level: four skills, Hurt me plenty highlighted | MENU,enter,w20,enter,w20
+#start 06_melt | gameplay | The screen melt wipe from the menu into E1M1 | MENU,enter,w20,enter,w20,enter,w24,!
+#start 07_e1m1_start | gameplay | E1M1 Hangar: first control in the default reduced view | @s_e1m1,!
+#start 08_view_full | gameplay | E1M1: the view enlarged with = to the full width over the status bar | @s_e1m1_view,!
+#start 09_env_corridor | gameplay | E1M1: the start room, the nukage pool behind the pillars | @s_e1m1_view,left:31,w4,up:40,w6,up:40,w6,up:33,w6,right:104,w4,up:10,w6,up:22,w6,left:54,w4,!
+#start 10_door | gameplay | E1M1: through the opened door, the computer room | @s_e1m1_door,w30,right:64,!
+#start 11_zombie3 | battle | Pistol fire at the third zombieman in the dark corridor | @s_e1m1_door,w30,right:64,w4,ctrl:20,w6,ctrl:20,w6,left:5,w4,ctrl:20,w6,ctrl:20,w6,right:5,w4,up:39,w6,right:5,w4,right:21,w4,right:85,w4,up:7,w6,left:78,w4,up:40,w6,up:40,w6,right:13,w4,right:42,w4,right:51,w4,up:10,w6,right:94,w4,up:40,w6,up:40,w6,right:6,w4,up:40,w6,up:40,w6,right:103,w4,up:9,w6,up:13,w6,right:84,w4,right:11,w4,up:28,w6,up:14,w6,right:31,w4,right:45,w4,right:14,w4,up:13,w6,left:54,w4,ctrl:20,!
+#start 12_hit | battle | Hit: the screen flashes red while the pistol fires (health 94%) | @s_e1m1_door,w30,right:64,w4,ctrl:20,w6,ctrl:20,w6,left:5,w4,ctrl:20,w6,ctrl:20,w6,right:5,w4,up:39,w6,right:5,w4,right:21,w4,right:85,w4,up:7,w6,left:78,w4,up:40,w6,up:40,w6,right:13,w4,right:42,w4,right:51,w4,up:10,w6,right:94,w4,up:40,w6,up:40,w6,right:6,w4,up:40,w6,up:40,w6,right:103,w4,up:9,w6,up:13,w6,right:84,w4,right:11,w4,up:28,w6,up:14,w6,right:31,w4,right:45,w4,right:14,w4,up:13,w6,left:54,w4,ctrl:20,w6,left:14,w4,right:2,w4,ctrl:20,!
+#start 13_automap | map | Automap: the explored part of E1M1 Hangar | @s_e1m1_fight1,tab,w20,!
+#start 14_zigzag | battle | The nukage room: a zombieman falls by the zigzag walkway | @s_e1m1_fight1,left:29,w4,up:16,w6,up:8,w6,up:18,w6,right:41,w4,right:34,w4,up:15,w6,left:7,w4,up:27,w6,left:60,w4,left:13,w4,up:40,w6,up:17,w6,left:102,w4,left:7,w4,up:6,w6,up:19,w6,left:49,w4,left:20,w4,up:29,w6,left:41,w4,left:8,w4,up:40,w6,up:40,w6,right:56,w4,right:14,w4,up:40,w6,left:6,w4,left:5,w4,up:28,w6,left:97,w4,left:13,w4,right:5,w4,up:8,w6,up:18,w6,right:50,w4,right:16,w4,up:35,w6,left:6,w4,left:35,w4,left:72,w4,up:6,w6,right:30,w4,ctrl:20,!
+#start 15_imp_ledge | battle | Pistol fire at the imp on the ledge across the nukage | @s_e1m1_fight1,left:29,w4,up:16,w6,up:8,w6,up:18,w6,right:41,w4,right:34,w4,up:15,w6,left:7,w4,up:27,w6,left:60,w4,left:13,w4,up:40,w6,up:17,w6,left:102,w4,left:7,w4,up:6,w6,up:19,w6,left:49,w4,left:20,w4,up:29,w6,left:41,w4,left:8,w4,up:40,w6,up:40,w6,right:56,w4,right:14,w4,up:40,w6,left:6,w4,left:5,w4,up:28,w6,left:97,w4,left:13,w4,right:5,w4,up:8,w6,up:18,w6,right:50,w4,right:16,w4,up:35,w6,left:6,w4,left:35,w4,left:72,w4,up:6,w6,right:30,w4,ctrl:20,w6,right:38,w4,left:3,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,left:3,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,!
+#start 16_zigzag_clear | gameplay | Zigzag room: the last shot at the ledge imp (kills 5, health 86%) | @s_e1m1_zigzag,!
+#start 17_blue_armor | gameplay | Picked up the MegaArmor! in the nukage pool (armor 196%) | @s_e1m1_armor,!
+#start 18_imp_fireball | battle | An imp's fireball flies at the marine in the imp room | @s_e1m1_armor,left:27,w4,up:34,w6,left:52,w4,left:5,w4,up:40,w6,up:40,w6,up:40,w6,right:30,w4,right:9,w4,up:40,w6,right:9,w4,right:74,w4,right:34,w4,up:6,w6,up:19,w6,right:108,w4,up:12,w6,up:19,w6,left:33,w4,left:9,w4,up:40,w6,left:6,w4,up:40,w6,left:12,w4,left:65,w4,left:36,w4,up:8,w6,right:49,w4,right:17,w4,up:14,w6,right:45,w4,right:17,w4,up:22,w6,left:46,w4,left:16,w4,up:18,w6,right:16,w4,right:7,w4,up:20,w6,left:16,w4,up:15,w6,left:5,w4,up:27,w6,right:17,w4,right:22,w4,right:25,w4,right:13,w4,up:14,w6,left:62,w4,up:18,w6,up:6,w6,right:22,w4,up:40,w6,right:5,w4,up:40,w6,up:17,w6,up:17,w6,left:8,w4,up:17,w6,space,w40,up:17,w6,right:52,w4,right:12,w4,up:40,w6,up:9,w6,up:7,w6,left:5,w4,space,w40,up:7,w6,left:28,w4,left:7,w4,up:23,w6,right:29,w4,right:5,w4,ctrl:20,!
+#start 19_imp_hit | battle | The pistol hits the imp: blood spray | @s_e1m1_armor,left:27,w4,up:34,w6,left:52,w4,left:5,w4,up:40,w6,up:40,w6,up:40,w6,right:30,w4,right:9,w4,up:40,w6,right:9,w4,right:74,w4,right:34,w4,up:6,w6,up:19,w6,right:108,w4,up:12,w6,up:19,w6,left:33,w4,left:9,w4,up:40,w6,left:6,w4,up:40,w6,left:12,w4,left:65,w4,left:36,w4,up:8,w6,right:49,w4,right:17,w4,up:14,w6,right:45,w4,right:17,w4,up:22,w6,left:46,w4,left:16,w4,up:18,w6,right:16,w4,right:7,w4,up:20,w6,left:16,w4,up:15,w6,left:5,w4,up:27,w6,right:17,w4,right:22,w4,right:25,w4,right:13,w4,up:14,w6,left:62,w4,up:18,w6,up:6,w6,right:22,w4,up:40,w6,right:5,w4,up:40,w6,up:17,w6,up:17,w6,left:8,w4,up:17,w6,space,w40,up:17,w6,right:52,w4,right:12,w4,up:40,w6,up:9,w6,up:7,w6,left:5,w4,space,w40,up:7,w6,left:28,w4,left:7,w4,up:23,w6,right:29,w4,right:5,w4,ctrl:20,w6,right:5,w4,ctrl:20,!
+#start 20_exit_room | gameplay | The exit switch at point blank: Picked up an armor bonus. | @s_e1m1_armor,left:27,w4,up:34,w6,left:52,w4,left:5,w4,up:40,w6,up:40,w6,up:40,w6,right:30,w4,right:9,w4,up:40,w6,right:9,w4,right:74,w4,right:34,w4,up:6,w6,up:19,w6,right:108,w4,up:12,w6,up:19,w6,left:33,w4,left:9,w4,up:40,w6,left:6,w4,up:40,w6,left:12,w4,left:65,w4,left:36,w4,up:8,w6,right:49,w4,right:17,w4,up:14,w6,right:45,w4,right:17,w4,up:22,w6,left:46,w4,left:16,w4,up:18,w6,right:16,w4,right:7,w4,up:20,w6,left:16,w4,up:15,w6,left:5,w4,up:27,w6,right:17,w4,right:22,w4,right:25,w4,right:13,w4,up:14,w6,left:62,w4,up:18,w6,up:6,w6,right:22,w4,up:40,w6,right:5,w4,up:40,w6,up:17,w6,up:17,w6,left:8,w4,up:17,w6,space,w40,up:17,w6,right:52,w4,right:12,w4,up:40,w6,up:9,w6,up:7,w6,left:5,w4,space,w40,up:7,w6,left:28,w4,left:7,w4,up:23,w6,right:29,w4,right:5,w4,ctrl:20,w6,right:5,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,right:28,w4,up:40,w6,up:23,w6,left:61,w4,left:17,w4,up:28,w6,right:42,w4,right:33,w4,up:15,w6,up:6,w6,right:6,w4,up:35,w6,right:76,w4,right:26,w4,up:9,w6,up:18,w6,right:69,w4,right:8,w4,up:37,w6,up:6,w6,right:28,w4,right:38,w4,right:14,w4,up:12,w6,left:77,w4,left:9,w4,up:20,w6,up:8,w6,right:44,w4,up:25,w6,left:12,w4,up:20,w6,left:11,w4,up:20,w6,right:5,w4,right:2,w4,space,w40,up:20,w6,right:29,w4,right:11,w4,up:32,w6,right:15,w4,right:14,w4,right:4,w4,!
+#start 21_tally | gameplay | Hangar Finished: the tally counts up | @s_e1m1_exit,!
+#start 22_tally_done | gameplay | Tally: Kills 100%, Items 6%, Secret 50%, Time 03:02, Par :30 | @s_e1m1_exit,w300,w40*4,!
+#start 23_entering | map | Entering Nuclear Plant: the Phobos map with the next level marked | @s_e1m1_exit,w300,space,w60,space,w60,!
+#start 24_e1m2_start | gameplay | E1M2 Nuclear Plant: the start | @s_e1m2,!
+#start 25_options | options | Options: End Game, Messages, Graphic Detail, Screen Size, Mouse, Sound | @s_e1m2,esc,w20,down,w10,enter,w30,!
+#start 26_sound | options | Sound Volume: Sfx and Music sliders | @s_e1m2,esc,w20,down,w10,enter,w30,up,w10,enter,w30,!
+#start 27_help_order | menu | F1: the order page first (To order DOOM, $40.00) | @s_e1m2,f1,w20,!
+#start 28_help_keys | menu | F1, Enter: the help page with keys, function keys, weapons | @s_e1m2,f1,w20,enter,w20,!
+#start 29_save_menu | save | Save Game: six empty slots | @s_e1m2,esc,w20,down*3,w10,enter,w30,!
+#start 30_save_name | save | Typing the save name ryz | @s_e1m2,esc,w20,down*3,w10,enter,w30,enter,w20,type:ryz,w20,!
+#start 31_saved | save | game saved. | @s_saved,!

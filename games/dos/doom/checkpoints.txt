@@ -1,3 +1,19 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
-# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+# Built on demand and cached per ROM in work/cache/; states are never committed. All routes are flat (from power-on).
+title | Title picture (DOOM, id Software 1993), 90 frames after `doom -nosound` starts (v1.1) | TITLE
+menu | Main menu over the title picture (New Game highlighted) | MENU
+s_e1m1 | New Game, Knee-Deep in the Dead, Hurt me plenty: E1M1 Hangar at the start (1056 -3616) facing north, default reduced view | NEWGAME
+s_e1m1_view | E1M1 start, view enlarged once with = to the full-width view over the status bar (screen size of the sets) | NEWGAME,BIGVIEW
+s_e1m1_door | E1M1: up the corridor to the door at (1536 -2496), opened; two zombiemen come | NEWGAME,BIGVIEW,E1DOOR
+s_e1m1_fight1 | E1M1: both zombiemen at the door and the third one east killed with the pistol (kills 3, hp 95) | NEWGAME,BIGVIEW,E1DOOR,E1FIGHT1
+s_e1m1_zigzag | E1M1: nukage zigzag room, its zombieman and the ledge imp killed (kills 5, hp 86) | NEWGAME,BIGVIEW,E1DOOR,E1FIGHT1,E1ZIGZAG
+s_e1m1_armor | E1M1: south through the lower rooms (shells and bullets boxes) into the nukage pool: blue armor (secret 1, armor 196, hp 70) | NEWGAME,BIGVIEW,E1DOOR,E1FIGHT1,E1ZIGZAG,E1ARMOR
+s_e1m1_exit | E1M1: medikit, imp room fight, exit switch: Hangar Finished tally counting (hp 100, armor 190, kills 6) | NEWGAME,BIGVIEW,E1DOOR,E1FIGHT1,E1ZIGZAG,E1ARMOR,E1EXIT
+s_e1m2 | Tally done, Entering Nuclear Plant, E1M2 at its start | NEWGAME,BIGVIEW,E1DOOR,E1FIGHT1,E1ZIGZAG,E1ARMOR,E1EXIT,E1TALLY
+s_saved | E1M2 start: saved in the game to slot 1 named ryz (DOOMSAV0.DSG, "game saved."); end of the start set | NEWGAME,BIGVIEW,E1DOOR,E1FIGHT1,E1ZIGZAG,E1ARMOR,E1EXIT,E1TALLY,SAVE1:ryz
+m_e1m1 | doom -skill 3 -episode 1, idclev11, view enlarged: E1M1 Hangar at the start, no other cheats | LEVEL:1:1
+m_e1m8 | -episode 1, idclev18: E1M8 Phobos Anomaly (Barons of Hell) at the start | LEVEL:1:8
+m_e2m1 | -episode 2, idclev21: E2M1 Deimos Anomaly at the start | LEVEL:2:1
+m_e2m8 | -episode 2, idclev28: E2M8 Tower of Babel (Cyberdemon) at the start | LEVEL:2:8
+m_e3m1 | -episode 3, idclev31: E3M1 Hell Keep at the start | LEVEL:3:1
+m_e3m8 | -episode 3, idclev38: E3M8 Dis (Spider Mastermind) at the start | LEVEL:3:8

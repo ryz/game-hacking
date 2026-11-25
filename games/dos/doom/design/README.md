@@ -23,8 +23,16 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+First-person shooter in real time: the marine walks through 2.5D maps (rooms at different heights, lifts,
+doors, nukage and lava floors), shoots demons with up to eight weapons and finds the exit switch of each map
+**(verified, E1M1 played to its exit)**. Version 1.1 (December 1993) has three episodes of eight maps plus a
+secret ninth (27 maps: Knee-Deep in the Dead, The Shores of Hell, Inferno) **(verified: WAD, episode menu)**
+and four skills: I'm too young to die, Hey, not too rough, Hurt me plenty, Ultra-Violence; Nightmare! came
+later **(verified, skill menu)**. Saves anywhere into six named slots **(verified)**. Between maps a tally
+(kills, items, secrets, time, par) and the episode map ("Entering ...") **(verified)**. The same game as The
+Ultimate Doom 1.9 (`games/dos/ultimate-doom/design/`) in its first three episodes, with small map edits
+(E1M1, E1M4, E1M5, E1M8, E2M2 and others differ in their map data) **(verified, WAD comparison)**; the
+capture run fills the lenses by comparison.
 
 ## Documents
 | Document | Covers |
