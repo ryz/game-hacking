@@ -84,7 +84,9 @@ the level data (fits, stands on the floor, line of sight) first; a teleport into
 by the game (Quake `tools/qpos.py`).
 Wolfenstein 3D (2026-11-25): even flat checkpoint routes differ from the flat replay in actor memory after a
 load (`cachecheck --show-diff N` shows where); shots built on such a checkpoint still reproduce (a miss reloads
-its own state), so judge a real-time game's set by `shoot.py --verify`, not by cachecheck "memory".
+its own state), so judge a real-time game's set by `shoot.py --verify`, not by cachecheck "memory" (cachecheck adds "cold == hit" where
+that holds). Explore with `play.py do!` (no settle) once in play: a settle lets doors close and enemies fire
+(Spear of Destiny, 2026-11-25).
 The text cursor blinks, so text screens rarely `settle`; capture anyway.
 
 ## Keys

@@ -148,7 +148,7 @@ def main(argv=None):
         shutil.rmtree(tmp, ignore_errors=True)
     out = os.path.join(ROOT, "work", "cachecheck", game.id)
     os.makedirs(out, exist_ok=True)
-    bad, stale, tiles = 0, [], []
+    bad, stale, tiles, coldhit = 0, [], [], 0
     for n in names:
         ref_mode = "flat" if n in got["flat"] else "cold"
         ref = got[ref_mode][n][2]
@@ -167,6 +167,10 @@ def main(argv=None):
                     stale.append(n)
         if ref[0].startswith("ERROR"):
             diffs.append(ref[0])
+        c, h = got["cold"].get(n), got["hit"].get(n)
+        if diffs and ref_mode == "flat" and c and h and c[2] and c[2] == h[2]:
+            diffs.append("cold == hit")     # real-time DOS games: a load differs from flat, but shots reproduce
+            coldhit += 1
         bad += bool(diffs)
         have = got["yours"][n][2] is not None
         print("%-18s %s  %s%s%s" % (n, "same" if not diffs else "; ".join(diffs), " ".join(ref),
@@ -186,7 +190,8 @@ def main(argv=None):
         else:
             print("your cache holds %d state(s) that their routes do not produce: %s (--fix deletes them)" % (
                 len(stale), " ".join(stale)))
-    print("%d/%d checkpoints reproduce (%s reference: %d)" % (len(names) - bad, len(names), "power-on", len(flat)))
+    print("%d/%d checkpoints reproduce (%s reference: %d)%s" % (len(names) - bad, len(names), "power-on", len(flat),
+          "; %d more differ from flat only, with cold == hit (shots on them reproduce)" % coldhit if coldhit else ""))
     return 1 if bad else 0
 
 

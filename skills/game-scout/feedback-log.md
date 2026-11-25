@@ -12,6 +12,20 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-25 - Spear of Destiny (DOS)
+- Task: boot, version, controls, debug, RAM, map reader, honest floor 1 checkpoints to the first save, plans.
+- Worked: reusing Wolfenstein's playbook, macros and `wlmap.py` (`tools/sodmap.py`, a 100-line wrapper); the
+  gamestate found in one dump by known starting values (0xB40 above Wolfenstein's); determinism shown by replaying
+  the flat chain with `--peek`, then miss/hit/hit in fresh processes; `preview --timeline` for attract loop and
+  Spear pickup.
+- Friction: `play.py do` settles after every call, so doors shut and enemies fire between calls (~8 calls);
+  `cachecheck` could not show cold vs hit directly (script needed).
+- Proposed rule change: dos.md: explore with `do!` in real-time games; backlog `cachecheck --cold-vs-hit`.
+- Corrected: none. Coordinator: cold cachecheck 3/11 same, the other 8 "cold == hit"; sheet matches. Debug
+  parameter is `debugmode` (not `goobers`); no quiz shown. Angel of Death not yet killed (plan: long hold or HP poke).
+- Status: dos.md note added; cold-vs-hit built 2026-11-25 into cachecheck's normal output ("cold == hit" per
+  checkpoint and in the summary).
+
 ### 2026-11-25 - Wolfenstein 3D (DOS, Activision 1.4)
 - Task: boot, model, controls, determinism, checkpoints to the first save, RAM, `start` and `main` plans with
   action shots.
