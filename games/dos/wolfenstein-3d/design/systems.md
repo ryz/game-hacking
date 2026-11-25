@@ -27,11 +27,11 @@ matter only within a floor (keys) or until the next pickup (health) (source: gam
 | Player verbs | Use (doors, pushwalls, switch) | Space opens the door ahead, pushes a secret wall, flips the elevator switch | Space | door opens in about 60 frames; pushwall slides 2 tiles in about 256 frames (verified) | 3.4 | `11_door_open`, `21_pushwall`, `elevator` | shown |
 | Player verbs | Weapon select | Number keys pick any weapon already owned | 1-4 | knife, pistol, machine gun, chain gun (verified) | 3.1 | `hud`, `weapon_knife` | shown |
 | Characters and progression | Score and extra lives | Points for kills and treasure; an extra life every 40000 points | none | guard 100, officer 400, mutant 700, Hans Grosse 5000, cross 100 (verified: score on the status bar); extra life at 40000 (RAM) | 3.2 | `15_guard_dead`, `enemy_officer_dies`, `enemy_mutant_dies`, `e1m9_exit`, `treasure_pickup` | shown |
-| Characters and progression | Weapons carried | The best weapon found stays for the rest of the game (until death) | walk over it | start: knife and pistol; machine gun and chain gun found on floors (verified: `22_secret_room`, `23_machine_gun`) | 3.1 | `23_machine_gun` | shown |
+| Characters and progression | Weapons carried | The best weapon found stays for the rest of the game (until death) | walk over it | start: knife and pistol; machine gun and chain gun found on floors (verified: `22_secret_room`, `23_machine_gun`) | 3.1 | `23_machine_gun`, `chaingun_floor`, `chaingun_grin` | shown |
 | Resources and economy | Ammunition | One shared bullet count for pistol, machine gun and chain gun, cap 99 | clips from the floor and from dead guards | start 8; clip from a guard +4 (verified: ammo 0 to 4, `20_clip`); cheat 99 (verified) | 3.1 | `20_clip`, `hud` | shown |
-| Resources and economy | Health | 0-100%; food and first aid restore it, not taken at 100% | walk over items | start 100% (verified); first aid kits left lying at 100% (verified: `22_secret_room`) | 3.3 | `22_secret_room`, `damage_flash` | shown |
+| Resources and economy | Health | 0-100%; food and first aid restore it, not taken at 100% | walk over items | start 100% (verified); first aid kits left lying at 100% (verified: `22_secret_room`) | 3.3 | `22_secret_room`, `damage_flash`, `face_100`, `face_1` | shown |
 | Resources and economy | Treasure | Crosses, chalices, chests and crowns: points and the treasure ratio | walk over | cross 100 (verified); others: source (chalice 500, chest 1000, crown 5000) | 3.2 | `treasure_room`, `treasure_pickup` | shown |
-| Conflict | Hits and damage | Every shot is a roll; damage falls with distance; a hit flashes the screen red | none | guard needed 3-4 pistol shots, the second guard 2 (verified); Hans Grosse died to about 50 chain-gun bullets (verified: ammo 99 to 49) | 3.3 | `17_guard2_hit`, `damage_flash`, `boss_hans_hit` | shown |
+| Conflict | Hits and damage | Every shot is a roll; damage falls with distance; a hit flashes the screen red | none | guard needed 3-4 pistol shots, the second guard 2 (verified); Hans Grosse died to about 50 chain-gun bullets (verified: ammo 99 to 49); Hans at 6+ tiles took B.J. from 100% to 0% in 9 hits of 1-21 points (RAM: 100, 80, 79, 69, 60, 49, 43, 34, 21, 6, 1, 0) | 3.3 | `17_guard2_hit`, `damage_flash`, `boss_hans_hit`, `face_80`, `face_34` | shown |
 | Conflict | Death of an enemy | A killed enemy falls, leaves a body and, for guards and SS, a clip or weapon | none | (verified: `18_guard2_falls`, `20_clip`) | 3.2 | `18_guard2_falls`, `enemy_mutant_dies`, `enemy_officer_dies` | shown |
 | Opponents | Regular enemies | Guard, dog, SS, officer, mutant: stand or patrol until they see or hear the player, then attack | none | 5 kinds (verified: map data) | [content.md](content.md) 3 | `13_hall_guard`, `enemy_dogs`, `enemy_ss`, `enemy_mutant_fire`, `enemy_guard_fires` | shown |
 | Opponents | Alerting | Gunfire is heard through open space; enemies behind closed doors stay unaware | none | a teleported player was ignored until he shot the boss (verified: `boss_otto` route) | 3.3 | `boss_otto`, `enemy_ss` | shown |
@@ -46,10 +46,10 @@ matter only within a floor (keys) or until the next pickup (health) (source: gam
 | Goals and gating | Episode end | After the boss, the exit tile starts the run out of the castle, the "You Win!" screen and the end text | walk | (verified) | 3.5 | `victory_run`, `victory_win`, `episode_end_text`, `episode_end_text_2` | shown |
 | Goals and gating | Floor tally | Bonus for beating par time, plus ratios of kills, secrets and treasure | key to continue | bonus 500 points per second under par (computed: 43000 for 4 s against 1:30); 0 over par (verified) | 3.5 | `tally_floor1` | shown |
 | Chance | Random hits | Hits, damage and enemy shots are rolled; drops are fixed | none | guards fell after 2 to 4 pistol shots (verified) | 3.3 | `14_guard_fire` | shown |
-| Failure and recovery | Death and lives | At 0% health the view flashes red and dissolves; a life is lost and the floor restarts | none | 3 lives at the start (verified) | 3.7 | `damage_flash`, `death_fizzle` | shown |
+| Failure and recovery | Death and lives | At 0% health the view flashes red and dissolves; a life is lost and the floor restarts | none | 3 lives at the start (verified); killed by Hans, floor 9 restarts with pistol, 8 ammo, 100% (verified: `death_restart`) | 3.7 | `damage_flash`, `death_fizzle`, `death_by_hans`, `death_by_hans_red`, `death_restart` | shown |
 | Failure and recovery | Out of lives | No game-over screen: the High Scores table, with name entry when the score qualifies | type a name, Enter | entry at 12650 above the 10000 of the id staff (verified) | 3.7 | `highscore_entry`, `highscore_ryz` | shown |
 | Saving and sessions | Save and load | Save anywhere from the in-game Options menu, 10 named slots | Esc, Save Game, type a name | (verified) | 3.8 | `28_save_slots`, `29_save_name`, `menu_load` | shown |
-| Pacing and difficulty | Skill levels | Four skills decide which enemies appear and how hard they hit | menu | E1M1 has 20 enemies at "Bring 'em on!" (verified: map data) | 3.9 | `menu_difficulty` | shown |
+| Pacing and difficulty | Skill levels | Four skills decide which enemies appear and how hard they hit | menu | E1M1 has 20 enemies at "Bring 'em on!" (verified: map data) | 3.9 | `menu_difficulty`, `menu_difficulty_daddy`, `menu_difficulty_hurt`, `menu_difficulty_death` | shown |
 | Pacing and difficulty | Cheats and debug | M+L+I gives full health, ammo, keys and weapons; the goobers debug keys give god mode, warp, coordinates | M+L+I; Tab+G/W/F | (verified) | 3.6 | `cheat_mli`, `debug_on`, `debug_god`, `debug_warp`, `debug_coords` | shown |
 | Pacing and difficulty | Attract mode | Title, credits, high scores and a recorded demo loop until a key is pressed | any key | demo on floor 38 (E4M8) (verified) | 3.10 | `demo`, `credits_id`, `high_scores` | shown |
 
@@ -73,6 +73,15 @@ Shots hit by chance; the screen flashes red when the player is hit (verified: `d
 fired at it (verified: `boss_otto` and `boss_schabbs` routes) (inferred: the boss had not been told the player's
 area was connected to his).
 
+A real fight without god mode (verified: `face_100` to `death_by_hans`, route macro `HANSFIGHT` + `HF*N`): on
+E1M9 the door to Hans Grosse opened from 1 tile, the player backed 5.6 tiles down the corridor and fired; Hans
+woke, walked out and fired from 6-20 tiles while the player backed away firing bursts. Health went 100, 80,
+79, 69, 60, 49, 43, 34, 21, 6, 1, 0 (RAM, health at 44924): hits of 1 to 21 points at that range, never more,
+and the chain gun at 99 bullets did not bring him down. Opened at point blank (the `boss_hans` route without
+god mode) he killed the player within 60 frames of the door opening (RAM: health 0) (inferred: damage grows
+sharply below 2 tiles). Picking up a chain gun makes B.J. grin on the status bar for a moment (verified:
+`chaingun_grin`) and switches to it (ammo +6: 8 to 14) (verified).
+
 ### 3.4 Doors, locks and secrets
 Doors slide open with Space and close again after about 5 seconds (verified). Gold and silver doors need their
 key (verified: `door_gold` without a key, opened on E1M9 with one). Pushwalls are ordinary-looking walls
@@ -85,6 +94,11 @@ secrets = 40%, 9 of 23 treasure = 39%, `tally_floor1`; integer percentages, roun
 the exit tile behind the boss's gold door starts the episode end: B.J. runs out (`victory_run`), "You Win!"
 with total time and average ratios and a code (`victory_win`), then two pages of end text
 (`episode_end_text`, `episode_end_text_2`) (verified).
+"You Win!" adds the time and averages the three ratios of floors 1-8 from a table of 8 records of 10 bytes
+at 44C56 (kill, secret, treasure as 2-byte percentages, time as 4-byte seconds), written by each floor's tally
+(RAM: the `tally_floor1` values 60/40/39/107 s appeared there). Floor 9 and the secret floor do not count; a
+floor skipped by warping counts as 0 (verified: 00:00 and 0% before; with the table set to 8 plausible floors,
+`victory_win` shows 45:12, 63%, 38%, 52% and the code LJG; the code changes with the values).
 
 ### 3.6 Cheats and debug keys
 M+L+I (held together): 100% health, 99 ammunition, both keys, all weapons, with a warning that the score is
@@ -103,7 +117,9 @@ Ten slots, each named by the player, saved from the Options menu in play (verifi
 
 ### 3.9 Difficulty
 Four skills: "Can I play, Daddy?", "Don't hurt me.", "Bring 'em on!", "I am Death incarnate!" (verified:
-`menu_difficulty`). Each enemy on a map is marked for the lowest skill it appears on (verified: map data).
+`menu_difficulty`, `menu_difficulty_daddy`, `menu_difficulty_hurt`, `menu_difficulty_death`): the face beside
+the list follows the cursor: B.J. grey-haired with a pacifier, plain, the confident default, scowling with red
+eyes. Each enemy on a map is marked for the lowest skill it appears on (verified: map data).
 
 ### 3.10 Attract mode
 Title, id credits, High Scores, a recorded demo (verified: `title_screen`, `credits_id`, `high_scores`, `demo`).
@@ -115,6 +131,6 @@ gate the way to the elevator and, on boss floors, the exit. The tally rewards sp
 thoroughness (ratios), two goals that pull against each other.
 
 ## Open questions
-- Damage per weapon and distance, enemy hit points: not measured (source code knowledge only).
+- Damage per weapon and distance, enemy hit points: not measured (source code knowledge only); one series of Hans's hits at range in 3.3.
 - Silver key door not shown; extra-life sphere not picked up on camera.
 - Chain gun and machine gun fire rates measured only roughly.

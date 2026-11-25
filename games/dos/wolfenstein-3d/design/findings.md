@@ -25,6 +25,9 @@ connected to theirs, and the connection is updated when doors open, not when the
 **Intended:** the totals add up the tallies of finished floors; a warp skips them.
 **Confidence:** (inferred).
 **Impact:** none in normal play.
+**Fix for the set (2026-11-25):** the totals come from 8 records at 44C56 (kill, secret, treasure %, time in
+seconds; 10 bytes each), one per floor 1-8, written by each tally. `victory_win` now pokes 8 plausible floors
+there (macro `E1RATIOS`) before the exit: 45:12, kill 63%, secret 38%, treasure 52% (verified, RAM).
 
 ## No game-over screen
 **Behavior:** out of lives, the game goes straight from the red death dissolve to the High Scores
@@ -32,3 +35,11 @@ connected to theirs, and the connection is updated when doors open, not when the
 **Intended:** yes.
 **Confidence:** (verified).
 **Impact:** none.
+
+## Lives not lost on a death under `tedlevel`
+**Behavior:** started with `wolf3d goobers tedlevel 8 normal` (macro `LEVEL:8`) and killed by Hans Grosse, the
+floor restarted with health 100%, the pistol and 8 bullets, but lives stayed at 3 on the status bar and in RAM
+(44922) (`death_restart`, route `HANSFIGHT,HF*90`).
+**Intended:** likely: `tedlevel` is the map editor's test start, where a death should only restart the map.
+**Confidence:** (verified) the behaviour; (inferred) the reason.
+**Impact:** none in normal play; the lives counter of debug-started shots is not a real count.

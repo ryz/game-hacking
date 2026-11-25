@@ -39,7 +39,7 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   Left Shift+Alt+Backspace in play = "Debugging keys are now available!", then Tab+G god, Tab+W warp (type the
   floor number, Enter), Tab+I free items (score 100000, lives 5: unrealistic, prefer pokes), Tab+F coordinates,
   Tab+E end the floor (tally; under `tedlevel` it quits to DOS). MLI (hold M+L+I) needs no debug mode.
-- **Sets (capture 2026-11-25):** `start` 30 shots, `main` 64 shots, both verified from an empty cache and
+- **Sets (capture 2026-11-25):** `start` 30 shots, `main` 80 shots (64 + 16 on 2026-11-25, run 2), both verified from an empty cache and
   published; routes in `shots.txt` (main lines active, `#start ` lines). Shot routes are flat macro chains
   (LEVEL/DNEW + GOD + MLI + TP), 20 s for `start`, about a minute for `main`.
 - **Recipes that worked (main):** wake a teleported boss by firing (`ctrl:12`), it ignores you otherwise;
@@ -50,6 +50,16 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   Death/high score: `poke:44922=0000,poke:44924=0100` (no lives, 1% health) and `set:4491A=12650:4` after a shot
   wakes the hall guard; High Scores name entry 560 frames later. Tally values: `set:` kills 4493E, secrets
   4493A, treasure 4493C, time 44946 (tics) before Space on the switch.
+- **Real fight, no god mode (face stages):** `HANSFIGHT` (LEVEL:8, MLI, TP south of Hans's door at
+  (34.5,16.5) facing north, Space, back off `s:70`, `ctrl:12`) then `HF*N` (`HF` = `ctrl:4,s:3,w10`, fire while
+  backing). Health per N (RAM): 36 80, 39 69, 45 60, 46 49, 48 43, 55 34, 56 21, 57 6, 58 1, 80 0 (death),
+  90 floor restarted. Damage is random: other waits gave other series (only `s:3,w10` hit 1-4%); scan variants
+  headless with `python3 games/dos/wolfenstein-3d/tools/fightscan.py OUT "PREFIX" "CYCLE" N` (health per cycle, a PNG each) before previewing.
+  Opening Hans's door at point blank without god mode kills you within 60 frames.
+- **Real "You Win!" totals:** 8 records of 10 bytes at 44C56 (kill %, secret %, treasure % as 2 bytes, time in
+  seconds as 4), one per floor 1-8, filled by each tally; a warp leaves zeros (00:00, 0%). Macro `E1RATIOS`
+  pokes 8 plausible floors (sum 45:12, 63/38/52%); `victory_win` also sets score 43270 and next-extra 80000
+  after MLI (Hans makes it 48270, no extra life).
 - **No "Read This!"** in this build (GT/Activision 1.4): the help screens are not reachable from the menu.
 
 ## Identity
@@ -108,8 +118,9 @@ verified in RAM).
 Done 2026-11-25 (capture): `start` 30 (sign-on to Save Game), `main` 64: boot, title, credits, high scores,
 demo, all menus and options, first control, HUD, env views from all six episodes, four weapons firing,
 guard/dog/SS/officer/mutant, damage, death, high-score entry ryz, all six bosses, treasure, gold key and door,
-elevator, tally, E1 victory and end text, cheats and debug. Not shot: silver key door, food/extra life,
-secret floors, Hitler's ghosts, face damage stages.
+elevator, tally, E1 victory and end text, cheats and debug. Run 2 (2026-11-25): the other three skills,
+chain gun grin, a real Hans fight through all face stages to death and restart, real victory totals. Not shot:
+silver key door, food/extra life, secret floors, Hitler's ghosts, god-mode face.
 Reach: `LEVEL:N` + `TP:` for any enemy or room; bosses from `LEVEL:8/18/28/38/48/58` (map index).
 
 ## Strategy and walkthrough notes
@@ -152,6 +163,7 @@ Same addresses every boot with `BOOT` (DOS loads the game at the same place); wi
 | 4493A / 4493C / 4493E | 2 each | secrets / treasures / kills found | verified (secret 1, kills 3) |
 | 44940 / 44942 / 44944 | 2 each | totals (E1M1 skill 2: 5 / 23 / 20) | verified |
 | 44946 | 4 | play time in tics (70 per second) | verified |
+| 44C56 | 8 x 10 | per-floor tally records for floors 1-8: kill, secret, treasure (% each, 2 bytes), time (seconds, 4 bytes); summed by "You Win!" | verified |
 | 4687C / 46880 | 4 each | player x / y, 16.16 fixed tiles | verified |
 | 46884 / 46886 | 2 each | player tile x / y | verified |
 | 46896 | 2 | player angle, degrees, 0 east, 90 north | verified |

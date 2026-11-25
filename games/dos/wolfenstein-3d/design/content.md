@@ -48,7 +48,7 @@ each visual family. A complete table belongs in its own document (items.md, enem
 | SS | E1M2 on | blue uniform, machine gun | bursts of fire | `enemy_ss`, `weapon_machine_gun` |
 | Officer | E5M1 and others | white uniform | fast, quick to shoot; 400 points | `weapon_chain_gun`, `enemy_officer_dies` |
 | Mutant | Episode 2 | green, a gun in the chest | silent, fires from the chest; 700 points | `enemy_mutant_fire`, `enemy_mutant_dies`, `weapon_knife` |
-| Hans Grosse (boss) | E1M9 | blue giant with two chain guns | guards the gold key; 5000 points | `boss_hans`, `boss_hans_hit` |
+| Hans Grosse (boss) | E1M9 | blue giant with two chain guns | guards the gold key; 5000 points; outguns a player at full health | `boss_hans`, `boss_hans_hit`, `face_100`, `face_1_hans_near`, `death_by_hans` |
 | Dr. Schabbs (boss) | E2M9 | blood-spattered white coat | throws syringes, among mutants | `boss_schabbs`, `boss_schabbs_walks` |
 | Hitler (boss) | E3M9 | mech suit with four chain guns | fires from the suit (fake ghosts not shown) | `boss_hitler` |
 | Otto Giftmacher (boss) | E4M9 | white coat, rocket launcher | fires rockets | `boss_otto` |
@@ -62,7 +62,7 @@ each visual family. A complete table belongs in its own document (items.md, enem
 | Knife | weapon | start | close stab, no ammunition | `weapon_knife` |
 | Pistol | weapon | start | single shots | `weapon_pistol`, `14_guard_fire` |
 | Machine gun | weapon | floors, SS | held fire | `23_machine_gun`, `weapon_machine_gun` |
-| Chain gun | weapon | floors (MLI here) | fast held fire | `weapon_chain_gun`, `hud` |
+| Chain gun | weapon | floors (MLI here) | fast held fire; picking one up makes B.J. grin | `weapon_chain_gun`, `hud`, `chaingun_floor`, `chaingun_grin` |
 | Ammo clip | ammunition | floors, dead guards | +4 when dropped by a guard (verified) | `20_clip` |
 | First aid | health | floors | restores health, left at 100% | `22_secret_room` |
 | Gold key | key | floors, bosses | opens gold doors | `key_gold`, `key_gold_taken` |

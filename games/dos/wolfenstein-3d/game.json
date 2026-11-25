@@ -87,6 +87,6 @@
     }
   },
   "edition": "DOS v1.4, Activision release (GT/Activision build: no Read This!, Gravis GamePad option; six episodes, .WL6); bundle config binds W/A/S/D; Spear of Destiny in m1/ is registered separately",
-  "work": "captured 2026-11-25: start (30, sign-on to the first save) and main (64: menus, six-episode env views, four weapons firing, five enemy kinds, all six bosses, death, high score, E1 victory and end text); three lenses; 11 flat checkpoints, save 01_start",
-  "open": "silver key door, food and extra-life pickups, secret floors, Hitler's ghosts and the status-bar face stages not shot; why a loaded state differs from the flat replay in actor memory"
+  "work": "captured 2026-11-25: start (30, sign-on to the first save) and main (80: menus with all four skills, six-episode env views, four weapons firing, five enemy kinds, all six bosses, a real fight with every face stage and death, high score, E1 victory with real totals and end text); three lenses; 11 flat checkpoints, save 01_start",
+  "open": "silver key door, food and extra-life pickups, secret floors, Hitler's ghosts and the god-mode face not shot; why a loaded state differs from the flat replay in actor memory"
 }
