@@ -38,12 +38,12 @@ debug_coords | extra | Debug Tab+F: player X, Y and angle | LEVEL:0,tab+f:10,w60
 #   name entry (ryz); episode end text; Read This! is not in this build (GT/Activision).
 #
 # ---- set start (honest play, flat routes) ----
-#start 01_signon | boot | id sign-on: Activision, available memory, mouse/AdLib/Sound Blaster/Sound Source found, Press a key | BOOT,w200
+#start 01_signon | boot | Sign-on: id and Activision logos, memory, devices found, Press a key | BOOT,w200
 #start 02_pc13 | boot | PC-13 "Profound Carnage" rating screen | BOOT,w200,space,w150
 #start 03_title | title | Title picture: Wolfenstein 3-D, B.J. Blazkowicz and a guard | TITLE
 #start 04_credits | credits | id Software credits page of the attract loop | TITLE,w1100
 #start 05_high_scores | menu | High Scores of the attract loop: the id staff, E1/L1, 10000 each | TITLE,w1300,w150*4,!
-#start 06_options | menu | Options menu: New Game, Sound, Control, Load Game, Change View, View Scores, Back to Demo, Quit | MENU
+#start 06_options | menu | Options menu: New Game, Sound, Control, Load Game, Change View, View Scores | MENU
 #start 07_episodes | menu | Which episode to play? The six episodes with their pictures | MENU,enter,w120
 #start 08_difficulty | menu | How tough are you? Four skills, Bring 'em on! chosen, with its face | MENU,enter,w120,enter,w120
 #start 09_get_psyched | menu | Get Psyched! with the status bar: floor 1, score 0, lives 3, health 100%, ammo 8 | MENU,enter,w120,enter,w120,enter,w60,!
@@ -54,15 +54,17 @@ debug_coords | extra | Debug Tab+F: player X, Y and angle | LEVEL:0,tab+f:10,w60
 #start 14_guard_fire | battle | Pistol shots at the guard | NEWGAME,E1HALL,a:8,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,!
 #start 15_guard_dead | hud | Guard down: score 100, ammo 4 on the status bar | NEWGAME,E1HALL,E1GUARD
 #start 16_wood_corridor | gameplay | North door: a wood-panelled corridor, a second guard comes | NEWGAME,E1HALL,E1GUARD,E1NORTH
-#start 17_guard_close | battle | Second guard shot; a third guard stands in front of an eagle picture | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2
-#start 18_clip | gameplay | Last bullet fired, the guard's dropped clip taken (ammo 4) | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3
-#start 19_pushwall | system | Secret: the eagle picture slides back as a pushwall | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,w120,!
-#start 20_secret_room | gameplay | Secret room: first aid kits, a clip and the machine gun | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,w260,w:24,a:51,w:12
-#start 21_machine_gun | gameplay | Machine gun picked up: ammo 26 | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET
-#start 22_ingame_menu | menu | Esc in play: the Options menu with Save Game and End Game | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60
-#start 23_sound | options | Sound menu: effects, digitized sounds, music devices | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down,enter,w60
-#start 24_control | options | Control menu: mouse, joystick, Gravis GamePad, customize | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*2,enter,w60
-#start 25_view | options | Change View: arrows size the 3D window | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*5,enter,w60
-#start 26_save_slots | save | Save Game: ten empty slots | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*4,enter,w60
-#start 27_save_name | save | Naming the save in slot 1 | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*4,enter,w60,enter,w60,type:E1M1 machine gun,w20
-#start 28_saved | save | Saved: slot 1 "E1M1 machine gun", back in the Options menu | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*4,enter,w60,enter,w60,type:E1M1 machine gun,w20,enter,w120
+#start 17_guard2_hit | battle | Two pistol shots: the second guard is hit, blood flies, score 200 | NEWGAME,E1HALL,E1GUARD,E1NORTH,ctrl:6,w30,ctrl:6,w8,!
+#start 18_guard2_falls | battle | The second guard falls in the wood corridor | NEWGAME,E1HALL,E1GUARD,E1NORTH,ctrl:6,w30,ctrl:6,w8*3,!
+#start 19_guard_close | battle | Turned west down the corridor: a third guard in front of an eagle picture | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2
+#start 20_clip | gameplay | Last bullet fired, the guard's dropped clip taken (ammo 4) | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3
+#start 21_pushwall | system | Secret: Space on the eagle picture, the pushwall slides back into the wall | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,w12*8,!
+#start 22_secret_room | gameplay | Secret room: first aid kits, a clip and the machine gun | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,w260,w:24,a:51,w:12
+#start 23_machine_gun | gameplay | Machine gun picked up: ammo 26 | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET
+#start 24_ingame_menu | menu | Esc in play: the Options menu with Save Game and End Game | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60
+#start 25_sound | options | Sound menu: effects, digitized sounds, music devices | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down,enter,w60
+#start 26_control | options | Control menu: mouse, joystick, Gravis GamePad, customize | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*2,enter,w60
+#start 27_view | options | Change View: arrows size the 3D window | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*5,enter,w60
+#start 28_save_slots | save | Save Game: ten empty slots | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*4,enter,w60
+#start 29_save_name | save | Naming the save in slot 1 | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*4,enter,w60,enter,w60,type:E1M1 machine gun,w20
+#start 30_saved | save | Saved: slot 1 "E1M1 machine gun", back in the Options menu | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*4,enter,w60,enter,w60,type:E1M1 machine gun,w20,enter,w120
