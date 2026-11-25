@@ -161,8 +161,33 @@ class Game:
             raise SystemExit("save missing: %s (see the playbook Shortcuts for its source)" % os.path.relpath(p, ROOT))
         return p
 
-    def checkpoints(self):
-        return read_table(os.path.join(self.dir, "checkpoints.txt"), ("name", "description", "route"))
+    def scratch_file(self):
+        """Scratch checkpoints (`play.py checkpoint --scratch`): exploration stops kept out of the committed
+        checkpoints.txt, in work/scratch/<id>/checkpoints.txt (never committed; published shots may not use them)."""
+        return os.path.join(WORK, "scratch", self.id, "checkpoints.txt")
+
+    def checkpoints(self, scratch=True):
+        cps = read_table(os.path.join(self.dir, "checkpoints.txt"), ("name", "description", "route"))
+        if scratch:
+            names = {c["name"] for c in cps}
+            for c in read_table(self.scratch_file(), ("name", "description", "route")):
+                if c["name"] in names:
+                    raise SystemExit("checkpoint %s is in both checkpoints.txt and %s: drop one" % (
+                        c["name"], os.path.relpath(self.scratch_file(), ROOT)))
+                cps.append(dict(c, scratch=True))
+        return cps
+
+    def scratch_used(self, route, seen=()):
+        """Names of scratch checkpoints a route depends on (directly or through its checkpoint chain)."""
+        toks = expand(self, split(route))
+        if not toks or not toks[0].startswith("@"):
+            return []
+        name = toks[0][1:]
+        cps = {c["name"]: c for c in self.checkpoints()}
+        if name in seen or name not in cps:
+            return []
+        own = [name] if cps[name].get("scratch") else []
+        return own + self.scratch_used(cps[name]["route"], seen + (name,))
 
     def ram(self):
         """game.json "ram": {"lives": {"addr": "C0A2", "size": 1, "fmt": "le|be|bcd", "note": "..."}} -> the
@@ -302,6 +327,22 @@ def hold_value(emu, game, tok):
     else:
         return False
     return True
+
+
+def long_waits_held(toks, limit=10):
+    """`wN` tokens (N > limit, no `*`) played while freeze:/gs: values are held. Held values are re-applied
+    between tokens, not inside one wait, so the game can change them during a long wait: write `w10*N`."""
+    held, out = False, []
+    for t in toks:
+        if t.startswith(("freeze:", "gs:")):
+            held = True
+        elif t == "unfreeze":
+            held = False
+        elif held:
+            m = re.match(r"^w(\d+)$", t)
+            if m and int(m.group(1)) > limit:
+                out.append(t)
+    return out
 
 
 def restore_freezes(emu, game, toks):

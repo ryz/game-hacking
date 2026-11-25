@@ -7,7 +7,7 @@ is reproducible from power-on (states are a cache, routes are the record).
                                              screenshot path (native size), whether it settled, the call
                                              number of this session, PC and the game.json RAM watch
   python3 tools/play.py do! "a,w5"           same without the final settle (catch a moving frame)
-  python3 tools/play.py undo                 back to before the last do (one level)
+  python3 tools/play.py undo [N]             back to before the last N do/do!/record (default 1; up to 10 kept)
   python3 tools/play.py shot [PATH] [--scale N]
                                              screenshot only (default work/play/NAME/last.png). Pictures are
                                              native size: an enlarged one costs several times more to look at.
@@ -29,9 +29,12 @@ is reproducible from power-on (states are a cache, routes are the record).
                                              in its shots.txt; the session moves on by FRAMES frames; prints
                                              work/play/NAME/clip_ID.png (every kept frame, numbered) - pick a
                                              poster still with --poster P (kept frame number; -1 = last)
-  python3 tools/play.py checkpoint NAME "description"
+  python3 tools/play.py checkpoint NAME "description" [--scratch]
                                              save a state and add `NAME | description | route` to
-                                             games/PLATFORM/GAME/checkpoints.txt (replaces a line of the same name)
+                                             games/PLATFORM/GAME/checkpoints.txt (a line of the same name is replaced
+                                             where it stands); --scratch: to work/scratch/PLATFORM/GAME/checkpoints.txt
+                                             instead (exploration stops: not committed, usable as @NAME in this
+                                             container; shoot.py --publish refuses shots built on them)
   python3 tools/play.py export NAME "description" [--state]
                                              after saving IN THE GAME: write the battery save to
                                              games/PLATFORM/GAME/saves/NAME.sav (committed; loads in any emulator as
@@ -46,7 +49,8 @@ is reproducible from power-on (states are a cache, routes are the record).
   python3 tools/play.py find "EXPR" | find reset
                                              RAM search (cheat-search style, narrows each call): e.g. lose a
                                              life, `find "new == old - 1"`; repeat until a few addresses remain
-  python3 tools/play.py dump NAME           save work/save RAM to work/play/<session>/dump_NAME.json
+  python3 tools/play.py dump [NAME]         save work/save RAM to work/play/<session>/dump_NAME.json (default
+                                             NAME: dN, numbered); keys are hex addresses without 0x
   python3 tools/play.py diff A [B] [--range LO-HI] [--max N]
                                              bytes that differ between dumps A and B (B omitted: RAM now),
                                              only in LO-HI (hex) if given, N rows (default 80, 0 = all);
@@ -61,6 +65,7 @@ is reproducible from power-on (states are a cache, routes are the record).
 """
 import json, os, re, shutil, socket, socketserver, subprocess, sys, time
 
+UNDO_DEPTH = 10        # levels of `undo` kept (one savestate each in work/play/NAME/)
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.normpath(os.path.join(HERE, ".."))
 sys.path.insert(0, HERE)
@@ -100,7 +105,7 @@ class Session:
         toks = emu.split(route)
         self.base = toks[0] if toks and toks[0].startswith("@") else "pow"
         self.toks = [t for t in toks if not t.startswith("@") and t != "pow"]
-        self.undo_state = None
+        self.undos = []         # stack of (state file, route tokens, held values), newest last
         self.n = 0
         self.calls = 0          # commands handled: the budget of a dispatch is counted in these
         # a loaded state has no rendered frame yet: snap refuses until a `do` has run frames
@@ -153,22 +158,29 @@ class Session:
             self.E.enlarge(path, path, scale)
         return path
 
+    def push_undo(self):
+        """Save the state before a step; returns the state file (the oldest level beyond UNDO_DEPTH is dropped)."""
+        self.n_undo = getattr(self, "n_undo", 0) + 1
+        path = os.path.join(self.dir, "undo_%d.state" % (self.n_undo % (UNDO_DEPTH + 1)))
+        self.emu.save_state(path)
+        self.undos.append((path, list(self.toks), list(getattr(self.emu, "freezes", []))))
+        del self.undos[:-UNDO_DEPTH]
+        return path
+
     def do(self, seq, settle=True):
         self.reload_game()
         self.stale = False
         raw = [t for t in self.E.split(seq) if t != "pow"]
         toks = self.E.expand(self.game, raw)
-        self.undo_state = os.path.join(self.dir, "undo.state")
-        self.emu.save_state(self.undo_state)
-        self.undo_toks = list(self.toks)
-        self.undo_freezes = list(getattr(self.emu, "freezes", []))
+        back = self.push_undo()
         try:
             self.E.play(self.emu, self.game, toks)
         except Exception:
             # a bad token (or a failing `change`) stops after the tokens before it ran: those presses are in
             # the machine but not in the route. Roll back so the session never drifts from its route.
-            self.emu.load_state(self.undo_state)
-            self.emu.freezes = list(self.undo_freezes)
+            _, _, freezes = self.undos.pop()
+            self.emu.load_state(back)
+            self.emu.freezes = freezes
             raise
         settled = None
         if settle:
@@ -277,9 +289,19 @@ class Session:
         shoot.index_update(self.game, d, {"id": sid, "category": cat, "caption": caption, "route": route,
                                           "settled": settled, "model": self.model, "source": "play.py snap"})
         same = shoot.twins(d, sid)
-        return "%s%s%s%s" % (rel(native), "" if settled else "  (not settled: animated frame, check it)",
-                             "  (UNCHANGED: identical to the PNG this id already had)" if unchanged else "",
-                             "  (IDENTICAL picture to: %s - retake or unsnap one)" % ", ".join(same) if same else "")
+        try:
+            waits = self.E.long_waits_held(self.E.resolve(self.game, route))
+        except (ValueError, SystemExit):
+            waits = []
+        scratch = self.game.scratch_used(route)
+        return "%s%s%s%s%s%s" % (
+            rel(native), "" if settled else "  (not settled: animated frame, check it)",
+            "  (UNCHANGED: identical to the PNG this id already had)" if unchanged else "",
+            "  (IDENTICAL picture to: %s - retake or unsnap one)" % ", ".join(same) if same else "",
+            "  (WARNING: long wait(s) %s while values are frozen: held values are applied between tokens only; "
+            "write w10*N)" % ", ".join(sorted(set(waits))) if waits else "",
+            "  (route starts from scratch checkpoint(s) %s: publish refuses it until they are in checkpoints.txt)"
+            % ", ".join(scratch) if scratch else "")
 
     def record(self, sid, cat, frames, caption, every=2, set_="main", poster=0):
         if not re.match(r"^[a-z0-9_]+$", sid):
@@ -292,9 +314,7 @@ class Session:
         import shoot
         d = os.path.join(ROOT, "work", "shots", self.game.id, set_)
         os.makedirs(d, exist_ok=True)
-        self.emu.save_state(os.path.join(self.dir, "undo.state"))
-        self.undo_state, self.undo_toks = os.path.join(self.dir, "undo.state"), list(self.toks)
-        self.undo_freezes = list(getattr(self.emu, "freezes", []))
+        self.push_undo()
         n, k, p = int(frames), int(every), int(poster)
         clip = shoot.clip_files(self.game, self.emu, shoot.stem(self.game.meta, set_, cat, sid), d, n, k, p)
         kept = clip.pop("_frames")
@@ -323,16 +343,30 @@ class Session:
                "kept frames, numbered for --poster: %s (re-record after `undo` to change the poster)" % (
                    rel(os.path.join(d, clip["file"])), clip["kept"], clip["seconds"], p, frames, rel(sheet_p))
 
-    def checkpoint(self, name, desc):
+    def checkpoint(self, name, desc, scratch=False):
         if not re.match(r"^[a-z0-9_]+$", name):
             return "error: checkpoint name must be lowercase a-z0-9_"
-        path = os.path.join(self.game.dir, "checkpoints.txt")
+        path = self.game.scratch_file() if scratch else os.path.join(self.game.dir, "checkpoints.txt")
+        other = os.path.join(self.game.dir, "checkpoints.txt") if scratch else self.game.scratch_file()
         route = self.route()
         if self.base == "@" + name:
             return "error: the session started from @%s; a checkpoint cannot start from itself" % name
+        if any(c["name"] == name for c in self.E.read_table(other, ("name", "description", "route"))):
+            return "error: %s is already a checkpoint in %s; pick another name or drop that line" % (name, rel(other))
+        if not scratch and self.game.scratch_used(route):
+            return ("error: this route starts from scratch checkpoint(s) %s; a committed checkpoint cannot depend on "
+                    "them (goto a committed checkpoint and replay, or save with --scratch)" %
+                    ", ".join(self.game.scratch_used(route)))
+        os.makedirs(os.path.dirname(path), exist_ok=True)
         lines = open(path, encoding="utf-8").read().splitlines() if os.path.exists(path) else []
-        lines = [l for l in lines if not re.match(r"^%s\s*\|" % re.escape(name), l)]
-        lines.append("%s | %s | %s" % (name, desc.replace("|", "/"), route))
+        line = "%s | %s | %s" % (name, desc.replace("|", "/"), route)
+        at = [i for i, l in enumerate(lines) if re.match(r"^%s\s*\|" % re.escape(name), l)]
+        if at:                  # replaced where it stands: the file keeps its play order
+            lines[at[0]] = line
+            for i in reversed(at[1:]):
+                del lines[i]
+        else:
+            lines.append(line)
         open(path, "w", encoding="utf-8").write("\n".join(lines) + "\n")
         full = self.E.resolve(self.game, "@" + name)
         if getattr(self.emu, "EXACT_RESTORE", True):
@@ -348,7 +382,8 @@ class Session:
             self.emu, _ = self.E.at_checkpoint(self.game, name, self.model)
             note = "; rebuilt from its route (restores are not exact on this platform): check the picture"
         self.base, self.toks = "@" + name, []
-        return "checkpoint %s saved (%d tokens from power-on)%s" % (name, len(full), note)
+        return "checkpoint %s saved%s (%d tokens from power-on)%s" % (
+            name, " (scratch: %s)" % rel(path) if scratch else "", len(full), note)
 
     def export(self, name, desc, state=False):
         if not re.match(r"^[a-z0-9_]+$", name):
@@ -412,13 +447,18 @@ class Session:
         if cmd == "sample":
             return self.sample(args[0], int(args[1]) if len(args) > 1 else 12)
         if cmd == "undo":
-            if not self.undo_state:
+            k = int(args[0]) if args else 1
+            if not self.undos:
                 return "error: nothing to undo"
-            e.load_state(self.undo_state)
-            self.toks, self.undo_state = self.undo_toks, None
-            e.freezes = self.undo_freezes
+            if k < 1 or k > len(self.undos):
+                return "error: %d level(s) of undo available" % len(self.undos)
+            path, toks, freezes = self.undos[-k]
+            del self.undos[-k:]
+            e.load_state(path)
+            self.toks, e.freezes = toks, freezes
             self.stale = True
-            return "%s (frame not redrawn yet: `do settle` before a snap)\n%s" % (rel(self.shot()), self.watch())
+            return "%s (back %d step(s), %d more kept; frame not redrawn yet: `do settle` before a snap)\n%s" % (
+                rel(self.shot()), k, len(self.undos), self.watch())
         if cmd == "shot":
             args = list(args)
             scale = opt(args, "--scale")
@@ -453,7 +493,11 @@ class Session:
                 i = args.index("--poster"); poster = args[i + 1]; args = args[:i] + args[i + 2:]
             return self.record(args[0], args[1], args[2], args[3] if len(args) > 3 else "", every, set_, poster)
         if cmd == "checkpoint":
-            return self.checkpoint(args[0], args[1] if len(args) > 1 else "")
+            sc = "--scratch" in args
+            args = [x for x in args if x != "--scratch"]
+            if not args:
+                return "error: usage: checkpoint NAME \"description\" [--scratch]"
+            return self.checkpoint(args[0], args[1] if len(args) > 1 else "", sc)
         if cmd == "export":
             st = "--state" in args
             args = [a for a in args if a != "--state"]
@@ -473,8 +517,17 @@ class Session:
             def path(n):
                 return os.path.join(sdir(self.name), "dump_%s.json" % n)
             if cmd == "dump":
-                json.dump({"%X" % a: v for a, v in snap().items()}, open(path(args[0]), "w"))
-                return "dumped %d bytes -> %s" % (sum(n for _, n in ranges), os.path.relpath(path(args[0]), ROOT))
+                name = args[0] if args else None
+                if not name:            # default name: d1, d2, ... (first free)
+                    k = 1
+                    while os.path.exists(path("d%d" % k)):
+                        k += 1
+                    name = "d%d" % k
+                json.dump({"%X" % a: v for a, v in snap().items()}, open(path(name), "w"))
+                return "dumped %d bytes as %r -> %s (keys: hex addresses without 0x; `diff %s` compares with now)" % (
+                    sum(n for _, n in ranges), name, os.path.relpath(path(name), ROOT), name)
+            if not args:
+                return "error: usage: diff A [B] [--range LO-HI] [--max N]"
             lo, hi, cap, rest = 0, 1 << 32, 80, []
             it = iter(args)
             for x in it:

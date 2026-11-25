@@ -8,20 +8,15 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 ## Open
 | Wish | Asked | Notes |
 |---|---|---|
-| `preview.py --timeline` prints the `--peek` values for every frame, not only the last (face stages, boss health per frame) | 1 | Doom 1.1 capture 2026-11-25 |
 | `shoot.py SLUG start --renumber`: rewrite `NN_` ids in play order and rename the files; today renumbered ids plus `--prune` delete the renamed shots and the set is reshot (the capture guide promises a rename) | 1 | Ultima III DOS start set 2026-11-22 |
 | `play.py peek` counts toward `call=`: helper scripts that peek inflate the budget counter (~5x); a peek that does not count, or a separate counter | 1 | Ultima I DOS start set 2026-11-22 |
 | `dis68k.py` for Amiga: disassemble a chip-RAM dump (`play.py dump`) at Amiga addresses, `--xref` with a branch-target scan (today it maps addresses as Mega Drive, FF....) | 1 | Dragonflight capture 2026-11-22 |
 | `play.py dump --bin`: write a raw binary dump (today JSON keyed by address) | 1 | Dragonflight capture 2026-11-22 |
 | Amiga: exact savestate restore (PUAE). A loaded state gives the same frame but game RAM drifts (Dragonflight on A500/A500OG/A500ECS; 10 bytes of slow RAM already 60 frames into the Kickstart boot). Found: the core restores at beam line 0, hpos 0, while our states are saved about 3 lines after the vsync (VHPOSR in the CHIP chunk, ignored by `restore_custom`); `cia_reset` (run by `custom_reset` during a restore) zeroes `kblostsynccnt`; CIA `tol`, BLTX, REFPTR and an INTREQ bit also come back different. Tried 2026-11-22: keep `kblostsynccnt`, and put the beam back (by running chips: double-counts CIA timers; by moving the counters): neither changed the drift in the crack intro, the keyboard fix made the Kickstart boot worse. Shots are unaffected (checkpoints are always rebuilt through the same chain); live play may roll differently from a replay | 1 | Dragonflight scout 2026-11-22 |
 | Research hosts for Amiga scouts: `thalion.exotica.org.uk` (Thalion manuals), `amiga.abime.net` (Hall of Light) not reachable from sessions | 1 | Dragonflight scout 2026-11-22 |
-| `play.py dump` without a name crashes ("list index out of range"): default a name or print the usage | 1 | Dragonflight scout 2026-11-22 |
 | Scout plan vs set list: `games/<platform>/<slug>/shots.txt` (scout plan) and `shots/main/shots.txt` duplicate each other and go stale; one source, or `shoot.py` warning when they differ | 1 | Wasteland capture 2026-11-22 |
 | `tools/c64vars.py SLUG ROUTE...`: the C64 BASIC variables (VARTAB 2D/2E, 7-byte entries, 5-byte floats) that change between routes; `find` for BASIC floats | 1 | Phantasie capture 2026-11-21 |
-| `preview.py`: `?` (extra frame) accepted inside a token (`X ?`), not only as a token of its own | 1 | Phantasie scout 2026-11-21 |
 | Shared module for series on one engine (Wizardry I-III on DOS and Apple II: `maps.py`, `roster.py`, `transfer.py`; survey / event scan / text scan for first-person RPGs: `scan.py`, `survey.py`, `eventscan`, `mapgrab`, `textscan`, `explore`; a position scan that retries a square with another wait when it lands in a fight; a per-step fight-free wait search for walks, `games/apple2/bards-tale-3/tools/safewalk.py`; top-down event-square survey from a RAM map: base, width, open values, Wasteland C64 `work/plan/wasteland/specials.py`) | 9 | 12 `maps.py`, 4 `roster.py`, 4 `transfer.py` live per game and differ by 30-60 lines. Needs the dumps to test against; do it at the next Wizardry or Might and Magic run |
-| `play.py checkpoint`: scratch checkpoints kept out of `checkpoints.txt` (`--scratch`), a replaced line stays in place instead of moving to the end | 3 | Megami Tensei scout, Wizardry II DOS scout, Might and Magic II scout |
-| Deeper `undo` (more than one level) | 3 | Pokémon Blue, Megami Tensei, Ultima III; a `checkpoint` before a risky step is the workaround |
 | `tools/walk.py SLUG FROM TO`: walking routes (reachability + key list) from a map decoder named in `game.json`: first-person wall maps and top-down tile maps (walkable tiles) | 4 | Might and Magic II DOS start set (per-run BFS script); Ultima II DOS start set 2026-11-22 (BFS over MAPX20); Ultima III DOS start set 2026-11-22 (BFS over the town file); Ultima I DOS start set 2026-11-22 (`games/dos/ultima/tools/walk.py`, people from RAM). Build before the next game-capture dispatch: build before the next game-capture dispatch |
 | `play.py text` / `preview.py --text` for graphics-mode text games (OCR of the game's 8x8 font, or the Z-machine's output stream) | 1 | Beyond Zork scout (640x200 graphics, no text to read) |
 | `settle` / `snap`: ignore a blinking text cursor (or a per-game mask) so "NOT settled" means something in cursor-driven games | 2 | Beyond Zork scout and capture (every frame reported) |
@@ -32,20 +27,16 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | 3D map reader per engine (entities, brush boxes, floor heights, reachability) as the first exploration step for 3D games | 1 | Quake capture (`games/dos/quake/tools/ents.py` meanwhile) |
 | 3D spot finder from the level data (player fits, floor, line of sight to a target) shared per engine | 1 | Quake main (`games/dos/quake/tools/qpos.py`); goes with the 3D map reader row |
 | `preview.py --cycle "TOKS" N`: repeat a key group and log the peeks per step (fight scan; `games/dos/wolfenstein-3d/tools/fightscan.py` meanwhile) | 1 | Wolfenstein 3D capture |
-| `shoot.py` set sheets in pages of about 50 shots (a 95-shot sheet is 1600x4028 and must be cut to be looked at) | 1 | Spear of Destiny capture |
 | Z80 disassembler like `dis6502.py` | 1 | Phantasy Star part 2 |
 | `sample` leaves the screen stale so `record` refuses; `record` taking leading tokens | 1 | Phantasy Star early game |
 | `"fmt": "bcd-le"` RAM watch (`set:...:bcd` already writes it) | 1 | Ultima III scout |
 | `intake.py` records a DOS ZIP's `dosbox*.conf` autoexec lines and cycles in `game.json` | 1 | Might and Magic II scout |
 | `preview.py --repeat TOKENS N`: a sheet of the route after 1..N repetitions | 1 | Sword of Vermilion scout (one more step per line) |
 | `play.py find` warns when nothing ran since the last narrowing (0 candidates without a hint); `preview.py --timeline` per route, not per call | 1 | Sword of Vermilion capture run 3 |
-| `play.py dump` JSON: zero-padded hex keys or a note in the output that keys are hex | 1 | Might and Magic II Apple II scout (read as decimal, several calls lost) |
 | `shoot.py --verify`/`--publish-only` take captions and categories from the work `shots.txt` when they differ from `index.json` (or warn); `preview.py --set` flags identical frames within an unshot plan | 1 | Wizardry II Apple II capture (second `recaption` pass; stairs-down = dark warp found only at shoot) |
-| `shoot.py` contact sheets for sets over 60 shots: 6 columns of half-size tiles, so one `Read` stays legible | 1 | Bard's Tale III Apple II capture |
 | `lenses.py`: a row that names a whole sequence set (`seq-NAME`) covers all its steps | 1 | Bard's Tale III Apple II sequences |
 | `dis68k.py`: hint when an address points inside an instruction or string (pointer searches off by a few bytes) | 1 | Sword of Vermilion capture run 3 |
 | `set:ADDR=N:bcd` follows the platform's byte order (big-endian on md; today little-endian unless told) | 1 | Sword of Vermilion capture run 4 |
-| `snap` warns when the route has `freeze:` before one long `wN` (freezes are applied between tokens) | 3 | the guide says `w10*N`; a warning would catch it |
 | Contact sheet labels when frame sizes are mixed (SNES hi-res rows) | 1 | Shin Megami Tensei run 1 |
 | Macros used by published shots change those routes when edited: store expanded routes in `index.json`, or refuse the edit | 2 | today a rule in the emulator guide (new macro name) |
 | `--model sgb` hangs on the SGB transfer screen (gbemu-cli handshake) | 1 | Pokémon Blue; capture in `dmg` |
@@ -57,6 +48,12 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 ## Done
 | Wish | Asked | Done |
 |---|---|---|
+| `play.py undo N` (stack of 10) | 3 | 2026-11-25 |
+| `play.py checkpoint --scratch` (work/scratch/, publish refuses shots on them) and in-place replace | 3 | 2026-11-25 |
+| `snap` warns about a long `wN` while values are frozen (`emu.long_waits_held`) | 3 | 2026-11-25 |
+| Contact sheets in pages of 50 shots (`SHEET_PAGE`) | 2 | 2026-11-25 (Spear of Destiny, Bard's Tale III asks) |
+| `preview.py --timeline` prints `--peek` at every frame; `X ?` = `X,?` | 1 each | 2026-11-25 |
+| `play.py dump` without a name (d1, d2 ...), output says keys are hex; `diff` without args prints usage | 1 each | 2026-11-25 |
 | `preview.py --peek` at every `?` frame | 2 | 2026-11-25 (Wolfenstein 3D scout and capture) |
 | `shoot.py --publish-only` / reindex take captions and categories from the set's shots.txt | 2 | 2026-11-25 `shoot.sync_list` (Wolfenstein 3D capture twice) |
 | `cachecheck.py --show-diff`: the differing address ranges between flat and cached state | 2 | 2026-11-25 `cachecheck.py --show-diff N` (Sword of Vermilion, Wolfenstein 3D) |

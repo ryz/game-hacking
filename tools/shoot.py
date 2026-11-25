@@ -24,7 +24,7 @@
                                                     deleting a line or renaming an id by hand): entries and files
 Checks a replay cannot make (--verify lists them, --publish refuses identical pictures, exit 4, unless
 --allow-duplicates): still shots with identical pixels (not in seq-* sets), captions over 80 characters. After publishing `main` the
-three design lenses are checked (tools/lenses.py). Contact sheets hold 100 shots: sheet.png, sheet2.png ...
+three design lenses are checked (tools/lenses.py). Contact sheets hold 50 shots: sheet.png, sheet2.png ...
   python3 tools/shoot.py GAME SET --model dmg       capture with another model (e.g. a DMG game also in CGB colours)
 
 Shot list lines: `id | category | caption | route` (route: tools/emu.py tokens; may start with @checkpoint).
@@ -60,7 +60,7 @@ CATEGORIES = ["boot", "title", "menu", "options", "cutscene", "gameplay", "hud",
 
 
 REGIONS = ["jp", "na", "eu"]     # game.json "region": where the registered dump was released (not its language)
-SHEET_PAGE = 100                 # shots per contact sheet; a bigger set gets sheet2.png, sheet3.png ...
+SHEET_PAGE = 50                  # shots per contact sheet (one Read stays legible); a bigger set gets sheet2.png ...
 SET_FILES = ("sheet.png", "strip.png", "steps.gif", "full.gif") + tuple(     # files about a whole set (area `set`)
     "sheet%d.png" % n for n in range(2, 21))
 CAPTION_MAX = 80                 # docs/capture-guide.md, Quality rules
@@ -543,6 +543,15 @@ def main():
         shutil.copyfile(lst, own)       # the set keeps the list it was shot from
     if a.publish_only:
         shots, a.publish = [], True     # skip the replay loop, go straight to the copy
+    if a.publish or a.publish_only:     # scratch checkpoints live in work/ only: a fresh container cannot replay them
+        full = E.read_table(lst, LIST) if a.publish_only else shots
+        uses = {s["id"]: game.scratch_used(s["route"]) for s in full}
+        uses = {k: v for k, v in uses.items() if v}
+        if uses:
+            print("not published: %d shot(s) start from scratch checkpoints (%s), e.g. %s; move the checkpoint into "
+                  "checkpoints.txt (play.py checkpoint NAME without --scratch) or route the shot from a committed one"
+                  % (len(uses), ", ".join(sorted({n for v in uses.values() for n in v})), ", ".join(list(uses)[:3])))
+            return 6
     sha = game.check_rom()
     bad = 0
     if a.set == "start" and not a.verify:

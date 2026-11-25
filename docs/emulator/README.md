@@ -128,7 +128,10 @@ python3 tools/play.py stop
    when the set already has the same picture under another id.
 4. After `goto` or `undo` the screen still shows an old frame: `snap` refuses until a `do` has run (`do settle`).
    `game.json` edits (macros, watches) are picked up by the next `do`, no restart needed.
-   `undo` is one level deep: before a risky sequence make a `checkpoint` (or `do` it in smaller steps).
+   `undo [N]` goes back N steps (`do`, `do!`, `record`; 10 kept). Exploration stops that should not be
+   committed: `checkpoint NAME "desc" --scratch` (work/scratch/, usable as `@NAME` in this container;
+   `shoot.py --publish` refuses shots built on them, and a committed checkpoint cannot start from one).
+   A checkpoint saved again under its name keeps its place in checkpoints.txt.
 5. Parallel work: `--name N` gives an independent session (one emulator each).
 6. **Never mash into a prompt.** `mash:a:N` happily types A's into a name-entry keyboard or picks a menu entry.
    Mash in short blocks (`mash:a:150,settle`) and look at the screenshot before a naming or Yes/No prompt.

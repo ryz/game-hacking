@@ -16,9 +16,9 @@ plan in shot-list format, preview them, fix what the sheet shows, then append th
 set's shots.txt and run `shoot.py GAME SET --only id,id`. One call shows what would take one `play.py do`
 and one look per route.
   ?                    token inside a route: take a frame here too (label `name ?1`, `?2`, ...); it is not part
-                       of the route
+                       of the route. Also after a token with a space: `a ?,w30 ?` = `a,?,w30,?`
   --timeline N[:STEP]  STEP defaults to 40 frames. The route is played without its final settle first.
-  --peek ADDR:LEN      (LEN decimal or 0x..) print these bytes (hex) at every `?` mark and after the last token of every route; several allowed
+  --peek ADDR:LEN      (LEN decimal or 0x..) print these bytes (hex) at every `?` mark, at every --timeline frame (`+K ADDR=..`) and after the last token of every route; several allowed
   --crop x0,y0,x1,y1   keep this part of every frame on the sheet (a message line, a status window)
   --scale N            enlarge the tiles (nearest neighbour); default 1 = native size
   --cols N             tiles per row (default 4); --page N tiles per sheet (default 24; then NAME_2.png ...)
@@ -58,7 +58,10 @@ def run(job):
     game_id, model, name, route, timeline, peeks, want_text = job
     try:
         game = E.Game(game_id)
-        toks = E.split(route)
+        toks = []
+        for t in E.split(route):                    # `X ?` = `X,?` (a mark glued to its token)
+            m = re.match(r"^(.*\S)\s+\?$", t)
+            toks += [m.group(1), "?"] if m else [t]
         rec = bool(toks) and E.rec_token(toks[-1]) is not None
         if rec:                                     # a clip: show the frame it starts on
             toks = toks[:-1]
@@ -104,10 +107,15 @@ def run(job):
             E.play(emu, game, ["settle"])
         if timeline:
             n, step = timeline
-            grab("%s +0" % name)
+            def at(k):
+                grab("%s +%d" % (name, k))
+                if peeks:
+                    info.append("+%d %s" % (k, " ".join("%s=%s" % (addr, bytes(emu.peek(int(addr, 16), m)).hex())
+                                                        for addr, m in peeks)))
+            at(0)
             for i in range(1, n + 1):
                 E.play(emu, game, ["w%d" % step])
-                grab("%s +%d" % (name, i * step))
+                at(i * step)
             info.append("frame +K = %s,w%d*(K/%d),!" % (",".join(t for t in toks if t != "?"), step, step))
         else:
             a = emu.screen()

@@ -201,3 +201,31 @@ def test_shoot_sync_list_takes_captions_from_shots_txt(tmp_path):
     assert shoot.sync_list(str(tmp_path)) == 1
     s = json.loads((tmp_path / "index.json").read_text())["shots"]
     assert (s[0]["caption"], s[0]["category"]) == ("new caption", "battle") and s[1]["caption"] == "same"
+
+
+def test_long_waits_while_values_are_held():
+    import emu
+    toks = ["freeze:C0=01", "w5", "w60", "w10*6", "unfreeze", "w90", "gs:010203", "w11"]
+    assert emu.long_waits_held(toks) == ["w60", "w11"]
+
+
+def test_scratch_checkpoints(tmp_path, monkeypatch):
+    import json, emu
+    g = tmp_path / "games" / "gb" / "demo"
+    g.mkdir(parents=True)
+    (g / "game.json").write_text(json.dumps({"platform": "gb", "rom": "rom/demo.gb"}))
+    (g / "checkpoints.txt").write_text("title | title | pow,start\n")
+    monkeypatch.setattr(emu, "GAMES", str(tmp_path / "games"))
+    monkeypatch.setattr(emu, "WORK", str(tmp_path / "work"))
+    game = emu.Game("gb/demo")
+    assert game.scratch_used("@title,a") == []
+    sf = game.scratch_file()
+    os.makedirs(os.path.dirname(sf))
+    open(sf, "w").write("probe | try | @title,b\ndeeper | more | @probe,a\n")
+    assert [c["name"] for c in game.checkpoints()] == ["title", "probe", "deeper"]
+    assert [c["name"] for c in game.checkpoints(scratch=False)] == ["title"]
+    assert game.scratch_used("@deeper,w5") == ["deeper", "probe"]
+    assert emu.resolve(game, "@deeper") == ["pow", "start", "b", "a"]
+    open(sf, "a").write("title | clash | pow\n")
+    with pytest.raises(SystemExit):
+        game.checkpoints()

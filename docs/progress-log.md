@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-25 - Tooling: backlog wishes asked two or three times built
+- `play.py`: `undo [N]` (10 levels); `checkpoint --scratch` (work/scratch/<id>/checkpoints.txt, `@NAME` works in
+  the container; a committed checkpoint cannot start from one; `shoot.py --publish` refuses shots built on them,
+  exit 6); a checkpoint saved again keeps its line's place; `snap` warns about a long `wN` while `freeze:`/`gs:`
+  values are held and about scratch-based routes; `dump` without a name, hex-key note, `diff` usage.
+- `preview.py`: `--peek` values at every `--timeline` frame; `X ?` accepted as `X,?`.
+- `shoot.py`: contact sheets in pages of 50 shots (was 100): sets over 50 get sheet2.png when next rebuilt.
+- Tests: held-wait detection, scratch checkpoints. Live check on Doom (play session, snap, publish refusal, preview).
+
 ## 2026-11-25 - Doom (registered 1.1) vaulted, scouted and captured
 - Owner's 1.1 disk set rebuilt into `rom/doom.zip` (DEICE install unpacked) and pushed to the vault with the disks.
 - Scout: 1.1 differs from 1.9 in map data (E1M1/4/5/8), packed structs, `-warp` needing `-devparm`, the reduced
