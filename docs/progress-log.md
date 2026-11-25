@@ -6,6 +6,9 @@ Append-only, newest first.
 - Spear of Destiny: `start` 24 (honest floor 1 to the save), `main` 95 (all five bosses, the Spear, a real fight
   with face stages to death, the Angel killed (HP poke then real fire), the full ending with You Win! and ryz in
   the high scores). Coordinator cold verify 24/24, 95/95.
+- Doom follow-up: the bosses took no damage because the firing spot was inside a solid column (not a teleport
+  ghost, as the coordinator had guessed); from proper spots all three were killed for real: `main` 65 with the
+  E2-E4 deaths, end texts and pictures. Cold verify 65/65.
 - The Ultimate Doom: fully deterministic on DOSBox Pure (cachecheck "same" incl. memory); `start` 33 (honest E1M1
   to the E1M2 save), `main` 56 (eight weapons, monsters, power-ups, barons, Cyberdemon, Spider, five face bands in
   a real fight, real deaths, E1 end). Cold verify 33/33, 56/56. Open: E2-E4 end texts (bosses shot from

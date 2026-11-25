@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-25 - The Ultimate Doom (DOS 1.9, `main` follow-up: boss deaths and E2-E4 end texts)
+- Task: kill the Cyberdemon and both Spider Masterminds for real and capture the E2-E4 end texts, after testing
+  the coordinator's teleport-ghost hypothesis.
+- Worked: thinker-list health, a whole-memory "what fell" diff, the rocket's stopping point, then the WAD lines
+  there found the real cause in ~15 calls: the firing spot was inside a solid column (one-sided lines facing out,
+  open-looking from inside). `dplan.autospot` spots with clipping back on: health dropped on the first BFG ball.
+  `tools/bosskill.py`; `preview --timeline 16:250` for death, text and end picture on one sheet.
+- Friction: `wadmap.py --at` reports the surrounding sector for a point inside a solid column; the previous run and
+  the coordinator misread the muzzle bursts as a memory ghost; `dnav go` says "stuck" when the level has ended.
+- Proposed rule change: dos.md: find where the projectile stopped and list the map lines before blaming memory;
+  backlog: `wadmap --at` warns inside solid structure, `dnav go` stops on a state change.
+- Corrected: the coordinator's hypothesis (teleport ghost) was wrong; the dos.md note it caused is rewritten.
+  Coordinator: cold verify main 65/65, lenses clean, nine new frames looked at. 74 of 70 calls (slightly over).
+- Status: dos.md note rewritten (platform fact); the open lesson "stop after two variants" now says to look for a
+  position problem first; both tool wishes are game-specific (Doom tools): playbook open questions.
+
 ### 2026-11-25 - The Ultimate Doom (DOS 1.9, sets `start` and `main`)
 - Task: `start` (33) and `main` (56: weapons, monsters, power-ups, bosses, faces, death, E1 end), lenses, playbook.
 - Worked: a spec-to-plan generator (`tools/dplan.py`: teleport or walk to a spot, wait for a monster in line of

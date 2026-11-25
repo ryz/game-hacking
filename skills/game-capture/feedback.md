@@ -37,5 +37,6 @@ Tool wishes are not listed here: `docs/backlog.md`.
   light a torch/spell before waiting longer (Dragonflight, 2026-11-22).
 - **Boss hit points in real-time games:** snapshot memory, fire, keep the 2-byte words that keep falling; search under
   the same boot route the shots use (actor order differs between `tedlevel` and a menu start) (Spear of Destiny, 2026-11-25).
-- **A boss whose health does not move after visible hits:** stop after two variants and report it as a tool or state
-  problem (e.g. a teleport ghost), not a need for more ammunition (Doom, 2026-11-25, ~15 calls).
+- **A boss whose health does not move after visible hits:** stop after two variants; find where the projectile
+  stopped and what map lines are there (Doom E2M8: the firing spot was inside a solid column), not more ammunition
+  (Doom, 2026-11-25).

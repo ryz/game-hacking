@@ -83,8 +83,10 @@ replay (input timing not in the core's savestate): make checkpoint routes flat (
 navigator that plays goals with memory feedback (Quake `tools/qpos.py`, Doom `tools/dnav.py`) before routing by
 hand; a navigator stops when health reaches 0; a teleport into a spot that does not fit is undone by the game.
 In-game shot lines of real-time games end in `!`: a final settle clears timed messages and finishes counters.
-A position written into memory can leave a ghost of the player behind (Doom: missiles burst at the muzzle right
-after such a teleport): test a projectile before shooting action from a teleported spot, or walk the last steps.
+Missiles that burst at once or bosses that take no damage: first find where the projectile stopped (its object
+position) and list the map lines there. A no-clipping walk or a teleport can end inside solid structure that
+looks open from inside (Doom E2M8, 2026-11-25; an earlier note here blamed a "teleport ghost": wrong). Use a spot
+finder's spots and turn clipping back on before firing.
 Doom (2026-11-25) is fully deterministic here: cachecheck "same" with memory, so any `@checkpoint` route works.
 Wolfenstein 3D (2026-11-25): even flat checkpoint routes differ from the flat replay in actor memory after a
 load (`cachecheck --show-diff N` shows where); shots built on such a checkpoint still reproduce (a miss reloads
