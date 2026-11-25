@@ -8,7 +8,7 @@ is marked **1.1**.
 
 ## 1. Conventions
 - **Input:** keyboard only here. Arrows move, Ctrl fires, Space uses, Tab maps, Esc opens the menu, F1 the
-  order page and then the help page, `=`/`-` resize the view (help page `help_keys`) **(verified)**.
+  order page and then the help page, `=`/`-` resize the view (help page `readthis_help`) **(verified)**.
 - **Layout (1.1):** the game starts with a **reduced 3D window inside a green stone border** above the status
   bar (`view_reduced`, start `07_e1m1_start`); one `=` gives the full-width view over the status bar that 1.9
   uses by default (start `08_view_full`) **(verified)**. All other in-game shots use the full-width view.
@@ -32,7 +32,7 @@ is marked **1.1**.
 | Episode menu | choose episode | **1.1:** three episodes (no Thy Flesh Consumed) | up/down, Enter | | skill menu | `menu_episode`, start `04_episode` |
 | Skill menu | choose difficulty | **1.1:** four skills, no Nightmare!; Hurt me plenty preselected | up/down, Enter | skull moves | first map | `menu_skill`, `menu_skill_itytd`, `menu_skill_hntr`, `menu_skill_uv`, start `05_skill` |
 | Read This! / F1 | order and help | **1.1:** page 1 the order page ("To order DOOM: call 1-800-IDGAMES ... $40.00"), Enter: page 2 the help page | Enter, Esc | | menu / play | `readthis_order`, `readthis_help`, start `26_help_order`, `27_help_keys` |
-| Help page in play | keys | function keys, automap keys, weapons, movement | any key | | play | `help_keys` |
+| Help page in play | keys | the same full-screen page as Read This! page 2 (identical picture) | any key | | play | `readthis_help` |
 | Quit prompt | leave the game | a joke line ("don't leave yet -- there's a demon around that corner!"), press y | Y / other | | DOS or back | `quit_prompt` |
 | Load Game | load | six slots | Enter | | play | `load_empty` |
 | Save refused | save outside a game | "You can't save if you aren't playing! press a key." | any key | | menu | `save_refused` |
