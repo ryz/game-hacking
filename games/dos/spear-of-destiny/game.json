@@ -97,6 +97,6 @@
     }
   },
   "edition": "DOS 1.4-generation build (Gravis GamePad option, debugmode, no copy-protection quiz shown), FormGen release from the Activision Wolfenstein 3D bundle (m1/Spear.exe, .SOD data); same ZIP as dos/wolfenstein-3d; bundle config binds W/A/S/D",
-  "work": "scouted 2026-11-25: boot, model svga-15000, WASD controls, debugmode/tedlevel/MLI/teleport, RAM map, map reader, 11 flat checkpoints (honest floor 1 to the first save), save 01_start; start (22) and main (27) plans previewed; not captured",
-  "open": "capture sets start and main; Angel of Death kill, ending and victory totals, death/high score, secret floors, Spear-only objects, more enemy close-ups; mission packs (Return to Danger, Ultimate Challenge) not in this ZIP"
+  "work": "captured 2026-11-25: start 24 (honest floor 1 to the first save), main 95 (menus, env views of 14 floors, four weapons, enemies, all five bosses, Spear, real fight to death, Angel killed, ending and You Win!, high score ryz); lenses written",
+  "open": "SS and dog close-ups, key doors, pickups (25-clip box, one-up), secret elevator use, floors 9/12/14 env views, game over by losing all lives; mission packs (Return to Danger, Ultimate Challenge) not in this ZIP"
 }

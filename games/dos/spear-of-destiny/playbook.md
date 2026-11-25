@@ -40,9 +40,26 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Traps:** doors close again after a few seconds and `play.py`'s settle can let them shut; Space on an open
   door closes it; doorways need the player centred (x or y = n.5) or walking slides along the frame; a `do`
   that settles in a fight gives the enemy free shots (use `do!`).
-- **Open:** killing the Angel of Death (120 short presses of `ctrl:10` with ammo frozen did not), the ending
-  text, death/game over and high-score entry, the secret floors' entrances by play, LevelRatios over 20 floors
-  and the victory totals screen. Nothing shot yet.
+- **Sets (capture 2026-11-25):** `start` 24 shots (honest, sign-on to Save Game), `main` 95 shots, both
+  verified from an empty cache and published; routes in `shots.txt`. Shot routes are flat macro chains.
+- **Recipes (main):** Angel of Death hit points at **477EA** (1650 on skill 2) under `DNEW` + Tab+W warp 21
+  (macro `AOD`); `poke:477EA=4000` then `ctrl:30,ctrl:30` kills it with real fire. `AODWIN` = AOD + plausible
+  totals (`SODRATIOS`, score 283150) + kill + wait to B.J. collapsed; then `w300` = You Win!, each
+  `space,w200` one end page (9 pages, then THE END, then High Scores name entry at the 11th: `type:ryz`).
+  Under `LEVEL:20` (tedlevel) the same poke did not kill (other actor order): use AOD.
+- **You Win! averages divide by 14** (the regular floors), total time sums all 20 records: `SODRATIOS` fills
+  floors 1-4, 6-9, 11-15, 17 and leaves boss/secret floors zero (66:12, 67/39/60%).
+- **Real fight (face stages):** `TGFIGHT` (LEVEL:4, MLI, TP before Trans Grosse, `ctrl:12`) + `TF*N`
+  (`TF` = `ctrl:4,s:3,w10`): health per N 8:100, 9:86, 10:66, 11:52, 12:35-50, 18:7, 19:0 (death), 22-25
+  dissolve, 28 floor restart. Scan variants with `python3 games/dos/spear-of-destiny/tools/fightscan.py OUT
+  "PREFIX" "CYCLE" N`.
+- **Enemy close-ups:** officer floor 6 TP (6.5,25.5) north; mutant floor 13 TP (43.5,11.5) west; both stand
+  still until shot. Spectre floor 21 TP (27.5,5.5) east. Env views out of the start elevator:
+  `LEVEL:N,space,w50,w:30,a:51,w30`.
+- **Tally with real ratios:** `DNEW`, TP (45.5,27.5) west to the floor 1 switch, `set:` kills 4547E, secrets
+  4547A, treasure 4547C, time 45486 (tics), then `space`.
+- **Open:** SS and dog close-ups, gold/silver key doors, pickups (25-clip box, one-up), secret elevator use,
+  floors 9, 12, 14, death with no lives left (game over by lives), the Death Knight/Ubermutant/Barnacle kills.
 
 ## Identity
 | Field | Value |
@@ -100,17 +117,13 @@ officer, dog, mutant (codes identical). Spear-only items: 25-clip box, marble pi
 Tally after each floor (verified): bonus, time, par, kill/secret/treasure ratios; extra life at 40000.
 
 ## Shot plan
-`shots.txt` holds both plans with previewed routes. `start` (22 lines, honest, previewed together:
-`work/preview/dos/spear-of-destiny/start.png`): sign-on, PC-13, title, menu, skill, Get Psyched, floor 1
-start, pushwall secret, ammo room, three guard fights with the face going from 100% to 16%, treasure room,
-in-game menu, save. Tune: `08_pushwall` (pick a mid-slide frame with `--timeline`), `18_treasure_taken` (faces
-a wall: add a turn). `main` first part (27 lines, previewed): boot, title, credits, menus, floor 1, HUD,
-env views (floors 4, 8, 11, 19, 20), four weapons firing on floor 6, all five bosses and the Spear, the Angel's
-fireball, a tally, debug messages.
-Still to plan for `main`: Spear-specific objects (25-clip box, truck, marble pillar), dogs/SS/officer/mutant
-close-ups (sodmap `--objects` for spots), silver/gold key doors, elevator switch, secret elevator, death and
-game over (`poke:45462=0000` lives 0, `poke:45464=0100` health 1, as in Wolfenstein), high-score name ryz, the
-Angel killed, the ending text and victory totals, env views of floors 1-3, 6, 9, 13-17, 21.
+Done 2026-11-25 (capture): `start` 24 (sign-on, PC-13, title, menu, skill, floor 1 pushwall secret, three
+guards, treasure room, save), `main` 95: boot, title, credits, high scores, all menus, four skills, first
+control, HUD, env views of floors 2-4, 7, 8, 11, 13, 15, 17, 19-21, truck, elevator, tally, four weapons,
+officer and mutant hit and dying, spectre, all five bosses in action (Trans Grosse killed), the Spear and its
+pickup, the Angel of Death fight and death, a real fight through the face stages to death and restart, the
+victory animation, You Win! with plausible totals, all end pages, high-score entry ryz, cheat and debug.
+Not shot: see Read first "Open".
 
 ## Strategy and walkthrough notes
 - Floor 1 honest route (macros F1...): north 3 tiles, west, Space on the wall at (30,56): pushwall, 6 clips
@@ -152,7 +165,8 @@ Gamestate is Wolfenstein's + 0xB40 (verified by the starting values and the watc
 | 4547A / 4547C / 4547E | 2 each | secrets / treasures / kills found | verified (secret 1, treasure 8) |
 | 45480 / 45482 / 45484 | 2 each | totals (floor 1 skill 2: 5 / 45 / 18) | verified |
 | 45486 | 4 | play time in tics | inferred |
-| 45796 | 20 x 10 | per-floor tally records (kill %, secret %, treasure %, time in s) | verified for floor 1 (time 4 after Tab+E); 20 records per the engine source for Spear, not checked |
+| 45796 | 20 x 10 | per-floor tally records (kill %, secret %, treasure %, time in s, 4 bytes) | verified: You Win! sums all 20, divides the ratios by 14 (macro SODRATIOS) |
+| 477EA | 2 | Angel of Death hit points (1650 on skill 2) after `AOD` (DNEW + warp 21) | verified (poke 0x40 + real fire kills it) |
 | 475B2 / 475B6 | 4 each | player x / y, 16.16 fixed tiles | verified |
 | 475BA / 475BC | 2 each | player tile x / y | verified (teleports) |
 | 475CC | 2 | player angle, degrees, 0 east, 90 north | verified |
@@ -178,6 +192,7 @@ No web research this run (budget spent on verification; the engine facts were ch
 ## Open questions
 - Exact build (Spear 1.4 by engine features; FormGen/Activision re-release not matched by EXE size).
 - Why the quiz code is present but silent (a later build that skips it, or a condition not met?).
-- Killing the Angel of Death: health and the fight pattern; what comes after (ending text, victory totals).
+- ~~Killing the Angel of Death~~: answered 2026-11-25 (hit points 477EA, ending sequence in Read first).
+- Why the lives counter stayed at 3 after the death in `TGFIGHT` (design/findings.md).
 - Where the secret floors 19/20 return to after their exit; ghosts (spectres) on floor 21 not seen yet.
-- LevelRatios: 20 records assumed from the source, only record 1 seen.
+- ~~LevelRatios~~: 20 records, averages divided by 14 (verified 2026-11-25).
