@@ -63,7 +63,7 @@ Run from the repo root (how to drive any game: `docs/emulator/README.md`, then t
 - Setup: `sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga|c64]` builds one emulator (9-90 s; backends, what a
   game file is and what is not supported per platform: `docs/status.md`, "Platforms"). Amiga Kickstart ROMs go
   into `rom/kickstart/` (never committed).
-- Vault (private game data): `python3 tools/vault.py push GAME [PATH ...] --booted "title screen" [--frames N]`, `pull GAME|--all`, `list`.
+- Vault (private game data): `python3 tools/vault.py check GAME [--route TOKS]` (boot check alone: look at its sheet), then `push GAME [PATH ...] --booted "what the sheet showed" [--route TOKS] [--frames N]`, `pull GAME|--all`, `list`.
 - Register a ROM: `python3 tools/intake.py ROM [--slug NAME] [--region jp|na|eu] [--patch PATCH[:headered|unheadered] ...]` -> `games/<platform>/<slug>/` +
   `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`; 6502 code:
   `python3 tools/dis6502.py SLUG BANK ADDR [N] [--bank-kib 8]` (NES) or `SLUG --route @cp ADDR [N]` (live memory, Apple II); 68000 code: `python3 tools/dis68k.py SLUG ADDR [N]`,

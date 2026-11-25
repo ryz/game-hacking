@@ -1,0 +1,31 @@
+{
+  "slug": "wolfenstein-3d",
+  "title": "Wolfenstein 3D (DOS)",
+  "platform": "dos",
+  "region": "na",
+  "model": "svga-7800",
+  "rom": "rom/wolfenstein-3d.zip",
+  "sha1": "5fc240b5631acc48da75724db9f69ef2eed2bd93",
+  "crc32": "37c56b96",
+  "size": 3032886,
+  "header": {
+    "files": 27,
+    "programs": [
+      "launcher/cwsdpmi.exe",
+      "launcher/launch.exe",
+      "launcher/start.bat",
+      "m1/Spear.exe",
+      "wolf3d.exe"
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}

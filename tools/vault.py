@@ -5,6 +5,8 @@ the private repository ryz/game-hacking-r, so a fresh session can restore what t
                                                           smoke-test GAME's ROM, then copy its data from rom/ into
                                                           the vault, commit, push
   python3 tools/vault.py push system/PLATFORM PATH ...    platform files (Amiga Kickstarts: rom/kickstart/...)
+  python3 tools/vault.py check GAME [--route TOKS] [--frames N]  the boot check alone (nothing pushed): look at its
+                                                          sheet first, then push with what it showed as --booted
   python3 tools/vault.py pull GAME|system/PLATFORM|--all  put the vault's files back where the tools expect them
   python3 tools/vault.py list                             what the vault holds
 
@@ -310,12 +312,18 @@ def main():
     p.add_argument("--route", help="tokens played after power-on, before the check counts pictures (a game that "
                    "waits at a menu: DOSBox Pure's program menu, a still title); `!` takes a picture at that point (a text "
                    "game that waits for typing: the answers count as pictures)")
+    c = sub.add_parser("check", help="the boot check only, nothing pushed: look at the sheet, then push with --booted")
+    c.add_argument("game")
+    c.add_argument("--frames", type=int, default=3600)
+    c.add_argument("--route")
     p = sub.add_parser("pull")
     p.add_argument("game")
     p.add_argument("--force", action="store_true")
     sub.add_parser("list")
     a = ap.parse_args()
-    if a.cmd == "push":
+    if a.cmd == "check":
+        smoke(a.game, frames=a.frames, **({"route": a.route} if a.route else {}))
+    elif a.cmd == "push":
         push(a.game, a.paths, a.message, booted=a.booted, frames=a.frames, route=a.route)
     elif a.cmd == "pull":
         pull(a.game, force=a.force)
