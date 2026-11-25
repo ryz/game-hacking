@@ -39,9 +39,17 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   Left Shift+Alt+Backspace in play = "Debugging keys are now available!", then Tab+G god, Tab+W warp (type the
   floor number, Enter), Tab+I free items (score 100000, lives 5: unrealistic, prefer pokes), Tab+F coordinates,
   Tab+E end the floor (tally; under `tedlevel` it quits to DOS). MLI (hold M+L+I) needs no debug mode.
-- **Plans:** `shots.txt` holds the `main` plan (active lines) and the `start` plan (`#start ` lines, 28 shots,
-  all previewed). Open: other enemy close-ups (mutant), bosses 2-6, keys/locked doors, elevator, treasure,
-  death and game over, env views per episode.
+- **Sets (capture 2026-11-25):** `start` 30 shots, `main` 64 shots, both verified from an empty cache and
+  published; routes in `shots.txt` (main lines active, `#start ` lines). Shot routes are flat macro chains
+  (LEVEL/DNEW + GOD + MLI + TP), 20 s for `start`, about a minute for `main`.
+- **Recipes that worked (main):** wake a teleported boss by firing (`ctrl:12`), it ignores you otherwise;
+  pick action frames with `?` frames in preview (`ctrl:4,?,ctrl:4,?...` for held fire); Hans dies to
+  `ctrl:300` of chain gun (ammo 99 -> 49); episode end = `DNEW:w1,tab+w:10,w60,type:9\n,w400` (warp to floor 9
+  keeps the game going; under `LEVEL:8` = tedlevel the end quits to DOS) + kill Hans + `poke:44928=0100` (gold
+  key) + TP south of the gold door (34.5,10.5), Space, walk, TP (33.5,8.5) north onto the exit tile (33,7).
+  Death/high score: `poke:44922=0000,poke:44924=0100` (no lives, 1% health) and `set:4491A=12650:4` after a shot
+  wakes the hall guard; High Scores name entry 560 frames later. Tally values: `set:` kills 4493E, secrets
+  4493A, treasure 4493C, time 44946 (tics) before Space on the switch.
 - **No "Read This!"** in this build (GT/Activision 1.4): the help screens are not reachable from the menu.
 
 ## Identity
@@ -97,8 +105,11 @@ par, kill/secret/treasure ratios, verified). Score extra life every 40000 (games
 verified in RAM).
 
 ## Shot plan
-See `shots.txt` (two plans). `start`: 28 lines, previewed. `main`: 20 previewed lines (boot, title, menus,
-four weapons, dogs, SS, officer, Hans Grosse, tally, cheats, debug screens) plus a todo list.
+Done 2026-11-25 (capture): `start` 30 (sign-on to Save Game), `main` 64: boot, title, credits, high scores,
+demo, all menus and options, first control, HUD, env views from all six episodes, four weapons firing,
+guard/dog/SS/officer/mutant, damage, death, high-score entry ryz, all six bosses, treasure, gold key and door,
+elevator, tally, E1 victory and end text, cheats and debug. Not shot: silver key door, food/extra life,
+secret floors, Hitler's ghosts, face damage stages.
 Reach: `LEVEL:N` + `TP:` for any enemy or room; bosses from `LEVEL:8/18/28/38/48/58` (map index).
 
 ## Strategy and walkthrough notes
@@ -135,7 +146,7 @@ Same addresses every boot with `BOOT` (DOS loads the game at the same place); wi
 | 44922 | 2 | lives | verified |
 | 44924 | 2 | health (poke shows on the HUD only when it changes) | verified |
 | 44926 | 2 | ammo | verified |
-| 44928 | 2 | keys (bits) | source (gamestate layout) |
+| 44928 | 2 | keys (bit 0 gold, bit 1 silver) | verified (poke 01 opened the E1M9 gold door) |
 | 4492A / 4492C / 4492E | 2 each | best weapon / weapon / chosen weapon (0 knife .. 3 chain gun) | verified (1 -> 2 at the machine gun) |
 | 44938 | 2 | episode (0-5) | inferred |
 | 4493A / 4493C / 4493E | 2 each | secrets / treasures / kills found | verified (secret 1, kills 3) |
@@ -167,6 +178,7 @@ reach the same frame and position but differ in actor memory from the flat repla
 ## Open questions
 - Exact retail identity of the EXE (Activision 1.4 by the sign-on; the EXE size 108779 not matched to a list).
 - Shift (run) and Alt (strafe) not tested in a free corridor.
-- Mutant close-up position (E2M1), bosses 2-6, elevator, locked doors, treasure pickup, death/game over,
-  high-score entry, episode end text: not routed yet.
+- ~~Mutant close-up, bosses 2-6, elevator, locked doors, treasure pickup, death/game over, high-score entry,
+  episode end text: not routed yet.~~ All routed and shot 2026-11-25 (see Read first, Recipes). E2M9 has
+  mutants standing at (28,25) and (34,25): the close-up spot.
 - Why a state load changes the actors' memory (timer phase?): a backend question for `docs/backlog.md`.

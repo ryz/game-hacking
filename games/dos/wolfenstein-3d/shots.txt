@@ -1,41 +1,77 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# Two plans in this file (scout 2026-11-25, every line previewed unless marked "# todo"):
+# Two plans in this file (scout 2026-11-25; capture 2026-11-25: both sets published, 64 + 30 shots, verified):
 #   set main:  the active lines below (debug parameters, MLI, god mode and teleports allowed)
-#   set start: the lines prefixed "#start " (honest play, flat routes, no @checkpoint: see playbook "Determinism").
+#   set start: the lines prefixed "#start " (honest play, flat routes).
 #              Copy them with: sed -n 's/^#start //p' games/dos/wolfenstein-3d/shots.txt > work/shots/dos/wolfenstein-3d/start/shots.txt
 # Copy main lines to work/shots/dos/wolfenstein-3d/main/shots.txt before shoot.py; keep the "!" on in-game lines.
 #
 # ---- set main ----
-signon | boot | id sign-on: Activision, available memory, detected devices, Press a key | BOOT,w200
-title_screen | title | Title picture | TITLE
+signon | boot | Sign-on: id and Activision logos, memory, devices found, Press a key | BOOT,w200
+title_screen | title | Title picture: Wolfenstein 3-D, B.J. Blazkowicz and a guard | TITLE
 credits_id | credits | id Software credits page of the attract loop | TITLE,w1100
-high_scores | menu | High Scores: the id staff, E1/L1, 10000 each | TITLE,w1300,w150*4,!
-demo | gameplay | Attract demo running with the "Demo" banner | TITLE,w1300,w150*10,!
-menu_options | menu | Options menu | MENU
-menu_episodes | menu | Which episode to play? The six episodes | MENU,enter,w120
-menu_difficulty | menu | How tough are you? Four skills with faces | MENU,enter,w120,enter,w120
-weapon_knife | battle | Knife drawn, a guard in the hall | NEWGAME,E1HALL,1,w20,ctrl:6,!
-weapon_pistol | battle | Pistol shot at a guard | NEWGAME,E1HALL,a:8,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,!
-weapon_machine_gun | battle | Machine gun firing at a guard | NEWGAME,E1HALL,MLI,a:8,3,w20,ctrl:8,!
-weapon_chain_gun | battle | Chain gun firing at a guard | NEWGAME,E1HALL,MLI,a:8,4,w20,ctrl:12,!
-enemy_dogs | battle | E1M1: two guard dogs run at the player | LEVEL:0,GOD,TP:0080330000802C00:33002C00:0000,w40,!
+high_scores | menu | High Scores of the attract loop: the id staff, E1/L1, 10000 each | TITLE,w1300,w150*4,!
+demo | gameplay | Attract demo on floor 38: bodies in a yellow-stone corridor, health 40% | TITLE,w1300,w150*8,w30*10,w300,w20*5
+menu_options | menu | Options menu before a game: New Game, Sound, Control, Load Game | MENU
+menu_episodes | menu | Which episode to play? The six episodes with their pictures | MENU,enter,w120
+menu_difficulty | menu | How tough are you? Four skills, Bring 'em on! chosen, with its face | MENU,enter,w120,enter,w120
+options_sound | options | Sound menu: sound effects, digitized sound and music devices | MENU,down,enter,w60
+options_control | options | Control menu: mouse, joystick, Gravis GamePad, customize | MENU,down*2,enter,w60
+menu_load | save | Load Game: ten empty slots | MENU,down*3,enter,w60
+options_view | options | Change View: arrows size the 3D window | MENU,down*4,enter,w60
+menu_quit | menu | Quit asks: For guns and glory, press N. For work and worry, press Y | MENU,down*7,enter,w60
+e1m1_start | gameplay | E1M1: first control, a steel door ahead, a dead guard on the floor | NEWGAME
+hud | hud | Status bar after MLI: chain gun, 99 ammo, both keys, health 100% | NEWGAME,MLI,4,w30
+env_e1m3 | gameplay | E1M3: grey stone corridor with a steel door at the end | LEVEL:2,w30
+env_e1m5 | gameplay | E1M5: blue stone room, a steel door under a ceiling light | LEVEL:4,w30
+env_e2m1 | gameplay | E2M1: long corridor of yellow-veined stone | LEVEL:10,w30
+env_e3m1 | gameplay | E3M1: grey stone hall with eagle banners and potted trees | LEVEL:20,w30
+env_e3m5 | gameplay | E3M5: large grey blocks, a swastika banner ahead | LEVEL:24,w30
+env_e4m1 | gameplay | E4M1: grey brick hall lined with white pillars | LEVEL:30,w30
+env_e4m6 | gameplay | E4M6: dark blue stone, a steel door in the distance | LEVEL:35,w30
+env_e5m1 | gameplay | E5M1: blue skull walls, steel door between two plants | LEVEL:40,w30
+env_e5m6 | gameplay | E5M6: brown cave rock with blood stains | LEVEL:45,w30
+env_e6m6 | gameplay | E6M6: wood panelling with gold crosses, a steel door | LEVEL:55,w30
+weapon_knife | battle | Knife stab at a mutant in E2M9 | LEVEL:18,GOD,MLI,TP:00801C0000801A00:1C001A00:5A00,1,w10,ctrl:3,w8*2,!
+enemy_mutant_fire | battle | A mutant fires the gun in its chest | LEVEL:18,GOD,MLI,TP:00801C0000801A00:1C001A00:5A00,1,w10,ctrl:3,w8*4,!
+weapon_pistol | battle | Pistol fires at a mutant: muzzle flash | LEVEL:18,GOD,MLI,TP:00801C0000801C00:1C001C00:5A00,2,w10,ctrl:3,w8,!
+enemy_mutant_dies | battle | The mutant falls: score 700 | LEVEL:18,GOD,MLI,TP:00801C0000801C00:1C001C00:5A00,2,w10,ctrl:3,w8*4,!
+weapon_machine_gun | battle | Machine gun firing at SS in the E1M2 cross room | LEVEL:1,GOD,MLI,TP:0080100000800300:10000300:0000,3,w10,ctrl:4*3,!
 enemy_ss | battle | E1M2: SS and guards in the cross room | LEVEL:1,GOD,MLI,2,TP:0080100000800300:10000300:0000,w30,!
-enemy_officer | battle | E5M1: an officer in white between two SS, chain gun firing | LEVEL:40,GOD,MLI,TP:00802C0000801C00:2C001C00:B400,w30,ctrl:10,w5,!
-boss_hans | boss | E1M9: Hans Grosse behind the door, chain gun firing | LEVEL:8,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:30,!
-tally_floor1 | system | Floor 1 completed: bonus, time, par, ratios (debug Tab+E) | DNEW:w1,tab+e:10,w200,!
+weapon_chain_gun | battle | Chain gun firing at an officer between two SS in E5M1 | LEVEL:40,GOD,MLI,TP:00802C0000801C00:2C001C00:B400,w20,ctrl:4*3,!
+enemy_officer_dies | battle | The officer falls: score 400 | LEVEL:40,GOD,MLI,TP:00802C0000801C00:2C001C00:B400,w20,ctrl:4*6,w10*2,!
+enemy_dogs | battle | E1M1: two guard dogs run at the player | LEVEL:0,GOD,TP:0080330000802C00:33002C00:0000,w40,!
+enemy_guard_fires | battle | E1M1 hall: a guard turns and fires at the player | NEWGAME,E1HALL,a:8,ctrl:6,set:4491A=12650:4,poke:44922=0000,poke:44924=0100,w40*2,!
+damage_flash | battle | Hit: the screen flashes red, health 0% | NEWGAME,E1HALL,a:8,ctrl:6,set:4491A=12650:4,poke:44922=0000,poke:44924=0100,w40*3,!
+death_fizzle | gameover | Death: the view dissolves into red | NEWGAME,E1HALL,a:8,ctrl:6,set:4491A=12650:4,poke:44922=0000,poke:44924=0100,w40*5,!
+highscore_entry | gameover | Out of lives: High Scores, new entry at the top with 12650 | NEWGAME,E1HALL,a:8,ctrl:6,set:4491A=12650:4,poke:44922=0000,poke:44924=0100,w40*11,!
+highscore_ryz | gameover | Name entered: ryz, E1/L1, 12650 | NEWGAME,E1HALL,a:8,ctrl:6,set:4491A=12650:4,poke:44922=0000,poke:44924=0100,w40*14,type:ryz,w30,!
+boss_hans | boss | E1M9: chain gun at Hans Grosse behind the door | LEVEL:8,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:4*4,!
+boss_hans_hit | boss | Hans Grosse's chain guns hit: the screen turns red | LEVEL:8,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:4*6,w10*4,!
+boss_schabbs | boss | E2M9: chain gun fire into Dr. Schabbs at close range | LEVEL:18,GOD,MLI,TP:00801F0000801300:1F001300:5A00,w10,ctrl:12,!
+boss_schabbs_walks | boss | Dr. Schabbs in his blood-spattered coat comes at the player | LEVEL:18,GOD,MLI,TP:00801F0000801300:1F001300:5A00,w10,ctrl:12,w10*3,w20,!
+boss_hitler | boss | E3M9: Hitler in his mech suit fires both chain guns | LEVEL:28,GOD,MLI,TP:0080310000802100:31002100:5A00,w20,ctrl:12,w10*6,!
+boss_otto | boss | E4M9: Otto Giftmacher with his rocket launcher | LEVEL:38,GOD,MLI,TP:0080170000801200:17001200:0000,w20,ctrl:12,w10*5,!
+boss_gretel | boss | E5M9: Gretel Grosse walks up with two chain guns | LEVEL:48,GOD,MLI,TP:0080200000803100:20003100:0E01,w20,ctrl:12,w10*7,!
+boss_fett | boss | E6M9: General Fettgesicht fires, an officer at his side | LEVEL:58,GOD,MLI,TP:0080200000801500:20001500:B400,w20,ctrl:12,w10*5,!
+e1m9_exit | gameplay | E1M9 after Hans: the gold door open, daylight outside, score 5000 | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,!
+victory_run | ending | Episode 1 won: B.J. runs out of the castle | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,w60,w120,!
+victory_win | ending | You Win! Total time, kill, secret and treasure averages | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,w60,w120,w200,w300,!
+episode_end_text | ending | Congratulations! Episode 1 end text, page 1 of 2 | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,w60,w120,w200,w300*7,space,w200,!
+episode_end_text_2 | ending | More Wolfenstein: episode 1 end text, page 2 of 2 | DNEW:w1,tab+w:10,w60,type:9\n,w400,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:300,w120,poke:44928=0100,TP:0080220000800A00:22000A00:5A00,w10,space,w60,w:30,TP:0080210000800800:21000800:5A00,w:20,w60,w120,w200,w300*7,space,w200,right,w60,!
+treasure_room | gameplay | E1M1: treasure room, gold chalices by an eagle picture | LEVEL:0,GOD,TP:0080290000800B00:29000B00:0000,w20
+treasure_pickup | system | Treasure picked up: the screen flashes gold, score 100 | LEVEL:0,GOD,TP:0080290000800B00:29000B00:0000,w20,w:14,w:4,w2,!
+door_gold | system | E1M2: a gold-lock door, no key on the status bar | LEVEL:1,GOD,TP:0080050000802900:05002900:0E01,w20,!
+key_gold | system | E1M2: a gold key on the floor ahead | LEVEL:1,GOD,TP:0080140000802200:14002200:0000,w20,!
+key_gold_taken | system | Gold key picked up: the screen flashes, the key shows on the status bar | LEVEL:1,GOD,TP:0080140000802200:14002200:0000,w20,w:4,w4,!
+elevator | system | E1M1 elevator: the switch panel on the wall | LEVEL:0,TP:0080190000802F00:19002F00:0000,w20
+tally_floor1 | system | Floor 1 completed: time 01:47, par 01:30, kills 60%, secrets 40% | LEVEL:0,TP:0080190000802F00:19002F00:0000,w20,set:4493E=12:2,set:4493A=2:2,set:4493C=9:2,set:44946=7490:4,set:4491A=3150:4,space,w4,w4,w60*6
 cheat_mli | extra | MLI cheat message: 100% health, 99 ammo, both keys | NEWGAME,m+l+i:10,w60,!
 debug_on | extra | Debugging keys are now available (goobers, Shift+Alt+Backspace) | WOLF:goobers nowait,w300,enter,w120,w1,enter,w120,enter,w400,shift+alt+backspace:10,w60,!
 debug_god | extra | Debug Tab+G: God mode ON | LEVEL:0,tab+g:10,w60,!
 debug_warp | extra | Debug Tab+W: Warp to which level(1-10) | LEVEL:0,tab+w:10,w60,!
 debug_coords | extra | Debug Tab+F: player X, Y and angle | LEVEL:0,tab+f:10,w60,!
-# todo (routes not previewed): env_e1..env_e6 plain corridor views from LEVEL:0/10/20/30/40/50 plus a short walk;
-#   enemy_mutant (E2M1, LEVEL:10, mutant 35,20: the teleport tried showed it too far); gretel/schabbs/otto/
-#   fettgesicht/hitler (LEVEL:18,28,38,48,58; wlmap.py EnM9 --objects boss); elevator switch (E1M1 25,46-48);
-#   gold/silver key doors (wlmap.py --objects key); treasure pickup flash (E1M1 41-43,10-12); death with
-#   poke:44924=0100 then a guard's shot (HUD shows the old health until it changes); game over + high-score
-#   name entry (ryz); episode end text; Read This! is not in this build (GT/Activision).
 #
 # ---- set start (honest play, flat routes) ----
 #start 01_signon | boot | Sign-on: id and Activision logos, memory, devices found, Press a key | BOOT,w200
