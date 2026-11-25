@@ -1,0 +1,96 @@
+# id | category | caption | route
+signon | boot | Sign-on: Spear of Destiny banner, available memory and detected devices | BOOT,w200
+title_screen | title | Title picture: Spear of Destiny over a castle tower in a storm | TITLE
+credits_id | credits | id Software credits page of the attract loop | BOOT,w2050
+high_scores | menu | High Scores: the id staff, level 1, 10000 each | MENU,down*5,enter,w60
+menu_options | menu | Options menu before a game | MENU
+menu_difficulty | menu | How tough are you? Four skills, Bring 'em on! chosen | MENU,enter,w120
+menu_difficulty_daddy | menu | How tough are you? Can I play, Daddy? chosen: grey-haired B.J. | MENU,enter,w120,up*2,w30
+menu_difficulty_hurt | menu | How tough are you? Don't hurt me. chosen: B.J.'s plain face | MENU,enter,w120,up,w30
+menu_difficulty_death | menu | How tough are you? I am Death incarnate! chosen: a scowling B.J. | MENU,enter,w120,down,w30
+options_sound | options | Sound: sound effects, digitized sound and music devices | MENU,down,enter,w60
+options_control | options | Control: mouse enabled, mouse sensitivity, customize controls | MENU,down*2,enter,w60
+menu_load | save | Load Game: ten empty slots | MENU,down*3,enter,w60
+options_view | options | Change View: use arrows to size the 3D window | MENU,down*4,enter,w60
+menu_quit | menu | Quit asks: Sure you don't want to waste a few more productive hours? | MENU,down*7,enter,w60,!
+floor1_start | gameplay | Floor 1 (Tunnels 1): first control among the vines | NEWGAME
+hud | hud | Status bar after MLI: chain gun, 99 ammo, both keys, health 100% | LEVEL:0,MLI
+env_f2 | gameplay | Floor 2 (Tunnels 2): yellow-veined stone corridor, a steel door ahead | LEVEL:1,space,w50,w:30,a:51,w30
+env_f3 | gameplay | Floor 3 (Tunnels 3): grey stone corridor | LEVEL:2,space,w50,w:30,a:51,w30
+env_f4 | gameplay | Floor 4 (Tunnels 4): orange rock walls and a steel door | LEVEL:3,space,w50,w:30,w30
+env_f7 | gameplay | Floor 7 (Dungeons 2): blue stone corridor under green lamps | LEVEL:6,space,w50,w:30,a:51,w30
+env_f8 | gameplay | Floor 8 (Dungeons 3): blue stone hall under green lamps | LEVEL:7,space,w50,w:30,w30
+env_f11 | gameplay | Floor 11 (Castle 1): white brick corridor | LEVEL:10,space,w50,w:30,w30
+env_f13 | gameplay | Floor 13 (Castle 3): brown rock hall with round brown columns | LEVEL:12,GOD,TP:0080200000800600:20000600:5A00,w30
+env_f15 | gameplay | Floor 15 (Castle 5): grey steel corridor under green lamps, a steel door | LEVEL:14,w30
+env_f17 | gameplay | Floor 17 (Ramparts): white stone walls open onto the sky | LEVEL:16,space,w50,w:30,a:51,w30
+env_f19 | gameplay | Floor 19 (Secret 1): teal metal doors under a red sky | LEVEL:18,space,w50,w:30,w30
+env_f20 | gameplay | Floor 20 (Secret 2): grey cave rock, treasure at the end | LEVEL:19,space,w50,w:30,w30
+env_f21 | gameplay | Floor 21 (shown as 18): blue skull walls, a steel door at the end | LEVEL:20,a:102,w30
+truck | gameplay | Floor 11 garage: green barrels and wooden casks, a truck behind | LEVEL:10,GOD,TP:0080200000803900:20003900:0E01,w20
+elevator | system | Floor 1 elevator: the switch panel on the wall | LEVEL:0,GOD,TP:00802D0000801B00:2D001B00:B400,w20
+tally_floor1 | system | Floor 1 completed: time 01:47, par 01:30, kill 77%, secret 40%, treasure 46% | DNEW,TP:00802D0000801B00:2D001B00:B400,w20,set:4547E=14:2,set:4547A=2:2,set:4547C=21:2,set:45486=7490:4,set:4545A=3150:4,space,w4,w60*7,!
+weapon_knife | battle | Knife drawn in a blue stone corridor, a guard ahead (floor 6) | LEVEL:5,GOD,MLI,space,w50,w:30,1,w10,ctrl:3,w8,!
+weapon_pistol | battle | Pistol aimed at a guard down the corridor (floor 6) | LEVEL:5,GOD,MLI,space,w50,w:30,2,w10,ctrl:3,w4,!
+weapon_machine_gun | battle | Machine gun firing at a guard (floor 6) | LEVEL:5,GOD,MLI,space,w50,w:30,3,w10,ctrl:4,ctrl:4,ctrl:4,!
+weapon_chain_gun | battle | Chain gun firing: the guard falls, score 100 (floor 6) | LEVEL:5,GOD,MLI,space,w50,w:30,w10,ctrl:4,ctrl:4,ctrl:4,ctrl:4,!
+enemy_officer | battle | Floor 6: an officer in white stands before a cell door | LEVEL:5,GOD,MLI,TP:0080060000801900:06001900:5A00,w20,w10,!
+enemy_officer_hit | battle | Chain gun fire at the officer | LEVEL:5,GOD,MLI,TP:0080060000801900:06001900:5A00,w20,w10,ctrl:4*3,!
+enemy_officer_dies | battle | The officer is hit and falls: score 400 | LEVEL:5,GOD,MLI,TP:0080060000801900:06001900:5A00,w20,w10,ctrl:4*3,w10,!
+enemy_officer_dead | battle | The officer topples over before the cell door, score 400 | LEVEL:5,GOD,MLI,TP:0080060000801900:06001900:5A00,w20,w10,ctrl:4*3,w10*3,!
+enemy_mutant | battle | Floor 13: a mutant before a red banner, rock walls | LEVEL:12,GOD,MLI,TP:00802B0000800B00:2B000B00:B400,w20,w10,!
+enemy_mutant_hit | battle | Chain gun fire at the mutant | LEVEL:12,GOD,MLI,TP:00802B0000800B00:2B000B00:B400,w20,w10,ctrl:4*2,!
+enemy_mutant_dies | battle | The mutant is hit: score 700 | LEVEL:12,GOD,MLI,TP:00802B0000800B00:2B000B00:B400,w20,w10,ctrl:4*3,!
+enemy_mutant_falls | battle | The mutant falls before the banner | LEVEL:12,GOD,MLI,TP:00802B0000800B00:2B000B00:B400,w20,w10,ctrl:4*3,w10,!
+spectre | battle | Floor 21: a spectre (ghost) floats in the red rock corridor | LEVEL:20,GOD,MLI,TP:00801B0000800500:1B000500:0000,w20,!
+trans_grosse | boss | Floor 5: Trans Grosse in green, a chain gun in each hand | LEVEL:4,GOD,MLI,TP:00800B0000801E00:0B001E00:B900,w30,ctrl:12,w40,!
+trans_grosse_fight | boss | Chain gun firing at Trans Grosse | LEVEL:4,GOD,MLI,TP:00800B0000801E00:0B001E00:B900,w30,ctrl:12,w40,ctrl:4,ctrl:4,ctrl:4,!
+trans_grosse_hit | boss | Trans Grosse hit by the chain gun | LEVEL:4,GOD,MLI,freeze:45466=6300,TP:00800B0000801E00:0B001E00:B900,w30,ctrl:150,ctrl:150,!
+trans_grosse_dies | boss | Trans Grosse falls: score 5000 | LEVEL:4,GOD,MLI,freeze:45466=6300,TP:00800B0000801E00:0B001E00:B900,w30,ctrl:150*3,!
+trans_grosse_dead | boss | Trans Grosse lies dead before the door | LEVEL:4,GOD,MLI,freeze:45466=6300,TP:00800B0000801E00:0B001E00:B900,w30,ctrl:150*3,w30,!
+barnacle_wilhelm | boss | Floor 10: Barnacle Wilhelm, blond, with a chain gun and a rocket launcher | LEVEL:9,GOD,MLI,TP:0080130000802800:13002800:0E01,w30,ctrl:12,w40,!
+barnacle_fight | boss | Chain gun firing at Barnacle Wilhelm | LEVEL:9,GOD,MLI,freeze:45466=6300,TP:0080130000802800:13002800:0E01,w30,ctrl:12,w20,w20,ctrl:30,!
+ubermutant | boss | Floor 16: the Ubermutant, four arms with cleavers and a chest gun | LEVEL:15,GOD,MLI,TP:0080150000802000:15002000:0000,w30,ctrl:12,w40,!
+ubermutant_fight | boss | Chain gun at the Ubermutant at close range | LEVEL:15,GOD,MLI,freeze:45466=6300,TP:0080150000802000:15002000:0000,w30,ctrl:12,w20,w20,ctrl:30,!
+ubermutant_hit | boss | The Ubermutant hits back: red flash | LEVEL:15,GOD,MLI,freeze:45466=6300,TP:0080150000802000:15002000:0000,w30,ctrl:12,w20,w20,ctrl:30,ctrl:30,!
+death_knight | boss | Floor 18: the Death Knight in the great hall | LEVEL:17,GOD,MLI,TP:00801F0000802400:1F002400:5A00,w30,ctrl:12,w40,!
+death_knight_fight | boss | Chain gun firing at the Death Knight | LEVEL:17,GOD,MLI,freeze:45466=6300,TP:00801F0000802400:1F002400:5A00,w30,ctrl:12,w20,w20,ctrl:30,!
+death_knight_rockets | boss | The Death Knight fires rockets: smoke trails, red flash | LEVEL:17,GOD,MLI,freeze:45466=6300,TP:00801F0000802400:1F002400:5A00,w30,ctrl:12,w20,w20,ctrl:30,ctrl:30,!
+spear_of_destiny | gameplay | Floor 18: the Spear of Destiny before a screaming face, blue skull walls | LEVEL:17,GOD,MLI,TP:00801F0000801800:1F001800:5A00,w30,!
+spear_taken | gameplay | Spear taken: the screaming face, now on the Angel of Death floor | LEVEL:17,GOD,MLI,TP:00801F0000801800:1F001800:5A00,w30,w:10,w:10,!
+angel_of_death | boss | Floor 21 (shown as 18): the Angel of Death in red rock corridors | LEVEL:20,GOD,MLI,TP:0080200000800E00:20000E00:0000,w30,ctrl:12,w40,!
+angel_fireball | boss | The Angel of Death throws a green fireball, the screen flashes | LEVEL:20,GOD,MLI,TP:0080200000800E00:20000E00:0000,freeze:45466=6300,w30,ctrl:10*120,w250*5,!
+angel_fight | boss | Chain gun at the Angel of Death: it throws a green fireball | AOD,SODRATIOS,set:4545A=283150:4,set:4545E=320000:4,poke:477EA=4000,ctrl:30,!
+angel_hit | boss | The Angel of Death is hit and killed: red flash, score 288150 | AOD,SODRATIOS,set:4545A=283150:4,set:4545E=320000:4,poke:477EA=4000,ctrl:30,ctrl:30,!
+angel_dissolves | boss | The Angel of Death dissolves in yellow sparks | AOD,SODRATIOS,set:4545A=283150:4,set:4545E=320000:4,poke:477EA=4000,ctrl:30,ctrl:30,w20*6,!
+angel_remains | boss | The Angel of Death lies in the red rock corridor | AOD,SODRATIOS,set:4545A=283150:4,set:4545E=320000:4,poke:477EA=4000,ctrl:30,ctrl:30,w20*8,!
+face_8 | battle | Real fight, no god mode: chain gun at Trans Grosse, health 100% | TGFIGHT,TF*8,!
+face_9 | battle | Trans Grosse hits: red flash, health 86%, a cut on the face | TGFIGHT,TF*9,!
+face_10 | battle | Health 66%: firing back at Trans Grosse, the face bloodied | TGFIGHT,TF*10,!
+face_11 | battle | Health 52%: red flash, blood on nose and mouth | TGFIGHT,TF*11,!
+face_18 | battle | Health 7%: face swollen and bloody, still firing | TGFIGHT,TF*18,!
+face_19 | gameover | Killed: health 0%, the dead face, the view starts to dissolve red | TGFIGHT,TF*19,!
+face_22 | gameover | The red death dissolve spreads over the corridor | TGFIGHT,TF*22,!
+face_25 | gameover | The view almost gone in red | TGFIGHT,TF*25,!
+face_28 | gameover | Floor 5 restarts: health 100%, pistol, ammo 8, coming out of red | TGFIGHT,TF*28,!
+bj_spear | ending | B.J. stands holding the Spear of Destiny | AOD,SODRATIOS,set:4545A=283150:4,set:4545E=320000:4,poke:477EA=4000,ctrl:60,w90*7,!
+bj_kneels | ending | B.J. sinks to his knees, the Spear in his hands | AOD,SODRATIOS,set:4545A=283150:4,set:4545E=320000:4,poke:477EA=4000,ctrl:60,w90*9,!
+bj_collapsed | ending | B.J. collapses with the Spear | AODWIN,!
+victory_win | ending | You Win! Total time 66:12; averages: kill 67%, secret 39%, treasure 60% | AODWIN,w300
+end_text | ending | Ending text: found by Allied Forces near the remains of Castle Nuremberg | AODWIN,w300,space,w200,!
+end_debt | ending | "We owe you a great debt, Mr. Blazkowicz. You have served your country well." | AODWIN,w300,space,w200,space,w200,!
+end_allies | ending | "With the spear gone, the Allies will finally by able to destroy Hitler..." | AODWIN,w300,space,w200,space,w200,space,w200,!
+end_another_story | ending | "But that's another story...": B.J. bursts through a brick wall | AODWIN,w300,space,w200,space,w200,space,w200,space,w200,!
+end_title | ending | End credits: Spear of Destiny title over B.J. in orange | AODWIN,w300,space,w200,space,w200,space,w200,space,w200,space,w200,!
+credits_id_game | credits | End credits: A Game by id Software | AODWIN,w300,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,!
+credits_formgen | credits | End credits: Distributed by FormGen Corporation | AODWIN,w300,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,!
+credits_beta | credits | End credits: Beta Testers, the folks at Apogee Software and others | AODWIN,w300,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,!
+end_thanks | ending | "Thanks for playing...": B.J. with the chain gun in a red storm | AODWIN,w300,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,!
+end_the_end | ending | THE END on blue | AODWIN,w300,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,!
+highscore_entry | ending | High Scores: name entry at the top with 288150, the Spear as level | AODWIN,w300,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,!
+highscore_ryz | ending | Name entered: ryz, 288150 | AODWIN,w300,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,space,w200,type:ryz,w30,!
+cheat_mli | extra | MLI cheat: 100% health, 99 ammo, both keys; no high score | NEWGAME,m+l+i:10,w60,!
+debug_keys | extra | "Debugging keys are now available!" (debugmode, LShift+Alt+Backspace) | SOD:debugmode tedlevel 0 normal nowait,w300,shift+alt+backspace:10,w30
+debug_god | extra | Tab+G: "God mode ON" | SOD:debugmode tedlevel 0 normal nowait,w300,shift+alt+backspace:10,w60,enter,w60,tab+g:10,w30
+debug_warp | extra | Tab+W: "Warp to which level(1-21):" | SOD:debugmode tedlevel 0 normal nowait,w300,shift+alt+backspace:10,w60,enter,w60,tab+w:10,w30,!
+debug_coords | extra | Debug Tab+F: player X, Y and angle | LEVEL:0,tab+f:10,w60,!
