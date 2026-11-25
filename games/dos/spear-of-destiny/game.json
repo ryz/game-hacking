@@ -1,9 +1,9 @@
 {
   "slug": "spear-of-destiny",
-  "title": "Spear of Destiny (DOS)",
+  "title": "Spear of Destiny",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "svga-15000",
   "rom": "rom/spear-of-destiny.zip",
   "sha1": "5fc240b5631acc48da75724db9f69ef2eed2bd93",
   "crc32": "37c56b96",
@@ -26,8 +26,70 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {},
+  "macros": {
+    "BOOT": "w120,down*5,enter,w120,type:cd m1\\n,w30,type:spear\\n",
+    "SOD": "w120,down*5,enter,w120,type:cd m1\\n,w30,type:spear {0}\\n",
+    "TITLE": "BOOT,w900",
+    "MENU": "TITLE,space,w120",
+    "NEWGAME": "MENU,settle,enter,w120,enter,w400,settle",
+    "LEVEL": "SOD:debugmode tedlevel {0} normal nowait,w300,shift+alt+backspace:10,w60,enter,w60",
+    "GOD": "tab+g:10,w60,enter,w30",
+    "MLI": "m+l+i:10,w60,enter,w30",
+    "TP": "poke:475B2={0},poke:475BA={1},poke:475CC={2},w2",
+    "F1AMMO": "w:37,settle,a:51,a:1,w:12,space,w30,settle,w260,settle,w:25,a:51,w:37,d:51,w:25,d:51,w:12,d:51,w:25,w30,settle",
+    "F1DOOR": "a:51,w:25,d:51,w:43,settle,a:49,w:35,space,w60,settle",
+    "F1GUARD1": "ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,settle,a:4,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,settle",
+    "F1GUARD2": "d:4,space,w40,w:50,settle,a:51,w10,ctrl:6,w20,ctrl:6,w20,ctrl:6,w20",
+    "F1GUARD3": "d:51,w:26,a:51,w:80,space,w40,settle,a:51,w:7,d:49,space,w40,settle,w:9,space,w50,settle,ctrl:6,w20,ctrl:6,w20,ctrl:6,w20",
+    "F1TDOOR": "w:40,settle,w:35,a:51,w:50,settle,space,w40,w:20,settle,space,w40,settle",
+    "F1TREASURE": "a:51,w:4,d:51,w:45,w20,d:51,w:12,d:51,w:25,d:51,w:25,d:51,w:25,w20",
+    "SAVE1": "esc,w60,down*4,enter,w60,enter,w60,type:{0},w20,enter,w120,down*3,enter,w60"
+  },
+  "ram": {
+    "floor": {
+      "addr": "45454",
+      "size": 2,
+      "note": "gamestate.mapon = floor - 1"
+    },
+    "score": {
+      "addr": "4545A",
+      "size": 4
+    },
+    "lives": {
+      "addr": "45462",
+      "size": 2
+    },
+    "health": {
+      "addr": "45464",
+      "size": 2
+    },
+    "ammo": {
+      "addr": "45466",
+      "size": 2
+    },
+    "keys": {
+      "addr": "45468",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "px": {
+      "addr": "475B2",
+      "size": 4,
+      "fmt": "hex",
+      "note": "player x, 16.16 fixed tiles"
+    },
+    "py": {
+      "addr": "475B6",
+      "size": 4,
+      "fmt": "hex",
+      "note": "player y, 16.16 fixed tiles"
+    },
+    "angle": {
+      "addr": "475CC",
+      "size": 2,
+      "note": "degrees, 0 east, 90 north"
+    }
+  },
   "edition": "DOS, Activision release from the Wolfenstein 3D bundle (m1/Spear.exe, .SOD data); same ZIP as dos/wolfenstein-3d",
   "work": "registered 2026-11-25, in the vault; boots to PC-13, the title picture and the id credits; not scouted",
   "open": "scout, sets main and start; mission packs (Return to Danger, Ultimate Challenge) not in this ZIP"
