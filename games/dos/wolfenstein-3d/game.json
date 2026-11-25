@@ -27,5 +27,8 @@
     "limit": 300
   },
   "macros": {},
-  "ram": {}
+  "ram": {},
+  "edition": "DOS, Activision release 1.4 (six episodes, .WL6); the bundle also holds Spear of Destiny (m1/, not registered)",
+  "work": "registered 2026-11-25; not scouted yet",
+  "open": "scout, sets main and start"
 }
