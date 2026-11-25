@@ -1,0 +1,6 @@
+# id | category | caption | route
+# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
+#             minigame ending credits gameover save extra   (docs/capture-guide.md)
+# The plan for the main set. play.py snap writes captured shots (with exact routes) to
+# work/shots/dos/doom/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
+# title_screen | title | Title screen | @title

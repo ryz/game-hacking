@@ -1,0 +1,44 @@
+{
+  "slug": "doom",
+  "title": "Doom (DOS, registered 1.1)",
+  "platform": "dos",
+  "region": "na",
+  "model": "svga-7800",
+  "rom": "rom/doom.zip",
+  "sha1": "fdf6486c836c558232188047362bfb10b15bf73b",
+  "crc32": "11957c15",
+  "size": 5026312,
+  "header": {
+    "files": 9,
+    "programs": [
+      "DOOM/DOOM.EXE",
+      "DOOM/README.EXE",
+      "DOOM/SETUP.EXE",
+      "DOOM/U1_94.EXE",
+      "DOOM/USE1_94.BAT",
+      "DOOM/USE1_95.BAT"
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {},
+  "edition": "DOS, registered v1.1 (December 1993; three episodes, DOOM.WAD md5 981b03e6...)",
+  "work": "registered 2026-11-25 from the original install disks, in the vault; boots to the title and the attract demo; not scouted",
+  "open": "scout, sets main and start",
+  "source": {
+    "name": "Doom_1993Id_Softwarev1.1.zip (owner's upload: DEICE installer, DOOM1_1R.1-.4, DOOM1_1R.DAT, INSTALL.BAT), SHA-1 479bd3dcc600d9a7301f818f0f4a695c2d3dce1b",
+    "base_copy": "rom/src/doom-1.1-disks.zip",
+    "built": "the four disks joined give doom1_1r.exe (LHA's SFX 2.13S); its -lh5- archive extracted with the Python lhafile package into DOOM/ (9 files, nothing else changed), zipped with fixed 1993-12-10 dates = rom/doom.zip",
+    "wad_md5": {
+      "DOOM/DOOM.WAD": "981b03e6d1dc033301aa3095acc437ce (registered 1.1)"
+    },
+    "notes": "U1_94.EXE + USE1_94.BAT / USE1_95.BAT swap the DOS extender (1.94/1.95), not the game version; FILE_ID.DIZ is id's own anti-BBS notice"
+  }
+}
