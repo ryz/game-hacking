@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-25 - The Ultimate Doom (DOS 1.9)
+- Task: boot, model, controls, cheats, RAM, honest checkpoints to the first save, WAD reader, `start` and `main` plans.
+- Worked: the level data first (`tools/wadmap.py`), then a memory-feedback navigator (`tools/dnav.py`: grid path
+  planner, auto-use, aim at monsters from RAM) wrote the whole honest E1M1 run in about 8 calls; `-timedemo` chose
+  the model in one call (svga-40000 = 37 fps); four `-warp` boots found episode/map variables; fully deterministic.
+- Friction: the first navigator run walked into monsters, died, and auto-use restarted the level unnoticed; a
+  final settle in preview wipes pickup messages and finishes the tally count; the title-to-demo wipe swallows
+  menu keys after about BOOT+280; the coordinator committed the folder mid-run (a stop hook), so milestone (a)
+  found nothing to commit.
+- Proposed rule change: dos.md: map reader and a navigator before routing by hand, navigators stop on death;
+  real-time in-game lines end in `!`.
+- Corrected: none. Coordinator: cold cachecheck 17/17 "same" (memory included); sheet matches.
+- Status: both added to `docs/emulator/dos.md` (the map-reader note was there for Quake: now the second case,
+  extended); the mid-run commit came from a stop hook asking for a clean tree, logged.
+
 ### 2026-11-25 - Spear of Destiny (DOS)
 - Task: boot, version, controls, debug, RAM, map reader, honest floor 1 checkpoints to the first save, plans.
 - Worked: reusing Wolfenstein's playbook, macros and `wlmap.py` (`tools/sodmap.py`, a 100-line wrapper); the

@@ -79,9 +79,11 @@ a decision the tools warn and `shoot.py --publish` refuses: ask the owner. Beyon
 Real-time games (Quake, 2026-11-23): start with no sound device (`-nosound`; with the Sound Blaster a loaded
 state drifts on the next frame). Even then a loaded state followed by a key continues differently from the flat
 replay (input timing not in the core's savestate): make checkpoint routes flat (no `@parent`) and check
-`cachecheck` on a two-link chain before building more. Placing the player in a 3D level: build a spot finder from
-the level data (fits, stands on the floor, line of sight) first; a teleport into a spot that does not fit is undone
-by the game (Quake `tools/qpos.py`).
+`cachecheck` on a two-link chain before building more. Games with level data on disk (WAD, BSP, map files): build the map reader first, then a spot finder or a
+navigator that plays goals with memory feedback (Quake `tools/qpos.py`, Doom `tools/dnav.py`) before routing by
+hand; a navigator stops when health reaches 0; a teleport into a spot that does not fit is undone by the game.
+In-game shot lines of real-time games end in `!`: a final settle clears timed messages and finishes counters.
+Doom (2026-11-25) is fully deterministic here: cachecheck "same" with memory, so any `@checkpoint` route works.
 Wolfenstein 3D (2026-11-25): even flat checkpoint routes differ from the flat replay in actor memory after a
 load (`cachecheck --show-diff N` shows where); shots built on such a checkpoint still reproduce (a miss reloads
 its own state), so judge a real-time game's set by `shoot.py --verify`, not by cachecheck "memory" (cachecheck adds "cold == hit" where
