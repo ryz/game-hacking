@@ -38,6 +38,11 @@ overworld, a town street). Take several per look, from different places and dept
 on the first floor, some on the last), category `gameplay`, ids `env_<place>_<what>`; the caption says where
 and adds nothing that is not on screen. They are exempt from the "Representative" rule below.
 
+Action and FPS games (owner's rule 2026-11-25; Wolfenstein 3D, Doom, Quake and the like): `main` also has a few
+action shots, as in `games/dos/quake/shots/main/`: every weapon in hand and firing (ideally at an enemy),
+armor and power-ups active, enemies attacking, being hit and dying (gibs), the bigger enemies and bosses in
+action. Console or cheat set-ups are fine in `main`; captions say only what the frame shows.
+
 Breadth (owner's rule 2026-11-18): rather more features, mechanics, systems and shots than fewer. Every command
 the game offers gets a shot of it at work, minor ones included; several battles with different, interesting
 enemies; each distinct visual environment once. Details: `skills/game-capture/skill.md`, step 6.

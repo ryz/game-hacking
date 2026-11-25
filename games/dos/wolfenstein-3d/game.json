@@ -28,9 +28,57 @@
   },
   "macros": {
     "BOOT": "w120,down*5,enter,w120,type:wolf3d\\n",
-    "BOOTQ": "w120,down*5,enter,w120,type:wolf3d noal nosb noss nopro\\n"
+    "BOOTQ": "w120,down*5,enter,w120,type:wolf3d noal nosb noss nopro\\n",
+    "TITLE": "BOOT,w200,space,w700",
+    "MENU": "TITLE,space,w120",
+    "NEWGAME": "MENU,enter,w120,enter,w120,enter,w400",
+    "WOLF": "w120,down*5,enter,w120,type:wolf3d {0}\\n",
+    "LEVEL": "WOLF:goobers tedlevel {0} normal nowait,w300,shift+alt+backspace:10,w60,enter,w60",
+    "E1HALL": "w:24,space,w40,w:38,a:51,w:85,space,w40,w:75,a:1,w:75,space,w40,w:20,w10",
+    "E1GUARD": "a:8,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,w60",
+    "E1NORTH": "d:8,w:106,space,w40,w:60",
+    "E1GUARD2": "ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,w60,w:26,a:51",
+    "E1GUARD3": "ctrl:6,w30,w10,w:18,w20",
+    "E1PUSH": "w:20,space,w20",
+    "E1SECRET": "w260,w:24,a:51,w:12,d:51,w:12,a:51,w:24,w30,d:51,d:51,w30",
+    "SAVE1": "esc,w60,down*4,enter,w60,enter,w60,type:{0},w20,enter,w120,down*3,enter,w60"
   },
-  "ram": {},
+  "ram": {
+    "score": {
+      "addr": "4491A",
+      "size": 4,
+      "note": "gamestate.score (long)"
+    },
+    "lives": {
+      "addr": "44922",
+      "size": 2
+    },
+    "health": {
+      "addr": "44924",
+      "size": 2
+    },
+    "ammo": {
+      "addr": "44926",
+      "size": 2
+    },
+    "px": {
+      "addr": "4687C",
+      "size": 4,
+      "fmt": "hex",
+      "note": "player x, 16.16 fixed tiles (0x001D8000 = 29.5)"
+    },
+    "py": {
+      "addr": "46880",
+      "size": 4,
+      "fmt": "hex",
+      "note": "player y, 16.16 fixed tiles"
+    },
+    "angle": {
+      "addr": "46896",
+      "size": 2,
+      "note": "player angle in degrees, 0 = east, 90 = north (counter-clockwise)"
+    }
+  },
   "edition": "DOS, Activision release 1.4 (six episodes, .WL6); the bundle also holds Spear of Destiny (m1/, not registered)",
   "work": "registered 2026-11-25; not scouted yet",
   "open": "scout, sets main and start"

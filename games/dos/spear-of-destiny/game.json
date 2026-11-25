@@ -1,0 +1,34 @@
+{
+  "slug": "spear-of-destiny",
+  "title": "Spear of Destiny (DOS)",
+  "platform": "dos",
+  "region": "na",
+  "model": "svga-7800",
+  "rom": "rom/spear-of-destiny.zip",
+  "sha1": "5fc240b5631acc48da75724db9f69ef2eed2bd93",
+  "crc32": "37c56b96",
+  "size": 3032886,
+  "header": {
+    "files": 27,
+    "programs": [
+      "launcher/cwsdpmi.exe",
+      "launcher/launch.exe",
+      "launcher/start.bat",
+      "m1/Spear.exe",
+      "wolf3d.exe"
+    ]
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {},
+  "edition": "DOS, Activision release from the Wolfenstein 3D bundle (m1/Spear.exe, .SOD data); same ZIP as dos/wolfenstein-3d",
+  "work": "registered 2026-11-25, in the vault; boots to PC-13, the title picture and the id credits; not scouted",
+  "open": "scout, sets main and start; mission packs (Return to Danger, Ultimate Challenge) not in this ZIP"
+}

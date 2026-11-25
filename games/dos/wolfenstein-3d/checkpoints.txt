@@ -1,3 +1,14 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+# Boot: BOOT = DOSBox Pure "Go to Command Line", `wolf3d` (sound devices on). Every route is flat (no @parent): a loaded state differs in memory from the flat replay (cachecheck 2026-11-25).
+title | Title picture (after sign-on key and the PC-13 screen), still | TITLE
+menu | Options (main) menu, New Game highlighted | MENU
+s_e1m1 | New game, Episode 1, "Bring 'em on!": E1M1 first control at the start (29.5,57.5) facing east, door ahead | NEWGAME
+s_hall | E1M1: through two doors and north up the corridor into the big hall (34.6,37.8); first guard in view, left | NEWGAME,E1HALL
+s_guard1 | E1M1 hall: first guard shot with the pistol (score 100, ammo 4) | NEWGAME,E1HALL,E1GUARD
+s_corridor | E1M1: north door opened, in the wood corridor (34.3,24.6); second guard ahead | NEWGAME,E1HALL,E1GUARD,E1NORTH
+s_guard2 | E1M1: second guard shot, walked to (34.3,22.5) and turned west: third guard faces us | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2
+s_guard3 | E1M1: third guard shot with the last bullet, his clip picked up (ammo 4); facing the eagle-picture pushwall | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3
+s_pushwall | E1M1: Space on the eagle picture: the pushwall starts sliding west (secret 1 of 5) | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH
+s_mg | E1M1 secret room: two clips and the machine gun taken (ammo 26), facing north | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET
+s_saved | E1M1: saved in the game to slot 1 "E1M1 machine gun" (SAVEGAM0.WL6), back in the game | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,SAVE1:E1M1 machine gun
