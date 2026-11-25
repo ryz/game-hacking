@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-25 - Wolfenstein 3D (DOS, `main` additions: difficulty faces, face stages, real victory)
+- Task: the three other difficulty highlights, a real fight showing every status-bar face stage down to a real
+  death, a real "You Win!" with totals.
+- Worked: a headless fight scan (`tools/fightscan.py`: prefix, repeat a key cycle, log health per cycle) over 13
+  timing variants, four at a time, found the one passing every face stage; one preview confirmed the frames.
+  Searching memory for the known tally values found the per-floor record table (0x44C56) in one call.
+- Friction: `--publish-only` kept old captions (recaption per id in a loop); `preview --peek` only after the last
+  token (hence the scan script).
+- Proposed rule change: backlog: `preview --peek` at every `?`, a `--cycle` fight-scan mode; `--publish-only`
+  takes captions from the working shots.txt.
+- Corrected: none. Coordinator: cold verify 80/80, lenses clean; the 16 new frames looked at, the captions with
+  "red flash" / "gold flash" checked enlarged (damage tint and grin visible). Victory totals and score are poked
+  (as asked: "cheat if necessary"); the fight itself has no god mode or pokes. 58 of 150 calls.
+- Status: both second asks built 2026-11-25: `preview.py --peek` prints at every `?` mark, `shoot.py` syncs
+  captions/categories from the set's shots.txt on every reindex (test added); `--cycle` mode -> backlog.
+
 ### 2026-11-25 - Wolfenstein 3D (DOS, sets `start` and `main`)
 - Task: `start` (30) and `main` (64) verified from an empty cache and published, lenses written.
 - Worked: preview with many `?` frames per route (`ctrl:4,?,...` for held fire) picked every action frame in about

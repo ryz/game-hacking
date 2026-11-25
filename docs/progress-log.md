@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-25 - Wolfenstein 3D: difficulty faces, damage faces in a real fight, real victory screen
+- Owner: the other difficulty selections, real combat with the status-bar face's damage stages including death,
+  a real Episode 1 victory screen. `main` 64 -> 80: three difficulty highlights; a real fight against Hans
+  (no god mode, no pokes in the fight) from 100% through every face stage to death, the red dissolve and the
+  restart; "You Win!" retaken with 45:12 and 63/38/52% (per-floor record table 0x44C56 poked: the earlier 00:00
+  came from warping past the tallies). Coordinator cold verify 80/80.
+- Tools: `preview.py --peek` prints at every `?` mark; `shoot.py` takes captions/categories from the set's
+  shots.txt on every reindex (both second asks).
+
 ## 2026-11-25 - Wolfenstein 3D captured; Spear of Destiny and the Doom bundle in the vault; action-shot rule
 - Owner uploaded Wolfenstein 3D (Activision 1.4, with Spear of Destiny in `m1/`) and an Ultimate Doom bundle (Doom
   1.9, Doom II 1.9, TNT, Plutonia, Master Levels; retail WAD md5s). Registered `dos/wolfenstein-3d`,

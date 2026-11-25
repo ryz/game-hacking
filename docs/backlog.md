@@ -30,8 +30,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `"fmt": "f32"` RAM watch (float game state: Quake player entity) | 1 | Quake scout (`games/dos/quake/tools/qstate.py` reads floats meanwhile) |
 | 3D map reader per engine (entities, brush boxes, floor heights, reachability) as the first exploration step for 3D games | 1 | Quake capture (`games/dos/quake/tools/ents.py` meanwhile) |
 | 3D spot finder from the level data (player fits, floor, line of sight to a target) shared per engine | 1 | Quake main (`games/dos/quake/tools/qpos.py`); goes with the 3D map reader row |
-| `preview.py --peek` values at every `?` frame, not only after the last token | 1 | Wolfenstein 3D scout |
-| `shoot.py --publish-only` refreshes captions/categories from the set's shots.txt (today it keeps the old ones; `play.py recaption --game` is the workaround) | 1 | Wolfenstein 3D capture |
+| `preview.py --cycle "TOKS" N`: repeat a key group and log the peeks per step (fight scan; `games/dos/wolfenstein-3d/tools/fightscan.py` meanwhile) | 1 | Wolfenstein 3D capture |
 | Z80 disassembler like `dis6502.py` | 1 | Phantasy Star part 2 |
 | `sample` leaves the screen stale so `record` refuses; `record` taking leading tokens | 1 | Phantasy Star early game |
 | `"fmt": "bcd-le"` RAM watch (`set:...:bcd` already writes it) | 1 | Ultima III scout |
@@ -56,6 +55,8 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 ## Done
 | Wish | Asked | Done |
 |---|---|---|
+| `preview.py --peek` at every `?` frame | 2 | 2026-11-25 (Wolfenstein 3D scout and capture) |
+| `shoot.py --publish-only` / reindex take captions and categories from the set's shots.txt | 2 | 2026-11-25 `shoot.sync_list` (Wolfenstein 3D capture twice) |
 | `cachecheck.py --show-diff`: the differing address ranges between flat and cached state | 2 | 2026-11-25 `cachecheck.py --show-diff N` (Sword of Vermilion, Wolfenstein 3D) |
 | `lenses.py SLUG SET --work` (check the working set before publishing) | 2 | 2026-11-24 `tools/lenses.py --work` (Might and Magic 1 DOS fix-up, Quake main) |
 | Boot check for a text game that waits for typing | 1 | 2026-11-24 `vault.py push --route` with `!` marks (Beyond Zork) |
