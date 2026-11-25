@@ -2,6 +2,20 @@
 
 Append-only, newest first.
 
+## 2026-11-25 - Wolfenstein 3D captured; Spear of Destiny and the Doom bundle in the vault; action-shot rule
+- Owner uploaded Wolfenstein 3D (Activision 1.4, with Spear of Destiny in `m1/`) and an Ultimate Doom bundle (Doom
+  1.9, Doom II 1.9, TNT, Plutonia, Master Levels; retail WAD md5s). Registered `dos/wolfenstein-3d`,
+  `dos/spear-of-destiny`, `dos/ultimate-doom`; all three in the vault after boot checks.
+- Owner's rule: action/FPS games get action shots in `main` (weapons firing, power-ups, enemies, bosses), written
+  into `docs/capture-guide.md`.
+- Wolfenstein 3D: scout (WASD, svga-15000, debug keys via goobers, MLI, tedlevel, map reader) and capture: `start`
+  30 (honest) and `main` 64 (all six bosses, four weapons, high score, E1 ending); coordinator cold verify 30/30,
+  64/64. Found: after a state load actor memory differs from a flat replay, but shots on a checkpoint reproduce
+  (miss == hit, checked three times), so checkpoint shot routes are allowed.
+- Tools: `vault.py check` (boot check without a push: two pushes had gone out with placeholder boot notes, fixed in
+  the vault), `cachecheck --show-diff N` (second ask).
+- Open: Spear of Destiny and the Doom games not scouted.
+
 ## 2026-11-24 - Quake `main` (weapons, armor, power-ups, action); vault pushes
 - Owner: shots with all weapons, armor, power-ups active and action with enemies (Shambler). `main` 47 shots,
   console allowed (god, notarget, give, impulse 9/255, map, deathmatch for the red armor) plus a BSP spot finder

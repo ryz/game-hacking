@@ -12,6 +12,22 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-25 - Wolfenstein 3D (DOS, sets `start` and `main`)
+- Task: `start` (30) and `main` (64) verified from an empty cache and published, lenses written.
+- Worked: preview with many `?` frames per route (`ctrl:4,?,...` for held fire) picked every action frame in about
+  8 sheets with no `play.py` exploring; `wlmap.py --tp` and `--crop` found each boss and mutant spot without
+  walking; shooting is fast (about a minute for 64).
+- Friction: misread `wlmap.py --crop` columns twice (offsets from the crop's left edge); a teleported boss stays
+  idle until shot (one batch lost); `--publish-only` kept old captions after shots.txt was edited
+  (`play.py recaption --game` fixed it).
+- Proposed rule change: `wlmap.py --near X,Y R` with absolute coordinates; dos.md: actors next to a teleported
+  player may stay idle until damaged.
+- Corrected: none. Coordinator: cold verify start 30/30, main 64/64; lenses clean; main sheet looked at (all six
+  bosses, four weapons, high score as ryz, episode end, tally); `enemy_ss` checked enlarged: a blue SS is in frame.
+  About 50 of 250 calls.
+- Status: idle-boss recipe is a game fact (playbook "Recipes", already there); `wlmap --near` is game-specific
+  (playbook open questions); `--publish-only` caption staleness -> `docs/backlog.md`.
+
 ### 2026-11-24 - Quake (DOS shareware 1.06, set `main`: weapons, armor, power-ups, action)
 - Task: `main` with every weapon, the three armors, the four power-ups active, monster action (Shambler) and the
   must-haves.
