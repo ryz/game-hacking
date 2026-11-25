@@ -1,6 +1,6 @@
 {
   "slug": "ultimate-doom",
-  "title": "The Ultimate Doom (DOS)",
+  "title": "The Ultimate Doom",
   "platform": "dos",
   "region": "na",
   "model": "svga-40000",
@@ -46,8 +46,9 @@
     "SAVE1": "esc,w20,down*3,w10,enter,w30,enter,w20,type:{0},w20,enter,w60",
     "GOD": "type:iddqd,w10",
     "IDKFA": "type:idkfa,w10",
-    "ARMS": "type:iddqd,w10,type:idkfa,w10,set:22B270=143:4,set:22B2E8=137:4,set:22B2EC=38:4,set:22B2F0=212:4,set:22B2F4=27:4,w10",
-    "LEVEL": "WARP:{0}:{1}"
+    "ARMS": "type:iddqd,w10,type:idkfa,w10,set:22B270=143:4,set:22B2E8=137:4,set:22B2EC=38:4,set:22B2F0=212:4,set:22B2F4=27:4,w300",
+    "LEVEL": "WARP:{0}:{1}",
+    "TP": "poke:{0}={1},poke:{2}={3},poke:{4}={5},w2,up:2,w10"
   },
   "ram": {
     "health": {
@@ -81,9 +82,9 @@
       "note": "gamemap; gameepisode at 22B7CC"
     }
   },
-  "edition": "DOS, Steam bundle: The Ultimate Doom 1.9 with Doom II 1.9, Final Doom (TNT: Evilution, The Plutonia Experiment) and the 20 Master Levels for Doom II",
-  "work": "registered 2026-11-25, in the vault; boots to the title and the attract demo; not scouted",
-  "open": "scout, sets (Doom II, Final Doom and the Master Levels are in the same ZIP: separate slugs if they get sets)",
+  "edition": "DOS 1.9 (DOOM.EXE + DOOM.WAD from the Steam bundle that also holds Doom II, Final Doom and the Master Levels), booted from the command line with -nosound",
+  "work": "scouted 2026-11-25: boot, model svga-40000, 17 checkpoints (honest E1M1 to the first save, -warp starts), player RAM, cheats verified, WAD map reader, teleport and auto-navigation tools; start (33) and main (19) plans previewed; not captured",
+  "open": "capture start and main; main still needs weapons firing at monsters (fist, chainsaw, pistol, shotgun, chaingun, plasma), more monsters in action (barons, demon, spectre, lost soul, cacodemon, shotgun guy), armor pickups, soulsphere, face stages, a real death, episode end texts; Doom II, Final Doom and the Master Levels in the same ZIP need their own slugs",
   "source": {
     "name": "ultimate-doom.zip (owner's upload)",
     "wad_md5": {

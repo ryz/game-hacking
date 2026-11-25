@@ -5,7 +5,7 @@
       one machine: the route, then each TOKENS group in turn (state after each); with --png DIR/NN.png and
       DIR/sheet.png
   python3 games/dos/ultimate-doom/tools/dstate.py --tp "ROUTE" X Y ANGLE
-      the poke tokens that put the player at X Y (map units, z = floor there from the WAD) facing ANGLE
+      the TP macro call (game.json "TP") that puts the player at X Y (map units, z = floor there from the WAD) facing ANGLE
       (degrees, 0 east, 90 north) at the end of ROUTE; append them to that route (then a small move such as
       `up:2`, which relinks the player into the new sector). The mobj address depends on the route.
 
@@ -57,11 +57,12 @@ def tp_tokens(emu, x, y, ang):
     mo = mo_addr(emu)
     name = current_map(emu)
     m = wadmap.Map(wadmap.wad(), name)
-    z = m.sectors[m.sector_at(x, y)][0]
+    sec = m.sectors[m.sector_at(x, y)]
+    z, c = sec[0], sec[1]
     h = lambda v: struct.pack("<i", v).hex().upper()
     bam = int(ang / 360.0 * 2 ** 32) & 0xFFFFFFFF
-    return "poke:%X=%s%s%s,poke:%X=%s" % (mo + 12, h(x << 16), h(y << 16), h(z << 16), mo + 32,
-                                          struct.pack("<I", bam).hex().upper())
+    return "TP:%X:%s%s%s:%X:%s:%X:%s%s" % (mo + 12, h(x << 16), h(y << 16), h(z << 16), mo + 32,
+                                          struct.pack("<I", bam).hex().upper(), mo + 56, h(z << 16), h(c << 16))
 
 
 def current_map(emu):
