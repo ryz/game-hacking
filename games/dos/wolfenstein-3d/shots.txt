@@ -1,6 +1,68 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/dos/wolfenstein-3d/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Two plans in this file (scout 2026-11-25, every line previewed unless marked "# todo"):
+#   set main:  the active lines below (debug parameters, MLI, god mode and teleports allowed)
+#   set start: the lines prefixed "#start " (honest play, flat routes, no @checkpoint: see playbook "Determinism").
+#              Copy them with: sed -n 's/^#start //p' games/dos/wolfenstein-3d/shots.txt > work/shots/dos/wolfenstein-3d/start/shots.txt
+# Copy main lines to work/shots/dos/wolfenstein-3d/main/shots.txt before shoot.py; keep the "!" on in-game lines.
+#
+# ---- set main ----
+signon | boot | id sign-on: Activision, available memory, detected devices, Press a key | BOOT,w200
+title_screen | title | Title picture | TITLE
+credits_id | credits | id Software credits page of the attract loop | TITLE,w1100
+high_scores | menu | High Scores: the id staff, E1/L1, 10000 each | TITLE,w1300,w150*4,!
+demo | gameplay | Attract demo running with the "Demo" banner | TITLE,w1300,w150*10,!
+menu_options | menu | Options menu | MENU
+menu_episodes | menu | Which episode to play? The six episodes | MENU,enter,w120
+menu_difficulty | menu | How tough are you? Four skills with faces | MENU,enter,w120,enter,w120
+weapon_knife | battle | Knife drawn, a guard in the hall | NEWGAME,E1HALL,1,w20,ctrl:6,!
+weapon_pistol | battle | Pistol shot at a guard | NEWGAME,E1HALL,a:8,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,!
+weapon_machine_gun | battle | Machine gun firing at a guard | NEWGAME,E1HALL,MLI,a:8,3,w20,ctrl:8,!
+weapon_chain_gun | battle | Chain gun firing at a guard | NEWGAME,E1HALL,MLI,a:8,4,w20,ctrl:12,!
+enemy_dogs | battle | E1M1: two guard dogs run at the player | LEVEL:0,GOD,TP:0080330000802C00:33002C00:0000,w40,!
+enemy_ss | battle | E1M2: SS and guards in the cross room | LEVEL:1,GOD,MLI,2,TP:0080100000800300:10000300:0000,w30,!
+enemy_officer | battle | E5M1: an officer in white between two SS, chain gun firing | LEVEL:40,GOD,MLI,TP:00802C0000801C00:2C001C00:B400,w30,ctrl:10,w5,!
+boss_hans | boss | E1M9: Hans Grosse behind the door, chain gun firing | LEVEL:8,GOD,MLI,w:65,space,w40,w:470,space,w60,ctrl:30,!
+tally_floor1 | system | Floor 1 completed: bonus, time, par, ratios (debug Tab+E) | DNEW:w1,tab+e:10,w200,!
+cheat_mli | extra | MLI cheat message: 100% health, 99 ammo, both keys | NEWGAME,m+l+i:10,w60,!
+debug_on | extra | Debugging keys are now available (goobers, Shift+Alt+Backspace) | WOLF:goobers nowait,w300,enter,w120,w1,enter,w120,enter,w400,shift+alt+backspace:10,w60,!
+debug_god | extra | Debug Tab+G: God mode ON | LEVEL:0,tab+g:10,w60,!
+debug_warp | extra | Debug Tab+W: Warp to which level(1-10) | LEVEL:0,tab+w:10,w60,!
+debug_coords | extra | Debug Tab+F: player X, Y and angle | LEVEL:0,tab+f:10,w60,!
+# todo (routes not previewed): env_e1..env_e6 plain corridor views from LEVEL:0/10/20/30/40/50 plus a short walk;
+#   enemy_mutant (E2M1, LEVEL:10, mutant 35,20: the teleport tried showed it too far); gretel/schabbs/otto/
+#   fettgesicht/hitler (LEVEL:18,28,38,48,58; wlmap.py EnM9 --objects boss); elevator switch (E1M1 25,46-48);
+#   gold/silver key doors (wlmap.py --objects key); treasure pickup flash (E1M1 41-43,10-12); death with
+#   poke:44924=0100 then a guard's shot (HUD shows the old health until it changes); game over + high-score
+#   name entry (ryz); episode end text; Read This! is not in this build (GT/Activision).
+#
+# ---- set start (honest play, flat routes) ----
+#start 01_signon | boot | id sign-on: Activision, available memory, mouse/AdLib/Sound Blaster/Sound Source found, Press a key | BOOT,w200
+#start 02_pc13 | boot | PC-13 "Profound Carnage" rating screen | BOOT,w200,space,w150
+#start 03_title | title | Title picture: Wolfenstein 3-D, B.J. Blazkowicz and a guard | TITLE
+#start 04_credits | credits | id Software credits page of the attract loop | TITLE,w1100
+#start 05_high_scores | menu | High Scores of the attract loop: the id staff, E1/L1, 10000 each | TITLE,w1300,w150*4,!
+#start 06_options | menu | Options menu: New Game, Sound, Control, Load Game, Change View, View Scores, Back to Demo, Quit | MENU
+#start 07_episodes | menu | Which episode to play? The six episodes with their pictures | MENU,enter,w120
+#start 08_difficulty | menu | How tough are you? Four skills, Bring 'em on! chosen, with its face | MENU,enter,w120,enter,w120
+#start 09_get_psyched | menu | Get Psyched! with the status bar: floor 1, score 0, lives 3, health 100%, ammo 8 | MENU,enter,w120,enter,w120,enter,w60,!
+#start 10_e1m1_start | gameplay | E1M1: first control, a steel door ahead, a dead guard on the floor | NEWGAME
+#start 11_door_open | gameplay | Space opens the sliding door | NEWGAME,w:24,space,w40
+#start 12_corridor | gameplay | Turned north into the blue stone corridor | NEWGAME,w:24,space,w40,w:38,a:51,w30
+#start 13_hall_guard | gameplay | Through two doors into the grey hall: a guard on patrol | NEWGAME,E1HALL
+#start 14_guard_fire | battle | Pistol shots at the guard | NEWGAME,E1HALL,a:8,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,!
+#start 15_guard_dead | hud | Guard down: score 100, ammo 4 on the status bar | NEWGAME,E1HALL,E1GUARD
+#start 16_wood_corridor | gameplay | North door: a wood-panelled corridor, a second guard comes | NEWGAME,E1HALL,E1GUARD,E1NORTH
+#start 17_guard_close | battle | Second guard shot; a third guard stands in front of an eagle picture | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2
+#start 18_clip | gameplay | Last bullet fired, the guard's dropped clip taken (ammo 4) | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3
+#start 19_pushwall | system | Secret: the eagle picture slides back as a pushwall | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,w120,!
+#start 20_secret_room | gameplay | Secret room: first aid kits, a clip and the machine gun | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,w260,w:24,a:51,w:12
+#start 21_machine_gun | gameplay | Machine gun picked up: ammo 26 | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET
+#start 22_ingame_menu | menu | Esc in play: the Options menu with Save Game and End Game | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60
+#start 23_sound | options | Sound menu: effects, digitized sounds, music devices | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down,enter,w60
+#start 24_control | options | Control menu: mouse, joystick, Gravis GamePad, customize | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*2,enter,w60
+#start 25_view | options | Change View: arrows size the 3D window | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*5,enter,w60
+#start 26_save_slots | save | Save Game: ten empty slots | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*4,enter,w60
+#start 27_save_name | save | Naming the save in slot 1 | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*4,enter,w60,enter,w60,type:E1M1 machine gun,w20
+#start 28_saved | save | Saved: slot 1 "E1M1 machine gun", back in the Options menu | NEWGAME,E1HALL,E1GUARD,E1NORTH,E1GUARD2,E1GUARD3,E1PUSH,E1SECRET,esc,w60,down*4,enter,w60,enter,w60,type:E1M1 machine gun,w20,enter,w120

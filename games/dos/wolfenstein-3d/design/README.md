@@ -23,8 +23,14 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+Wolfenstein 3D is a real-time first-person shooter on a flat tile grid: the player walks corridors of a
+castle, opens sliding doors, shoots guards, dogs, SS, officers and mutants, picks up food, first aid, ammo,
+weapons (knife, pistol, machine gun, chain gun), keys and treasure, and leaves each floor by an elevator switch
+(verified: E1M1 play, map data). Six episodes of nine floors plus a secret floor each, the ninth floor a boss
+(Hans Grosse, Dr. Schabbs, Hitler, Otto Giftmacher, Gretel Grosse, General Fettgesicht) (verified: map data).
+Hidden pushwalls lead to secret rooms; each floor ends with a tally of time, par and kill, secret and treasure
+ratios (verified: tally screen). Four skill levels; lives, extra life every 40000 points; save anywhere in ten
+named slots (verified).
 
 ## Documents
 | Document | Covers |

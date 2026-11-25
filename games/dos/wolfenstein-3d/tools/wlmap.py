@@ -5,7 +5,11 @@
   python3 games/dos/wolfenstein-3d/tools/wlmap.py E1M1                 ASCII map + object list (all skills)
   python3 games/dos/wolfenstein-3d/tools/wlmap.py E1M1 --skill 2       objects present on skill 2 ("Bring 'em on")
   python3 games/dos/wolfenstein-3d/tools/wlmap.py E1M1 --crop 20,40,50,64   x0,y0,x1,y1 (tiles) of the ASCII map
-  python3 games/dos/wolfenstein-3d/tools/wlmap.py E1M1 --objects "guard|key|pushwall"   filter the list (regex)
+  python3 games/dos/wolfenstein-3d/tools/wlmap.py E1M1 --objects "guard|key|pushwall"   filter the list (regex,
+                                                                        case-sensitive: "SS" is not "cross")
+  python3 games/dos/wolfenstein-3d/tools/wlmap.py --tp 52.5 44.5 0     route tokens that put the player at tile
+                       coordinates X Y (centre = .5) facing ANGLE degrees (0 east, 90 north, 180 west, 270 south);
+                       poke them after the level has started (RAM addresses: playbook "RAM map")
 
 Map numbers: map index = (episode-1)*10 + (floor-1); E1M9 = boss floor, E1M10 = secret floor.
 Coordinates are tiles (x east, y south, 0-63); the player stands in the middle of a tile. Skill numbers as in
@@ -185,12 +189,20 @@ def char(wall, obj):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('map')
+    ap.add_argument('map', nargs='?')
+    ap.add_argument('--tp', nargs=3, type=float, metavar=('X', 'Y', 'ANGLE'))
     ap.add_argument('--skill', type=int)
     ap.add_argument('--crop')
     ap.add_argument('--objects', help='regex filter for the object list')
     ap.add_argument('--nomap', action='store_true')
     a = ap.parse_args()
+    if a.tp:
+        x, y, ang = a.tp
+        fx, fy = int(round(x * 65536)), int(round(y * 65536))
+        print("poke:4687C=%s,poke:46884=%s,poke:46896=%s" % (
+            struct.pack('<ii', fx, fy).hex().upper(), struct.pack('<HH', int(x), int(y)).hex().upper(),
+            struct.pack('<H', int(ang) % 360).hex().upper()))
+        return
     ms = maps()
     if a.map == 'list':
         for m in ms:
@@ -227,7 +239,7 @@ def main():
             d, sk = describe(v)
             if a.skill is not None and sk > a.skill:
                 continue
-            if a.objects and not re.search(a.objects, d, re.I):
+            if a.objects and not re.search(a.objects, d):
                 continue
             if not (x0 <= x < x1 and y0 <= y < y1):
                 continue
@@ -235,4 +247,6 @@ def main():
 
 
 if __name__ == '__main__':
+    import signal
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     main()

@@ -43,7 +43,9 @@
     "E1SECRET": "w260,w:24,a:51,w:12,d:51,w:12,a:51,w:24,w30,d:51,d:51,w30",
     "SAVE1": "esc,w60,down*4,enter,w60,enter,w60,type:{0},w20,enter,w120,down*3,enter,w60",
     "GOD": "tab+g:10,w60,enter,w30",
-    "MLI": "m+l+i:10,w60,enter,w30"
+    "MLI": "m+l+i:10,w60,enter,w30",
+    "DNEW": "WOLF:goobers nowait,w300,enter,w120,{0},enter,w120,enter,w400,shift+alt+backspace:10,w60,enter,w60",
+    "TP": "poke:4687C={0},poke:46884={1},poke:46896={2},w2"
   },
   "ram": {
     "score": {
