@@ -40,15 +40,21 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
   route: never reuse a `TP:` call on another route (regenerate). Walking without fighting gets you shot to
   pieces (hp 76 -> 11 on one stretch): `dnav.py fight N` at each room. `use` needs to stand within 64 units
   of the line. Solid decorations (lamps, columns, barrels) block walking.
-- **Captured 2026-11-25:** `start` 33 and `main` 56 published, verified from an empty cache. Plan helpers:
+- **Captured 2026-11-25:** `start` 33 and `main` 65 published, verified from an empty cache. Plan helpers:
   `tools/dplan.py SPEC OUT` (lines `id | cat | caption | PREFIX | X Y ANG / auto MX MY / - | dnav-like
   commands incl. seek N R, aimv, tp X Y A, hp TYPE V | SUFFIX with ? marks`) and `tools/dpick.py` (turn the
   K-th `?` frame into a shot line). Recipes in "Strategy" below.
-- **Traps found in capture:** never fire right after `TP` (rockets/BFG balls burst at the muzzle: findings);
+- **Traps found in capture:** a no-clipping walk can end inside a solid column that looks like open ground
+  from inside (all shots burst on its wall; check the spot for one-sided lines within 40 units); never fire right after `TP` (rockets/BFG balls burst at the muzzle: findings);
   `dnav` monster lists hold stale copies (aim picks a spawn-spot ghost; `aimv` checks line of sight); menu
   shots after the skill menu need short presses (`TITLE,esc:4,w6,enter:4,w6,enter:4,w8,up:4,w8`) or they land
   over the attract demo; the E1M8 corridor needs the lift (Space at 416 2416, wait 150) before the baron trigger.
-- **Open:** E2/E3/E4 end texts (bosses took no damage: findings), spectre in view, key doors.
+- **Bosses (2026-11-25, run 2):** E2M8/E3M8/E4M8 bosses die normally. The old "no damage" came from a
+  no-clipping walk that ended INSIDE a solid column (E2M8 -1216..-960 x 64..320): rockets burst on its inner wall.
+  End no-clipping walks on `dplan.autospot` spots (E2M8 -852 576, E3M8 1600 -148, E4M8 -2266 293), switch
+  clipping back on, then fight. Routes: `ending_e2/e3/e4` lines in `shots.txt` (made by
+  `tools/bosskill.py`, Recipes). Boss health: walk the thinker list from the player's mobj.
+- **Open:** spectre in view, key doors, secret map tallies.
 
 ## Identity
 | Field | Value |
@@ -124,7 +130,7 @@ invulnerability, berserk, computer map, soulsphere, spectre, lost soul, cacodemo
 invisibility E1M3 256 -2752; radiation suit E1M4 128 176 (skills 1-2 only there; E2M2 -48 16 HMP).
 
 ## Shot plan
-Captured 2026-11-25 (see `shots/start/index.md`, `shots/main/index.md`); still missing: E2-E4 end texts, spectre, key doors, secret map tally.
+Captured 2026-11-25 (see `shots/start/index.md`, `shots/main/index.md`); E2-E4 boss deaths and end texts added in run 2; still missing: spectre, key doors, secret map tally.
 
 `shots.txt`: set `start` (33 lines, honest play, previewed 2026-11-25) and the first 19 `main` lines.
 - `start` (33): boot 1 (start-up text), title 1, menu 4 (main, episode, skill, help), gameplay 13 (melt wipe,
@@ -154,6 +160,14 @@ Captured 2026-11-25 (see `shots/start/index.md`, `shots/main/index.md`); still m
   - Face stages and a real death: `LEVEL:1:3,1,w40` (fist, no god, 100%, no armor), spot `auto -1504 -1700`,
     `wait 30; fight 120 1500`: health 100, 76, 61, 55, 43, 40, 28, 16, 0 (scan of waits 6/14/22/30/44:
     only 30 passed all five bands). `?` marks after every `ctrl:20` and `w6` with `--peek 22B26C:1`.
+  - Boss kills and episode ends (run 2): prefix `LEVEL:E:8,ARMS,set:22B2F0=296:4` (296 cells), then
+    `7,type:idspispopd,w10`, walk to the autospot, `type:idspispopd,w10` (clipping back on), then rounds of: walk
+    to ~380 units if farther than 450 (the Cyberdemon's rockets push the marine around even in god mode), face
+    the boss, BFG `ctrl:10,w60` (rockets `5`, `ctrl:10,w30` when cells < 40), until health <= 0 (script
+    `tools/bosskill.py ROUTE TYPE OUT --go X Y`, types 21 Cyberdemon, 19 Spider). E2M8 and
+    E3M8 end on the death animation (text +250 frames, complete ~+3000/+3250, picture +3500/+3750 after the
+    kill + 144); E4M8: wait 150 for the tag-666 column to drop, then walk (clipping on) to -2368 32 into the exit
+    ring: text at once, complete +3000, marine picture +3600.
   - Pickups: no ARMS (armor 0): E1M8 TP 416 700 facing 90, walk: green armor; E1M1 TP 1824 -3080 facing 270:
     MegaArmor.
 - **Build action shots with `TP`:** `python3 games/dos/ultimate-doom/tools/dstate.py --tp "LEVEL:2:8,ARMS,5"
@@ -239,9 +253,8 @@ See Read first; `s_*` are the `start` chain (honest), `m_*` are `-warp` starts f
 | Wikipedia, Doom (1993 video game) | https://en.wikipedia.org/wiki/Doom_(1993_video_game) | release dates, publisher, episode names | 2026-11-25 |
 
 ## Open questions
-- ~~Barons, a real death, face stages~~ done 2026-11-25 (Strategy, recipes). E2/E3 end texts: the bosses took
-  no damage in any route tried (findings.md); next try: plain warp, walk without no clipping (dnav `path`
-  did not move from the E2M8 start: plan the walk by hand), no ARMS, IDKFA only.
+- ~~Barons, a real death, face stages~~ done 2026-11-25 (Strategy, recipes). ~~E2/E3 end texts~~ done 2026-11-25
+  run 2 (the bosses had been shot from inside a pillar: findings.md).
 - Sound on: does a loaded state drift as in Quake? Not tested (`-nosound` used throughout).
 - Teleport side effect on monsters near the spot (blockmap) not observed in play yet.
 - comma/period strafe, F2-F11 keys not tried.

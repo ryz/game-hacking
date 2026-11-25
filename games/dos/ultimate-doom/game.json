@@ -83,8 +83,8 @@
     }
   },
   "edition": "DOS 1.9 (DOOM.EXE + DOOM.WAD from the Steam bundle that also holds Doom II, Final Doom and the Master Levels), booted from the command line with -nosound",
-  "work": "captured 2026-11-25: start (33, honest E1M1 to the first save) and main (56: all eight weapons firing, monsters, power-ups, armors, E1M8 barons, Cyberdemon, Spider Mastermind, face stages to a real death, tally, E1 end text and credits); three lenses",
-  "open": "E2, E3 and E4 end texts (the Cyberdemon and Spider Mastermind took no damage in the routes tried: design/findings.md); spectre in action; keys and key doors; secret map tallies; Doom II, Final Doom and the Master Levels in the same ZIP need their own slugs",
+  "work": "captured 2026-11-25: start (33, honest E1M1 to the first save) and main (65: all eight weapons firing, monsters, power-ups, armors, E1M8 barons, Cyberdemon and Spider Mastermind killed, face stages to a real death, tally, all four episode end texts with their pictures and the credits); three lenses",
+  "open": "spectre in action; keys and key doors; secret map tallies; Doom II, Final Doom and the Master Levels in the same ZIP need their own slugs",
   "source": {
     "name": "ultimate-doom.zip (owner's upload)",
     "wad_md5": {

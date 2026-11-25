@@ -41,7 +41,8 @@ Shot ids are from the `main` set unless marked `start`.
 | Screen melt | transition | the old screen melts down into the new one | none | | | start `06_melt` |
 | Intermission tally | map result | Kills, Items, Secret percentages counting up, Time, Par | Space skips | count sound (off here) | Entering | `tally_e1m1`, start `24_tally` |
 | Entering screen | next map | the episode map with the next base marked | Space | | next map | `entering_e1m2` |
-| Episode end text | story | text typed over a flat | Space | | credits / picture | `ending_e1` |
+| Episode end text | story | text typed letter by letter over a flat (E1/E2 rock and flesh, E3 grey, E4 stones) | Space | | credits / picture | `ending_e1`, `ending_e2`, `ending_e3`, `ending_e4` |
+| End picture | after the end text | full-screen art: Deimos above Hell (E2), Earth's fields with a rabbit (E3), the marine before a burning city (E4) | any key | | title | `ending_e2_deimos`, `ending_e3_bunny`, `ending_e4_marine` |
 | Credits | after episode 1 text | id Software team | any key | | title | `credits_id` |
 | Death | failure | view on the floor, dead face, 0% | Space | | map restart | `death_floor`, `death_barons` |
 

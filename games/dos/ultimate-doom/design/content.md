@@ -29,10 +29,11 @@ One row per distinct look, not per map.
 | Computer rooms | E1M1 | blue computer walls, red ceiling lights | `weapon_pistol` (start set too), `mon_gibs` |
 | Phobos outdoors | E1M1, E1M8 | brown hills sky, green nukage | start `18_env_yard` |
 | Deimos base | E2M1, E2M2 | dark corridors, lit tech ceilings | `env_e2m1`, `env_e2m2` |
-| Tower of Babel | E2M8 | open grey arena under a red sky | `boss_cyberdemon`, `boss_cyber_close` |
+| Tower of Babel | E2M8 | open grey arena under a red sky | `boss_cyberdemon`, `boss_cyber_close`, `boss_cyber_dies` |
 | Hell marble | E3M3 | green marble corridors with skull lamps | `env_e3m3`, `mon_demon` |
 | Hell flesh and lava | E3M3, E3M1 | red walls, lava floors, red skies | `mon_cacodemon`, `weapon_rocket` |
-| Dis | E3M8 | green ground, red sky, the Spider's arena | `boss_spider` |
+| Dis | E3M8 | green ground, red sky, the Spider's arena | `boss_spider`, `boss_spider_dies` |
+| Unto the Cruel (name: source) | E4M8 | wooden fort walls under an orange sky, the Spider's yard | `boss_spider_e4_dies` |
 | Thy Flesh Consumed | E4M1, E4M6 | dark brick halls; rocky ground under an orange sky with a dead tree | `env_e4m1`, `env_e4m6` |
 | Phobos Anomaly | E1M8 | wood and stone hall before the baron closets | `boss_barons` |
 
@@ -47,8 +48,8 @@ One row per distinct look, not per map.
 | Lost soul | E2 on | flaming skull | flies at the marine | `weapon_chainsaw`, `weapon_chaingun` |
 | Cacodemon | E2 on | red floating ball, one eye | spits lightning balls | `mon_cacodemon` |
 | Baron of Hell (boss of E1) | E1M8, later as ordinary monster | horned, goat legs | green fireballs, claws; 1000 health (RAM) | `boss_barons`, `boss_baron_fireball`, `death_barons` |
-| Cyberdemon (boss of E2) | E2M8 | huge, rocket arm | fires rockets; 4000 health (RAM) | `boss_cyberdemon`, `boss_cyber_close` |
-| Spider Mastermind (boss of E3) | E3M8 | brain on mechanical legs | super chaingun; 3000 health (RAM) | `boss_spider`, `boss_spider_bfg` |
+| Cyberdemon (boss of E2) | E2M8 | huge, rocket arm | fires rockets; 4000 health (RAM), immune to splash; killed with 9 BFG balls and 4 rockets (RAM) | `boss_cyberdemon`, `boss_cyber_close`, `boss_cyber_dies` |
+| Spider Mastermind (boss of E3) | E3M8 | brain on mechanical legs | super chaingun; 3000 health (RAM); 3000 -> 2032 -> 643 -> 0 under BFG balls (RAM); also the boss of E4M8 | `boss_spider`, `boss_spider_bfg`, `boss_spider_dies`, `boss_spider_e4_dies` |
 
 ## 4. Items and equipment
 | Item | Type | Got from | What it does | Shots |

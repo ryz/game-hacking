@@ -1,6 +1,6 @@
 # The Ultimate Doom - shots: main
 
-Platform dos, region na, model svga-40000, ROM SHA-1 `054bef8ec2c4a4297fd82aca28faecee64554f21`. 56 shots. Contact sheet: [ultimate-doom_dos_na_set_sheet.png](ultimate-doom_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform dos, region na, model svga-40000, ROM SHA-1 `054bef8ec2c4a4297fd82aca28faecee64554f21`. 65 shots. Contact sheet: [ultimate-doom_dos_na_set_sheet.png](ultimate-doom_dos_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -56,6 +56,15 @@ Platform dos, region na, model svga-40000, ROM SHA-1 `054bef8ec2c4a4297fd82aca28
 | entering_e1m2 | map | Entering Nuclear Plant: the Phobos map, the next base marked | no | [png](ultimate-doom_dos_na_map_entering_e1m2.png) |
 | ending_e1 | ending | Episode 1 end text: Once you beat the big badasses... | yes | [png](ultimate-doom_dos_na_ending_ending_e1.png) |
 | credits_id | credits | After the end text: the id Software credits screen | yes | [png](ultimate-doom_dos_na_credits_credits_id.png) |
+| boss_cyber_dies | boss | E2M8: the Cyberdemon bursts apart under the last rocket | no | [png](ultimate-doom_dos_na_boss_boss_cyber_dies.png) |
+| ending_e2 | ending | Episode 2 end text: "You've done it! The hideous cyber-demon lord..." | yes | [png](ultimate-doom_dos_na_ending_ending_e2.png) |
+| ending_e2_deimos | ending | After the E2 text: the Deimos base floating above Hell | no | [png](ultimate-doom_dos_na_ending_ending_e2_deimos.png) |
+| boss_spider_dies | boss | E3M8: the Spider Mastermind collapses under BFG fire | no | [png](ultimate-doom_dos_na_boss_boss_spider_dies.png) |
+| ending_e3 | ending | Episode 3 end text: "The loathsome spiderdemon..." | yes | [png](ultimate-doom_dos_na_ending_ending_e3.png) |
+| ending_e3_bunny | ending | After the E3 text: the green fields of Earth, a rabbit in the grass | yes | [png](ultimate-doom_dos_na_ending_ending_e3_bunny.png) |
+| boss_spider_e4_dies | boss | E4M8: the Spider Mastermind collapses in the wooden fort | no | [png](ultimate-doom_dos_na_boss_boss_spider_e4_dies.png) |
+| ending_e4 | ending | Episode 4 end text: "The Spider Mastermind must have sent forth..." | yes | [png](ultimate-doom_dos_na_ending_ending_e4.png) |
+| ending_e4_marine | ending | After the E4 text: the marine with Daisy's head, a city burning behind | yes | [png](ultimate-doom_dos_na_ending_ending_e4_marine.png) |
 | env_e1m1 | gameplay | E1M1 Hangar: the start room, nukage pool behind the pillars | no | [png](ultimate-doom_dos_na_gameplay_env_e1m1.png) |
 | env_e2m2 | gameplay | E2M2 Containment Area: a lit tech corridor | yes | [png](ultimate-doom_dos_na_gameplay_env_e2m2.png) |
 | env_e3m3 | gameplay | E3M3 Pandemonium: a green marble corridor | no | [png](ultimate-doom_dos_na_gameplay_env_e3m3.png) |

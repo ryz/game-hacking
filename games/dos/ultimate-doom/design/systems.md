@@ -47,8 +47,8 @@ text **(verified, `ending_e1`)**.
 | World and navigation | Doors, lifts, switches | Doors open with Space and close again; lifts lower when used and rise after about 3 s; walk-over lines open closets (E1M8 barons) | space, walking | lift on E1M8 raised 104 units (verified, playbook) | | `boss_barons`, start `09_door` | shown |
 | World and navigation | Hurting floors | Nukage and lava hurt every second without a radiation suit | | MegaArmor pickup in the E1M1 pool cost about 15% health (verified start `19_megaarmor`) | | `power_radsuit`, `pickup_megaarmor` | shown |
 | World and navigation | Secrets | Hidden areas counted on the tally; E1M1 has 3 | | Secret 33% after one (verified start `25_tally_done`) | | `tally_e1m1`, start `17_secret_ammo` | shown |
-| Goals and gating | Exits and episode ends | Each map ends at its exit; map 8 ends the episode with an end text, then (E1) the id credits | | | | `tally_e1m1`, `entering_e1m2`, `ending_e1`, `credits_id` | shown |
-| Goals and gating | Boss gates | E1M8 seals two Barons of Hell behind walk triggers; E2M8 ends when the Cyberdemon dies, E3M8 when the Spider Mastermind dies (source) | | | playbook | `boss_barons`, `boss_cyber_close`, `boss_spider` | shown |
+| Goals and gating | Exits and episode ends | Each map ends at its exit; map 8 ends the episode with an end text typed letter by letter (complete after ~3000 frames), then a picture: E1 the id credits, E2 Deimos above Hell, E3 the green fields with a rabbit, E4 the marine before a burning city | | | | `tally_e1m1`, `entering_e1m2`, `ending_e1`, `credits_id`, `ending_e2`, `ending_e2_deimos`, `ending_e3`, `ending_e3_bunny`, `ending_e4`, `ending_e4_marine` | shown |
+| Goals and gating | Boss gates | E1M8 seals two Barons of Hell behind walk triggers; E2M8 ends the moment the Cyberdemon's death animation finishes, E3M8 likewise with the Spider Mastermind (verified, no tally); on E4M8 the Spider's death lowers the tag-666 pillar around the exit ring, which must then be walked into (verified) | | | playbook | `boss_barons`, `boss_cyber_close`, `boss_spider`, `boss_cyber_dies`, `boss_spider_dies`, `boss_spider_e4_dies` | shown |
 | Goals and gating | Keys | Blue, yellow and red keycards and skull keys open coloured doors (source; status bar slots verified with idkfa) | | | | none: key doors not routed this run | described |
 | Chance | Damage rolls | Every attack rolls its damage; Doom's random table restarts on every level, so the same keys repeat a fight exactly **(verified: routes reproduce)** | timing | | findings.md | `face_28` | shown |
 | Failure and recovery | Death | At 0% the view drops to the floor and the face turns to the dead face; Space restarts the map with a pistol | space | | | `death_floor`, `death_barons` | shown |
@@ -62,5 +62,5 @@ text **(verified, `ending_e1`)**.
 - Carry-over between maps -> a careless map leaves the next one harder (E1M2 started at 19% health in the start set).
 
 ## Open questions
-- Spectre in action, key doors, the E2 and E3 end texts: not captured this run (see findings: bosses took no
-  damage in the routes tried).
+- Spectre in action, key doors: not captured yet. (The E2-E4 end texts were captured 2026-11-25 in a second run;
+  the earlier "no damage" came from standing inside a pillar: findings.)
