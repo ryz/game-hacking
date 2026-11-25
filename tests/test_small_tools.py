@@ -191,3 +191,13 @@ def test_cachecheck_mem_diff():
     b = [(0x100, bytes(4) + b"\x01" + bytes(10) + b"\x02" + bytes(40) + b"\x03" + bytes(7))]
     assert cachecheck.mem_diff(a, b, 5) == [[0x104, 0x10F], [0x138, 0x138]]
     assert cachecheck.mem_diff(a, b, 1) == [[0x104, 0x10F]]
+
+
+def test_shoot_sync_list_takes_captions_from_shots_txt(tmp_path):
+    import json, shoot
+    (tmp_path / "index.json").write_text(json.dumps({"shots": [
+        {"id": "a", "category": "menu", "caption": "old"}, {"id": "b", "category": "menu", "caption": "same"}]}))
+    (tmp_path / "shots.txt").write_text("a | battle | new caption | w10\nb | menu | same | w10\n")
+    assert shoot.sync_list(str(tmp_path)) == 1
+    s = json.loads((tmp_path / "index.json").read_text())["shots"]
+    assert (s[0]["caption"], s[0]["category"]) == ("new caption", "battle") and s[1]["caption"] == "same"

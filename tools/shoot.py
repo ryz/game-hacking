@@ -400,11 +400,31 @@ def prune(game, d):
     return [s["id"] for s in gone]
 
 
+def sync_list(d):
+    """Take captions and categories from the set's own shots.txt into index.json (an edited caption reaches the
+    index on --publish-only and --verify without a replay). Routes are not touched: a changed route needs a shot."""
+    p, lst = os.path.join(d, "index.json"), os.path.join(d, "shots.txt")
+    if not (os.path.exists(p) and os.path.exists(lst)):
+        return 0
+    want = {s["id"]: s for s in E.read_table(lst, LIST)}
+    idx = json.load(open(p, encoding="utf-8"))
+    n = 0
+    for s in idx["shots"]:
+        w = want.get(s["id"])
+        if w and (w["caption"], w["category"]) != (s.get("caption"), s.get("category")):
+            s["caption"], s["category"] = w["caption"], w["category"]
+            n += 1
+    if n:
+        json.dump(idx, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    return n
+
+
 def reindex(game, d):
     """Rebuild index.md, sheet.png and (seq-*) strip/steps GIFs from index.json (after hand edits)."""
     p = os.path.join(d, "index.json")
     if not os.path.exists(p):
         return
+    sync_list(d)                    # captions/categories edited in the set's shots.txt
     normalize(game, d)              # a category edited by hand changes the file name
     idx = json.load(open(p, encoding="utf-8"))
     list_order(game, idx, d)

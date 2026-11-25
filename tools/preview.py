@@ -18,7 +18,7 @@ and one look per route.
   ?                    token inside a route: take a frame here too (label `name ?1`, `?2`, ...); it is not part
                        of the route
   --timeline N[:STEP]  STEP defaults to 40 frames. The route is played without its final settle first.
-  --peek ADDR:LEN      (LEN decimal or 0x..) print these bytes (hex) after the last token of every route; several allowed
+  --peek ADDR:LEN      (LEN decimal or 0x..) print these bytes (hex) at every `?` mark and after the last token of every route; several allowed
   --crop x0,y0,x1,y1   keep this part of every frame on the sheet (a message line, a status window)
   --scale N            enlarge the tiles (nearest neighbour); default 1 = native size
   --cols N             tiles per row (default 4); --page N tiles per sheet (default 24; then NAME_2.png ...)
@@ -89,6 +89,8 @@ def run(job):
         for kind, v in plan:
             if kind == "mark":
                 grab("%s ?%d" % (name, v))
+                for addr, n in peeks:       # values along the route, not only at its end
+                    info.append("?%d %s=%s" % (v, addr, bytes(emu.peek(int(addr, 16), n)).hex()))
                 continue
             seg = E.expand(game, v)
             if first and seg and seg[0].startswith("@"):
