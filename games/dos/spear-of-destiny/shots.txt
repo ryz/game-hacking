@@ -1,6 +1,63 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/dos/spear-of-destiny/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# Two plans in this file (scout 2026-11-25, nothing shot yet):
+#   set main:  the active lines below (debugmode, MLI, god mode and teleports allowed)
+#   set start: the lines prefixed "#start " (honest play from power-on, flat routes, ends on the first save).
+#              Copy them with: sed -n 's/^#start //p' games/dos/spear-of-destiny/shots.txt > work/shots/dos/spear-of-destiny/start/shots.txt
+# All routes below were previewed by the scout (preview.py) unless marked "not previewed"; captions describe
+# the previewed frame. Keep the "!" on in-game action lines.
+#
+# ---- set start (honest, "Bring 'em on!") ----
+#start 01_signon | boot | Sign-on: Spear of Destiny banner, available memory, mouse, AdLib, Sound Blaster, Sound Source | BOOT,w200
+#start 02_rating | boot | PC-13 "Profound Carnage" rating screen | BOOT,w400
+#start 03_title | title | Title picture: Spear of Destiny over a castle tower in a storm | TITLE
+#start 04_menu | menu | Options menu: New Game, Sound, Control, Load Game, Change View, View Scores, Back to Demo, Quit | MENU
+#start 05_difficulty | menu | How tough are you? Bring 'em on! chosen, with its face | MENU,enter,w120
+#start 06_get_psyched | menu | Get Psyched! before floor 1 | MENU,enter,w120,enter,w120,!
+#start 07_floor1_start | gameplay | Floor 1 (Tunnels 1): first control in a vine-covered stone corridor | NEWGAME
+#start 08_pushwall | system | Space on the wall west of the start: the pushwall slides away | NEWGAME,w:37,settle,a:51,a:1,w:12,space,w120,!
+#start 09_ammo_room | gameplay | Secret room behind the pushwall: six ammo clips on the floor | NEWGAME,w:37,settle,a:51,a:1,w:12,space,w30,settle,w260,settle,w:25,a:51,w10
+#start 10_ammo_taken | gameplay | All clips taken: ammo 56 | NEWGAME,F1AMMO
+#start 11_door_guard | gameplay | The north door opens on the vine hall: a guard beyond | NEWGAME,F1AMMO,F1DOOR
+#start 12_pistol_guard | battle | Pistol fires at the guard through the doorway | NEWGAME,F1AMMO,F1DOOR,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,settle,a:4,ctrl:6,w8,!
+#start 13_guard_close | battle | Vine hall: a guard at close range, the screen flashes red, health 25% | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,d:4,space,w40,w:50,settle,a:51,w10,!
+#start 14_guard_down | battle | The guard lies dead; B.J.'s face is bloodied (health 25%) | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2
+#start 15_west_door_guard | gameplay | West door opened: a guard in the grey room beyond, health 16% | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,d:51,w:26,a:51,w:80,space,w40,settle,a:51,w:7,d:49,space,w40,settle,w:9,space,w50,settle
+#start 16_guard3_down | battle | Third guard shot (score 300) | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3
+#start 17_treasure_door | gameplay | Door opens on a room of crosses and chalices | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR
+#start 18_treasure_taken | gameplay | All 8 treasures taken: score 2700 | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE
+#start 19_menu_ingame | menu | Options in play: Save Game, End Game, Back to Game | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60
+#start 20_save_slots | save | Save Game: ten empty slots | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60
+#start 21_save_name | save | Slot 1 named "Floor 1 treasure" | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60,enter,w60,type:Floor 1 treasure,w20
+#start 22_saved | save | Saved: back on the Options menu, Save Game highlighted | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60,enter,w60,type:Floor 1 treasure,w20,enter,w120
+#
+# ---- set main (first part; the capture agent adds the rest: see playbook "Shot plan") ----
+signon | boot | Sign-on: Spear of Destiny banner, available memory and detected devices | BOOT,w200
+title_screen | title | Title picture: Spear of Destiny over a castle tower in a storm | TITLE
+credits_id | credits | id Software credits page of the attract loop | BOOT,w2050
+menu_options | menu | Options menu before a game | MENU
+menu_difficulty | menu | How tough are you? Four skills, Bring 'em on! chosen | MENU,enter,w120
+floor1_start | gameplay | Floor 1 (Tunnels 1): first control among the vines | NEWGAME
+hud | hud | Status bar after MLI: chain gun, 99 ammo, both keys, health 100% | LEVEL:0,MLI
+env_f4 | gameplay | Floor 4 (Tunnels 4): orange rock walls and a steel door | LEVEL:3,space,w50,w:30,w30
+env_f8 | gameplay | Floor 8 (Dungeons 3): blue stone hall under green lamps | LEVEL:7,space,w50,w:30,w30
+env_f11 | gameplay | Floor 11 (Castle 1): white brick corridor | LEVEL:10,space,w50,w:30,w30
+env_f19 | gameplay | Floor 19 (Secret 1): teal metal doors under a red sky | LEVEL:18,space,w50,w:30,w30
+env_f20 | gameplay | Floor 20 (Secret 2): grey cave rock, treasure at the end | LEVEL:19,space,w50,w:30,w30
+weapon_knife | battle | Knife drawn in a blue stone corridor, a guard ahead (floor 6) | LEVEL:5,GOD,MLI,space,w50,w:30,1,w10,ctrl:3,w8,!
+weapon_pistol | battle | Pistol aimed at a guard down the corridor (floor 6) | LEVEL:5,GOD,MLI,space,w50,w:30,2,w10,ctrl:3,w4,!
+weapon_machine_gun | battle | Machine gun firing at a guard (floor 6) | LEVEL:5,GOD,MLI,space,w50,w:30,3,w10,ctrl:4,ctrl:4,ctrl:4,!
+weapon_chain_gun | battle | Chain gun firing: the guard falls, score 100 (floor 6) | LEVEL:5,GOD,MLI,space,w50,w:30,w10,ctrl:4,ctrl:4,ctrl:4,ctrl:4,!
+trans_grosse | boss | Floor 5: Trans Grosse in green, a chain gun in each hand | LEVEL:4,GOD,MLI,TP:00800B0000801E00:0B001E00:B900,w30,ctrl:12,w40,!
+trans_grosse_fight | boss | Chain gun firing at Trans Grosse | LEVEL:4,GOD,MLI,TP:00800B0000801E00:0B001E00:B900,w30,ctrl:12,w40,ctrl:4,ctrl:4,ctrl:4,!
+barnacle_wilhelm | boss | Floor 10: Barnacle Wilhelm, blond, with a chain gun and a rocket launcher | LEVEL:9,GOD,MLI,TP:0080130000802800:13002800:0E01,w30,ctrl:12,w40,!
+ubermutant | boss | Floor 16: the Ubermutant, four arms with cleavers and a chest gun | LEVEL:15,GOD,MLI,TP:0080150000802000:15002000:0000,w30,ctrl:12,w40,!
+death_knight | boss | Floor 18: the Death Knight in the great hall | LEVEL:17,GOD,MLI,TP:00801F0000802400:1F002400:5A00,w30,ctrl:12,w40,!
+spear_of_destiny | gameplay | Floor 18: the Spear of Destiny before a screaming face, blue skull walls | LEVEL:17,GOD,MLI,TP:00801F0000801800:1F001800:5A00,w30,!
+angel_of_death | boss | Floor 21 (shown as 18): the Angel of Death in red rock corridors | LEVEL:20,GOD,MLI,TP:0080200000800E00:20000E00:0000,w30,ctrl:12,w40,!
+angel_fireball | boss | The Angel of Death throws a green fireball, the screen flashes | LEVEL:20,GOD,MLI,TP:0080200000800E00:20000E00:0000,freeze:45466=6300,w30,ctrl:10*120,w250*5,!
+tally_floor1 | system | Floor 1 completed: bonus 43000, time 00:04, par 01:30, ratios 0% | DNEW,w:20,tab+e:10,w600
+debug_keys | extra | "Debugging keys are now available!" (debugmode, LShift+Alt+Backspace) | SOD:debugmode tedlevel 0 normal nowait,w300,shift+alt+backspace:10,w30
+debug_god | extra | Tab+G: "God mode ON" | SOD:debugmode tedlevel 0 normal nowait,w300,shift+alt+backspace:10,w60,enter,w60,tab+g:10,w30
+debug_warp | extra | Tab+W: "Warp to which level(1-21):" | SOD:debugmode tedlevel 0 normal nowait,w300,shift+alt+backspace:10,w60,enter,w60,tab+w:10,w30,!

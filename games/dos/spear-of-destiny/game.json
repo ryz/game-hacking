@@ -43,7 +43,8 @@
     "F1GUARD3": "d:51,w:26,a:51,w:80,space,w40,settle,a:51,w:7,d:49,space,w40,settle,w:9,space,w50,settle,ctrl:6,w20,ctrl:6,w20,ctrl:6,w20",
     "F1TDOOR": "w:40,settle,w:35,a:51,w:50,settle,space,w40,w:20,settle,space,w40,settle",
     "F1TREASURE": "a:51,w:4,d:51,w:45,w20,d:51,w:12,d:51,w:25,d:51,w:25,d:51,w:25,w20",
-    "SAVE1": "esc,w60,down*4,enter,w60,enter,w60,type:{0},w20,enter,w120,down*3,enter,w60"
+    "SAVE1": "esc,w60,down*4,enter,w60,enter,w60,type:{0},w20,enter,w120,down*3,enter,w60",
+    "DNEW": "SOD:debugmode nowait,w300,enter,w120,enter,w400,shift+alt+backspace:10,w60,enter,w60"
   },
   "ram": {
     "floor": {
@@ -90,7 +91,7 @@
       "note": "degrees, 0 east, 90 north"
     }
   },
-  "edition": "DOS, Activision release from the Wolfenstein 3D bundle (m1/Spear.exe, .SOD data); same ZIP as dos/wolfenstein-3d",
-  "work": "registered 2026-11-25, in the vault; boots to PC-13, the title picture and the id credits; not scouted",
-  "open": "scout, sets main and start; mission packs (Return to Danger, Ultimate Challenge) not in this ZIP"
+  "edition": "DOS 1.4-generation build (Gravis GamePad option, debugmode, no copy-protection quiz shown), FormGen release from the Activision Wolfenstein 3D bundle (m1/Spear.exe, .SOD data); same ZIP as dos/wolfenstein-3d; bundle config binds W/A/S/D",
+  "work": "scouted 2026-11-25: boot, model svga-15000, WASD controls, debugmode/tedlevel/MLI/teleport, RAM map, map reader, 11 flat checkpoints (honest floor 1 to the first save), save 01_start; start (22) and main (27) plans previewed; not captured",
+  "open": "capture sets start and main; Angel of Death kill, ending and victory totals, death/high score, secret floors, Spear-only objects, more enemy close-ups; mission packs (Return to Danger, Ultimate Challenge) not in this ZIP"
 }

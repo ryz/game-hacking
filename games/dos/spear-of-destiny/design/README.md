@@ -23,8 +23,16 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+A first-person shooter on the Wolfenstein 3D engine (id Software, 1992, published by FormGen): B.J. Blazkowicz
+fights through one mission of 21 floors on a grid of walls and doors to recover the Spear of Destiny **(verified:
+map data, `tools/sodmap.py list`)**. The core loop is walk, open doors, shoot guards, collect ammunition, food
+and treasure, find pushwall secrets and reach the elevator switch; each floor ends on a tally of time, par and
+kill/secret/treasure ratios with a bonus **(verified: tally after Tab+E on floor 1)**. Structure: Tunnels 1-4 and
+Trans Grosse (floor 5), Dungeons 1-4 and Barnacle Wilhelm (10), Castle 1-5 and the Ubermutant (16), the Ramparts
+(17), the Death Knight and the Spear (18), two secret floors (19, 20; secret exits on floors 4 and 12) and the
+Angel of Death (21, shown as "18" on the status bar) **(verified: map names and boss objects; floor 21's
+number seen in play)**. Four skills, save anywhere in ten named slots **(verified)**. No episode select (unlike
+Wolfenstein 3D) **(verified)**.
 
 ## Documents
 | Document | Covers |
