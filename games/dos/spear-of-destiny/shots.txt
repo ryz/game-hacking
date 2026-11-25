@@ -1,7 +1,7 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# Two plans in this file (scout 2026-11-25, nothing shot yet):
+# Two sets in this file (start captured and published 2026-11-25):
 #   set main:  the active lines below (debugmode, MLI, god mode and teleports allowed)
 #   set start: the lines prefixed "#start " (honest play from power-on, flat routes, ends on the first save).
 #              Copy them with: sed -n 's/^#start //p' games/dos/spear-of-destiny/shots.txt > work/shots/dos/spear-of-destiny/start/shots.txt
@@ -9,28 +9,30 @@
 # the previewed frame. Keep the "!" on in-game action lines.
 #
 # ---- set start (honest, "Bring 'em on!") ----
-#start 01_signon | boot | Sign-on: Spear of Destiny banner, available memory, mouse, AdLib, Sound Blaster, Sound Source | BOOT,w200
+#start 01_signon | boot | Sign-on: Spear of Destiny banner, free memory and the sound devices found | BOOT,w200
 #start 02_rating | boot | PC-13 "Profound Carnage" rating screen | BOOT,w400
-#start 03_title | title | Title picture: Spear of Destiny over a castle tower in a storm | TITLE
-#start 04_menu | menu | Options menu: New Game, Sound, Control, Load Game, Change View, View Scores, Back to Demo, Quit | MENU
+#start 03_picture | title | Title picture: Spear of Destiny over a castle tower in a storm | TITLE
+#start 04_options | menu | Options: New Game, Sound, Control, Load Game, Change View, View Scores, Quit | MENU
 #start 05_difficulty | menu | How tough are you? Bring 'em on! chosen, with its face | MENU,enter,w120
 #start 06_get_psyched | menu | Get Psyched! before floor 1 | MENU,enter,w120,enter,w120,!
 #start 07_floor1_start | gameplay | Floor 1 (Tunnels 1): first control in a vine-covered stone corridor | NEWGAME
-#start 08_pushwall | system | Space on the wall west of the start: the pushwall slides away | NEWGAME,w:37,settle,a:51,a:1,w:12,space,w120,!
+#start 08_pushwall | system | Space on the wall west of the start: the stone block slides away | NEWGAME,w:37,settle,a:51,a:1,w:12,space,w30*3,!
 #start 09_ammo_room | gameplay | Secret room behind the pushwall: six ammo clips on the floor | NEWGAME,w:37,settle,a:51,a:1,w:12,space,w30,settle,w260,settle,w:25,a:51,w10
-#start 10_ammo_taken | gameplay | All clips taken: ammo 56 | NEWGAME,F1AMMO
+#start 10_ammo_taken | gameplay | Secret room emptied: the clips are taken, ammo 56 | NEWGAME,F1AMMO,a:102
 #start 11_door_guard | gameplay | The north door opens on the vine hall: a guard beyond | NEWGAME,F1AMMO,F1DOOR
-#start 12_pistol_guard | battle | Pistol fires at the guard through the doorway | NEWGAME,F1AMMO,F1DOOR,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,settle,a:4,ctrl:6,w8,!
-#start 13_guard_close | battle | Vine hall: a guard at close range, the screen flashes red, health 25% | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,d:4,space,w40,w:50,settle,a:51,w10,!
-#start 14_guard_down | battle | The guard lies dead; B.J.'s face is bloodied (health 25%) | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2
-#start 15_west_door_guard | gameplay | West door opened: a guard in the grey room beyond, health 16% | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,d:51,w:26,a:51,w:80,space,w40,settle,a:51,w:7,d:49,space,w40,settle,w:9,space,w50,settle
-#start 16_guard3_down | battle | Third guard shot (score 300) | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3
-#start 17_treasure_door | gameplay | Door opens on a room of crosses and chalices | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR
-#start 18_treasure_taken | gameplay | All 8 treasures taken: score 2700 | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE
-#start 19_menu_ingame | menu | Options in play: Save Game, End Game, Back to Game | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60
-#start 20_save_slots | save | Save Game: ten empty slots | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60
-#start 21_save_name | save | Slot 1 named "Floor 1 treasure" | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60,enter,w60,type:Floor 1 treasure,w20
-#start 22_saved | save | Saved: back on the Options menu, Save Game highlighted | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60,enter,w60,type:Floor 1 treasure,w20,enter,w120
+#start 12_guard_fires | battle | First shot: the guard fires back, the screen flashes red, health 97% | NEWGAME,F1AMMO,F1DOOR,ctrl:6,w10,w10,!
+#start 13_pistol_guard | battle | Pistol fires at the guard through the doorway: health 82%, score 100 | NEWGAME,F1AMMO,F1DOOR,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,settle,a:4,ctrl:6,w8,!
+#start 14_guard_close | battle | Vine hall: a guard at close range, the screen flashes red, health 25% | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,d:4,space,w40,w:50,settle,a:51,w10,!
+#start 15_guard_down | battle | The guard lies dead; B.J.'s face is bloodied (health 25%) | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2
+#start 16_west_door_guard | gameplay | West door opened: a guard in the grey room beyond, health 16% | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,d:51,w:26,a:51,w:80,space,w40,settle,a:51,w:7,d:49,space,w40,settle,w:9,space,w50,settle
+#start 17_guard3_down | battle | Third guard shot (score 300) | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3
+#start 18_treasure_door | gameplay | Door opens on a room of crosses and chalices | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR
+#start 19_treasure_room | gameplay | Inside the treasure room: crosses and chalices, score 400 | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,a:51,w:4,d:51,w:20,!
+#start 20_treasure_taken | gameplay | Treasure room cleared: score 2700, a steel door in the grey rock | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,a:102
+#start 21_ingame_options | menu | Options in play: Save Game, End Game, Back to Game | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60
+#start 22_slots | save | Save Game: ten empty slots | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60
+#start 23_slot_name | save | Slot 1 named "Floor 1 treasure" | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60,enter,w60,type:Floor 1 treasure,w20
+#start 24_saved | save | Saved: back on the Options menu, Save Game highlighted | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60,enter,w60,type:Floor 1 treasure,w20,enter,w120
 #
 # ---- set main (first part; the capture agent adds the rest: see playbook "Shot plan") ----
 signon | boot | Sign-on: Spear of Destiny banner, available memory and detected devices | BOOT,w200

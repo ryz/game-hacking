@@ -1,0 +1,25 @@
+# id | category | caption | route
+01_signon | boot | Sign-on: Spear of Destiny banner, free memory and the sound devices found | BOOT,w200
+02_rating | boot | PC-13 "Profound Carnage" rating screen | BOOT,w400
+03_picture | title | Title picture: Spear of Destiny over a castle tower in a storm | TITLE
+04_options | menu | Options: New Game, Sound, Control, Load Game, Change View, View Scores, Quit | MENU
+05_difficulty | menu | How tough are you? Bring 'em on! chosen, with its face | MENU,enter,w120
+06_get_psyched | menu | Get Psyched! before floor 1 | MENU,enter,w120,enter,w120,!
+07_floor1_start | gameplay | Floor 1 (Tunnels 1): first control in a vine-covered stone corridor | NEWGAME
+08_pushwall | system | Space on the wall west of the start: the stone block slides away | NEWGAME,w:37,settle,a:51,a:1,w:12,space,w30*3,!
+09_ammo_room | gameplay | Secret room behind the pushwall: six ammo clips on the floor | NEWGAME,w:37,settle,a:51,a:1,w:12,space,w30,settle,w260,settle,w:25,a:51,w10
+10_ammo_taken | gameplay | Secret room emptied: the clips are taken, ammo 56 | NEWGAME,F1AMMO,a:102
+11_door_guard | gameplay | The north door opens on the vine hall: a guard beyond | NEWGAME,F1AMMO,F1DOOR
+12_guard_fires | battle | First shot: the guard fires back, the screen flashes red, health 97% | NEWGAME,F1AMMO,F1DOOR,ctrl:6,w10,w10,!
+13_pistol_guard | battle | Pistol fires at the guard through the doorway: health 82%, score 100 | NEWGAME,F1AMMO,F1DOOR,ctrl:6,w30,ctrl:6,w30,ctrl:6,w30,settle,a:4,ctrl:6,w8,!
+14_guard_close | battle | Vine hall: a guard at close range, the screen flashes red, health 25% | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,d:4,space,w40,w:50,settle,a:51,w10,!
+15_guard_down | battle | The guard lies dead; B.J.'s face is bloodied (health 25%) | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2
+16_west_door_guard | gameplay | West door opened: a guard in the grey room beyond, health 16% | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,d:51,w:26,a:51,w:80,space,w40,settle,a:51,w:7,d:49,space,w40,settle,w:9,space,w50,settle
+17_guard3_down | battle | Third guard shot (score 300) | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3
+18_treasure_door | gameplay | Door opens on a room of crosses and chalices | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR
+19_treasure_room | gameplay | Inside the treasure room: crosses and chalices, score 400 | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,a:51,w:4,d:51,w:20,!
+20_treasure_taken | gameplay | Treasure room cleared: score 2700, a steel door in the grey rock | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,a:102
+21_ingame_options | menu | Options in play: Save Game, End Game, Back to Game | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60
+22_slots | save | Save Game: ten empty slots | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60
+23_slot_name | save | Slot 1 named "Floor 1 treasure" | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60,enter,w60,type:Floor 1 treasure,w20
+24_saved | save | Saved: back on the Options menu, Save Game highlighted | NEWGAME,F1AMMO,F1DOOR,F1GUARD1,F1GUARD2,F1GUARD3,F1TDOOR,F1TREASURE,esc,w60,down*4,enter,w60,enter,w60,type:Floor 1 treasure,w20,enter,w120
