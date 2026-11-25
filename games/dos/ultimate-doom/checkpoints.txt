@@ -1,3 +1,19 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
-# Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+# Built on demand and cached per ROM in work/cache/; states are never committed. All routes are flat (from power-on).
+title | Title picture (The Ultimate Doom, id Software 1993), 90 frames after DOOM.EXE starts with -nosound | TITLE
+menu | Main menu over the title picture (New Game highlighted) | MENU
+s_e1m1 | New Game, Knee-Deep in the Dead, Hurt me plenty: E1M1 Hangar at the start (1056 -3616) facing north | NEWGAME
+s_e1m1_door | E1M1: walked north and east up the corridor and opened the door at (1536 -2496); two zombiemen come | NEWGAME,E1DOOR
+s_e1m1_fight1 | E1M1: both zombiemen killed with the pistol (kills 2, hp 76, 45 bullets) | NEWGAME,E1DOOR,E1FIGHT1
+s_e1m1_zigzag | E1M1: third zombieman killed, then the zombieman and the ledge imp of the nukage zigzag room (kills 5, hp 44) | NEWGAME,E1DOOR,E1FIGHT1,E1ZOMBIE,E1ZIGZAG
+s_e1m1_armor | E1M1: through the secret closet (secret 1, ammo) into the computer room, MegaArmor taken from the nukage pool (armor 194, hp 30) | NEWGAME,E1DOOR,E1FIGHT1,E1ZOMBIE,E1ZIGZAG,E1ARMOR
+s_e1m1_exit | E1M1: medikit, imp room fight, exit switch: Hangar Finished tally counting (hp 19, armor 163) | NEWGAME,E1DOOR,E1FIGHT1,E1ZOMBIE,E1ZIGZAG,E1ARMOR,E1EXIT
+s_e1m2 | Tally (Kills 100%, Items 5%, Secret 33%, Time 03:01), Entering Nuclear Plant, E1M2 at its start | NEWGAME,E1DOOR,E1FIGHT1,E1ZOMBIE,E1ZIGZAG,E1ARMOR,E1EXIT,E1TALLY
+s_saved | E1M2 start: saved in the game to slot 1 named ryz (DOOMSAV0.DSG, "game saved."); end of the start set | NEWGAME,E1DOOR,E1FIGHT1,E1ZOMBIE,E1ZIGZAG,E1ARMOR,E1EXIT,E1TALLY,SAVE1:ryz
+m_e1m1 | doom -warp 1 1 -skill 3: E1M1 Hangar at the start, no cheats | LEVEL:1:1
+m_e1m8 | -warp 1 8: E1M8 Phobos Anomaly (Barons of Hell) at the start | LEVEL:1:8
+m_e2m1 | -warp 2 1: E2M1 Deimos Anomaly at the start | LEVEL:2:1
+m_e2m8 | -warp 2 8: E2M8 Tower of Babel (Cyberdemon) at the start | LEVEL:2:8
+m_e3m1 | -warp 3 1: E3M1 Hell Keep at the start | LEVEL:3:1
+m_e3m8 | -warp 3 8: E3M8 Dis (Spider Mastermind) at the start | LEVEL:3:8
+m_e4m1 | -warp 4 1: E4M1 Hell Beneath at the start | LEVEL:4:1

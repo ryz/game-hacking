@@ -3,7 +3,7 @@
   "title": "The Ultimate Doom (DOS)",
   "platform": "dos",
   "region": "na",
-  "model": "svga-7800",
+  "model": "svga-40000",
   "rom": "rom/ultimate-doom.zip",
   "sha1": "054bef8ec2c4a4297fd82aca28faecee64554f21",
   "crc32": "080a63c2",
@@ -30,8 +30,57 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {},
+  "macros": {
+    "BOOT": "w120,down*9,enter,w120,type:doom -nosound\\n",
+    "TITLE": "BOOT,w90",
+    "MENU": "TITLE,esc,w20",
+    "NEWGAME": "MENU,enter,w20,enter,w20,enter,w120",
+    "WARP": "w120,down*9,enter,w120,type:doom -nosound -skill 3 -warp {0} {1}\\n,w300",
+    "E1DOOR": "right:15,w4,up:40,w6,up:40,w6,left:5,w4,up:40,w6,up:40,w6,left:5,w4,up:40,w6,left:6,w4,up:40,w6,left:102,w4,left:6,w4,up:7,w6,up:20,w6,right:104,w4,up:40,w6,up:40,w6,left:9,w4,left:8,w4,left:10,w4,left:13,w4,up:19,w6,left:105,w4,left:13,w4,up:7,w6,left:39,w4,left:5,w4,up:40,w6,up:38,w6,right:21,w4,right:6,w4,space,w30,w40",
+    "E1FIGHT1": "left:11,w4,up:40,w6,right:5,w4,up:36,w6,right:104,w4,up:7,w6,up:20,w6,right:104,w4,ctrl:20,w6,left:3,w4,ctrl:20,w6,right:3,w4,ctrl:20,w6,ctrl:20,w6,right:2,w4,ctrl:20,w6",
+    "E1ZOMBIE": "right:32,w4,up:40,w6,up:40,w6,left:12,w4,left:15,w4,left:40,w4,left:18,w4,up:14,w6,right:44,w4,up:40,w6,up:40,w6,right:5,w4,up:40,w6,up:15,w6,left:40,w4,left:23,w4,up:25,w6,right:47,w4,right:25,w4,up:18,w6,right:10,w4,right:74,w4,right:30,w4,up:6,w6,right:102,w4,ctrl:20,w6,left:11,w4,right:3,w4,ctrl:20,w6,ctrl:20,w6,right:32,w4,up:40,w6,up:18,w6,left:33,w4,up:36,w6,right:28,w4,right:19,w4,up:24,w6,right:11,w4,ctrl:20,w6,right:2,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6",
+    "E1ZIGZAG": "left:29,w4,right:5,w4,up:24,w6,right:6,w4,up:9,w6,right:38,w4,right:25,w4,up:14,w6,up:40,w6,right:5,w4,left:10,w4,left:11,w4,left:10,w4,up:20,w6,left:23,w4,up:12,w6,left:3,w4,space,w40,up:12,w6,right:10,w4,up:12,w6,right:7,w4,up:12,w6,left:35,w4,up:18,w6,right:18,w4,right:21,w4,right:9,w4,up:13,w6,up:12,w6,left:10,w4,up:12,w6,left:6,w4,up:12,w6,right:2,w4,space,w40,up:12,w6,left:9,w4,ctrl:20,w6,ctrl:20,w6,left:27,w4,right:3,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,left:2,w4,ctrl:20,w6,ctrl:20,w6,right:3,w4,ctrl:20,w6,left:3,w4,ctrl:20,w6,ctrl:20,w6",
+    "E1ARMOR": "up:22,w6,right:18,w4,right:54,w4,right:30,w4,up:7,w6,left:107,w4,up:24,w6,up:11,w6,right:71,w4,right:17,w4,up:29,w6,left:10,w4,left:7,w4,left:9,w4,left:13,w4,up:15,w6,left:104,w4,up:6,w6,up:12,w6,right:69,w4,right:6,w4,up:40,w6,up:40,w6,up:11,w6,right:55,w4,right:11,w4,up:40,w6,left:5,w4,up:40,w6,left:57,w4,left:21,w4,up:29,w6,up:10,w6,right:42,w4,right:9,w4,up:40,w6,right:11,w4,right:51,w4,right:49,w4,up:8,w6,left:80,w4,left:5,w4,up:40,w6,right:12,w4,right:5,w4,up:33,w6,right:21,w4,right:7,w4,up:27,w6,up:27,w6,left:8,w4,up:27,w6,up:27,w6,space,w40,up:27,w6,left:8,w4,left:22,w4,left:82,w4,up:7,w6,right:104,w4,up:40,w6,up:26,w6,left:107,w4,up:8,w6,up:40,w6,left:22,w4,left:70,w4,left:15,w4,up:6,w6,left:34,w4,left:14,w4,up:18,w6,right:18,w4,up:19,w6,left:13,w4,left:6,w4,up:21,w6,left:99,w4,up:6,w6,up:19,w6,up:14,w6,left:104,w4,right:5,w4,up:10,w6,left:14,w4,up:21,w6,left:8,w4,left:5,w4,left:5,w4,up:16,w6,right:30,w4,up:25,w6,right:33,w4,up:40,w6,up:40,w6,right:20,w4,right:60,w4,right:25,w4,up:8,w6,left:73,w4,left:11,w4,up:30,w6,right:11,w4,right:21,w4,right:68,w4,right:13,w4,up:9,w6,left:64,w4,left:9,w4,up:40,w6,up:8,w6,right:42,w4,right:21,w4,up:17,w6,up:10,w6,right:6,w4,up:34,w6,left:35,w4,up:30,w6,up:26,w6,left:28,w4,up:40,w6,left:13,w4,left:13,w4,left:15,w4,left:15,w4,up:18,w6,left:106,w4,up:8,w6,left:5,w4,up:14,w6,right:44,w4,right:6,w4,up:40,w6,up:31,w6,left:100,w4,right:12,w4,up:6,w6,up:11,w6,left:100,w4,left:6,w4,up:18,w6,up:15,w6,up:40,w6,left:103,w4,right:5,w4,up:7,w6,up:11,w6,left:85,w4,up:40,w6,up:40,w6,up:40,w6,left:6,w4,up:40,w6,left:5,w4,up:24,w6,left:105,w4,up:7,w6,up:18,w6",
+    "E1EXIT": "up:40,w6,right:6,w4,up:40,w6,up:40,w6,up:40,w6,right:107,w4,up:31,w6,left:5,w4,up:16,w6,left:41,w4,left:38,w4,up:11,w6,left:6,w4,up:7,w6,right:31,w4,up:40,w6,left:25,w4,left:29,w4,up:10,w6,right:22,w4,right:5,w4,up:30,w6,left:34,w4,left:12,w4,up:40,w6,up:40,w6,left:44,w4,left:42,w4,up:13,w6,up:8,w6,right:91,w4,right:11,w4,up:21,w6,left:6,w4,up:16,w6,left:58,w4,up:18,w6,right:15,w4,right:5,w4,up:21,w6,left:14,w4,up:15,w6,left:5,w4,up:27,w6,right:16,w4,right:21,w4,right:28,w4,right:15,w4,up:14,w6,left:64,w4,up:18,w6,right:23,w4,up:40,w6,right:7,w4,up:40,w6,up:17,w6,space,w40,up:17,w6,right:37,w4,right:24,w4,up:18,w6,left:28,w4,left:16,w4,up:22,w6,right:41,w4,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,ctrl:20,w6,right:30,w4,up:40,w6,left:30,w4,up:27,w6,space,w40,up:27,w6,right:12,w4,right:27,w4,right:53,w4,right:10,w4,up:8,w6,left:80,w4,up:15,w6,left:8,w4,up:11,w6,left:21,w4,left:8,w4,up:22,w6,right:16,w4,right:24,w4,right:27,w4,left:25,w4,up:11,w6,left:50,w4,left:14,w4,up:35,w6,up:9,w6,left:93,w4,left:8,w4,ctrl:20,w6,left:15,w4,right:5,w4,ctrl:20,w6,ctrl:20,w6,left:3,w4,ctrl:20,w6,left:10,w4,right:4,w4,ctrl:20,w6,left:7,w4,ctrl:20,w6,left:11,w4,ctrl:20,w6,ctrl:20,w6,left:36,w4,right:6,w4,up:40,w6,up:27,w6,left:48,w4,left:18,w4,up:29,w6,left:9,w4,up:25,w6,space,w40,up:25,w6,left:43,w4,up:21,w6,right:20,w4,right:17,w4,right:12,w4,up:17,w6,right:43,w4,right:20,w4,up:24,w6,left:27,w4,left:8,w4,up:39,w6,right:17,w4,up:27,w6,right:10,w4,up:20,w6,left:6,w4,up:20,w6,left:6,w4,up:20,w6,space,w40,up:20,w6,right:29,w4,right:11,w4,up:32,w6,right:15,w4,right:21,w4,right:14,w4,space,w30,w120",
+    "E1TALLY": "w300,space,w60,space,w60,space,w200",
+    "SAVE1": "esc,w20,down*3,w10,enter,w30,enter,w20,type:{0},w20,enter,w60",
+    "GOD": "type:iddqd,w10",
+    "IDKFA": "type:idkfa,w10",
+    "ARMS": "type:iddqd,w10,type:idkfa,w10,set:22B270=143:4,set:22B2E8=137:4,set:22B2EC=38:4,set:22B2F0=212:4,set:22B2F4=27:4,w10",
+    "LEVEL": "WARP:{0}:{1}"
+  },
+  "ram": {
+    "health": {
+      "addr": "22B26C",
+      "size": 4,
+      "note": "player_t.health (players[0] at 22B24C); the status bar number"
+    },
+    "armor": {
+      "addr": "22B270",
+      "size": 4,
+      "note": "armorpoints; armortype at 22B274 (1 green, 2 blue)"
+    },
+    "bullets": {
+      "addr": "22B2E8",
+      "size": 4,
+      "note": "ammo[0]; shells 22B2EC, cells 22B2F0, rockets 22B2F4"
+    },
+    "weapon": {
+      "addr": "22B2BC",
+      "size": 4,
+      "note": "readyweapon 0 fist 1 pistol 2 shotgun 3 chaingun 4 rocket 5 plasma 6 BFG 7 chainsaw"
+    },
+    "kills": {
+      "addr": "22B318",
+      "size": 4,
+      "note": "killcount; items 22B31C, secrets 22B320"
+    },
+    "map": {
+      "addr": "22B7BC",
+      "size": 4,
+      "note": "gamemap; gameepisode at 22B7CC"
+    }
+  },
   "edition": "DOS, Steam bundle: The Ultimate Doom 1.9 with Doom II 1.9, Final Doom (TNT: Evilution, The Plutonia Experiment) and the 20 Master Levels for Doom II",
   "work": "registered 2026-11-25, in the vault; boots to the title and the attract demo; not scouted",
   "open": "scout, sets (Doom II, Final Doom and the Master Levels are in the same ZIP: separate slugs if they get sets)",
