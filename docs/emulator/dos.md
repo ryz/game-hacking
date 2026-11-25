@@ -87,6 +87,8 @@ Missiles that burst at once or bosses that take no damage: first find where the 
 position) and list the map lines there. A no-clipping walk or a teleport can end inside solid structure that
 looks open from inside (Doom E2M8, 2026-11-25; an earlier note here blamed a "teleport ghost": wrong). Use a spot
 finder's spots and turn clipping back on before firing.
+Doom 1.1 (before 1.2): `-warp` needs `-devparm`; use `-episode E` plus idclev; its structs are byte-packed, so check
+alignment and record sizes before reusing a 1.9 tool (2026-11-25).
 Doom (2026-11-25) is fully deterministic here: cachecheck "same" with memory, so any `@checkpoint` route works.
 Wolfenstein 3D (2026-11-25): even flat checkpoint routes differ from the flat replay in actor memory after a
 load (`cachecheck --show-diff N` shows where); shots built on such a checkpoint still reproduce (a miss reloads

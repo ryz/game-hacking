@@ -60,7 +60,7 @@ def probe(job):
             if data[:2] == b"PK":               # a ZIP of files: compare the contents, not the archive bytes
                 import zipfile
                 z = zipfile.ZipFile(io.BytesIO(data))
-                data = b"".join(n.encode() + z.read(n) for n in sorted(z.namelist()))
+                data = b"".join(n.encode() + z.read(n) for n in sorted(z.namelist()) if not n.endswith("/"))  # files only: a state cannot carry an empty folder
             save = hashlib.sha1(bytes(data)).hexdigest()[:10] if data else "-"
         except Exception as e:
             save = "n/a:" + type(e).__name__

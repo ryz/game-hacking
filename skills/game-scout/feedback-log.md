@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-25 - Doom (DOS, registered 1.1)
+- Task: scout Doom 1.1 for `start` and `main`, reusing The Ultimate Doom 1.9's work.
+- Worked: a lump-by-lump compare of the two WADs showed which 1.9 routes could not be reused (E1M1, E1M4, E1M5,
+  E1M8 differ); searching for the mobj at the start position and pointers to it found the packed player_t
+  (20B558); dnav rebuilt an honest E1M1 in 5 calls; 1.9 TP spots worked with regenerated addresses.
+- Friction: cachecheck said "DIFFERS (save)" for an empty folder (C:\DOOMDATA) the game creates at start-up (4
+  calls); dnav assumed 4-byte-aligned mobjs and 92-byte mobjinfo (silent empty monster list); dnav `fight` fires
+  without line of sight.
+- Proposed rule change: backlog: states keep folders or cachecheck ignores empty ones; dos.md: Doom 1.1 `-warp`
+  needs `-devparm`, packed structs.
+- Corrected: none. Coordinator: cachecheck now compares files only (empty folders ignored), cold rerun 17/17
+  "same"; sheet matches (both view sizes, the 1.1 title).
+- Status: cachecheck fix built 2026-11-25; dos.md note added; dnav alignment and line-of-sight are game tools
+  (fixed for 1.1 by the scout / playbook).
+
 ### 2026-11-25 - The Ultimate Doom (DOS 1.9)
 - Task: boot, model, controls, cheats, RAM, honest checkpoints to the first save, WAD reader, `start` and `main` plans.
 - Worked: the level data first (`tools/wadmap.py`), then a memory-feedback navigator (`tools/dnav.py`: grid path
