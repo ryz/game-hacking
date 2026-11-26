@@ -8,7 +8,7 @@ one, a fan translation with its patch tools and reverse-engineering notes. Overv
 | Path | What |
 |---|---|
 | `games/<platform>/<slug>/` | everything about one game: `game.json`, `playbook.md`, `checkpoints.txt`, `shots.txt`, `shots/<set>/`, `design/`, `saves/`, `tools/` (game-specific helpers); optional `translation/` and `tech/` |
-| `games/<platform>/` | one folder per platform, named like `game.json` "platform": `gb`, `gbc`, `nes` (NES and Famicom), `snes` (SNES and Super Famicom), `sms` (Master System and Mark III), `md` (Mega Drive and Genesis), `dos`, `apple2`, `amiga`, `c64` (Commodore 64) |
+| `games/<platform>/` | one folder per platform, named like `game.json` "platform": `gb`, `gbc`, `nes` (NES and Famicom), `snes` (SNES and Super Famicom), `sms` (Master System and Mark III), `md` (Mega Drive and Genesis), `dos`, `apple2`, `amiga`, `c64` (Commodore 64), `ps1` (PlayStation) |
 | `games/_template/` | starting files for a new game (used by `tools/intake.py`) |
 | `tools/`, `tests/` | shared tooling for all games (emulators, play, capture) and its tests |
 | `docs/` | shared tooling docs: `emulator/` (general rules + one file per platform), `capture-guide.md`, `status.md` (snapshot), `backlog.md` (tool wishes), `progress-log.md` (history) |
@@ -60,9 +60,9 @@ documents, open items). Both are written by `python3 tools/gamestable.py` from e
 ## Shared tooling quick reference
 Run from the repo root (how to drive any game: `docs/emulator/README.md`, then the platform file
 `docs/emulator/<platform>.md`; what to capture: `docs/capture-guide.md`):
-- Setup: `sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga|c64]` builds one emulator (9-90 s; backends, what a
+- Setup: `sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga|c64|ps1]` builds one emulator (9 s-3 min; backends, what a
   game file is and what is not supported per platform: `docs/status.md`, "Platforms"). Amiga Kickstart ROMs go
-  into `rom/kickstart/` (never committed).
+  into `rom/kickstart/`, PlayStation BIOS files into `rom/bios/` (never committed).
 - Vault (private game data): `python3 tools/vault.py check GAME [--route TOKS]` (boot check alone: look at its sheet), then `push GAME [PATH ...] --booted "what the sheet showed" [--route TOKS] [--frames N]`, `pull GAME|--all`, `list`.
 - Register a ROM: `python3 tools/intake.py ROM [--slug NAME] [--region jp|na|eu] [--patch PATCH[:headered|unheadered] ...]` -> `games/<platform>/<slug>/` +
   `rom/<slug>.*`; apply/rebuild patches by hand: `python3 tools/patch.py SRC OUT PATCH[:layout] ...`; 6502 code:

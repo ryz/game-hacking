@@ -2,6 +2,20 @@
 
 Append-only, newest first.
 
+## 2026-11-26 - PlayStation emulator: Beetle PSX libretro core
+- Owner asked for a PS1 emulator. `sh tools/setup_emu.sh ps1` (2 min 54 s from scratch) builds Beetle PSX
+  (pinned, software renderer only) with `tools/beetle-psx-debug.patch` (`retro_gamedb_pc`, quiet log), builds the
+  free OpenBIOS from PCSX-Redux's nugget tree (pinned) and installs chdman and a MIPS cross compiler with apt.
+- Backend `platforms.Ps1`: a game is one CHD (intake converts .cue/.bin with chdman and records the Redump files
+  in "source" "dump"; header from SYSTEM.CNF: serial, region, model); models `ntsc-u`/`ntsc-j`/`pal` with the
+  real BIOS from `rom/bios/` (refused if missing, never guessed), `-openbios` for tests; digital pad; main RAM and
+  scratchpad by CPU address; GameShark 80/30 codes; memory card 1 as the battery save. Interpreter CPU, GPU on
+  the emulation thread, native CD speed: deterministic; states exact with input, zlib-compressed (17 MB -> ~150 KB).
+- Beetle's EXE side-loading patches a fixed Sony BIOS address, so the tests use a generated test disc instead
+  (`tests/make_ps1_exe.py`, `tests/make_ps1_disc.py`: ISO 9660, MODE2/2352, booted by OpenBIOS). Tests
+  `test_ps1_*` (3). `emu.py` keeps a game file's SHA-1 per process (discs are hundreds of MB).
+- Open: no Sony BIOS and no game yet; discs over 100 MB do not fit the vault (backlog); multi-disc, analog pad.
+
 ## 2026-11-25 - Tooling: backlog wishes asked two or three times built
 - `play.py`: `undo [N]` (10 levels); `checkpoint --scratch` (work/scratch/<id>/checkpoints.txt, `@NAME` works in
   the container; a committed checkpoint cannot start from one; `shoot.py --publish` refuses shots built on them,
