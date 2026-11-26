@@ -2002,3 +2002,122 @@ def test_macro_with_arguments_repeats():
         macros = {"WD": "w{0},a", "TWO": "b,b"}
     assert emu.expand(G(), ["WD:5*3"]) == ["w5", "a"] * 3
     assert emu.expand(G(), ["WD:5", "TWO*2"]) == ["w5", "a", "b", "b", "b", "b"]
+
+
+# ------------------------------------------------------------------ PlayStation (Beetle PSX, OpenBIOS)
+PS1_SLUG = "zz-selftest-ps1"
+PS1_MODEL = "ntsc-u-openbios"           # the free BIOS: the tests never need a Sony BIOS
+
+
+@pytest.fixture
+def ps1_selftest(tmp_path):
+    import shutil as _sh
+    if not os.path.exists(platforms.Ps1.SO) or not os.path.exists(platforms.Ps1.OPENBIOS) \
+            or not _sh.which("chdman"):
+        pytest.skip("Beetle PSX, OpenBIOS or chdman missing (sh tools/setup_emu.sh ps1)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_ps1_disc
+    cue = tmp_path / (PS1_SLUG + ".cue")
+    make_ps1_disc.write(str(cue))
+    yield cue
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", PS1_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games/ps1", "work/shots/ps1", "work/cache/ps1", "work/intake/ps1", "work/play"):
+        shutil.rmtree(os.path.join(ROOT, sub, PS1_SLUG), ignore_errors=True)
+    for p in ("rom/%s.chd" % PS1_SLUG, "work/intake/ps1/convert/%s.chd" % PS1_SLUG):
+        if os.path.exists(os.path.join(ROOT, p)):
+            os.remove(os.path.join(ROOT, p))
+    if os.path.isdir(os.path.join(ROOT, "games", "ps1")) and not os.listdir(os.path.join(ROOT, "games", "ps1")):
+        os.rmdir(os.path.join(ROOT, "games", "ps1"))
+
+
+def _ps1_chd(cue, tmp_path):
+    chd, dump = platforms.Ps1.convert(str(cue), str(tmp_path / "chd"))
+    return chd, dump
+
+
+def test_ps1_identify(ps1_selftest, tmp_path):
+    chd, dump = _ps1_chd(ps1_selftest, tmp_path)
+    assert [d["name"] for d in dump] == [PS1_SLUG + ".cue", PS1_SLUG + ".bin"]
+    h = platforms.Ps1.identify(open(chd, "rb").read())
+    assert h["serial"] == "SLUS-12345" and h["boot"] == "SLUS_123.45" and h["region"] == "North America"
+    assert h["platform"] == "ps1" and h["model"] == "ntsc-u" and h["ram_kib"] == 128 and h["tracks"] == 1
+    assert platforms.by_extension("x/GAME.CHD")[0] == "ps1" and platforms.by_extension("x/g.cue")[0] == "ps1"
+    assert platforms.by_extension("x/g.bin")[0] == "md"                  # .bin stays the Mega Drive's
+    assert {"cross", "circle", "square", "triangle", "l1", "r1", "l2", "r2", "start", "select", "up"} \
+        <= platforms.Ps1.keys
+    assert platforms.Ps1.gameshark("800A1B2C 03E7") == (None, 0x800A1B2C, b"\xe7\x03")
+    assert platforms.Ps1.gameshark("300A1B2C 0063") == (None, 0x800A1B2C, b"\x63")
+    with pytest.raises(ValueError):
+        platforms.Ps1.gameshark("D00A1B2C 0001")                           # conditional: not a held value
+
+
+def test_ps1_backend(ps1_selftest, tmp_path):
+    chd, _ = _ps1_chd(ps1_selftest, tmp_path)
+    e = platforms.backend("ps1").open(chd, model=PS1_MODEL)
+    try:
+        e.frames(900)                                                   # OpenBIOS boots the disc in ~10 s
+        n = int.from_bytes(e.peek(0x80100000, 4), "little")
+        assert n > 0 and e.peek(0x00100000, 4) == e.peek(0x80100000, 4) == e.peek(0xA0100000, 4)
+        assert e.regs()["pc"].startswith("800")
+        e.input(["cross", "up"])
+        e.frames(10)
+        assert int.from_bytes(e.peek(0x80100004, 4), "little") == 0x4010    # cross = bit 14, up = bit 4
+        e.input([])
+        e.frames(10)
+        assert int.from_bytes(e.peek(0x80100004, 4), "little") == 0
+        from PIL import Image
+        import io
+        im = Image.open(io.BytesIO(e.screen()))
+        cols = [c for _, c in im.getcolors(4096) or []]       # red = counter (the fill tears: no vsync wait)
+        assert im.size == (320, 240) and cols and all(r and not g and not b for r, g, b in cols)
+        e.save_state(str(tmp_path / "a.state"))
+        assert os.path.getsize(tmp_path / "a.state") < 2 << 20                 # compressed
+        e.input(["circle"])
+        e.frames(60)
+        e.input([])
+        e.frames(60)
+        pic, ram = e.screen(), e.peek(0x80000000, 0x200000)
+        e.load_state(str(tmp_path / "a.state"))
+        e.input(["circle"])
+        e.frames(60)
+        e.input([])
+        e.frames(60)
+        assert e.screen() == pic and e.peek(0x80000000, 0x200000) == ram
+        e.poke(0x80100010, b"\x12\x34")
+        assert e.peek(0x00100010, 2) == b"\x12\x34"
+        e.poke(0x1F800000, b"\x56")
+        assert e.peek(0x1F800000, 1) == b"\x56"
+        assert len(e.battery(0)) == 128 * 1024
+    finally:
+        e.close()
+    with pytest.raises(SystemExit, match="rom/bios"):                    # a real BIOS is never guessed
+        old, platforms.Ps1.BIOSDIR = platforms.Ps1.BIOSDIR, str(tmp_path / "nobios")
+        try:
+            platforms.backend("ps1").open(chd, model="ntsc-u")
+        finally:
+            platforms.Ps1.BIOSDIR = old
+
+
+def test_ps1_pipeline(ps1_selftest):
+    run("tools/intake.py", str(ps1_selftest), "--slug", PS1_SLUG, "--model", PS1_MODEL, "--probe", "120")
+    gj = os.path.join(ROOT, "games", "ps1", PS1_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "ps1" and meta["model"] == PS1_MODEL and meta["region"] == "na"
+    assert meta["rom"] == "rom/%s.chd" % PS1_SLUG and meta["source"]["dump"][1]["name"] == PS1_SLUG + ".bin"
+    meta["macros"] = {"BOOT": "w900"}
+    meta["ram"] = {"buttons": {"addr": "80100004", "size": 2}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", PS1_SLUG]
+    run(*P, "start", PS1_SLUG)
+    run(*P, "do", "BOOT")
+    assert "saved" in run(*P, "checkpoint", "ready", "test program running")
+    run(*P, "do!", "triangle:4,w2")
+    run(*P, "snap", "pad", "gameplay", "test program after a button")
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", PS1_SLUG, "main", "--verify")
+    run("tools/shoot.py", PS1_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", "ps1", PS1_SLUG, "shots", "main",
+                                 "zz-selftest-ps1_ps1_na_gameplay_pad.png"))
+    assert im.size == (320, 240)

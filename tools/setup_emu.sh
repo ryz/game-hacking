@@ -37,7 +37,13 @@
 #              CPU sync; state outside the snapshots is handed to the frontend: retro_gamedb_hidden_*), fixes the
 #              random seed (VICE seeded from the host clock), clocks the SID without producing audio, and adds
 #              retro_gamedb_peek/poke/pc/insert/flush/busy; the core's fallback logger is silenced as in puae.
-# sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga|c64]   (default: all)
+#   beetle-psx Beetle PSX (Mednafen's PlayStation) as a libretro core (same driver), software renderer only
+#              (HAVE_HW=0). Backend for ps1 (a game = a CHD disc image). tools/beetle-psx-debug.patch adds
+#              retro_gamedb_pc and silences the core's info-level log.
+#   nugget     PCSX-Redux's MIPS tree, for OpenBIOS (free PlayStation BIOS: the ps1 tests and the -openbios
+#              models; games use the real BIOS in rom/bios/). Needs a MIPS cross compiler; the ps1 target also
+#              installs chdman (mame-tools: .cue/.bin to CHD in tools/intake.py) and the compiler with apt.
+# sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga|c64|ps1]   (default: all)
 set -e
 cd "$(dirname "$0")"
 want=${1:-all}
@@ -118,4 +124,25 @@ if [ "$want" = all ] || [ "$want" = c64 ]; then
       git apply ../vice-debug.patch)
   fi
   make -C vice EMUTYPE=x64sc -j"$(nproc 2>/dev/null || echo 2)"
+fi
+if [ "$want" = all ] || [ "$want" = ps1 ]; then
+  need=""
+  command -v chdman >/dev/null 2>&1 || need="$need mame-tools"
+  command -v mipsel-linux-gnu-g++ >/dev/null 2>&1 || need="$need gcc-mipsel-linux-gnu g++-mipsel-linux-gnu"
+  if [ -n "$need" ]; then
+    apt-get install -y $need >/dev/null || { apt-get update -q >/dev/null && apt-get install -y $need >/dev/null; }
+  fi
+  if [ ! -d beetle-psx ]; then
+    mkdir beetle-psx
+    (cd beetle-psx && git init -q && git remote add origin https://github.com/libretro/beetle-psx-libretro.git &&
+      git fetch -q --depth 1 origin fb70b69a1aef1f60d9fc139ab7df34a5742ccdfd && git checkout -q FETCH_HEAD &&
+      git apply ../beetle-psx-debug.patch)
+  fi
+  make -C beetle-psx HAVE_HW=0 -j"$(nproc 2>/dev/null || echo 2)"
+  if [ ! -d nugget ]; then
+    mkdir nugget
+    (cd nugget && git init -q && git remote add origin https://github.com/pcsx-redux/nugget.git &&
+      git fetch -q --depth 1 origin f3a89636b434f93f3f7675917980310bc0b7fc57 && git checkout -q FETCH_HEAD)
+  fi
+  make -C nugget/openbios PREFIX=mipsel-linux-gnu FORMAT=elf32-tradlittlemips -j"$(nproc 2>/dev/null || echo 2)"
 fi

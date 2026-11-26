@@ -9,6 +9,9 @@ first seconds after power-on so the boot sequence is visible without playing.
 (tools/shoot.py). The region is read from the header where the header says it (Game Boy: Japan; SNES: country
 code; NES: PAL = eu); otherwise --region is required.
 
+PlayStation discs: give the .cue (its .bin tracks next to it) or a .chd; a .cue is converted to one CHD
+(chdman), and game.json "source" "dump" records the .cue and .bin names, sizes and SHA-1s.
+
 --patch (repeatable, applied in order; IPS, BPS, UPS via tools/patch.py): ROM is then the unpatched dump. The
 patched ROM is what gets registered and played; the dump goes to rom/src/<slug>-base.<ext>, the patches to
 rom/patches/<slug>/, and game.json "source" records names, SHA-1s and layouts (rebuild: tools/patch.py).
@@ -66,6 +69,13 @@ def main():
                     help="IPS/BPS/UPS patch to apply to ROM before registering (repeatable, in order)")
     a = ap.parse_args()
 
+    pname, cls = platforms.by_extension(a.rom)
+    dump = None
+    if hasattr(cls, "convert"):                 # disc images: one file per game (PlayStation: .cue + .bin -> CHD)
+        if a.patch:
+            raise SystemExit("error: --patch is not supported for disc images yet; apply the patch to the track "
+                             "files with its own tool, then register the patched .cue (and keep the patch)")
+        a.rom, dump = cls.convert(a.rom, os.path.join(ROOT, "work", "intake", pname, "convert"))
     data = open(a.rom, "rb").read()
     base, applied = data, []
     for spec in a.patch:
@@ -74,7 +84,6 @@ def main():
         data, used, kind = patch.apply(data, pdata, os.path.splitext(a.rom)[1], layout or "auto")
         applied.append((path, pdata, used, kind))
         print("patched: %s (%s, %s layout)" % (os.path.basename(path), kind, used))
-    pname, cls = platforms.by_extension(a.rom)
     info = cls.identify(data)
     platform = info.pop("platform", pname)
     model = a.model or info.pop("model", None)
@@ -148,6 +157,9 @@ def main():
             "macros": {},
             "ram": {},
         }
+        if dump:
+            source = {"note": "%s was made from the files below (the dump as Redump lists it) with chdman "
+                              "createcd; only the CHD is played and kept in the vault." % rom_rel, "dump": dump}
         if source:
             meta["source"] = source
         json.dump(meta, open(gj, "w", encoding="utf-8"), indent=2, ensure_ascii=False)

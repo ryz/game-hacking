@@ -1,0 +1,25 @@
+diff --git a/libretro.c b/libretro.c
+index 4d68446..32f4e05 100644
+--- a/libretro.c
++++ b/libretro.c
+@@ -4518,7 +4518,9 @@ static struct retro_disk_control_ext_callback disk_interface_ext =
+ static void fallback_log(enum retro_log_level level, const char *fmt, ...)
+ {
+    va_list va;
+-   (void)level;
++   /* game-hacking: warnings and errors only (the info and debug lines filled every tool's output) */
++   if (level < RETRO_LOG_WARN)
++      return;
+    va_start(va, fmt);
+    vfprintf(stderr, fmt, va);
+    va_end(va);
+@@ -8004,3 +8006,9 @@ void osd_message(unsigned priority,
+       environ_cb(RETRO_ENVIRONMENT_SET_MESSAGE, &msg);
+    }
+ }
++
++/* game-hacking (tools/beetle-psx-debug.patch): the CPU's program counter at the frame end, for logs. */
++RETRO_API uint32_t retro_gamedb_pc(void)
++{
++   return PSX_CPU ? PSX_CPU->BACKED_PC : 0;
++}

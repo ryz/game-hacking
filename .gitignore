@@ -26,6 +26,10 @@
 *.tap
 *.crt
 *.prg
+*.chd
+*.cue
+*.pbp
+*.mcr
 *.sav
 *.state
 rom/
@@ -39,6 +43,8 @@ work/
 **/tools/applewin/
 **/tools/puae/
 **/tools/vice/
+**/tools/beetle-psx/
+**/tools/nugget/
 __pycache__/
 *.bps
 *.ips

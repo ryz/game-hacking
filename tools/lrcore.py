@@ -1,5 +1,5 @@
 """Minimal headless libretro frontend (ctypes): loads one core, feeds it a ROM and joypad input, collects frames.
-No window, no audio, no SDL. Used by the NES, SNES, DOS, Apple II, Amiga and C64 backends in platforms.py (cores built by tools/setup_emu.sh).
+No window, no audio, no SDL. Used by the NES, SNES, Master System, Mega Drive, DOS, Apple II, Amiga, C64 and PlayStation backends in platforms.py (cores built by tools/setup_emu.sh).
 
   c = Core("tools/mesen/Libretro/mesen_libretro.so", "rom/game.nes", options={"mesen_region": "NTSC"})
   c.keys = {"a", "right"}; c.run(60); c.png("x.png"); s = c.serialize(); c.unserialize(s); c.close()
@@ -29,7 +29,7 @@ INPUT = C.CFUNCTYPE(C.c_int16, C.c_uint, C.c_uint, C.c_uint, C.c_uint)
 
 # RETRO_DEVICE_ID_JOYPAD_*
 JOYPAD = {"b": 0, "y": 1, "select": 2, "start": 3, "up": 4, "down": 5, "left": 6, "right": 7, "a": 8, "x": 9,
-          "l": 10, "r": 11}
+          "l": 10, "r": 11, "l2": 12, "r2": 13, "l3": 14, "r3": 15}
 ENV_GET_SYSTEM_DIRECTORY, ENV_SET_PIXEL_FORMAT, ENV_GET_VARIABLE, ENV_SET_VARIABLES = 9, 10, 15, 16
 ENV_GET_VARIABLE_UPDATE, ENV_GET_SAVE_DIRECTORY = 17, 31
 ENV_SET_KEYBOARD_CALLBACK, ENV_GET_PERF_INTERFACE, ENV_SET_MEMORY_MAPS, ENV_GET_THROTTLE_STATE = 12, 28, 36, 71

@@ -2396,8 +2396,283 @@ class C64(Libretro):
         return {"pc": self.PC_FORMAT % self.c.L.retro_gamedb_pc()}
 
 
+# ------------------------------------------------------------------ PlayStation (Beetle PSX libretro core)
+def _ps1_sector(f, lba, size=2048):
+    """User data of one sector of a raw (2352-byte) data track: Mode 2 Form 1 at offset 24, Mode 1 at 16."""
+    f.seek(lba * 2352)
+    raw = f.read(2352)
+    if len(raw) < 2352:
+        return b""
+    return raw[24:24 + size] if raw[15] == 2 else raw[16:16 + size]
+
+
+def _ps1_dir(f, lba, size):
+    """{NAME: (lba, size, is_dir)} of an ISO 9660 directory (names without ;1)."""
+    out, data = {}, b"".join(_ps1_sector(f, lba + i) for i in range((size + 2047) // 2048))
+    pos = 0
+    while pos < len(data):
+        n = data[pos]
+        if n == 0:                                  # records do not cross sectors: skip to the next one
+            pos = (pos // 2048 + 1) * 2048
+            continue
+        rec = data[pos:pos + n]
+        name = rec[33:33 + rec[32]]
+        if name not in (b"\0", b"\1"):
+            out[name.split(b";")[0].decode("latin-1").upper()] = (
+                int.from_bytes(rec[2:6], "little"), int.from_bytes(rec[10:14], "little"), bool(rec[25] & 2))
+        pos += n
+    return out
+
+
+def _chdman(args):
+    import subprocess
+    r = subprocess.run(["chdman"] + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    if r.returncode:
+        raise SystemExit("chdman %s failed:\n%s" % (args[0], r.stderr.decode(errors="replace")[-2000:]))
+
+
+class Ps1(Libretro):
+    """Beetle PSX (Mednafen's PlayStation, libretro core, software renderer, CPU interpreter; in-process through
+    tools/lrcore.py, patched with tools/beetle-psx-debug.patch: retro_gamedb_pc, quiet log). Deterministic, exact
+    savestates (stored zlib-compressed: about 17 MB raw, mostly empty buffers).
+    A game is a CHD disc image (one file; tools/intake.py converts a .cue with its .bin tracks with chdman).
+    Model: REGION[-openbios]: ntsc-u (North America), ntsc-j (Japan), pal (Europe); the real BIOS of that region
+    is looked up in rom/bios/ (never committed) by the core's file names (BIOSES) or SHA-1; -openbios boots the
+    free OpenBIOS (PCSX-Redux, built by setup_emu.sh) instead: no Sony logo, fewer games run, tests only.
+    Buttons: cross circle square triangle l1 r1 l2 r2 start select up down left right (a digital pad in port 1).
+    Memory: CPU addresses; main RAM 80000000-801FFFFF (also 00000000- and A0000000-, 2 MB mirrored to 8 MB),
+    scratchpad 1F800000-1F8003FF. The battery save is memory card 1 (128 KiB raw image, .mcr)."""
+    PAD = {"cross": "b", "circle": "a", "square": "y", "triangle": "x", "l1": "l", "r1": "r", "l2": "l2",
+           "r2": "r2", "start": "start", "select": "select", "up": "up", "down": "down", "left": "left",
+           "right": "right"}
+    keys = set(PAD)
+    extensions = (".chd", ".cue")
+    native_size = (320, 240)
+    emulator = "Beetle PSX libretro core"
+    SO = os.path.join(HERE, "beetle-psx", "mednafen_psx_libretro.so")
+    OPENBIOS = os.path.join(HERE, "nugget", "openbios", "openbios.bin")
+    BIOSDIR = os.path.join(HERE, "..", "rom", "bios")
+    MODELS = {"ntsc-u": "ntsc-u", "ntsc-j": "ntsc-j", "pal": "pal"}
+    # region -> (file names the core looks for, SHA-1 of the BIOS it expects: SCPH-5500 / 5501 / 5502, v3.0)
+    BIOSES = {"ntsc-j": (("scph5500.bin",), "b05def971d8ec59f346f2d9ac21fb742e3eb6917"),
+              "ntsc-u": (("scph5501.bin", "scph5503.bin", "scph7003.bin"), "0555c6fae8906f3f09baf5988f00e55f88e9f30b"),
+              "pal": (("scph5502.bin", "scph5552.bin"), "f6bc2d1f5eb6593de7d089c425ac681d6fffd3f0")}
+    PC_FORMAT = "%08x"
+    SEARCH = [(0x80000000, 0x200000), (0x1F800000, 0x400)]
+    STATE = b"GAMEDB-PS1-STATE-1\n"
+    SAVE_HELP = ("`.sav` = memory card 1 as a raw 128 KiB image (the `.mcr` format): rename it to `.mcr` for "
+                 "other emulators, or to the game's `.srm` for RetroArch's Beetle PSX.")
+
+    # ---- the disc
+    @staticmethod
+    def cue_files(cue):
+        """The track files a .cue sheet names, in order (paths next to the sheet)."""
+        import re as _re
+        out = []
+        for line in open(cue, encoding="latin-1"):
+            m = _re.match(r'\s*FILE\s+"?(.*?)"?\s+\w+\s*$', line)
+            if m:
+                out.append(os.path.join(os.path.dirname(os.path.abspath(cue)), m.group(1)))
+        return out
+
+    @classmethod
+    def convert(cls, path, workdir):
+        """intake: a .cue (with its .bin tracks) -> one CHD in workdir, and the files it was made from (name,
+        size, SHA-1: these are what Redump lists). A .chd is used as it is."""
+        import hashlib, shutil
+        if os.path.splitext(path)[1].lower() != ".cue":
+            return path, None
+        if not shutil.which("chdman"):
+            raise SystemExit("chdman missing: run sh tools/setup_emu.sh ps1 (installs mame-tools)")
+        dump = []
+        for p in [path] + cls.cue_files(path):
+            if not os.path.exists(p):
+                raise SystemExit("%s names %s, which is not there" % (path, p))
+            h = hashlib.sha1()
+            with open(p, "rb") as f:
+                for block in iter(lambda: f.read(1 << 22), b""):
+                    h.update(block)
+            dump.append({"name": os.path.basename(p), "size": os.path.getsize(p), "sha1": h.hexdigest()})
+        os.makedirs(workdir, exist_ok=True)
+        out = os.path.join(workdir, os.path.splitext(os.path.basename(path))[0] + ".chd")
+        if os.path.exists(out):
+            os.remove(out)
+        _chdman(["createcd", "-i", path, "-o", out])
+        return out, dump
+
+    @staticmethod
+    def disc_info(cue):
+        """SYSTEM.CNF facts of the disc's first track: boot file, serial, volume id."""
+        files = Ps1.cue_files(cue)
+        info = {"tracks": sum(1 for l in open(cue, encoding="latin-1") if l.strip().upper().startswith("TRACK"))}
+        with open(files[0], "rb") as f:
+            pvd = _ps1_sector(f, 16)
+            if pvd[1:6] != b"CD001":
+                info["header_title"] = None
+                return info
+            info["volume"] = pvd[40:72].decode("latin-1").strip()
+            root = _ps1_dir(f, int.from_bytes(pvd[158:162], "little"), int.from_bytes(pvd[166:170], "little"))
+            boot = None
+            if "SYSTEM.CNF" in root:
+                lba, size, _ = root["SYSTEM.CNF"]
+                cnf = _ps1_sector(f, lba)[:size].decode("latin-1")
+                m = re.search(r"BOOT\s*=\s*cdrom:\\?\\?([^\s;]+)", cnf, re.I)
+                boot = m and m.group(1).replace("\\", "/").upper()
+            elif "PSX.EXE" in root:
+                boot = "PSX.EXE"
+            info["boot"] = boot
+            m = boot and re.match(r"([A-Z]{4})[_-](\d{3})\.?(\d{2})$", os.path.basename(boot))
+            if m:
+                info["serial"] = "%s-%s%s" % m.groups()
+        return info
+
+    @classmethod
+    def identify(cls, data):
+        """data: the CHD file (extracted with chdman to read SYSTEM.CNF from its first track)."""
+        import shutil, tempfile
+        d = tempfile.mkdtemp(prefix="gamedb-ps1")
+        try:
+            chd = os.path.join(d, "disc.chd")
+            open(chd, "wb").write(data)
+            if not shutil.which("chdman"):
+                raise SystemExit("chdman missing: run sh tools/setup_emu.sh ps1 (installs mame-tools)")
+            _chdman(["extractcd", "-i", chd, "-o", os.path.join(d, "disc.cue"), "-ob", os.path.join(d, "disc.bin")])
+            os.remove(chd)
+            info = cls.disc_info(os.path.join(d, "disc.cue"))
+        finally:
+            shutil.rmtree(d, ignore_errors=True)
+        region = {"U": "ntsc-u", "E": "pal", "P": "ntsc-j"}.get((info.get("serial") or "xxx")[2])
+        info.update({"platform": "ps1", "model": region or "ntsc-u", "ram_kib": 128,
+                     "header_title": info.get("serial") or info.get("volume") or None})
+        if region:
+            info["region"] = {"ntsc-u": "North America", "pal": "Europe", "ntsc-j": "Japan"}[region]
+        return info
+
+    @classmethod
+    def bios(cls, region):
+        """Path of the real BIOS for a region in rom/bios/: one of the core's file names, or any file there
+        with the expected SHA-1."""
+        import hashlib
+        names, sha = cls.BIOSES[region]
+        have = os.listdir(cls.BIOSDIR) if os.path.isdir(cls.BIOSDIR) else []
+        for n in names:
+            for h in have:
+                if h.lower() in (n, n.replace("scph", "scph-")):
+                    return os.path.join(cls.BIOSDIR, h)
+        for h in have:
+            p = os.path.join(cls.BIOSDIR, h)
+            if os.path.getsize(p) == 512 * 1024 and hashlib.sha1(open(p, "rb").read()).hexdigest() == sha:
+                return p
+        raise SystemExit("PlayStation BIOS for %s missing: put your dump into rom/bios/ as %s (SHA-1 %s; another "
+                         "BIOS of that region also boots under that name), or use the model %s-openbios (free "
+                         "OpenBIOS, tests only)" % (region, names[0], sha, region))
+
+    @staticmethod
+    def gameshark(code):
+        """'80AAAAAA VVVV' (16-bit write) or '30AAAAAA 00VV' (8-bit) -> (None, 80AAAAAA, bytes), for the gs: token
+        (written every frame, like the device). Conditional and other code types are refused."""
+        c = re.sub(r"[\s:-]", "", code).upper()
+        if not re.fullmatch(r"[0-9A-F]{12}", c):
+            raise ValueError("PlayStation GameShark code must be TTAAAAAA VVVV (12 hex digits): %r" % code)
+        kind, addr, v = c[:2], 0x80000000 | int(c[2:8], 16), int(c[8:], 16)
+        if kind == "80":
+            return None, addr, v.to_bytes(2, "little")
+        if kind == "30" and v <= 0xFF:
+            return None, addr, bytes([v])
+        raise ValueError("GameShark %s: only constant writes (80 = 16 bit, 30 = 8 bit) can be held; use "
+                         "freeze:ADDR=HEX for others" % code)
+
+    # ---- running
+    def open(self, rom, model=None, seed=1, turbo=True, sav=None):
+        import ctypes, shutil, tempfile
+        import lrcore
+        if not os.path.exists(self.SO):
+            raise SystemExit("%s missing: run sh tools/setup_emu.sh ps1" % self.emulator)
+        model = model or "ntsc-u"
+        free = model.endswith("-openbios")
+        region = model[:-len("-openbios")] if free else model
+        if region not in self.MODELS:
+            raise SystemExit("PlayStation model %r unknown (REGION[-openbios]; regions: %s)" % (
+                model, " ".join(self.MODELS)))
+        self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
+        if free:
+            if not os.path.exists(self.OPENBIOS):
+                raise SystemExit("OpenBIOS missing: run sh tools/setup_emu.sh ps1")
+            shutil.copyfile(self.OPENBIOS, os.path.join(self.tmp, "openbios.bin"))
+        else:
+            names, _ = self.BIOSES[region]
+            shutil.copyfile(self.bios(region), os.path.join(self.tmp, names[0]))
+        options = {"beetle_psx_renderer": "software", "beetle_psx_gpu_thread": "disabled",
+                   "beetle_psx_cpu_dynarec": "disabled", "beetle_psx_cpu_freq_scale": "100%(native)",
+                   "beetle_psx_cd_access_method": "sync", "beetle_psx_cd_fastload": "2x(native)",
+                   "beetle_psx_skip_bios": "disabled", "beetle_psx_region": self.MODELS[region],
+                   "beetle_psx_override_bios": "openbios" if free else "disabled",
+                   "beetle_psx_use_mednafen_memcard0_method": "libretro", "beetle_psx_enable_memcard1": "disabled",
+                   "beetle_psx_shared_memory_cards": "disabled", "beetle_psx_crop_overscan": "static",
+                   "beetle_psx_image_crop": "disabled", "beetle_psx_display_osd": "disabled",
+                   "beetle_psx_aspect_ratio": "uncorrected", "beetle_psx_internal_resolution": "1x(native)",
+                   "beetle_psx_dither_mode": "1x(native)", "beetle_psx_deinterlacer": "weave",
+                   "beetle_psx_frame_duping": "disabled", "beetle_psx_analog_toggle": "disabled",
+                   "beetle_psx_widescreen_hack": "disabled", "beetle_psx_pgxp_mode": "disabled",
+                   "beetle_psx_gte_overclock": "disabled", "beetle_psx_display_internal_fps": "disabled",
+                   "beetle_psx_display_vram": "disabled", "beetle_psx_initial_scanline": "0",
+                   "beetle_psx_last_scanline": "239", "beetle_psx_initial_scanline_pal": "0",
+                   "beetle_psx_last_scanline_pal": "287"}
+        self.c = lrcore.Core(self.SO, os.path.abspath(rom), system_dir=self.tmp, save_dir=self.tmp,
+                             options=options, defaults=True, av_info=True)
+        L = self.c.L
+        L.retro_set_controller_port_device(0, 1)            # RETRO_DEVICE_JOYPAD: digital pad
+        L.retro_gamedb_pc.restype = ctypes.c_uint32
+        if sav:
+            data, card = open(sav, "rb").read(), self.c.memory(lrcore.MEM_SAVE_RAM)
+            if len(data) != len(card):
+                raise SystemExit("%s is %d bytes; a memory card image is %d" % (sav, len(data), len(card)))
+            ctypes.memmove(card, data, len(data))
+        self.c.size = self.native_size
+        self._search = None
+        return self
+
+    def input(self, keys):
+        self.c.keys = {self.PAD[k] for k in keys}
+
+    def save_state(self, path):
+        open(os.path.abspath(path), "wb").write(self.STATE + zlib.compress(self.c.serialize(), 1))
+
+    def load_state(self, path):
+        data = open(os.path.abspath(path), "rb").read()
+        if not data.startswith(self.STATE):
+            raise RuntimeError("not a PlayStation savestate of this tool version (delete work/cache): %s" % path)
+        self.c.unserialize(zlib.decompress(data[len(self.STATE):]))
+
+    @staticmethod
+    def _phys(addr):
+        a = addr & 0x1FFFFFFF
+        return a & 0x1FFFFF if a < 0x800000 else a
+
+    def peek(self, addr, n, bank=None):
+        if bank is not None:
+            raise NotImplementedError("peek reads the CPU address space only (no bank argument)")
+        return self.c.peek_map(self._phys(addr), n)
+
+    def poke(self, addr, data):
+        self.c.poke_map(self._phys(addr), bytes(data))
+
+    def _snapshot(self, wide):
+        out = {}
+        for base, size in self.SEARCH:
+            d = self.peek(base, size + (1 if wide else 0))
+            if wide:
+                out.update({base + i: d[i] | d[i + 1] << 8 for i in range(size)})
+            else:
+                out.update(zip(range(base, base + size), d))
+        return out
+
+    def regs(self):
+        return {"pc": self.PC_FORMAT % self.c.L.retro_gamedb_pc()}
+
+
 PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "sms": Sms, "md": MegaDrive, "dos": Dos, "apple2": Apple2,
-             "amiga": Amiga, "c64": C64}
+             "amiga": Amiga, "c64": C64, "ps1": Ps1}
 
 
 def backend(platform):
