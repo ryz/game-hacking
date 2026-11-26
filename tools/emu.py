@@ -102,10 +102,9 @@ class Game:
         if not os.path.exists(self.rom):
             raise SystemExit("ROM missing: %s (python3 tools/vault.py pull %s, or copy your dump there; SHA-1 %s)" % (
                 os.path.relpath(self.rom, ROOT), self.id, self.meta.get("sha1")))
-        data = open(self.rom, "rb").read()
-        sha = hashlib.sha1(data).hexdigest()
+        sha = file_sha1(self.rom)
         if self.meta.get("sha1") and sha != self.meta["sha1"]:
-            if self.same_disks(data):
+            if self.same_disks(open(self.rom, "rb").read()):
                 return self.meta["sha1"]
             raise SystemExit("ROM %s has SHA-1 %s, game.json expects %s" % (self.rom, sha, self.meta["sha1"]))
         return sha
@@ -484,14 +483,34 @@ def open_game(game, model=None, state=None, opts=None):
     return emu
 
 
+_SHA1 = {}
+
+
+def file_sha1(path):
+    """SHA-1 of a file, kept per process while the file is unchanged (disc images are hundreds of MB)."""
+    st = os.stat(path)
+    key = (os.path.abspath(path), st.st_size, st.st_mtime_ns)
+    if key not in _SHA1:
+        h = hashlib.sha1()
+        with open(path, "rb") as f:
+            for block in iter(lambda: f.read(1 << 22), b""):
+                h.update(block)
+        _SHA1[key] = h.hexdigest()
+    return _SHA1[key]
+
+
 def cache_path(game, toks, model):
     """Cache file for the state at the end of a flat route: keyed by the exact ROM (dump or variant), the save
     file, the model and the tokens."""
     opts, _ = prefix(toks)
-    h = hashlib.sha1(open(game.rom_file(opts.get("rom")), "rb").read())
+    rom = game.rom_file(opts.get("rom"))
     if opts.get("sav"):
+        h = hashlib.sha1(open(rom, "rb").read())
         h.update(open(game.sav_file(opts["sav"]), "rb").read())
-    key = hashlib.sha1((h.hexdigest() + "|" + model + "|" + ",".join(toks)).encode()).hexdigest()[:16]
+        h = h.hexdigest()
+    else:
+        h = file_sha1(rom)                      # the same key as hashing the bytes, without reading a disc again
+    key = hashlib.sha1((h + "|" + model + "|" + ",".join(toks)).encode()).hexdigest()[:16]
     return os.path.join(CACHE_DIR or os.path.join(WORK, "cache"), game.id, key + ".state")
 
 
