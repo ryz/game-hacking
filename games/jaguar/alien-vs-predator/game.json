@@ -1,0 +1,29 @@
+{
+  "slug": "alien-vs-predator",
+  "title": "Alien vs Predator",
+  "platform": "jaguar",
+  "region": "na",
+  "model": "ntsc",
+  "rom": "rom/alien-vs-predator.j64",
+  "sha1": "fd8c89250ebc1e403838b2e589d1f69e3fe2fe02",
+  "crc32": "dc187f82",
+  "size": 4194304,
+  "header": {
+    "rom_kib": 4096,
+    "header_title": null,
+    "ram_kib": 0.125,
+    "crc32": "dc187f82",
+    "entry": "802000",
+    "rom_config": "04040404"
+  },
+  "press": {
+    "hold": 8,
+    "wait": 40
+  },
+  "settle": {
+    "step": 10,
+    "limit": 300
+  },
+  "macros": {},
+  "ram": {}
+}
