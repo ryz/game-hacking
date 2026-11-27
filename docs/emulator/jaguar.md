@@ -2,8 +2,9 @@
 
 Platform notes for `jaguar` games (Atari Jaguar cartridges). The general rules (routes, tokens, the working loop)
 are in [README.md](README.md). Added 2026-11-27 and checked with the test cartridge `tests/make_jaguar_rom.py`
-(tests `test_jaguar_*`). Not tried with a real game yet: the core's own compatibility notes say most cartridges
-reach game code but some freeze or run at the wrong speed
+(tests `test_jaguar_*`). First game: Alien vs Predator (2026-11-27): about 60 routes of 2,500 frames (menus,
+all cutscenes, all 15 areas, save and restore) with no freeze, render fault or speed problem. The core's own
+notes say some other cartridges freeze or run at the wrong speed
 ([compatibility page](https://jaguar.provenance-emu.com/compatibility.html)).
 
 ## Backend
@@ -60,7 +61,11 @@ Team Tap, rotary, mouse and light gun are not set up.
   (peek and poke); the chips' registers can be peeked (no side effects) but not poked.
 - `regs` gives the 68000's program counter at the frame end (the GPU and DSP run their own code).
 - Code: `python3 tools/dis68k.py SLUG 802000 40` disassembles the cartridge at CPU addresses;
-  `--xref ADDR` finds the instructions that name a variable.
+  `--xref ADDR` finds the instructions that name a variable. Many cartridges are compressed and run their
+  code from DRAM (Alien vs Predator: ROM strings unreadable): disassemble live memory with
+  `dis68k.py SLUG --route @checkpoint ADDR [N]` (or `--route ROUTE --xref ADDR`), read text from DRAM.
+- Pad: games read it active-low in the standard Atari layout (Alien vs Predator: A = bit 29, B = 25, C = 13,
+  Pause = 28, Option = 9 of the long they build).
 
 ## Cheats
 No Jaguar cheat format is set up: hold a value with `freeze:ADDR=HEX` or write it once with `poke:`.

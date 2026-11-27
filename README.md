@@ -49,6 +49,7 @@ reverse-engineering notes. No game data is included: everything runs from your o
 | [Dungeon Master](games/amiga/dungeon-master/playbook.md) | Amiga (v3.60, cracked ADF, A500 with Kickstart 1.3) | screenshot set (111, to the ending: all 14 levels, 22 creature kinds, Lord Chaos fused, the Grey Lord), `start` set (37, played honestly to the first save), three lens documents, maps of all 14 levels, level warp, pointer macros, saves |
 | [Phantasie](games/c64/phantasie/playbook.md) | c64 | captured 2026-11-21: main set 77 shots (town, guild, wilderness, dungeon 1, three fights), start set 39 shots (power-on to the first save), three lenses, 21 checkpoints, BASIC-variable RAM map with a position warp |
 | [Wasteland](games/c64/wasteland/playbook.md) | c64 | captured 2026-11-22: start set (49 shots, power-on to the first save in Highpool, honest) and main set (124: title, Ranger Center, creation, world map, field commands, Highpool, Agricultural Center, combat, and the side 2-4 locations Quartz, Needles, Las Vegas, Guardian Citadel, Darwin Village, Sleeper Base, Base Cochise); lenses written; world map decoded, WARP macro |
+| [Alien vs Predator](games/jaguar/alien-vs-predator/playbook.md) | jaguar | scouted 2026-11-27: boot, 3 character starts, warp to all 15 areas, debug mode, RAM map, 30-shot plan; not captured |
 <!-- games:end -->
 
 This table is written by `python3 tools/gamestable.py` from each game's `game.json`; sets, lens documents and

@@ -11,7 +11,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `vault.py`: store files over 100 MB (PlayStation CHDs are 200-600 MB; GitHub refuses them): split into parts with SHA-1s in files.json, joined on pull, or another store (owner's decision) | 1 | PS1 backend 2026-11-26 |
 | `shoot.py SLUG start --renumber`: rewrite `NN_` ids in play order and rename the files; today renumbered ids plus `--prune` delete the renamed shots and the set is reshot (the capture guide promises a rename) | 1 | Ultima III DOS start set 2026-11-22 |
 | `play.py peek` counts toward `call=`: helper scripts that peek inflate the budget counter (~5x); a peek that does not count, or a separate counter | 1 | Ultima I DOS start set 2026-11-22 |
-| `dis68k.py` for Amiga: disassemble a chip-RAM dump (`play.py dump`) at Amiga addresses, `--xref` with a branch-target scan (today it maps addresses as Mega Drive, FF....) | 1 | Dragonflight capture 2026-11-22 |
+| `cachecheck.py`: skip a scratch checkpoint whose parent no longer exists (warning) instead of stopping with "unknown checkpoint" | 1 | Alien vs Predator Jaguar scout 2026-11-27 |
 | `play.py dump --bin`: write a raw binary dump (today JSON keyed by address) | 1 | Dragonflight capture 2026-11-22 |
 | Amiga: exact savestate restore (PUAE). A loaded state gives the same frame but game RAM drifts (Dragonflight on A500/A500OG/A500ECS; 10 bytes of slow RAM already 60 frames into the Kickstart boot). Found: the core restores at beam line 0, hpos 0, while our states are saved about 3 lines after the vsync (VHPOSR in the CHIP chunk, ignored by `restore_custom`); `cia_reset` (run by `custom_reset` during a restore) zeroes `kblostsynccnt`; CIA `tol`, BLTX, REFPTR and an INTREQ bit also come back different. Tried 2026-11-22: keep `kblostsynccnt`, and put the beam back (by running chips: double-counts CIA timers; by moving the counters): neither changed the drift in the crack intro, the keyboard fix made the Kickstart boot worse. Shots are unaffected (checkpoints are always rebuilt through the same chain); live play may roll differently from a replay | 1 | Dragonflight scout 2026-11-22 |
 | Research hosts for Amiga scouts: `thalion.exotica.org.uk` (Thalion manuals), `amiga.abime.net` (Hall of Light) not reachable from sessions | 1 | Dragonflight scout 2026-11-22 |
@@ -49,6 +49,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 ## Done
 | Wish | Asked | Done |
 |---|---|---|
+| `dis68k.py --route ROUTE ADDR [N]` / `--xref`: disassemble live RAM at the platform's addresses (Amiga chip RAM, Jaguar DRAM: compressed carts run from RAM) | 2 | 2026-11-27 (Dragonflight capture, Alien vs Predator Jaguar scout) |
 | `play.py undo N` (stack of 10) | 3 | 2026-11-25 |
 | `play.py checkpoint --scratch` (work/scratch/, publish refuses shots on them) and in-place replace | 3 | 2026-11-25 |
 | `snap` warns about a long `wN` while values are frozen (`emu.long_waits_held`) | 3 | 2026-11-25 |

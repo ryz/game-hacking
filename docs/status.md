@@ -105,6 +105,7 @@ its lens documents. Do not edit between the markers.
 | Dungeon Master | `games/amiga/dungeon-master/` | [main](../games/amiga/dungeon-master/shots/main/index.md) 111, [start](../games/amiga/dungeon-master/shots/start/index.md) 37 | yes | a teleporter, pressure plate, chest, scroll, three creature kinds, Gando's mirror, a few actions (KICK, WAR CRY, CALM, INVOKE) |
 | Phantasie | `games/c64/phantasie/` | [main](../games/c64/phantasie/shots/main/index.md) 77, [start](../games/c64/phantasie/shots/start/index.md) 39 | yes | game over; other towns and wilderness sections; dungeon floors beyond the first rooms; scroll reading; spell names; greetings result |
 | Wasteland | `games/c64/wasteland/` | [main](../games/c64/wasteland/shots/main/index.md) 124, [start](../games/c64/wasteland/shots/start/index.md) 49 | yes | game over not reached; NPC talk and shop lists in the later towns, Quartz Emporium; Savage Village, mine shaft, Desert Nomads not shot; Sleeper Base/Base Cochise identified by content (reached by a poked entry record); Utils Copy/Restart and the disk-9 editor not tried |
+| Alien vs Predator | `games/jaguar/alien-vs-predator/` | none | no | capture main and start sets; score and position RAM; terminals, map, cocooning and Predator weapons not yet reached |
 <!-- games:end -->
 
 ## Container notes

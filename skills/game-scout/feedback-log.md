@@ -12,6 +12,21 @@ Never delete entries.
 
 ## Entries
 
+### 2026-11-27 - Alien vs Predator (Jaguar)
+- Task: scout Alien vs Predator (Jaguar), the first game on the platform: boot, three starts, RAM, debug, shot plan.
+- Worked: preview.py with --peek and --timeline did nearly all verification in batches (~85 calls); archive.org
+  `/stream/<item>/<file>_djvu.txt` serves a manual's OCR text when the download host is refused; dis68k.py on a
+  DRAM dump renamed .bin decoded the debug-code state machine of a compressed cartridge.
+- Friction: no DRAM dump / live disassembly on jaguar (wrote work/scout/alien-vs-predator/dram.py); unclear that
+  emu.Game(name) is what scripts need (find_game returns a tuple); a scratch checkpoint on a renamed committed
+  checkpoint stopped cachecheck.py ("unknown checkpoint") until edited by hand.
+- Proposed rule change: jaguar.md: compressed carts run from DRAM, read code and text there; backlog: play.py
+  dram / dis68k --live; cachecheck skips scratch checkpoints with a missing parent.
+- Corrected: none. Coordinator: cold cachecheck 7/7 "same", sheet shows each checkpoint on its screen; save
+  01_start pushed to the vault.
+- Status: dis68k.py --route built 2026-11-27 (second ask after Dragonflight); jaguar.md note added; cachecheck
+  scratch-parent wish -> backlog.
+
 ### 2026-11-25 - Doom (DOS, registered 1.1)
 - Task: scout Doom 1.1 for `start` and `main`, reusing The Ultimate Doom 1.9's work.
 - Worked: a lump-by-lump compare of the two WADs showed which 1.9 routes could not be reused (E1M1, E1M4, E1M5,
