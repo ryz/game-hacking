@@ -2121,3 +2121,125 @@ def test_ps1_pipeline(ps1_selftest):
     im = Image.open(os.path.join(ROOT, "games", "ps1", PS1_SLUG, "shots", "main",
                                  "zz-selftest-ps1_ps1_na_gameplay_pad.png"))
     assert im.size == (320, 240)
+
+
+# ------------------------------------------------------------------ Atari Jaguar (Virtual Jaguar libretro core)
+JAG_SLUG = "zz-selftest-jaguar"
+
+
+@pytest.fixture
+def jag_selftest(tmp_path):
+    if not os.path.exists(platforms.Jaguar.SO):
+        pytest.skip("Virtual Jaguar core not built (sh tools/setup_emu.sh jaguar)")
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_jaguar_rom
+    rom = tmp_path / "t.j64"
+    rom.write_bytes(make_jaguar_rom.build())
+    yield rom
+    subprocess.run([sys.executable, os.path.join(ROOT, "tools", "play.py"), "--name", JAG_SLUG, "stop"],
+                   capture_output=True)
+    for sub in ("games/jaguar", "work/shots/jaguar", "work/cache/jaguar", "work/intake/jaguar", "work/play"):
+        shutil.rmtree(os.path.join(ROOT, sub, JAG_SLUG), ignore_errors=True)
+    if os.path.exists(os.path.join(ROOT, "rom", JAG_SLUG + ".j64")):
+        os.remove(os.path.join(ROOT, "rom", JAG_SLUG + ".j64"))
+    if os.path.isdir(os.path.join(ROOT, "games", "jaguar")) and not os.listdir(os.path.join(ROOT, "games", "jaguar")):
+        os.rmdir(os.path.join(ROOT, "games", "jaguar"))
+
+
+def test_jaguar_identify():
+    sys.path.insert(0, os.path.dirname(__file__))
+    import make_jaguar_rom
+    h = platforms.Jaguar.identify(make_jaguar_rom.build())
+    assert h["platform"] == "jaguar" and h["model"] == "ntsc" and h["entry"] == "802000" and h["rom_kib"] == 1024
+    assert platforms.by_extension("x/GAME.J64")[0] == "jaguar" and platforms.by_extension("x/g.jag")[0] == "jaguar"
+    assert {"a", "b", "c", "option", "pause", "0", "9", "star", "hash", "up"} <= platforms.Jaguar.keys
+
+
+def test_jaguar_backend(jag_selftest, tmp_path):
+    from PIL import Image
+    import io
+    img = lambda x: Image.open(io.BytesIO(x.screen())).convert("RGB")
+    e = platforms.backend("jaguar").open(str(jag_selftest))
+    try:
+        e.frames(30)
+        assert 28 <= int.from_bytes(e.peek(0x100000, 4), "big") <= 30            # one count per frame
+        assert img(e).size == (352, 240) and img(e).getpixel((176, 120)) == (0, 0, 248)
+        assert e.peek(0x810000, 4) == b"JAG!" and e.peek(0x800404, 4) == b"\x00\x80\x20\x00"
+        assert 0x802000 <= int(e.regs()["pc"], 16) < 0x802100
+        for key, bit in sorted(platforms.Jaguar.PAD.items(), key=lambda kv: kv[1]):     # every button, keypad too
+            e.input([key])
+            e.frames(2)
+            assert e.peek(0x100004, 4) == (1 << bit).to_bytes(4, "big"), key
+        e.input(["a", "7"])
+        e.frames(2)
+        assert img(e).getpixel((176, 120)) == (248, 0, 0) and e.peek(0x100004, 4) == b"\x00\x01\x00\x20"
+        e.input([])
+        e.frames(2)
+        assert e.peek(0x100004, 8) == b"\x00\x00\x00\x00\x00\x1f\xff\xff"
+        st = str(tmp_path / "a.state")
+        e.save_state(st)
+        assert os.path.getsize(st) < 1 << 20                                      # compressed
+        e.input(["b"]); e.frames(20); e.input([]); e.frames(20)
+        pic, ram = e.screen(), e.peek(0, 0x200000)
+        e.load_state(st)
+        e.input(["b"]); e.frames(20); e.input([]); e.frames(20)
+        assert e.screen() == pic and e.peek(0, 0x200000) == ram                   # the same route: the same frames
+        e.ram_search("new == old")
+        e.frames(3)
+        assert "100003" in [x["addr"] for x in e.ram_search("new == old + 3")["results"]]
+        e.poke(0x100100, b"\x12\x34")
+        e.ram_search_reset()
+        e.poke(0x100100, b"\x12\x35")
+        assert "100100" in [x["addr"] for x in e.ram_search("new == old + 1", wide=True)["results"]]   # big-endian
+        e.poke(0xF03000, b"\x56")
+        assert e.peek(0xF03000, 1) == b"\x56"                                     # GPU RAM
+        with pytest.raises(ValueError):
+            e.poke(0x810000, b"\x00")                                             # cartridge ROM
+        assert e.battery(0) == b"\xff" * 128                                     # an erased EEPROM
+    finally:
+        e.close()
+    sav = tmp_path / "x.sav"
+    sav.write_bytes(bytes(range(128)))
+    p = platforms.backend("jaguar").open(str(jag_selftest), model="pal", sav=str(sav))
+    try:
+        p.frames(10)
+        assert p.battery(0) == bytes(range(128)) and img(p).getpixel((176, 120)) == (0, 0, 248)
+    finally:
+        p.close()
+    b = platforms.backend("jaguar").open(str(jag_selftest), model="ntsc-bios")
+    try:
+        b.frames(300)                                     # the real boot ROM: logo, then an unsigned cart is refused
+        assert b.peek(0x100000, 4) == b"\x00" * 4 and not b.regs()["pc"].startswith("80")
+        assert img(b).getpixel((10, 10))[0] > 100                                 # the red boot screen
+    finally:
+        b.close()
+
+
+def test_jaguar_pipeline(jag_selftest):
+    run("tools/intake.py", str(jag_selftest), "--slug", JAG_SLUG, "--region", "na", "--probe", "120")
+    gj = os.path.join(ROOT, "games", "jaguar", JAG_SLUG, "game.json")
+    meta = json.load(open(gj))
+    assert meta["platform"] == "jaguar" and meta["model"] == "ntsc" and meta["rom"] == "rom/%s.j64" % JAG_SLUG
+    meta["macros"] = {"BOOT": "w30"}
+    meta["ram"] = {"pad": {"addr": "100008", "size": 4, "fmt": "hex"}, "frames": {"addr": "100000", "size": 4}}
+    json.dump(meta, open(gj, "w"))
+    P = ["tools/play.py", "--name", JAG_SLUG]
+    run(*P, "start", JAG_SLUG)
+    run(*P, "do", "BOOT")
+    assert "saved" in run(*P, "checkpoint", "ready", "test program running")
+    run(*P, "do", "a+star:4,hash:2,w2,poke:100100=2A,set:100104=4660:2")
+    st = run(*P, "status")
+    assert "pad=$00011010" in st                                    # the sticky mask: A, star, hash
+    assert "2a" in run(*P, "peek", "100100", "1") and "12 34" in run(*P, "peek", "100104", "2")
+    run(*P, "do", "a:30")
+    run(*P, "snap", "held_a", "gameplay", "after button A was held")
+    r = subprocess.run([sys.executable, *P, "export", "early", "erased EEPROM"], cwd=ROOT, capture_output=True,
+                       text=True)
+    assert r.returncode and "empty" in r.stdout                     # nothing saved in the game: refused
+    run(*P, "stop")
+    assert "1/1 reproduce" in run("tools/shoot.py", JAG_SLUG, "main", "--verify")
+    run("tools/shoot.py", JAG_SLUG, "main", "--publish-only")
+    from PIL import Image
+    im = Image.open(os.path.join(ROOT, "games", "jaguar", JAG_SLUG, "shots", "main",
+                                 "zz-selftest-jaguar_jaguar_na_gameplay_held_a.png")).convert("RGB")
+    assert im.size == (352, 240) and im.getpixel((176, 120)) == (0, 0, 248)        # A released: blue again

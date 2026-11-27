@@ -1,0 +1,75 @@
+diff --git a/libretro.c b/libretro.c
+index 1ed4fdb..4e1475c 100644
+--- a/libretro.c
++++ b/libretro.c
+@@ -63,6 +63,7 @@ int64_t rfread(void* buffer, size_t elem_size, size_t elem_count, RFILE* stream)
+ #include "titlehook.h"
+ #include "gdbstub.h"
+ #include "vjdebug.h"
++#include "m68kinterface.h"
+ #include "log.h"
+ /* CORE_VERSION.  scripts/gen-version-h.sh writes src/core/version.h with
+  * the short git rev in it; the Makefile and jni/Android.mk both run it at
+@@ -4303,6 +4304,23 @@ static void update_teamtap_input(void)
+    }
+ }
+ 
++/* game-hacking (tools/virtualjaguar-debug.patch): the frontend sets the Jaguar buttons directly, one bit
++ * per joystick.h BUTTON_* slot (all 21: pad, keypad 0-9 * #, A B C, Option, Pause), so every keypad key is
++ * reachable without RetroPad mappings.  Applied after update_input(), every frame, socket 0 of each port. */
++static int      gamedb_pad_on;
++static uint32_t gamedb_pad_mask[2];
++
++static void gamedb_apply_pad(void)
++{
++   unsigned p, b;
++   if (!gamedb_pad_on)
++      return;
++   for (p = 0; p < 2; p++)
++      for (b = 0; b <= BUTTON_LAST; b++)
++         if (gamedb_pad_mask[p] & (1u << b))
++            joypad_buttons[p][b] = 0xff;
++}
++
+ static void update_input(void)
+ {
+    unsigned i;
+@@ -8375,6 +8393,7 @@ void retro_run(void)
+    }
+ 
+    update_input();
++   gamedb_apply_pad();
+ 
+    /* Hi-res: advance the shadow surface's frame epoch (no-op when off;
+     * see shadowfb.h, design section 3.4). */
+@@ -8527,3 +8546,30 @@ void retro_run(void)
+    dbg_frame_counter++;
+ #endif
+ }
++
++/* game-hacking (tools/virtualjaguar-debug.patch): input, memory and program counter for tools/platforms.py. */
++RETRO_API void retro_gamedb_pad(unsigned port, uint32_t mask)
++{
++   gamedb_pad_on = 1;
++   gamedb_pad_mask[port & 1] = mask;
++}
++
++/* One byte of the 68000's 24-bit address space, without side effects (the debugger's read path); -1 refused. */
++RETRO_API int retro_gamedb_peek(uint32_t addr)
++{
++   unsigned char b = 0;
++   if (VJDebugIface()->peek(addr & 0xFFFFFFu, &b, 1) != 1)
++      return -1;
++   return b;
++}
++
++/* Writes RAM only (main DRAM, CLUT, line buffer, GPU and DSP RAM): 1, else 0 (ROM, registers, unmapped). */
++RETRO_API int retro_gamedb_poke(uint32_t addr, uint8_t value)
++{
++   return VJDebugIface()->poke(addr & 0xFFFFFFu, &value, 1, 0) == 1;
++}
++
++RETRO_API uint32_t retro_gamedb_pc(void)
++{
++   return (uint32_t)m68k_get_reg(NULL, M68K_REG_PC);
++}

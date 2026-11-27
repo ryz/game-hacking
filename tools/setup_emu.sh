@@ -40,10 +40,15 @@
 #   beetle-psx Beetle PSX (Mednafen's PlayStation) as a libretro core (same driver), software renderer only
 #              (HAVE_HW=0). Backend for ps1 (a game = a CHD disc image). tools/beetle-psx-debug.patch adds
 #              retro_gamedb_pc and silences the core's info-level log.
+#   virtualjaguar  Virtual Jaguar (libretro continuation) as a libretro core (same driver). Backend for jaguar
+#              (a game = a .j64/.jag cartridge image; the boot ROMs are built into the core).
+#              tools/virtualjaguar-debug.patch adds retro_gamedb_pad (all 21 Jaguar buttons set directly, keypad
+#              included), retro_gamedb_peek/poke (24-bit 68000 address space, through the core's debugger path)
+#              and retro_gamedb_pc.
 #   nugget     PCSX-Redux's MIPS tree, for OpenBIOS (free PlayStation BIOS: the ps1 tests and the -openbios
 #              models; games use the real BIOS in rom/bios/). Needs a MIPS cross compiler; the ps1 target also
 #              installs chdman (mame-tools: .cue/.bin to CHD in tools/intake.py) and the compiler with apt.
-# sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga|c64|ps1]   (default: all)
+# sh tools/setup_emu.sh [gb|nes|snes|sms|md|dos|apple2|amiga|c64|ps1|jaguar]   (default: all)
 set -e
 cd "$(dirname "$0")"
 want=${1:-all}
@@ -145,4 +150,14 @@ if [ "$want" = all ] || [ "$want" = ps1 ]; then
       git fetch -q --depth 1 origin f3a89636b434f93f3f7675917980310bc0b7fc57 && git checkout -q FETCH_HEAD)
   fi
   make -C nugget/openbios PREFIX=mipsel-linux-gnu FORMAT=elf32-tradlittlemips -j"$(nproc 2>/dev/null || echo 2)"
+fi
+if [ "$want" = all ] || [ "$want" = jaguar ]; then
+  if [ ! -d virtualjaguar ]; then
+    mkdir virtualjaguar
+    (cd virtualjaguar && git init -q && git remote add origin https://github.com/libretro/virtualjaguar-libretro.git &&
+      git fetch -q --depth 1 origin 4e27ea44da58978d7f02a68a4d6bf36553cc25a2 && git checkout -q FETCH_HEAD &&
+      git apply ../virtualjaguar-debug.patch)
+  fi
+  make -C virtualjaguar -j"$(nproc 2>/dev/null || echo 2)"
+  python3 -c "import capstone" 2>/dev/null || pip install -q capstone   # tools/dis68k.py
 fi

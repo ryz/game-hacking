@@ -27,6 +27,8 @@
 *.crt
 *.prg
 *.chd
+*.j64
+*.jag
 *.cue
 *.pbp
 *.mcr
@@ -45,6 +47,7 @@ work/
 **/tools/vice/
 **/tools/beetle-psx/
 **/tools/nugget/
+**/tools/virtualjaguar/
 __pycache__/
 *.bps
 *.ips

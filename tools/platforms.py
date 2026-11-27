@@ -2671,8 +2671,156 @@ class Ps1(Libretro):
         return {"pc": self.PC_FORMAT % self.c.L.retro_gamedb_pc()}
 
 
+# ------------------------------------------------------------------ Atari Jaguar (Virtual Jaguar libretro core)
+class Jaguar(Libretro):
+    """Virtual Jaguar (the libretro continuation, in-process through tools/lrcore.py, patched with
+    tools/virtualjaguar-debug.patch: retro_gamedb_pad/peek/poke/pc). Cartridges only (.j64, .jag); Jaguar CD is
+    not set up. No BIOS file needed: the boot ROMs are built into the core.
+    Models: ntsc (60 Hz, default), pal (50 Hz): the core's high-level boot (no logo, straight into the game, the
+    core's recommended setting); ntsc-bios, pal-bios: the real Series K boot ROM first (the Jaguar logo; only
+    signed cartridges pass it).
+    Buttons: up down left right a b c option pause, keypad 0-9 star hash (all 21 of the controller, port 1).
+    Memory is the 68000's 24-bit address space: 000000-1FFFFF DRAM (2 MiB), 800000- the cartridge, F00000-
+    the chips' registers and RAM (F03000 GPU RAM, F1B000 DSP RAM). peek has no side effects; poke writes RAM
+    only (DRAM, CLUT, line buffer, GPU and DSP RAM). Multi-byte values are big-endian. The battery save is the
+    cartridge EEPROM (128 bytes, 64 big-endian words)."""
+    # button -> bit: the core's joystick.h BUTTON_* slots
+    PAD = {"up": 0, "down": 1, "left": 2, "right": 3, "star": 4, "7": 5, "4": 6, "1": 7, "0": 8, "8": 9, "5": 10,
+           "2": 11, "hash": 12, "9": 13, "6": 14, "3": 15, "a": 16, "b": 17, "c": 18, "option": 19, "pause": 20}
+    keys = set(PAD)
+    extensions = (".j64", ".jag")
+    native_size = (352, 240)
+    emulator = "Virtual Jaguar libretro core"
+    SO = os.path.join(HERE, "virtualjaguar", "virtualjaguar_libretro.so")
+    MODELS = {"ntsc": ("disabled", "disabled"), "pal": ("enabled", "disabled"),
+              "ntsc-bios": ("disabled", "enabled"), "pal-bios": ("enabled", "enabled")}   # (pal, bios)
+    PC_FORMAT = "%06x"
+    ENDIAN = "be"
+    DRAM = 0x200000
+    SEARCH = [(0x000000, 0x200000)]
+    STATE = b"GAMEDB-JAGUAR-STATE-1\n"
+    SAVE_HELP = ("`.sav` = the cartridge EEPROM (128 bytes, 64 big-endian words): rename it to the game's `.srm` "
+                 "for RetroArch's Virtual Jaguar core.")
+
+    @staticmethod
+    def identify(data):
+        """A Jaguar cartridge has no title in its header: size, the universal header's entry vector (800404)."""
+        head = data[0x400:0x408] if len(data) >= 0x408 else b""
+        entry = int.from_bytes(head[4:8], "big") if head else None
+        info = {"platform": "jaguar", "model": "ntsc", "rom_kib": len(data) // 1024, "header_title": None,
+                "ram_kib": 0.125, "crc32": crc32(data)}     # the 128-byte EEPROM (the core gives every cart one)
+        if entry is not None:
+            info["entry"] = "%06X" % (entry & 0xFFFFFF)
+            info["rom_config"] = head[:4].hex().upper()
+        return info
+
+    def open(self, rom, model=None, seed=1, turbo=True, sav=None):
+        import ctypes
+        model = model or "ntsc"
+        if model not in self.MODELS:
+            raise SystemExit("Jaguar model %r unknown (have: %s)" % (model, ", ".join(self.MODELS)))
+        pal, bios = self.MODELS[model]
+        # fixed setup: the console as it was (no enhancements, no per-title tweaks, no frame skipping, no link
+        # cable, the accurate blitter); the core's defaults for the rest (defaults=True), as a real frontend
+        self._open(rom, {
+            "virtualjaguar_pal": pal, "virtualjaguar_bios": bios, "virtualjaguar_bios_type": "k",
+            "virtualjaguar_usefastblitter": "disabled", "virtualjaguar_true_color": "disabled",
+            "virtualjaguar_internal_resolution": "1x", "virtualjaguar_widescreen": "disabled",
+            "virtualjaguar_pertitle_defaults": "disabled", "virtualjaguar_enhancement_hooks": "disabled",
+            "virtualjaguar_frameskip": "disabled", "virtualjaguar_risc_clock_scale": "1x",
+            "virtualjaguar_netlink": "disabled", "virtualjaguar_voice_chat": "disabled",
+            "virtualjaguar_texture_dump": "disabled", "virtualjaguar_texture_replace": "disabled",
+            "virtualjaguar_gdb_stub": "disabled", "virtualjaguar_alt_inputs": "disabled",
+            "virtualjaguar_crash_detect": "disabled"}, sav)
+        return self
+
+    def _open(self, rom, options, sav):
+        import ctypes, tempfile
+        import lrcore
+        if not os.path.exists(self.SO):
+            raise SystemExit("%s missing: run sh tools/setup_emu.sh jaguar" % self.emulator)
+        self.tmp = tempfile.mkdtemp(prefix="gamedb-core")
+        self.c = lrcore.Core(self.SO, os.path.abspath(rom), system_dir=self.tmp, save_dir=self.tmp,
+                             options=options, defaults=True, av_info=True)
+        self._bind(self.c.L)
+        # The EEPROM goes in before the first frame (the core unpacks its save buffer then). Without a save, an
+        # erased chip (all FF): the core means to start blank, but would unpack its zero-filled buffer over it.
+        ram = self.c.memory(lrcore.MEM_SAVE_RAM)
+        data = open(sav, "rb").read() if sav else b"\xff" * len(ram or b"")
+        if sav and (ram is None or len(data) != len(ram)):
+            raise SystemExit("%s is %d bytes; this cartridge's save is %d" % (sav, len(data), len(ram or b"")))
+        if ram is not None:
+            ctypes.memmove(ram, data, len(data))
+        self.c.size = self.native_size
+        self._search = None
+        self.input([])
+        return self
+
+    def _bind(self, L):
+        import ctypes
+        L.retro_gamedb_pad.restype, L.retro_gamedb_pad.argtypes = None, [ctypes.c_uint, ctypes.c_uint32]
+        L.retro_gamedb_peek.restype, L.retro_gamedb_peek.argtypes = ctypes.c_int, [ctypes.c_uint32]
+        L.retro_gamedb_poke.restype, L.retro_gamedb_poke.argtypes = ctypes.c_int, [ctypes.c_uint32, ctypes.c_uint8]
+        L.retro_gamedb_pc.restype = ctypes.c_uint32
+
+    def input(self, keys):
+        mask = 0
+        for k in keys:
+            mask |= 1 << self.PAD[k]
+        self.c.L.retro_gamedb_pad(0, mask)
+
+    def save_state(self, path):
+        open(os.path.abspath(path), "wb").write(self.STATE + zlib.compress(self.c.serialize(), 1))
+
+    def load_state(self, path):
+        data = open(os.path.abspath(path), "rb").read()
+        if not data.startswith(self.STATE):
+            raise RuntimeError("not a Jaguar savestate of this tool version (delete work/cache): %s" % path)
+        self.c.unserialize(zlib.decompress(data[len(self.STATE):]))
+
+    def _dram(self):
+        import lrcore
+        return self.c.memory(lrcore.MEM_SYSTEM_RAM)
+
+    def peek(self, addr, n, bank=None):
+        if bank is not None:
+            raise NotImplementedError("peek reads the 68000 address space only (no bank argument)")
+        addr &= 0xFFFFFF
+        if addr + n <= self.DRAM:
+            return bytes(self._dram()[addr:addr + n])
+        out, f = bytearray(), self.c.L.retro_gamedb_peek
+        for i in range(n):
+            v = f((addr + i) & 0xFFFFFF)
+            if v < 0:
+                raise ValueError("%06X cannot be read" % ((addr + i) & 0xFFFFFF))
+            out.append(v)
+        return bytes(out)
+
+    def poke(self, addr, data):
+        addr, data = addr & 0xFFFFFF, bytes(data)
+        if addr + len(data) <= self.DRAM:
+            self._dram()[addr:addr + len(data)] = data
+            return
+        for i, b in enumerate(data):
+            if not self.c.L.retro_gamedb_poke((addr + i) & 0xFFFFFF, b):
+                raise ValueError("%06X is not RAM (DRAM, CLUT, line buffer, GPU or DSP RAM)" % ((addr + i) & 0xFFFFFF))
+
+    def _snapshot(self, wide):
+        out = {}
+        for base, size in self.SEARCH:
+            d = self.peek(base, size + (1 if wide else 0))
+            if wide:
+                out.update({base + i: d[i] << 8 | d[i + 1] for i in range(size)})     # 68000: big-endian
+            else:
+                out.update(zip(range(base, base + size), d))
+        return out
+
+    def regs(self):
+        return {"pc": self.PC_FORMAT % self.c.L.retro_gamedb_pc()}
+
+
 PLATFORMS = {"gb": GameBoy, "gbc": GameBoy, "nes": Nes, "snes": Snes, "sms": Sms, "md": MegaDrive, "dos": Dos, "apple2": Apple2,
-             "amiga": Amiga, "c64": C64, "ps1": Ps1}
+             "amiga": Amiga, "c64": C64, "ps1": Ps1, "jaguar": Jaguar}
 
 
 def backend(platform):
