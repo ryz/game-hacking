@@ -1,6 +1,9 @@
 """68000 disassembler for a registered Mega Drive or Atari Jaguar game (or a ROM path), built on capstone.
 
   python3 tools/dis68k.py SLUG|ROM ADDR [N]          N instructions from ROM address ADDR (hex; default 40)
+  python3 tools/dis68k.py SLUG --route ROUTE ADDR [N]   the same in live memory at the end of ROUTE (`@checkpoint`
+                                                     plus tokens): code a game unpacked into RAM (Jaguar carts are
+                                                     often compressed; Amiga, Mega Drive RAM code); --xref works too
   python3 tools/dis68k.py SLUG|ROM --xref ADDR [ADDR ...]
                                                      every instruction that names ADDR (a RAM variable such as
                                                      FFC818 or a ROM table), from a linear sweep of the whole ROM
@@ -63,11 +66,35 @@ def line(ins, names):
     return s + ("   ; " + ", ".join(hit) if hit else "")
 
 
+def live(slug, route):
+    """(memory bytes, names, platform, base): the game's main RAM (the backend's first RAM-search range) after
+    ROUTE."""
+    import emu
+    g = emu.Game(slug)
+    e, rest, _ = emu.start(g, route)
+    try:
+        emu.play(e, g, rest)
+        base, size = e.SEARCH[0]
+        mem = e.peek(base, size)
+    finally:
+        e.close()
+    names = {int(v["addr"], 16): k for k, v in g.meta.get("ram", {}).items() if isinstance(v, dict) and "addr" in v}
+    return mem, names, g.platform, base
+
+
 def main(argv):
+    route = None
+    if "--route" in argv:
+        i = argv.index("--route")
+        route, argv = argv[i + 1], argv[:i] + argv[i + 2:]
     if len(argv) < 2:
         print(__doc__); return 2
-    rom, names, platform = load(argv[0])
-    base, start = BASE[platform]
+    if route:
+        rom, names, platform, base = live(argv[0], route)
+        start = base
+    else:
+        rom, names, platform = load(argv[0])
+        base, start = BASE[platform]
     md = engine()
     if argv[1] == "--xref":
         want = set()
@@ -88,7 +115,7 @@ def main(argv):
     addr = int(argv[1], 16)
     count = int(argv[2], 0) if len(argv) > 2 else 40
     if not 0 <= addr - base < len(rom):
-        raise SystemExit("%06X is not in the ROM (%06X-%06X)" % (addr, base, base + len(rom) - 1))
+        raise SystemExit("%06X is not in the image (%06X-%06X)" % (addr, base, base + len(rom) - 1))
     for i, ins in enumerate(md.disasm(rom[addr - base:], addr)):
         if i >= count:
             break

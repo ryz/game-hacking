@@ -2243,3 +2243,6 @@ def test_jaguar_pipeline(jag_selftest):
     im = Image.open(os.path.join(ROOT, "games", "jaguar", JAG_SLUG, "shots", "main",
                                  "zz-selftest-jaguar_jaguar_na_gameplay_held_a.png")).convert("RGB")
     assert im.size == (352, 240) and im.getpixel((176, 120)) == (0, 0, 248)        # A released: blue again
+    out = run("tools/dis68k.py", JAG_SLUG, "--route", "@ready,poke:100200=4E71", "100200", "1")   # live DRAM
+    assert out.startswith("100200") and "nop" in out
+    assert "move.w   d0, $f14000.l" in run("tools/dis68k.py", JAG_SLUG, "802026", "1")        # the cartridge
