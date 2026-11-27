@@ -24,6 +24,7 @@ Each session builds only the emulator it needs (`sh tools/setup_emu.sh PLATFORM`
 | `amiga` | PUAE libretro core | 90 s | an ADF or a ZIP of ADFs; Kickstart ROMs in `rom/kickstart/` | `.ipf`, hard disk / WHDLoad, CD32 / CDTV, write-protected disks | [amiga.md](emulator/amiga.md) |
 | `c64` | VICE x64sc libretro core | 21 s | a D64/G64 (or a ZIP of them), PRG/T64, TAP or CRT | second drive, audio, paddles/mouse/light pen; G64, D71/D81, tapes and cartridges untested; first game Phantasie (2026-11-21) | [c64.md](emulator/c64.md) |
 | `ps1` | Beetle PSX libretro core, software renderer (+ OpenBIOS for tests) | 3 min | a CHD disc image (intake converts .cue/.bin); the region's real BIOS in `rom/bios/` | multi-disc, analog pad, port 2, memory card 2, `.pbp`/`.iso`/`.m3u`, `--patch` on discs; discs over 100 MB do not fit the vault; no game registered yet (backend 2026-11-26) | [ps1.md](emulator/ps1.md) |
+| `jaguar` | Virtual Jaguar libretro core (boot ROMs built in) | 41 s | a `.j64` / `.jag` cartridge | Jaguar CD, port 2 and other controllers, cheat codes; no game registered yet (backend 2026-11-27) | [jaguar.md](emulator/jaguar.md) |
 
 ## Tools
 | Tool | State |
@@ -39,8 +40,9 @@ Each session builds only the emulator it needs (`sh tools/setup_emu.sh PLATFORM`
 | `x3.py` | enlarged copies on demand; sets hold native pictures only (owner's rule 2026-11-20) |
 | `gamestable.py` | writes the game tables below and in `README.md` from each `game.json` |
 | `dis6502.py` | 6502 disassembler for NES games |
+| `dis68k.py` | 68000 disassembler for Mega Drive and Jaguar games (capstone) |
 
-Tests: `python3 -m pytest -q tests` (65, on generated test ROMs, disks and a test disc for all ten platforms; a platform's
+Tests: `python3 -m pytest -q tests` (85, on generated test ROMs, disks and a test disc for all eleven platforms; a platform's
 tests are skipped when its emulator is not built).
 
 **Published sets re-verified with the 2026-11-20 tools** (chained checkpoint builds, parallel replays), each

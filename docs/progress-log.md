@@ -2,6 +2,22 @@
 
 Append-only, newest first.
 
+## 2026-11-27 - Atari Jaguar emulator: Virtual Jaguar libretro core
+- Owner asked for a Jaguar emulator. `sh tools/setup_emu.sh jaguar` (41 s from scratch) builds Virtual Jaguar, the
+  libretro continuation (pinned, v3.13.1: actively maintained, savestates, boot ROMs built in), with
+  `tools/virtualjaguar-debug.patch`: `retro_gamedb_pad` (all 21 buttons set directly; RetroPad has too few buttons
+  for the keypad), `retro_gamedb_peek`/`poke` (the core's debugger path), `retro_gamedb_pc`.
+- Backend `platforms.Jaguar`: `.j64`/`.jag` cartridges; models `ntsc`/`pal` (the core's high-level boot) and
+  `ntsc-bios`/`pal-bios` (the real boot ROM and its logo; unsigned carts stop there); every button incl. keypad
+  (`0`-`9`, `star`, `hash`); 68000 address space, big-endian, DRAM read through the core's RAM pointer (fast
+  search); the 128-byte EEPROM as the save. Deterministic, exact states with input, zlib-compressed (2.9 MB ->
+  ~20 KB). Found: the core unpacks its zero-filled save buffer over the blank EEPROM on the first frame, so the
+  backend hands it an erased (FF) one when there is no save.
+- Test cartridge `tests/make_jaguar_rom.py` (hand-assembled 68000, checked byte for byte against GNU as): background
+  colour, frame counter, pad mask of all 21 buttons. Tests `test_jaguar_*` (3). `dis68k.py` reads Jaguar carts at
+  800000. `gamestable.py` ORDER gained `ps1` and `jaguar`.
+- Open: no game yet; Jaguar CD, port 2 and other controllers, cheat codes not set up.
+
 ## 2026-11-26 - PlayStation emulator: Beetle PSX libretro core
 - Owner asked for a PS1 emulator. `sh tools/setup_emu.sh ps1` (2 min 54 s from scratch) builds Beetle PSX
   (pinned, software renderer only) with `tools/beetle-psx-debug.patch` (`retro_gamedb_pc`, quiet log), builds the

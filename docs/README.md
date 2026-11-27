@@ -5,7 +5,7 @@ How the database tooling is used. Documents about one game live in that game's f
 | File | What |
 |---|---|
 | [emulator/README.md](emulator/README.md) | **How to drive a game** (read first): routes and checkpoints, tokens, the play loop, shortcuts, saves, RAM. |
-| `emulator/<platform>.md` | One file per platform ([gb](emulator/gb.md), [nes](emulator/nes.md), [snes](emulator/snes.md), [sms](emulator/sms.md), [md](emulator/md.md), [dos](emulator/dos.md), [apple2](emulator/apple2.md), [amiga](emulator/amiga.md), [c64](emulator/c64.md), [ps1](emulator/ps1.md)): backend, models, screenshots, memory, cheat formats, limits. |
+| `emulator/<platform>.md` | One file per platform ([gb](emulator/gb.md), [nes](emulator/nes.md), [snes](emulator/snes.md), [sms](emulator/sms.md), [md](emulator/md.md), [dos](emulator/dos.md), [apple2](emulator/apple2.md), [amiga](emulator/amiga.md), [c64](emulator/c64.md), [ps1](emulator/ps1.md), [jaguar](emulator/jaguar.md)): backend, models, screenshots, memory, cheat formats, limits. |
 | [capture-guide.md](capture-guide.md) | What a screenshot set must contain: categories, quality rules, sequences, sets. |
 | [status.md](status.md) | Current snapshot: platforms, tools, the generated game table (sets, lenses, open items), next steps. |
 | [backlog.md](backlog.md) | Tool work wished for or planned, one list; what was built. |
