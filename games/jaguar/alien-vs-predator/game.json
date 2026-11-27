@@ -24,6 +24,48 @@
     "step": 10,
     "limit": 300
   },
-  "macros": {},
-  "ram": {}
+  "macros": {
+    "TITLE": "w600",
+    "MENU": "w780",
+    "SELECT": "MENU,a,w240",
+    "ALIEN": "SELECT,a,w600,a,w600",
+    "PREDATOR": "SELECT,right,w60,a,w600,a,w600",
+    "MARINE": "SELECT,left,w60,a,w1000,a,w300",
+    "NEWGAME": "MARINE",
+    "DEBUG": "pause,w30,option,w30,6,w30,1+3,w30,b,a,9,a,9,a,star,option,6,hash,star,star,option,2,option,w30",
+    "WARP": "poke:2F5AC=00{0},w300",
+    "GODMODE": "poke:30A7A=FFFF"
+  },
+  "ram": {
+    "level": {
+      "addr": "02F5AA",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "warp_to": {
+      "addr": "02F5AC",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "energy": {
+      "addr": "030A6A",
+      "size": 2
+    },
+    "security": {
+      "addr": "030AD0",
+      "size": 1
+    },
+    "weapons": {
+      "addr": "02F30A",
+      "size": 1,
+      "fmt": "hex"
+    },
+    "cheat": {
+      "addr": "030A7A",
+      "size": 2,
+      "fmt": "hex"
+    }
+  },
+  "work": "scouted 2026-11-27: boot, 3 character starts, warp to all 15 areas, debug mode, RAM map, 30-shot plan; not captured",
+  "open": "capture main and start sets; score and position RAM; terminals, map, cocooning and Predator weapons not yet reached"
 }

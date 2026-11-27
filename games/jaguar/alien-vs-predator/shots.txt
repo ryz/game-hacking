@@ -1,6 +1,41 @@
 # id | category | caption | route
 # Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
 #             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set. play.py snap writes captured shots (with exact routes) to
-# work/shots/jaguar/alien-vs-predator/<set>/shots.txt; copy finished lines back here so the plan stays replayable.
-# title_screen | title | Title screen | @title
+# The plan for the main set (scout 2026-11-27). Lines with a route were previewed by the scout
+# (work/preview/jaguar/alien-vs-predator/plan.png); `#` lines are targets without a tested route.
+# play.py snap writes captured shots to work/shots/jaguar/alien-vs-predator/<set>/shots.txt.
+title_screen | title | Title: ALIEN vs PREDATOR logo, 1994 copyright lines | @title
+menu_main | menu | Main menu: Select Character, Restore Game, High Scores, Credits | @menu
+select_alien | menu | Character select: the Alien in front | @select
+select_predator | menu | Character select: the Predator | @select,right,w120
+select_marine | menu | Character select: the Colonial Marine | @select,left,w120
+brief_alien | cutscene | Alien briefing: "Queen is gone... Find Queen... Rescue..." | @select,a,w600
+brief_predator | cutscene | Predator briefing: claim the skull of the Alien Queen | @select,right,w60,a,w600
+brief_marine | cutscene | Marine briefing: brig release record of Pvt. Lance J. Lewis | @select,left,w60,a,w1000
+intro_signal | cutscene | Attract intro: signal received, tug sent to retrieve the vessel | @menu,w1500,!
+intro_docked | cutscene | Attract intro: vessel docked at Service Bay 5, intruder alert | @menu,w2400,!
+intro_proximity | cutscene | Attract intro: proximity alert, new vessel entering the sector | @menu,w3300,!
+highscores | menu | High score table | @menu,down*2,a,w120
+credits | credits | Credits scroll | @menu,down*3,a,w200,!
+marine_brig | gameplay | Marine start: brig cell on sublevel 3, no weapons | @start
+marine_cell_open | gameplay | Marine opens the cell bars: a dead body lies in the corridor | @start,a,w60
+alien_start | gameplay | Alien start inside the Alien ship | @start_alien,!
+predator_start | gameplay | Predator start inside the Predator ship | @start_predator,!
+predator_cloak | system | Predator invisible: vision filter on, mask icon in the HUD | @start_predator,option,w120,!
+predator_filter | system | Predator vision filter changed with keypad 6 | @start_predator,option,w120,6,w60,!
+env_sublevel1 | gameplay | Sublevel 1: storage hall with barrels | @start,WARP:01
+env_sublevel2 | gameplay | Sublevel 2: corridor with barrels and crates | @start,WARP:02
+env_sublevel4 | gameplay | Sublevel 4 arrival: "ENTERING SUBLEVEL 4" | @start,WARP:04,!
+env_sublevel5 | gameplay | Sublevel 5 arrival: "ENTERING SUBLEVEL 5", resin-covered wall and crates | @start,WARP:05,!
+env_airduct | gameplay | Air duct 1B: an Alien crawls toward the Marine | @start,WARP:06
+marine_smartgun | gameplay | Marine with all four weapons, smart gun in hand | @start,WARP:04,poke:2F30A=1E,poke:2F214=0021,poke:2F224=00E7,poke:2F234=0041,poke:2F244=004F,4,w60
+marine_pulse_rifle | gameplay | Marine with the pulse rifle | @start,WARP:04,poke:2F30A=1E,poke:2F224=00E7,2,w60
+marine_tracker | system | Motion tracker on (debug Option+8 or found on sublevel 5) | @start,DEBUG,w30,settle,pause,w60,settle,up:30,settle,option+8,w60,!
+pause_paused | menu | Game paused | @start,pause,w30
+pause_options | save | Pause/Option menu: HUD brightness, GAME 1-3 save slots | @start,pause,w30,option,w30,down,w20
+menu_restore | save | Restore Game list: GAME 1 in Marine type, two empty slots | sav:01_start,MENU,down,w30,a,w120
+gameover | gameover | Death: "SIMULATION TERMINATED" | @start,WARP:04,poke:30A6A=0010,w600,!
+# Targets without a route yet: terminal menu (General Log, First Aid), level schematic map, elevator hatch +
+# "ENTERING SUBLEVEL" by lift, security card pickup message, Alien claw/tail/bite + cocoon, Facehugger attack,
+# Predator wrist blade / combistick / smart disc / shoulder cannon, acid blood, Alien Queen, self-destruct and
+# escape pod, Marine firing at an Alien, Predator ship and Alien ship as a Marine (WARP:0f / WARP:0e).

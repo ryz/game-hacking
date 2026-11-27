@@ -1,3 +1,8 @@
 # name | description | route (tools/emu.py tokens from power-on, or from another @checkpoint)
 # Built on demand and cached per ROM in work/cache/; states are never committed. Add with play.py checkpoint.
-# title | Title screen, settled | TITLE,settle
+title | Title: ALIEN vs PREDATOR logo with the copyright lines (f600) | pow,TITLE,settle
+menu | Main menu: SELECT CHARACTER / RESTORE GAME / HIGH SCORES / CREDITS | @title,a,w120,settle
+select | Character select carousel, Alien in front (LEFT and RIGHT to rotate, FIRE to select) | @menu,a,w240,settle
+start | Marine (Pvt. Lance J. Lewis) first control: brig cell, sublevel 3, no weapon, security 00 | @select,left,w60,a,w1000,a,w300,settle
+start_alien | Alien first control: Alien ship (level id 14), one warrior, no cocoons | @select,a,w600,a,w600
+start_predator | Predator first control: Predator ship (level id 15), wrist blade only | @select,right,w60,a,w600,a,w600

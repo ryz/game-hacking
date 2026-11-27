@@ -23,8 +23,17 @@ the evidence: link them (`../shots/main/<file>.png`; the file name of a shot is 
   `**Intended:**`, `**Confidence:**`, `**Impact:**`.
 
 ## Overview
-Genre, perspective, core loop in three to five sentences; what makes it distinctive; length and structure
-(levels/worlds/chapters); save system; modes.
+A first-person action game in a simulation of the Colonial Marines training base Golgotha, overrun by Aliens and
+visited by a Predator **(source)**. The player picks one of three species, each with its own goal, abilities, HUD
+and briefing **(verified: select screen and briefings)**: the Colonial Marine escapes by collecting weapons and
+security cards 1-10, setting the self-destruct and leaving in the escape pod; the Alien rescues its Queen from the
+Predator ship and gains extra lives by cocooning Marines; the Predator hunts the Alien Queen's skull and earns
+better weapons with honor points, losing them for kills made while invisible **(source)**. The world is five
+sublevels joined by lifts and air ducts plus the two docked ships, fifteen areas in all **(verified: every area
+reached here)**. The Marine starts in the brig on sublevel 3, the Alien in the Alien ship, the Predator in the
+Predator ship **(verified)**. Progress is saved at any moment from the pause menu into one of three slots; on
+restore, enemies and items are generated anew **(source; save and restore verified)**. Death ends the simulation
+("SIMULATION TERMINATED") and shows the high score table **(verified)**.
 
 ## Documents
 | Document | Covers |
@@ -40,3 +49,5 @@ Genre, perspective, core loop in three to five sentences; what makes it distinct
 ## Sources
 | Source | URL | Used for |
 |---|---|---|
+| Manual (archive.org scan) | https://archive.org/details/avp-jag | scenarios, items, controls |
+| Wikipedia | https://en.wikipedia.org/wiki/Alien_vs_Predator_(Atari_Jaguar_game) | release, structure |
