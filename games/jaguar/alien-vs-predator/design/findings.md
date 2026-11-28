@@ -14,8 +14,10 @@ Each entry: what the game does, what was probably intended, how sure we are, and
 **Behavior:** as the Alien, energy falls by about 200 in the first 10 seconds in its own ship and right after
 arriving on sublevels 4 and 5, with purple damage flashes and no enemy on screen (`alien_hurt`; route
 `@start_alien,WARP:04,w180`).
-**Intended:** unclear: an unseen enemy behind the player, or a hazard of the level.
-**Confidence:** (verified) for the loss, (inferred) for the cause.
+**Intended:** settled 2026-11-28 (round 2): a Marine stands half a cell west of the Alien's start cell
+(actor table, kind 2 at 23.9,19.5; player at 24.5,19.3 facing south) and shoots it in the back; on sublevel 4
+two Marines stand next to the arrival cell. Turning west shows him (`alien_marine_enemy`, `alien_marine_fires`).
+**Confidence:** (verified) for the loss and the Marine, (RAM) for the positions.
 **Impact:** the Alien, which cannot heal, starts every area weaker; turn around at once.
 
 ## Acid stays where an Alien died
@@ -32,3 +34,22 @@ this return.
 **Intended:** unclear.
 **Confidence:** (verified).
 **Impact:** none beyond a missing confirmation.
+
+## Bite and tail are invisible
+**Behavior:** the Alien's claw (A) is drawn as a swipe; bite (B) and tail (C) show nothing in the frames after the
+press (preview every 2 frames), though the claw-tail-claw combo lowers a Marine's energy by 29 of 50.
+**Intended:** probably (the jaw and tail have no first-person sprite).
+**Confidence:** (verified) frames, (RAM) energy.
+**Impact:** the player cannot see whether a tail strike landed.
+
+## The Predator's health reserve is empty at the start
+**Behavior:** keypad 5 at the Predator start with energy poked to 1024 gave no energy back (energy kept falling
+under Marine fire).
+**Intended:** yes if the reserve fills only from medkits and food (source).
+**Confidence:** (RAM).
+
+## A blade kill of a Marine earns no honor
+**Behavior:** a Marine killed with the wrist blade while the Predator was visible left the honor points at 0
+(`predator_marine_killed`); an Alien killed with the shoulder cannon gives 5000.
+**Intended:** unclear (the manual's honor table is unreadable in the scan).
+**Confidence:** (RAM).

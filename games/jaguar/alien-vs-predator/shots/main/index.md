@@ -1,6 +1,6 @@
 # Alien vs Predator - shots: main
 
-Platform jaguar, region na, model ntsc, ROM SHA-1 `fd8c89250ebc1e403838b2e589d1f69e3fe2fe02`. 109 shots. Contact sheet: [alien-vs-predator_jaguar_na_set_sheet.png](alien-vs-predator_jaguar_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform jaguar, region na, model ntsc, ROM SHA-1 `fd8c89250ebc1e403838b2e589d1f69e3fe2fe02`. 129 shots. Contact sheet: [alien-vs-predator_jaguar_na_set_sheet.png](alien-vs-predator_jaguar_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -42,6 +42,26 @@ Platform jaguar, region na, model ntsc, ROM SHA-1 `fd8c89250ebc1e403838b2e589d1f
 | marine_smartgun | gameplay | Smart gun firing at an Alien | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_smartgun.png) |
 | marine_hurt | gameplay | Marine hit by the Alien: red damage flash | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_hurt.png) |
 | marine_tracker | system | Motion tracker on (debug Option+8) | no | [png](alien-vs-predator_jaguar_na_system_marine_tracker.png) |
+| marine_alien_group | gameplay | Sublevel 1: a pack of Aliens advances through the barrel store | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_alien_group.png) |
+| marine_tracker_blips | system | Motion tracker: blips and 05.85 m to the nearest Alien of a pack | no | [png](alien-vs-predator_jaguar_na_system_marine_tracker_blips.png) |
+| marine_shotgun_fire | gameplay | Shotgun fired at Aliens across the hall: muzzle flash | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_shotgun_fire.png) |
+| marine_pulse_fire | gameplay | Pulse rifle fired at the advancing Aliens | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_pulse_fire.png) |
+| marine_flamer_fire | gameplay | Flamethrower fireballs roll toward the Aliens | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_flamer_fire.png) |
+| marine_smartgun_fire | gameplay | Smart gun firing a burst at mid range | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_smartgun_fire.png) |
+| marine_facehuggers | gameplay | Sublevel 2: two facehuggers scuttle down the corridor | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_facehuggers.png) |
+| marine_facehugger_close | gameplay | Sublevel 4: a facehugger right in front of the Marine | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_facehugger_close.png) |
+| marine_facehugger_attached | gameplay | A facehugger clamps onto the Marine's face: red screen | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_facehugger_attached.png) |
+| marine_predator | gameplay | Sublevel 5: a Predator, visible, attacks the Marine | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_predator.png) |
+| marine_predator_cloaked | gameplay | The Predator turns invisible: a shimmer at right, red damage flash | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_predator_cloaked.png) |
+| marine_queen | boss | Alien ship: the Alien Queen comes at the Marine | no | [png](alien-vs-predator_jaguar_na_boss_marine_queen.png) |
+| marine_alien_facehugger_ship | gameplay | Alien ship: a warrior Alien and a facehugger | no | [png](alien-vs-predator_jaguar_na_gameplay_marine_alien_facehugger_ship.png) |
+| predator_egg | gameplay | Alien ship: an opened egg in a side chamber | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_egg.png) |
+| self_destruct | system | Self-destruct running: red alert lighting, TIME 1:59 to escape | no | [png](alien-vs-predator_jaguar_na_system_self_destruct.png) |
+| ending_marine_launch | ending | Escape capsule launch countdown: "Five Four Three" | yes | [png](alien-vs-predator_jaguar_na_ending_ending_marine_launch.png) |
+| ending_marine_zero | ending | "Zero": the base explodes behind the escape capsule | yes | [png](alien-vs-predator_jaguar_na_ending_ending_marine_zero.png) |
+| ending_marine_report | ending | Transport Irata report: escape pod retrieved from Golgotha | yes | [png](alien-vs-predator_jaguar_na_ending_ending_marine_report.png) |
+| ending_marine_survivor | ending | "One Survivor: Private Lewis", mental condition under evaluation | yes | [png](alien-vs-predator_jaguar_na_ending_ending_marine_survivor.png) |
+| ending_marine_destroyed | ending | Failure: the base destroyed, no escape pods launched | yes | [png](alien-vs-predator_jaguar_na_ending_ending_marine_destroyed.png) |
 | terminal | gameplay | A computer terminal on sublevel 3 | no | [png](alien-vs-predator_jaguar_na_gameplay_terminal.png) |
 | terminal_menu | menu | Terminal main menu: Level Schematic, General Log | yes | [png](alien-vs-predator_jaguar_na_menu_terminal_menu.png) |
 | map_level3 | map | Level schematic: sublevel 3 with the room legend | no | [png](alien-vs-predator_jaguar_na_map_map_level3.png) |

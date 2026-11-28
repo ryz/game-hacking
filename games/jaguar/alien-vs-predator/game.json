@@ -86,6 +86,6 @@
       "size": 4
     }
   },
-  "work": "captured 2026-11-28: main 75 shots (all three species, 15 areas sampled, 8 weapons, terminals, lift, save, high score), start 28 shots (honest Marine start to the first save), three lenses",
-  "open": "boot logo (ntsc-bios model, no per-shot model in shoot.py); cocooning, facehuggers, Marines/Predator as enemies, Alien Queen, med-lab First Aid, self-destruct and escape pod, ending; cause of the Alien's energy loss at its start"
+  "work": "captured 2026-11-28 (2 rounds): main 129 shots (all three species in combat, cocooning, Marines/Predators/facehuggers/eggs as enemies, the Alien Queen in both ships, all endings, 15 areas, 8 weapons, terminals, lift, save, high score), start 28 shots (honest Marine start to the first save), three lenses",
+  "open": "boot logo (ntsc-bios model, no per-shot model in shoot.py); medkit/food/security card pick-ups, med-lab First Aid, Predator health reserve, the self-destruct and escape-capsule terminal pages (endings and timer shown by poke)"
 }

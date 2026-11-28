@@ -40,10 +40,13 @@ Facts carry a confidence tag as everywhere in this folder. A judgement is writte
 | Character carousel | pick a species | framed portrait in front, two others at the sides | left/right, fire | rotates | briefing | `select_alien`, `select_predator`, `select_marine`, `start:03_select_alien`, `start:04_select_marine` |
 | Briefing | goal of the species | portrait, typed text, LOADING SIMULATION... PRESS FIRE | fire (after loading) | - | first control | `brief_alien`, `brief_predator`, `brief_marine`, `start:05_briefing_marine` |
 | HUD (Marine) | state | portrait, score, security, weapons 1-4 with ammo bars | - | updates live | - | `hud_marine`, `marine_brig` |
-| HUD (Alien) | state | Alien head, score, claw icons | - | - | - | `alien_start`, `alien_sublevel2` |
+| HUD (Alien) | state | Alien head top left with the cocoons-in-progress mark under it, score at the top, three attack icons (claw, jaw, tail) with strength bars and the energy bar at the right | - | mark appears after COCOON COMPLETED | - | `alien_start`, `alien_sublevel2`, `alien_cocoon` |
 | HUD (Predator) | state | Predator head, honor points, weapon list, energy trace, mask icon | - | - | - | `predator_start`, `predator_sublevel1` |
-| Motion tracker | find movement | round radar and a distance in metres bottom left | - | - | - | `marine_tracker` |
-| Centre message | pick-up / arrival | large outlined text over the view | - | fades after about 3 s | - | `pickup_rounds`, `entering_sublevel`, `predator_attained` |
+| Motion tracker | find movement | round radar with blips and a distance in metres bottom left | - | - | - | `marine_tracker`, `marine_tracker_blips` |
+| Centre message | pick-up / arrival / cocoon | large outlined text over the view | - | fades after about 3 s | - | `pickup_rounds`, `entering_sublevel`, `predator_attained`, `alien_cocoon_enemy`, `alien_cocoon_complete` |
+| Self-destruct timer | time left to escape | TIME m:ss in the centre, red alert tint | - | counts down from 2:00 | ending | `self_destruct` |
+| Predator vision filters | see in the dark / through cloak | five colour treatments of the whole view and HUD | keypad 6 | next filter | - | `predator_vision_1`, `predator_vision_2`, `predator_vision_3`, `predator_vision_4`, `predator_vision_5` |
+| Facehugger attack | being attacked | the facehugger fills the screen, red tint | rapid left-right **(source)** | - | - | `marine_facehugger_attached` |
 | Damage tint | being hit | whole screen tinted | - | - | - | `marine_hurt`, `start:15_second_alien_hit` |
 | Pause | stop | PAUSED | Pause resumes, Option opens the menu | - | pause menu | `pause_paused`, `start:24_paused` |
 | Pause menu | HUD brightness, save | HUD slider, GAME 1-3, B - SAVE | up/down, left/right, B | slot flashes on save | game | `pause_options`, `start:25_pause_options`, `start:26_save_slot`, `start:27_saved` |
@@ -53,7 +56,9 @@ Facts carry a confidence tag as everywhere in this folder. A judgement is writte
 | Level schematic | map | numbered room legend, plan with rooms, E = elevator | C | - | terminal menu | `map_level3`, `start:20_level_schematic` |
 | General Log | story and hints | paged text, PAGE n OF m, A. NEXT B. PREVIOUS C. EXIT | A, B, C | - | terminal menu | `log_page1`, `log_page2`, `log_page3`, `start:21_general_log_1`, `start:22_general_log_2`, `start:23_general_log_3` |
 | Lift | change level | hatch; inside, big up and down arrows | A, up/down + A | doors close, level changes | next sublevel | `lift_hatch`, `lift_inside`, `lift_arrived` |
+| GAME OVER banner | death | GAME OVER in outlined letters over the last view | - | after about 1 s the badge | game over | `alien_gameover`, `predator_gameover` |
 | Game over | death | USCM badge, SIMULATION TERMINATED typed out | fire | - | high scores | `gameover` |
+| Ending screens | win | Alien: Queen art, THE HIVE IS WHOLE AGAIN / EXPANSION CONTINUES; Predator: trophy art, HONOR IS YOURS!; Marine: capsule launch countdown, explosion, typed USCM report (or the failure report) | fire | - | high scores | `ending_alien`, `ending_predator`, `ending_marine_launch`, `ending_marine_zero`, `ending_marine_report`, `ending_marine_survivor`, `ending_marine_destroyed` |
 | High score entry | name a new score | table with the new line, letter cursor, help lines | up/down letter, left/right cursor, fire | - | title | `highscore_entry` |
 | High score table | records | five names and scores, Press FIRE | fire | - | menu | `highscores`, `highscore_ryz` |
 | Credits | staff | scrolling names over the logo | fire | - | menu | `credits` |
@@ -61,7 +66,7 @@ Facts carry a confidence tag as everywhere in this folder. A judgement is writte
 ## 3. Screen flow
 Title -> (fire) main menu -> Select Character -> carousel -> briefing -> play. Idle on the menu -> attract
 intro -> menu. Play -> Pause -> (Option) pause menu -> save -> play. Play -> terminal -> menu -> schematic /
-log -> exit. Death -> game over -> (high score entry) -> title. * + # in play -> title. Main menu -> Restore
+log -> exit. Death -> GAME OVER banner -> game over -> (high score entry) -> title. Win -> ending screen(s) -> high scores. * + # in play -> title. Main menu -> Restore
 Game -> slot -> play **(verified for each arrow except restore -> play)**.
 
 ## 4. Main screens element by element
@@ -75,5 +80,6 @@ Game -> slot -> play **(verified for each arrow except restore -> play)**.
   **(verified)**.
 
 ## Open questions
-- The Alien's and Predator's HUD elements were not identified one by one (energy, cocoon count, medkits).
-- Screens not reached: First Aid (med-lab), self-destruct terminal, escape pod, ending.
+- The Predator's HUD elements were not identified one by one (medkit reserve).
+- Screens not reached: First Aid (med-lab), the self-destruct and escape-capsule terminal pages (texts are in
+  DRAM: "A. DESTRUCT C. ABORT", "B. LAUNCH ESCAPE CAPSULE"), shown here only through the poked flags.

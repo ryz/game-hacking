@@ -1,8 +1,8 @@
 # id | category | caption | route
-# The main set as captured 2026-11-28 (75 shots, verified 75/75; published in shots/main/). The start set is
+# The main set as captured 2026-11-28 (round 2: 129 shots, verified 129/129; published in shots/main/). The start set is
 # shots/start/shots.txt (28 shots). Work copy: work/shots/jaguar/alien-vs-predator/main/shots.txt.
-# Not captured (see playbook Shot plan): boot logo (ntsc-bios model), cocooning, facehuggers, Marines and
-# the Predator as enemies, Alien Queen, First Aid, self-destruct, escape pod, ending.
+# Not captured (see playbook Shot plan): boot logo (ntsc-bios model), First Aid, medkit/food/card pick-ups.
+# Round 2 shots rely on pokes (actor energy, cocoon flag, Queen cage count, end flags): see playbook Read first.
 title_screen | title | Title: ALIEN vs PREDATOR logo, 1994 copyright lines | @title
 menu_main | menu | Main menu: Select Character, Restore Game, High Scores, Credits | @menu
 select_alien | menu | Character select: the Alien in front | @select
@@ -41,6 +41,26 @@ marine_flamethrower | gameplay | Flamethrower fired at an Alien | @start,WARP:04
 marine_smartgun | gameplay | Smart gun firing at an Alien | @start,WARP:04,GEAR,4,w10,right:32,right:32,b:6,b:6,!
 marine_hurt | gameplay | Marine hit by the Alien: red damage flash | @start,WARP:04,GEAR,4,w10,right:32,right:32,b:6,b:6,b:6,!
 marine_tracker | system | Motion tracker on (debug Option+8) | @start,DEBUG,w30,settle,pause,w60,settle,up:30,settle,option+8,w60,!
+marine_alien_group | gameplay | Sublevel 1: a pack of Aliens advances through the barrel store | @start,WARP:01,w60,GEAR,freeze:30A6A=03A2,poke:2F1D6=C000,2,w10,w200,!
+marine_tracker_blips | system | Motion tracker: blips and 05.85 m to the nearest Alien of a pack | @start,DEBUG,w30,settle,pause,w60,settle,up:30,settle,option+8,w60,WARP:01,w60,freeze:30A6A=03A2,poke:2F1D6=C000,w100,!
+marine_shotgun_fire | gameplay | Shotgun fired at Aliens across the hall: muzzle flash | @start,WARP:01,w60,GEAR,freeze:30A6A=03A2,poke:2F1D6=C000,1,w10,w200,b:6,w4,!
+marine_pulse_fire | gameplay | Pulse rifle fired at the advancing Aliens | @start,WARP:01,w60,GEAR,freeze:30A6A=03A2,poke:2F1D6=C000,2,w10,w200,b:6,w4,!
+marine_flamer_fire | gameplay | Flamethrower fireballs roll toward the Aliens | @start,WARP:01,w60,GEAR,freeze:30A6A=03A2,poke:2F1D6=C000,3,w10,w200,b:6,b:6,b:6,!
+marine_smartgun_fire | gameplay | Smart gun firing a burst at mid range | @start,WARP:01,w60,GEAR,freeze:30A6A=03A2,poke:2F1D6=C000,4,w10,w200,b:6,w4,b:6,!
+marine_facehuggers | gameplay | Sublevel 2: two facehuggers scuttle down the corridor | @start,WARP:02,w180,poke:2F1CE=00068000,poke:2F1D2=00198000,poke:2F1D6=8000,w20,w30,!
+marine_facehugger_close | gameplay | Sublevel 4: a facehugger right in front of the Marine | @start,WARP:04,w180,poke:2F1CE=000B8000,poke:2F1D2=00178000,poke:2F1D6=0000,w20,w30,!
+marine_facehugger_attached | gameplay | A facehugger clamps onto the Marine's face: red screen | @start,WARP:04,w180,freeze:30A6A=03A2,poke:2F1CE=000B8000,poke:2F1D2=00178000,poke:2F1D6=0000,w20,up:8,w20,w20,!
+marine_predator | gameplay | Sublevel 5: a Predator, visible, attacks the Marine | @start,WARP:05,w60,GEAR,freeze:30A6A=03A2,poke:2F1D6=1B00,w4,w20*5,!
+marine_predator_cloaked | gameplay | The Predator turns invisible: a shimmer at right, red damage flash | @start,WARP:05,w60,GEAR,freeze:30A6A=03A2,poke:2F1D6=1B00,w4,w20*6,!
+marine_queen | boss | Alien ship: the Alien Queen comes at the Marine | @start,WARP:0e,w180,GEAR,freeze:30A6A=03A2,poke:2F1CE=00168000,poke:2F1D2=000DD000,poke:2F1D6=E000,w10,w30,!
+marine_alien_facehugger_ship | gameplay | Alien ship: a warrior Alien and a facehugger | @start,WARP:0e,w180,poke:2F1CE=001B8000,poke:2F1D2=00068000,poke:2F1D6=0000,w20,w30,!
+predator_egg | gameplay | Alien ship: an opened egg in a side chamber | @start_predator,WARP:0e,w180,poke:2F1CE=000C8000,poke:2F1D2=00118000,poke:2F1D6=0000,w20,w30,!
+self_destruct | system | Self-destruct running: red alert lighting, TIME 1:59 to escape | @start,poke:30A66=0001,w60,w200,!
+ending_marine_launch | ending | Escape capsule launch countdown: "Five Four Three" | @start,poke:30A68=0001,poke:30A62=0001,w60,w200,!
+ending_marine_zero | ending | "Zero": the base explodes behind the escape capsule | @start,poke:30A68=0001,poke:30A62=0001,w60,w200,w300,!
+ending_marine_report | ending | Transport Irata report: escape pod retrieved from Golgotha | @start,poke:30A68=0001,poke:30A62=0001,w60,w200,w300,w400,w300,!
+ending_marine_survivor | ending | "One Survivor: Private Lewis", mental condition under evaluation | @start,poke:30A68=0001,poke:30A62=0001,w60,w200,w300,w400,w300,w300,w200,!
+ending_marine_destroyed | ending | Failure: the base destroyed, no escape pods launched | @start,poke:30A62=0001,w60,w200,!
 terminal | gameplay | A computer terminal on sublevel 3 | @start,poke:2F1CE=00174000,poke:2F1D2=00068000,poke:2F1D6=0000,w30,!
 terminal_menu | menu | Terminal main menu: Level Schematic, General Log | @start,poke:2F1CE=0017B000,poke:2F1D2=00068000,poke:2F1D6=0000,w30,a,w400
 map_level3 | map | Level schematic: sublevel 3 with the room legend | @start,poke:2F1CE=0017B000,poke:2F1D2=00068000,poke:2F1D6=0000,w30,a,w400,b,w300,!

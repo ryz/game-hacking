@@ -50,8 +50,23 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
 - **Reset:** `star+hash:30` (held; an 8-frame press does nothing).
 - **Predator weapons:** `poke:30A76=000BEC26` (781,350 honor) gives all four; SHOULDER CANNON ATTAINED appears
   ~36 frames after the next key. Keys: 1 combistick, 2 shoulder cannon, 3 smart disc (4 not identified).
-- **State:** captured 2026-11-28: `main` 75 shots, `start` 28 shots, both verified; lenses clean. Open: boot
-  logo shot (needs `ntsc-bios`), cocooning, other enemy kinds, Queen, med-lab, self-destruct, ending.
+- **Actors (round 2):** every enemy is a 0x30-byte record in the pool at `3989C` (pointer `3E860`): x/y longs at
+  +0/+4, handler +8 (FFFFFFFF = free), kind word +C (0 Alien, 1 Predator, 2 Marine, 3 egg, 4 facehugger,
+  5 duct Alien, 8 shot, 20 drum, 37 Queen, 38/39 cage generator/pylon), energy +26. `work/avp2/kinds2.py ROUTE`
+  (scratch, rewrite if gone: 15 lines) lists them; poke the player next to one to meet it. The pool index of a
+  record is fixed per route (deterministic), so `poke:REC+26=...` works in shots.
+- **Queen, endings, cocoon (round 2):** Queen in the Alien ship at 24,14 wakes when the player stands at cell
+  22,13 (`poke:2F1CE=00168000,poke:2F1D2=000DD000`); for the Predator her record is `3BDBC` (energy `3BDE2`,
+  poke 0 = she dies -> HONOR IS YOURS!). Alien: the caged Queen in the Predator ship at 38,16;
+  `poke:4B7C8=0000` (generators left) frees her -> THE HIVE IS WHOLE AGAIN. Marine: `poke:30A66=0001` starts
+  the self-destruct (TIME 2:00); `poke:30A68=0001,poke:30A62=0001` = escape ending, `poke:30A62=0001` alone =
+  base destroyed, no pods. Cocoon: the Marine beside the Alien start is record `3A7CC`:
+  `poke:3A7F2=0008,poke:3A7F6=04C8` then `a:8,w4,c:8,w4,a:8` -> COCOON THE ENEMY, `up:10,w20` -> COMPLETED.
+- **State:** round 2 2026-11-28: `main` 129 shots (all three species: combat, cocooning, Queen in both ships,
+  all endings, facehuggers, eggs, Marines and Predators as enemies, tracker, self-destruct, five vision
+  filters), `start` 28 shots; verified; lenses clean. Open: boot logo (`ntsc-bios`), item pick-ups other than
+  shotgun/rounds (medkit, food, cards), med-lab First Aid, health reserve use, terminal pages for destruct
+  and capsule.
 
 ## Identity
 | Field | Value |
@@ -133,12 +148,14 @@ Captured 2026-11-28 (main 75, start 28; `shots.txt` holds the main set). Ticked 
 - [x] terminal menu, General Log page, level schematic (map) - walk to a terminal (sublevel 3 near the brig?)
 - [x] (weapon and rounds; no card) security card / weapon / ammo pickup message (inventory) - corpses near the brig
 - [x] Marine firing each weapon at an Alien (`WARP:04` has an Alien close), acid blood, flamethrower
-- [ ] facehugger on the screen, egg (Alien ship / sublevel 5)
-- [ ] Alien claw / tail / bite, "COCOON THE ENEMY" and "COCOON COMPLETE", cocoon count in the HUD
+- [x] facehugger on the screen, egg (round 2: `marine_facehuggers`, `marine_facehugger_attached`, `predator_egg`)
+- [x] Alien claw (bite and tail draw nothing), "COCOON THE ENEMY" and "COCOON COMPLETED", cocoon (round 2, poke)
 - [x] (honor poke) Predator weapons: poke the score past 750,000 once its address is known (or debug Option+1-4), smart disc
   thrown, shoulder cannon blast; dishonour message
 - [x] (lift only) lift hatch and ride, airlock, self-destruct terminal and escape pod (end)
-- [ ] Alien Queen (Predator ship for the Alien, Alien ship for the Predator) - boss
+- [x] Alien Queen (Predator ship for the Alien, Alien ship for the Predator) - boss (round 2; kill / cage by poke)
+- [x] endings of all three species, self-destruct timer (round 2, by poke of the end flags)
+- [ ] med-lab First Aid, medkit/food/card pick-ups, Predator health reserve (item records not decoded)
 - [x] Marine in the Alien and the Predator ship (`WARP:0e` / `WARP:0f`): distinct environments
 
 ## Strategy and walkthrough notes
@@ -187,6 +204,24 @@ DRAM addresses for this ROM; the game copies its code to DRAM, so these are fixe
 | 030A76 | long | score (Marine 10,000 per Alien) / honor points (Predator) | kill + search; poke verified (HUD) |
 | 04FC00 | 64x64x8 | level grid: per cell bytes 0-3 = wall id on the W, N, E, S side (0 = open), 4-5 floor/ceiling texture | code F040 (flood fill from the player) |
 | 03EAE0 | 64x64 words | visited / reachable cells (FFFF) | code F01E |
+| 03989C | 0x30 x ~300 | actor pool (pointer at 3E860): x +0, y +4, handler +8, kind +C, energy +26, max +28, flags +2A (bit 6 = stunned for a cocoon) | dump diff + code 151E2 |
+| 03109C | word | cocoons made (max 3) | code 169F4 |
+| 04B7C8 | word | Queen-cage generators left (Predator ship, 4) | code 18148 |
+| 030A60 / 30A62 / 30A64 | word | dead / game won (end) / ending running | code C5AC, 8652 |
+| 030A66 / 30A68 | word | self-destruct started / escape capsule launched (Marine) | code 13E30, 14DA4 |
+| 03106E | word | self-destruct seconds left (120) | code 12904 |
+| 02F1DA | word | species: 0 Marine, 4 Alien, 8 Predator | code 8682 |
+
+## Round 2 notes (2026-11-28)
+- Enemy research took about 35 calls: actor pool found by diffing two dumps 6 frames apart (moving x/y
+  longs), kinds by comparing the pools of the three species on the same level, Queen and endings by
+  following the ending strings (`2B7D8` HIVE, `2B809` HONOR) to the end-screen dispatcher at `8652`.
+- Alien attacks: after one hit the Alien's presses are ignored for ~100 frames while a Marine fires; do the
+  whole claw-tail-claw combo within ~30 frames.
+- Wrist blade reach is under one cell: poke the player 0.8 cells from the Marine (`predator_blade_marine`).
+- Marines on sublevel 1 (Predator) keep 2-3 cells away and fire; the Predator start on sublevel 1 is shot at once.
+- Facehugger on sublevel 4 at 13.6,23.4: `poke:2F1CE=000B8000,poke:2F1D2=00178000,poke:2F1D6=0000`, `up:8,w40` it is on the face.
+- Tracker blips: `DEBUG` route of `marine_tracker`, then `WARP:01`, face south (`C000`), `w100`.
 
 ## Emulation notes
 - Virtual Jaguar runs the game fully: all three starts, every level id, cutscenes, menus, save and restore, no
@@ -222,6 +257,7 @@ Cell bars (`a`), walk out over the body (shotgun), path search to the brig offic
 - ~~First terminal, lift, items on sublevel 3~~: terminals at cells 23,6 (east face) and 43,13 (brig office),
   lifts at 34,21 (enter from the west) and 9,21; shotgun on the body outside the cell; rounds in the locker
   at 32,6 (2026-11-28).
-- Is the attack from behind at the Alien start a Predator? (purple flashes, energy -200 in 10 s.)
+- ~~Is the attack from behind at the Alien start a Predator?~~ No: a Marine half a cell west of the start (round 2).
+- Item records (medkits, food, cards): not in the actor kinds seen; where are they?
 - ~~High score name entry~~: seen and done (RYZ).
 - The save record format in the EEPROM (slot 1 holds energy 03E8 at byte 16).
