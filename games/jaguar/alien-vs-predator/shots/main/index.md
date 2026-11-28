@@ -1,6 +1,6 @@
 # Alien vs Predator - shots: main
 
-Platform jaguar, region na, model ntsc, ROM SHA-1 `fd8c89250ebc1e403838b2e589d1f69e3fe2fe02`. 91 shots. Contact sheet: [alien-vs-predator_jaguar_na_set_sheet.png](alien-vs-predator_jaguar_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform jaguar, region na, model ntsc, ROM SHA-1 `fd8c89250ebc1e403838b2e589d1f69e3fe2fe02`. 109 shots. Contact sheet: [alien-vs-predator_jaguar_na_set_sheet.png](alien-vs-predator_jaguar_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -95,5 +95,23 @@ Platform jaguar, region na, model ntsc, ROM SHA-1 `fd8c89250ebc1e403838b2e589d1f
 | predator_cannon_kill | gameplay | Shoulder cannon kill: acid on the floor, honor points up | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_cannon_kill.png) |
 | predator_smartdisc | gameplay | Smart disc selected, an Alien closes in | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_smartdisc.png) |
 | predator_hurt | gameplay | Predator hit by an Alien: yellow-green flash | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_hurt.png) |
+| predator_marines | gameplay | Sublevel 1: Marine fire bursts on the Predator, green-yellow flash | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_marines.png) |
+| predator_blade_marine | gameplay | Wrist blade slashes a Marine at close range | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_blade_marine.png) |
+| predator_marine_shoots | gameplay | A Marine fires back at the Predator from point-blank range | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_marine_shoots.png) |
+| predator_marine_killed | gameplay | Marine cut down by the wrist blade: his body on the floor | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_marine_killed.png) |
+| predator_invisible_blade | gameplay | Invisible Predator strikes a Marine with the wrist blade | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_invisible_blade.png) |
+| predator_invisible_hit | gameplay | A Marine's shot flashes on the invisible Predator | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_invisible_hit.png) |
+| predator_egg_chamber | gameplay | Alien ship: the Queen's chamber with eggs and a warrior Alien | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_egg_chamber.png) |
+| predator_queen | boss | Alien ship: the Alien Queen rises from her eggs | no | [png](alien-vs-predator_jaguar_na_boss_predator_queen.png) |
+| predator_queen_attack | boss | The Queen strikes the Predator: green flash | no | [png](alien-vs-predator_jaguar_na_boss_predator_queen_attack.png) |
+| predator_queen_cannon | boss | Shoulder cannon bolt fired at the Alien Queen | no | [png](alien-vs-predator_jaguar_na_boss_predator_queen_cannon.png) |
+| predator_queen_dead | boss | The Alien Queen lies dead | no | [png](alien-vs-predator_jaguar_na_boss_predator_queen_dead.png) |
+| ending_predator | ending | Predator ending: "HONOR IS YOURS!" over the Queen's body | yes | [png](alien-vs-predator_jaguar_na_ending_ending_predator.png) |
+| predator_vision_1 | system | Cloaked in the Queen's chamber: first vision filter | no | [png](alien-vs-predator_jaguar_na_system_predator_vision_1.png) |
+| predator_vision_2 | system | Vision filter 2 (keypad 6): edge-lit thermal colours | no | [png](alien-vs-predator_jaguar_na_system_predator_vision_2.png) |
+| predator_vision_3 | system | Vision filter 3: green and blue contour view | no | [png](alien-vs-predator_jaguar_na_system_predator_vision_3.png) |
+| predator_vision_4 | system | Vision filter 4: magenta view | no | [png](alien-vs-predator_jaguar_na_system_predator_vision_4.png) |
+| predator_vision_5 | system | Vision filter 5: rainbow heat view | no | [png](alien-vs-predator_jaguar_na_system_predator_vision_5.png) |
+| predator_gameover | gameover | Predator dead: GAME OVER across its view | no | [png](alien-vs-predator_jaguar_na_gameover_predator_gameover.png) |
 
 Routes (replay with `tools/shoot.py`) are in `index.json` and `shots.txt`.
