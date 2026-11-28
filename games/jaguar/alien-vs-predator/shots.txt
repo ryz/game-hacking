@@ -1,9 +1,8 @@
 # id | category | caption | route
-# Categories: boot title menu options cutscene gameplay hud system map inventory dialogue shop battle boss
-#             minigame ending credits gameover save extra   (docs/capture-guide.md)
-# The plan for the main set (scout 2026-11-27). Lines with a route were previewed by the scout
-# (work/preview/jaguar/alien-vs-predator/plan.png); `#` lines are targets without a tested route.
-# play.py snap writes captured shots to work/shots/jaguar/alien-vs-predator/<set>/shots.txt.
+# The main set as captured 2026-11-28 (75 shots, verified 75/75; published in shots/main/). The start set is
+# shots/start/shots.txt (28 shots). Work copy: work/shots/jaguar/alien-vs-predator/main/shots.txt.
+# Not captured (see playbook Shot plan): boot logo (ntsc-bios model), cocooning, facehuggers, Marines and
+# the Predator as enemies, Alien Queen, First Aid, self-destruct, escape pod, ending.
 title_screen | title | Title: ALIEN vs PREDATOR logo, 1994 copyright lines | @title
 menu_main | menu | Main menu: Select Character, Restore Game, High Scores, Credits | @menu
 select_alien | menu | Character select: the Alien in front | @select
@@ -16,26 +15,66 @@ intro_signal | cutscene | Attract intro: signal received, tug sent to retrieve t
 intro_docked | cutscene | Attract intro: vessel docked at Service Bay 5, intruder alert | @menu,w2400,!
 intro_proximity | cutscene | Attract intro: proximity alert, new vessel entering the sector | @menu,w3300,!
 highscores | menu | High score table | @menu,down*2,a,w120
-credits | credits | Credits scroll | @menu,down*3,a,w200,!
+credits | credits | Credits scroll: producer and programmers | @menu,down*3,a,w200,!
 marine_brig | gameplay | Marine start: brig cell on sublevel 3, no weapons | @start
-marine_cell_open | gameplay | Marine opens the cell bars: a dead body lies in the corridor | @start,a,w60
-alien_start | gameplay | Alien start inside the Alien ship | @start_alien,!
-predator_start | gameplay | Predator start inside the Predator ship | @start_predator,!
-predator_cloak | system | Predator invisible: vision filter on, mask icon in the HUD | @start_predator,option,w120,!
-predator_filter | system | Predator vision filter changed with keypad 6 | @start_predator,option,w120,6,w60,!
-env_sublevel1 | gameplay | Sublevel 1: storage hall with barrels | @start,WARP:01
-env_sublevel2 | gameplay | Sublevel 2: corridor with barrels and crates | @start,WARP:02
-env_sublevel4 | gameplay | Sublevel 4 arrival: "ENTERING SUBLEVEL 4" | @start,WARP:04,!
-env_sublevel5 | gameplay | Sublevel 5 arrival: "ENTERING SUBLEVEL 5", resin-covered wall and crates | @start,WARP:05,!
-env_airduct | gameplay | Air duct 1B: an Alien crawls toward the Marine | @start,WARP:06
-marine_smartgun | gameplay | Marine with all four weapons, smart gun in hand | @start,WARP:04,poke:2F30A=1E,poke:2F214=0021,poke:2F224=00E7,poke:2F234=0041,poke:2F244=004F,4,w60
-marine_pulse_rifle | gameplay | Marine with the pulse rifle | @start,WARP:04,poke:2F30A=1E,poke:2F224=00E7,2,w60
-marine_tracker | system | Motion tracker on (debug Option+8 or found on sublevel 5) | @start,DEBUG,w30,settle,pause,w60,settle,up:30,settle,option+8,w60,!
+marine_cell_open | gameplay | Marine opens the cell bars: a dead Marine lies in the corridor | @start,a,w60
+pickup_shotgun | inventory | SHOTGUN COLLECTED from the dead Marine | @start,a,w60,up:16,up:16,up:11,up:7,up:16,up:14,up:9,right:12,!
+pickup_rounds | inventory | SHOTGUN ROUNDS COLLECTED at a wall locker | @start,poke:2F1CE=00208000,poke:2F1D2=00064000,poke:2F1D6=C000,w30,!
+hud_marine | hud | Marine HUD: score, security 07, four weapons with ammo bars, pulse rifle | @start,WARP:02,w180,GEAR,poke:30AD0=07,poke:30A76=0001FBD0,2,w60,!
+env_sublevel1 | gameplay | Sublevel 1: storage hall with barrels | @start,WARP:01,w180,!
+env_sublevel2 | gameplay | Sublevel 2: corridor with barrels and crates | @start,WARP:02,w180,!
+env_sublevel3 | gameplay | Sublevel 3: a long corridor of the brig block | @start,a,w60,up:16,up:16,up:11,up:7,up:16,up:14,up:9,right:12,w4,right:12,w4,right:12,w4,right:7,w4,right:5,w4,right:3,w4,right:3,w4,up:16,right:12,w4,right:6,w4,right:4,w4,right:2,w4,right:2,w4,right:2,w4,right:2,w4,up:16,right:5,w4,right:3,w4,up:8,left:6,w4,up:16,up:16,up:9,up:16,left:6,w4,left:4,w4,left:2,w4,up:16,up:8,up:6,up:16,up:15,up:8,right:12,w4,right:12,w4,right:12,w4,right:12,w4,right:10,w4,right:4,w4,right:2,w4,right:2,w4,right:2,w4,right:2,w4,up:16,right:11,w4,right:6,w4,right:3,w4,right:3,w4,right:1,w4,up:16,up:8,up:6,up:16,up:14,left:7,w4,left:2,w4,left:2,w4,left:2,w4,left:2,w4,up:9,up:16,!
+env_sublevel3_office | gameplay | Sublevel 3: brig office with a terminal at the end | @start,poke:2F1CE=002C8000,poke:2F1D2=000F8000,poke:2F1D6=4000,w60,!
+marine_alien_office | gameplay | Brig office: an Alien beside a dead Marine | @start,poke:2F1CE=002A8000,poke:2F1D2=00108000,poke:2F1D6=4000,w60,!
+env_sublevel4 | gameplay | Sublevel 4: corridor with pipes | @start,WARP:04,w100,!
+marine_alien_sublevel4 | gameplay | Sublevel 4: an Alien right in front of the Marine | @start,WARP:04,w180,right:64,w10,!
+entering_sublevel | system | Arrival on a new level: "ENTERING SUBLEVEL 5" | @start,WARP:05,!
+marine_alien_sublevel5 | gameplay | Sublevel 5: an Alien charges across the resin-covered hall | @start,WARP:05,w200,left:64,w10,!
+env_alien_ship | gameplay | The Alien ship: ribbed organic corridor and door | @start,WARP:0e,w180,!
+env_predator_ship | gameplay | The Predator ship: patterned walls and a sliding door | @start,WARP:0f,w180,!
+airduct_alien | gameplay | Air duct: an Alien attacks the Marine, the screen flashes red | @start,WARP:07,w180,!
+marine_shotgun | gameplay | Shotgun in hand, an Alien right in front of the Marine | @start,WARP:04,GEAR,1,w10,right:32,right:32,b,w4,w4,w4,w20,b,w4,!
+marine_pulse_rifle_hit | gameplay | Pulse rifle burst: hit sparks on an Alien | @start,WARP:04,GEAR,2,w10,right:32,right:32,b:6,b:6,!
+marine_pulse_rifle_kill | gameplay | Pulse rifle: the Alien is thrown back as it dies | @start,WARP:04,GEAR,2,w10,right:32,right:32,b:6,b:6,b:6,!
+marine_alien_dead | gameplay | Alien killed: score 10000, acid splash on the floor | @start,WARP:04,GEAR,2,w10,right:32,right:32,b:6,b:6,b:6,b:20,w30
+marine_flamethrower | gameplay | Flamethrower fired at an Alien | @start,WARP:04,GEAR,3,w10,right:32,right:32,b:6,b:6,b:6,!
+marine_smartgun | gameplay | Smart gun firing at an Alien | @start,WARP:04,GEAR,4,w10,right:32,right:32,b:6,b:6,!
+marine_hurt | gameplay | Marine hit by the Alien: red damage flash | @start,WARP:04,GEAR,4,w10,right:32,right:32,b:6,b:6,b:6,!
+marine_tracker | system | Motion tracker on (debug Option+8) | @start,DEBUG,w30,settle,pause,w60,settle,up:30,settle,option+8,w60,!
+terminal | gameplay | A computer terminal on sublevel 3 | @start,poke:2F1CE=00174000,poke:2F1D2=00068000,poke:2F1D6=0000,w30,!
+terminal_menu | menu | Terminal main menu: Level Schematic, General Log | @start,poke:2F1CE=0017B000,poke:2F1D2=00068000,poke:2F1D6=0000,w30,a,w400
+map_level3 | map | Level schematic: sublevel 3 with the room legend | @start,poke:2F1CE=0017B000,poke:2F1D2=00068000,poke:2F1D6=0000,w30,a,w400,b,w300,!
+log_page1 | dialogue | General Log page 1: the Aliens have mastered the airducts | @start,poke:2F1CE=0017B000,poke:2F1D2=00068000,poke:2F1D6=0000,w30,a,w400,down,w30,b,w600,!
+log_page2 | dialogue | General Log page 2: no response to the distress signals | @start,poke:2F1CE=0017B000,poke:2F1D2=00068000,poke:2F1D6=0000,w30,a,w400,down,w30,b,w600,a,w600,!
+log_page3 | dialogue | General Log page 3: weapons and ammo in the armouries on levels 2 and 4 | @start,poke:2F1CE=0017B000,poke:2F1D2=00068000,poke:2F1D6=0000,w30,a,w400,down,w30,b,w600,a,w600,a,w600,!
+sign_brig | gameplay | Wall sign: BRIG | @start,poke:2F1CE=00204000,poke:2F1D2=000C8000,poke:2F1D6=0000,w30
+sign_sublevel | gameplay | Wall sign: SUB LEVEL 3 | @start,poke:2F1CE=001FC000,poke:2F1D2=00158000,poke:2F1D6=8000,w30
+door_closed | gameplay | A closed door on sublevel 3 | @start,poke:2F1CE=00174000,poke:2F1D2=00088000,poke:2F1D6=0000,w30
+airlock_door | gameplay | Airlock doors on sublevel 3 | @start,poke:2F1CE=00168000,poke:2F1D2=00294000,poke:2F1D6=C000,w30
+vent | gameplay | An air duct vent in the wall | @start,poke:2F1CE=001A4000,poke:2F1D2=00038000,poke:2F1D6=0000,w30
+vent_entered | gameplay | Through the vent: inside an air duct | @start,poke:2F1CE=001AB000,poke:2F1D2=00038000,poke:2F1D6=0000,w30,a,w120,!
+lift_hatch | gameplay | Lift hatch, closed | @start,poke:2F1CE=00216000,poke:2F1D2=00158000,poke:2F1D6=0000,w30
+lift_inside | gameplay | Inside the lift: up and down arrows | @start,poke:2F1CE=00216000,poke:2F1D2=00158000,poke:2F1D6=0000,w30,a,w90,!
+lift_arrived | gameplay | Lift doors open on sublevel 4: an Alien is waiting | @start,poke:2F1CE=00216000,poke:2F1D2=00158000,poke:2F1D6=0000,w30,a,w90,up:40,w30,a+down:30,w600,right:128,w20,a,w90,!
 pause_paused | menu | Game paused | @start,pause,w30
 pause_options | save | Pause/Option menu: HUD brightness, GAME 1-3 save slots | @start,pause,w30,option,w30,down,w20
 menu_restore | save | Restore Game list: GAME 1 in Marine type, two empty slots | sav:01_start,MENU,down,w30,a,w120
-gameover | gameover | Death: "SIMULATION TERMINATED" | @start,WARP:04,poke:30A6A=0010,w600,!
-# Targets without a route yet: terminal menu (General Log, First Aid), level schematic map, elevator hatch +
-# "ENTERING SUBLEVEL" by lift, security card pickup message, Alien claw/tail/bite + cocoon, Facehugger attack,
-# Predator wrist blade / combistick / smart disc / shoulder cannon, acid blood, Alien Queen, self-destruct and
-# escape pod, Marine firing at an Alien, Predator ship and Alien ship as a Marine (WARP:0f / WARP:0e).
+gameover | gameover | Death: USCM badge, "SIMULATION TERMINATED" | @start,WARP:04,poke:30A76=0006AC02,poke:30A6A=0010,w300,w300
+highscore_entry | menu | New high score: name entry, R and Y set in fourth place | @start,WARP:04,poke:30A76=0006AC02,poke:30A6A=0010,w300,w300,w300,a,w200,up*15,right,up*7,!
+highscore_ryz | menu | High score table with RYZ 437250 in fourth place | @start,WARP:04,poke:30A76=0006AC02,poke:30A6A=0010,w300,w300,w300,a,w200,up*15,right,up*7,right,up*6,a,w400,a,w400,down,w30,down,w30,a,w150
+alien_start | gameplay | Alien start inside the Alien ship | @start_alien,!
+alien_sublevel1 | gameplay | Alien on sublevel 1: barrel store, claw HUD | @start_alien,WARP:01,w180,!
+alien_sublevel2 | gameplay | Alien on sublevel 2: long office corridor | @start_alien,WARP:02,w180,!
+alien_hurt | gameplay | Alien under attack on sublevel 4: purple damage flash | @start_alien,WARP:04,w180,!
+alien_predator_ship | gameplay | Alien in the Predator ship | @start_alien,WARP:0f,w180,!
+predator_start | gameplay | Predator start inside the Predator ship | @start_predator,!
+predator_cloak | system | Predator invisible: vision filter on, mask icon in the HUD | @start_predator,option,w120,!
+predator_filter | system | Predator vision filter changed with keypad 6 | @start_predator,option,w120,6,w60,!
+predator_sublevel1 | gameplay | Predator on sublevel 1: honor display and weapon list | @start_predator,WARP:01,w180,!
+predator_alien_ship | gameplay | Predator in the Alien ship | @start_predator,WARP:0e,w180,!
+predator_attained | system | Honor points pass 750,000: SHOULDER CANNON ATTAINED | @start_predator,poke:30A76=000BEC26,WARP:05,2,w36,!
+predator_combistick | gameplay | Predator with the combistick, an Alien ahead | @start_predator,poke:30A76=000BEC26,WARP:05,w240,1,w30,b,w6,!
+predator_cannon | gameplay | Shoulder cannon bolt flies at an Alien | @start_predator,poke:30A76=000BEC26,WARP:05,2,w30,b,w6,w10,!
+predator_cannon_kill | gameplay | Shoulder cannon kill: acid on the floor, honor points up | @start_predator,poke:30A76=000BEC26,WARP:05,2,w30,b,w6,w10,b,w6,!
+predator_smartdisc | gameplay | Smart disc selected, an Alien closes in | @start_predator,poke:30A76=000BEC26,WARP:05,w240,3,w30,b,w4,w8,w8,!
+predator_hurt | gameplay | Predator hit by an Alien: yellow-green flash | @start_predator,poke:30A76=000BEC26,WARP:05,w240,3,w30,b,w4,w8,w8,w20,!

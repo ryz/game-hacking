@@ -31,8 +31,27 @@ checked). Never delete a fact that turned out wrong: strike it and say what is t
     10 s (purple flash). Hold `freeze:30A6A=0401` for Alien shots.
   - Gameplay screens never settle (animated HUD, enemies): end shot routes with `!` or a fixed wait.
   - Option+key debug combinations are exact: no other button may be held.
-- **State:** scouted 2026-11-27; plan of 30 previewed shots in `shots.txt`; nothing captured. Open: score and
-  position RAM, terminals, the map, cocooning, Predator weapons by honor.
+- **Position and walking (2026-11-28):** player x/y are words at `2F1CE` / `2F1D2` (cell 0-63, fraction in the
+  next word), angle `2F1D6` (0000 east, 4000 north = y-1, 8000 west, C000 south). A position poke is a clean
+  teleport: `poke:2F1CE=0017B000,poke:2F1D2=00068000,poke:2F1D6=0000` stands in front of a terminal.
+  The level grid is in RAM at `4FC00` (64x64 cells of 8 bytes, walls W N E S): draw it with
+  `games/jaguar/alien-vs-predator/tools/avpmap.py ROUTE [--box x0,y0,x1,y1] [--raw]`; walk honestly with
+  `tools/avpwalk.py ROUTE X,Y ... [--face 0000] [--hurt-ok]` (path search, prints the pad tokens; it stops when
+  energy falls so you can fight). Score / honor points: long at `30A76`.
+- **Wall ids on sublevel 3** (byte values in the grid): 05 terminal, 06 vent, 0F/0E/02/01/10/11/0A signs
+  (BRIG, CANTEEN, ELEVATOR, SUB LEVEL 3, BARRACKS, PETTY OFFICERS AREA, AIRLOCK), 40 hatch of a lift cell, 50 and
+  58 doors, 28 airlock doors, 30 cell bars, 08 wall locker with shotgun rounds.
+- **Terminals:** A at close range; menu types for ~400 frames; B selects, A next page, C exits (after C the menu
+  retypes: wait 400 before the next key). Lift: A opens, step in (`up:40`), `a+down:30` rides down, `w600`,
+  `right:128,w20,a` opens the doors on the new level.
+- **High score entry:** game over with a score above 400,000 (`poke:30A76=0006AC02`, 437250); each letter starts
+  at A, `up` steps backwards (A, symbols, Z, Y, X ...): RYZ = `up*15,right,up*7,right,up*6,a`. The table is then
+  only reachable through title and menu with long waits (`a,w400,a,w400,down,w30,down,w30,a,w150`).
+- **Reset:** `star+hash:30` (held; an 8-frame press does nothing).
+- **Predator weapons:** `poke:30A76=000BEC26` (781,350 honor) gives all four; SHOULDER CANNON ATTAINED appears
+  ~36 frames after the next key. Keys: 1 combistick, 2 shoulder cannon, 3 smart disc (4 not identified).
+- **State:** captured 2026-11-28: `main` 75 shots, `start` 28 shots, both verified; lenses clean. Open: boot
+  logo shot (needs `ntsc-bios`), cocooning, other enemy kinds, Queen, med-lab, self-destruct, ending.
 
 ## Identity
 | Field | Value |
@@ -109,18 +128,18 @@ Input timing: the default press (hold 8, wait 40) works everywhere tried. The de
 `shots.txt` holds 30 lines with routes, all previewed (`work/preview/jaguar/alien-vs-predator/plan.png`):
 title 1, menu 7 (main, 3 selects, high scores, pause, ...), cutscene 6 (3 briefings, 3 attract scenes), credits 1,
 gameplay 11 (3 starts, cell, 5 environments, 2 weapons), system 3 (cloak, filter, tracker), save 2, gameover 1.
-Still to add by playing (category, how):
-- [ ] `boot_jaguar_logo` boot - `ntsc-bios` model (check that the cart is accepted) - 1
-- [ ] terminal menu, General Log page, level schematic (map) - walk to a terminal (sublevel 3 near the brig?)
-- [ ] security card / weapon / ammo pickup message (inventory) - corpses near the brig
-- [ ] Marine firing each weapon at an Alien (`WARP:04` has an Alien close), acid blood, flamethrower
+Captured 2026-11-28 (main 75, start 28; `shots.txt` holds the main set). Ticked below; open items stay open:
+- [ ] `boot_jaguar_logo` boot - `ntsc-bios` works (JAGUAR + ATARI logo at w400, the game boots after), but shoot.py takes one model per set: not shot
+- [x] terminal menu, General Log page, level schematic (map) - walk to a terminal (sublevel 3 near the brig?)
+- [x] (weapon and rounds; no card) security card / weapon / ammo pickup message (inventory) - corpses near the brig
+- [x] Marine firing each weapon at an Alien (`WARP:04` has an Alien close), acid blood, flamethrower
 - [ ] facehugger on the screen, egg (Alien ship / sublevel 5)
 - [ ] Alien claw / tail / bite, "COCOON THE ENEMY" and "COCOON COMPLETE", cocoon count in the HUD
-- [ ] Predator weapons: poke the score past 750,000 once its address is known (or debug Option+1-4), smart disc
+- [x] (honor poke) Predator weapons: poke the score past 750,000 once its address is known (or debug Option+1-4), smart disc
   thrown, shoulder cannon blast; dishonour message
-- [ ] lift hatch and ride, airlock, self-destruct terminal and escape pod (end)
+- [x] (lift only) lift hatch and ride, airlock, self-destruct terminal and escape pod (end)
 - [ ] Alien Queen (Predator ship for the Alien, Alien ship for the Predator) - boss
-- [ ] Marine in the Alien and the Predator ship (`WARP:0e` / `WARP:0f`): distinct environments
+- [x] Marine in the Alien and the Predator ship (`WARP:0e` / `WARP:0f`): distinct environments
 
 ## Strategy and walkthrough notes
 - Use `WARP` and pokes instead of walking; the base layout is not mapped here yet.
@@ -130,7 +149,7 @@ Still to add by playing (category, how):
   reproducible here because the emulator is deterministic, but a different wait moves things.
 
 ## Naming
-No name entry was met. A high score entry probably asks for a name (the table shows names): use **ryz**.
+High score entry: three letters, entered as RYZ (route in Read first; shots `highscore_entry`, `highscore_ryz`).
 
 ## Shortcuts
 | What | How (tokens / prefix / code) | Source | Status |
@@ -162,6 +181,12 @@ DRAM addresses for this ROM; the game copies its code to DRAM, so these are fixe
 | 02EE78 / 02EE79 | byte | debug keys enabled (FF) | code CE44 |
 | 02EE60 | long | pad, active low (Atari layout: A bit 29, B 25, C 13, Pause 28, Option 9, up 20 ...) | test |
 | 039834 | long | pointer of the on-screen message record | code |
+| 02F1CE | long | player x (high word = cell 0-63, low word = fraction) | walk + diff, poke verified |
+| 02F1D2 | long | player y (same format; north = smaller y) | walk + diff, poke verified |
+| 02F1D6 | word | facing angle: 0000 east, 4000 north, 8000 west, C000 south; right turns decrease it | turn + diff |
+| 030A76 | long | score (Marine 10,000 per Alien) / honor points (Predator) | kill + search; poke verified (HUD) |
+| 04FC00 | 64x64x8 | level grid: per cell bytes 0-3 = wall id on the W, N, E, S side (0 = open), 4-5 floor/ceiling texture | code F040 (flood fill from the player) |
+| 03EAE0 | 64x64 words | visited / reachable cells (FFFF) | code F01E |
 
 ## Emulation notes
 - Virtual Jaguar runs the game fully: all three starts, every level id, cutscenes, menus, save and restore, no
@@ -172,7 +197,14 @@ DRAM addresses for this ROM; the game copies its code to DRAM, so these are fixe
 
 ## Checkpoints
 `title`, `menu`, `select` (Alien in front), `start` (Marine), `start_alien`, `start_predator`. The three starts
-branch from `select`.
+branch from `select`. Start set: `s_fight1` (honest walk from the brig to the east-room door, first Alien
+coming in) and `s_terminal` (two Aliens killed, facing the brig-office terminal at 43,13).
+
+## Start set (honest route, 2026-11-28)
+Cell bars (`a`), walk out over the body (shotgun), path search to the brig office (`avpwalk.py`), first Alien:
+`down:10,right:10` then six `b,w30`; second Alien at the south door: `down:10` and four `b,w30`; walk on with
+`--hurt-ok` (acid where it died), terminal at 43,13: schematic, General Log (4 pages here), Pause, Option,
+`down`, `b` saves GAME 1; `star+hash:30` resets; the Restore list shows GAME 1. Save `saves/02_brig_terminal.sav`.
 
 ## Sources
 | Source | URL | Used for | Accessed |
@@ -185,9 +217,11 @@ branch from `select`.
 | TCRF (tcrf.net 403, new.tcrf.net not allowed), GameFAQs (403), gamehacking.org (403) | - | unavailable | 2026-11-27 |
 
 ## Open questions
-- Score / honor points address (Predator weapons by points) - not found; kill something and `find`.
-- Player position and facing - the obvious diff found only render buffers.
-- Where the first terminal, lift and items are on sublevel 3; the level schematic screen.
+- ~~Score / honor points address~~: `30A76` (2026-11-28).
+- ~~Player position and facing~~: `2F1CE` / `2F1D2` / `2F1D6` (2026-11-28).
+- ~~First terminal, lift, items on sublevel 3~~: terminals at cells 23,6 (east face) and 43,13 (brig office),
+  lifts at 34,21 (enter from the west) and 9,21; shotgun on the body outside the cell; rounds in the locker
+  at 32,6 (2026-11-28).
 - Is the attack from behind at the Alien start a Predator? (purple flashes, energy -200 in 10 s.)
-- High score name entry (name **ryz**) not seen.
+- ~~High score name entry~~: seen and done (RYZ).
 - The save record format in the EEPROM (slot 1 holds energy 03E8 at byte 16).

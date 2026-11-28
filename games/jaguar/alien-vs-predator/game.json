@@ -86,6 +86,6 @@
       "size": 4
     }
   },
-  "work": "scouted 2026-11-27: boot, 3 character starts, warp to all 15 areas, debug mode, RAM map, 30-shot plan; not captured",
-  "open": "capture main and start sets; score and position RAM; terminals, map, cocooning and Predator weapons not yet reached"
+  "work": "captured 2026-11-28: main 75 shots (all three species, 15 areas sampled, 8 weapons, terminals, lift, save, high score), start 28 shots (honest Marine start to the first save), three lenses",
+  "open": "boot logo (ntsc-bios model, no per-shot model in shoot.py); cocooning, facehuggers, Marines/Predator as enemies, Alien Queen, med-lab First Aid, self-destruct and escape pod, ending; cause of the Alien's energy loss at its start"
 }
