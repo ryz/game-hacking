@@ -64,6 +64,21 @@
       "addr": "030A7A",
       "size": 2,
       "fmt": "hex"
+    },
+    "pos_x": {
+      "addr": "02F1CE",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "pos_y": {
+      "addr": "02F1D2",
+      "size": 2,
+      "fmt": "hex"
+    },
+    "angle": {
+      "addr": "02F1D6",
+      "size": 2,
+      "fmt": "hex"
     }
   },
   "work": "scouted 2026-11-27: boot, 3 character starts, warp to all 15 areas, debug mode, RAM map, 30-shot plan; not captured",
