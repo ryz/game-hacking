@@ -9,6 +9,9 @@ confirms, or that the owner states as a rule, is promoted into `skill.md` (or th
 removed here. Every run's full feedback, newest first: `feedback-log.md` (history, not required reading).
 Tool wishes are not listed here: `docs/backlog.md`.
 
+- **Real-time enemies:** find the actor pool by diffing two DRAM dumps a few frames apart (moving x/y pairs),
+  then the allocator; identify records by handler/kind, not a state field. Endings: follow the ending text to
+  the code that sets the win flag (Alien vs Predator round 2, 2026-11-28).
 - **Grid-based 3D games:** find player x/y/angle and the wall grid first; position pokes into the cell in front
   of each rare wall id survey every fixture of a level in one preview (Alien vs Predator Jaguar, 2026-11-28).
 - **`preview.py --crop` takes native coordinates**, not sheet coordinates (Alien vs Predator, 2026-11-28).

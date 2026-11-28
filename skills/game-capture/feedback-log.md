@@ -10,6 +10,21 @@ new entries here at the top.
 Running log for this skill, newest first. Status: `open`, `logged`, `promoted YYYY-MM-DD`, `superseded`.
 Never delete entries.
 
+### 2026-11-28 - Alien vs Predator (Jaguar), round 2
+- Task: second capture round: Alien, Predator and Marine gameplay, enemy kinds, the Queen, endings; 54 new
+  shots, main 129/129.
+- Worked: actor pool found by diffing two DRAM dumps 6 frames apart (moving x/y pairs), kinds named by comparing
+  the three species' pools on one level; ending strings -> end-screen dispatcher -> every end flag (~10 calls);
+  preview `?` marks with --peek on the enemy's energy showed which attack frames landed.
+- Friction: a first scan filtered on a state field and missed every active record until the allocator code
+  showed the layout; scratch helpers lost between sessions; lenses.py counts the published set, not the work set.
+- Proposed rule change: emulator README "RAM": actor pools by frame diffs + allocator, identify records by
+  handler/kind not state; bosses/endings by following the ending text to the win-flag code. Backlog: shared
+  tools/actors.py (list actor records by base/stride/fields).
+- Corrected: none. Coordinator: cold verify 129/129; sheets 2-3 looked at.
+- Status: actor-pool lesson -> feedback.md (open); actors.py -> backlog; lenses.py work-set count -> logged
+  (`lenses.py --work` exists).
+
 ### 2026-11-28 - Alien vs Predator (Jaguar)
 - Task: capture the start and main sets plus the three lenses for Alien vs Predator (Jaguar).
 - Worked: DRAM diffs over scripted moves gave position/angle, the code using them gave the 64x64 wall grid (~6

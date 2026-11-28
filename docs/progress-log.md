@@ -2,6 +2,15 @@
 
 Append-only, newest first.
 
+## 2026-11-28 - Alien vs Predator (Jaguar): capture round 2
+- Owner asked for well-rounded shots of all three species plus cocooning, facehuggers, Marines/Predator as
+  enemies, the Queen and more typical combat. main 75 -> 129 (Alien 16, Predator 18, Marine/enemies 20; commits
+  4d989da 1653e6d c811bf5); coordinator cold verify 129/129.
+- Found: actor pool 3989C (kinds, energy), Queen wake cell and cage generators, end flags and all three species'
+  endings, self-destruct timer, cocoon logic; the Alien's "unseen" energy drain is a Marine behind the start cell.
+- Open: bite/tail attacks are not drawn (only the claw), Predator health reserve starts empty, no honor for a
+  visible blade kill of a Marine, pickups (medkit, cards) and First Aid, boot logo.
+
 ## 2026-11-28 - Alien vs Predator (Jaguar): first Jaguar game scouted and captured
 - Owner uploaded the World cartridge (filed `na`); registered, boot-checked and pushed to the vault with saves
   01_start and 02_brig_terminal.

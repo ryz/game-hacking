@@ -11,6 +11,7 @@ on this list, they report the need. "Asked" counts runs; sources are in `skills/
 | `vault.py`: store files over 100 MB (PlayStation CHDs are 200-600 MB; GitHub refuses them): split into parts with SHA-1s in files.json, joined on pull, or another store (owner's decision) | 1 | PS1 backend 2026-11-26 |
 | `shoot.py SLUG start --renumber`: rewrite `NN_` ids in play order and rename the files; today renumbered ids plus `--prune` delete the renamed shots and the set is reshot (the capture guide promises a rename) | 1 | Ultima III DOS start set 2026-11-22 |
 | `play.py peek` counts toward `call=`: helper scripts that peek inflate the budget counter (~5x); a peek that does not count, or a separate counter | 1 | Ultima I DOS start set 2026-11-22 |
+| `tools/actors.py SLUG ROUTE --base ADDR --stride N --fields ...`: list a game's actor records (kind, x/y, energy) so per-game scratch scripts stop being rewritten | 1 | Alien vs Predator Jaguar capture round 2 2026-11-28 |
 | Per-shot model in `shots.txt` (`model:ntsc-bios` route prefix honoured by `shoot.py`, `preview.py`, `--verify`), so a console boot-logo shot can join `main` | 1 | Alien vs Predator Jaguar capture 2026-11-28 |
 | `cachecheck.py`: skip a scratch checkpoint whose parent no longer exists (warning) instead of stopping with "unknown checkpoint" | 1 | Alien vs Predator Jaguar scout 2026-11-27 |
 | `play.py dump --bin`: write a raw binary dump (today JSON keyed by address) | 1 | Dragonflight capture 2026-11-22 |
