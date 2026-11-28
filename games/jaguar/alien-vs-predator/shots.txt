@@ -67,6 +67,22 @@ alien_sublevel1 | gameplay | Alien on sublevel 1: barrel store, claw HUD | @star
 alien_sublevel2 | gameplay | Alien on sublevel 2: long office corridor | @start_alien,WARP:02,w180,!
 alien_hurt | gameplay | Alien under attack on sublevel 4: purple damage flash | @start_alien,WARP:04,w180,!
 alien_predator_ship | gameplay | Alien in the Predator ship | @start_alien,WARP:0f,w180,!
+alien_marine_enemy | gameplay | Alien ship: a Marine stands in the doorway ahead | @start_alien,poke:2F1D6=8000,w40,!
+alien_marine_fires | gameplay | The Marine fires at the Alien from close range: muzzle flash | @start_alien,poke:2F1D6=8800,w10,up:8,w4,w8*4,!
+alien_hurt_marine | gameplay | Alien hit by the Marine's fire: purple damage flash | @start_alien,poke:2F1D6=8800,w10,up:8,w4,w8*7,!
+alien_claw | gameplay | Claw attack: the Marine staggers back, bleeding | @start_alien,freeze:30A6A=0401,poke:2F1D6=8800,w10,up:8,w4,poke:3A7F2=0008,a:8,w4,c:8,w4,a:8,!
+alien_marine_dying | gameplay | The Marine slumps to the floor | @start_alien,freeze:30A6A=0401,poke:2F1D6=8800,w10,up:8,w4,poke:3A7F2=0008,a:8,w4,c:8,w4,a:8,w10,!
+alien_marine_killed | gameplay | Marine killed: his body on the floor, score 20000 | @start_alien,freeze:30A6A=0401,poke:2F1D6=8800,w10,up:8,w4,poke:3A7F2=0008,a:8,w4,c:8,w4,a:8,w10,w20,!
+alien_cocoon_enemy | system | Claw, tail, claw: "COCOON THE ENEMY" over the stunned Marine | @start_alien,freeze:30A6A=0401,poke:2F1D6=8800,w10,up:8,w4,poke:3A7F2=0008,poke:3A7F6=04C8,a:8,w4,c:8,w4,a:8,!
+alien_cocoon_complete | system | "COCOON COMPLETED" after walking over the Marine | @start_alien,freeze:30A6A=0401,poke:2F1D6=8800,w10,up:8,w4,poke:3A7F2=0008,poke:3A7F6=04C8,a:8,w4,c:8,w4,a:8,w10,w20,w30,up:10,w20,!
+alien_cocoon | gameplay | A cocooned Marine left behind in the Alien ship | @start_alien,freeze:30A6A=0401,poke:2F1D6=8800,w10,up:8,w4,poke:3A7F2=0008,poke:3A7F6=04C8,a:8,w4,c:8,w4,a:8,w10,w20,w30,up:10,w60,down:30,w150,!
+alien_queen_cage | boss | Predator ship: the Alien Queen behind a cage of electric pylons | @start_alien,WARP:0f,w180,freeze:30A6A=0401,poke:2F1CE=00244000,poke:2F1D2=00100000,poke:2F1D6=0000,w10,w8*7,!
+alien_queen_hall | gameplay | Predator ship: the Queen's cage seen from the hall | @start_alien,WARP:0f,w180,freeze:30A6A=0401,poke:2F1CE=00218000,poke:2F1D2=00100000,poke:2F1D6=0000,w20,!
+alien_queen_freed | boss | Cage generators down: the Alien Queen walks free | @start_alien,WARP:0f,w180,freeze:30A6A=0401,poke:2F1CE=00238000,poke:2F1D2=00100000,poke:2F1D6=0000,w20,poke:4B7C8=0000,w20,w40,w60,!
+alien_queen_close | boss | The freed Queen towers over the Alien, a Predator behind | @start_alien,WARP:0f,w180,freeze:30A6A=0401,poke:2F1CE=00238000,poke:2F1D2=00100000,poke:2F1D6=0000,w20,poke:4B7C8=0000,w120,poke:2F1D6=E000,w4,w10*3,!
+alien_predator_enemy | gameplay | Predator ship: a Predator stalks the Alien | @start_alien,WARP:0f,w180,freeze:30A6A=0401,poke:2F1CE=00238000,poke:2F1D2=00100000,poke:2F1D6=0000,w20,poke:4B7C8=0000,w120,poke:2F1D6=E000,w4,w10*7,!
+ending_alien | ending | Alien ending: "THE HIVE IS WHOLE AGAIN / EXPANSION CONTINUES" | @start_alien,WARP:0f,w180,freeze:30A6A=0401,poke:2F1CE=00238000,poke:2F1D2=00100000,poke:2F1D6=0000,w20,poke:4B7C8=0000,w20,w40,w60,w120,w200,!
+alien_gameover | gameover | Alien dead: GAME OVER across its view | @start_alien,poke:30A6A=0000,w30,!
 predator_start | gameplay | Predator start inside the Predator ship | @start_predator,!
 predator_cloak | system | Predator invisible: vision filter on, mask icon in the HUD | @start_predator,option,w120,!
 predator_filter | system | Predator vision filter changed with keypad 6 | @start_predator,option,w120,6,w60,!

@@ -1,6 +1,6 @@
 # Alien vs Predator - shots: main
 
-Platform jaguar, region na, model ntsc, ROM SHA-1 `fd8c89250ebc1e403838b2e589d1f69e3fe2fe02`. 75 shots. Contact sheet: [alien-vs-predator_jaguar_na_set_sheet.png](alien-vs-predator_jaguar_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
+Platform jaguar, region na, model ntsc, ROM SHA-1 `fd8c89250ebc1e403838b2e589d1f69e3fe2fe02`. 91 shots. Contact sheet: [alien-vs-predator_jaguar_na_set_sheet.png](alien-vs-predator_jaguar_na_set_sheet.png). Native size; enlarged copies on demand with `python3 tools/x3.py <this folder>`. File names: `<game>_<platform>_<region>_<category>_<id>.png`.
 
 | id | category | caption | settled | image |
 |---|---|---|---|---|
@@ -68,6 +68,22 @@ Platform jaguar, region na, model ntsc, ROM SHA-1 `fd8c89250ebc1e403838b2e589d1f
 | alien_sublevel2 | gameplay | Alien on sublevel 2: long office corridor | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_sublevel2.png) |
 | alien_hurt | gameplay | Alien under attack on sublevel 4: purple damage flash | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_hurt.png) |
 | alien_predator_ship | gameplay | Alien in the Predator ship | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_predator_ship.png) |
+| alien_marine_enemy | gameplay | Alien ship: a Marine stands in the doorway ahead | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_marine_enemy.png) |
+| alien_marine_fires | gameplay | The Marine fires at the Alien from close range: muzzle flash | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_marine_fires.png) |
+| alien_hurt_marine | gameplay | Alien hit by the Marine's fire: purple damage flash | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_hurt_marine.png) |
+| alien_claw | gameplay | Claw attack: the Marine staggers back, bleeding | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_claw.png) |
+| alien_marine_dying | gameplay | The Marine slumps to the floor | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_marine_dying.png) |
+| alien_marine_killed | gameplay | Marine killed: his body on the floor, score 20000 | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_marine_killed.png) |
+| alien_cocoon_enemy | system | Claw, tail, claw: "COCOON THE ENEMY" over the stunned Marine | no | [png](alien-vs-predator_jaguar_na_system_alien_cocoon_enemy.png) |
+| alien_cocoon_complete | system | "COCOON COMPLETED" after walking over the Marine | no | [png](alien-vs-predator_jaguar_na_system_alien_cocoon_complete.png) |
+| alien_cocoon | gameplay | A cocooned Marine left behind in the Alien ship | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_cocoon.png) |
+| alien_queen_cage | boss | Predator ship: the Alien Queen behind a cage of electric pylons | no | [png](alien-vs-predator_jaguar_na_boss_alien_queen_cage.png) |
+| alien_queen_hall | gameplay | Predator ship: the Queen's cage seen from the hall | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_queen_hall.png) |
+| alien_queen_freed | boss | Cage generators down: the Alien Queen walks free | no | [png](alien-vs-predator_jaguar_na_boss_alien_queen_freed.png) |
+| alien_queen_close | boss | The freed Queen towers over the Alien, a Predator behind | no | [png](alien-vs-predator_jaguar_na_boss_alien_queen_close.png) |
+| alien_predator_enemy | gameplay | Predator ship: a Predator stalks the Alien | no | [png](alien-vs-predator_jaguar_na_gameplay_alien_predator_enemy.png) |
+| ending_alien | ending | Alien ending: "THE HIVE IS WHOLE AGAIN / EXPANSION CONTINUES" | yes | [png](alien-vs-predator_jaguar_na_ending_ending_alien.png) |
+| alien_gameover | gameover | Alien dead: GAME OVER across its view | no | [png](alien-vs-predator_jaguar_na_gameover_alien_gameover.png) |
 | predator_start | gameplay | Predator start inside the Predator ship | no | [png](alien-vs-predator_jaguar_na_gameplay_predator_start.png) |
 | predator_cloak | system | Predator invisible: vision filter on, mask icon in the HUD | no | [png](alien-vs-predator_jaguar_na_system_predator_cloak.png) |
 | predator_filter | system | Predator vision filter changed with keypad 6 | no | [png](alien-vs-predator_jaguar_na_system_predator_filter.png) |
