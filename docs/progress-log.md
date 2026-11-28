@@ -2,6 +2,18 @@
 
 Append-only, newest first.
 
+## 2026-11-28 - Alien vs Predator (Jaguar): first Jaguar game scouted and captured
+- Owner uploaded the World cartridge (filed `na`); registered, boot-checked and pushed to the vault with saves
+  01_start and 02_brig_terminal.
+- Scout (fb651c3): three species starts, WARP:NN, debug code decoded from DRAM code (the cart is compressed),
+  RAM map. Capture (6dbf8b3, c267492, 70ae042): start 28 (honest Marine run to the first save), main 75, three
+  lenses, position/angle/score RAM, the 64x64 wall grid, game tools avpmap.py / avpwalk.py. Coordinator cold
+  verify: 28/28, 75/75.
+- Tools: `dis68k.py --route` (live RAM, second ask). Platform: no freeze or render fault in ~85 preview batches;
+  `ntsc-bios` boots retail carts through the logo; reset needs `star+hash:30`.
+- Open: cocooning, facehuggers, Marines/Predator as enemies, the Queen, self-destruct and ending; the boot-logo
+  shot (one model per set: backlog).
+
 ## 2026-11-27 - Atari Jaguar emulator: Virtual Jaguar libretro core
 - Owner asked for a Jaguar emulator. `sh tools/setup_emu.sh jaguar` (41 s from scratch) builds Virtual Jaguar, the
   libretro continuation (pinned, v3.13.1: actively maintained, savestates, boot ROMs built in), with

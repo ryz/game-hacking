@@ -9,6 +9,9 @@ confirms, or that the owner states as a rule, is promoted into `skill.md` (or th
 removed here. Every run's full feedback, newest first: `feedback-log.md` (history, not required reading).
 Tool wishes are not listed here: `docs/backlog.md`.
 
+- **Grid-based 3D games:** find player x/y/angle and the wall grid first; position pokes into the cell in front
+  of each rare wall id survey every fixture of a level in one preview (Alien vs Predator Jaguar, 2026-11-28).
+- **`preview.py --crop` takes native coordinates**, not sheet coordinates (Alien vs Predator, 2026-11-28).
 - **Party games: do not poke the facing byte.** Move by position pokes plus the game's own turns; a poked
   facing left the champions' formation unrotated and no blow landed (Dungeon Master, 2026-11-20, ~15 calls).
 - **Clean warps and forced battles:** find the game's main state byte and write its "enter map" / "start

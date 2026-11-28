@@ -64,6 +64,8 @@ Team Tap, rotary, mouse and light gun are not set up.
   `--xref ADDR` finds the instructions that name a variable. Many cartridges are compressed and run their
   code from DRAM (Alien vs Predator: ROM strings unreadable): disassemble live memory with
   `dis68k.py SLUG --route @checkpoint ADDR [N]` (or `--route ROUTE --xref ADDR`), read text from DRAM.
+- Console reset `star+hash` (Alien vs Predator): hold it about 30 frames (`star+hash:30`); an 8-frame press
+  does nothing. `ntsc-bios` boots this retail cart through the Jaguar logo (seen at w400).
 - Pad: games read it active-low in the standard Atari layout (Alien vs Predator: A = bit 29, B = 25, C = 13,
   Pause = 28, Option = 9 of the long they build).
 

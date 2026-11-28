@@ -10,6 +10,22 @@ new entries here at the top.
 Running log for this skill, newest first. Status: `open`, `logged`, `promoted YYYY-MM-DD`, `superseded`.
 Never delete entries.
 
+### 2026-11-28 - Alien vs Predator (Jaguar)
+- Task: capture the start and main sets plus the three lenses for Alien vs Predator (Jaguar).
+- Worked: DRAM diffs over scripted moves gave position/angle, the code using them gave the 64x64 wall grid (~6
+  calls); position pokes in front of each rare wall id surveyed a sublevel's fixtures in one preview; a
+  path-search walker that stops when energy falls made the honest start set possible; `--crop --scale 2`
+  timelines read high-score letters cheaply. ~125 of 280 calls.
+- Friction: shoot.py takes one model per set (the ntsc-bios boot logo cannot join main); `--crop` coordinates
+  are native but were estimated from the sheet (2 calls); a walker without an energy check died and drifted
+  into a new game through stray inputs.
+- Proposed rule change: per-shot model in shots.txt (`model:ntsc-bios` route prefix honoured by shoot, preview,
+  verify); skill.md step 2: grid-based 3D games: find x/y/angle and the wall grid first, survey fixtures by
+  position pokes in front of rare wall ids.
+- Corrected: none. Coordinator: cold verify start 28/28, main 75/75; both sheets looked at; save
+  02_brig_terminal pushed to the vault.
+- Status: per-shot model -> backlog; grid lesson -> feedback.md (open); --crop native coordinates -> open.
+
 ## Entries
 
 ### 2026-11-25 - Doom (DOS registered 1.1, `start` and `main`)
