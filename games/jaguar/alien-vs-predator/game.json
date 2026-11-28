@@ -34,7 +34,8 @@
     "NEWGAME": "MARINE",
     "DEBUG": "pause,w30,option,w30,6,w30,1+3,w30,b,a,9,a,9,a,star,option,6,hash,star,star,option,2,option,w30",
     "WARP": "poke:2F5AC=00{0},w300",
-    "GODMODE": "poke:30A7A=FFFF"
+    "GODMODE": "poke:30A7A=FFFF",
+    "GEAR": "poke:2F30A=1E,poke:2F214=0021,poke:2F224=00E7,poke:2F234=0041,poke:2F244=004F"
   },
   "ram": {
     "level": {
@@ -79,6 +80,10 @@
       "addr": "02F1D6",
       "size": 2,
       "fmt": "hex"
+    },
+    "score": {
+      "addr": "030A76",
+      "size": 4
     }
   },
   "work": "scouted 2026-11-27: boot, 3 character starts, warp to all 15 areas, debug mode, RAM map, 30-shot plan; not captured",
